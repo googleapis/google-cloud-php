@@ -31,9 +31,10 @@ class Block extends \Google\Protobuf\Internal\Message
     /**
      * The history of this annotation.
      *
-     * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Provenance provenance = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Provenance provenance = 3 [deprecated = true];</code>
+     * @deprecated
      */
-    private $provenance = null;
+    protected $provenance = null;
 
     /**
      * Constructor.
@@ -119,33 +120,39 @@ class Block extends \Google\Protobuf\Internal\Message
     /**
      * The history of this annotation.
      *
-     * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Provenance provenance = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Provenance provenance = 3 [deprecated = true];</code>
      * @return \Google\Cloud\DocumentAI\V1\Document\Provenance|null
+     * @deprecated
      */
     public function getProvenance()
     {
+        @trigger_error('provenance is deprecated.', E_USER_DEPRECATED);
         return $this->provenance;
     }
 
     public function hasProvenance()
     {
+        @trigger_error('provenance is deprecated.', E_USER_DEPRECATED);
         return isset($this->provenance);
     }
 
     public function clearProvenance()
     {
+        @trigger_error('provenance is deprecated.', E_USER_DEPRECATED);
         unset($this->provenance);
     }
 
     /**
      * The history of this annotation.
      *
-     * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Provenance provenance = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Provenance provenance = 3 [deprecated = true];</code>
      * @param \Google\Cloud\DocumentAI\V1\Document\Provenance $var
      * @return $this
+     * @deprecated
      */
     public function setProvenance($var)
     {
+        @trigger_error('provenance is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkMessage($var, \Google\Cloud\DocumentAI\V1\Document\Provenance::class);
         $this->provenance = $var;
 

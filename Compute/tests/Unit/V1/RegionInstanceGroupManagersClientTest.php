@@ -25,7 +25,6 @@ namespace Google\Cloud\Compute\Tests\Unit\V1;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Compute\V1\GetRegionOperationRequest;
 use Google\Cloud\Compute\V1\InstanceGroupManager;
@@ -37,6 +36,7 @@ use Google\Cloud\Compute\V1\PerInstanceConfig;
 use Google\Cloud\Compute\V1\RegionInstanceGroupManagerDeleteInstanceConfigReq;
 use Google\Cloud\Compute\V1\RegionInstanceGroupManagerList;
 use Google\Cloud\Compute\V1\RegionInstanceGroupManagerPatchInstanceConfigReq;
+use Google\Cloud\Compute\V1\RegionInstanceGroupManagerUpdateInstanceConfigReq;
 use Google\Cloud\Compute\V1\RegionInstanceGroupManagersAbandonInstancesRequest;
 use Google\Cloud\Compute\V1\RegionInstanceGroupManagersApplyUpdatesRequest;
 use Google\Cloud\Compute\V1\RegionInstanceGroupManagersClient;
@@ -48,7 +48,6 @@ use Google\Cloud\Compute\V1\RegionInstanceGroupManagersListInstancesResponse;
 use Google\Cloud\Compute\V1\RegionInstanceGroupManagersRecreateRequest;
 use Google\Cloud\Compute\V1\RegionInstanceGroupManagersSetTargetPoolsRequest;
 use Google\Cloud\Compute\V1\RegionInstanceGroupManagersSetTemplateRequest;
-use Google\Cloud\Compute\V1\RegionInstanceGroupManagerUpdateInstanceConfigReq;
 use Google\Cloud\Compute\V1\RegionOperationsClient;
 use Google\Rpc\Code;
 use stdClass;
@@ -60,25 +59,19 @@ use stdClass;
  */
 class RegionInstanceGroupManagersClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return RegionInstanceGroupManagersClient
-     */
+    /** @return RegionInstanceGroupManagersClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -87,14 +80,12 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         return new RegionInstanceGroupManagersClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function abandonInstancesTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new RegionOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -156,14 +147,12 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function abandonInstancesExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new RegionOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -214,14 +203,12 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function applyUpdatesToInstancesTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new RegionOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -283,14 +270,12 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function applyUpdatesToInstancesExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new RegionOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -341,14 +326,12 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createInstancesTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new RegionOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -410,14 +393,12 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createInstancesExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new RegionOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -468,14 +449,12 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new RegionOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -534,14 +513,12 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new RegionOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -591,14 +568,12 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteInstancesTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new RegionOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -660,14 +635,12 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteInstancesExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new RegionOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -718,14 +691,12 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deletePerInstanceConfigsTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new RegionOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -787,14 +758,12 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deletePerInstanceConfigsExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new RegionOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -845,9 +814,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getTest()
     {
         $transport = $this->createTransport();
@@ -906,9 +873,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getExceptionTest()
     {
         $transport = $this->createTransport();
@@ -943,14 +908,12 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function insertTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new RegionOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1009,14 +972,12 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function insertExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new RegionOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1066,9 +1027,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listTest()
     {
         $transport = $this->createTransport();
@@ -1112,9 +1071,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1148,9 +1105,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listErrorsTest()
     {
         $transport = $this->createTransport();
@@ -1191,9 +1146,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listErrorsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1228,9 +1181,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listManagedInstancesTest()
     {
         $transport = $this->createTransport();
@@ -1271,9 +1222,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listManagedInstancesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1308,9 +1257,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listPerInstanceConfigsTest()
     {
         $transport = $this->createTransport();
@@ -1351,9 +1298,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listPerInstanceConfigsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1388,14 +1333,12 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function patchTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new RegionOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1457,14 +1400,12 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function patchExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new RegionOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1515,14 +1456,12 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function patchPerInstanceConfigsTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new RegionOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1584,14 +1523,12 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function patchPerInstanceConfigsExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new RegionOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1642,14 +1579,12 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function recreateInstancesTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new RegionOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1711,14 +1646,12 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function recreateInstancesExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new RegionOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1769,14 +1702,12 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function resizeTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new RegionOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1838,14 +1769,12 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function resizeExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new RegionOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1896,14 +1825,12 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setInstanceTemplateTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new RegionOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1965,14 +1892,12 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setInstanceTemplateExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new RegionOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -2023,14 +1948,12 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setTargetPoolsTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new RegionOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -2092,14 +2015,12 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setTargetPoolsExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new RegionOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -2150,14 +2071,12 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updatePerInstanceConfigsTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new RegionOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -2219,14 +2138,12 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updatePerInstanceConfigsExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new RegionOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);

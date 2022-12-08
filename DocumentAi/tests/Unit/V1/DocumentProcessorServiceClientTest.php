@@ -23,26 +23,23 @@
 namespace Google\Cloud\DocumentAI\Tests\Unit\V1;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\DocumentAI\V1\BatchProcessResponse;
 use Google\Cloud\DocumentAI\V1\DeployProcessorVersionResponse;
-
 use Google\Cloud\DocumentAI\V1\DisableProcessorResponse;
 use Google\Cloud\DocumentAI\V1\DocumentProcessorServiceClient;
 use Google\Cloud\DocumentAI\V1\EnableProcessorResponse;
 use Google\Cloud\DocumentAI\V1\FetchProcessorTypesResponse;
-use Google\Cloud\DocumentAI\V1\ListProcessorsResponse;
 use Google\Cloud\DocumentAI\V1\ListProcessorTypesResponse;
 use Google\Cloud\DocumentAI\V1\ListProcessorVersionsResponse;
+use Google\Cloud\DocumentAI\V1\ListProcessorsResponse;
+use Google\Cloud\DocumentAI\V1\ProcessResponse;
 use Google\Cloud\DocumentAI\V1\Processor;
 use Google\Cloud\DocumentAI\V1\ProcessorType;
 use Google\Cloud\DocumentAI\V1\ProcessorVersion;
-use Google\Cloud\DocumentAI\V1\ProcessResponse;
 use Google\Cloud\DocumentAI\V1\ReviewDocumentResponse;
 use Google\Cloud\DocumentAI\V1\SetDefaultProcessorVersionResponse;
 use Google\Cloud\DocumentAI\V1\UndeployProcessorVersionResponse;
@@ -62,25 +59,19 @@ use stdClass;
  */
 class DocumentProcessorServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return DocumentProcessorServiceClient
-     */
+    /** @return DocumentProcessorServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -89,14 +80,12 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         return new DocumentProcessorServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function batchProcessDocumentsTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -153,14 +142,12 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function batchProcessDocumentsExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -210,9 +197,7 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createProcessorTest()
     {
         $transport = $this->createTransport();
@@ -252,9 +237,7 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createProcessorExceptionTest()
     {
         $transport = $this->createTransport();
@@ -288,14 +271,12 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteProcessorTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -352,14 +333,12 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteProcessorExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -409,14 +388,12 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteProcessorVersionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -473,14 +450,12 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteProcessorVersionExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -530,14 +505,12 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deployProcessorVersionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -594,14 +567,12 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deployProcessorVersionExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -651,14 +622,12 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function disableProcessorTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -715,14 +684,12 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function disableProcessorExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -772,14 +739,12 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function enableProcessorTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -836,14 +801,12 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function enableProcessorExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -893,9 +856,7 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function fetchProcessorTypesTest()
     {
         $transport = $this->createTransport();
@@ -920,9 +881,7 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function fetchProcessorTypesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -955,9 +914,7 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getProcessorTest()
     {
         $transport = $this->createTransport();
@@ -994,9 +951,7 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getProcessorExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1029,9 +984,7 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getProcessorVersionTest()
     {
         $transport = $this->createTransport();
@@ -1066,9 +1019,7 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getProcessorVersionExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1101,9 +1052,7 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listProcessorTypesTest()
     {
         $transport = $this->createTransport();
@@ -1138,9 +1087,7 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listProcessorTypesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1173,9 +1120,7 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listProcessorVersionsTest()
     {
         $transport = $this->createTransport();
@@ -1210,9 +1155,7 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listProcessorVersionsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1245,9 +1188,7 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listProcessorsTest()
     {
         $transport = $this->createTransport();
@@ -1282,9 +1223,7 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listProcessorsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1317,9 +1256,7 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function processDocumentTest()
     {
         $transport = $this->createTransport();
@@ -1344,9 +1281,7 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function processDocumentExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1379,14 +1314,12 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function reviewDocumentTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1447,14 +1380,12 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function reviewDocumentExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1504,14 +1435,12 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setDefaultProcessorVersionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1571,14 +1500,12 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setDefaultProcessorVersionExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1629,14 +1556,12 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function undeployProcessorVersionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1693,14 +1618,12 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function undeployProcessorVersionExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1750,9 +1673,7 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getLocationTest()
     {
         $transport = $this->createTransport();
@@ -1779,9 +1700,7 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getLocationExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1812,9 +1731,7 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listLocationsTest()
     {
         $transport = $this->createTransport();
@@ -1845,9 +1762,7 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listLocationsExceptionTest()
     {
         $transport = $this->createTransport();

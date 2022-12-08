@@ -99,6 +99,4 @@ class Diagnostic extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Diagnostic::class, \Google\Cloud\ApiGateway\V1\OperationMetadata_Diagnostic::class);
 

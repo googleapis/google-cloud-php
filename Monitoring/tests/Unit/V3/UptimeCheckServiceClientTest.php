@@ -23,11 +23,9 @@
 namespace Google\Cloud\Monitoring\Tests\Unit\V3;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-
 use Google\Cloud\Monitoring\V3\ListUptimeCheckConfigsResponse;
 use Google\Cloud\Monitoring\V3\ListUptimeCheckIpsResponse;
 use Google\Cloud\Monitoring\V3\UptimeCheckConfig;
@@ -44,25 +42,19 @@ use stdClass;
  */
 class UptimeCheckServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return UptimeCheckServiceClient
-     */
+    /** @return UptimeCheckServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -71,9 +63,7 @@ class UptimeCheckServiceClientTest extends GeneratedTest
         return new UptimeCheckServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createUptimeCheckConfigTest()
     {
         $transport = $this->createTransport();
@@ -107,9 +97,7 @@ class UptimeCheckServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createUptimeCheckConfigExceptionTest()
     {
         $transport = $this->createTransport();
@@ -143,9 +131,7 @@ class UptimeCheckServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteUptimeCheckConfigTest()
     {
         $transport = $this->createTransport();
@@ -169,9 +155,7 @@ class UptimeCheckServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteUptimeCheckConfigExceptionTest()
     {
         $transport = $this->createTransport();
@@ -204,9 +188,7 @@ class UptimeCheckServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getUptimeCheckConfigTest()
     {
         $transport = $this->createTransport();
@@ -237,9 +219,7 @@ class UptimeCheckServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getUptimeCheckConfigExceptionTest()
     {
         $transport = $this->createTransport();
@@ -272,9 +252,7 @@ class UptimeCheckServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listUptimeCheckConfigsTest()
     {
         $transport = $this->createTransport();
@@ -311,9 +289,7 @@ class UptimeCheckServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listUptimeCheckConfigsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -346,9 +322,7 @@ class UptimeCheckServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listUptimeCheckIpsTest()
     {
         $transport = $this->createTransport();
@@ -379,9 +353,7 @@ class UptimeCheckServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listUptimeCheckIpsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -412,9 +384,7 @@ class UptimeCheckServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateUptimeCheckConfigTest()
     {
         $transport = $this->createTransport();
@@ -445,9 +415,7 @@ class UptimeCheckServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateUptimeCheckConfigExceptionTest()
     {
         $transport = $this->createTransport();

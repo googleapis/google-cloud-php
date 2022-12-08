@@ -70,6 +70,4 @@ class Method
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Method::class, \Google\Cloud\Iap\V1\ReauthSettings_Method::class);
 

@@ -23,11 +23,9 @@
 namespace Google\Cloud\Dialogflow\Tests\Unit\V2;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-
 use Google\Cloud\Dialogflow\V2\Context;
 use Google\Cloud\Dialogflow\V2\ContextsClient;
 use Google\Cloud\Dialogflow\V2\ListContextsResponse;
@@ -44,25 +42,19 @@ use stdClass;
  */
 class ContextsClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return ContextsClient
-     */
+    /** @return ContextsClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -71,9 +63,7 @@ class ContextsClientTest extends GeneratedTest
         return new ContextsClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createContextTest()
     {
         $transport = $this->createTransport();
@@ -107,9 +97,7 @@ class ContextsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createContextExceptionTest()
     {
         $transport = $this->createTransport();
@@ -145,9 +133,7 @@ class ContextsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteAllContextsTest()
     {
         $transport = $this->createTransport();
@@ -171,9 +157,7 @@ class ContextsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteAllContextsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -206,9 +190,7 @@ class ContextsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteContextTest()
     {
         $transport = $this->createTransport();
@@ -232,9 +214,7 @@ class ContextsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteContextExceptionTest()
     {
         $transport = $this->createTransport();
@@ -267,9 +247,7 @@ class ContextsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getContextTest()
     {
         $transport = $this->createTransport();
@@ -298,9 +276,7 @@ class ContextsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getContextExceptionTest()
     {
         $transport = $this->createTransport();
@@ -333,9 +309,7 @@ class ContextsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listContextsTest()
     {
         $transport = $this->createTransport();
@@ -370,9 +344,7 @@ class ContextsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listContextsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -405,9 +377,7 @@ class ContextsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateContextTest()
     {
         $transport = $this->createTransport();
@@ -438,9 +408,7 @@ class ContextsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateContextExceptionTest()
     {
         $transport = $this->createTransport();
@@ -475,9 +443,7 @@ class ContextsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getLocationTest()
     {
         $transport = $this->createTransport();
@@ -504,9 +470,7 @@ class ContextsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getLocationExceptionTest()
     {
         $transport = $this->createTransport();
@@ -537,9 +501,7 @@ class ContextsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listLocationsTest()
     {
         $transport = $this->createTransport();
@@ -570,9 +532,7 @@ class ContextsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listLocationsExceptionTest()
     {
         $transport = $this->createTransport();

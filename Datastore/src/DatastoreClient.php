@@ -73,6 +73,16 @@ use Psr\Http\Message\StreamInterface;
  *
  * $datastore = new DatastoreClient();
  * ```
+ *
+ * ```
+ * // Multi-database applications can supply a database ID.
+ * use Google\Cloud\Datastore\DatastoreClient;
+ *
+ * $datastore = new DatastoreClient([
+ *     'namespaceId' => 'my-application-namespace',
+ *     'databaseId' => 'my-database'
+ * ]);
+ * ```
  */
 class DatastoreClient
 {
@@ -80,7 +90,7 @@ class DatastoreClient
     use ClientTrait;
     use DatastoreTrait;
 
-    const VERSION = '1.16.4';
+    const VERSION = '1.17.0';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/datastore';
 
@@ -134,6 +144,7 @@ class DatastoreClient
      *           access charges associated with the request.
      *     @type string $namespaceId Partitions data under a namespace. Useful for
      *           [Multitenant Projects](https://cloud.google.com/datastore/docs/concepts/multitenancy).
+     *     @type string $databaseId ID of the database to which the entities belong.
      *     @type bool $returnInt64AsObject If true, 64 bit integers will be
      *           returned as a {@see Google\Cloud\Core\Int64} object for 32 bit
      *           platform compatibility. **Defaults to** false.
@@ -148,6 +159,7 @@ class DatastoreClient
 
         $config += [
             'namespaceId' => null,
+            'databaseId' => '',
             'returnInt64AsObject' => false,
             'scopes' => [self::FULL_CONTROL_SCOPE],
             'projectIdRequired' => true,
@@ -167,7 +179,8 @@ class DatastoreClient
             $this->connection,
             $this->projectId,
             $config['namespaceId'],
-            $this->entityMapper
+            $this->entityMapper,
+            $config['databaseId']
         );
     }
 
@@ -530,6 +543,7 @@ class DatastoreClient
      *
      *     @type array $transactionOptions Transaction configuration. See
      *           [ReadWrite](https://cloud.google.com/datastore/docs/reference/rest/v1/projects/beginTransaction#ReadWrite).
+     *     @type string $databaseId ID of the database to which the entities belong.
      * }
      * @return Transaction
      * @codingStandardsIgnoreEnd
@@ -564,6 +578,7 @@ class DatastoreClient
      *
      *     @type array $transactionOptions See
      *           [ReadOnly](https://cloud.google.com/datastore/docs/reference/rest/v1/projects/beginTransaction#ReadOnly).
+     *     @type string $databaseId ID of the database to which the entities belong.
      * }
      * @return ReadOnlyTransaction
      * @codingStandardsIgnoreEnd
@@ -927,6 +942,7 @@ class DatastoreClient
      *           Value must be the name of a class implementing
      *           {@see Google\Cloud\Datastore\EntityInterface}. **Defaults to**
      *           {@see Google\Cloud\Datastore\Entity}.
+     *     @type string $databaseId ID of the database to which the entities belong.
      * }
      * @return EntityInterface|null
      */
@@ -976,6 +992,7 @@ class DatastoreClient
      *           {@see Google\Cloud\Datastore\Entity}.
      *     @type bool $sort If set to true, results in each set will be sorted
      *           to match the order given in $keys. **Defaults to** `false`.
+     *     @type string $databaseId ID of the database to which the entities belong.
      * }
      * @return array Returns an array with keys [`found`, `missing`, and `deferred`].
      *         Members of `found` will be instance of

@@ -179,6 +179,4 @@ class SalesforceLiveAgentConfig extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(SalesforceLiveAgentConfig::class, \Google\Cloud\Dialogflow\V2\HumanAgentHandoffConfig_SalesforceLiveAgentConfig::class);
 

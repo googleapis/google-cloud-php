@@ -27,9 +27,7 @@ namespace Google\Cloud\DocumentAI\V1\Gapic;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\Call;
 use Google\ApiCore\CredentialsWrapper;
-
 use Google\ApiCore\GapicClientTrait;
-
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PathTemplate;
@@ -53,16 +51,16 @@ use Google\Cloud\DocumentAI\V1\FetchProcessorTypesRequest;
 use Google\Cloud\DocumentAI\V1\FetchProcessorTypesResponse;
 use Google\Cloud\DocumentAI\V1\GetProcessorRequest;
 use Google\Cloud\DocumentAI\V1\GetProcessorVersionRequest;
-use Google\Cloud\DocumentAI\V1\ListProcessorsRequest;
-use Google\Cloud\DocumentAI\V1\ListProcessorsResponse;
 use Google\Cloud\DocumentAI\V1\ListProcessorTypesRequest;
 use Google\Cloud\DocumentAI\V1\ListProcessorTypesResponse;
 use Google\Cloud\DocumentAI\V1\ListProcessorVersionsRequest;
 use Google\Cloud\DocumentAI\V1\ListProcessorVersionsResponse;
-use Google\Cloud\DocumentAI\V1\Processor;
-use Google\Cloud\DocumentAI\V1\ProcessorVersion;
+use Google\Cloud\DocumentAI\V1\ListProcessorsRequest;
+use Google\Cloud\DocumentAI\V1\ListProcessorsResponse;
 use Google\Cloud\DocumentAI\V1\ProcessRequest;
 use Google\Cloud\DocumentAI\V1\ProcessResponse;
+use Google\Cloud\DocumentAI\V1\Processor;
+use Google\Cloud\DocumentAI\V1\ProcessorVersion;
 use Google\Cloud\DocumentAI\V1\RawDocument;
 use Google\Cloud\DocumentAI\V1\ReviewDocumentRequest;
 use Google\Cloud\DocumentAI\V1\ReviewDocumentRequest\Priority;
@@ -128,29 +126,19 @@ class DocumentProcessorServiceGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.documentai.v1.DocumentProcessorService';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'documentai.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
     ];
@@ -425,9 +413,6 @@ class DocumentProcessorServiceGapicClient
      * @param array $options {
      *     Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress
-     *           **Deprecated**. This option will be removed in a future major release. Please
-     *           utilize the `$apiEndpoint` option instead.
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'documentai.googleapis.com:443'.
@@ -457,7 +442,7 @@ class DocumentProcessorServiceGapicClient
      *           *Advanced usage*: Additionally, it is possible to pass in an already
      *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
      *           that when this object is provided, any settings in $transportConfig, and any
-     *           $serviceAddress setting, will be ignored.
+     *           $apiEndpoint setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
      *           each supported transport type should be passed in a key for that transport. For
@@ -1416,6 +1401,8 @@ class DocumentProcessorServiceGapicClient
      *           false.
      *     @type FieldMask $fieldMask
      *           Specifies which fields to include in ProcessResponse's document.
+     *           Only supports top level document and pages field so it must be in the form
+     *           of `{document_field_name}` or `pages.{page_field_name}`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on

@@ -224,6 +224,12 @@ class Technique
      * Generated from protobuf enum <code>ABUSE_ELEVATION_CONTROL_MECHANISM = 34;</code>
      */
     const ABUSE_ELEVATION_CONTROL_MECHANISM = 34;
+    /**
+     * T1078.001
+     *
+     * Generated from protobuf enum <code>DEFAULT_ACCOUNTS = 35;</code>
+     */
+    const DEFAULT_ACCOUNTS = 35;
 
     private static $valueToName = [
         self::TECHNIQUE_UNSPECIFIED => 'TECHNIQUE_UNSPECIFIED',
@@ -261,6 +267,7 @@ class Technique
         self::NETWORK_SERVICE_DISCOVERY => 'NETWORK_SERVICE_DISCOVERY',
         self::ACCESS_TOKEN_MANIPULATION => 'ACCESS_TOKEN_MANIPULATION',
         self::ABUSE_ELEVATION_CONTROL_MECHANISM => 'ABUSE_ELEVATION_CONTROL_MECHANISM',
+        self::DEFAULT_ACCOUNTS => 'DEFAULT_ACCOUNTS',
     ];
 
     public static function name($value)

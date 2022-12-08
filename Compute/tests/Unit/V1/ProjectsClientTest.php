@@ -25,7 +25,6 @@ namespace Google\Cloud\Compute\Tests\Unit\V1;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Compute\V1\DiskMoveRequest;
 use Google\Cloud\Compute\V1\GetGlobalOperationRequest;
@@ -54,25 +53,19 @@ use stdClass;
  */
 class ProjectsClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return ProjectsClient
-     */
+    /** @return ProjectsClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -81,14 +74,12 @@ class ProjectsClientTest extends GeneratedTest
         return new ProjectsClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function disableXpnHostTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new GlobalOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -140,14 +131,12 @@ class ProjectsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function disableXpnHostExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new GlobalOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -195,14 +184,12 @@ class ProjectsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function disableXpnResourceTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new GlobalOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -257,14 +244,12 @@ class ProjectsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function disableXpnResourceExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new GlobalOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -313,14 +298,12 @@ class ProjectsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function enableXpnHostTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new GlobalOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -372,14 +355,12 @@ class ProjectsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function enableXpnHostExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new GlobalOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -427,14 +408,12 @@ class ProjectsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function enableXpnResourceTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new GlobalOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -489,14 +468,12 @@ class ProjectsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function enableXpnResourceExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new GlobalOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -545,9 +522,7 @@ class ProjectsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getTest()
     {
         $transport = $this->createTransport();
@@ -590,9 +565,7 @@ class ProjectsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getExceptionTest()
     {
         $transport = $this->createTransport();
@@ -625,9 +598,7 @@ class ProjectsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getXpnHostTest()
     {
         $transport = $this->createTransport();
@@ -670,9 +641,7 @@ class ProjectsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getXpnHostExceptionTest()
     {
         $transport = $this->createTransport();
@@ -705,9 +674,7 @@ class ProjectsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getXpnResourcesTest()
     {
         $transport = $this->createTransport();
@@ -744,9 +711,7 @@ class ProjectsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getXpnResourcesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -779,9 +744,7 @@ class ProjectsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listXpnHostsTest()
     {
         $transport = $this->createTransport();
@@ -825,9 +788,7 @@ class ProjectsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listXpnHostsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -861,14 +822,12 @@ class ProjectsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function moveDiskTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new GlobalOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -923,14 +882,12 @@ class ProjectsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function moveDiskExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new GlobalOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -979,14 +936,12 @@ class ProjectsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function moveInstanceTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new GlobalOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1041,14 +996,12 @@ class ProjectsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function moveInstanceExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new GlobalOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1097,14 +1050,12 @@ class ProjectsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setCommonInstanceMetadataTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new GlobalOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1159,14 +1110,12 @@ class ProjectsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setCommonInstanceMetadataExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new GlobalOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1215,14 +1164,12 @@ class ProjectsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setDefaultNetworkTierTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new GlobalOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1277,14 +1224,12 @@ class ProjectsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setDefaultNetworkTierExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new GlobalOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1333,14 +1278,12 @@ class ProjectsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setUsageExportBucketTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new GlobalOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1395,14 +1338,12 @@ class ProjectsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setUsageExportBucketExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new GlobalOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);

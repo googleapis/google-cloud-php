@@ -17,7 +17,7 @@ class ImageVersion extends \Google\Protobuf\Internal\Message
 {
     /**
      * The string identifier of the ImageVersion, in the form:
-     * "composer-x.y.z-airflow-a.b(.c)"
+     * "composer-x.y.z-airflow-a.b.c"
      *
      * Generated from protobuf field <code>string image_version_id = 1;</code>
      */
@@ -63,7 +63,7 @@ class ImageVersion extends \Google\Protobuf\Internal\Message
      *
      *     @type string $image_version_id
      *           The string identifier of the ImageVersion, in the form:
-     *           "composer-x.y.z-airflow-a.b(.c)"
+     *           "composer-x.y.z-airflow-a.b.c"
      *     @type bool $is_default
      *           Whether this is the default ImageVersion used by Composer during
      *           environment creation if no input ImageVersion is specified.
@@ -85,7 +85,7 @@ class ImageVersion extends \Google\Protobuf\Internal\Message
 
     /**
      * The string identifier of the ImageVersion, in the form:
-     * "composer-x.y.z-airflow-a.b(.c)"
+     * "composer-x.y.z-airflow-a.b.c"
      *
      * Generated from protobuf field <code>string image_version_id = 1;</code>
      * @return string
@@ -97,7 +97,7 @@ class ImageVersion extends \Google\Protobuf\Internal\Message
 
     /**
      * The string identifier of the ImageVersion, in the form:
-     * "composer-x.y.z-airflow-a.b(.c)"
+     * "composer-x.y.z-airflow-a.b.c"
      *
      * Generated from protobuf field <code>string image_version_id = 1;</code>
      * @param string $var

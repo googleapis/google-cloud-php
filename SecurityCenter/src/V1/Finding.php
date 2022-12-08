@@ -150,7 +150,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      */
     private $indicator = null;
     /**
-     * Represents vulnerability specific fields like cve, cvss scores etc.
+     * Represents vulnerability-specific fields like CVE and CVS scores.
      * CVE stands for Common Vulnerabilities and Exposures
      * (https://cve.mitre.org/about/)
      *
@@ -283,6 +283,18 @@ class Finding extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Database database = 44;</code>
      */
     private $database = null;
+    /**
+     * File associated with the finding.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.File files = 46;</code>
+     */
+    private $files;
+    /**
+     * Kernel Rootkit signature.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.KernelRootkit kernel_rootkit = 50;</code>
+     */
+    private $kernel_rootkit = null;
 
     /**
      * Constructor.
@@ -360,7 +372,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      *           intrusion.
      *           Reference: https://en.wikipedia.org/wiki/Indicator_of_compromise
      *     @type \Google\Cloud\SecurityCenter\V1\Vulnerability $vulnerability
-     *           Represents vulnerability specific fields like cve, cvss scores etc.
+     *           Represents vulnerability-specific fields like CVE and CVS scores.
      *           CVE stands for Common Vulnerabilities and Exposures
      *           (https://cve.mitre.org/about/)
      *     @type \Google\Protobuf\Timestamp $mute_update_time
@@ -421,6 +433,10 @@ class Finding extends \Google\Protobuf\Internal\Message
      *           Kubernetes resources associated with the finding.
      *     @type \Google\Cloud\SecurityCenter\V1\Database $database
      *           Database associated with the finding.
+     *     @type array<\Google\Cloud\SecurityCenter\V1\File>|\Google\Protobuf\Internal\RepeatedField $files
+     *           File associated with the finding.
+     *     @type \Google\Cloud\SecurityCenter\V1\KernelRootkit $kernel_rootkit
+     *           Kernel Rootkit signature.
      * }
      */
     public function __construct($data = NULL) {
@@ -937,7 +953,7 @@ class Finding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Represents vulnerability specific fields like cve, cvss scores etc.
+     * Represents vulnerability-specific fields like CVE and CVS scores.
      * CVE stands for Common Vulnerabilities and Exposures
      * (https://cve.mitre.org/about/)
      *
@@ -960,7 +976,7 @@ class Finding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Represents vulnerability specific fields like cve, cvss scores etc.
+     * Represents vulnerability-specific fields like CVE and CVS scores.
      * CVE stands for Common Vulnerabilities and Exposures
      * (https://cve.mitre.org/about/)
      *
@@ -1522,6 +1538,68 @@ class Finding extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\SecurityCenter\V1\Database::class);
         $this->database = $var;
+
+        return $this;
+    }
+
+    /**
+     * File associated with the finding.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.File files = 46;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getFiles()
+    {
+        return $this->files;
+    }
+
+    /**
+     * File associated with the finding.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.File files = 46;</code>
+     * @param array<\Google\Cloud\SecurityCenter\V1\File>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setFiles($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\SecurityCenter\V1\File::class);
+        $this->files = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Kernel Rootkit signature.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.KernelRootkit kernel_rootkit = 50;</code>
+     * @return \Google\Cloud\SecurityCenter\V1\KernelRootkit|null
+     */
+    public function getKernelRootkit()
+    {
+        return $this->kernel_rootkit;
+    }
+
+    public function hasKernelRootkit()
+    {
+        return isset($this->kernel_rootkit);
+    }
+
+    public function clearKernelRootkit()
+    {
+        unset($this->kernel_rootkit);
+    }
+
+    /**
+     * Kernel Rootkit signature.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.KernelRootkit kernel_rootkit = 50;</code>
+     * @param \Google\Cloud\SecurityCenter\V1\KernelRootkit $var
+     * @return $this
+     */
+    public function setKernelRootkit($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\SecurityCenter\V1\KernelRootkit::class);
+        $this->kernel_rootkit = $var;
 
         return $this;
     }

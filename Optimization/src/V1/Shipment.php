@@ -150,7 +150,8 @@ class Shipment extends \Google\Protobuf\Internal\Message
     private $shipment_type = '';
     /**
      * Specifies a label for this shipment. This label is reported in the response
-     * in the `shipment_label` of the corresponding [ShipmentRoute.Visit][google.cloud.optimization.v1.ShipmentRoute.Visit].
+     * in the `shipment_label` of the corresponding
+     * [ShipmentRoute.Visit][google.cloud.optimization.v1.ShipmentRoute.Visit].
      *
      * Generated from protobuf field <code>string label = 12;</code>
      */
@@ -268,7 +269,8 @@ class Shipment extends \Google\Protobuf\Internal\Message
      *           `shipment_type`.
      *     @type string $label
      *           Specifies a label for this shipment. This label is reported in the response
-     *           in the `shipment_label` of the corresponding [ShipmentRoute.Visit][google.cloud.optimization.v1.ShipmentRoute.Visit].
+     *           in the `shipment_label` of the corresponding
+     *           [ShipmentRoute.Visit][google.cloud.optimization.v1.ShipmentRoute.Visit].
      *     @type bool $ignore
      *           If true, skip this shipment, but don't apply a `penalty_cost`.
      *           Ignoring a shipment results in a validation error when there are any
@@ -740,7 +742,8 @@ class Shipment extends \Google\Protobuf\Internal\Message
 
     /**
      * Specifies a label for this shipment. This label is reported in the response
-     * in the `shipment_label` of the corresponding [ShipmentRoute.Visit][google.cloud.optimization.v1.ShipmentRoute.Visit].
+     * in the `shipment_label` of the corresponding
+     * [ShipmentRoute.Visit][google.cloud.optimization.v1.ShipmentRoute.Visit].
      *
      * Generated from protobuf field <code>string label = 12;</code>
      * @return string
@@ -752,7 +755,8 @@ class Shipment extends \Google\Protobuf\Internal\Message
 
     /**
      * Specifies a label for this shipment. This label is reported in the response
-     * in the `shipment_label` of the corresponding [ShipmentRoute.Visit][google.cloud.optimization.v1.ShipmentRoute.Visit].
+     * in the `shipment_label` of the corresponding
+     * [ShipmentRoute.Visit][google.cloud.optimization.v1.ShipmentRoute.Visit].
      *
      * Generated from protobuf field <code>string label = 12;</code>
      * @param string $var

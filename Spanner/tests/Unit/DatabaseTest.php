@@ -426,7 +426,7 @@ class DatabaseTest extends TestCase
             'statements' => $statements
         ])->willReturn([
             'name' => 'my-operation'
-        ]);
+        ])->shouldBeCalled();
 
         $this->database->___setProperty('connection', $this->connection->reveal());
 

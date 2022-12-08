@@ -36,7 +36,7 @@ php.owlbot_main(
     dest=dest,
     copy_excludes=[
         src / "*/src/V1/SpannerClient.php",
-        src / "*/src/V1/TransactionOptions/ReadOnly.php",
+        src / "*/proto/src/Google/Cloud/Spanner/V1/TransactionOptions/ReadOnly.php",
     ]
 )
 

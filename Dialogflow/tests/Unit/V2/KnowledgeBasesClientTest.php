@@ -23,11 +23,9 @@
 namespace Google\Cloud\Dialogflow\Tests\Unit\V2;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-
 use Google\Cloud\Dialogflow\V2\KnowledgeBase;
 use Google\Cloud\Dialogflow\V2\KnowledgeBasesClient;
 use Google\Cloud\Dialogflow\V2\ListKnowledgeBasesResponse;
@@ -44,25 +42,19 @@ use stdClass;
  */
 class KnowledgeBasesClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return KnowledgeBasesClient
-     */
+    /** @return KnowledgeBasesClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -71,9 +63,7 @@ class KnowledgeBasesClientTest extends GeneratedTest
         return new KnowledgeBasesClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createKnowledgeBaseTest()
     {
         $transport = $this->createTransport();
@@ -109,9 +99,7 @@ class KnowledgeBasesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createKnowledgeBaseExceptionTest()
     {
         $transport = $this->createTransport();
@@ -147,9 +135,7 @@ class KnowledgeBasesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteKnowledgeBaseTest()
     {
         $transport = $this->createTransport();
@@ -173,9 +159,7 @@ class KnowledgeBasesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteKnowledgeBaseExceptionTest()
     {
         $transport = $this->createTransport();
@@ -208,9 +192,7 @@ class KnowledgeBasesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getKnowledgeBaseTest()
     {
         $transport = $this->createTransport();
@@ -241,9 +223,7 @@ class KnowledgeBasesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getKnowledgeBaseExceptionTest()
     {
         $transport = $this->createTransport();
@@ -276,9 +256,7 @@ class KnowledgeBasesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listKnowledgeBasesTest()
     {
         $transport = $this->createTransport();
@@ -313,9 +291,7 @@ class KnowledgeBasesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listKnowledgeBasesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -348,9 +324,7 @@ class KnowledgeBasesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateKnowledgeBaseTest()
     {
         $transport = $this->createTransport();
@@ -383,9 +357,7 @@ class KnowledgeBasesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateKnowledgeBaseExceptionTest()
     {
         $transport = $this->createTransport();
@@ -420,9 +392,7 @@ class KnowledgeBasesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getLocationTest()
     {
         $transport = $this->createTransport();
@@ -449,9 +419,7 @@ class KnowledgeBasesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getLocationExceptionTest()
     {
         $transport = $this->createTransport();
@@ -482,9 +450,7 @@ class KnowledgeBasesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listLocationsTest()
     {
         $transport = $this->createTransport();
@@ -515,9 +481,7 @@ class KnowledgeBasesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listLocationsExceptionTest()
     {
         $transport = $this->createTransport();

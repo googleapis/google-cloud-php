@@ -23,15 +23,12 @@
 namespace Google\Cloud\Dataproc\Tests\Unit\V1;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Dataproc\V1\Job;
 use Google\Cloud\Dataproc\V1\JobControllerClient;
-
 use Google\Cloud\Dataproc\V1\JobPlacement;
 use Google\Cloud\Dataproc\V1\ListJobsResponse;
 use Google\LongRunning\GetOperationRequest;
@@ -49,25 +46,19 @@ use stdClass;
  */
 class JobControllerClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return JobControllerClient
-     */
+    /** @return JobControllerClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -76,9 +67,7 @@ class JobControllerClientTest extends GeneratedTest
         return new JobControllerClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function cancelJobTest()
     {
         $transport = $this->createTransport();
@@ -117,9 +106,7 @@ class JobControllerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function cancelJobExceptionTest()
     {
         $transport = $this->createTransport();
@@ -154,9 +141,7 @@ class JobControllerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteJobTest()
     {
         $transport = $this->createTransport();
@@ -186,9 +171,7 @@ class JobControllerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteJobExceptionTest()
     {
         $transport = $this->createTransport();
@@ -223,9 +206,7 @@ class JobControllerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getJobTest()
     {
         $transport = $this->createTransport();
@@ -264,9 +245,7 @@ class JobControllerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getJobExceptionTest()
     {
         $transport = $this->createTransport();
@@ -301,9 +280,7 @@ class JobControllerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listJobsTest()
     {
         $transport = $this->createTransport();
@@ -341,9 +318,7 @@ class JobControllerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listJobsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -377,9 +352,7 @@ class JobControllerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function submitJobTest()
     {
         $transport = $this->createTransport();
@@ -422,9 +395,7 @@ class JobControllerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function submitJobExceptionTest()
     {
         $transport = $this->createTransport();
@@ -463,14 +434,12 @@ class JobControllerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function submitJobAsOperationTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -545,14 +514,12 @@ class JobControllerClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function submitJobAsOperationExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -608,9 +575,7 @@ class JobControllerClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateJobTest()
     {
         $transport = $this->createTransport();
@@ -659,9 +624,7 @@ class JobControllerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateJobExceptionTest()
     {
         $transport = $this->createTransport();

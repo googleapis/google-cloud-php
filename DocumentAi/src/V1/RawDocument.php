@@ -23,7 +23,7 @@ class RawDocument extends \Google\Protobuf\Internal\Message
     private $content = '';
     /**
      * An IANA MIME type (RFC6838) indicating the nature and format of the
-     * [content].
+     * [content][google.cloud.documentai.v1.RawDocument.content].
      *
      * Generated from protobuf field <code>string mime_type = 2;</code>
      */
@@ -39,7 +39,7 @@ class RawDocument extends \Google\Protobuf\Internal\Message
      *           Inline document content.
      *     @type string $mime_type
      *           An IANA MIME type (RFC6838) indicating the nature and format of the
-     *           [content].
+     *           [content][google.cloud.documentai.v1.RawDocument.content].
      * }
      */
     public function __construct($data = NULL) {
@@ -75,7 +75,7 @@ class RawDocument extends \Google\Protobuf\Internal\Message
 
     /**
      * An IANA MIME type (RFC6838) indicating the nature and format of the
-     * [content].
+     * [content][google.cloud.documentai.v1.RawDocument.content].
      *
      * Generated from protobuf field <code>string mime_type = 2;</code>
      * @return string
@@ -87,7 +87,7 @@ class RawDocument extends \Google\Protobuf\Internal\Message
 
     /**
      * An IANA MIME type (RFC6838) indicating the nature and format of the
-     * [content].
+     * [content][google.cloud.documentai.v1.RawDocument.content].
      *
      * Generated from protobuf field <code>string mime_type = 2;</code>
      * @param string $var

@@ -23,11 +23,9 @@
 namespace Google\Cloud\BigQuery\Migration\Tests\Unit\V2;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-
 use Google\Cloud\BigQuery\Migration\V2\ListMigrationSubtasksResponse;
 use Google\Cloud\BigQuery\Migration\V2\ListMigrationWorkflowsResponse;
 use Google\Cloud\BigQuery\Migration\V2\MigrationServiceClient;
@@ -44,25 +42,19 @@ use stdClass;
  */
 class MigrationServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return MigrationServiceClient
-     */
+    /** @return MigrationServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -71,9 +63,7 @@ class MigrationServiceClientTest extends GeneratedTest
         return new MigrationServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createMigrationWorkflowTest()
     {
         $transport = $this->createTransport();
@@ -105,9 +95,7 @@ class MigrationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createMigrationWorkflowExceptionTest()
     {
         $transport = $this->createTransport();
@@ -141,9 +129,7 @@ class MigrationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteMigrationWorkflowTest()
     {
         $transport = $this->createTransport();
@@ -167,9 +153,7 @@ class MigrationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteMigrationWorkflowExceptionTest()
     {
         $transport = $this->createTransport();
@@ -202,9 +186,7 @@ class MigrationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getMigrationSubtaskTest()
     {
         $transport = $this->createTransport();
@@ -237,9 +219,7 @@ class MigrationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getMigrationSubtaskExceptionTest()
     {
         $transport = $this->createTransport();
@@ -272,9 +252,7 @@ class MigrationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getMigrationWorkflowTest()
     {
         $transport = $this->createTransport();
@@ -303,9 +281,7 @@ class MigrationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getMigrationWorkflowExceptionTest()
     {
         $transport = $this->createTransport();
@@ -338,9 +314,7 @@ class MigrationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listMigrationSubtasksTest()
     {
         $transport = $this->createTransport();
@@ -375,9 +349,7 @@ class MigrationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listMigrationSubtasksExceptionTest()
     {
         $transport = $this->createTransport();
@@ -410,9 +382,7 @@ class MigrationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listMigrationWorkflowsTest()
     {
         $transport = $this->createTransport();
@@ -447,9 +417,7 @@ class MigrationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listMigrationWorkflowsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -482,9 +450,7 @@ class MigrationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function startMigrationWorkflowTest()
     {
         $transport = $this->createTransport();
@@ -508,9 +474,7 @@ class MigrationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function startMigrationWorkflowExceptionTest()
     {
         $transport = $this->createTransport();

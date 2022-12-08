@@ -35,6 +35,8 @@ class ProcessRequest extends \Google\Protobuf\Internal\Message
     private $skip_human_review = false;
     /**
      * Specifies which fields to include in ProcessResponse's document.
+     * Only supports top level document and pages field so it must be in the form
+     * of `{document_field_name}` or `pages.{page_field_name}`.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask field_mask = 6;</code>
      */
@@ -63,6 +65,8 @@ class ProcessRequest extends \Google\Protobuf\Internal\Message
      *           false.
      *     @type \Google\Protobuf\FieldMask $field_mask
      *           Specifies which fields to include in ProcessResponse's document.
+     *           Only supports top level document and pages field so it must be in the form
+     *           of `{document_field_name}` or `pages.{page_field_name}`.
      * }
      */
     public function __construct($data = NULL) {
@@ -198,6 +202,8 @@ class ProcessRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Specifies which fields to include in ProcessResponse's document.
+     * Only supports top level document and pages field so it must be in the form
+     * of `{document_field_name}` or `pages.{page_field_name}`.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask field_mask = 6;</code>
      * @return \Google\Protobuf\FieldMask|null
@@ -219,6 +225,8 @@ class ProcessRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Specifies which fields to include in ProcessResponse's document.
+     * Only supports top level document and pages field so it must be in the form
+     * of `{document_field_name}` or `pages.{page_field_name}`.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask field_mask = 6;</code>
      * @param \Google\Protobuf\FieldMask $var

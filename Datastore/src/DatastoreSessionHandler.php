@@ -133,6 +133,9 @@ class DatastoreSessionHandler implements SessionHandlerInterface
     /* @var string */
     private $namespaceId;
 
+    /* @var string */
+    private $databaseId;
+
     /* @var Transaction */
     private $transaction;
 
@@ -152,6 +155,7 @@ class DatastoreSessionHandler implements SessionHandlerInterface
      *     @type array $entityOptions Default options to be passed to the
      *           {@see \Google\Cloud\Datastore\DatastoreClient::entity()} method when writing session data to Datastore.
      *           If not specified, defaults to `['excludeFromIndexes' => ['data']]`.
+     *     @type string $databaseId ID of the database to which the entities belong.
      * }
      */
     public function __construct(
@@ -163,6 +167,10 @@ class DatastoreSessionHandler implements SessionHandlerInterface
         // Cut down to 1000
         $this->gcLimit = min($gcLimit, 1000);
 
+        $options += [
+            'databaseId' => '',
+        ];
+        $this->databaseId = $options['databaseId'];
         if (!isset($options['entityOptions'])) {
             $options['entityOptions'] = [
                 'excludeFromIndexes' => ['data']
@@ -200,7 +208,9 @@ class DatastoreSessionHandler implements SessionHandlerInterface
             );
         }
         $this->namespaceId = $savePath;
-        $this->transaction = $this->datastore->transaction();
+        $this->transaction = $this->datastore->transaction([
+            'databaseId' => $this->databaseId
+        ]);
         return true;
     }
 
@@ -223,7 +233,10 @@ class DatastoreSessionHandler implements SessionHandlerInterface
             $key = $this->datastore->key(
                 $this->kind,
                 $id,
-                ['namespaceId' => $this->namespaceId]
+                array_filter([
+                    'namespaceId' => $this->namespaceId,
+                    'databaseId' => $this->databaseId,
+                ])
             );
             $entity = $this->transaction->lookup($key);
             if ($entity !== null && isset($entity['data'])) {
@@ -253,7 +266,10 @@ class DatastoreSessionHandler implements SessionHandlerInterface
             $key = $this->datastore->key(
                 $this->kind,
                 $id,
-                ['namespaceId' => $this->namespaceId]
+                array_filter([
+                    'namespaceId' => $this->namespaceId,
+                    'databaseId' => $this->databaseId,
+                ])
             );
             $entity = $this->datastore->entity(
                 $key,
@@ -285,7 +301,10 @@ class DatastoreSessionHandler implements SessionHandlerInterface
             $key = $this->datastore->key(
                 $this->kind,
                 $id,
-                ['namespaceId' => $this->namespaceId]
+                array_filter([
+                    'namespaceId' => $this->namespaceId,
+                    'databaseId' => $this->databaseId,
+                ])
             );
             $this->transaction->delete($key);
             $this->transaction->commit();
@@ -317,7 +336,10 @@ class DatastoreSessionHandler implements SessionHandlerInterface
                 ->limit($this->gcLimit);
             $result = $this->datastore->runQuery(
                 $query,
-                ['namespaceId' => $this->namespaceId]
+                array_filter([
+                    'namespaceId' => $this->namespaceId,
+                    'databaseId' => $this->databaseId,
+                ])
             );
             $keys = [];
             /* @var Entity $e */

@@ -34,7 +34,7 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
      */
     private $enable_flow_logs = null;
     /**
-     * [Output Only] The external IPv6 address range that is assigned to this subnetwork.
+     * The external IPv6 address range that is owned by this subnetwork.
      *
      * Generated from protobuf field <code>optional string external_ipv6_prefix = 139299190;</code>
      */
@@ -179,7 +179,7 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
      *     @type bool $enable_flow_logs
      *           Whether to enable flow logging for this subnetwork. If this field is not explicitly set, it will not appear in get listings. If not set the default behavior is determined by the org policy, if there is no org policy specified, then it will default to disabled. This field isn't supported with the purpose field set to INTERNAL_HTTPS_LOAD_BALANCER.
      *     @type string $external_ipv6_prefix
-     *           [Output Only] The external IPv6 address range that is assigned to this subnetwork.
+     *           The external IPv6 address range that is owned by this subnetwork.
      *     @type string $fingerprint
      *           Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. This field will be ignored when inserting a Subnetwork. An up-to-date fingerprint must be provided in order to update the Subnetwork, otherwise the request will fail with error 412 conditionNotMet. To see the latest fingerprint, make a get() request to retrieve a Subnetwork.
      *     @type string $gateway_address
@@ -342,7 +342,7 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The external IPv6 address range that is assigned to this subnetwork.
+     * The external IPv6 address range that is owned by this subnetwork.
      *
      * Generated from protobuf field <code>optional string external_ipv6_prefix = 139299190;</code>
      * @return string
@@ -363,7 +363,7 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The external IPv6 address range that is assigned to this subnetwork.
+     * The external IPv6 address range that is owned by this subnetwork.
      *
      * Generated from protobuf field <code>optional string external_ipv6_prefix = 139299190;</code>
      * @param string $var

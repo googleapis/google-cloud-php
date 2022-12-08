@@ -25,7 +25,9 @@ class HiveMetastoreConfig extends \Google\Protobuf\Internal\Message
     /**
      * A mapping of Hive metastore configuration key-value pairs to apply to the
      * Hive metastore (configured in `hive-site.xml`). The mappings
-     * override system defaults (some keys cannot be overridden).
+     * override system defaults (some keys cannot be overridden). These
+     * overrides are also applied to auxiliary versions and can be further
+     * customized in the auxiliary version's `AuxiliaryVersionConfig`.
      *
      * Generated from protobuf field <code>map<string, string> config_overrides = 2;</code>
      */
@@ -52,7 +54,9 @@ class HiveMetastoreConfig extends \Google\Protobuf\Internal\Message
      *     @type array|\Google\Protobuf\Internal\MapField $config_overrides
      *           A mapping of Hive metastore configuration key-value pairs to apply to the
      *           Hive metastore (configured in `hive-site.xml`). The mappings
-     *           override system defaults (some keys cannot be overridden).
+     *           override system defaults (some keys cannot be overridden). These
+     *           overrides are also applied to auxiliary versions and can be further
+     *           customized in the auxiliary version's `AuxiliaryVersionConfig`.
      *     @type \Google\Cloud\Metastore\V1\KerberosConfig $kerberos_config
      *           Information used to configure the Hive metastore service as a service
      *           principal in a Kerberos realm. To disable Kerberos, use the `UpdateService`
@@ -95,7 +99,9 @@ class HiveMetastoreConfig extends \Google\Protobuf\Internal\Message
     /**
      * A mapping of Hive metastore configuration key-value pairs to apply to the
      * Hive metastore (configured in `hive-site.xml`). The mappings
-     * override system defaults (some keys cannot be overridden).
+     * override system defaults (some keys cannot be overridden). These
+     * overrides are also applied to auxiliary versions and can be further
+     * customized in the auxiliary version's `AuxiliaryVersionConfig`.
      *
      * Generated from protobuf field <code>map<string, string> config_overrides = 2;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -108,7 +114,9 @@ class HiveMetastoreConfig extends \Google\Protobuf\Internal\Message
     /**
      * A mapping of Hive metastore configuration key-value pairs to apply to the
      * Hive metastore (configured in `hive-site.xml`). The mappings
-     * override system defaults (some keys cannot be overridden).
+     * override system defaults (some keys cannot be overridden). These
+     * overrides are also applied to auxiliary versions and can be further
+     * customized in the auxiliary version's `AuxiliaryVersionConfig`.
      *
      * Generated from protobuf field <code>map<string, string> config_overrides = 2;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var

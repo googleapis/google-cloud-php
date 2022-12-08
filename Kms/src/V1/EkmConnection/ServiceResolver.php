@@ -43,7 +43,8 @@ class ServiceResolver extends \Google\Protobuf\Internal\Message
     private $hostname = '';
     /**
      * Required. A list of leaf server certificates used to authenticate HTTPS
-     * connections to the EKM replica.
+     * connections to the EKM replica. Currently, a maximum of 10
+     * [Certificate][google.cloud.kms.v1.Certificate] is supported.
      *
      * Generated from protobuf field <code>repeated .google.cloud.kms.v1.Certificate server_certificates = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -69,7 +70,8 @@ class ServiceResolver extends \Google\Protobuf\Internal\Message
      *           Required. The hostname of the EKM replica used at TLS and HTTP layers.
      *     @type array<\Google\Cloud\Kms\V1\Certificate>|\Google\Protobuf\Internal\RepeatedField $server_certificates
      *           Required. A list of leaf server certificates used to authenticate HTTPS
-     *           connections to the EKM replica.
+     *           connections to the EKM replica. Currently, a maximum of 10
+     *           [Certificate][google.cloud.kms.v1.Certificate] is supported.
      * }
      */
     public function __construct($data = NULL) {
@@ -169,7 +171,8 @@ class ServiceResolver extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. A list of leaf server certificates used to authenticate HTTPS
-     * connections to the EKM replica.
+     * connections to the EKM replica. Currently, a maximum of 10
+     * [Certificate][google.cloud.kms.v1.Certificate] is supported.
      *
      * Generated from protobuf field <code>repeated .google.cloud.kms.v1.Certificate server_certificates = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -181,7 +184,8 @@ class ServiceResolver extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. A list of leaf server certificates used to authenticate HTTPS
-     * connections to the EKM replica.
+     * connections to the EKM replica. Currently, a maximum of 10
+     * [Certificate][google.cloud.kms.v1.Certificate] is supported.
      *
      * Generated from protobuf field <code>repeated .google.cloud.kms.v1.Certificate server_certificates = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param array<\Google\Cloud\Kms\V1\Certificate>|\Google\Protobuf\Internal\RepeatedField $var

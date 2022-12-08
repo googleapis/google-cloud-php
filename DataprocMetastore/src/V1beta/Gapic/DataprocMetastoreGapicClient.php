@@ -29,13 +29,10 @@ namespace Google\Cloud\Metastore\V1beta\Gapic;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
-
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
-
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
@@ -64,13 +61,12 @@ use Google\Cloud\Metastore\V1beta\Service;
 use Google\Cloud\Metastore\V1beta\UpdateMetadataImportRequest;
 use Google\Cloud\Metastore\V1beta\UpdateServiceRequest;
 use Google\LongRunning\Operation;
-
 use Google\Protobuf\FieldMask;
 
 /**
  * Service Description: Configures and manages metastore services.
- * Metastore services are fully managed, highly available, auto-scaled,
- * auto-healing, OSS-native deployments of technical metadata management
+ * Metastore services are fully managed, highly available, autoscaled,
+ * autohealing, OSS-native deployments of technical metadata management
  * software. Each metastore service exposes a network endpoint through which
  * metadata queries are served. Metadata queries can originate from a variety
  * of sources, including Apache Hive, Apache Presto, and Apache Spark.
@@ -137,29 +133,19 @@ class DataprocMetastoreGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.metastore.v1beta.DataprocMetastore';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'metastore.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
     ];
@@ -448,9 +434,6 @@ class DataprocMetastoreGapicClient
      * @param array $options {
      *     Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress
-     *           **Deprecated**. This option will be removed in a future major release. Please
-     *           utilize the `$apiEndpoint` option instead.
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'metastore.googleapis.com:443'.
@@ -480,7 +463,7 @@ class DataprocMetastoreGapicClient
      *           *Advanced usage*: Additionally, it is possible to pass in an already
      *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
      *           that when this object is provided, any settings in $transportConfig, and any
-     *           $serviceAddress setting, will be ignored.
+     *           $apiEndpoint setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
      *           each supported transport type should be passed in a key for that transport. For
@@ -509,7 +492,7 @@ class DataprocMetastoreGapicClient
     }
 
     /**
-     * Creates a new Backup in a given project and location.
+     * Creates a new backup in a given project and location.
      *
      * Sample code:
      * ```
@@ -552,7 +535,7 @@ class DataprocMetastoreGapicClient
      * @param string $parent       Required. The relative resource name of the service in which to create a
      *                             backup of the following form:
      *
-     *                             `projects/{project_number}/locations/{location_id}/services/{service_id}`
+     *                             `projects/{project_number}/locations/{location_id}/services/{service_id}`.
      * @param string $backupId     Required. The ID of the backup, which is used as the final component of the
      *                             backup's name.
      *
@@ -650,7 +633,7 @@ class DataprocMetastoreGapicClient
      * @param string         $parent           Required. The relative resource name of the service in which to create a
      *                                         metastore import, in the following form:
      *
-     *                                         `projects/{project_number}/locations/{location_id}/services/{service_id}`
+     *                                         `projects/{project_number}/locations/{location_id}/services/{service_id}`.
      * @param string         $metadataImportId Required. The ID of the metadata import, which is used as the final
      *                                         component of the metadata import's name.
      *
@@ -1014,7 +997,7 @@ class DataprocMetastoreGapicClient
      * @param string $service      Required. The relative resource name of the metastore service to run
      *                             export, in the following form:
      *
-     *                             `projects/{project_id}/locations/{location_id}/services/{service_id}`
+     *                             `projects/{project_id}/locations/{location_id}/services/{service_id}`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1510,11 +1493,11 @@ class DataprocMetastoreGapicClient
      * @param string $service      Required. The relative resource name of the metastore service to run
      *                             restore, in the following form:
      *
-     *                             `projects/{project_id}/locations/{location_id}/services/{service_id}`
+     *                             `projects/{project_id}/locations/{location_id}/services/{service_id}`.
      * @param string $backup       Required. The relative resource name of the metastore service backup to
      *                             restore from, in the following form:
      *
-     *                             `projects/{project_id}/locations/{location_id}/services/{service_id}/backups/{backup_id}`
+     *                             `projects/{project_id}/locations/{location_id}/services/{service_id}/backups/{backup_id}`.
      * @param array  $optionalArgs {
      *     Optional.
      *

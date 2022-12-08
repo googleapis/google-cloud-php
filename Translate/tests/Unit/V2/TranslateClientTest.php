@@ -59,13 +59,15 @@ class TranslateClientTest extends TestCase
             if (isset($args['model'])) {
                 return false;
             }
-        }));
+            return true;
+        }))->shouldBeCalled();
 
         $this->client->___setProperty('connection', $this->connection->reveal());
 
         $this->client->translate('foo bar');
 
-        $this->connection->listTranslations(Argument::withEntry('model', 'base'));
+        $this->connection->listTranslations(Argument::withEntry('model', 'base'))
+            ->shouldBeCalled();
 
         $this->client->___setProperty('connection', $this->connection->reveal());
         $this->client->translate('foo bar', ['model' => 'base']);

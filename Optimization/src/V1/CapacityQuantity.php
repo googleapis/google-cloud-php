@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Deprecated: Use [Shipment.Load][], [Vehicle.LoadLimit][] and [ShipmentRoute.VehicleLoad][] instead.
+ * Deprecated: Use [Shipment.Load][], [Vehicle.LoadLimit][] and
+ * [ShipmentRoute.VehicleLoad][] instead.
  *
  * Generated from protobuf message <code>google.cloud.optimization.v1.CapacityQuantity</code>
  */

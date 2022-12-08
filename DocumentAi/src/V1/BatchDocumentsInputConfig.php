@@ -24,7 +24,7 @@ class BatchDocumentsInputConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\DocumentAI\V1\GcsPrefix $gcs_prefix
-     *           The set of documents that match the specified Cloud Storage [gcs_prefix].
+     *           The set of documents that match the specified Cloud Storage `gcs_prefix`.
      *     @type \Google\Cloud\DocumentAI\V1\GcsDocuments $gcs_documents
      *           The set of documents individually specified on Cloud Storage.
      * }
@@ -35,7 +35,7 @@ class BatchDocumentsInputConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The set of documents that match the specified Cloud Storage [gcs_prefix].
+     * The set of documents that match the specified Cloud Storage `gcs_prefix`.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.GcsPrefix gcs_prefix = 1;</code>
      * @return \Google\Cloud\DocumentAI\V1\GcsPrefix|null
@@ -51,7 +51,7 @@ class BatchDocumentsInputConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The set of documents that match the specified Cloud Storage [gcs_prefix].
+     * The set of documents that match the specified Cloud Storage `gcs_prefix`.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.GcsPrefix gcs_prefix = 1;</code>
      * @param \Google\Cloud\DocumentAI\V1\GcsPrefix $var

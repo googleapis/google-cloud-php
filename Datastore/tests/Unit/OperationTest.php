@@ -27,10 +27,10 @@ use Google\Cloud\Datastore\Operation;
 use Google\Cloud\Datastore\Query\GqlQuery;
 use Google\Cloud\Datastore\Query\Query;
 use Google\Cloud\Datastore\Query\QueryInterface;
+use Prophecy\Argument;
 use Yoast\PHPUnitPolyfills\Polyfills\AssertIsType;
 use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
-use Prophecy\Argument;
 
 /**
  * @group datastore
@@ -43,6 +43,7 @@ class OperationTest extends TestCase
 
     const PROJECT = 'example-project';
     const NAMESPACEID = 'namespace-id';
+    const DATABASEID = 'database-id';
 
     private $operation;
     private $connection;
@@ -54,7 +55,8 @@ class OperationTest extends TestCase
             $this->connection->reveal(),
             self::PROJECT,
             null,
-            new EntityMapper('foo', true, false)
+            new EntityMapper('foo', true, false),
+            self::DATABASEID,
         ], ['connection', 'namespaceId']);
     }
 
@@ -76,15 +78,33 @@ class OperationTest extends TestCase
         $this->assertEquals(self::NAMESPACEID, $obj['partitionId']['namespaceId']);
     }
 
+    public function testKeyWithDatabaseId()
+    {
+        $key = $this->operation->key('Person', 'Bob', ['databaseId' => self::DATABASEID]);
+        $obj = $key->keyObject();
+
+        $this->assertEquals(self::DATABASEID, $obj['partitionId']['databaseId']);
+    }
+
     public function testKeyWithNamespaceIdOverride()
     {
         $this->operation->___setProperty('namespaceId', self::NAMESPACEID);
         $key = $this->operation->key('Person', 'Bob', [
-            'namespaceId' => 'otherNamespace'
+            'namespaceId' => 'otherNamespace',
         ]);
         $obj = $key->keyObject();
 
         $this->assertEquals('otherNamespace', $obj['partitionId']['namespaceId']);
+    }
+
+    public function testKeyWithDatabaseIdOverride()
+    {
+        $key = $this->operation->key('Person', 'Bob', [
+            'databaseId' => 'otherDatabaseId',
+        ]);
+        $obj = $key->keyObject();
+
+        $this->assertEquals('otherDatabaseId', $obj['partitionId']['databaseId']);
     }
 
     public function testKeys()
@@ -97,7 +117,7 @@ class OperationTest extends TestCase
     public function testKeysNumber()
     {
         $keys = $this->operation->keys('Foo', [
-            'number' => 10
+            'number' => 10,
         ]);
 
         $this->assertCount(10, $keys);
@@ -106,7 +126,7 @@ class OperationTest extends TestCase
     public function testKeysNumberCopy()
     {
         $keys = $this->operation->keys('Foo', [
-            'number' => 2
+            'number' => 2,
         ]);
 
         $keys[0]->setLastElementIdentifier(10);
@@ -119,7 +139,7 @@ class OperationTest extends TestCase
         $this->expectException('InvalidArgumentException');
 
         $this->operation->keys('Foo', [
-            'number' => 0
+            'number' => 0,
         ]);
     }
 
@@ -127,35 +147,35 @@ class OperationTest extends TestCase
     {
         $keys = $this->operation->keys('Foo', [
             'ancestors' => [
-                ['kind' => 'Kind', 'id' => '10']
-            ]
+                ['kind' => 'Kind', 'id' => '10'],
+            ],
         ]);
 
         $this->assertEquals($keys[0]->path(), [
             ['kind' => 'Kind', 'id' => '10'],
-            ['kind' => 'Foo']
+            ['kind' => 'Foo'],
         ]);
     }
 
     public function testKeysId()
     {
         $keys = $this->operation->keys('Foo', [
-            'id' => '10'
+            'id' => '10',
         ]);
 
         $this->assertEquals($keys[0]->path(), [
-            ['kind' => 'Foo', 'id' => '10']
+            ['kind' => 'Foo', 'id' => '10'],
         ]);
     }
 
     public function testKeysName()
     {
         $keys = $this->operation->keys('Foo', [
-            'name' => '10'
+            'name' => '10',
         ]);
 
         $this->assertEquals($keys[0]->path(), [
-            ['kind' => 'Foo', 'name' => '10']
+            ['kind' => 'Foo', 'name' => '10'],
         ]);
     }
 
@@ -185,7 +205,7 @@ class OperationTest extends TestCase
     public function testEntityCustomClass()
     {
         $e = $this->operation->entity('Foo', [], [
-            'className' => SampleEntity::class
+            'className' => SampleEntity::class,
         ]);
 
         $this->assertInstanceOf(SampleEntity::class, $e);
@@ -196,7 +216,7 @@ class OperationTest extends TestCase
         $this->expectException('InvalidArgumentException');
 
         $e = $this->operation->entity('Foo', [], [
-            'className' => Operation::class
+            'className' => Operation::class,
         ]);
     }
 
@@ -211,8 +231,8 @@ class OperationTest extends TestCase
             ->shouldBeCalled()
             ->willReturn([
                 'keys' => [
-                    $keyWithId->keyObject()
-                ]
+                    $keyWithId->keyObject(),
+                ],
             ]);
 
         $this->operation->___setProperty('connection', $this->connection->reveal());
@@ -251,7 +271,7 @@ class OperationTest extends TestCase
     {
         $body = json_decode(file_get_contents(Fixtures::ENTITY_BATCH_LOOKUP_FIXTURE()), true);
         $this->connection->lookup(Argument::any())->willReturn([
-            'found' => $body
+            'found' => $body,
         ]);
 
         $this->operation->___setProperty('connection', $this->connection->reveal());
@@ -273,7 +293,7 @@ class OperationTest extends TestCase
     {
         $body = json_decode(file_get_contents(Fixtures::ENTITY_BATCH_LOOKUP_FIXTURE()), true);
         $this->connection->lookup(Argument::any())->willReturn([
-            'missing' => $body
+            'missing' => $body,
         ]);
 
         $this->operation->___setProperty('connection', $this->connection->reveal());
@@ -293,7 +313,7 @@ class OperationTest extends TestCase
     {
         $body = json_decode(file_get_contents(Fixtures::ENTITY_BATCH_LOOKUP_FIXTURE()), true);
         $this->connection->lookup(Argument::any())->willReturn([
-            'deferred' => [ $body[0]['entity']['key'] ]
+            'deferred' => [$body[0]['entity']['key']],
         ]);
 
         $this->operation->___setProperty('connection', $this->connection->reveal());
@@ -314,7 +334,7 @@ class OperationTest extends TestCase
         $this->operation->___setProperty('connection', $this->connection->reveal());
 
         $k = new Key('test-project', [
-            'path' => [['kind' => 'kind', 'id' => '123']]
+            'path' => [['kind' => 'kind', 'id' => '123']],
         ]);
 
         $this->operation->lookup([$k], ['transaction' => 'foo']);
@@ -327,7 +347,7 @@ class OperationTest extends TestCase
         $this->operation->___setProperty('connection', $this->connection->reveal());
 
         $k = new Key('test-project', [
-            'path' => [['kind' => 'kind', 'id' => '123']]
+            'path' => [['kind' => 'kind', 'id' => '123']],
         ]);
 
         $this->operation->lookup([$k], ['readConsistency' => 'foo']);
@@ -342,7 +362,7 @@ class OperationTest extends TestCase
         $this->operation->___setProperty('connection', $this->connection->reveal());
 
         $k = new Key('test-project', [
-            'path' => [['kind' => 'kind', 'id' => '123']]
+            'path' => [['kind' => 'kind', 'id' => '123']],
         ]);
 
         $this->operation->lookup([$k]);
@@ -355,18 +375,18 @@ class OperationTest extends TestCase
         $keys = [];
         foreach ($data['keys'] as $key) {
             $keys[] = new Key('test-project', [
-                'path' => $key['path']
+                'path' => $key['path'],
             ]);
         }
 
         $this->connection->lookup(Argument::any())->willReturn([
-            'found' => $data['entities']
+            'found' => $data['entities'],
         ]);
 
         $this->operation->___setProperty('connection', $this->connection->reveal());
 
         $res = $this->operation->lookup($keys, [
-            'sort' => true
+            'sort' => true,
         ]);
 
         $found = $res['found'];
@@ -383,13 +403,13 @@ class OperationTest extends TestCase
         $keys = [];
         foreach ($data['keys'] as $key) {
             $keys[] = new Key('test-project', [
-                'path' => $key['path']
+                'path' => $key['path'],
             ]);
         }
 
         $this->connection->lookup(Argument::any())->willReturn([
             'found' => $data['entities'],
-            'missing' => $data['missing']
+            'missing' => $data['missing'],
         ]);
 
         $this->operation->___setProperty('connection', $this->connection->reveal());
@@ -415,18 +435,18 @@ class OperationTest extends TestCase
         $keys = [];
         foreach ($data['keys'] as $key) {
             $keys[] = new Key('test-project', [
-                'path' => $key['path']
+                'path' => $key['path'],
             ]);
         }
 
         $this->connection->lookup(Argument::any())->willReturn([
-            'found' => $data['entities']
+            'found' => $data['entities'],
         ]);
 
         $this->operation->___setProperty('connection', $this->connection->reveal());
 
         $res = $this->operation->lookup($keys, [
-            'sort' => true
+            'sort' => true,
         ]);
 
         $found = $res['found'];
@@ -509,7 +529,7 @@ class OperationTest extends TestCase
         $gql = new GqlQuery($em->reveal(), 'SELECT 1');
         return [
             [$query],
-            [$gql]
+            [$gql],
         ];
     }
 
@@ -536,7 +556,8 @@ class OperationTest extends TestCase
 
     public function testRunQueryWithReadOptionsFromTransaction()
     {
-        $this->connection->runQuery(Argument::withKey('readOptions'))->willReturn([]);
+        $this->connection->runQuery(Argument::withKey('readOptions'))->willReturn([])
+            ->shouldBeCalled();
 
         $this->operation->___setProperty('connection', $this->connection->reveal());
 
@@ -550,7 +571,8 @@ class OperationTest extends TestCase
 
     public function testRunQueryWithReadOptionsFromReadConsistency()
     {
-        $this->connection->runQuery(Argument::withKey('readOptions'))->willReturn([]);
+        $this->connection->runQuery(Argument::withKey('readOptions'))->willReturn([])
+            ->shouldBeCalled();
 
         $this->operation->___setProperty('connection', $this->connection->reveal());
 
@@ -566,7 +588,7 @@ class OperationTest extends TestCase
     {
         $this->connection->runQuery(Argument::that(function ($args) {
             return !isset($args['readOptions']);
-        }))->willReturn([]);
+        }))->willReturn([])->shouldBeCalled();
 
         $this->operation->___setProperty('connection', $this->connection->reveal());
 
@@ -576,6 +598,25 @@ class OperationTest extends TestCase
 
         $res = $this->operation->runQuery($q->reveal());
         iterator_to_array($res);
+    }
+
+    public function testRunQueryWithDatabaseIdOverride()
+    {
+        $this->connection
+            ->runQuery(
+                Argument::withEntry('databaseId', 'otherDatabaseId')
+            )
+            ->shouldBeCalledTimes(1)
+            ->willReturn([]);
+
+        $mapper = new EntityMapper('foo', true, false);
+        $query = new Query($mapper);
+
+        $iterator = $this->operation->runQuery(
+            $query,
+            ['databaseId' => 'otherDatabaseId']
+        );
+        $res = iterator_to_array($iterator);
     }
 
     public function testCommit()
@@ -604,7 +645,7 @@ class OperationTest extends TestCase
         $this->operation->___setProperty('connection', $this->connection->reveal());
 
         $this->operation->commit([], [
-            'transaction' => '1234'
+            'transaction' => '1234',
         ]);
     }
 
@@ -622,6 +663,21 @@ class OperationTest extends TestCase
         $mutation = $this->operation->mutation('insert', $e, Entity::class, null);
 
         $this->operation->commit([$mutation]);
+    }
+
+    public function testCommitWithDatabaseIdOverride()
+    {
+        $this->connection
+            ->commit(
+                Argument::withEntry('databaseId', 'otherDatabaseId')
+            )
+            ->shouldBeCalledTimes(1)
+            ->willReturn([]);
+
+        $iterator = $this->operation->commit(
+            [],
+            ['databaseId' => 'otherDatabaseId']
+        );
     }
 
     public function testRollback()
@@ -648,15 +704,15 @@ class OperationTest extends TestCase
             ->shouldBeCalled()
             ->willReturn([
                 'keys' => [
-                    $keyWithId->keyObject()
-                ]
+                    $keyWithId->keyObject(),
+                ],
             ]);
 
         $this->operation->___setProperty('connection', $this->connection->reveal());
 
         $entities = [
             $this->operation->entity($completeKey),
-            $this->operation->entity($partialKey)
+            $this->operation->entity($partialKey),
         ];
 
         $res = $this->operation->allocateIdsToEntities($entities);
@@ -703,11 +759,12 @@ class OperationTest extends TestCase
 
         $key = $this->prophesize(Key::class);
         $e = new Entity($key->reveal(), [], [
-            'baseVersion' => 1
+            'baseVersion' => 1,
         ]);
 
         $mutation = $this->operation->mutation('insert', $e, Entity::class);
-        $this->operation->commit([$mutation]);
+        $ret = $this->operation->commit([$mutation]);
+        $this->assertEquals('foo', $ret);
     }
 
     public function testMutateWithKey()
@@ -727,24 +784,25 @@ class OperationTest extends TestCase
         $this->operation->___setProperty('connection', $this->connection->reveal());
 
         $key = new Key('foo', [
-            'path' => [['kind' => 'foo', 'id' => 1]]
+            'path' => [['kind' => 'foo', 'id' => 1]],
         ]);
 
         $mutation = $this->operation->mutation('delete', $key, Key::class);
-        $this->operation->commit([$mutation]);
+        $ret = $this->operation->commit([$mutation]);
+        $this->assertEquals('foo', $ret);
     }
 
     public function testMutateInvalidType()
     {
         $this->expectException('InvalidArgumentException');
 
-        $this->operation->mutation('foo', (object)[], \stdClass::class);
+        $this->operation->mutation('foo', (object) [], \stdClass::class);
     }
 
     public function testCheckOverwrite()
     {
         $e = $this->prophesize(Entity::class);
-        $e->populatedByService()->willReturn(true);
+        $e->populatedByService()->willReturn(true)->shouldBeCalled();
 
         $this->operation->checkOverwrite([$e->reveal()]);
     }
@@ -752,7 +810,7 @@ class OperationTest extends TestCase
     public function testCheckOverwriteWithFlagEnabled()
     {
         $e = $this->prophesize(Entity::class);
-        $e->populatedByService()->willReturn(false);
+        $e->populatedByService()->willReturn(false)->shouldBeCalled();
 
         $this->operation->checkOverwrite([$e->reveal()], true);
     }
@@ -774,7 +832,7 @@ class OperationTest extends TestCase
 
         $this->connection->lookup(Argument::type('array'))
             ->willReturn([
-                'found' => $res
+                'found' => $res,
             ]);
 
         $this->operation->___setProperty('connection', $this->connection->reveal());
@@ -795,7 +853,7 @@ class OperationTest extends TestCase
 
         $this->connection->lookup(Argument::type('array'))
             ->willReturn([
-                'found' => $res
+                'found' => $res,
             ]);
 
         $this->operation->___setProperty('connection', $this->connection->reveal());
@@ -815,7 +873,7 @@ class OperationTest extends TestCase
 
         $this->connection->lookup(Argument::type('array'))
             ->willReturn([
-                'found' => $res
+                'found' => $res,
             ]);
 
         $this->operation->___setProperty('connection', $this->connection->reveal());
@@ -824,8 +882,8 @@ class OperationTest extends TestCase
 
         $entity = $this->operation->lookup([$key], [
             'className' => [
-                'Kind' => SampleEntity::class
-            ]
+                'Kind' => SampleEntity::class,
+            ],
         ]);
 
         $this->assertInstanceOf(SampleEntity::class, $entity['found'][0]);
@@ -839,7 +897,7 @@ class OperationTest extends TestCase
 
         $this->connection->lookup(Argument::type('array'))
             ->willReturn([
-                'found' => $res
+                'found' => $res,
             ]);
 
         $this->operation->___setProperty('connection', $this->connection->reveal());
@@ -848,8 +906,8 @@ class OperationTest extends TestCase
 
         $entity = $this->operation->lookup([$key], [
             'className' => [
-                'Kind2' => SampleEntity::class
-            ]
+                'Kind2' => SampleEntity::class,
+            ],
         ]);
     }
 
@@ -858,13 +916,14 @@ class OperationTest extends TestCase
         $this->connection->lookup(Argument::that(function ($arg) {
             return isset($arg['readOptions']['transaction']);
         }))
-            ->willReturn([]);
+            ->willReturn([])
+            ->shouldBeCalled();
 
         $this->operation->___setProperty('connection', $this->connection->reveal());
 
         $key = $this->operation->key('Person', 12345);
         $this->operation->lookup([$key], [
-            'transaction' => '1234'
+            'transaction' => '1234',
         ]);
     }
 
@@ -873,7 +932,8 @@ class OperationTest extends TestCase
         $this->connection->lookup(Argument::that(function ($arg) {
             return !isset($arg['readOptions']['transaction']);
         }))
-            ->willReturn([]);
+            ->willReturn([])
+            ->shouldBeCalled();
 
         $this->operation->___setProperty('connection', $this->connection->reveal());
 
@@ -884,13 +944,14 @@ class OperationTest extends TestCase
     public function testReadConsistencyInReadOptions()
     {
         $this->connection->lookup(Argument::withEntry('readOptions', ['readConsistency' => 'test']))
-            ->willReturn([]);
+            ->willReturn([])
+            ->shouldBeCalled();
 
         $this->operation->___setProperty('connection', $this->connection->reveal());
 
         $key = $this->operation->key('Person', 12345);
         $this->operation->lookup([$key], [
-            'readConsistency' => 'test'
+            'readConsistency' => 'test',
         ]);
     }
 
@@ -899,5 +960,51 @@ class OperationTest extends TestCase
         $this->expectException('InvalidArgumentException');
 
         $this->operation->lookup(['foo']);
+    }
+
+    public function testBeginTransactionWithDatabaseIdOverride()
+    {
+        $this->connection
+            ->beginTransaction(
+                Argument::withEntry('databaseId', 'otherDatabaseId')
+            )
+            ->willReturn(['transaction' => 'valid_test_transaction']);
+
+        $transactionId = $this->operation->beginTransaction(
+            [],
+            ['databaseId' => 'otherDatabaseId']
+        );
+
+        $this->assertEquals('valid_test_transaction', $transactionId);
+    }
+
+    public function testAllocateIdsWithDatabaseIdOverride()
+    {
+        $this->connection
+            ->allocateIds(
+                Argument::withEntry('databaseId', 'otherDatabaseId')
+            )
+            ->shouldBeCalledTimes(1)
+            ->willReturn([]);
+
+        $this->operation->allocateIds(
+            [],
+            ['databaseId' => 'otherDatabaseId']
+        );
+    }
+
+    public function testLookupWithDatabaseIdOverride()
+    {
+        $this->connection
+            ->lookup(
+                Argument::withEntry('databaseId', 'otherDatabaseId')
+            )
+            ->shouldBeCalledTimes(1)
+            ->willReturn([]);
+
+        $this->operation->lookup(
+            [],
+            ['databaseId' => 'otherDatabaseId']
+        );
     }
 }

@@ -70,7 +70,7 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
      */
     private $peer_external_gateway = null;
     /**
-     * The interface ID of the external VPN gateway to which this VPN tunnel is connected. Provided by the client when the VPN tunnel is created.
+     * The interface ID of the external VPN gateway to which this VPN tunnel is connected. Provided by the client when the VPN tunnel is created. Possible values are: `0`, `1`, `2`, `3`. The number of IDs in use depends on the external VPN gateway redundancy type.
      *
      * Generated from protobuf field <code>optional int32 peer_external_gateway_interface = 452768391;</code>
      */
@@ -143,7 +143,7 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
      */
     private $vpn_gateway = null;
     /**
-     * The interface ID of the VPN gateway with which this VPN tunnel is associated.
+     * The interface ID of the VPN gateway with which this VPN tunnel is associated. Possible values are: `0`, `1`.
      *
      * Generated from protobuf field <code>optional int32 vpn_gateway_interface = 95979123;</code>
      */
@@ -174,7 +174,7 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
      *     @type string $peer_external_gateway
      *           URL of the peer side external VPN gateway to which this VPN tunnel is connected. Provided by the client when the VPN tunnel is created. This field is exclusive with the field peerGcpGateway.
      *     @type int $peer_external_gateway_interface
-     *           The interface ID of the external VPN gateway to which this VPN tunnel is connected. Provided by the client when the VPN tunnel is created.
+     *           The interface ID of the external VPN gateway to which this VPN tunnel is connected. Provided by the client when the VPN tunnel is created. Possible values are: `0`, `1`, `2`, `3`. The number of IDs in use depends on the external VPN gateway redundancy type.
      *     @type string $peer_gcp_gateway
      *           URL of the peer side HA GCP VPN gateway to which this VPN tunnel is connected. Provided by the client when the VPN tunnel is created. This field can be used when creating highly available VPN from VPC network to VPC network, the field is exclusive with the field peerExternalGateway. If provided, the VPN tunnel will automatically use the same vpnGatewayInterface ID in the peer GCP VPN gateway.
      *     @type string $peer_ip
@@ -199,7 +199,7 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
      *     @type string $vpn_gateway
      *           URL of the VPN gateway with which this VPN tunnel is associated. Provided by the client when the VPN tunnel is created. This must be used (instead of target_vpn_gateway) if a High Availability VPN gateway resource is created.
      *     @type int $vpn_gateway_interface
-     *           The interface ID of the VPN gateway with which this VPN tunnel is associated.
+     *           The interface ID of the VPN gateway with which this VPN tunnel is associated. Possible values are: `0`, `1`.
      * }
      */
     public function __construct($data = NULL) {
@@ -522,7 +522,7 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The interface ID of the external VPN gateway to which this VPN tunnel is connected. Provided by the client when the VPN tunnel is created.
+     * The interface ID of the external VPN gateway to which this VPN tunnel is connected. Provided by the client when the VPN tunnel is created. Possible values are: `0`, `1`, `2`, `3`. The number of IDs in use depends on the external VPN gateway redundancy type.
      *
      * Generated from protobuf field <code>optional int32 peer_external_gateway_interface = 452768391;</code>
      * @return int
@@ -543,7 +543,7 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The interface ID of the external VPN gateway to which this VPN tunnel is connected. Provided by the client when the VPN tunnel is created.
+     * The interface ID of the external VPN gateway to which this VPN tunnel is connected. Provided by the client when the VPN tunnel is created. Possible values are: `0`, `1`, `2`, `3`. The number of IDs in use depends on the external VPN gateway redundancy type.
      *
      * Generated from protobuf field <code>optional int32 peer_external_gateway_interface = 452768391;</code>
      * @param int $var
@@ -946,7 +946,7 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The interface ID of the VPN gateway with which this VPN tunnel is associated.
+     * The interface ID of the VPN gateway with which this VPN tunnel is associated. Possible values are: `0`, `1`.
      *
      * Generated from protobuf field <code>optional int32 vpn_gateway_interface = 95979123;</code>
      * @return int
@@ -967,7 +967,7 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The interface ID of the VPN gateway with which this VPN tunnel is associated.
+     * The interface ID of the VPN gateway with which this VPN tunnel is associated. Possible values are: `0`, `1`.
      *
      * Generated from protobuf field <code>optional int32 vpn_gateway_interface = 95979123;</code>
      * @param int $var

@@ -1,6 +1,6 @@
 {
     "distribution_name": "google/cloud-bigquery-reservation",
-    "release_level": "beta",
+    "release_level": "ga",
     "client_documentation": "https://googleapis.github.io/google-cloud-php/#/docs/cloud-bigquery-reservation/latest",
     "library_type": "GAPIC_AUTO"
 }

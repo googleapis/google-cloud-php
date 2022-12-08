@@ -23,11 +23,9 @@
 namespace Google\Cloud\Monitoring\Tests\Unit\V3;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-
 use Google\Cloud\Monitoring\V3\AlertPolicy;
 use Google\Cloud\Monitoring\V3\AlertPolicyServiceClient;
 use Google\Cloud\Monitoring\V3\ListAlertPoliciesResponse;
@@ -42,25 +40,19 @@ use stdClass;
  */
 class AlertPolicyServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return AlertPolicyServiceClient
-     */
+    /** @return AlertPolicyServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -69,9 +61,7 @@ class AlertPolicyServiceClientTest extends GeneratedTest
         return new AlertPolicyServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createAlertPolicyTest()
     {
         $transport = $this->createTransport();
@@ -103,9 +93,7 @@ class AlertPolicyServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createAlertPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -139,9 +127,7 @@ class AlertPolicyServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteAlertPolicyTest()
     {
         $transport = $this->createTransport();
@@ -165,9 +151,7 @@ class AlertPolicyServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteAlertPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -200,9 +184,7 @@ class AlertPolicyServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getAlertPolicyTest()
     {
         $transport = $this->createTransport();
@@ -231,9 +213,7 @@ class AlertPolicyServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getAlertPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -266,9 +246,7 @@ class AlertPolicyServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listAlertPoliciesTest()
     {
         $transport = $this->createTransport();
@@ -305,9 +283,7 @@ class AlertPolicyServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listAlertPoliciesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -340,9 +316,7 @@ class AlertPolicyServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateAlertPolicyTest()
     {
         $transport = $this->createTransport();
@@ -371,9 +345,7 @@ class AlertPolicyServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateAlertPolicyExceptionTest()
     {
         $transport = $this->createTransport();

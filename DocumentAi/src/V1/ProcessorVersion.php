@@ -34,6 +34,12 @@ class ProcessorVersion extends \Google\Protobuf\Internal\Message
      */
     private $display_name = '';
     /**
+     * The schema of the processor version. Describes the output.
+     *
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.DocumentSchema document_schema = 12;</code>
+     */
+    private $document_schema = null;
+    /**
      * The state of the processor version.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.ProcessorVersion.State state = 6;</code>
@@ -82,6 +88,8 @@ class ProcessorVersion extends \Google\Protobuf\Internal\Message
      *           `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processor_version}`
      *     @type string $display_name
      *           The display name of the processor version.
+     *     @type \Google\Cloud\DocumentAI\V1\DocumentSchema $document_schema
+     *           The schema of the processor version. Describes the output.
      *     @type int $state
      *           The state of the processor version.
      *     @type \Google\Protobuf\Timestamp $create_time
@@ -153,6 +161,42 @@ class ProcessorVersion extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->display_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * The schema of the processor version. Describes the output.
+     *
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.DocumentSchema document_schema = 12;</code>
+     * @return \Google\Cloud\DocumentAI\V1\DocumentSchema|null
+     */
+    public function getDocumentSchema()
+    {
+        return $this->document_schema;
+    }
+
+    public function hasDocumentSchema()
+    {
+        return isset($this->document_schema);
+    }
+
+    public function clearDocumentSchema()
+    {
+        unset($this->document_schema);
+    }
+
+    /**
+     * The schema of the processor version. Describes the output.
+     *
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.DocumentSchema document_schema = 12;</code>
+     * @param \Google\Cloud\DocumentAI\V1\DocumentSchema $var
+     * @return $this
+     */
+    public function setDocumentSchema($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DocumentAI\V1\DocumentSchema::class);
+        $this->document_schema = $var;
 
         return $this;
     }

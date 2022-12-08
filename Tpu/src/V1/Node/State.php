@@ -26,7 +26,7 @@ class State
      */
     const CREATING = 1;
     /**
-     * TPU node has been created and is fully usable.
+     * TPU node has been created.
      *
      * Generated from protobuf enum <code>READY = 2;</code>
      */
