@@ -1,0 +1,1 @@
+{"id":"oslogin\/v1beta\/loginprofileview","type":"","title":"Google\\Cloud\\OsLogin\\V1beta\\LoginProfileView","name":"LoginProfileView","description":"<p>The login profile view limits the user content retrieved.<\/p>\n<p>Protobuf type <code>google.cloud.oslogin.v1beta.LoginProfileView<\/code><\/p>","examples":[],"resources":[],"methods":[]}

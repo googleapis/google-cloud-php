@@ -1,0 +1,1 @@
+{"id":"monitoring\/v3\/uptimecheckconfig_resourcegroup","type":"","title":"Google\\Cloud\\Monitoring\\V3\\UptimeCheckConfig_ResourceGroup","name":"UptimeCheckConfig_ResourceGroup","description":"<p>This class is deprecated. Use Google\\Cloud\\Monitoring\\V3\\UptimeCheckConfig\\ResourceGroup instead.<\/p>","examples":[],"resources":[],"methods":[]}

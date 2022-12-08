@@ -1,0 +1,1 @@
+{"id":"channel\/v1\/operationmetadata\/operationtype","type":"","title":"Google\\Cloud\\Channel\\V1\\OperationMetadata\\OperationType","name":"OperationType","description":"<p>RPCs that return a Long Running Operation.<\/p>\n<p>Protobuf type <code>google.cloud.channel.v1.OperationMetadata.OperationType<\/code><\/p>","examples":[],"resources":[],"methods":[]}

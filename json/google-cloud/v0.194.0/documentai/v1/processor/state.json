@@ -1,0 +1,1 @@
+{"id":"documentai\/v1\/processor\/state","type":"","title":"Google\\Cloud\\DocumentAI\\V1\\Processor\\State","name":"State","description":"<p>The possible states of the processor.<\/p>\n<p>Protobuf type <code>google.cloud.documentai.v1.Processor.State<\/code><\/p>","examples":[],"resources":[],"methods":[]}

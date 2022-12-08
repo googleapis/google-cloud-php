@@ -1,0 +1,1 @@
+{"id":"gkemulticloud\/v1\/azurenodepool\/state","type":"","title":"Google\\Cloud\\GkeMultiCloud\\V1\\AzureNodePool\\State","name":"State","description":"<p>The lifecycle state of the node pool.<\/p>\n<p>Protobuf type <code>google.cloud.gkemulticloud.v1.AzureNodePool.State<\/code><\/p>","examples":[],"resources":[],"methods":[]}

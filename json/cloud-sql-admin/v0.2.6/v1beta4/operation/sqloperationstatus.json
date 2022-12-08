@@ -1,0 +1,1 @@
+{"id":"sqladmin\/v1beta4\/operation\/sqloperationstatus","type":"","title":"Google\\Cloud\\Sql\\V1beta4\\Operation\\SqlOperationStatus","name":"SqlOperationStatus","description":"<p>The status of an operation.<\/p>\n<p>Protobuf type <code>google.cloud.sql.v1beta4.Operation.SqlOperationStatus<\/code><\/p>","examples":[],"resources":[],"methods":[]}

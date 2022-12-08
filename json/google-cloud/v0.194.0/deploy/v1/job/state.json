@@ -1,0 +1,1 @@
+{"id":"deploy\/v1\/job\/state","type":"","title":"Google\\Cloud\\Deploy\\V1\\Job\\State","name":"State","description":"<p>Valid states of a Job.<\/p>\n<p>Protobuf type <code>google.cloud.deploy.v1.Job.State<\/code><\/p>","examples":[],"resources":[],"methods":[]}

@@ -1,0 +1,1 @@
+{"id":"analyticsadmin\/v1alpha\/audiencefilterscope","type":"","title":"Google\\Analytics\\Admin\\V1alpha\\AudienceFilterScope","name":"AudienceFilterScope","description":"<p>Specifies how to evaluate users for joining an Audience.<\/p>\n<p>Protobuf type <code>google.analytics.admin.v1alpha.AudienceFilterScope<\/code><\/p>","examples":[],"resources":[],"methods":[]}

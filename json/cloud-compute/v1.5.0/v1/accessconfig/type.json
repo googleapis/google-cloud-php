@@ -1,0 +1,1 @@
+{"id":"compute\/v1\/accessconfig\/type","type":"","title":"Google\\Cloud\\Compute\\V1\\AccessConfig\\Type","name":"Type","description":"<p>The type of configuration. The default and only option is ONE_TO_ONE_NAT.<\/p>\n<p>Protobuf type <code>google.cloud.compute.v1.AccessConfig.Type<\/code><\/p>","examples":[],"resources":[],"methods":[]}

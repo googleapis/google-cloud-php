@@ -1,0 +1,1 @@
+{"id":"securitycenter\/v1\/kubernetes_role_kind","type":"","title":"Google\\Cloud\\SecurityCenter\\V1\\Kubernetes_Role_Kind","name":"Kubernetes_Role_Kind","description":"<p>This class is deprecated. Use Google\\Cloud\\SecurityCenter\\V1\\Kubernetes\\Role\\Kind instead.<\/p>","examples":[],"resources":[],"methods":[]}

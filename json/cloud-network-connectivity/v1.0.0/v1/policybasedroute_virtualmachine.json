@@ -1,0 +1,1 @@
+{"id":"networkconnectivity\/v1\/policybasedroute_virtualmachine","type":"","title":"Google\\Cloud\\NetworkConnectivity\\V1\\PolicyBasedRoute_VirtualMachine","name":"PolicyBasedRoute_VirtualMachine","description":"<p>This class is deprecated. Use Google\\Cloud\\NetworkConnectivity\\V1\\PolicyBasedRoute\\VirtualMachine instead.<\/p>","examples":[],"resources":[],"methods":[]}

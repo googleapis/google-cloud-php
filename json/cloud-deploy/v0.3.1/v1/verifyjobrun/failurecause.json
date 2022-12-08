@@ -1,0 +1,1 @@
+{"id":"deploy\/v1\/verifyjobrun\/failurecause","type":"","title":"Google\\Cloud\\Deploy\\V1\\VerifyJobRun\\FailureCause","name":"FailureCause","description":"<p>Well-known verify failures.<\/p>\n<p>Protobuf type <code>google.cloud.deploy.v1.VerifyJobRun.FailureCause<\/code><\/p>","examples":[],"resources":[],"methods":[]}

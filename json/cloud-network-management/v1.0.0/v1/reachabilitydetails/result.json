@@ -1,0 +1,1 @@
+{"id":"networkmanagement\/v1\/reachabilitydetails\/result","type":"","title":"Google\\Cloud\\NetworkManagement\\V1\\ReachabilityDetails\\Result","name":"Result","description":"<p>The overall result of the test's configuration analysis.<\/p>\n<p>Protobuf type <code>google.cloud.networkmanagement.v1.ReachabilityDetails.Result<\/code><\/p>","examples":[],"resources":[],"methods":[]}

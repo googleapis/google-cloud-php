@@ -1,0 +1,1 @@
+{"id":"bigquerydatatransfer\/v1\/importeddatainfo_recordschema","type":"","title":"Google\\Cloud\\BigQuery\\DataTransfer\\V1\\ImportedDataInfo_RecordSchema","name":"ImportedDataInfo_RecordSchema","description":"<p>This class is deprecated. Use Google\\Cloud\\BigQuery\\DataTransfer\\V1\\ImportedDataInfo\\RecordSchema instead.<\/p>","examples":[],"resources":[],"methods":[]}

@@ -1,0 +1,1 @@
+{"id":"datacatalog\/v1\/physicalschema_protobufschema","type":"","title":"Google\\Cloud\\DataCatalog\\V1\\PhysicalSchema_ProtobufSchema","name":"PhysicalSchema_ProtobufSchema","description":"<p>This class is deprecated. Use Google\\Cloud\\DataCatalog\\V1\\PhysicalSchema\\ProtobufSchema instead.<\/p>","examples":[],"resources":[],"methods":[]}

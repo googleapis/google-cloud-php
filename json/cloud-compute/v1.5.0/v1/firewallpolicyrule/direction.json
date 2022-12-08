@@ -1,0 +1,1 @@
+{"id":"compute\/v1\/firewallpolicyrule\/direction","type":"","title":"Google\\Cloud\\Compute\\V1\\FirewallPolicyRule\\Direction","name":"Direction","description":"<p>The direction in which this rule applies.<\/p>\n<p>Protobuf type <code>google.cloud.compute.v1.FirewallPolicyRule.Direction<\/code><\/p>","examples":[],"resources":[],"methods":[]}

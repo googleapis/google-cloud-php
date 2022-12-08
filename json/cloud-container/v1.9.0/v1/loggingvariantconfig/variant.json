@@ -1,0 +1,1 @@
+{"id":"container\/v1\/loggingvariantconfig\/variant","type":"","title":"Google\\Cloud\\Container\\V1\\LoggingVariantConfig\\Variant","name":"Variant","description":"<p>Logging component variants.<\/p>\n<p>Protobuf type <code>google.container.v1.LoggingVariantConfig.Variant<\/code><\/p>","examples":[],"resources":[],"methods":[]}

@@ -1,0 +1,1 @@
+{"id":"speech\/v1\/recognitionmetadata_interactiontype","type":"","title":"Google\\Cloud\\Speech\\V1\\RecognitionMetadata_InteractionType","name":"RecognitionMetadata_InteractionType","description":"<p>This class is deprecated. Use Google\\Cloud\\Speech\\V1\\RecognitionMetadata\\InteractionType instead.<\/p>","examples":[],"resources":[],"methods":[]}

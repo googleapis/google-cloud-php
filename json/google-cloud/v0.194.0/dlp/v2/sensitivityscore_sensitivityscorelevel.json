@@ -1,0 +1,1 @@
+{"id":"dlp\/v2\/sensitivityscore_sensitivityscorelevel","type":"","title":"Google\\Cloud\\Dlp\\V2\\SensitivityScore_SensitivityScoreLevel","name":"SensitivityScore_SensitivityScoreLevel","description":"<p>This class is deprecated. Use Google\\Cloud\\Dlp\\V2\\SensitivityScore\\SensitivityScoreLevel instead.<\/p>","examples":[],"resources":[],"methods":[]}

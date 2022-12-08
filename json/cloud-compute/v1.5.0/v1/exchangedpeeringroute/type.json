@@ -1,0 +1,1 @@
+{"id":"compute\/v1\/exchangedpeeringroute\/type","type":"","title":"Google\\Cloud\\Compute\\V1\\ExchangedPeeringRoute\\Type","name":"Type","description":"<p>The type of the peering route.<\/p>\n<p>Protobuf type <code>google.cloud.compute.v1.ExchangedPeeringRoute.Type<\/code><\/p>","examples":[],"resources":[],"methods":[]}

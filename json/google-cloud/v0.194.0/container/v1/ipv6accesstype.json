@@ -1,0 +1,1 @@
+{"id":"container\/v1\/ipv6accesstype","type":"","title":"Google\\Cloud\\Container\\V1\\IPv6AccessType","name":"IPv6AccessType","description":"<p>Possible values for IPv6 access type<\/p>\n<p>Protobuf type <code>google.container.v1.IPv6AccessType<\/code><\/p>","examples":[],"resources":[],"methods":[]}

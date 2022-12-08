@@ -1,0 +1,1 @@
+{"id":"gkebackup\/v1\/volumebackup\/state","type":"","title":"Google\\Cloud\\GkeBackup\\V1\\VolumeBackup\\State","name":"State","description":"<p>The current state of a VolumeBackup<\/p>\n<p>Protobuf type <code>google.cloud.gkebackup.v1.VolumeBackup.State<\/code><\/p>","examples":[],"resources":[],"methods":[]}

@@ -1,0 +1,1 @@
+{"id":"dataflow\/v1beta3\/parametertype","type":"","title":"Google\\Cloud\\Dataflow\\V1beta3\\ParameterType","name":"ParameterType","description":"<p>ParameterType specifies what kind of input we need for this parameter.<\/p>\n<p>Protobuf type <code>google.dataflow.v1beta3.ParameterType<\/code><\/p>","examples":[],"resources":[],"methods":[]}

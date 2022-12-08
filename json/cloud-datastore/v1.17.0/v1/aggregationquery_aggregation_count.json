@@ -1,0 +1,1 @@
+{"id":"datastore\/v1\/aggregationquery_aggregation_count","type":"","title":"Google\\Cloud\\Datastore\\V1\\AggregationQuery_Aggregation_Count","name":"AggregationQuery_Aggregation_Count","description":"<p>This class is deprecated. Use Google\\Cloud\\Datastore\\V1\\AggregationQuery\\Aggregation\\Count instead.<\/p>","examples":[],"resources":[],"methods":[]}

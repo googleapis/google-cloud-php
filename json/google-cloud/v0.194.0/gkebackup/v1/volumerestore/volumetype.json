@@ -1,0 +1,1 @@
+{"id":"gkebackup\/v1\/volumerestore\/volumetype","type":"","title":"Google\\Cloud\\GkeBackup\\V1\\VolumeRestore\\VolumeType","name":"VolumeType","description":"<p>Supported volume types.<\/p>\n<p>Protobuf type <code>google.cloud.gkebackup.v1.VolumeRestore.VolumeType<\/code><\/p>","examples":[],"resources":[],"methods":[]}

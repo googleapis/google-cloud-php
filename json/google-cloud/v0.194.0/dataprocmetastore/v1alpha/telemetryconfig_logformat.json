@@ -1,0 +1,1 @@
+{"id":"dataprocmetastore\/v1alpha\/telemetryconfig_logformat","type":"","title":"Google\\Cloud\\Metastore\\V1alpha\\TelemetryConfig_LogFormat","name":"TelemetryConfig_LogFormat","description":"<p>This class is deprecated. Use Google\\Cloud\\Metastore\\V1alpha\\TelemetryConfig\\LogFormat instead.<\/p>","examples":[],"resources":[],"methods":[]}

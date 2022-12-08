@@ -1,0 +1,1 @@
+{"id":"dialogflow\/v2\/participant\/role","type":"","title":"Google\\Cloud\\Dialogflow\\V2\\Participant\\Role","name":"Role","description":"<p>Enumeration of the roles a participant can play in a conversation.<\/p>\n<p>Protobuf type <code>google.cloud.dialogflow.v2.Participant.Role<\/code><\/p>","examples":[],"resources":[],"methods":[]}

@@ -1,0 +1,1 @@
+{"id":"bigtable\/v2\/readrowsrequest_requeststatsview","type":"","title":"Google\\Cloud\\Bigtable\\V2\\ReadRowsRequest_RequestStatsView","name":"ReadRowsRequest_RequestStatsView","description":"<p>This class is deprecated. Use Google\\Cloud\\Bigtable\\V2\\ReadRowsRequest\\RequestStatsView instead.<\/p>","examples":[],"resources":[],"methods":[]}

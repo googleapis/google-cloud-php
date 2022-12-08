@@ -1,0 +1,1 @@
+{"id":"speech\/v2\/customclass\/state","type":"","title":"Google\\Cloud\\Speech\\V2\\CustomClass\\State","name":"State","description":"<p>Set of states that define the lifecycle of a CustomClass.<\/p>\n<p>Protobuf type <code>google.cloud.speech.v2.CustomClass.State<\/code><\/p>","examples":[],"resources":[],"methods":[]}

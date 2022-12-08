@@ -1,0 +1,1 @@
+{"id":"grafeas\/v1\/cvssversion","type":"","title":"Grafeas\\V1\\CVSSVersion","name":"CVSSVersion","description":"<p>CVSS Version.<\/p>\n<p>Protobuf type <code>grafeas.v1.CVSSVersion<\/code><\/p>","examples":[],"resources":[],"methods":[]}

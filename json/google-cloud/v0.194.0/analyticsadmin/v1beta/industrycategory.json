@@ -1,0 +1,1 @@
+{"id":"analyticsadmin\/v1beta\/industrycategory","type":"","title":"Google\\Analytics\\Admin\\V1beta\\IndustryCategory","name":"IndustryCategory","description":"<p>The category selected for this property, used for industry benchmarking.<\/p>\n<p>Protobuf type <code>google.analytics.admin.v1beta.IndustryCategory<\/code><\/p>","examples":[],"resources":[],"methods":[]}

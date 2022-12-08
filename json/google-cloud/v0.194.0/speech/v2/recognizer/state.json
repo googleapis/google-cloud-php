@@ -1,0 +1,1 @@
+{"id":"speech\/v2\/recognizer\/state","type":"","title":"Google\\Cloud\\Speech\\V2\\Recognizer\\State","name":"State","description":"<p>Set of states that define the lifecycle of a Recognizer.<\/p>\n<p>Protobuf type <code>google.cloud.speech.v2.Recognizer.State<\/code><\/p>","examples":[],"resources":[],"methods":[]}

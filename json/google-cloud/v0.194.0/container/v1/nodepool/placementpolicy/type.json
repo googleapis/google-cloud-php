@@ -1,0 +1,1 @@
+{"id":"container\/v1\/nodepool\/placementpolicy\/type","type":"","title":"Google\\Cloud\\Container\\V1\\NodePool\\PlacementPolicy\\Type","name":"Type","description":"<p>Type defines the type of placement policy.<\/p>\n<p>Protobuf type <code>google.container.v1.NodePool.PlacementPolicy.Type<\/code><\/p>","examples":[],"resources":[],"methods":[]}

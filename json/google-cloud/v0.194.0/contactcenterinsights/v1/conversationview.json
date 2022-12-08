@@ -1,0 +1,1 @@
+{"id":"contactcenterinsights\/v1\/conversationview","type":"","title":"Google\\Cloud\\ContactCenterInsights\\V1\\ConversationView","name":"ConversationView","description":"<p>Represents the options for viewing a conversation.<\/p>\n<p>Protobuf type <code>google.cloud.contactcenterinsights.v1.ConversationView<\/code><\/p>","examples":[],"resources":[],"methods":[]}

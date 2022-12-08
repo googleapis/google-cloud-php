@@ -1,0 +1,1 @@
+{"id":"bigquerydatatransfer\/v1\/datasource_datarefreshtype","type":"","title":"Google\\Cloud\\BigQuery\\DataTransfer\\V1\\DataSource_DataRefreshType","name":"DataSource_DataRefreshType","description":"<p>This class is deprecated. Use Google\\Cloud\\BigQuery\\DataTransfer\\V1\\DataSource\\DataRefreshType instead.<\/p>","examples":[],"resources":[],"methods":[]}

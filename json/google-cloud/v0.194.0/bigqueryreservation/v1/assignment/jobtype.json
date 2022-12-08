@@ -1,0 +1,1 @@
+{"id":"bigqueryreservation\/v1\/assignment\/jobtype","type":"","title":"Google\\Cloud\\BigQuery\\Reservation\\V1\\Assignment\\JobType","name":"JobType","description":"<p>Types of job, which could be specified when using the reservation.<\/p>\n<p>Protobuf type <code>google.cloud.bigquery.reservation.v1.Assignment.JobType<\/code><\/p>","examples":[],"resources":[],"methods":[]}

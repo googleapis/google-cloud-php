@@ -1,0 +1,1 @@
+{"id":"sqladmin\/v1beta4\/operation\/sqloperationtype","type":"","title":"Google\\Cloud\\Sql\\V1beta4\\Operation\\SqlOperationType","name":"SqlOperationType","description":"<p>The type of Cloud SQL operation.<\/p>\n<p>Protobuf type <code>google.cloud.sql.v1beta4.Operation.SqlOperationType<\/code><\/p>","examples":[],"resources":[],"methods":[]}

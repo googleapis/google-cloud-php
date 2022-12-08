@@ -1,0 +1,1 @@
+{"id":"translate\/v3\/batchtranslatemetadata\/state","type":"","title":"Google\\Cloud\\Translate\\V3\\BatchTranslateMetadata\\State","name":"State","description":"<p>State of the job.<\/p>\n<p>Protobuf type <code>google.cloud.translation.v3.BatchTranslateMetadata.State<\/code><\/p>","examples":[],"resources":[],"methods":[]}

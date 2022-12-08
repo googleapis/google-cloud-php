@@ -1,0 +1,1 @@
+{"id":"memcache\/v1\/reschedulemaintenancerequest\/rescheduletype","type":"","title":"Google\\Cloud\\Memcache\\V1\\RescheduleMaintenanceRequest\\RescheduleType","name":"RescheduleType","description":"<p>Reschedule options.<\/p>\n<p>Protobuf type <code>google.cloud.memcache.v1.RescheduleMaintenanceRequest.RescheduleType<\/code><\/p>","examples":[],"resources":[],"methods":[]}
