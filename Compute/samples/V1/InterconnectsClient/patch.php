@@ -30,7 +30,7 @@ use Google\Cloud\Compute\V1\InterconnectsClient;
 use Google\Rpc\Status;
 
 /**
- * Updates the specified interconnect with the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
+ * Updates the specified Interconnect with the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
  *
  * @param string $interconnect Name of the interconnect to update.
  * @param string $project      Project ID for this request.

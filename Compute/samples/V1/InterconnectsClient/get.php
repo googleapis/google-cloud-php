@@ -28,7 +28,7 @@ use Google\Cloud\Compute\V1\Interconnect;
 use Google\Cloud\Compute\V1\InterconnectsClient;
 
 /**
- * Returns the specified interconnect. Get a list of available interconnects by making a list() request.
+ * Returns the specified Interconnect. Get a list of available Interconnects by making a list() request.
  *
  * @param string $interconnect Name of the interconnect to return.
  * @param string $project      Project ID for this request.
