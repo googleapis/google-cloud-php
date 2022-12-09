@@ -1,0 +1,1 @@
+{"id":"compute\/v1\/enums\/project\/vmdnssetting","type":"","title":"Google\\Cloud\\Compute\\V1\\Enums\\Project\\VmDnsSetting","name":"VmDnsSetting","description":"<p>VmDnsSetting contains string constants that represent the names of each value in\nthe google.cloud.compute.v1.Project.VmDnsSetting descriptor.<\/p>","examples":[],"resources":[],"methods":[]}
