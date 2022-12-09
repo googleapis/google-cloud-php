@@ -1,0 +1,15 @@
+{
+    "title": "vmwareengine",
+    "defaultService": "vmwareengine\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "vmwareengine\/readme"
+        },
+        {
+            "title": "VmwareEngineClient (v1)",
+            "type": "vmwareengine\/v1\/vmwareengineclient"
+        }
+    ],
+    "pattern": "vmwareengine\/\\w{1,}"
+}
