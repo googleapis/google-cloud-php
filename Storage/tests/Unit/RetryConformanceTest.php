@@ -21,6 +21,7 @@ use Google\Cloud\Storage\StorageClient;
 use GuzzleHttp\Client;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use PHPUnit\Framework\SkippedTestError;
+use Google\Auth\Credentials\InsecureCredentials;
 
 /**
  * @group storage
@@ -62,7 +63,8 @@ class RetryConformanceTest extends TestCase
         ]);
         self::$storageClient = new StorageClient([
             'apiEndpoint' => self::$emaulatorUrl,
-            'projectId' => self::$projectId
+            'projectId' => self::$projectId,
+            'credentialsFetcher' => new InsecureCredentials()
         ]);
 
         $data = json_decode(file_get_contents(__DIR__ . '/data/retry_tests.json'), true);
