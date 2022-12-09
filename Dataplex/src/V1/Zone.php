@@ -32,8 +32,8 @@ class Zone extends \Google\Protobuf\Internal\Message
      */
     private $display_name = '';
     /**
-     * Output only. System generated globally unique ID for the zone. This ID will be
-     * different if the zone is deleted and re-created with the same name.
+     * Output only. System generated globally unique ID for the zone. This ID will
+     * be different if the zone is deleted and re-created with the same name.
      *
      * Generated from protobuf field <code>string uid = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -75,14 +75,15 @@ class Zone extends \Google\Protobuf\Internal\Message
      */
     private $type = 0;
     /**
-     * Optional. Specification of the discovery feature applied to data in this zone.
+     * Optional. Specification of the discovery feature applied to data in this
+     * zone.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.Zone.DiscoverySpec discovery_spec = 103 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $discovery_spec = null;
     /**
-     * Required. Specification of the resources that are referenced by the assets within
-     * this zone.
+     * Required. Specification of the resources that are referenced by the assets
+     * within this zone.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.Zone.ResourceSpec resource_spec = 104 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -106,8 +107,8 @@ class Zone extends \Google\Protobuf\Internal\Message
      *     @type string $display_name
      *           Optional. User friendly display name.
      *     @type string $uid
-     *           Output only. System generated globally unique ID for the zone. This ID will be
-     *           different if the zone is deleted and re-created with the same name.
+     *           Output only. System generated globally unique ID for the zone. This ID will
+     *           be different if the zone is deleted and re-created with the same name.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. The time when the zone was created.
      *     @type \Google\Protobuf\Timestamp $update_time
@@ -121,10 +122,11 @@ class Zone extends \Google\Protobuf\Internal\Message
      *     @type int $type
      *           Required. Immutable. The type of the zone.
      *     @type \Google\Cloud\Dataplex\V1\Zone\DiscoverySpec $discovery_spec
-     *           Optional. Specification of the discovery feature applied to data in this zone.
+     *           Optional. Specification of the discovery feature applied to data in this
+     *           zone.
      *     @type \Google\Cloud\Dataplex\V1\Zone\ResourceSpec $resource_spec
-     *           Required. Specification of the resources that are referenced by the assets within
-     *           this zone.
+     *           Required. Specification of the resources that are referenced by the assets
+     *           within this zone.
      *     @type \Google\Cloud\Dataplex\V1\AssetStatus $asset_status
      *           Output only. Aggregated status of the underlying assets of the zone.
      * }
@@ -189,8 +191,8 @@ class Zone extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. System generated globally unique ID for the zone. This ID will be
-     * different if the zone is deleted and re-created with the same name.
+     * Output only. System generated globally unique ID for the zone. This ID will
+     * be different if the zone is deleted and re-created with the same name.
      *
      * Generated from protobuf field <code>string uid = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -201,8 +203,8 @@ class Zone extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. System generated globally unique ID for the zone. This ID will be
-     * different if the zone is deleted and re-created with the same name.
+     * Output only. System generated globally unique ID for the zone. This ID will
+     * be different if the zone is deleted and re-created with the same name.
      *
      * Generated from protobuf field <code>string uid = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -393,7 +395,8 @@ class Zone extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Specification of the discovery feature applied to data in this zone.
+     * Optional. Specification of the discovery feature applied to data in this
+     * zone.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.Zone.DiscoverySpec discovery_spec = 103 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Dataplex\V1\Zone\DiscoverySpec|null
@@ -414,7 +417,8 @@ class Zone extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Specification of the discovery feature applied to data in this zone.
+     * Optional. Specification of the discovery feature applied to data in this
+     * zone.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.Zone.DiscoverySpec discovery_spec = 103 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Dataplex\V1\Zone\DiscoverySpec $var
@@ -429,8 +433,8 @@ class Zone extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Specification of the resources that are referenced by the assets within
-     * this zone.
+     * Required. Specification of the resources that are referenced by the assets
+     * within this zone.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.Zone.ResourceSpec resource_spec = 104 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Dataplex\V1\Zone\ResourceSpec|null
@@ -451,8 +455,8 @@ class Zone extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Specification of the resources that are referenced by the assets within
-     * this zone.
+     * Required. Specification of the resources that are referenced by the assets
+     * within this zone.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.Zone.ResourceSpec resource_spec = 104 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Dataplex\V1\Zone\ResourceSpec $var

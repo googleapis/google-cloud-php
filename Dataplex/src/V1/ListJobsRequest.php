@@ -23,16 +23,16 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
-     * Optional. Maximum number of jobs to return. The service may return fewer than
-     * this value. If unspecified, at most 10 jobs will be returned. The
+     * Optional. Maximum number of jobs to return. The service may return fewer
+     * than this value. If unspecified, at most 10 jobs will be returned. The
      * maximum value is 1000; values above 1000 will be coerced to 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_size = 0;
     /**
-     * Optional. Page token received from a previous `ListJobs` call. Provide this to
-     * retrieve the subsequent page. When paginating, all other parameters
+     * Optional. Page token received from a previous `ListJobs` call. Provide this
+     * to retrieve the subsequent page. When paginating, all other parameters
      * provided to `ListJobs` must match the call that provided the page
      * token.
      *
@@ -50,12 +50,12 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
      *           Required. The resource name of the parent environment:
      *           `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/tasks/{task_id}`.
      *     @type int $page_size
-     *           Optional. Maximum number of jobs to return. The service may return fewer than
-     *           this value. If unspecified, at most 10 jobs will be returned. The
+     *           Optional. Maximum number of jobs to return. The service may return fewer
+     *           than this value. If unspecified, at most 10 jobs will be returned. The
      *           maximum value is 1000; values above 1000 will be coerced to 1000.
      *     @type string $page_token
-     *           Optional. Page token received from a previous `ListJobs` call. Provide this to
-     *           retrieve the subsequent page. When paginating, all other parameters
+     *           Optional. Page token received from a previous `ListJobs` call. Provide this
+     *           to retrieve the subsequent page. When paginating, all other parameters
      *           provided to `ListJobs` must match the call that provided the page
      *           token.
      * }
@@ -94,8 +94,8 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Maximum number of jobs to return. The service may return fewer than
-     * this value. If unspecified, at most 10 jobs will be returned. The
+     * Optional. Maximum number of jobs to return. The service may return fewer
+     * than this value. If unspecified, at most 10 jobs will be returned. The
      * maximum value is 1000; values above 1000 will be coerced to 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -107,8 +107,8 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Maximum number of jobs to return. The service may return fewer than
-     * this value. If unspecified, at most 10 jobs will be returned. The
+     * Optional. Maximum number of jobs to return. The service may return fewer
+     * than this value. If unspecified, at most 10 jobs will be returned. The
      * maximum value is 1000; values above 1000 will be coerced to 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -124,8 +124,8 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Page token received from a previous `ListJobs` call. Provide this to
-     * retrieve the subsequent page. When paginating, all other parameters
+     * Optional. Page token received from a previous `ListJobs` call. Provide this
+     * to retrieve the subsequent page. When paginating, all other parameters
      * provided to `ListJobs` must match the call that provided the page
      * token.
      *
@@ -138,8 +138,8 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Page token received from a previous `ListJobs` call. Provide this to
-     * retrieve the subsequent page. When paginating, all other parameters
+     * Optional. Page token received from a previous `ListJobs` call. Provide this
+     * to retrieve the subsequent page. When paginating, all other parameters
      * provided to `ListJobs` must match the call that provided the page
      * token.
      *

@@ -30,8 +30,8 @@ class VpcNetwork extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $network
-     *           Optional. The Cloud VPC network in which the job is run. By default, the Cloud
-     *           VPC network named Default within the project is used.
+     *           Optional. The Cloud VPC network in which the job is run. By default,
+     *           the Cloud VPC network named Default within the project is used.
      *     @type string $sub_network
      *           Optional. The Cloud VPC sub-network in which the job is run.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $network_tags
@@ -44,8 +44,8 @@ class VpcNetwork extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The Cloud VPC network in which the job is run. By default, the Cloud
-     * VPC network named Default within the project is used.
+     * Optional. The Cloud VPC network in which the job is run. By default,
+     * the Cloud VPC network named Default within the project is used.
      *
      * Generated from protobuf field <code>string network = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -61,8 +61,8 @@ class VpcNetwork extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The Cloud VPC network in which the job is run. By default, the Cloud
-     * VPC network named Default within the project is used.
+     * Optional. The Cloud VPC network in which the job is run. By default,
+     * the Cloud VPC network named Default within the project is used.
      *
      * Generated from protobuf field <code>string network = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

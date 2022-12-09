@@ -24,8 +24,8 @@ class Task extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * Output only. System generated globally unique ID for the task. This ID will be
-     * different if the task is deleted and re-created with the same name.
+     * Output only. System generated globally unique ID for the task. This ID will
+     * be different if the task is deleted and re-created with the same name.
      *
      * Generated from protobuf field <code>string uid = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -97,8 +97,8 @@ class Task extends \Google\Protobuf\Internal\Message
      *           projects/{project_number}/locations/{location_id}/lakes/{lake_id}/
      *           tasks/{task_id}.
      *     @type string $uid
-     *           Output only. System generated globally unique ID for the task. This ID will be
-     *           different if the task is deleted and re-created with the same name.
+     *           Output only. System generated globally unique ID for the task. This ID will
+     *           be different if the task is deleted and re-created with the same name.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. The time when the task was created.
      *     @type \Google\Protobuf\Timestamp $update_time
@@ -159,8 +159,8 @@ class Task extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. System generated globally unique ID for the task. This ID will be
-     * different if the task is deleted and re-created with the same name.
+     * Output only. System generated globally unique ID for the task. This ID will
+     * be different if the task is deleted and re-created with the same name.
      *
      * Generated from protobuf field <code>string uid = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -171,8 +171,8 @@ class Task extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. System generated globally unique ID for the task. This ID will be
-     * different if the task is deleted and re-created with the same name.
+     * Output only. System generated globally unique ID for the task. This ID will
+     * be different if the task is deleted and re-created with the same name.
      *
      * Generated from protobuf field <code>string uid = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var

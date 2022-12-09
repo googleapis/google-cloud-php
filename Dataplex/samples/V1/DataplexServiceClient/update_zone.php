@@ -37,8 +37,8 @@ use Google\Rpc\Status;
  * Updates a zone resource.
  *
  * @param int $zoneType                     Immutable. The type of the zone.
- * @param int $zoneResourceSpecLocationType Immutable. The location type of the resources that are allowed to be attached to the
- *                                          assets within this zone.
+ * @param int $zoneResourceSpecLocationType Immutable. The location type of the resources that are allowed
+ *                                          to be attached to the assets within this zone.
  */
 function update_zone_sample(int $zoneType, int $zoneResourceSpecLocationType): void
 {

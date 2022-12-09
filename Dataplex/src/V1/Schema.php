@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class Schema extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Set to `true` if user-managed or `false` if managed by Dataplex. The
-     * default is `false` (managed by Dataplex).
+     * Required. Set to `true` if user-managed or `false` if managed by Dataplex.
+     * The default is `false` (managed by Dataplex).
      * - Set to `false`to enable Dataplex discovery to update the schema.
      *   including new data discovery, schema inference, and schema evolution.
      *   Users retain the ability to input and edit the schema. Dataplex
@@ -39,14 +39,15 @@ class Schema extends \Google\Protobuf\Internal\Message
      */
     private $fields;
     /**
-     * Optional. The sequence of fields describing the partition structure in entities.
-     * If this field is empty, there are no partitions within the data.
+     * Optional. The sequence of fields describing the partition structure in
+     * entities. If this field is empty, there are no partitions within the data.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.Schema.PartitionField partition_fields = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $partition_fields;
     /**
-     * Optional. The structure of paths containing partition data within the entity.
+     * Optional. The structure of paths containing partition data within the
+     * entity.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.Schema.PartitionStyle partition_style = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -59,8 +60,8 @@ class Schema extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $user_managed
-     *           Required. Set to `true` if user-managed or `false` if managed by Dataplex. The
-     *           default is `false` (managed by Dataplex).
+     *           Required. Set to `true` if user-managed or `false` if managed by Dataplex.
+     *           The default is `false` (managed by Dataplex).
      *           - Set to `false`to enable Dataplex discovery to update the schema.
      *             including new data discovery, schema inference, and schema evolution.
      *             Users retain the ability to input and edit the schema. Dataplex
@@ -74,10 +75,11 @@ class Schema extends \Google\Protobuf\Internal\Message
      *           Optional. The sequence of fields describing data in table entities.
      *           **Note:** BigQuery SchemaFields are immutable.
      *     @type array<\Google\Cloud\Dataplex\V1\Schema\PartitionField>|\Google\Protobuf\Internal\RepeatedField $partition_fields
-     *           Optional. The sequence of fields describing the partition structure in entities.
-     *           If this field is empty, there are no partitions within the data.
+     *           Optional. The sequence of fields describing the partition structure in
+     *           entities. If this field is empty, there are no partitions within the data.
      *     @type int $partition_style
-     *           Optional. The structure of paths containing partition data within the entity.
+     *           Optional. The structure of paths containing partition data within the
+     *           entity.
      * }
      */
     public function __construct($data = NULL) {
@@ -86,8 +88,8 @@ class Schema extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Set to `true` if user-managed or `false` if managed by Dataplex. The
-     * default is `false` (managed by Dataplex).
+     * Required. Set to `true` if user-managed or `false` if managed by Dataplex.
+     * The default is `false` (managed by Dataplex).
      * - Set to `false`to enable Dataplex discovery to update the schema.
      *   including new data discovery, schema inference, and schema evolution.
      *   Users retain the ability to input and edit the schema. Dataplex
@@ -107,8 +109,8 @@ class Schema extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Set to `true` if user-managed or `false` if managed by Dataplex. The
-     * default is `false` (managed by Dataplex).
+     * Required. Set to `true` if user-managed or `false` if managed by Dataplex.
+     * The default is `false` (managed by Dataplex).
      * - Set to `false`to enable Dataplex discovery to update the schema.
      *   including new data discovery, schema inference, and schema evolution.
      *   Users retain the ability to input and edit the schema. Dataplex
@@ -160,8 +162,8 @@ class Schema extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The sequence of fields describing the partition structure in entities.
-     * If this field is empty, there are no partitions within the data.
+     * Optional. The sequence of fields describing the partition structure in
+     * entities. If this field is empty, there are no partitions within the data.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.Schema.PartitionField partition_fields = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -172,8 +174,8 @@ class Schema extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The sequence of fields describing the partition structure in entities.
-     * If this field is empty, there are no partitions within the data.
+     * Optional. The sequence of fields describing the partition structure in
+     * entities. If this field is empty, there are no partitions within the data.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.Schema.PartitionField partition_fields = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<\Google\Cloud\Dataplex\V1\Schema\PartitionField>|\Google\Protobuf\Internal\RepeatedField $var
@@ -188,7 +190,8 @@ class Schema extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The structure of paths containing partition data within the entity.
+     * Optional. The structure of paths containing partition data within the
+     * entity.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.Schema.PartitionStyle partition_style = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -199,7 +202,8 @@ class Schema extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The structure of paths containing partition data within the entity.
+     * Optional. The structure of paths containing partition data within the
+     * entity.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.Schema.PartitionStyle partition_style = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var

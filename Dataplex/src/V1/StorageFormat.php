@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class StorageFormat extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The data format associated with the stored data, which represents
-     * content type values. The value is inferred from mime type.
+     * Output only. The data format associated with the stored data, which
+     * represents content type values. The value is inferred from mime type.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.StorageFormat.Format format = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -56,8 +56,8 @@ class StorageFormat extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $format
-     *           Output only. The data format associated with the stored data, which represents
-     *           content type values. The value is inferred from mime type.
+     *           Output only. The data format associated with the stored data, which
+     *           represents content type values. The value is inferred from mime type.
      *     @type int $compression_format
      *           Optional. The compression type associated with the stored data.
      *           If unspecified, the data is uncompressed.
@@ -87,8 +87,8 @@ class StorageFormat extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The data format associated with the stored data, which represents
-     * content type values. The value is inferred from mime type.
+     * Output only. The data format associated with the stored data, which
+     * represents content type values. The value is inferred from mime type.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.StorageFormat.Format format = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
@@ -99,8 +99,8 @@ class StorageFormat extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The data format associated with the stored data, which represents
-     * content type values. The value is inferred from mime type.
+     * Output only. The data format associated with the stored data, which
+     * represents content type values. The value is inferred from mime type.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.StorageFormat.Format format = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var

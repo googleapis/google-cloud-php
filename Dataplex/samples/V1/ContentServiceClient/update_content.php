@@ -31,9 +31,9 @@ use Google\Protobuf\FieldMask;
 /**
  * Update a content. Only supports full resource update.
  *
- * @param string $contentPath     The path for the Content file, represented as directory structure.
- *                                Unique within a lake.
- *                                Limited to alphanumerics, hyphens, underscores, dots and slashes.
+ * @param string $contentPath     The path for the Content file, represented as directory
+ *                                structure. Unique within a lake. Limited to alphanumerics, hyphens,
+ *                                underscores, dots and slashes.
  * @param string $contentDataText Content data in string format.
  */
 function update_content_sample(string $contentPath, string $contentDataText): void

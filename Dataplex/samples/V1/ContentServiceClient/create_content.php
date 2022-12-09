@@ -33,9 +33,9 @@ use Google\Cloud\Dataplex\V1\ContentServiceClient;
  * @param string $formattedParent The resource name of the parent lake:
  *                                projects/{project_id}/locations/{location_id}/lakes/{lake_id}
  *                                Please see {@see ContentServiceClient::lakeName()} for help formatting this field.
- * @param string $contentPath     The path for the Content file, represented as directory structure.
- *                                Unique within a lake.
- *                                Limited to alphanumerics, hyphens, underscores, dots and slashes.
+ * @param string $contentPath     The path for the Content file, represented as directory
+ *                                structure. Unique within a lake. Limited to alphanumerics, hyphens,
+ *                                underscores, dots and slashes.
  * @param string $contentDataText Content data in string format.
  */
 function create_content_sample(

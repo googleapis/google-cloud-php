@@ -26,16 +26,16 @@ class Partition extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * Required. Immutable. The set of values representing the partition, which correspond to the
-     * partition schema defined in the parent entity.
+     * Required. Immutable. The set of values representing the partition, which
+     * correspond to the partition schema defined in the parent entity.
      *
      * Generated from protobuf field <code>repeated string values = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
     private $values;
     /**
-     * Required. Immutable. The location of the entity data within the partition, for example,
-     * `gs://bucket/path/to/entity/key1=value1/key2=value2`.
-     * Or `projects/<project_id>/datasets/<dataset_id>/tables/<table_id>`
+     * Required. Immutable. The location of the entity data within the partition,
+     * for example, `gs://bucket/path/to/entity/key1=value1/key2=value2`. Or
+     * `projects/<project_id>/datasets/<dataset_id>/tables/<table_id>`
      *
      * Generated from protobuf field <code>string location = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
@@ -61,12 +61,12 @@ class Partition extends \Google\Protobuf\Internal\Message
      *           with "/partitions/US%253ACA/CA%2523Sunnyvale".
      *           The name field in the response retains the encoded format.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $values
-     *           Required. Immutable. The set of values representing the partition, which correspond to the
-     *           partition schema defined in the parent entity.
+     *           Required. Immutable. The set of values representing the partition, which
+     *           correspond to the partition schema defined in the parent entity.
      *     @type string $location
-     *           Required. Immutable. The location of the entity data within the partition, for example,
-     *           `gs://bucket/path/to/entity/key1=value1/key2=value2`.
-     *           Or `projects/<project_id>/datasets/<dataset_id>/tables/<table_id>`
+     *           Required. Immutable. The location of the entity data within the partition,
+     *           for example, `gs://bucket/path/to/entity/key1=value1/key2=value2`. Or
+     *           `projects/<project_id>/datasets/<dataset_id>/tables/<table_id>`
      *     @type string $etag
      *           Optional. The etag for this partition.
      * }
@@ -111,8 +111,8 @@ class Partition extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Immutable. The set of values representing the partition, which correspond to the
-     * partition schema defined in the parent entity.
+     * Required. Immutable. The set of values representing the partition, which
+     * correspond to the partition schema defined in the parent entity.
      *
      * Generated from protobuf field <code>repeated string values = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -123,8 +123,8 @@ class Partition extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Immutable. The set of values representing the partition, which correspond to the
-     * partition schema defined in the parent entity.
+     * Required. Immutable. The set of values representing the partition, which
+     * correspond to the partition schema defined in the parent entity.
      *
      * Generated from protobuf field <code>repeated string values = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -139,9 +139,9 @@ class Partition extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Immutable. The location of the entity data within the partition, for example,
-     * `gs://bucket/path/to/entity/key1=value1/key2=value2`.
-     * Or `projects/<project_id>/datasets/<dataset_id>/tables/<table_id>`
+     * Required. Immutable. The location of the entity data within the partition,
+     * for example, `gs://bucket/path/to/entity/key1=value1/key2=value2`. Or
+     * `projects/<project_id>/datasets/<dataset_id>/tables/<table_id>`
      *
      * Generated from protobuf field <code>string location = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
@@ -152,9 +152,9 @@ class Partition extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Immutable. The location of the entity data within the partition, for example,
-     * `gs://bucket/path/to/entity/key1=value1/key2=value2`.
-     * Or `projects/<project_id>/datasets/<dataset_id>/tables/<table_id>`
+     * Required. Immutable. The location of the entity data within the partition,
+     * for example, `gs://bucket/path/to/entity/key1=value1/key2=value2`. Or
+     * `projects/<project_id>/datasets/<dataset_id>/tables/<table_id>`
      *
      * Generated from protobuf field <code>string location = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var

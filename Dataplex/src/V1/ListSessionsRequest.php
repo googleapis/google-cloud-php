@@ -23,16 +23,17 @@ class ListSessionsRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
-     * Optional. Maximum number of sessions to return. The service may return fewer than
-     * this value. If unspecified, at most 10 sessions will be returned. The
-     * maximum value is 1000; values above 1000 will be coerced to 1000.
+     * Optional. Maximum number of sessions to return. The service may return
+     * fewer than this value. If unspecified, at most 10 sessions will be
+     * returned. The maximum value is 1000; values above 1000 will be coerced to
+     * 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_size = 0;
     /**
-     * Optional. Page token received from a previous `ListSessions` call. Provide this to
-     * retrieve the subsequent page. When paginating, all other parameters
+     * Optional. Page token received from a previous `ListSessions` call. Provide
+     * this to retrieve the subsequent page. When paginating, all other parameters
      * provided to `ListSessions` must match the call that provided the page
      * token.
      *
@@ -40,13 +41,12 @@ class ListSessionsRequest extends \Google\Protobuf\Internal\Message
      */
     private $page_token = '';
     /**
-     * Optional. Filter request. The following `mode` filter is supported to return only the
-     * sessions belonging to the requester when the mode is USER and return
-     * sessions of all the users when the mode is ADMIN. When no filter is sent
-     * default to USER mode.
-     * NOTE: When the mode is ADMIN, the requester should have
-     * `dataplex.environments.listAllSessions` permission to list all sessions,
-     * in absence of the permission, the request fails.
+     * Optional. Filter request. The following `mode` filter is supported to
+     * return only the sessions belonging to the requester when the mode is USER
+     * and return sessions of all the users when the mode is ADMIN. When no filter
+     * is sent default to USER mode. NOTE: When the mode is ADMIN, the requester
+     * should have `dataplex.environments.listAllSessions` permission to list all
+     * sessions, in absence of the permission, the request fails.
      * mode = ADMIN | USER
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -63,22 +63,22 @@ class ListSessionsRequest extends \Google\Protobuf\Internal\Message
      *           Required. The resource name of the parent environment:
      *           `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/environment/{environment_id}`.
      *     @type int $page_size
-     *           Optional. Maximum number of sessions to return. The service may return fewer than
-     *           this value. If unspecified, at most 10 sessions will be returned. The
-     *           maximum value is 1000; values above 1000 will be coerced to 1000.
+     *           Optional. Maximum number of sessions to return. The service may return
+     *           fewer than this value. If unspecified, at most 10 sessions will be
+     *           returned. The maximum value is 1000; values above 1000 will be coerced to
+     *           1000.
      *     @type string $page_token
-     *           Optional. Page token received from a previous `ListSessions` call. Provide this to
-     *           retrieve the subsequent page. When paginating, all other parameters
+     *           Optional. Page token received from a previous `ListSessions` call. Provide
+     *           this to retrieve the subsequent page. When paginating, all other parameters
      *           provided to `ListSessions` must match the call that provided the page
      *           token.
      *     @type string $filter
-     *           Optional. Filter request. The following `mode` filter is supported to return only the
-     *           sessions belonging to the requester when the mode is USER and return
-     *           sessions of all the users when the mode is ADMIN. When no filter is sent
-     *           default to USER mode.
-     *           NOTE: When the mode is ADMIN, the requester should have
-     *           `dataplex.environments.listAllSessions` permission to list all sessions,
-     *           in absence of the permission, the request fails.
+     *           Optional. Filter request. The following `mode` filter is supported to
+     *           return only the sessions belonging to the requester when the mode is USER
+     *           and return sessions of all the users when the mode is ADMIN. When no filter
+     *           is sent default to USER mode. NOTE: When the mode is ADMIN, the requester
+     *           should have `dataplex.environments.listAllSessions` permission to list all
+     *           sessions, in absence of the permission, the request fails.
      *           mode = ADMIN | USER
      * }
      */
@@ -116,9 +116,10 @@ class ListSessionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Maximum number of sessions to return. The service may return fewer than
-     * this value. If unspecified, at most 10 sessions will be returned. The
-     * maximum value is 1000; values above 1000 will be coerced to 1000.
+     * Optional. Maximum number of sessions to return. The service may return
+     * fewer than this value. If unspecified, at most 10 sessions will be
+     * returned. The maximum value is 1000; values above 1000 will be coerced to
+     * 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -129,9 +130,10 @@ class ListSessionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Maximum number of sessions to return. The service may return fewer than
-     * this value. If unspecified, at most 10 sessions will be returned. The
-     * maximum value is 1000; values above 1000 will be coerced to 1000.
+     * Optional. Maximum number of sessions to return. The service may return
+     * fewer than this value. If unspecified, at most 10 sessions will be
+     * returned. The maximum value is 1000; values above 1000 will be coerced to
+     * 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
@@ -146,8 +148,8 @@ class ListSessionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Page token received from a previous `ListSessions` call. Provide this to
-     * retrieve the subsequent page. When paginating, all other parameters
+     * Optional. Page token received from a previous `ListSessions` call. Provide
+     * this to retrieve the subsequent page. When paginating, all other parameters
      * provided to `ListSessions` must match the call that provided the page
      * token.
      *
@@ -160,8 +162,8 @@ class ListSessionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Page token received from a previous `ListSessions` call. Provide this to
-     * retrieve the subsequent page. When paginating, all other parameters
+     * Optional. Page token received from a previous `ListSessions` call. Provide
+     * this to retrieve the subsequent page. When paginating, all other parameters
      * provided to `ListSessions` must match the call that provided the page
      * token.
      *
@@ -178,13 +180,12 @@ class ListSessionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Filter request. The following `mode` filter is supported to return only the
-     * sessions belonging to the requester when the mode is USER and return
-     * sessions of all the users when the mode is ADMIN. When no filter is sent
-     * default to USER mode.
-     * NOTE: When the mode is ADMIN, the requester should have
-     * `dataplex.environments.listAllSessions` permission to list all sessions,
-     * in absence of the permission, the request fails.
+     * Optional. Filter request. The following `mode` filter is supported to
+     * return only the sessions belonging to the requester when the mode is USER
+     * and return sessions of all the users when the mode is ADMIN. When no filter
+     * is sent default to USER mode. NOTE: When the mode is ADMIN, the requester
+     * should have `dataplex.environments.listAllSessions` permission to list all
+     * sessions, in absence of the permission, the request fails.
      * mode = ADMIN | USER
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -196,13 +197,12 @@ class ListSessionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Filter request. The following `mode` filter is supported to return only the
-     * sessions belonging to the requester when the mode is USER and return
-     * sessions of all the users when the mode is ADMIN. When no filter is sent
-     * default to USER mode.
-     * NOTE: When the mode is ADMIN, the requester should have
-     * `dataplex.environments.listAllSessions` permission to list all sessions,
-     * in absence of the permission, the request fails.
+     * Optional. Filter request. The following `mode` filter is supported to
+     * return only the sessions belonging to the requester when the mode is USER
+     * and return sessions of all the users when the mode is ADMIN. When no filter
+     * is sent default to USER mode. NOTE: When the mode is ADMIN, the requester
+     * should have `dataplex.environments.listAllSessions` permission to list all
+     * sessions, in absence of the permission, the request fails.
      * mode = ADMIN | USER
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>

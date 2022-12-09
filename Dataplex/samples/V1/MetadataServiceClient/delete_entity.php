@@ -32,8 +32,8 @@ use Google\Cloud\Dataplex\V1\MetadataServiceClient;
  * @param string $formattedName The resource name of the entity:
  *                              `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}/entities/{entity_id}`. Please see
  *                              {@see MetadataServiceClient::entityName()} for help formatting this field.
- * @param string $etag          The etag associated with the entity, which can be retrieved with a
- *                              [GetEntity][] request.
+ * @param string $etag          The etag associated with the entity, which can be retrieved with
+ *                              a [GetEntity][] request.
  */
 function delete_entity_sample(string $formattedName, string $etag): void
 {

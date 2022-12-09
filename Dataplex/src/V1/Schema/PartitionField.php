@@ -19,9 +19,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class PartitionField extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Partition field name must consist of letters, numbers, and underscores
-     * only, with a maximum of length of 256 characters,
-     * and must begin with a letter or underscore..
+     * Required. Partition field name must consist of letters, numbers, and
+     * underscores only, with a maximum of length of 256 characters, and must
+     * begin with a letter or underscore..
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -40,9 +40,9 @@ class PartitionField extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. Partition field name must consist of letters, numbers, and underscores
-     *           only, with a maximum of length of 256 characters,
-     *           and must begin with a letter or underscore..
+     *           Required. Partition field name must consist of letters, numbers, and
+     *           underscores only, with a maximum of length of 256 characters, and must
+     *           begin with a letter or underscore..
      *     @type int $type
      *           Required. Immutable. The type of field.
      * }
@@ -53,9 +53,9 @@ class PartitionField extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Partition field name must consist of letters, numbers, and underscores
-     * only, with a maximum of length of 256 characters,
-     * and must begin with a letter or underscore..
+     * Required. Partition field name must consist of letters, numbers, and
+     * underscores only, with a maximum of length of 256 characters, and must
+     * begin with a letter or underscore..
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -66,9 +66,9 @@ class PartitionField extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Partition field name must consist of letters, numbers, and underscores
-     * only, with a maximum of length of 256 characters,
-     * and must begin with a letter or underscore..
+     * Required. Partition field name must consist of letters, numbers, and
+     * underscores only, with a maximum of length of 256 characters, and must
+     * begin with a letter or underscore..
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

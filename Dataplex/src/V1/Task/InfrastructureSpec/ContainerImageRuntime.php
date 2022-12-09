@@ -38,12 +38,10 @@ class ContainerImageRuntime extends \Google\Protobuf\Internal\Message
      */
     private $python_packages;
     /**
-     * Optional. Override to common configuration of open source components installed on
-     * the Dataproc cluster.
-     * The properties to set on daemon config files.
-     * Property keys are specified in `prefix:property` format, for example
-     * `core:hadoop.tmp.dir`.
-     * For more information, see [Cluster
+     * Optional. Override to common configuration of open source components
+     * installed on the Dataproc cluster. The properties to set on daemon
+     * config files. Property keys are specified in `prefix:property` format,
+     * for example `core:hadoop.tmp.dir`. For more information, see [Cluster
      * properties](https://cloud.google.com/dataproc/docs/concepts/cluster-properties).
      *
      * Generated from protobuf field <code>map<string, string> properties = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -67,12 +65,10 @@ class ContainerImageRuntime extends \Google\Protobuf\Internal\Message
      *           Valid formats include Cloud Storage URI to a PIP installable library.
      *           For example, gs://bucket-name/my/path/to/lib.tar.gz
      *     @type array|\Google\Protobuf\Internal\MapField $properties
-     *           Optional. Override to common configuration of open source components installed on
-     *           the Dataproc cluster.
-     *           The properties to set on daemon config files.
-     *           Property keys are specified in `prefix:property` format, for example
-     *           `core:hadoop.tmp.dir`.
-     *           For more information, see [Cluster
+     *           Optional. Override to common configuration of open source components
+     *           installed on the Dataproc cluster. The properties to set on daemon
+     *           config files. Property keys are specified in `prefix:property` format,
+     *           for example `core:hadoop.tmp.dir`. For more information, see [Cluster
      *           properties](https://cloud.google.com/dataproc/docs/concepts/cluster-properties).
      * }
      */
@@ -168,12 +164,10 @@ class ContainerImageRuntime extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Override to common configuration of open source components installed on
-     * the Dataproc cluster.
-     * The properties to set on daemon config files.
-     * Property keys are specified in `prefix:property` format, for example
-     * `core:hadoop.tmp.dir`.
-     * For more information, see [Cluster
+     * Optional. Override to common configuration of open source components
+     * installed on the Dataproc cluster. The properties to set on daemon
+     * config files. Property keys are specified in `prefix:property` format,
+     * for example `core:hadoop.tmp.dir`. For more information, see [Cluster
      * properties](https://cloud.google.com/dataproc/docs/concepts/cluster-properties).
      *
      * Generated from protobuf field <code>map<string, string> properties = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -185,12 +179,10 @@ class ContainerImageRuntime extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Override to common configuration of open source components installed on
-     * the Dataproc cluster.
-     * The properties to set on daemon config files.
-     * Property keys are specified in `prefix:property` format, for example
-     * `core:hadoop.tmp.dir`.
-     * For more information, see [Cluster
+     * Optional. Override to common configuration of open source components
+     * installed on the Dataproc cluster. The properties to set on daemon
+     * config files. Property keys are specified in `prefix:property` format,
+     * for example `core:hadoop.tmp.dir`. For more information, see [Cluster
      * properties](https://cloud.google.com/dataproc/docs/concepts/cluster-properties).
      *
      * Generated from protobuf field <code>map<string, string> properties = 4 [(.google.api.field_behavior) = OPTIONAL];</code>

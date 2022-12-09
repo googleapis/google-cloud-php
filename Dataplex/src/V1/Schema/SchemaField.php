@@ -24,8 +24,8 @@ class SchemaField extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * Optional. User friendly field description. Must be less than or equal to 1024
-     * characters.
+     * Optional. User friendly field description. Must be less than or equal to
+     * 1024 characters.
      *
      * Generated from protobuf field <code>string description = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -60,8 +60,8 @@ class SchemaField extends \Google\Protobuf\Internal\Message
      *           underscores, with a maximum length of 767 characters,
      *           and must begin with a letter or underscore.
      *     @type string $description
-     *           Optional. User friendly field description. Must be less than or equal to 1024
-     *           characters.
+     *           Optional. User friendly field description. Must be less than or equal to
+     *           1024 characters.
      *     @type int $type
      *           Required. The type of field.
      *     @type int $mode
@@ -106,8 +106,8 @@ class SchemaField extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. User friendly field description. Must be less than or equal to 1024
-     * characters.
+     * Optional. User friendly field description. Must be less than or equal to
+     * 1024 characters.
      *
      * Generated from protobuf field <code>string description = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -118,8 +118,8 @@ class SchemaField extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. User friendly field description. Must be less than or equal to 1024
-     * characters.
+     * Optional. User friendly field description. Must be less than or equal to
+     * 1024 characters.
      *
      * Generated from protobuf field <code>string description = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

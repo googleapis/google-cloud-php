@@ -29,8 +29,8 @@ class Entity extends \Google\Protobuf\Internal\Message
      */
     private $display_name = '';
     /**
-     * Optional. User friendly longer description text. Must be shorter than or equal to
-     * 1024 characters.
+     * Optional. User friendly longer description text. Must be shorter than or
+     * equal to 1024 characters.
      *
      * Generated from protobuf field <code>string description = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -59,8 +59,8 @@ class Entity extends \Google\Protobuf\Internal\Message
      */
     private $id = '';
     /**
-     * Optional. The etag associated with the entity, which can be retrieved with a
-     * [GetEntity][] request. Required for update and delete requests.
+     * Optional. The etag associated with the entity, which can be retrieved with
+     * a [GetEntity][] request. Required for update and delete requests.
      *
      * Generated from protobuf field <code>string etag = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -72,8 +72,9 @@ class Entity extends \Google\Protobuf\Internal\Message
      */
     private $type = 0;
     /**
-     * Required. Immutable. The ID of the asset associated with the storage location containing the
-     * entity data. The entity must be with in the same zone with the asset.
+     * Required. Immutable. The ID of the asset associated with the storage
+     * location containing the entity data. The entity must be with in the same
+     * zone with the asset.
      *
      * Generated from protobuf field <code>string asset = 11 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
@@ -89,9 +90,9 @@ class Entity extends \Google\Protobuf\Internal\Message
      */
     private $data_path = '';
     /**
-     * Optional. The set of items within the data path constituting the data in the entity,
-     * represented as a glob path.
-     * Example: `gs://bucket/path/to/data/&#42;*&#47;&#42;.csv`.
+     * Optional. The set of items within the data path constituting the data in
+     * the entity, represented as a glob path. Example:
+     * `gs://bucket/path/to/data/&#42;*&#47;&#42;.csv`.
      *
      * Generated from protobuf field <code>string data_path_pattern = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -142,8 +143,8 @@ class Entity extends \Google\Protobuf\Internal\Message
      *     @type string $display_name
      *           Optional. Display name must be shorter than or equal to 256 characters.
      *     @type string $description
-     *           Optional. User friendly longer description text. Must be shorter than or equal to
-     *           1024 characters.
+     *           Optional. User friendly longer description text. Must be shorter than or
+     *           equal to 1024 characters.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. The time when the entity was created.
      *     @type \Google\Protobuf\Timestamp $update_time
@@ -156,13 +157,14 @@ class Entity extends \Google\Protobuf\Internal\Message
      *           underscores. Must begin with a letter and consist of 256 or fewer
      *           characters.
      *     @type string $etag
-     *           Optional. The etag associated with the entity, which can be retrieved with a
-     *           [GetEntity][] request. Required for update and delete requests.
+     *           Optional. The etag associated with the entity, which can be retrieved with
+     *           a [GetEntity][] request. Required for update and delete requests.
      *     @type int $type
      *           Required. Immutable. The type of entity.
      *     @type string $asset
-     *           Required. Immutable. The ID of the asset associated with the storage location containing the
-     *           entity data. The entity must be with in the same zone with the asset.
+     *           Required. Immutable. The ID of the asset associated with the storage
+     *           location containing the entity data. The entity must be with in the same
+     *           zone with the asset.
      *     @type string $data_path
      *           Required. Immutable. The storage path of the entity data.
      *           For Cloud Storage data, this is the fully-qualified path to the entity,
@@ -170,9 +172,9 @@ class Entity extends \Google\Protobuf\Internal\Message
      *           the table resource, such as
      *           `projects/project_id/datasets/dataset_id/tables/table_id`.
      *     @type string $data_path_pattern
-     *           Optional. The set of items within the data path constituting the data in the entity,
-     *           represented as a glob path.
-     *           Example: `gs://bucket/path/to/data/&#42;*&#47;&#42;.csv`.
+     *           Optional. The set of items within the data path constituting the data in
+     *           the entity, represented as a glob path. Example:
+     *           `gs://bucket/path/to/data/&#42;*&#47;&#42;.csv`.
      *     @type string $catalog_entry
      *           Output only. The name of the associated Data Catalog entry.
      *     @type int $system
@@ -248,8 +250,8 @@ class Entity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. User friendly longer description text. Must be shorter than or equal to
-     * 1024 characters.
+     * Optional. User friendly longer description text. Must be shorter than or
+     * equal to 1024 characters.
      *
      * Generated from protobuf field <code>string description = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -260,8 +262,8 @@ class Entity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. User friendly longer description text. Must be shorter than or equal to
-     * 1024 characters.
+     * Optional. User friendly longer description text. Must be shorter than or
+     * equal to 1024 characters.
      *
      * Generated from protobuf field <code>string description = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -384,8 +386,8 @@ class Entity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The etag associated with the entity, which can be retrieved with a
-     * [GetEntity][] request. Required for update and delete requests.
+     * Optional. The etag associated with the entity, which can be retrieved with
+     * a [GetEntity][] request. Required for update and delete requests.
      *
      * Generated from protobuf field <code>string etag = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -396,8 +398,8 @@ class Entity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The etag associated with the entity, which can be retrieved with a
-     * [GetEntity][] request. Required for update and delete requests.
+     * Optional. The etag associated with the entity, which can be retrieved with
+     * a [GetEntity][] request. Required for update and delete requests.
      *
      * Generated from protobuf field <code>string etag = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -438,8 +440,9 @@ class Entity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Immutable. The ID of the asset associated with the storage location containing the
-     * entity data. The entity must be with in the same zone with the asset.
+     * Required. Immutable. The ID of the asset associated with the storage
+     * location containing the entity data. The entity must be with in the same
+     * zone with the asset.
      *
      * Generated from protobuf field <code>string asset = 11 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
@@ -450,8 +453,9 @@ class Entity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Immutable. The ID of the asset associated with the storage location containing the
-     * entity data. The entity must be with in the same zone with the asset.
+     * Required. Immutable. The ID of the asset associated with the storage
+     * location containing the entity data. The entity must be with in the same
+     * zone with the asset.
      *
      * Generated from protobuf field <code>string asset = 11 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var
@@ -500,9 +504,9 @@ class Entity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The set of items within the data path constituting the data in the entity,
-     * represented as a glob path.
-     * Example: `gs://bucket/path/to/data/&#42;*&#47;&#42;.csv`.
+     * Optional. The set of items within the data path constituting the data in
+     * the entity, represented as a glob path. Example:
+     * `gs://bucket/path/to/data/&#42;*&#47;&#42;.csv`.
      *
      * Generated from protobuf field <code>string data_path_pattern = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -513,9 +517,9 @@ class Entity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The set of items within the data path constituting the data in the entity,
-     * represented as a glob path.
-     * Example: `gs://bucket/path/to/data/&#42;*&#47;&#42;.csv`.
+     * Optional. The set of items within the data path constituting the data in
+     * the entity, represented as a glob path. Example:
+     * `gs://bucket/path/to/data/&#42;*&#47;&#42;.csv`.
      *
      * Generated from protobuf field <code>string data_path_pattern = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

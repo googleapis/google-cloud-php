@@ -33,11 +33,11 @@ use Google\Cloud\Dataplex\V1\Partition;
  * @param string $formattedParent        The resource name of the parent zone:
  *                                       `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}/entities/{entity_id}`. Please see
  *                                       {@see MetadataServiceClient::entityName()} for help formatting this field.
- * @param string $partitionValuesElement Immutable. The set of values representing the partition, which correspond to the
- *                                       partition schema defined in the parent entity.
- * @param string $partitionLocation      Immutable. The location of the entity data within the partition, for example,
- *                                       `gs://bucket/path/to/entity/key1=value1/key2=value2`.
- *                                       Or `projects/<project_id>/datasets/<dataset_id>/tables/<table_id>`
+ * @param string $partitionValuesElement Immutable. The set of values representing the partition, which
+ *                                       correspond to the partition schema defined in the parent entity.
+ * @param string $partitionLocation      Immutable. The location of the entity data within the partition,
+ *                                       for example, `gs://bucket/path/to/entity/key1=value1/key2=value2`. Or
+ *                                       `projects/<project_id>/datasets/<dataset_id>/tables/<table_id>`
  */
 function create_partition_sample(
     string $formattedParent,

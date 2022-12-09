@@ -48,8 +48,8 @@ use Google\Rpc\Status;
  *                                             * Must be unique across all lakes from all locations in a project.
  *                                             * Must not be one of the reserved IDs (i.e. "default", "global-temp")
  * @param int    $zoneType                     Immutable. The type of the zone.
- * @param int    $zoneResourceSpecLocationType Immutable. The location type of the resources that are allowed to be attached to the
- *                                             assets within this zone.
+ * @param int    $zoneResourceSpecLocationType Immutable. The location type of the resources that are allowed
+ *                                             to be attached to the assets within this zone.
  */
 function create_zone_sample(
     string $formattedParent,

@@ -44,8 +44,9 @@ use Google\Cloud\Dataplex\V1\StorageSystem;
  *                                        underscores. Must begin with a letter and consist of 256 or fewer
  *                                        characters.
  * @param int    $entityType              Immutable. The type of entity.
- * @param string $entityAsset             Immutable. The ID of the asset associated with the storage location containing the
- *                                        entity data. The entity must be with in the same zone with the asset.
+ * @param string $entityAsset             Immutable. The ID of the asset associated with the storage
+ *                                        location containing the entity data. The entity must be with in the same
+ *                                        zone with the asset.
  * @param string $entityDataPath          Immutable. The storage path of the entity data.
  *                                        For Cloud Storage data, this is the fully-qualified path to the entity,
  *                                        such as `gs://bucket/path/to/data`. For BigQuery data, this is the name of
@@ -66,8 +67,8 @@ use Google\Cloud\Dataplex\V1\StorageSystem;
  *                                        - image/{image subtype}
  *                                        - video/{video subtype}
  *                                        - audio/{audio subtype}
- * @param bool   $entitySchemaUserManaged Set to `true` if user-managed or `false` if managed by Dataplex. The
- *                                        default is `false` (managed by Dataplex).
+ * @param bool   $entitySchemaUserManaged Set to `true` if user-managed or `false` if managed by Dataplex.
+ *                                        The default is `false` (managed by Dataplex).
  *
  *                                        - Set to `false`to enable Dataplex discovery to update the schema.
  *                                        including new data discovery, schema inference, and schema evolution.
