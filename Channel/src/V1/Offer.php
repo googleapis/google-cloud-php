@@ -10,8 +10,8 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Represents an offer made to resellers for purchase.
- * An offer is associated with a [Sku][google.cloud.channel.v1.Sku], has a plan for payment, a price, and
- * defines the constraints for buying.
+ * An offer is associated with a [Sku][google.cloud.channel.v1.Sku], has a plan
+ * for payment, a price, and defines the constraints for buying.
  *
  * Generated from protobuf message <code>google.cloud.channel.v1.Offer</code>
  */

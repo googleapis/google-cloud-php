@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [CloudChannelService.ListCustomerRepricingConfigs][google.cloud.channel.v1.CloudChannelService.ListCustomerRepricingConfigs].
+ * Request message for
+ * [CloudChannelService.ListCustomerRepricingConfigs][google.cloud.channel.v1.CloudChannelService.ListCustomerRepricingConfigs].
  *
  * Generated from protobuf message <code>google.cloud.channel.v1.ListCustomerRepricingConfigsRequest</code>
  */
@@ -25,9 +26,9 @@ class ListCustomerRepricingConfigsRequest extends \Google\Protobuf\Internal\Mess
      */
     private $parent = '';
     /**
-     * Optional. The maximum number of repricing configs to return. The service may return
-     * fewer than this value. If unspecified, returns a maximum of 50 rules. The
-     * maximum value is 100; values above 100 will be coerced to 100.
+     * Optional. The maximum number of repricing configs to return. The service
+     * may return fewer than this value. If unspecified, returns a maximum of 50
+     * rules. The maximum value is 100; values above 100 will be coerced to 100.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -35,8 +36,10 @@ class ListCustomerRepricingConfigsRequest extends \Google\Protobuf\Internal\Mess
     /**
      * Optional. A token identifying a page of results beyond the first page.
      * Obtained through
-     * [ListCustomerRepricingConfigsResponse.next_page_token][google.cloud.channel.v1.ListCustomerRepricingConfigsResponse.next_page_token] of the previous
-     * [CloudChannelService.ListCustomerRepricingConfigs][google.cloud.channel.v1.CloudChannelService.ListCustomerRepricingConfigs] call.
+     * [ListCustomerRepricingConfigsResponse.next_page_token][google.cloud.channel.v1.ListCustomerRepricingConfigsResponse.next_page_token]
+     * of the previous
+     * [CloudChannelService.ListCustomerRepricingConfigs][google.cloud.channel.v1.CloudChannelService.ListCustomerRepricingConfigs]
+     * call.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -65,14 +68,16 @@ class ListCustomerRepricingConfigsRequest extends \Google\Protobuf\Internal\Mess
      *           Supports accounts/{account_id}/customers/- to retrieve configs for all
      *           customers.
      *     @type int $page_size
-     *           Optional. The maximum number of repricing configs to return. The service may return
-     *           fewer than this value. If unspecified, returns a maximum of 50 rules. The
-     *           maximum value is 100; values above 100 will be coerced to 100.
+     *           Optional. The maximum number of repricing configs to return. The service
+     *           may return fewer than this value. If unspecified, returns a maximum of 50
+     *           rules. The maximum value is 100; values above 100 will be coerced to 100.
      *     @type string $page_token
      *           Optional. A token identifying a page of results beyond the first page.
      *           Obtained through
-     *           [ListCustomerRepricingConfigsResponse.next_page_token][google.cloud.channel.v1.ListCustomerRepricingConfigsResponse.next_page_token] of the previous
-     *           [CloudChannelService.ListCustomerRepricingConfigs][google.cloud.channel.v1.CloudChannelService.ListCustomerRepricingConfigs] call.
+     *           [ListCustomerRepricingConfigsResponse.next_page_token][google.cloud.channel.v1.ListCustomerRepricingConfigsResponse.next_page_token]
+     *           of the previous
+     *           [CloudChannelService.ListCustomerRepricingConfigs][google.cloud.channel.v1.CloudChannelService.ListCustomerRepricingConfigs]
+     *           call.
      *     @type string $filter
      *           Optional. A filter for [CloudChannelService.ListCustomerRepricingConfigs]
      *           results (customer only). You can use this filter when you support
@@ -120,9 +125,9 @@ class ListCustomerRepricingConfigsRequest extends \Google\Protobuf\Internal\Mess
     }
 
     /**
-     * Optional. The maximum number of repricing configs to return. The service may return
-     * fewer than this value. If unspecified, returns a maximum of 50 rules. The
-     * maximum value is 100; values above 100 will be coerced to 100.
+     * Optional. The maximum number of repricing configs to return. The service
+     * may return fewer than this value. If unspecified, returns a maximum of 50
+     * rules. The maximum value is 100; values above 100 will be coerced to 100.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -133,9 +138,9 @@ class ListCustomerRepricingConfigsRequest extends \Google\Protobuf\Internal\Mess
     }
 
     /**
-     * Optional. The maximum number of repricing configs to return. The service may return
-     * fewer than this value. If unspecified, returns a maximum of 50 rules. The
-     * maximum value is 100; values above 100 will be coerced to 100.
+     * Optional. The maximum number of repricing configs to return. The service
+     * may return fewer than this value. If unspecified, returns a maximum of 50
+     * rules. The maximum value is 100; values above 100 will be coerced to 100.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
@@ -152,8 +157,10 @@ class ListCustomerRepricingConfigsRequest extends \Google\Protobuf\Internal\Mess
     /**
      * Optional. A token identifying a page of results beyond the first page.
      * Obtained through
-     * [ListCustomerRepricingConfigsResponse.next_page_token][google.cloud.channel.v1.ListCustomerRepricingConfigsResponse.next_page_token] of the previous
-     * [CloudChannelService.ListCustomerRepricingConfigs][google.cloud.channel.v1.CloudChannelService.ListCustomerRepricingConfigs] call.
+     * [ListCustomerRepricingConfigsResponse.next_page_token][google.cloud.channel.v1.ListCustomerRepricingConfigsResponse.next_page_token]
+     * of the previous
+     * [CloudChannelService.ListCustomerRepricingConfigs][google.cloud.channel.v1.CloudChannelService.ListCustomerRepricingConfigs]
+     * call.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -166,8 +173,10 @@ class ListCustomerRepricingConfigsRequest extends \Google\Protobuf\Internal\Mess
     /**
      * Optional. A token identifying a page of results beyond the first page.
      * Obtained through
-     * [ListCustomerRepricingConfigsResponse.next_page_token][google.cloud.channel.v1.ListCustomerRepricingConfigsResponse.next_page_token] of the previous
-     * [CloudChannelService.ListCustomerRepricingConfigs][google.cloud.channel.v1.CloudChannelService.ListCustomerRepricingConfigs] call.
+     * [ListCustomerRepricingConfigsResponse.next_page_token][google.cloud.channel.v1.ListCustomerRepricingConfigsResponse.next_page_token]
+     * of the previous
+     * [CloudChannelService.ListCustomerRepricingConfigs][google.cloud.channel.v1.CloudChannelService.ListCustomerRepricingConfigs]
+     * call.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

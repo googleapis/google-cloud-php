@@ -9,14 +9,16 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [CloudChannelReportsService.FetchReportResults][google.cloud.channel.v1.CloudChannelReportsService.FetchReportResults].
+ * Request message for
+ * [CloudChannelReportsService.FetchReportResults][google.cloud.channel.v1.CloudChannelReportsService.FetchReportResults].
  *
  * Generated from protobuf message <code>google.cloud.channel.v1.FetchReportResultsRequest</code>
  */
 class FetchReportResultsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The report job created by [CloudChannelReportsService.RunReportJob][google.cloud.channel.v1.CloudChannelReportsService.RunReportJob].
+     * Required. The report job created by
+     * [CloudChannelReportsService.RunReportJob][google.cloud.channel.v1.CloudChannelReportsService.RunReportJob].
      * Report_job uses the format:
      * accounts/{account_id}/reportJobs/{report_job_id}
      *
@@ -24,9 +26,9 @@ class FetchReportResultsRequest extends \Google\Protobuf\Internal\Message
      */
     private $report_job = '';
     /**
-     * Optional. Requested page size of the report. The server may return fewer results than
-     * requested. If you don't specify a page size, the server uses a sensible
-     * default (may change over time).
+     * Optional. Requested page size of the report. The server may return fewer
+     * results than requested. If you don't specify a page size, the server uses a
+     * sensible default (may change over time).
      * The maximum value is 30,000; the server will change larger values to
      * 30,000.
      *
@@ -36,8 +38,10 @@ class FetchReportResultsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A token that specifies a page of results beyond the first page.
      * Obtained through
-     * [FetchReportResultsResponse.next_page_token][google.cloud.channel.v1.FetchReportResultsResponse.next_page_token] of the previous
-     * [CloudChannelReportsService.FetchReportResults][google.cloud.channel.v1.CloudChannelReportsService.FetchReportResults] call.
+     * [FetchReportResultsResponse.next_page_token][google.cloud.channel.v1.FetchReportResultsResponse.next_page_token]
+     * of the previous
+     * [CloudChannelReportsService.FetchReportResults][google.cloud.channel.v1.CloudChannelReportsService.FetchReportResults]
+     * call.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -50,20 +54,23 @@ class FetchReportResultsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $report_job
-     *           Required. The report job created by [CloudChannelReportsService.RunReportJob][google.cloud.channel.v1.CloudChannelReportsService.RunReportJob].
+     *           Required. The report job created by
+     *           [CloudChannelReportsService.RunReportJob][google.cloud.channel.v1.CloudChannelReportsService.RunReportJob].
      *           Report_job uses the format:
      *           accounts/{account_id}/reportJobs/{report_job_id}
      *     @type int $page_size
-     *           Optional. Requested page size of the report. The server may return fewer results than
-     *           requested. If you don't specify a page size, the server uses a sensible
-     *           default (may change over time).
+     *           Optional. Requested page size of the report. The server may return fewer
+     *           results than requested. If you don't specify a page size, the server uses a
+     *           sensible default (may change over time).
      *           The maximum value is 30,000; the server will change larger values to
      *           30,000.
      *     @type string $page_token
      *           Optional. A token that specifies a page of results beyond the first page.
      *           Obtained through
-     *           [FetchReportResultsResponse.next_page_token][google.cloud.channel.v1.FetchReportResultsResponse.next_page_token] of the previous
-     *           [CloudChannelReportsService.FetchReportResults][google.cloud.channel.v1.CloudChannelReportsService.FetchReportResults] call.
+     *           [FetchReportResultsResponse.next_page_token][google.cloud.channel.v1.FetchReportResultsResponse.next_page_token]
+     *           of the previous
+     *           [CloudChannelReportsService.FetchReportResults][google.cloud.channel.v1.CloudChannelReportsService.FetchReportResults]
+     *           call.
      * }
      */
     public function __construct($data = NULL) {
@@ -72,7 +79,8 @@ class FetchReportResultsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The report job created by [CloudChannelReportsService.RunReportJob][google.cloud.channel.v1.CloudChannelReportsService.RunReportJob].
+     * Required. The report job created by
+     * [CloudChannelReportsService.RunReportJob][google.cloud.channel.v1.CloudChannelReportsService.RunReportJob].
      * Report_job uses the format:
      * accounts/{account_id}/reportJobs/{report_job_id}
      *
@@ -85,7 +93,8 @@ class FetchReportResultsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The report job created by [CloudChannelReportsService.RunReportJob][google.cloud.channel.v1.CloudChannelReportsService.RunReportJob].
+     * Required. The report job created by
+     * [CloudChannelReportsService.RunReportJob][google.cloud.channel.v1.CloudChannelReportsService.RunReportJob].
      * Report_job uses the format:
      * accounts/{account_id}/reportJobs/{report_job_id}
      *
@@ -102,9 +111,9 @@ class FetchReportResultsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Requested page size of the report. The server may return fewer results than
-     * requested. If you don't specify a page size, the server uses a sensible
-     * default (may change over time).
+     * Optional. Requested page size of the report. The server may return fewer
+     * results than requested. If you don't specify a page size, the server uses a
+     * sensible default (may change over time).
      * The maximum value is 30,000; the server will change larger values to
      * 30,000.
      *
@@ -117,9 +126,9 @@ class FetchReportResultsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Requested page size of the report. The server may return fewer results than
-     * requested. If you don't specify a page size, the server uses a sensible
-     * default (may change over time).
+     * Optional. Requested page size of the report. The server may return fewer
+     * results than requested. If you don't specify a page size, the server uses a
+     * sensible default (may change over time).
      * The maximum value is 30,000; the server will change larger values to
      * 30,000.
      *
@@ -138,8 +147,10 @@ class FetchReportResultsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A token that specifies a page of results beyond the first page.
      * Obtained through
-     * [FetchReportResultsResponse.next_page_token][google.cloud.channel.v1.FetchReportResultsResponse.next_page_token] of the previous
-     * [CloudChannelReportsService.FetchReportResults][google.cloud.channel.v1.CloudChannelReportsService.FetchReportResults] call.
+     * [FetchReportResultsResponse.next_page_token][google.cloud.channel.v1.FetchReportResultsResponse.next_page_token]
+     * of the previous
+     * [CloudChannelReportsService.FetchReportResults][google.cloud.channel.v1.CloudChannelReportsService.FetchReportResults]
+     * call.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -152,8 +163,10 @@ class FetchReportResultsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A token that specifies a page of results beyond the first page.
      * Obtained through
-     * [FetchReportResultsResponse.next_page_token][google.cloud.channel.v1.FetchReportResultsResponse.next_page_token] of the previous
-     * [CloudChannelReportsService.FetchReportResults][google.cloud.channel.v1.CloudChannelReportsService.FetchReportResults] call.
+     * [FetchReportResultsResponse.next_page_token][google.cloud.channel.v1.FetchReportResultsResponse.next_page_token]
+     * of the previous
+     * [CloudChannelReportsService.FetchReportResults][google.cloud.channel.v1.CloudChannelReportsService.FetchReportResults]
+     * call.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

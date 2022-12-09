@@ -9,15 +9,17 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [CloudChannelService.CreateCustomerRepricingConfig][google.cloud.channel.v1.CloudChannelService.CreateCustomerRepricingConfig].
+ * Request message for
+ * [CloudChannelService.CreateCustomerRepricingConfig][google.cloud.channel.v1.CloudChannelService.CreateCustomerRepricingConfig].
  *
  * Generated from protobuf message <code>google.cloud.channel.v1.CreateCustomerRepricingConfigRequest</code>
  */
 class CreateCustomerRepricingConfigRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name of the customer that will receive this repricing config.
-     * Parent uses the format: accounts/{account_id}/customers/{customer_id}
+     * Required. The resource name of the customer that will receive this
+     * repricing config. Parent uses the format:
+     * accounts/{account_id}/customers/{customer_id}
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -36,8 +38,9 @@ class CreateCustomerRepricingConfigRequest extends \Google\Protobuf\Internal\Mes
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The resource name of the customer that will receive this repricing config.
-     *           Parent uses the format: accounts/{account_id}/customers/{customer_id}
+     *           Required. The resource name of the customer that will receive this
+     *           repricing config. Parent uses the format:
+     *           accounts/{account_id}/customers/{customer_id}
      *     @type \Google\Cloud\Channel\V1\CustomerRepricingConfig $customer_repricing_config
      *           Required. The CustomerRepricingConfig object to update.
      * }
@@ -48,8 +51,9 @@ class CreateCustomerRepricingConfigRequest extends \Google\Protobuf\Internal\Mes
     }
 
     /**
-     * Required. The resource name of the customer that will receive this repricing config.
-     * Parent uses the format: accounts/{account_id}/customers/{customer_id}
+     * Required. The resource name of the customer that will receive this
+     * repricing config. Parent uses the format:
+     * accounts/{account_id}/customers/{customer_id}
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -60,8 +64,9 @@ class CreateCustomerRepricingConfigRequest extends \Google\Protobuf\Internal\Mes
     }
 
     /**
-     * Required. The resource name of the customer that will receive this repricing config.
-     * Parent uses the format: accounts/{account_id}/customers/{customer_id}
+     * Required. The resource name of the customer that will receive this
+     * repricing config. Parent uses the format:
+     * accounts/{account_id}/customers/{customer_id}
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

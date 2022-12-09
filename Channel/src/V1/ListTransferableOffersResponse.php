@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Response message for [CloudChannelService.ListTransferableOffers][google.cloud.channel.v1.CloudChannelService.ListTransferableOffers].
+ * Response message for
+ * [CloudChannelService.ListTransferableOffers][google.cloud.channel.v1.CloudChannelService.ListTransferableOffers].
  *
  * Generated from protobuf message <code>google.cloud.channel.v1.ListTransferableOffersResponse</code>
  */
@@ -24,8 +25,9 @@ class ListTransferableOffersResponse extends \Google\Protobuf\Internal\Message
     private $transferable_offers;
     /**
      * A token to retrieve the next page of results.
-     * Pass to [ListTransferableOffersRequest.page_token][google.cloud.channel.v1.ListTransferableOffersRequest.page_token] to obtain
-     * that page.
+     * Pass to
+     * [ListTransferableOffersRequest.page_token][google.cloud.channel.v1.ListTransferableOffersRequest.page_token]
+     * to obtain that page.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
@@ -42,8 +44,9 @@ class ListTransferableOffersResponse extends \Google\Protobuf\Internal\Message
      *           transfer.
      *     @type string $next_page_token
      *           A token to retrieve the next page of results.
-     *           Pass to [ListTransferableOffersRequest.page_token][google.cloud.channel.v1.ListTransferableOffersRequest.page_token] to obtain
-     *           that page.
+     *           Pass to
+     *           [ListTransferableOffersRequest.page_token][google.cloud.channel.v1.ListTransferableOffersRequest.page_token]
+     *           to obtain that page.
      * }
      */
     public function __construct($data = NULL) {
@@ -81,8 +84,9 @@ class ListTransferableOffersResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * A token to retrieve the next page of results.
-     * Pass to [ListTransferableOffersRequest.page_token][google.cloud.channel.v1.ListTransferableOffersRequest.page_token] to obtain
-     * that page.
+     * Pass to
+     * [ListTransferableOffersRequest.page_token][google.cloud.channel.v1.ListTransferableOffersRequest.page_token]
+     * to obtain that page.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @return string
@@ -94,8 +98,9 @@ class ListTransferableOffersResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * A token to retrieve the next page of results.
-     * Pass to [ListTransferableOffersRequest.page_token][google.cloud.channel.v1.ListTransferableOffersRequest.page_token] to obtain
-     * that page.
+     * Pass to
+     * [ListTransferableOffersRequest.page_token][google.cloud.channel.v1.ListTransferableOffersRequest.page_token]
+     * to obtain that page.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @param string $var

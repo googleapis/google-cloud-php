@@ -16,7 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class DeleteChannelPartnerRepricingConfigRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name of the channel partner repricing config rule to delete.
+     * Required. The resource name of the channel partner repricing config rule to
+     * delete.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -29,7 +30,8 @@ class DeleteChannelPartnerRepricingConfigRequest extends \Google\Protobuf\Intern
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The resource name of the channel partner repricing config rule to delete.
+     *           Required. The resource name of the channel partner repricing config rule to
+     *           delete.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,7 +40,8 @@ class DeleteChannelPartnerRepricingConfigRequest extends \Google\Protobuf\Intern
     }
 
     /**
-     * Required. The resource name of the channel partner repricing config rule to delete.
+     * Required. The resource name of the channel partner repricing config rule to
+     * delete.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -49,7 +52,8 @@ class DeleteChannelPartnerRepricingConfigRequest extends \Google\Protobuf\Intern
     }
 
     /**
-     * Required. The resource name of the channel partner repricing config rule to delete.
+     * Required. The resource name of the channel partner repricing config rule to
+     * delete.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

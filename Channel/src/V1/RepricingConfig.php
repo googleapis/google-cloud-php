@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class RepricingConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The YearMonth when these adjustments activate. The Day field needs to be
-     * "0" since we only accept YearMonth repricing boundaries.
+     * Required. The YearMonth when these adjustments activate. The Day field
+     * needs to be "0" since we only accept YearMonth repricing boundaries.
      *
      * Generated from protobuf field <code>.google.type.Date effective_invoice_month = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -29,12 +29,21 @@ class RepricingConfig extends \Google\Protobuf\Internal\Message
      */
     private $adjustment = null;
     /**
-     * Required. The [RebillingBasis][google.cloud.channel.v1.RebillingBasis] to use for this bill. Specifies the relative cost
-     * based on repricing costs you will apply.
+     * Required. The [RebillingBasis][google.cloud.channel.v1.RebillingBasis] to
+     * use for this bill. Specifies the relative cost based on repricing costs you
+     * will apply.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.RebillingBasis rebilling_basis = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $rebilling_basis = 0;
+    /**
+     * The conditional overrides to apply for this configuration. If you list
+     * multiple overrides, only the first valid override is used.  If you don't
+     * list any overrides, the API uses the normal adjustment and rebilling basis.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.channel.v1.ConditionalOverride conditional_overrides = 6;</code>
+     */
+    private $conditional_overrides;
     protected $granularity;
 
     /**
@@ -50,13 +59,18 @@ class RepricingConfig extends \Google\Protobuf\Internal\Message
      *           Applies the repricing configuration at the channel partner level.
      *           This is the only supported value for ChannelPartnerRepricingConfig.
      *     @type \Google\Type\Date $effective_invoice_month
-     *           Required. The YearMonth when these adjustments activate. The Day field needs to be
-     *           "0" since we only accept YearMonth repricing boundaries.
+     *           Required. The YearMonth when these adjustments activate. The Day field
+     *           needs to be "0" since we only accept YearMonth repricing boundaries.
      *     @type \Google\Cloud\Channel\V1\RepricingAdjustment $adjustment
      *           Required. Information about the adjustment.
      *     @type int $rebilling_basis
-     *           Required. The [RebillingBasis][google.cloud.channel.v1.RebillingBasis] to use for this bill. Specifies the relative cost
-     *           based on repricing costs you will apply.
+     *           Required. The [RebillingBasis][google.cloud.channel.v1.RebillingBasis] to
+     *           use for this bill. Specifies the relative cost based on repricing costs you
+     *           will apply.
+     *     @type array<\Google\Cloud\Channel\V1\ConditionalOverride>|\Google\Protobuf\Internal\RepeatedField $conditional_overrides
+     *           The conditional overrides to apply for this configuration. If you list
+     *           multiple overrides, only the first valid override is used.  If you don't
+     *           list any overrides, the API uses the normal adjustment and rebilling basis.
      * }
      */
     public function __construct($data = NULL) {
@@ -131,8 +145,8 @@ class RepricingConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The YearMonth when these adjustments activate. The Day field needs to be
-     * "0" since we only accept YearMonth repricing boundaries.
+     * Required. The YearMonth when these adjustments activate. The Day field
+     * needs to be "0" since we only accept YearMonth repricing boundaries.
      *
      * Generated from protobuf field <code>.google.type.Date effective_invoice_month = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Type\Date|null
@@ -153,8 +167,8 @@ class RepricingConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The YearMonth when these adjustments activate. The Day field needs to be
-     * "0" since we only accept YearMonth repricing boundaries.
+     * Required. The YearMonth when these adjustments activate. The Day field
+     * needs to be "0" since we only accept YearMonth repricing boundaries.
      *
      * Generated from protobuf field <code>.google.type.Date effective_invoice_month = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Type\Date $var
@@ -205,8 +219,9 @@ class RepricingConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The [RebillingBasis][google.cloud.channel.v1.RebillingBasis] to use for this bill. Specifies the relative cost
-     * based on repricing costs you will apply.
+     * Required. The [RebillingBasis][google.cloud.channel.v1.RebillingBasis] to
+     * use for this bill. Specifies the relative cost based on repricing costs you
+     * will apply.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.RebillingBasis rebilling_basis = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
@@ -217,8 +232,9 @@ class RepricingConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The [RebillingBasis][google.cloud.channel.v1.RebillingBasis] to use for this bill. Specifies the relative cost
-     * based on repricing costs you will apply.
+     * Required. The [RebillingBasis][google.cloud.channel.v1.RebillingBasis] to
+     * use for this bill. Specifies the relative cost based on repricing costs you
+     * will apply.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.RebillingBasis rebilling_basis = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var
@@ -228,6 +244,36 @@ class RepricingConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Channel\V1\RebillingBasis::class);
         $this->rebilling_basis = $var;
+
+        return $this;
+    }
+
+    /**
+     * The conditional overrides to apply for this configuration. If you list
+     * multiple overrides, only the first valid override is used.  If you don't
+     * list any overrides, the API uses the normal adjustment and rebilling basis.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.channel.v1.ConditionalOverride conditional_overrides = 6;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getConditionalOverrides()
+    {
+        return $this->conditional_overrides;
+    }
+
+    /**
+     * The conditional overrides to apply for this configuration. If you list
+     * multiple overrides, only the first valid override is used.  If you don't
+     * list any overrides, the API uses the normal adjustment and rebilling basis.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.channel.v1.ConditionalOverride conditional_overrides = 6;</code>
+     * @param array<\Google\Cloud\Channel\V1\ConditionalOverride>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setConditionalOverrides($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Channel\V1\ConditionalOverride::class);
+        $this->conditional_overrides = $arr;
 
         return $this;
     }

@@ -9,15 +9,16 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [CloudChannelService.DeleteCustomerRepricingConfig][google.cloud.channel.v1.CloudChannelService.DeleteCustomerRepricingConfig].
+ * Request message for
+ * [CloudChannelService.DeleteCustomerRepricingConfig][google.cloud.channel.v1.CloudChannelService.DeleteCustomerRepricingConfig].
  *
  * Generated from protobuf message <code>google.cloud.channel.v1.DeleteCustomerRepricingConfigRequest</code>
  */
 class DeleteCustomerRepricingConfigRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name of the customer repricing config rule to delete.
-     * Format:
+     * Required. The resource name of the customer repricing config rule to
+     * delete. Format:
      * accounts/{account_id}/customers/{customer_id}/customerRepricingConfigs/{id}.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -31,8 +32,8 @@ class DeleteCustomerRepricingConfigRequest extends \Google\Protobuf\Internal\Mes
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The resource name of the customer repricing config rule to delete.
-     *           Format:
+     *           Required. The resource name of the customer repricing config rule to
+     *           delete. Format:
      *           accounts/{account_id}/customers/{customer_id}/customerRepricingConfigs/{id}.
      * }
      */
@@ -42,8 +43,8 @@ class DeleteCustomerRepricingConfigRequest extends \Google\Protobuf\Internal\Mes
     }
 
     /**
-     * Required. The resource name of the customer repricing config rule to delete.
-     * Format:
+     * Required. The resource name of the customer repricing config rule to
+     * delete. Format:
      * accounts/{account_id}/customers/{customer_id}/customerRepricingConfigs/{id}.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -55,8 +56,8 @@ class DeleteCustomerRepricingConfigRequest extends \Google\Protobuf\Internal\Mes
     }
 
     /**
-     * Required. The resource name of the customer repricing config rule to delete.
-     * Format:
+     * Required. The resource name of the customer repricing config rule to
+     * delete. Format:
      * accounts/{account_id}/customers/{customer_id}/customerRepricingConfigs/{id}.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>

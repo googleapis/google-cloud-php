@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Response message for [CloudChannelService.TransferEntitlements][google.cloud.channel.v1.CloudChannelService.TransferEntitlements].
+ * Response message for
+ * [CloudChannelService.TransferEntitlements][google.cloud.channel.v1.CloudChannelService.TransferEntitlements].
  * This is put in the response field of google.longrunning.Operation.
  *
  * Generated from protobuf message <code>google.cloud.channel.v1.TransferEntitlementsResponse</code>

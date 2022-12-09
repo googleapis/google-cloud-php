@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [CloudChannelService.ImportCustomer][google.cloud.channel.v1.CloudChannelService.ImportCustomer]
+ * Request message for
+ * [CloudChannelService.ImportCustomer][google.cloud.channel.v1.CloudChannelService.ImportCustomer]
  *
  * Generated from protobuf message <code>google.cloud.channel.v1.ImportCustomerRequest</code>
  */
@@ -41,9 +42,10 @@ class ImportCustomerRequest extends \Google\Protobuf\Internal\Message
      */
     private $overwrite_if_exists = false;
     /**
-     * Optional. Cloud Identity ID of a channel partner who will be the direct reseller for
-     * the customer's order. This field is required for 2-tier transfer scenarios
-     * and can be provided via the request Parent binding as well.
+     * Optional. Cloud Identity ID of a channel partner who will be the direct
+     * reseller for the customer's order. This field is required for 2-tier
+     * transfer scenarios and can be provided via the request Parent binding as
+     * well.
      *
      * Generated from protobuf field <code>string channel_partner_id = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -82,9 +84,10 @@ class ImportCustomerRequest extends \Google\Protobuf\Internal\Message
      *           This must be set to true if there is an existing customer with a
      *           conflicting region code or domain.
      *     @type string $channel_partner_id
-     *           Optional. Cloud Identity ID of a channel partner who will be the direct reseller for
-     *           the customer's order. This field is required for 2-tier transfer scenarios
-     *           and can be provided via the request Parent binding as well.
+     *           Optional. Cloud Identity ID of a channel partner who will be the direct
+     *           reseller for the customer's order. This field is required for 2-tier
+     *           transfer scenarios and can be provided via the request Parent binding as
+     *           well.
      *     @type string $customer
      *           Optional. Specifies the customer that will receive imported Cloud Identity
      *           information.
@@ -251,9 +254,10 @@ class ImportCustomerRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Cloud Identity ID of a channel partner who will be the direct reseller for
-     * the customer's order. This field is required for 2-tier transfer scenarios
-     * and can be provided via the request Parent binding as well.
+     * Optional. Cloud Identity ID of a channel partner who will be the direct
+     * reseller for the customer's order. This field is required for 2-tier
+     * transfer scenarios and can be provided via the request Parent binding as
+     * well.
      *
      * Generated from protobuf field <code>string channel_partner_id = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -264,9 +268,10 @@ class ImportCustomerRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Cloud Identity ID of a channel partner who will be the direct reseller for
-     * the customer's order. This field is required for 2-tier transfer scenarios
-     * and can be provided via the request Parent binding as well.
+     * Optional. Cloud Identity ID of a channel partner who will be the direct
+     * reseller for the customer's order. This field is required for 2-tier
+     * transfer scenarios and can be provided via the request Parent binding as
+     * well.
      *
      * Generated from protobuf field <code>string channel_partner_id = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

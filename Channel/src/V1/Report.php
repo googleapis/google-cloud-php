@@ -17,9 +17,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class Report extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The report's resource name. Specifies the account and report used to
-     * generate report data. The report_id identifier is a UID
-     * (for example, `613bf59q`).
+     * Required. The report's resource name. Specifies the account and report used
+     * to generate report data. The report_id identifier is a UID (for example,
+     * `613bf59q`).
      * Name uses the format:
      * accounts/{account_id}/reports/{report_id}
      *
@@ -54,9 +54,9 @@ class Report extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The report's resource name. Specifies the account and report used to
-     *           generate report data. The report_id identifier is a UID
-     *           (for example, `613bf59q`).
+     *           Required. The report's resource name. Specifies the account and report used
+     *           to generate report data. The report_id identifier is a UID (for example,
+     *           `613bf59q`).
      *           Name uses the format:
      *           accounts/{account_id}/reports/{report_id}
      *     @type string $display_name
@@ -75,9 +75,9 @@ class Report extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The report's resource name. Specifies the account and report used to
-     * generate report data. The report_id identifier is a UID
-     * (for example, `613bf59q`).
+     * Required. The report's resource name. Specifies the account and report used
+     * to generate report data. The report_id identifier is a UID (for example,
+     * `613bf59q`).
      * Name uses the format:
      * accounts/{account_id}/reports/{report_id}
      *
@@ -90,9 +90,9 @@ class Report extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The report's resource name. Specifies the account and report used to
-     * generate report data. The report_id identifier is a UID
-     * (for example, `613bf59q`).
+     * Required. The report's resource name. Specifies the account and report used
+     * to generate report data. The report_id identifier is a UID (for example,
+     * `613bf59q`).
      * Name uses the format:
      * accounts/{account_id}/reports/{report_id}
      *

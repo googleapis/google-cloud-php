@@ -24,8 +24,9 @@ class ListChannelPartnerRepricingConfigsResponse extends \Google\Protobuf\Intern
     private $channel_partner_repricing_configs;
     /**
      * A token to retrieve the next page of results.
-     * Pass to [ListChannelPartnerRepricingConfigsRequest.page_token][google.cloud.channel.v1.ListChannelPartnerRepricingConfigsRequest.page_token] to obtain
-     * that page.
+     * Pass to
+     * [ListChannelPartnerRepricingConfigsRequest.page_token][google.cloud.channel.v1.ListChannelPartnerRepricingConfigsRequest.page_token]
+     * to obtain that page.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
@@ -41,8 +42,9 @@ class ListChannelPartnerRepricingConfigsResponse extends \Google\Protobuf\Intern
      *           The repricing configs for this channel partner.
      *     @type string $next_page_token
      *           A token to retrieve the next page of results.
-     *           Pass to [ListChannelPartnerRepricingConfigsRequest.page_token][google.cloud.channel.v1.ListChannelPartnerRepricingConfigsRequest.page_token] to obtain
-     *           that page.
+     *           Pass to
+     *           [ListChannelPartnerRepricingConfigsRequest.page_token][google.cloud.channel.v1.ListChannelPartnerRepricingConfigsRequest.page_token]
+     *           to obtain that page.
      * }
      */
     public function __construct($data = NULL) {
@@ -78,8 +80,9 @@ class ListChannelPartnerRepricingConfigsResponse extends \Google\Protobuf\Intern
 
     /**
      * A token to retrieve the next page of results.
-     * Pass to [ListChannelPartnerRepricingConfigsRequest.page_token][google.cloud.channel.v1.ListChannelPartnerRepricingConfigsRequest.page_token] to obtain
-     * that page.
+     * Pass to
+     * [ListChannelPartnerRepricingConfigsRequest.page_token][google.cloud.channel.v1.ListChannelPartnerRepricingConfigsRequest.page_token]
+     * to obtain that page.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @return string
@@ -91,8 +94,9 @@ class ListChannelPartnerRepricingConfigsResponse extends \Google\Protobuf\Intern
 
     /**
      * A token to retrieve the next page of results.
-     * Pass to [ListChannelPartnerRepricingConfigsRequest.page_token][google.cloud.channel.v1.ListChannelPartnerRepricingConfigsRequest.page_token] to obtain
-     * that page.
+     * Pass to
+     * [ListChannelPartnerRepricingConfigsRequest.page_token][google.cloud.channel.v1.ListChannelPartnerRepricingConfigsRequest.page_token]
+     * to obtain that page.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @param string $var

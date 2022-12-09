@@ -29,15 +29,16 @@ namespace Google\Cloud\Channel\V1;
  * 3. Resellers and distributors can manage customer entitlements.
  *
  * CloudChannelService exposes the following resources:
- * - [Customer][google.cloud.channel.v1.Customer]s: An entity—usually an enterprise—managed by a reseller or
- * distributor.
+ * - [Customer][google.cloud.channel.v1.Customer]s: An entity-usually an
+ * enterprise-managed by a reseller or distributor.
  *
- * - [Entitlement][google.cloud.channel.v1.Entitlement]s: An entity that provides a customer with the means to use
- * a service. Entitlements are created or updated as a result of a successful
- * fulfillment.
+ * - [Entitlement][google.cloud.channel.v1.Entitlement]s: An entity that
+ * provides a customer with the means to use a service. Entitlements are created
+ * or updated as a result of a successful fulfillment.
  *
- * - [ChannelPartnerLink][google.cloud.channel.v1.ChannelPartnerLink]s: An entity that identifies links between
- * distributors and their indirect resellers in a channel.
+ * - [ChannelPartnerLink][google.cloud.channel.v1.ChannelPartnerLink]s: An
+ * entity that identifies links between distributors and their indirect
+ * resellers in a channel.
  */
 class CloudChannelServiceGrpcClient extends \Grpc\BaseStub {
 
@@ -60,7 +61,8 @@ class CloudChannelServiceGrpcClient extends \Grpc\BaseStub {
      * * INVALID_ARGUMENT: Required request parameters are missing or invalid.
      *
      * Return value:
-     * List of [Customer][google.cloud.channel.v1.Customer]s, or an empty list if there are no customers.
+     * List of [Customer][google.cloud.channel.v1.Customer]s, or an empty list if
+     * there are no customers.
      * @param \Google\Cloud\Channel\V1\ListCustomersRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -75,7 +77,8 @@ class CloudChannelServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Returns the requested [Customer][google.cloud.channel.v1.Customer] resource.
+     * Returns the requested [Customer][google.cloud.channel.v1.Customer]
+     * resource.
      *
      * Possible error codes:
      *
@@ -112,11 +115,14 @@ class CloudChannelServiceGrpcClient extends \Grpc\BaseStub {
      * * INVALID_VALUE: Invalid domain value in the request.
      *
      * Return value:
-     * A list of [CloudIdentityCustomerAccount][google.cloud.channel.v1.CloudIdentityCustomerAccount] resources for the domain (may be
-     * empty)
+     * A list of
+     * [CloudIdentityCustomerAccount][google.cloud.channel.v1.CloudIdentityCustomerAccount]
+     * resources for the domain (may be empty)
      *
      * Note: in the v1alpha1 version of the API, a NOT_FOUND error returns if
-     * no [CloudIdentityCustomerAccount][google.cloud.channel.v1.CloudIdentityCustomerAccount] resources match the domain.
+     * no
+     * [CloudIdentityCustomerAccount][google.cloud.channel.v1.CloudIdentityCustomerAccount]
+     * resources match the domain.
      * @param \Google\Cloud\Channel\V1\CheckCloudIdentityAccountsExistRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -131,8 +137,8 @@ class CloudChannelServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Creates a new [Customer][google.cloud.channel.v1.Customer] resource under the reseller or distributor
-     * account.
+     * Creates a new [Customer][google.cloud.channel.v1.Customer] resource under
+     * the reseller or distributor account.
      *
      * Possible error codes:
      *
@@ -158,15 +164,16 @@ class CloudChannelServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Updates an existing [Customer][google.cloud.channel.v1.Customer] resource for the reseller or
-     * distributor.
+     * Updates an existing [Customer][google.cloud.channel.v1.Customer] resource
+     * for the reseller or distributor.
      *
      * Possible error codes:
      *
      * * PERMISSION_DENIED: The reseller account making the request is different
      * from the reseller account in the API request.
      * * INVALID_ARGUMENT: Required request parameters are missing or invalid.
-     * * NOT_FOUND: No [Customer][google.cloud.channel.v1.Customer] resource found for the name in the request.
+     * * NOT_FOUND: No [Customer][google.cloud.channel.v1.Customer] resource found
+     * for the name in the request.
      *
      * Return value:
      * The updated [Customer][google.cloud.channel.v1.Customer] resource.
@@ -192,7 +199,8 @@ class CloudChannelServiceGrpcClient extends \Grpc\BaseStub {
      * this customer.
      * * INVALID_ARGUMENT: Required request parameters are missing or invalid.
      * * FAILED_PRECONDITION: The customer has existing entitlements.
-     * * NOT_FOUND: No [Customer][google.cloud.channel.v1.Customer] resource found for the name in the request.
+     * * NOT_FOUND: No [Customer][google.cloud.channel.v1.Customer] resource found
+     * for the name in the request.
      * @param \Google\Cloud\Channel\V1\DeleteCustomerRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -207,10 +215,10 @@ class CloudChannelServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Imports a [Customer][google.cloud.channel.v1.Customer] from the Cloud Identity associated with the provided
-     * Cloud Identity ID or domain before a TransferEntitlements call. If a
-     * linked Customer already exists and overwrite_if_exists is true, it will
-     * update that Customer's data.
+     * Imports a [Customer][google.cloud.channel.v1.Customer] from the Cloud
+     * Identity associated with the provided Cloud Identity ID or domain before a
+     * TransferEntitlements call. If a linked Customer already exists and
+     * overwrite_if_exists is true, it will update that Customer's data.
      *
      * Possible error codes:
      *
@@ -273,7 +281,8 @@ class CloudChannelServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Lists [Entitlement][google.cloud.channel.v1.Entitlement]s belonging to a customer.
+     * Lists [Entitlement][google.cloud.channel.v1.Entitlement]s belonging to a
+     * customer.
      *
      * Possible error codes:
      *
@@ -281,7 +290,8 @@ class CloudChannelServiceGrpcClient extends \Grpc\BaseStub {
      * * INVALID_ARGUMENT: Required request parameters are missing or invalid.
      *
      * Return value:
-     * A list of the customer's [Entitlement][google.cloud.channel.v1.Entitlement]s.
+     * A list of the customer's
+     * [Entitlement][google.cloud.channel.v1.Entitlement]s.
      * @param \Google\Cloud\Channel\V1\ListEntitlementsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -296,8 +306,8 @@ class CloudChannelServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * List [TransferableSku][google.cloud.channel.v1.TransferableSku]s of a customer based on the Cloud Identity ID or
-     * Customer Name in the request.
+     * List [TransferableSku][google.cloud.channel.v1.TransferableSku]s of a
+     * customer based on the Cloud Identity ID or Customer Name in the request.
      *
      * Use this method to list the entitlements information of an
      * unowned customer. You should provide the customer's
@@ -313,7 +323,8 @@ class CloudChannelServiceGrpcClient extends \Grpc\BaseStub {
      * * INVALID_ARGUMENT: Required request parameters are missing or invalid.
      *
      * Return value:
-     * A list of the customer's [TransferableSku][google.cloud.channel.v1.TransferableSku].
+     * A list of the customer's
+     * [TransferableSku][google.cloud.channel.v1.TransferableSku].
      * @param \Google\Cloud\Channel\V1\ListTransferableSkusRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -328,8 +339,8 @@ class CloudChannelServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * List [TransferableOffer][google.cloud.channel.v1.TransferableOffer]s of a customer based on Cloud Identity ID or
-     * Customer Name in the request.
+     * List [TransferableOffer][google.cloud.channel.v1.TransferableOffer]s of a
+     * customer based on Cloud Identity ID or Customer Name in the request.
      *
      * Use this method when a reseller gets the entitlement information of an
      * unowned customer. The reseller should provide the customer's
@@ -346,7 +357,8 @@ class CloudChannelServiceGrpcClient extends \Grpc\BaseStub {
      * * INVALID_ARGUMENT: Required request parameters are missing or invalid.
      *
      * Return value:
-     * List of [TransferableOffer][google.cloud.channel.v1.TransferableOffer] for the given customer and SKU.
+     * List of [TransferableOffer][google.cloud.channel.v1.TransferableOffer] for
+     * the given customer and SKU.
      * @param \Google\Cloud\Channel\V1\ListTransferableOffersRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -361,7 +373,8 @@ class CloudChannelServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Returns the requested [Entitlement][google.cloud.channel.v1.Entitlement] resource.
+     * Returns the requested [Entitlement][google.cloud.channel.v1.Entitlement]
+     * resource.
      *
      * Possible error codes:
      *
@@ -784,8 +797,8 @@ class CloudChannelServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * List [ChannelPartnerLink][google.cloud.channel.v1.ChannelPartnerLink]s belonging to a distributor.
-     * You must be a distributor to call this method.
+     * List [ChannelPartnerLink][google.cloud.channel.v1.ChannelPartnerLink]s
+     * belonging to a distributor. You must be a distributor to call this method.
      *
      * Possible error codes:
      *
@@ -794,7 +807,8 @@ class CloudChannelServiceGrpcClient extends \Grpc\BaseStub {
      * * INVALID_ARGUMENT: Required request parameters are missing or invalid.
      *
      * Return value:
-     * The list of the distributor account's [ChannelPartnerLink][google.cloud.channel.v1.ChannelPartnerLink] resources.
+     * The list of the distributor account's
+     * [ChannelPartnerLink][google.cloud.channel.v1.ChannelPartnerLink] resources.
      * @param \Google\Cloud\Channel\V1\ListChannelPartnerLinksRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -809,7 +823,8 @@ class CloudChannelServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Returns the requested [ChannelPartnerLink][google.cloud.channel.v1.ChannelPartnerLink] resource.
+     * Returns the requested
+     * [ChannelPartnerLink][google.cloud.channel.v1.ChannelPartnerLink] resource.
      * You must be a distributor to call this method.
      *
      * Possible error codes:
@@ -821,7 +836,8 @@ class CloudChannelServiceGrpcClient extends \Grpc\BaseStub {
      * invalid channel partner link name.
      *
      * Return value:
-     * The [ChannelPartnerLink][google.cloud.channel.v1.ChannelPartnerLink] resource.
+     * The [ChannelPartnerLink][google.cloud.channel.v1.ChannelPartnerLink]
+     * resource.
      * @param \Google\Cloud\Channel\V1\GetChannelPartnerLinkRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -857,7 +873,8 @@ class CloudChannelServiceGrpcClient extends \Grpc\BaseStub {
      * Contact Cloud Channel support.
      *
      * Return value:
-     * The new [ChannelPartnerLink][google.cloud.channel.v1.ChannelPartnerLink] resource.
+     * The new [ChannelPartnerLink][google.cloud.channel.v1.ChannelPartnerLink]
+     * resource.
      * @param \Google\Cloud\Channel\V1\CreateChannelPartnerLinkRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -892,7 +909,8 @@ class CloudChannelServiceGrpcClient extends \Grpc\BaseStub {
      * Contact Cloud Channel support.
      *
      * Return value:
-     * The updated [ChannelPartnerLink][google.cloud.channel.v1.ChannelPartnerLink] resource.
+     * The updated
+     * [ChannelPartnerLink][google.cloud.channel.v1.ChannelPartnerLink] resource.
      * @param \Google\Cloud\Channel\V1\UpdateChannelPartnerLinkRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -914,13 +932,16 @@ class CloudChannelServiceGrpcClient extends \Grpc\BaseStub {
      *
      * * PERMISSION_DENIED: If the account making the request and the account
      * being queried are different.
-     * * NOT_FOUND: The [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig] was not found.
+     * * NOT_FOUND: The
+     * [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig]
+     * was not found.
      * * INTERNAL: Any non-user error related to technical issues in the
      * backend. In this case, contact Cloud Channel support.
      *
      * Return Value:
-     * If successful, the [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig] resource, otherwise returns
-     * an error.
+     * If successful, the
+     * [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig]
+     * resource, otherwise returns an error.
      * @param \Google\Cloud\Channel\V1\GetCustomerRepricingConfigRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -942,14 +963,17 @@ class CloudChannelServiceGrpcClient extends \Grpc\BaseStub {
      *
      * * PERMISSION_DENIED: If the account making the request and the account
      * being queried are different.
-     * * NOT_FOUND: The [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig] specified does not exist or is
-     * not associated with the given account.
+     * * NOT_FOUND: The
+     * [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig]
+     * specified does not exist or is not associated with the given account.
      * * INTERNAL: Any non-user error related to technical issues in the
      * backend. In this case, contact Cloud Channel support.
      *
      * Return Value:
-     * If successful, the [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig] resources. The
-     * data for each resource is displayed in the ascending order of:
+     * If successful, the
+     * [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig]
+     * resources. The data for each resource is displayed in the ascending order
+     * of:
      * * customer ID
      * * [RepricingConfig.EntitlementGranularity.entitlement][google.cloud.channel.v1.RepricingConfig.EntitlementGranularity.entitlement]
      * * [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month]
@@ -972,9 +996,9 @@ class CloudChannelServiceGrpcClient extends \Grpc\BaseStub {
     /**
      * Creates a CustomerRepricingConfig. Call this method to set modifications
      * for a specific customer's bill. You can only create configs if the
-     * [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month] is a
-     * future month. If needed, you can create a config for the current month,
-     * with some restrictions.
+     * [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month]
+     * is a future month. If needed, you can create a config for the current
+     * month, with some restrictions.
      *
      * When creating a config for a future month, make sure there are no existing
      * configs for that
@@ -988,9 +1012,11 @@ class CloudChannelServiceGrpcClient extends \Grpc\BaseStub {
      * Changes to the config may be immediate, but may take up to 24 hours.
      * * There is a limit of ten configs for any
      * [RepricingConfig.EntitlementGranularity.entitlement][google.cloud.channel.v1.RepricingConfig.EntitlementGranularity.entitlement]
-     * or [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month].
-     * * The contained [CustomerRepricingConfig.repricing_config][google.cloud.channel.v1.CustomerRepricingConfig.repricing_config] vaule must be
-     * different from the value used in the current config for a
+     * or
+     * [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month].
+     * * The contained
+     * [CustomerRepricingConfig.repricing_config][google.cloud.channel.v1.CustomerRepricingConfig.repricing_config]
+     * vaule must be different from the value used in the current config for a
      * [RepricingConfig.EntitlementGranularity.entitlement][google.cloud.channel.v1.RepricingConfig.EntitlementGranularity.entitlement].
      *
      * Possible Error Codes:
@@ -1000,14 +1026,16 @@ class CloudChannelServiceGrpcClient extends \Grpc\BaseStub {
      * * INVALID_ARGUMENT: Missing or invalid required parameters in the
      * request. Also displays if the updated config is for the current month or
      * past months.
-     * * NOT_FOUND: The [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig] specified does not exist or is
-     * not associated with the given account.
+     * * NOT_FOUND: The
+     * [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig]
+     * specified does not exist or is not associated with the given account.
      * * INTERNAL: Any non-user error related to technical issues in the
      * backend. In this case, contact Cloud Channel support.
      *
      * Return Value:
-     * If successful, the updated [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig] resource, otherwise
-     * returns an error.
+     * If successful, the updated
+     * [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig]
+     * resource, otherwise returns an error.
      * @param \Google\Cloud\Channel\V1\CreateCustomerRepricingConfigRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -1027,10 +1055,11 @@ class CloudChannelServiceGrpcClient extends \Grpc\BaseStub {
      * CustomerRepricingConfig.
      *
      * You can only update configs if the
-     * [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month] is a
-     * future month. To make changes to configs for the current month, use
-     * [CreateCustomerRepricingConfig][google.cloud.channel.v1.CloudChannelService.CreateCustomerRepricingConfig], taking note of its restrictions. You
-     * cannot update the [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month].
+     * [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month]
+     * is a future month. To make changes to configs for the current month, use
+     * [CreateCustomerRepricingConfig][google.cloud.channel.v1.CloudChannelService.CreateCustomerRepricingConfig],
+     * taking note of its restrictions. You cannot update the
+     * [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month].
      *
      * When updating a config in the future:
      *
@@ -1043,14 +1072,16 @@ class CloudChannelServiceGrpcClient extends \Grpc\BaseStub {
      * * INVALID_ARGUMENT: Missing or invalid required parameters in the
      * request. Also displays if the updated config is for the current month or
      * past months.
-     * * NOT_FOUND: The [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig] specified does not exist or is
-     * not associated with the given account.
+     * * NOT_FOUND: The
+     * [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig]
+     * specified does not exist or is not associated with the given account.
      * * INTERNAL: Any non-user error related to technical issues in the
      * backend. In this case, contact Cloud Channel support.
      *
      * Return Value:
-     * If successful, the updated [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig] resource, otherwise
-     * returns an error.
+     * If successful, the updated
+     * [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig]
+     * resource, otherwise returns an error.
      * @param \Google\Cloud\Channel\V1\UpdateCustomerRepricingConfigRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -1065,19 +1096,23 @@ class CloudChannelServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Deletes the given [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig] permanently. You can only
-     * delete configs if their [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month] is set
-     * to a date after the current month.
+     * Deletes the given
+     * [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig]
+     * permanently. You can only delete configs if their
+     * [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month]
+     * is set to a date after the current month.
      *
      * Possible error codes:
      *
      * * PERMISSION_DENIED: The account making the request does not own
      * this customer.
      * * INVALID_ARGUMENT: Required request parameters are missing or invalid.
-     * * FAILED_PRECONDITION: The [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig] is active or in the
-     * past.
-     * * NOT_FOUND: No [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig] found for the name in the
-     * request.
+     * * FAILED_PRECONDITION: The
+     * [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig]
+     * is active or in the past.
+     * * NOT_FOUND: No
+     * [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig]
+     * found for the name in the request.
      * @param \Google\Cloud\Channel\V1\DeleteCustomerRepricingConfigRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -1099,13 +1134,16 @@ class CloudChannelServiceGrpcClient extends \Grpc\BaseStub {
      *
      * * PERMISSION_DENIED: If the account making the request and the account
      * being queried are different.
-     * * NOT_FOUND: The [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig] was not found.
+     * * NOT_FOUND: The
+     * [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig]
+     * was not found.
      * * INTERNAL: Any non-user error related to technical issues in the
      * backend. In this case, contact Cloud Channel support.
      *
      * Return Value:
-     * If successful, the [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig] resource, otherwise
-     * returns an error.
+     * If successful, the
+     * [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig]
+     * resource, otherwise returns an error.
      * @param \Google\Cloud\Channel\V1\GetChannelPartnerRepricingConfigRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -1127,14 +1165,17 @@ class CloudChannelServiceGrpcClient extends \Grpc\BaseStub {
      *
      * * PERMISSION_DENIED: If the account making the request and the account
      * being queried are different.
-     * * NOT_FOUND: The [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig] specified does not exist
-     * or is not associated with the given account.
+     * * NOT_FOUND: The
+     * [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig]
+     * specified does not exist or is not associated with the given account.
      * * INTERNAL: Any non-user error related to technical issues in the
      * backend. In this case, contact Cloud Channel support.
      *
      * Return Value:
-     * If successful, the [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig] resources.
-     * The data for each resource is displayed in the ascending order of:
+     * If successful, the
+     * [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig]
+     * resources. The data for each resource is displayed in the ascending order
+     * of:
      * * channel partner ID
      * * [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month]
      * * [ChannelPartnerRepricingConfig.update_time][google.cloud.channel.v1.ChannelPartnerRepricingConfig.update_time]
@@ -1156,9 +1197,10 @@ class CloudChannelServiceGrpcClient extends \Grpc\BaseStub {
     /**
      * Creates a ChannelPartnerRepricingConfig. Call this method to set
      * modifications for a specific ChannelPartner's bill. You can only create
-     * configs if the [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month] is a future
-     * month. If needed, you can create a config for the current month, with some
-     * restrictions.
+     * configs if the
+     * [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month]
+     * is a future month. If needed, you can create a config for the current
+     * month, with some restrictions.
      *
      * When creating a config for a future month, make sure there are no existing
      * configs for that
@@ -1172,8 +1214,9 @@ class CloudChannelServiceGrpcClient extends \Grpc\BaseStub {
      * Changes to the config may be immediate, but may take up to 24 hours.
      * * There is a limit of ten configs for any ChannelPartner or
      * [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month].
-     * * The contained [ChannelPartnerRepricingConfig.repricing_config][google.cloud.channel.v1.ChannelPartnerRepricingConfig.repricing_config] vaule
-     * must be different from the value used in the current config for a
+     * * The contained
+     * [ChannelPartnerRepricingConfig.repricing_config][google.cloud.channel.v1.ChannelPartnerRepricingConfig.repricing_config]
+     * vaule must be different from the value used in the current config for a
      * ChannelPartner.
      *
      * Possible Error Codes:
@@ -1183,14 +1226,16 @@ class CloudChannelServiceGrpcClient extends \Grpc\BaseStub {
      * * INVALID_ARGUMENT: Missing or invalid required parameters in the
      * request. Also displays if the updated config is for the current month or
      * past months.
-     * * NOT_FOUND: The [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig] specified does not exist
-     * or is not associated with the given account.
+     * * NOT_FOUND: The
+     * [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig]
+     * specified does not exist or is not associated with the given account.
      * * INTERNAL: Any non-user error related to technical issues in the
      * backend. In this case, contact Cloud Channel support.
      *
      * Return Value:
-     * If successful, the updated [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig] resource,
-     * otherwise returns an error.
+     * If successful, the updated
+     * [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig]
+     * resource, otherwise returns an error.
      * @param \Google\Cloud\Channel\V1\CreateChannelPartnerRepricingConfigRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -1210,10 +1255,11 @@ class CloudChannelServiceGrpcClient extends \Grpc\BaseStub {
      * the existing CustomerRepricingConfig.
      *
      * You can only update configs if the
-     * [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month] is a
-     * future month. To make changes to configs for the current month, use
-     * [CreateChannelPartnerRepricingConfig][google.cloud.channel.v1.CloudChannelService.CreateChannelPartnerRepricingConfig], taking note of its restrictions.
-     * You cannot update the [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month].
+     * [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month]
+     * is a future month. To make changes to configs for the current month, use
+     * [CreateChannelPartnerRepricingConfig][google.cloud.channel.v1.CloudChannelService.CreateChannelPartnerRepricingConfig],
+     * taking note of its restrictions. You cannot update the
+     * [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month].
      *
      * When updating a config in the future:
      *
@@ -1226,14 +1272,16 @@ class CloudChannelServiceGrpcClient extends \Grpc\BaseStub {
      * * INVALID_ARGUMENT: Missing or invalid required parameters in the
      * request. Also displays if the updated config is for the current month or
      * past months.
-     * * NOT_FOUND: The [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig] specified does not exist
-     * or is not associated with the given account.
+     * * NOT_FOUND: The
+     * [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig]
+     * specified does not exist or is not associated with the given account.
      * * INTERNAL: Any non-user error related to technical issues in the
      * backend. In this case, contact Cloud Channel support.
      *
      * Return Value:
-     * If successful, the updated [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig] resource,
-     * otherwise returns an error.
+     * If successful, the updated
+     * [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig]
+     * resource, otherwise returns an error.
      * @param \Google\Cloud\Channel\V1\UpdateChannelPartnerRepricingConfigRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -1248,19 +1296,23 @@ class CloudChannelServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Deletes the given [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig] permanently. You can
-     * only delete configs if their [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month] is
-     * set to a date after the current month.
+     * Deletes the given
+     * [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig]
+     * permanently. You can only delete configs if their
+     * [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month]
+     * is set to a date after the current month.
      *
      * Possible error codes:
      *
      * * PERMISSION_DENIED: The account making the request does not own
      * this customer.
      * * INVALID_ARGUMENT: Required request parameters are missing or invalid.
-     * * FAILED_PRECONDITION: The [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig] is active or
-     * in the past.
-     * * NOT_FOUND: No [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig] found for the name in the
-     * request.
+     * * FAILED_PRECONDITION: The
+     * [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig]
+     * is active or in the past.
+     * * NOT_FOUND: No
+     * [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig]
+     * found for the name in the request.
      * @param \Google\Cloud\Channel\V1\DeleteChannelPartnerRepricingConfigRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -1404,7 +1456,8 @@ class CloudChannelServiceGrpcClient extends \Grpc\BaseStub {
     /**
      * Registers a service account with subscriber privileges on the Cloud Pub/Sub
      * topic for this Channel Services account. After you create a
-     * subscriber, you get the events through [SubscriberEvent][google.cloud.channel.v1.SubscriberEvent]
+     * subscriber, you get the events through
+     * [SubscriberEvent][google.cloud.channel.v1.SubscriberEvent]
      *
      * Possible error codes:
      *

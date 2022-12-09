@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Response message for [CloudChannelReportsService.FetchReportResults][google.cloud.channel.v1.CloudChannelReportsService.FetchReportResults].
+ * Response message for
+ * [CloudChannelReportsService.FetchReportResults][google.cloud.channel.v1.CloudChannelReportsService.FetchReportResults].
  * Contains a tabular representation of the report results.
  *
  * Generated from protobuf message <code>google.cloud.channel.v1.FetchReportResultsResponse</code>
@@ -31,8 +32,9 @@ class FetchReportResultsResponse extends \Google\Protobuf\Internal\Message
      */
     private $rows;
     /**
-     * Pass this token to [FetchReportResultsRequest.page_token][google.cloud.channel.v1.FetchReportResultsRequest.page_token] to retrieve
-     * the next page of results.
+     * Pass this token to
+     * [FetchReportResultsRequest.page_token][google.cloud.channel.v1.FetchReportResultsRequest.page_token]
+     * to retrieve the next page of results.
      *
      * Generated from protobuf field <code>string next_page_token = 3;</code>
      */
@@ -51,8 +53,9 @@ class FetchReportResultsResponse extends \Google\Protobuf\Internal\Message
      *           The report's lists of values. Each row follows the settings and ordering
      *           of the columns from `report_metadata`.
      *     @type string $next_page_token
-     *           Pass this token to [FetchReportResultsRequest.page_token][google.cloud.channel.v1.FetchReportResultsRequest.page_token] to retrieve
-     *           the next page of results.
+     *           Pass this token to
+     *           [FetchReportResultsRequest.page_token][google.cloud.channel.v1.FetchReportResultsRequest.page_token]
+     *           to retrieve the next page of results.
      * }
      */
     public function __construct($data = NULL) {
@@ -127,8 +130,9 @@ class FetchReportResultsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Pass this token to [FetchReportResultsRequest.page_token][google.cloud.channel.v1.FetchReportResultsRequest.page_token] to retrieve
-     * the next page of results.
+     * Pass this token to
+     * [FetchReportResultsRequest.page_token][google.cloud.channel.v1.FetchReportResultsRequest.page_token]
+     * to retrieve the next page of results.
      *
      * Generated from protobuf field <code>string next_page_token = 3;</code>
      * @return string
@@ -139,8 +143,9 @@ class FetchReportResultsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Pass this token to [FetchReportResultsRequest.page_token][google.cloud.channel.v1.FetchReportResultsRequest.page_token] to retrieve
-     * the next page of results.
+     * Pass this token to
+     * [FetchReportResultsRequest.page_token][google.cloud.channel.v1.FetchReportResultsRequest.page_token]
+     * to retrieve the next page of results.
      *
      * Generated from protobuf field <code>string next_page_token = 3;</code>
      * @param string $var

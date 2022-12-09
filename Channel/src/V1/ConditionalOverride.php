@@ -20,7 +20,7 @@ class ConditionalOverride extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.RepricingAdjustment adjustment = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $adjustment = null;
+    private $adjustment = null;
     /**
      * Required. The [RebillingBasis][google.cloud.channel.v1.RebillingBasis] to
      * use for the applied override. Shows the relative cost based on your
@@ -28,13 +28,13 @@ class ConditionalOverride extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.RebillingBasis rebilling_basis = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $rebilling_basis = 0;
+    private $rebilling_basis = 0;
     /**
      * Required. Specifies the condition which, if met, will apply the override.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.RepricingCondition repricing_condition = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $repricing_condition = null;
+    private $repricing_condition = null;
 
     /**
      * Constructor.

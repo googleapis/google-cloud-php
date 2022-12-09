@@ -17,8 +17,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateChannelPartnerRepricingConfigRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name of the ChannelPartner that will receive the repricing
-     * config. Parent uses the format:
+     * Required. The resource name of the ChannelPartner that will receive the
+     * repricing config. Parent uses the format:
      * accounts/{account_id}/channelPartnerLinks/{channel_partner_id}
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -38,8 +38,8 @@ class CreateChannelPartnerRepricingConfigRequest extends \Google\Protobuf\Intern
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The resource name of the ChannelPartner that will receive the repricing
-     *           config. Parent uses the format:
+     *           Required. The resource name of the ChannelPartner that will receive the
+     *           repricing config. Parent uses the format:
      *           accounts/{account_id}/channelPartnerLinks/{channel_partner_id}
      *     @type \Google\Cloud\Channel\V1\ChannelPartnerRepricingConfig $channel_partner_repricing_config
      *           Required. The ChannelPartnerRepricingConfig object to update.
@@ -51,8 +51,8 @@ class CreateChannelPartnerRepricingConfigRequest extends \Google\Protobuf\Intern
     }
 
     /**
-     * Required. The resource name of the ChannelPartner that will receive the repricing
-     * config. Parent uses the format:
+     * Required. The resource name of the ChannelPartner that will receive the
+     * repricing config. Parent uses the format:
      * accounts/{account_id}/channelPartnerLinks/{channel_partner_id}
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -64,8 +64,8 @@ class CreateChannelPartnerRepricingConfigRequest extends \Google\Protobuf\Intern
     }
 
     /**
-     * Required. The resource name of the ChannelPartner that will receive the repricing
-     * config. Parent uses the format:
+     * Required. The resource name of the ChannelPartner that will receive the
+     * repricing config. Parent uses the format:
      * accounts/{account_id}/channelPartnerLinks/{channel_partner_id}
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>

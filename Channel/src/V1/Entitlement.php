@@ -61,17 +61,18 @@ class Entitlement extends \Google\Protobuf\Internal\Message
      */
     private $provisioned_service = null;
     /**
-     * Output only. Enumerable of all current suspension reasons for an entitlement.
+     * Output only. Enumerable of all current suspension reasons for an
+     * entitlement.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.Entitlement.SuspensionReason suspension_reasons = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $suspension_reasons;
     /**
-     * Optional. This purchase order (PO) information is for resellers to use for their
-     * company tracking usage. If a purchaseOrderId value is given, it appears in
-     * the API responses and shows up in the invoice. The property accepts up to
-     * 80 plain text characters. This is only supported for Google Workspace
-     * entitlements.
+     * Optional. This purchase order (PO) information is for resellers to use for
+     * their company tracking usage. If a purchaseOrderId value is given, it
+     * appears in the API responses and shows up in the invoice. The property
+     * accepts up to 80 plain text characters. This is only supported for Google
+     * Workspace entitlements.
      *
      * Generated from protobuf field <code>string purchase_order_id = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -125,13 +126,14 @@ class Entitlement extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Channel\V1\ProvisionedService $provisioned_service
      *           Output only. Service provisioning details for the entitlement.
      *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $suspension_reasons
-     *           Output only. Enumerable of all current suspension reasons for an entitlement.
+     *           Output only. Enumerable of all current suspension reasons for an
+     *           entitlement.
      *     @type string $purchase_order_id
-     *           Optional. This purchase order (PO) information is for resellers to use for their
-     *           company tracking usage. If a purchaseOrderId value is given, it appears in
-     *           the API responses and shows up in the invoice. The property accepts up to
-     *           80 plain text characters. This is only supported for Google Workspace
-     *           entitlements.
+     *           Optional. This purchase order (PO) information is for resellers to use for
+     *           their company tracking usage. If a purchaseOrderId value is given, it
+     *           appears in the API responses and shows up in the invoice. The property
+     *           accepts up to 80 plain text characters. This is only supported for Google
+     *           Workspace entitlements.
      *     @type \Google\Cloud\Channel\V1\TrialSettings $trial_settings
      *           Output only. Settings for trial offers.
      *     @type \Google\Cloud\Channel\V1\AssociationInfo $association_info
@@ -380,7 +382,8 @@ class Entitlement extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Enumerable of all current suspension reasons for an entitlement.
+     * Output only. Enumerable of all current suspension reasons for an
+     * entitlement.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.Entitlement.SuspensionReason suspension_reasons = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -391,7 +394,8 @@ class Entitlement extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Enumerable of all current suspension reasons for an entitlement.
+     * Output only. Enumerable of all current suspension reasons for an
+     * entitlement.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.Entitlement.SuspensionReason suspension_reasons = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
@@ -406,11 +410,11 @@ class Entitlement extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. This purchase order (PO) information is for resellers to use for their
-     * company tracking usage. If a purchaseOrderId value is given, it appears in
-     * the API responses and shows up in the invoice. The property accepts up to
-     * 80 plain text characters. This is only supported for Google Workspace
-     * entitlements.
+     * Optional. This purchase order (PO) information is for resellers to use for
+     * their company tracking usage. If a purchaseOrderId value is given, it
+     * appears in the API responses and shows up in the invoice. The property
+     * accepts up to 80 plain text characters. This is only supported for Google
+     * Workspace entitlements.
      *
      * Generated from protobuf field <code>string purchase_order_id = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -421,11 +425,11 @@ class Entitlement extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. This purchase order (PO) information is for resellers to use for their
-     * company tracking usage. If a purchaseOrderId value is given, it appears in
-     * the API responses and shows up in the invoice. The property accepts up to
-     * 80 plain text characters. This is only supported for Google Workspace
-     * entitlements.
+     * Optional. This purchase order (PO) information is for resellers to use for
+     * their company tracking usage. If a purchaseOrderId value is given, it
+     * appears in the API responses and shows up in the invoice. The property
+     * accepts up to 80 plain text characters. This is only supported for Google
+     * Workspace entitlements.
      *
      * Generated from protobuf field <code>string purchase_order_id = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

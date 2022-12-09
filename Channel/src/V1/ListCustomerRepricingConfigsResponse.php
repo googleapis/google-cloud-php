@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Response message for [CloudChannelService.ListCustomerRepricingConfigs][google.cloud.channel.v1.CloudChannelService.ListCustomerRepricingConfigs].
+ * Response message for
+ * [CloudChannelService.ListCustomerRepricingConfigs][google.cloud.channel.v1.CloudChannelService.ListCustomerRepricingConfigs].
  *
  * Generated from protobuf message <code>google.cloud.channel.v1.ListCustomerRepricingConfigsResponse</code>
  */
@@ -23,8 +24,9 @@ class ListCustomerRepricingConfigsResponse extends \Google\Protobuf\Internal\Mes
     private $customer_repricing_configs;
     /**
      * A token to retrieve the next page of results.
-     * Pass to [ListCustomerRepricingConfigsRequest.page_token][google.cloud.channel.v1.ListCustomerRepricingConfigsRequest.page_token] to obtain that
-     * page.
+     * Pass to
+     * [ListCustomerRepricingConfigsRequest.page_token][google.cloud.channel.v1.ListCustomerRepricingConfigsRequest.page_token]
+     * to obtain that page.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
@@ -40,8 +42,9 @@ class ListCustomerRepricingConfigsResponse extends \Google\Protobuf\Internal\Mes
      *           The repricing configs for this channel partner.
      *     @type string $next_page_token
      *           A token to retrieve the next page of results.
-     *           Pass to [ListCustomerRepricingConfigsRequest.page_token][google.cloud.channel.v1.ListCustomerRepricingConfigsRequest.page_token] to obtain that
-     *           page.
+     *           Pass to
+     *           [ListCustomerRepricingConfigsRequest.page_token][google.cloud.channel.v1.ListCustomerRepricingConfigsRequest.page_token]
+     *           to obtain that page.
      * }
      */
     public function __construct($data = NULL) {
@@ -77,8 +80,9 @@ class ListCustomerRepricingConfigsResponse extends \Google\Protobuf\Internal\Mes
 
     /**
      * A token to retrieve the next page of results.
-     * Pass to [ListCustomerRepricingConfigsRequest.page_token][google.cloud.channel.v1.ListCustomerRepricingConfigsRequest.page_token] to obtain that
-     * page.
+     * Pass to
+     * [ListCustomerRepricingConfigsRequest.page_token][google.cloud.channel.v1.ListCustomerRepricingConfigsRequest.page_token]
+     * to obtain that page.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @return string
@@ -90,8 +94,9 @@ class ListCustomerRepricingConfigsResponse extends \Google\Protobuf\Internal\Mes
 
     /**
      * A token to retrieve the next page of results.
-     * Pass to [ListCustomerRepricingConfigsRequest.page_token][google.cloud.channel.v1.ListCustomerRepricingConfigsRequest.page_token] to obtain that
-     * page.
+     * Pass to
+     * [ListCustomerRepricingConfigsRequest.page_token][google.cloud.channel.v1.ListCustomerRepricingConfigsRequest.page_token]
+     * to obtain that page.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @param string $var

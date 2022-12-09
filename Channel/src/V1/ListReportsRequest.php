@@ -9,24 +9,24 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [CloudChannelReportsService.ListReports][google.cloud.channel.v1.CloudChannelReportsService.ListReports].
+ * Request message for
+ * [CloudChannelReportsService.ListReports][google.cloud.channel.v1.CloudChannelReportsService.ListReports].
  *
  * Generated from protobuf message <code>google.cloud.channel.v1.ListReportsRequest</code>
  */
 class ListReportsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name of the partner account to list available reports for.
-     * Parent uses the format:
-     * accounts/{account_id}
+     * Required. The resource name of the partner account to list available
+     * reports for. Parent uses the format: accounts/{account_id}
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $parent = '';
     /**
-     * Optional. Requested page size of the report. The server might return fewer results
-     * than requested. If unspecified, returns 20 reports.
-     * The maximum value is 100.
+     * Optional. Requested page size of the report. The server might return fewer
+     * results than requested. If unspecified, returns 20 reports. The maximum
+     * value is 100.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -34,8 +34,10 @@ class ListReportsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A token that specifies a page of results beyond the first page.
      * Obtained through
-     * [ListReportsResponse.next_page_token][google.cloud.channel.v1.ListReportsResponse.next_page_token] of the previous
-     * [CloudChannelReportsService.ListReports][google.cloud.channel.v1.CloudChannelReportsService.ListReports] call.
+     * [ListReportsResponse.next_page_token][google.cloud.channel.v1.ListReportsResponse.next_page_token]
+     * of the previous
+     * [CloudChannelReportsService.ListReports][google.cloud.channel.v1.CloudChannelReportsService.ListReports]
+     * call.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -57,18 +59,19 @@ class ListReportsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The resource name of the partner account to list available reports for.
-     *           Parent uses the format:
-     *           accounts/{account_id}
+     *           Required. The resource name of the partner account to list available
+     *           reports for. Parent uses the format: accounts/{account_id}
      *     @type int $page_size
-     *           Optional. Requested page size of the report. The server might return fewer results
-     *           than requested. If unspecified, returns 20 reports.
-     *           The maximum value is 100.
+     *           Optional. Requested page size of the report. The server might return fewer
+     *           results than requested. If unspecified, returns 20 reports. The maximum
+     *           value is 100.
      *     @type string $page_token
      *           Optional. A token that specifies a page of results beyond the first page.
      *           Obtained through
-     *           [ListReportsResponse.next_page_token][google.cloud.channel.v1.ListReportsResponse.next_page_token] of the previous
-     *           [CloudChannelReportsService.ListReports][google.cloud.channel.v1.CloudChannelReportsService.ListReports] call.
+     *           [ListReportsResponse.next_page_token][google.cloud.channel.v1.ListReportsResponse.next_page_token]
+     *           of the previous
+     *           [CloudChannelReportsService.ListReports][google.cloud.channel.v1.CloudChannelReportsService.ListReports]
+     *           call.
      *     @type string $language_code
      *           Optional. The BCP-47 language code, such as "en-US".  If specified, the
      *           response is localized to the corresponding language code if the
@@ -82,9 +85,8 @@ class ListReportsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the partner account to list available reports for.
-     * Parent uses the format:
-     * accounts/{account_id}
+     * Required. The resource name of the partner account to list available
+     * reports for. Parent uses the format: accounts/{account_id}
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -95,9 +97,8 @@ class ListReportsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the partner account to list available reports for.
-     * Parent uses the format:
-     * accounts/{account_id}
+     * Required. The resource name of the partner account to list available
+     * reports for. Parent uses the format: accounts/{account_id}
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -112,9 +113,9 @@ class ListReportsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Requested page size of the report. The server might return fewer results
-     * than requested. If unspecified, returns 20 reports.
-     * The maximum value is 100.
+     * Optional. Requested page size of the report. The server might return fewer
+     * results than requested. If unspecified, returns 20 reports. The maximum
+     * value is 100.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -125,9 +126,9 @@ class ListReportsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Requested page size of the report. The server might return fewer results
-     * than requested. If unspecified, returns 20 reports.
-     * The maximum value is 100.
+     * Optional. Requested page size of the report. The server might return fewer
+     * results than requested. If unspecified, returns 20 reports. The maximum
+     * value is 100.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
@@ -144,8 +145,10 @@ class ListReportsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A token that specifies a page of results beyond the first page.
      * Obtained through
-     * [ListReportsResponse.next_page_token][google.cloud.channel.v1.ListReportsResponse.next_page_token] of the previous
-     * [CloudChannelReportsService.ListReports][google.cloud.channel.v1.CloudChannelReportsService.ListReports] call.
+     * [ListReportsResponse.next_page_token][google.cloud.channel.v1.ListReportsResponse.next_page_token]
+     * of the previous
+     * [CloudChannelReportsService.ListReports][google.cloud.channel.v1.CloudChannelReportsService.ListReports]
+     * call.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -158,8 +161,10 @@ class ListReportsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A token that specifies a page of results beyond the first page.
      * Obtained through
-     * [ListReportsResponse.next_page_token][google.cloud.channel.v1.ListReportsResponse.next_page_token] of the previous
-     * [CloudChannelReportsService.ListReports][google.cloud.channel.v1.CloudChannelReportsService.ListReports] call.
+     * [ListReportsResponse.next_page_token][google.cloud.channel.v1.ListReportsResponse.next_page_token]
+     * of the previous
+     * [CloudChannelReportsService.ListReports][google.cloud.channel.v1.CloudChannelReportsService.ListReports]
+     * call.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

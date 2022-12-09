@@ -10,7 +10,8 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * The result of a [RunReportJob][] operation. Contains the name to use in
- * [FetchReportResultsRequest.report_job][google.cloud.channel.v1.FetchReportResultsRequest.report_job] and the status of the operation.
+ * [FetchReportResultsRequest.report_job][google.cloud.channel.v1.FetchReportResultsRequest.report_job]
+ * and the status of the operation.
  *
  * Generated from protobuf message <code>google.cloud.channel.v1.ReportJob</code>
  */

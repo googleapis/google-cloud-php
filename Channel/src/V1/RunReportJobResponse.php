@@ -9,14 +9,16 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Response message for [CloudChannelReportsService.RunReportJob][google.cloud.channel.v1.CloudChannelReportsService.RunReportJob].
+ * Response message for
+ * [CloudChannelReportsService.RunReportJob][google.cloud.channel.v1.CloudChannelReportsService.RunReportJob].
  *
  * Generated from protobuf message <code>google.cloud.channel.v1.RunReportJobResponse</code>
  */
 class RunReportJobResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Pass `report_job.name` to [FetchReportResultsRequest.report_job][google.cloud.channel.v1.FetchReportResultsRequest.report_job]
+     * Pass `report_job.name` to
+     * [FetchReportResultsRequest.report_job][google.cloud.channel.v1.FetchReportResultsRequest.report_job]
      * to retrieve the report's results.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.ReportJob report_job = 1;</code>
@@ -38,7 +40,8 @@ class RunReportJobResponse extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Channel\V1\ReportJob $report_job
-     *           Pass `report_job.name` to [FetchReportResultsRequest.report_job][google.cloud.channel.v1.FetchReportResultsRequest.report_job]
+     *           Pass `report_job.name` to
+     *           [FetchReportResultsRequest.report_job][google.cloud.channel.v1.FetchReportResultsRequest.report_job]
      *           to retrieve the report's results.
      *     @type \Google\Cloud\Channel\V1\ReportResultsMetadata $report_metadata
      *           The metadata for the report's results (display name, columns, row count,
@@ -52,7 +55,8 @@ class RunReportJobResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Pass `report_job.name` to [FetchReportResultsRequest.report_job][google.cloud.channel.v1.FetchReportResultsRequest.report_job]
+     * Pass `report_job.name` to
+     * [FetchReportResultsRequest.report_job][google.cloud.channel.v1.FetchReportResultsRequest.report_job]
      * to retrieve the report's results.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.ReportJob report_job = 1;</code>
@@ -74,7 +78,8 @@ class RunReportJobResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Pass `report_job.name` to [FetchReportResultsRequest.report_job][google.cloud.channel.v1.FetchReportResultsRequest.report_job]
+     * Pass `report_job.name` to
+     * [FetchReportResultsRequest.report_job][google.cloud.channel.v1.FetchReportResultsRequest.report_job]
      * to retrieve the report's results.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.ReportJob report_job = 1;</code>
