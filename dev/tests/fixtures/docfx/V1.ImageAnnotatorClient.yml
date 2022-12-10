@@ -724,37 +724,46 @@ items:
       
       Sample code:
       ```php
-      $imageAnnotatorClient = new ImageAnnotatorClient();
-      try {
-          $requests = [];
-          $operationResponse = $imageAnnotatorClient->asyncBatchAnnotateFiles($requests);
-          $operationResponse->pollUntilComplete();
-          if ($operationResponse->operationSucceeded()) {
-              $result = $operationResponse->getResult();
-          // doSomethingWith($result)
-          } else {
-              $error = $operationResponse->getError();
-              // handleError($error)
+      use Google\ApiCore\ApiException;
+      use Google\ApiCore\OperationResponse;
+      use Google\Cloud\Vision\V1\AsyncAnnotateFileRequest;
+      use Google\Cloud\Vision\V1\AsyncBatchAnnotateFilesResponse;
+      use Google\Cloud\Vision\V1\ImageAnnotatorClient;
+      use Google\Rpc\Status;
+      
+      /**
+       * This sample has been automatically generated and should be regarded as a code
+       * template only. It will require modifications to work:
+       *  - It may require correct/in-range values for request initialization.
+       *  - It may require specifying regional endpoints when creating the service client,
+       *    please see the apiEndpoint client configuration option for more details.
+       */
+      function async_batch_annotate_files_sample(): void
+      {
+          // Create a client.
+          $imageAnnotatorClient = new ImageAnnotatorClient();
+      
+          // Prepare any non-scalar elements to be passed along with the request.
+          $requests = [new AsyncAnnotateFileRequest()];
+      
+          // Call the API and handle any network failures.
+          try {
+              /** @var OperationResponse $response */
+              $response = $imageAnnotatorClient->asyncBatchAnnotateFiles($requests);
+              $response->pollUntilComplete();
+      
+              if ($response->operationSucceeded()) {
+                  /** @var AsyncBatchAnnotateFilesResponse $result */
+                  $result = $response->getResult();
+                  printf('Operation successful with response data: %s' . PHP_EOL, $result->serializeToJsonString());
+              } else {
+                  /** @var Status $error */
+                  $error = $response->getError();
+                  printf('Operation failed with error data: %s' . PHP_EOL, $error->serializeToJsonString());
+              }
+          } catch (ApiException $ex) {
+              printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
           }
-          // Alternatively:
-          // start the operation, keep the operation name, and resume later
-          $operationResponse = $imageAnnotatorClient->asyncBatchAnnotateFiles($requests);
-          $operationName = $operationResponse->getName();
-          // ... do other work
-          $newOperationResponse = $imageAnnotatorClient->resumeOperation($operationName, 'asyncBatchAnnotateFiles');
-          while (!$newOperationResponse->isDone()) {
-              // ... do other work
-              $newOperationResponse->reload();
-          }
-          if ($newOperationResponse->operationSucceeded()) {
-              $result = $newOperationResponse->getResult();
-          // doSomethingWith($result)
-          } else {
-              $error = $newOperationResponse->getError();
-              // handleError($error)
-          }
-      } finally {
-          $imageAnnotatorClient->close();
       }
       ```
     parent: \Google\Cloud\Vision\V1\ImageAnnotatorClient
@@ -799,38 +808,48 @@ items:
       
       Sample code:
       ```php
-      $imageAnnotatorClient = new ImageAnnotatorClient();
-      try {
-          $requests = [];
+      use Google\ApiCore\ApiException;
+      use Google\ApiCore\OperationResponse;
+      use Google\Cloud\Vision\V1\AnnotateImageRequest;
+      use Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesResponse;
+      use Google\Cloud\Vision\V1\ImageAnnotatorClient;
+      use Google\Cloud\Vision\V1\OutputConfig;
+      use Google\Rpc\Status;
+      
+      /**
+       * This sample has been automatically generated and should be regarded as a code
+       * template only. It will require modifications to work:
+       *  - It may require correct/in-range values for request initialization.
+       *  - It may require specifying regional endpoints when creating the service client,
+       *    please see the apiEndpoint client configuration option for more details.
+       */
+      function async_batch_annotate_images_sample(): void
+      {
+          // Create a client.
+          $imageAnnotatorClient = new ImageAnnotatorClient();
+      
+          // Prepare any non-scalar elements to be passed along with the request.
+          $requests = [new AnnotateImageRequest()];
           $outputConfig = new OutputConfig();
-          $operationResponse = $imageAnnotatorClient->asyncBatchAnnotateImages($requests, $outputConfig);
-          $operationResponse->pollUntilComplete();
-          if ($operationResponse->operationSucceeded()) {
-              $result = $operationResponse->getResult();
-          // doSomethingWith($result)
-          } else {
-              $error = $operationResponse->getError();
-              // handleError($error)
+      
+          // Call the API and handle any network failures.
+          try {
+              /** @var OperationResponse $response */
+              $response = $imageAnnotatorClient->asyncBatchAnnotateImages($requests, $outputConfig);
+              $response->pollUntilComplete();
+      
+              if ($response->operationSucceeded()) {
+                  /** @var AsyncBatchAnnotateImagesResponse $result */
+                  $result = $response->getResult();
+                  printf('Operation successful with response data: %s' . PHP_EOL, $result->serializeToJsonString());
+              } else {
+                  /** @var Status $error */
+                  $error = $response->getError();
+                  printf('Operation failed with error data: %s' . PHP_EOL, $error->serializeToJsonString());
+              }
+          } catch (ApiException $ex) {
+              printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
           }
-          // Alternatively:
-          // start the operation, keep the operation name, and resume later
-          $operationResponse = $imageAnnotatorClient->asyncBatchAnnotateImages($requests, $outputConfig);
-          $operationName = $operationResponse->getName();
-          // ... do other work
-          $newOperationResponse = $imageAnnotatorClient->resumeOperation($operationName, 'asyncBatchAnnotateImages');
-          while (!$newOperationResponse->isDone()) {
-              // ... do other work
-              $newOperationResponse->reload();
-          }
-          if ($newOperationResponse->operationSucceeded()) {
-              $result = $newOperationResponse->getResult();
-          // doSomethingWith($result)
-          } else {
-              $error = $newOperationResponse->getError();
-              // handleError($error)
-          }
-      } finally {
-          $imageAnnotatorClient->close();
       }
       ```
     parent: \Google\Cloud\Vision\V1\ImageAnnotatorClient
@@ -878,12 +897,34 @@ items:
       
       Sample code:
       ```php
-      $imageAnnotatorClient = new ImageAnnotatorClient();
-      try {
-          $requests = [];
-          $response = $imageAnnotatorClient->batchAnnotateFiles($requests);
-      } finally {
-          $imageAnnotatorClient->close();
+      use Google\ApiCore\ApiException;
+      use Google\Cloud\Vision\V1\AnnotateFileRequest;
+      use Google\Cloud\Vision\V1\BatchAnnotateFilesResponse;
+      use Google\Cloud\Vision\V1\ImageAnnotatorClient;
+      
+      /**
+       * This sample has been automatically generated and should be regarded as a code
+       * template only. It will require modifications to work:
+       *  - It may require correct/in-range values for request initialization.
+       *  - It may require specifying regional endpoints when creating the service client,
+       *    please see the apiEndpoint client configuration option for more details.
+       */
+      function batch_annotate_files_sample(): void
+      {
+          // Create a client.
+          $imageAnnotatorClient = new ImageAnnotatorClient();
+      
+          // Prepare any non-scalar elements to be passed along with the request.
+          $requests = [new AnnotateFileRequest()];
+      
+          // Call the API and handle any network failures.
+          try {
+              /** @var BatchAnnotateFilesResponse $response */
+              $response = $imageAnnotatorClient->batchAnnotateFiles($requests);
+              printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+          } catch (ApiException $ex) {
+              printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+          }
       }
       ```
     parent: \Google\Cloud\Vision\V1\ImageAnnotatorClient
@@ -920,12 +961,34 @@ items:
       
       Sample code:
       ```php
-      $imageAnnotatorClient = new ImageAnnotatorClient();
-      try {
-          $requests = [];
-          $response = $imageAnnotatorClient->batchAnnotateImages($requests);
-      } finally {
-          $imageAnnotatorClient->close();
+      use Google\ApiCore\ApiException;
+      use Google\Cloud\Vision\V1\AnnotateImageRequest;
+      use Google\Cloud\Vision\V1\BatchAnnotateImagesResponse;
+      use Google\Cloud\Vision\V1\ImageAnnotatorClient;
+      
+      /**
+       * This sample has been automatically generated and should be regarded as a code
+       * template only. It will require modifications to work:
+       *  - It may require correct/in-range values for request initialization.
+       *  - It may require specifying regional endpoints when creating the service client,
+       *    please see the apiEndpoint client configuration option for more details.
+       */
+      function batch_annotate_images_sample(): void
+      {
+          // Create a client.
+          $imageAnnotatorClient = new ImageAnnotatorClient();
+      
+          // Prepare any non-scalar elements to be passed along with the request.
+          $requests = [new AnnotateImageRequest()];
+      
+          // Call the API and handle any network failures.
+          try {
+              /** @var BatchAnnotateImagesResponse $response */
+              $response = $imageAnnotatorClient->batchAnnotateImages($requests);
+              printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+          } catch (ApiException $ex) {
+              printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+          }
       }
       ```
     parent: \Google\Cloud\Vision\V1\ImageAnnotatorClient

@@ -333,13 +333,48 @@ items:
       
       Sample code:
       ```php
-      $productSearchClient = new ProductSearchClient();
-      try {
-          $formattedName = $productSearchClient->productSetName('[PROJECT]', '[LOCATION]', '[PRODUCT_SET]');
-          $formattedProduct = $productSearchClient->productName('[PROJECT]', '[LOCATION]', '[PRODUCT]');
-          $productSearchClient->addProductToProductSet($formattedName, $formattedProduct);
-      } finally {
-          $productSearchClient->close();
+      use Google\ApiCore\ApiException;
+      use Google\Cloud\Vision\V1\ProductSearchClient;
+      
+      /**
+       * @param string $formattedName    The resource name for the ProductSet to modify.
+       *
+       *                                 Format is:
+       *                                 `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
+       *                                 Please see {@see ProductSearchClient::productSetName()} for help formatting this field.
+       * @param string $formattedProduct The resource name for the Product to be added to this ProductSet.
+       *
+       *                                 Format is:
+       *                                 `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`
+       *                                 Please see {@see ProductSearchClient::productName()} for help formatting this field.
+       */
+      function add_product_to_product_set_sample(string $formattedName, string $formattedProduct): void
+      {
+          // Create a client.
+          $productSearchClient = new ProductSearchClient();
+      
+          // Call the API and handle any network failures.
+          try {
+              $productSearchClient->addProductToProductSet($formattedName, $formattedProduct);
+              printf('Call completed successfully.' . PHP_EOL);
+          } catch (ApiException $ex) {
+              printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+          }
+      }
+      
+      /**
+       * This sample has been automatically generated and should be regarded as a code
+       * template only. It will require modifications to work:
+       *  - It may require correct/in-range values for request initialization.
+       *  - It may require specifying regional endpoints when creating the service client,
+       *    please see the apiEndpoint client configuration option for more details.
+       */
+      function callSample(): void
+      {
+          $formattedName = ProductSearchClient::productSetName('[PROJECT]', '[LOCATION]', '[PRODUCT_SET]');
+          $formattedProduct = ProductSearchClient::productName('[PROJECT]', '[LOCATION]', '[PRODUCT]');
+      
+          add_product_to_product_set_sample($formattedName, $formattedProduct);
       }
       ```
     parent: \Google\Cloud\Vision\V1\ProductSearchClient
@@ -380,13 +415,47 @@ items:
       
       Sample code:
       ```php
-      $productSearchClient = new ProductSearchClient();
-      try {
-          $formattedParent = $productSearchClient->locationName('[PROJECT]', '[LOCATION]');
+      use Google\ApiCore\ApiException;
+      use Google\Cloud\Vision\V1\Product;
+      use Google\Cloud\Vision\V1\ProductSearchClient;
+      
+      /**
+       * @param string $formattedParent The project in which the Product should be created.
+       *
+       *                                Format is
+       *                                `projects/PROJECT_ID/locations/LOC_ID`. Please see
+       *                                {@see ProductSearchClient::locationName()} for help formatting this field.
+       */
+      function create_product_sample(string $formattedParent): void
+      {
+          // Create a client.
+          $productSearchClient = new ProductSearchClient();
+      
+          // Prepare any non-scalar elements to be passed along with the request.
           $product = new Product();
-          $response = $productSearchClient->createProduct($formattedParent, $product);
-      } finally {
-          $productSearchClient->close();
+      
+          // Call the API and handle any network failures.
+          try {
+              /** @var Product $response */
+              $response = $productSearchClient->createProduct($formattedParent, $product);
+              printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+          } catch (ApiException $ex) {
+              printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+          }
+      }
+      
+      /**
+       * This sample has been automatically generated and should be regarded as a code
+       * template only. It will require modifications to work:
+       *  - It may require correct/in-range values for request initialization.
+       *  - It may require specifying regional endpoints when creating the service client,
+       *    please see the apiEndpoint client configuration option for more details.
+       */
+      function callSample(): void
+      {
+          $formattedParent = ProductSearchClient::locationName('[PROJECT]', '[LOCATION]');
+      
+          create_product_sample($formattedParent);
       }
       ```
     parent: \Google\Cloud\Vision\V1\ProductSearchClient
@@ -432,13 +501,46 @@ items:
       
       Sample code:
       ```php
-      $productSearchClient = new ProductSearchClient();
-      try {
-          $formattedParent = $productSearchClient->locationName('[PROJECT]', '[LOCATION]');
+      use Google\ApiCore\ApiException;
+      use Google\Cloud\Vision\V1\ProductSearchClient;
+      use Google\Cloud\Vision\V1\ProductSet;
+      
+      /**
+       * @param string $formattedParent The project in which the ProductSet should be created.
+       *
+       *                                Format is `projects/PROJECT_ID/locations/LOC_ID`. Please see
+       *                                {@see ProductSearchClient::locationName()} for help formatting this field.
+       */
+      function create_product_set_sample(string $formattedParent): void
+      {
+          // Create a client.
+          $productSearchClient = new ProductSearchClient();
+      
+          // Prepare any non-scalar elements to be passed along with the request.
           $productSet = new ProductSet();
-          $response = $productSearchClient->createProductSet($formattedParent, $productSet);
-      } finally {
-          $productSearchClient->close();
+      
+          // Call the API and handle any network failures.
+          try {
+              /** @var ProductSet $response */
+              $response = $productSearchClient->createProductSet($formattedParent, $productSet);
+              printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+          } catch (ApiException $ex) {
+              printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+          }
+      }
+      
+      /**
+       * This sample has been automatically generated and should be regarded as a code
+       * template only. It will require modifications to work:
+       *  - It may require correct/in-range values for request initialization.
+       *  - It may require specifying regional endpoints when creating the service client,
+       *    please see the apiEndpoint client configuration option for more details.
+       */
+      function callSample(): void
+      {
+          $formattedParent = ProductSearchClient::locationName('[PROJECT]', '[LOCATION]');
+      
+          create_product_set_sample($formattedParent);
       }
       ```
     parent: \Google\Cloud\Vision\V1\ProductSearchClient
@@ -497,13 +599,52 @@ items:
       
       Sample code:
       ```php
-      $productSearchClient = new ProductSearchClient();
-      try {
-          $formattedParent = $productSearchClient->productName('[PROJECT]', '[LOCATION]', '[PRODUCT]');
-          $referenceImage = new ReferenceImage();
-          $response = $productSearchClient->createReferenceImage($formattedParent, $referenceImage);
-      } finally {
-          $productSearchClient->close();
+      use Google\ApiCore\ApiException;
+      use Google\Cloud\Vision\V1\ProductSearchClient;
+      use Google\Cloud\Vision\V1\ReferenceImage;
+      
+      /**
+       * @param string $formattedParent   Resource name of the product in which to create the reference image.
+       *
+       *                                  Format is
+       *                                  `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`. Please see
+       *                                  {@see ProductSearchClient::productName()} for help formatting this field.
+       * @param string $referenceImageUri The Google Cloud Storage URI of the reference image.
+       *
+       *                                  The URI must start with `gs://`.
+       */
+      function create_reference_image_sample(string $formattedParent, string $referenceImageUri): void
+      {
+          // Create a client.
+          $productSearchClient = new ProductSearchClient();
+      
+          // Prepare any non-scalar elements to be passed along with the request.
+          $referenceImage = (new ReferenceImage())
+              ->setUri($referenceImageUri);
+      
+          // Call the API and handle any network failures.
+          try {
+              /** @var ReferenceImage $response */
+              $response = $productSearchClient->createReferenceImage($formattedParent, $referenceImage);
+              printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+          } catch (ApiException $ex) {
+              printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+          }
+      }
+      
+      /**
+       * This sample has been automatically generated and should be regarded as a code
+       * template only. It will require modifications to work:
+       *  - It may require correct/in-range values for request initialization.
+       *  - It may require specifying regional endpoints when creating the service client,
+       *    please see the apiEndpoint client configuration option for more details.
+       */
+      function callSample(): void
+      {
+          $formattedParent = ProductSearchClient::productName('[PROJECT]', '[LOCATION]', '[PRODUCT]');
+          $referenceImageUri = '[URI]';
+      
+          create_reference_image_sample($formattedParent, $referenceImageUri);
       }
       ```
     parent: \Google\Cloud\Vision\V1\ProductSearchClient
@@ -548,12 +689,42 @@ items:
       
       Sample code:
       ```php
-      $productSearchClient = new ProductSearchClient();
-      try {
-          $formattedName = $productSearchClient->productName('[PROJECT]', '[LOCATION]', '[PRODUCT]');
-          $productSearchClient->deleteProduct($formattedName);
-      } finally {
-          $productSearchClient->close();
+      use Google\ApiCore\ApiException;
+      use Google\Cloud\Vision\V1\ProductSearchClient;
+      
+      /**
+       * @param string $formattedName Resource name of product to delete.
+       *
+       *                              Format is:
+       *                              `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`
+       *                              Please see {@see ProductSearchClient::productName()} for help formatting this field.
+       */
+      function delete_product_sample(string $formattedName): void
+      {
+          // Create a client.
+          $productSearchClient = new ProductSearchClient();
+      
+          // Call the API and handle any network failures.
+          try {
+              $productSearchClient->deleteProduct($formattedName);
+              printf('Call completed successfully.' . PHP_EOL);
+          } catch (ApiException $ex) {
+              printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+          }
+      }
+      
+      /**
+       * This sample has been automatically generated and should be regarded as a code
+       * template only. It will require modifications to work:
+       *  - It may require correct/in-range values for request initialization.
+       *  - It may require specifying regional endpoints when creating the service client,
+       *    please see the apiEndpoint client configuration option for more details.
+       */
+      function callSample(): void
+      {
+          $formattedName = ProductSearchClient::productName('[PROJECT]', '[LOCATION]', '[PRODUCT]');
+      
+          delete_product_sample($formattedName);
       }
       ```
     parent: \Google\Cloud\Vision\V1\ProductSearchClient
@@ -586,12 +757,42 @@ items:
       
       Sample code:
       ```php
-      $productSearchClient = new ProductSearchClient();
-      try {
-          $formattedName = $productSearchClient->productSetName('[PROJECT]', '[LOCATION]', '[PRODUCT_SET]');
-          $productSearchClient->deleteProductSet($formattedName);
-      } finally {
-          $productSearchClient->close();
+      use Google\ApiCore\ApiException;
+      use Google\Cloud\Vision\V1\ProductSearchClient;
+      
+      /**
+       * @param string $formattedName Resource name of the ProductSet to delete.
+       *
+       *                              Format is:
+       *                              `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
+       *                              Please see {@see ProductSearchClient::productSetName()} for help formatting this field.
+       */
+      function delete_product_set_sample(string $formattedName): void
+      {
+          // Create a client.
+          $productSearchClient = new ProductSearchClient();
+      
+          // Call the API and handle any network failures.
+          try {
+              $productSearchClient->deleteProductSet($formattedName);
+              printf('Call completed successfully.' . PHP_EOL);
+          } catch (ApiException $ex) {
+              printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+          }
+      }
+      
+      /**
+       * This sample has been automatically generated and should be regarded as a code
+       * template only. It will require modifications to work:
+       *  - It may require correct/in-range values for request initialization.
+       *  - It may require specifying regional endpoints when creating the service client,
+       *    please see the apiEndpoint client configuration option for more details.
+       */
+      function callSample(): void
+      {
+          $formattedName = ProductSearchClient::productSetName('[PROJECT]', '[LOCATION]', '[PRODUCT_SET]');
+      
+          delete_product_set_sample($formattedName);
       }
       ```
     parent: \Google\Cloud\Vision\V1\ProductSearchClient
@@ -627,12 +828,47 @@ items:
       
       Sample code:
       ```php
-      $productSearchClient = new ProductSearchClient();
-      try {
-          $formattedName = $productSearchClient->referenceImageName('[PROJECT]', '[LOCATION]', '[PRODUCT]', '[REFERENCE_IMAGE]');
-          $productSearchClient->deleteReferenceImage($formattedName);
-      } finally {
-          $productSearchClient->close();
+      use Google\ApiCore\ApiException;
+      use Google\Cloud\Vision\V1\ProductSearchClient;
+      
+      /**
+       * @param string $formattedName The resource name of the reference image to delete.
+       *
+       *                              Format is:
+       *                              `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID/referenceImages/IMAGE_ID`
+       *                              Please see {@see ProductSearchClient::referenceImageName()} for help formatting this field.
+       */
+      function delete_reference_image_sample(string $formattedName): void
+      {
+          // Create a client.
+          $productSearchClient = new ProductSearchClient();
+      
+          // Call the API and handle any network failures.
+          try {
+              $productSearchClient->deleteReferenceImage($formattedName);
+              printf('Call completed successfully.' . PHP_EOL);
+          } catch (ApiException $ex) {
+              printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+          }
+      }
+      
+      /**
+       * This sample has been automatically generated and should be regarded as a code
+       * template only. It will require modifications to work:
+       *  - It may require correct/in-range values for request initialization.
+       *  - It may require specifying regional endpoints when creating the service client,
+       *    please see the apiEndpoint client configuration option for more details.
+       */
+      function callSample(): void
+      {
+          $formattedName = ProductSearchClient::referenceImageName(
+              '[PROJECT]',
+              '[LOCATION]',
+              '[PRODUCT]',
+              '[REFERENCE_IMAGE]'
+          );
+      
+          delete_reference_image_sample($formattedName);
       }
       ```
     parent: \Google\Cloud\Vision\V1\ProductSearchClient
@@ -666,12 +902,44 @@ items:
       
       Sample code:
       ```php
-      $productSearchClient = new ProductSearchClient();
-      try {
-          $formattedName = $productSearchClient->productName('[PROJECT]', '[LOCATION]', '[PRODUCT]');
-          $response = $productSearchClient->getProduct($formattedName);
-      } finally {
-          $productSearchClient->close();
+      use Google\ApiCore\ApiException;
+      use Google\Cloud\Vision\V1\Product;
+      use Google\Cloud\Vision\V1\ProductSearchClient;
+      
+      /**
+       * @param string $formattedName Resource name of the Product to get.
+       *
+       *                              Format is:
+       *                              `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`
+       *                              Please see {@see ProductSearchClient::productName()} for help formatting this field.
+       */
+      function get_product_sample(string $formattedName): void
+      {
+          // Create a client.
+          $productSearchClient = new ProductSearchClient();
+      
+          // Call the API and handle any network failures.
+          try {
+              /** @var Product $response */
+              $response = $productSearchClient->getProduct($formattedName);
+              printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+          } catch (ApiException $ex) {
+              printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+          }
+      }
+      
+      /**
+       * This sample has been automatically generated and should be regarded as a code
+       * template only. It will require modifications to work:
+       *  - It may require correct/in-range values for request initialization.
+       *  - It may require specifying regional endpoints when creating the service client,
+       *    please see the apiEndpoint client configuration option for more details.
+       */
+      function callSample(): void
+      {
+          $formattedName = ProductSearchClient::productName('[PROJECT]', '[LOCATION]', '[PRODUCT]');
+      
+          get_product_sample($formattedName);
       }
       ```
     parent: \Google\Cloud\Vision\V1\ProductSearchClient
@@ -708,12 +976,44 @@ items:
       
       Sample code:
       ```php
-      $productSearchClient = new ProductSearchClient();
-      try {
-          $formattedName = $productSearchClient->productSetName('[PROJECT]', '[LOCATION]', '[PRODUCT_SET]');
-          $response = $productSearchClient->getProductSet($formattedName);
-      } finally {
-          $productSearchClient->close();
+      use Google\ApiCore\ApiException;
+      use Google\Cloud\Vision\V1\ProductSearchClient;
+      use Google\Cloud\Vision\V1\ProductSet;
+      
+      /**
+       * @param string $formattedName Resource name of the ProductSet to get.
+       *
+       *                              Format is:
+       *                              `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
+       *                              Please see {@see ProductSearchClient::productSetName()} for help formatting this field.
+       */
+      function get_product_set_sample(string $formattedName): void
+      {
+          // Create a client.
+          $productSearchClient = new ProductSearchClient();
+      
+          // Call the API and handle any network failures.
+          try {
+              /** @var ProductSet $response */
+              $response = $productSearchClient->getProductSet($formattedName);
+              printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+          } catch (ApiException $ex) {
+              printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+          }
+      }
+      
+      /**
+       * This sample has been automatically generated and should be regarded as a code
+       * template only. It will require modifications to work:
+       *  - It may require correct/in-range values for request initialization.
+       *  - It may require specifying regional endpoints when creating the service client,
+       *    please see the apiEndpoint client configuration option for more details.
+       */
+      function callSample(): void
+      {
+          $formattedName = ProductSearchClient::productSetName('[PROJECT]', '[LOCATION]', '[PRODUCT_SET]');
+      
+          get_product_set_sample($formattedName);
       }
       ```
     parent: \Google\Cloud\Vision\V1\ProductSearchClient
@@ -750,12 +1050,49 @@ items:
       
       Sample code:
       ```php
-      $productSearchClient = new ProductSearchClient();
-      try {
-          $formattedName = $productSearchClient->referenceImageName('[PROJECT]', '[LOCATION]', '[PRODUCT]', '[REFERENCE_IMAGE]');
-          $response = $productSearchClient->getReferenceImage($formattedName);
-      } finally {
-          $productSearchClient->close();
+      use Google\ApiCore\ApiException;
+      use Google\Cloud\Vision\V1\ProductSearchClient;
+      use Google\Cloud\Vision\V1\ReferenceImage;
+      
+      /**
+       * @param string $formattedName The resource name of the ReferenceImage to get.
+       *
+       *                              Format is:
+       *                              `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID/referenceImages/IMAGE_ID`. Please see
+       *                              {@see ProductSearchClient::referenceImageName()} for help formatting this field.
+       */
+      function get_reference_image_sample(string $formattedName): void
+      {
+          // Create a client.
+          $productSearchClient = new ProductSearchClient();
+      
+          // Call the API and handle any network failures.
+          try {
+              /** @var ReferenceImage $response */
+              $response = $productSearchClient->getReferenceImage($formattedName);
+              printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+          } catch (ApiException $ex) {
+              printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+          }
+      }
+      
+      /**
+       * This sample has been automatically generated and should be regarded as a code
+       * template only. It will require modifications to work:
+       *  - It may require correct/in-range values for request initialization.
+       *  - It may require specifying regional endpoints when creating the service client,
+       *    please see the apiEndpoint client configuration option for more details.
+       */
+      function callSample(): void
+      {
+          $formattedName = ProductSearchClient::referenceImageName(
+              '[PROJECT]',
+              '[LOCATION]',
+              '[PRODUCT]',
+              '[REFERENCE_IMAGE]'
+          );
+      
+          get_reference_image_sample($formattedName);
       }
       ```
     parent: \Google\Cloud\Vision\V1\ProductSearchClient
@@ -798,38 +1135,59 @@ items:
       
       Sample code:
       ```php
-      $productSearchClient = new ProductSearchClient();
-      try {
-          $formattedParent = $productSearchClient->locationName('[PROJECT]', '[LOCATION]');
+      use Google\ApiCore\ApiException;
+      use Google\ApiCore\OperationResponse;
+      use Google\Cloud\Vision\V1\ImportProductSetsInputConfig;
+      use Google\Cloud\Vision\V1\ImportProductSetsResponse;
+      use Google\Cloud\Vision\V1\ProductSearchClient;
+      use Google\Rpc\Status;
+      
+      /**
+       * @param string $formattedParent The project in which the ProductSets should be imported.
+       *
+       *                                Format is `projects/PROJECT_ID/locations/LOC_ID`. Please see
+       *                                {@see ProductSearchClient::locationName()} for help formatting this field.
+       */
+      function import_product_sets_sample(string $formattedParent): void
+      {
+          // Create a client.
+          $productSearchClient = new ProductSearchClient();
+      
+          // Prepare any non-scalar elements to be passed along with the request.
           $inputConfig = new ImportProductSetsInputConfig();
-          $operationResponse = $productSearchClient->importProductSets($formattedParent, $inputConfig);
-          $operationResponse->pollUntilComplete();
-          if ($operationResponse->operationSucceeded()) {
-              $result = $operationResponse->getResult();
-          // doSomethingWith($result)
-          } else {
-              $error = $operationResponse->getError();
-              // handleError($error)
+      
+          // Call the API and handle any network failures.
+          try {
+              /** @var OperationResponse $response */
+              $response = $productSearchClient->importProductSets($formattedParent, $inputConfig);
+              $response->pollUntilComplete();
+      
+              if ($response->operationSucceeded()) {
+                  /** @var ImportProductSetsResponse $result */
+                  $result = $response->getResult();
+                  printf('Operation successful with response data: %s' . PHP_EOL, $result->serializeToJsonString());
+              } else {
+                  /** @var Status $error */
+                  $error = $response->getError();
+                  printf('Operation failed with error data: %s' . PHP_EOL, $error->serializeToJsonString());
+              }
+          } catch (ApiException $ex) {
+              printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
           }
-          // Alternatively:
-          // start the operation, keep the operation name, and resume later
-          $operationResponse = $productSearchClient->importProductSets($formattedParent, $inputConfig);
-          $operationName = $operationResponse->getName();
-          // ... do other work
-          $newOperationResponse = $productSearchClient->resumeOperation($operationName, 'importProductSets');
-          while (!$newOperationResponse->isDone()) {
-              // ... do other work
-              $newOperationResponse->reload();
-          }
-          if ($newOperationResponse->operationSucceeded()) {
-              $result = $newOperationResponse->getResult();
-          // doSomethingWith($result)
-          } else {
-              $error = $newOperationResponse->getError();
-              // handleError($error)
-          }
-      } finally {
-          $productSearchClient->close();
+      }
+      
+      /**
+       * This sample has been automatically generated and should be regarded as a code
+       * template only. It will require modifications to work:
+       *  - It may require correct/in-range values for request initialization.
+       *  - It may require specifying regional endpoints when creating the service client,
+       *    please see the apiEndpoint client configuration option for more details.
+       */
+      function callSample(): void
+      {
+          $formattedParent = ProductSearchClient::locationName('[PROJECT]', '[LOCATION]');
+      
+          import_product_sets_sample($formattedParent);
       }
       ```
     parent: \Google\Cloud\Vision\V1\ProductSearchClient
@@ -871,24 +1229,48 @@ items:
       
       Sample code:
       ```php
-      $productSearchClient = new ProductSearchClient();
-      try {
-          $formattedParent = $productSearchClient->locationName('[PROJECT]', '[LOCATION]');
-          // Iterate over pages of elements
-          $pagedResponse = $productSearchClient->listProductSets($formattedParent);
-          foreach ($pagedResponse->iteratePages() as $page) {
-              foreach ($page as $element) {
-                  // doSomethingWith($element);
+      use Google\ApiCore\ApiException;
+      use Google\ApiCore\PagedListResponse;
+      use Google\Cloud\Vision\V1\ProductSearchClient;
+      use Google\Cloud\Vision\V1\ProductSet;
+      
+      /**
+       * @param string $formattedParent The project from which ProductSets should be listed.
+       *
+       *                                Format is `projects/PROJECT_ID/locations/LOC_ID`. Please see
+       *                                {@see ProductSearchClient::locationName()} for help formatting this field.
+       */
+      function list_product_sets_sample(string $formattedParent): void
+      {
+          // Create a client.
+          $productSearchClient = new ProductSearchClient();
+      
+          // Call the API and handle any network failures.
+          try {
+              /** @var PagedListResponse $response */
+              $response = $productSearchClient->listProductSets($formattedParent);
+      
+              /** @var ProductSet $element */
+              foreach ($response as $element) {
+                  printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
               }
+          } catch (ApiException $ex) {
+              printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
           }
-          // Alternatively:
-          // Iterate through all elements
-          $pagedResponse = $productSearchClient->listProductSets($formattedParent);
-          foreach ($pagedResponse->iterateAllElements() as $element) {
-              // doSomethingWith($element);
-          }
-      } finally {
-          $productSearchClient->close();
+      }
+      
+      /**
+       * This sample has been automatically generated and should be regarded as a code
+       * template only. It will require modifications to work:
+       *  - It may require correct/in-range values for request initialization.
+       *  - It may require specifying regional endpoints when creating the service client,
+       *    please see the apiEndpoint client configuration option for more details.
+       */
+      function callSample(): void
+      {
+          $formattedParent = ProductSearchClient::locationName('[PROJECT]', '[LOCATION]');
+      
+          list_product_sets_sample($formattedParent);
       }
       ```
     parent: \Google\Cloud\Vision\V1\ProductSearchClient
@@ -933,24 +1315,49 @@ items:
       
       Sample code:
       ```php
-      $productSearchClient = new ProductSearchClient();
-      try {
-          $formattedParent = $productSearchClient->locationName('[PROJECT]', '[LOCATION]');
-          // Iterate over pages of elements
-          $pagedResponse = $productSearchClient->listProducts($formattedParent);
-          foreach ($pagedResponse->iteratePages() as $page) {
-              foreach ($page as $element) {
-                  // doSomethingWith($element);
+      use Google\ApiCore\ApiException;
+      use Google\ApiCore\PagedListResponse;
+      use Google\Cloud\Vision\V1\Product;
+      use Google\Cloud\Vision\V1\ProductSearchClient;
+      
+      /**
+       * @param string $formattedParent The project OR ProductSet from which Products should be listed.
+       *
+       *                                Format:
+       *                                `projects/PROJECT_ID/locations/LOC_ID`
+       *                                Please see {@see ProductSearchClient::locationName()} for help formatting this field.
+       */
+      function list_products_sample(string $formattedParent): void
+      {
+          // Create a client.
+          $productSearchClient = new ProductSearchClient();
+      
+          // Call the API and handle any network failures.
+          try {
+              /** @var PagedListResponse $response */
+              $response = $productSearchClient->listProducts($formattedParent);
+      
+              /** @var Product $element */
+              foreach ($response as $element) {
+                  printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
               }
+          } catch (ApiException $ex) {
+              printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
           }
-          // Alternatively:
-          // Iterate through all elements
-          $pagedResponse = $productSearchClient->listProducts($formattedParent);
-          foreach ($pagedResponse->iterateAllElements() as $element) {
-              // doSomethingWith($element);
-          }
-      } finally {
-          $productSearchClient->close();
+      }
+      
+      /**
+       * This sample has been automatically generated and should be regarded as a code
+       * template only. It will require modifications to work:
+       *  - It may require correct/in-range values for request initialization.
+       *  - It may require specifying regional endpoints when creating the service client,
+       *    please see the apiEndpoint client configuration option for more details.
+       */
+      function callSample(): void
+      {
+          $formattedParent = ProductSearchClient::locationName('[PROJECT]', '[LOCATION]');
+      
+          list_products_sample($formattedParent);
       }
       ```
     parent: \Google\Cloud\Vision\V1\ProductSearchClient
@@ -997,24 +1404,49 @@ items:
       
       Sample code:
       ```php
-      $productSearchClient = new ProductSearchClient();
-      try {
-          $formattedName = $productSearchClient->productSetName('[PROJECT]', '[LOCATION]', '[PRODUCT_SET]');
-          // Iterate over pages of elements
-          $pagedResponse = $productSearchClient->listProductsInProductSet($formattedName);
-          foreach ($pagedResponse->iteratePages() as $page) {
-              foreach ($page as $element) {
-                  // doSomethingWith($element);
+      use Google\ApiCore\ApiException;
+      use Google\ApiCore\PagedListResponse;
+      use Google\Cloud\Vision\V1\Product;
+      use Google\Cloud\Vision\V1\ProductSearchClient;
+      
+      /**
+       * @param string $formattedName The ProductSet resource for which to retrieve Products.
+       *
+       *                              Format is:
+       *                              `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
+       *                              Please see {@see ProductSearchClient::productSetName()} for help formatting this field.
+       */
+      function list_products_in_product_set_sample(string $formattedName): void
+      {
+          // Create a client.
+          $productSearchClient = new ProductSearchClient();
+      
+          // Call the API and handle any network failures.
+          try {
+              /** @var PagedListResponse $response */
+              $response = $productSearchClient->listProductsInProductSet($formattedName);
+      
+              /** @var Product $element */
+              foreach ($response as $element) {
+                  printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
               }
+          } catch (ApiException $ex) {
+              printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
           }
-          // Alternatively:
-          // Iterate through all elements
-          $pagedResponse = $productSearchClient->listProductsInProductSet($formattedName);
-          foreach ($pagedResponse->iterateAllElements() as $element) {
-              // doSomethingWith($element);
-          }
-      } finally {
-          $productSearchClient->close();
+      }
+      
+      /**
+       * This sample has been automatically generated and should be regarded as a code
+       * template only. It will require modifications to work:
+       *  - It may require correct/in-range values for request initialization.
+       *  - It may require specifying regional endpoints when creating the service client,
+       *    please see the apiEndpoint client configuration option for more details.
+       */
+      function callSample(): void
+      {
+          $formattedName = ProductSearchClient::productSetName('[PROJECT]', '[LOCATION]', '[PRODUCT_SET]');
+      
+          list_products_in_product_set_sample($formattedName);
       }
       ```
     parent: \Google\Cloud\Vision\V1\ProductSearchClient
@@ -1061,24 +1493,49 @@ items:
       
       Sample code:
       ```php
-      $productSearchClient = new ProductSearchClient();
-      try {
-          $formattedParent = $productSearchClient->productName('[PROJECT]', '[LOCATION]', '[PRODUCT]');
-          // Iterate over pages of elements
-          $pagedResponse = $productSearchClient->listReferenceImages($formattedParent);
-          foreach ($pagedResponse->iteratePages() as $page) {
-              foreach ($page as $element) {
-                  // doSomethingWith($element);
+      use Google\ApiCore\ApiException;
+      use Google\ApiCore\PagedListResponse;
+      use Google\Cloud\Vision\V1\ProductSearchClient;
+      use Google\Cloud\Vision\V1\ReferenceImage;
+      
+      /**
+       * @param string $formattedParent Resource name of the product containing the reference images.
+       *
+       *                                Format is
+       *                                `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`. Please see
+       *                                {@see ProductSearchClient::productName()} for help formatting this field.
+       */
+      function list_reference_images_sample(string $formattedParent): void
+      {
+          // Create a client.
+          $productSearchClient = new ProductSearchClient();
+      
+          // Call the API and handle any network failures.
+          try {
+              /** @var PagedListResponse $response */
+              $response = $productSearchClient->listReferenceImages($formattedParent);
+      
+              /** @var ReferenceImage $element */
+              foreach ($response as $element) {
+                  printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
               }
+          } catch (ApiException $ex) {
+              printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
           }
-          // Alternatively:
-          // Iterate through all elements
-          $pagedResponse = $productSearchClient->listReferenceImages($formattedParent);
-          foreach ($pagedResponse->iterateAllElements() as $element) {
-              // doSomethingWith($element);
-          }
-      } finally {
-          $productSearchClient->close();
+      }
+      
+      /**
+       * This sample has been automatically generated and should be regarded as a code
+       * template only. It will require modifications to work:
+       *  - It may require correct/in-range values for request initialization.
+       *  - It may require specifying regional endpoints when creating the service client,
+       *    please see the apiEndpoint client configuration option for more details.
+       */
+      function callSample(): void
+      {
+          $formattedParent = ProductSearchClient::productName('[PROJECT]', '[LOCATION]', '[PRODUCT]');
+      
+          list_reference_images_sample($formattedParent);
       }
       ```
     parent: \Google\Cloud\Vision\V1\ProductSearchClient
@@ -1142,35 +1599,52 @@ items:
       
       Sample code:
       ```php
-      $productSearchClient = new ProductSearchClient();
-      try {
-          $formattedParent = $productSearchClient->locationName('[PROJECT]', '[LOCATION]');
-          $operationResponse = $productSearchClient->purgeProducts($formattedParent);
-          $operationResponse->pollUntilComplete();
-          if ($operationResponse->operationSucceeded()) {
-              // operation succeeded and returns no value
-          } else {
-              $error = $operationResponse->getError();
-              // handleError($error)
+      use Google\ApiCore\ApiException;
+      use Google\ApiCore\OperationResponse;
+      use Google\Cloud\Vision\V1\ProductSearchClient;
+      use Google\Rpc\Status;
+      
+      /**
+       * @param string $formattedParent The project and location in which the Products should be deleted.
+       *
+       *                                Format is `projects/PROJECT_ID/locations/LOC_ID`. Please see
+       *                                {@see ProductSearchClient::locationName()} for help formatting this field.
+       */
+      function purge_products_sample(string $formattedParent): void
+      {
+          // Create a client.
+          $productSearchClient = new ProductSearchClient();
+      
+          // Call the API and handle any network failures.
+          try {
+              /** @var OperationResponse $response */
+              $response = $productSearchClient->purgeProducts($formattedParent);
+              $response->pollUntilComplete();
+      
+              if ($response->operationSucceeded()) {
+                  printf('Operation completed successfully.' . PHP_EOL);
+              } else {
+                  /** @var Status $error */
+                  $error = $response->getError();
+                  printf('Operation failed with error data: %s' . PHP_EOL, $error->serializeToJsonString());
+              }
+          } catch (ApiException $ex) {
+              printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
           }
-          // Alternatively:
-          // start the operation, keep the operation name, and resume later
-          $operationResponse = $productSearchClient->purgeProducts($formattedParent);
-          $operationName = $operationResponse->getName();
-          // ... do other work
-          $newOperationResponse = $productSearchClient->resumeOperation($operationName, 'purgeProducts');
-          while (!$newOperationResponse->isDone()) {
-              // ... do other work
-              $newOperationResponse->reload();
-          }
-          if ($newOperationResponse->operationSucceeded()) {
-              // operation succeeded and returns no value
-          } else {
-              $error = $newOperationResponse->getError();
-              // handleError($error)
-          }
-      } finally {
-          $productSearchClient->close();
+      }
+      
+      /**
+       * This sample has been automatically generated and should be regarded as a code
+       * template only. It will require modifications to work:
+       *  - It may require correct/in-range values for request initialization.
+       *  - It may require specifying regional endpoints when creating the service client,
+       *    please see the apiEndpoint client configuration option for more details.
+       */
+      function callSample(): void
+      {
+          $formattedParent = ProductSearchClient::locationName('[PROJECT]', '[LOCATION]');
+      
+          purge_products_sample($formattedParent);
       }
       ```
     parent: \Google\Cloud\Vision\V1\ProductSearchClient
@@ -1215,13 +1689,50 @@ items:
       
       Sample code:
       ```php
-      $productSearchClient = new ProductSearchClient();
-      try {
-          $formattedName = $productSearchClient->productSetName('[PROJECT]', '[LOCATION]', '[PRODUCT_SET]');
-          $formattedProduct = $productSearchClient->productName('[PROJECT]', '[LOCATION]', '[PRODUCT]');
-          $productSearchClient->removeProductFromProductSet($formattedName, $formattedProduct);
-      } finally {
-          $productSearchClient->close();
+      use Google\ApiCore\ApiException;
+      use Google\Cloud\Vision\V1\ProductSearchClient;
+      
+      /**
+       * @param string $formattedName    The resource name for the ProductSet to modify.
+       *
+       *                                 Format is:
+       *                                 `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
+       *                                 Please see {@see ProductSearchClient::productSetName()} for help formatting this field.
+       * @param string $formattedProduct The resource name for the Product to be removed from this ProductSet.
+       *
+       *                                 Format is:
+       *                                 `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`
+       *                                 Please see {@see ProductSearchClient::productName()} for help formatting this field.
+       */
+      function remove_product_from_product_set_sample(
+          string $formattedName,
+          string $formattedProduct
+      ): void {
+          // Create a client.
+          $productSearchClient = new ProductSearchClient();
+      
+          // Call the API and handle any network failures.
+          try {
+              $productSearchClient->removeProductFromProductSet($formattedName, $formattedProduct);
+              printf('Call completed successfully.' . PHP_EOL);
+          } catch (ApiException $ex) {
+              printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+          }
+      }
+      
+      /**
+       * This sample has been automatically generated and should be regarded as a code
+       * template only. It will require modifications to work:
+       *  - It may require correct/in-range values for request initialization.
+       *  - It may require specifying regional endpoints when creating the service client,
+       *    please see the apiEndpoint client configuration option for more details.
+       */
+      function callSample(): void
+      {
+          $formattedName = ProductSearchClient::productSetName('[PROJECT]', '[LOCATION]', '[PRODUCT_SET]');
+          $formattedProduct = ProductSearchClient::productName('[PROJECT]', '[LOCATION]', '[PRODUCT]');
+      
+          remove_product_from_product_set_sample($formattedName, $formattedProduct);
       }
       ```
     parent: \Google\Cloud\Vision\V1\ProductSearchClient
@@ -1270,12 +1781,33 @@ items:
       
       Sample code:
       ```php
-      $productSearchClient = new ProductSearchClient();
-      try {
+      use Google\ApiCore\ApiException;
+      use Google\Cloud\Vision\V1\Product;
+      use Google\Cloud\Vision\V1\ProductSearchClient;
+      
+      /**
+       * This sample has been automatically generated and should be regarded as a code
+       * template only. It will require modifications to work:
+       *  - It may require correct/in-range values for request initialization.
+       *  - It may require specifying regional endpoints when creating the service client,
+       *    please see the apiEndpoint client configuration option for more details.
+       */
+      function update_product_sample(): void
+      {
+          // Create a client.
+          $productSearchClient = new ProductSearchClient();
+      
+          // Prepare any non-scalar elements to be passed along with the request.
           $product = new Product();
-          $response = $productSearchClient->updateProduct($product);
-      } finally {
-          $productSearchClient->close();
+      
+          // Call the API and handle any network failures.
+          try {
+              /** @var Product $response */
+              $response = $productSearchClient->updateProduct($product);
+              printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+          } catch (ApiException $ex) {
+              printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+          }
       }
       ```
     parent: \Google\Cloud\Vision\V1\ProductSearchClient
@@ -1320,12 +1852,33 @@ items:
       
       Sample code:
       ```php
-      $productSearchClient = new ProductSearchClient();
-      try {
+      use Google\ApiCore\ApiException;
+      use Google\Cloud\Vision\V1\ProductSearchClient;
+      use Google\Cloud\Vision\V1\ProductSet;
+      
+      /**
+       * This sample has been automatically generated and should be regarded as a code
+       * template only. It will require modifications to work:
+       *  - It may require correct/in-range values for request initialization.
+       *  - It may require specifying regional endpoints when creating the service client,
+       *    please see the apiEndpoint client configuration option for more details.
+       */
+      function update_product_set_sample(): void
+      {
+          // Create a client.
+          $productSearchClient = new ProductSearchClient();
+      
+          // Prepare any non-scalar elements to be passed along with the request.
           $productSet = new ProductSet();
-          $response = $productSearchClient->updateProductSet($productSet);
-      } finally {
-          $productSearchClient->close();
+      
+          // Call the API and handle any network failures.
+          try {
+              /** @var ProductSet $response */
+              $response = $productSearchClient->updateProductSet($productSet);
+              printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+          } catch (ApiException $ex) {
+              printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+          }
       }
       ```
     parent: \Google\Cloud\Vision\V1\ProductSearchClient
