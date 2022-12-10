@@ -14,7 +14,7 @@
         "squizlabs/php_codesniffer": "2.*",
         "phpdocumentor/reflection": "^3.0||^4.0",
         "erusev/parsedown": "^1.6",
-        "rg/avro-php": "^3.0.0"
+        "rg/avro-php": "^1.8.0"
     },
     "suggest": {
         "ext-grpc": "The gRPC extension enables use of the performant gRPC transport",
