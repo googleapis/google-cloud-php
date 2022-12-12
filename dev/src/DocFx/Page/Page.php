@@ -136,7 +136,7 @@ class Page
                     '$1 * $3',
                     $match[1]
                 );
-                $sample = 'Sample code:' . PHP_EOL . '```php' . PHP_EOL . $sample . '```';
+                $sample = '```php' . PHP_EOL . $sample . '```';
                 // Removes the existing inline snippet.
                 $content = preg_replace(
                     '/Sample code:\n```php.*```/s',
