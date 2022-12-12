@@ -10,7 +10,7 @@ jobs:
     strategy:
       matrix:
         platform: [ubuntu-latest, windows-latest]
-        php: [ "7.1", "7.2", "7.3", "7.4", "8.0", "8.1" ]
+        php: [ "7.1", "7.2", "7.3", "7.4", "8.0", "8.1", "8.2" ]
         phpunit-filename: [phpunit]
         include:
           - platform: ubuntu-latest
@@ -73,7 +73,7 @@ jobs:
     - name: Setup PHP
       uses: shivammathur/setup-php@v2
       with:
-        php-version: '7.4'
+        php-version: '8.0'
     - name: Install Dependencies
       uses: nick-invision/retry@v2
       with:
