@@ -729,7 +729,6 @@ items:
       - php
     example:
       - |
-        Sample code:
         ```php
         use Google\ApiCore\ApiException;
         use Google\ApiCore\OperationResponse;
@@ -816,7 +815,6 @@ items:
       - php
     example:
       - |
-        Sample code:
         ```php
         use Google\ApiCore\ApiException;
         use Google\ApiCore\OperationResponse;
@@ -908,7 +906,6 @@ items:
       - php
     example:
       - |
-        Sample code:
         ```php
         use Google\ApiCore\ApiException;
         use Google\Cloud\Vision\V1\AnnotateFileRequest;
@@ -975,7 +972,6 @@ items:
       - php
     example:
       - |
-        Sample code:
         ```php
         use Google\ApiCore\ApiException;
         use Google\Cloud\Vision\V1\AnnotateImageRequest;
