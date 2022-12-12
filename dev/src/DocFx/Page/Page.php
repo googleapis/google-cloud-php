@@ -105,18 +105,20 @@ class Page
 
     /**
      * If a generated sample exists
-     * (e.g., Asset/samples/V1/AssetServiceClient/analyze_iam_policy.php), replace
-     * the existing inline sample with it.
+     * (e.g., Asset/samples/V1/AssetServiceClient/analyze_iam_policy.php), remove
+     * the existing inline sample and return a version of the sample from the
+     * external file.
      *
      * TODO(dsupplee): utilize the example annotation in the generated client
      * method docblocks to link out to the generated samples and remove the
-     * inline ones. This will obviate the need for this method.
+     * inline ones.
      *
      * @param string $content
      * @param string $methodName
      */
-    private function handleSample(string $content, string $methodName): string
+    private function handleSample(string $content, string $methodName): array
     {
+        $sample = null;
         $path = sprintf(
             '%s/samples/%s/%s.php',
             $this->componentPath,
@@ -134,15 +136,16 @@ class Page
                     '$1 * $3',
                     $match[1]
                 );
-                // Replaces the existing inline sample with the generated one.
+                $sample = 'Sample code:' . PHP_EOL . '```php' . PHP_EOL . $sample . '```';
+                // Removes the existing inline snippet.
                 $content = preg_replace(
-                    '/(```php\n)(.*?)(```)/s',
-                    "$1$sample$3",
+                    '/Sample code:\n```php.*```/s',
+                    '',
                     $content
                 );
             }
         }
-        return $content;
+        return [$content, $sample];
     }
 
     private function getMethodItems(): array
@@ -153,8 +156,9 @@ class Page
         foreach ($this->classNode->getMethods() as $method) {
             $content = $method->getContent();
             $name = $method->getName();
+            $sample = null;
             if ($isServiceClass) {
-                $content = $this->handleSample($content, $name);
+                list($content, $sample) = $this->handleSample($content, $name);
             }
             $methodItem = array_filter([
                 'uid' => $method->getFullname(),
@@ -164,6 +168,9 @@ class Page
                 'parent'  => $this->classNode->getFullname(),
                 'type' => 'method',
                 'langs' => ['php'],
+                'example' => $sample
+                    ? [$sample]
+                    : null
             ]);
             if ($parameters = $method->getParameters()) {
                 $methodItem['syntax']['parameters'] = [];
