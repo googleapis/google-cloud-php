@@ -113,10 +113,10 @@ class Page
      * method docblocks to link out to the generated samples and remove the
      * inline ones.
      *
-     * @param string $content
+     * @param string $methodDocContent
      * @param string $methodName
      */
-    private function handleSample(string $content, string $methodName): array
+    private function handleSample(string $methodDocContent, string $methodName): array
     {
         $sample = null;
         $path = sprintf(
@@ -125,10 +125,10 @@ class Page
             substr($this->filePath, 0, -4),
             $this->toSnakeCase($methodName)
         );
-        $contents = @file_get_contents($path);
-        if ($contents) {
+        $sampleContents = @file_get_contents($path);
+        if ($sampleContents) {
             // Finds the relevant code between the region tags in the generated sample.
-            if (preg_match('/\/\/ \[START\N*\n(.*?)\/\/ \[END/s', $contents, $match) === 1) {
+            if (preg_match('/\/\/ \[START\N*\n(.*?)\/\/ \[END/s', $sampleContents, $match) === 1) {
                 // Generated samples include the method description, which is redundant on the doc
                 // site. This removes the description.
                 $sample = preg_replace(
@@ -138,14 +138,14 @@ class Page
                 );
                 $sample = '```php' . PHP_EOL . $sample . '```';
                 // Removes the existing inline snippet.
-                $content = preg_replace(
+                $methodDocContent = preg_replace(
                     '/Sample code:\n```php.*```/s',
                     '',
-                    $content
+                    $methodDocContent
                 );
             }
         }
-        return [$content, $sample];
+        return [$methodDocContent, $sample];
     }
 
     private function getMethodItems(): array
