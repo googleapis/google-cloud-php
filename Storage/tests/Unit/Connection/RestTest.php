@@ -34,6 +34,7 @@ use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Prophecy\Argument;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamInterface;
+use GuzzleHttp\Exception\ServerException;
 
 /**
  * @group storage
@@ -463,6 +464,49 @@ class RestTest extends TestCase
                 true,
                 false
             ]
+        ];
+    }
+
+    /**
+     * @dataProvider retryFunctionReturnValues
+     */
+    public function testRetryFunction($resource, $op, $args,
+        $errorCode, $currAttempt, $expected)
+    {
+        $rest = new Rest();
+        $retryFun = $rest->getRestRetryFunction($resource, $op, $args);
+
+        $this->assertEquals($expected, $retryFun(new \Exception('', $errorCode), $currAttempt));
+    }
+
+    public function retryFunctionReturnValues()
+    {
+        return [
+            // Idempotent opeartion with retriable error code
+            ['buckets', 'get', [], 503, 1, true],
+            ['serviceaccount', 'get', [], 504, 1, true],
+            // Idempotent opeartion with non retriable error code
+            ['buckets', 'get', [], 400, 1, false],
+            // Conditionally Idempotent with retriable error code
+            // precondition provided
+            ['buckets', 'update', ['ifMetagenerationMatch' => 0], 503, 1, true],
+            // Conditionally Idempotent with retriable error code
+            // wrong precondition provided
+            ['buckets', 'update', ['ifGenerationMatch' => 0], 503, 1, false],
+            // Conditionally Idempotent with non retriable error code
+            // precondition provided
+            ['buckets', 'update', ['ifMetagenerationMatch' => 0], 400, 1, false],
+            // Conditionally Idempotent with retriable error code
+            // precondition not provided
+            ['buckets', 'update', [], 503, 1, false],
+            // Conditionally Idempotent with non retriable error code
+            // precondition not provided
+            ['buckets', 'update', [], 400, 1, false],
+            // Non idempotent
+            ['bucket_acl', 'delete', [], 503, 4, false],
+            ['bucket_acl', 'delete', [], 400, 4, false],
+            // Max retry reached
+            ['buckets', 'get', [], 503, 4, false]
         ];
     }
 

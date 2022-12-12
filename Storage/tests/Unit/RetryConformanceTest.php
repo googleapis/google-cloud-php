@@ -47,7 +47,7 @@ class RetryConformanceTest extends TestCase
     private static $cases = [];
 
     // Storage test bench URL. To be populated by an env variable.
-    private static $emaulatorUrl = 'https://storage.googleapis.com';
+    private static $emaulatorUrl = 'http://localhost:9000';
 
     public static function set_up_before_class()
     {
@@ -110,7 +110,7 @@ class RetryConformanceTest extends TestCase
     {
         self::set_up_before_class();
         // These scenario IDs will be run
-        $scenarios = [1, 2, 3, 4, 5, 6, 7];
+        $scenarios = [1];
 
         $cases = [];
 
@@ -133,7 +133,7 @@ class RetryConformanceTest extends TestCase
         $precondtionProvided,
         $invocationIndex
     ) {
-        $this->markTestSkipped();
+        //$this->markTestSkipped();
         $caseId = $this->createRetryTestResource($methodName, $instructions, null);
 
         $methodInvocations = self::getMethodInvocationMapping();
