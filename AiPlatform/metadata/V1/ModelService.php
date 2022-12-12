@@ -27,14 +27,15 @@ class ModelService
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ω:
-.google/cloud/aiplatform/v1/model_service.protogoogle.cloud.aiplatform.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto#google/cloud/aiplatform/v1/io.proto&google/cloud/aiplatform/v1/model.proto1google/cloud/aiplatform/v1/model_evaluation.proto7google/cloud/aiplatform/v1/model_evaluation_slice.proto*google/cloud/aiplatform/v1/operation.proto#google/longrunning/operations.proto google/protobuf/field_mask.proto"∏
+€:
+.google/cloud/aiplatform/v1/model_service.protogoogle.cloud.aiplatform.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto#google/cloud/aiplatform/v1/io.proto&google/cloud/aiplatform/v1/model.proto1google/cloud/aiplatform/v1/model_evaluation.proto7google/cloud/aiplatform/v1/model_evaluation_slice.proto*google/cloud/aiplatform/v1/operation.proto#google/longrunning/operations.proto google/protobuf/field_mask.proto"÷
 UploadModelRequest9
 parent (	B)‡A˙A#
 !locations.googleapis.com/Location
 parent_model (	B‡A
 model_id (	B‡A5
-model (2!.google.cloud.aiplatform.v1.ModelB‡A"n
+model (2!.google.cloud.aiplatform.v1.ModelB‡A
+service_account (	B‡A"n
 UploadModelOperationMetadataN
 generic_metadata (24.google.cloud.aiplatform.v1.GenericOperationMetadata"i
 UploadModelResponse3
