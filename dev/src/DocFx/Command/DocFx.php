@@ -42,7 +42,12 @@ class DocFx extends Command
             ->addOption('out', '', InputOption::VALUE_REQUIRED, 'Path where to store the generated output.', 'out')
             ->addOption('metadata-version', '', InputOption::VALUE_REQUIRED, 'version to write to docs.metadata using docuploader')
             ->addOption('staging-bucket', '', InputOption::VALUE_REQUIRED, 'Upload to the specified staging bucket using docuploader.')
-            ->addOption('component-path', '', InputOption::VALUE_OPTIONAL, 'Specify the path of the desired component.')
+            ->addOption(
+                'component-path',
+                '',
+                InputOption::VALUE_OPTIONAL,
+                'Specify the path of the desired component. Please note, this option is only intended for testing purposes.
+            ')
         ;
     }
 
