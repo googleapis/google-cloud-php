@@ -41,7 +41,7 @@ jobs:
         with:
           php-version: '7.4'
           tools: pecl
-          extensions: bcmath, grpc
+          extensions: bcmath, grpc-1.49.0
 
       - name: Install dependencies
         run: |
