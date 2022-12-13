@@ -4,7 +4,7 @@
 
 [![Latest Stable Version](https://poser.pugx.org/google/cloud-appengine-admin/v/stable)](https://packagist.org/packages/google/cloud-appengine-admin) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-appengine-admin.svg)](https://packagist.org/packages/google/cloud-appengine-admin)
 
-* [API documentation](http://googleapis.github.io/google-cloud-php/#/docs/cloud-appengine-admin/latest/appengineadmin/readme)
+* [API documentation](https://cloud.google.com/php/docs/reference/cloud-appengine-admin/latest)
 
 **NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googleapis/google-cloud-php). Any
 support requests, bug reports, or development contributions should be directed to

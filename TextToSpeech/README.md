@@ -4,7 +4,7 @@
 
 [![Latest Stable Version](https://poser.pugx.org/google/cloud-text-to-speech/v/stable)](https://packagist.org/packages/google/cloud-text-to-speech) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-text-to-speech.svg)](https://packagist.org/packages/google/cloud-text-to-speech)
 
-* [API documentation](http://googleapis.github.io/google-cloud-php/#/docs/cloud-text-to-speech/latest/texttospeech/readme)
+* [API documentation](https://cloud.google.com/php/docs/reference/cloud-text-to-speech/latest)
 
 **NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googleapis/google-cloud-php). Any
 support requests, bug reports, or development contributions should be directed to

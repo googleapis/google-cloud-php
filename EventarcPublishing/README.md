@@ -4,7 +4,7 @@
 
 [![Latest Stable Version](https://poser.pugx.org/google/cloud-eventarc-publishing/v/stable)](https://packagist.org/packages/google/cloud-eventarc-publishing) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-eventarc-publishing.svg)](https://packagist.org/packages/google/cloud-eventarc-publishing)
 
-* [API documentation](http://googleapis.github.io/google-cloud-php/#/docs/cloud-eventarc-publishing/latest/eventarcpublishing/readme)
+* [API documentation](https://cloud.google.com/php/docs/reference/cloud-eventarc-publishing/latest)
 
 **NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googleapis/google-cloud-php). Any
 support requests, bug reports, or development contributions should be directed to

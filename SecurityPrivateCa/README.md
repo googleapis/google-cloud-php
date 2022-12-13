@@ -4,7 +4,7 @@
 
 [![Latest Stable Version](https://poser.pugx.org/google/cloud-security-private-ca/v/stable)](https://packagist.org/packages/google/cloud-security-private-ca) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-security-private-ca.svg)](https://packagist.org/packages/google/cloud-security-private-ca)
 
-* [API documentation](http://googleapis.github.io/google-cloud-php/#/docs/cloud-security-private-ca/latest/securityprivateca/readme)
+* [API documentation](https://cloud.google.com/php/docs/reference/cloud-security-private-ca/latest)
 
 **NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googleapis/google-cloud-php). Any
 support requests, bug reports, or development contributions should be directed to

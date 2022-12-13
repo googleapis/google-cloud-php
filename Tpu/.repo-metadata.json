@@ -1,6 +1,6 @@
 {
     "distribution_name": "google/cloud-tpu",
     "release_level": "ga",
-    "client_documentation": "http://googleapis.github.io/google-cloud-php/#/docs/cloud-tpu/latest",
+    "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-tpu/latest",
     "library_type": "GAPIC_AUTO"
 }
