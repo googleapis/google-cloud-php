@@ -67,10 +67,8 @@ class EntityPageIterator implements \Iterator
             // limit is not set properly, so set the limit from parsed query
             // which is returned by the server together with batch response
             $limit = $this->page['query']['limit'];
-            if (is_array($limit) &&
-                isset($this->page['query']['limit']['value'])
-            ) {
-                $limit = $this->page['query']['limit']['value'];
+            if (isset($limit['value'])) {
+                $limit = $limit['value'];
             }
             $this->config['resultLimit'] = $limit;
         }

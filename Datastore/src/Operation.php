@@ -448,12 +448,12 @@ class Operation
             'namespaceId' => $this->namespaceId,
             'databaseId' => $this->databaseId,
         ];
-        $runQueryObj = clone $query;
+
         $iteratorConfig = [
             'itemsKey' => 'batch.entityResults',
             'resultTokenKey' => 'query.startCursor',
             'nextResultTokenKey' => 'batch.endCursor',
-            'setNextResultTokenCondition' => function ($res) use (&$runQueryObj, &$remainingLimit) {
+            'setNextResultTokenCondition' => function ($res) use ($query) {
                 if (isset($res['batch']['moreResults'])) {
                     $moreResultsType = $res['batch']['moreResults'];
                     // Transform gRPC enum to string
@@ -461,18 +461,7 @@ class Operation
                         $moreResultsType = MoreResultsType::name($moreResultsType);
                     }
 
-                    $isNotFinished = $runQueryObj->canPaginate() && $moreResultsType === 'NOT_FINISHED';
-                    if ($isNotFinished && array_key_exists('limit', $runQueryObj->queryObject())) {
-                        $remainingLimit = $runQueryObj->queryObject()['limit'];
-                        if (is_array($remainingLimit) &&
-                            array_key_exists('value', $remainingLimit)) {
-                            $remainingLimit = $remainingLimit['value'];
-                        }
-
-                        $remainingLimit -= count($res['batch']['entityResults']);
-                    }
-
-                    return $isNotFinished;
+                    return $query->canPaginate() && $moreResultsType === 'NOT_FINISHED';
                 }
 
                 return false;
@@ -484,6 +473,7 @@ class Operation
             $iteratorConfig['resultLimit'] = $query->queryObject()['limit'];
             $remainingLimit = $query->queryObject()['limit'];
         }
+        $runQueryObj = clone $query;
         $runQueryFn = function (array $args = []) use (&$runQueryObj, $options, &$remainingLimit) {
             $args += [
                 'query' => [],
@@ -514,6 +504,9 @@ class Operation
             // instance prior to the next iteration of the page.
             if (isset($res['query'])) {
                 $runQueryObj = new Query($this->entityMapper, $res['query']);
+            }
+            if (isset($remainingLimit)) {
+                $remainingLimit -= count($res['batch']['entityResults']);
             }
 
             return $res;
