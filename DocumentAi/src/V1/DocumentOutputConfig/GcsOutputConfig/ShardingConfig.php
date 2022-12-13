@@ -20,13 +20,13 @@ class ShardingConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 pages_per_shard = 1;</code>
      */
-    protected $pages_per_shard = 0;
+    private $pages_per_shard = 0;
     /**
      * The number of overlapping pages between consecutive shards.
      *
      * Generated from protobuf field <code>int32 pages_overlap = 2;</code>
      */
-    protected $pages_overlap = 0;
+    private $pages_overlap = 0;
 
     /**
      * Constructor.
@@ -99,6 +99,4 @@ class ShardingConfig extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ShardingConfig::class, \Google\Cloud\DocumentAI\V1\DocumentOutputConfig_GcsOutputConfig_ShardingConfig::class);
 
