@@ -1,6 +1,6 @@
 {
     "distribution_name": "google/cloud-videointelligence",
     "release_level": "ga",
-    "client_documentation": "http://googleapis.github.io/google-cloud-php/#/docs/cloud-videointelligence/latest",
+    "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-videointelligence/latest",
     "library_type": "GAPIC_AUTO"
 }

@@ -4,7 +4,7 @@
 
 [![Latest Stable Version](https://poser.pugx.org/google/access-context-manager/v/stable)](https://packagist.org/packages/google/access-context-manager) [![Packagist](https://img.shields.io/packagist/dm/google/access-context-manager.svg)](https://packagist.org/packages/google/access-context-manager)
 
-* [API documentation](http://googleapis.github.io/google-cloud-php/#/docs/access-context-manager/latest/accesscontextmanager/readme)
+* [API documentation](https://cloud.google.com/php/docs/reference/access-context-manager/latest)
 
 **NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googleapis/google-cloud-php). Any
 support requests, bug reports, or development contributions should be directed to

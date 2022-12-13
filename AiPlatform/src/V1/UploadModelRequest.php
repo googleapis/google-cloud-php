@@ -44,6 +44,18 @@ class UploadModelRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Model model = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $model = null;
+    /**
+     * Optional. The user-provided custom service account to use to do the model
+     * upload. If empty, [Vertex AI Service
+     * Agent](https://cloud.google.com/vertex-ai/docs/general/access-control#service-agents)
+     * will be used. Users uploading the Model must have the
+     * `iam.serviceAccounts.actAs` permission on this service account. Also, this
+     * account must belong to the project specified in the `parent` field and have
+     * all necessary read permissions.
+     *
+     * Generated from protobuf field <code>string service_account = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $service_account = '';
 
     /**
      * Constructor.
@@ -64,6 +76,14 @@ class UploadModelRequest extends \Google\Protobuf\Internal\Message
      *           `[a-z0-9_-]`. The first character cannot be a number or hyphen.
      *     @type \Google\Cloud\AIPlatform\V1\Model $model
      *           Required. The Model to create.
+     *     @type string $service_account
+     *           Optional. The user-provided custom service account to use to do the model
+     *           upload. If empty, [Vertex AI Service
+     *           Agent](https://cloud.google.com/vertex-ai/docs/general/access-control#service-agents)
+     *           will be used. Users uploading the Model must have the
+     *           `iam.serviceAccounts.actAs` permission on this service account. Also, this
+     *           account must belong to the project specified in the `parent` field and have
+     *           all necessary read permissions.
      * }
      */
     public function __construct($data = NULL) {
@@ -191,6 +211,44 @@ class UploadModelRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\Model::class);
         $this->model = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The user-provided custom service account to use to do the model
+     * upload. If empty, [Vertex AI Service
+     * Agent](https://cloud.google.com/vertex-ai/docs/general/access-control#service-agents)
+     * will be used. Users uploading the Model must have the
+     * `iam.serviceAccounts.actAs` permission on this service account. Also, this
+     * account must belong to the project specified in the `parent` field and have
+     * all necessary read permissions.
+     *
+     * Generated from protobuf field <code>string service_account = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getServiceAccount()
+    {
+        return $this->service_account;
+    }
+
+    /**
+     * Optional. The user-provided custom service account to use to do the model
+     * upload. If empty, [Vertex AI Service
+     * Agent](https://cloud.google.com/vertex-ai/docs/general/access-control#service-agents)
+     * will be used. Users uploading the Model must have the
+     * `iam.serviceAccounts.actAs` permission on this service account. Also, this
+     * account must belong to the project specified in the `parent` field and have
+     * all necessary read permissions.
+     *
+     * Generated from protobuf field <code>string service_account = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setServiceAccount($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->service_account = $var;
 
         return $this;
     }

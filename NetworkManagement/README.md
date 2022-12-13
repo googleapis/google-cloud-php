@@ -4,7 +4,7 @@
 
 [![Latest Stable Version](https://poser.pugx.org/google/cloud-network-management/v/stable)](https://packagist.org/packages/google/cloud-network-management) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-network-management.svg)](https://packagist.org/packages/google/cloud-network-management)
 
-* [API documentation](http://googleapis.github.io/google-cloud-php/#/docs/cloud-network-management/latest/networkmanagement/readme)
+* [API documentation](https://cloud.google.com/php/docs/reference/cloud-network-management/latest)
 
 **NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googleapis/google-cloud-php). Any
 support requests, bug reports, or development contributions should be directed to

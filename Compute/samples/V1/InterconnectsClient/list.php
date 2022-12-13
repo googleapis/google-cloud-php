@@ -28,7 +28,7 @@ use Google\ApiCore\PagedListResponse;
 use Google\Cloud\Compute\V1\InterconnectsClient;
 
 /**
- * Retrieves the list of interconnect available to the specified project.
+ * Retrieves the list of Interconnects available to the specified project.
  *
  * @param string $project Project ID for this request.
  */

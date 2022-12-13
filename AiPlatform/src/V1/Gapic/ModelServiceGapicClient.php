@@ -1578,6 +1578,14 @@ class ModelServiceGapicClient
      *
      *           This value may be up to 63 characters, and valid characters are
      *           `[a-z0-9_-]`. The first character cannot be a number or hyphen.
+     *     @type string $serviceAccount
+     *           Optional. The user-provided custom service account to use to do the model
+     *           upload. If empty, [Vertex AI Service
+     *           Agent](https://cloud.google.com/vertex-ai/docs/general/access-control#service-agents)
+     *           will be used. Users uploading the Model must have the
+     *           `iam.serviceAccounts.actAs` permission on this service account. Also, this
+     *           account must belong to the project specified in the `parent` field and have
+     *           all necessary read permissions.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1601,6 +1609,10 @@ class ModelServiceGapicClient
 
         if (isset($optionalArgs['modelId'])) {
             $request->setModelId($optionalArgs['modelId']);
+        }
+
+        if (isset($optionalArgs['serviceAccount'])) {
+            $request->setServiceAccount($optionalArgs['serviceAccount']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
