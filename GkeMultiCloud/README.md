@@ -4,7 +4,7 @@
 
 [![Latest Stable Version](https://poser.pugx.org/google/cloud-gke-multi-cloud/v/stable)](https://packagist.org/packages/google/cloud-gke-multi-cloud) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-gke-multi-cloud.svg)](https://packagist.org/packages/google/cloud-gke-multi-cloud)
 
-* [API documentation](http://googleapis.github.io/google-cloud-php/#/docs/cloud-gke-multi-cloud/latest/gkemulticloud/readme)
+* [API documentation](https://cloud.google.com/php/docs/reference/cloud-gke-multi-cloud/latest)
 
 **NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googleapis/google-cloud-php). Any
 support requests, bug reports, or development contributions should be directed to

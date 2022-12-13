@@ -4,7 +4,7 @@
 
 [![Latest Stable Version](https://poser.pugx.org/google/cloud-service-management/v/stable)](https://packagist.org/packages/google/cloud-service-management) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-service-management.svg)](https://packagist.org/packages/google/cloud-service-management)
 
-* [API documentation](http://googleapis.github.io/google-cloud-php/#/docs/cloud-service-management/latest/servicemanagement/readme)
+* [API documentation](https://cloud.google.com/php/docs/reference/cloud-service-management/latest)
 
 **NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googleapis/google-cloud-php). Any
 support requests, bug reports, or development contributions should be directed to

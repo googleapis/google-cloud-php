@@ -4,7 +4,7 @@
 
 [![Latest Stable Version](https://poser.pugx.org/google/cloud-sql-admin/v/stable)](https://packagist.org/packages/google/cloud-sql-admin) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-sql-admin.svg)](https://packagist.org/packages/google/cloud-sql-admin)
 
-* [API documentation](http://googleapis.github.io/google-cloud-php/#/docs/cloud-sql-admin/latest/sqladmin/readme)
+* [API documentation](https://cloud.google.com/php/docs/reference/cloud-sql-admin/latest)
 
 **NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googleapis/google-cloud-php). Any
 support requests, bug reports, or development contributions should be directed to
