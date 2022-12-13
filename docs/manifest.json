@@ -4457,6 +4457,14 @@
             ]
         },
         {
+            "id": "cloud-vmware-engine",
+            "name": "google/cloud-vmware-engine",
+            "defaultService": "vmwareengine/readme",
+            "versions": [
+                "main"
+            ]
+        },
+        {
             "id": "cloud-vpc-access",
             "name": "google/cloud-vpc-access",
             "defaultService": "vpcaccess/readme",
