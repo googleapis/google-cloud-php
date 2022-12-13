@@ -1,6 +1,6 @@
 {
     "distribution_name": "google/cloud-common-protos",
     "release_level": "beta",
-    "client_documentation": "http://googleapis.github.io/google-cloud-php/#/docs/cloud-common-protos/latest",
+    "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-common-protos/latest",
     "library_type": "CORE"
 }

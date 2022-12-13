@@ -4,7 +4,7 @@
 
 [![Latest Stable Version](https://poser.pugx.org/google/cloud-managed-identities/v/stable)](https://packagist.org/packages/google/cloud-managed-identities) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-managed-identities.svg)](https://packagist.org/packages/google/cloud-managed-identities)
 
-* [API documentation](http://googleapis.github.io/google-cloud-php/#/docs/cloud-managed-identities/latest/managedidentities/readme)
+* [API documentation](https://cloud.google.com/php/docs/reference/cloud-managed-identities/latest)
 
 **NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googleapis/google-cloud-php). Any
 support requests, bug reports, or development contributions should be directed to

@@ -4,7 +4,7 @@
 
 [![Latest Stable Version](https://poser.pugx.org/google/cloud-filestore/v/stable)](https://packagist.org/packages/google/cloud-filestore) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-filestore.svg)](https://packagist.org/packages/google/cloud-filestore)
 
-* [API documentation](http://googleapis.github.io/google-cloud-php/#/docs/cloud-filestore/latest/filestore/readme)
+* [API documentation](https://cloud.google.com/php/docs/reference/cloud-filestore/latest)
 
 **NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googleapis/google-cloud-php). Any
 support requests, bug reports, or development contributions should be directed to
