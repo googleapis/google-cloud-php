@@ -65,11 +65,20 @@ class Operation
      * @param bool $returnInt64AsObject If true, 64 bit integers will be
      *        returned as a {@see Google\Cloud\Core\Int64} object for 32 bit
      *        platform compatibility.
+     * @param ValueMapperInterface|null $valueMapper A mapper which maps values
+     *        between PHP and Spanner.
      */
-    public function __construct(ConnectionInterface $connection, $returnInt64AsObject)
-    {
+    public function __construct(
+        ConnectionInterface $connection,
+        $returnInt64AsObject,
+        $valueMapper = null
+    ) {
+        if ($valueMapper === null) {
+            $valueMapper = new ValueMapper($returnInt64AsObject);
+        }
+
         $this->connection = $connection;
-        $this->mapper = new ValueMapper($returnInt64AsObject);
+        $this->mapper = $valueMapper;
     }
 
     /**

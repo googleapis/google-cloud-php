@@ -26,7 +26,7 @@ use Google\Cloud\Spanner\V1\TypeAnnotationCode;
 /**
  * Manage value mappings between Google Cloud PHP and Cloud Spanner
  */
-class ValueMapper
+class ValueMapper implements ValueMapperInterface
 {
     use ArrayTrait;
     use TimeTrait;

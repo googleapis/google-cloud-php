@@ -34,6 +34,8 @@ use Google\Cloud\Spanner\Tests\StubCreationTrait;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Spanner\V1\CommitResponse;
+use Google\Cloud\Spanner\ValueMapper;
+use Prophecy\Prophecy\MethodProphecy;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Prophecy\Argument;
 
@@ -285,6 +287,36 @@ class OperationTest extends TestCase
 
         $this->assertInstanceOf(Snapshot::class, $res->snapshot());
         $this->assertEquals(self::TRANSACTION, $res->snapshot()->id());
+    }
+
+    public function testReadWithCustomValueMapper()
+    {
+        $mapperProphesy = $this->prophesize(ValueMapper::class);
+        $mapperProphesy->decodeValues(
+            Argument::any(),
+            Argument::any(),
+            Argument::any()
+        )->shouldBeCalled()->willReturn(['ID' => '99']);
+
+        $mapperDummy = $mapperProphesy->reveal();
+
+        $this->connection->streamingRead(Argument::allOf(
+            Argument::withEntry('table', 'Posts'),
+            Argument::withEntry('session', self::SESSION),
+            Argument::withEntry('keySet', ['all' => true]),
+            Argument::withEntry('columns', ['foo'])
+        ))->shouldBeCalled()->willReturn($this->executeAndReadResponse());
+
+        $operation = TestHelpers::stub(Operation::class, [
+            $this->connection->reveal(),
+            false,
+            $mapperDummy,
+        ]);
+
+        $res = $operation->read($this->session, 'Posts', new KeySet(['all' => true]), ['foo']);
+        $this->assertInstanceOf(Result::class, $res);
+        $rows = iterator_to_array($res->rows());
+        $this->assertSame('99', $rows[0]['ID']);
     }
 
     public function testTransaction()

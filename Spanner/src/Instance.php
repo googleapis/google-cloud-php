@@ -495,6 +495,8 @@ class Instance
      *     @type SessionPoolInterface $sessionPool A pool used to manage
      *           sessions.
      *     @type string $databaseRole The user created database role which creates the session.
+     *     @type ValueMapperInterface|null $valueMapper A mapper which maps values
+     *     between PHP and Spanner.
      * }
      * @return Database
      */
@@ -510,7 +512,8 @@ class Instance
             isset($options['sessionPool']) ? $options['sessionPool'] : null,
             $this->returnInt64AsObject,
             isset($options['database']) ? $options['database'] : [],
-            isset($options['databaseRole']) ? $options['databaseRole'] : null
+            isset($options['databaseRole']) ? $options['databaseRole'] : null,
+            isset($options['valueMapper']) ? $options['valueMapper'] : null
         );
     }
 

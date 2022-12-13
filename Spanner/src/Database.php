@@ -191,6 +191,8 @@ class Database
      *        be returned as a {@see Google\Cloud\Core\Int64} object for 32 bit
      *        platform compatibility. **Defaults to** false.
      * @param string $databaseRole The user created database role which creates the session.
+     * @param ValueMapperInterface|null $valueMapper A mapper which maps values
+     *        between PHP and Spanner.
      */
     public function __construct(
         ConnectionInterface $connection,
@@ -202,14 +204,15 @@ class Database
         SessionPoolInterface $sessionPool = null,
         $returnInt64AsObject = false,
         array $info = [],
-        $databaseRole = null
+        $databaseRole = null,
+        $valueMapper = null
     ) {
         $this->connection = $connection;
         $this->instance = $instance;
         $this->projectId = $projectId;
         $this->name = $this->fullyQualifiedDatabaseName($name);
         $this->sessionPool = $sessionPool;
-        $this->operation = new Operation($connection, $returnInt64AsObject);
+        $this->operation = new Operation($connection, $returnInt64AsObject, $valueMapper);
         $this->info = $info;
 
         if ($this->sessionPool) {
@@ -2090,7 +2093,7 @@ class Database
 
     /**
      * Returns the 'CREATE DATABASE' statement as per the given database dialect
-     * 
+     *
      * @param string $dialect The dialect of the database to be created
      * @return string The specific 'CREATE DATABASE' statement
      */
