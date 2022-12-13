@@ -10,7 +10,7 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * A Dataproc job for running [Apache Spark
- * SQL](http://spark.apache.org/sql/) queries.
+ * SQL](https://spark.apache.org/sql/) queries.
  *
  * Generated from protobuf message <code>google.cloud.dataproc.v1.SparkSqlJob</code>
  */
