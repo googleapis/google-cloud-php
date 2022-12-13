@@ -55,7 +55,7 @@ class PublishBuildEventGrpcClient extends \Grpc\BaseStub {
      * jobs immediately without batching.
      *
      * The commit status of the request is reported by the RPC's util_status()
-     * function. The error code is the canoncial error code defined in
+     * function. The error code is the canonical error code defined in
      * //util/task/codes.proto.
      * @param \Google\Cloud\Build\V1\PublishLifecycleEventRequest $argument input argument
      * @param array $metadata metadata

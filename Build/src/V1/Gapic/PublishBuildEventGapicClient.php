@@ -276,7 +276,7 @@ class PublishBuildEventGapicClient
      * jobs immediately without batching.
      *
      * The commit status of the request is reported by the RPC's util_status()
-     * function. The error code is the canoncial error code defined in
+     * function. The error code is the canonical error code defined in
      * //util/task/codes.proto.
      *
      * Sample code:
@@ -291,8 +291,8 @@ class PublishBuildEventGapicClient
      * }
      * ```
      *
-     * @param OrderedBuildEvent $buildEvent   Required. The lifecycle build event. If this is a build tool event, the RPC
-     *                                        will fail with INVALID_REQUEST.
+     * @param OrderedBuildEvent $buildEvent   Required. The lifecycle build event. If this is a build tool event, the RPC will fail
+     *                                        with INVALID_REQUEST.
      * @param string            $projectId    Required. The project this build is associated with.
      *                                        This should match the project used for the initial call to
      *                                        PublishLifecycleEvent (containing a BuildEnqueued message).

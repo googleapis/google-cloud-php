@@ -36,6 +36,12 @@ class BuildStatus extends \Google\Protobuf\Internal\Message
      */
     private $build_tool_exit_code = null;
     /**
+     * Human-readable error message. Do not use for programmatic purposes.
+     *
+     * Generated from protobuf field <code>string error_message = 5;</code>
+     */
+    private $error_message = '';
+    /**
      * Fine-grained diagnostic information to complement the status.
      *
      * Generated from protobuf field <code>.google.protobuf.Any details = 2;</code>
@@ -56,6 +62,8 @@ class BuildStatus extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Int32Value $build_tool_exit_code
      *           Build tool exit code. Integer value returned by the executed build tool.
      *           Might not be available in some cases, e.g., a build timeout.
+     *     @type string $error_message
+     *           Human-readable error message. Do not use for programmatic purposes.
      *     @type \Google\Protobuf\Any $details
      *           Fine-grained diagnostic information to complement the status.
      * }
@@ -185,6 +193,32 @@ class BuildStatus extends \Google\Protobuf\Internal\Message
     {
         $this->writeWrapperValue("build_tool_exit_code", $var);
         return $this;}
+
+    /**
+     * Human-readable error message. Do not use for programmatic purposes.
+     *
+     * Generated from protobuf field <code>string error_message = 5;</code>
+     * @return string
+     */
+    public function getErrorMessage()
+    {
+        return $this->error_message;
+    }
+
+    /**
+     * Human-readable error message. Do not use for programmatic purposes.
+     *
+     * Generated from protobuf field <code>string error_message = 5;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setErrorMessage($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->error_message = $var;
+
+        return $this;
+    }
 
     /**
      * Fine-grained diagnostic information to complement the status.

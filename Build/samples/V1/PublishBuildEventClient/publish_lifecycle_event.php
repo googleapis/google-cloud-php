@@ -36,7 +36,7 @@ use Google\Cloud\Build\V1\PublishBuildEventClient;
  * jobs immediately without batching.
  *
  * The commit status of the request is reported by the RPC's util_status()
- * function. The error code is the canoncial error code defined in
+ * function. The error code is the canonical error code defined in
  * //util/task/codes.proto.
  *
  * @param string $projectId The project this build is associated with.

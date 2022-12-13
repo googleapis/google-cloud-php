@@ -17,7 +17,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class BuildEvent extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The timestamp of this event.
+     * This should be precisely the time when this event happened, and not when
+     * the event proto was created or sent.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp event_time = 1;</code>
      */
@@ -31,7 +32,8 @@ class BuildEvent extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Protobuf\Timestamp $event_time
-     *           The timestamp of this event.
+     *           This should be precisely the time when this event happened, and not when
+     *           the event proto was created or sent.
      *     @type \Google\Cloud\Build\V1\BuildEvent\InvocationAttemptStarted $invocation_attempt_started
      *           An invocation attempt has started.
      *     @type \Google\Cloud\Build\V1\BuildEvent\InvocationAttemptFinished $invocation_attempt_finished
@@ -62,7 +64,8 @@ class BuildEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The timestamp of this event.
+     * This should be precisely the time when this event happened, and not when
+     * the event proto was created or sent.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp event_time = 1;</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -83,7 +86,8 @@ class BuildEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The timestamp of this event.
+     * This should be precisely the time when this event happened, and not when
+     * the event proto was created or sent.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp event_time = 1;</code>
      * @param \Google\Protobuf\Timestamp $var
