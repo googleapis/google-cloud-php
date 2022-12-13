@@ -9,11 +9,11 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Metadata for a create analysis operation.
+ * The metadata for an IngestConversations operation.
  *
- * Generated from protobuf message <code>google.cloud.contactcenterinsights.v1.CreateAnalysisOperationMetadata</code>
+ * Generated from protobuf message <code>google.cloud.contactcenterinsights.v1.IngestConversationsMetadata</code>
  */
-class CreateAnalysisOperationMetadata extends \Google\Protobuf\Internal\Message
+class IngestConversationsMetadata extends \Google\Protobuf\Internal\Message
 {
     /**
      * Output only. The time the operation was created.
@@ -28,17 +28,18 @@ class CreateAnalysisOperationMetadata extends \Google\Protobuf\Internal\Message
      */
     private $end_time = null;
     /**
-     * Output only. The Conversation that this Analysis Operation belongs to.
+     * Output only. The original request for ingest.
      *
-     * Generated from protobuf field <code>string conversation = 3 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.IngestConversationsRequest request = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $conversation = '';
+    private $request = null;
     /**
-     * Output only. The annotator selector used for the analysis (if any).
+     * Output only. Partial errors during ingest operation that might cause the operation
+     * output to be incomplete.
      *
-     * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.AnnotatorSelector annotator_selector = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>repeated .google.rpc.Status partial_errors = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $annotator_selector = null;
+    private $partial_errors;
 
     /**
      * Constructor.
@@ -50,10 +51,11 @@ class CreateAnalysisOperationMetadata extends \Google\Protobuf\Internal\Message
      *           Output only. The time the operation was created.
      *     @type \Google\Protobuf\Timestamp $end_time
      *           Output only. The time the operation finished running.
-     *     @type string $conversation
-     *           Output only. The Conversation that this Analysis Operation belongs to.
-     *     @type \Google\Cloud\ContactCenterInsights\V1\AnnotatorSelector $annotator_selector
-     *           Output only. The annotator selector used for the analysis (if any).
+     *     @type \Google\Cloud\ContactCenterInsights\V1\IngestConversationsRequest $request
+     *           Output only. The original request for ingest.
+     *     @type array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $partial_errors
+     *           Output only. Partial errors during ingest operation that might cause the operation
+     *           output to be incomplete.
      * }
      */
     public function __construct($data = NULL) {
@@ -134,63 +136,65 @@ class CreateAnalysisOperationMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The Conversation that this Analysis Operation belongs to.
+     * Output only. The original request for ingest.
      *
-     * Generated from protobuf field <code>string conversation = 3 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
-     * @return string
+     * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.IngestConversationsRequest request = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\ContactCenterInsights\V1\IngestConversationsRequest|null
      */
-    public function getConversation()
+    public function getRequest()
     {
-        return $this->conversation;
+        return $this->request;
+    }
+
+    public function hasRequest()
+    {
+        return isset($this->request);
+    }
+
+    public function clearRequest()
+    {
+        unset($this->request);
     }
 
     /**
-     * Output only. The Conversation that this Analysis Operation belongs to.
+     * Output only. The original request for ingest.
      *
-     * Generated from protobuf field <code>string conversation = 3 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
-     * @param string $var
+     * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.IngestConversationsRequest request = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\ContactCenterInsights\V1\IngestConversationsRequest $var
      * @return $this
      */
-    public function setConversation($var)
+    public function setRequest($var)
     {
-        GPBUtil::checkString($var, True);
-        $this->conversation = $var;
+        GPBUtil::checkMessage($var, \Google\Cloud\ContactCenterInsights\V1\IngestConversationsRequest::class);
+        $this->request = $var;
 
         return $this;
     }
 
     /**
-     * Output only. The annotator selector used for the analysis (if any).
+     * Output only. Partial errors during ingest operation that might cause the operation
+     * output to be incomplete.
      *
-     * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.AnnotatorSelector annotator_selector = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Cloud\ContactCenterInsights\V1\AnnotatorSelector|null
+     * Generated from protobuf field <code>repeated .google.rpc.Status partial_errors = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
-    public function getAnnotatorSelector()
+    public function getPartialErrors()
     {
-        return $this->annotator_selector;
-    }
-
-    public function hasAnnotatorSelector()
-    {
-        return isset($this->annotator_selector);
-    }
-
-    public function clearAnnotatorSelector()
-    {
-        unset($this->annotator_selector);
+        return $this->partial_errors;
     }
 
     /**
-     * Output only. The annotator selector used for the analysis (if any).
+     * Output only. Partial errors during ingest operation that might cause the operation
+     * output to be incomplete.
      *
-     * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.AnnotatorSelector annotator_selector = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param \Google\Cloud\ContactCenterInsights\V1\AnnotatorSelector $var
+     * Generated from protobuf field <code>repeated .google.rpc.Status partial_errors = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
-    public function setAnnotatorSelector($var)
+    public function setPartialErrors($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\ContactCenterInsights\V1\AnnotatorSelector::class);
-        $this->annotator_selector = $var;
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Rpc\Status::class);
+        $this->partial_errors = $arr;
 
         return $this;
     }
