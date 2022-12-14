@@ -69,11 +69,7 @@
         "google/cloud-tools": "^0.13.0",
         "opis/closure": "^3.0",
         "swaggest/json-schema": "^0.12.0",
-<<<<<<< HEAD
         "rg/avro-php": "^1.8.0||^2.0.1||^3.0.0",
-=======
-        "rg/avro-php": "^1.8.0",
->>>>>>> 454622f3943 (temp commit just to resolve pr issues)
         "symfony/yaml": "^3.3||^6.0"
     },
     "replace": {
