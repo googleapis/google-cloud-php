@@ -18,16 +18,13 @@
 namespace Google\Cloud\Datastore\Tests\Unit;
 
 use Google\Cloud\Datastore\EntityPageIterator;
-use Yoast\PHPUnitPolyfills\Polyfills\AssertIsType;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group datastore
  */
 class EntityPageIteratorTest extends TestCase
 {
-    use AssertIsType;
-
     private static $moreResultsType = 'NOT_FINISHED';
     private static $items = ['a', 'b', 'c'];
 
@@ -43,61 +40,6 @@ class EntityPageIteratorTest extends TestCase
 
         $pagesArray = iterator_to_array($pages);
 
-        $this->assertOverPages($pages);
-    }
-
-    public function testCurrentSetsQueryIntegerLimits()
-    {
-        $pages = new EntityPageIterator(
-            function ($item) {
-                return $item;
-            },
-            [$this, 'theCall'],
-            [
-                'test' => 'call',
-                'query' => ['limit' => 1000],
-            ]
-        );
-
-        $pagesArray = iterator_to_array($pages);
-
-        $this->assertOverPages($pages, 1000);
-    }
-
-    public function testCurrentSetsQueryArrayLimits()
-    {
-
-        $pages = new EntityPageIterator(
-            function ($item) {
-                return $item;
-            },
-            [$this, 'theCall'],
-            [
-                'test' => 'call',
-                'query' => ['limit' => ['value' => 1100]],
-            ]
-        );
-
-        $this->assertOverPages($pages, 1100);
-    }
-
-    private function assertOverPages($pages, $expectedLimit = 0)
-    {
-        $pagesArray = iterator_to_array($pages);
-
-        $reflection = new \ReflectionClass($pages);
-        $configProp = $reflection->getProperty('config');
-        $configProp->setAccessible(true);
-        $configs = $configProp->getValue($pages);
-
-        $this->assertIsArray($configs);
-        $this->assertArrayHasKey('resultLimit', $configs);
-        $this->assertEquals(
-            $expectedLimit,
-            $configs['resultLimit'],
-            "resultLimit assertion failed."
-        );
-
         $this->assertEquals(self::$moreResultsType, $pages->moreResultsType());
         $this->assertEquals(self::$items, $pagesArray[0]);
     }
@@ -106,9 +48,9 @@ class EntityPageIteratorTest extends TestCase
     {
         return [
             'batch' => [
-                'moreResults' => self::$moreResultsType,
+                'moreResults' => self::$moreResultsType
             ],
-            'items' => self::$items,
-        ] + $options;
+            'items' => self::$items
+        ];
     }
 }

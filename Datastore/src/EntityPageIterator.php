@@ -61,17 +61,6 @@ class EntityPageIterator implements \Iterator
         $this->moreResultsType = isset($this->page['batch']['moreResults'])
             ? $this->page['batch']['moreResults']
             : null;
-        if ($this->config['resultLimit'] === 0 &&
-            isset($this->page['query']['limit'])
-        ) {
-            // limit is not set properly, so set the limit from parsed query
-            // which is returned by the server together with batch response
-            $limit = $this->page['query']['limit'];
-            if (isset($limit['value'])) {
-                $limit = $limit['value'];
-            }
-            $this->config['resultLimit'] = $limit;
-        }
 
         return $this->get($this->itemsPath, $this->page);
     }
