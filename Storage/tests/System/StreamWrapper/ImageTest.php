@@ -24,21 +24,19 @@ namespace Google\Cloud\Storage\Tests\System\StreamWrapper;
  */
 class ImageTest extends StreamWrapperTestCase
 {
-    const TEST_IMAGE_WITH_EXIF = 'fujifilm-dx10.jpg';
-    const TEST_IMAGE = 'screenshot.png';
+    const TEST_IMAGE_WITH_EXIF = __DIR__ . '/../data/fujifilm-dx10.jpg';
+    const TEST_IMAGE = __DIR__ . '/../data/screenshot.png';
 
     public static function set_up_before_class()
     {
         parent::set_up_before_class();
 
-        $path = __DIR__ . '/../data/' . self::TEST_IMAGE_WITH_EXIF;
         self::$bucket->upload(
-            fopen($path, 'r'),
+            fopen(self::TEST_IMAGE_WITH_EXIF, 'r'),
             ['name' => 'exif.jpg']
         );
-        $path = __DIR__ . '/../data/' . self::TEST_IMAGE;
         self::$bucket->upload(
-            fopen($path, 'r'),
+            fopen(self::TEST_IMAGE, 'r'),
             ['name' => 'plain.jpg']
         );
     }
