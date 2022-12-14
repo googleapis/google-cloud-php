@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2019 Google LLC
+ * Copyright 2022 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,14 +17,15 @@
 namespace Google\Cloud\Core\Logger;
 
 use Monolog\Formatter\LineFormatter;
+use Monolog\LogRecord;
 
 /**
- * Monolog 2.x formatter for formatting logs on App Engine flexible environment.
+ * Monolog 3.x formatter for formatting logs on App Engine flexible environment.
  *
  * If you are using Monolog 1.x, use {@see \Google\Cloud\Core\Logger\AppEngineFlexFormatter} instead.
- * If you are using Monolog 3.x, use {@see \Google\Cloud\Core\Logger\AppEngineFlexFormatterV3} instead.
+ * If you are using Monolog 2.x, use {@see \Google\Cloud\Core\Logger\AppEngineFlexFormatterV2} instead.
  */
-class AppEngineFlexFormatterV2 extends LineFormatter
+class AppEngineFlexFormatterV3 extends LineFormatter
 {
     use FormatterTrait;
 
@@ -42,10 +43,10 @@ class AppEngineFlexFormatterV2 extends LineFormatter
      * Get the plain text message with LineFormatter's format method and add
      * metadata including the trace id then return the json string.
      *
-     * @param array $record A record to format
+     * @param LogRecord $record A record to format
      * @return string The formatted record
      */
-    public function format(array $record): string
+    public function format(LogRecord $record): string
     {
         return $this->formatPayload($record, parent::format($record));
     }
