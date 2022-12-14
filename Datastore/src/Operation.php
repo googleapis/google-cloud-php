@@ -469,8 +469,6 @@ class Operation
         ];
 
         if (array_key_exists('limit', $query->queryObject())) {
-            // Setting resultLimit ensures we loop through all pages.
-            $iteratorConfig['resultLimit'] = $query->queryObject()['limit'];
             $remainingLimit = $query->queryObject()['limit'];
         }
         $runQueryObj = clone $query;
@@ -504,6 +502,12 @@ class Operation
             // instance prior to the next iteration of the page.
             if (isset($res['query'])) {
                 $runQueryObj = new Query($this->entityMapper, $res['query']);
+            }
+            if (isset($res['query']['limit'])) {
+                $remainingLimit = $res['query']['limit'];
+            }
+            if (isset($remainingLimit['value'])) {
+                $remainingLimit = $remainingLimit['value'];
             }
             if (isset($remainingLimit)) {
                 $remainingLimit -= count($res['batch']['entityResults']);
