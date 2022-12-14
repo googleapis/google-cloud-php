@@ -8,7 +8,7 @@
         "google/cloud-logging": "^1.16",
         "google/gax": "^1.1",
         "google/cloud-common-protos": "^0.3",
-        "psr/log": "^1.0"
+        "psr/log": "^3.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^4.8|^5.0|^8.0",
