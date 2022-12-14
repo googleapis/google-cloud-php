@@ -92,6 +92,10 @@ trait RetryTrait
         'objects.update' => ['ifMetagenerationMatch']
     ];
 
+    private static $idempotent = "idempotent";
+    private static $cond_idempotent = "idempotent_with_precondition";
+
+
     /**
      * Return a retry decider function.
      *
@@ -105,15 +109,14 @@ trait RetryTrait
         if (isset($options['restRetryFunction'])) {
             return $options['restRetryFunction'];
         }
-        $methodName = $resource . "." . $method;
-        $maxRetries = isset($args['retries']) ? (int) $args['retries'] : 3;
+        $methodName = sprintf('%s.%s', $resource, $method);
+        $maxRetries = (int) (isset($args['retries']) ? $args['retries'] : 3);
         $isOpNonIdempotent = !isset($this->opsDescriptionMap[$methodName]);
         $isOpIdempotent = (!$isOpNonIdempotent and
-            ($this->opsDescriptionMap[$methodName] === "idempotent"));
+            ($this->opsDescriptionMap[$methodName] === self::$idempotent));
         $preconditionNeeded = (!$isOpNonIdempotent and
-            ($this->opsDescriptionMap[$methodName] === "idempotent_with_precondition"));
-        $preconditionSupplied = ($preconditionNeeded and
-            $this->isPreConditionSupplied($methodName, $args));
+            ($this->opsDescriptionMap[$methodName] === self::$cond_idempotent));
+        $preconditionSupplied = $this->isPreConditionSupplied($methodName, $args);
 
         return function (
             \Exception $exception,
@@ -146,10 +149,13 @@ trait RetryTrait
      */
     private function isPreConditionSupplied($methodName, $preConditions)
     {
-        return !empty(array_intersect(
-            $this->preConditionMap[$methodName],
-            array_keys($preConditions)
-        ));
+        if (isset($this->preConditionMap[$methodName])) {
+            // return true if required precondition are given.
+            return !empty(array_intersect(
+                $this->preConditionMap[$methodName],
+                array_keys($preConditions)
+            ));
+        }
     }
 
 
@@ -172,16 +178,17 @@ trait RetryTrait
         $preconditionSupplied,
         $maxRetries
     ) {
-        // TODO: return if a custom deciding factor is supplied by the user.
-        // a custom factor might be a config like, 'retry' => 'always' or 'retry' => 'never'
-        // always retry the idempotent op
-
+        // No retry if maxRetries reached
         if ($maxRetries <= $currentAttempt) {
             return false;
         }
 
         $statusCode = $exception->getCode();
 
+        // Retry if the exception status code matches
+        // with one of the retriable status code and
+        // the operation is either idempotent or conditionally
+        // idempotent with preconditions supplied.
         if (in_array($statusCode, $this->httpRetryCodes)) {
             if ($isIdempotent) {
                 return true;

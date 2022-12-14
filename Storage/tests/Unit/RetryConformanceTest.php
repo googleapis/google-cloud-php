@@ -233,7 +233,7 @@ class RetryConformanceTest extends TestCase
                 function ($resourceIds, $options, $precondition = false) {
                     $bucketName = $resourceIds['bucketName'];
 
-                    $bucket = self::$storageClient->bucket('my-bucket');
+                    $bucket = self::$storageClient->bucket($bucketName);
                     $acl = $bucket->acl();
 
                     // this makes the storage.bucket_acl.list call
@@ -407,7 +407,7 @@ class RetryConformanceTest extends TestCase
                     $acl = $object->acl();
                     $options['entity'] = 'allUsers';
                     if ($precondition) {
-                        $options['generation'] = $object->info()['generation'];
+                        $options['ifGenerationMatch'] = $object->info()['generation'];
                     }
                     $acl->get($options);
                 }
@@ -421,7 +421,7 @@ class RetryConformanceTest extends TestCase
                     $object = $bucket->object($objectName);
                     $acl = $object->acl();
                     if ($precondition) {
-                        $options['generation'] = $object->info()['generation'];
+                        $options['ifGenerationMatch'] = $object->info()['generation'];
                     }
                     $acl->get($options);
                 }
@@ -468,8 +468,7 @@ class RetryConformanceTest extends TestCase
                     $bucket = self::$storageClient->bucket($bucketName);
 
                     if ($precondition) {
-                        $metageneration = $bucket->info()['metageneration'];
-                        $options['ifMetagenerationMatch'] = $metageneration;
+                        $options['ifMetagenerationMatch'] = $bucket->info()['metageneration'];
                     }
 
                     $bucket->update($options);
@@ -610,7 +609,7 @@ class RetryConformanceTest extends TestCase
                     $options['resumable'] = true;
                     $options['chunkSize'] = 512 * 1024;
                     if ($precondition) {
-                        $options['IfGenerationMatch'] = 0;
+                        $options['ifGenerationMatch'] = 0;
                     }
                     $bucket->upload(random_bytes(16 * 1024 * 1024), $options);
 
@@ -625,7 +624,7 @@ class RetryConformanceTest extends TestCase
                     $bucket = self::$storageClient->bucket($bucketName);
                     $object = $bucket->object($objectName);
                     if ($precondition) {
-                        $options['ifGenerationMatch'] = $object->info()['generation'];
+                        $options['ifMetagenerationMatch'] = $object->info()['metageneration'];
                     }
 
                     $object->update(['name' => 'updated.txt'], $options);
