@@ -42,7 +42,8 @@ class PageTest extends TestCase
             file_get_contents(__DIR__ . '/../../fixtures/phpdoc/service.xml')
         );
         $classNode = new ClassNode(new SimpleXMLElement($serviceXml));
-        $page = new Page($classNode, '', $packageDescription);
+        $componentPath = __DIR__ . '/../../fixtures/component/Vision';
+        $page = new Page($classNode, '', $packageDescription, $componentPath);
 
         $this->assertEquals($expected, $page->getItems()[0]['friendlyApiName']);
     }
@@ -64,7 +65,8 @@ class PageTest extends TestCase
     public function testLoadPagesProtoPackages()
     {
         $structureXml = __DIR__ . '/../../fixtures/phpdoc/structure.xml';
-        $pageTree = new PageTree($structureXml, 'Google\Cloud\Vision', '');
+        $componentPath = __DIR__ . '/../../fixtures/component/Vision';
+        $pageTree = new PageTree($structureXml, 'Google\Cloud\Vision', '', $componentPath);
 
         $pages = $pageTree->getPages();
         $this->assertTrue(count($pages) > 0);

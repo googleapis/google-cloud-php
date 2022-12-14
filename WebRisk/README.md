@@ -4,7 +4,7 @@
 
 [![Latest Stable Version](https://poser.pugx.org/google/cloud-web-risk/v/stable)](https://packagist.org/packages/google/cloud-web-risk) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-web-risk.svg)](https://packagist.org/packages/google/cloud-web-risk)
 
-* [API documentation](http://googleapis.github.io/google-cloud-php/#/docs/cloud-web-risk/latest/webrisk/readme)
+* [API documentation](https://cloud.google.com/php/docs/reference/cloud-web-risk/latest)
 
 **NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googleapis/google-cloud-php). Any
 support requests, bug reports, or development contributions should be directed to

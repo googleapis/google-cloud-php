@@ -1,6 +1,6 @@
 {
     "distribution_name": "google/cloud-eventarc",
     "release_level": "ga",
-    "client_documentation": "http://googleapis.github.io/google-cloud-php/#/docs/cloud-eventarc/latest",
+    "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-eventarc/latest",
     "library_type": "GAPIC_AUTO"
 }

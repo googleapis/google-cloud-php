@@ -28,6 +28,7 @@ class Page
         private ClassNode $classNode,
         private string $filePath,
         private string $packageDescription,
+        private string $componentPath
     ) {}
 
     public function getClassNode(): ClassNode
@@ -97,19 +98,79 @@ class Page
         ]);
     }
 
+    private function toSnakeCase(string $item): string
+    {
+        return strtolower(preg_replace(['/([a-z\d])([A-Z])/', '/([^_])([A-Z][a-z])/'], '$1_$2', $item));
+    }
+
+    /**
+     * If a generated sample exists
+     * (e.g., Asset/samples/V1/AssetServiceClient/analyze_iam_policy.php), remove
+     * the existing inline sample and return a version of the sample from the
+     * external file.
+     *
+     * TODO(dsupplee): utilize the example annotation in the generated client
+     * method docblocks to link out to the generated samples and remove the
+     * inline ones.
+     *
+     * @param string $methodDocContent
+     * @param string $methodName
+     */
+    private function handleSample(string $methodDocContent, string $methodName): array
+    {
+        $sample = null;
+        $path = sprintf(
+            '%s/samples/%s/%s.php',
+            $this->componentPath,
+            substr($this->filePath, 0, -4),
+            $this->toSnakeCase($methodName)
+        );
+        $sampleContents = @file_get_contents($path);
+        if ($sampleContents) {
+            // Finds the relevant code between the region tags in the generated sample.
+            if (preg_match('/\/\/ \[START\N*\n(.*?)\/\/ \[END/s', $sampleContents, $match) === 1) {
+                // Generated samples include the method description, which is redundant on the doc
+                // site. This removes the description.
+                $sample = preg_replace(
+                    '/(\/\*\*\n)(.*?)(@param|This sample has been automatically)/s',
+                    '$1 * $3',
+                    $match[1]
+                );
+                $sample = '```php' . PHP_EOL . $sample . '```';
+                // Removes the existing inline snippet.
+                $methodDocContent = preg_replace(
+                    '/Sample code:\n```php.*```/s',
+                    '',
+                    $methodDocContent
+                );
+            }
+        }
+        return [$methodDocContent, $sample];
+    }
+
     private function getMethodItems(): array
     {
         $methods = [];
+        $isServiceClass = $this->classNode->isServiceClass();
 
         foreach ($this->classNode->getMethods() as $method) {
+            $content = $method->getContent();
+            $name = $method->getName();
+            $sample = null;
+            if ($isServiceClass) {
+                list($content, $sample) = $this->handleSample($content, $name);
+            }
             $methodItem = array_filter([
                 'uid' => $method->getFullname(),
-                'name' => $method->getName(),
-                'id' => $method->getName(),
-                'summary' => $method->getContent(),
+                'name' => $name,
+                'id' => $name,
+                'summary' => $content,
                 'parent'  => $this->classNode->getFullname(),
                 'type' => 'method',
                 'langs' => ['php'],
+                'example' => $sample
+                    ? [$sample]
+                    : null
             ]);
             if ($parameters = $method->getParameters()) {
                 $methodItem['syntax']['parameters'] = [];

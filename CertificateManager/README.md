@@ -4,7 +4,7 @@
 
 [![Latest Stable Version](https://poser.pugx.org/google/cloud-certificate-manager/v/stable)](https://packagist.org/packages/google/cloud-certificate-manager) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-certificate-manager.svg)](https://packagist.org/packages/google/cloud-certificate-manager)
 
-* [API documentation](http://googleapis.github.io/google-cloud-php/#/docs/cloud-certificate-manager/latest/certificatemanager/readme)
+* [API documentation](https://cloud.google.com/php/docs/reference/cloud-certificate-manager/latest)
 
 **NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googleapis/google-cloud-php). Any
 support requests, bug reports, or development contributions should be directed to
