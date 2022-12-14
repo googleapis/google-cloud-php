@@ -1,6 +1,6 @@
 {
     "distribution_name": "google/cloud-document-ai",
     "release_level": "ga",
-    "client_documentation": "http://googleapis.github.io/google-cloud-php/#/docs/cloud-document-ai/latest",
+    "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-document-ai/latest",
     "library_type": "GAPIC_AUTO"
 }

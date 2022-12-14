@@ -111,21 +111,3 @@ jobs:
       run: vendor/bin/phpunit -c dev/phpunit-docfx.xml.dist
     - name: Run Docs Generator (Dry Run)
       run: bash .kokoro/docs/publish.sh
-
-  docs:
-    runs-on: ubuntu-latest
-    name: Generate Legacy Documentation (Dry Run)
-    steps:
-    - uses: actions/checkout@v3
-    - name: Setup PHP
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: '7.4'
-    - name: Install Dependencies
-      uses: nick-invision/retry@v2
-      with:
-        timeout_minutes: 10
-        max_attempts: 3
-        command: composer --no-interaction --no-ansi --no-progress update
-    - name: Run Docs Generator
-      run: php -d 'memory_limit=-1' dev/google-cloud docs

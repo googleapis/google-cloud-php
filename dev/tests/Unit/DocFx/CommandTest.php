@@ -17,11 +17,8 @@
 
 namespace Google\Cloud\Dev\Tests\Unit\DocFx;
 
-use Google\Cloud\Core\Testing\TestHelpers;
-use Google\Cloud\Dev\ComponentManager;
 use Google\Cloud\Dev\DocFx\Page\OverviewPage;
 use PHPUnit\Framework\TestCase;
-use Symfony\Component\Yaml\Yaml;
 
 /**
  * @group dev
@@ -37,7 +34,6 @@ class CommandTest extends TestCase
         $generatedFiles = array_diff(scandir(self::$tmpDir), ['..', '.']);
 
         $this->assertEquals([], array_diff($fixturesFiles, $generatedFiles));
-
     }
 
     /**
@@ -108,12 +104,14 @@ class CommandTest extends TestCase
     public function provideDocFxFiles()
     {
         $structureXml = __DIR__ . '/../../fixtures/phpdoc/structure.xml';
+        $componentDir = __DIR__ . '/../../fixtures/component/Vision';
         $tmpDir = sys_get_temp_dir() . '/' . rand();
         $cmd = sprintf(
-            '%s/google-cloud docfx --component Vision --xml %s --out=%s --metadata-version=1.0.0',
+            '%s/google-cloud docfx --component Vision --xml %s --out=%s --metadata-version=1.0.0 --component-path=%s',
             __DIR__ . '/../../../',
             $structureXml,
-            $tmpDir
+            $tmpDir,
+            $componentDir
         );
         passthru($cmd);
 

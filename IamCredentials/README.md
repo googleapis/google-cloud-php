@@ -4,7 +4,7 @@
 
 [![Latest Stable Version](https://poser.pugx.org/google/cloud-iam-credentials/v/stable)](https://packagist.org/packages/google/cloud-iam-credentials) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-iam-credentials.svg)](https://packagist.org/packages/google/cloud-iam-credentials)
 
-* [API documentation](http://googleapis.github.io/google-cloud-php/#/docs/cloud-iam-credentials/latest/iamcredentials/readme)
+* [API documentation](https://cloud.google.com/php/docs/reference/cloud-iam-credentials/latest)
 
 **NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googleapis/google-cloud-php). Any
 support requests, bug reports, or development contributions should be directed to

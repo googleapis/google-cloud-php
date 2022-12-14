@@ -4,7 +4,7 @@
 
 [![Latest Stable Version](https://poser.pugx.org/google/cloud-contact-center-insights/v/stable)](https://packagist.org/packages/google/cloud-contact-center-insights) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-contact-center-insights.svg)](https://packagist.org/packages/google/cloud-contact-center-insights)
 
-* [API documentation](http://googleapis.github.io/google-cloud-php/#/docs/cloud-contact-center-insights/latest/contactcenterinsights/readme)
+* [API documentation](https://cloud.google.com/php/docs/reference/cloud-contact-center-insights/latest)
 
 **NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googleapis/google-cloud-php). Any
 support requests, bug reports, or development contributions should be directed to

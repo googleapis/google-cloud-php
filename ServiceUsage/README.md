@@ -4,7 +4,7 @@
 
 [![Latest Stable Version](https://poser.pugx.org/google/cloud-service-usage/v/stable)](https://packagist.org/packages/google/cloud-service-usage) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-service-usage.svg)](https://packagist.org/packages/google/cloud-service-usage)
 
-* [API documentation](http://googleapis.github.io/google-cloud-php/#/docs/cloud-service-usage/latest/serviceusage/readme)
+* [API documentation](https://cloud.google.com/php/docs/reference/cloud-service-usage/latest)
 
 **NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googleapis/google-cloud-php). Any
 support requests, bug reports, or development contributions should be directed to

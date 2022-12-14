@@ -1,6 +1,6 @@
 {
     "distribution_name": "google/cloud-beyondcorp-clientconnectorservices",
     "release_level": "beta",
-    "client_documentation": "http://googleapis.github.io/google-cloud-php/#/docs/cloud-beyondcorp-clientconnectorservices/latest",
+    "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-beyondcorp-clientconnectorservices/latest",
     "library_type": "GAPIC_AUTO"
 }

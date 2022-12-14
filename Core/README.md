@@ -2,7 +2,7 @@
 
 [![Latest Stable Version](https://poser.pugx.org/google/cloud-core/v/stable)](https://packagist.org/packages/google/cloud-core) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-core.svg)](https://packagist.org/packages/google/cloud-core)
 
-* [API documentation](http://googleapis.github.io/google-cloud-php/#/docs/cloud-core/latest)
+* [API documentation](https://cloud.google.com/php/docs/reference/cloud-core/latest)
 
 **NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googleapis/google-cloud-php). Any
 support requests, bug reports, or development contributions should be directed to

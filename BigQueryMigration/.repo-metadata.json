@@ -1,7 +1,7 @@
 {
     "distribution_name": "google/cloud-bigquery-migration",
     "release_level": "beta",
-    "client_documentation": "http://googleapis.github.io/google-cloud-php/#/docs/cloud-bigquery-migration/latest",
+    "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-bigquery-migration/latest",
     "library_type": "GAPIC_AUTO",
     "product_documentation": "https://cloud.google.com/bigquery/docs/migration-intro/docs",
     "issue_tracker": "https://github.com/googleapis/google-cloud-php/issues"
