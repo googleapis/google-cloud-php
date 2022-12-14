@@ -633,4 +633,17 @@ class Rest implements ConnectionInterface
     {
         return Builtin::supports(CRC32::CASTAGNOLI);
     }
+
+    /**
+     * TODO: Replace the usage of send with sendRequst in all the ops
+     * Add the required retry function and send the request.
+     * @param string $resource resource name, eg: buckets.
+     * @param string $method method name, eg: get
+     * @param array $args
+     */
+    private function sendRequest($resource, $method, $args)
+    {
+        $args['restRetryFunction'] = $this->getRestRetryFunction($resource, $method, $args);
+        return $this->send($resource, $method, $args);
+    }
 }
