@@ -28,7 +28,7 @@ class EntityType extends \Google\Protobuf\Internal\Message
      * cannot be a 'Common Type'.  Besides that we use the following naming
      * conventions:
      * - *use `snake_casing`*
-     * - name matching is case-insensitive
+     * - name matching is case-sensitive
      * - Maximum 64 characters.
      * - Must start with a letter.
      * - Allowed characters: ASCII letters `[a-z0-9_-]`.  (For backward
@@ -75,7 +75,7 @@ class EntityType extends \Google\Protobuf\Internal\Message
      *           cannot be a 'Common Type'.  Besides that we use the following naming
      *           conventions:
      *           - *use `snake_casing`*
-     *           - name matching is case-insensitive
+     *           - name matching is case-sensitive
      *           - Maximum 64 characters.
      *           - Must start with a letter.
      *           - Allowed characters: ASCII letters `[a-z0-9_-]`.  (For backward
@@ -166,7 +166,7 @@ class EntityType extends \Google\Protobuf\Internal\Message
      * cannot be a 'Common Type'.  Besides that we use the following naming
      * conventions:
      * - *use `snake_casing`*
-     * - name matching is case-insensitive
+     * - name matching is case-sensitive
      * - Maximum 64 characters.
      * - Must start with a letter.
      * - Allowed characters: ASCII letters `[a-z0-9_-]`.  (For backward
@@ -189,7 +189,7 @@ class EntityType extends \Google\Protobuf\Internal\Message
      * cannot be a 'Common Type'.  Besides that we use the following naming
      * conventions:
      * - *use `snake_casing`*
-     * - name matching is case-insensitive
+     * - name matching is case-sensitive
      * - Maximum 64 characters.
      * - Must start with a letter.
      * - Allowed characters: ASCII letters `[a-z0-9_-]`.  (For backward
