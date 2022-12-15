@@ -532,7 +532,7 @@ class CatalogServiceGapicClient
      * ```
      *
      * @param string $name         Required. Full CompletionConfig resource name. Format:
-     *                             projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/completionConfig
+     *                             `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/completionConfig`
      * @param array  $optionalArgs {
      *     Optional.
      *

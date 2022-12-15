@@ -33,9 +33,8 @@ class Control extends \Google\Protobuf\Internal\Message
      */
     private $display_name = '';
     /**
-     * Output only. List of [serving
-     * configuration][google.cloud.retail.v2.ServingConfig] ids that are
-     * associated with this control in the same
+     * Output only. List of [serving config][google.cloud.retail.v2.ServingConfig]
+     * ids that are associated with this control in the same
      * [Catalog][google.cloud.retail.v2.Catalog].
      * Note the association is managed via the
      * [ServingConfig][google.cloud.retail.v2.ServingConfig], this is an output
@@ -86,9 +85,8 @@ class Control extends \Google\Protobuf\Internal\Message
      *           This field must be a UTF-8 encoded string with a length limit of 128
      *           characters. Otherwise, an INVALID_ARGUMENT error is thrown.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $associated_serving_config_ids
-     *           Output only. List of [serving
-     *           configuration][google.cloud.retail.v2.ServingConfig] ids that are
-     *           associated with this control in the same
+     *           Output only. List of [serving config][google.cloud.retail.v2.ServingConfig]
+     *           ids that are associated with this control in the same
      *           [Catalog][google.cloud.retail.v2.Catalog].
      *           Note the association is managed via the
      *           [ServingConfig][google.cloud.retail.v2.ServingConfig], this is an output
@@ -208,9 +206,8 @@ class Control extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. List of [serving
-     * configuration][google.cloud.retail.v2.ServingConfig] ids that are
-     * associated with this control in the same
+     * Output only. List of [serving config][google.cloud.retail.v2.ServingConfig]
+     * ids that are associated with this control in the same
      * [Catalog][google.cloud.retail.v2.Catalog].
      * Note the association is managed via the
      * [ServingConfig][google.cloud.retail.v2.ServingConfig], this is an output
@@ -225,9 +222,8 @@ class Control extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. List of [serving
-     * configuration][google.cloud.retail.v2.ServingConfig] ids that are
-     * associated with this control in the same
+     * Output only. List of [serving config][google.cloud.retail.v2.ServingConfig]
+     * ids that are associated with this control in the same
      * [Catalog][google.cloud.retail.v2.Catalog].
      * Note the association is managed via the
      * [ServingConfig][google.cloud.retail.v2.ServingConfig], this is an output
