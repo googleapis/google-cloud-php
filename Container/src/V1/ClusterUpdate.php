@@ -291,6 +291,14 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.container.v1.NodePoolLoggingConfig desired_node_pool_logging_config = 116;</code>
      */
     private $desired_node_pool_logging_config = null;
+    /**
+     * The desired stack type of the cluster.
+     * If a stack type is provided and does not match the current stack type of
+     * the cluster, update will attempt to change the stack type to the new type.
+     *
+     * Generated from protobuf field <code>.google.container.v1.StackType desired_stack_type = 119;</code>
+     */
+    private $desired_stack_type = 0;
 
     /**
      * Constructor.
@@ -420,6 +428,10 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      *           The desired config of Gateway API on this cluster.
      *     @type \Google\Cloud\Container\V1\NodePoolLoggingConfig $desired_node_pool_logging_config
      *           The desired node pool logging configuration defaults for the cluster.
+     *     @type int $desired_stack_type
+     *           The desired stack type of the cluster.
+     *           If a stack type is provided and does not match the current stack type of
+     *           the cluster, update will attempt to change the stack type to the new type.
      * }
      */
     public function __construct($data = NULL) {
@@ -1793,6 +1805,36 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\NodePoolLoggingConfig::class);
         $this->desired_node_pool_logging_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * The desired stack type of the cluster.
+     * If a stack type is provided and does not match the current stack type of
+     * the cluster, update will attempt to change the stack type to the new type.
+     *
+     * Generated from protobuf field <code>.google.container.v1.StackType desired_stack_type = 119;</code>
+     * @return int
+     */
+    public function getDesiredStackType()
+    {
+        return $this->desired_stack_type;
+    }
+
+    /**
+     * The desired stack type of the cluster.
+     * If a stack type is provided and does not match the current stack type of
+     * the cluster, update will attempt to change the stack type to the new type.
+     *
+     * Generated from protobuf field <code>.google.container.v1.StackType desired_stack_type = 119;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setDesiredStackType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Container\V1\StackType::class);
+        $this->desired_stack_type = $var;
 
         return $this;
     }
