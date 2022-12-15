@@ -504,12 +504,14 @@ class Operation
                 $runQueryObj = new Query($this->entityMapper, $res['query']);
             }
             if (isset($res['query']['limit'])) {
+                // limit for GqlQuery in REST mode
                 $remainingLimit = $res['query']['limit'];
             }
             if (isset($remainingLimit['value'])) {
+                // limit for GqlQuery in GRPC mode
                 $remainingLimit = $remainingLimit['value'];
             }
-            if (isset($remainingLimit)) {
+            if (!is_null($remainingLimit)) {
                 $remainingLimit -= count($res['batch']['entityResults']);
             }
 
