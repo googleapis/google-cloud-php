@@ -69,4 +69,25 @@ class DoctumConfigBuilder
             'default_opened_level' => 1,
         ]);
     }
+
+    public static function buildProtobufConfigForVersion($version)
+    {
+        $gaxRootDir = realpath(__DIR__ . '/../../..');
+        $protobufRootDir = realpath(__DIR__ . '/../../../vendor/google/protobuf');
+        $iterator = Finder::create()
+            ->files()
+            ->name('*.php')
+            ->exclude('GPBMetadata')
+            ->in("$protobufRootDir/src")
+        ;
+
+        return new Doctum($iterator, [
+            'title'                => "Google Protobuf - $version",
+            'version'              => $version,
+            'build_dir'            => "$gaxRootDir/api-docs",
+            'cache_dir'            => "$gaxRootDir/cache/%version%",
+            'remote_repository'    => new GitHubRemoteRepository('protocolbuffers/protobuf-php', $protobufRootDir),
+            'default_opened_level' => 1,
+        ]);
+    }
 }
