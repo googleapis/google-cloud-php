@@ -388,7 +388,6 @@ class Rest implements ConnectionInterface
      */
     public function testBucketIamPermissions(array $args)
     {
-        $args['restRetryFunction'] = $this->getRestRetryFunction('buckets', 'testIamPermissions', $args);
         return $this->sendRequest('buckets', 'testIamPermissions', $args);
     }
 
