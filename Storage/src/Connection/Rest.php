@@ -115,8 +115,7 @@ class Rest implements ConnectionInterface
      */
     public function deleteAcl(array $args = [])
     {
-        $args['restRetryFunction'] = $this->getRestRetryFunction('bucket_acl', 'delete', $args);
-        return $this->send($args['type'], 'delete', $args);
+        return $this->sendRequest('bucket_acl', 'delete', $args);
     }
 
     /**
@@ -124,8 +123,7 @@ class Rest implements ConnectionInterface
      */
     public function getAcl(array $args = [])
     {
-        $args['restRetryFunction'] = $this->getRestRetryFunction('bucket_acl', 'get', $args);
-        return $this->send($args['type'], 'get', $args);
+        return $this->sendRequest('bucket_acl', 'get', $args);
     }
 
     /**
@@ -133,8 +131,7 @@ class Rest implements ConnectionInterface
      */
     public function listAcl(array $args = [])
     {
-        $args['restRetryFunction'] = $this->getRestRetryFunction('bucket_acl', 'list', $args);
-        return $this->send($args['type'], 'list', $args);
+        return $this->sendRequest('bucket_acl', 'list', $args);
     }
 
     /**
@@ -142,8 +139,7 @@ class Rest implements ConnectionInterface
      */
     public function insertAcl(array $args = [])
     {
-        $args['restRetryFunction'] = $this->getRestRetryFunction('bucket_acl', 'insert', $args);
-        return $this->send($args['type'], 'insert', $args);
+        return $this->sendRequest('bucket_acl', 'insert', $args);
     }
 
     /**
@@ -151,8 +147,7 @@ class Rest implements ConnectionInterface
      */
     public function patchAcl(array $args = [])
     {
-        $args['restRetryFunction'] = $this->getRestRetryFunction('bucket_acl', 'patch', $args);
-        return $this->send($args['type'], 'patch', $args);
+        return $this->sendRequest('bucket_acl', 'patch', $args);
     }
 
     /**
@@ -160,8 +155,7 @@ class Rest implements ConnectionInterface
      */
     public function deleteBucket(array $args = [])
     {
-        $args['restRetryFunction'] = $this->getRestRetryFunction('buckets', 'delete', $args);
-        return $this->send('buckets', 'delete', $args);
+        return $this->sendRequest('buckets', 'delete', $args);
     }
 
     /**
@@ -169,8 +163,7 @@ class Rest implements ConnectionInterface
      */
     public function getBucket(array $args = [])
     {
-        $args['restRetryFunction'] = $this->getRestRetryFunction('buckets', 'get', $args);
-        return $this->send('buckets', 'get', $args);
+        return $this->sendRequest('buckets', 'get', $args);
     }
 
     /**
@@ -178,8 +171,7 @@ class Rest implements ConnectionInterface
      */
     public function listBuckets(array $args = [])
     {
-        $args['restRetryFunction'] = $this->getRestRetryFunction('buckets', 'list', $args);
-        return $this->send('buckets', 'list', $args);
+        return $this->sendRequest('buckets', 'list', $args);
     }
 
     /**
@@ -187,8 +179,7 @@ class Rest implements ConnectionInterface
      */
     public function insertBucket(array $args = [])
     {
-        $args['restRetryFunction'] = $this->getRestRetryFunction('buckets', 'insert', $args);
-        return $this->send('buckets', 'insert', $args);
+        return $this->sendRequest('buckets', 'insert', $args);
     }
 
     /**
@@ -196,8 +187,7 @@ class Rest implements ConnectionInterface
      */
     public function patchBucket(array $args = [])
     {
-        $args['restRetryFunction'] = $this->getRestRetryFunction('buckets', 'patch', $args);
-        return $this->send('buckets', 'patch', $args);
+        return $this->sendRequest('buckets', 'patch', $args);
     }
 
     /**
@@ -205,8 +195,7 @@ class Rest implements ConnectionInterface
      */
     public function deleteObject(array $args = [])
     {
-        $args['restRetryFunction'] = $this->getRestRetryFunction('objects', 'delete', $args);
-        return $this->send('objects', 'delete', $args);
+        return $this->sendRequest('objects', 'delete', $args);
     }
 
     /**
@@ -214,8 +203,7 @@ class Rest implements ConnectionInterface
      */
     public function copyObject(array $args = [])
     {
-        $args['restRetryFunction'] = $this->getRestRetryFunction('objects', 'copy', $args);
-        return $this->send('objects', 'copy', $args);
+        return $this->sendRequest('objects', 'copy', $args);
     }
 
     /**
@@ -223,8 +211,7 @@ class Rest implements ConnectionInterface
      */
     public function rewriteObject(array $args = [])
     {
-        $args['restRetryFunction'] = $this->getRestRetryFunction('objects', 'rewrite', $args);
-        return $this->send('objects', 'rewrite', $args);
+        return $this->sendRequest('objects', 'rewrite', $args);
     }
 
     /**
@@ -232,8 +219,7 @@ class Rest implements ConnectionInterface
      */
     public function composeObject(array $args = [])
     {
-        $args['restRetryFunction'] = $this->getRestRetryFunction('objects', 'compose', $args);
-        return $this->send('objects', 'compose', $args);
+        return $this->sendRequest('objects', 'compose', $args);
     }
 
     /**
@@ -241,8 +227,7 @@ class Rest implements ConnectionInterface
      */
     public function getObject(array $args = [])
     {
-        $args['restRetryFunction'] = $this->getRestRetryFunction('objects', 'get', $args);
-        return $this->send('objects', 'get', $args);
+        return $this->sendRequest('objects', 'get', $args);
     }
 
     /**
@@ -250,8 +235,7 @@ class Rest implements ConnectionInterface
      */
     public function listObjects(array $args = [])
     {
-        $args['restRetryFunction'] = $this->getRestRetryFunction('objects', 'list', $args);
-        return $this->send('objects', 'list', $args);
+        return $this->sendRequest('objects', 'list', $args);
     }
 
     /**
@@ -259,8 +243,7 @@ class Rest implements ConnectionInterface
      */
     public function patchObject(array $args = [])
     {
-        $args['restRetryFunction'] = $this->getRestRetryFunction('objects', 'patch', $args);
-        return $this->send('objects', 'patch', $args);
+        return $this->sendRequest('objects', 'patch', $args);
     }
 
     /**
@@ -389,8 +372,7 @@ class Rest implements ConnectionInterface
      */
     public function getBucketIamPolicy(array $args)
     {
-        $args['restRetryFunction'] = $this->getRestRetryFunction('buckets', 'getIamPolicy', $args);
-        return $this->send('buckets', 'getIamPolicy', $args);
+        return $this->sendRequest('buckets', 'getIamPolicy', $args);
     }
 
     /**
@@ -398,8 +380,7 @@ class Rest implements ConnectionInterface
      */
     public function setBucketIamPolicy(array $args)
     {
-        $args['restRetryFunction'] = $this->getRestRetryFunction('buckets', 'setIamPolicy', $args);
-        return $this->send('buckets', 'setIamPolicy', $args);
+        return $this->sendRequest('buckets', 'setIamPolicy', $args);
     }
 
     /**
@@ -408,7 +389,7 @@ class Rest implements ConnectionInterface
     public function testBucketIamPermissions(array $args)
     {
         $args['restRetryFunction'] = $this->getRestRetryFunction('buckets', 'testIamPermissions', $args);
-        return $this->send('buckets', 'testIamPermissions', $args);
+        return $this->sendRequest('buckets', 'testIamPermissions', $args);
     }
 
     /**
@@ -416,8 +397,7 @@ class Rest implements ConnectionInterface
      */
     public function getNotification(array $args = [])
     {
-        $args['restRetryFunction'] = $this->getRestRetryFunction('notifications', 'get', $args);
-        return $this->send('notifications', 'get', $args);
+        return $this->sendRequest('notifications', 'get', $args);
     }
 
     /**
@@ -425,8 +405,7 @@ class Rest implements ConnectionInterface
      */
     public function deleteNotification(array $args = [])
     {
-        $args['restRetryFunction'] = $this->getRestRetryFunction('notifications', 'delete', $args);
-        return $this->send('notifications', 'delete', $args);
+        return $this->sendRequest('notifications', 'delete', $args);
     }
 
     /**
@@ -434,8 +413,7 @@ class Rest implements ConnectionInterface
      */
     public function insertNotification(array $args = [])
     {
-        $args['restRetryFunction'] = $this->getRestRetryFunction('notifications', 'insert', $args);
-        return $this->send('notifications', 'insert', $args);
+        return $this->sendRequest('notifications', 'insert', $args);
     }
 
     /**
@@ -443,8 +421,7 @@ class Rest implements ConnectionInterface
      */
     public function listNotifications(array $args = [])
     {
-        $args['restRetryFunction'] = $this->getRestRetryFunction('notifications', 'list', $args);
-        return $this->send('notifications', 'list', $args);
+        return $this->sendRequest('notifications', 'list', $args);
     }
 
     /**
@@ -452,8 +429,7 @@ class Rest implements ConnectionInterface
      */
     public function getServiceAccount(array $args = [])
     {
-        $args['restRetryFunction'] = $this->getRestRetryFunction('serviceaccount', 'get', $args);
-        return $this->send('projects.resources.serviceAccount', 'get', $args);
+        return $this->sendRequest('serviceaccount', 'get', $args);
     }
 
     /**
@@ -461,8 +437,7 @@ class Rest implements ConnectionInterface
      */
     public function lockRetentionPolicy(array $args = [])
     {
-        $args['restRetryFunction'] = $this->getRestRetryFunction('buckets', 'lockRetentionPolicy', $args);
-        return $this->send('buckets', 'lockRetentionPolicy', $args);
+        return $this->sendRequest('buckets', 'lockRetentionPolicy', $args);
     }
 
     /**
@@ -470,8 +445,7 @@ class Rest implements ConnectionInterface
      */
     public function createHmacKey(array $args = [])
     {
-        $args['restRetryFunction'] = $this->getRestRetryFunction('hmacKey', 'create', $args);
-        return $this->send('projects.resources.hmacKeys', 'create', $args);
+        return $this->sendRequest('hmacKey', 'create', $args);
     }
 
     /**
@@ -479,8 +453,7 @@ class Rest implements ConnectionInterface
      */
     public function deleteHmacKey(array $args = [])
     {
-        $args['restRetryFunction'] = $this->getRestRetryFunction('hmacKey', 'delete', $args);
-        return $this->send('projects.resources.hmacKeys', 'delete', $args);
+        return $this->sendRequest('hmacKey', 'delete', $args);
     }
 
     /**
@@ -488,8 +461,7 @@ class Rest implements ConnectionInterface
      */
     public function getHmacKey(array $args = [])
     {
-        $args['restRetryFunction'] = $this->getRestRetryFunction('hmacKey', 'get', $args);
-        return $this->send('projects.resources.hmacKeys', 'get', $args);
+        return $this->sendRequest('hmacKey', 'get', $args);
     }
 
     /**
@@ -497,8 +469,7 @@ class Rest implements ConnectionInterface
      */
     public function updateHmacKey(array $args = [])
     {
-        $args['restRetryFunction'] = $this->getRestRetryFunction('hmacKey', 'update', $args);
-        return $this->send('projects.resources.hmacKeys', 'update', $args);
+        return $this->sendRequest('hmacKey', 'update', $args);
     }
 
     /**
@@ -506,8 +477,7 @@ class Rest implements ConnectionInterface
      */
     public function listHmacKeys(array $args = [])
     {
-        $args['restRetryFunction'] = $this->getRestRetryFunction('hmacKey', 'list', $args);
-        return $this->send('projects.resources.hmacKeys', 'list', $args);
+        return $this->sendRequest('hmacKey', 'list', $args);
     }
 
     /**
@@ -635,8 +605,8 @@ class Rest implements ConnectionInterface
     }
 
     /**
-     * TODO: Replace the usage of send with sendRequst in all the ops
      * Add the required retry function and send the request.
+     *
      * @param string $resource resource name, eg: buckets.
      * @param string $method method name, eg: get
      * @param array $args
@@ -644,6 +614,15 @@ class Rest implements ConnectionInterface
     private function sendRequest($resource, $method, $args)
     {
         $args['restRetryFunction'] = $this->getRestRetryFunction($resource, $method, $args);
+        if ($resource === 'bucket_acl') {
+            return $this->send($args['type'], $method, $args);
+        }
+        if ($resource === 'serviceaccount') {
+            return $this->send('projects.resources.serviceAccount', $method, $args);
+        }
+        if ($resource === 'hmacKey') {
+            return $this->send('projects.resources.hmacKeys', $method, $args);
+        }
         return $this->send($resource, $method, $args);
     }
 }
