@@ -72,7 +72,7 @@ class TableTest extends SnippetTestCase
             'selfLink' => 'https://www.googleapis.com/bigquery/v2/projects/my-project/datasets/mynewdataset',
         ];
 
-        $this->mapper = new ValueMapper(false);
+        $this->mapper = new ValueMapper(false, false);
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->table = TestHelpers::stub(Table::class, [
             $this->connection->reveal(),

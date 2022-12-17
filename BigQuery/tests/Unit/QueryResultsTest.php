@@ -66,7 +66,7 @@ class QueryResultsTest extends TestCase
             $this->jobId,
             $this->projectId,
             $data,
-            new ValueMapper(false),
+            new ValueMapper(false, false),
             $this->prophesize(Job::class)->reveal()
         );
     }
@@ -222,7 +222,7 @@ class QueryResultsTest extends TestCase
             $this->jobId,
             $this->projectId,
             $info,
-            new ValueMapper(false),
+            new ValueMapper(false, false),
             $job->reveal()
         ]);
 

@@ -617,7 +617,7 @@ class BigQueryTestClient extends BigQueryClient
     public function query($query, array $options = [])
     {
         return (new QueryJobConfigurationStub(
-            new ValueMapper(false),
+            new ValueMapper(false, false),
             BigQueryClientTest::PROJECT_ID,
             $options,
             null

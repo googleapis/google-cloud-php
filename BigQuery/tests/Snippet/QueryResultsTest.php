@@ -76,7 +76,7 @@ class QueryResultsTest extends SnippetTestCase
             self::JOB_ID,
             self::PROJECT,
             $this->info,
-            new ValueMapper(false),
+            new ValueMapper(false, false),
             $job->reveal()
         ]);
     }

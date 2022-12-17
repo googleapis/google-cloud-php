@@ -46,6 +46,7 @@ class ValueMapper
     const TYPE_STRUCT = 'STRUCT';
     const TYPE_RECORD = 'RECORD';
     const TYPE_GEOGRAPHY = 'GEOGRAPHY';
+    const TYPE_JSON = 'JSON';
 
     const DATETIME_FORMAT = 'Y-m-d H:i:s.u';
     const DATETIME_FORMAT_INSERT = 'Y-m-d\TH:i:s.u';
@@ -58,13 +59,22 @@ class ValueMapper
     private $returnInt64AsObject;
 
     /**
+     * @var bool $returnJsonAsAssociativeArray If true, the second parameter of
+     *      json_decode will be set to true.
+     */
+    private $returnJsonAsAssociativeArray;
+
+    /**
      * @param bool $returnInt64AsObject If true, 64 bit integers will be
      *        returned as a {@see Int64} object for 32 bit
      *        platform compatibility.
+     * @param bool $returnJsonAsAssociativeArray If true, the second parameter of
+     *      {@see json_decode} will be set to true.
      */
-    public function __construct($returnInt64AsObject)
+    public function __construct($returnInt64AsObject, $returnJsonAsAssociativeArray)
     {
         $this->returnInt64AsObject = $returnInt64AsObject;
+        $this->returnJsonAsAssociativeArray = $returnJsonAsAssociativeArray;
     }
 
     /**
@@ -118,6 +128,8 @@ class ValueMapper
                 return $this->recordFromBigQuery($value, $schema['fields']);
             case self::TYPE_GEOGRAPHY:
                 return new Geography((string) $value);
+            case self::TYPE_JSON:
+                return json_decode($value, $this->returnJsonAsAssociativeArray);
             default:
                 throw new \InvalidArgumentException(sprintf(
                     'Unrecognized value type %s. Please ensure you are using the latest version of google/cloud.',

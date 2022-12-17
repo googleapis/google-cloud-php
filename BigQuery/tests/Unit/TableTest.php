@@ -79,7 +79,7 @@ class TableTest extends TestCase
 
     public function set_up()
     {
-        $this->mapper = new ValueMapper(false);
+        $this->mapper = new ValueMapper(false, false);
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->storageConnection = $this->prophesize(StorageConnectionInterface::class);
     }

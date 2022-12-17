@@ -108,6 +108,8 @@ class BigQueryClient
      *     @type bool $returnInt64AsObject If true, 64 bit integers will be
      *           returned as a {@see Int64} object for 32 bit
      *           platform compatibility. **Defaults to** false.
+     *     @type bool $returnJsonAsAssociativeArray If true, the second parameter of
+     *          {@see json_decode} will be set to true. **Defaults to** false.
      *     @type string $location If provided, determines the default geographic
      *           location used when creating datasets and managing jobs. Please
      *           note: This is only required for jobs started outside of the US
@@ -129,6 +131,7 @@ class BigQueryClient
             'scopes' => [self::SCOPE],
             'projectIdRequired' => true,
             'returnInt64AsObject' => false,
+            'returnJsonAsAssociativeArray' => false,
             'restRetryFunction' => $this->getRetryFunction(),
             //@codeCoverageIgnoreStart
             'restCalcDelayFunction' => function ($attempt) {
@@ -141,7 +144,7 @@ class BigQueryClient
         ];
 
         $this->connection = new Rest($this->configureAuthentication($config));
-        $this->mapper = new ValueMapper($config['returnInt64AsObject']);
+        $this->mapper = new ValueMapper($config['returnInt64AsObject'], $config['returnJsonAsAssociativeArray']);
     }
 
     /**
