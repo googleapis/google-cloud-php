@@ -31,10 +31,14 @@ use Google\Cloud\Scheduler\V1beta1\Job;
  * Pauses a job.
  *
  * If a job is paused then the system will stop executing the job
- * until it is re-enabled via [ResumeJob][google.cloud.scheduler.v1beta1.CloudScheduler.ResumeJob]. The
- * state of the job is stored in [state][google.cloud.scheduler.v1beta1.Job.state]; if paused it
- * will be set to [Job.State.PAUSED][google.cloud.scheduler.v1beta1.Job.State.PAUSED]. A job must be in [Job.State.ENABLED][google.cloud.scheduler.v1beta1.Job.State.ENABLED]
- * to be paused.
+ * until it is re-enabled via
+ * [ResumeJob][google.cloud.scheduler.v1beta1.CloudScheduler.ResumeJob]. The
+ * state of the job is stored in
+ * [state][google.cloud.scheduler.v1beta1.Job.state]; if paused it will be set
+ * to [Job.State.PAUSED][google.cloud.scheduler.v1beta1.Job.State.PAUSED]. A
+ * job must be in
+ * [Job.State.ENABLED][google.cloud.scheduler.v1beta1.Job.State.ENABLED] to be
+ * paused.
  *
  * @param string $formattedName The job name. For example:
  *                              `projects/PROJECT_ID/locations/LOCATION_ID/jobs/JOB_ID`. Please see
