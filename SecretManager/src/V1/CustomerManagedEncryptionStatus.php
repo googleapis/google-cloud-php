@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class CustomerManagedEncryptionStatus extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name of the Cloud KMS CryptoKeyVersion used to encrypt the
-     * secret payload, in the following format:
+     * Required. The resource name of the Cloud KMS CryptoKeyVersion used to
+     * encrypt the secret payload, in the following format:
      * `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;&#47;versions/&#42;`.
      *
      * Generated from protobuf field <code>string kms_key_version_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -31,8 +31,8 @@ class CustomerManagedEncryptionStatus extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $kms_key_version_name
-     *           Required. The resource name of the Cloud KMS CryptoKeyVersion used to encrypt the
-     *           secret payload, in the following format:
+     *           Required. The resource name of the Cloud KMS CryptoKeyVersion used to
+     *           encrypt the secret payload, in the following format:
      *           `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;&#47;versions/&#42;`.
      * }
      */
@@ -42,8 +42,8 @@ class CustomerManagedEncryptionStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the Cloud KMS CryptoKeyVersion used to encrypt the
-     * secret payload, in the following format:
+     * Required. The resource name of the Cloud KMS CryptoKeyVersion used to
+     * encrypt the secret payload, in the following format:
      * `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;&#47;versions/&#42;`.
      *
      * Generated from protobuf field <code>string kms_key_version_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -55,8 +55,8 @@ class CustomerManagedEncryptionStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the Cloud KMS CryptoKeyVersion used to encrypt the
-     * secret payload, in the following format:
+     * Required. The resource name of the Cloud KMS CryptoKeyVersion used to
+     * encrypt the secret payload, in the following format:
      * `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;&#47;versions/&#42;`.
      *
      * Generated from protobuf field <code>string kms_key_version_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
