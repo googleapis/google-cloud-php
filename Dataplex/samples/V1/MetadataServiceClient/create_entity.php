@@ -60,6 +60,9 @@ use Google\Cloud\Dataplex\V1\StorageSystem;
  *                                        - application/x-avro
  *                                        - application/x-orc
  *                                        - application/x-tfrecord
+ *                                        - application/x-parquet+iceberg
+ *                                        - application/x-avro+iceberg
+ *                                        - application/x-orc+iceberg
  *                                        - application/json
  *                                        - application/{subtypes}
  *                                        - text/csv

@@ -48,8 +48,8 @@ class SessionEvent extends \Google\Protobuf\Internal\Message
      */
     private $event_succeeded = false;
     /**
-     * If the session is associated with an Environment with fast startup enabled,
-     * and was pre-created before being assigned to a user.
+     * If the session is associated with an environment with fast startup enabled,
+     * and was created before being assigned to a user.
      *
      * Generated from protobuf field <code>bool fast_startup_enabled = 7;</code>
      */
@@ -82,8 +82,8 @@ class SessionEvent extends \Google\Protobuf\Internal\Message
      *     @type bool $event_succeeded
      *           The status of the event.
      *     @type bool $fast_startup_enabled
-     *           If the session is associated with an Environment with fast startup enabled,
-     *           and was pre-created before being assigned to a user.
+     *           If the session is associated with an environment with fast startup enabled,
+     *           and was created before being assigned to a user.
      *     @type \Google\Protobuf\Duration $unassigned_duration
      *           The idle duration of a warm pooled session before it is assigned to user.
      * }
@@ -257,8 +257,8 @@ class SessionEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If the session is associated with an Environment with fast startup enabled,
-     * and was pre-created before being assigned to a user.
+     * If the session is associated with an environment with fast startup enabled,
+     * and was created before being assigned to a user.
      *
      * Generated from protobuf field <code>bool fast_startup_enabled = 7;</code>
      * @return bool
@@ -269,8 +269,8 @@ class SessionEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If the session is associated with an Environment with fast startup enabled,
-     * and was pre-created before being assigned to a user.
+     * If the session is associated with an environment with fast startup enabled,
+     * and was created before being assigned to a user.
      *
      * Generated from protobuf field <code>bool fast_startup_enabled = 7;</code>
      * @param bool $var
