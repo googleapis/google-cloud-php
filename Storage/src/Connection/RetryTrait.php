@@ -38,6 +38,7 @@ trait RetryTrait
 
     /**
      * The operations which can be retried without any conditions
+     * (Idempotent)
      * @var array
      */
     private $idempotentOps = [
@@ -67,6 +68,7 @@ trait RetryTrait
 
     /**
      * The operations which can be retried with specific conditions
+     * (Conditionally idempotent)
      * @var array
      */
     private $condIdempotentOps = [
@@ -100,9 +102,8 @@ trait RetryTrait
         }
         $methodName = sprintf('%s.%s', $resource, $method);
         $maxRetries = (int) (isset($args['retries']) ? $args['retries'] : 3);
-        $isOpNonIdempotent = !isset($this->opsDescriptionMap[$methodName]);
-        $isOpIdempotent = (!$isOpNonIdempotent and in_array($methodName, $this->idempotentOps));
-        $preconditionNeeded = (!$isOpNonIdempotent and in_array($methodName, $this->condIdempotentOps));
+        $isOpIdempotent = in_array($methodName, $this->idempotentOps);
+        $preconditionNeeded = array_key_exists($methodName, $this->condIdempotentOps);
         $preconditionSupplied = $this->isPreConditionSupplied($methodName, $args);
 
         return function (
@@ -127,7 +128,14 @@ trait RetryTrait
 
 
     /**
-     * Check whether the required preconditions are provided.
+     * This function retruns true when the user given
+     * precondtions ($preConditions) has values that are present
+     * in the precondition map ($this->condIdempotentMap) for that method.
+     * eg: condIdempotentMap has entry 'objects.copy' => ['ifGenerationMatch'],
+     * if the user has given 'ifGenerationMatch' in the 'objects.copy' operation,
+     * it will be available in the $preConditions
+     * as an array ['ifGenerationMatch']. This makes the array_intersect
+     * function return a non empty result and this function returns true.
      *
      * @param string $methodName method name, eg: buckets.get.
      * @param array $preConditions preconditions provided,
@@ -136,10 +144,10 @@ trait RetryTrait
      */
     private function isPreConditionSupplied($methodName, $preConditions)
     {
-        if (isset($this->preConditionMap[$methodName])) {
+        if (isset($this->condIdempotentOps[$methodName])) {
             // return true if required precondition are given.
             return !empty(array_intersect(
-                $this->preConditionMap[$methodName],
+                $this->condIdempotentOps[$methodName],
                 array_keys($preConditions)
             ));
         }
@@ -149,8 +157,9 @@ trait RetryTrait
     /**
      * Decide whether the op needs to be retried or not.
      *
-     * @param Exception $exception op failure exception.
-     * @param int $currentAttempt current attempt number.
+     * @param \Exception $exception The exception object received
+     * while sending the request.
+     * @param int $currentAttempt Current retry attempt.
      * @param boolean $isIdempotent
      * @param boolean $preconditionNeeded
      * @param boolean $preconditionSupplied
