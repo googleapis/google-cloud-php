@@ -23,6 +23,7 @@ namespace Google\Cloud\Storage\Connection;
 trait RetryTrait
 {
     /**
+     * The HTTP codes that will be retried by our custom retry function.
      * @var array
      */
     private $httpRetryCodes = [
@@ -36,64 +37,52 @@ trait RetryTrait
     ];
 
     /**
+     * The operations which can be retried without any conditions
      * @var array
      */
-    private $opsDescriptionMap = [
-        'bucket_acl.get' => 'idempotent',
-        'bucket_acl.list' => 'idempotent',
-        'buckets.delete' => 'idempotent',
-        'buckets.get' => 'idempotent',
-        'buckets.getIamPolicy' => 'idempotent',
-        'buckets.insert' => 'idempotent',
-        'buckets.list' => 'idempotent',
-        'buckets.lockRetentionPolicy' => 'idempotent',
-        'buckets.testIamPermissions' => 'idempotent',
-        'default_object_acl.get' => 'idempotent',
-        'default_object_acl.list"' => 'idempotent',
-        'hmacKey.delete' => 'idempotent',
-        'hmacKey.get' => 'idempotent',
-        'hmacKey.list' => 'idempotent',
-        'notifications.delete' => 'idempotent',
-        'notifications.get' => 'idempotent',
-        'notifications.list' => 'idempotent',
-        'object_acl.get' => 'idempotent',
-        'object_acl.list' => 'idempotent',
-        'objects.get' => 'idempotent',
-        'objects.list' => 'idempotent',
-        'serviceaccount.get' => 'idempotent',
-        'buckets.patch' => 'idempotent_with_precondition',
-        'buckets.setIamPolicy' => 'idempotent_with_precondition',
-        'buckets.update' => 'idempotent_with_precondition',
-        'hmacKey.update' => 'idempotent_with_precondition',
-        'objects.compose' => 'idempotent_with_precondition',
-        'objects.copy' => 'idempotent_with_precondition',
-        'objects.delete' => 'idempotent_with_precondition',
-        'objects.insert' => 'idempotent_with_precondition',
-        'objects.patch' => 'idempotent_with_precondition',
-        'objects.rewrite' => 'idempotent_with_precondition',
-        'objects.update' => 'idempotent_with_precondition'
+    private $idempotentOps = [
+        'bucket_acl.get',
+        'bucket_acl.list',
+        'buckets.delete',
+        'buckets.get',
+        'buckets.getIamPolicy',
+        'buckets.insert',
+        'buckets.list',
+        'buckets.lockRetentionPolicy',
+        'buckets.testIamPermissions',
+        'default_object_acl.get',
+        'default_object_acl.list"',
+        'hmacKey.delete',
+        'hmacKey.get',
+        'hmacKey.list',
+        'notifications.delete',
+        'notifications.get',
+        'notifications.list',
+        'object_acl.get',
+        'object_acl.list',
+        'objects.get',
+        'objects.list',
+        'serviceaccount.get',
     ];
 
     /**
+     * The operations which can be retried with specific conditions
      * @var array
      */
-    private $preConditionMap = [
-        'buckets.patch' => ['ifMetagenerationMatch'],
+    private $condIdempotentOps = [
+        'buckets.patch' => ['ifMetagenerationMatch', 'etag'],
         // Currently etag is not supported, so this preCondition never available
         'buckets.setIamPolicy' => ['etag'],
-        'buckets.update' => ['ifMetagenerationMatch'],
+        'buckets.update' => ['ifMetagenerationMatch', 'etag'],
         'hmacKey.update' => ['etag'],
         'objects.compose' => ['ifGenerationMatch'],
         'objects.copy' => ['ifGenerationMatch'],
         'objects.delete' => ['ifGenerationMatch'],
         'objects.insert' => ['ifGenerationMatch'],
-        'objects.patch' => ['ifMetagenerationMatch'],
+        'objects.patch' => ['ifMetagenerationMatch', 'etag'],
         'objects.rewrite' => ['ifGenerationMatch'],
         'objects.update' => ['ifMetagenerationMatch']
     ];
-
-    private static $idempotent = "idempotent";
-    private static $cond_idempotent = "idempotent_with_precondition";
 
 
     /**
@@ -112,10 +101,8 @@ trait RetryTrait
         $methodName = sprintf('%s.%s', $resource, $method);
         $maxRetries = (int) (isset($args['retries']) ? $args['retries'] : 3);
         $isOpNonIdempotent = !isset($this->opsDescriptionMap[$methodName]);
-        $isOpIdempotent = (!$isOpNonIdempotent and
-            ($this->opsDescriptionMap[$methodName] === self::$idempotent));
-        $preconditionNeeded = (!$isOpNonIdempotent and
-            ($this->opsDescriptionMap[$methodName] === self::$cond_idempotent));
+        $isOpIdempotent = (!$isOpNonIdempotent and in_array($methodName, $this->idempotentOps));
+        $preconditionNeeded = (!$isOpNonIdempotent and in_array($methodName, $this->condIdempotentOps));
         $preconditionSupplied = $this->isPreConditionSupplied($methodName, $args);
 
         return function (

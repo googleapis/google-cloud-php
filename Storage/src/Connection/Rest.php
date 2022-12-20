@@ -614,13 +614,11 @@ class Rest implements ConnectionInterface
     {
         $args['restRetryFunction'] = $this->getRestRetryFunction($resource, $method, $args);
         if ($resource === 'bucket_acl') {
-            return $this->send($args['type'], $method, $args);
-        }
-        if ($resource === 'serviceaccount') {
-            return $this->send('projects.resources.serviceAccount', $method, $args);
-        }
-        if ($resource === 'hmacKey') {
-            return $this->send('projects.resources.hmacKeys', $method, $args);
+            $resource = $args['type'];
+        } elseif ($resource === 'serviceaccount') {
+            $resource = 'projects.resources.serviceAccount';
+        } elseif ($resource === 'hmacKey') {
+            $resource = 'projects.resources.hmacKeys';
         }
         return $this->send($resource, $method, $args);
     }
