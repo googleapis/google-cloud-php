@@ -70,6 +70,4 @@ class OutputCredentials
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(OutputCredentials::class, \Google\Cloud\Iap\V1\AttributePropagationSettings_OutputCredentials::class);
 

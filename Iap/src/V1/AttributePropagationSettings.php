@@ -41,7 +41,7 @@ class AttributePropagationSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string expression = 1;</code>
      */
-    protected $expression = null;
+    private $expression = null;
     /**
      * Which output credentials attributes selected by the CEL expression should
      * be propagated in. All attributes will be fully duplicated in each selected
@@ -57,7 +57,7 @@ class AttributePropagationSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional bool enable = 3;</code>
      */
-    protected $enable = null;
+    private $enable = null;
 
     /**
      * Constructor.
