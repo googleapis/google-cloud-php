@@ -34,17 +34,20 @@ use Google\Cloud\GkeMultiCloud\V1\AwsConfigEncryption;
 use Google\Cloud\GkeMultiCloud\V1\AwsControlPlane;
 use Google\Cloud\GkeMultiCloud\V1\AwsDatabaseEncryption;
 use Google\Cloud\GkeMultiCloud\V1\AwsServicesAuthentication;
+use Google\Cloud\GkeMultiCloud\V1\Fleet;
 use Google\Rpc\Status;
 
 /**
- * Creates a new [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resource on a given GCP project and region.
+ * Creates a new [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster]
+ * resource on a given GCP project and region.
  *
  * If successful, the response contains a newly created
  * [Operation][google.longrunning.Operation] resource that can be
  * described to track the status of the operation.
  *
- * @param string $formattedParent                                        The parent location where this [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resource
- *                                                                       will be created.
+ * @param string $formattedParent                                        The parent location where this
+ *                                                                       [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resource will be
+ *                                                                       created.
  *
  *                                                                       Location names are formatted as `projects/<project-id>/locations/<region>`.
  *
@@ -55,12 +58,12 @@ use Google\Rpc\Status;
  *                                                                       (i.e. control plane and node pools) run on a single VPC.
  *
  *                                                                       This field cannot be changed after creation.
- * @param string $awsClusterNetworkingPodAddressCidrBlocksElement        All pods in the cluster are assigned an IPv4 address from these ranges.
- *                                                                       Only a single range is supported.
- *                                                                       This field cannot be changed after creation.
- * @param string $awsClusterNetworkingServiceAddressCidrBlocksElement    All services in the cluster are assigned an IPv4 address from these ranges.
- *                                                                       Only a single range is supported.
- *                                                                       This field cannot be changed after creation.
+ * @param string $awsClusterNetworkingPodAddressCidrBlocksElement        All pods in the cluster are assigned an IPv4 address from these
+ *                                                                       ranges. Only a single range is supported. This field cannot be changed
+ *                                                                       after creation.
+ * @param string $awsClusterNetworkingServiceAddressCidrBlocksElement    All services in the cluster are assigned an IPv4 address from
+ *                                                                       these ranges. Only a single range is supported. This field cannot be
+ *                                                                       changed after creation.
  * @param string $awsClusterAwsRegion                                    The AWS region where the cluster runs.
  *
  *                                                                       Each Google Cloud region supports a subset of nearby AWS regions.
@@ -77,21 +80,27 @@ use Google\Rpc\Status;
  *                                                                       A replica will be provisioned on each subnet and up to three values
  *                                                                       can be provided.
  *                                                                       Each subnet must be in a different AWS Availability Zone (AZ).
- * @param string $awsClusterControlPlaneIamInstanceProfile               The name or ARN of the AWS IAM instance profile to assign to each control
- *                                                                       plane replica.
+ * @param string $awsClusterControlPlaneIamInstanceProfile               The name or ARN of the AWS IAM instance profile to assign to each
+ *                                                                       control plane replica.
  * @param string $awsClusterControlPlaneDatabaseEncryptionKmsKeyArn      The ARN of the AWS KMS key used to encrypt cluster secrets.
- * @param string $awsClusterControlPlaneAwsServicesAuthenticationRoleArn The Amazon Resource Name (ARN) of the role that the Anthos Multi-Cloud API
- *                                                                       will assume when managing AWS resources on your account.
+ * @param string $awsClusterControlPlaneAwsServicesAuthenticationRoleArn The Amazon Resource Name (ARN) of the role that the Anthos
+ *                                                                       Multi-Cloud API will assume when managing AWS resources on your account.
  * @param string $awsClusterControlPlaneConfigEncryptionKmsKeyArn        The ARN of the AWS KMS key used to encrypt user data.
  * @param string $awsClusterAuthorizationAdminUsersUsername              The name of the user, e.g. `my-gcp-id&#64;gmail.com`.
- * @param string $awsClusterId                                           A client provided ID the resource. Must be unique within the parent
- *                                                                       resource.
+ * @param string $awsClusterFleetProject                                 The name of the Fleet host project where this cluster will be
+ *                                                                       registered.
  *
- *                                                                       The provided ID will be part of the [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster]
- *                                                                       resource name formatted as
+ *                                                                       Project names are formatted as
+ *                                                                       `projects/<project-number>`.
+ * @param string $awsClusterId                                           A client provided ID the resource. Must be unique within the
+ *                                                                       parent resource.
+ *
+ *                                                                       The provided ID will be part of the
+ *                                                                       [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resource name
+ *                                                                       formatted as
  *                                                                       `projects/<project-id>/locations/<region>/awsClusters/<cluster-id>`.
  *
- *                                                                       Valid characters are `/[a-z][0-9]-/`. Cannot be longer than 40 characters.
+ *                                                                       Valid characters are `/[a-z][0-9]-/`. Cannot be longer than 63 characters.
  */
 function create_aws_cluster_sample(
     string $formattedParent,
@@ -106,6 +115,7 @@ function create_aws_cluster_sample(
     string $awsClusterControlPlaneAwsServicesAuthenticationRoleArn,
     string $awsClusterControlPlaneConfigEncryptionKmsKeyArn,
     string $awsClusterAuthorizationAdminUsersUsername,
+    string $awsClusterFleetProject,
     string $awsClusterId
 ): void {
     // Create a client.
@@ -139,11 +149,14 @@ function create_aws_cluster_sample(
     $awsClusterAuthorizationAdminUsers = [$awsClusterUser,];
     $awsClusterAuthorization = (new AwsAuthorization())
         ->setAdminUsers($awsClusterAuthorizationAdminUsers);
+    $awsClusterFleet = (new Fleet())
+        ->setProject($awsClusterFleetProject);
     $awsCluster = (new AwsCluster())
         ->setNetworking($awsClusterNetworking)
         ->setAwsRegion($awsClusterAwsRegion)
         ->setControlPlane($awsClusterControlPlane)
-        ->setAuthorization($awsClusterAuthorization);
+        ->setAuthorization($awsClusterAuthorization)
+        ->setFleet($awsClusterFleet);
 
     // Call the API and handle any network failures.
     try {
@@ -188,6 +201,7 @@ function callSample(): void
     $awsClusterControlPlaneAwsServicesAuthenticationRoleArn = '[ROLE_ARN]';
     $awsClusterControlPlaneConfigEncryptionKmsKeyArn = '[KMS_KEY_ARN]';
     $awsClusterAuthorizationAdminUsersUsername = '[USERNAME]';
+    $awsClusterFleetProject = '[PROJECT]';
     $awsClusterId = '[AWS_CLUSTER_ID]';
 
     create_aws_cluster_sample(
@@ -203,6 +217,7 @@ function callSample(): void
         $awsClusterControlPlaneAwsServicesAuthenticationRoleArn,
         $awsClusterControlPlaneConfigEncryptionKmsKeyArn,
         $awsClusterAuthorizationAdminUsersUsername,
+        $awsClusterFleetProject,
         $awsClusterId
     );
 }
