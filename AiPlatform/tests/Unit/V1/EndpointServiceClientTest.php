@@ -23,15 +23,12 @@
 namespace Google\Cloud\AIPlatform\Tests\Unit\V1;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
-use Google\Cloud\AIPlatform\V1\DeployedModel;
 use Google\Cloud\AIPlatform\V1\DeployModelResponse;
-
+use Google\Cloud\AIPlatform\V1\DeployedModel;
 use Google\Cloud\AIPlatform\V1\Endpoint;
 use Google\Cloud\AIPlatform\V1\EndpointServiceClient;
 use Google\Cloud\AIPlatform\V1\ListEndpointsResponse;
@@ -55,25 +52,19 @@ use stdClass;
  */
 class EndpointServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return EndpointServiceClient
-     */
+    /** @return EndpointServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -82,14 +73,12 @@ class EndpointServiceClientTest extends GeneratedTest
         return new EndpointServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createEndpointTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -165,14 +154,12 @@ class EndpointServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createEndpointExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -225,14 +212,12 @@ class EndpointServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteEndpointTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -289,14 +274,12 @@ class EndpointServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteEndpointExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -346,14 +329,12 @@ class EndpointServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deployModelTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -415,14 +396,12 @@ class EndpointServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deployModelExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -475,9 +454,7 @@ class EndpointServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getEndpointTest()
     {
         $transport = $this->createTransport();
@@ -516,9 +493,7 @@ class EndpointServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getEndpointExceptionTest()
     {
         $transport = $this->createTransport();
@@ -551,9 +526,7 @@ class EndpointServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listEndpointsTest()
     {
         $transport = $this->createTransport();
@@ -588,9 +561,7 @@ class EndpointServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listEndpointsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -623,14 +594,12 @@ class EndpointServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function undeployModelTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -690,14 +659,12 @@ class EndpointServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function undeployModelExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -748,9 +715,7 @@ class EndpointServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateEndpointTest()
     {
         $transport = $this->createTransport();
@@ -794,9 +759,7 @@ class EndpointServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateEndpointExceptionTest()
     {
         $transport = $this->createTransport();
@@ -832,9 +795,7 @@ class EndpointServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getLocationTest()
     {
         $transport = $this->createTransport();
@@ -861,9 +822,7 @@ class EndpointServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getLocationExceptionTest()
     {
         $transport = $this->createTransport();
@@ -894,9 +853,7 @@ class EndpointServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listLocationsTest()
     {
         $transport = $this->createTransport();
@@ -927,9 +884,7 @@ class EndpointServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listLocationsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -960,9 +915,7 @@ class EndpointServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getIamPolicyTest()
     {
         $transport = $this->createTransport();
@@ -991,9 +944,7 @@ class EndpointServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1026,9 +977,7 @@ class EndpointServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setIamPolicyTest()
     {
         $transport = $this->createTransport();
@@ -1060,9 +1009,7 @@ class EndpointServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1096,9 +1043,7 @@ class EndpointServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function testIamPermissionsTest()
     {
         $transport = $this->createTransport();
@@ -1126,9 +1071,7 @@ class EndpointServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function testIamPermissionsExceptionTest()
     {
         $transport = $this->createTransport();

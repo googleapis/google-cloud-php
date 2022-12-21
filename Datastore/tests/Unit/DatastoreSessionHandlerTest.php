@@ -52,7 +52,7 @@ class DatastoreSessionHandlerTest extends TestCase
 
     public function testOpen()
     {
-        $this->datastore->transaction()
+        $this->datastore->transaction(['databaseId' => ''])
             ->shouldBeCalledTimes(1)
             ->willReturn($this->transaction->reveal());
         $datastoreSessionHandler = new DatastoreSessionHandler(
@@ -99,7 +99,7 @@ class DatastoreSessionHandlerTest extends TestCase
 
     public function testReadNothing()
     {
-        $this->datastore->transaction()
+        $this->datastore->transaction(['databaseId' => ''])
             ->shouldBeCalledTimes(1)
             ->willReturn($this->transaction->reveal());
         $key = new Key('projectid');
@@ -124,7 +124,7 @@ class DatastoreSessionHandlerTest extends TestCase
     {
         $this->expectException('PHPUnit\Framework\Error\Warning');
 
-        $this->datastore->transaction()
+        $this->datastore->transaction(['databaseId' => ''])
             ->shouldBeCalledTimes(1)
             ->willReturn($this->transaction->reveal());
         $datastoreSessionHandler = new DatastoreSessionHandler(
@@ -152,7 +152,7 @@ class DatastoreSessionHandlerTest extends TestCase
         $this->transaction->lookup($key)
             ->shouldBeCalledTimes(1)
             ->willReturn($entity);
-        $this->datastore->transaction()
+        $this->datastore->transaction(['databaseId' => ''])
             ->shouldBeCalledTimes(1)
             ->willReturn($this->transaction->reveal());
         $this->datastore->key(
@@ -181,7 +181,7 @@ class DatastoreSessionHandlerTest extends TestCase
             ->shouldBeCalledTimes(1);
         $this->transaction->commit()
             ->shouldBeCalledTimes(1);
-        $this->datastore->transaction()
+        $this->datastore->transaction(['databaseId' => ''])
             ->shouldBeCalledTimes(1)
             ->willReturn($this->transaction->reveal());
         $this->datastore->key(
@@ -225,7 +225,7 @@ class DatastoreSessionHandlerTest extends TestCase
         $this->transaction->commit()
             ->shouldBeCalledTimes(1)
             ->willThrow(new Exception());
-        $this->datastore->transaction()
+        $this->datastore->transaction(['databaseId' => ''])
             ->shouldBeCalledTimes(1)
             ->willReturn($this->transaction->reveal());
         $this->datastore->key(
@@ -270,7 +270,7 @@ class DatastoreSessionHandlerTest extends TestCase
             ->shouldBeCalledTimes(1);
         $this->transaction->commit()
             ->shouldBeCalledTimes(1);
-        $this->datastore->transaction()
+        $this->datastore->transaction(['databaseId' => ''])
             ->shouldBeCalledTimes(1)
             ->willReturn($this->transaction->reveal());
         $this->datastore->key(
@@ -316,7 +316,7 @@ class DatastoreSessionHandlerTest extends TestCase
             ->shouldBeCalledTimes(1);
         $this->transaction->commit()
             ->shouldBeCalledTimes(1);
-        $this->datastore->transaction()
+        $this->datastore->transaction(['databaseId' => ''])
             ->shouldBeCalledTimes(1)
             ->willReturn($this->transaction->reveal());
         $this->datastore->key(
@@ -383,7 +383,7 @@ class DatastoreSessionHandlerTest extends TestCase
             ->shouldBeCalledTimes(1);
         $this->transaction->commit()
             ->shouldBeCalledTimes(1);
-        $this->datastore->transaction()
+        $this->datastore->transaction(['databaseId' => ''])
             ->shouldBeCalledTimes(1)
             ->willReturn($this->transaction->reveal());
         $this->datastore->key(
@@ -414,7 +414,7 @@ class DatastoreSessionHandlerTest extends TestCase
         $this->transaction->commit()
             ->shouldBeCalledTimes(1)
             ->willThrow(new Exception());
-        $this->datastore->transaction()
+        $this->datastore->transaction(['databaseId' => ''])
             ->shouldBeCalledTimes(1)
             ->willReturn($this->transaction->reveal());
         $this->datastore->key(
@@ -436,7 +436,7 @@ class DatastoreSessionHandlerTest extends TestCase
 
     public function testDefaultGcDoesNothing()
     {
-        $this->datastore->transaction()
+        $this->datastore->transaction(['databaseId' => ''])
             ->shouldBeCalledTimes(1)
             ->willReturn($this->transaction->reveal());
         $this->datastore->query()->shouldNotBeCalled();
@@ -489,7 +489,7 @@ class DatastoreSessionHandlerTest extends TestCase
             ->shouldBeCalledTimes(1)
             ->willReturn($query->reveal());
 
-        $this->datastore->transaction()
+        $this->datastore->transaction(['databaseId' => ''])
             ->shouldBeCalledTimes(1)
             ->willReturn($this->transaction->reveal());
         $this->datastore->query()
@@ -564,7 +564,7 @@ class DatastoreSessionHandlerTest extends TestCase
             ->shouldBeCalledTimes(1)
             ->willReturn($query->reveal());
 
-        $this->datastore->transaction()
+        $this->datastore->transaction(['databaseId' => ''])
             ->shouldBeCalledTimes(1)
             ->willReturn($this->transaction->reveal());
         $this->datastore->query()

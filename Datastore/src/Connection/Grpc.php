@@ -242,7 +242,7 @@ class Grpc implements ConnectionInterface
                 $query['filter'] = $this->convertFilterProps($query['filter']);
             }
 
-            if (isset($query['limit'])) {
+            if (isset($query['limit']) && is_int($query['limit'])) {
                 $query['limit'] = [
                     'value' => $query['limit']
                 ];
@@ -309,7 +309,10 @@ class Grpc implements ConnectionInterface
                         : null,
                     'namespace_id' => isset($key['partitionId']['namespaceId'])
                         ? $key['partitionId']['namespaceId']
-                        : null
+                        : null,
+                    'database_id' => isset($key['partitionId']['databaseId'])
+                        ? $key['partitionId']['databaseId']
+                        : null,
                 ]);
 
                 $local['partition_id'] = new PartitionId($p);

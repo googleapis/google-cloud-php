@@ -73,6 +73,4 @@ class CreditTypesTreatment
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(CreditTypesTreatment::class, \Google\Cloud\Billing\Budgets\V1\Filter_CreditTypesTreatment::class);
 

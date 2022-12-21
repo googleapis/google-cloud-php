@@ -436,4 +436,11 @@ class SpannerClientTest extends TestCase
         $t = $this->client->commitTimestamp();
         $this->assertInstanceOf(CommitTimestamp::class, $t);
     }
+
+    public function testSpannerClientDatabaseRole()
+    {
+        $instance = $this->prophesize(Instance::class);
+        $instance->database(Argument::any(), ['databaseRole' => 'Reader'])->shouldBeCalled();
+        $this->client->connect($instance->reveal(), self::DATABASE, ['databaseRole' => 'Reader']);
+    }
 }

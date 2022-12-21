@@ -23,15 +23,12 @@
 namespace Google\Cloud\Dataproc\Tests\Unit\V1;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Dataproc\V1\Batch;
 use Google\Cloud\Dataproc\V1\BatchControllerClient;
-
 use Google\Cloud\Dataproc\V1\ListBatchesResponse;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
@@ -47,25 +44,19 @@ use stdClass;
  */
 class BatchControllerClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return BatchControllerClient
-     */
+    /** @return BatchControllerClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -74,14 +65,12 @@ class BatchControllerClientTest extends GeneratedTest
         return new BatchControllerClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createBatchTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -151,14 +140,12 @@ class BatchControllerClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createBatchExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -209,9 +196,7 @@ class BatchControllerClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteBatchTest()
     {
         $transport = $this->createTransport();
@@ -235,9 +220,7 @@ class BatchControllerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteBatchExceptionTest()
     {
         $transport = $this->createTransport();
@@ -270,9 +253,7 @@ class BatchControllerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getBatchTest()
     {
         $transport = $this->createTransport();
@@ -307,9 +288,7 @@ class BatchControllerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getBatchExceptionTest()
     {
         $transport = $this->createTransport();
@@ -342,9 +321,7 @@ class BatchControllerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listBatchesTest()
     {
         $transport = $this->createTransport();
@@ -379,9 +356,7 @@ class BatchControllerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listBatchesExceptionTest()
     {
         $transport = $this->createTransport();

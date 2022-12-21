@@ -25,7 +25,7 @@ class ModelDeploymentMonitoringJob extends \Google\Protobuf\Internal\Message
     private $name = '';
     /**
      * Required. The user-defined name of the ModelDeploymentMonitoringJob.
-     * The name can be up to 128 characters long and can be consist of any UTF-8
+     * The name can be up to 128 characters long and can consist of any UTF-8
      * characters.
      * Display name of a ModelDeploymentMonitoringJob.
      *
@@ -208,7 +208,7 @@ class ModelDeploymentMonitoringJob extends \Google\Protobuf\Internal\Message
      *           Output only. Resource name of a ModelDeploymentMonitoringJob.
      *     @type string $display_name
      *           Required. The user-defined name of the ModelDeploymentMonitoringJob.
-     *           The name can be up to 128 characters long and can be consist of any UTF-8
+     *           The name can be up to 128 characters long and can consist of any UTF-8
      *           characters.
      *           Display name of a ModelDeploymentMonitoringJob.
      *     @type string $endpoint
@@ -327,7 +327,7 @@ class ModelDeploymentMonitoringJob extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The user-defined name of the ModelDeploymentMonitoringJob.
-     * The name can be up to 128 characters long and can be consist of any UTF-8
+     * The name can be up to 128 characters long and can consist of any UTF-8
      * characters.
      * Display name of a ModelDeploymentMonitoringJob.
      *
@@ -341,7 +341,7 @@ class ModelDeploymentMonitoringJob extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The user-defined name of the ModelDeploymentMonitoringJob.
-     * The name can be up to 128 characters long and can be consist of any UTF-8
+     * The name can be up to 128 characters long and can consist of any UTF-8
      * characters.
      * Display name of a ModelDeploymentMonitoringJob.
      *

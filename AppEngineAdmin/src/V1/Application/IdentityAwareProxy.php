@@ -199,6 +199,4 @@ class IdentityAwareProxy extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(IdentityAwareProxy::class, \Google\Cloud\AppEngine\V1\Application_IdentityAwareProxy::class);
 

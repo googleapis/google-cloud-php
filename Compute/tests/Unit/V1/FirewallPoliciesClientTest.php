@@ -25,7 +25,6 @@ namespace Google\Cloud\Compute\Tests\Unit\V1;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Compute\V1\FirewallPoliciesClient;
 use Google\Cloud\Compute\V1\FirewallPoliciesListAssociationsResponse;
@@ -51,25 +50,19 @@ use stdClass;
  */
 class FirewallPoliciesClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return FirewallPoliciesClient
-     */
+    /** @return FirewallPoliciesClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -78,14 +71,12 @@ class FirewallPoliciesClientTest extends GeneratedTest
         return new FirewallPoliciesClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function addAssociationTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new GlobalOrganizationOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -139,14 +130,12 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function addAssociationExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new GlobalOrganizationOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -195,14 +184,12 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function addRuleTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new GlobalOrganizationOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -256,14 +243,12 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function addRuleExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new GlobalOrganizationOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -312,14 +297,12 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function cloneRulesTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new GlobalOrganizationOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -370,14 +353,12 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function cloneRulesExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new GlobalOrganizationOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -425,14 +406,12 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new GlobalOrganizationOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -483,14 +462,12 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new GlobalOrganizationOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -538,9 +515,7 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getTest()
     {
         $transport = $this->createTransport();
@@ -591,9 +566,7 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getExceptionTest()
     {
         $transport = $this->createTransport();
@@ -626,9 +599,7 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getAssociationTest()
     {
         $transport = $this->createTransport();
@@ -663,9 +634,7 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getAssociationExceptionTest()
     {
         $transport = $this->createTransport();
@@ -698,9 +667,7 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getIamPolicyTest()
     {
         $transport = $this->createTransport();
@@ -731,9 +698,7 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -766,9 +731,7 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getRuleTest()
     {
         $transport = $this->createTransport();
@@ -811,9 +774,7 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getRuleExceptionTest()
     {
         $transport = $this->createTransport();
@@ -846,14 +807,12 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function insertTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new GlobalOrganizationOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -907,14 +866,12 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function insertExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new GlobalOrganizationOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -963,9 +920,7 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listTest()
     {
         $transport = $this->createTransport();
@@ -1000,9 +955,7 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1033,9 +986,7 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listAssociationsTest()
     {
         $transport = $this->createTransport();
@@ -1058,9 +1009,7 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listAssociationsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1091,14 +1040,12 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function moveTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new GlobalOrganizationOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1152,14 +1099,12 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function moveExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new GlobalOrganizationOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1208,14 +1153,12 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function patchTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new GlobalOrganizationOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1269,14 +1212,12 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function patchExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new GlobalOrganizationOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1325,14 +1266,12 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function patchRuleTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new GlobalOrganizationOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1386,14 +1325,12 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function patchRuleExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new GlobalOrganizationOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1442,14 +1379,12 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function removeAssociationTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new GlobalOrganizationOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1500,14 +1435,12 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function removeAssociationExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new GlobalOrganizationOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1555,14 +1488,12 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function removeRuleTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new GlobalOrganizationOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1613,14 +1544,12 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function removeRuleExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new GlobalOrganizationOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1668,9 +1597,7 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setIamPolicyTest()
     {
         $transport = $this->createTransport();
@@ -1704,9 +1631,7 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1740,9 +1665,7 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function testIamPermissionsTest()
     {
         $transport = $this->createTransport();
@@ -1770,9 +1693,7 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function testIamPermissionsExceptionTest()
     {
         $transport = $this->createTransport();

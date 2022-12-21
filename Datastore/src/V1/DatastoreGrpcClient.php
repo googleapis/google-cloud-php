@@ -69,6 +69,21 @@ class DatastoreGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
+     * Runs an aggregation query.
+     * @param \Google\Cloud\Datastore\V1\RunAggregationQueryRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function RunAggregationQuery(\Google\Cloud\Datastore\V1\RunAggregationQueryRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.datastore.v1.Datastore/RunAggregationQuery',
+        $argument,
+        ['\Google\Cloud\Datastore\V1\RunAggregationQueryResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
      * Begins a new transaction.
      * @param \Google\Cloud\Datastore\V1\BeginTransactionRequest $argument input argument
      * @param array $metadata metadata

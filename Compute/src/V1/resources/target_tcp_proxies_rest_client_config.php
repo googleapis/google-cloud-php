@@ -3,6 +3,17 @@
 return [
     'interfaces' => [
         'google.cloud.compute.v1.TargetTcpProxies' => [
+            'AggregatedList' => [
+                'method' => 'get',
+                'uriTemplate' => '/compute/v1/projects/{project}/aggregated/targetTcpProxies',
+                'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                ],
+            ],
             'Delete' => [
                 'method' => 'delete',
                 'uriTemplate' => '/compute/v1/projects/{project}/global/targetTcpProxies/{target_tcp_proxy}',

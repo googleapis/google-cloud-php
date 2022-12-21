@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for listing jobs using [ListJobs][google.cloud.scheduler.v1beta1.CloudScheduler.ListJobs].
+ * Request message for listing jobs using
+ * [ListJobs][google.cloud.scheduler.v1beta1.CloudScheduler.ListJobs].
  *
  * Generated from protobuf message <code>google.cloud.scheduler.v1beta1.ListJobsRequest</code>
  */
@@ -22,6 +23,18 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
+    /**
+     * `filter` can be used to specify a subset of jobs.
+     * If `filter` equals `target_config="HttpConfig"`, then the http
+     * target jobs are retrieved. If `filter` equals
+     * `target_config="PubSubConfig"`, then the Pub/Sub target jobs are
+     * retrieved. If `filter` equals `labels.foo=value1
+     * labels.foo=value2` then only jobs which are labeled with
+     * foo=value1 AND foo=value2 will be returned.
+     *
+     * Generated from protobuf field <code>string filter = 4;</code>
+     */
+    private $filter = '';
     /**
      * Requested page size.
      * The maximum page size is 500. If unspecified, the page size will
@@ -36,14 +49,25 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
      * A token identifying a page of results the server will return. To
      * request the first page results, page_token must be empty. To
      * request the next page of results, page_token must be the value of
-     * [next_page_token][google.cloud.scheduler.v1beta1.ListJobsResponse.next_page_token] returned from
-     * the previous call to [ListJobs][google.cloud.scheduler.v1beta1.CloudScheduler.ListJobs]. It is an error to
-     * switch the value of [filter][google.cloud.scheduler.v1beta1.ListJobsRequest.filter] or
-     * [order_by][google.cloud.scheduler.v1beta1.ListJobsRequest.order_by] while iterating through pages.
+     * [next_page_token][google.cloud.scheduler.v1beta1.ListJobsResponse.next_page_token]
+     * returned from the previous call to
+     * [ListJobs][google.cloud.scheduler.v1beta1.CloudScheduler.ListJobs]. It is
+     * an error to switch the value of
+     * [filter][google.cloud.scheduler.v1beta1.ListJobsRequest.filter] or
+     * [order_by][google.cloud.scheduler.v1beta1.ListJobsRequest.order_by] while
+     * iterating through pages.
      *
      * Generated from protobuf field <code>string page_token = 6;</code>
      */
     private $page_token = '';
+    /**
+     * This field is used to manage the legacy App Engine Cron jobs using the
+     * Cloud Scheduler API. If the field is set to true, the jobs in the __cron
+     * queue will be listed instead.
+     *
+     * Generated from protobuf field <code>bool legacy_app_engine_cron = 7;</code>
+     */
+    private $legacy_app_engine_cron = false;
 
     /**
      * Constructor.
@@ -54,6 +78,14 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. The location name. For example:
      *           `projects/PROJECT_ID/locations/LOCATION_ID`.
+     *     @type string $filter
+     *           `filter` can be used to specify a subset of jobs.
+     *           If `filter` equals `target_config="HttpConfig"`, then the http
+     *           target jobs are retrieved. If `filter` equals
+     *           `target_config="PubSubConfig"`, then the Pub/Sub target jobs are
+     *           retrieved. If `filter` equals `labels.foo=value1
+     *           labels.foo=value2` then only jobs which are labeled with
+     *           foo=value1 AND foo=value2 will be returned.
      *     @type int $page_size
      *           Requested page size.
      *           The maximum page size is 500. If unspecified, the page size will
@@ -64,10 +96,17 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
      *           A token identifying a page of results the server will return. To
      *           request the first page results, page_token must be empty. To
      *           request the next page of results, page_token must be the value of
-     *           [next_page_token][google.cloud.scheduler.v1beta1.ListJobsResponse.next_page_token] returned from
-     *           the previous call to [ListJobs][google.cloud.scheduler.v1beta1.CloudScheduler.ListJobs]. It is an error to
-     *           switch the value of [filter][google.cloud.scheduler.v1beta1.ListJobsRequest.filter] or
-     *           [order_by][google.cloud.scheduler.v1beta1.ListJobsRequest.order_by] while iterating through pages.
+     *           [next_page_token][google.cloud.scheduler.v1beta1.ListJobsResponse.next_page_token]
+     *           returned from the previous call to
+     *           [ListJobs][google.cloud.scheduler.v1beta1.CloudScheduler.ListJobs]. It is
+     *           an error to switch the value of
+     *           [filter][google.cloud.scheduler.v1beta1.ListJobsRequest.filter] or
+     *           [order_by][google.cloud.scheduler.v1beta1.ListJobsRequest.order_by] while
+     *           iterating through pages.
+     *     @type bool $legacy_app_engine_cron
+     *           This field is used to manage the legacy App Engine Cron jobs using the
+     *           Cloud Scheduler API. If the field is set to true, the jobs in the __cron
+     *           queue will be listed instead.
      * }
      */
     public function __construct($data = NULL) {
@@ -99,6 +138,44 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->parent = $var;
+
+        return $this;
+    }
+
+    /**
+     * `filter` can be used to specify a subset of jobs.
+     * If `filter` equals `target_config="HttpConfig"`, then the http
+     * target jobs are retrieved. If `filter` equals
+     * `target_config="PubSubConfig"`, then the Pub/Sub target jobs are
+     * retrieved. If `filter` equals `labels.foo=value1
+     * labels.foo=value2` then only jobs which are labeled with
+     * foo=value1 AND foo=value2 will be returned.
+     *
+     * Generated from protobuf field <code>string filter = 4;</code>
+     * @return string
+     */
+    public function getFilter()
+    {
+        return $this->filter;
+    }
+
+    /**
+     * `filter` can be used to specify a subset of jobs.
+     * If `filter` equals `target_config="HttpConfig"`, then the http
+     * target jobs are retrieved. If `filter` equals
+     * `target_config="PubSubConfig"`, then the Pub/Sub target jobs are
+     * retrieved. If `filter` equals `labels.foo=value1
+     * labels.foo=value2` then only jobs which are labeled with
+     * foo=value1 AND foo=value2 will be returned.
+     *
+     * Generated from protobuf field <code>string filter = 4;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setFilter($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->filter = $var;
 
         return $this;
     }
@@ -141,10 +218,13 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
      * A token identifying a page of results the server will return. To
      * request the first page results, page_token must be empty. To
      * request the next page of results, page_token must be the value of
-     * [next_page_token][google.cloud.scheduler.v1beta1.ListJobsResponse.next_page_token] returned from
-     * the previous call to [ListJobs][google.cloud.scheduler.v1beta1.CloudScheduler.ListJobs]. It is an error to
-     * switch the value of [filter][google.cloud.scheduler.v1beta1.ListJobsRequest.filter] or
-     * [order_by][google.cloud.scheduler.v1beta1.ListJobsRequest.order_by] while iterating through pages.
+     * [next_page_token][google.cloud.scheduler.v1beta1.ListJobsResponse.next_page_token]
+     * returned from the previous call to
+     * [ListJobs][google.cloud.scheduler.v1beta1.CloudScheduler.ListJobs]. It is
+     * an error to switch the value of
+     * [filter][google.cloud.scheduler.v1beta1.ListJobsRequest.filter] or
+     * [order_by][google.cloud.scheduler.v1beta1.ListJobsRequest.order_by] while
+     * iterating through pages.
      *
      * Generated from protobuf field <code>string page_token = 6;</code>
      * @return string
@@ -158,10 +238,13 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
      * A token identifying a page of results the server will return. To
      * request the first page results, page_token must be empty. To
      * request the next page of results, page_token must be the value of
-     * [next_page_token][google.cloud.scheduler.v1beta1.ListJobsResponse.next_page_token] returned from
-     * the previous call to [ListJobs][google.cloud.scheduler.v1beta1.CloudScheduler.ListJobs]. It is an error to
-     * switch the value of [filter][google.cloud.scheduler.v1beta1.ListJobsRequest.filter] or
-     * [order_by][google.cloud.scheduler.v1beta1.ListJobsRequest.order_by] while iterating through pages.
+     * [next_page_token][google.cloud.scheduler.v1beta1.ListJobsResponse.next_page_token]
+     * returned from the previous call to
+     * [ListJobs][google.cloud.scheduler.v1beta1.CloudScheduler.ListJobs]. It is
+     * an error to switch the value of
+     * [filter][google.cloud.scheduler.v1beta1.ListJobsRequest.filter] or
+     * [order_by][google.cloud.scheduler.v1beta1.ListJobsRequest.order_by] while
+     * iterating through pages.
      *
      * Generated from protobuf field <code>string page_token = 6;</code>
      * @param string $var
@@ -171,6 +254,36 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->page_token = $var;
+
+        return $this;
+    }
+
+    /**
+     * This field is used to manage the legacy App Engine Cron jobs using the
+     * Cloud Scheduler API. If the field is set to true, the jobs in the __cron
+     * queue will be listed instead.
+     *
+     * Generated from protobuf field <code>bool legacy_app_engine_cron = 7;</code>
+     * @return bool
+     */
+    public function getLegacyAppEngineCron()
+    {
+        return $this->legacy_app_engine_cron;
+    }
+
+    /**
+     * This field is used to manage the legacy App Engine Cron jobs using the
+     * Cloud Scheduler API. If the field is set to true, the jobs in the __cron
+     * queue will be listed instead.
+     *
+     * Generated from protobuf field <code>bool legacy_app_engine_cron = 7;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setLegacyAppEngineCron($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->legacy_app_engine_cron = $var;
 
         return $this;
     }

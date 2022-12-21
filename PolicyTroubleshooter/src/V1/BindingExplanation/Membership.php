@@ -78,6 +78,4 @@ class Membership
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Membership::class, \Google\Cloud\PolicyTroubleshooter\V1\BindingExplanation_Membership::class);
 

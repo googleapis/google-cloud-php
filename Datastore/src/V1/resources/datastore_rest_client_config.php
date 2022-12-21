@@ -75,6 +75,18 @@ return [
                     ],
                 ],
             ],
+            'RunAggregationQuery' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/projects/{project_id}:runAggregationQuery',
+                'body' => '*',
+                'placeholders' => [
+                    'project_id' => [
+                        'getters' => [
+                            'getProjectId',
+                        ],
+                    ],
+                ],
+            ],
             'RunQuery' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/projects/{project_id}:runQuery',

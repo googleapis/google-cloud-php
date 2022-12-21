@@ -9,8 +9,9 @@ use UnexpectedValueException;
 /**
  * Defines how the solver should handle the request. In all modes but
  * `VALIDATE_ONLY`, if the request is invalid, you will receive an
- * `INVALID_REQUEST` error. See [max_validation_errors][google.cloud.optimization.v1.OptimizeToursRequest.max_validation_errors] to cap the number of
- * errors returned.
+ * `INVALID_REQUEST` error. See
+ * [max_validation_errors][google.cloud.optimization.v1.OptimizeToursRequest.max_validation_errors]
+ * to cap the number of errors returned.
  *
  * Protobuf type <code>google.cloud.optimization.v1.OptimizeToursRequest.SolvingMode</code>
  */

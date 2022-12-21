@@ -23,15 +23,12 @@
 namespace Google\Cloud\Vision\Tests\Unit\V1;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Vision\V1\ImportProductSetsInputConfig;
 use Google\Cloud\Vision\V1\ImportProductSetsResponse;
-
 use Google\Cloud\Vision\V1\ListProductSetsResponse;
 use Google\Cloud\Vision\V1\ListProductsInProductSetResponse;
 use Google\Cloud\Vision\V1\ListProductsResponse;
@@ -54,25 +51,19 @@ use stdClass;
  */
 class ProductSearchClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return ProductSearchClient
-     */
+    /** @return ProductSearchClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -81,9 +72,7 @@ class ProductSearchClientTest extends GeneratedTest
         return new ProductSearchClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function addProductToProductSetTest()
     {
         $transport = $this->createTransport();
@@ -110,9 +99,7 @@ class ProductSearchClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function addProductToProductSetExceptionTest()
     {
         $transport = $this->createTransport();
@@ -146,9 +133,7 @@ class ProductSearchClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createProductTest()
     {
         $transport = $this->createTransport();
@@ -184,9 +169,7 @@ class ProductSearchClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createProductExceptionTest()
     {
         $transport = $this->createTransport();
@@ -220,9 +203,7 @@ class ProductSearchClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createProductSetTest()
     {
         $transport = $this->createTransport();
@@ -254,9 +235,7 @@ class ProductSearchClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createProductSetExceptionTest()
     {
         $transport = $this->createTransport();
@@ -290,9 +269,7 @@ class ProductSearchClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createReferenceImageTest()
     {
         $transport = $this->createTransport();
@@ -326,9 +303,7 @@ class ProductSearchClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createReferenceImageExceptionTest()
     {
         $transport = $this->createTransport();
@@ -364,9 +339,7 @@ class ProductSearchClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteProductTest()
     {
         $transport = $this->createTransport();
@@ -390,9 +363,7 @@ class ProductSearchClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteProductExceptionTest()
     {
         $transport = $this->createTransport();
@@ -425,9 +396,7 @@ class ProductSearchClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteProductSetTest()
     {
         $transport = $this->createTransport();
@@ -451,9 +420,7 @@ class ProductSearchClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteProductSetExceptionTest()
     {
         $transport = $this->createTransport();
@@ -486,9 +453,7 @@ class ProductSearchClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteReferenceImageTest()
     {
         $transport = $this->createTransport();
@@ -512,9 +477,7 @@ class ProductSearchClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteReferenceImageExceptionTest()
     {
         $transport = $this->createTransport();
@@ -547,9 +510,7 @@ class ProductSearchClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getProductTest()
     {
         $transport = $this->createTransport();
@@ -582,9 +543,7 @@ class ProductSearchClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getProductExceptionTest()
     {
         $transport = $this->createTransport();
@@ -617,9 +576,7 @@ class ProductSearchClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getProductSetTest()
     {
         $transport = $this->createTransport();
@@ -648,9 +605,7 @@ class ProductSearchClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getProductSetExceptionTest()
     {
         $transport = $this->createTransport();
@@ -683,9 +638,7 @@ class ProductSearchClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getReferenceImageTest()
     {
         $transport = $this->createTransport();
@@ -714,9 +667,7 @@ class ProductSearchClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getReferenceImageExceptionTest()
     {
         $transport = $this->createTransport();
@@ -749,14 +700,12 @@ class ProductSearchClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function importProductSetsTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -816,14 +765,12 @@ class ProductSearchClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function importProductSetsExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -874,9 +821,7 @@ class ProductSearchClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listProductSetsTest()
     {
         $transport = $this->createTransport();
@@ -911,9 +856,7 @@ class ProductSearchClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listProductSetsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -946,9 +889,7 @@ class ProductSearchClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listProductsTest()
     {
         $transport = $this->createTransport();
@@ -983,9 +924,7 @@ class ProductSearchClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listProductsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1018,9 +957,7 @@ class ProductSearchClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listProductsInProductSetTest()
     {
         $transport = $this->createTransport();
@@ -1055,9 +992,7 @@ class ProductSearchClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listProductsInProductSetExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1090,9 +1025,7 @@ class ProductSearchClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listReferenceImagesTest()
     {
         $transport = $this->createTransport();
@@ -1129,9 +1062,7 @@ class ProductSearchClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listReferenceImagesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1164,14 +1095,12 @@ class ProductSearchClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function purgeProductsTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1228,14 +1157,12 @@ class ProductSearchClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function purgeProductsExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1285,9 +1212,7 @@ class ProductSearchClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function removeProductFromProductSetTest()
     {
         $transport = $this->createTransport();
@@ -1314,9 +1239,7 @@ class ProductSearchClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function removeProductFromProductSetExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1350,9 +1273,7 @@ class ProductSearchClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateProductTest()
     {
         $transport = $this->createTransport();
@@ -1385,9 +1306,7 @@ class ProductSearchClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateProductExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1420,9 +1339,7 @@ class ProductSearchClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateProductSetTest()
     {
         $transport = $this->createTransport();
@@ -1451,9 +1368,7 @@ class ProductSearchClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateProductSetExceptionTest()
     {
         $transport = $this->createTransport();

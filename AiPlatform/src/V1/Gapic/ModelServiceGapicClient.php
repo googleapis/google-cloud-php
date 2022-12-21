@@ -27,9 +27,7 @@ namespace Google\Cloud\AIPlatform\V1\Gapic;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\Call;
 use Google\ApiCore\CredentialsWrapper;
-
 use Google\ApiCore\GapicClientTrait;
-
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PathTemplate;
@@ -52,10 +50,10 @@ use Google\Cloud\AIPlatform\V1\ListModelEvaluationSlicesRequest;
 use Google\Cloud\AIPlatform\V1\ListModelEvaluationSlicesResponse;
 use Google\Cloud\AIPlatform\V1\ListModelEvaluationsRequest;
 use Google\Cloud\AIPlatform\V1\ListModelEvaluationsResponse;
-use Google\Cloud\AIPlatform\V1\ListModelsRequest;
-use Google\Cloud\AIPlatform\V1\ListModelsResponse;
 use Google\Cloud\AIPlatform\V1\ListModelVersionsRequest;
 use Google\Cloud\AIPlatform\V1\ListModelVersionsResponse;
+use Google\Cloud\AIPlatform\V1\ListModelsRequest;
+use Google\Cloud\AIPlatform\V1\ListModelsResponse;
 use Google\Cloud\AIPlatform\V1\MergeVersionAliasesRequest;
 use Google\Cloud\AIPlatform\V1\Model;
 use Google\Cloud\AIPlatform\V1\ModelEvaluation;
@@ -101,29 +99,19 @@ class ModelServiceGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.aiplatform.v1.ModelService';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'aiplatform.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
     ];
@@ -438,9 +426,6 @@ class ModelServiceGapicClient
      * @param array $options {
      *     Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress
-     *           **Deprecated**. This option will be removed in a future major release. Please
-     *           utilize the `$apiEndpoint` option instead.
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'aiplatform.googleapis.com:443'.
@@ -470,7 +455,7 @@ class ModelServiceGapicClient
      *           *Advanced usage*: Additionally, it is possible to pass in an already
      *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
      *           that when this object is provided, any settings in $transportConfig, and any
-     *           $serviceAddress setting, will be ignored.
+     *           $apiEndpoint setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
      *           each supported transport type should be passed in a key for that transport. For
@@ -1593,6 +1578,14 @@ class ModelServiceGapicClient
      *
      *           This value may be up to 63 characters, and valid characters are
      *           `[a-z0-9_-]`. The first character cannot be a number or hyphen.
+     *     @type string $serviceAccount
+     *           Optional. The user-provided custom service account to use to do the model
+     *           upload. If empty, [Vertex AI Service
+     *           Agent](https://cloud.google.com/vertex-ai/docs/general/access-control#service-agents)
+     *           will be used. Users uploading the Model must have the
+     *           `iam.serviceAccounts.actAs` permission on this service account. Also, this
+     *           account must belong to the project specified in the `parent` field and have
+     *           all necessary read permissions.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1616,6 +1609,10 @@ class ModelServiceGapicClient
 
         if (isset($optionalArgs['modelId'])) {
             $request->setModelId($optionalArgs['modelId']);
+        }
+
+        if (isset($optionalArgs['serviceAccount'])) {
+            $request->setServiceAccount($optionalArgs['serviceAccount']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(

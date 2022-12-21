@@ -34,6 +34,12 @@ class ImportFeatureValuesOperationMetadata extends \Google\Protobuf\Internal\Mes
      */
     private $imported_feature_value_count = 0;
     /**
+     * The source URI from where Feature values are imported.
+     *
+     * Generated from protobuf field <code>repeated string source_uris = 4;</code>
+     */
+    private $source_uris;
+    /**
      * The number of rows in input source that weren't imported due to either
      * * Not having any featureValues.
      * * Having a null entityId.
@@ -63,6 +69,8 @@ class ImportFeatureValuesOperationMetadata extends \Google\Protobuf\Internal\Mes
      *           Number of entities that have been imported by the operation.
      *     @type int|string $imported_feature_value_count
      *           Number of Feature values that have been imported by the operation.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $source_uris
+     *           The source URI from where Feature values are imported.
      *     @type int|string $invalid_row_count
      *           The number of rows in input source that weren't imported due to either
      *           * Not having any featureValues.
@@ -163,6 +171,32 @@ class ImportFeatureValuesOperationMetadata extends \Google\Protobuf\Internal\Mes
     {
         GPBUtil::checkInt64($var);
         $this->imported_feature_value_count = $var;
+
+        return $this;
+    }
+
+    /**
+     * The source URI from where Feature values are imported.
+     *
+     * Generated from protobuf field <code>repeated string source_uris = 4;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getSourceUris()
+    {
+        return $this->source_uris;
+    }
+
+    /**
+     * The source URI from where Feature values are imported.
+     *
+     * Generated from protobuf field <code>repeated string source_uris = 4;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setSourceUris($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->source_uris = $arr;
 
         return $this;
     }
