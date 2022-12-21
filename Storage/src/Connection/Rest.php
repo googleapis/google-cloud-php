@@ -115,7 +115,7 @@ class Rest implements ConnectionInterface
      */
     public function deleteAcl(array $args = [])
     {
-        return $this->sendRequest('bucket_acl', 'delete', $args);
+        return $this->sendRequest($args['type'], 'delete', $args);
     }
 
     /**
@@ -123,7 +123,7 @@ class Rest implements ConnectionInterface
      */
     public function getAcl(array $args = [])
     {
-        return $this->sendRequest('bucket_acl', 'get', $args);
+        return $this->sendRequest($args['type'], 'get', $args);
     }
 
     /**
@@ -131,7 +131,7 @@ class Rest implements ConnectionInterface
      */
     public function listAcl(array $args = [])
     {
-        return $this->sendRequest('bucket_acl', 'list', $args);
+        return $this->sendRequest($args['type'], 'list', $args);
     }
 
     /**
@@ -139,7 +139,7 @@ class Rest implements ConnectionInterface
      */
     public function insertAcl(array $args = [])
     {
-        return $this->sendRequest('bucket_acl', 'insert', $args);
+        return $this->sendRequest($args['type'], 'insert', $args);
     }
 
     /**
@@ -147,7 +147,7 @@ class Rest implements ConnectionInterface
      */
     public function patchAcl(array $args = [])
     {
-        return $this->sendRequest('bucket_acl', 'patch', $args);
+        return $this->sendRequest($args['type'], 'patch', $args);
     }
 
     /**
@@ -612,13 +612,13 @@ class Rest implements ConnectionInterface
      */
     private function sendRequest($resource, $method, $args)
     {
+        $resourceMap = [
+            'serviceaccount' => 'projects.resources.serviceAccount',
+            'hmacKey' => 'projects.resources.hmacKeys'
+        ];
         $args['restRetryFunction'] = $this->getRestRetryFunction($resource, $method, $args);
-        if ($resource === 'bucket_acl') {
-            $resource = $args['type'];
-        } elseif ($resource === 'serviceaccount') {
-            $resource = 'projects.resources.serviceAccount';
-        } elseif ($resource === 'hmacKey') {
-            $resource = 'projects.resources.hmacKeys';
+        if (array_key_exists($resource, $resourceMap)) {
+            return $this->send($resourceMap[$resource], $method, $args);
         }
         return $this->send($resource, $method, $args);
     }

@@ -469,6 +469,32 @@ class RestTest extends TestCase
     /**
      * @dataProvider retryFunctionReturnValues
      */
+    public function testIsPreconditionSupplied(
+        $resource,
+        $op,
+        $args,
+        $errorCode,
+        $currAttempt,
+        $expected
+    ) {
+        $rest = new Rest();
+        $reflector = new \ReflectionClass('Google\Cloud\Storage\Connection\Rest');
+        $method = $reflector->getMethod('isPreConditionSupplied');
+        $condIdempotentOps = $reflector->getProperty('condIdempotentOps');
+        $method->setAccessible(true);
+        $condIdempotentOps->setAccessible(true);
+        $condIdempotentOps = $condIdempotentOps->getValue($rest);
+        $methodName = sprintf('%s.%s', $resource, $op);
+        $preconditionNeeded = array_key_exists($methodName, $condIdempotentOps);
+        if ($preconditionNeeded and $errorCode != 400) {
+            $result = $method->invokeArgs($rest, array($methodName, $args));
+            $this->assertEquals($result, $expected);
+        }
+    }
+
+    /**
+     * @dataProvider retryFunctionReturnValues
+     */
     public function testRetryFunction(
         $resource,
         $op,
