@@ -253,6 +253,8 @@ class Rest implements ConnectionInterface
     {
         list($request, $requestOptions) = $this->buildDownloadObjectParams($args);
 
+        $requestOptions['restRetryFunction'] = $this->getRestRetryFunction('objects', 'get', $requestOptions);
+
         return $this->requestWrapper->send(
             $request,
             $requestOptions

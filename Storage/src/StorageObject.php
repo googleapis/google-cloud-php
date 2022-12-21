@@ -22,6 +22,7 @@ use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\Upload\SignedUrlUploader;
 use Google\Cloud\Storage\Connection\ConnectionInterface;
+use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\Psr7\Utils;
 use Psr\Http\Message\StreamInterface;
@@ -672,13 +673,52 @@ class StorageObject
      */
     public function downloadAsStream(array $options = [])
     {
-        return $this->connection->downloadObject(
+        $headers = $options['restOptions']['headers'] ?? [];
+        $resultStream = Utils::streamFor(null);
+        $userSuppliedRangeHeaders = isset($headers['Range']);
+
+        // add Range headers, which default to the whole object
+        // but only if the request doesn't already contain any range headers
+        if(!$userSuppliedRangeHeaders) {
+            $headers['Range'] = sprintf("bytes=%s-", $resultStream->getSize());
+            $options = array_merge($options,['restOptions'=>['headers'=>$headers]]);
+
+            $options += [
+                'onRetryException' => function(\Exception $e, $attempt, &$arguments) use($resultStream){
+                    // if the exception has a response for us to use
+                    if ($e instanceof RequestException && $e->hasResponse()) {
+                        $msg = (string) $e->getResponse()->getBody();
+
+                        $fetchedStream = Utils::streamFor($msg);
+
+                        // add the partial response to our stream that we will return
+                        Utils::copyToStream($fetchedStream, $resultStream);
+
+                        // modify the range headers to fetch the remaining data
+                        $arguments[1]['headers']['Range'] = sprintf('bytes=%s-', $resultStream->getSize());
+                    }
+                }
+            ];
+        }
+
+        $fetchedStream = $this->connection->downloadObject(
             $this->formatEncryptionHeaders(
                 $options
                 + $this->encryptionData
                 + array_filter($this->identity)
             )
         );
+
+        // avoid an extra copy operation if the user supplied
+        // their own Range headers
+        if($userSuppliedRangeHeaders) {
+            return $fetchedStream;
+        }
+
+        Utils::copyToStream($fetchedStream, $resultStream);
+
+        $resultStream->seek(0);
+        return $resultStream;
     }
 
     /**
