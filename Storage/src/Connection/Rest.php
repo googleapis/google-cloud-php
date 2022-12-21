@@ -428,7 +428,7 @@ class Rest implements ConnectionInterface
      */
     public function getServiceAccount(array $args = [])
     {
-        return $this->sendRequest('serviceaccount', 'get', $args);
+        return $this->sendRequest('projects.resources.serviceAccount', 'get', $args);
     }
 
     /**
@@ -444,7 +444,7 @@ class Rest implements ConnectionInterface
      */
     public function createHmacKey(array $args = [])
     {
-        return $this->sendRequest('hmacKey', 'create', $args);
+        return $this->sendRequest('projects.resources.hmacKeys', 'create', $args);
     }
 
     /**
@@ -452,7 +452,7 @@ class Rest implements ConnectionInterface
      */
     public function deleteHmacKey(array $args = [])
     {
-        return $this->sendRequest('hmacKey', 'delete', $args);
+        return $this->sendRequest('projects.resources.hmacKeys', 'delete', $args);
     }
 
     /**
@@ -460,7 +460,7 @@ class Rest implements ConnectionInterface
      */
     public function getHmacKey(array $args = [])
     {
-        return $this->sendRequest('hmacKey', 'get', $args);
+        return $this->sendRequest('projects.resources.hmacKeys', 'get', $args);
     }
 
     /**
@@ -468,7 +468,7 @@ class Rest implements ConnectionInterface
      */
     public function updateHmacKey(array $args = [])
     {
-        return $this->sendRequest('hmacKey', 'update', $args);
+        return $this->sendRequest('projects.resources.hmacKeys', 'update', $args);
     }
 
     /**
@@ -476,7 +476,7 @@ class Rest implements ConnectionInterface
      */
     public function listHmacKeys(array $args = [])
     {
-        return $this->sendRequest('hmacKey', 'list', $args);
+        return $this->sendRequest('projects.resources.hmacKeys', 'list', $args);
     }
 
     /**
@@ -612,13 +612,17 @@ class Rest implements ConnectionInterface
      */
     private function sendRequest($resource, $method, $args)
     {
-        $resourceMap = [
-            'serviceaccount' => 'projects.resources.serviceAccount',
-            'hmacKey' => 'projects.resources.hmacKeys'
+        $retryMap = [
+            'projects.resources.serviceAccount' => 'serviceaccount',
+            'projects.resources.hmacKeys' => 'hmacKey',
+            'bucketAccessControls' => 'bucket_acl',
+            'defaultObjectAccessControls' => 'default_object_acl',
+            'objectAccessControls' => 'object_acl'
         ];
-        $args['restRetryFunction'] = $this->getRestRetryFunction($resource, $method, $args);
-        if (array_key_exists($resource, $resourceMap)) {
-            return $this->send($resourceMap[$resource], $method, $args);
+        if (array_key_exists($resource, $retryMap)) {
+            $args['restRetryFunction'] = $this->getRestRetryFunction($retryMap[$resource], $method, $args);
+        } else {
+            $args['restRetryFunction'] = $this->getRestRetryFunction($resource, $method, $args);
         }
         return $this->send($resource, $method, $args);
     }

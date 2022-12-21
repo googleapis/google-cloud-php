@@ -52,7 +52,7 @@ trait RetryTrait
         'buckets.lockRetentionPolicy',
         'buckets.testIamPermissions',
         'default_object_acl.get',
-        'default_object_acl.list"',
+        'default_object_acl.list',
         'hmacKey.delete',
         'hmacKey.get',
         'hmacKey.list',
