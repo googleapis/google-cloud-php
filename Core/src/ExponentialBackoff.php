@@ -90,7 +90,7 @@ class ExponentialBackoff
             try {
                 return call_user_func_array($function, $arguments);
             } catch (\Exception $exception) {
-                if($this->onRetryException) {
+                if ($this->onRetryException) {
                     // The $arguments are passed by reference so that the user has the ability to modify
                     // some elements of the request on every retry(for example headers).
                     call_user_func_array($this->onRetryException, [$exception, $retryAttempt, &$arguments]);

@@ -676,16 +676,16 @@ class StorageObject
         $headers = $options['restOptions']['headers'] ?? [];
         $resultStream = Utils::streamFor(null);
         $userSuppliedRangeHeaders = isset($headers['Range']);
-        $expectedSize = $this->info()['size'];
+        $expectedSize = isset($options['size']) ? $options['size'] : $this->info()['size'];
 
         // add Range headers, which default to the whole object
         // but only if the request doesn't already contain any range headers
-        if(!$userSuppliedRangeHeaders) {
+        if (!$userSuppliedRangeHeaders) {
             $headers['Range'] = sprintf("bytes=%s-", $resultStream->getSize());
-            $options = array_merge($options,['restOptions'=>['headers'=>$headers]]);
+            $options = array_merge($options, ['restOptions'=>['headers'=>$headers]]);
 
             $options += [
-                'onRetryException' => function(\Exception $e, $attempt, &$arguments) use($resultStream, $expectedSize){
+                'onRetryException' => function (\Exception $e, $attempt, &$arguments) use ($resultStream) {
                     // if the exception has a response for us to use
                     if ($e instanceof RequestException && $e->hasResponse()) {
                         $msg = (string) $e->getResponse()->getBody();
@@ -718,7 +718,7 @@ class StorageObject
         // i.e. the range headers in such cases aren't respected.
         // The operator is >= because $expectedSize will have compressed
         // size, while the stream will have uncompressed contents.
-        if($userSuppliedRangeHeaders || $fetchedStream->getSize() >= $expectedSize) {
+        if ($userSuppliedRangeHeaders || ($fetchedStream && $fetchedStream->getSize() >= $expectedSize)) {
             return $fetchedStream;
         }
 
