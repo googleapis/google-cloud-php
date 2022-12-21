@@ -676,6 +676,7 @@ class StorageObject
         $headers = $options['restOptions']['headers'] ?? [];
         $resultStream = Utils::streamFor(null);
         $userSuppliedRangeHeaders = isset($headers['Range']);
+        $expectedSize = $this->info()['size'];
 
         // add Range headers, which default to the whole object
         // but only if the request doesn't already contain any range headers
@@ -684,7 +685,7 @@ class StorageObject
             $options = array_merge($options,['restOptions'=>['headers'=>$headers]]);
 
             $options += [
-                'onRetryException' => function(\Exception $e, $attempt, &$arguments) use($resultStream){
+                'onRetryException' => function(\Exception $e, $attempt, &$arguments) use($resultStream, $expectedSize){
                     // if the exception has a response for us to use
                     if ($e instanceof RequestException && $e->hasResponse()) {
                         $msg = (string) $e->getResponse()->getBody();
@@ -709,9 +710,15 @@ class StorageObject
             )
         );
 
-        // avoid an extra copy operation if the user supplied
-        // their own Range headers
-        if($userSuppliedRangeHeaders) {
+        // There are 2 cases when we want to return the fetched stream
+        // and not merge it with a partially fetched stream previously.
+        // 1. If the user supplied their own Range headers
+        // 2. If the object had transcoding enabled, the fetched stream
+        // will contain the complete object instead of a partial stream
+        // i.e. the range headers in such cases aren't respected.
+        // The operator is >= because $expectedSize will have compressed
+        // size, while the stream will have uncompressed contents.
+        if($userSuppliedRangeHeaders || $fetchedStream->getSize() >= $expectedSize) {
             return $fetchedStream;
         }
 
