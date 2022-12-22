@@ -342,7 +342,9 @@ class TranslateClient
                     'input' => $strings[$key],
                     'confidence' => isset($detection['confidence']) ? $detection['confidence'] : null
                 ],
-                fn ($value) => !is_null($value)
+                function ($value) {
+                  return !is_null($value);
+                }
             );
         }
 
