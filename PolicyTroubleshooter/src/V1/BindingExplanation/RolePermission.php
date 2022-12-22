@@ -66,6 +66,4 @@ class RolePermission
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(RolePermission::class, \Google\Cloud\PolicyTroubleshooter\V1\BindingExplanation_RolePermission::class);
 

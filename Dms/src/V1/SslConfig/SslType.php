@@ -60,6 +60,4 @@ class SslType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(SslType::class, \Google\Cloud\CloudDms\V1\SslConfig_SslType::class);
 

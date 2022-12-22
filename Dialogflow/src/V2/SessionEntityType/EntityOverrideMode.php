@@ -67,6 +67,4 @@ class EntityOverrideMode
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(EntityOverrideMode::class, \Google\Cloud\Dialogflow\V2\SessionEntityType_EntityOverrideMode::class);
 

@@ -103,6 +103,4 @@ class AnnotatedMembership extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(AnnotatedMembership::class, \Google\Cloud\PolicyTroubleshooter\V1\BindingExplanation_AnnotatedMembership::class);
 

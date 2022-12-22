@@ -17,7 +17,10 @@ class Interval extends \Google\Protobuf\Internal\Message
 {
     /**
      * A minimum acceptable load. Must be ≥ 0.
-     * If they're both specified, [min][google.cloud.optimization.v1.Vehicle.LoadLimit.Interval.min] must be ≤ [max][google.cloud.optimization.v1.Vehicle.LoadLimit.Interval.max].
+     * If they're both specified,
+     * [min][google.cloud.optimization.v1.Vehicle.LoadLimit.Interval.min] must
+     * be ≤
+     * [max][google.cloud.optimization.v1.Vehicle.LoadLimit.Interval.max].
      *
      * Generated from protobuf field <code>int64 min = 1;</code>
      */
@@ -25,7 +28,10 @@ class Interval extends \Google\Protobuf\Internal\Message
     /**
      * A maximum acceptable load. Must be ≥ 0. If unspecified, the maximum
      * load is unrestricted by this message.
-     * If they're both specified, [min][google.cloud.optimization.v1.Vehicle.LoadLimit.Interval.min] must be ≤ [max][google.cloud.optimization.v1.Vehicle.LoadLimit.Interval.max].
+     * If they're both specified,
+     * [min][google.cloud.optimization.v1.Vehicle.LoadLimit.Interval.min] must
+     * be ≤
+     * [max][google.cloud.optimization.v1.Vehicle.LoadLimit.Interval.max].
      *
      * Generated from protobuf field <code>optional int64 max = 2;</code>
      */
@@ -39,11 +45,17 @@ class Interval extends \Google\Protobuf\Internal\Message
      *
      *     @type int|string $min
      *           A minimum acceptable load. Must be ≥ 0.
-     *           If they're both specified, [min][google.cloud.optimization.v1.Vehicle.LoadLimit.Interval.min] must be ≤ [max][google.cloud.optimization.v1.Vehicle.LoadLimit.Interval.max].
+     *           If they're both specified,
+     *           [min][google.cloud.optimization.v1.Vehicle.LoadLimit.Interval.min] must
+     *           be ≤
+     *           [max][google.cloud.optimization.v1.Vehicle.LoadLimit.Interval.max].
      *     @type int|string $max
      *           A maximum acceptable load. Must be ≥ 0. If unspecified, the maximum
      *           load is unrestricted by this message.
-     *           If they're both specified, [min][google.cloud.optimization.v1.Vehicle.LoadLimit.Interval.min] must be ≤ [max][google.cloud.optimization.v1.Vehicle.LoadLimit.Interval.max].
+     *           If they're both specified,
+     *           [min][google.cloud.optimization.v1.Vehicle.LoadLimit.Interval.min] must
+     *           be ≤
+     *           [max][google.cloud.optimization.v1.Vehicle.LoadLimit.Interval.max].
      * }
      */
     public function __construct($data = NULL) {
@@ -53,7 +65,10 @@ class Interval extends \Google\Protobuf\Internal\Message
 
     /**
      * A minimum acceptable load. Must be ≥ 0.
-     * If they're both specified, [min][google.cloud.optimization.v1.Vehicle.LoadLimit.Interval.min] must be ≤ [max][google.cloud.optimization.v1.Vehicle.LoadLimit.Interval.max].
+     * If they're both specified,
+     * [min][google.cloud.optimization.v1.Vehicle.LoadLimit.Interval.min] must
+     * be ≤
+     * [max][google.cloud.optimization.v1.Vehicle.LoadLimit.Interval.max].
      *
      * Generated from protobuf field <code>int64 min = 1;</code>
      * @return int|string
@@ -65,7 +80,10 @@ class Interval extends \Google\Protobuf\Internal\Message
 
     /**
      * A minimum acceptable load. Must be ≥ 0.
-     * If they're both specified, [min][google.cloud.optimization.v1.Vehicle.LoadLimit.Interval.min] must be ≤ [max][google.cloud.optimization.v1.Vehicle.LoadLimit.Interval.max].
+     * If they're both specified,
+     * [min][google.cloud.optimization.v1.Vehicle.LoadLimit.Interval.min] must
+     * be ≤
+     * [max][google.cloud.optimization.v1.Vehicle.LoadLimit.Interval.max].
      *
      * Generated from protobuf field <code>int64 min = 1;</code>
      * @param int|string $var
@@ -82,7 +100,10 @@ class Interval extends \Google\Protobuf\Internal\Message
     /**
      * A maximum acceptable load. Must be ≥ 0. If unspecified, the maximum
      * load is unrestricted by this message.
-     * If they're both specified, [min][google.cloud.optimization.v1.Vehicle.LoadLimit.Interval.min] must be ≤ [max][google.cloud.optimization.v1.Vehicle.LoadLimit.Interval.max].
+     * If they're both specified,
+     * [min][google.cloud.optimization.v1.Vehicle.LoadLimit.Interval.min] must
+     * be ≤
+     * [max][google.cloud.optimization.v1.Vehicle.LoadLimit.Interval.max].
      *
      * Generated from protobuf field <code>optional int64 max = 2;</code>
      * @return int|string
@@ -105,7 +126,10 @@ class Interval extends \Google\Protobuf\Internal\Message
     /**
      * A maximum acceptable load. Must be ≥ 0. If unspecified, the maximum
      * load is unrestricted by this message.
-     * If they're both specified, [min][google.cloud.optimization.v1.Vehicle.LoadLimit.Interval.min] must be ≤ [max][google.cloud.optimization.v1.Vehicle.LoadLimit.Interval.max].
+     * If they're both specified,
+     * [min][google.cloud.optimization.v1.Vehicle.LoadLimit.Interval.min] must
+     * be ≤
+     * [max][google.cloud.optimization.v1.Vehicle.LoadLimit.Interval.max].
      *
      * Generated from protobuf field <code>optional int64 max = 2;</code>
      * @param int|string $var

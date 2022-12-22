@@ -47,7 +47,7 @@ function disable_processor_sample(string $formattedName): void
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
-            /** @var DisableProcessorResponse $response */
+            /** @var DisableProcessorResponse $result */
             $result = $response->getResult();
             printf('Operation successful with response data: %s' . PHP_EOL, $result->serializeToJsonString());
         } else {

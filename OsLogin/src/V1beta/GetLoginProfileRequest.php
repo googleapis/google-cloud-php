@@ -33,6 +33,12 @@ class GetLoginProfileRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string system_id = 3;</code>
      */
     private $system_id = '';
+    /**
+     * The view configures whether to retrieve security keys information.
+     *
+     * Generated from protobuf field <code>.google.cloud.oslogin.v1beta.LoginProfileView view = 4;</code>
+     */
+    private $view = 0;
 
     /**
      * Constructor.
@@ -46,6 +52,8 @@ class GetLoginProfileRequest extends \Google\Protobuf\Internal\Message
      *           The project ID of the Google Cloud Platform project.
      *     @type string $system_id
      *           A system ID for filtering the results of the request.
+     *     @type int $view
+     *           The view configures whether to retrieve security keys information.
      * }
      */
     public function __construct($data = NULL) {
@@ -127,6 +135,32 @@ class GetLoginProfileRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->system_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * The view configures whether to retrieve security keys information.
+     *
+     * Generated from protobuf field <code>.google.cloud.oslogin.v1beta.LoginProfileView view = 4;</code>
+     * @return int
+     */
+    public function getView()
+    {
+        return $this->view;
+    }
+
+    /**
+     * The view configures whether to retrieve security keys information.
+     *
+     * Generated from protobuf field <code>.google.cloud.oslogin.v1beta.LoginProfileView view = 4;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setView($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\OsLogin\V1beta\LoginProfileView::class);
+        $this->view = $var;
 
         return $this;
     }

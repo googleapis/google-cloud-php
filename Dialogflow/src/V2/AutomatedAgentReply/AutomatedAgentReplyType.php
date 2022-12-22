@@ -65,6 +65,4 @@ class AutomatedAgentReplyType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(AutomatedAgentReplyType::class, \Google\Cloud\Dialogflow\V2\AutomatedAgentReply_AutomatedAgentReplyType::class);
 

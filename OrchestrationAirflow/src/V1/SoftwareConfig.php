@@ -19,20 +19,23 @@ class SoftwareConfig extends \Google\Protobuf\Internal\Message
      * The version of the software running in the environment.
      * This encapsulates both the version of Cloud Composer functionality and the
      * version of Apache Airflow. It must match the regular expression
-     * `composer-([0-9]+\.[0-9]+\.[0-9]+|latest)-airflow-[0-9]+\.[0-9]+(\.[0-9]+.*)?`.
+     * `composer-([0-9]+(\.[0-9]+\.[0-9]+(-preview\.[0-9]+)?)?|latest)-airflow-([0-9]+(\.[0-9]+(\.[0-9]+)?)?)`.
      * When used as input, the server also checks if the provided version is
      * supported and denies the request for an unsupported version.
-     * The Cloud Composer portion of the version is a
-     * [semantic version](https://semver.org) or `latest`. When the patch version
-     * is omitted, the current Cloud Composer patch version is selected.
-     * When `latest` is provided instead of an explicit version number,
-     * the server replaces `latest` with the current Cloud Composer version
-     * and stores that version number in the same field.
-     * The portion of the image version that follows *airflow-* is an
-     * official Apache Airflow repository
-     * [release name](https://github.com/apache/incubator-airflow/releases).
-     * See also [Version
-     * List](https://cloud.google.com/composer/docs/concepts/versioning/composer-versions).
+     * The Cloud Composer portion of the image version is a full
+     * [semantic version](https://semver.org), or an alias in the form of major
+     * version number or `latest`. When an alias is provided, the server replaces
+     * it with the current Cloud Composer version that satisfies the alias.
+     * The Apache Airflow portion of the image version is a full semantic version
+     * that points to one of the supported Apache Airflow versions, or an alias in
+     * the form of only major or major.minor versions specified. When an alias is
+     * provided, the server replaces it with the latest Apache Airflow version
+     * that satisfies the alias and is supported in the given Cloud Composer
+     * version.
+     * In all cases, the resolved image version is stored in the same field.
+     * See also [version
+     * list](https://cloud.google.com/composer/docs/concepts/versioning/composer-versions) and [versioning
+     * overview](https://cloud.google.com/composer/docs/concepts/versioning/composer-versioning-overview).
      *
      * Generated from protobuf field <code>string image_version = 1;</code>
      */
@@ -97,10 +100,21 @@ class SoftwareConfig extends \Google\Protobuf\Internal\Message
      * scheduler, worker, and webserver processes.
      * Can be set to '2' or '3'. If not specified, the default is '3'. Cannot be
      * updated.
+     * This field is only supported for Cloud Composer environments in versions
+     * composer-1.*.*-airflow-*.*.*. Environments in newer versions always use
+     * Python major version 3.
      *
      * Generated from protobuf field <code>string python_version = 6;</code>
      */
     private $python_version = '';
+    /**
+     * Optional. The number of schedulers for Airflow.
+     * This field is supported for Cloud Composer environments in versions
+     * composer-1.*.*-airflow-2.*.*.
+     *
+     * Generated from protobuf field <code>int32 scheduler_count = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $scheduler_count = 0;
 
     /**
      * Constructor.
@@ -112,20 +126,23 @@ class SoftwareConfig extends \Google\Protobuf\Internal\Message
      *           The version of the software running in the environment.
      *           This encapsulates both the version of Cloud Composer functionality and the
      *           version of Apache Airflow. It must match the regular expression
-     *           `composer-([0-9]+\.[0-9]+\.[0-9]+|latest)-airflow-[0-9]+\.[0-9]+(\.[0-9]+.*)?`.
+     *           `composer-([0-9]+(\.[0-9]+\.[0-9]+(-preview\.[0-9]+)?)?|latest)-airflow-([0-9]+(\.[0-9]+(\.[0-9]+)?)?)`.
      *           When used as input, the server also checks if the provided version is
      *           supported and denies the request for an unsupported version.
-     *           The Cloud Composer portion of the version is a
-     *           [semantic version](https://semver.org) or `latest`. When the patch version
-     *           is omitted, the current Cloud Composer patch version is selected.
-     *           When `latest` is provided instead of an explicit version number,
-     *           the server replaces `latest` with the current Cloud Composer version
-     *           and stores that version number in the same field.
-     *           The portion of the image version that follows *airflow-* is an
-     *           official Apache Airflow repository
-     *           [release name](https://github.com/apache/incubator-airflow/releases).
-     *           See also [Version
-     *           List](https://cloud.google.com/composer/docs/concepts/versioning/composer-versions).
+     *           The Cloud Composer portion of the image version is a full
+     *           [semantic version](https://semver.org), or an alias in the form of major
+     *           version number or `latest`. When an alias is provided, the server replaces
+     *           it with the current Cloud Composer version that satisfies the alias.
+     *           The Apache Airflow portion of the image version is a full semantic version
+     *           that points to one of the supported Apache Airflow versions, or an alias in
+     *           the form of only major or major.minor versions specified. When an alias is
+     *           provided, the server replaces it with the latest Apache Airflow version
+     *           that satisfies the alias and is supported in the given Cloud Composer
+     *           version.
+     *           In all cases, the resolved image version is stored in the same field.
+     *           See also [version
+     *           list](https://cloud.google.com/composer/docs/concepts/versioning/composer-versions) and [versioning
+     *           overview](https://cloud.google.com/composer/docs/concepts/versioning/composer-versioning-overview).
      *     @type array|\Google\Protobuf\Internal\MapField $airflow_config_overrides
      *           Optional. Apache Airflow configuration properties to override.
      *           Property keys contain the section and property names, separated by a
@@ -174,6 +191,13 @@ class SoftwareConfig extends \Google\Protobuf\Internal\Message
      *           scheduler, worker, and webserver processes.
      *           Can be set to '2' or '3'. If not specified, the default is '3'. Cannot be
      *           updated.
+     *           This field is only supported for Cloud Composer environments in versions
+     *           composer-1.*.*-airflow-*.*.*. Environments in newer versions always use
+     *           Python major version 3.
+     *     @type int $scheduler_count
+     *           Optional. The number of schedulers for Airflow.
+     *           This field is supported for Cloud Composer environments in versions
+     *           composer-1.*.*-airflow-2.*.*.
      * }
      */
     public function __construct($data = NULL) {
@@ -185,20 +209,23 @@ class SoftwareConfig extends \Google\Protobuf\Internal\Message
      * The version of the software running in the environment.
      * This encapsulates both the version of Cloud Composer functionality and the
      * version of Apache Airflow. It must match the regular expression
-     * `composer-([0-9]+\.[0-9]+\.[0-9]+|latest)-airflow-[0-9]+\.[0-9]+(\.[0-9]+.*)?`.
+     * `composer-([0-9]+(\.[0-9]+\.[0-9]+(-preview\.[0-9]+)?)?|latest)-airflow-([0-9]+(\.[0-9]+(\.[0-9]+)?)?)`.
      * When used as input, the server also checks if the provided version is
      * supported and denies the request for an unsupported version.
-     * The Cloud Composer portion of the version is a
-     * [semantic version](https://semver.org) or `latest`. When the patch version
-     * is omitted, the current Cloud Composer patch version is selected.
-     * When `latest` is provided instead of an explicit version number,
-     * the server replaces `latest` with the current Cloud Composer version
-     * and stores that version number in the same field.
-     * The portion of the image version that follows *airflow-* is an
-     * official Apache Airflow repository
-     * [release name](https://github.com/apache/incubator-airflow/releases).
-     * See also [Version
-     * List](https://cloud.google.com/composer/docs/concepts/versioning/composer-versions).
+     * The Cloud Composer portion of the image version is a full
+     * [semantic version](https://semver.org), or an alias in the form of major
+     * version number or `latest`. When an alias is provided, the server replaces
+     * it with the current Cloud Composer version that satisfies the alias.
+     * The Apache Airflow portion of the image version is a full semantic version
+     * that points to one of the supported Apache Airflow versions, or an alias in
+     * the form of only major or major.minor versions specified. When an alias is
+     * provided, the server replaces it with the latest Apache Airflow version
+     * that satisfies the alias and is supported in the given Cloud Composer
+     * version.
+     * In all cases, the resolved image version is stored in the same field.
+     * See also [version
+     * list](https://cloud.google.com/composer/docs/concepts/versioning/composer-versions) and [versioning
+     * overview](https://cloud.google.com/composer/docs/concepts/versioning/composer-versioning-overview).
      *
      * Generated from protobuf field <code>string image_version = 1;</code>
      * @return string
@@ -212,20 +239,23 @@ class SoftwareConfig extends \Google\Protobuf\Internal\Message
      * The version of the software running in the environment.
      * This encapsulates both the version of Cloud Composer functionality and the
      * version of Apache Airflow. It must match the regular expression
-     * `composer-([0-9]+\.[0-9]+\.[0-9]+|latest)-airflow-[0-9]+\.[0-9]+(\.[0-9]+.*)?`.
+     * `composer-([0-9]+(\.[0-9]+\.[0-9]+(-preview\.[0-9]+)?)?|latest)-airflow-([0-9]+(\.[0-9]+(\.[0-9]+)?)?)`.
      * When used as input, the server also checks if the provided version is
      * supported and denies the request for an unsupported version.
-     * The Cloud Composer portion of the version is a
-     * [semantic version](https://semver.org) or `latest`. When the patch version
-     * is omitted, the current Cloud Composer patch version is selected.
-     * When `latest` is provided instead of an explicit version number,
-     * the server replaces `latest` with the current Cloud Composer version
-     * and stores that version number in the same field.
-     * The portion of the image version that follows *airflow-* is an
-     * official Apache Airflow repository
-     * [release name](https://github.com/apache/incubator-airflow/releases).
-     * See also [Version
-     * List](https://cloud.google.com/composer/docs/concepts/versioning/composer-versions).
+     * The Cloud Composer portion of the image version is a full
+     * [semantic version](https://semver.org), or an alias in the form of major
+     * version number or `latest`. When an alias is provided, the server replaces
+     * it with the current Cloud Composer version that satisfies the alias.
+     * The Apache Airflow portion of the image version is a full semantic version
+     * that points to one of the supported Apache Airflow versions, or an alias in
+     * the form of only major or major.minor versions specified. When an alias is
+     * provided, the server replaces it with the latest Apache Airflow version
+     * that satisfies the alias and is supported in the given Cloud Composer
+     * version.
+     * In all cases, the resolved image version is stored in the same field.
+     * See also [version
+     * list](https://cloud.google.com/composer/docs/concepts/versioning/composer-versions) and [versioning
+     * overview](https://cloud.google.com/composer/docs/concepts/versioning/composer-versioning-overview).
      *
      * Generated from protobuf field <code>string image_version = 1;</code>
      * @param string $var
@@ -396,6 +426,9 @@ class SoftwareConfig extends \Google\Protobuf\Internal\Message
      * scheduler, worker, and webserver processes.
      * Can be set to '2' or '3'. If not specified, the default is '3'. Cannot be
      * updated.
+     * This field is only supported for Cloud Composer environments in versions
+     * composer-1.*.*-airflow-*.*.*. Environments in newer versions always use
+     * Python major version 3.
      *
      * Generated from protobuf field <code>string python_version = 6;</code>
      * @return string
@@ -410,6 +443,9 @@ class SoftwareConfig extends \Google\Protobuf\Internal\Message
      * scheduler, worker, and webserver processes.
      * Can be set to '2' or '3'. If not specified, the default is '3'. Cannot be
      * updated.
+     * This field is only supported for Cloud Composer environments in versions
+     * composer-1.*.*-airflow-*.*.*. Environments in newer versions always use
+     * Python major version 3.
      *
      * Generated from protobuf field <code>string python_version = 6;</code>
      * @param string $var
@@ -419,6 +455,36 @@ class SoftwareConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->python_version = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The number of schedulers for Airflow.
+     * This field is supported for Cloud Composer environments in versions
+     * composer-1.*.*-airflow-2.*.*.
+     *
+     * Generated from protobuf field <code>int32 scheduler_count = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getSchedulerCount()
+    {
+        return $this->scheduler_count;
+    }
+
+    /**
+     * Optional. The number of schedulers for Airflow.
+     * This field is supported for Cloud Composer environments in versions
+     * composer-1.*.*-airflow-2.*.*.
+     *
+     * Generated from protobuf field <code>int32 scheduler_count = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setSchedulerCount($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->scheduler_count = $var;
 
         return $this;
     }

@@ -307,7 +307,8 @@ class QueryTest extends TestCase
      */
     public function testWhereOperators($operator)
     {
-        $this->query->where('foo', $operator, 'bar');
+        $ret = $this->query->where('foo', $operator, 'bar');
+        $this->assertInstanceOf(Query::class, $ret);
     }
 
     public function whereOperators()
@@ -497,7 +498,8 @@ class QueryTest extends TestCase
      */
     public function testOrderOperators($operator)
     {
-        $this->query->orderBy('foo', $operator);
+        $ret = $this->query->orderBy('foo', $operator);
+        $this->assertInstanceOf(Query::class, $ret);
     }
 
     public function orderOperators()

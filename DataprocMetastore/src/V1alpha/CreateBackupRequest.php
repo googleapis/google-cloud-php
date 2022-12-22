@@ -9,15 +9,16 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [DataprocMetastore.CreateBackup][google.cloud.metastore.v1alpha.DataprocMetastore.CreateBackup].
+ * Request message for
+ * [DataprocMetastore.CreateBackup][google.cloud.metastore.v1alpha.DataprocMetastore.CreateBackup].
  *
  * Generated from protobuf message <code>google.cloud.metastore.v1alpha.CreateBackupRequest</code>
  */
 class CreateBackupRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The relative resource name of the service in which to create a backup
-     * of the following form:
+     * Required. The relative resource name of the service in which to create a
+     * backup of the following form:
      * `projects/{project_number}/locations/{location_id}/services/{service_id}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -34,17 +35,17 @@ class CreateBackupRequest extends \Google\Protobuf\Internal\Message
      */
     private $backup_id = '';
     /**
-     * Required. The backup to create. The `name` field is ignored. The ID of the created
-     * backup must be provided in the request's `backup_id` field.
+     * Required. The backup to create. The `name` field is ignored. The ID of the
+     * created backup must be provided in the request's `backup_id` field.
      *
      * Generated from protobuf field <code>.google.cloud.metastore.v1alpha.Backup backup = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $backup = null;
     /**
-     * Optional. A request ID. Specify a unique request ID to allow the server to ignore the
-     * request if it has completed. The server will ignore subsequent requests
-     * that provide a duplicate request ID for at least 60 minutes after the first
-     * request.
+     * Optional. A request ID. Specify a unique request ID to allow the server to
+     * ignore the request if it has completed. The server will ignore subsequent
+     * requests that provide a duplicate request ID for at least 60 minutes after
+     * the first request.
      * For example, if an initial request times out, followed by another request
      * with the same request ID, the server ignores the second request to prevent
      * the creation of duplicate commitments.
@@ -63,8 +64,8 @@ class CreateBackupRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The relative resource name of the service in which to create a backup
-     *           of the following form:
+     *           Required. The relative resource name of the service in which to create a
+     *           backup of the following form:
      *           `projects/{project_number}/locations/{location_id}/services/{service_id}`.
      *     @type string $backup_id
      *           Required. The ID of the backup, which is used as the final component of the
@@ -73,13 +74,13 @@ class CreateBackupRequest extends \Google\Protobuf\Internal\Message
      *           end with a letter or number, and consist of alpha-numeric ASCII characters
      *           or hyphens.
      *     @type \Google\Cloud\Metastore\V1alpha\Backup $backup
-     *           Required. The backup to create. The `name` field is ignored. The ID of the created
-     *           backup must be provided in the request's `backup_id` field.
+     *           Required. The backup to create. The `name` field is ignored. The ID of the
+     *           created backup must be provided in the request's `backup_id` field.
      *     @type string $request_id
-     *           Optional. A request ID. Specify a unique request ID to allow the server to ignore the
-     *           request if it has completed. The server will ignore subsequent requests
-     *           that provide a duplicate request ID for at least 60 minutes after the first
-     *           request.
+     *           Optional. A request ID. Specify a unique request ID to allow the server to
+     *           ignore the request if it has completed. The server will ignore subsequent
+     *           requests that provide a duplicate request ID for at least 60 minutes after
+     *           the first request.
      *           For example, if an initial request times out, followed by another request
      *           with the same request ID, the server ignores the second request to prevent
      *           the creation of duplicate commitments.
@@ -94,8 +95,8 @@ class CreateBackupRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The relative resource name of the service in which to create a backup
-     * of the following form:
+     * Required. The relative resource name of the service in which to create a
+     * backup of the following form:
      * `projects/{project_number}/locations/{location_id}/services/{service_id}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -107,8 +108,8 @@ class CreateBackupRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The relative resource name of the service in which to create a backup
-     * of the following form:
+     * Required. The relative resource name of the service in which to create a
+     * backup of the following form:
      * `projects/{project_number}/locations/{location_id}/services/{service_id}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -158,8 +159,8 @@ class CreateBackupRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The backup to create. The `name` field is ignored. The ID of the created
-     * backup must be provided in the request's `backup_id` field.
+     * Required. The backup to create. The `name` field is ignored. The ID of the
+     * created backup must be provided in the request's `backup_id` field.
      *
      * Generated from protobuf field <code>.google.cloud.metastore.v1alpha.Backup backup = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Metastore\V1alpha\Backup|null
@@ -180,8 +181,8 @@ class CreateBackupRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The backup to create. The `name` field is ignored. The ID of the created
-     * backup must be provided in the request's `backup_id` field.
+     * Required. The backup to create. The `name` field is ignored. The ID of the
+     * created backup must be provided in the request's `backup_id` field.
      *
      * Generated from protobuf field <code>.google.cloud.metastore.v1alpha.Backup backup = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Metastore\V1alpha\Backup $var
@@ -196,10 +197,10 @@ class CreateBackupRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A request ID. Specify a unique request ID to allow the server to ignore the
-     * request if it has completed. The server will ignore subsequent requests
-     * that provide a duplicate request ID for at least 60 minutes after the first
-     * request.
+     * Optional. A request ID. Specify a unique request ID to allow the server to
+     * ignore the request if it has completed. The server will ignore subsequent
+     * requests that provide a duplicate request ID for at least 60 minutes after
+     * the first request.
      * For example, if an initial request times out, followed by another request
      * with the same request ID, the server ignores the second request to prevent
      * the creation of duplicate commitments.
@@ -216,10 +217,10 @@ class CreateBackupRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A request ID. Specify a unique request ID to allow the server to ignore the
-     * request if it has completed. The server will ignore subsequent requests
-     * that provide a duplicate request ID for at least 60 minutes after the first
-     * request.
+     * Optional. A request ID. Specify a unique request ID to allow the server to
+     * ignore the request if it has completed. The server will ignore subsequent
+     * requests that provide a duplicate request ID for at least 60 minutes after
+     * the first request.
      * For example, if an initial request times out, followed by another request
      * with the same request ID, the server ignores the second request to prevent
      * the creation of duplicate commitments.

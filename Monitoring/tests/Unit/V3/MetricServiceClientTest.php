@@ -22,14 +22,12 @@
 
 namespace Google\Cloud\Monitoring\Tests\Unit\V3;
 
-use Google\Api\MetricDescriptor;
-
-use Google\Api\MonitoredResourceDescriptor;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
+use Google\Api\MetricDescriptor;
+use Google\Api\MonitoredResourceDescriptor;
 use Google\Cloud\Monitoring\V3\ListMetricDescriptorsResponse;
 use Google\Cloud\Monitoring\V3\ListMonitoredResourceDescriptorsResponse;
 use Google\Cloud\Monitoring\V3\ListTimeSeriesRequest\TimeSeriesView;
@@ -48,25 +46,19 @@ use stdClass;
  */
 class MetricServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return MetricServiceClient
-     */
+    /** @return MetricServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -75,9 +67,7 @@ class MetricServiceClientTest extends GeneratedTest
         return new MetricServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createMetricDescriptorTest()
     {
         $transport = $this->createTransport();
@@ -115,9 +105,7 @@ class MetricServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createMetricDescriptorExceptionTest()
     {
         $transport = $this->createTransport();
@@ -151,9 +139,7 @@ class MetricServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createServiceTimeSeriesTest()
     {
         $transport = $this->createTransport();
@@ -180,9 +166,7 @@ class MetricServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createServiceTimeSeriesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -216,9 +200,7 @@ class MetricServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createTimeSeriesTest()
     {
         $transport = $this->createTransport();
@@ -245,9 +227,7 @@ class MetricServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createTimeSeriesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -281,9 +261,7 @@ class MetricServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteMetricDescriptorTest()
     {
         $transport = $this->createTransport();
@@ -307,9 +285,7 @@ class MetricServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteMetricDescriptorExceptionTest()
     {
         $transport = $this->createTransport();
@@ -342,9 +318,7 @@ class MetricServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getMetricDescriptorTest()
     {
         $transport = $this->createTransport();
@@ -379,9 +353,7 @@ class MetricServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getMetricDescriptorExceptionTest()
     {
         $transport = $this->createTransport();
@@ -414,9 +386,7 @@ class MetricServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getMonitoredResourceDescriptorTest()
     {
         $transport = $this->createTransport();
@@ -449,9 +419,7 @@ class MetricServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getMonitoredResourceDescriptorExceptionTest()
     {
         $transport = $this->createTransport();
@@ -484,9 +452,7 @@ class MetricServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listMetricDescriptorsTest()
     {
         $transport = $this->createTransport();
@@ -521,9 +487,7 @@ class MetricServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listMetricDescriptorsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -556,9 +520,7 @@ class MetricServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listMonitoredResourceDescriptorsTest()
     {
         $transport = $this->createTransport();
@@ -593,9 +555,7 @@ class MetricServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listMonitoredResourceDescriptorsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -628,9 +588,7 @@ class MetricServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listTimeSeriesTest()
     {
         $transport = $this->createTransport();
@@ -676,9 +634,7 @@ class MetricServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listTimeSeriesExceptionTest()
     {
         $transport = $this->createTransport();

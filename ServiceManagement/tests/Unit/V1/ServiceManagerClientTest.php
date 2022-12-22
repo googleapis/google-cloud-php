@@ -22,16 +22,13 @@
 
 namespace Google\Cloud\ServiceManagement\Tests\Unit\V1;
 
-use Google\Api\Service;
-
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
-
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
+use Google\Api\Service;
 use Google\Cloud\ServiceManagement\V1\ConfigSource;
-
 use Google\Cloud\ServiceManagement\V1\GenerateConfigReportResponse;
 use Google\Cloud\ServiceManagement\V1\ListServiceConfigsResponse;
 use Google\Cloud\ServiceManagement\V1\ListServiceRolloutsResponse;
@@ -55,25 +52,19 @@ use stdClass;
  */
 class ServiceManagerClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return ServiceManagerClient
-     */
+    /** @return ServiceManagerClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -82,14 +73,12 @@ class ServiceManagerClientTest extends GeneratedTest
         return new ServiceManagerClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createServiceTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -150,14 +139,12 @@ class ServiceManagerClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createServiceExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -207,9 +194,7 @@ class ServiceManagerClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createServiceConfigTest()
     {
         $transport = $this->createTransport();
@@ -245,9 +230,7 @@ class ServiceManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createServiceConfigExceptionTest()
     {
         $transport = $this->createTransport();
@@ -281,14 +264,12 @@ class ServiceManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createServiceRolloutTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -354,14 +335,12 @@ class ServiceManagerClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createServiceRolloutExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -412,14 +391,12 @@ class ServiceManagerClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteServiceTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -476,14 +453,12 @@ class ServiceManagerClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteServiceExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -533,9 +508,7 @@ class ServiceManagerClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function generateConfigReportTest()
     {
         $transport = $this->createTransport();
@@ -564,9 +537,7 @@ class ServiceManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function generateConfigReportExceptionTest()
     {
         $transport = $this->createTransport();
@@ -599,9 +570,7 @@ class ServiceManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getServiceTest()
     {
         $transport = $this->createTransport();
@@ -630,9 +599,7 @@ class ServiceManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getServiceExceptionTest()
     {
         $transport = $this->createTransport();
@@ -665,9 +632,7 @@ class ServiceManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getServiceConfigTest()
     {
         $transport = $this->createTransport();
@@ -703,9 +668,7 @@ class ServiceManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getServiceConfigExceptionTest()
     {
         $transport = $this->createTransport();
@@ -739,9 +702,7 @@ class ServiceManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getServiceRolloutTest()
     {
         $transport = $this->createTransport();
@@ -775,9 +736,7 @@ class ServiceManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getServiceRolloutExceptionTest()
     {
         $transport = $this->createTransport();
@@ -811,9 +770,7 @@ class ServiceManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listServiceConfigsTest()
     {
         $transport = $this->createTransport();
@@ -848,9 +805,7 @@ class ServiceManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listServiceConfigsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -883,9 +838,7 @@ class ServiceManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listServiceRolloutsTest()
     {
         $transport = $this->createTransport();
@@ -923,9 +876,7 @@ class ServiceManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listServiceRolloutsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -959,9 +910,7 @@ class ServiceManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listServicesTest()
     {
         $transport = $this->createTransport();
@@ -992,9 +941,7 @@ class ServiceManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listServicesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1025,14 +972,12 @@ class ServiceManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function submitConfigSourceTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1092,14 +1037,12 @@ class ServiceManagerClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function submitConfigSourceExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1150,14 +1093,12 @@ class ServiceManagerClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function undeleteServiceTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1214,14 +1155,12 @@ class ServiceManagerClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function undeleteServiceExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);

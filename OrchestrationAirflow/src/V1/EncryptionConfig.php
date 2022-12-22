@@ -10,7 +10,8 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * The encryption options for the Cloud Composer environment
- * and its dependencies.
+ * and its dependencies.Supported for Cloud Composer environments in versions
+ * composer-1.*.*-airflow-*.*.*.
  *
  * Generated from protobuf message <code>google.cloud.orchestration.airflow.service.v1.EncryptionConfig</code>
  */

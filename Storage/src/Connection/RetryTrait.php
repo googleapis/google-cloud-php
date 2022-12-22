@@ -53,7 +53,7 @@ trait RetryTrait
         'buckets.lockRetentionPolicy',
         'buckets.testIamPermissions',
         'default_object_acl.get',
-        'default_object_acl.list"',
+        'default_object_acl.list',
         'hmacKey.delete',
         'hmacKey.get',
         'hmacKey.list',
@@ -94,12 +94,12 @@ trait RetryTrait
      * @param string $resource resource name, eg: buckets.
      * @param string $method method name, eg: get
      * @param array $args
-     * @return array
+     * @return callable
      */
     public function getRestRetryFunction($resource, $method, $args)
     {
-        if (isset($options['restRetryFunction'])) {
-            return $options['restRetryFunction'];
+        if (isset($args['restRetryFunction'])) {
+            return $args['restRetryFunction'];
         }
         $methodName = sprintf('%s.%s', $resource, $method);
         $maxRetries = (int) (isset($args['retries']) ? $args['retries'] : 3);
@@ -152,6 +152,7 @@ trait RetryTrait
                 array_keys($preConditions)
             ));
         }
+        return false;
     }
 
 

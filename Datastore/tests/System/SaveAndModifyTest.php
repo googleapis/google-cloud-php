@@ -26,7 +26,7 @@ use Google\Cloud\Datastore\GeoPoint;
  * @group datastore
  * @group datastore-save
  */
-class SaveAndModifyTest extends DatastoreTestCase
+class SaveAndModifyTest extends DatastoreMultipleDbTestCase
 {
     /**
      * @dataProvider clientProvider

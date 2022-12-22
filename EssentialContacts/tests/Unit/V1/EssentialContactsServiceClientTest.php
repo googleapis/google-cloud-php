@@ -23,11 +23,9 @@
 namespace Google\Cloud\EssentialContacts\Tests\Unit\V1;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-
 use Google\Cloud\EssentialContacts\V1\ComputeContactsResponse;
 use Google\Cloud\EssentialContacts\V1\Contact;
 use Google\Cloud\EssentialContacts\V1\EssentialContactsServiceClient;
@@ -44,25 +42,19 @@ use stdClass;
  */
 class EssentialContactsServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return EssentialContactsServiceClient
-     */
+    /** @return EssentialContactsServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -71,9 +63,7 @@ class EssentialContactsServiceClientTest extends GeneratedTest
         return new EssentialContactsServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function computeContactsTest()
     {
         $transport = $this->createTransport();
@@ -108,9 +98,7 @@ class EssentialContactsServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function computeContactsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -143,9 +131,7 @@ class EssentialContactsServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createContactTest()
     {
         $transport = $this->createTransport();
@@ -179,9 +165,7 @@ class EssentialContactsServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createContactExceptionTest()
     {
         $transport = $this->createTransport();
@@ -215,9 +199,7 @@ class EssentialContactsServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteContactTest()
     {
         $transport = $this->createTransport();
@@ -241,9 +223,7 @@ class EssentialContactsServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteContactExceptionTest()
     {
         $transport = $this->createTransport();
@@ -276,9 +256,7 @@ class EssentialContactsServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getContactTest()
     {
         $transport = $this->createTransport();
@@ -309,9 +287,7 @@ class EssentialContactsServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getContactExceptionTest()
     {
         $transport = $this->createTransport();
@@ -344,9 +320,7 @@ class EssentialContactsServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listContactsTest()
     {
         $transport = $this->createTransport();
@@ -381,9 +355,7 @@ class EssentialContactsServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listContactsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -416,9 +388,7 @@ class EssentialContactsServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function sendTestMessageTest()
     {
         $transport = $this->createTransport();
@@ -450,9 +420,7 @@ class EssentialContactsServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function sendTestMessageExceptionTest()
     {
         $transport = $this->createTransport();
@@ -489,9 +457,7 @@ class EssentialContactsServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateContactTest()
     {
         $transport = $this->createTransport();
@@ -522,9 +488,7 @@ class EssentialContactsServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateContactExceptionTest()
     {
         $transport = $this->createTransport();

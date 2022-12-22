@@ -103,6 +103,4 @@ class File extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(File::class, \Google\Cloud\ApiGateway\V1\ApiConfig_File::class);
 

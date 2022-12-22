@@ -19,7 +19,8 @@ class PrivateEnvironmentConfig extends \Google\Protobuf\Internal\Message
     /**
      * Optional. If `true`, a Private IP Cloud Composer environment is created.
      * If this field is set to true, `IPAllocationPolicy.use_ip_aliases` must be
-     * set to true.
+     * set to true for Cloud Composer environments in versions
+     * composer-1.*.*-airflow-*.*.*.
      *
      * Generated from protobuf field <code>bool enable_private_environment = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -35,6 +36,8 @@ class PrivateEnvironmentConfig extends \Google\Protobuf\Internal\Message
      * Optional. The CIDR block from which IP range for web server will be reserved. Needs
      * to be disjoint from `private_cluster_config.master_ipv4_cidr_block` and
      * `cloud_sql_ipv4_cidr_block`.
+     * This field is supported for Cloud Composer environments in versions
+     * composer-1.*.*-airflow-*.*.*.
      *
      * Generated from protobuf field <code>string web_server_ipv4_cidr_block = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -48,10 +51,54 @@ class PrivateEnvironmentConfig extends \Google\Protobuf\Internal\Message
     private $cloud_sql_ipv4_cidr_block = '';
     /**
      * Output only. The IP range reserved for the tenant project's App Engine VMs.
+     * This field is supported for Cloud Composer environments in versions
+     * composer-1.*.*-airflow-*.*.*.
      *
      * Generated from protobuf field <code>string web_server_ipv4_reserved_range = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $web_server_ipv4_reserved_range = '';
+    /**
+     * Optional. The CIDR block from which IP range for Cloud Composer Network in tenant
+     * project will be reserved. Needs to be disjoint from
+     * private_cluster_config.master_ipv4_cidr_block and
+     * cloud_sql_ipv4_cidr_block.
+     * This field is supported for Cloud Composer environments in versions
+     * composer-2.*.*-airflow-*.*.* and newer.
+     *
+     * Generated from protobuf field <code>string cloud_composer_network_ipv4_cidr_block = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $cloud_composer_network_ipv4_cidr_block = '';
+    /**
+     * Output only. The IP range reserved for the tenant project's Cloud Composer network.
+     * This field is supported for Cloud Composer environments in versions
+     * composer-2.*.*-airflow-*.*.* and newer.
+     *
+     * Generated from protobuf field <code>string cloud_composer_network_ipv4_reserved_range = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $cloud_composer_network_ipv4_reserved_range = '';
+    /**
+     * Optional. When enabled, IPs from public (non-RFC1918) ranges can be used for
+     * `IPAllocationPolicy.cluster_ipv4_cidr_block` and
+     * `IPAllocationPolicy.service_ipv4_cidr_block`.
+     *
+     * Generated from protobuf field <code>bool enable_privately_used_public_ips = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $enable_privately_used_public_ips = false;
+    /**
+     * Optional. When specified, the environment will use Private Service Connect
+     * instead of VPC peerings to connect to Cloud SQL in the Tenant Project,
+     * and the PSC endpoint in the Customer Project will use an IP address from
+     * this subnetwork.
+     *
+     * Generated from protobuf field <code>string cloud_composer_connection_subnetwork = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $cloud_composer_connection_subnetwork = '';
+    /**
+     * Optional. Configuration for the network connections configuration in the environment.
+     *
+     * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.NetworkingConfig networking_config = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $networking_config = null;
 
     /**
      * Constructor.
@@ -62,7 +109,8 @@ class PrivateEnvironmentConfig extends \Google\Protobuf\Internal\Message
      *     @type bool $enable_private_environment
      *           Optional. If `true`, a Private IP Cloud Composer environment is created.
      *           If this field is set to true, `IPAllocationPolicy.use_ip_aliases` must be
-     *           set to true.
+     *           set to true for Cloud Composer environments in versions
+     *           composer-1.*.*-airflow-*.*.*.
      *     @type \Google\Cloud\Orchestration\Airflow\Service\V1\PrivateClusterConfig $private_cluster_config
      *           Optional. Configuration for the private GKE cluster for a Private IP
      *           Cloud Composer environment.
@@ -70,11 +118,37 @@ class PrivateEnvironmentConfig extends \Google\Protobuf\Internal\Message
      *           Optional. The CIDR block from which IP range for web server will be reserved. Needs
      *           to be disjoint from `private_cluster_config.master_ipv4_cidr_block` and
      *           `cloud_sql_ipv4_cidr_block`.
+     *           This field is supported for Cloud Composer environments in versions
+     *           composer-1.*.*-airflow-*.*.*.
      *     @type string $cloud_sql_ipv4_cidr_block
      *           Optional. The CIDR block from which IP range in tenant project will be reserved for
      *           Cloud SQL. Needs to be disjoint from `web_server_ipv4_cidr_block`.
      *     @type string $web_server_ipv4_reserved_range
      *           Output only. The IP range reserved for the tenant project's App Engine VMs.
+     *           This field is supported for Cloud Composer environments in versions
+     *           composer-1.*.*-airflow-*.*.*.
+     *     @type string $cloud_composer_network_ipv4_cidr_block
+     *           Optional. The CIDR block from which IP range for Cloud Composer Network in tenant
+     *           project will be reserved. Needs to be disjoint from
+     *           private_cluster_config.master_ipv4_cidr_block and
+     *           cloud_sql_ipv4_cidr_block.
+     *           This field is supported for Cloud Composer environments in versions
+     *           composer-2.*.*-airflow-*.*.* and newer.
+     *     @type string $cloud_composer_network_ipv4_reserved_range
+     *           Output only. The IP range reserved for the tenant project's Cloud Composer network.
+     *           This field is supported for Cloud Composer environments in versions
+     *           composer-2.*.*-airflow-*.*.* and newer.
+     *     @type bool $enable_privately_used_public_ips
+     *           Optional. When enabled, IPs from public (non-RFC1918) ranges can be used for
+     *           `IPAllocationPolicy.cluster_ipv4_cidr_block` and
+     *           `IPAllocationPolicy.service_ipv4_cidr_block`.
+     *     @type string $cloud_composer_connection_subnetwork
+     *           Optional. When specified, the environment will use Private Service Connect
+     *           instead of VPC peerings to connect to Cloud SQL in the Tenant Project,
+     *           and the PSC endpoint in the Customer Project will use an IP address from
+     *           this subnetwork.
+     *     @type \Google\Cloud\Orchestration\Airflow\Service\V1\NetworkingConfig $networking_config
+     *           Optional. Configuration for the network connections configuration in the environment.
      * }
      */
     public function __construct($data = NULL) {
@@ -85,7 +159,8 @@ class PrivateEnvironmentConfig extends \Google\Protobuf\Internal\Message
     /**
      * Optional. If `true`, a Private IP Cloud Composer environment is created.
      * If this field is set to true, `IPAllocationPolicy.use_ip_aliases` must be
-     * set to true.
+     * set to true for Cloud Composer environments in versions
+     * composer-1.*.*-airflow-*.*.*.
      *
      * Generated from protobuf field <code>bool enable_private_environment = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
@@ -98,7 +173,8 @@ class PrivateEnvironmentConfig extends \Google\Protobuf\Internal\Message
     /**
      * Optional. If `true`, a Private IP Cloud Composer environment is created.
      * If this field is set to true, `IPAllocationPolicy.use_ip_aliases` must be
-     * set to true.
+     * set to true for Cloud Composer environments in versions
+     * composer-1.*.*-airflow-*.*.*.
      *
      * Generated from protobuf field <code>bool enable_private_environment = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
@@ -154,6 +230,8 @@ class PrivateEnvironmentConfig extends \Google\Protobuf\Internal\Message
      * Optional. The CIDR block from which IP range for web server will be reserved. Needs
      * to be disjoint from `private_cluster_config.master_ipv4_cidr_block` and
      * `cloud_sql_ipv4_cidr_block`.
+     * This field is supported for Cloud Composer environments in versions
+     * composer-1.*.*-airflow-*.*.*.
      *
      * Generated from protobuf field <code>string web_server_ipv4_cidr_block = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -167,6 +245,8 @@ class PrivateEnvironmentConfig extends \Google\Protobuf\Internal\Message
      * Optional. The CIDR block from which IP range for web server will be reserved. Needs
      * to be disjoint from `private_cluster_config.master_ipv4_cidr_block` and
      * `cloud_sql_ipv4_cidr_block`.
+     * This field is supported for Cloud Composer environments in versions
+     * composer-1.*.*-airflow-*.*.*.
      *
      * Generated from protobuf field <code>string web_server_ipv4_cidr_block = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -210,6 +290,8 @@ class PrivateEnvironmentConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The IP range reserved for the tenant project's App Engine VMs.
+     * This field is supported for Cloud Composer environments in versions
+     * composer-1.*.*-airflow-*.*.*.
      *
      * Generated from protobuf field <code>string web_server_ipv4_reserved_range = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -221,6 +303,8 @@ class PrivateEnvironmentConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The IP range reserved for the tenant project's App Engine VMs.
+     * This field is supported for Cloud Composer environments in versions
+     * composer-1.*.*-airflow-*.*.*.
      *
      * Generated from protobuf field <code>string web_server_ipv4_reserved_range = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -230,6 +314,170 @@ class PrivateEnvironmentConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->web_server_ipv4_reserved_range = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The CIDR block from which IP range for Cloud Composer Network in tenant
+     * project will be reserved. Needs to be disjoint from
+     * private_cluster_config.master_ipv4_cidr_block and
+     * cloud_sql_ipv4_cidr_block.
+     * This field is supported for Cloud Composer environments in versions
+     * composer-2.*.*-airflow-*.*.* and newer.
+     *
+     * Generated from protobuf field <code>string cloud_composer_network_ipv4_cidr_block = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getCloudComposerNetworkIpv4CidrBlock()
+    {
+        return $this->cloud_composer_network_ipv4_cidr_block;
+    }
+
+    /**
+     * Optional. The CIDR block from which IP range for Cloud Composer Network in tenant
+     * project will be reserved. Needs to be disjoint from
+     * private_cluster_config.master_ipv4_cidr_block and
+     * cloud_sql_ipv4_cidr_block.
+     * This field is supported for Cloud Composer environments in versions
+     * composer-2.*.*-airflow-*.*.* and newer.
+     *
+     * Generated from protobuf field <code>string cloud_composer_network_ipv4_cidr_block = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setCloudComposerNetworkIpv4CidrBlock($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->cloud_composer_network_ipv4_cidr_block = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The IP range reserved for the tenant project's Cloud Composer network.
+     * This field is supported for Cloud Composer environments in versions
+     * composer-2.*.*-airflow-*.*.* and newer.
+     *
+     * Generated from protobuf field <code>string cloud_composer_network_ipv4_reserved_range = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getCloudComposerNetworkIpv4ReservedRange()
+    {
+        return $this->cloud_composer_network_ipv4_reserved_range;
+    }
+
+    /**
+     * Output only. The IP range reserved for the tenant project's Cloud Composer network.
+     * This field is supported for Cloud Composer environments in versions
+     * composer-2.*.*-airflow-*.*.* and newer.
+     *
+     * Generated from protobuf field <code>string cloud_composer_network_ipv4_reserved_range = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setCloudComposerNetworkIpv4ReservedRange($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->cloud_composer_network_ipv4_reserved_range = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. When enabled, IPs from public (non-RFC1918) ranges can be used for
+     * `IPAllocationPolicy.cluster_ipv4_cidr_block` and
+     * `IPAllocationPolicy.service_ipv4_cidr_block`.
+     *
+     * Generated from protobuf field <code>bool enable_privately_used_public_ips = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getEnablePrivatelyUsedPublicIps()
+    {
+        return $this->enable_privately_used_public_ips;
+    }
+
+    /**
+     * Optional. When enabled, IPs from public (non-RFC1918) ranges can be used for
+     * `IPAllocationPolicy.cluster_ipv4_cidr_block` and
+     * `IPAllocationPolicy.service_ipv4_cidr_block`.
+     *
+     * Generated from protobuf field <code>bool enable_privately_used_public_ips = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnablePrivatelyUsedPublicIps($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_privately_used_public_ips = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. When specified, the environment will use Private Service Connect
+     * instead of VPC peerings to connect to Cloud SQL in the Tenant Project,
+     * and the PSC endpoint in the Customer Project will use an IP address from
+     * this subnetwork.
+     *
+     * Generated from protobuf field <code>string cloud_composer_connection_subnetwork = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getCloudComposerConnectionSubnetwork()
+    {
+        return $this->cloud_composer_connection_subnetwork;
+    }
+
+    /**
+     * Optional. When specified, the environment will use Private Service Connect
+     * instead of VPC peerings to connect to Cloud SQL in the Tenant Project,
+     * and the PSC endpoint in the Customer Project will use an IP address from
+     * this subnetwork.
+     *
+     * Generated from protobuf field <code>string cloud_composer_connection_subnetwork = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setCloudComposerConnectionSubnetwork($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->cloud_composer_connection_subnetwork = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Configuration for the network connections configuration in the environment.
+     *
+     * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.NetworkingConfig networking_config = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Orchestration\Airflow\Service\V1\NetworkingConfig|null
+     */
+    public function getNetworkingConfig()
+    {
+        return $this->networking_config;
+    }
+
+    public function hasNetworkingConfig()
+    {
+        return isset($this->networking_config);
+    }
+
+    public function clearNetworkingConfig()
+    {
+        unset($this->networking_config);
+    }
+
+    /**
+     * Optional. Configuration for the network connections configuration in the environment.
+     *
+     * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.NetworkingConfig networking_config = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Orchestration\Airflow\Service\V1\NetworkingConfig $var
+     * @return $this
+     */
+    public function setNetworkingConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Orchestration\Airflow\Service\V1\NetworkingConfig::class);
+        $this->networking_config = $var;
 
         return $this;
     }

@@ -119,6 +119,4 @@ class SmartReplyConfig extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(SmartReplyConfig::class, \Google\Cloud\Dialogflow\V2\EvaluationConfig_SmartReplyConfig::class);
 

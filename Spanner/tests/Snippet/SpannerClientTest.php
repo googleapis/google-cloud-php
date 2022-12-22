@@ -281,4 +281,21 @@ class SpannerClientTest extends SnippetTestCase
         $this->assertInstanceOf(SpannerClient::class, $res->returnVal());
         $this->assertEquals('localhost:9010', getenv('SPANNER_EMULATOR_HOST'));
     }
+
+    public function testConnectWithDatabaseRole()
+    {
+        $snippet = $this->snippetFromMethod(SpannerClient::class, 'connect', 1);
+        $snippet->addLocal('spanner', $this->client);
+
+        $res = $snippet->invoke('database');
+        $this->assertInstanceOf(Database::class, $res->returnVal());
+    }
+
+    public function testBatchWithDatabaseRole()
+    {
+        $snippet = $this->snippetFromMethod(SpannerClient::class, 'batch', 1);
+        $snippet->addLocal('spanner', $this->client);
+        $res = $snippet->invoke('batch');
+        $this->assertInstanceOf(BatchClient::class, $res->returnVal());
+    }
 }

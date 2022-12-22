@@ -25,7 +25,6 @@ namespace Google\Cloud\Dialogflow\Tests\Unit\V2;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Dialogflow\V2\AnswerFeedback;
 use Google\Cloud\Dialogflow\V2\AnswerRecord;
@@ -44,25 +43,19 @@ use stdClass;
  */
 class AnswerRecordsClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return AnswerRecordsClient
-     */
+    /** @return AnswerRecordsClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -71,9 +64,7 @@ class AnswerRecordsClientTest extends GeneratedTest
         return new AnswerRecordsClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listAnswerRecordsTest()
     {
         $transport = $this->createTransport();
@@ -108,9 +99,7 @@ class AnswerRecordsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listAnswerRecordsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -143,9 +132,7 @@ class AnswerRecordsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateAnswerRecordTest()
     {
         $transport = $this->createTransport();
@@ -177,9 +164,7 @@ class AnswerRecordsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateAnswerRecordExceptionTest()
     {
         $transport = $this->createTransport();
@@ -215,9 +200,7 @@ class AnswerRecordsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getLocationTest()
     {
         $transport = $this->createTransport();
@@ -244,9 +227,7 @@ class AnswerRecordsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getLocationExceptionTest()
     {
         $transport = $this->createTransport();
@@ -277,9 +258,7 @@ class AnswerRecordsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listLocationsTest()
     {
         $transport = $this->createTransport();
@@ -310,9 +289,7 @@ class AnswerRecordsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listLocationsExceptionTest()
     {
         $transport = $this->createTransport();

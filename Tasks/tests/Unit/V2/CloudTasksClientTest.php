@@ -23,11 +23,9 @@
 namespace Google\Cloud\Tasks\Tests\Unit\V2;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-
 use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Cloud\Tasks\V2\CloudTasksClient;
@@ -46,25 +44,19 @@ use stdClass;
  */
 class CloudTasksClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return CloudTasksClient
-     */
+    /** @return CloudTasksClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -73,9 +65,7 @@ class CloudTasksClientTest extends GeneratedTest
         return new CloudTasksClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createQueueTest()
     {
         $transport = $this->createTransport();
@@ -105,9 +95,7 @@ class CloudTasksClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createQueueExceptionTest()
     {
         $transport = $this->createTransport();
@@ -141,9 +129,7 @@ class CloudTasksClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createTaskTest()
     {
         $transport = $this->createTransport();
@@ -177,9 +163,7 @@ class CloudTasksClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createTaskExceptionTest()
     {
         $transport = $this->createTransport();
@@ -213,9 +197,7 @@ class CloudTasksClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteQueueTest()
     {
         $transport = $this->createTransport();
@@ -239,9 +221,7 @@ class CloudTasksClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteQueueExceptionTest()
     {
         $transport = $this->createTransport();
@@ -274,9 +254,7 @@ class CloudTasksClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteTaskTest()
     {
         $transport = $this->createTransport();
@@ -300,9 +278,7 @@ class CloudTasksClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteTaskExceptionTest()
     {
         $transport = $this->createTransport();
@@ -335,9 +311,7 @@ class CloudTasksClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getIamPolicyTest()
     {
         $transport = $this->createTransport();
@@ -366,9 +340,7 @@ class CloudTasksClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -401,9 +373,7 @@ class CloudTasksClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getQueueTest()
     {
         $transport = $this->createTransport();
@@ -430,9 +400,7 @@ class CloudTasksClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getQueueExceptionTest()
     {
         $transport = $this->createTransport();
@@ -465,9 +433,7 @@ class CloudTasksClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getTaskTest()
     {
         $transport = $this->createTransport();
@@ -498,9 +464,7 @@ class CloudTasksClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getTaskExceptionTest()
     {
         $transport = $this->createTransport();
@@ -533,9 +497,7 @@ class CloudTasksClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listQueuesTest()
     {
         $transport = $this->createTransport();
@@ -570,9 +532,7 @@ class CloudTasksClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listQueuesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -605,9 +565,7 @@ class CloudTasksClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listTasksTest()
     {
         $transport = $this->createTransport();
@@ -642,9 +600,7 @@ class CloudTasksClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listTasksExceptionTest()
     {
         $transport = $this->createTransport();
@@ -677,9 +633,7 @@ class CloudTasksClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function pauseQueueTest()
     {
         $transport = $this->createTransport();
@@ -706,9 +660,7 @@ class CloudTasksClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function pauseQueueExceptionTest()
     {
         $transport = $this->createTransport();
@@ -741,9 +693,7 @@ class CloudTasksClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function purgeQueueTest()
     {
         $transport = $this->createTransport();
@@ -770,9 +720,7 @@ class CloudTasksClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function purgeQueueExceptionTest()
     {
         $transport = $this->createTransport();
@@ -805,9 +753,7 @@ class CloudTasksClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function resumeQueueTest()
     {
         $transport = $this->createTransport();
@@ -834,9 +780,7 @@ class CloudTasksClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function resumeQueueExceptionTest()
     {
         $transport = $this->createTransport();
@@ -869,9 +813,7 @@ class CloudTasksClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function runTaskTest()
     {
         $transport = $this->createTransport();
@@ -902,9 +844,7 @@ class CloudTasksClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function runTaskExceptionTest()
     {
         $transport = $this->createTransport();
@@ -937,9 +877,7 @@ class CloudTasksClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setIamPolicyTest()
     {
         $transport = $this->createTransport();
@@ -971,9 +909,7 @@ class CloudTasksClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1007,9 +943,7 @@ class CloudTasksClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function testIamPermissionsTest()
     {
         $transport = $this->createTransport();
@@ -1037,9 +971,7 @@ class CloudTasksClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function testIamPermissionsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1073,9 +1005,7 @@ class CloudTasksClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateQueueTest()
     {
         $transport = $this->createTransport();
@@ -1102,9 +1032,7 @@ class CloudTasksClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateQueueExceptionTest()
     {
         $transport = $this->createTransport();

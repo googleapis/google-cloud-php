@@ -22,13 +22,11 @@
 
 namespace Google\Cloud\ApigeeRegistry\Tests\Unit\V1;
 
-use Google\Api\HttpBody;
-
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
+use Google\Api\HttpBody;
 use Google\Cloud\ApigeeRegistry\V1\Api;
 use Google\Cloud\ApigeeRegistry\V1\ApiDeployment;
 use Google\Cloud\ApigeeRegistry\V1\ApiSpec;
@@ -38,8 +36,8 @@ use Google\Cloud\ApigeeRegistry\V1\ListApiDeploymentRevisionsResponse;
 use Google\Cloud\ApigeeRegistry\V1\ListApiDeploymentsResponse;
 use Google\Cloud\ApigeeRegistry\V1\ListApiSpecRevisionsResponse;
 use Google\Cloud\ApigeeRegistry\V1\ListApiSpecsResponse;
-use Google\Cloud\ApigeeRegistry\V1\ListApisResponse;
 use Google\Cloud\ApigeeRegistry\V1\ListApiVersionsResponse;
+use Google\Cloud\ApigeeRegistry\V1\ListApisResponse;
 use Google\Cloud\ApigeeRegistry\V1\ListArtifactsResponse;
 use Google\Cloud\ApigeeRegistry\V1\RegistryClient;
 use Google\Cloud\Iam\V1\Policy;
@@ -57,25 +55,19 @@ use stdClass;
  */
 class RegistryClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return RegistryClient
-     */
+    /** @return RegistryClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -84,9 +76,7 @@ class RegistryClientTest extends GeneratedTest
         return new RegistryClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createApiTest()
     {
         $transport = $this->createTransport();
@@ -129,9 +119,7 @@ class RegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createApiExceptionTest()
     {
         $transport = $this->createTransport();
@@ -166,9 +154,7 @@ class RegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createApiDeploymentTest()
     {
         $transport = $this->createTransport();
@@ -217,9 +203,7 @@ class RegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createApiDeploymentExceptionTest()
     {
         $transport = $this->createTransport();
@@ -254,9 +238,7 @@ class RegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createApiSpecTest()
     {
         $transport = $this->createTransport();
@@ -305,9 +287,7 @@ class RegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createApiSpecExceptionTest()
     {
         $transport = $this->createTransport();
@@ -342,9 +322,7 @@ class RegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createApiVersionTest()
     {
         $transport = $this->createTransport();
@@ -383,9 +361,7 @@ class RegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createApiVersionExceptionTest()
     {
         $transport = $this->createTransport();
@@ -420,9 +396,7 @@ class RegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createArtifactTest()
     {
         $transport = $this->createTransport();
@@ -463,9 +437,7 @@ class RegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createArtifactExceptionTest()
     {
         $transport = $this->createTransport();
@@ -500,9 +472,7 @@ class RegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteApiTest()
     {
         $transport = $this->createTransport();
@@ -526,9 +496,7 @@ class RegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteApiExceptionTest()
     {
         $transport = $this->createTransport();
@@ -561,9 +529,7 @@ class RegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteApiDeploymentTest()
     {
         $transport = $this->createTransport();
@@ -587,9 +553,7 @@ class RegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteApiDeploymentExceptionTest()
     {
         $transport = $this->createTransport();
@@ -622,9 +586,7 @@ class RegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteApiDeploymentRevisionTest()
     {
         $transport = $this->createTransport();
@@ -667,9 +629,7 @@ class RegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteApiDeploymentRevisionExceptionTest()
     {
         $transport = $this->createTransport();
@@ -702,9 +662,7 @@ class RegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteApiSpecTest()
     {
         $transport = $this->createTransport();
@@ -728,9 +686,7 @@ class RegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteApiSpecExceptionTest()
     {
         $transport = $this->createTransport();
@@ -763,9 +719,7 @@ class RegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteApiSpecRevisionTest()
     {
         $transport = $this->createTransport();
@@ -808,9 +762,7 @@ class RegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteApiSpecRevisionExceptionTest()
     {
         $transport = $this->createTransport();
@@ -843,9 +795,7 @@ class RegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteApiVersionTest()
     {
         $transport = $this->createTransport();
@@ -869,9 +819,7 @@ class RegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteApiVersionExceptionTest()
     {
         $transport = $this->createTransport();
@@ -904,9 +852,7 @@ class RegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteArtifactTest()
     {
         $transport = $this->createTransport();
@@ -930,9 +876,7 @@ class RegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteArtifactExceptionTest()
     {
         $transport = $this->createTransport();
@@ -965,9 +909,7 @@ class RegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getApiTest()
     {
         $transport = $this->createTransport();
@@ -1004,9 +946,7 @@ class RegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getApiExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1039,9 +979,7 @@ class RegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getApiDeploymentTest()
     {
         $transport = $this->createTransport();
@@ -1084,9 +1022,7 @@ class RegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getApiDeploymentExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1119,9 +1055,7 @@ class RegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getApiSpecTest()
     {
         $transport = $this->createTransport();
@@ -1164,9 +1098,7 @@ class RegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getApiSpecExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1199,9 +1131,7 @@ class RegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getApiSpecContentsTest()
     {
         $transport = $this->createTransport();
@@ -1230,9 +1160,7 @@ class RegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getApiSpecContentsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1265,9 +1193,7 @@ class RegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getApiVersionTest()
     {
         $transport = $this->createTransport();
@@ -1300,9 +1226,7 @@ class RegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getApiVersionExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1335,9 +1259,7 @@ class RegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getArtifactTest()
     {
         $transport = $this->createTransport();
@@ -1372,9 +1294,7 @@ class RegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getArtifactExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1407,9 +1327,7 @@ class RegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getArtifactContentsTest()
     {
         $transport = $this->createTransport();
@@ -1438,9 +1356,7 @@ class RegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getArtifactContentsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1473,9 +1389,7 @@ class RegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listApiDeploymentRevisionsTest()
     {
         $transport = $this->createTransport();
@@ -1510,9 +1424,7 @@ class RegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listApiDeploymentRevisionsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1545,9 +1457,7 @@ class RegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listApiDeploymentsTest()
     {
         $transport = $this->createTransport();
@@ -1582,9 +1492,7 @@ class RegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listApiDeploymentsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1617,9 +1525,7 @@ class RegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listApiSpecRevisionsTest()
     {
         $transport = $this->createTransport();
@@ -1654,9 +1560,7 @@ class RegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listApiSpecRevisionsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1689,9 +1593,7 @@ class RegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listApiSpecsTest()
     {
         $transport = $this->createTransport();
@@ -1726,9 +1628,7 @@ class RegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listApiSpecsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1761,9 +1661,7 @@ class RegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listApiVersionsTest()
     {
         $transport = $this->createTransport();
@@ -1798,9 +1696,7 @@ class RegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listApiVersionsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1833,9 +1729,7 @@ class RegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listApisTest()
     {
         $transport = $this->createTransport();
@@ -1870,9 +1764,7 @@ class RegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listApisExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1905,9 +1797,7 @@ class RegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listArtifactsTest()
     {
         $transport = $this->createTransport();
@@ -1942,9 +1832,7 @@ class RegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listArtifactsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1977,9 +1865,7 @@ class RegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function replaceArtifactTest()
     {
         $transport = $this->createTransport();
@@ -2014,9 +1900,7 @@ class RegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function replaceArtifactExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2049,9 +1933,7 @@ class RegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function rollbackApiDeploymentTest()
     {
         $transport = $this->createTransport();
@@ -2097,9 +1979,7 @@ class RegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function rollbackApiDeploymentExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2133,9 +2013,7 @@ class RegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function rollbackApiSpecTest()
     {
         $transport = $this->createTransport();
@@ -2181,9 +2059,7 @@ class RegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function rollbackApiSpecExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2217,9 +2093,7 @@ class RegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function tagApiDeploymentRevisionTest()
     {
         $transport = $this->createTransport();
@@ -2265,9 +2139,7 @@ class RegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function tagApiDeploymentRevisionExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2301,9 +2173,7 @@ class RegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function tagApiSpecRevisionTest()
     {
         $transport = $this->createTransport();
@@ -2349,9 +2219,7 @@ class RegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function tagApiSpecRevisionExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2385,9 +2253,7 @@ class RegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateApiTest()
     {
         $transport = $this->createTransport();
@@ -2424,9 +2290,7 @@ class RegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateApiExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2459,9 +2323,7 @@ class RegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateApiDeploymentTest()
     {
         $transport = $this->createTransport();
@@ -2504,9 +2366,7 @@ class RegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateApiDeploymentExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2539,9 +2399,7 @@ class RegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateApiSpecTest()
     {
         $transport = $this->createTransport();
@@ -2584,9 +2442,7 @@ class RegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateApiSpecExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2619,9 +2475,7 @@ class RegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateApiVersionTest()
     {
         $transport = $this->createTransport();
@@ -2654,9 +2508,7 @@ class RegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateApiVersionExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2689,9 +2541,7 @@ class RegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getLocationTest()
     {
         $transport = $this->createTransport();
@@ -2718,9 +2568,7 @@ class RegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getLocationExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2751,9 +2599,7 @@ class RegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listLocationsTest()
     {
         $transport = $this->createTransport();
@@ -2784,9 +2630,7 @@ class RegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listLocationsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2817,9 +2661,7 @@ class RegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getIamPolicyTest()
     {
         $transport = $this->createTransport();
@@ -2848,9 +2690,7 @@ class RegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2883,9 +2723,7 @@ class RegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setIamPolicyTest()
     {
         $transport = $this->createTransport();
@@ -2917,9 +2755,7 @@ class RegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2953,9 +2789,7 @@ class RegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function testIamPermissionsTest()
     {
         $transport = $this->createTransport();
@@ -2983,9 +2817,7 @@ class RegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function testIamPermissionsExceptionTest()
     {
         $transport = $this->createTransport();

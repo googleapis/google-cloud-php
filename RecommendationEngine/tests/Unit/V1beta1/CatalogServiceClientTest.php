@@ -23,15 +23,12 @@
 namespace Google\Cloud\RecommendationEngine\Tests\Unit\V1beta1;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\RecommendationEngine\V1beta1\CatalogItem;
 use Google\Cloud\RecommendationEngine\V1beta1\CatalogServiceClient;
-
 use Google\Cloud\RecommendationEngine\V1beta1\ImportCatalogItemsResponse;
 use Google\Cloud\RecommendationEngine\V1beta1\InputConfig;
 use Google\Cloud\RecommendationEngine\V1beta1\ListCatalogItemsResponse;
@@ -49,25 +46,19 @@ use stdClass;
  */
 class CatalogServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return CatalogServiceClient
-     */
+    /** @return CatalogServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -76,9 +67,7 @@ class CatalogServiceClientTest extends GeneratedTest
         return new CatalogServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createCatalogItemTest()
     {
         $transport = $this->createTransport();
@@ -122,9 +111,7 @@ class CatalogServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createCatalogItemExceptionTest()
     {
         $transport = $this->createTransport();
@@ -164,9 +151,7 @@ class CatalogServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteCatalogItemTest()
     {
         $transport = $this->createTransport();
@@ -190,9 +175,7 @@ class CatalogServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteCatalogItemExceptionTest()
     {
         $transport = $this->createTransport();
@@ -225,9 +208,7 @@ class CatalogServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getCatalogItemTest()
     {
         $transport = $this->createTransport();
@@ -262,9 +243,7 @@ class CatalogServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getCatalogItemExceptionTest()
     {
         $transport = $this->createTransport();
@@ -297,14 +276,12 @@ class CatalogServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function importCatalogItemsTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -364,14 +341,12 @@ class CatalogServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function importCatalogItemsExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -422,9 +397,7 @@ class CatalogServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listCatalogItemsTest()
     {
         $transport = $this->createTransport();
@@ -459,9 +432,7 @@ class CatalogServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listCatalogItemsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -494,9 +465,7 @@ class CatalogServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateCatalogItemTest()
     {
         $transport = $this->createTransport();
@@ -540,9 +509,7 @@ class CatalogServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateCatalogItemExceptionTest()
     {
         $transport = $this->createTransport();

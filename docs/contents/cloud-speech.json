@@ -15,24 +15,26 @@
         "title": "Result",
         "type": "speech/result"
     }, {
-        "title": "v1",
-        "type": "speech/v1/readme",
+            "title": "SpeechClient (v2)",
+            "type": "speech/v2/speechclient",
+            "patterns": [
+              "speech/v2/\\w{1,}"
+            ],
+            "nav": []
+        }, {
+    }, {
+        "title": "SpeechClient (v1)",
+        "type": "speech/v1/speechclient",
         "patterns": [
           "speech/v1/\\w{1,}"
         ],
-        "nav": [{
-            "title": "SpeechClient",
-            "type": "speech/v1/speechclient"
-        }]
+        "nav": []
     }, {
-        "title": "v1p1beta1",
-        "type": "speech/v1p1beta1/readme",
+        "title": "SpeechClient (v1p1beta1)",
+        "type": "speech/v1p1beta1/speechclient",
         "patterns": [
           "speech/v1p1beta1/\\w{1,}"
         ],
-        "nav": [{
-            "title": "SpeechClient",
-            "type": "speech/v1p1beta1/speechclient"
-        }]
+        "nav": []
     }]
 }

@@ -23,19 +23,13 @@
 namespace Google\Cloud\Firestore\Tests\Unit\V1;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\BidiStream;
-
 use Google\ApiCore\CredentialsWrapper;
-
 use Google\ApiCore\ServerStream;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-
 use Google\Cloud\Firestore\V1\BatchGetDocumentsResponse;
-
 use Google\Cloud\Firestore\V1\BatchWriteResponse;
-
 use Google\Cloud\Firestore\V1\BeginTransactionResponse;
 use Google\Cloud\Firestore\V1\CommitResponse;
 use Google\Cloud\Firestore\V1\Cursor;
@@ -62,25 +56,19 @@ use stdClass;
  */
 class FirestoreClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return FirestoreClient
-     */
+    /** @return FirestoreClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -89,9 +77,7 @@ class FirestoreClientTest extends GeneratedTest
         return new FirestoreClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function batchGetDocumentsTest()
     {
         $transport = $this->createTransport();
@@ -141,9 +127,7 @@ class FirestoreClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function batchGetDocumentsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -179,9 +163,7 @@ class FirestoreClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function batchWriteTest()
     {
         $transport = $this->createTransport();
@@ -202,9 +184,7 @@ class FirestoreClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function batchWriteExceptionTest()
     {
         $transport = $this->createTransport();
@@ -235,9 +215,7 @@ class FirestoreClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function beginTransactionTest()
     {
         $transport = $this->createTransport();
@@ -264,9 +242,7 @@ class FirestoreClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function beginTransactionExceptionTest()
     {
         $transport = $this->createTransport();
@@ -299,9 +275,7 @@ class FirestoreClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function commitTest()
     {
         $transport = $this->createTransport();
@@ -329,9 +303,7 @@ class FirestoreClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function commitExceptionTest()
     {
         $transport = $this->createTransport();
@@ -365,9 +337,7 @@ class FirestoreClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createDocumentTest()
     {
         $transport = $this->createTransport();
@@ -403,9 +373,7 @@ class FirestoreClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createDocumentExceptionTest()
     {
         $transport = $this->createTransport();
@@ -441,9 +409,7 @@ class FirestoreClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteDocumentTest()
     {
         $transport = $this->createTransport();
@@ -467,9 +433,7 @@ class FirestoreClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteDocumentExceptionTest()
     {
         $transport = $this->createTransport();
@@ -502,9 +466,7 @@ class FirestoreClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getDocumentTest()
     {
         $transport = $this->createTransport();
@@ -531,9 +493,7 @@ class FirestoreClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getDocumentExceptionTest()
     {
         $transport = $this->createTransport();
@@ -566,9 +526,7 @@ class FirestoreClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listCollectionIdsTest()
     {
         $transport = $this->createTransport();
@@ -603,9 +561,7 @@ class FirestoreClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listCollectionIdsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -638,9 +594,7 @@ class FirestoreClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listDocumentsTest()
     {
         $transport = $this->createTransport();
@@ -678,9 +632,7 @@ class FirestoreClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listDocumentsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -714,9 +666,7 @@ class FirestoreClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listenTest()
     {
         $transport = $this->createTransport();
@@ -777,9 +727,7 @@ class FirestoreClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listenExceptionTest()
     {
         $transport = $this->createTransport();
@@ -812,9 +760,7 @@ class FirestoreClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function partitionQueryTest()
     {
         $transport = $this->createTransport();
@@ -845,9 +791,7 @@ class FirestoreClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function partitionQueryExceptionTest()
     {
         $transport = $this->createTransport();
@@ -878,9 +822,7 @@ class FirestoreClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function rollbackTest()
     {
         $transport = $this->createTransport();
@@ -907,9 +849,7 @@ class FirestoreClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function rollbackExceptionTest()
     {
         $transport = $this->createTransport();
@@ -943,9 +883,7 @@ class FirestoreClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function runAggregationQueryTest()
     {
         $transport = $this->createTransport();
@@ -986,9 +924,7 @@ class FirestoreClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function runAggregationQueryExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1023,9 +959,7 @@ class FirestoreClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function runQueryTest()
     {
         $transport = $this->createTransport();
@@ -1078,9 +1012,7 @@ class FirestoreClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function runQueryExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1115,9 +1047,7 @@ class FirestoreClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateDocumentTest()
     {
         $transport = $this->createTransport();
@@ -1147,9 +1077,7 @@ class FirestoreClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateDocumentExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1183,9 +1111,7 @@ class FirestoreClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function writeTest()
     {
         $transport = $this->createTransport();
@@ -1258,9 +1184,7 @@ class FirestoreClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function writeExceptionTest()
     {
         $transport = $this->createTransport();

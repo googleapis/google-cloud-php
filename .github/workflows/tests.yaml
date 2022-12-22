@@ -34,7 +34,17 @@ jobs:
         timeout_minutes: 10
         max_attempts: 3
         command: composer --no-interaction --no-ansi --no-progress update
-    - name: Run Unit Test Suite
+    - if: ${{ matrix.platform == 'windows-latest' }}
+      name: Run Unit Test Suite (Windows)
+      run: |
+        vendor/bin/phpunit -c ${{ matrix.phpunit-filename }}.xml.dist
+        if ( "$?" -ne "0" )
+        {
+          echo "*** RETRYING FLAKEY PHPUNIT ON WINDOWS ***"
+          vendor/bin/phpunit -c ${{ matrix.phpunit-filename }}.xml.dist
+        }
+    - if: ${{ matrix.platform != 'windows-latest' }}
+      name: Run Unit Test Suite
       run: |
         vendor/bin/phpunit -c ${{ matrix.phpunit-filename }}.xml.dist
     - if: ${{ matrix.platform != 'windows-latest' }}
@@ -43,7 +53,7 @@ jobs:
         vendor/bin/phpunit -c ${{ matrix.phpunit-filename }}-snippets.xml.dist --verbose
 
   test_package:
-    name: Package Unit Tests
+    name: Package Tests
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
@@ -52,7 +62,11 @@ jobs:
       with:
         php-version: '8.0'
         extensions: grpc-1.49.0
+<<<<<<< HEAD
     - name: Run Unit Test Suites
+=======
+    - name: Run Package Test Suites
+>>>>>>> 7625b153469b0015e7057891f97ed195c7c92e97
       run: bash .github/run-package-tests.sh
 
   style:
@@ -101,21 +115,3 @@ jobs:
       run: vendor/bin/phpunit -c dev/phpunit-docfx.xml.dist
     - name: Run Docs Generator (Dry Run)
       run: bash .kokoro/docs/publish.sh
-
-  docs:
-    runs-on: ubuntu-latest
-    name: Generate Legacy Documentation (Dry Run)
-    steps:
-    - uses: actions/checkout@v3
-    - name: Setup PHP
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: '7.4'
-    - name: Install Dependencies
-      uses: nick-invision/retry@v2
-      with:
-        timeout_minutes: 10
-        max_attempts: 3
-        command: composer --no-interaction --no-ansi --no-progress update
-    - name: Run Docs Generator
-      run: php -d 'memory_limit=-1' dev/google-cloud docs

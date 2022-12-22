@@ -49,4 +49,16 @@ class DatastoreTraitTest extends TestCase
         $this->assertEquals('foo', $res['projectId']);
         $this->assertEquals('bar', $res['namespaceId']);
     }
+
+    public function testPartitionIdWithDatabaseId()
+    {
+        $res = $this->stub->call('partitionId', [
+            'foo', 'bar', 'baz'
+        ]);
+
+        $this->assertIsArray($res);
+        $this->assertEquals('foo', $res['projectId']);
+        $this->assertEquals('bar', $res['namespaceId']);
+        $this->assertEquals('baz', $res['databaseId']);
+    }
 }
