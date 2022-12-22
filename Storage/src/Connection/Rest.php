@@ -619,11 +619,13 @@ class Rest implements ConnectionInterface
             'defaultObjectAccessControls' => 'default_object_acl',
             'objectAccessControls' => 'object_acl'
         ];
-        if (array_key_exists($resource, $retryMap)) {
-            $args['restRetryFunction'] = $this->getRestRetryFunction($retryMap[$resource], $method, $args);
-        } else {
-            $args['restRetryFunction'] = $this->getRestRetryFunction($resource, $method, $args);
-        }
+        $retryResource = isset($retryMap[$resource]) ? $retryMap[$resource] : $resource;
+        $args['restRetryFunction'] = $this->getRestRetryFunction(
+            $retryResource,
+            $method,
+            $args
+        );
+
         return $this->send($resource, $method, $args);
     }
 }
