@@ -112,7 +112,7 @@ class RetryConformanceTest extends TestCase
     {
         self::set_up_before_class();
         // These scenario IDs will be run
-        $scenarios = [1, 2, 3, 4, 5, 6, 7];
+        $scenarios = [1, 2, 3, 4, 5, 6, 7, 8];
 
         $cases = [];
 
@@ -135,7 +135,6 @@ class RetryConformanceTest extends TestCase
         $precondtionProvided,
         $invocationIndex
     ) {
-        $this->markTestSkipped();
         $caseId = $this->createRetryTestResource($methodName, $instructions, null);
 
         $methodInvocations = self::getMethodInvocationMapping();
@@ -154,7 +153,7 @@ class RetryConformanceTest extends TestCase
         ];
 
         // create the resources needed for test to run
-        $resourceIds = self::createResources(array_flip($resources));
+        $resourceIds = self::createResources(array_flip($resources), $methodGroup);
 
         // call the implementation
         try {
@@ -427,7 +426,10 @@ class RetryConformanceTest extends TestCase
                 }
             ],
             'storage.objects.get' => [
-                function ($resourceIds, $options, $precondition = false) {
+                function ($resourceIds, $options, $precondition = false, $methodGroup = null) {
+                    if(!is_null($methodGroup)) {
+                        self::markTestSkipped("Test only needs to run for resumable downloads");
+                    }
                     $bucketName = $resourceIds['bucketName'];
                     $objectName = $resourceIds['objectName'];
 
@@ -435,13 +437,49 @@ class RetryConformanceTest extends TestCase
                     $object = $bucket->object($objectName);
                     $object->reload($options);
                 },
-                function ($resourceIds, $options, $precondition = false) {
+                function ($resourceIds, $options, $precondition = false, $methodGroup = null) {
+                    if(!is_null($methodGroup)) {
+                        self::markTestSkipped("Test only needs to run for resumable downloads");
+                    }
                     $bucketName = $resourceIds['bucketName'];
                     $objectName = $resourceIds['objectName'];
 
                     $bucket = self::$storageClient->bucket($bucketName);
                     $object = $bucket->object($objectName);
                     $object->exists($options);
+                },
+                function ($resourceIds, $options, $precondition = false, $methodGroup = null) {
+                    if($methodGroup !== 'storage.objects.download') {
+                        self::markTestSkipped("Test only needs to run for getObject");
+                    }
+                    $bucketName = $resourceIds['bucketName'];
+                    $objectName = $resourceIds['objectName'];
+
+                    $bucket = self::$storageClient->bucket($bucketName);
+                    $object = $bucket->object($objectName);
+                    $object->downloadAsStream($options);
+                },
+                function ($resourceIds, $options, $precondition = false, $methodGroup = null) {
+                    if($methodGroup !== 'storage.objects.download') {
+                        self::markTestSkipped("Test only needs to run for getObject");
+                    }
+                    $bucketName = $resourceIds['bucketName'];
+                    $objectName = $resourceIds['objectName'];
+
+                    $bucket = self::$storageClient->bucket($bucketName);
+                    $object = $bucket->object($objectName);
+                    $object->downloadAsString($options);
+                },
+                function ($resourceIds, $options, $precondition = false, $methodGroup = null) {
+                    if($methodGroup !== 'storage.objects.download') {
+                        self::markTestSkipped("Test only needs to run for getObject");
+                    }
+                    $bucketName = $resourceIds['bucketName'];
+                    $objectName = $resourceIds['objectName'];
+
+                    $bucket = self::$storageClient->bucket($bucketName);
+                    $object = $bucket->object($objectName);
+                    $object->downloadToFile('php://temp', $options);
                 }
             ],
             'storage.objects.list' => [
@@ -791,7 +829,7 @@ class RetryConformanceTest extends TestCase
      *
      * @return array The ids of resources created(where applicable).
      */
-    private function createResources(array $resources)
+    private function createResources(array $resources, string $methodGroup)
     {
         $ids = [];
 
@@ -819,7 +857,8 @@ class RetryConformanceTest extends TestCase
             // Create an object if needed
             if (isset($resources['OBJECT'])) {
                 $objectName = uniqid(self::$objectPrefix);
-                $object = $bucket->upload('file text', ['name' => $objectName]);
+                $content = ($methodGroup === 'storage.objects.download') ? random_bytes(10 * 1024 * 1024) : 'file text';
+                $object = $bucket->upload($content, ['name' => $objectName]);
                 $ids['objectName'] = $objectName;
 
                 // Create object ACL
