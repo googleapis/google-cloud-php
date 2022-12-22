@@ -64,6 +64,4 @@ class ConversationStage
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ConversationStage::class, \Google\Cloud\Dialogflow\V2\Conversation_ConversationStage::class);
 

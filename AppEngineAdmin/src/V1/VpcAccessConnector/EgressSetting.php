@@ -59,6 +59,4 @@ class EgressSetting
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(EgressSetting::class, \Google\Cloud\AppEngine\V1\VpcAccessConnector_EgressSetting::class);
 

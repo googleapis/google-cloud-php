@@ -40,7 +40,7 @@ class Access extends \Google\Protobuf\Internal\Message
      */
     private $caller_ip_geo = null;
     /**
-     * What kind of user agent is associated, e.g. operating system shells,
+     * What kind of user agent is associated, for example operating system shells,
      * embedded or stand-alone applications, etc.
      *
      * Generated from protobuf field <code>string user_agent_family = 4;</code>
@@ -90,6 +90,18 @@ class Access extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.ServiceAccountDelegationInfo service_account_delegation_info = 9;</code>
      */
     private $service_account_delegation_info;
+    /**
+     * A string that represents the username of a user, user account, or other
+     * entity involved in the access event. What the entity is and what its role
+     * in the access event is depends on the finding that this field appears in.
+     * The entity is likely not an IAM principal, but could be a user that is
+     * logged into an operating system, if the finding is VM-related, or a user
+     * that is logged into some type of application that is involved in the
+     * access event.
+     *
+     * Generated from protobuf field <code>string user_name = 11;</code>
+     */
+    private $user_name = '';
 
     /**
      * Constructor.
@@ -110,7 +122,7 @@ class Access extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\SecurityCenter\V1\Geolocation $caller_ip_geo
      *           The caller IP's geolocation, which identifies where the call came from.
      *     @type string $user_agent_family
-     *           What kind of user agent is associated, e.g. operating system shells,
+     *           What kind of user agent is associated, for example operating system shells,
      *           embedded or stand-alone applications, etc.
      *     @type string $service_name
      *           This is the API service that the service account made a call to, e.g.
@@ -136,6 +148,14 @@ class Access extends \Google\Protobuf\Internal\Message
      *           access GCP resources by delegating on a service account. When multiple
      *           authorities are present, they are guaranteed to be sorted based on the
      *           original ordering of the identity delegation events.
+     *     @type string $user_name
+     *           A string that represents the username of a user, user account, or other
+     *           entity involved in the access event. What the entity is and what its role
+     *           in the access event is depends on the finding that this field appears in.
+     *           The entity is likely not an IAM principal, but could be a user that is
+     *           logged into an operating system, if the finding is VM-related, or a user
+     *           that is logged into some type of application that is involved in the
+     *           access event.
      * }
      */
     public function __construct($data = NULL) {
@@ -244,7 +264,7 @@ class Access extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * What kind of user agent is associated, e.g. operating system shells,
+     * What kind of user agent is associated, for example operating system shells,
      * embedded or stand-alone applications, etc.
      *
      * Generated from protobuf field <code>string user_agent_family = 4;</code>
@@ -256,7 +276,7 @@ class Access extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * What kind of user agent is associated, e.g. operating system shells,
+     * What kind of user agent is associated, for example operating system shells,
      * embedded or stand-alone applications, etc.
      *
      * Generated from protobuf field <code>string user_agent_family = 4;</code>
@@ -425,6 +445,44 @@ class Access extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\SecurityCenter\V1\ServiceAccountDelegationInfo::class);
         $this->service_account_delegation_info = $arr;
+
+        return $this;
+    }
+
+    /**
+     * A string that represents the username of a user, user account, or other
+     * entity involved in the access event. What the entity is and what its role
+     * in the access event is depends on the finding that this field appears in.
+     * The entity is likely not an IAM principal, but could be a user that is
+     * logged into an operating system, if the finding is VM-related, or a user
+     * that is logged into some type of application that is involved in the
+     * access event.
+     *
+     * Generated from protobuf field <code>string user_name = 11;</code>
+     * @return string
+     */
+    public function getUserName()
+    {
+        return $this->user_name;
+    }
+
+    /**
+     * A string that represents the username of a user, user account, or other
+     * entity involved in the access event. What the entity is and what its role
+     * in the access event is depends on the finding that this field appears in.
+     * The entity is likely not an IAM principal, but could be a user that is
+     * logged into an operating system, if the finding is VM-related, or a user
+     * that is logged into some type of application that is involved in the
+     * access event.
+     *
+     * Generated from protobuf field <code>string user_name = 11;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setUserName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->user_name = $var;
 
         return $this;
     }

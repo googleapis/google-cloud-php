@@ -285,6 +285,4 @@ class Node extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Node::class, \Google\Cloud\Memcache\V1beta2\Instance_Node::class);
 

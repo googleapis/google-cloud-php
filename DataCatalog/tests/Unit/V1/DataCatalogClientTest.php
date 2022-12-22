@@ -23,11 +23,9 @@
 namespace Google\Cloud\DataCatalog\Tests\Unit\V1;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-
 use Google\Cloud\DataCatalog\V1\Contacts;
 use Google\Cloud\DataCatalog\V1\DataCatalogClient;
 use Google\Cloud\DataCatalog\V1\Entry;
@@ -59,25 +57,19 @@ use stdClass;
  */
 class DataCatalogClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return DataCatalogClient
-     */
+    /** @return DataCatalogClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -86,9 +78,7 @@ class DataCatalogClientTest extends GeneratedTest
         return new DataCatalogClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createEntryTest()
     {
         $transport = $this->createTransport();
@@ -133,9 +123,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createEntryExceptionTest()
     {
         $transport = $this->createTransport();
@@ -170,9 +158,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createEntryGroupTest()
     {
         $transport = $this->createTransport();
@@ -206,9 +192,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createEntryGroupExceptionTest()
     {
         $transport = $this->createTransport();
@@ -242,9 +226,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createTagTest()
     {
         $transport = $this->createTransport();
@@ -287,9 +269,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createTagExceptionTest()
     {
         $transport = $this->createTransport();
@@ -330,9 +310,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createTagTemplateTest()
     {
         $transport = $this->createTransport();
@@ -376,9 +354,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createTagTemplateExceptionTest()
     {
         $transport = $this->createTransport();
@@ -420,9 +396,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createTagTemplateFieldTest()
     {
         $transport = $this->createTransport();
@@ -465,9 +439,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createTagTemplateFieldExceptionTest()
     {
         $transport = $this->createTransport();
@@ -504,9 +476,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteEntryTest()
     {
         $transport = $this->createTransport();
@@ -530,9 +500,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteEntryExceptionTest()
     {
         $transport = $this->createTransport();
@@ -565,9 +533,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteEntryGroupTest()
     {
         $transport = $this->createTransport();
@@ -591,9 +557,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteEntryGroupExceptionTest()
     {
         $transport = $this->createTransport();
@@ -626,9 +590,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteTagTest()
     {
         $transport = $this->createTransport();
@@ -652,9 +614,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteTagExceptionTest()
     {
         $transport = $this->createTransport();
@@ -687,9 +647,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteTagTemplateTest()
     {
         $transport = $this->createTransport();
@@ -716,9 +674,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteTagTemplateExceptionTest()
     {
         $transport = $this->createTransport();
@@ -752,9 +708,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteTagTemplateFieldTest()
     {
         $transport = $this->createTransport();
@@ -781,9 +735,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteTagTemplateFieldExceptionTest()
     {
         $transport = $this->createTransport();
@@ -817,9 +769,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getEntryTest()
     {
         $transport = $this->createTransport();
@@ -858,9 +808,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getEntryExceptionTest()
     {
         $transport = $this->createTransport();
@@ -893,9 +841,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getEntryGroupTest()
     {
         $transport = $this->createTransport();
@@ -926,9 +872,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getEntryGroupExceptionTest()
     {
         $transport = $this->createTransport();
@@ -961,9 +905,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getIamPolicyTest()
     {
         $transport = $this->createTransport();
@@ -992,9 +934,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1027,9 +967,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getTagTemplateTest()
     {
         $transport = $this->createTransport();
@@ -1060,9 +998,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getTagTemplateExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1095,9 +1031,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listEntriesTest()
     {
         $transport = $this->createTransport();
@@ -1132,9 +1066,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listEntriesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1167,9 +1099,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listEntryGroupsTest()
     {
         $transport = $this->createTransport();
@@ -1204,9 +1134,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listEntryGroupsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1239,9 +1167,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listTagsTest()
     {
         $transport = $this->createTransport();
@@ -1276,9 +1202,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listTagsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1311,9 +1235,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function lookupEntryTest()
     {
         $transport = $this->createTransport();
@@ -1348,9 +1270,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function lookupEntryExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1381,9 +1301,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function modifyEntryContactsTest()
     {
         $transport = $this->createTransport();
@@ -1411,9 +1329,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function modifyEntryContactsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1447,9 +1363,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function modifyEntryOverviewTest()
     {
         $transport = $this->createTransport();
@@ -1479,9 +1393,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function modifyEntryOverviewExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1515,9 +1427,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function renameTagTemplateFieldTest()
     {
         $transport = $this->createTransport();
@@ -1555,9 +1465,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function renameTagTemplateFieldExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1591,9 +1499,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function renameTagTemplateFieldEnumValueTest()
     {
         $transport = $this->createTransport();
@@ -1631,9 +1537,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function renameTagTemplateFieldEnumValueExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1667,9 +1571,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function searchCatalogTest()
     {
         $transport = $this->createTransport();
@@ -1707,9 +1609,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function searchCatalogExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1743,9 +1643,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setIamPolicyTest()
     {
         $transport = $this->createTransport();
@@ -1777,9 +1675,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1813,9 +1709,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function starEntryTest()
     {
         $transport = $this->createTransport();
@@ -1840,9 +1734,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function starEntryExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1875,9 +1767,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function testIamPermissionsTest()
     {
         $transport = $this->createTransport();
@@ -1905,9 +1795,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function testIamPermissionsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1941,9 +1829,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function unstarEntryTest()
     {
         $transport = $this->createTransport();
@@ -1968,9 +1854,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function unstarEntryExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2003,9 +1887,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateEntryTest()
     {
         $transport = $this->createTransport();
@@ -2044,9 +1926,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateEntryExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2079,9 +1959,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateEntryGroupTest()
     {
         $transport = $this->createTransport();
@@ -2112,9 +1990,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateEntryGroupExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2147,9 +2023,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateTagTest()
     {
         $transport = $this->createTransport();
@@ -2189,9 +2063,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateTagExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2231,9 +2103,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateTagTemplateTest()
     {
         $transport = $this->createTransport();
@@ -2271,9 +2141,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateTagTemplateExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2313,9 +2181,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateTagTemplateFieldTest()
     {
         $transport = $this->createTransport();
@@ -2355,9 +2221,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateTagTemplateFieldExceptionTest()
     {
         $transport = $this->createTransport();

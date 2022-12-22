@@ -4,7 +4,7 @@
 
 [![Latest Stable Version](https://poser.pugx.org/google/cloud-recommendations-ai/v/stable)](https://packagist.org/packages/google/cloud-recommendations-ai) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-recommendations-ai.svg)](https://packagist.org/packages/google/cloud-recommendations-ai)
 
-* [API documentation](http://googleapis.github.io/google-cloud-php/#/docs/cloud-recommendations-ai/latest/recommendationengine/readme)
+* [API documentation](https://cloud.google.com/php/docs/reference/cloud-recommendations-ai/latest)
 
 **NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googleapis/google-cloud-php). Any
 support requests, bug reports, or development contributions should be directed to

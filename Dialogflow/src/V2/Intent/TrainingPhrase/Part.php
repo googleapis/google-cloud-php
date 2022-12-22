@@ -191,6 +191,4 @@ class Part extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Part::class, \Google\Cloud\Dialogflow\V2\Intent_TrainingPhrase_Part::class);
 

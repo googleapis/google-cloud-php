@@ -25,8 +25,9 @@ class OptimizeToursResponse extends \Google\Protobuf\Internal\Message
      */
     private $routes;
     /**
-     * Copy of the [OptimizeToursRequest.label][google.cloud.optimization.v1.OptimizeToursRequest.label], if a label was specified in the
-     * request.
+     * Copy of the
+     * [OptimizeToursRequest.label][google.cloud.optimization.v1.OptimizeToursRequest.label],
+     * if a label was specified in the request.
      *
      * Generated from protobuf field <code>string request_label = 3;</code>
      */
@@ -40,7 +41,8 @@ class OptimizeToursResponse extends \Google\Protobuf\Internal\Message
     /**
      * List of all the validation errors that we were able to detect
      * independently. See the "MULTIPLE ERRORS" explanation for the
-     * [OptimizeToursValidationError][google.cloud.optimization.v1.OptimizeToursValidationError] message.
+     * [OptimizeToursValidationError][google.cloud.optimization.v1.OptimizeToursValidationError]
+     * message.
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.OptimizeToursValidationError validation_errors = 5;</code>
      */
@@ -72,14 +74,16 @@ class OptimizeToursResponse extends \Google\Protobuf\Internal\Message
      *           Routes computed for each vehicle; the i-th route corresponds to the i-th
      *           vehicle in the model.
      *     @type string $request_label
-     *           Copy of the [OptimizeToursRequest.label][google.cloud.optimization.v1.OptimizeToursRequest.label], if a label was specified in the
-     *           request.
+     *           Copy of the
+     *           [OptimizeToursRequest.label][google.cloud.optimization.v1.OptimizeToursRequest.label],
+     *           if a label was specified in the request.
      *     @type array<\Google\Cloud\Optimization\V1\SkippedShipment>|\Google\Protobuf\Internal\RepeatedField $skipped_shipments
      *           The list of all shipments skipped.
      *     @type array<\Google\Cloud\Optimization\V1\OptimizeToursValidationError>|\Google\Protobuf\Internal\RepeatedField $validation_errors
      *           List of all the validation errors that we were able to detect
      *           independently. See the "MULTIPLE ERRORS" explanation for the
-     *           [OptimizeToursValidationError][google.cloud.optimization.v1.OptimizeToursValidationError] message.
+     *           [OptimizeToursValidationError][google.cloud.optimization.v1.OptimizeToursValidationError]
+     *           message.
      *     @type \Google\Cloud\Optimization\V1\OptimizeToursResponse\Metrics $metrics
      *           Duration, distance and usage metrics for this solution.
      *     @type float $total_cost
@@ -123,8 +127,9 @@ class OptimizeToursResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Copy of the [OptimizeToursRequest.label][google.cloud.optimization.v1.OptimizeToursRequest.label], if a label was specified in the
-     * request.
+     * Copy of the
+     * [OptimizeToursRequest.label][google.cloud.optimization.v1.OptimizeToursRequest.label],
+     * if a label was specified in the request.
      *
      * Generated from protobuf field <code>string request_label = 3;</code>
      * @return string
@@ -135,8 +140,9 @@ class OptimizeToursResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Copy of the [OptimizeToursRequest.label][google.cloud.optimization.v1.OptimizeToursRequest.label], if a label was specified in the
-     * request.
+     * Copy of the
+     * [OptimizeToursRequest.label][google.cloud.optimization.v1.OptimizeToursRequest.label],
+     * if a label was specified in the request.
      *
      * Generated from protobuf field <code>string request_label = 3;</code>
      * @param string $var
@@ -179,7 +185,8 @@ class OptimizeToursResponse extends \Google\Protobuf\Internal\Message
     /**
      * List of all the validation errors that we were able to detect
      * independently. See the "MULTIPLE ERRORS" explanation for the
-     * [OptimizeToursValidationError][google.cloud.optimization.v1.OptimizeToursValidationError] message.
+     * [OptimizeToursValidationError][google.cloud.optimization.v1.OptimizeToursValidationError]
+     * message.
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.OptimizeToursValidationError validation_errors = 5;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -192,7 +199,8 @@ class OptimizeToursResponse extends \Google\Protobuf\Internal\Message
     /**
      * List of all the validation errors that we were able to detect
      * independently. See the "MULTIPLE ERRORS" explanation for the
-     * [OptimizeToursValidationError][google.cloud.optimization.v1.OptimizeToursValidationError] message.
+     * [OptimizeToursValidationError][google.cloud.optimization.v1.OptimizeToursValidationError]
+     * message.
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.OptimizeToursValidationError validation_errors = 5;</code>
      * @param array<\Google\Cloud\Optimization\V1\OptimizeToursValidationError>|\Google\Protobuf\Internal\RepeatedField $var

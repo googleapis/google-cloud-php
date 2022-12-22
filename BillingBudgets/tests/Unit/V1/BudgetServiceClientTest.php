@@ -23,11 +23,9 @@
 namespace Google\Cloud\Billing\Budgets\Tests\Unit\V1;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-
 use Google\Cloud\Billing\Budgets\V1\Budget;
 use Google\Cloud\Billing\Budgets\V1\BudgetAmount;
 use Google\Cloud\Billing\Budgets\V1\BudgetServiceClient;
@@ -43,25 +41,19 @@ use stdClass;
  */
 class BudgetServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return BudgetServiceClient
-     */
+    /** @return BudgetServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -70,9 +62,7 @@ class BudgetServiceClientTest extends GeneratedTest
         return new BudgetServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createBudgetTest()
     {
         $transport = $this->createTransport();
@@ -108,9 +98,7 @@ class BudgetServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createBudgetExceptionTest()
     {
         $transport = $this->createTransport();
@@ -146,9 +134,7 @@ class BudgetServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteBudgetTest()
     {
         $transport = $this->createTransport();
@@ -172,9 +158,7 @@ class BudgetServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteBudgetExceptionTest()
     {
         $transport = $this->createTransport();
@@ -207,9 +191,7 @@ class BudgetServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getBudgetTest()
     {
         $transport = $this->createTransport();
@@ -240,9 +222,7 @@ class BudgetServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getBudgetExceptionTest()
     {
         $transport = $this->createTransport();
@@ -275,9 +255,7 @@ class BudgetServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listBudgetsTest()
     {
         $transport = $this->createTransport();
@@ -312,9 +290,7 @@ class BudgetServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listBudgetsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -347,9 +323,7 @@ class BudgetServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateBudgetTest()
     {
         $transport = $this->createTransport();
@@ -382,9 +356,7 @@ class BudgetServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateBudgetExceptionTest()
     {
         $transport = $this->createTransport();

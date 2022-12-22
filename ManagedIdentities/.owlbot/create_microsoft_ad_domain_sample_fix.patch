@@ -1,0 +1,48 @@
+diff --git a/ManagedIdentities/samples/V1/ManagedIdentitiesServiceClient/create_microsoft_ad_domain.php b/ManagedIdentities/samples/V1/ManagedIdentitiesServiceClient/create_microsoft_ad_domain.php
+index 27b05ee8b83..6cf05430555 100644
+--- a/ManagedIdentities/samples/V1/ManagedIdentitiesServiceClient/create_microsoft_ad_domain.php
++++ b/ManagedIdentities/samples/V1/ManagedIdentitiesServiceClient/create_microsoft_ad_domain.php
+@@ -47,7 +47,7 @@ use Google\Rpc\Status;
+  *                                       15 chars.
+  *                                       * The last segment cannot be fully numeric.
+  *                                       * Must be unique within the customer project.
+- * @param string $domainName             The unique name of the domain using the form:
++ * @param string $domainInstanceName     The unique name of the domain using the form:
+  *                                       `projects/{project_id}/locations/global/domains/{domain_name}`.
+  * @param string $domainReservedIpRange  The CIDR range of internal addresses that are reserved for this
+  *                                       domain. Reserved networks must be /24 or larger. Ranges must be
+@@ -62,7 +62,7 @@ use Google\Rpc\Status;
+ function create_microsoft_ad_domain_sample(
+     string $formattedParent,
+     string $domainName,
+-    string $domainName,
++    string $domainInstanceName,
+     string $domainReservedIpRange,
+     string $domainLocationsElement
+ ): void {
+@@ -72,7 +72,7 @@ function create_microsoft_ad_domain_sample(
+     // Prepare any non-scalar elements to be passed along with the request.
+     $domainLocations = [$domainLocationsElement,];
+     $domain = (new Domain())
+-        ->setName($domainName)
++        ->setName($domainInstanceName)
+         ->setReservedIpRange($domainReservedIpRange)
+         ->setLocations($domainLocations);
+ 
+@@ -113,14 +113,14 @@ function callSample(): void
+ {
+     $formattedParent = ManagedIdentitiesServiceClient::locationName('[PROJECT]', '[LOCATION]');
+     $domainName = '[DOMAIN_NAME]';
+-    $domainName = '[NAME]';
++    $domainInstanceName = '[NAME]';
+     $domainReservedIpRange = '[RESERVED_IP_RANGE]';
+     $domainLocationsElement = '[LOCATIONS]';
+ 
+     create_microsoft_ad_domain_sample(
+         $formattedParent,
+         $domainName,
+-        $domainName,
++        $domainInstanceName,
+         $domainReservedIpRange,
+         $domainLocationsElement
+     );

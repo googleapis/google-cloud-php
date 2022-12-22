@@ -88,6 +88,4 @@ class LivenessState
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(LivenessState::class, \Google\Cloud\AppEngine\V1\Instance_Liveness_LivenessState::class);
 

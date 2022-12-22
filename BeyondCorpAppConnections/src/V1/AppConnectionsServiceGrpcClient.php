@@ -19,12 +19,12 @@
 namespace Google\Cloud\BeyondCorp\AppConnections\V1;
 
 /**
- * ## API Overview
+ * API Overview:
  *
  * The `beyondcorp.googleapis.com` service implements the Google Cloud
  * BeyondCorp API.
  *
- * ## Data Model
+ * Data Model:
  *
  * The AppConnectionsService exposes the following resources:
  *

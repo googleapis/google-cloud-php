@@ -2,7 +2,7 @@ update_time {
   seconds: *
   nanos: *
 }
-name: "vision"
+name: "cloud-vision"
 version: "1.0.0"
 language: "php"
 distribution_name: "google/cloud-vision"

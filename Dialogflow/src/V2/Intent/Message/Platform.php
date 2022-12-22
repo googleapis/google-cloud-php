@@ -111,6 +111,4 @@ class Platform
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Platform::class, \Google\Cloud\Dialogflow\V2\Intent_Message_Platform::class);
 

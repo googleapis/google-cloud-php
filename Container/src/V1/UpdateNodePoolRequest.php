@@ -162,6 +162,12 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
      */
     private $gvnic = null;
     /**
+     * Enable or disable NCCL fast socket for the node pool.
+     *
+     * Generated from protobuf field <code>.google.container.v1.FastSocket fast_socket = 31;</code>
+     */
+    private $fast_socket = null;
+    /**
      * Logging configuration.
      *
      * Generated from protobuf field <code>.google.container.v1.NodePoolLoggingConfig logging_config = 32;</code>
@@ -247,6 +253,8 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
      *           All the nodes in the node pool will be Confidential VM once enabled.
      *     @type \Google\Cloud\Container\V1\VirtualNIC $gvnic
      *           Enable or disable gvnic on the node pool.
+     *     @type \Google\Cloud\Container\V1\FastSocket $fast_socket
+     *           Enable or disable NCCL fast socket for the node pool.
      *     @type \Google\Cloud\Container\V1\NodePoolLoggingConfig $logging_config
      *           Logging configuration.
      *     @type \Google\Cloud\Container\V1\ResourceLabels $resource_labels
@@ -931,6 +939,42 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\VirtualNIC::class);
         $this->gvnic = $var;
+
+        return $this;
+    }
+
+    /**
+     * Enable or disable NCCL fast socket for the node pool.
+     *
+     * Generated from protobuf field <code>.google.container.v1.FastSocket fast_socket = 31;</code>
+     * @return \Google\Cloud\Container\V1\FastSocket|null
+     */
+    public function getFastSocket()
+    {
+        return $this->fast_socket;
+    }
+
+    public function hasFastSocket()
+    {
+        return isset($this->fast_socket);
+    }
+
+    public function clearFastSocket()
+    {
+        unset($this->fast_socket);
+    }
+
+    /**
+     * Enable or disable NCCL fast socket for the node pool.
+     *
+     * Generated from protobuf field <code>.google.container.v1.FastSocket fast_socket = 31;</code>
+     * @param \Google\Cloud\Container\V1\FastSocket $var
+     * @return $this
+     */
+    public function setFastSocket($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\FastSocket::class);
+        $this->fast_socket = $var;
 
         return $this;
     }

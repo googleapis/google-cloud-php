@@ -9,22 +9,22 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for creating a big query export.
+ * Request message for creating a BigQuery export.
  *
  * Generated from protobuf message <code>google.cloud.securitycenter.v1.CreateBigQueryExportRequest</code>
  */
 class CreateBigQueryExportRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Resource name of the new big query export's parent. Its format is
-     * "organizations/[organization_id]", "folders/[folder_id]", or
+     * Required. The name of the parent resource of the new BigQuery export. Its
+     * format is "organizations/[organization_id]", "folders/[folder_id]", or
      * "projects/[project_id]".
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
-     * Required. The big query export being created.
+     * Required. The BigQuery export being created.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.BigQueryExport big_query_export = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -46,11 +46,11 @@ class CreateBigQueryExportRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. Resource name of the new big query export's parent. Its format is
-     *           "organizations/[organization_id]", "folders/[folder_id]", or
+     *           Required. The name of the parent resource of the new BigQuery export. Its
+     *           format is "organizations/[organization_id]", "folders/[folder_id]", or
      *           "projects/[project_id]".
      *     @type \Google\Cloud\SecurityCenter\V1\BigQueryExport $big_query_export
-     *           Required. The big query export being created.
+     *           Required. The BigQuery export being created.
      *     @type string $big_query_export_id
      *           Required. Unique identifier provided by the client within the parent scope.
      *           It must consist of lower case letters, numbers, and hyphen, with the first
@@ -64,8 +64,8 @@ class CreateBigQueryExportRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Resource name of the new big query export's parent. Its format is
-     * "organizations/[organization_id]", "folders/[folder_id]", or
+     * Required. The name of the parent resource of the new BigQuery export. Its
+     * format is "organizations/[organization_id]", "folders/[folder_id]", or
      * "projects/[project_id]".
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -77,8 +77,8 @@ class CreateBigQueryExportRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Resource name of the new big query export's parent. Its format is
-     * "organizations/[organization_id]", "folders/[folder_id]", or
+     * Required. The name of the parent resource of the new BigQuery export. Its
+     * format is "organizations/[organization_id]", "folders/[folder_id]", or
      * "projects/[project_id]".
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -94,7 +94,7 @@ class CreateBigQueryExportRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The big query export being created.
+     * Required. The BigQuery export being created.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.BigQueryExport big_query_export = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\SecurityCenter\V1\BigQueryExport|null
@@ -115,7 +115,7 @@ class CreateBigQueryExportRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The big query export being created.
+     * Required. The BigQuery export being created.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.BigQueryExport big_query_export = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\SecurityCenter\V1\BigQueryExport $var

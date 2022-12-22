@@ -59,6 +59,4 @@ class ChangeType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ChangeType::class, \Google\Cloud\Channel\V1\ListPurchasableSkusRequest_ChangeOfferPurchase_ChangeType::class);
 

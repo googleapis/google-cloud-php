@@ -51,7 +51,7 @@ function batch_process_documents_sample(string $name): void
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
-            /** @var BatchProcessResponse $response */
+            /** @var BatchProcessResponse $result */
             $result = $response->getResult();
             printf('Operation successful with response data: %s' . PHP_EOL, $result->serializeToJsonString());
         } else {

@@ -23,15 +23,12 @@
 namespace Google\Cloud\StorageTransfer\Tests\Unit\V1;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\StorageTransfer\V1\AgentPool;
 use Google\Cloud\StorageTransfer\V1\GoogleServiceAccount;
-
 use Google\Cloud\StorageTransfer\V1\ListAgentPoolsResponse;
 use Google\Cloud\StorageTransfer\V1\ListTransferJobsResponse;
 use Google\Cloud\StorageTransfer\V1\StorageTransferServiceClient;
@@ -50,25 +47,19 @@ use stdClass;
  */
 class StorageTransferServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return StorageTransferServiceClient
-     */
+    /** @return StorageTransferServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -77,9 +68,7 @@ class StorageTransferServiceClientTest extends GeneratedTest
         return new StorageTransferServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createAgentPoolTest()
     {
         $transport = $this->createTransport();
@@ -116,9 +105,7 @@ class StorageTransferServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createAgentPoolExceptionTest()
     {
         $transport = $this->createTransport();
@@ -155,9 +142,7 @@ class StorageTransferServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createTransferJobTest()
     {
         $transport = $this->createTransport();
@@ -190,9 +175,7 @@ class StorageTransferServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createTransferJobExceptionTest()
     {
         $transport = $this->createTransport();
@@ -225,9 +208,7 @@ class StorageTransferServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteAgentPoolTest()
     {
         $transport = $this->createTransport();
@@ -251,9 +232,7 @@ class StorageTransferServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteAgentPoolExceptionTest()
     {
         $transport = $this->createTransport();
@@ -286,9 +265,7 @@ class StorageTransferServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteTransferJobTest()
     {
         $transport = $this->createTransport();
@@ -315,9 +292,7 @@ class StorageTransferServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteTransferJobExceptionTest()
     {
         $transport = $this->createTransport();
@@ -351,9 +326,7 @@ class StorageTransferServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getAgentPoolTest()
     {
         $transport = $this->createTransport();
@@ -382,9 +355,7 @@ class StorageTransferServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getAgentPoolExceptionTest()
     {
         $transport = $this->createTransport();
@@ -417,9 +388,7 @@ class StorageTransferServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getGoogleServiceAccountTest()
     {
         $transport = $this->createTransport();
@@ -448,9 +417,7 @@ class StorageTransferServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getGoogleServiceAccountExceptionTest()
     {
         $transport = $this->createTransport();
@@ -483,9 +450,7 @@ class StorageTransferServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getTransferJobTest()
     {
         $transport = $this->createTransport();
@@ -521,9 +486,7 @@ class StorageTransferServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getTransferJobExceptionTest()
     {
         $transport = $this->createTransport();
@@ -557,9 +520,7 @@ class StorageTransferServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listAgentPoolsTest()
     {
         $transport = $this->createTransport();
@@ -594,9 +555,7 @@ class StorageTransferServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listAgentPoolsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -629,9 +588,7 @@ class StorageTransferServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listTransferJobsTest()
     {
         $transport = $this->createTransport();
@@ -666,9 +623,7 @@ class StorageTransferServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listTransferJobsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -701,9 +656,7 @@ class StorageTransferServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function pauseTransferOperationTest()
     {
         $transport = $this->createTransport();
@@ -727,9 +680,7 @@ class StorageTransferServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function pauseTransferOperationExceptionTest()
     {
         $transport = $this->createTransport();
@@ -762,9 +713,7 @@ class StorageTransferServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function resumeTransferOperationTest()
     {
         $transport = $this->createTransport();
@@ -788,9 +737,7 @@ class StorageTransferServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function resumeTransferOperationExceptionTest()
     {
         $transport = $this->createTransport();
@@ -823,14 +770,12 @@ class StorageTransferServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function runTransferJobTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -890,14 +835,12 @@ class StorageTransferServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function runTransferJobExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -948,9 +891,7 @@ class StorageTransferServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateAgentPoolTest()
     {
         $transport = $this->createTransport();
@@ -981,9 +922,7 @@ class StorageTransferServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateAgentPoolExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1018,9 +957,7 @@ class StorageTransferServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateTransferJobTest()
     {
         $transport = $this->createTransport();
@@ -1059,9 +996,7 @@ class StorageTransferServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateTransferJobExceptionTest()
     {
         $transport = $this->createTransport();

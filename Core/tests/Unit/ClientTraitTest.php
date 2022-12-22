@@ -348,6 +348,8 @@ class ClientTraitTest extends TestCase
             'keyFile' => [],
             'suppressKeyFileNotice' => true
         ]]);
+
+        $this->assertTrue(true);
     }
 }
 

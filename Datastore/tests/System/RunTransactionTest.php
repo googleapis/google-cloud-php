@@ -22,16 +22,23 @@ use Google\Cloud\Datastore\DatastoreClient;
 /**
  * @group datastore
  * @group datastore-transaction
+ * @group datastore-multipledb
  */
-class RunTransactionTest extends DatastoreTestCase
+class RunTransactionTest extends DatastoreMultipleDbTestCase
 {
+    protected function tearDown(): void
+    {
+        self::tearDownFixtures();
+    }
+
     /**
-     * @dataProvider clientProvider
+     * @dataProvider defaultDbClientProvider
      */
     public function testRunTransactions(DatastoreClient $client)
     {
         $kind = 'Person';
-        $key1 = $client->key($kind, rand(1, 999999));
+        $testId = rand(1, 999999);
+        $key1 = $client->key($kind, $testId);
         $key2 = $client->key($kind, rand(1, 999999));
         $key2->ancestorKey($key1);
         $data = ['lastName' => 'Smith'];
@@ -46,6 +53,10 @@ class RunTransactionTest extends DatastoreTestCase
 
         self::$localDeletionQueue->add($key1);
         self::$localDeletionQueue->add($key2);
+
+        // validate other DB should not have data
+        $defaultDbClient = current(self::multiDbClientProvider())[0];
+        $this->assertOtherDbEntities($defaultDbClient, $kind, $testId, 0);
 
         // transaction with query
         $transaction2 = $client->transaction();
@@ -65,5 +76,64 @@ class RunTransactionTest extends DatastoreTestCase
         $transaction3->rollback();
 
         $this->assertEquals($newLastName, $result['lastName']);
+    }
+
+    /**
+     * @dataProvider multiDbClientProvider
+     */
+    public function testRunMultipleDbTransactions(DatastoreClient $client)
+    {
+        $kind = 'Person';
+        $testId = rand(1, 999999);
+        $key1 = $client->key($kind, $testId);
+        $key2 = $client->key($kind, rand(1, 999999));
+        $key2->ancestorKey($key1);
+        $data = ['lastName' => 'Smith'];
+        $newLastName = 'NotSmith';
+        $entity1 = $client->entity($key1, $data);
+        $entity2 = $client->entity($key2, $data);
+
+        $transaction = $client->transaction();
+        $transaction->insert($entity1);
+        $transaction->upsert($entity2);
+        $transaction->commit();
+
+        self::$localDeletionQueue->add($key1);
+        self::$localDeletionQueue->add($key2);
+
+        // validate default DB should not have data
+        $defaultDbClient = current(self::defaultDbClientProvider())[0];
+        $this->assertOtherDbEntities($defaultDbClient, $kind, $testId, 0);
+
+        // transaction with query
+        $transaction2 = $client->transaction();
+        $query = $client->query()
+            ->kind($kind)
+            ->hasAncestor($key1);
+        $results = iterator_to_array($transaction2->runQuery($query));
+        $results[1]['lastName'] = $newLastName;
+        $transaction2->update($results[1]);
+        $transaction2->commit();
+
+        $this->assertCount(2, $results);
+
+        // transaction with lookup
+        $transaction3 = $client->transaction();
+        $result = $transaction3->lookup($key2);
+        $transaction3->rollback();
+
+        $this->assertEquals($newLastName, $result['lastName']);
+    }
+
+    private function assertOtherDbEntities($client, $kind, $id, $expectedCount)
+    {
+        $key = $client->key($kind, $id);
+        $query = $client->query()
+            ->kind($kind)
+            ->hasAncestor($key);
+
+        $results = iterator_to_array($client->runQuery($query));
+
+        $this->assertCount($expectedCount, $results);
     }
 }

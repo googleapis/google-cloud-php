@@ -84,6 +84,4 @@ class CommitmentPlan
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(CommitmentPlan::class, \Google\Cloud\BigQuery\Reservation\V1\CapacityCommitment_CommitmentPlan::class);
 

@@ -16,7 +16,7 @@ jobs:
 
     services:
       emulator:
-        image: gcr.io/cloud-spanner-emulator/emulator:1.4.7
+        image: gcr.io/cloud-spanner-emulator/emulator:1.4.8
         ports:
           - 9010:9010
           - 9020:9020
@@ -41,7 +41,7 @@ jobs:
         with:
           php-version: '7.4'
           tools: pecl
-          extensions: bcmath, grpc
+          extensions: bcmath, grpc-1.49.0
 
       - name: Install dependencies
         run: |

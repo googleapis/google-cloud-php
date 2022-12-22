@@ -26,9 +26,23 @@ logging.basicConfig(level=logging.DEBUG)
 src = Path(f"../{php.STAGING_DIR}/ApiGateway").resolve()
 dest = Path().resolve()
 
-php.owlbot_main(src=src, dest=dest)
+php.owlbot_main(
+    src=src,
+    dest=dest
+    copy_excludes=[
+        src / "**/[A-Z]*_*.php",
+        src / "**/*GrpcClient.php",
+    ]
+)
 
-
+# remove class_alias code
+s.replace(
+    "src/V*/**/*.php",
+    r"^// Adding a class alias for backwards compatibility with the previous class name.$"
+    + "\n"
+    + r"^class_alias\(.*\);$"
+    + "\n",
+    '')
 
 # document and utilize apiEndpoint instead of serviceAddress
 s.replace(

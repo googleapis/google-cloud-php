@@ -25,7 +25,6 @@ namespace Google\Cloud\Run\Tests\Unit\V2;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Run\V2\ListTasksResponse;
 use Google\Cloud\Run\V2\Task;
@@ -40,25 +39,19 @@ use stdClass;
  */
 class TasksClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return TasksClient
-     */
+    /** @return TasksClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -67,9 +60,7 @@ class TasksClientTest extends GeneratedTest
         return new TasksClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getTaskTest()
     {
         $transport = $this->createTransport();
@@ -120,9 +111,7 @@ class TasksClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getTaskExceptionTest()
     {
         $transport = $this->createTransport();
@@ -155,9 +144,7 @@ class TasksClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listTasksTest()
     {
         $transport = $this->createTransport();
@@ -192,9 +179,7 @@ class TasksClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listTasksExceptionTest()
     {
         $transport = $this->createTransport();

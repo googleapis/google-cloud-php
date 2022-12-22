@@ -23,11 +23,9 @@
 namespace Google\Cloud\Trace\Tests\Unit\V2;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-
 use Google\Cloud\Trace\V2\Span;
 use Google\Cloud\Trace\V2\TraceServiceClient;
 use Google\Cloud\Trace\V2\TruncatableString;
@@ -43,25 +41,19 @@ use stdClass;
  */
 class TraceServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return TraceServiceClient
-     */
+    /** @return TraceServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -70,9 +62,7 @@ class TraceServiceClientTest extends GeneratedTest
         return new TraceServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function batchWriteSpansTest()
     {
         $transport = $this->createTransport();
@@ -99,9 +89,7 @@ class TraceServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function batchWriteSpansExceptionTest()
     {
         $transport = $this->createTransport();
@@ -135,9 +123,7 @@ class TraceServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createSpanTest()
     {
         $transport = $this->createTransport();
@@ -180,9 +166,7 @@ class TraceServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createSpanExceptionTest()
     {
         $transport = $this->createTransport();

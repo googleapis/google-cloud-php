@@ -18,11 +18,10 @@ class Controller
         \GPBMetadata\Google\Api\Client::initOnce();
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Devtools\Clouddebugger\V2\Data::initOnce();
-        \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
         $pool->internalAddGeneratedFile(
             '
-‹
-1google/devtools/clouddebugger/v2/controller.proto google.devtools.clouddebugger.v2google/api/client.protogoogle/api/field_behavior.proto+google/devtools/clouddebugger/v2/data.protogoogle/protobuf/empty.proto"\\
+ø
+1google/devtools/clouddebugger/v2/controller.proto google.devtools.clouddebugger.v2google/api/client.protogoogle/api/field_behavior.proto+google/devtools/clouddebugger/v2/data.proto"\\
 RegisterDebuggeeRequestA
 debuggee (2*.google.devtools.clouddebugger.v2.DebuggeeB‡A"X
 RegisterDebuggeeResponse<

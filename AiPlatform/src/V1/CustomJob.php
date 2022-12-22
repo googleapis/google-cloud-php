@@ -26,7 +26,7 @@ class CustomJob extends \Google\Protobuf\Internal\Message
     private $name = '';
     /**
      * Required. The display name of the CustomJob.
-     * The name can be up to 128 characters long and can be consist of any UTF-8
+     * The name can be up to 128 characters long and can consist of any UTF-8
      * characters.
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -120,7 +120,7 @@ class CustomJob extends \Google\Protobuf\Internal\Message
      *           Output only. Resource name of a CustomJob.
      *     @type string $display_name
      *           Required. The display name of the CustomJob.
-     *           The name can be up to 128 characters long and can be consist of any UTF-8
+     *           The name can be up to 128 characters long and can consist of any UTF-8
      *           characters.
      *     @type \Google\Cloud\AIPlatform\V1\CustomJobSpec $job_spec
      *           Required. Job spec.
@@ -194,7 +194,7 @@ class CustomJob extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The display name of the CustomJob.
-     * The name can be up to 128 characters long and can be consist of any UTF-8
+     * The name can be up to 128 characters long and can consist of any UTF-8
      * characters.
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -207,7 +207,7 @@ class CustomJob extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The display name of the CustomJob.
-     * The name can be up to 128 characters long and can be consist of any UTF-8
+     * The name can be up to 128 characters long and can consist of any UTF-8
      * characters.
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>

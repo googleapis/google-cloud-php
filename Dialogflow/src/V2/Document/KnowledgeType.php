@@ -80,6 +80,4 @@ class KnowledgeType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(KnowledgeType::class, \Google\Cloud\Dialogflow\V2\Document_KnowledgeType::class);
 

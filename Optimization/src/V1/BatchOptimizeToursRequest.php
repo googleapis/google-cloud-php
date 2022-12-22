@@ -28,8 +28,8 @@ class BatchOptimizeToursRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
-     * Required. Input/Output information each purchase model, such as file paths and data
-     * formats.
+     * Required. Input/Output information each purchase model, such as file paths
+     * and data formats.
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.BatchOptimizeToursRequest.AsyncModelConfig model_configs = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -46,8 +46,8 @@ class BatchOptimizeToursRequest extends \Google\Protobuf\Internal\Message
      *           Format: `projects/{project-id}/locations/{location-id}`.
      *           If no location is specified, a region will be chosen automatically.
      *     @type array<\Google\Cloud\Optimization\V1\BatchOptimizeToursRequest\AsyncModelConfig>|\Google\Protobuf\Internal\RepeatedField $model_configs
-     *           Required. Input/Output information each purchase model, such as file paths and data
-     *           formats.
+     *           Required. Input/Output information each purchase model, such as file paths
+     *           and data formats.
      * }
      */
     public function __construct($data = NULL) {
@@ -86,8 +86,8 @@ class BatchOptimizeToursRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Input/Output information each purchase model, such as file paths and data
-     * formats.
+     * Required. Input/Output information each purchase model, such as file paths
+     * and data formats.
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.BatchOptimizeToursRequest.AsyncModelConfig model_configs = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -98,8 +98,8 @@ class BatchOptimizeToursRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Input/Output information each purchase model, such as file paths and data
-     * formats.
+     * Required. Input/Output information each purchase model, such as file paths
+     * and data formats.
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.BatchOptimizeToursRequest.AsyncModelConfig model_configs = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param array<\Google\Cloud\Optimization\V1\BatchOptimizeToursRequest\AsyncModelConfig>|\Google\Protobuf\Internal\RepeatedField $var
