@@ -151,6 +151,7 @@ trait RetryTrait
                 array_keys($preConditions)
             ));
         }
+        return false;
     }
 
 
