@@ -62,7 +62,7 @@ class RetryConformanceTest extends TestCase
 
         // Set Storage Testbench Emulator URL in this env variable.
         self::$emaulatorUrl = getenv('GOOGLE_CLOUD_STORAGE_EMULATOR_URL');
-        if (self::$emaulatorUrl === false) {
+        if(self::$emaulatorUrl === false) {
             self::$emaulatorUrl = self::SERVICE_URL;
         }
 
