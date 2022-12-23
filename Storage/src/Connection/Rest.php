@@ -49,23 +49,23 @@ class Rest implements ConnectionInterface
     /**
      * @deprecated
      */
-    const BASE_URI = 'https://storage.googleapis.com/storage/v1/';
+    public const BASE_URI = 'https://storage.googleapis.com/storage/v1/';
 
-    const DEFAULT_API_ENDPOINT = 'https://storage.googleapis.com';
-
-    /**
-     * @deprecated
-     */
-    const UPLOAD_URI = 'https://storage.googleapis.com/upload/storage/v1/b/{bucket}/o{?query*}';
-
-    const UPLOAD_PATH = 'upload/storage/v1/b/{bucket}/o{?query*}';
+    public const DEFAULT_API_ENDPOINT = 'https://storage.googleapis.com';
 
     /**
      * @deprecated
      */
-    const DOWNLOAD_URI = 'https://storage.googleapis.com/storage/v1/b/{bucket}/o/{object}{?query*}';
+    public const UPLOAD_URI = 'https://storage.googleapis.com/upload/storage/v1/b/{bucket}/o{?query*}';
 
-    const DOWNLOAD_PATH = 'storage/v1/b/{bucket}/o/{object}{?query*}';
+    public const UPLOAD_PATH = 'upload/storage/v1/b/{bucket}/o{?query*}';
+
+    /**
+     * @deprecated
+     */
+    public const DOWNLOAD_URI = 'https://storage.googleapis.com/storage/v1/b/{bucket}/o/{object}{?query*}';
+
+    public const DOWNLOAD_PATH = 'storage/v1/b/{bucket}/o/{object}{?query*}';
 
     /**
      * @var string
@@ -284,11 +284,18 @@ class Rest implements ConnectionInterface
     public function insertObject(array $args = [])
     {
         $args = $this->resolveUploadOptions($args);
+
+        // Passing on precondition if present
+        if (isset($args['ifGenerationMatch'])) {
+            $args['uploaderOptions']['ifGenerationMatch'] = $args['ifGenerationMatch'];
+        }
+
+        // Passing on custom retry function
         $retryFunc = $this->getRestRetryFunction(
             'objects',
             'insert',
-            $args['uploaderOptions']);
-
+            $args['uploaderOptions']
+        );
         $args['uploaderOptions']['restRetryFunction'] = $retryFunc;
 
         $uploadType = AbstractUploader::UPLOAD_TYPE_RESUMABLE;
