@@ -284,6 +284,12 @@ class Rest implements ConnectionInterface
     public function insertObject(array $args = [])
     {
         $args = $this->resolveUploadOptions($args);
+        $retryFunc = $this->getRestRetryFunction(
+            'objects',
+            'insert',
+            $args['uploaderOptions']);
+
+        $args['uploaderOptions']['restRetryFunction'] = $retryFunc;
 
         $uploadType = AbstractUploader::UPLOAD_TYPE_RESUMABLE;
         if ($args['streamable']) {

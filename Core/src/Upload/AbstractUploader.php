@@ -103,6 +103,7 @@ abstract class AbstractUploader
         $this->requestOptions = array_intersect_key($options, [
             'restOptions' => null,
             'retries' => null,
+            'restRetryFunction' => null,
             'requestTimeout' => null
         ]);
 
