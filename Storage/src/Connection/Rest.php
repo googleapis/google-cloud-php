@@ -285,6 +285,19 @@ class Rest implements ConnectionInterface
     {
         $args = $this->resolveUploadOptions($args);
 
+        // Passing on precondition if present
+        if (isset($args['ifGenerationMatch'])) {
+            $args['uploaderOptions']['ifGenerationMatch'] = $args['ifGenerationMatch'];
+        }
+
+        // Passing on custom retry function
+        $retryFunc = $this->getRestRetryFunction(
+            'objects',
+            'insert',
+            $args['uploaderOptions']
+        );
+        $args['uploaderOptions']['restRetryFunction'] = $retryFunc;
+
         $uploadType = AbstractUploader::UPLOAD_TYPE_RESUMABLE;
         if ($args['streamable']) {
             $uploaderClass = StreamableUploader::class;
