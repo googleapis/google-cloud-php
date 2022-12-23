@@ -180,6 +180,12 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.container.v1.ResourceLabels resource_labels = 33;</code>
      */
     private $resource_labels = null;
+    /**
+     * Parameters that can be configured on Windows nodes.
+     *
+     * Generated from protobuf field <code>.google.container.v1.WindowsNodeConfig windows_node_config = 34;</code>
+     */
+    private $windows_node_config = null;
 
     /**
      * Constructor.
@@ -260,6 +266,8 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Container\V1\ResourceLabels $resource_labels
      *           The resource labels for the node pool to use to annotate any related
      *           Google Compute Engine resources.
+     *     @type \Google\Cloud\Container\V1\WindowsNodeConfig $windows_node_config
+     *           Parameters that can be configured on Windows nodes.
      * }
      */
     public function __construct($data = NULL) {
@@ -1049,6 +1057,42 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\ResourceLabels::class);
         $this->resource_labels = $var;
+
+        return $this;
+    }
+
+    /**
+     * Parameters that can be configured on Windows nodes.
+     *
+     * Generated from protobuf field <code>.google.container.v1.WindowsNodeConfig windows_node_config = 34;</code>
+     * @return \Google\Cloud\Container\V1\WindowsNodeConfig|null
+     */
+    public function getWindowsNodeConfig()
+    {
+        return $this->windows_node_config;
+    }
+
+    public function hasWindowsNodeConfig()
+    {
+        return isset($this->windows_node_config);
+    }
+
+    public function clearWindowsNodeConfig()
+    {
+        unset($this->windows_node_config);
+    }
+
+    /**
+     * Parameters that can be configured on Windows nodes.
+     *
+     * Generated from protobuf field <code>.google.container.v1.WindowsNodeConfig windows_node_config = 34;</code>
+     * @param \Google\Cloud\Container\V1\WindowsNodeConfig $var
+     * @return $this
+     */
+    public function setWindowsNodeConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\WindowsNodeConfig::class);
+        $this->windows_node_config = $var;
 
         return $this;
     }

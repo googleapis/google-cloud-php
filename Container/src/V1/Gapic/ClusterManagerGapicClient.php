@@ -95,6 +95,7 @@ use Google\Cloud\Container\V1\UpdateClusterRequest;
 use Google\Cloud\Container\V1\UpdateMasterRequest;
 use Google\Cloud\Container\V1\UpdateNodePoolRequest;
 use Google\Cloud\Container\V1\VirtualNIC;
+use Google\Cloud\Container\V1\WindowsNodeConfig;
 use Google\Cloud\Container\V1\WorkloadMetadataConfig;
 use Google\Protobuf\GPBEmpty;
 
@@ -2659,6 +2660,8 @@ class ClusterManagerGapicClient
      *     @type ResourceLabels $resourceLabels
      *           The resource labels for the node pool to use to annotate any related
      *           Google Compute Engine resources.
+     *     @type WindowsNodeConfig $windowsNodeConfig
+     *           Parameters that can be configured on Windows nodes.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2758,6 +2761,10 @@ class ClusterManagerGapicClient
 
         if (isset($optionalArgs['resourceLabels'])) {
             $request->setResourceLabels($optionalArgs['resourceLabels']);
+        }
+
+        if (isset($optionalArgs['windowsNodeConfig'])) {
+            $request->setWindowsNodeConfig($optionalArgs['windowsNodeConfig']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
