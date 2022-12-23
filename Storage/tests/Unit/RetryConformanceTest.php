@@ -47,8 +47,9 @@ class RetryConformanceTest extends TestCase
 
     private static $cases = [];
 
-    // Storage test bench URL. To be populated by an env variable.
-    private static $emaulatorUrl = 'https://storage.googleapis.com';
+    private static $emaulatorUrl;
+
+    public const SERVICE_URL = 'https://storage.googleapis.com';
 
     public static function set_up_before_class()
     {
@@ -58,6 +59,13 @@ class RetryConformanceTest extends TestCase
         }
 
         $setup = true;
+
+        // Set Storage Testbench Emulator URL in this env variable.
+        self::$emaulatorUrl = getenv('GOOGLE_CLOUD_STORAGE_EMULATOR_URL');
+        if (self::$emaulatorUrl === false) {
+            self::$emaulatorUrl = self::SERVICE_URL;
+        }
+
         self::$httpClient = new Client([
             'base_uri' => self::$emaulatorUrl
         ]);
@@ -136,7 +144,7 @@ class RetryConformanceTest extends TestCase
         $invocationIndex
     ) {
         $this->markTestSkipped();
-        $caseId = $this->createRetryTestResource($methodName, $instructions, null);
+        $caseId = $this->createRetryTestResource($methodName, $instructions);
 
         $methodInvocations = self::getMethodInvocationMapping();
         $callable = $methodInvocations[$methodName][$invocationIndex];
@@ -316,7 +324,7 @@ class RetryConformanceTest extends TestCase
 
                     $bucket = self::$storageClient->bucket($bucketName);
                     $acl = $bucket->defaultAcl();
-                    
+
                     $options['entity'] = 'allUsers';
                     $acl->get($options);
                 }
@@ -327,7 +335,7 @@ class RetryConformanceTest extends TestCase
 
                     $bucket = self::$storageClient->bucket($bucketName);
                     $acl = $bucket->defaultAcl();
-                    
+
                     $acl->get($options);
                 }
             ],
@@ -554,7 +562,7 @@ class RetryConformanceTest extends TestCase
 
                     $bucket = self::$storageClient->bucket($bucketName);
                     $object = $bucket->object($objectName);
-                    
+
                     if ($precondition) {
                         $options['ifGenerationMatch'] = $object->info()['generation'];
                     }
@@ -569,7 +577,7 @@ class RetryConformanceTest extends TestCase
                     }
                     $bucketName = $resourceIds['bucketName'];
                     $bucket = self::$storageClient->bucket($bucketName);
-                    
+
                     if ($precondition) {
                         // 0 generation for a new file
                         $options['ifGenerationMatch'] = 0;
@@ -586,7 +594,7 @@ class RetryConformanceTest extends TestCase
                     }
                     $bucketName = $resourceIds['bucketName'];
                     $bucket = self::$storageClient->bucket($bucketName);
-                    
+
                     if ($precondition) {
                         // 0 generation for a new file
                         $options['ifGenerationMatch'] = 0;
@@ -620,7 +628,7 @@ class RetryConformanceTest extends TestCase
                 function ($resourceIds, $options, $precondition = false) {
                     $bucketName = $resourceIds['bucketName'];
                     $objectName = $resourceIds['objectName'];
-    
+
                     $bucket = self::$storageClient->bucket($bucketName);
                     $object = $bucket->object($objectName);
                     if ($precondition) {
@@ -635,7 +643,7 @@ class RetryConformanceTest extends TestCase
                 function ($resourceIds, $options, $precondition = false) {
                     $bucketName = $resourceIds['bucketName'];
                     $objectName = $resourceIds['objectName'];
-    
+
                     $bucket = self::$storageClient->bucket($bucketName);
                     $object = $bucket->object($objectName);
                     if ($precondition) {
@@ -805,12 +813,12 @@ class RetryConformanceTest extends TestCase
             $acl = $bucket->acl();
             $acl->add('allUsers', 'READER');
             $acl->add('allAuthenticatedUsers', 'READER');
-            
+
             // Add the default ACL roles
             $acl = $bucket->defaultAcl();
             $acl->add('allUsers', 'READER');
             $acl->add('allAuthenticatedUsers', 'READER');
-            
+
             // Create a notification for the bucket
             $notifName = uniqid(self::$notificationPrefix);
             $notification = $bucket->createNotification($notifName);
