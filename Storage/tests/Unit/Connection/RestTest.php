@@ -407,7 +407,7 @@ class RestTest extends TestCase
      */
     public function testChooseValidationMethod($args, $extensionLoaded, $supportsBuiltin, $expected)
     {
-        $rest = new RestCrc32cStub;
+        $rest = new RestCrc32cStub();
         $rest->extensionLoaded = $extensionLoaded;
         $rest->supportsBuiltin = $supportsBuiltin;
 
@@ -494,6 +494,7 @@ class RestTest extends TestCase
 
     /**
      * @dataProvider retryFunctionReturnValues
+     * @dataProvider retryStrategyCases
      */
     public function testRetryFunction(
         $resource,
@@ -506,7 +507,10 @@ class RestTest extends TestCase
         $rest = new Rest();
         $retryFun = $rest->getRestRetryFunction($resource, $op, $args);
 
-        $this->assertEquals($expected, $retryFun(new \Exception('', $errorCode), $currAttempt));
+        $this->assertEquals(
+            $expected,
+            $retryFun(new \Exception('', $errorCode), $currAttempt)
+        );
     }
 
     public function retryFunctionReturnValues()
@@ -537,6 +541,108 @@ class RestTest extends TestCase
             ['bucket_acl', 'delete', [], 400, 4, false],
             // Max retry reached
             ['buckets', 'get', [], 503, 4, false]
+        ];
+    }
+
+    public function retryStrategyCases()
+    {
+        return [
+            // Idempotent operation with retriable error code
+            // and never retry strategy => no retry
+            [
+                'buckets',
+                'get',
+                ['retryStrategy' => Rest::NEVER_RETRY],
+                503,
+                1,
+                false
+            ],
+            [
+                'serviceaccount',
+                'get',
+                ['retryStrategy' => Rest::NEVER_RETRY],
+                504,
+                1,
+                false
+            ],
+            // Idempotent operation with non retriable error code
+            // and always retry strategy => retry
+            [
+                'buckets',
+                'get',
+                ['retryStrategy' => Rest::ALWAYS_RETRY],
+                400,
+                1,
+                true
+            ],
+            // Conditionally Idempotent operation with retriable error code
+            // and never retry strategy => no retry
+            [
+                'buckets',
+                'update',
+                [
+                    'ifMetagenerationMatch' => 0,
+                    'retryStrategy' => Rest::NEVER_RETRY
+                ],
+                503,
+                1,
+                false
+            ],
+            // Conditionally Non-Idempotent operation with retriable error code
+            // and always retry strategy => retry
+            [
+                'buckets',
+                'update',
+                [
+                    'ifGenerationMatch' => 0,
+                    'retryStrategy' => Rest::ALWAYS_RETRY
+                ],
+                503,
+                1,
+                true
+            ],
+            // Conditionally Idempotent operation with non retriable error code,
+            // and always retry strategy => retry
+            [
+                'buckets',
+                'update',
+                [
+                    'ifMetagenerationMatch' => 0,
+                    'retryStrategy' => Rest::ALWAYS_RETRY
+                ],
+                400,
+                1,
+                true
+            ],
+            // Non-idempotent operation with retriable error code
+            // and always retry strategy => retry
+            [
+                'bucket_acl',
+                'delete',
+                ['retryStrategy' => Rest::ALWAYS_RETRY],
+                503,
+                1,
+                true
+            ],
+            // Non-idempotent operation with non retriable error code
+            // and always retry strategy => retry
+            [
+                'bucket_acl',
+                'delete',
+                ['retryStrategy' => Rest::ALWAYS_RETRY],
+                400,
+                1,
+                true
+            ],
+            // Max retry reached with always retry strategy => no retry
+            [
+                'buckets',
+                'get',
+                ['retryStrategy' => Rest::ALWAYS_RETRY],
+                503,
+                4,
+                false
+            ]
         ];
     }
 

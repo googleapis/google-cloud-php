@@ -49,23 +49,27 @@ class Rest implements ConnectionInterface
     /**
      * @deprecated
      */
-    const BASE_URI = 'https://storage.googleapis.com/storage/v1/';
+    public const BASE_URI = 'https://storage.googleapis.com/storage/v1/';
 
-    const DEFAULT_API_ENDPOINT = 'https://storage.googleapis.com';
-
-    /**
-     * @deprecated
-     */
-    const UPLOAD_URI = 'https://storage.googleapis.com/upload/storage/v1/b/{bucket}/o{?query*}';
-
-    const UPLOAD_PATH = 'upload/storage/v1/b/{bucket}/o{?query*}';
+    public const DEFAULT_API_ENDPOINT = 'https://storage.googleapis.com';
 
     /**
      * @deprecated
      */
-    const DOWNLOAD_URI = 'https://storage.googleapis.com/storage/v1/b/{bucket}/o/{object}{?query*}';
+    public const UPLOAD_URI = 'https://storage.googleapis.com/upload/storage/v1/b/{bucket}/o{?query*}';
 
-    const DOWNLOAD_PATH = 'storage/v1/b/{bucket}/o/{object}{?query*}';
+    public const UPLOAD_PATH = 'upload/storage/v1/b/{bucket}/o{?query*}';
+
+    /**
+     * @deprecated
+     */
+    public const DOWNLOAD_URI = 'https://storage.googleapis.com/storage/v1/b/{bucket}/o/{object}{?query*}';
+
+    public const DOWNLOAD_PATH = 'storage/v1/b/{bucket}/o/{object}{?query*}';
+
+    public const NEVER_RETRY = "NEVER_RETRY";
+
+    public const ALWAYS_RETRY = "ALWAYS_RETRY";
 
     /**
      * @var string

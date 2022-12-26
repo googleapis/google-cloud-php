@@ -86,7 +86,6 @@ trait RetryTrait
         'objects.update' => ['ifMetagenerationMatch']
     ];
 
-
     /**
      * Return a retry decider function.
      *
@@ -105,6 +104,7 @@ trait RetryTrait
         $isOpIdempotent = in_array($methodName, $this->idempotentOps);
         $preconditionNeeded = array_key_exists($methodName, $this->condIdempotentOps);
         $preconditionSupplied = $this->isPreConditionSupplied($methodName, $args);
+        $retryStrategy = isset($args['retryStrategy']) ? $args['retryStrategy'] : null;
 
         return function (
             \Exception $exception,
@@ -113,7 +113,8 @@ trait RetryTrait
             $isOpIdempotent,
             $preconditionNeeded,
             $preconditionSupplied,
-            $maxRetries
+            $maxRetries,
+            $retryStrategy
         ) {
             return $this->retryDeciderFunction(
                 $exception,
@@ -121,7 +122,8 @@ trait RetryTrait
                 $isOpIdempotent,
                 $preconditionNeeded,
                 $preconditionSupplied,
-                $maxRetries
+                $maxRetries,
+                $retryStrategy
             );
         };
     }
@@ -173,11 +175,19 @@ trait RetryTrait
         $isIdempotent,
         $preconditionNeeded,
         $preconditionSupplied,
-        $maxRetries
+        $maxRetries,
+        $retryStrategy
     ) {
         // No retry if maxRetries reached
         if ($maxRetries <= $currentAttempt) {
             return false;
+        }
+
+        switch ($retryStrategy) {
+            case Rest::ALWAYS_RETRY:
+                return true;
+            case Rest::NEVER_RETRY:
+                return false;
         }
 
         $statusCode = $exception->getCode();
