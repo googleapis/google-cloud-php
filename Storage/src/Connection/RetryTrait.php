@@ -42,28 +42,28 @@ trait RetryTrait
      * @var array
      */
     private $idempotentOps = [
-        'bucket_acl.get',
-        'bucket_acl.list',
-        'buckets.delete',
-        'buckets.get',
-        'buckets.getIamPolicy',
-        'buckets.insert',
-        'buckets.list',
-        'buckets.lockRetentionPolicy',
-        'buckets.testIamPermissions',
-        'default_object_acl.get',
-        'default_object_acl.list',
-        'hmacKey.delete',
-        'hmacKey.get',
-        'hmacKey.list',
-        'notifications.delete',
-        'notifications.get',
-        'notifications.list',
-        'object_acl.get',
-        'object_acl.list',
-        'objects.get',
-        'objects.list',
-        'serviceaccount.get',
+        'bucket_acl.get' => true,
+        'bucket_acl.list' => true,
+        'buckets.delete' => true,
+        'buckets.get' => true,
+        'buckets.getIamPolicy' => true,
+        'buckets.insert' => true,
+        'buckets.list' => true,
+        'buckets.lockRetentionPolicy' => true,
+        'buckets.testIamPermissions' => true,
+        'default_object_acl.get' => true,
+        'default_object_acl.list' => true,
+        'hmacKey.delete' => true,
+        'hmacKey.get' => true,
+        'hmacKey.list' => true,
+        'notifications.delete' => true,
+        'notifications.get' => true,
+        'notifications.list' => true,
+        'object_acl.get' => true,
+        'object_acl.list' => true,
+        'objects.get' => true,
+        'objects.list' => true,
+        'serviceaccount.get' => true,
     ];
 
     /**
@@ -102,7 +102,7 @@ trait RetryTrait
         }
         $methodName = sprintf('%s.%s', $resource, $method);
         $maxRetries = (int) (isset($args['retries']) ? $args['retries'] : 3);
-        $isOpIdempotent = in_array($methodName, $this->idempotentOps);
+        $isOpIdempotent = array_key_exists($methodName, $this->idempotentOps);
         $preconditionNeeded = array_key_exists($methodName, $this->condIdempotentOps);
         $preconditionSupplied = $this->isPreConditionSupplied($methodName, $args);
 

@@ -62,11 +62,7 @@ jobs:
       with:
         php-version: '8.0'
         extensions: grpc-1.49.0
-<<<<<<< HEAD
-    - name: Run Unit Test Suites
-=======
     - name: Run Package Test Suites
->>>>>>> 7625b153469b0015e7057891f97ed195c7c92e97
       run: bash .github/run-package-tests.sh
 
   style:
