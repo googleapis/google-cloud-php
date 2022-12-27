@@ -49,27 +49,23 @@ class Rest implements ConnectionInterface
     /**
      * @deprecated
      */
-    public const BASE_URI = 'https://storage.googleapis.com/storage/v1/';
+    const BASE_URI = 'https://storage.googleapis.com/storage/v1/';
 
-    public const DEFAULT_API_ENDPOINT = 'https://storage.googleapis.com';
-
-    /**
-     * @deprecated
-     */
-    public const UPLOAD_URI = 'https://storage.googleapis.com/upload/storage/v1/b/{bucket}/o{?query*}';
-
-    public const UPLOAD_PATH = 'upload/storage/v1/b/{bucket}/o{?query*}';
+    const DEFAULT_API_ENDPOINT = 'https://storage.googleapis.com';
 
     /**
      * @deprecated
      */
-    public const DOWNLOAD_URI = 'https://storage.googleapis.com/storage/v1/b/{bucket}/o/{object}{?query*}';
+    const UPLOAD_URI = 'https://storage.googleapis.com/upload/storage/v1/b/{bucket}/o{?query*}';
 
-    public const DOWNLOAD_PATH = 'storage/v1/b/{bucket}/o/{object}{?query*}';
+    const UPLOAD_PATH = 'upload/storage/v1/b/{bucket}/o{?query*}';
 
-    public const NEVER_RETRY = "NEVER_RETRY";
+    /**
+     * @deprecated
+     */
+    const DOWNLOAD_URI = 'https://storage.googleapis.com/storage/v1/b/{bucket}/o/{object}{?query*}';
 
-    public const ALWAYS_RETRY = "ALWAYS_RETRY";
+    const DOWNLOAD_PATH = 'storage/v1/b/{bucket}/o/{object}{?query*}';
 
     /**
      * @var string

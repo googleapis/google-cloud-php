@@ -24,6 +24,7 @@ use Google\Cloud\Core\Upload\MultipartUploader;
 use Google\Cloud\Core\Upload\ResumableUploader;
 use Google\Cloud\Core\Upload\StreamableUploader;
 use Google\Cloud\Storage\Connection\Rest;
+use Google\Cloud\Storage\Connection\RetryTrait;
 use Google\CRC32\CRC32;
 use GuzzleHttp\Promise;
 use GuzzleHttp\Promise\PromiseInterface;
@@ -552,7 +553,7 @@ class RestTest extends TestCase
             [
                 'buckets',
                 'get',
-                ['retryStrategy' => Rest::NEVER_RETRY],
+                ['retryStrategy' => RetryTrait::$RETRY_STRATEGY_NEVER],
                 503,
                 1,
                 false
@@ -560,7 +561,7 @@ class RestTest extends TestCase
             [
                 'serviceaccount',
                 'get',
-                ['retryStrategy' => Rest::NEVER_RETRY],
+                ['retryStrategy' => RetryTrait::$RETRY_STRATEGY_NEVER],
                 504,
                 1,
                 false
@@ -570,7 +571,7 @@ class RestTest extends TestCase
             [
                 'buckets',
                 'get',
-                ['retryStrategy' => Rest::ALWAYS_RETRY],
+                ['retryStrategy' => RetryTrait::$RETRY_STRATEGY_ALWAYS],
                 400,
                 1,
                 true
@@ -582,7 +583,7 @@ class RestTest extends TestCase
                 'update',
                 [
                     'ifMetagenerationMatch' => 0,
-                    'retryStrategy' => Rest::NEVER_RETRY
+                    'retryStrategy' => RetryTrait::$RETRY_STRATEGY_NEVER
                 ],
                 503,
                 1,
@@ -595,7 +596,7 @@ class RestTest extends TestCase
                 'update',
                 [
                     'ifGenerationMatch' => 0,
-                    'retryStrategy' => Rest::ALWAYS_RETRY
+                    'retryStrategy' => RetryTrait::$RETRY_STRATEGY_ALWAYS
                 ],
                 503,
                 1,
@@ -608,7 +609,7 @@ class RestTest extends TestCase
                 'update',
                 [
                     'ifMetagenerationMatch' => 0,
-                    'retryStrategy' => Rest::ALWAYS_RETRY
+                    'retryStrategy' => RetryTrait::$RETRY_STRATEGY_ALWAYS
                 ],
                 400,
                 1,
@@ -619,7 +620,7 @@ class RestTest extends TestCase
             [
                 'bucket_acl',
                 'delete',
-                ['retryStrategy' => Rest::ALWAYS_RETRY],
+                ['retryStrategy' => RetryTrait::$RETRY_STRATEGY_ALWAYS],
                 503,
                 1,
                 true
@@ -629,7 +630,7 @@ class RestTest extends TestCase
             [
                 'bucket_acl',
                 'delete',
-                ['retryStrategy' => Rest::ALWAYS_RETRY],
+                ['retryStrategy' => RetryTrait::$RETRY_STRATEGY_ALWAYS],
                 400,
                 1,
                 true
@@ -638,7 +639,7 @@ class RestTest extends TestCase
             [
                 'buckets',
                 'get',
-                ['retryStrategy' => Rest::ALWAYS_RETRY],
+                ['retryStrategy' => RetryTrait::$RETRY_STRATEGY_ALWAYS],
                 503,
                 4,
                 false

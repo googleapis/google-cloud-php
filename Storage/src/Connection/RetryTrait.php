@@ -86,6 +86,10 @@ trait RetryTrait
         'objects.update' => ['ifMetagenerationMatch']
     ];
 
+    public static $RETRY_STRATEGY_ALWAYS = "always";
+    public static $RETRY_STRATEGY_NEVER = "never";
+    public static $RETRY_STRATEGY_IDEMPOTENT = "idempotent";
+
     /**
      * Return a retry decider function.
      *
@@ -184,10 +188,13 @@ trait RetryTrait
         }
 
         switch ($retryStrategy) {
-            case Rest::ALWAYS_RETRY:
+            case self::$RETRY_STRATEGY_ALWAYS:
                 return true;
-            case Rest::NEVER_RETRY:
+            case self::$RETRY_STRATEGY_NEVER:
                 return false;
+            default:
+                $retryStrategy = self::$RETRY_STRATEGY_IDEMPOTENT;
+                break;
         }
 
         $statusCode = $exception->getCode();
