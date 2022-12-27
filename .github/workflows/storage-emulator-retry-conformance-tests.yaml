@@ -1,0 +1,41 @@
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'Storage/**'
+      - '.github/workflows/storage-emulator-retry-conformance-tests.yaml'
+  pull_request:
+    paths:
+      - 'Storage/**'
+      - '.github/workflows/storage-emulator-retry-conformance-tests.yaml'
+name: Run Storage Retry Conformance Tests With Emulator
+jobs:
+  test:
+    runs-on: ubuntu-20.04
+
+    services:
+      emulator:
+        image: gcr.io/cloud-devrel-public-resources/storage-testbench:0.32.0
+        ports:
+          - 9000:9000
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.4'
+
+      - name: Install dependencies
+        run: |
+          composer config repositories.local  --json '{"type":"path", "url": "../Core", "options": {"versions": {"google/cloud-core": "1.45"}}}' -d Storage
+          composer update --prefer-dist --no-interaction --no-suggest -d Storage/
+
+      - name: Run system tests
+        run: |
+          Storage/vendor/bin/phpunit -c Storage/phpunit.xml.dist Storage/tests/Unit/RetryConformanceTests.php
+        env:
+          STORAGE_TESTBENCH_EMULATOR_HOST: localhost:9000
