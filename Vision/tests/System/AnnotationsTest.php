@@ -64,11 +64,11 @@ class AnnotationsTest extends VisionTestCase
 
         // Safe Search
         $this->assertInstanceOf(SafeSearch::class, $res->safeSearch());
-        $this->assertEquals('VERY_UNLIKELY', $res->safeSearch()->adult());
-        $this->assertEquals('UNLIKELY', $res->safeSearch()->spoof());
-        $this->assertEquals('VERY_UNLIKELY', $res->safeSearch()->medical());
-        $this->assertEquals('VERY_UNLIKELY', $res->safeSearch()->violence());
-        $this->assertEquals('VERY_UNLIKELY', $res->safeSearch()->racy());
+        $this->assertStringContainsString('UNLIKELY', $res->safeSearch()->adult());
+        $this->assertStringContainsString('UNLIKELY', $res->safeSearch()->spoof());
+        $this->assertStringContainsString('UNLIKELY', $res->safeSearch()->medical());
+        $this->assertStringContainsString('UNLIKELY', $res->safeSearch()->violence());
+        $this->assertStringContainsString('UNLIKELY', $res->safeSearch()->racy());
         $this->assertFalse($res->safeSearch()->isAdult());
         $this->assertFalse($res->safeSearch()->isSpoof());
         $this->assertFalse($res->safeSearch()->isMedical());
