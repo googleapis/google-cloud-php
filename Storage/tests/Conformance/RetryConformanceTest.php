@@ -114,7 +114,7 @@ class RetryConformanceTest extends TestCase
     {
         self::set_up_before_class();
         // These scenario IDs will be run
-        $scenarios = [1, 2, 3, 4, 5, 6, 7];
+        $scenarios = [1];
 
         $cases = [];
 
