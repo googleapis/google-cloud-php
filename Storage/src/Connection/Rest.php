@@ -35,6 +35,7 @@ use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Utils;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
+use Ramsey\Uuid\Uuid;
 
 /**
  * Implementation of the
@@ -627,6 +628,29 @@ class Rest implements ConnectionInterface
             $method,
             $args
         );
+
+        $retryIdentifierHash = Uuid::uuid4()->toString();
+
+        $args['onRetryException'] = function (
+            \Exception $e,
+            $currentAttempt,
+            &$arguments
+        ) use ($retryIdentifierHash) {
+            $request = $arguments[0];
+            $headerValue = $request->getHeaderLine('x-goog-api-client');
+            $headerValue = $headerValue ? $headerValue . " " : "";
+            $headerValue = $headerValue .
+                "gccl-invocation-id/$retryIdentifierHash " .
+                "gccl-attempt-count/$currentAttempt";
+            $headerChanges = [
+                'x-goog-api-client' => $headerValue
+            ];
+            $request = Utils::modifyRequest(
+                $request,
+                ['set_headers' => $headerChanges]
+            );
+            $arguments[0] = $request;
+        };
 
         return $this->send($resource, $method, $args);
     }
