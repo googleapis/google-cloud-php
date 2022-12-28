@@ -77,6 +77,10 @@ class AutoMlSmokeTest extends SystemTestCase
             ])
         ]);
 
+        // Note: This line is required. Otherwise test fails citing:
+        // Class google.cloud.automl.v1.OperationMetadata hasn't been added to descriptor pool
+        \GPBMetadata\Google\Cloud\Automl\V1\Operations::initOnce();
+        
         $operationResponse = $automl->createDataset($formattedParent, $dataset);
         $operationResponse->pollUntilComplete();
         $dataset = $operationResponse->getResult();
