@@ -347,17 +347,17 @@ class RunQueryTest extends DatastoreMultipleDbTestCase
         $client->insert($person);
         self::$localDeletionQueue->add($key);
 
-        sleep(2);
+        sleep(1);
 
         $time = new Timestamp(['seconds' => time()]);
 
-        sleep(2);
+        sleep(1);
 
         $person = $client->lookup($key);
         $person['lastName'] = $newLastName;
         $client->update($person);
 
-        sleep(2);
+        sleep(1);
 
         $query = $client->query()
             ->kind($kind)
