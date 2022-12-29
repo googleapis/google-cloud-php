@@ -50,19 +50,33 @@ class ExponentialBackoff
     private $onRetryException;
 
     /**
+     * @var callable|null
+     */
+    private $onExecutionStart;
+
+    /**
      * @param int $retries [optional] Number of retries for a failed request.
      * @param callable $retryFunction [optional] returns bool for whether or not to retry
      * @param callable $onRetryException [optional] runs before the $retryFunction. Unlike the $retryFunction,
-     * this function isn't responsible to decide if a retry should happen or not,
-     * but it gives the users flexibility to consume exception messages and add custom logic.
-     * Ex: One might want to change heaers on every retry, this function can be used to achieve
-     * such a functionality.
+     *   this function isn't responsible to decide if a retry should happen or not,
+     *   but it gives the users flexibility to consume exception messages and add custom logic.
+     *   Ex: One might want to change heaers on every retry, this function can be used to achieve
+     *   such a functionality.
+     * @param callable $onExecutionStart [optional] runs before execution of the
+     *   execute function. Taken in $arguments as reference and thus gives users,
+     *   the flexibility to add custom logic before the execution of request starts.
+     *
      */
-    public function __construct($retries = null, callable $retryFunction = null, callable $onRetryException = null)
-    {
+    public function __construct(
+        $retries = null,
+        callable $retryFunction = null,
+        callable $onRetryException = null,
+        callable $onExecutionStart = null
+    ) {
         $this->retries = $retries !== null ? (int) $retries : 3;
         $this->retryFunction = $retryFunction;
         $this->onRetryException = $onRetryException;
+        $this->onExecutionStart = $onExecutionStart;
         // @todo revisit this approach
         // @codeCoverageIgnoreStart
         $this->delayFunction = static function ($delay) {
@@ -85,6 +99,12 @@ class ExponentialBackoff
         $calcDelayFunction = $this->calcDelayFunction ?: [$this, 'calculateDelay'];
         $retryAttempt = 0;
         $exception = null;
+
+        // The $arguments are passed by reference
+        // thus are modifiable before the execution starts.
+        if ($this->onExecutionStart) {
+            call_user_func_array($this->onExecutionStart, [&$arguments]);
+        }
 
         while (true) {
             try {

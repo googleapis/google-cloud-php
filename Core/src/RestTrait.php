@@ -90,7 +90,8 @@ trait RestTrait
             'retries',
             'requestTimeout',
             'restRetryFunction',
-            'onRetryException'
+            'onRetryException',
+            'onExecutionStart'
         ], $options);
 
         try {

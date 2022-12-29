@@ -631,27 +631,51 @@ class Rest implements ConnectionInterface
 
         $retryIdentifierHash = Uuid::uuid4()->toString();
 
-        $args['onRetryException'] = function (
-            \Exception $e,
-            $currentAttempt,
-            &$arguments
-        ) use ($retryIdentifierHash) {
-            $request = $arguments[0];
-            $headerValue = $request->getHeaderLine('x-goog-api-client');
-            $headerValue = $headerValue ? $headerValue . " " : "";
-            $headerValue = $headerValue .
-                "gccl-invocation-id/$retryIdentifierHash " .
-                "gccl-attempt-count/$currentAttempt";
-            $headerChanges = [
-                'x-goog-api-client' => $headerValue
-            ];
-            $request = Utils::modifyRequest(
-                $request,
-                ['set_headers' => $headerChanges]
+        $args['onRetryException'] = function (\Exception $e, $currentAttempt, &$arguments) use ($retryIdentifierHash) {
+            // Since we the the last attempt number here, so incrementing it
+            // to get the current attempt count
+            ++$currentAttempt;
+            $this->updateRetryInovationHeaders(
+                $arguments,
+                $retryIdentifierHash,
+                $currentAttempt
             );
-            $arguments[0] = $request;
+        };
+
+        $args['onExecutionStart'] = function (&$arguments) use ($retryIdentifierHash) {
+            $this->updateRetryInovationHeaders(
+                $arguments,
+                $retryIdentifierHash
+            );
         };
 
         return $this->send($resource, $method, $args);
+    }
+
+    /**
+     * Updates the x-goog-api-client header value with UUID
+     * and retry count
+     *
+     * @return void
+     */
+    private function updateRetryInovationHeaders(
+        &$arguments,
+        $retryIdentifierHash,
+        $currentAttempt = 0
+    ) {
+        // Fetch existing value(if present) of ['x-goog-api-client']
+        // header value is present and create new required value
+        $request = $arguments[0];
+        $headerValue = $request->getHeaderLine('x-goog-api-client');
+        $headerValue = $headerValue ? $headerValue . " " : "";
+        $headerValue = $headerValue .
+            "gccl-invocation-id/$retryIdentifierHash " .
+            "gccl-attempt-count/$currentAttempt";
+
+        // Update the header value in options array as this will eventually
+        // get applied to the request headers
+        $options = $arguments[1];
+        $options['headers']['x-goog-api-client'] = $headerValue;
+        $arguments[1] = $options;
     }
 }
