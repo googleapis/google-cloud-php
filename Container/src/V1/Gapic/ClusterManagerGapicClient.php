@@ -2653,6 +2653,10 @@ class ClusterManagerGapicClient
      *           All the nodes in the node pool will be Confidential VM once enabled.
      *     @type VirtualNIC $gvnic
      *           Enable or disable gvnic on the node pool.
+     *     @type string $etag
+     *           The current etag of the node pool.
+     *           If an etag is provided and does not match the current etag of the node
+     *           pool, update will be blocked and an ABORTED error will be returned.
      *     @type FastSocket $fastSocket
      *           Enable or disable NCCL fast socket for the node pool.
      *     @type NodePoolLoggingConfig $loggingConfig
@@ -2749,6 +2753,10 @@ class ClusterManagerGapicClient
 
         if (isset($optionalArgs['gvnic'])) {
             $request->setGvnic($optionalArgs['gvnic']);
+        }
+
+        if (isset($optionalArgs['etag'])) {
+            $request->setEtag($optionalArgs['etag']);
         }
 
         if (isset($optionalArgs['fastSocket'])) {

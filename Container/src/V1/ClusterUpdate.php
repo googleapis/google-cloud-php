@@ -286,6 +286,14 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      */
     private $desired_gateway_api_config = null;
     /**
+     * The current etag of the cluster.
+     * If an etag is provided and does not match the current etag of the cluster,
+     * update will be blocked and an ABORTED error will be returned.
+     *
+     * Generated from protobuf field <code>string etag = 115;</code>
+     */
+    private $etag = '';
+    /**
      * The desired node pool logging configuration defaults for the cluster.
      *
      * Generated from protobuf field <code>.google.container.v1.NodePoolLoggingConfig desired_node_pool_logging_config = 116;</code>
@@ -426,6 +434,10 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      *           in autopilot clusters and node auto-provisioning enabled clusters.
      *     @type \Google\Cloud\Container\V1\GatewayAPIConfig $desired_gateway_api_config
      *           The desired config of Gateway API on this cluster.
+     *     @type string $etag
+     *           The current etag of the cluster.
+     *           If an etag is provided and does not match the current etag of the cluster,
+     *           update will be blocked and an ABORTED error will be returned.
      *     @type \Google\Cloud\Container\V1\NodePoolLoggingConfig $desired_node_pool_logging_config
      *           The desired node pool logging configuration defaults for the cluster.
      *     @type int $desired_stack_type
@@ -1769,6 +1781,36 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\GatewayAPIConfig::class);
         $this->desired_gateway_api_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * The current etag of the cluster.
+     * If an etag is provided and does not match the current etag of the cluster,
+     * update will be blocked and an ABORTED error will be returned.
+     *
+     * Generated from protobuf field <code>string etag = 115;</code>
+     * @return string
+     */
+    public function getEtag()
+    {
+        return $this->etag;
+    }
+
+    /**
+     * The current etag of the cluster.
+     * If an etag is provided and does not match the current etag of the cluster,
+     * update will be blocked and an ABORTED error will be returned.
+     *
+     * Generated from protobuf field <code>string etag = 115;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setEtag($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->etag = $var;
 
         return $this;
     }

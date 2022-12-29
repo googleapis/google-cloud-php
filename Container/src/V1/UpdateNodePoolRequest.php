@@ -162,6 +162,14 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
      */
     private $gvnic = null;
     /**
+     * The current etag of the node pool.
+     * If an etag is provided and does not match the current etag of the node
+     * pool, update will be blocked and an ABORTED error will be returned.
+     *
+     * Generated from protobuf field <code>string etag = 30;</code>
+     */
+    private $etag = '';
+    /**
      * Enable or disable NCCL fast socket for the node pool.
      *
      * Generated from protobuf field <code>.google.container.v1.FastSocket fast_socket = 31;</code>
@@ -259,6 +267,10 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
      *           All the nodes in the node pool will be Confidential VM once enabled.
      *     @type \Google\Cloud\Container\V1\VirtualNIC $gvnic
      *           Enable or disable gvnic on the node pool.
+     *     @type string $etag
+     *           The current etag of the node pool.
+     *           If an etag is provided and does not match the current etag of the node
+     *           pool, update will be blocked and an ABORTED error will be returned.
      *     @type \Google\Cloud\Container\V1\FastSocket $fast_socket
      *           Enable or disable NCCL fast socket for the node pool.
      *     @type \Google\Cloud\Container\V1\NodePoolLoggingConfig $logging_config
@@ -947,6 +959,36 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\VirtualNIC::class);
         $this->gvnic = $var;
+
+        return $this;
+    }
+
+    /**
+     * The current etag of the node pool.
+     * If an etag is provided and does not match the current etag of the node
+     * pool, update will be blocked and an ABORTED error will be returned.
+     *
+     * Generated from protobuf field <code>string etag = 30;</code>
+     * @return string
+     */
+    public function getEtag()
+    {
+        return $this->etag;
+    }
+
+    /**
+     * The current etag of the node pool.
+     * If an etag is provided and does not match the current etag of the node
+     * pool, update will be blocked and an ABORTED error will be returned.
+     *
+     * Generated from protobuf field <code>string etag = 30;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setEtag($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->etag = $var;
 
         return $this;
     }
