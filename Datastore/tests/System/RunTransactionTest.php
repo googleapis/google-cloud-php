@@ -98,11 +98,11 @@ class RunTransactionTest extends DatastoreMultipleDbTestCase
         self::$localDeletionQueue->add($ancKey);
         self::$localDeletionQueue->add($key);
 
-        sleep(1);
+        sleep(2);
 
         $time = new Timestamp(['seconds' => time()]);
 
-        sleep(1);
+        sleep(2);
 
         $transaction = $client->transaction();
         $person = $transaction->lookup($key);
@@ -110,7 +110,7 @@ class RunTransactionTest extends DatastoreMultipleDbTestCase
         $transaction->update($person);
         $transaction->commit();
 
-        sleep(1);
+        sleep(2);
 
         $query = $client->query()
             ->kind($kind)
