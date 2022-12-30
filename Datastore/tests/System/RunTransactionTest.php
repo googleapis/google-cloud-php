@@ -117,11 +117,7 @@ class RunTransactionTest extends DatastoreMultipleDbTestCase
             ->filter('__key__', '=', $key)
             ->hasAncestor($ancKey);
         $result = $client->runQuery($query);
-        $personListEntities = [];
-        foreach ($result as $person) {
-            $personListEntities[] = $person;
-        }
-
+        $personListEntities = iterator_to_array($result);
         // Person lastName should be the lastName AFTER update
         $this->assertEquals($personListEntities[0]['lastName'], $newLastName);
 
@@ -130,10 +126,7 @@ class RunTransactionTest extends DatastoreMultipleDbTestCase
         );
         // runQuery function: Person lastName should be the lastName BEFORE update
         $persons = $transaction2->runQuery($query);
-        $personListEntities = [];
-        foreach ($persons as $person) {
-            $personListEntities[] = $person;
-        }
+        $personListEntities = iterator_to_array($persons);
         $this->assertEquals($personListEntities[0]['lastName'], $lastName);
 
         // lookUp function: Person lastName should be the lastName BEFORE update

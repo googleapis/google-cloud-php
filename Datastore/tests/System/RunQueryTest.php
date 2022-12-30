@@ -363,20 +363,14 @@ class RunQueryTest extends DatastoreMultipleDbTestCase
             ->kind($kind)
             ->filter('__key__', '=', $key);
         $result = $client->runQuery($query);
-        $personListEntities = [];
-        foreach ($result as $person) {
-            $personListEntities[] = $person;
-        }
+        $personListEntities = iterator_to_array($result);
 
         // Person lastName should be the lastName AFTER update
         $this->assertEquals($personListEntities[0]['lastName'], $newLastName);
 
         // Person lastName should be the lastName BEFORE update
         $result = $client->runQuery($query, ['readTime' => $time]);
-        $personListEntities = [];
-        foreach ($result as $person) {
-            $personListEntities[] = $person;
-        }
+        $personListEntities = iterator_to_array($result);
         $this->assertEquals($personListEntities[0]['lastName'], $lastName);
     }
 

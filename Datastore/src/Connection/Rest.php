@@ -77,8 +77,8 @@ class Rest implements ConnectionInterface
      */
     public function beginTransaction(array $args)
     {
-        $this->setReadTime($args);
-        return $this->send('projects', 'beginTransaction', $args);
+        $argsWithReadTime = $this->setReadTime($args);
+        return $this->send('projects', 'beginTransaction', $argsWithReadTime);
     }
 
     /**
@@ -94,8 +94,8 @@ class Rest implements ConnectionInterface
      */
     public function lookup(array $args)
     {
-        $this->setReadTime($args);
-        return $this->send('projects', 'lookup', $args);
+        $argsWithReadTime = $this->setReadTime($args);
+        return $this->send('projects', 'lookup', $argsWithReadTime);
     }
 
     /**
@@ -111,27 +111,29 @@ class Rest implements ConnectionInterface
      */
     public function runQuery(array $args)
     {
-        $this->setReadTime($args);
-        return $this->send('projects', 'runQuery', $args);
+        $argsWithReadTime = $this->setReadTime($args);
+        return $this->send('projects', 'runQuery', $argsWithReadTime);
     }
 
     /**
      * @param array $args
      */
-    private function setReadTime(array &$args)
+    private function setReadTime(array $args)
     {
         if (isset($args['readOptions']['readTime'])) {
-            $time = $args['readOptions']['readTime']->getSeconds();
-            $date = date('Y/m/d H:i:s.u\Z', $time);
-            $args['readOptions']['readTime'] = new Timestamp(
-                new \DateTime($date)
-            );
+            $this->setReadTimeOption($args['readOptions']['readTime']);
         } elseif (isset($args['transactionOptions']['readOnly']['readTime'])) {
-            $time = $args['transactionOptions']['readOnly']['readTime']->getSeconds();
-            $date = date('Y/m/d H:i:s.u\Z', $time);
-            $args['transactionOptions']['readOnly']['readTime'] = new Timestamp(
-                new \DateTime($date)
-            );
+            $this->setReadTimeOption($args['transactionOptions']['readOnly']['readTime']);
         }
+        return $args;
+    }
+
+    /**
+     * @param timestamp $readTime
+     */
+    private function setReadTimeOption(&$readTime)
+    {
+        $date = date('Y/m/d H:i:s.u\Z', $readTime->getSeconds());
+        $readTime = new Timestamp(new \DateTime($date));
     }
 }
