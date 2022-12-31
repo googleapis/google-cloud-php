@@ -49,23 +49,23 @@ class Rest implements ConnectionInterface
     /**
      * @deprecated
      */
-    public const BASE_URI = 'https://storage.googleapis.com/storage/v1/';
+    const BASE_URI = 'https://storage.googleapis.com/storage/v1/';
 
-    public const DEFAULT_API_ENDPOINT = 'https://storage.googleapis.com';
-
-    /**
-     * @deprecated
-     */
-    public const UPLOAD_URI = 'https://storage.googleapis.com/upload/storage/v1/b/{bucket}/o{?query*}';
-
-    public const UPLOAD_PATH = 'upload/storage/v1/b/{bucket}/o{?query*}';
+    const DEFAULT_API_ENDPOINT = 'https://storage.googleapis.com';
 
     /**
      * @deprecated
      */
-    public const DOWNLOAD_URI = 'https://storage.googleapis.com/storage/v1/b/{bucket}/o/{object}{?query*}';
+    const UPLOAD_URI = 'https://storage.googleapis.com/upload/storage/v1/b/{bucket}/o{?query*}';
 
-    public const DOWNLOAD_PATH = 'storage/v1/b/{bucket}/o/{object}{?query*}';
+    const UPLOAD_PATH = 'upload/storage/v1/b/{bucket}/o{?query*}';
+
+    /**
+     * @deprecated
+     */
+    const DOWNLOAD_URI = 'https://storage.googleapis.com/storage/v1/b/{bucket}/o/{object}{?query*}';
+
+    const DOWNLOAD_PATH = 'storage/v1/b/{bucket}/o/{object}{?query*}';
 
     /**
      * @var string
@@ -321,6 +321,10 @@ class Rest implements ConnectionInterface
                 'userProject' => $args['userProject']
             ]
         ];
+
+        if (isset($args['ifGenerationMatch'])) {
+            $uriParams['query']['ifGenerationMatch'] = $args['ifGenerationMatch'];
+        }
 
         return new $uploaderClass(
             $this->requestWrapper,
