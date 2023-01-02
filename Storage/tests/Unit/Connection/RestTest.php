@@ -567,14 +567,14 @@ class RestTest extends TestCase
                 false
             ],
             // Idempotent operation with non retriable error code
-            // and always retry strategy => retry
+            // and always retry strategy => no retry
             [
                 'buckets',
                 'get',
                 ['retryStrategy' => RetryTrait::$RETRY_STRATEGY_ALWAYS],
                 400,
                 1,
-                true
+                false
             ],
             // Conditionally Idempotent operation with retriable error code
             // and never retry strategy => no retry
@@ -603,7 +603,7 @@ class RestTest extends TestCase
                 true
             ],
             // Conditionally Idempotent operation with non retriable error code,
-            // and always retry strategy => retry
+            // and always retry strategy => no retry
             [
                 'buckets',
                 'update',
@@ -613,7 +613,7 @@ class RestTest extends TestCase
                 ],
                 400,
                 1,
-                true
+                false
             ],
             // Non-idempotent operation with retriable error code
             // and always retry strategy => retry
@@ -626,14 +626,14 @@ class RestTest extends TestCase
                 true
             ],
             // Non-idempotent operation with non retriable error code
-            // and always retry strategy => retry
+            // and always retry strategy => no retry
             [
                 'bucket_acl',
                 'delete',
                 ['retryStrategy' => RetryTrait::$RETRY_STRATEGY_ALWAYS],
                 400,
                 1,
-                true
+                false
             ],
             // Max retry reached with always retry strategy => no retry
             [

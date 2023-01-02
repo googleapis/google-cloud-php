@@ -86,8 +86,36 @@ trait RetryTrait
         'objects.update' => ['ifMetagenerationMatch']
     ];
 
+    /**
+     * Retry strategies which enforces certain behaviour like retry always,
+     * retry never and retry default operations if error code is retriable.
+     * These configurations are supplied for per api call basis.
+     *
+     * We can set $options['retryStrategy'] to one of "always", "never" and
+     * "idempotent". Anything apart from them is considered as "idempotent" as
+     * retried as intended.
+     */
+
+    /**
+     * The strategy value which enforces Non-Idempotent & Conditionally
+     * Non-Idempotent operations to get always retried if error code is a
+     * retriable one.
+     * @var string
+     */
     public static $RETRY_STRATEGY_ALWAYS = "always";
+
+    /**
+     * The strategy value which enforces Idempotent & Conditionally
+     * Idempotent operations to get never get retried.
+     * @var string
+     */
     public static $RETRY_STRATEGY_NEVER = "never";
+
+    /**
+     * The strategy value only reties idempotent and conditionally idempotent
+     * operations is error code is a retriable one.
+     * @var string
+     */
     public static $RETRY_STRATEGY_IDEMPOTENT = "idempotent";
 
     /**
@@ -108,7 +136,9 @@ trait RetryTrait
         $isOpIdempotent = in_array($methodName, $this->idempotentOps);
         $preconditionNeeded = array_key_exists($methodName, $this->condIdempotentOps);
         $preconditionSupplied = $this->isPreConditionSupplied($methodName, $args);
-        $retryStrategy = isset($args['retryStrategy']) ? $args['retryStrategy'] : null;
+        $retryStrategy = isset($args['retryStrategy']) ?
+            $args['retryStrategy'] :
+            self::$RETRY_STRATEGY_IDEMPOTENT;
 
         return function (
             \Exception $exception,
@@ -187,23 +217,18 @@ trait RetryTrait
             return false;
         }
 
-        switch ($retryStrategy) {
-            case self::$RETRY_STRATEGY_ALWAYS:
-                return true;
-            case self::$RETRY_STRATEGY_NEVER:
-                return false;
-            default:
-                $retryStrategy = self::$RETRY_STRATEGY_IDEMPOTENT;
-                break;
-        }
-
         $statusCode = $exception->getCode();
-
         // Retry if the exception status code matches
         // with one of the retriable status code and
         // the operation is either idempotent or conditionally
         // idempotent with preconditions supplied.
         if (in_array($statusCode, $this->httpRetryCodes)) {
+            switch ($retryStrategy) {
+                case self::$RETRY_STRATEGY_ALWAYS:
+                    return true;
+                case self::$RETRY_STRATEGY_NEVER:
+                    return false;
+            }
             if ($isIdempotent) {
                 return true;
             } elseif ($preconditionNeeded) {
