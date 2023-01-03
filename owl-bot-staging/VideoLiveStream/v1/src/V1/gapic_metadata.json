@@ -1,0 +1,98 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.video.livestream.v1",
+    "libraryPackage": "Google\\Cloud\\Video\\LiveStream\\V1",
+    "services": {
+        "LivestreamService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "LivestreamServiceGapicClient",
+                    "rpcs": {
+                        "CreateChannel": {
+                            "methods": [
+                                "createChannel"
+                            ]
+                        },
+                        "CreateEvent": {
+                            "methods": [
+                                "createEvent"
+                            ]
+                        },
+                        "CreateInput": {
+                            "methods": [
+                                "createInput"
+                            ]
+                        },
+                        "DeleteChannel": {
+                            "methods": [
+                                "deleteChannel"
+                            ]
+                        },
+                        "DeleteEvent": {
+                            "methods": [
+                                "deleteEvent"
+                            ]
+                        },
+                        "DeleteInput": {
+                            "methods": [
+                                "deleteInput"
+                            ]
+                        },
+                        "GetChannel": {
+                            "methods": [
+                                "getChannel"
+                            ]
+                        },
+                        "GetEvent": {
+                            "methods": [
+                                "getEvent"
+                            ]
+                        },
+                        "GetInput": {
+                            "methods": [
+                                "getInput"
+                            ]
+                        },
+                        "ListChannels": {
+                            "methods": [
+                                "listChannels"
+                            ]
+                        },
+                        "ListEvents": {
+                            "methods": [
+                                "listEvents"
+                            ]
+                        },
+                        "ListInputs": {
+                            "methods": [
+                                "listInputs"
+                            ]
+                        },
+                        "StartChannel": {
+                            "methods": [
+                                "startChannel"
+                            ]
+                        },
+                        "StopChannel": {
+                            "methods": [
+                                "stopChannel"
+                            ]
+                        },
+                        "UpdateChannel": {
+                            "methods": [
+                                "updateChannel"
+                            ]
+                        },
+                        "UpdateInput": {
+                            "methods": [
+                                "updateInput"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
