@@ -16,8 +16,8 @@ class Access
         }
         $pool->internalAddGeneratedFile(
             '
-œ
-+google/cloud/securitycenter/v1/access.protogoogle.cloud.securitycenter.v1"â
+¯
++google/cloud/securitycenter/v1/access.protogoogle.cloud.securitycenter.v1"õ
 Access
 principal_email (	
 	caller_ip (	B
@@ -27,7 +27,8 @@ class Access
 method_name (	
 principal_subject (	 
 service_account_key_name (	e
-service_account_delegation_info	 (2<.google.cloud.securitycenter.v1.ServiceAccountDelegationInfo"R
+service_account_delegation_info	 (2<.google.cloud.securitycenter.v1.ServiceAccountDelegationInfo
+	user_name (	"R
 ServiceAccountDelegationInfo
 principal_email (	
 principal_subject (	""

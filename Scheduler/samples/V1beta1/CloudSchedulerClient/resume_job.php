@@ -30,10 +30,15 @@ use Google\Cloud\Scheduler\V1beta1\Job;
 /**
  * Resume a job.
  *
- * This method reenables a job after it has been [Job.State.PAUSED][google.cloud.scheduler.v1beta1.Job.State.PAUSED]. The
- * state of a job is stored in [Job.state][google.cloud.scheduler.v1beta1.Job.state]; after calling this method it
- * will be set to [Job.State.ENABLED][google.cloud.scheduler.v1beta1.Job.State.ENABLED]. A job must be in
- * [Job.State.PAUSED][google.cloud.scheduler.v1beta1.Job.State.PAUSED] to be resumed.
+ * This method reenables a job after it has been
+ * [Job.State.PAUSED][google.cloud.scheduler.v1beta1.Job.State.PAUSED]. The
+ * state of a job is stored in
+ * [Job.state][google.cloud.scheduler.v1beta1.Job.state]; after calling this
+ * method it will be set to
+ * [Job.State.ENABLED][google.cloud.scheduler.v1beta1.Job.State.ENABLED]. A
+ * job must be in
+ * [Job.State.PAUSED][google.cloud.scheduler.v1beta1.Job.State.PAUSED] to be
+ * resumed.
  *
  * @param string $formattedName The job name. For example:
  *                              `projects/PROJECT_ID/locations/LOCATION_ID/jobs/JOB_ID`. Please see

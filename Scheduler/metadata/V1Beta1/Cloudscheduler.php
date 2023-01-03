@@ -23,13 +23,15 @@ class Cloudscheduler
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-¤
-3google/cloud/scheduler/v1beta1/cloudscheduler.protogoogle.cloud.scheduler.v1beta1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto(google/cloud/scheduler/v1beta1/job.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"s
+•
+3google/cloud/scheduler/v1beta1/cloudscheduler.protogoogle.cloud.scheduler.v1beta1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto(google/cloud/scheduler/v1beta1/job.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"£
 ListJobsRequest9
-parent (	B)àAúA#!cloudscheduler.googleapis.com/Job
+parent (	B)àAúA#!cloudscheduler.googleapis.com/Job
+filter (	
 	page_size (
 
-page_token (	"^
+page_token (	
+legacy_app_engine_cron ("^
 ListJobsResponse1
 jobs (2#.google.cloud.scheduler.v1beta1.Job
 next_page_token (	"H
@@ -41,19 +43,21 @@ page_token (	"^
 job (2#.google.cloud.scheduler.v1beta1.JobBàA"z
 UpdateJobRequest5
 job (2#.google.cloud.scheduler.v1beta1.JobBàA/
-update_mask (2.google.protobuf.FieldMask"K
+update_mask (2.google.protobuf.FieldMask"k
 DeleteJobRequest7
 name (	B)àAúA#
-!cloudscheduler.googleapis.com/Job"J
+!cloudscheduler.googleapis.com/Job
+legacy_app_engine_cron ("J
 PauseJobRequest7
 name (	B)àAúA#
 !cloudscheduler.googleapis.com/Job"K
 ResumeJobRequest7
 name (	B)àAúA#
-!cloudscheduler.googleapis.com/Job"H
+!cloudscheduler.googleapis.com/Job"h
 RunJobRequest7
 name (	B)àAúA#
-!cloudscheduler.googleapis.com/Job2¦
+!cloudscheduler.googleapis.com/Job
+legacy_app_engine_cron (2¦
 CloudScheduler­
 ListJobs/.google.cloud.scheduler.v1beta1.ListJobsRequest0.google.cloud.scheduler.v1beta1.ListJobsResponse">‚Óä“/-/v1beta1/{parent=projects/*/locations/*}/jobsÚAparentš
 GetJob-.google.cloud.scheduler.v1beta1.GetJobRequest#.google.cloud.scheduler.v1beta1.Job"<‚Óä“/-/v1beta1/{name=projects/*/locations/*/jobs/*}ÚAname«
