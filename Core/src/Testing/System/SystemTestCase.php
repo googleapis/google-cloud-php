@@ -89,7 +89,12 @@ class SystemTestCase extends TestCase
      *
      * @param StorageClient $client
      * @param string $bucketName
-     * @param array $options
+     * @param array $options [optional] {
+     *     Configuration options is an array.
+     *
+     *     @type int $retryLimit Maximum number of retries.
+     *           **Defaults to** `8`.
+     * }
      * @return Bucket
      *
      * @experimental
@@ -97,7 +102,8 @@ class SystemTestCase extends TestCase
      */
     public static function createBucket(StorageClient $client, $bucketName, array $options = [])
     {
-        $backoff = new ExponentialBackoff(8);
+        $retryLimit = isset($options['retryLimit']) ? $options['retryLimit'] : 8;
+        $backoff = new ExponentialBackoff($retryLimit);
 
         $bucket = $backoff->execute(function () use ($client, $bucketName, $options) {
             return $client->createBucket($bucketName, $options);
