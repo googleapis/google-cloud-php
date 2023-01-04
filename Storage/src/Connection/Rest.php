@@ -666,14 +666,6 @@ class Rest implements ConnectionInterface
         $requestHash,
         $currentAttempt = 0
     ) {
-        // Retrieve $request and $options from $arguments
-        foreach ($arguments as &$argument) {
-            if ($argument instanceof Request) {
-                $request = $argument;
-            } elseif (isset($argument['headers'])) {
-                $options = &$argument;
-            }
-        }
         $valueToAdd = sprintf("gccl-invocation-id/%s", $requestHash);
         $this->updateHeader(
             'x-goog-api-client',
@@ -758,13 +750,12 @@ class Rest implements ConnectionInterface
      */
     private function fetchOptions($arguments): array
     {
-        $options = [];
         foreach ($arguments as $argument) {
             if (is_array($argument) && isset($argument['headers'])) {
-                $options = $argument;
+                return $argument;
             }
         }
-        return $options;
+        return [];
     }
 
     /**
