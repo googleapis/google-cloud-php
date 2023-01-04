@@ -22,49 +22,38 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START dataproc_v1_generated_ClusterController_CreateCluster_sync]
+// [START dataproc_v1_generated_NodeGroupController_ResizeNodeGroup_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Dataproc\V1\Cluster;
-use Google\Cloud\Dataproc\V1\ClusterControllerClient;
+use Google\Cloud\Dataproc\V1\NodeGroup;
+use Google\Cloud\Dataproc\V1\NodeGroupControllerClient;
 use Google\Rpc\Status;
 
 /**
- * Creates a cluster in a project. The returned
- * [Operation.metadata][google.longrunning.Operation.metadata] will be
- * [ClusterOperationMetadata](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#clusteroperationmetadata).
+ * Resizes a node group in a cluster. The returned
+ * [Operation.metadata][google.longrunning.Operation.metadata] is
+ * [NodeGroupOperationMetadata](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#nodegroupoperationmetadata).
  *
- * @param string $projectId          The ID of the Google Cloud Platform project that the cluster
- *                                   belongs to.
- * @param string $region             The Dataproc region in which to handle the request.
- * @param string $clusterProjectId   The Google Cloud Platform project ID that the cluster belongs to.
- * @param string $clusterClusterName The cluster name, which must be unique within a project.
- *                                   The name must start with a lowercase letter, and can contain
- *                                   up to 51 lowercase letters, numbers, and hyphens. It cannot end
- *                                   with a hyphen. The name of a deleted cluster can be reused.
+ * @param string $name The name of the node group to resize.
+ *                     Format:
+ *                     `projects/{project}/regions/{region}/clusters/{cluster}/nodeGroups/{nodeGroup}`
+ * @param int    $size The number of running instances for the node group to maintain.
+ *                     The group adds or removes instances to maintain the number of instances
+ *                     specified by this parameter.
  */
-function create_cluster_sample(
-    string $projectId,
-    string $region,
-    string $clusterProjectId,
-    string $clusterClusterName
-): void {
+function resize_node_group_sample(string $name, int $size): void
+{
     // Create a client.
-    $clusterControllerClient = new ClusterControllerClient();
-
-    // Prepare any non-scalar elements to be passed along with the request.
-    $cluster = (new Cluster())
-        ->setProjectId($clusterProjectId)
-        ->setClusterName($clusterClusterName);
+    $nodeGroupControllerClient = new NodeGroupControllerClient();
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $clusterControllerClient->createCluster($projectId, $region, $cluster);
+        $response = $nodeGroupControllerClient->resizeNodeGroup($name, $size);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
-            /** @var Cluster $result */
+            /** @var NodeGroup $result */
             $result = $response->getResult();
             printf('Operation successful with response data: %s' . PHP_EOL, $result->serializeToJsonString());
         } else {
@@ -88,11 +77,9 @@ function create_cluster_sample(
  */
 function callSample(): void
 {
-    $projectId = '[PROJECT_ID]';
-    $region = '[REGION]';
-    $clusterProjectId = '[PROJECT_ID]';
-    $clusterClusterName = '[CLUSTER_NAME]';
+    $name = '[NAME]';
+    $size = 0;
 
-    create_cluster_sample($projectId, $region, $clusterProjectId, $clusterClusterName);
+    resize_node_group_sample($name, $size);
 }
-// [END dataproc_v1_generated_ClusterController_CreateCluster_sync]
+// [END dataproc_v1_generated_NodeGroupController_ResizeNodeGroup_sync]
