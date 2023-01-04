@@ -1,0 +1,59 @@
+name: Test Suite
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  style:
+    runs-on: ubuntu-latest
+    name: PHP Style Check
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.0'
+    - name: Install Dependencies
+      uses: nick-invision/retry@v2
+      with:
+        timeout_minutes: 10
+        max_attempts: 3
+        command: composer --no-interaction --no-ansi --no-progress update
+    - name: Run PHPCS Code Style Checker
+      run: dev/sh/style
+
+  staticanalysis:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Install PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.0'
+
+    - name: Run Script
+      run: |
+        composer require --dev phpstan/phpstan:^1.7
+        SUCCEEDED=""
+        FAILED=""
+        for dir in $(find * -type d -name src -not -path '*/vendor/*' -exec dirname {} \;);
+        do
+          vendor/bin/phpstan analyse $dir/src --autoload-file=vendor/autoload.php
+          if [ $? == 0 ]; then
+              SUCCEEDED="${SUCCEEDED}${dir}\n"
+          else
+              FAILED="${FAILED}${dir}\n"
+          fi
+        done
+        echo "--------- Succeeded tests -----------"
+        printf "${SUCCEEDED}"
+        echo "-------------------------------------"
+        echo "--------- Failed tests --------------"
+        if [ -f "${FAILED}" ]; then
+            echo "-------------------------------------"
+            printf "${FAILED}"
+            echo "-------------------------------------"
+            exit 1
+        fi

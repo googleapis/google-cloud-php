@@ -1,0 +1,10 @@
+parameters:
+    level: 0
+    excludePaths:
+    - */vendor/*
+    - */samples/*
+    - */tests/*
+    - **/ReadOnly.php
+    ignoreErrors:
+#    - '#^Class Google\\[A-Za-z1-9\\]+_[A-Za-z1-9]+ not found\.$#'
+
