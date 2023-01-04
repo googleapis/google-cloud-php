@@ -60,11 +60,12 @@ class ExponentialBackoff
      * @param callable $onRetryException [optional] runs before the $retryFunction. Unlike the $retryFunction,
      *   this function isn't responsible to decide if a retry should happen or not,
      *   but it gives the users flexibility to consume exception messages and add custom logic.
-     *   Ex: One might want to change heaers on every retry, this function can be used to achieve
+     *   Ex: One might want to change headers on every retry, this function can be used to achieve
      *   such a functionality.
      * @param callable $onExecutionStart [optional] runs before execution of the
      *   execute function. Taken in $arguments as reference and thus gives users,
-     *   the flexibility to add custom logic before the execution of request starts.
+     *   the flexibility to add custom logic before the execution of request
+     *   and override request / options in the $arguments.
      *
      */
     public function __construct(
