@@ -92,7 +92,7 @@ trait RetryTrait
      * These configurations are supplied for per api call basis.
      *
      * We can set $options['retryStrategy'] to one of "always", "never" and
-     * "idempotent". Anything apart from them is considered as "idempotent" as
+     * "idempotent". Anything apart from them is considered as "idempotent" and will be
      * retried as intended.
      */
 
