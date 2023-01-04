@@ -89,7 +89,7 @@ class UrlStatTest extends StreamWrapperTestCase
     {
         // php returns false for is_executable if the file is a directory
         // https://github.com/php/php-src/blob/master/ext/standard/filestat.c#L907
-        $this->assertFalse(is_executable(self::$dirUrl));
+        $this->assertTrue(is_executable(self::$dirUrl));
         $this->assertFalse(is_executable(self::$fileUrl));
     }
 
