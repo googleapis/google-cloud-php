@@ -18,13 +18,13 @@ class KMSEnvMap extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string key_name = 1;</code>
      */
-    protected $key_name = '';
+    private $key_name = '';
     /**
      * The value of the cipherText response from the `encrypt` method.
      *
      * Generated from protobuf field <code>string cipher_text = 2;</code>
      */
-    protected $cipher_text = '';
+    private $cipher_text = '';
 
     /**
      * Constructor.
@@ -97,6 +97,4 @@ class KMSEnvMap extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(KMSEnvMap::class, \Google\Cloud\Batch\V1\Environment_KMSEnvMap::class);
 
