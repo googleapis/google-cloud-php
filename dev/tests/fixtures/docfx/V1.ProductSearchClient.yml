@@ -1863,7 +1863,7 @@ items:
         -
           id: '↳ updateMask'
           var_type: FieldMask
-          description: 'The FieldMask that specifies which fields to update. If update_mask isn''t specified, all mutable fields are to be updated. Valid mask paths include `product_labels`, `display_name`, and `description`.'
+          description: 'The <a href="https://protobuf.dev/reference/php/api-docs/FieldMask">FieldMask</a> that specifies which fields to update. If update_mask isn''t specified, all mutable fields are to be updated. Valid mask paths include `product_labels`, `display_name`, and `description`.'
         -
           id: '↳ retrySettings'
           var_type: RetrySettings|array
@@ -1936,7 +1936,7 @@ items:
         -
           id: '↳ updateMask'
           var_type: FieldMask
-          description: 'The FieldMask that specifies which fields to update. If update_mask isn''t specified, all mutable fields are to be updated. Valid mask path is `display_name`.'
+          description: 'The <a href="https://protobuf.dev/reference/php/api-docs/FieldMask">FieldMask</a> that specifies which fields to update. If update_mask isn''t specified, all mutable fields are to be updated. Valid mask path is `display_name`.'
         -
           id: '↳ retrySettings'
           var_type: RetrySettings|array

@@ -10,6 +10,8 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Node Group Affinity for clusters using sole-tenant node groups.
+ * **The Dataproc `NodeGroupAffinity` resource is not related to the
+ * Dataproc [NodeGroup][google.cloud.dataproc.v1.NodeGroup] resource.**
  *
  * Generated from protobuf message <code>google.cloud.dataproc.v1.NodeGroupAffinity</code>
  */

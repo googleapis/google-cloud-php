@@ -30,10 +30,10 @@ class CreateTunnelDestGroupRequest extends \Google\Protobuf\Internal\Message
      */
     private $tunnel_dest_group = null;
     /**
-     * Required. The ID to use for the TunnelDestGroup, which becomes the final component of
-     * the resource name.
+     * Required. The ID to use for the TunnelDestGroup, which becomes the final
+     * component of the resource name.
      * This value must be 4-63 characters, and valid characters
-     * are `[a-z][0-9]-`.
+     * are `[a-z]-`.
      *
      * Generated from protobuf field <code>string tunnel_dest_group_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -52,10 +52,10 @@ class CreateTunnelDestGroupRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Iap\V1\TunnelDestGroup $tunnel_dest_group
      *           Required. The TunnelDestGroup to create.
      *     @type string $tunnel_dest_group_id
-     *           Required. The ID to use for the TunnelDestGroup, which becomes the final component of
-     *           the resource name.
+     *           Required. The ID to use for the TunnelDestGroup, which becomes the final
+     *           component of the resource name.
      *           This value must be 4-63 characters, and valid characters
-     *           are `[a-z][0-9]-`.
+     *           are `[a-z]-`.
      * }
      */
     public function __construct($data = NULL) {
@@ -130,10 +130,10 @@ class CreateTunnelDestGroupRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The ID to use for the TunnelDestGroup, which becomes the final component of
-     * the resource name.
+     * Required. The ID to use for the TunnelDestGroup, which becomes the final
+     * component of the resource name.
      * This value must be 4-63 characters, and valid characters
-     * are `[a-z][0-9]-`.
+     * are `[a-z]-`.
      *
      * Generated from protobuf field <code>string tunnel_dest_group_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -144,10 +144,10 @@ class CreateTunnelDestGroupRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The ID to use for the TunnelDestGroup, which becomes the final component of
-     * the resource name.
+     * Required. The ID to use for the TunnelDestGroup, which becomes the final
+     * component of the resource name.
      * This value must be 4-63 characters, and valid characters
-     * are `[a-z][0-9]-`.
+     * are `[a-z]-`.
      *
      * Generated from protobuf field <code>string tunnel_dest_group_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

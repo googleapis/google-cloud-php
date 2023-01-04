@@ -48,11 +48,11 @@ items:
           description: 'The current state of the batch operation.'
         -
           id: '↳ submit_time'
-          var_type: Google\Protobuf\Timestamp
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Timestamp">Google\Protobuf\Timestamp</a>'
           description: 'The time when the batch request was submitted to the server.'
         -
           id: '↳ end_time'
-          var_type: Google\Protobuf\Timestamp
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Timestamp">Google\Protobuf\Timestamp</a>'
           description: 'The time when the batch request is finished and <xref uid="\Google\Longrunning\Operation::getDone()">google.longrunning.Operation.done</xref> is set to true.'
   -
     uid: '\Google\Cloud\Vision\V1\BatchOperationMetadata::getState()'
@@ -106,7 +106,7 @@ items:
     syntax:
       returns:
         -
-          var_type: Google\Protobuf\Timestamp|null
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Timestamp">Google\Protobuf\Timestamp</a>|null'
   -
     uid: '\Google\Cloud\Vision\V1\BatchOperationMetadata::hasSubmitTime()'
     name: hasSubmitTime
@@ -139,7 +139,7 @@ items:
       parameters:
         -
           id: var
-          var_type: Google\Protobuf\Timestamp
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Timestamp">Google\Protobuf\Timestamp</a>'
           description: ''
       returns:
         -
@@ -160,7 +160,7 @@ items:
     syntax:
       returns:
         -
-          var_type: Google\Protobuf\Timestamp|null
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Timestamp">Google\Protobuf\Timestamp</a>|null'
   -
     uid: '\Google\Cloud\Vision\V1\BatchOperationMetadata::hasEndTime()'
     name: hasEndTime
@@ -194,7 +194,7 @@ items:
       parameters:
         -
           id: var
-          var_type: Google\Protobuf\Timestamp
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Timestamp">Google\Protobuf\Timestamp</a>'
           description: ''
       returns:
         -
