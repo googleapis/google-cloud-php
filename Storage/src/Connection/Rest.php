@@ -629,23 +629,26 @@ class Rest implements ConnectionInterface
             $args
         );
 
-        $retryIdentifierHash = Uuid::uuid4()->toString();
-
-        $args['onRetryException'] = function (\Exception $e, $currentAttempt, &$arguments) use ($retryIdentifierHash) {
+        $requestHash = Uuid::uuid4()->toString();
+        $args['onRetryException'] = function (
+            \Exception $e,
+            $currentAttempt,
+            &$arguments
+        ) use ($requestHash) {
             // Since we the the last attempt number here, so incrementing it
             // to get the current attempt count
             ++$currentAttempt;
             $this->updateRetryInovationHeaders(
                 $arguments,
-                $retryIdentifierHash,
+                $requestHash,
                 $currentAttempt
             );
         };
 
-        $args['onExecutionStart'] = function (&$arguments) use ($retryIdentifierHash) {
+        $args['onExecutionStart'] = function (&$arguments) use ($requestHash) {
             $this->updateRetryInovationHeaders(
                 $arguments,
-                $retryIdentifierHash
+                $requestHash
             );
         };
 
@@ -660,22 +663,123 @@ class Rest implements ConnectionInterface
      */
     private function updateRetryInovationHeaders(
         &$arguments,
-        $retryIdentifierHash,
+        $requestHash,
         $currentAttempt = 0
     ) {
-        // Fetch existing value(if present) of ['x-goog-api-client']
-        // header value is present and create new required value
-        $request = $arguments[0];
-        $headerValue = $request->getHeaderLine('x-goog-api-client');
-        $headerValue = $headerValue ? $headerValue . " " : "";
-        $headerValue = $headerValue .
-            "gccl-invocation-id/$retryIdentifierHash " .
-            "gccl-attempt-count/$currentAttempt";
+        // Retrieve $request and $options from $arguments
+        foreach ($arguments as &$argument) {
+            if ($argument instanceof Request) {
+                $request = $argument;
+            } elseif (isset($argument['headers'])) {
+                $options = &$argument;
+            }
+        }
+        $valueToAdd = sprintf("gccl-invocation-id/%s", $requestHash);
+        $this->updateHeader(
+            'x-goog-api-client',
+            $arguments,
+            $valueToAdd
+        );
 
-        // Update the header value in options array as this will eventually
-        // get applied to the request headers
-        $options = $arguments[1];
-        $options['headers']['x-goog-api-client'] = $headerValue;
-        $arguments[1] = $options;
+        $valueToAdd = sprintf("gccl-attempt-count/%s", $currentAttempt);
+        $this->updateHeader(
+            'x-goog-api-client',
+            $arguments,
+            $valueToAdd,
+            false
+        );
+    }
+
+    /**
+     * Amends the given header key with new value for a request such that
+     * the $request headers aren't modified directly and instead $options array
+     * which are applied to the request just before sending it at core level.
+     * Thus the $request object remains the same between each retry request at
+     * RequestWrappers' level.
+     *
+     * @param string $headerLine The header line to update.
+     * @param array &$arguments The arguments array(passed by reference) used by
+     * execute method of ExponentialBackoff object.
+     * @param string $value The value to be ammended in the header line.
+     * @param bool $getHeaderFromRequest [optional] A flag which determines if
+     *  existing header value is read from $request or from $options. It's useful
+     *  to read from $options incase we update multiple values to a single
+     *  header key.
+     */
+    private function updateHeader(
+        string $headerLine,
+        array &$arguments,
+        string $value,
+        bool $getHeaderFromRequest = true
+    ): void {
+        // Fetch request and options
+        $request = $this->fetchRequest($arguments);
+        $options = $this->fetchOptions($arguments);
+
+        // Create the modified header
+        $headerValue = '';
+        if ($getHeaderFromRequest) {
+            $headerValues = $request->getHeader($headerLine);
+            $headerValues[] = $value;
+            $headerValue = implode(' ', $headerValues);
+        } else {
+            $headerValue = $options['headers'][$headerLine];
+            $headerValue .= (' ' . $value);
+        }
+
+        // Amend the $option's header value
+        $options['headers'][$headerLine] = $headerValue;
+
+        // Set the $argument's options array
+        $this->setOptions($arguments, $options);
+    }
+
+
+    /**
+     * This helper method fetches Request object from the $argument list.
+     * @param mixed $arguments
+     * @return Request|null
+     */
+    private function fetchRequest($arguments): Request|null
+    {
+        $request = null;
+        foreach ($arguments as $argument) {
+            if ($argument instanceof Request) {
+                $request = $argument;
+            }
+        }
+        return $request;
+    }
+
+    /**
+     * This helper method fetches $options array from the $argument list.
+     * @param mixed $arguments
+     * @return array
+     */
+    private function fetchOptions($arguments): array
+    {
+        $options = [];
+        foreach ($arguments as $argument) {
+            if (is_array($argument) && isset($argument['headers'])) {
+                $options = $argument;
+            }
+        }
+        return $options;
+    }
+
+    /**
+     * This helper method sets the $options array in the $argument list
+     * @param array &$arguments Argument list as reference
+     * @param array $options
+     * @return void
+     */
+    private function setOptions(array &$arguments, array $options): void
+    {
+        foreach ($arguments as &$argument) {
+            if (is_array($argument) && isset($argument['headers'])) {
+                $argument = $options;
+                break;
+            }
+        }
     }
 }
