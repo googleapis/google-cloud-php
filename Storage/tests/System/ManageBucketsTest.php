@@ -126,10 +126,8 @@ class ManageBucketsTest extends StorageTestCase
      */
     public function testCreateBucketWithLifecycleDeleteRule(array $rule, $isError = false)
     {
-        $options = [];
         if ($isError) {
             $this->expectException(BadRequestException::class);
-            $options += ['retryLimit' => 1];
         }
 
         $lifecycle = Bucket::lifecycle();
@@ -137,7 +135,7 @@ class ManageBucketsTest extends StorageTestCase
 
         $bucket = self::createBucket(self::$client, uniqid(self::TESTING_PREFIX), [
             'lifecycle' => $lifecycle
-        ] + $options);
+        ]);
 
         $this->assertEquals($lifecycle->toArray(), $bucket->info()['lifecycle']);
     }
@@ -148,20 +146,14 @@ class ManageBucketsTest extends StorageTestCase
      */
     public function testUpdateBucketWithLifecycleDeleteRule(array $rule, $isError = false)
     {
-        $options = [];
         if ($isError) {
             $this->expectException(BadRequestException::class);
-            $options += ['retryLimit' => 1];
         }
 
         $lifecycle = Bucket::lifecycle();
         $lifecycle->addDeleteRule($rule);
 
-        $bucket = self::createBucket(
-            self::$client,
-            uniqid(self::TESTING_PREFIX),
-            $options
-        );
+        $bucket = self::createBucket(self::$client, uniqid(self::TESTING_PREFIX));
         $this->assertArrayNotHasKey('lifecycle', $bucket->info());
 
         $bucket->update([
@@ -200,7 +192,7 @@ class ManageBucketsTest extends StorageTestCase
             [['age' => 1000]],
             [['daysSinceNoncurrentTime' => 25]],
             [['daysSinceNoncurrentTime' => -5], true], // error case
-            [['daysSinceNoncurrentTime' => -1.5], true], // error case
+            [['daysSinceNoncurrentTime' => -1], true], // error case
 
             [['noncurrentTimeBefore' => (new \DateTime)->format("Y-m-d")]],
             [['noncurrentTimeBefore' => new \DateTime]],
