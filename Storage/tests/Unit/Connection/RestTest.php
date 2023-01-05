@@ -547,104 +547,31 @@ class RestTest extends TestCase
 
     public function retryStrategyCases()
     {
-        return [
-            // Idempotent operation with retriable error code
-            // and never retry strategy => no retry
-            [
-                'buckets',
-                'get',
-                ['retryStrategy' => RetryTrait::$RETRY_STRATEGY_NEVER],
-                503,
-                1,
-                false
-            ],
-            [
-                'serviceaccount',
-                'get',
-                ['retryStrategy' => RetryTrait::$RETRY_STRATEGY_NEVER],
-                504,
-                1,
-                false
-            ],
-            // Idempotent operation with non retriable error code
-            // and always retry strategy => no retry
-            [
-                'buckets',
-                'get',
-                ['retryStrategy' => RetryTrait::$RETRY_STRATEGY_ALWAYS],
-                400,
-                1,
-                false
-            ],
-            // Conditionally Idempotent operation with retriable error code
-            // and never retry strategy => no retry
-            [
-                'buckets',
-                'update',
-                [
-                    'ifMetagenerationMatch' => 0,
-                    'retryStrategy' => RetryTrait::$RETRY_STRATEGY_NEVER
-                ],
-                503,
-                1,
-                false
-            ],
-            // Conditionally Non-Idempotent operation with retriable error code
-            // and always retry strategy => retry
-            [
-                'buckets',
-                'update',
-                [
-                    'ifGenerationMatch' => 0,
-                    'retryStrategy' => RetryTrait::$RETRY_STRATEGY_ALWAYS
-                ],
-                503,
-                1,
-                true
-            ],
-            // Conditionally Idempotent operation with non retriable error code,
-            // and always retry strategy => no retry
-            [
-                'buckets',
-                'update',
-                [
-                    'ifMetagenerationMatch' => 0,
-                    'retryStrategy' => RetryTrait::$RETRY_STRATEGY_ALWAYS
-                ],
-                400,
-                1,
-                false
-            ],
-            // Non-idempotent operation with retriable error code
-            // and always retry strategy => retry
-            [
-                'bucket_acl',
-                'delete',
-                ['retryStrategy' => RetryTrait::$RETRY_STRATEGY_ALWAYS],
-                503,
-                1,
-                true
-            ],
-            // Non-idempotent operation with non retriable error code
-            // and always retry strategy => no retry
-            [
-                'bucket_acl',
-                'delete',
-                ['retryStrategy' => RetryTrait::$RETRY_STRATEGY_ALWAYS],
-                400,
-                1,
-                false
-            ],
-            // Max retry reached with always retry strategy => no retry
-            [
-                'buckets',
-                'get',
-                ['retryStrategy' => RetryTrait::$RETRY_STRATEGY_ALWAYS],
-                503,
-                4,
-                false
-            ]
-        ];
+        $retryCases = $this->retryFunctionReturnValues();
+        $retryStrategyCases = [];
+        foreach ($retryCases as $retryCase) {
+            // For retry always
+            $case = $retryCase;
+            $case[2]['retryStrategy'] = RetryTrait::$RETRY_STRATEGY_ALWAYS;
+            $case[5] = true;
+            if (
+                !in_array(
+                    $retryCase[3],
+                    RetryTrait::$httpRetryCodes
+                ) || $retryCase[4] > 3
+            ) {
+                $case[5] = false;
+            }
+            $retryStrategyCases[] = $case;
+
+            // For retry never
+            $case = $retryCase;
+            $case[2]['retryStrategy'] = RetryTrait::$RETRY_STRATEGY_NEVER;
+            $case[5] = false;
+            $retryStrategyCases[] = $case;
+        }
+
+        return $retryStrategyCases;
     }
 
     private function getContentTypeAndMetadata(RequestInterface $request)

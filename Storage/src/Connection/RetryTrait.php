@@ -26,7 +26,7 @@ trait RetryTrait
      * The HTTP codes that will be retried by our custom retry function.
      * @var array
      */
-    private $httpRetryCodes = [
+    public static $httpRetryCodes = [
         0, // connetion-refused OR connection-reset gives status code of 0
         408,
         429,
@@ -102,21 +102,21 @@ trait RetryTrait
      * retriable one.
      * @var string
      */
-    public static $RETRY_STRATEGY_ALWAYS = "always";
+    public static $RETRY_STRATEGY_ALWAYS = 'always';
 
     /**
      * The strategy value which enforces Idempotent & Conditionally
      * Idempotent operations to get never get retried.
      * @var string
      */
-    public static $RETRY_STRATEGY_NEVER = "never";
+    public static $RETRY_STRATEGY_NEVER = 'never';
 
     /**
      * The strategy value only reties idempotent and conditionally idempotent
      * operations is error code is a retriable one.
      * @var string
      */
-    public static $RETRY_STRATEGY_IDEMPOTENT = "idempotent";
+    public static $RETRY_STRATEGY_IDEMPOTENT = 'idempotent';
 
     /**
      * Return a retry decider function.
@@ -176,7 +176,7 @@ trait RetryTrait
      * @param string $methodName method name, eg: buckets.get.
      * @param array $preConditions preconditions provided,
      *  eg: ['ifGenerationMatch' => 0].
-     * @return boolean
+     * @return bool
      */
     private function isPreConditionSupplied($methodName, $preConditions)
     {
@@ -197,11 +197,11 @@ trait RetryTrait
      * @param \Exception $exception The exception object received
      * while sending the request.
      * @param int $currentAttempt Current retry attempt.
-     * @param boolean $isIdempotent
-     * @param boolean $preconditionNeeded
-     * @param boolean $preconditionSupplied
+     * @param bool $isIdempotent
+     * @param bool $preconditionNeeded
+     * @param bool $preconditionSupplied
      * @param int $maxRetries
-     * @return boolean
+     * @return bool
      */
     private function retryDeciderFunction(
         \Exception $exception,
@@ -222,7 +222,7 @@ trait RetryTrait
         // with one of the retriable status code and
         // the operation is either idempotent or conditionally
         // idempotent with preconditions supplied.
-        if (in_array($statusCode, $this->httpRetryCodes)) {
+        if (in_array($statusCode, self::$httpRetryCodes)) {
             switch ($retryStrategy) {
                 case self::$RETRY_STRATEGY_ALWAYS:
                     return true;
