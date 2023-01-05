@@ -38,6 +38,8 @@ class RequestWrapper
     use RequestWrapperTrait;
     use RetryDeciderTrait;
 
+    const HEADER_API_CLIENT_IDENTIFICATION = 'x-goog-api-client';
+
     /**
      * @var string|null The current version of the component from which the request
      * originated.

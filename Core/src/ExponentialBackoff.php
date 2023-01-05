@@ -114,7 +114,10 @@ class ExponentialBackoff
                 if ($this->onRetryException) {
                     // The $arguments are passed by reference so that the user has the ability to modify
                     // some elements of the request on every retry(for example headers).
-                    call_user_func_array($this->onRetryException, [$exception, $retryAttempt, &$arguments]);
+                    call_user_func_array(
+                        $this->onRetryException,
+                        [$exception, $retryAttempt, &$arguments]
+                    );
                 }
                 if ($this->retryFunction) {
                     if (!call_user_func($this->retryFunction, $exception, $retryAttempt)) {

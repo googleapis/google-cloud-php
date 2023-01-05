@@ -637,16 +637,15 @@ class Rest implements ConnectionInterface
         ) use ($requestHash) {
             // Since we the the last attempt number here, so incrementing it
             // to get the current attempt count
-            ++$currentAttempt;
-            $this->updateRetryInovationHeaders(
+            $this->updateRetryHeaders(
                 $arguments,
                 $requestHash,
-                $currentAttempt
+                $currentAttempt + 2
             );
         };
 
         $args['onExecutionStart'] = function (&$arguments) use ($requestHash) {
-            $this->updateRetryInovationHeaders(
+            $this->updateRetryHeaders(
                 $arguments,
                 $requestHash
             );
@@ -656,15 +655,15 @@ class Rest implements ConnectionInterface
     }
 
     /**
-     * Updates the x-goog-api-client header value with UUID
+     * Updates the api client identification header value with UUID
      * and retry count
      *
      * @return void
      */
-    private function updateRetryInovationHeaders(
+    private function updateRetryHeaders(
         &$arguments,
         $requestHash,
-        $currentAttempt = 0
+        $currentAttempt = 1
     ) {
         $valueToAdd = sprintf("gccl-invocation-id/%s", $requestHash);
         $this->updateHeader(
@@ -732,7 +731,7 @@ class Rest implements ConnectionInterface
      * @param mixed $arguments
      * @return Request|null
      */
-    private function fetchRequest($arguments): Request|null
+    private function fetchRequest($arguments)
     {
         $request = null;
         foreach ($arguments as $argument) {
