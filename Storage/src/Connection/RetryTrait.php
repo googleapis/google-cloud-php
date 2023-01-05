@@ -87,12 +87,14 @@ trait RetryTrait
     ];
 
     /**
-     * Retry strategies which enforces certain behaviour like retry always,
-     * retry never and retry default operations if error code is retriable.
+     * Retry strategies which enforce certain behaviour like:
+     *     - Always retrying a call when an exception occurs(within the limits of 'max retries').
+     *     - Never retrying a call when an exception occurs.
+     *     - Retrying only when the operation is considered idempotent(default).
      * These configurations are supplied for per api call basis.
      *
      * We can set $options['retryStrategy'] to one of "always", "never" and
-     * "idempotent". Anything apart from them is considered as "idempotent" as
+     * "idempotent". Anything apart from them is considered as "idempotent" and will be
      * retried as intended.
      */
 
@@ -105,8 +107,7 @@ trait RetryTrait
     public static $RETRY_STRATEGY_ALWAYS = 'always';
 
     /**
-     * The strategy value which enforces Idempotent & Conditionally
-     * Idempotent operations to get never get retried.
+     * Never retry an API operation.
      * @var string
      */
     public static $RETRY_STRATEGY_NEVER = 'never';
