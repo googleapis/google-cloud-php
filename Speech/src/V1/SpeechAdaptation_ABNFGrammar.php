@@ -12,5 +12,5 @@ if (false) {
     class SpeechAdaptation_ABNFGrammar {}
 }
 class_exists(SpeechAdaptation\ABNFGrammar::class);
-@trigger_error('Google\Cloud\Speech\V1\SpeechAdaptation_ABNFGrammar is deprecated and will be removed in the next major release. Use Google\Cloud\Speech\V1\SpeechAdaptation\ABNFGrammar instead', E_USER_DEPRECATED);
+@trigger_error('Google\Cloud\Speech\V1\SpeechAdaptation_ABNFGrammar is deprecated and will be removed in a future release. Use Google\Cloud\Speech\V1\SpeechAdaptation\ABNFGrammar instead', E_USER_DEPRECATED);
 
