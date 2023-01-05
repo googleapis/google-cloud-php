@@ -99,12 +99,7 @@ class SystemTestCase extends TestCase
     public static function createBucket(StorageClient $client, $bucketName, array $options = [])
     {
         $backoff = new ExponentialBackoff(8, function ($ex) {
-            if ($ex instanceof BadRequestException) {
-                // no retry for malformed requests
-                return $ex->getCode() !== 400;
-            }
-
-            return true;
+            return !($ex instanceof BadRequestException);
         });
         $bucket = $backoff->execute(function () use ($client, $bucketName, $options) {
             return $client->createBucket($bucketName, $options);
