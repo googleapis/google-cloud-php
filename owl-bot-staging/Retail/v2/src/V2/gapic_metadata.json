@@ -1,0 +1,296 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.retail.v2",
+    "libraryPackage": "Google\\Cloud\\Retail\\V2",
+    "services": {
+        "CatalogService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "CatalogServiceGapicClient",
+                    "rpcs": {
+                        "AddCatalogAttribute": {
+                            "methods": [
+                                "addCatalogAttribute"
+                            ]
+                        },
+                        "GetAttributesConfig": {
+                            "methods": [
+                                "getAttributesConfig"
+                            ]
+                        },
+                        "GetCompletionConfig": {
+                            "methods": [
+                                "getCompletionConfig"
+                            ]
+                        },
+                        "GetDefaultBranch": {
+                            "methods": [
+                                "getDefaultBranch"
+                            ]
+                        },
+                        "ListCatalogs": {
+                            "methods": [
+                                "listCatalogs"
+                            ]
+                        },
+                        "RemoveCatalogAttribute": {
+                            "methods": [
+                                "removeCatalogAttribute"
+                            ]
+                        },
+                        "ReplaceCatalogAttribute": {
+                            "methods": [
+                                "replaceCatalogAttribute"
+                            ]
+                        },
+                        "SetDefaultBranch": {
+                            "methods": [
+                                "setDefaultBranch"
+                            ]
+                        },
+                        "UpdateAttributesConfig": {
+                            "methods": [
+                                "updateAttributesConfig"
+                            ]
+                        },
+                        "UpdateCatalog": {
+                            "methods": [
+                                "updateCatalog"
+                            ]
+                        },
+                        "UpdateCompletionConfig": {
+                            "methods": [
+                                "updateCompletionConfig"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "CompletionService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "CompletionServiceGapicClient",
+                    "rpcs": {
+                        "CompleteQuery": {
+                            "methods": [
+                                "completeQuery"
+                            ]
+                        },
+                        "ImportCompletionData": {
+                            "methods": [
+                                "importCompletionData"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "ControlService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ControlServiceGapicClient",
+                    "rpcs": {
+                        "CreateControl": {
+                            "methods": [
+                                "createControl"
+                            ]
+                        },
+                        "DeleteControl": {
+                            "methods": [
+                                "deleteControl"
+                            ]
+                        },
+                        "GetControl": {
+                            "methods": [
+                                "getControl"
+                            ]
+                        },
+                        "ListControls": {
+                            "methods": [
+                                "listControls"
+                            ]
+                        },
+                        "UpdateControl": {
+                            "methods": [
+                                "updateControl"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "PredictionService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "PredictionServiceGapicClient",
+                    "rpcs": {
+                        "Predict": {
+                            "methods": [
+                                "predict"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "ProductService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ProductServiceGapicClient",
+                    "rpcs": {
+                        "AddFulfillmentPlaces": {
+                            "methods": [
+                                "addFulfillmentPlaces"
+                            ]
+                        },
+                        "AddLocalInventories": {
+                            "methods": [
+                                "addLocalInventories"
+                            ]
+                        },
+                        "CreateProduct": {
+                            "methods": [
+                                "createProduct"
+                            ]
+                        },
+                        "DeleteProduct": {
+                            "methods": [
+                                "deleteProduct"
+                            ]
+                        },
+                        "GetProduct": {
+                            "methods": [
+                                "getProduct"
+                            ]
+                        },
+                        "ImportProducts": {
+                            "methods": [
+                                "importProducts"
+                            ]
+                        },
+                        "ListProducts": {
+                            "methods": [
+                                "listProducts"
+                            ]
+                        },
+                        "RemoveFulfillmentPlaces": {
+                            "methods": [
+                                "removeFulfillmentPlaces"
+                            ]
+                        },
+                        "RemoveLocalInventories": {
+                            "methods": [
+                                "removeLocalInventories"
+                            ]
+                        },
+                        "SetInventory": {
+                            "methods": [
+                                "setInventory"
+                            ]
+                        },
+                        "UpdateProduct": {
+                            "methods": [
+                                "updateProduct"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "SearchService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "SearchServiceGapicClient",
+                    "rpcs": {
+                        "Search": {
+                            "methods": [
+                                "search"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "ServingConfigService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ServingConfigServiceGapicClient",
+                    "rpcs": {
+                        "AddControl": {
+                            "methods": [
+                                "addControl"
+                            ]
+                        },
+                        "CreateServingConfig": {
+                            "methods": [
+                                "createServingConfig"
+                            ]
+                        },
+                        "DeleteServingConfig": {
+                            "methods": [
+                                "deleteServingConfig"
+                            ]
+                        },
+                        "GetServingConfig": {
+                            "methods": [
+                                "getServingConfig"
+                            ]
+                        },
+                        "ListServingConfigs": {
+                            "methods": [
+                                "listServingConfigs"
+                            ]
+                        },
+                        "RemoveControl": {
+                            "methods": [
+                                "removeControl"
+                            ]
+                        },
+                        "UpdateServingConfig": {
+                            "methods": [
+                                "updateServingConfig"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "UserEventService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "UserEventServiceGapicClient",
+                    "rpcs": {
+                        "CollectUserEvent": {
+                            "methods": [
+                                "collectUserEvent"
+                            ]
+                        },
+                        "ImportUserEvents": {
+                            "methods": [
+                                "importUserEvents"
+                            ]
+                        },
+                        "PurgeUserEvents": {
+                            "methods": [
+                                "purgeUserEvents"
+                            ]
+                        },
+                        "RejoinUserEvents": {
+                            "methods": [
+                                "rejoinUserEvents"
+                            ]
+                        },
+                        "WriteUserEvent": {
+                            "methods": [
+                                "writeUserEvent"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
