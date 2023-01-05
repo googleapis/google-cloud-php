@@ -107,8 +107,7 @@ trait RetryTrait
     public static $RETRY_STRATEGY_ALWAYS = "always";
 
     /**
-     * The strategy value which enforces Idempotent & Conditionally
-     * Idempotent operations to get never get retried.
+     * Never retry an API operation.
      * @var string
      */
     public static $RETRY_STRATEGY_NEVER = "never";
