@@ -68,7 +68,7 @@ trait PollingTrait
             if ($pollCallable()) {
                 return true;
             }
-            $currentPollDelayMillis = min([
+            $currentPollDelayMillis = (int) min([
                 $currentPollDelayMillis * $pollDelayMultiplier,
                 $maxPollDelayMillis
             ]);
