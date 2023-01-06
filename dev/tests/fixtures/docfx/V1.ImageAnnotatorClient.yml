@@ -85,21 +85,18 @@ items:
       
       Example:
       ```php
-      
       $imageResource = fopen('path/to/image.jpg', 'r');
       $image = $imageAnnotatorClient->createImageObject($imageResource);
       $response = $imageAnnotatorClient->faceDetection($image);
       ```
       
       ```
-      
       $imageData = file_get_contents('path/to/image.jpg');
       $image = $imageAnnotatorClient->createImageObject($imageData);
       $response = $imageAnnotatorClient->faceDetection($image);
       ```
       
       ```
-      
       $imageUri = "gs://my-bucket/image.jpg";
       $image = $imageAnnotatorClient->createImageObject($imageUri);
       $response = $imageAnnotatorClient->faceDetection($image);
