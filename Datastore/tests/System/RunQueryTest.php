@@ -337,6 +337,7 @@ class RunQueryTest extends DatastoreMultipleDbTestCase
      */
     public function testRunQueryWithReadTime(DatastoreClient $client)
     {
+        $this->skipEmulatorTests();
         $kind = 'NewPerson';
         $lastName = 'Geller';
         $newLastName = 'Bing';

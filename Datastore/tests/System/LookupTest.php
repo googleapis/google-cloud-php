@@ -31,6 +31,7 @@ class LookupTest extends DatastoreMultipleDbTestCase
      */
     public function testLookupWithReadTime(DatastoreClient $client)
     {
+        $this->skipEmulatorTests();
         $kind = 'NewPerson';
         $lastName = 'Geller';
         $newLastName = 'Bing';
@@ -67,6 +68,7 @@ class LookupTest extends DatastoreMultipleDbTestCase
      */
     public function testLookupBatchWithReadTime(DatastoreClient $client)
     {
+        $this->skipEmulatorTests();
         $kind = 'NewPerson';
         $lastName = 'Geller';
         $newLastName = 'Bing';

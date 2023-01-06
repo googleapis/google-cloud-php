@@ -84,6 +84,7 @@ class RunTransactionTest extends DatastoreMultipleDbTestCase
      */
     public function testTransactionWithReadTime(DatastoreClient $client)
     {
+        $this->skipEmulatorTests();
         $kind = 'NewPerson';
         $lastName = 'Geller';
         $newLastName = 'Bing';
