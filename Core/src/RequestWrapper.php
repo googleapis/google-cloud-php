@@ -38,6 +38,8 @@ class RequestWrapper
     use RequestWrapperTrait;
     use RetryDeciderTrait;
 
+    const HEADER_API_CLIENT_IDENTIFICATION = 'x-goog-api-client';
+
     /**
      * @var string|null The current version of the component from which the request
      * originated.
@@ -188,7 +190,8 @@ class RequestWrapper
         $backoff = new ExponentialBackoff(
             $retryOptions['retries'],
             $retryOptions['retryFunction'],
-            $retryOptions['onRetryException']
+            $retryOptions['onRetryException'],
+            $retryOptions['onExecutionStart']
         );
 
         if ($retryOptions['delayFunction']) {
@@ -430,6 +433,9 @@ class RequestWrapper
                 : $this->retryFunction,
             'onRetryException' => isset($options['onRetryException'])
                 ? $options['onRetryException']
+                : null,
+            'onExecutionStart' => isset($options['onExecutionStart'])
+                ? $options['onExecutionStart']
                 : null,
             'delayFunction' => isset($options['restDelayFunction'])
                 ? $options['restDelayFunction']

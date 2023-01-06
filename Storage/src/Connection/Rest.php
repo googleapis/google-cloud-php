@@ -35,6 +35,7 @@ use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Utils;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
+use Ramsey\Uuid\Uuid;
 
 /**
  * Implementation of the
@@ -628,6 +629,147 @@ class Rest implements ConnectionInterface
             $args
         );
 
+        $requestHash = Uuid::uuid4()->toString();
+        $args['onRetryException'] = function (
+            \Exception $e,
+            $currentAttempt,
+            &$arguments
+        ) use ($requestHash) {
+            // Since we the the last attempt number here, so incrementing it
+            // to get the current attempt count
+            $this->updateRetryHeaders(
+                $arguments,
+                $requestHash,
+                $currentAttempt + 2
+            );
+        };
+
+        $args['onExecutionStart'] = function (&$arguments) use ($requestHash) {
+            $this->updateRetryHeaders(
+                $arguments,
+                $requestHash
+            );
+        };
+
         return $this->send($resource, $method, $args);
+    }
+
+    /**
+     * Updates the api client identification header value with UUID
+     * and retry count
+     *
+     * @return void
+     */
+    private function updateRetryHeaders(
+        &$arguments,
+        $requestHash,
+        $currentAttempt = 1
+    ) {
+        $valueToAdd = sprintf("gccl-invocation-id/%s", $requestHash);
+        $this->updateHeader(
+            'x-goog-api-client',
+            $arguments,
+            $valueToAdd
+        );
+
+        $valueToAdd = sprintf("gccl-attempt-count/%s", $currentAttempt);
+        $this->updateHeader(
+            'x-goog-api-client',
+            $arguments,
+            $valueToAdd,
+            false
+        );
+    }
+
+    /**
+     * Amends the given header key with new value for a request such that
+     * the $request headers aren't modified directly and instead $options array
+     * which are applied to the request just before sending it at core level.
+     * Thus the $request object remains the same between each retry request at
+     * RequestWrappers' level.
+     *
+     * @param string $headerLine The header line to update.
+     * @param array &$arguments The arguments array(passed by reference) used by
+     * execute method of ExponentialBackoff object.
+     * @param string $value The value to be ammended in the header line.
+     * @param bool $getHeaderFromRequest [optional] A flag which determines if
+     *  existing header value is read from $request or from $options. It's useful
+     *  to read from $options incase we update multiple values to a single
+     *  header key.
+     */
+    private function updateHeader(
+        string $headerLine,
+        array &$arguments,
+        string $value,
+        bool $getHeaderFromRequest = true
+    ): void {
+        // Fetch request and options
+        $request = $this->fetchRequest($arguments);
+        $options = $this->fetchOptions($arguments);
+
+        // Create the modified header
+        $headerValue = '';
+        if ($getHeaderFromRequest) {
+            $headerValues = $request->getHeader($headerLine);
+            $headerValues[] = $value;
+            $headerValue = implode(' ', $headerValues);
+        } else {
+            $headerValue = $options['headers'][$headerLine];
+            $headerValue .= (' ' . $value);
+        }
+
+        // Amend the $option's header value
+        $options['headers'][$headerLine] = $headerValue;
+
+        // Set the $argument's options array
+        $this->setOptions($arguments, $options);
+    }
+
+
+    /**
+     * This helper method fetches Request object from the $argument list.
+     * @param mixed $arguments
+     * @return Request|null
+     */
+    private function fetchRequest($arguments)
+    {
+        $request = null;
+        foreach ($arguments as $argument) {
+            if ($argument instanceof Request) {
+                $request = $argument;
+            }
+        }
+        return $request;
+    }
+
+    /**
+     * This helper method fetches $options array from the $argument list.
+     * @param mixed $arguments
+     * @return array
+     */
+    private function fetchOptions($arguments): array
+    {
+        foreach ($arguments as $argument) {
+            if (is_array($argument) && isset($argument['headers'])) {
+                return $argument;
+            }
+        }
+        return [];
+    }
+
+    /**
+     * This helper method sets the $options array in the $argument list
+     * @param array &$arguments Argument list as reference
+     * @param array $options
+     * @return void
+     */
+    private function setOptions(array &$arguments, array $options): void
+    {
+        foreach ($arguments as &$argument) {
+            if (is_array($argument) && isset($argument['headers'])) {
+                $argument = $options;
+                break;
+            }
+        }
     }
 }
