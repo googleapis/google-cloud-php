@@ -149,9 +149,9 @@ items:
           var_type: array
           description: 'Configuration Options.'
         -
-          id: '↳ '
+          id: '↳ imageContext'
           var_type: ImageContext
-          description: '$imageContext Additional context that may accompany the image.'
+          description: 'Additional context that may accompany the image.'
         -
           id: '↳ retrySettings'
           var_type: RetrySettings|array
@@ -186,9 +186,9 @@ items:
           var_type: array
           description: 'Configuration Options.'
         -
-          id: '↳ '
+          id: '↳ imageContext'
           var_type: ImageContext
-          description: '$imageContext Additional context that may accompany the image.'
+          description: 'Additional context that may accompany the image.'
         -
           id: '↳ retrySettings'
           var_type: RetrySettings|array
@@ -223,9 +223,9 @@ items:
           var_type: array
           description: 'Configuration Options.'
         -
-          id: '↳ '
+          id: '↳ imageContext'
           var_type: ImageContext
-          description: '$imageContext Additional context that may accompany the image.'
+          description: 'Additional context that may accompany the image.'
         -
           id: '↳ retrySettings'
           var_type: RetrySettings|array
@@ -260,9 +260,9 @@ items:
           var_type: array
           description: 'Configuration Options.'
         -
-          id: '↳ '
+          id: '↳ imageContext'
           var_type: ImageContext
-          description: '$imageContext Additional context that may accompany the image.'
+          description: 'Additional context that may accompany the image.'
         -
           id: '↳ retrySettings'
           var_type: RetrySettings|array
@@ -297,9 +297,9 @@ items:
           var_type: array
           description: 'Configuration Options.'
         -
-          id: '↳ '
+          id: '↳ imageContext'
           var_type: ImageContext
-          description: '$imageContext Additional context that may accompany the image.'
+          description: 'Additional context that may accompany the image.'
         -
           id: '↳ retrySettings'
           var_type: RetrySettings|array
@@ -334,9 +334,9 @@ items:
           var_type: array
           description: 'Configuration Options.'
         -
-          id: '↳ '
+          id: '↳ imageContext'
           var_type: ImageContext
-          description: '$imageContext Additional context that may accompany the image.'
+          description: 'Additional context that may accompany the image.'
         -
           id: '↳ retrySettings'
           var_type: RetrySettings|array
@@ -371,9 +371,9 @@ items:
           var_type: array
           description: 'Configuration Options.'
         -
-          id: '↳ '
+          id: '↳ imageContext'
           var_type: ImageContext
-          description: '$imageContext Additional context that may accompany the image.'
+          description: 'Additional context that may accompany the image.'
         -
           id: '↳ retrySettings'
           var_type: RetrySettings|array
@@ -408,9 +408,9 @@ items:
           var_type: array
           description: 'Configuration Options.'
         -
-          id: '↳ '
+          id: '↳ imageContext'
           var_type: ImageContext
-          description: '$imageContext Additional context that may accompany the image.'
+          description: 'Additional context that may accompany the image.'
         -
           id: '↳ retrySettings'
           var_type: RetrySettings|array
@@ -445,9 +445,9 @@ items:
           var_type: array
           description: 'Configuration Options.'
         -
-          id: '↳ '
+          id: '↳ imageContext'
           var_type: ImageContext
-          description: '$imageContext Additional context that may accompany the image.'
+          description: 'Additional context that may accompany the image.'
         -
           id: '↳ retrySettings'
           var_type: RetrySettings|array
@@ -482,9 +482,9 @@ items:
           var_type: array
           description: 'Configuration Options.'
         -
-          id: '↳ '
+          id: '↳ imageContext'
           var_type: ImageContext
-          description: '$imageContext Additional context that may accompany the image.'
+          description: 'Additional context that may accompany the image.'
         -
           id: '↳ retrySettings'
           var_type: RetrySettings|array
@@ -519,9 +519,9 @@ items:
           var_type: array
           description: 'Configuration Options.'
         -
-          id: '↳ '
+          id: '↳ imageContext'
           var_type: ImageContext
-          description: '$imageContext Additional context that may accompany the image.'
+          description: 'Additional context that may accompany the image.'
         -
           id: '↳ retrySettings'
           var_type: RetrySettings|array
@@ -556,9 +556,9 @@ items:
           var_type: array
           description: 'Configuration Options.'
         -
-          id: '↳ '
+          id: '↳ imageContext'
           var_type: ImageContext
-          description: '$imageContext Additional context that may accompany the image.'
+          description: 'Additional context that may accompany the image.'
         -
           id: '↳ retrySettings'
           var_type: RetrySettings|array
@@ -606,9 +606,9 @@ items:
           var_type: array
           description: 'Configuration Options.'
         -
-          id: '↳ '
+          id: '↳ imageContext'
           var_type: ImageContext
-          description: '$imageContext Additional context that may accompany the image.'
+          description: 'Additional context that may accompany the image.'
         -
           id: '↳ retrySettings'
           var_type: RetrySettings|array
