@@ -42,8 +42,11 @@ function buildDocs() {
   DOCTUM_CONFIG=${ROOT_DIR}/dev/src/Docs/doctum-protobuf-config.php
   PROTOBUF_DOCS_VERSION=${GIT_TAG_NAME} php ${DOCTUM_EXECUTABLE} update ${DOCTUM_CONFIG} -v
 }
-
+# ensure we have the correct version of protobuf
+composer update google/protobuf:$GIT_TAG_NAME
+# download doctum.phar
 downloadDoctum
+# build the docs
 buildDocs ${GIT_TAG_NAME}
 
 # Construct the base index file to redirect to the Protobuf namespace
