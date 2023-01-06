@@ -667,14 +667,14 @@ class Rest implements ConnectionInterface
     ) {
         $valueToAdd = sprintf("gccl-invocation-id/%s", $requestHash);
         $this->updateHeader(
-            'x-goog-api-client',
+            RequestWrapper::HEADER_API_CLIENT_IDENTIFICATION,
             $arguments,
             $valueToAdd
         );
 
         $valueToAdd = sprintf("gccl-attempt-count/%s", $currentAttempt);
         $this->updateHeader(
-            'x-goog-api-client',
+            RequestWrapper::HEADER_API_CLIENT_IDENTIFICATION,
             $arguments,
             $valueToAdd,
             false
@@ -707,6 +707,11 @@ class Rest implements ConnectionInterface
         $request = $this->fetchRequest($arguments);
         $options = $this->fetchOptions($arguments);
 
+        // add empty headers to handle requests where headers aren't passed.
+        $options += [
+            'headers' => []
+        ];
+
         // Create the modified header
         $headerValue = '';
         if ($getHeaderFromRequest) {
@@ -714,7 +719,10 @@ class Rest implements ConnectionInterface
             $headerValues[] = $value;
             $headerValue = implode(' ', $headerValues);
         } else {
-            $headerValue = $options['headers'][$headerLine];
+            $headerValue = (isset($options['headers']) && 
+                isset($options['headers'][$headerLine]))
+                ? $options['headers'][$headerLine]
+                : '';
             $headerValue .= (' ' . $value);
         }
 
