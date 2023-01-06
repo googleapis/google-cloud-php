@@ -44,8 +44,10 @@ use Google\ApiCore\Tests\Unit\TestTrait;
 use Google\ApiCore\Transport\RestTransport;
 use Google\ApiCore\ValidationException;
 use Google\Auth\HttpHandler\HttpHandlerFactory;
+use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
 use Google\Rpc\ErrorInfo;
+use Google\Type\DateTime;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Promise\Create;
 use GuzzleHttp\Psr7\Request;
@@ -141,6 +143,97 @@ class RestTransportTest extends TestCase
 
         $this->getTransport($httpHandler)
             ->startUnaryCall($this->call, [])
+            ->wait();
+    }
+
+    /**
+     * @runInSeparateProcess
+     */
+    public function testStartUnaryCallWithValidProtoNotLoadedInDescPool()
+    {
+        $endpoint = 'www.example.com';
+        $expectedRequest = new Request(
+            'POST',
+            $endpoint,
+            [],
+            ''
+        );
+        $body = [
+            'name' => 'projects/my-project/locations/us-central1/operations/my-operation',
+            'metadata' => [
+                // This type is arbitrarily chosen and should not exist within the descriptor pool
+                // upon instantation of this test.
+                '@type' => 'type.googleapis.com/google.type.DateTime'
+            ]
+        ];
+        $httpHandler = function (RequestInterface $request) use ($body, $expectedRequest) {
+            $this->assertEquals($expectedRequest, $request);
+            return Create::promiseFor(
+                new Response(
+                    200,
+                    [],
+                    json_encode($body)
+                )
+            );
+        };
+        $call = new Call(
+            'Testing123',
+            Operation::class,
+            new MockRequest()
+        );
+
+        $response = $this->getTransport($httpHandler, $endpoint)
+            ->startUnaryCall($call, [
+                'metadataReturnType' => DateTime::class
+            ])
+            ->wait();
+
+        $this->assertInstanceOf(Operation::class, $response);
+        $this->assertEquals(
+            $body['metadata']['@type'],
+            $response->getMetadata()->getTypeUrl()
+        );
+    }
+
+    /**
+     * @runInSeparateProcess
+     */
+    public function testStartUnaryCallWithValidProtoNotLoadedInDescPoolThrowsExWithoutMetadataType()
+    {
+        $endpoint = 'www.example.com';
+        $expectedRequest = new Request(
+            'POST',
+            $endpoint,
+            [],
+            ''
+        );
+        $body = [
+            'name' => 'projects/my-project/locations/us-central1/operations/my-operation',
+            'metadata' => [
+                // This type is arbitrarily chosen and should not exist within the descriptor pool
+                // upon instantation of this test.
+                '@type' => 'type.googleapis.com/google.type.DateTime'
+            ]
+        ];
+        $httpHandler = function (RequestInterface $request) use ($body, $expectedRequest) {
+            $this->assertEquals($expectedRequest, $request);
+            return Create::promiseFor(
+                new Response(
+                    200,
+                    [],
+                    json_encode($body)
+                )
+            );
+        };
+        $call = new Call(
+            'Testing123',
+            Operation::class,
+            new MockRequest()
+        );
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessageMatches('/^Error occurred during parsing:/');
+        $this->getTransport($httpHandler, $endpoint)
+            ->startUnaryCall($call, [])
             ->wait();
     }
 
