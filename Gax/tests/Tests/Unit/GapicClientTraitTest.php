@@ -1208,7 +1208,8 @@ class GapicClientTraitTest extends TestCase
                     'headers' => AgentHeader::buildAgentHeader([]),
                     'credentialsWrapper' => CredentialsWrapper::build([
                         'keyFile' => __DIR__ . '/testdata/json-key-file.json'
-                    ])
+                    ]),
+                    'metadataReturnType' => 'metadataType'
                 ])
             )
             ->willReturn(new FulfilledPromise(new Operation()));
@@ -1471,6 +1472,7 @@ class GapicClientTraitTest extends TestCase
                     'audience' => 'https://service-address/',
                     'headers' => [],
                     'credentialsWrapper' => $credentialsWrapper,
+                    'metadataReturnType' => 'metadataType'
                 ]
             )
             ->shouldBeCalledOnce()

@@ -765,6 +765,7 @@ trait GapicClientTrait
             'transportOptions',
             'metadataCallback',
             'audience',
+            'metadataReturnType'
         ]);
 
         return $callStack;
@@ -827,8 +828,8 @@ trait GapicClientTrait
         $callStack = $this->createCallStack(
             $this->configureCallConstructionOptions($methodName, $optionalArgs)
         );
-
         $descriptor = $this->descriptors[$methodName]['longRunning'];
+        $metadataReturnType = null;
 
         // Call the methods supplied in "additionalArgumentMethods" on the request Message object
         // to build the "additionalOperationArguments" option for the operation response.
@@ -839,6 +840,10 @@ trait GapicClientTrait
             }
             $descriptor['additionalOperationArguments'] = $additionalArgs;
             unset($descriptor['additionalArgumentMethods']);
+        }
+
+        if (isset($descriptor['metadataReturnType'])) {
+            $metadataReturnType = $descriptor['metadataReturnType'];
         }
 
         $callStack = new OperationsMiddleware($callStack, $client, $descriptor);
@@ -853,6 +858,7 @@ trait GapicClientTrait
 
         $this->modifyUnaryCallable($callStack);
         return $callStack($call, $optionalArgs + array_filter([
+            'metadataReturnType' => $metadataReturnType,
             'audience' => self::getDefaultAudience()
         ]));
     }
