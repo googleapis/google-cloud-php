@@ -67,7 +67,7 @@ class NodeTest extends TestCase
         $this->assertEquals('↳ exampleString', $params[7]->getName());
         $this->assertEquals('string', $params[7]->getType());
         $this->assertEquals(
-            'Ensure special chars are escaped, such as alice@example.com.',
+            'Ensure special chars are decoded, such as alice@example.com.',
             $params[7]->getDescription()
         );
     }
