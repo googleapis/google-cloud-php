@@ -57,10 +57,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\ProductSearchResults\ObjectAnnotation::getMid()'
     name: getMid
     id: getMid
-    summary: |
-      Object ID that should align with EntityAnnotation mid.
-      
-      Generated from protobuf field <code>string mid = 1;</code>
+    summary: 'Object ID that should align with EntityAnnotation mid.'
     parent: \Google\Cloud\Vision\V1\ProductSearchResults\ObjectAnnotation
     type: method
     langs:
@@ -73,10 +70,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\ProductSearchResults\ObjectAnnotation::setMid()'
     name: setMid
     id: setMid
-    summary: |
-      Object ID that should align with EntityAnnotation mid.
-      
-      Generated from protobuf field <code>string mid = 1;</code>
+    summary: 'Object ID that should align with EntityAnnotation mid.'
     parent: \Google\Cloud\Vision\V1\ProductSearchResults\ObjectAnnotation
     type: method
     langs:
@@ -98,8 +92,6 @@ items:
       The BCP-47 language code, such as "en-US" or "sr-Latn". For more
       information, see
       http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
-      
-      Generated from protobuf field <code>string language_code = 2;</code>
     parent: \Google\Cloud\Vision\V1\ProductSearchResults\ObjectAnnotation
     type: method
     langs:
@@ -116,8 +108,6 @@ items:
       The BCP-47 language code, such as "en-US" or "sr-Latn". For more
       information, see
       http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
-      
-      Generated from protobuf field <code>string language_code = 2;</code>
     parent: \Google\Cloud\Vision\V1\ProductSearchResults\ObjectAnnotation
     type: method
     langs:
@@ -135,10 +125,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\ProductSearchResults\ObjectAnnotation::getName()'
     name: getName
     id: getName
-    summary: |
-      Object name, expressed in its `language_code` language.
-      
-      Generated from protobuf field <code>string name = 3;</code>
+    summary: 'Object name, expressed in its `language_code` language.'
     parent: \Google\Cloud\Vision\V1\ProductSearchResults\ObjectAnnotation
     type: method
     langs:
@@ -151,10 +138,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\ProductSearchResults\ObjectAnnotation::setName()'
     name: setName
     id: setName
-    summary: |
-      Object name, expressed in its `language_code` language.
-      
-      Generated from protobuf field <code>string name = 3;</code>
+    summary: 'Object name, expressed in its `language_code` language.'
     parent: \Google\Cloud\Vision\V1\ProductSearchResults\ObjectAnnotation
     type: method
     langs:
@@ -172,10 +156,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\ProductSearchResults\ObjectAnnotation::getScore()'
     name: getScore
     id: getScore
-    summary: |
-      Score of the result. Range [0, 1].
-      
-      Generated from protobuf field <code>float score = 4;</code>
+    summary: 'Score of the result. Range [0, 1].'
     parent: \Google\Cloud\Vision\V1\ProductSearchResults\ObjectAnnotation
     type: method
     langs:
@@ -188,10 +169,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\ProductSearchResults\ObjectAnnotation::setScore()'
     name: setScore
     id: setScore
-    summary: |
-      Score of the result. Range [0, 1].
-      
-      Generated from protobuf field <code>float score = 4;</code>
+    summary: 'Score of the result. Range [0, 1].'
     parent: \Google\Cloud\Vision\V1\ProductSearchResults\ObjectAnnotation
     type: method
     langs:

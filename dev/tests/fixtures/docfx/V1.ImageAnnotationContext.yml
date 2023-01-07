@@ -46,10 +46,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\ImageAnnotationContext::getUri()'
     name: getUri
     id: getUri
-    summary: |
-      The URI of the file used to produce the image.
-      
-      Generated from protobuf field <code>string uri = 1;</code>
+    summary: 'The URI of the file used to produce the image.'
     parent: \Google\Cloud\Vision\V1\ImageAnnotationContext
     type: method
     langs:
@@ -62,10 +59,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\ImageAnnotationContext::setUri()'
     name: setUri
     id: setUri
-    summary: |
-      The URI of the file used to produce the image.
-      
-      Generated from protobuf field <code>string uri = 1;</code>
+    summary: 'The URI of the file used to produce the image.'
     parent: \Google\Cloud\Vision\V1\ImageAnnotationContext
     type: method
     langs:
@@ -86,8 +80,6 @@ items:
     summary: |
       If the file was a PDF or TIFF, this field gives the page number within
       the file used to produce the image.
-      
-      Generated from protobuf field <code>int32 page_number = 2;</code>
     parent: \Google\Cloud\Vision\V1\ImageAnnotationContext
     type: method
     langs:
@@ -103,8 +95,6 @@ items:
     summary: |
       If the file was a PDF or TIFF, this field gives the page number within
       the file used to produce the image.
-      
-      Generated from protobuf field <code>int32 page_number = 2;</code>
     parent: \Google\Cloud\Vision\V1\ImageAnnotationContext
     type: method
     langs:

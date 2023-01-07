@@ -69,8 +69,6 @@ items:
       Represents the adult content likelihood for the image. Adult content may
       contain elements such as nudity, pornographic images or cartoons, or
       sexual activities.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.Likelihood adult = 1;</code>
     parent: \Google\Cloud\Vision\V1\SafeSearchAnnotation
     type: method
     langs:
@@ -87,8 +85,6 @@ items:
       Represents the adult content likelihood for the image. Adult content may
       contain elements such as nudity, pornographic images or cartoons, or
       sexual activities.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.Likelihood adult = 1;</code>
     parent: \Google\Cloud\Vision\V1\SafeSearchAnnotation
     type: method
     langs:
@@ -110,8 +106,6 @@ items:
       Spoof likelihood. The likelihood that an modification
       was made to the image's canonical version to make it appear
       funny or offensive.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.Likelihood spoof = 2;</code>
     parent: \Google\Cloud\Vision\V1\SafeSearchAnnotation
     type: method
     langs:
@@ -128,8 +122,6 @@ items:
       Spoof likelihood. The likelihood that an modification
       was made to the image's canonical version to make it appear
       funny or offensive.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.Likelihood spoof = 2;</code>
     parent: \Google\Cloud\Vision\V1\SafeSearchAnnotation
     type: method
     langs:
@@ -147,10 +139,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\SafeSearchAnnotation::getMedical()'
     name: getMedical
     id: getMedical
-    summary: |
-      Likelihood that this is a medical image.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.Likelihood medical = 3;</code>
+    summary: 'Likelihood that this is a medical image.'
     parent: \Google\Cloud\Vision\V1\SafeSearchAnnotation
     type: method
     langs:
@@ -163,10 +152,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\SafeSearchAnnotation::setMedical()'
     name: setMedical
     id: setMedical
-    summary: |
-      Likelihood that this is a medical image.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.Likelihood medical = 3;</code>
+    summary: 'Likelihood that this is a medical image.'
     parent: \Google\Cloud\Vision\V1\SafeSearchAnnotation
     type: method
     langs:
@@ -184,10 +170,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\SafeSearchAnnotation::getViolence()'
     name: getViolence
     id: getViolence
-    summary: |
-      Likelihood that this image contains violent content.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.Likelihood violence = 4;</code>
+    summary: 'Likelihood that this image contains violent content.'
     parent: \Google\Cloud\Vision\V1\SafeSearchAnnotation
     type: method
     langs:
@@ -200,10 +183,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\SafeSearchAnnotation::setViolence()'
     name: setViolence
     id: setViolence
-    summary: |
-      Likelihood that this image contains violent content.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.Likelihood violence = 4;</code>
+    summary: 'Likelihood that this image contains violent content.'
     parent: \Google\Cloud\Vision\V1\SafeSearchAnnotation
     type: method
     langs:
@@ -226,8 +206,6 @@ items:
       include (but is not limited to) skimpy or sheer clothing, strategically
       covered nudity, lewd or provocative poses, or close-ups of sensitive
       body areas.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.Likelihood racy = 9;</code>
     parent: \Google\Cloud\Vision\V1\SafeSearchAnnotation
     type: method
     langs:
@@ -245,8 +223,6 @@ items:
       include (but is not limited to) skimpy or sheer clothing, strategically
       covered nudity, lewd or provocative poses, or close-ups of sensitive
       body areas.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.Likelihood racy = 9;</code>
     parent: \Google\Cloud\Vision\V1\SafeSearchAnnotation
     type: method
     langs:

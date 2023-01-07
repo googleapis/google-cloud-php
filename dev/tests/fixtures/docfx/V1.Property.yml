@@ -51,10 +51,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\Property::getName()'
     name: getName
     id: getName
-    summary: |
-      Name of the property.
-      
-      Generated from protobuf field <code>string name = 1;</code>
+    summary: 'Name of the property.'
     parent: \Google\Cloud\Vision\V1\Property
     type: method
     langs:
@@ -67,10 +64,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\Property::setName()'
     name: setName
     id: setName
-    summary: |
-      Name of the property.
-      
-      Generated from protobuf field <code>string name = 1;</code>
+    summary: 'Name of the property.'
     parent: \Google\Cloud\Vision\V1\Property
     type: method
     langs:
@@ -88,10 +82,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\Property::getValue()'
     name: getValue
     id: getValue
-    summary: |
-      Value of the property.
-      
-      Generated from protobuf field <code>string value = 2;</code>
+    summary: 'Value of the property.'
     parent: \Google\Cloud\Vision\V1\Property
     type: method
     langs:
@@ -104,10 +95,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\Property::setValue()'
     name: setValue
     id: setValue
-    summary: |
-      Value of the property.
-      
-      Generated from protobuf field <code>string value = 2;</code>
+    summary: 'Value of the property.'
     parent: \Google\Cloud\Vision\V1\Property
     type: method
     langs:
@@ -125,10 +113,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\Property::getUint64Value()'
     name: getUint64Value
     id: getUint64Value
-    summary: |
-      Value of numeric properties.
-      
-      Generated from protobuf field <code>uint64 uint64_value = 3;</code>
+    summary: 'Value of numeric properties.'
     parent: \Google\Cloud\Vision\V1\Property
     type: method
     langs:
@@ -141,10 +126,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\Property::setUint64Value()'
     name: setUint64Value
     id: setUint64Value
-    summary: |
-      Value of numeric properties.
-      
-      Generated from protobuf field <code>uint64 uint64_value = 3;</code>
+    summary: 'Value of numeric properties.'
     parent: \Google\Cloud\Vision\V1\Property
     type: method
     langs:

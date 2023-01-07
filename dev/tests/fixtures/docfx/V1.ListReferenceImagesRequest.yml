@@ -56,8 +56,6 @@ items:
       
       Format is
       `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.
-      
-      Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
     parent: \Google\Cloud\Vision\V1\ListReferenceImagesRequest
     type: method
     langs:
@@ -75,8 +73,6 @@ items:
       
       Format is
       `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.
-      
-      Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
     parent: \Google\Cloud\Vision\V1\ListReferenceImagesRequest
     type: method
     langs:
@@ -94,10 +90,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\ListReferenceImagesRequest::getPageSize()'
     name: getPageSize
     id: getPageSize
-    summary: |
-      The maximum number of items to return. Default 10, maximum 100.
-      
-      Generated from protobuf field <code>int32 page_size = 2;</code>
+    summary: 'The maximum number of items to return. Default 10, maximum 100.'
     parent: \Google\Cloud\Vision\V1\ListReferenceImagesRequest
     type: method
     langs:
@@ -110,10 +103,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\ListReferenceImagesRequest::setPageSize()'
     name: setPageSize
     id: setPageSize
-    summary: |
-      The maximum number of items to return. Default 10, maximum 100.
-      
-      Generated from protobuf field <code>int32 page_size = 2;</code>
+    summary: 'The maximum number of items to return. Default 10, maximum 100.'
     parent: \Google\Cloud\Vision\V1\ListReferenceImagesRequest
     type: method
     langs:
@@ -136,8 +126,6 @@ items:
       of `nextPageToken` returned in a previous reference image list request.
       
       Defaults to the first page if not specified.
-      
-      Generated from protobuf field <code>string page_token = 3;</code>
     parent: \Google\Cloud\Vision\V1\ListReferenceImagesRequest
     type: method
     langs:
@@ -155,8 +143,6 @@ items:
       of `nextPageToken` returned in a previous reference image list request.
       
       Defaults to the first page if not specified.
-      
-      Generated from protobuf field <code>string page_token = 3;</code>
     parent: \Google\Cloud\Vision\V1\ListReferenceImagesRequest
     type: method
     langs:
