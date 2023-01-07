@@ -41,7 +41,7 @@ class ParameterNode
 
     public function getDescription(): string
     {
-        return $this->description;
+        return html_entity_decode($this->description);
     }
 
     /**
@@ -97,6 +97,7 @@ class ParameterNode
 
             // remove "$" prefix from parameter name and add "↳ " for UX to indicate it's nested.
             $name = '↳ ' . ltrim($name, '$');
+
             // Trim newline whitespace
             $description = preg_replace('/\s+/', ' ', $description);
 
