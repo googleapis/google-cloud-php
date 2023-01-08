@@ -85,21 +85,18 @@ items:
       
       Example:
       ```php
-      
       $imageResource = fopen('path/to/image.jpg', 'r');
       $image = $imageAnnotatorClient->createImageObject($imageResource);
       $response = $imageAnnotatorClient->faceDetection($image);
       ```
       
       ```
-      
       $imageData = file_get_contents('path/to/image.jpg');
       $image = $imageAnnotatorClient->createImageObject($imageData);
       $response = $imageAnnotatorClient->faceDetection($image);
       ```
       
       ```
-      
       $imageUri = "gs://my-bucket/image.jpg";
       $image = $imageAnnotatorClient->createImageObject($imageUri);
       $response = $imageAnnotatorClient->faceDetection($image);
@@ -152,9 +149,9 @@ items:
           var_type: array
           description: 'Configuration Options.'
         -
-          id: '↳ '
+          id: '↳ imageContext'
           var_type: ImageContext
-          description: '$imageContext Additional context that may accompany the image.'
+          description: 'Additional context that may accompany the image.'
         -
           id: '↳ retrySettings'
           var_type: RetrySettings|array
@@ -189,9 +186,9 @@ items:
           var_type: array
           description: 'Configuration Options.'
         -
-          id: '↳ '
+          id: '↳ imageContext'
           var_type: ImageContext
-          description: '$imageContext Additional context that may accompany the image.'
+          description: 'Additional context that may accompany the image.'
         -
           id: '↳ retrySettings'
           var_type: RetrySettings|array
@@ -226,9 +223,9 @@ items:
           var_type: array
           description: 'Configuration Options.'
         -
-          id: '↳ '
+          id: '↳ imageContext'
           var_type: ImageContext
-          description: '$imageContext Additional context that may accompany the image.'
+          description: 'Additional context that may accompany the image.'
         -
           id: '↳ retrySettings'
           var_type: RetrySettings|array
@@ -263,9 +260,9 @@ items:
           var_type: array
           description: 'Configuration Options.'
         -
-          id: '↳ '
+          id: '↳ imageContext'
           var_type: ImageContext
-          description: '$imageContext Additional context that may accompany the image.'
+          description: 'Additional context that may accompany the image.'
         -
           id: '↳ retrySettings'
           var_type: RetrySettings|array
@@ -300,9 +297,9 @@ items:
           var_type: array
           description: 'Configuration Options.'
         -
-          id: '↳ '
+          id: '↳ imageContext'
           var_type: ImageContext
-          description: '$imageContext Additional context that may accompany the image.'
+          description: 'Additional context that may accompany the image.'
         -
           id: '↳ retrySettings'
           var_type: RetrySettings|array
@@ -337,9 +334,9 @@ items:
           var_type: array
           description: 'Configuration Options.'
         -
-          id: '↳ '
+          id: '↳ imageContext'
           var_type: ImageContext
-          description: '$imageContext Additional context that may accompany the image.'
+          description: 'Additional context that may accompany the image.'
         -
           id: '↳ retrySettings'
           var_type: RetrySettings|array
@@ -374,9 +371,9 @@ items:
           var_type: array
           description: 'Configuration Options.'
         -
-          id: '↳ '
+          id: '↳ imageContext'
           var_type: ImageContext
-          description: '$imageContext Additional context that may accompany the image.'
+          description: 'Additional context that may accompany the image.'
         -
           id: '↳ retrySettings'
           var_type: RetrySettings|array
@@ -411,9 +408,9 @@ items:
           var_type: array
           description: 'Configuration Options.'
         -
-          id: '↳ '
+          id: '↳ imageContext'
           var_type: ImageContext
-          description: '$imageContext Additional context that may accompany the image.'
+          description: 'Additional context that may accompany the image.'
         -
           id: '↳ retrySettings'
           var_type: RetrySettings|array
@@ -448,9 +445,9 @@ items:
           var_type: array
           description: 'Configuration Options.'
         -
-          id: '↳ '
+          id: '↳ imageContext'
           var_type: ImageContext
-          description: '$imageContext Additional context that may accompany the image.'
+          description: 'Additional context that may accompany the image.'
         -
           id: '↳ retrySettings'
           var_type: RetrySettings|array
@@ -485,9 +482,9 @@ items:
           var_type: array
           description: 'Configuration Options.'
         -
-          id: '↳ '
+          id: '↳ imageContext'
           var_type: ImageContext
-          description: '$imageContext Additional context that may accompany the image.'
+          description: 'Additional context that may accompany the image.'
         -
           id: '↳ retrySettings'
           var_type: RetrySettings|array
@@ -522,9 +519,9 @@ items:
           var_type: array
           description: 'Configuration Options.'
         -
-          id: '↳ '
+          id: '↳ imageContext'
           var_type: ImageContext
-          description: '$imageContext Additional context that may accompany the image.'
+          description: 'Additional context that may accompany the image.'
         -
           id: '↳ retrySettings'
           var_type: RetrySettings|array
@@ -559,9 +556,9 @@ items:
           var_type: array
           description: 'Configuration Options.'
         -
-          id: '↳ '
+          id: '↳ imageContext'
           var_type: ImageContext
-          description: '$imageContext Additional context that may accompany the image.'
+          description: 'Additional context that may accompany the image.'
         -
           id: '↳ retrySettings'
           var_type: RetrySettings|array
@@ -609,9 +606,9 @@ items:
           var_type: array
           description: 'Configuration Options.'
         -
-          id: '↳ '
+          id: '↳ imageContext'
           var_type: ImageContext
-          description: '$imageContext Additional context that may accompany the image.'
+          description: 'Additional context that may accompany the image.'
         -
           id: '↳ retrySettings'
           var_type: RetrySettings|array
