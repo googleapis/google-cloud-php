@@ -610,7 +610,7 @@ class Rest implements ConnectionInterface
      * @param string $method method name, eg: get
      * @param array $args
      */
-    private function sendWithRetry($resource, $method, $args)
+    private function sendWithRetry($resource, $method, array $args)
     {
         $retryMap = [
             'projects.resources.serviceAccount' => 'serviceaccount',

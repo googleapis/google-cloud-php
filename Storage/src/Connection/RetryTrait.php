@@ -19,6 +19,8 @@ namespace Google\Cloud\Storage\Connection;
 
 /**
  * Trait which provides helper methods for retry logic.
+ *
+ * @internal
  */
 trait RetryTrait
 {
@@ -86,7 +88,6 @@ trait RetryTrait
         'objects.update' => ['ifMetagenerationMatch']
     ];
 
-
     /**
      * Return a retry decider function.
      *
@@ -95,7 +96,7 @@ trait RetryTrait
      * @param array $args
      * @return callable
      */
-    public function getRestRetryFunction($resource, $method, $args)
+    public function getRestRetryFunction($resource, $method, array $args)
     {
         if (isset($args['restRetryFunction'])) {
             return $args['restRetryFunction'];
@@ -126,9 +127,8 @@ trait RetryTrait
         };
     }
 
-
     /**
-     * This function retruns true when the user given
+     * This function returns true when the user given
      * precondtions ($preConditions) has values that are present
      * in the precondition map ($this->condIdempotentMap) for that method.
      * eg: condIdempotentMap has entry 'objects.copy' => ['ifGenerationMatch'],
@@ -138,22 +138,21 @@ trait RetryTrait
      * function return a non empty result and this function returns true.
      *
      * @param string $methodName method name, eg: buckets.get.
-     * @param array $preConditions preconditions provided,
+     * @param array $args arguments which include preconditions provided,
      *  eg: ['ifGenerationMatch' => 0].
-     * @return boolean
+     * @return bool
      */
-    private function isPreConditionSupplied($methodName, $preConditions)
+    private function isPreConditionSupplied($methodName, array $args)
     {
         if (isset($this->condIdempotentOps[$methodName])) {
             // return true if required precondition are given.
             return !empty(array_intersect(
                 $this->condIdempotentOps[$methodName],
-                array_keys($preConditions)
+                array_keys($args)
             ));
         }
         return false;
     }
-
 
     /**
      * Decide whether the op needs to be retried or not.
@@ -161,11 +160,11 @@ trait RetryTrait
      * @param \Exception $exception The exception object received
      * while sending the request.
      * @param int $currentAttempt Current retry attempt.
-     * @param boolean $isIdempotent
-     * @param boolean $preconditionNeeded
-     * @param boolean $preconditionSupplied
+     * @param bool $isIdempotent
+     * @param bool $preconditionNeeded
+     * @param bool $preconditionSupplied
      * @param int $maxRetries
-     * @return boolean
+     * @return bool
      */
     private function retryDeciderFunction(
         \Exception $exception,
