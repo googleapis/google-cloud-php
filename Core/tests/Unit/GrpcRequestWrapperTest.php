@@ -109,6 +109,35 @@ class GrpcRequestWrapperTest extends TestCase
         ];
     }
 
+    public function testRetryFunction()
+    {
+        $this->expectException('Google\Cloud\Core\Exception\GoogleException');
+        $this->expectExceptionMessage('1');
+
+        $requestWrapper = new GrpcRequestWrapper();
+
+        $numCalls = 4;
+        $requestWrapper->send(
+            function () use (&$numCalls) {
+                --$numCalls;
+                throw new ApiException(
+                    $numCalls,
+                    \Google\Rpc\Code::NOT_FOUND,
+                    \Google\ApiCore\ApiStatus::NOT_FOUND
+                );
+            },
+            [[]],
+            [
+                'retries' => $numCalls-2,
+                'retryFunction' => function (\Exception $ex) use (&$numCalls) {
+                    $statusCode = $ex->getCode();
+                    return $statusCode === \Google\Rpc\Code::NOT_FOUND &&
+                        $numCalls > 0;
+                }
+            ]
+        );
+    }
+
     public function testThrowsExceptionWhenRequestFails()
     {
         $this->expectException('Google\Cloud\Core\Exception\GoogleException');
