@@ -12,7 +12,9 @@ use Google\Protobuf\Internal\GPBUtil;
  * A list of historical [Snapshot
  * Analysis][FeaturestoreMonitoringConfig.SnapshotAnalysis] or [Import Feature
  * Analysis] [FeaturestoreMonitoringConfig.ImportFeatureAnalysis] stats
- * requested by user, sorted by [FeatureStatsAnomaly.start_time][google.cloud.aiplatform.v1.FeatureStatsAnomaly.start_time] descending.
+ * requested by user, sorted by
+ * [FeatureStatsAnomaly.start_time][google.cloud.aiplatform.v1.FeatureStatsAnomaly.start_time]
+ * descending.
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.Feature.MonitoringStatsAnomaly</code>
  */

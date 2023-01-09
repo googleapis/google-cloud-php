@@ -375,11 +375,11 @@ class FeaturestoreOnlineServingServiceGapicClient
      *                                         For example,
      *                                         for a machine learning model predicting user clicks on a website, an
      *                                         EntityType ID could be `user`.
-     * @param string[]        $entityIds       Required. IDs of entities to read Feature values of. The maximum number of IDs is
-     *                                         100. For example, for a machine learning model predicting user clicks on a
-     *                                         website, an entity ID could be `user_123`.
-     * @param FeatureSelector $featureSelector Required. Selector choosing Features of the target EntityType. Feature IDs will be
-     *                                         deduplicated.
+     * @param string[]        $entityIds       Required. IDs of entities to read Feature values of. The maximum number of
+     *                                         IDs is 100. For example, for a machine learning model predicting user
+     *                                         clicks on a website, an entity ID could be `user_123`.
+     * @param FeatureSelector $featureSelector Required. Selector choosing Features of the target EntityType. Feature IDs
+     *                                         will be deduplicated.
      * @param array           $optionalArgs    {
      *     Optional.
      *
@@ -437,13 +437,14 @@ class FeaturestoreOnlineServingServiceGapicClient
      * }
      * ```
      *
-     * @param string                      $entityType   Required. The resource name of the EntityType for the entities being written.
-     *                                                  Value format: `projects/{project}/locations/{location}/featurestores/
+     * @param string                      $entityType   Required. The resource name of the EntityType for the entities being
+     *                                                  written. Value format:
+     *                                                  `projects/{project}/locations/{location}/featurestores/
      *                                                  {featurestore}/entityTypes/{entityType}`. For example,
      *                                                  for a machine learning model predicting user clicks on a website, an
      *                                                  EntityType ID could be `user`.
-     * @param WriteFeatureValuesPayload[] $payloads     Required. The entities to be written. Up to 100,000 feature values can be written
-     *                                                  across all `payloads`.
+     * @param WriteFeatureValuesPayload[] $payloads     Required. The entities to be written. Up to 100,000 feature values can be
+     *                                                  written across all `payloads`.
      * @param array                       $optionalArgs {
      *     Optional.
      *

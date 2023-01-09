@@ -92,8 +92,10 @@ class IndexEndpoint extends \Google\Protobuf\Internal\Message
      */
     private $network = '';
     /**
-     * Optional. Deprecated: If true, expose the IndexEndpoint via private service connect.
-     * Only one of the fields, [network][google.cloud.aiplatform.v1.IndexEndpoint.network] or
+     * Optional. Deprecated: If true, expose the IndexEndpoint via private service
+     * connect.
+     * Only one of the fields,
+     * [network][google.cloud.aiplatform.v1.IndexEndpoint.network] or
      * [enable_private_service_connect][google.cloud.aiplatform.v1.IndexEndpoint.enable_private_service_connect],
      * can be set.
      *
@@ -148,8 +150,10 @@ class IndexEndpoint extends \Google\Protobuf\Internal\Message
      *           Where {project} is a project number, as in '12345', and {network} is
      *           network name.
      *     @type bool $enable_private_service_connect
-     *           Optional. Deprecated: If true, expose the IndexEndpoint via private service connect.
-     *           Only one of the fields, [network][google.cloud.aiplatform.v1.IndexEndpoint.network] or
+     *           Optional. Deprecated: If true, expose the IndexEndpoint via private service
+     *           connect.
+     *           Only one of the fields,
+     *           [network][google.cloud.aiplatform.v1.IndexEndpoint.network] or
      *           [enable_private_service_connect][google.cloud.aiplatform.v1.IndexEndpoint.enable_private_service_connect],
      *           can be set.
      * }
@@ -456,8 +460,10 @@ class IndexEndpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Deprecated: If true, expose the IndexEndpoint via private service connect.
-     * Only one of the fields, [network][google.cloud.aiplatform.v1.IndexEndpoint.network] or
+     * Optional. Deprecated: If true, expose the IndexEndpoint via private service
+     * connect.
+     * Only one of the fields,
+     * [network][google.cloud.aiplatform.v1.IndexEndpoint.network] or
      * [enable_private_service_connect][google.cloud.aiplatform.v1.IndexEndpoint.enable_private_service_connect],
      * can be set.
      *
@@ -472,8 +478,10 @@ class IndexEndpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Deprecated: If true, expose the IndexEndpoint via private service connect.
-     * Only one of the fields, [network][google.cloud.aiplatform.v1.IndexEndpoint.network] or
+     * Optional. Deprecated: If true, expose the IndexEndpoint via private service
+     * connect.
+     * Only one of the fields,
+     * [network][google.cloud.aiplatform.v1.IndexEndpoint.network] or
      * [enable_private_service_connect][google.cloud.aiplatform.v1.IndexEndpoint.enable_private_service_connect],
      * can be set.
      *

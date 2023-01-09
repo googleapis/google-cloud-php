@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [DatasetService.SearchDataItems][google.cloud.aiplatform.v1.DatasetService.SearchDataItems].
+ * Request message for
+ * [DatasetService.SearchDataItems][google.cloud.aiplatform.v1.DatasetService.SearchDataItems].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.SearchDataItemsRequest</code>
  */
@@ -77,7 +78,8 @@ class SearchDataItemsRequest extends \Google\Protobuf\Internal\Message
      */
     private $annotation_filters;
     /**
-     * Mask specifying which fields of [DataItemView][google.cloud.aiplatform.v1.DataItemView] to read.
+     * Mask specifying which fields of
+     * [DataItemView][google.cloud.aiplatform.v1.DataItemView] to read.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask field_mask = 6;</code>
      */
@@ -108,8 +110,10 @@ class SearchDataItemsRequest extends \Google\Protobuf\Internal\Message
     /**
      * A token identifying a page of results for the server to return
      * Typically obtained via
-     * [SearchDataItemsResponse.next_page_token][google.cloud.aiplatform.v1.SearchDataItemsResponse.next_page_token] of the previous
-     * [DatasetService.SearchDataItems][google.cloud.aiplatform.v1.DatasetService.SearchDataItems] call.
+     * [SearchDataItemsResponse.next_page_token][google.cloud.aiplatform.v1.SearchDataItemsResponse.next_page_token]
+     * of the previous
+     * [DatasetService.SearchDataItems][google.cloud.aiplatform.v1.DatasetService.SearchDataItems]
+     * call.
      *
      * Generated from protobuf field <code>string page_token = 10;</code>
      */
@@ -163,7 +167,8 @@ class SearchDataItemsRequest extends \Google\Protobuf\Internal\Message
      *           Must specify `saved_query_id=` - saved query id that annotations should
      *           belong to.
      *     @type \Google\Protobuf\FieldMask $field_mask
-     *           Mask specifying which fields of [DataItemView][google.cloud.aiplatform.v1.DataItemView] to read.
+     *           Mask specifying which fields of
+     *           [DataItemView][google.cloud.aiplatform.v1.DataItemView] to read.
      *     @type int $annotations_limit
      *           If set, only up to this many of Annotations will be returned per
      *           DataItemView. The maximum value is 1000. If not set, the maximum value will
@@ -177,8 +182,10 @@ class SearchDataItemsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $page_token
      *           A token identifying a page of results for the server to return
      *           Typically obtained via
-     *           [SearchDataItemsResponse.next_page_token][google.cloud.aiplatform.v1.SearchDataItemsResponse.next_page_token] of the previous
-     *           [DatasetService.SearchDataItems][google.cloud.aiplatform.v1.DatasetService.SearchDataItems] call.
+     *           [SearchDataItemsResponse.next_page_token][google.cloud.aiplatform.v1.SearchDataItemsResponse.next_page_token]
+     *           of the previous
+     *           [DatasetService.SearchDataItems][google.cloud.aiplatform.v1.DatasetService.SearchDataItems]
+     *           call.
      * }
      */
     public function __construct($data = NULL) {
@@ -461,7 +468,8 @@ class SearchDataItemsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Mask specifying which fields of [DataItemView][google.cloud.aiplatform.v1.DataItemView] to read.
+     * Mask specifying which fields of
+     * [DataItemView][google.cloud.aiplatform.v1.DataItemView] to read.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask field_mask = 6;</code>
      * @return \Google\Protobuf\FieldMask|null
@@ -482,7 +490,8 @@ class SearchDataItemsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Mask specifying which fields of [DataItemView][google.cloud.aiplatform.v1.DataItemView] to read.
+     * Mask specifying which fields of
+     * [DataItemView][google.cloud.aiplatform.v1.DataItemView] to read.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask field_mask = 6;</code>
      * @param \Google\Protobuf\FieldMask $var
@@ -589,8 +598,10 @@ class SearchDataItemsRequest extends \Google\Protobuf\Internal\Message
     /**
      * A token identifying a page of results for the server to return
      * Typically obtained via
-     * [SearchDataItemsResponse.next_page_token][google.cloud.aiplatform.v1.SearchDataItemsResponse.next_page_token] of the previous
-     * [DatasetService.SearchDataItems][google.cloud.aiplatform.v1.DatasetService.SearchDataItems] call.
+     * [SearchDataItemsResponse.next_page_token][google.cloud.aiplatform.v1.SearchDataItemsResponse.next_page_token]
+     * of the previous
+     * [DatasetService.SearchDataItems][google.cloud.aiplatform.v1.DatasetService.SearchDataItems]
+     * call.
      *
      * Generated from protobuf field <code>string page_token = 10;</code>
      * @return string
@@ -603,8 +614,10 @@ class SearchDataItemsRequest extends \Google\Protobuf\Internal\Message
     /**
      * A token identifying a page of results for the server to return
      * Typically obtained via
-     * [SearchDataItemsResponse.next_page_token][google.cloud.aiplatform.v1.SearchDataItemsResponse.next_page_token] of the previous
-     * [DatasetService.SearchDataItems][google.cloud.aiplatform.v1.DatasetService.SearchDataItems] call.
+     * [SearchDataItemsResponse.next_page_token][google.cloud.aiplatform.v1.SearchDataItemsResponse.next_page_token]
+     * of the previous
+     * [DatasetService.SearchDataItems][google.cloud.aiplatform.v1.DatasetService.SearchDataItems]
+     * call.
      *
      * Generated from protobuf field <code>string page_token = 10;</code>
      * @param string $var

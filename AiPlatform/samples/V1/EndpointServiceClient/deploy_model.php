@@ -37,8 +37,9 @@ use Google\Rpc\Status;
  *                                            Format:
  *                                            `projects/{project}/locations/{location}/endpoints/{endpoint}`
  *                                            Please see {@see EndpointServiceClient::endpointName()} for help formatting this field.
- * @param string $formattedDeployedModelModel The resource name of the Model that this is the deployment of. Note that
- *                                            the Model may be in a different location than the DeployedModel's Endpoint.
+ * @param string $formattedDeployedModelModel The resource name of the Model that this is the deployment of.
+ *                                            Note that the Model may be in a different location than the DeployedModel's
+ *                                            Endpoint.
  *
  *                                            The resource name may contain version id or version alias to specify the
  *                                            version, if no version is specified, the default version will be deployed. Please see

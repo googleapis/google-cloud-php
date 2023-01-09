@@ -29,17 +29,17 @@ class IndexDatapoint extends \Google\Protobuf\Internal\Message
      */
     private $feature_vector;
     /**
-     * Optional. List of Restrict of the datapoint, used to perform "restricted searches"
-     * where boolean rule are used to filter the subset of the database eligible
-     * for matching.
-     * See: https://cloud.google.com/vertex-ai/docs/matching-engine/filtering
+     * Optional. List of Restrict of the datapoint, used to perform "restricted
+     * searches" where boolean rule are used to filter the subset of the database
+     * eligible for matching. See:
+     * https://cloud.google.com/vertex-ai/docs/matching-engine/filtering
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.IndexDatapoint.Restriction restricts = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $restricts;
     /**
-     * Optional. CrowdingTag of the datapoint, the number of neighbors to return in each
-     * crowding can be configured during query.
+     * Optional. CrowdingTag of the datapoint, the number of neighbors to return
+     * in each crowding can be configured during query.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.IndexDatapoint.CrowdingTag crowding_tag = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -57,13 +57,13 @@ class IndexDatapoint extends \Google\Protobuf\Internal\Message
      *           Required. Feature embedding vector. An array of numbers with the length of
      *           [NearestNeighborSearchConfig.dimensions].
      *     @type array<\Google\Cloud\AIPlatform\V1\IndexDatapoint\Restriction>|\Google\Protobuf\Internal\RepeatedField $restricts
-     *           Optional. List of Restrict of the datapoint, used to perform "restricted searches"
-     *           where boolean rule are used to filter the subset of the database eligible
-     *           for matching.
-     *           See: https://cloud.google.com/vertex-ai/docs/matching-engine/filtering
+     *           Optional. List of Restrict of the datapoint, used to perform "restricted
+     *           searches" where boolean rule are used to filter the subset of the database
+     *           eligible for matching. See:
+     *           https://cloud.google.com/vertex-ai/docs/matching-engine/filtering
      *     @type \Google\Cloud\AIPlatform\V1\IndexDatapoint\CrowdingTag $crowding_tag
-     *           Optional. CrowdingTag of the datapoint, the number of neighbors to return in each
-     *           crowding can be configured during query.
+     *           Optional. CrowdingTag of the datapoint, the number of neighbors to return
+     *           in each crowding can be configured during query.
      * }
      */
     public function __construct($data = NULL) {
@@ -126,10 +126,10 @@ class IndexDatapoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. List of Restrict of the datapoint, used to perform "restricted searches"
-     * where boolean rule are used to filter the subset of the database eligible
-     * for matching.
-     * See: https://cloud.google.com/vertex-ai/docs/matching-engine/filtering
+     * Optional. List of Restrict of the datapoint, used to perform "restricted
+     * searches" where boolean rule are used to filter the subset of the database
+     * eligible for matching. See:
+     * https://cloud.google.com/vertex-ai/docs/matching-engine/filtering
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.IndexDatapoint.Restriction restricts = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -140,10 +140,10 @@ class IndexDatapoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. List of Restrict of the datapoint, used to perform "restricted searches"
-     * where boolean rule are used to filter the subset of the database eligible
-     * for matching.
-     * See: https://cloud.google.com/vertex-ai/docs/matching-engine/filtering
+     * Optional. List of Restrict of the datapoint, used to perform "restricted
+     * searches" where boolean rule are used to filter the subset of the database
+     * eligible for matching. See:
+     * https://cloud.google.com/vertex-ai/docs/matching-engine/filtering
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.IndexDatapoint.Restriction restricts = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<\Google\Cloud\AIPlatform\V1\IndexDatapoint\Restriction>|\Google\Protobuf\Internal\RepeatedField $var
@@ -158,8 +158,8 @@ class IndexDatapoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. CrowdingTag of the datapoint, the number of neighbors to return in each
-     * crowding can be configured during query.
+     * Optional. CrowdingTag of the datapoint, the number of neighbors to return
+     * in each crowding can be configured during query.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.IndexDatapoint.CrowdingTag crowding_tag = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\AIPlatform\V1\IndexDatapoint\CrowdingTag|null
@@ -180,8 +180,8 @@ class IndexDatapoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. CrowdingTag of the datapoint, the number of neighbors to return in each
-     * crowding can be configured during query.
+     * Optional. CrowdingTag of the datapoint, the number of neighbors to return
+     * in each crowding can be configured during query.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.IndexDatapoint.CrowdingTag crowding_tag = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\AIPlatform\V1\IndexDatapoint\CrowdingTag $var

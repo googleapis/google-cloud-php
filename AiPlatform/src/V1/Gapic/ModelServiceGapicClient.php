@@ -540,9 +540,12 @@ class ModelServiceGapicClient
     /**
      * Deletes a Model.
      *
-     * A model cannot be deleted if any [Endpoint][google.cloud.aiplatform.v1.Endpoint] resource has a
-     * [DeployedModel][google.cloud.aiplatform.v1.DeployedModel] based on the model in its
-     * [deployed_models][google.cloud.aiplatform.v1.Endpoint.deployed_models] field.
+     * A model cannot be deleted if any
+     * [Endpoint][google.cloud.aiplatform.v1.Endpoint] resource has a
+     * [DeployedModel][google.cloud.aiplatform.v1.DeployedModel] based on the
+     * model in its
+     * [deployed_models][google.cloud.aiplatform.v1.Endpoint.deployed_models]
+     * field.
      *
      * Sample code:
      * ```
@@ -618,7 +621,8 @@ class ModelServiceGapicClient
      *
      * Model version can only be deleted if there are no [DeployedModels][]
      * created from it. Deleting the only version in the Model is not allowed. Use
-     * [DeleteModel][google.cloud.aiplatform.v1.ModelService.DeleteModel] for deleting the Model instead.
+     * [DeleteModel][google.cloud.aiplatform.v1.ModelService.DeleteModel] for
+     * deleting the Model instead.
      *
      * Sample code:
      * ```
@@ -654,8 +658,8 @@ class ModelServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The name of the model version to be deleted, with a version ID explicitly
-     *                             included.
+     * @param string $name         Required. The name of the model version to be deleted, with a version ID
+     *                             explicitly included.
      *
      *                             Example: `projects/{project}/locations/{location}/models/{model}&#64;1234`
      * @param array  $optionalArgs {
@@ -694,7 +698,8 @@ class ModelServiceGapicClient
     /**
      * Exports a trained, exportable Model to a location specified by the
      * user. A Model is considered to be exportable if it has at least one
-     * [supported export format][google.cloud.aiplatform.v1.Model.supported_export_formats].
+     * [supported export
+     * format][google.cloud.aiplatform.v1.Model.supported_export_formats].
      *
      * Sample code:
      * ```
@@ -1011,8 +1016,8 @@ class ModelServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the ModelEvaluation to list the ModelEvaluationSlices
-     *                             from. Format:
+     * @param string $parent       Required. The resource name of the ModelEvaluation to list the
+     *                             ModelEvaluationSlices from. Format:
      *                             `projects/{project}/locations/{location}/models/{model}/evaluations/{evaluation}`
      * @param array  $optionalArgs {
      *     Optional.
@@ -1221,6 +1226,15 @@ class ModelServiceGapicClient
      *           * `labels.myKey="myValue"`
      *     @type FieldMask $readMask
      *           Mask specifying which fields to read.
+     *     @type string $orderBy
+     *           A comma-separated list of fields to order by, sorted in ascending order.
+     *           Use "desc" after a field name for descending.
+     *           Supported fields:
+     *
+     *           * `create_time`
+     *           * `update_time`
+     *
+     *           Example: `update_time asc, create_time desc`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1251,6 +1265,10 @@ class ModelServiceGapicClient
 
         if (isset($optionalArgs['readMask'])) {
             $request->setReadMask($optionalArgs['readMask']);
+        }
+
+        if (isset($optionalArgs['orderBy'])) {
+            $request->setOrderBy($optionalArgs['orderBy']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
@@ -1303,7 +1321,8 @@ class ModelServiceGapicClient
      *           both snake_case and camelCase are supported.
      *
      *           * `model` supports = and !=. `model` represents the Model ID,
-     *           i.e. the last segment of the Model's [resource name][google.cloud.aiplatform.v1.Model.name].
+     *           i.e. the last segment of the Model's [resource
+     *           name][google.cloud.aiplatform.v1.Model.name].
      *           * `display_name` supports = and !=
      *           * `labels` supports general map functions that is:
      *           * `labels.key=value` - key:value equality
@@ -1488,7 +1507,8 @@ class ModelServiceGapicClient
      *                                6. One request cannot update both the model and the version fields. You
      *                                must update them separately.
      * @param FieldMask $updateMask   Required. The update mask applies to the resource.
-     *                                For the `FieldMask` definition, see [google.protobuf.FieldMask][google.protobuf.FieldMask].
+     *                                For the `FieldMask` definition, see
+     *                                [google.protobuf.FieldMask][google.protobuf.FieldMask].
      * @param array     $optionalArgs {
      *     Optional.
      *
@@ -1570,8 +1590,8 @@ class ModelServiceGapicClient
      *     Optional.
      *
      *     @type string $parentModel
-     *           Optional. The resource name of the model into which to upload the version. Only
-     *           specify this field when uploading a new version.
+     *           Optional. The resource name of the model into which to upload the version.
+     *           Only specify this field when uploading a new version.
      *     @type string $modelId
      *           Optional. The ID to use for the uploaded Model, which will become the final
      *           component of the model resource name.

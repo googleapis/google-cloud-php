@@ -9,15 +9,17 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [JobService.CreateHyperparameterTuningJob][google.cloud.aiplatform.v1.JobService.CreateHyperparameterTuningJob].
+ * Request message for
+ * [JobService.CreateHyperparameterTuningJob][google.cloud.aiplatform.v1.JobService.CreateHyperparameterTuningJob].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.CreateHyperparameterTuningJobRequest</code>
  */
 class CreateHyperparameterTuningJobRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name of the Location to create the HyperparameterTuningJob in.
-     * Format: `projects/{project}/locations/{location}`
+     * Required. The resource name of the Location to create the
+     * HyperparameterTuningJob in. Format:
+     * `projects/{project}/locations/{location}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -36,8 +38,9 @@ class CreateHyperparameterTuningJobRequest extends \Google\Protobuf\Internal\Mes
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The resource name of the Location to create the HyperparameterTuningJob in.
-     *           Format: `projects/{project}/locations/{location}`
+     *           Required. The resource name of the Location to create the
+     *           HyperparameterTuningJob in. Format:
+     *           `projects/{project}/locations/{location}`
      *     @type \Google\Cloud\AIPlatform\V1\HyperparameterTuningJob $hyperparameter_tuning_job
      *           Required. The HyperparameterTuningJob to create.
      * }
@@ -48,8 +51,9 @@ class CreateHyperparameterTuningJobRequest extends \Google\Protobuf\Internal\Mes
     }
 
     /**
-     * Required. The resource name of the Location to create the HyperparameterTuningJob in.
-     * Format: `projects/{project}/locations/{location}`
+     * Required. The resource name of the Location to create the
+     * HyperparameterTuningJob in. Format:
+     * `projects/{project}/locations/{location}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -60,8 +64,9 @@ class CreateHyperparameterTuningJobRequest extends \Google\Protobuf\Internal\Mes
     }
 
     /**
-     * Required. The resource name of the Location to create the HyperparameterTuningJob in.
-     * Format: `projects/{project}/locations/{location}`
+     * Required. The resource name of the Location to create the
+     * HyperparameterTuningJob in. Format:
+     * `projects/{project}/locations/{location}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

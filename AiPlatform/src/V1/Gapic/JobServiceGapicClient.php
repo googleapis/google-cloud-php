@@ -633,12 +633,14 @@ class JobServiceGapicClient
      *
      * Starts asynchronous cancellation on the BatchPredictionJob. The server
      * makes the best effort to cancel the job, but success is not
-     * guaranteed. Clients can use [JobService.GetBatchPredictionJob][google.cloud.aiplatform.v1.JobService.GetBatchPredictionJob] or
-     * other methods to check whether the cancellation succeeded or whether the
+     * guaranteed. Clients can use
+     * [JobService.GetBatchPredictionJob][google.cloud.aiplatform.v1.JobService.GetBatchPredictionJob]
+     * or other methods to check whether the cancellation succeeded or whether the
      * job completed despite cancellation. On a successful cancellation,
      * the BatchPredictionJob is not deleted;instead its
-     * [BatchPredictionJob.state][google.cloud.aiplatform.v1.BatchPredictionJob.state] is set to `CANCELLED`. Any files already
-     * outputted by the job are not deleted.
+     * [BatchPredictionJob.state][google.cloud.aiplatform.v1.BatchPredictionJob.state]
+     * is set to `CANCELLED`. Any files already outputted by the job are not
+     * deleted.
      *
      * Sample code:
      * ```
@@ -689,12 +691,15 @@ class JobServiceGapicClient
      * Cancels a CustomJob.
      * Starts asynchronous cancellation on the CustomJob. The server
      * makes a best effort to cancel the job, but success is not
-     * guaranteed. Clients can use [JobService.GetCustomJob][google.cloud.aiplatform.v1.JobService.GetCustomJob] or
-     * other methods to check whether the cancellation succeeded or whether the
+     * guaranteed. Clients can use
+     * [JobService.GetCustomJob][google.cloud.aiplatform.v1.JobService.GetCustomJob]
+     * or other methods to check whether the cancellation succeeded or whether the
      * job completed despite cancellation. On successful cancellation,
      * the CustomJob is not deleted; instead it becomes a job with
-     * a [CustomJob.error][google.cloud.aiplatform.v1.CustomJob.error] value with a [google.rpc.Status.code][google.rpc.Status.code] of 1,
-     * corresponding to `Code.CANCELLED`, and [CustomJob.state][google.cloud.aiplatform.v1.CustomJob.state] is set to
+     * a [CustomJob.error][google.cloud.aiplatform.v1.CustomJob.error] value with
+     * a [google.rpc.Status.code][google.rpc.Status.code] of 1, corresponding to
+     * `Code.CANCELLED`, and
+     * [CustomJob.state][google.cloud.aiplatform.v1.CustomJob.state] is set to
      * `CANCELLED`.
      *
      * Sample code:
@@ -794,13 +799,17 @@ class JobServiceGapicClient
      * Cancels a HyperparameterTuningJob.
      * Starts asynchronous cancellation on the HyperparameterTuningJob. The server
      * makes a best effort to cancel the job, but success is not
-     * guaranteed. Clients can use [JobService.GetHyperparameterTuningJob][google.cloud.aiplatform.v1.JobService.GetHyperparameterTuningJob] or
-     * other methods to check whether the cancellation succeeded or whether the
+     * guaranteed. Clients can use
+     * [JobService.GetHyperparameterTuningJob][google.cloud.aiplatform.v1.JobService.GetHyperparameterTuningJob]
+     * or other methods to check whether the cancellation succeeded or whether the
      * job completed despite cancellation. On successful cancellation,
      * the HyperparameterTuningJob is not deleted; instead it becomes a job with
-     * a [HyperparameterTuningJob.error][google.cloud.aiplatform.v1.HyperparameterTuningJob.error] value with a [google.rpc.Status.code][google.rpc.Status.code]
-     * of 1, corresponding to `Code.CANCELLED`, and
-     * [HyperparameterTuningJob.state][google.cloud.aiplatform.v1.HyperparameterTuningJob.state] is set to `CANCELLED`.
+     * a
+     * [HyperparameterTuningJob.error][google.cloud.aiplatform.v1.HyperparameterTuningJob.error]
+     * value with a [google.rpc.Status.code][google.rpc.Status.code] of 1,
+     * corresponding to `Code.CANCELLED`, and
+     * [HyperparameterTuningJob.state][google.cloud.aiplatform.v1.HyperparameterTuningJob.state]
+     * is set to `CANCELLED`.
      *
      * Sample code:
      * ```
@@ -865,8 +874,8 @@ class JobServiceGapicClient
      * }
      * ```
      *
-     * @param string             $parent             Required. The resource name of the Location to create the BatchPredictionJob in.
-     *                                               Format: `projects/{project}/locations/{location}`
+     * @param string             $parent             Required. The resource name of the Location to create the
+     *                                               BatchPredictionJob in. Format: `projects/{project}/locations/{location}`
      * @param BatchPredictionJob $batchPredictionJob Required. The BatchPredictionJob to create.
      * @param array              $optionalArgs       {
      *     Optional.
@@ -1031,8 +1040,9 @@ class JobServiceGapicClient
      * }
      * ```
      *
-     * @param string                  $parent                  Required. The resource name of the Location to create the HyperparameterTuningJob in.
-     *                                                         Format: `projects/{project}/locations/{location}`
+     * @param string                  $parent                  Required. The resource name of the Location to create the
+     *                                                         HyperparameterTuningJob in. Format:
+     *                                                         `projects/{project}/locations/{location}`
      * @param HyperparameterTuningJob $hyperparameterTuningJob Required. The HyperparameterTuningJob to create.
      * @param array                   $optionalArgs            {
      *     Optional.
@@ -2116,8 +2126,9 @@ class JobServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the Location to list the HyperparameterTuningJobs
-     *                             from. Format: `projects/{project}/locations/{location}`
+     * @param string $parent       Required. The resource name of the Location to list the
+     *                             HyperparameterTuningJobs from. Format:
+     *                             `projects/{project}/locations/{location}`
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -2315,7 +2326,8 @@ class JobServiceGapicClient
     /**
      * Pauses a ModelDeploymentMonitoringJob. If the job is running, the server
      * makes a best effort to cancel the job. Will mark
-     * [ModelDeploymentMonitoringJob.state][google.cloud.aiplatform.v1.ModelDeploymentMonitoringJob.state] to 'PAUSED'.
+     * [ModelDeploymentMonitoringJob.state][google.cloud.aiplatform.v1.ModelDeploymentMonitoringJob.state]
+     * to 'PAUSED'.
      *
      * Sample code:
      * ```
@@ -2575,16 +2587,15 @@ class JobServiceGapicClient
      * }
      * ```
      *
-     * @param ModelDeploymentMonitoringJob $modelDeploymentMonitoringJob Required. The model monitoring configuration which replaces the resource on the
-     *                                                                   server.
-     * @param FieldMask                    $updateMask                   Required. The update mask is used to specify the fields to be overwritten in the
-     *                                                                   ModelDeploymentMonitoringJob resource by the update.
-     *                                                                   The fields specified in the update_mask are relative to the resource, not
-     *                                                                   the full request. A field will be overwritten if it is in the mask. If the
-     *                                                                   user does not provide a mask then only the non-empty fields present in the
-     *                                                                   request will be overwritten. Set the update_mask to `*` to override all
-     *                                                                   fields.
-     *                                                                   For the objective config, the user can either provide the update mask for
+     * @param ModelDeploymentMonitoringJob $modelDeploymentMonitoringJob Required. The model monitoring configuration which replaces the resource on
+     *                                                                   the server.
+     * @param FieldMask                    $updateMask                   Required. The update mask is used to specify the fields to be overwritten
+     *                                                                   in the ModelDeploymentMonitoringJob resource by the update. The fields
+     *                                                                   specified in the update_mask are relative to the resource, not the full
+     *                                                                   request. A field will be overwritten if it is in the mask. If the user does
+     *                                                                   not provide a mask then only the non-empty fields present in the request
+     *                                                                   will be overwritten. Set the update_mask to `*` to override all fields. For
+     *                                                                   the objective config, the user can either provide the update mask for
      *                                                                   model_deployment_monitoring_objective_configs or any combination of its
      *                                                                   nested fields, such as:
      *                                                                   model_deployment_monitoring_objective_configs.objective_config.training_dataset.

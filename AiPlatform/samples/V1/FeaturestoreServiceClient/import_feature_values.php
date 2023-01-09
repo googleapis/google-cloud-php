@@ -52,12 +52,12 @@ use Google\Rpc\Status;
  * or retention policy.
  * - Online serving cluster is under-provisioned.
  *
- * @param string $formattedEntityType The resource name of the EntityType grouping the Features for which values
- *                                    are being imported. Format:
+ * @param string $formattedEntityType The resource name of the EntityType grouping the Features for
+ *                                    which values are being imported. Format:
  *                                    `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entityType}`
  *                                    Please see {@see FeaturestoreServiceClient::entityTypeName()} for help formatting this field.
- * @param string $featureSpecsId      ID of the Feature to import values of. This Feature must exist in the
- *                                    target EntityType, or the request will fail.
+ * @param string $featureSpecsId      ID of the Feature to import values of. This Feature must exist
+ *                                    in the target EntityType, or the request will fail.
  */
 function import_feature_values_sample(string $formattedEntityType, string $featureSpecsId): void
 {

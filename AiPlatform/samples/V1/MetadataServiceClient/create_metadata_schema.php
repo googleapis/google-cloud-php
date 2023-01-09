@@ -30,14 +30,13 @@ use Google\Cloud\AIPlatform\V1\MetadataServiceClient;
 /**
  * Creates a MetadataSchema.
  *
- * @param string $formattedParent      The resource name of the MetadataStore where the MetadataSchema should
- *                                     be created.
- *                                     Format:
+ * @param string $formattedParent      The resource name of the MetadataStore where the MetadataSchema
+ *                                     should be created. Format:
  *                                     `projects/{project}/locations/{location}/metadataStores/{metadatastore}`
  *                                     Please see {@see MetadataServiceClient::metadataStoreName()} for help formatting this field.
- * @param string $metadataSchemaSchema The raw YAML string representation of the MetadataSchema. The combination
- *                                     of [MetadataSchema.version] and the schema name given by `title` in
- *                                     [MetadataSchema.schema] must be unique within a MetadataStore.
+ * @param string $metadataSchemaSchema The raw YAML string representation of the MetadataSchema. The
+ *                                     combination of [MetadataSchema.version] and the schema name given by
+ *                                     `title` in [MetadataSchema.schema] must be unique within a MetadataStore.
  *
  *                                     The schema is defined as an OpenAPI 3.0.2
  *                                     [MetadataSchema

@@ -110,9 +110,12 @@ class ModelServiceGrpcClient extends \Grpc\BaseStub {
     /**
      * Deletes a Model.
      *
-     * A model cannot be deleted if any [Endpoint][google.cloud.aiplatform.v1.Endpoint] resource has a
-     * [DeployedModel][google.cloud.aiplatform.v1.DeployedModel] based on the model in its
-     * [deployed_models][google.cloud.aiplatform.v1.Endpoint.deployed_models] field.
+     * A model cannot be deleted if any
+     * [Endpoint][google.cloud.aiplatform.v1.Endpoint] resource has a
+     * [DeployedModel][google.cloud.aiplatform.v1.DeployedModel] based on the
+     * model in its
+     * [deployed_models][google.cloud.aiplatform.v1.Endpoint.deployed_models]
+     * field.
      * @param \Google\Cloud\AIPlatform\V1\DeleteModelRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -131,7 +134,8 @@ class ModelServiceGrpcClient extends \Grpc\BaseStub {
      *
      * Model version can only be deleted if there are no [DeployedModels][]
      * created from it. Deleting the only version in the Model is not allowed. Use
-     * [DeleteModel][google.cloud.aiplatform.v1.ModelService.DeleteModel] for deleting the Model instead.
+     * [DeleteModel][google.cloud.aiplatform.v1.ModelService.DeleteModel] for
+     * deleting the Model instead.
      * @param \Google\Cloud\AIPlatform\V1\DeleteModelVersionRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -163,7 +167,8 @@ class ModelServiceGrpcClient extends \Grpc\BaseStub {
     /**
      * Exports a trained, exportable Model to a location specified by the
      * user. A Model is considered to be exportable if it has at least one
-     * [supported export format][google.cloud.aiplatform.v1.Model.supported_export_formats].
+     * [supported export
+     * format][google.cloud.aiplatform.v1.Model.supported_export_formats].
      * @param \Google\Cloud\AIPlatform\V1\ExportModelRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options

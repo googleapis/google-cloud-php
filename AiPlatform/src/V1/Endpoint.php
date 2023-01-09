@@ -38,8 +38,11 @@ class Endpoint extends \Google\Protobuf\Internal\Message
     private $description = '';
     /**
      * Output only. The models deployed in this Endpoint.
-     * To add or remove DeployedModels use [EndpointService.DeployModel][google.cloud.aiplatform.v1.EndpointService.DeployModel] and
-     * [EndpointService.UndeployModel][google.cloud.aiplatform.v1.EndpointService.UndeployModel] respectively.
+     * To add or remove DeployedModels use
+     * [EndpointService.DeployModel][google.cloud.aiplatform.v1.EndpointService.DeployModel]
+     * and
+     * [EndpointService.UndeployModel][google.cloud.aiplatform.v1.EndpointService.UndeployModel]
+     * respectively.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.DeployedModel deployed_models = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -98,7 +101,8 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      * to which the Endpoint should be peered.
      * Private services access must already be configured for the network. If left
      * unspecified, the Endpoint is not peered with any network.
-     * Only one of the fields, [network][google.cloud.aiplatform.v1.Endpoint.network] or
+     * Only one of the fields,
+     * [network][google.cloud.aiplatform.v1.Endpoint.network] or
      * [enable_private_service_connect][google.cloud.aiplatform.v1.Endpoint.enable_private_service_connect],
      * can be set.
      * [Format](https://cloud.google.com/compute/docs/reference/rest/v1/networks/insert):
@@ -111,7 +115,8 @@ class Endpoint extends \Google\Protobuf\Internal\Message
     private $network = '';
     /**
      * Deprecated: If true, expose the Endpoint via private service connect.
-     * Only one of the fields, [network][google.cloud.aiplatform.v1.Endpoint.network] or
+     * Only one of the fields,
+     * [network][google.cloud.aiplatform.v1.Endpoint.network] or
      * [enable_private_service_connect][google.cloud.aiplatform.v1.Endpoint.enable_private_service_connect],
      * can be set.
      *
@@ -120,9 +125,9 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      */
     protected $enable_private_service_connect = false;
     /**
-     * Output only. Resource name of the Model Monitoring job associated with this Endpoint
-     * if monitoring is enabled by [CreateModelDeploymentMonitoringJob][].
-     * Format:
+     * Output only. Resource name of the Model Monitoring job associated with this
+     * Endpoint if monitoring is enabled by
+     * [CreateModelDeploymentMonitoringJob][]. Format:
      * `projects/{project}/locations/{location}/modelDeploymentMonitoringJobs/{model_deployment_monitoring_job}`
      *
      * Generated from protobuf field <code>string model_deployment_monitoring_job = 14 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
@@ -151,8 +156,11 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      *           The description of the Endpoint.
      *     @type array<\Google\Cloud\AIPlatform\V1\DeployedModel>|\Google\Protobuf\Internal\RepeatedField $deployed_models
      *           Output only. The models deployed in this Endpoint.
-     *           To add or remove DeployedModels use [EndpointService.DeployModel][google.cloud.aiplatform.v1.EndpointService.DeployModel] and
-     *           [EndpointService.UndeployModel][google.cloud.aiplatform.v1.EndpointService.UndeployModel] respectively.
+     *           To add or remove DeployedModels use
+     *           [EndpointService.DeployModel][google.cloud.aiplatform.v1.EndpointService.DeployModel]
+     *           and
+     *           [EndpointService.UndeployModel][google.cloud.aiplatform.v1.EndpointService.UndeployModel]
+     *           respectively.
      *     @type array|\Google\Protobuf\Internal\MapField $traffic_split
      *           A map from a DeployedModel's ID to the percentage of this Endpoint's
      *           traffic that should be forwarded to that DeployedModel.
@@ -183,7 +191,8 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      *           to which the Endpoint should be peered.
      *           Private services access must already be configured for the network. If left
      *           unspecified, the Endpoint is not peered with any network.
-     *           Only one of the fields, [network][google.cloud.aiplatform.v1.Endpoint.network] or
+     *           Only one of the fields,
+     *           [network][google.cloud.aiplatform.v1.Endpoint.network] or
      *           [enable_private_service_connect][google.cloud.aiplatform.v1.Endpoint.enable_private_service_connect],
      *           can be set.
      *           [Format](https://cloud.google.com/compute/docs/reference/rest/v1/networks/insert):
@@ -192,13 +201,14 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      *           network name.
      *     @type bool $enable_private_service_connect
      *           Deprecated: If true, expose the Endpoint via private service connect.
-     *           Only one of the fields, [network][google.cloud.aiplatform.v1.Endpoint.network] or
+     *           Only one of the fields,
+     *           [network][google.cloud.aiplatform.v1.Endpoint.network] or
      *           [enable_private_service_connect][google.cloud.aiplatform.v1.Endpoint.enable_private_service_connect],
      *           can be set.
      *     @type string $model_deployment_monitoring_job
-     *           Output only. Resource name of the Model Monitoring job associated with this Endpoint
-     *           if monitoring is enabled by [CreateModelDeploymentMonitoringJob][].
-     *           Format:
+     *           Output only. Resource name of the Model Monitoring job associated with this
+     *           Endpoint if monitoring is enabled by
+     *           [CreateModelDeploymentMonitoringJob][]. Format:
      *           `projects/{project}/locations/{location}/modelDeploymentMonitoringJobs/{model_deployment_monitoring_job}`
      *     @type \Google\Cloud\AIPlatform\V1\PredictRequestResponseLoggingConfig $predict_request_response_logging_config
      *           Configures the request-response logging for online prediction.
@@ -293,8 +303,11 @@ class Endpoint extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The models deployed in this Endpoint.
-     * To add or remove DeployedModels use [EndpointService.DeployModel][google.cloud.aiplatform.v1.EndpointService.DeployModel] and
-     * [EndpointService.UndeployModel][google.cloud.aiplatform.v1.EndpointService.UndeployModel] respectively.
+     * To add or remove DeployedModels use
+     * [EndpointService.DeployModel][google.cloud.aiplatform.v1.EndpointService.DeployModel]
+     * and
+     * [EndpointService.UndeployModel][google.cloud.aiplatform.v1.EndpointService.UndeployModel]
+     * respectively.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.DeployedModel deployed_models = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -306,8 +319,11 @@ class Endpoint extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The models deployed in this Endpoint.
-     * To add or remove DeployedModels use [EndpointService.DeployModel][google.cloud.aiplatform.v1.EndpointService.DeployModel] and
-     * [EndpointService.UndeployModel][google.cloud.aiplatform.v1.EndpointService.UndeployModel] respectively.
+     * To add or remove DeployedModels use
+     * [EndpointService.DeployModel][google.cloud.aiplatform.v1.EndpointService.DeployModel]
+     * and
+     * [EndpointService.UndeployModel][google.cloud.aiplatform.v1.EndpointService.UndeployModel]
+     * respectively.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.DeployedModel deployed_models = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param array<\Google\Cloud\AIPlatform\V1\DeployedModel>|\Google\Protobuf\Internal\RepeatedField $var
@@ -537,7 +553,8 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      * to which the Endpoint should be peered.
      * Private services access must already be configured for the network. If left
      * unspecified, the Endpoint is not peered with any network.
-     * Only one of the fields, [network][google.cloud.aiplatform.v1.Endpoint.network] or
+     * Only one of the fields,
+     * [network][google.cloud.aiplatform.v1.Endpoint.network] or
      * [enable_private_service_connect][google.cloud.aiplatform.v1.Endpoint.enable_private_service_connect],
      * can be set.
      * [Format](https://cloud.google.com/compute/docs/reference/rest/v1/networks/insert):
@@ -559,7 +576,8 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      * to which the Endpoint should be peered.
      * Private services access must already be configured for the network. If left
      * unspecified, the Endpoint is not peered with any network.
-     * Only one of the fields, [network][google.cloud.aiplatform.v1.Endpoint.network] or
+     * Only one of the fields,
+     * [network][google.cloud.aiplatform.v1.Endpoint.network] or
      * [enable_private_service_connect][google.cloud.aiplatform.v1.Endpoint.enable_private_service_connect],
      * can be set.
      * [Format](https://cloud.google.com/compute/docs/reference/rest/v1/networks/insert):
@@ -581,7 +599,8 @@ class Endpoint extends \Google\Protobuf\Internal\Message
 
     /**
      * Deprecated: If true, expose the Endpoint via private service connect.
-     * Only one of the fields, [network][google.cloud.aiplatform.v1.Endpoint.network] or
+     * Only one of the fields,
+     * [network][google.cloud.aiplatform.v1.Endpoint.network] or
      * [enable_private_service_connect][google.cloud.aiplatform.v1.Endpoint.enable_private_service_connect],
      * can be set.
      *
@@ -597,7 +616,8 @@ class Endpoint extends \Google\Protobuf\Internal\Message
 
     /**
      * Deprecated: If true, expose the Endpoint via private service connect.
-     * Only one of the fields, [network][google.cloud.aiplatform.v1.Endpoint.network] or
+     * Only one of the fields,
+     * [network][google.cloud.aiplatform.v1.Endpoint.network] or
      * [enable_private_service_connect][google.cloud.aiplatform.v1.Endpoint.enable_private_service_connect],
      * can be set.
      *
@@ -616,9 +636,9 @@ class Endpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Resource name of the Model Monitoring job associated with this Endpoint
-     * if monitoring is enabled by [CreateModelDeploymentMonitoringJob][].
-     * Format:
+     * Output only. Resource name of the Model Monitoring job associated with this
+     * Endpoint if monitoring is enabled by
+     * [CreateModelDeploymentMonitoringJob][]. Format:
      * `projects/{project}/locations/{location}/modelDeploymentMonitoringJobs/{model_deployment_monitoring_job}`
      *
      * Generated from protobuf field <code>string model_deployment_monitoring_job = 14 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
@@ -630,9 +650,9 @@ class Endpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Resource name of the Model Monitoring job associated with this Endpoint
-     * if monitoring is enabled by [CreateModelDeploymentMonitoringJob][].
-     * Format:
+     * Output only. Resource name of the Model Monitoring job associated with this
+     * Endpoint if monitoring is enabled by
+     * [CreateModelDeploymentMonitoringJob][]. Format:
      * `projects/{project}/locations/{location}/modelDeploymentMonitoringJobs/{model_deployment_monitoring_job}`
      *
      * Generated from protobuf field <code>string model_deployment_monitoring_job = 14 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>

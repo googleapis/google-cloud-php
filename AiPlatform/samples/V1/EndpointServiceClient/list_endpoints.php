@@ -31,8 +31,8 @@ use Google\Cloud\AIPlatform\V1\EndpointServiceClient;
 /**
  * Lists Endpoints in a Location.
  *
- * @param string $formattedParent The resource name of the Location from which to list the Endpoints.
- *                                Format: `projects/{project}/locations/{location}`
+ * @param string $formattedParent The resource name of the Location from which to list the
+ *                                Endpoints. Format: `projects/{project}/locations/{location}`
  *                                Please see {@see EndpointServiceClient::locationName()} for help formatting this field.
  */
 function list_endpoints_sample(string $formattedParent): void

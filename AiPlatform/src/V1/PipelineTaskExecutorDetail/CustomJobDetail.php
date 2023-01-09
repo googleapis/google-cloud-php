@@ -16,7 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class CustomJobDetail extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The name of the [CustomJob][google.cloud.aiplatform.v1.CustomJob].
+     * Output only. The name of the
+     * [CustomJob][google.cloud.aiplatform.v1.CustomJob].
      *
      * Generated from protobuf field <code>string job = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
@@ -29,7 +30,8 @@ class CustomJobDetail extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $job
-     *           Output only. The name of the [CustomJob][google.cloud.aiplatform.v1.CustomJob].
+     *           Output only. The name of the
+     *           [CustomJob][google.cloud.aiplatform.v1.CustomJob].
      * }
      */
     public function __construct($data = NULL) {
@@ -38,7 +40,8 @@ class CustomJobDetail extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The name of the [CustomJob][google.cloud.aiplatform.v1.CustomJob].
+     * Output only. The name of the
+     * [CustomJob][google.cloud.aiplatform.v1.CustomJob].
      *
      * Generated from protobuf field <code>string job = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @return string
@@ -49,7 +52,8 @@ class CustomJobDetail extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The name of the [CustomJob][google.cloud.aiplatform.v1.CustomJob].
+     * Output only. The name of the
+     * [CustomJob][google.cloud.aiplatform.v1.CustomJob].
      *
      * Generated from protobuf field <code>string job = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @param string $var

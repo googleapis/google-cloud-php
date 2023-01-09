@@ -42,9 +42,9 @@ use Google\Cloud\AIPlatform\V1\ReadFeatureValuesResponse;
  *                                                   for a machine learning model predicting user clicks on a website, an
  *                                                   EntityType ID could be `user`. Please see
  *                                                   {@see FeaturestoreOnlineServingServiceClient::entityTypeName()} for help formatting this field.
- * @param string $entityIdsElement                   IDs of entities to read Feature values of. The maximum number of IDs is
- *                                                   100. For example, for a machine learning model predicting user clicks on a
- *                                                   website, an entity ID could be `user_123`.
+ * @param string $entityIdsElement                   IDs of entities to read Feature values of. The maximum number of
+ *                                                   IDs is 100. For example, for a machine learning model predicting user
+ *                                                   clicks on a website, an entity ID could be `user_123`.
  * @param string $featureSelectorIdMatcherIdsElement The following are accepted as `ids`:
  *
  *                                                   * A single-element list containing only `*`, which selects all Features

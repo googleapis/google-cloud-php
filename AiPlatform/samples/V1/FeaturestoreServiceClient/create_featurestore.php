@@ -36,8 +36,8 @@ use Google\Rpc\Status;
  *                                Format:
  *                                `projects/{project}/locations/{location}'`
  *                                Please see {@see FeaturestoreServiceClient::locationName()} for help formatting this field.
- * @param string $featurestoreId  The ID to use for this Featurestore, which will become the final component
- *                                of the Featurestore's resource name.
+ * @param string $featurestoreId  The ID to use for this Featurestore, which will become the final
+ *                                component of the Featurestore's resource name.
  *
  *                                This value may be up to 60 characters, and valid characters are
  *                                `[a-z0-9_]`. The first character cannot be a number.

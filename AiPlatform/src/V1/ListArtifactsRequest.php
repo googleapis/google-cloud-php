@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [MetadataService.ListArtifacts][google.cloud.aiplatform.v1.MetadataService.ListArtifacts].
+ * Request message for
+ * [MetadataService.ListArtifacts][google.cloud.aiplatform.v1.MetadataService.ListArtifacts].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.ListArtifactsRequest</code>
  */
@@ -31,7 +32,8 @@ class ListArtifactsRequest extends \Google\Protobuf\Internal\Message
      */
     private $page_size = 0;
     /**
-     * A page token, received from a previous [MetadataService.ListArtifacts][google.cloud.aiplatform.v1.MetadataService.ListArtifacts]
+     * A page token, received from a previous
+     * [MetadataService.ListArtifacts][google.cloud.aiplatform.v1.MetadataService.ListArtifacts]
      * call. Provide this to retrieve the subsequent page.
      * When paginating, all other provided parameters must match the call that
      * provided the page token. (Otherwise the request will fail with
@@ -96,7 +98,8 @@ class ListArtifactsRequest extends \Google\Protobuf\Internal\Message
      *           The maximum number of Artifacts to return. The service may return fewer.
      *           Must be in range 1-1000, inclusive. Defaults to 100.
      *     @type string $page_token
-     *           A page token, received from a previous [MetadataService.ListArtifacts][google.cloud.aiplatform.v1.MetadataService.ListArtifacts]
+     *           A page token, received from a previous
+     *           [MetadataService.ListArtifacts][google.cloud.aiplatform.v1.MetadataService.ListArtifacts]
      *           call. Provide this to retrieve the subsequent page.
      *           When paginating, all other provided parameters must match the call that
      *           provided the page token. (Otherwise the request will fail with
@@ -200,7 +203,8 @@ class ListArtifactsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A page token, received from a previous [MetadataService.ListArtifacts][google.cloud.aiplatform.v1.MetadataService.ListArtifacts]
+     * A page token, received from a previous
+     * [MetadataService.ListArtifacts][google.cloud.aiplatform.v1.MetadataService.ListArtifacts]
      * call. Provide this to retrieve the subsequent page.
      * When paginating, all other provided parameters must match the call that
      * provided the page token. (Otherwise the request will fail with
@@ -215,7 +219,8 @@ class ListArtifactsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A page token, received from a previous [MetadataService.ListArtifacts][google.cloud.aiplatform.v1.MetadataService.ListArtifacts]
+     * A page token, received from a previous
+     * [MetadataService.ListArtifacts][google.cloud.aiplatform.v1.MetadataService.ListArtifacts]
      * call. Provide this to retrieve the subsequent page.
      * When paginating, all other provided parameters must match the call that
      * provided the page token. (Otherwise the request will fail with

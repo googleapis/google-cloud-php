@@ -276,10 +276,12 @@ class PredictionServiceGapicClient
     /**
      * Perform an online explanation.
      *
-     * If [deployed_model_id][google.cloud.aiplatform.v1.ExplainRequest.deployed_model_id] is specified,
-     * the corresponding DeployModel must have
+     * If
+     * [deployed_model_id][google.cloud.aiplatform.v1.ExplainRequest.deployed_model_id]
+     * is specified, the corresponding DeployModel must have
      * [explanation_spec][google.cloud.aiplatform.v1.DeployedModel.explanation_spec]
-     * populated. If [deployed_model_id][google.cloud.aiplatform.v1.ExplainRequest.deployed_model_id]
+     * populated. If
+     * [deployed_model_id][google.cloud.aiplatform.v1.ExplainRequest.deployed_model_id]
      * is not specified, all DeployedModels must have
      * [explanation_spec][google.cloud.aiplatform.v1.DeployedModel.explanation_spec]
      * populated. Only deployed AutoML tabular Models have
@@ -314,21 +316,23 @@ class PredictionServiceGapicClient
      *
      *     @type Value $parameters
      *           The parameters that govern the prediction. The schema of the parameters may
-     *           be specified via Endpoint's DeployedModels' [Model's ][google.cloud.aiplatform.v1.DeployedModel.model]
+     *           be specified via Endpoint's DeployedModels' [Model's
+     *           ][google.cloud.aiplatform.v1.DeployedModel.model]
      *           [PredictSchemata's][google.cloud.aiplatform.v1.Model.predict_schemata]
      *           [parameters_schema_uri][google.cloud.aiplatform.v1.PredictSchemata.parameters_schema_uri].
      *     @type ExplanationSpecOverride $explanationSpecOverride
      *           If specified, overrides the
-     *           [explanation_spec][google.cloud.aiplatform.v1.DeployedModel.explanation_spec] of the DeployedModel.
-     *           Can be used for explaining prediction results with different
-     *           configurations, such as:
+     *           [explanation_spec][google.cloud.aiplatform.v1.DeployedModel.explanation_spec]
+     *           of the DeployedModel. Can be used for explaining prediction results with
+     *           different configurations, such as:
      *           - Explaining top-5 predictions results as opposed to top-1;
      *           - Increasing path count or step count of the attribution methods to reduce
      *           approximate errors;
      *           - Using different baselines for explaining the prediction results.
      *     @type string $deployedModelId
      *           If specified, this ExplainRequest will be served by the chosen
-     *           DeployedModel, overriding [Endpoint.traffic_split][google.cloud.aiplatform.v1.Endpoint.traffic_split].
+     *           DeployedModel, overriding
+     *           [Endpoint.traffic_split][google.cloud.aiplatform.v1.Endpoint.traffic_split].
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -406,7 +410,8 @@ class PredictionServiceGapicClient
      *
      *     @type Value $parameters
      *           The parameters that govern the prediction. The schema of the parameters may
-     *           be specified via Endpoint's DeployedModels' [Model's ][google.cloud.aiplatform.v1.DeployedModel.model]
+     *           be specified via Endpoint's DeployedModels' [Model's
+     *           ][google.cloud.aiplatform.v1.DeployedModel.model]
      *           [PredictSchemata's][google.cloud.aiplatform.v1.Model.predict_schemata]
      *           [parameters_schema_uri][google.cloud.aiplatform.v1.PredictSchemata.parameters_schema_uri].
      *     @type RetrySettings|array $retrySettings
@@ -449,11 +454,13 @@ class PredictionServiceGapicClient
      *
      * The response includes the following HTTP headers:
      *
-     * * `X-Vertex-AI-Endpoint-Id`: ID of the [Endpoint][google.cloud.aiplatform.v1.Endpoint] that served this
+     * * `X-Vertex-AI-Endpoint-Id`: ID of the
+     * [Endpoint][google.cloud.aiplatform.v1.Endpoint] that served this
      * prediction.
      *
-     * * `X-Vertex-AI-Deployed-Model-Id`: ID of the Endpoint's [DeployedModel][google.cloud.aiplatform.v1.DeployedModel]
-     * that served this prediction.
+     * * `X-Vertex-AI-Deployed-Model-Id`: ID of the Endpoint's
+     * [DeployedModel][google.cloud.aiplatform.v1.DeployedModel] that served this
+     * prediction.
      *
      * Sample code:
      * ```
@@ -475,16 +482,18 @@ class PredictionServiceGapicClient
      *     @type HttpBody $httpBody
      *           The prediction input. Supports HTTP headers and arbitrary data payload.
      *
-     *           A [DeployedModel][google.cloud.aiplatform.v1.DeployedModel] may have an upper limit on the number of instances it
-     *           supports per request. When this limit it is exceeded for an AutoML model,
-     *           the [RawPredict][google.cloud.aiplatform.v1.PredictionService.RawPredict] method returns an error.
-     *           When this limit is exceeded for a custom-trained model, the behavior varies
-     *           depending on the model.
+     *           A [DeployedModel][google.cloud.aiplatform.v1.DeployedModel] may have an
+     *           upper limit on the number of instances it supports per request. When this
+     *           limit it is exceeded for an AutoML model, the
+     *           [RawPredict][google.cloud.aiplatform.v1.PredictionService.RawPredict]
+     *           method returns an error. When this limit is exceeded for a custom-trained
+     *           model, the behavior varies depending on the model.
      *
      *           You can specify the schema for each instance in the
      *           [predict_schemata.instance_schema_uri][google.cloud.aiplatform.v1.PredictSchemata.instance_schema_uri]
-     *           field when you create a [Model][google.cloud.aiplatform.v1.Model]. This schema applies when you deploy the
-     *           `Model` as a `DeployedModel` to an [Endpoint][google.cloud.aiplatform.v1.Endpoint] and use the `RawPredict`
+     *           field when you create a [Model][google.cloud.aiplatform.v1.Model]. This
+     *           schema applies when you deploy the `Model` as a `DeployedModel` to an
+     *           [Endpoint][google.cloud.aiplatform.v1.Endpoint] and use the `RawPredict`
      *           method.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an

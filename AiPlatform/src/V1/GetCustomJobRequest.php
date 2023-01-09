@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [JobService.GetCustomJob][google.cloud.aiplatform.v1.JobService.GetCustomJob].
+ * Request message for
+ * [JobService.GetCustomJob][google.cloud.aiplatform.v1.JobService.GetCustomJob].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.GetCustomJobRequest</code>
  */

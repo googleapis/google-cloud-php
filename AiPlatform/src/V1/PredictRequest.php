@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [PredictionService.Predict][google.cloud.aiplatform.v1.PredictionService.Predict].
+ * Request message for
+ * [PredictionService.Predict][google.cloud.aiplatform.v1.PredictionService.Predict].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.PredictRequest</code>
  */
@@ -39,7 +40,8 @@ class PredictRequest extends \Google\Protobuf\Internal\Message
     private $instances;
     /**
      * The parameters that govern the prediction. The schema of the parameters may
-     * be specified via Endpoint's DeployedModels' [Model's ][google.cloud.aiplatform.v1.DeployedModel.model]
+     * be specified via Endpoint's DeployedModels' [Model's
+     * ][google.cloud.aiplatform.v1.DeployedModel.model]
      * [PredictSchemata's][google.cloud.aiplatform.v1.Model.predict_schemata]
      * [parameters_schema_uri][google.cloud.aiplatform.v1.PredictSchemata.parameters_schema_uri].
      *
@@ -69,7 +71,8 @@ class PredictRequest extends \Google\Protobuf\Internal\Message
      *           [instance_schema_uri][google.cloud.aiplatform.v1.PredictSchemata.instance_schema_uri].
      *     @type \Google\Protobuf\Value $parameters
      *           The parameters that govern the prediction. The schema of the parameters may
-     *           be specified via Endpoint's DeployedModels' [Model's ][google.cloud.aiplatform.v1.DeployedModel.model]
+     *           be specified via Endpoint's DeployedModels' [Model's
+     *           ][google.cloud.aiplatform.v1.DeployedModel.model]
      *           [PredictSchemata's][google.cloud.aiplatform.v1.Model.predict_schemata]
      *           [parameters_schema_uri][google.cloud.aiplatform.v1.PredictSchemata.parameters_schema_uri].
      * }
@@ -153,7 +156,8 @@ class PredictRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The parameters that govern the prediction. The schema of the parameters may
-     * be specified via Endpoint's DeployedModels' [Model's ][google.cloud.aiplatform.v1.DeployedModel.model]
+     * be specified via Endpoint's DeployedModels' [Model's
+     * ][google.cloud.aiplatform.v1.DeployedModel.model]
      * [PredictSchemata's][google.cloud.aiplatform.v1.Model.predict_schemata]
      * [parameters_schema_uri][google.cloud.aiplatform.v1.PredictSchemata.parameters_schema_uri].
      *
@@ -177,7 +181,8 @@ class PredictRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The parameters that govern the prediction. The schema of the parameters may
-     * be specified via Endpoint's DeployedModels' [Model's ][google.cloud.aiplatform.v1.DeployedModel.model]
+     * be specified via Endpoint's DeployedModels' [Model's
+     * ][google.cloud.aiplatform.v1.DeployedModel.model]
      * [PredictSchemata's][google.cloud.aiplatform.v1.Model.predict_schemata]
      * [parameters_schema_uri][google.cloud.aiplatform.v1.PredictSchemata.parameters_schema_uri].
      *

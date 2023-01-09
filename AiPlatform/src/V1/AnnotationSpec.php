@@ -42,8 +42,8 @@ class AnnotationSpec extends \Google\Protobuf\Internal\Message
      */
     private $update_time = null;
     /**
-     * Optional. Used to perform consistent read-modify-write updates. If not set, a blind
-     * "overwrite" update happens.
+     * Optional. Used to perform consistent read-modify-write updates. If not set,
+     * a blind "overwrite" update happens.
      *
      * Generated from protobuf field <code>string etag = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -66,8 +66,8 @@ class AnnotationSpec extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. Timestamp when AnnotationSpec was last updated.
      *     @type string $etag
-     *           Optional. Used to perform consistent read-modify-write updates. If not set, a blind
-     *           "overwrite" update happens.
+     *           Optional. Used to perform consistent read-modify-write updates. If not set,
+     *           a blind "overwrite" update happens.
      * }
      */
     public function __construct($data = NULL) {
@@ -204,8 +204,8 @@ class AnnotationSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Used to perform consistent read-modify-write updates. If not set, a blind
-     * "overwrite" update happens.
+     * Optional. Used to perform consistent read-modify-write updates. If not set,
+     * a blind "overwrite" update happens.
      *
      * Generated from protobuf field <code>string etag = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -216,8 +216,8 @@ class AnnotationSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Used to perform consistent read-modify-write updates. If not set, a blind
-     * "overwrite" update happens.
+     * Optional. Used to perform consistent read-modify-write updates. If not set,
+     * a blind "overwrite" update happens.
      *
      * Generated from protobuf field <code>string etag = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

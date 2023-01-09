@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class MetricSpec extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The ID of the metric. Must not contain whitespaces and must be unique
-     * amongst all MetricSpecs.
+     * Required. The ID of the metric. Must not contain whitespaces and must be
+     * unique amongst all MetricSpecs.
      *
      * Generated from protobuf field <code>string metric_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -36,8 +36,8 @@ class MetricSpec extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $metric_id
-     *           Required. The ID of the metric. Must not contain whitespaces and must be unique
-     *           amongst all MetricSpecs.
+     *           Required. The ID of the metric. Must not contain whitespaces and must be
+     *           unique amongst all MetricSpecs.
      *     @type int $goal
      *           Required. The optimization goal of the metric.
      * }
@@ -48,8 +48,8 @@ class MetricSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The ID of the metric. Must not contain whitespaces and must be unique
-     * amongst all MetricSpecs.
+     * Required. The ID of the metric. Must not contain whitespaces and must be
+     * unique amongst all MetricSpecs.
      *
      * Generated from protobuf field <code>string metric_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -60,8 +60,8 @@ class MetricSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The ID of the metric. Must not contain whitespaces and must be unique
-     * amongst all MetricSpecs.
+     * Required. The ID of the metric. Must not contain whitespaces and must be
+     * unique amongst all MetricSpecs.
      *
      * Generated from protobuf field <code>string metric_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

@@ -16,9 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class CustomJobSpec extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The spec of the worker pools including machine type and Docker image.
-     * All worker pools except the first one are optional and can be skipped by
-     * providing an empty value.
+     * Required. The spec of the worker pools including machine type and Docker
+     * image. All worker pools except the first one are optional and can be
+     * skipped by providing an empty value.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.WorkerPoolSpec worker_pool_specs = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -71,8 +71,8 @@ class CustomJobSpec extends \Google\Protobuf\Internal\Message
      * HyperparameterTuningJob. For HyperparameterTuningJob,
      * the baseOutputDirectory of
      * each child CustomJob backing a Trial is set to a subdirectory of name
-     * [id][google.cloud.aiplatform.v1.Trial.id] under its parent HyperparameterTuningJob's
-     * baseOutputDirectory.
+     * [id][google.cloud.aiplatform.v1.Trial.id] under its parent
+     * HyperparameterTuningJob's baseOutputDirectory.
      * The following Vertex AI environment variables will be passed to
      * containers or python modules when this field is set:
      *   For CustomJob:
@@ -88,9 +88,9 @@ class CustomJobSpec extends \Google\Protobuf\Internal\Message
      */
     private $base_output_directory = null;
     /**
-     * Optional. The name of a Vertex AI [Tensorboard][google.cloud.aiplatform.v1.Tensorboard] resource to which this CustomJob
-     * will upload Tensorboard logs.
-     * Format:
+     * Optional. The name of a Vertex AI
+     * [Tensorboard][google.cloud.aiplatform.v1.Tensorboard] resource to which
+     * this CustomJob will upload Tensorboard logs. Format:
      * `projects/{project}/locations/{location}/tensorboards/{tensorboard}`
      *
      * Generated from protobuf field <code>string tensorboard = 7 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
@@ -101,7 +101,11 @@ class CustomJobSpec extends \Google\Protobuf\Internal\Message
      * access](https://cloud.google.com/vertex-ai/docs/training/monitor-debug-interactive-shell)
      * to training containers.
      * If set to `true`, you can access interactive shells at the URIs given
-     * by [CustomJob.web_access_uris][google.cloud.aiplatform.v1.CustomJob.web_access_uris] or [Trial.web_access_uris][google.cloud.aiplatform.v1.Trial.web_access_uris] (within
+     * by
+     * [CustomJob.web_access_uris][google.cloud.aiplatform.v1.CustomJob.web_access_uris]
+     * or
+     * [Trial.web_access_uris][google.cloud.aiplatform.v1.Trial.web_access_uris]
+     * (within
      * [HyperparameterTuningJob.trials][google.cloud.aiplatform.v1.HyperparameterTuningJob.trials]).
      *
      * Generated from protobuf field <code>bool enable_web_access = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -115,9 +119,9 @@ class CustomJobSpec extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<\Google\Cloud\AIPlatform\V1\WorkerPoolSpec>|\Google\Protobuf\Internal\RepeatedField $worker_pool_specs
-     *           Required. The spec of the worker pools including machine type and Docker image.
-     *           All worker pools except the first one are optional and can be skipped by
-     *           providing an empty value.
+     *           Required. The spec of the worker pools including machine type and Docker
+     *           image. All worker pools except the first one are optional and can be
+     *           skipped by providing an empty value.
      *     @type \Google\Cloud\AIPlatform\V1\Scheduling $scheduling
      *           Scheduling options for a CustomJob.
      *     @type string $service_account
@@ -150,8 +154,8 @@ class CustomJobSpec extends \Google\Protobuf\Internal\Message
      *           HyperparameterTuningJob. For HyperparameterTuningJob,
      *           the baseOutputDirectory of
      *           each child CustomJob backing a Trial is set to a subdirectory of name
-     *           [id][google.cloud.aiplatform.v1.Trial.id] under its parent HyperparameterTuningJob's
-     *           baseOutputDirectory.
+     *           [id][google.cloud.aiplatform.v1.Trial.id] under its parent
+     *           HyperparameterTuningJob's baseOutputDirectory.
      *           The following Vertex AI environment variables will be passed to
      *           containers or python modules when this field is set:
      *             For CustomJob:
@@ -163,16 +167,20 @@ class CustomJobSpec extends \Google\Protobuf\Internal\Message
      *             * AIP_CHECKPOINT_DIR = `<base_output_directory>/<trial_id>/checkpoints/`
      *             * AIP_TENSORBOARD_LOG_DIR = `<base_output_directory>/<trial_id>/logs/`
      *     @type string $tensorboard
-     *           Optional. The name of a Vertex AI [Tensorboard][google.cloud.aiplatform.v1.Tensorboard] resource to which this CustomJob
-     *           will upload Tensorboard logs.
-     *           Format:
+     *           Optional. The name of a Vertex AI
+     *           [Tensorboard][google.cloud.aiplatform.v1.Tensorboard] resource to which
+     *           this CustomJob will upload Tensorboard logs. Format:
      *           `projects/{project}/locations/{location}/tensorboards/{tensorboard}`
      *     @type bool $enable_web_access
      *           Optional. Whether you want Vertex AI to enable [interactive shell
      *           access](https://cloud.google.com/vertex-ai/docs/training/monitor-debug-interactive-shell)
      *           to training containers.
      *           If set to `true`, you can access interactive shells at the URIs given
-     *           by [CustomJob.web_access_uris][google.cloud.aiplatform.v1.CustomJob.web_access_uris] or [Trial.web_access_uris][google.cloud.aiplatform.v1.Trial.web_access_uris] (within
+     *           by
+     *           [CustomJob.web_access_uris][google.cloud.aiplatform.v1.CustomJob.web_access_uris]
+     *           or
+     *           [Trial.web_access_uris][google.cloud.aiplatform.v1.Trial.web_access_uris]
+     *           (within
      *           [HyperparameterTuningJob.trials][google.cloud.aiplatform.v1.HyperparameterTuningJob.trials]).
      * }
      */
@@ -182,9 +190,9 @@ class CustomJobSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The spec of the worker pools including machine type and Docker image.
-     * All worker pools except the first one are optional and can be skipped by
-     * providing an empty value.
+     * Required. The spec of the worker pools including machine type and Docker
+     * image. All worker pools except the first one are optional and can be
+     * skipped by providing an empty value.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.WorkerPoolSpec worker_pool_specs = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -195,9 +203,9 @@ class CustomJobSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The spec of the worker pools including machine type and Docker image.
-     * All worker pools except the first one are optional and can be skipped by
-     * providing an empty value.
+     * Required. The spec of the worker pools including machine type and Docker
+     * image. All worker pools except the first one are optional and can be
+     * skipped by providing an empty value.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.WorkerPoolSpec worker_pool_specs = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param array<\Google\Cloud\AIPlatform\V1\WorkerPoolSpec>|\Google\Protobuf\Internal\RepeatedField $var
@@ -368,8 +376,8 @@ class CustomJobSpec extends \Google\Protobuf\Internal\Message
      * HyperparameterTuningJob. For HyperparameterTuningJob,
      * the baseOutputDirectory of
      * each child CustomJob backing a Trial is set to a subdirectory of name
-     * [id][google.cloud.aiplatform.v1.Trial.id] under its parent HyperparameterTuningJob's
-     * baseOutputDirectory.
+     * [id][google.cloud.aiplatform.v1.Trial.id] under its parent
+     * HyperparameterTuningJob's baseOutputDirectory.
      * The following Vertex AI environment variables will be passed to
      * containers or python modules when this field is set:
      *   For CustomJob:
@@ -404,8 +412,8 @@ class CustomJobSpec extends \Google\Protobuf\Internal\Message
      * HyperparameterTuningJob. For HyperparameterTuningJob,
      * the baseOutputDirectory of
      * each child CustomJob backing a Trial is set to a subdirectory of name
-     * [id][google.cloud.aiplatform.v1.Trial.id] under its parent HyperparameterTuningJob's
-     * baseOutputDirectory.
+     * [id][google.cloud.aiplatform.v1.Trial.id] under its parent
+     * HyperparameterTuningJob's baseOutputDirectory.
      * The following Vertex AI environment variables will be passed to
      * containers or python modules when this field is set:
      *   For CustomJob:
@@ -430,9 +438,9 @@ class CustomJobSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The name of a Vertex AI [Tensorboard][google.cloud.aiplatform.v1.Tensorboard] resource to which this CustomJob
-     * will upload Tensorboard logs.
-     * Format:
+     * Optional. The name of a Vertex AI
+     * [Tensorboard][google.cloud.aiplatform.v1.Tensorboard] resource to which
+     * this CustomJob will upload Tensorboard logs. Format:
      * `projects/{project}/locations/{location}/tensorboards/{tensorboard}`
      *
      * Generated from protobuf field <code>string tensorboard = 7 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
@@ -444,9 +452,9 @@ class CustomJobSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The name of a Vertex AI [Tensorboard][google.cloud.aiplatform.v1.Tensorboard] resource to which this CustomJob
-     * will upload Tensorboard logs.
-     * Format:
+     * Optional. The name of a Vertex AI
+     * [Tensorboard][google.cloud.aiplatform.v1.Tensorboard] resource to which
+     * this CustomJob will upload Tensorboard logs. Format:
      * `projects/{project}/locations/{location}/tensorboards/{tensorboard}`
      *
      * Generated from protobuf field <code>string tensorboard = 7 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
@@ -466,7 +474,11 @@ class CustomJobSpec extends \Google\Protobuf\Internal\Message
      * access](https://cloud.google.com/vertex-ai/docs/training/monitor-debug-interactive-shell)
      * to training containers.
      * If set to `true`, you can access interactive shells at the URIs given
-     * by [CustomJob.web_access_uris][google.cloud.aiplatform.v1.CustomJob.web_access_uris] or [Trial.web_access_uris][google.cloud.aiplatform.v1.Trial.web_access_uris] (within
+     * by
+     * [CustomJob.web_access_uris][google.cloud.aiplatform.v1.CustomJob.web_access_uris]
+     * or
+     * [Trial.web_access_uris][google.cloud.aiplatform.v1.Trial.web_access_uris]
+     * (within
      * [HyperparameterTuningJob.trials][google.cloud.aiplatform.v1.HyperparameterTuningJob.trials]).
      *
      * Generated from protobuf field <code>bool enable_web_access = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -482,7 +494,11 @@ class CustomJobSpec extends \Google\Protobuf\Internal\Message
      * access](https://cloud.google.com/vertex-ai/docs/training/monitor-debug-interactive-shell)
      * to training containers.
      * If set to `true`, you can access interactive shells at the URIs given
-     * by [CustomJob.web_access_uris][google.cloud.aiplatform.v1.CustomJob.web_access_uris] or [Trial.web_access_uris][google.cloud.aiplatform.v1.Trial.web_access_uris] (within
+     * by
+     * [CustomJob.web_access_uris][google.cloud.aiplatform.v1.CustomJob.web_access_uris]
+     * or
+     * [Trial.web_access_uris][google.cloud.aiplatform.v1.Trial.web_access_uris]
+     * (within
      * [HyperparameterTuningJob.trials][google.cloud.aiplatform.v1.HyperparameterTuningJob.trials]).
      *
      * Generated from protobuf field <code>bool enable_web_access = 10 [(.google.api.field_behavior) = OPTIONAL];</code>

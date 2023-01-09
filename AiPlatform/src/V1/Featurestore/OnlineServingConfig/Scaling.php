@@ -18,8 +18,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class Scaling extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The minimum number of nodes to scale down to. Must be greater than or
-     * equal to 1.
+     * Required. The minimum number of nodes to scale down to. Must be greater
+     * than or equal to 1.
      *
      * Generated from protobuf field <code>int32 min_node_count = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -39,8 +39,8 @@ class Scaling extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $min_node_count
-     *           Required. The minimum number of nodes to scale down to. Must be greater than or
-     *           equal to 1.
+     *           Required. The minimum number of nodes to scale down to. Must be greater
+     *           than or equal to 1.
      *     @type int $max_node_count
      *           The maximum number of nodes to scale up to. Must be greater than
      *           min_node_count, and less than or equal to 10 times of 'min_node_count'.
@@ -52,8 +52,8 @@ class Scaling extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The minimum number of nodes to scale down to. Must be greater than or
-     * equal to 1.
+     * Required. The minimum number of nodes to scale down to. Must be greater
+     * than or equal to 1.
      *
      * Generated from protobuf field <code>int32 min_node_count = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
@@ -64,8 +64,8 @@ class Scaling extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The minimum number of nodes to scale down to. Must be greater than or
-     * equal to 1.
+     * Required. The minimum number of nodes to scale down to. Must be greater
+     * than or equal to 1.
      *
      * Generated from protobuf field <code>int32 min_node_count = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var

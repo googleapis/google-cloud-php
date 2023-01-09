@@ -32,9 +32,8 @@ use Google\Cloud\AIPlatform\V1\MetadataServiceClient;
  * form of LineageSubgraph that also contains the Execution and connecting
  * Events.
  *
- * @param string $formattedExecution The resource name of the Execution whose input and output Artifacts should
- *                                   be retrieved as a LineageSubgraph.
- *                                   Format:
+ * @param string $formattedExecution The resource name of the Execution whose input and output
+ *                                   Artifacts should be retrieved as a LineageSubgraph. Format:
  *                                   `projects/{project}/locations/{location}/metadataStores/{metadatastore}/executions/{execution}`
  *                                   Please see {@see MetadataServiceClient::executionName()} for help formatting this field.
  */
