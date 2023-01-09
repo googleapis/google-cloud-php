@@ -217,20 +217,20 @@ trait RetryTrait
         if ($maxRetries <= $currentAttempt) {
             return false;
         }
+        if ($retryStrategy == self::$RETRY_STRATEGY_NEVER) {
+            return false;
+        }
 
         $statusCode = $exception->getCode();
         // Retry if the exception status code matches
         // with one of the retriable status code and
         // the operation is either idempotent or conditionally
         // idempotent with preconditions supplied.
+
         if (in_array($statusCode, self::$httpRetryCodes)) {
-            switch ($retryStrategy) {
-                case self::$RETRY_STRATEGY_ALWAYS:
-                    return true;
-                case self::$RETRY_STRATEGY_NEVER:
-                    return false;
-            }
-            if ($isIdempotent) {
+            if ($retryStrategy == self::$RETRY_STRATEGY_ALWAYS) {
+                return true;
+            } elseif ($isIdempotent) {
                 return true;
             } elseif ($preconditionNeeded) {
                 return $preconditionSupplied;
