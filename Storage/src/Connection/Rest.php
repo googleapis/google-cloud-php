@@ -304,27 +304,14 @@ class Rest implements ConnectionInterface
             ]
         ];
 
-        // Passing on preconditions if present
-        foreach (RetryTrait::$condIdempotentOps['objects.insert'] as $condition) {
-            if(isset($args[$condition])) {
-                $uriParams['query'][$condition] = $args[$condition];
-                $args['uploaderOptions'][$condition] = $args[$condition];
+        // Passing the preconditions we want to extract out of arguments
+        // into our query params.
+        $preconditions = RetryTrait::$condIdempotentOps['objects.insert'];
+        foreach ($preconditions as $precondition) {
+            if (isset($args[$precondition])) {
+                $uriParams['query'][$precondition] = $args[$precondition];
             }
         }
-
-        // Passing on retryStrategy if present
-        if (isset($args['retryStrategy'])) {
-            $args['uploaderOptions']['retryStrategy'] = $args['retryStrategy'];
-        }
-
-        // Passing on custom retry function
-        $retryFunc = $this->getRestRetryFunction(
-            'objects',
-            'insert',
-            $args['uploaderOptions']
-        );
-        $args['uploaderOptions']['restRetryFunction'] = $retryFunc;
-
 
         return new $uploaderClass(
             $this->requestWrapper,
@@ -353,7 +340,6 @@ class Rest implements ConnectionInterface
         $args['data'] = Utils::streamFor($args['data']);
 
         if ($args['resumable'] === null) {
-            $feasd = $args['data']->getSize();
             $args['resumable'] = $args['data']->getSize() > AbstractUploader::RESUMABLE_LIMIT;
         }
 
@@ -381,11 +367,21 @@ class Rest implements ConnectionInterface
             'chunkSize',
             'contentType',
             'metadata',
-            'uploadProgressCallback'
+            'uploadProgressCallback',
+            'restDelayFunction',
+            'restCalcDelayFunction',
         ];
 
         $args['uploaderOptions'] = array_intersect_key($args, array_flip($uploaderOptionKeys));
         $args = array_diff_key($args, array_flip($uploaderOptionKeys));
+
+        // Passing on custom retry function to $args['uploaderOptions']
+        $retryFunc = $this->getRestRetryFunction(
+            'objects',
+            'insert',
+            $args
+        );
+        $args['uploaderOptions']['restRetryFunction'] = $retryFunc;
 
         return $args;
     }
