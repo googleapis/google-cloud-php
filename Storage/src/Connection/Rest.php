@@ -78,6 +78,12 @@ class Rest implements ConnectionInterface
     private $apiEndpoint;
 
     /**
+     * @var callable
+     * value null accepted
+     */
+    private $restRetryFunction;
+
+    /**
      * @param array $config
      */
     public function __construct(array $config = [])
@@ -100,6 +106,7 @@ class Rest implements ConnectionInterface
         ));
 
         $this->projectId = $this->pluck('projectId', $config, false);
+        $this->restRetryFunction = (isset($config['restRetryFunction'])) ? $config['restRetryFunction'] : null;
     }
 
     /**
@@ -623,7 +630,8 @@ class Rest implements ConnectionInterface
         $args['restRetryFunction'] = $this->getRestRetryFunction(
             $retryResource,
             $method,
-            $args
+            $args,
+            $this->restRetryFunction
         );
 
         return $this->send($resource, $method, $args);
