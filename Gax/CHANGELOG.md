@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.18.2](https://github.com/googleapis/gax-php/compare/v1.18.1...v1.18.2) (2023-01-06)
+
+
+### Bug Fixes
+
+* Ensure metadata return type is loaded into descriptor pool ([#439](https://github.com/googleapis/gax-php/issues/439)) ([a40cf8d](https://github.com/googleapis/gax-php/commit/a40cf8d87ac9aa45d18239456e2e4c96653f1a6c))
+* Implicit conversion from float to int warning ([#438](https://github.com/googleapis/gax-php/issues/438)) ([1cb62ad](https://github.com/googleapis/gax-php/commit/1cb62ad3d92ace0518017abc972e912b339f1b56))
+
 ## [1.18.1](https://github.com/googleapis/gax-php/compare/v1.18.0...v1.18.1) (2022-12-06)
 
 
