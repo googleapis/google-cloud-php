@@ -41,7 +41,7 @@ trait RetryTrait
      * (Idempotent)
      * @var array
      */
-    private $idempotentOps = [
+    public static $idempotentOps = [
         'bucket_acl.get',
         'bucket_acl.list',
         'buckets.delete',
@@ -71,7 +71,7 @@ trait RetryTrait
      * (Conditionally idempotent)
      * @var array
      */
-    private $condIdempotentOps = [
+    public static $condIdempotentOps = [
         'buckets.patch' => ['ifMetagenerationMatch', 'etag'],
         // Currently etag is not supported, so this preCondition never available
         'buckets.setIamPolicy' => ['etag'],
@@ -80,7 +80,7 @@ trait RetryTrait
         'objects.compose' => ['ifGenerationMatch'],
         'objects.copy' => ['ifGenerationMatch'],
         'objects.delete' => ['ifGenerationMatch'],
-        'objects.insert' => ['ifGenerationMatch'],
+        'objects.insert' => ['ifGenerationMatch', 'ifGenerationNotMatch'],
         'objects.patch' => ['ifMetagenerationMatch', 'etag'],
         'objects.rewrite' => ['ifGenerationMatch'],
         'objects.update' => ['ifMetagenerationMatch']
@@ -102,8 +102,8 @@ trait RetryTrait
         }
         $methodName = sprintf('%s.%s', $resource, $method);
         $maxRetries = (int) (isset($args['retries']) ? $args['retries'] : 3);
-        $isOpIdempotent = in_array($methodName, $this->idempotentOps);
-        $preconditionNeeded = array_key_exists($methodName, $this->condIdempotentOps);
+        $isOpIdempotent = in_array($methodName, self::$idempotentOps);
+        $preconditionNeeded = array_key_exists($methodName, self::$condIdempotentOps);
         $preconditionSupplied = $this->isPreConditionSupplied($methodName, $args);
 
         return function (
@@ -144,10 +144,10 @@ trait RetryTrait
      */
     private function isPreConditionSupplied($methodName, $preConditions)
     {
-        if (isset($this->condIdempotentOps[$methodName])) {
+        if (isset(self::$condIdempotentOps[$methodName])) {
             // return true if required precondition are given.
             return !empty(array_intersect(
-                $this->condIdempotentOps[$methodName],
+                self::$condIdempotentOps[$methodName],
                 array_keys($preConditions)
             ));
         }

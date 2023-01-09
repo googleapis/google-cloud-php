@@ -285,24 +285,6 @@ class Rest implements ConnectionInterface
     {
         $args = $this->resolveUploadOptions($args);
 
-        // Passing on precondition if present
-        if (isset($args['ifGenerationMatch'])) {
-            $args['uploaderOptions']['ifGenerationMatch'] = $args['ifGenerationMatch'];
-        }
-
-        // Passing on retryStrategy if present
-        if (isset($args['retryStrategy'])) {
-            $args['uploaderOptions']['retryStrategy'] = $args['retryStrategy'];
-        }
-
-        // Passing on custom retry function
-        $retryFunc = $this->getRestRetryFunction(
-            'objects',
-            'insert',
-            $args['uploaderOptions']
-        );
-        $args['uploaderOptions']['restRetryFunction'] = $retryFunc;
-
         $uploadType = AbstractUploader::UPLOAD_TYPE_RESUMABLE;
         if ($args['streamable']) {
             $uploaderClass = StreamableUploader::class;
@@ -322,9 +304,27 @@ class Rest implements ConnectionInterface
             ]
         ];
 
-        if (isset($args['ifGenerationMatch'])) {
-            $uriParams['query']['ifGenerationMatch'] = $args['ifGenerationMatch'];
+        // Passing on preconditions if present
+        foreach (RetryTrait::$condIdempotentOps['objects.insert'] as $condition) {
+            if(isset($args[$condition])) {
+                $uriParams['query'][$condition] = $args[$condition];
+                $args['uploaderOptions'][$condition] = $args[$condition];
+            }
         }
+
+        // Passing on retryStrategy if present
+        if (isset($args['retryStrategy'])) {
+            $args['uploaderOptions']['retryStrategy'] = $args['retryStrategy'];
+        }
+
+        // Passing on custom retry function
+        $retryFunc = $this->getRestRetryFunction(
+            'objects',
+            'insert',
+            $args['uploaderOptions']
+        );
+        $args['uploaderOptions']['restRetryFunction'] = $retryFunc;
+
 
         return new $uploaderClass(
             $this->requestWrapper,
@@ -353,6 +353,7 @@ class Rest implements ConnectionInterface
         $args['data'] = Utils::streamFor($args['data']);
 
         if ($args['resumable'] === null) {
+            $feasd = $args['data']->getSize();
             $args['resumable'] = $args['data']->getSize() > AbstractUploader::RESUMABLE_LIMIT;
         }
 
