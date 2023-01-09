@@ -538,13 +538,29 @@ class RestTest extends TestCase
             // precondition not provided
             ['buckets', 'update', [], 400, 1, false],
             // Non idempotent
-            ['bucket_acl', 'delete', [], 503, 4, false],
-            ['bucket_acl', 'delete', [], 400, 4, false],
+            ['bucket_acl', 'delete', [], 503, 2, false],
+            ['bucket_acl', 'delete', [], 400, 3, false],
             // Max retry reached
             ['buckets', 'get', [], 503, 4, false]
         ];
     }
 
+    /**
+     * Creates retry strategy test cases(for 'always' and 'never' retry cases)
+     * from the existing retry cases of @dataprovider: retryFunctionReturnValues
+     *
+     * Each case of this @dataprovider is of the format
+     * [
+     *     $resource,
+     *     $operation,
+     *     $args,
+     *     $errorCode,
+     *     $retryCount,
+     *     $expectedResult
+     * ]
+     *
+     * @return array<array>
+     */
     public function retryStrategyCases()
     {
         $retryCases = $this->retryFunctionReturnValues();
