@@ -2,5 +2,4 @@
 
 return [
     'interfaces' => [],
-    'numericEnums' => true,
 ];
