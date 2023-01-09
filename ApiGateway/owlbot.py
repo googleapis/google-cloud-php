@@ -32,7 +32,7 @@ _tracked_paths.add(src)
 
 php.owlbot_main(
     src=src,
-    dest=dest
+    dest=dest,
     copy_excludes=[
         src / "**/[A-Z]*_*.php",
         src / "**/*GrpcClient.php",
