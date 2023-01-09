@@ -99,9 +99,7 @@ trait RetryTrait
      */
 
     /**
-     * The strategy value which enforces Non-Idempotent & Conditionally
-     * Non-Idempotent operations to get always retried if error code is a
-     * retriable one.
+     * Retry an API operation when an exception occurs if the exception has a retryable error code.
      * @var string
      */
     public static $RETRY_STRATEGY_ALWAYS = 'always';
@@ -113,8 +111,8 @@ trait RetryTrait
     public static $RETRY_STRATEGY_NEVER = 'never';
 
     /**
-     * The strategy value only reties idempotent and conditionally idempotent
-     * operations is error code is a retriable one.
+     * Retry an API operation only if it is considered idempotent
+     * and the exception has a retryable error code.
      * @var string
      */
     public static $RETRY_STRATEGY_IDEMPOTENT = 'idempotent';
