@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class JobReference extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. The ID of the Google Cloud Platform project that the job belongs to. If
-     * specified, must match the request project ID.
+     * Optional. The ID of the Google Cloud Platform project that the job belongs
+     * to. If specified, must match the request project ID.
      *
      * Generated from protobuf field <code>string project_id = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -39,8 +39,8 @@ class JobReference extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $project_id
-     *           Optional. The ID of the Google Cloud Platform project that the job belongs to. If
-     *           specified, must match the request project ID.
+     *           Optional. The ID of the Google Cloud Platform project that the job belongs
+     *           to. If specified, must match the request project ID.
      *     @type string $job_id
      *           Optional. The job ID, which must be unique within the project.
      *           The ID must contain only letters (a-z, A-Z), numbers (0-9),
@@ -54,8 +54,8 @@ class JobReference extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The ID of the Google Cloud Platform project that the job belongs to. If
-     * specified, must match the request project ID.
+     * Optional. The ID of the Google Cloud Platform project that the job belongs
+     * to. If specified, must match the request project ID.
      *
      * Generated from protobuf field <code>string project_id = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -66,8 +66,8 @@ class JobReference extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The ID of the Google Cloud Platform project that the job belongs to. If
-     * specified, must match the request project ID.
+     * Optional. The ID of the Google Cloud Platform project that the job belongs
+     * to. If specified, must match the request project ID.
      *
      * Generated from protobuf field <code>string project_id = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
