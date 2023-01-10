@@ -70,6 +70,13 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
      */
     private $input_config = null;
     /**
+     * Configuration for how to convert batch prediction input instances to the
+     * prediction instances that are sent to the Model.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.BatchPredictionJob.InstanceConfig instance_config = 27;</code>
+     */
+    private $instance_config = null;
+    /**
      * The parameters that govern the predictions. The schema of the parameters
      * may be specified via the
      * [Model's][google.cloud.aiplatform.v1.BatchPredictionJob.model]
@@ -284,6 +291,9 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
      *           [Model's][google.cloud.aiplatform.v1.BatchPredictionJob.model]
      *           [PredictSchemata's][google.cloud.aiplatform.v1.Model.predict_schemata]
      *           [instance_schema_uri][google.cloud.aiplatform.v1.PredictSchemata.instance_schema_uri].
+     *     @type \Google\Cloud\AIPlatform\V1\BatchPredictionJob\InstanceConfig $instance_config
+     *           Configuration for how to convert batch prediction input instances to the
+     *           prediction instances that are sent to the Model.
      *     @type \Google\Protobuf\Value $model_parameters
      *           The parameters that govern the predictions. The schema of the parameters
      *           may be specified via the
@@ -596,6 +606,44 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\BatchPredictionJob\InputConfig::class);
         $this->input_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Configuration for how to convert batch prediction input instances to the
+     * prediction instances that are sent to the Model.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.BatchPredictionJob.InstanceConfig instance_config = 27;</code>
+     * @return \Google\Cloud\AIPlatform\V1\BatchPredictionJob\InstanceConfig|null
+     */
+    public function getInstanceConfig()
+    {
+        return $this->instance_config;
+    }
+
+    public function hasInstanceConfig()
+    {
+        return isset($this->instance_config);
+    }
+
+    public function clearInstanceConfig()
+    {
+        unset($this->instance_config);
+    }
+
+    /**
+     * Configuration for how to convert batch prediction input instances to the
+     * prediction instances that are sent to the Model.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.BatchPredictionJob.InstanceConfig instance_config = 27;</code>
+     * @param \Google\Cloud\AIPlatform\V1\BatchPredictionJob\InstanceConfig $var
+     * @return $this
+     */
+    public function setInstanceConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\BatchPredictionJob\InstanceConfig::class);
+        $this->instance_config = $var;
 
         return $this;
     }
