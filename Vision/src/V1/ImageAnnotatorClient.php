@@ -512,8 +512,8 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
      *
      * @param resource|string|Image $image The image to be processed.
      * @param ProductSearchParams   $productSearchParams Parameters for a product search request. Please note, this
-     *                              value will override the {@see Google\Cloud\Vision\V1\ProductSearchParams} in the
-     *                              {@see Google\Cloud\Vision\V1\ImageContext} instance if provided.
+     *                              value will override the {@see ProductSearchParams} in the
+     *                              {@see ImageContext} instance if provided.
      * @param array $optionalArgs   {
      *     Configuration Options.
      *
