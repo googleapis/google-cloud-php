@@ -9,20 +9,18 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request for the `DeleteSchemaRevision` method.
+ * Request for the `RollbackSchema` method.
  *
- * Generated from protobuf message <code>google.pubsub.v1.DeleteSchemaRevisionRequest</code>
+ * Generated from protobuf message <code>google.pubsub.v1.RollbackSchemaRequest</code>
  */
-class DeleteSchemaRevisionRequest extends \Google\Protobuf\Internal\Message
+class RollbackSchemaRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The name of the schema revision to be deleted, with a revision ID
-     * explicitly included.
-     * Example: projects/123/schemas/my-schema&#64;c7cfa2a8
+     * Required. The schema being rolled back with revision id.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    protected $name = '';
+    private $name = '';
     /**
      * Required. The revision ID to roll back to.
      * It must be a revision of the same schema.
@@ -30,7 +28,7 @@ class DeleteSchemaRevisionRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string revision_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $revision_id = '';
+    private $revision_id = '';
 
     /**
      * Constructor.
@@ -39,9 +37,7 @@ class DeleteSchemaRevisionRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The name of the schema revision to be deleted, with a revision ID
-     *           explicitly included.
-     *           Example: projects/123/schemas/my-schema&#64;c7cfa2a8
+     *           Required. The schema being rolled back with revision id.
      *     @type string $revision_id
      *           Required. The revision ID to roll back to.
      *           It must be a revision of the same schema.
@@ -54,9 +50,7 @@ class DeleteSchemaRevisionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the schema revision to be deleted, with a revision ID
-     * explicitly included.
-     * Example: projects/123/schemas/my-schema&#64;c7cfa2a8
+     * Required. The schema being rolled back with revision id.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -67,9 +61,7 @@ class DeleteSchemaRevisionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the schema revision to be deleted, with a revision ID
-     * explicitly included.
-     * Example: projects/123/schemas/my-schema&#64;c7cfa2a8
+     * Required. The schema being rolled back with revision id.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

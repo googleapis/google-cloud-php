@@ -9,19 +9,18 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request for the `ListSchemas` method.
+ * Request for the `ListSchemaRevisions` method.
  *
- * Generated from protobuf message <code>google.pubsub.v1.ListSchemasRequest</code>
+ * Generated from protobuf message <code>google.pubsub.v1.ListSchemaRevisionsRequest</code>
  */
-class ListSchemasRequest extends \Google\Protobuf\Internal\Message
+class ListSchemaRevisionsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The name of the project in which to list schemas.
-     * Format is `projects/{project-id}`.
+     * Required. The name of the schema to list revisions for.
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    protected $parent = '';
+    private $name = '';
     /**
      * The set of Schema fields to return in the response. If not set, returns
      * Schemas with `name` and `type`, but not `definition`. Set to `FULL` to
@@ -29,21 +28,20 @@ class ListSchemasRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.pubsub.v1.SchemaView view = 2;</code>
      */
-    protected $view = 0;
+    private $view = 0;
     /**
-     * Maximum number of schemas to return.
+     * The maximum number of revisions to return per page.
      *
      * Generated from protobuf field <code>int32 page_size = 3;</code>
      */
-    protected $page_size = 0;
+    private $page_size = 0;
     /**
-     * The value returned by the last `ListSchemasResponse`; indicates that
-     * this is a continuation of a prior `ListSchemas` call, and that the
-     * system should return the next page of data.
+     * The page token, received from a previous ListSchemaRevisions call.
+     * Provide this to retrieve the subsequent page.
      *
      * Generated from protobuf field <code>string page_token = 4;</code>
      */
-    protected $page_token = '';
+    private $page_token = '';
 
     /**
      * Constructor.
@@ -51,19 +49,17 @@ class ListSchemasRequest extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string $parent
-     *           Required. The name of the project in which to list schemas.
-     *           Format is `projects/{project-id}`.
+     *     @type string $name
+     *           Required. The name of the schema to list revisions for.
      *     @type int $view
      *           The set of Schema fields to return in the response. If not set, returns
      *           Schemas with `name` and `type`, but not `definition`. Set to `FULL` to
      *           retrieve all fields.
      *     @type int $page_size
-     *           Maximum number of schemas to return.
+     *           The maximum number of revisions to return per page.
      *     @type string $page_token
-     *           The value returned by the last `ListSchemasResponse`; indicates that
-     *           this is a continuation of a prior `ListSchemas` call, and that the
-     *           system should return the next page of data.
+     *           The page token, received from a previous ListSchemaRevisions call.
+     *           Provide this to retrieve the subsequent page.
      * }
      */
     public function __construct($data = NULL) {
@@ -72,29 +68,27 @@ class ListSchemasRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the project in which to list schemas.
-     * Format is `projects/{project-id}`.
+     * Required. The name of the schema to list revisions for.
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
-    public function getParent()
+    public function getName()
     {
-        return $this->parent;
+        return $this->name;
     }
 
     /**
-     * Required. The name of the project in which to list schemas.
-     * Format is `projects/{project-id}`.
+     * Required. The name of the schema to list revisions for.
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
-    public function setParent($var)
+    public function setName($var)
     {
         GPBUtil::checkString($var, True);
-        $this->parent = $var;
+        $this->name = $var;
 
         return $this;
     }
@@ -130,7 +124,7 @@ class ListSchemasRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Maximum number of schemas to return.
+     * The maximum number of revisions to return per page.
      *
      * Generated from protobuf field <code>int32 page_size = 3;</code>
      * @return int
@@ -141,7 +135,7 @@ class ListSchemasRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Maximum number of schemas to return.
+     * The maximum number of revisions to return per page.
      *
      * Generated from protobuf field <code>int32 page_size = 3;</code>
      * @param int $var
@@ -156,9 +150,8 @@ class ListSchemasRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The value returned by the last `ListSchemasResponse`; indicates that
-     * this is a continuation of a prior `ListSchemas` call, and that the
-     * system should return the next page of data.
+     * The page token, received from a previous ListSchemaRevisions call.
+     * Provide this to retrieve the subsequent page.
      *
      * Generated from protobuf field <code>string page_token = 4;</code>
      * @return string
@@ -169,9 +162,8 @@ class ListSchemasRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The value returned by the last `ListSchemasResponse`; indicates that
-     * this is a continuation of a prior `ListSchemas` call, and that the
-     * system should return the next page of data.
+     * The page token, received from a previous ListSchemaRevisions call.
+     * Provide this to retrieve the subsequent page.
      *
      * Generated from protobuf field <code>string page_token = 4;</code>
      * @param string $var
