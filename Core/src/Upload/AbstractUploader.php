@@ -104,7 +104,9 @@ abstract class AbstractUploader
             'restOptions' => null,
             'retries' => null,
             'requestTimeout' => null,
-            'restRetryFunction' => null
+            'restRetryFunction' => null,
+            'onExecutionStart' => null,
+            'onRetryException' => null
         ]);
 
         $this->contentType = isset($options['contentType'])

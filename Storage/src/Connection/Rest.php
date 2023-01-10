@@ -383,6 +383,10 @@ class Rest implements ConnectionInterface
         );
         $args['uploaderOptions']['restRetryFunction'] = $retryFunc;
 
+        $args['uploaderOptions'] = $this->addRetryHeaderCallbacks(
+            $args['uploaderOptions']
+        );
+
         return $args;
     }
 
