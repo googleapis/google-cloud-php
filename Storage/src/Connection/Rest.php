@@ -499,6 +499,7 @@ class Rest implements ConnectionInterface
             'restOptions' => null,
             'retries' => null,
             'restRetryFunction' => null,
+            'restOnRetryExceptionFunction' => null,
             'restCalcDelayFunction' => null,
             'restDelayFunction' => null
         ]);
@@ -630,7 +631,7 @@ class Rest implements ConnectionInterface
         );
 
         $requestHash = Uuid::uuid4()->toString();
-        $args['onRetryException'] = function (
+        $args['restOnRetryExceptionFunction'] = function (
             \Exception $e,
             $currentAttempt,
             &$arguments

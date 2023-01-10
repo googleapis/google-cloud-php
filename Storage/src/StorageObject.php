@@ -676,31 +676,31 @@ class StorageObject
      */
     public function downloadAsStream(array $options = [])
     {
+        // This makes sure we honour the range headers specified by the user
+        $requestedBytes = $this->getRequestedBytes($options);
         $resultStream = Utils::streamFor(null);
-        $userSuppliedRangeHeaders = isset($options['restOptions']) && isset($options['restOptions']['Range']);
         $expectedSize = isset($options['size']) ? $options['size'] : $this->info()['size'];
 
-        // add Range headers, which default to the whole object
-        // but only if the request doesn't already contain any range headers
-        if (!$userSuppliedRangeHeaders) {
+        $options += [
+            'restOnRetryExceptionFunction' => function (\Exception $e, $attempt, &$arguments) use ($resultStream, $requestedBytes) {
+                // if the exception has a response for us to use
+                if ($e instanceof RequestException && $e->hasResponse()) {
+                    $msg = (string) $e->getResponse()->getBody();
 
-            $options += [
-                'restOnRetryExceptionFunction' => function (\Exception $e, $attempt, &$arguments) use ($resultStream) {
-                    // if the exception has a response for us to use
-                    if ($e instanceof RequestException && $e->hasResponse()) {
-                        $msg = (string) $e->getResponse()->getBody();
+                    $fetchedStream = Utils::streamFor($msg);
 
-                        $fetchedStream = Utils::streamFor($msg);
+                    // add the partial response to our stream that we will return
+                    Utils::copyToStream($fetchedStream, $resultStream);
 
-                        // add the partial response to our stream that we will return
-                        Utils::copyToStream($fetchedStream, $resultStream);
+                    // Start from the byte that was last fetched
+                    $startByte = intval($requestedBytes['startByte']) + $resultStream->getSize();
+                    $endByte = $requestedBytes['endByte'];
 
-                        // modify the range headers to fetch the remaining data
-                        $arguments[1]['headers']['Range'] = sprintf('bytes=%s-', $resultStream->getSize());
-                    }
+                    // modify the range headers to fetch the remaining data
+                    $arguments[1]['headers']['Range'] = sprintf('bytes=%s-%s', $startByte, $endByte);
                 }
-            ];
-        }
+            }
+        ];
 
         $fetchedStream = $this->connection->downloadObject(
             $this->formatEncryptionHeaders(
@@ -718,7 +718,7 @@ class StorageObject
         // i.e. the range headers in such cases aren't respected.
         // The operator is >= because $expectedSize will have compressed
         // size, while the stream will have uncompressed contents.
-        if ($userSuppliedRangeHeaders || ($fetchedStream && $fetchedStream->getSize() >= $expectedSize)) {
+        if ($fetchedStream && $fetchedStream->getSize() >= $expectedSize) {
             return $fetchedStream;
         }
 
@@ -1320,5 +1320,27 @@ class StorageObject
             'sourceGeneration' => $this->identity['generation'],
             'userProject' => $this->identity['userProject'],
         ]) + $this->formatEncryptionHeaders($options + $this->encryptionData);
+    }
+
+    /**
+     * Util function to compute the bytes requested for a download request.
+     * 
+     * @param array $options Request options
+     * @return array
+     */
+    private function getRequestedBytes(array $options) {
+        $startByte = 0;
+        $endByte = '';
+        $rangeSupplied = false;
+
+        if(isset($options['restOptions']['headers']['Range'])) {
+            $range = explode('=', $options['restOptions']['headers']['Range']);
+            $bytes = explode('-', $range[1]);
+            $startByte = $bytes[0];
+            $endByte = $bytes[1];
+            $rangeSupplied = true;
+        }
+
+        return compact('startByte', 'endByte', 'rangeSupplied');
     }
 }
