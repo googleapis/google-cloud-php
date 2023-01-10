@@ -301,7 +301,7 @@ class PgWriteTest extends SpannerPgTestCase
             [$this->randId(), 'arraydatefield', [new Date(new \DateTime),null,new Date(new \DateTime)]],
             [$this->randId(), 'arraypgnumericfield', [new PgNumeric("0.12345"),null,new PgNumeric("12345")]],
             [$this->randId(), 'arraypgjsonbfield', [new PgJsonb('{"a":1.1,"b":"hello"}'),null,
-            new PgJsonb(["a" => 1, "b" => null])]],
+            new PgJsonb(["a" => 1, "b" => null]),new PgJsonb('{}'),new PgJsonb([])]],
         ];
     }
 
