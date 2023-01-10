@@ -111,31 +111,30 @@ class GrpcRequestWrapperTest extends TestCase
 
     public function testRetryFunction()
     {
-        $this->expectException('Google\Cloud\Core\Exception\GoogleException');
-        $this->expectExceptionMessage('1');
-
         $requestWrapper = new GrpcRequestWrapper();
-
-        $numCalls = 4;
+        $timesCalled = 0;
         $requestWrapper->send(
-            function () use (&$numCalls) {
-                --$numCalls;
+            function () use (&$timesCalled) {
+                if (1 === $timesCalled++) {
+                    // succeed on second try
+                    return;
+                }
                 throw new ApiException(
-                    $numCalls,
+                    'Retryable exception',
                     \Google\Rpc\Code::NOT_FOUND,
                     \Google\ApiCore\ApiStatus::NOT_FOUND
                 );
             },
             [[]],
             [
-                'retries' => $numCalls-2,
-                'retryFunction' => function (\Exception $ex) use (&$numCalls) {
-                    $statusCode = $ex->getCode();
-                    return $statusCode === \Google\Rpc\Code::NOT_FOUND &&
-                        $numCalls > 0;
+                'retries' => 1,
+                'retryFunction' => function (\Exception $ex) {
+                    return $ex->getMessage() === 'Retryable exception';
                 }
             ]
         );
+
+        $this->assertEquals(2, $timesCalled);
     }
 
     public function testThrowsExceptionWhenRequestFails()
