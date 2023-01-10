@@ -17,7 +17,6 @@
 
 namespace Google\Cloud\Spanner\Tests\System;
 
-use Google\Auth\Cache\InvalidArgumentException;
 use Google\Cloud\Core\Exception\BadRequestException;
 use Google\Cloud\Core\Exception\ConflictException;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
@@ -211,10 +210,10 @@ class BackupTest extends SpannerTestCase
             $backup->create(self::$dbName1, $expireTime, [
                 'encryptionConfig' => ['kmsKeyName' => 'validKeyName'],
             ]);
-        } catch (\InvalidArgumentException $e) {
+        } catch (\BadRequestException $e) {
         }
 
-        $this->assertInstanceOf(\InvalidArgumentException::class, $e);
+        $this->assertInstanceOf(\BadRequestException::class, $e);
         $this->assertFalse($backup->exists());
     }
 
@@ -482,14 +481,17 @@ class BackupTest extends SpannerTestCase
                     ]
                 ]
             );
-        } catch (\InvalidArgumentException $e) {
+        } catch (\BadRequestException $e) {
         }
         $database = self::$instance->database($restoreDbName);
 
-        $this->assertInstanceOf(\InvalidArgumentException::class, $e);
+        $this->assertInstanceOf(\BadRequestException::class, $e);
         $this->assertFalse($database->exists());
     }
 
+    /**
+     * @depends testCreateBackup
+     */
     public function testRestoreToNewDatabase()
     {
         $restoreDbName = uniqid('restored_db_');

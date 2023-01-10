@@ -90,14 +90,10 @@ class ParameterNode
 
         foreach ($nestedParameters as $param) {
             // Parse "@type string $key" syntax
-            $paramInfo = explode(' ', trim($param), 3);
-            if (count($paramInfo) < 3) {
-                // No parameter description
-                list($type, $name) = $paramInfo;
-                $description = '';
-            } else {
-                list($type, $name, $description) = $paramInfo;
+            if (!preg_match('/^([^ ]+) +([\$\w]+)(.*)?/m', trim($param), $matches)) {
+                throw new \LogicException('unable to parse nested parameter "' . $param . '"');
             }
+            list($_, $type, $name, $description) = $matches + [3 => ''];
 
             // remove "$" prefix from parameter name and add "↳ " for UX to indicate it's nested.
             $name = '↳ ' . ltrim($name, '$');
