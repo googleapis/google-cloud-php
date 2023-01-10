@@ -326,11 +326,11 @@ class IdentityAwareProxyAdminServiceGapicClient
      *                                           In the following format:
      *                                           `projects/{project_number/id}/iap_tunnel/locations/{location}`.
      * @param TunnelDestGroup $tunnelDestGroup   Required. The TunnelDestGroup to create.
-     * @param string          $tunnelDestGroupId Required. The ID to use for the TunnelDestGroup, which becomes the final component of
-     *                                           the resource name.
+     * @param string          $tunnelDestGroupId Required. The ID to use for the TunnelDestGroup, which becomes the final
+     *                                           component of the resource name.
      *
      *                                           This value must be 4-63 characters, and valid characters
-     *                                           are `[a-z][0-9]-`.
+     *                                           are `[a-z]-`.
      * @param array           $optionalArgs      {
      *     Optional.
      *

@@ -20,19 +20,15 @@ class Method
      */
     const METHOD_UNSPECIFIED = 0;
     /**
-     * Mimics the behavior as if the user had logged out and tried to log in
-     * again. Users with 2SV (2-step verification) enabled see their 2SV
-     * challenges if they did not opt to have their second factor responses
-     * saved. Apps Core (GSuites) admins can configure settings to disable 2SV
-     * cookies and require 2SV for all Apps Core users in their domains.
+     * Prompts the user to log in again.
      *
      * Generated from protobuf enum <code>LOGIN = 1;</code>
      */
     const LOGIN = 1;
     /**
-     * User must type their password.
+     * Deprecated, no longer accepted by IAP APIs.
      *
-     * Generated from protobuf enum <code>PASSWORD = 2;</code>
+     * Generated from protobuf enum <code>PASSWORD = 2 [deprecated = true];</code>
      */
     const PASSWORD = 2;
     /**
