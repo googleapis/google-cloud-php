@@ -190,7 +190,7 @@ class RequestWrapper
         $backoff = new ExponentialBackoff(
             $retryOptions['retries'],
             $retryOptions['retryFunction'],
-            $retryOptions['onRetryException'],
+            $retryOptions['onRetryExceptionFunction'],
             $retryOptions['onExecutionStart']
         );
 
@@ -431,8 +431,8 @@ class RequestWrapper
             'retryFunction' => isset($options['restRetryFunction'])
                 ? $options['restRetryFunction']
                 : $this->retryFunction,
-            'onRetryException' => isset($options['onRetryException'])
-                ? $options['onRetryException']
+            'onRetryExceptionFunction' => isset($options['restOnRetryExceptionFunction'])
+                ? $options['restOnRetryExceptionFunction']
                 : null,
             'onExecutionStart' => isset($options['onExecutionStart'])
                 ? $options['onExecutionStart']

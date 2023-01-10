@@ -676,19 +676,16 @@ class StorageObject
      */
     public function downloadAsStream(array $options = [])
     {
-        $headers = $options['restOptions']['headers'] ?? [];
         $resultStream = Utils::streamFor(null);
-        $userSuppliedRangeHeaders = isset($headers['Range']);
+        $userSuppliedRangeHeaders = isset($options['restOptions']) && isset($options['restOptions']['Range']);
         $expectedSize = isset($options['size']) ? $options['size'] : $this->info()['size'];
 
         // add Range headers, which default to the whole object
         // but only if the request doesn't already contain any range headers
         if (!$userSuppliedRangeHeaders) {
-            $headers['Range'] = sprintf("bytes=%s-", $resultStream->getSize());
-            $options = array_merge($options, ['restOptions'=>['headers'=>$headers]]);
 
             $options += [
-                'onRetryException' => function (\Exception $e, $attempt, &$arguments) use ($resultStream) {
+                'restOnRetryExceptionFunction' => function (\Exception $e, $attempt, &$arguments) use ($resultStream) {
                     // if the exception has a response for us to use
                     if ($e instanceof RequestException && $e->hasResponse()) {
                         $msg = (string) $e->getResponse()->getBody();
