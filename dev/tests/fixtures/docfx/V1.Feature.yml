@@ -48,7 +48,7 @@ items:
         -
           id: '↳ model'
           var_type: string
-          description: 'Model to use for the feature. Supported values: "builtin/stable" (the default if unset) and "builtin/latest".'
+          description: 'Model to use for the feature. Supported values: "builtin/stable" (the default if unset) and "builtin/latest". `DOCUMENT_TEXT_DETECTION` and `TEXT_DETECTION` also support "builtin/weekly" for the bleeding edge release updated weekly.'
   -
     uid: '\Google\Cloud\Vision\V1\Feature::getType()'
     name: getType
@@ -123,7 +123,8 @@ items:
       Model to use for the feature.
       
       Supported values: "builtin/stable" (the default if unset) and
-      "builtin/latest".
+      "builtin/latest". `DOCUMENT_TEXT_DETECTION` and `TEXT_DETECTION` also
+      support "builtin/weekly" for the bleeding edge release updated weekly.
     parent: \Google\Cloud\Vision\V1\Feature
     type: method
     langs:
@@ -140,7 +141,8 @@ items:
       Model to use for the feature.
       
       Supported values: "builtin/stable" (the default if unset) and
-      "builtin/latest".
+      "builtin/latest". `DOCUMENT_TEXT_DETECTION` and `TEXT_DETECTION` also
+      support "builtin/weekly" for the bleeding edge release updated weekly.
     parent: \Google\Cloud\Vision\V1\Feature
     type: method
     langs:
