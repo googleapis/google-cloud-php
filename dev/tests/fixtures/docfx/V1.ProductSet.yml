@@ -53,7 +53,7 @@ items:
           description: 'The user-provided name for this ProductSet. Must not be empty. Must be at most 4096 characters long.'
         -
           id: '↳ index_time'
-          var_type: Google\Protobuf\Timestamp
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Timestamp">Google\Protobuf\Timestamp</a>'
           description: 'Output only. The time at which this ProductSet was last indexed. Query results will reflect all updates before this time. If this ProductSet has never been indexed, this timestamp is the default value "1970-01-01T00:00:00Z". This field is ignored when creating a ProductSet.'
         -
           id: '↳ index_error'
@@ -163,7 +163,7 @@ items:
     syntax:
       returns:
         -
-          var_type: Google\Protobuf\Timestamp|null
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Timestamp">Google\Protobuf\Timestamp</a>|null'
   -
     uid: '\Google\Cloud\Vision\V1\ProductSet::hasIndexTime()'
     name: hasIndexTime
@@ -201,7 +201,7 @@ items:
       parameters:
         -
           id: var
-          var_type: Google\Protobuf\Timestamp
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Timestamp">Google\Protobuf\Timestamp</a>'
           description: ''
       returns:
         -

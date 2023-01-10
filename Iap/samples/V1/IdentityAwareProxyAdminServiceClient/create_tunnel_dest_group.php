@@ -34,13 +34,14 @@ use Google\Cloud\Iap\V1\TunnelDestGroup;
  *                                    In the following format:
  *                                    `projects/{project_number/id}/iap_tunnel/locations/{location}`. Please see
  *                                    {@see IdentityAwareProxyAdminServiceClient::tunnelLocationName()} for help formatting this field.
- * @param string $tunnelDestGroupName Immutable. Identifier for the TunnelDestGroup. Must be unique within the
- *                                    project.
- * @param string $tunnelDestGroupId   The ID to use for the TunnelDestGroup, which becomes the final component of
- *                                    the resource name.
+ * @param string $tunnelDestGroupName Immutable. Identifier for the TunnelDestGroup. Must be unique
+ *                                    within the project and contain only lower case letters (a-z) and dashes
+ *                                    (-).
+ * @param string $tunnelDestGroupId   The ID to use for the TunnelDestGroup, which becomes the final
+ *                                    component of the resource name.
  *
  *                                    This value must be 4-63 characters, and valid characters
- *                                    are `[a-z][0-9]-`.
+ *                                    are `[a-z]-`.
  */
 function create_tunnel_dest_group_sample(
     string $formattedParent,

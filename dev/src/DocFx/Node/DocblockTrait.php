@@ -73,6 +73,6 @@ trait DocblockTrait
 
     private function stripSnippetTag(string $content): string
     {
-        return preg_replace('/\/\/\[snippet=.*\]/', '', $content);
+        return preg_replace('/\/\/\[snippet=.*\]\n/', '', $content);
     }
 }
