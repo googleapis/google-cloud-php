@@ -490,6 +490,11 @@ class CacheSessionPool implements SessionPoolInterface
      * exceed the maximum number of sessions available per node, please be sure
      * to check the return value of this method to be certain all sessions have
      * been deleted.
+     *
+     * This operation is done asynchronously. You may wait for it's completion
+     * by calling DeleteOperation::waitUntilComplete().
+     *
+     * @return DeleteOperation
      */
     public function clear()
     {
@@ -502,7 +507,7 @@ class CacheSessionPool implements SessionPoolInterface
             return $sessions;
         });
 
-        $this->deleteSessions($sessions);
+        return $this->deleteSessions($sessions);
     }
 
     /**
@@ -829,6 +834,7 @@ class CacheSessionPool implements SessionPoolInterface
      * Delete the provided sessions.
      *
      * @param array $sessions
+     * @return DeleteOperation
      */
     private function deleteSessions(array $sessions)
     {
@@ -844,6 +850,8 @@ class CacheSessionPool implements SessionPoolInterface
                     'database' => $this->database->name()
                 ]);
         }
+
+        return new DeleteOperation($this->deleteCalls);
     }
 
     /**

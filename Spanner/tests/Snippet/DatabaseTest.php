@@ -32,6 +32,7 @@ use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Instance;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Result;
+use Google\Cloud\Spanner\Session\DeleteOperation;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\Snapshot;
@@ -82,7 +83,7 @@ class DatabaseTest extends SnippetTestCase
             ->willReturn($session->reveal());
         $sessionPool->setDatabase(Argument::any())
             ->willReturn(null);
-        $sessionPool->clear()->willReturn(null);
+        $sessionPool->clear()->willReturn(DeleteOperation::class);
 
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->instance = TestHelpers::stub(Instance::class, [

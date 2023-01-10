@@ -373,6 +373,21 @@ class CacheSessionPoolTest extends TestCase
         $this->assertNull($actualCacheData);
     }
 
+    public function testWaitingOnClearPoolOperation()
+    {
+        $pool = new CacheSessionPoolStub($this->getCacheItemPool());
+        $pool->setDatabase($this->getDatabase());
+        $session = $pool->acquire();
+        $pool->clear()->waitUntilComplete();
+        $actualItemPool = $pool->cacheItemPool();
+        $actualCacheData = $actualItemPool->getItem(
+            sprintf(self::CACHE_KEY_TEMPLATE, self::PROJECT_ID, self::INSTANCE_NAME, self::DATABASE_NAME)
+        )->get();
+
+        $this->assertNull($actualCacheData);
+        $this->assertFalse($session->exists());
+    }
+
     public function testReleaseSessionAfterClearingPoolSucceeds()
     {
         $pool = new CacheSessionPoolStub($this->getCacheItemPool());
@@ -714,7 +729,7 @@ class CacheSessionPoolTest extends TestCase
             ->willReturn($this->time + 3600);
         $session->exists()
             ->willReturn(false);
-        $promise->wait()
+        $promise->wait(Argument::any())
             ->willReturn(null);
         $connection->deleteSessionAsync(Argument::any())
             ->willReturn($promise->reveal());
