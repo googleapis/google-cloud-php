@@ -648,7 +648,7 @@ class RestTest extends TestCase
      * Method to check if we need to change the expected outcome incase of
      * specific retry strategies like 'always' and 'never'.
      */
-    private function assignExpectedOutcome(bool $expected, array $retryCase)
+    private function assignExpectedOutcome($expected, $retryCase)
     {
         if (isset($retryCase[3]['restRetryFunction'])
             || isset($retryCase[2]['restRetryFunction'])
