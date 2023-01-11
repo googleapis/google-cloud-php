@@ -52,6 +52,13 @@ class StorageObject
     const DEFAULT_DOWNLOAD_URL = SigningHelper::DEFAULT_DOWNLOAD_HOST;
 
     /**
+     * Header and value that helps us identify a transcoded obj
+     * w/o making a metadata(info) call.
+     */
+    const TRANSCODED_OBJ_HEADER_KEY = 'x-guploader-response-body-transformations';
+    const TRANSCODED_OBJ_HEADER_VAL = 'gunzipped';
+
+    /**
      * @var Acl ACL for the object.
      */
     private $acl;
@@ -679,7 +686,15 @@ class StorageObject
         // This makes sure we honour the range headers specified by the user
         $requestedBytes = $this->getRequestedBytes($options);
         $resultStream = Utils::streamFor(null);
-        $expectedSize = isset($options['size']) ? $options['size'] : $this->info()['size'];
+        $transcodedObj = false;
+
+        // We try to deduce if the object is a transcoded object when we receive the headers.
+        $options['restOptions']['on_headers'] = function($response) use(&$transcodedObj){
+            $header = $response->getHeader(StorageObject::TRANSCODED_OBJ_HEADER_KEY);
+            if(is_array($header) && in_array(StorageObject::TRANSCODED_OBJ_HEADER_VAL, $header)){
+                $transcodedObj = true;
+            }
+        };
 
         $options += [
             'restOnRetryExceptionFunction' => function (\Exception $e, $attempt, &$arguments) use ($resultStream, $requestedBytes) {
@@ -710,15 +725,11 @@ class StorageObject
             )
         );
 
-        // There are 2 cases when we want to return the fetched stream
-        // and not merge it with a partially fetched stream previously.
-        // 1. If the user supplied their own Range headers
-        // 2. If the object had transcoding enabled, the fetched stream
-        // will contain the complete object instead of a partial stream
-        // i.e. the range headers in such cases aren't respected.
-        // The operator is >= because $expectedSize will have compressed
-        // size, while the stream will have uncompressed contents.
-        if ($fetchedStream && $fetchedStream->getSize() >= $expectedSize) {
+        // If our object is a transcoded object, then Range headers are not honoured.
+        // That means even if we had a partial download available, the final obj
+        // that was fetched will contain the complete object. So, we don't need to copy
+        // the partial stream, we can just return the stream we fetched.
+        if ($transcodedObj) {
             return $fetchedStream;
         }
 
