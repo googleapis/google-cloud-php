@@ -630,6 +630,19 @@ class Rest implements ConnectionInterface
             $args
         );
 
+        $args = $this->addRetryHeaderCallbacks($args);
+
+        return $this->send($resource, $method, $args);
+    }
+
+    /**
+     * Adds callbacks to $args which amend retry hash and attempt to headers.
+     * @param array $args
+     *
+     * @return array
+     */
+    private function addRetryHeaderCallbacks(array $args): array
+    {
         $requestHash = Uuid::uuid4()->toString();
         $args['restOnRetryExceptionFunction'] = function (
             \Exception $e,
@@ -651,8 +664,7 @@ class Rest implements ConnectionInterface
                 $requestHash
             );
         };
-
-        return $this->send($resource, $method, $args);
+        return $args;
     }
 
     /**
@@ -720,7 +732,7 @@ class Rest implements ConnectionInterface
             $headerValues[] = $value;
             $headerValue = implode(' ', $headerValues);
         } else {
-            $headerValue = (isset($options['headers']) && 
+            $headerValue = (isset($options['headers']) &&
                 isset($options['headers'][$headerLine]))
                 ? $options['headers'][$headerLine]
                 : '';
