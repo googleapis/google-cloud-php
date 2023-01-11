@@ -80,7 +80,9 @@ class PaginationTest extends TestCase
         $nextPage = $page->getNextPage(1);
         $content = iterator_to_array($page->getIterator());
         $nextContent = iterator_to_array($nextPage->getIterator());
-        self::assertNotEquals($content, $nextContent);
+        self::assertCount(1, $content);
+        self::assertCount(1, $nextContent);
+        self::assertNotEquals($content[0]->getId(), $nextContent[0]->getid());
     }
 
     public function  testNextPageSize()
@@ -165,9 +167,13 @@ class PaginationTest extends TestCase
         );
         $page = $response->getPage();
         $nextPage = $page->getNextPage(1);
-        $content = iterator_to_array($page->getIterator());
-        $nextContent = iterator_to_array($nextPage->getIterator());
-        self::assertNotEquals($content, $nextContent);
+        $content = $this->getInstancesFromAggregatedPage($page);
+        $nextContent = $this->getInstancesFromAggregatedPage($nextPage);
+
+        self::assertNotEquals(
+            current($content)->getId(),
+            current($nextContent)->getid()
+        );
     }
 
     public function  testAggregatedNextPageSize()
@@ -178,11 +184,7 @@ class PaginationTest extends TestCase
         );
         $page = $response->getPage();
         $nextPage = $page->getNextPage(2);
-        $nextContent = [];
-        foreach ($nextPage->getIterator() as $zone => $instancesList) {
-            $pageResults = iterator_to_array($instancesList->getInstances());
-            $nextContent = array_merge($nextContent, $pageResults);
-        }
+        $nextContent = $this->getInstancesFromAggregatedPage($nextPage);
         self::assertCount(2, $nextContent);
     }
 
@@ -193,11 +195,17 @@ class PaginationTest extends TestCase
             ['maxResults' => 3]
         );
         $page = $response->getPage();
-        $allResults = [];
-        foreach ($page->getIterator() as $zone => $instancesList) {
-            $zoneResults = iterator_to_array($instancesList->getInstances());
-            $allResults = array_merge($allResults, $zoneResults);
-        }
+        $allResults = $this->getInstancesFromAggregatedPage($page);
         self::assertCount(3, $allResults);
+    }
+
+    private function getInstancesFromAggregatedPage($page)
+    {
+        $results = [];
+        foreach ($page->getIterator() as $zone => $instancesList) {
+            $pageResults = iterator_to_array($instancesList->getInstances());
+            $results = array_merge($results, $pageResults);
+      }
+      return $results;
     }
 }
