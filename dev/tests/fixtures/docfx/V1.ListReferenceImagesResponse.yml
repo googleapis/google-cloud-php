@@ -51,10 +51,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\ListReferenceImagesResponse::getReferenceImages()'
     name: getReferenceImages
     id: getReferenceImages
-    summary: |
-      The list of reference images.
-      
-      Generated from protobuf field <code>repeated .google.cloud.vision.v1.ReferenceImage reference_images = 1;</code>
+    summary: 'The list of reference images.'
     parent: \Google\Cloud\Vision\V1\ListReferenceImagesResponse
     type: method
     langs:
@@ -62,15 +59,12 @@ items:
     syntax:
       returns:
         -
-          var_type: Google\Protobuf\Internal\RepeatedField
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Internal/RepeatedField">Google\Protobuf\Internal\RepeatedField</a>'
   -
     uid: '\Google\Cloud\Vision\V1\ListReferenceImagesResponse::setReferenceImages()'
     name: setReferenceImages
     id: setReferenceImages
-    summary: |
-      The list of reference images.
-      
-      Generated from protobuf field <code>repeated .google.cloud.vision.v1.ReferenceImage reference_images = 1;</code>
+    summary: 'The list of reference images.'
     parent: \Google\Cloud\Vision\V1\ListReferenceImagesResponse
     type: method
     langs:
@@ -88,10 +82,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\ListReferenceImagesResponse::getPageSize()'
     name: getPageSize
     id: getPageSize
-    summary: |
-      The maximum number of items to return. Default 10, maximum 100.
-      
-      Generated from protobuf field <code>int32 page_size = 2;</code>
+    summary: 'The maximum number of items to return. Default 10, maximum 100.'
     parent: \Google\Cloud\Vision\V1\ListReferenceImagesResponse
     type: method
     langs:
@@ -104,10 +95,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\ListReferenceImagesResponse::setPageSize()'
     name: setPageSize
     id: setPageSize
-    summary: |
-      The maximum number of items to return. Default 10, maximum 100.
-      
-      Generated from protobuf field <code>int32 page_size = 2;</code>
+    summary: 'The maximum number of items to return. Default 10, maximum 100.'
     parent: \Google\Cloud\Vision\V1\ListReferenceImagesResponse
     type: method
     langs:
@@ -125,10 +113,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\ListReferenceImagesResponse::getNextPageToken()'
     name: getNextPageToken
     id: getNextPageToken
-    summary: |
-      The next_page_token returned from a previous List request, if any.
-      
-      Generated from protobuf field <code>string next_page_token = 3;</code>
+    summary: 'The next_page_token returned from a previous List request, if any.'
     parent: \Google\Cloud\Vision\V1\ListReferenceImagesResponse
     type: method
     langs:
@@ -141,10 +126,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\ListReferenceImagesResponse::setNextPageToken()'
     name: setNextPageToken
     id: setNextPageToken
-    summary: |
-      The next_page_token returned from a previous List request, if any.
-      
-      Generated from protobuf field <code>string next_page_token = 3;</code>
+    summary: 'The next_page_token returned from a previous List request, if any.'
     parent: \Google\Cloud\Vision\V1\ListReferenceImagesResponse
     type: method
     langs:

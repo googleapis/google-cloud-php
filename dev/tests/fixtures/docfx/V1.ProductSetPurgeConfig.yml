@@ -43,8 +43,6 @@ items:
       The ProductSet that contains the Products to delete. If a Product is a
       member of product_set_id in addition to other ProductSets, the Product will
       still be deleted.
-      
-      Generated from protobuf field <code>string product_set_id = 1;</code>
     parent: \Google\Cloud\Vision\V1\ProductSetPurgeConfig
     type: method
     langs:
@@ -61,8 +59,6 @@ items:
       The ProductSet that contains the Products to delete. If a Product is a
       member of product_set_id in addition to other ProductSets, the Product will
       still be deleted.
-      
-      Generated from protobuf field <code>string product_set_id = 1;</code>
     parent: \Google\Cloud\Vision\V1\ProductSetPurgeConfig
     type: method
     langs:

@@ -46,7 +46,7 @@ class DatastoreMultipleDbTestCase extends DatastoreTestCase
         if (self::$hasSetUp) {
             return;
         }
-        self::$projectId = getenv('GOOGLE_PROJECT_ID');
+        self::$projectId = getenv('PROJECT_ID');
 
         $config = [
             'keyFilePath' => getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH'),

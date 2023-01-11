@@ -46,8 +46,6 @@ items:
       best possible crop is returned. The number of provided aspect ratios is
       limited to a maximum of 16; any aspect ratios provided after the 16th are
       ignored.
-      
-      Generated from protobuf field <code>repeated float aspect_ratios = 1;</code>
     parent: \Google\Cloud\Vision\V1\CropHintsParams
     type: method
     langs:
@@ -55,7 +53,7 @@ items:
     syntax:
       returns:
         -
-          var_type: Google\Protobuf\Internal\RepeatedField
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Internal/RepeatedField">Google\Protobuf\Internal\RepeatedField</a>'
   -
     uid: '\Google\Cloud\Vision\V1\CropHintsParams::setAspectRatios()'
     name: setAspectRatios
@@ -67,8 +65,6 @@ items:
       best possible crop is returned. The number of provided aspect ratios is
       limited to a maximum of 16; any aspect ratios provided after the 16th are
       ignored.
-      
-      Generated from protobuf field <code>repeated float aspect_ratios = 1;</code>
     parent: \Google\Cloud\Vision\V1\CropHintsParams
     type: method
     langs:

@@ -54,10 +54,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\ProductSearchResults\GroupedResult::getBoundingPoly()'
     name: getBoundingPoly
     id: getBoundingPoly
-    summary: |
-      The bounding polygon around the product detected in the query image.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 1;</code>
+    summary: 'The bounding polygon around the product detected in the query image.'
     parent: \Google\Cloud\Vision\V1\ProductSearchResults\GroupedResult
     type: method
     langs:
@@ -86,10 +83,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\ProductSearchResults\GroupedResult::setBoundingPoly()'
     name: setBoundingPoly
     id: setBoundingPoly
-    summary: |
-      The bounding polygon around the product detected in the query image.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 1;</code>
+    summary: 'The bounding polygon around the product detected in the query image.'
     parent: \Google\Cloud\Vision\V1\ProductSearchResults\GroupedResult
     type: method
     langs:
@@ -107,10 +101,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\ProductSearchResults\GroupedResult::getResults()'
     name: getResults
     id: getResults
-    summary: |
-      List of results, one for each product match.
-      
-      Generated from protobuf field <code>repeated .google.cloud.vision.v1.ProductSearchResults.Result results = 2;</code>
+    summary: 'List of results, one for each product match.'
     parent: \Google\Cloud\Vision\V1\ProductSearchResults\GroupedResult
     type: method
     langs:
@@ -118,15 +109,12 @@ items:
     syntax:
       returns:
         -
-          var_type: Google\Protobuf\Internal\RepeatedField
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Internal/RepeatedField">Google\Protobuf\Internal\RepeatedField</a>'
   -
     uid: '\Google\Cloud\Vision\V1\ProductSearchResults\GroupedResult::setResults()'
     name: setResults
     id: setResults
-    summary: |
-      List of results, one for each product match.
-      
-      Generated from protobuf field <code>repeated .google.cloud.vision.v1.ProductSearchResults.Result results = 2;</code>
+    summary: 'List of results, one for each product match.'
     parent: \Google\Cloud\Vision\V1\ProductSearchResults\GroupedResult
     type: method
     langs:
@@ -144,10 +132,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\ProductSearchResults\GroupedResult::getObjectAnnotations()'
     name: getObjectAnnotations
     id: getObjectAnnotations
-    summary: |
-      List of generic predictions for the object in the bounding box.
-      
-      Generated from protobuf field <code>repeated .google.cloud.vision.v1.ProductSearchResults.ObjectAnnotation object_annotations = 3;</code>
+    summary: 'List of generic predictions for the object in the bounding box.'
     parent: \Google\Cloud\Vision\V1\ProductSearchResults\GroupedResult
     type: method
     langs:
@@ -155,15 +140,12 @@ items:
     syntax:
       returns:
         -
-          var_type: Google\Protobuf\Internal\RepeatedField
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Internal/RepeatedField">Google\Protobuf\Internal\RepeatedField</a>'
   -
     uid: '\Google\Cloud\Vision\V1\ProductSearchResults\GroupedResult::setObjectAnnotations()'
     name: setObjectAnnotations
     id: setObjectAnnotations
-    summary: |
-      List of generic predictions for the object in the bounding box.
-      
-      Generated from protobuf field <code>repeated .google.cloud.vision.v1.ProductSearchResults.ObjectAnnotation object_annotations = 3;</code>
+    summary: 'List of generic predictions for the object in the bounding box.'
     parent: \Google\Cloud\Vision\V1\ProductSearchResults\GroupedResult
     type: method
     langs:
