@@ -19,6 +19,8 @@ namespace Google\Cloud\Storage\Connection;
 
 /**
  * Trait which provides helper methods for retry logic.
+ *
+ * @internal
  */
 trait RetryTrait
 {
@@ -42,28 +44,28 @@ trait RetryTrait
      * @var array
      */
     private $idempotentOps = [
-        'bucket_acl.get',
-        'bucket_acl.list',
-        'buckets.delete',
-        'buckets.get',
-        'buckets.getIamPolicy',
-        'buckets.insert',
-        'buckets.list',
-        'buckets.lockRetentionPolicy',
-        'buckets.testIamPermissions',
-        'default_object_acl.get',
-        'default_object_acl.list',
-        'hmacKey.delete',
-        'hmacKey.get',
-        'hmacKey.list',
-        'notifications.delete',
-        'notifications.get',
-        'notifications.list',
-        'object_acl.get',
-        'object_acl.list',
-        'objects.get',
-        'objects.list',
-        'serviceaccount.get',
+        'bucket_acl.get' => true,
+        'bucket_acl.list' => true,
+        'buckets.delete' => true,
+        'buckets.get' => true,
+        'buckets.getIamPolicy' => true,
+        'buckets.insert' => true,
+        'buckets.list' => true,
+        'buckets.lockRetentionPolicy' => true,
+        'buckets.testIamPermissions' => true,
+        'default_object_acl.get' => true,
+        'default_object_acl.list' => true,
+        'hmacKey.delete' => true,
+        'hmacKey.get' => true,
+        'hmacKey.list' => true,
+        'notifications.delete' => true,
+        'notifications.get' => true,
+        'notifications.list' => true,
+        'object_acl.get' => true,
+        'object_acl.list' => true,
+        'objects.get' => true,
+        'objects.list' => true,
+        'serviceaccount.get' => true,
     ];
 
     /**
@@ -123,16 +125,19 @@ trait RetryTrait
      * @param string $resource resource name, eg: buckets.
      * @param string $method method name, eg: get
      * @param array $args
+     * @param callable $restRetryFunction User given retry function
      * @return callable
      */
-    public function getRestRetryFunction($resource, $method, $args)
+    public function getRestRetryFunction($resource, $method, array $args, $restRetryFunction = null)
     {
         if (isset($args['restRetryFunction'])) {
             return $args['restRetryFunction'];
+        } elseif (!is_null($restRetryFunction)) {
+            return $restRetryFunction;
         }
         $methodName = sprintf('%s.%s', $resource, $method);
         $maxRetries = (int) (isset($args['retries']) ? $args['retries'] : 3);
-        $isOpIdempotent = in_array($methodName, $this->idempotentOps);
+        $isOpIdempotent = array_key_exists($methodName, $this->idempotentOps);
         $preconditionNeeded = array_key_exists($methodName, $this->condIdempotentOps);
         $preconditionSupplied = $this->isPreConditionSupplied($methodName, $args);
         $retryStrategy = isset($args['retryStrategy']) ?
@@ -161,9 +166,8 @@ trait RetryTrait
         };
     }
 
-
     /**
-     * This function retruns true when the user given
+     * This function returns true when the user given
      * precondtions ($preConditions) has values that are present
      * in the precondition map ($this->condIdempotentMap) for that method.
      * eg: condIdempotentMap has entry 'objects.copy' => ['ifGenerationMatch'],
@@ -173,22 +177,21 @@ trait RetryTrait
      * function return a non empty result and this function returns true.
      *
      * @param string $methodName method name, eg: buckets.get.
-     * @param array $preConditions preconditions provided,
+     * @param array $args arguments which include preconditions provided,
      *  eg: ['ifGenerationMatch' => 0].
      * @return bool
      */
-    private function isPreConditionSupplied($methodName, $preConditions)
+    private function isPreConditionSupplied($methodName, array $args)
     {
         if (isset($this->condIdempotentOps[$methodName])) {
             // return true if required precondition are given.
             return !empty(array_intersect(
                 $this->condIdempotentOps[$methodName],
-                array_keys($preConditions)
+                array_keys($args)
             ));
         }
         return false;
     }
-
 
     /**
      * Decide whether the op needs to be retried or not.

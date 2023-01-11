@@ -473,12 +473,13 @@ class RestTest extends TestCase
     public function testIsPreconditionSupplied(
         $resource,
         $op,
+        $restConfig,
         $args,
         $errorCode,
         $currAttempt,
         $expected
     ) {
-        $rest = new Rest();
+        $rest = new Rest($restConfig);
         $reflector = new \ReflectionClass('Google\Cloud\Storage\Connection\Rest');
         $method = $reflector->getMethod('isPreConditionSupplied');
         $condIdempotentOps = $reflector->getProperty('condIdempotentOps');
@@ -500,13 +501,18 @@ class RestTest extends TestCase
     public function testRetryFunction(
         $resource,
         $op,
+        $restConfig,
         $args,
         $errorCode,
         $currAttempt,
         $expected
     ) {
-        $rest = new Rest();
-        $retryFun = $rest->getRestRetryFunction($resource, $op, $args);
+        $rest = new Rest($restConfig);
+        $reflection = new \ReflectionClass($rest);
+        $property = $reflection->getProperty('restRetryFunction');
+        $property->setAccessible(true);
+        $restRetryFunction = $property->getValue($rest);
+        $retryFun = $rest->getRestRetryFunction($resource, $op, $args, $restRetryFunction);
 
         $this->assertEquals(
             $expected,
@@ -516,32 +522,62 @@ class RestTest extends TestCase
 
     public function retryFunctionReturnValues()
     {
+        $restMaxRetry = 7;
+        $opMaxRetry = 5;
+        $restRetryFunctionArg = ['restRetryFunction' => function (
+            \Exception $exception,
+            $currentAttempt
+        ) use ($restMaxRetry) {
+            if ($currentAttempt > $restMaxRetry) {
+                return false;
+            }
+            return true;
+        }];
+        $opRetryFunctionArg = ['restRetryFunction' => function (
+            \Exception $exception,
+            $currentAttempt
+        ) use ($opMaxRetry) {
+            if ($currentAttempt > $opMaxRetry) {
+                return false;
+            }
+            return true;
+        }];
+
         return [
             // Idempotent operation with retriable error code
-            ['buckets', 'get', [], 503, 1, true],
-            ['serviceaccount', 'get', [], 504, 1, true],
+            ['buckets', 'get', [], [], 503, 1, true],
+            ['serviceaccount', 'get', [], [], 504, 1, true],
             // Idempotent operation with non retriable error code
-            ['buckets', 'get', [], 400, 1, false],
+            ['buckets', 'get', [], [], 400, 1, false],
             // Conditionally Idempotent with retriable error code
             // correct precondition provided
-            ['buckets', 'update', ['ifMetagenerationMatch' => 0], 503, 1, true],
+            ['buckets', 'update', [], ['ifMetagenerationMatch' => 0], 503, 1, true],
             // Conditionally Idempotent with retriable error code
             // wrong precondition provided
-            ['buckets', 'update', ['ifGenerationMatch' => 0], 503, 1, false],
+            ['buckets', 'update', [], ['ifGenerationMatch' => 0], 503, 1, false],
             // Conditionally Idempotent with non retriable error code
             // precondition provided
-            ['buckets', 'update', ['ifMetagenerationMatch' => 0], 400, 1, false],
+            ['buckets', 'update', [], ['ifMetagenerationMatch' => 0], 400, 1, false],
             // Conditionally Idempotent with retriable error code
             // precondition not provided
-            ['buckets', 'update', [], 503, 1, false],
+            ['buckets', 'update', [], [], 503, 1, false],
             // Conditionally Idempotent with non retriable error code
             // precondition not provided
-            ['buckets', 'update', [], 400, 1, false],
+            ['buckets', 'update', [], [], 400, 1, false],
             // Non idempotent
             ['bucket_acl', 'delete', [], 503, 2, false],
             ['bucket_acl', 'delete', [], 400, 3, false],
             // Max retry reached
-            ['buckets', 'get', [], 503, 4, false]
+            ['buckets', 'get', [], [], 503, 4, false],
+            // User given restRetryFunction in the StorageClient which internally reaches Rest
+            ['buckets', 'get', $restRetryFunctionArg, [], 503, $restMaxRetry, true],
+            ['buckets', 'get', $restRetryFunctionArg, [], 503, $restMaxRetry+1, false],
+            // User given restRetryFunction in the operation
+            ['buckets', 'get', [], $opRetryFunctionArg, 503, $opMaxRetry, true],
+            ['buckets', 'get', [], $opRetryFunctionArg, 503, $opMaxRetry+1, false],
+            // Precedence given to restRetryFunction in the operation than in the StorageClient
+            ['buckets', 'get', $restRetryFunctionArg, $opRetryFunctionArg, 503, $opMaxRetry+1, false],
+            ['buckets', 'get', $restRetryFunctionArg, $opRetryFunctionArg, 503, $opMaxRetry, true]
         ];
     }
 
