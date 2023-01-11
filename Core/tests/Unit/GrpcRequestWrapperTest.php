@@ -115,7 +115,7 @@ class GrpcRequestWrapperTest extends TestCase
         $timesCalled = 0;
         $requestWrapper->send(
             function () use (&$timesCalled) {
-                if (1 === $timesCalled++) {
+                if (2 === ++$timesCalled) {
                     // succeed on second try
                     return;
                 }
