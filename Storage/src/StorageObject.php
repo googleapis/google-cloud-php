@@ -55,8 +55,8 @@ class StorageObject
      * Header and value that helps us identify a transcoded obj
      * w/o making a metadata(info) call.
      */
-    const TRANSCODED_OBJ_HEADER_KEY = 'x-guploader-response-body-transformations';
-    const TRANSCODED_OBJ_HEADER_VAL = 'gunzipped';
+    const TRANSCODED_OBJ_HEADER_KEY = 'X-Goog-Stored-Content-Encoding';
+    const TRANSCODED_OBJ_HEADER_VAL = 'gzip';
 
     /**
      * @var Acl ACL for the object.
