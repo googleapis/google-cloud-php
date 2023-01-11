@@ -45,10 +45,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\WebDetection\WebLabel::getLabel()'
     name: getLabel
     id: getLabel
-    summary: |
-      Label for extra metadata.
-      
-      Generated from protobuf field <code>string label = 1;</code>
+    summary: 'Label for extra metadata.'
     parent: \Google\Cloud\Vision\V1\WebDetection\WebLabel
     type: method
     langs:
@@ -61,10 +58,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\WebDetection\WebLabel::setLabel()'
     name: setLabel
     id: setLabel
-    summary: |
-      Label for extra metadata.
-      
-      Generated from protobuf field <code>string label = 1;</code>
+    summary: 'Label for extra metadata.'
     parent: \Google\Cloud\Vision\V1\WebDetection\WebLabel
     type: method
     langs:
@@ -87,8 +81,6 @@ items:
       
       For more information, see
       http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
-      
-      Generated from protobuf field <code>string language_code = 2;</code>
     parent: \Google\Cloud\Vision\V1\WebDetection\WebLabel
     type: method
     langs:
@@ -106,8 +98,6 @@ items:
       
       For more information, see
       http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
-      
-      Generated from protobuf field <code>string language_code = 2;</code>
     parent: \Google\Cloud\Vision\V1\WebDetection\WebLabel
     type: method
     langs:
