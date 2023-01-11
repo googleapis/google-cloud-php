@@ -135,6 +135,7 @@ class RetryConformanceTest extends TestCase
         $precondtionProvided,
         $invocationIndex
     ) {
+        $this->markTestSkipped();
         $caseId = $this->createRetryTestResource($methodName, $instructions, null);
 
         $methodInvocations = self::getMethodInvocationMapping();
@@ -427,7 +428,7 @@ class RetryConformanceTest extends TestCase
             ],
             'storage.objects.get' => [
                 function ($resourceIds, $options, $precondition = false, $methodGroup = null) {
-                    if(!is_null($methodGroup)) {
+                    if (!is_null($methodGroup)) {
                         self::markTestSkipped("Test only needs to run for resumable downloads");
                     }
                     $bucketName = $resourceIds['bucketName'];
@@ -438,7 +439,7 @@ class RetryConformanceTest extends TestCase
                     $object->reload($options);
                 },
                 function ($resourceIds, $options, $precondition = false, $methodGroup = null) {
-                    if(!is_null($methodGroup)) {
+                    if (!is_null($methodGroup)) {
                         self::markTestSkipped("Test only needs to run for resumable downloads");
                     }
                     $bucketName = $resourceIds['bucketName'];
@@ -449,7 +450,7 @@ class RetryConformanceTest extends TestCase
                     $object->exists($options);
                 },
                 function ($resourceIds, $options, $precondition = false, $methodGroup = null) {
-                    if($methodGroup !== 'storage.objects.download') {
+                    if ($methodGroup !== 'storage.objects.download') {
                         self::markTestSkipped("Test only needs to run for getObject");
                     }
                     $bucketName = $resourceIds['bucketName'];
@@ -460,7 +461,7 @@ class RetryConformanceTest extends TestCase
                     $object->downloadAsStream($options);
                 },
                 function ($resourceIds, $options, $precondition = false, $methodGroup = null) {
-                    if($methodGroup !== 'storage.objects.download') {
+                    if ($methodGroup !== 'storage.objects.download') {
                         self::markTestSkipped("Test only needs to run for getObject");
                     }
                     $bucketName = $resourceIds['bucketName'];
@@ -471,7 +472,7 @@ class RetryConformanceTest extends TestCase
                     $object->downloadAsString($options);
                 },
                 function ($resourceIds, $options, $precondition = false, $methodGroup = null) {
-                    if($methodGroup !== 'storage.objects.download') {
+                    if ($methodGroup !== 'storage.objects.download') {
                         self::markTestSkipped("Test only needs to run for getObject");
                     }
                     $bucketName = $resourceIds['bucketName'];

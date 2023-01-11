@@ -689,16 +689,17 @@ class StorageObject
         $transcodedObj = false;
 
         // We try to deduce if the object is a transcoded object when we receive the headers.
-        $options['restOptions']['on_headers'] = function($response) use(&$transcodedObj){
+        $options['restOptions']['on_headers'] = function ($response) use (&$transcodedObj) {
             $header = $response->getHeader(StorageObject::TRANSCODED_OBJ_HEADER_KEY);
-            if(is_array($header) && in_array(StorageObject::TRANSCODED_OBJ_HEADER_VAL, $header)){
+            if (is_array($header) && in_array(StorageObject::TRANSCODED_OBJ_HEADER_VAL, $header)) {
                 $transcodedObj = true;
             }
         };
 
         $options += [
-            'restOnRetryExceptionFunction' => function (\Exception $e, $attempt, &$arguments) use ($resultStream, $requestedBytes) {
-                // if the exception has a response for us to use
+            'restOnRetryExceptionFunction' => function (\Exception $e, $attempt, &$arguments)
+ use ($resultStream, $requestedBytes) {
+                    // if the exception has a response for us to use
                 if ($e instanceof RequestException && $e->hasResponse()) {
                     $msg = (string) $e->getResponse()->getBody();
 
@@ -1335,23 +1336,27 @@ class StorageObject
 
     /**
      * Util function to compute the bytes requested for a download request.
-     * 
+     *
      * @param array $options Request options
      * @return array
      */
-    private function getRequestedBytes(array $options) {
+    private function getRequestedBytes(array $options)
+    {
         $startByte = 0;
         $endByte = '';
-        $rangeSupplied = false;
 
-        if(isset($options['restOptions']['headers']['Range'])) {
-            $range = explode('=', $options['restOptions']['headers']['Range']);
-            $bytes = explode('-', $range[1]);
-            $startByte = $bytes[0];
-            $endByte = $bytes[1];
-            $rangeSupplied = true;
+        if (isset($options['restOptions']) && isset($options['restOptions']['headers'])) {
+            $headers = $options['restOptions']['headers'];
+            if (isset($headers['Range']) || isset($headers['range'])) {
+                $header = isset($headers['Range']) ? $headers['Range'] : $headers['range'];
+                $range = explode('=', $header);
+                $bytes = explode('-', $range[1]);
+                $startByte = $bytes[0];
+                $endByte = $bytes[1];
+                $rangeSupplied = true;
+            }
         }
 
-        return compact('startByte', 'endByte', 'rangeSupplied');
+        return compact('startByte', 'endByte');
     }
 }
