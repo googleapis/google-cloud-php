@@ -19,6 +19,8 @@ namespace Google\Cloud\Storage\Connection;
 
 /**
  * Trait which provides helper methods for retry logic.
+ *
+ * @internal
  */
 trait RetryTrait
 {
@@ -86,19 +88,21 @@ trait RetryTrait
         'objects.update' => ['ifMetagenerationMatch']
     ];
 
-
     /**
      * Return a retry decider function.
      *
      * @param string $resource resource name, eg: buckets.
      * @param string $method method name, eg: get
      * @param array $args
+     * @param callable $restRetryFunction User given retry function
      * @return callable
      */
-    public function getRestRetryFunction($resource, $method, $args)
+    public function getRestRetryFunction($resource, $method, array $args, $restRetryFunction = null)
     {
         if (isset($args['restRetryFunction'])) {
             return $args['restRetryFunction'];
+        } elseif (!is_null($restRetryFunction)) {
+            return $restRetryFunction;
         }
         $methodName = sprintf('%s.%s', $resource, $method);
         $maxRetries = (int) (isset($args['retries']) ? $args['retries'] : 3);
@@ -126,9 +130,8 @@ trait RetryTrait
         };
     }
 
-
     /**
-     * This function retruns true when the user given
+     * This function returns true when the user given
      * precondtions ($preConditions) has values that are present
      * in the precondition map ($this->condIdempotentMap) for that method.
      * eg: condIdempotentMap has entry 'objects.copy' => ['ifGenerationMatch'],
@@ -138,22 +141,21 @@ trait RetryTrait
      * function return a non empty result and this function returns true.
      *
      * @param string $methodName method name, eg: buckets.get.
-     * @param array $preConditions preconditions provided,
+     * @param array $args arguments which include preconditions provided,
      *  eg: ['ifGenerationMatch' => 0].
-     * @return boolean
+     * @return bool
      */
-    private function isPreConditionSupplied($methodName, $preConditions)
+    private function isPreConditionSupplied($methodName, array $args)
     {
         if (isset(self::$condIdempotentOps[$methodName])) {
             // return true if required precondition are given.
             return !empty(array_intersect(
                 self::$condIdempotentOps[$methodName],
-                array_keys($preConditions)
+                array_keys($args)
             ));
         }
         return false;
     }
-
 
     /**
      * Decide whether the op needs to be retried or not.
@@ -161,11 +163,11 @@ trait RetryTrait
      * @param \Exception $exception The exception object received
      * while sending the request.
      * @param int $currentAttempt Current retry attempt.
-     * @param boolean $isIdempotent
-     * @param boolean $preconditionNeeded
-     * @param boolean $preconditionSupplied
+     * @param bool $isIdempotent
+     * @param bool $preconditionNeeded
+     * @param bool $preconditionSupplied
      * @param int $maxRetries
-     * @return boolean
+     * @return bool
      */
     private function retryDeciderFunction(
         \Exception $exception,
