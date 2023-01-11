@@ -565,8 +565,8 @@ class RestTest extends TestCase
             // precondition not provided
             ['buckets', 'update', [], [], 400, 1, false],
             // Non idempotent
-            ['bucket_acl', 'delete', [], 503, 2, false],
-            ['bucket_acl', 'delete', [], 400, 3, false],
+            ['bucket_acl', 'delete', [], [], 503, 2, false],
+            ['bucket_acl', 'delete', [], [], 400, 3, false],
             // Max retry reached
             ['buckets', 'get', [], [], 503, 4, false],
             // User given restRetryFunction in the StorageClient which internally reaches Rest
@@ -589,6 +589,7 @@ class RestTest extends TestCase
      * [
      *     $resource,
      *     $operation,
+     *     $restConfig,
      *     $args,
      *     $errorCode,
      *     $retryCount,
@@ -604,22 +605,21 @@ class RestTest extends TestCase
         foreach ($retryCases as $retryCase) {
             // For retry always
             $case = $retryCase;
-            $case[2]['retryStrategy'] = RetryTrait::$RETRY_STRATEGY_ALWAYS;
-            $case[5] = true;
-            if (
-                !in_array(
-                    $retryCase[3],
-                    RetryTrait::$httpRetryCodes
-                ) || $retryCase[4] > 3
+            $case[3]['retryStrategy'] = RetryTrait::$RETRY_STRATEGY_ALWAYS;
+            $case[6] = $this->assignExpectedOutcome(true, $retryCase);
+            if (!in_array(
+                $retryCase[4],
+                RetryTrait::$httpRetryCodes
+            ) || $retryCase[5] > 3
             ) {
-                $case[5] = false;
+                $case[6] = $this->assignExpectedOutcome(false, $retryCase);
             }
             $retryStrategyCases[] = $case;
 
             // For retry never
             $case = $retryCase;
-            $case[2]['retryStrategy'] = RetryTrait::$RETRY_STRATEGY_NEVER;
-            $case[5] = false;
+            $case[3]['retryStrategy'] = RetryTrait::$RETRY_STRATEGY_NEVER;
+            $case[6] = $this->assignExpectedOutcome(false, $retryCase);
             $retryStrategyCases[] = $case;
         }
 
@@ -642,6 +642,21 @@ class RestTest extends TestCase
             trim(explode(':', $lines[7])[1]),
             json_decode($lines[5], true)
         ];
+    }
+
+    /**
+     * Method to check if we need to change the expected outcome incase of
+     * specific retry strategies like 'always' and 'never'.
+     */
+    private function assignExpectedOutcome(bool $expected, array $retryCase)
+    {
+        if (isset($retryCase[3]['restRetryFunction'])
+            || isset($retryCase[2]['restRetryFunction'])
+        ) {
+            return $retryCase[6];
+        }
+
+        return $expected;
     }
 }
 
