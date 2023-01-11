@@ -66,15 +66,7 @@ class DocFx extends Command
         if (empty($xml)) {
             $output->write('Running phpdoc to generate structure.xml... ');
             // Run "phpdoc"
-            $process = new Process([
-                'phpdoc',
-                '-d',
-                sprintf('%s/src', $componentPath),
-                '--template',
-                'xml',
-                '--target',
-                $outDir
-            ]);
+            $process = self::getPhpDocCommand($componentPath, $outDir);
             $process->mustRun();
             $output->writeln('Done.');
             $xml = $outDir . '/structure.xml';
@@ -181,6 +173,19 @@ class DocFx extends Command
             $process->mustRun();
             $output->writeln('Done.');
         }
+    }
+
+    public static function getPhpDocCommand(string $componentPath, string $outDir): Process
+    {
+        return new Process([
+            'phpdoc',
+            '-d',
+            sprintf('%s/src', $componentPath),
+            '--template',
+            realpath(__DIR__ . '/../../../data/templates/xml'),
+            '--target',
+            $outDir
+        ]);
     }
 
     private function getComponentPath(string $component): string
