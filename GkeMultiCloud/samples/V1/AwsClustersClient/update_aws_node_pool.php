@@ -37,17 +37,19 @@ use Google\Rpc\Status;
 /**
  * Updates an [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool].
  *
- * @param string $awsNodePoolVersion                         The Kubernetes version to run on this node pool (e.g. `1.19.10-gke.1000`).
+ * @param string $awsNodePoolVersion                         The Kubernetes version to run on this node pool (e.g.
+ *                                                           `1.19.10-gke.1000`).
  *
  *                                                           You can list all supported versions on a given Google Cloud region by
  *                                                           calling
  *                                                           [GetAwsServerConfig][google.cloud.gkemulticloud.v1.AwsClusters.GetAwsServerConfig].
- * @param string $awsNodePoolConfigIamInstanceProfile        The name or ARN of the AWS IAM role assigned to nodes in the pool.
+ * @param string $awsNodePoolConfigIamInstanceProfile        The name or ARN of the AWS IAM role assigned to nodes in the
+ *                                                           pool.
  * @param string $awsNodePoolConfigConfigEncryptionKmsKeyArn The ARN of the AWS KMS key used to encrypt user data.
- * @param int    $awsNodePoolAutoscalingMinNodeCount         Minimum number of nodes in the node pool. Must be greater than or equal to
- *                                                           1 and less than or equal to max_node_count.
- * @param int    $awsNodePoolAutoscalingMaxNodeCount         Maximum number of nodes in the node pool. Must be greater than or equal to
- *                                                           min_node_count and less than or equal to 50.
+ * @param int    $awsNodePoolAutoscalingMinNodeCount         Minimum number of nodes in the node pool. Must be greater than or
+ *                                                           equal to 1 and less than or equal to max_node_count.
+ * @param int    $awsNodePoolAutoscalingMaxNodeCount         Maximum number of nodes in the node pool. Must be greater than or
+ *                                                           equal to min_node_count and less than or equal to 50.
  * @param string $awsNodePoolSubnetId                        The subnet where the node pool node run.
  * @param int    $awsNodePoolMaxPodsConstraintMaxPodsPerNode The maximum number of pods to schedule on a single node.
  */

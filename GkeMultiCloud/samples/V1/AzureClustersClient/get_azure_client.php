@@ -28,11 +28,15 @@ use Google\Cloud\GkeMultiCloud\V1\AzureClient;
 use Google\Cloud\GkeMultiCloud\V1\AzureClustersClient;
 
 /**
- * Describes a specific [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] resource.
+ * Describes a specific
+ * [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] resource.
  *
- * @param string $formattedName The name of the [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] resource to describe.
+ * @param string $formattedName The name of the
+ *                              [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] resource to
+ *                              describe.
  *
- *                              [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] names are formatted as
+ *                              [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] names are
+ *                              formatted as
  *                              `projects/<project-id>/locations/<region>/azureClients/<client-id>`.
  *
  *                              See [Resource Names](https://cloud.google.com/apis/design/resource_names)
