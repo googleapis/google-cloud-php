@@ -22,48 +22,47 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START metastore_v1alpha_generated_DataprocMetastoreFederation_CreateFederation_sync]
+// [START metastore_v1beta_generated_DataprocMetastore_MoveTableToDatabase_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Metastore\V1alpha\DataprocMetastoreFederationClient;
-use Google\Cloud\Metastore\V1alpha\Federation;
+use Google\Cloud\Metastore\V1beta\DataprocMetastoreClient;
+use Google\Cloud\Metastore\V1beta\MoveTableToDatabaseResponse;
 use Google\Rpc\Status;
 
 /**
- * Creates a metastore federation in a project and location.
+ * Move a table to another database.
  *
- * @param string $formattedParent The relative resource name of the location in which to create a
- *                                federation service, in the following form:
+ * @param string $formattedService  The relative resource name of the metastore service to mutate
+ *                                  metadata, in the following format:
  *
- *                                `projects/{project_number}/locations/{location_id}`. Please see
- *                                {@see DataprocMetastoreFederationClient::locationName()} for help formatting this field.
- * @param string $federationId    The ID of the metastore federation, which is used as the final
- *                                component of the metastore federation's name.
- *
- *                                This value must be between 2 and 63 characters long inclusive, begin with a
- *                                letter, end with a letter or number, and consist of alpha-numeric
- *                                ASCII characters or hyphens.
+ *                                  `projects/{project_id}/locations/{location_id}/services/{service_id}`. Please see
+ *                                  {@see DataprocMetastoreClient::serviceName()} for help formatting this field.
+ * @param string $tableName         The name of the table to be moved.
+ * @param string $dbName            The name of the database where the table resides.
+ * @param string $destinationDbName The name of the database where the table should be moved.
  */
-function create_federation_sample(string $formattedParent, string $federationId): void
-{
+function move_table_to_database_sample(
+    string $formattedService,
+    string $tableName,
+    string $dbName,
+    string $destinationDbName
+): void {
     // Create a client.
-    $dataprocMetastoreFederationClient = new DataprocMetastoreFederationClient();
-
-    // Prepare any non-scalar elements to be passed along with the request.
-    $federation = new Federation();
+    $dataprocMetastoreClient = new DataprocMetastoreClient();
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $dataprocMetastoreFederationClient->createFederation(
-            $formattedParent,
-            $federationId,
-            $federation
+        $response = $dataprocMetastoreClient->moveTableToDatabase(
+            $formattedService,
+            $tableName,
+            $dbName,
+            $destinationDbName
         );
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
-            /** @var Federation $result */
+            /** @var MoveTableToDatabaseResponse $result */
             $result = $response->getResult();
             printf('Operation successful with response data: %s' . PHP_EOL, $result->serializeToJsonString());
         } else {
@@ -87,9 +86,11 @@ function create_federation_sample(string $formattedParent, string $federationId)
  */
 function callSample(): void
 {
-    $formattedParent = DataprocMetastoreFederationClient::locationName('[PROJECT]', '[LOCATION]');
-    $federationId = '[FEDERATION_ID]';
+    $formattedService = DataprocMetastoreClient::serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
+    $tableName = '[TABLE_NAME]';
+    $dbName = '[DB_NAME]';
+    $destinationDbName = '[DESTINATION_DB_NAME]';
 
-    create_federation_sample($formattedParent, $federationId);
+    move_table_to_database_sample($formattedService, $tableName, $dbName, $destinationDbName);
 }
-// [END metastore_v1alpha_generated_DataprocMetastoreFederation_CreateFederation_sync]
+// [END metastore_v1beta_generated_DataprocMetastore_MoveTableToDatabase_sync]

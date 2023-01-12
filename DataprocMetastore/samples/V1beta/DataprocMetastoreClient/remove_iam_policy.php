@@ -22,34 +22,31 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START metastore_v1alpha_generated_DataprocMetastoreFederation_ListFederations_sync]
+// [START metastore_v1beta_generated_DataprocMetastore_RemoveIamPolicy_sync]
 use Google\ApiCore\ApiException;
-use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Metastore\V1alpha\DataprocMetastoreFederationClient;
-use Google\Cloud\Metastore\V1alpha\Federation;
+use Google\Cloud\Metastore\V1beta\DataprocMetastoreClient;
+use Google\Cloud\Metastore\V1beta\RemoveIamPolicyResponse;
 
 /**
- * Lists federations in a project and location.
+ * Removes the attached IAM policies for a resource
  *
- * @param string $formattedParent The relative resource name of the location of metastore
- *                                federations to list, in the following form:
- *                                `projects/{project_number}/locations/{location_id}`. Please see
- *                                {@see DataprocMetastoreFederationClient::locationName()} for help formatting this field.
+ * @param string $resource The relative resource name of the dataplane resource to remove
+ *                         IAM policy, in the following form:
+ *
+ *                         `projects/{project_id}/locations/{location_id}/services/{service_id}/databases/{database_id}`
+ *                         or
+ *                         `projects/{project_id}/locations/{location_id}/services/{service_id}/databases/{database_id}/tables/{table_id}`.
  */
-function list_federations_sample(string $formattedParent): void
+function remove_iam_policy_sample(string $resource): void
 {
     // Create a client.
-    $dataprocMetastoreFederationClient = new DataprocMetastoreFederationClient();
+    $dataprocMetastoreClient = new DataprocMetastoreClient();
 
     // Call the API and handle any network failures.
     try {
-        /** @var PagedListResponse $response */
-        $response = $dataprocMetastoreFederationClient->listFederations($formattedParent);
-
-        /** @var Federation $element */
-        foreach ($response as $element) {
-            printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
-        }
+        /** @var RemoveIamPolicyResponse $response */
+        $response = $dataprocMetastoreClient->removeIamPolicy($resource);
+        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
@@ -66,8 +63,8 @@ function list_federations_sample(string $formattedParent): void
  */
 function callSample(): void
 {
-    $formattedParent = DataprocMetastoreFederationClient::locationName('[PROJECT]', '[LOCATION]');
+    $resource = '[RESOURCE]';
 
-    list_federations_sample($formattedParent);
+    remove_iam_policy_sample($resource);
 }
-// [END metastore_v1alpha_generated_DataprocMetastoreFederation_ListFederations_sync]
+// [END metastore_v1beta_generated_DataprocMetastore_RemoveIamPolicy_sync]

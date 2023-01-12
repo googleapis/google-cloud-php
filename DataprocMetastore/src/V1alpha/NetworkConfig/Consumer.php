@@ -37,7 +37,7 @@ class Consumer extends \Google\Protobuf\Internal\Message
      *           hosts in a subnet in the same region and same network. There must
      *           be at least one IP address available in the subnet's primary range. The
      *           subnet is specified in the following form:
-     *           `projects/{project_number}/regions/{region_id}/subnetworks/{subnetwork_id}
+     *           `projects/{project_number}/regions/{region_id}/subnetworks/{subnetwork_id}`
      *     @type string $endpoint_uri
      *           Output only. The URI of the endpoint used to access the metastore
      *           service.
@@ -55,7 +55,7 @@ class Consumer extends \Google\Protobuf\Internal\Message
      * hosts in a subnet in the same region and same network. There must
      * be at least one IP address available in the subnet's primary range. The
      * subnet is specified in the following form:
-     * `projects/{project_number}/regions/{region_id}/subnetworks/{subnetwork_id}
+     * `projects/{project_number}/regions/{region_id}/subnetworks/{subnetwork_id}`
      *
      * Generated from protobuf field <code>string subnetwork = 1 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      * @return string
@@ -77,7 +77,7 @@ class Consumer extends \Google\Protobuf\Internal\Message
      * hosts in a subnet in the same region and same network. There must
      * be at least one IP address available in the subnet's primary range. The
      * subnet is specified in the following form:
-     * `projects/{project_number}/regions/{region_id}/subnetworks/{subnetwork_id}
+     * `projects/{project_number}/regions/{region_id}/subnetworks/{subnetwork_id}`
      *
      * Generated from protobuf field <code>string subnetwork = 1 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      * @param string $var
