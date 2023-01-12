@@ -28,7 +28,7 @@ trait RetryTrait
      * The HTTP codes that will be retried by our custom retry function.
      * @var array
      */
-    private $httpRetryCodes = [
+    public static $httpRetryCodes = [
         0, // connetion-refused OR connection-reset gives status code of 0
         408,
         429,
@@ -89,6 +89,37 @@ trait RetryTrait
     ];
 
     /**
+     * Retry strategies which enforce certain behaviour like:
+     *     - Always retrying a call when an exception occurs(within the limits of 'max retries').
+     *     - Never retrying a call when an exception occurs.
+     *     - Retrying only when the operation is considered idempotent(default).
+     * These configurations are supplied for per api call basis.
+     *
+     * We can set $options['retryStrategy'] to one of "always", "never" and
+     * "idempotent". Anything apart from them is considered as "idempotent" and will be
+     * retried as intended.
+     */
+
+    /**
+     * Retry an API operation when an exception occurs if the exception has a retryable error code.
+     * @var string
+     */
+    public static $RETRY_STRATEGY_ALWAYS = 'always';
+
+    /**
+     * Never retry an API operation.
+     * @var string
+     */
+    public static $RETRY_STRATEGY_NEVER = 'never';
+
+    /**
+     * Retry an API operation only if it is considered idempotent
+     * and the exception has a retryable error code.
+     * @var string
+     */
+    public static $RETRY_STRATEGY_IDEMPOTENT = 'idempotent';
+
+    /**
      * Return a retry decider function.
      *
      * @param string $resource resource name, eg: buckets.
@@ -109,6 +140,9 @@ trait RetryTrait
         $isOpIdempotent = array_key_exists($methodName, $this->idempotentOps);
         $preconditionNeeded = array_key_exists($methodName, $this->condIdempotentOps);
         $preconditionSupplied = $this->isPreConditionSupplied($methodName, $args);
+        $retryStrategy = isset($args['retryStrategy']) ?
+            $args['retryStrategy'] :
+            self::$RETRY_STRATEGY_IDEMPOTENT;
 
         return function (
             \Exception $exception,
@@ -117,7 +151,8 @@ trait RetryTrait
             $isOpIdempotent,
             $preconditionNeeded,
             $preconditionSupplied,
-            $maxRetries
+            $maxRetries,
+            $retryStrategy
         ) {
             return $this->retryDeciderFunction(
                 $exception,
@@ -125,7 +160,8 @@ trait RetryTrait
                 $isOpIdempotent,
                 $preconditionNeeded,
                 $preconditionSupplied,
-                $maxRetries
+                $maxRetries,
+                $retryStrategy
             );
         };
     }
@@ -175,21 +211,27 @@ trait RetryTrait
         $isIdempotent,
         $preconditionNeeded,
         $preconditionSupplied,
-        $maxRetries
+        $maxRetries,
+        $retryStrategy
     ) {
         // No retry if maxRetries reached
         if ($maxRetries <= $currentAttempt) {
             return false;
         }
+        if ($retryStrategy == self::$RETRY_STRATEGY_NEVER) {
+            return false;
+        }
 
         $statusCode = $exception->getCode();
-
         // Retry if the exception status code matches
         // with one of the retriable status code and
         // the operation is either idempotent or conditionally
         // idempotent with preconditions supplied.
-        if (in_array($statusCode, $this->httpRetryCodes)) {
-            if ($isIdempotent) {
+
+        if (in_array($statusCode, self::$httpRetryCodes)) {
+            if ($retryStrategy == self::$RETRY_STRATEGY_ALWAYS) {
+                return true;
+            } elseif ($isIdempotent) {
                 return true;
             } elseif ($preconditionNeeded) {
                 return $preconditionSupplied;
