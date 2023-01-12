@@ -11,9 +11,10 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * `AzureClient` resources hold client authentication information needed by the
  * Anthos Multi-Cloud API to manage Azure resources on your Azure subscription.
- * When an [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] is created, an `AzureClient` resource needs to be
- * provided and all operations on Azure resources associated to that cluster
- * will authenticate to Azure services using the given client.
+ * When an [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] is
+ * created, an `AzureClient` resource needs to be provided and all operations on
+ * Azure resources associated to that cluster will authenticate to Azure
+ * services using the given client.
  * `AzureClient` resources are immutable and cannot be modified upon creation.
  * Each `AzureClient` resource is bound to a single Azure Active Directory
  * Application and tenant.

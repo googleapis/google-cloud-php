@@ -43,15 +43,17 @@ use Google\Rpc\Status;
  * or
  * [ProductService.ListProducts][google.cloud.retail.v2.ProductService.ListProducts].
  *
- * The returned [Operation][]s will be obsolete after 1 day, and
- * [GetOperation][] API will return NOT_FOUND afterwards.
+ * The returned [Operation][google.longrunning.Operation]s will be obsolete
+ * after 1 day, and [GetOperation][google.longrunning.Operations.GetOperation]
+ * API will return NOT_FOUND afterwards.
  *
- * If conflicting updates are issued, the [Operation][]s associated with the
- * stale updates will not be marked as [done][Operation.done] until being
- * obsolete.
+ * If conflicting updates are issued, the
+ * [Operation][google.longrunning.Operation]s associated with the stale
+ * updates will not be marked as [done][google.longrunning.Operation.done]
+ * until being obsolete.
  *
  * This feature is only available for users who have Retail Search enabled.
- * Please enable Retail Search on Cloud Console before using this feature.
+ * Enable Retail Search on Cloud Console before using this feature.
  *
  * @param string $formattedProduct Full resource name of [Product][google.cloud.retail.v2.Product],
  *                                 such as

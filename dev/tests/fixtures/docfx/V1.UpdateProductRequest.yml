@@ -53,8 +53,6 @@ items:
       Required. The Product resource which replaces the one on the server.
       
       product.name is immutable.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.Product product = 1 [(.google.api.field_behavior) = REQUIRED];</code>
     parent: \Google\Cloud\Vision\V1\UpdateProductRequest
     type: method
     langs:
@@ -87,8 +85,6 @@ items:
       Required. The Product resource which replaces the one on the server.
       
       product.name is immutable.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.Product product = 1 [(.google.api.field_behavior) = REQUIRED];</code>
     parent: \Google\Cloud\Vision\V1\UpdateProductRequest
     type: method
     langs:
@@ -113,8 +109,6 @@ items:
       If update_mask isn't specified, all mutable fields are to be updated.
       Valid mask paths include `product_labels`, `display_name`, and
       `description`.
-      
-      Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
     parent: \Google\Cloud\Vision\V1\UpdateProductRequest
     type: method
     langs:
@@ -150,8 +144,6 @@ items:
       If update_mask isn't specified, all mutable fields are to be updated.
       Valid mask paths include `product_labels`, `display_name`, and
       `description`.
-      
-      Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
     parent: \Google\Cloud\Vision\V1\UpdateProductRequest
     type: method
     langs:

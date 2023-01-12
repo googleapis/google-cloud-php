@@ -506,6 +506,14 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.container.v1.NodePoolAutoConfig node_pool_auto_config = 136;</code>
      */
     private $node_pool_auto_config = null;
+    /**
+     * This checksum is computed by the server based on the value of cluster
+     * fields, and may be sent on update requests to ensure the client has an
+     * up-to-date value before proceeding.
+     *
+     * Generated from protobuf field <code>string etag = 139;</code>
+     */
+    private $etag = '';
 
     /**
      * Constructor.
@@ -749,6 +757,10 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Container\V1\NodePoolAutoConfig $node_pool_auto_config
      *           Node pool configs that apply to all auto-provisioned node pools
      *           in autopilot clusters and node auto-provisioning enabled clusters.
+     *     @type string $etag
+     *           This checksum is computed by the server based on the value of cluster
+     *           fields, and may be sent on update requests to ensure the client has an
+     *           up-to-date value before proceeding.
      * }
      */
     public function __construct($data = NULL) {
@@ -2918,6 +2930,36 @@ class Cluster extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\NodePoolAutoConfig::class);
         $this->node_pool_auto_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * This checksum is computed by the server based on the value of cluster
+     * fields, and may be sent on update requests to ensure the client has an
+     * up-to-date value before proceeding.
+     *
+     * Generated from protobuf field <code>string etag = 139;</code>
+     * @return string
+     */
+    public function getEtag()
+    {
+        return $this->etag;
+    }
+
+    /**
+     * This checksum is computed by the server based on the value of cluster
+     * fields, and may be sent on update requests to ensure the client has an
+     * up-to-date value before proceeding.
+     *
+     * Generated from protobuf field <code>string etag = 139;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setEtag($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->etag = $var;
 
         return $this;
     }

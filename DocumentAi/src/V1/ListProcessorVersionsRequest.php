@@ -16,8 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListProcessorVersionsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The parent (project, location and processor) to list all versions.
-     * Format: `projects/{project}/locations/{location}/processors/{processor}`
+     * Required. The parent (project, location and processor) to list all
+     * versions. Format:
+     * `projects/{project}/locations/{location}/processors/{processor}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -45,8 +46,9 @@ class ListProcessorVersionsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The parent (project, location and processor) to list all versions.
-     *           Format: `projects/{project}/locations/{location}/processors/{processor}`
+     *           Required. The parent (project, location and processor) to list all
+     *           versions. Format:
+     *           `projects/{project}/locations/{location}/processors/{processor}`
      *     @type int $page_size
      *           The maximum number of processor versions to return.
      *           If unspecified, at most 10 processor versions will be returned.
@@ -62,8 +64,9 @@ class ListProcessorVersionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent (project, location and processor) to list all versions.
-     * Format: `projects/{project}/locations/{location}/processors/{processor}`
+     * Required. The parent (project, location and processor) to list all
+     * versions. Format:
+     * `projects/{project}/locations/{location}/processors/{processor}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -74,8 +77,9 @@ class ListProcessorVersionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent (project, location and processor) to list all versions.
-     * Format: `projects/{project}/locations/{location}/processors/{processor}`
+     * Required. The parent (project, location and processor) to list all
+     * versions. Format:
+     * `projects/{project}/locations/{location}/processors/{processor}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

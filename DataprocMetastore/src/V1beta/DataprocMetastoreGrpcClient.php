@@ -274,4 +274,67 @@ class DataprocMetastoreGrpcClient extends \Grpc\BaseStub {
         $metadata, $options);
     }
 
+    /**
+     * Removes the attached IAM policies for a resource
+     * @param \Google\Cloud\Metastore\V1beta\RemoveIamPolicyRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function RemoveIamPolicy(\Google\Cloud\Metastore\V1beta\RemoveIamPolicyRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.metastore.v1beta.DataprocMetastore/RemoveIamPolicy',
+        $argument,
+        ['\Google\Cloud\Metastore\V1beta\RemoveIamPolicyResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Query DPMS metadata.
+     * @param \Google\Cloud\Metastore\V1beta\QueryMetadataRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function QueryMetadata(\Google\Cloud\Metastore\V1beta\QueryMetadataRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.metastore.v1beta.DataprocMetastore/QueryMetadata',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Move a table to another database.
+     * @param \Google\Cloud\Metastore\V1beta\MoveTableToDatabaseRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function MoveTableToDatabase(\Google\Cloud\Metastore\V1beta\MoveTableToDatabaseRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.metastore.v1beta.DataprocMetastore/MoveTableToDatabase',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Alter metadata resource location. The metadata resource can be a database,
+     * table, or partition. This functionality only updates the parent directory
+     * for the respective metadata resource and does not transfer any existing
+     * data to the new location.
+     * @param \Google\Cloud\Metastore\V1beta\AlterMetadataResourceLocationRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function AlterMetadataResourceLocation(\Google\Cloud\Metastore\V1beta\AlterMetadataResourceLocationRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.metastore.v1beta.DataprocMetastore/AlterMetadataResourceLocation',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
 }

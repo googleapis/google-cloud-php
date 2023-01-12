@@ -41,7 +41,7 @@ class ParameterNode
 
     public function getDescription(): string
     {
-        return $this->description;
+        return html_entity_decode($this->description);
     }
 
     /**
@@ -90,13 +90,14 @@ class ParameterNode
 
         foreach ($nestedParameters as $param) {
             // Parse "@type string $key" syntax
-            if (!preg_match('/^([^ ]+) +([\$\w]+)(.*)?/m', trim($param), $matches)) {
+            if (!preg_match('/^([^ ]+) +([\$\w]+)(.*)?/sm', trim($param), $matches)) {
                 throw new \LogicException('unable to parse nested parameter "' . $param . '"');
             }
             list($_, $type, $name, $description) = $matches + [3 => ''];
 
             // remove "$" prefix from parameter name and add "↳ " for UX to indicate it's nested.
             $name = '↳ ' . ltrim($name, '$');
+
             // Trim newline whitespace
             $description = preg_replace('/\s+/', ' ', $description);
 

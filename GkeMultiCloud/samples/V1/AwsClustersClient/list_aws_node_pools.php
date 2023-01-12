@@ -29,7 +29,9 @@ use Google\Cloud\GkeMultiCloud\V1\AwsClustersClient;
 use Google\Cloud\GkeMultiCloud\V1\AwsNodePool;
 
 /**
- * Lists all [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] resources on a given [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster].
+ * Lists all [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool]
+ * resources on a given
+ * [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster].
  *
  * @param string $formattedParent The parent `AwsCluster` which owns this collection of
  *                                [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] resources.

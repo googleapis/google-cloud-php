@@ -39,10 +39,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\CropHintsAnnotation::getCropHints()'
     name: getCropHints
     id: getCropHints
-    summary: |
-      Crop hint results.
-      
-      Generated from protobuf field <code>repeated .google.cloud.vision.v1.CropHint crop_hints = 1;</code>
+    summary: 'Crop hint results.'
     parent: \Google\Cloud\Vision\V1\CropHintsAnnotation
     type: method
     langs:
@@ -55,10 +52,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\CropHintsAnnotation::setCropHints()'
     name: setCropHints
     id: setCropHints
-    summary: |
-      Crop hint results.
-      
-      Generated from protobuf field <code>repeated .google.cloud.vision.v1.CropHint crop_hints = 1;</code>
+    summary: 'Crop hint results.'
     parent: \Google\Cloud\Vision\V1\CropHintsAnnotation
     type: method
     langs:

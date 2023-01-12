@@ -31,7 +31,9 @@ use Google\Cloud\GkeMultiCloud\V1\GenerateAwsAccessTokenResponse;
  * Generates a short-lived access token to authenticate to a given
  * [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resource.
  *
- * @param string $formattedAwsCluster The name of the [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resource to authenticate to.
+ * @param string $formattedAwsCluster The name of the
+ *                                    [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resource to
+ *                                    authenticate to.
  *
  *                                    `AwsCluster` names are formatted as
  *                                    `projects/<project-id>/locations/<region>/awsClusters/<cluster-id>`.
