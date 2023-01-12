@@ -17,9 +17,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class Topic extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name of the Pub/Sub topic that will be published to, in the
-     * following format: `projects/&#42;&#47;topics/&#42;`. For publication to succeed, the
-     * Secret Manager P4SA must have `pubsub.publisher` permissions on the topic.
+     * Required. The resource name of the Pub/Sub topic that will be published to,
+     * in the following format: `projects/&#42;&#47;topics/&#42;`. For publication to succeed,
+     * the Secret Manager P4SA must have `pubsub.publisher` permissions on the
+     * topic.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -32,9 +33,10 @@ class Topic extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The resource name of the Pub/Sub topic that will be published to, in the
-     *           following format: `projects/&#42;&#47;topics/&#42;`. For publication to succeed, the
-     *           Secret Manager P4SA must have `pubsub.publisher` permissions on the topic.
+     *           Required. The resource name of the Pub/Sub topic that will be published to,
+     *           in the following format: `projects/&#42;&#47;topics/&#42;`. For publication to succeed,
+     *           the Secret Manager P4SA must have `pubsub.publisher` permissions on the
+     *           topic.
      * }
      */
     public function __construct($data = NULL) {
@@ -43,9 +45,10 @@ class Topic extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the Pub/Sub topic that will be published to, in the
-     * following format: `projects/&#42;&#47;topics/&#42;`. For publication to succeed, the
-     * Secret Manager P4SA must have `pubsub.publisher` permissions on the topic.
+     * Required. The resource name of the Pub/Sub topic that will be published to,
+     * in the following format: `projects/&#42;&#47;topics/&#42;`. For publication to succeed,
+     * the Secret Manager P4SA must have `pubsub.publisher` permissions on the
+     * topic.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -56,9 +59,10 @@ class Topic extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the Pub/Sub topic that will be published to, in the
-     * following format: `projects/&#42;&#47;topics/&#42;`. For publication to succeed, the
-     * Secret Manager P4SA must have `pubsub.publisher` permissions on the topic.
+     * Required. The resource name of the Pub/Sub topic that will be published to,
+     * in the following format: `projects/&#42;&#47;topics/&#42;`. For publication to succeed,
+     * the Secret Manager P4SA must have `pubsub.publisher` permissions on the
+     * topic.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
