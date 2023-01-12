@@ -84,13 +84,12 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" &&
     php -r "if (hash_file('SHA384', 'composer-setup.php') === rtrim(file_get_contents('https://composer.github.io/installer.sig'))) { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;" && \
     php composer-setup.php --filename=composer --install-dir=/usr/local/bin
 
-# Build phpDocumentor from HEAD until they create a new release
+# Use phpDocumentor from HEAD until they create a new release
 # TODO: Remove once phpDocumentor tags a new release
 # @see https://github.com/phpDocumentor/phpDocumentor/issues/3434
-RUN wget -O phpDocumentor.tar.gz "https://github.com/phpDocumentor/phpDocumentor/archive/7e6028d870e4e3a59d35e954f92b3569bec2dbae.tar.gz" \
-    && tar -xzf phpDocumentor.tar.gz \
-    && composer require -d phpDocumentor-master \
-    && ln -s ${pwd}/phpDocumentor-master/bin/phpdoc /usr/local/bin/phpdoc
+COPY --from=phpdoc/phpdoc:202301112131087e6028 /opt/phpdoc /opt/phpdoc
+RUN ln -s /opt/phpdoc/bin/phpdoc /usr/local/bin/phpdoc
+ENV PHPDOC_ENV=prod
 
 # Install phpdoc
 # TODO: uncomment once phpDocumentor creates a new release
