@@ -50,8 +50,8 @@ class BigQueryConfig extends \Google\Protobuf\Internal\Message
      */
     private $drop_unknown_fields = false;
     /**
-     * Output only. An output-only field that indicates whether or not the subscription can
-     * receive messages.
+     * Output only. An output-only field that indicates whether or not the
+     * subscription can receive messages.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.BigQueryConfig.State state = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -82,8 +82,8 @@ class BigQueryConfig extends \Google\Protobuf\Internal\Message
      *           any messages with extra fields are not written and remain in the
      *           subscription's backlog.
      *     @type int $state
-     *           Output only. An output-only field that indicates whether or not the subscription can
-     *           receive messages.
+     *           Output only. An output-only field that indicates whether or not the
+     *           subscription can receive messages.
      * }
      */
     public function __construct($data = NULL) {
@@ -216,8 +216,8 @@ class BigQueryConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. An output-only field that indicates whether or not the subscription can
-     * receive messages.
+     * Output only. An output-only field that indicates whether or not the
+     * subscription can receive messages.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.BigQueryConfig.State state = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
@@ -228,8 +228,8 @@ class BigQueryConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. An output-only field that indicates whether or not the subscription can
-     * receive messages.
+     * Output only. An output-only field that indicates whether or not the
+     * subscription can receive messages.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.BigQueryConfig.State state = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var

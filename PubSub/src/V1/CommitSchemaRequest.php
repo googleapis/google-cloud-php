@@ -9,26 +9,25 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request for the GetSchema method.
+ * Request for CommitSchema method.
  *
- * Generated from protobuf message <code>google.pubsub.v1.GetSchemaRequest</code>
+ * Generated from protobuf message <code>google.pubsub.v1.CommitSchemaRequest</code>
  */
-class GetSchemaRequest extends \Google\Protobuf\Internal\Message
+class CommitSchemaRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The name of the schema to get.
+     * Required. The name of the schema we are revising.
      * Format is `projects/{project}/schemas/{schema}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
     /**
-     * The set of fields to return in the response. If not set, returns a Schema
-     * with all fields filled out. Set to `BASIC` to omit the `definition`.
+     * Required. The schema revision to commit.
      *
-     * Generated from protobuf field <code>.google.pubsub.v1.SchemaView view = 2;</code>
+     * Generated from protobuf field <code>.google.pubsub.v1.Schema schema = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $view = 0;
+    private $schema = null;
 
     /**
      * Constructor.
@@ -37,11 +36,10 @@ class GetSchemaRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The name of the schema to get.
+     *           Required. The name of the schema we are revising.
      *           Format is `projects/{project}/schemas/{schema}`.
-     *     @type int $view
-     *           The set of fields to return in the response. If not set, returns a Schema
-     *           with all fields filled out. Set to `BASIC` to omit the `definition`.
+     *     @type \Google\Cloud\PubSub\V1\Schema $schema
+     *           Required. The schema revision to commit.
      * }
      */
     public function __construct($data = NULL) {
@@ -50,7 +48,7 @@ class GetSchemaRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the schema to get.
+     * Required. The name of the schema we are revising.
      * Format is `projects/{project}/schemas/{schema}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -62,7 +60,7 @@ class GetSchemaRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the schema to get.
+     * Required. The name of the schema we are revising.
      * Format is `projects/{project}/schemas/{schema}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -78,29 +76,37 @@ class GetSchemaRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The set of fields to return in the response. If not set, returns a Schema
-     * with all fields filled out. Set to `BASIC` to omit the `definition`.
+     * Required. The schema revision to commit.
      *
-     * Generated from protobuf field <code>.google.pubsub.v1.SchemaView view = 2;</code>
-     * @return int
+     * Generated from protobuf field <code>.google.pubsub.v1.Schema schema = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @return \Google\Cloud\PubSub\V1\Schema|null
      */
-    public function getView()
+    public function getSchema()
     {
-        return $this->view;
+        return $this->schema;
+    }
+
+    public function hasSchema()
+    {
+        return isset($this->schema);
+    }
+
+    public function clearSchema()
+    {
+        unset($this->schema);
     }
 
     /**
-     * The set of fields to return in the response. If not set, returns a Schema
-     * with all fields filled out. Set to `BASIC` to omit the `definition`.
+     * Required. The schema revision to commit.
      *
-     * Generated from protobuf field <code>.google.pubsub.v1.SchemaView view = 2;</code>
-     * @param int $var
+     * Generated from protobuf field <code>.google.pubsub.v1.Schema schema = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @param \Google\Cloud\PubSub\V1\Schema $var
      * @return $this
      */
-    public function setView($var)
+    public function setSchema($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\PubSub\V1\SchemaView::class);
-        $this->view = $var;
+        GPBUtil::checkMessage($var, \Google\Cloud\PubSub\V1\Schema::class);
+        $this->schema = $var;
 
         return $this;
     }

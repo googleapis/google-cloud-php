@@ -694,8 +694,8 @@ class SubscriberGapicClient
      *           the `message_retention_duration` field in `Topic`. This field is set only
      *           in responses from the server; it is ignored if it is set in any requests.
      *     @type int $state
-     *           Output only. An output-only field indicating whether or not the subscription can receive
-     *           messages.
+     *           Output only. An output-only field indicating whether or not the
+     *           subscription can receive messages.
      *           For allowed values, use constants defined on {@see \Google\Cloud\PubSub\V1\Subscription\State}
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
