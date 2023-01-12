@@ -40,7 +40,7 @@ use Google\Rpc\Status;
  * are indexed successfully and ready for serving. The process takes hours.
  *
  * This feature is only available for users who have Retail Search enabled.
- * Please enable Retail Search on Cloud Console before using this feature.
+ * Enable Retail Search on Cloud Console before using this feature.
  *
  * @param string $formattedParent                    The catalog which the suggestions dataset belongs to.
  *

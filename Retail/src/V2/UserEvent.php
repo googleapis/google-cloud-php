@@ -224,7 +224,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
     /**
      * The categories associated with a category page.
      * To represent full path of category, use '>' sign to separate different
-     * hierarchies. If '>' is part of the category name, please replace it with
+     * hierarchies. If '>' is part of the category name, replace it with
      * other character(s).
      * Category pages include special pages such as sales or promotions. For
      * instance, a special sale page may have the category hierarchy:
@@ -429,7 +429,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $page_categories
      *           The categories associated with a category page.
      *           To represent full path of category, use '>' sign to separate different
-     *           hierarchies. If '>' is part of the category name, please replace it with
+     *           hierarchies. If '>' is part of the category name, replace it with
      *           other character(s).
      *           Category pages include special pages such as sales or promotions. For
      *           instance, a special sale page may have the category hierarchy:
@@ -1119,7 +1119,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
     /**
      * The categories associated with a category page.
      * To represent full path of category, use '>' sign to separate different
-     * hierarchies. If '>' is part of the category name, please replace it with
+     * hierarchies. If '>' is part of the category name, replace it with
      * other character(s).
      * Category pages include special pages such as sales or promotions. For
      * instance, a special sale page may have the category hierarchy:
@@ -1141,7 +1141,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
     /**
      * The categories associated with a category page.
      * To represent full path of category, use '>' sign to separate different
-     * hierarchies. If '>' is part of the category name, please replace it with
+     * hierarchies. If '>' is part of the category name, replace it with
      * other character(s).
      * Category pages include special pages such as sales or promotions. For
      * instance, a special sale page may have the category hierarchy:

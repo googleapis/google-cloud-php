@@ -31,7 +31,7 @@ use Google\Cloud\Retail\V2\CompletionServiceClient;
  * Completes the specified prefix with keyword suggestions.
  *
  * This feature is only available for users who have Retail Search enabled.
- * Please enable Retail Search on Cloud Console before using this feature.
+ * Enable Retail Search on Cloud Console before using this feature.
  *
  * @param string $formattedCatalog Catalog for which the completion is performed.
  *
