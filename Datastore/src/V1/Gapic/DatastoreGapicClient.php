@@ -199,8 +199,8 @@ class DatastoreGapicClient
      * ```
      *
      * @param string $projectId    Required. The ID of the project against which to make the request.
-     * @param Key[]  $keys         Required. A list of keys with incomplete key paths for which to allocate IDs.
-     *                             No key may be reserved/read-only.
+     * @param Key[]  $keys         Required. A list of keys with incomplete key paths for which to allocate
+     *                             IDs. No key may be reserved/read-only.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -228,6 +228,7 @@ class DatastoreGapicClient
         $requestParamHeaders['project_id'] = $projectId;
         if (isset($optionalArgs['databaseId'])) {
             $request->setDatabaseId($optionalArgs['databaseId']);
+            $requestParamHeaders['database_id'] = $optionalArgs['database_id'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -278,6 +279,7 @@ class DatastoreGapicClient
         $requestParamHeaders['project_id'] = $projectId;
         if (isset($optionalArgs['databaseId'])) {
             $request->setDatabaseId($optionalArgs['databaseId']);
+            $requestParamHeaders['database_id'] = $optionalArgs['database_id'];
         }
 
         if (isset($optionalArgs['transactionOptions'])) {
@@ -354,6 +356,7 @@ class DatastoreGapicClient
         $requestParamHeaders['project_id'] = $projectId;
         if (isset($optionalArgs['databaseId'])) {
             $request->setDatabaseId($optionalArgs['databaseId']);
+            $requestParamHeaders['database_id'] = $optionalArgs['database_id'];
         }
 
         if (isset($optionalArgs['transaction'])) {
@@ -411,6 +414,7 @@ class DatastoreGapicClient
         $requestParamHeaders['project_id'] = $projectId;
         if (isset($optionalArgs['databaseId'])) {
             $request->setDatabaseId($optionalArgs['databaseId']);
+            $requestParamHeaders['database_id'] = $optionalArgs['database_id'];
         }
 
         if (isset($optionalArgs['readOptions'])) {
@@ -439,8 +443,8 @@ class DatastoreGapicClient
      * ```
      *
      * @param string $projectId    Required. The ID of the project against which to make the request.
-     * @param Key[]  $keys         Required. A list of keys with complete key paths whose numeric IDs should not be
-     *                             auto-allocated.
+     * @param Key[]  $keys         Required. A list of keys with complete key paths whose numeric IDs should
+     *                             not be auto-allocated.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -468,6 +472,7 @@ class DatastoreGapicClient
         $requestParamHeaders['project_id'] = $projectId;
         if (isset($optionalArgs['databaseId'])) {
             $request->setDatabaseId($optionalArgs['databaseId']);
+            $requestParamHeaders['database_id'] = $optionalArgs['database_id'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -520,6 +525,7 @@ class DatastoreGapicClient
         $requestParamHeaders['project_id'] = $projectId;
         if (isset($optionalArgs['databaseId'])) {
             $request->setDatabaseId($optionalArgs['databaseId']);
+            $requestParamHeaders['database_id'] = $optionalArgs['database_id'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -579,6 +585,7 @@ class DatastoreGapicClient
         $requestParamHeaders['project_id'] = $projectId;
         if (isset($optionalArgs['databaseId'])) {
             $request->setDatabaseId($optionalArgs['databaseId']);
+            $requestParamHeaders['database_id'] = $optionalArgs['database_id'];
         }
 
         if (isset($optionalArgs['partitionId'])) {
@@ -655,6 +662,7 @@ class DatastoreGapicClient
         $requestParamHeaders['project_id'] = $projectId;
         if (isset($optionalArgs['databaseId'])) {
             $request->setDatabaseId($optionalArgs['databaseId']);
+            $requestParamHeaders['database_id'] = $optionalArgs['database_id'];
         }
 
         if (isset($optionalArgs['readOptions'])) {
