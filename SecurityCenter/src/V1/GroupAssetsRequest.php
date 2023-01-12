@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class GroupAssetsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Name of the organization to groupBy. Its format is
+     * Required. The name of the parent to group the assets by. Its format is
      * "organizations/[organization_id], folders/[folder_id], or
      * projects/[project_id]".
      *
@@ -153,7 +153,7 @@ class GroupAssetsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. Name of the organization to groupBy. Its format is
+     *           Required. The name of the parent to group the assets by. Its format is
      *           "organizations/[organization_id], folders/[folder_id], or
      *           projects/[project_id]".
      *     @type string $filter
@@ -262,7 +262,7 @@ class GroupAssetsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Name of the organization to groupBy. Its format is
+     * Required. The name of the parent to group the assets by. Its format is
      * "organizations/[organization_id], folders/[folder_id], or
      * projects/[project_id]".
      *
@@ -275,7 +275,7 @@ class GroupAssetsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Name of the organization to groupBy. Its format is
+     * Required. The name of the parent to group the assets by. Its format is
      * "organizations/[organization_id], folders/[folder_id], or
      * projects/[project_id]".
      *

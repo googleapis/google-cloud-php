@@ -34,7 +34,7 @@ class NotificationEndpointGrpcSettings extends \Google\Protobuf\Internal\Message
      */
     private $payload_name = null;
     /**
-     * Optional. This field is used to configure how often to send a full update of all non-healthy backends. If unspecified, full updates are not sent. If specified, must be in the range between 600 seconds to 3600 seconds. Nanos are disallowed.
+     * Optional. This field is used to configure how often to send a full update of all non-healthy backends. If unspecified, full updates are not sent. If specified, must be in the range between 600 seconds to 3600 seconds. Nanos are disallowed. Can only be set for regional notification endpoints.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Duration resend_interval = 478288969;</code>
      */
@@ -59,7 +59,7 @@ class NotificationEndpointGrpcSettings extends \Google\Protobuf\Internal\Message
      *     @type string $payload_name
      *           Optional. If specified, this field is used to populate the "name" field in gRPC requests.
      *     @type \Google\Cloud\Compute\V1\Duration $resend_interval
-     *           Optional. This field is used to configure how often to send a full update of all non-healthy backends. If unspecified, full updates are not sent. If specified, must be in the range between 600 seconds to 3600 seconds. Nanos are disallowed.
+     *           Optional. This field is used to configure how often to send a full update of all non-healthy backends. If unspecified, full updates are not sent. If specified, must be in the range between 600 seconds to 3600 seconds. Nanos are disallowed. Can only be set for regional notification endpoints.
      *     @type int $retry_duration_sec
      *           How much time (in seconds) is spent attempting notification retries until a successful response is received. Default is 30s. Limit is 20m (1200s). Must be a positive number.
      * }
@@ -178,7 +178,7 @@ class NotificationEndpointGrpcSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. This field is used to configure how often to send a full update of all non-healthy backends. If unspecified, full updates are not sent. If specified, must be in the range between 600 seconds to 3600 seconds. Nanos are disallowed.
+     * Optional. This field is used to configure how often to send a full update of all non-healthy backends. If unspecified, full updates are not sent. If specified, must be in the range between 600 seconds to 3600 seconds. Nanos are disallowed. Can only be set for regional notification endpoints.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Duration resend_interval = 478288969;</code>
      * @return \Google\Cloud\Compute\V1\Duration|null
@@ -199,7 +199,7 @@ class NotificationEndpointGrpcSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. This field is used to configure how often to send a full update of all non-healthy backends. If unspecified, full updates are not sent. If specified, must be in the range between 600 seconds to 3600 seconds. Nanos are disallowed.
+     * Optional. This field is used to configure how often to send a full update of all non-healthy backends. If unspecified, full updates are not sent. If specified, must be in the range between 600 seconds to 3600 seconds. Nanos are disallowed. Can only be set for regional notification endpoints.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Duration resend_interval = 478288969;</code>
      * @param \Google\Cloud\Compute\V1\Duration $var

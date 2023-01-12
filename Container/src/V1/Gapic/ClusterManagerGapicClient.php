@@ -43,6 +43,7 @@ use Google\Cloud\Container\V1\CreateClusterRequest;
 use Google\Cloud\Container\V1\CreateNodePoolRequest;
 use Google\Cloud\Container\V1\DeleteClusterRequest;
 use Google\Cloud\Container\V1\DeleteNodePoolRequest;
+use Google\Cloud\Container\V1\FastSocket;
 use Google\Cloud\Container\V1\GcfsConfig;
 use Google\Cloud\Container\V1\GetClusterRequest;
 use Google\Cloud\Container\V1\GetJSONWebKeysRequest;
@@ -94,6 +95,7 @@ use Google\Cloud\Container\V1\UpdateClusterRequest;
 use Google\Cloud\Container\V1\UpdateMasterRequest;
 use Google\Cloud\Container\V1\UpdateNodePoolRequest;
 use Google\Cloud\Container\V1\VirtualNIC;
+use Google\Cloud\Container\V1\WindowsNodeConfig;
 use Google\Cloud\Container\V1\WorkloadMetadataConfig;
 use Google\Protobuf\GPBEmpty;
 
@@ -158,9 +160,6 @@ class ClusterManagerGapicClient
      * @param array $options {
      *     Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress
-     *           **Deprecated**. This option will be removed in a future major release. Please
-     *           utilize the `$apiEndpoint` option instead.
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'container.googleapis.com:443'.
@@ -190,7 +189,7 @@ class ClusterManagerGapicClient
      *           *Advanced usage*: Additionally, it is possible to pass in an already
      *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
      *           that when this object is provided, any settings in $transportConfig, and any
-     *           $serviceAddress setting, will be ignored.
+     *           $apiEndpoint setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
      *           each supported transport type should be passed in a key for that transport. For
@@ -2654,11 +2653,19 @@ class ClusterManagerGapicClient
      *           All the nodes in the node pool will be Confidential VM once enabled.
      *     @type VirtualNIC $gvnic
      *           Enable or disable gvnic on the node pool.
+     *     @type string $etag
+     *           The current etag of the node pool.
+     *           If an etag is provided and does not match the current etag of the node
+     *           pool, update will be blocked and an ABORTED error will be returned.
+     *     @type FastSocket $fastSocket
+     *           Enable or disable NCCL fast socket for the node pool.
      *     @type NodePoolLoggingConfig $loggingConfig
      *           Logging configuration.
      *     @type ResourceLabels $resourceLabels
      *           The resource labels for the node pool to use to annotate any related
      *           Google Compute Engine resources.
+     *     @type WindowsNodeConfig $windowsNodeConfig
+     *           Parameters that can be configured on Windows nodes.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2748,12 +2755,24 @@ class ClusterManagerGapicClient
             $request->setGvnic($optionalArgs['gvnic']);
         }
 
+        if (isset($optionalArgs['etag'])) {
+            $request->setEtag($optionalArgs['etag']);
+        }
+
+        if (isset($optionalArgs['fastSocket'])) {
+            $request->setFastSocket($optionalArgs['fastSocket']);
+        }
+
         if (isset($optionalArgs['loggingConfig'])) {
             $request->setLoggingConfig($optionalArgs['loggingConfig']);
         }
 
         if (isset($optionalArgs['resourceLabels'])) {
             $request->setResourceLabels($optionalArgs['resourceLabels']);
+        }
+
+        if (isset($optionalArgs['windowsNodeConfig'])) {
+            $request->setWindowsNodeConfig($optionalArgs['windowsNodeConfig']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);

@@ -23,11 +23,9 @@
 namespace Google\Cloud\GSuiteAddOns\Tests\Unit\V1;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-
 use Google\Cloud\GSuiteAddOns\V1\Authorization;
 use Google\Cloud\GSuiteAddOns\V1\Deployment;
 use Google\Cloud\GSuiteAddOns\V1\GSuiteAddOnsClient;
@@ -44,25 +42,19 @@ use stdClass;
  */
 class GSuiteAddOnsClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return GSuiteAddOnsClient
-     */
+    /** @return GSuiteAddOnsClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -71,9 +63,7 @@ class GSuiteAddOnsClientTest extends GeneratedTest
         return new GSuiteAddOnsClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createDeploymentTest()
     {
         $transport = $this->createTransport();
@@ -108,9 +98,7 @@ class GSuiteAddOnsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createDeploymentExceptionTest()
     {
         $transport = $this->createTransport();
@@ -145,9 +133,7 @@ class GSuiteAddOnsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteDeploymentTest()
     {
         $transport = $this->createTransport();
@@ -171,9 +157,7 @@ class GSuiteAddOnsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteDeploymentExceptionTest()
     {
         $transport = $this->createTransport();
@@ -206,9 +190,7 @@ class GSuiteAddOnsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getAuthorizationTest()
     {
         $transport = $this->createTransport();
@@ -239,9 +221,7 @@ class GSuiteAddOnsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getAuthorizationExceptionTest()
     {
         $transport = $this->createTransport();
@@ -274,9 +254,7 @@ class GSuiteAddOnsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getDeploymentTest()
     {
         $transport = $this->createTransport();
@@ -305,9 +283,7 @@ class GSuiteAddOnsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getDeploymentExceptionTest()
     {
         $transport = $this->createTransport();
@@ -340,9 +316,7 @@ class GSuiteAddOnsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getInstallStatusTest()
     {
         $transport = $this->createTransport();
@@ -369,9 +343,7 @@ class GSuiteAddOnsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getInstallStatusExceptionTest()
     {
         $transport = $this->createTransport();
@@ -404,9 +376,7 @@ class GSuiteAddOnsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function installDeploymentTest()
     {
         $transport = $this->createTransport();
@@ -430,9 +400,7 @@ class GSuiteAddOnsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function installDeploymentExceptionTest()
     {
         $transport = $this->createTransport();
@@ -465,9 +433,7 @@ class GSuiteAddOnsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listDeploymentsTest()
     {
         $transport = $this->createTransport();
@@ -502,9 +468,7 @@ class GSuiteAddOnsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listDeploymentsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -537,9 +501,7 @@ class GSuiteAddOnsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function replaceDeploymentTest()
     {
         $transport = $this->createTransport();
@@ -568,9 +530,7 @@ class GSuiteAddOnsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function replaceDeploymentExceptionTest()
     {
         $transport = $this->createTransport();
@@ -603,9 +563,7 @@ class GSuiteAddOnsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function uninstallDeploymentTest()
     {
         $transport = $this->createTransport();
@@ -629,9 +587,7 @@ class GSuiteAddOnsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function uninstallDeploymentExceptionTest()
     {
         $transport = $this->createTransport();

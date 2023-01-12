@@ -59,6 +59,4 @@ class SquashMode
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(SquashMode::class, \Google\Cloud\Filestore\V1\NfsExportOptions_SquashMode::class);
 

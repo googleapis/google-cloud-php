@@ -23,11 +23,9 @@
 namespace Google\Cloud\Retail\Tests\Unit\V2;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-
 use Google\Cloud\Retail\V2\Control;
 use Google\Cloud\Retail\V2\ControlServiceClient;
 use Google\Cloud\Retail\V2\ListControlsResponse;
@@ -42,25 +40,19 @@ use stdClass;
  */
 class ControlServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return ControlServiceClient
-     */
+    /** @return ControlServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -69,9 +61,7 @@ class ControlServiceClientTest extends GeneratedTest
         return new ControlServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createControlTest()
     {
         $transport = $this->createTransport();
@@ -110,9 +100,7 @@ class ControlServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createControlExceptionTest()
     {
         $transport = $this->createTransport();
@@ -151,9 +139,7 @@ class ControlServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteControlTest()
     {
         $transport = $this->createTransport();
@@ -177,9 +163,7 @@ class ControlServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteControlExceptionTest()
     {
         $transport = $this->createTransport();
@@ -212,9 +196,7 @@ class ControlServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getControlTest()
     {
         $transport = $this->createTransport();
@@ -243,9 +225,7 @@ class ControlServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getControlExceptionTest()
     {
         $transport = $this->createTransport();
@@ -278,9 +258,7 @@ class ControlServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listControlsTest()
     {
         $transport = $this->createTransport();
@@ -315,9 +293,7 @@ class ControlServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listControlsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -350,9 +326,7 @@ class ControlServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateControlTest()
     {
         $transport = $this->createTransport();
@@ -385,9 +359,7 @@ class ControlServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateControlExceptionTest()
     {
         $transport = $this->createTransport();

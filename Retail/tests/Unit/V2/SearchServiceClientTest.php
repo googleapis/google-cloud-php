@@ -25,7 +25,6 @@ namespace Google\Cloud\Retail\Tests\Unit\V2;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Retail\V2\SearchResponse;
 use Google\Cloud\Retail\V2\SearchResponse\SearchResult;
@@ -40,25 +39,19 @@ use stdClass;
  */
 class SearchServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return SearchServiceClient
-     */
+    /** @return SearchServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -67,9 +60,7 @@ class SearchServiceClientTest extends GeneratedTest
         return new SearchServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function searchTest()
     {
         $transport = $this->createTransport();
@@ -115,9 +106,7 @@ class SearchServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function searchExceptionTest()
     {
         $transport = $this->createTransport();

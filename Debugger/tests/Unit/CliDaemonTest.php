@@ -30,9 +30,11 @@ class CliDaemonTest extends TestCase
 
     public function testClientConfig()
     {
-        new CliDaemon([
+        $cliDaemon = new CliDaemon([
             'config' => implode(DIRECTORY_SEPARATOR, [dirname(__FILE__), 'data', 'daemon_config.php'])
         ]);
+
+        $this->assertInstanceOf(CliDaemon::class, $cliDaemon);
     }
 
     public function testClientConfigMissing()
@@ -55,9 +57,11 @@ class CliDaemonTest extends TestCase
 
     public function testSourceRoot()
     {
-        new CliDaemon([
+        $cliDaemon = new CliDaemon([
             'sourceRoot' => '.'
         ]);
+
+        $this->assertInstanceOf(CliDaemon::class, $cliDaemon);
     }
 
     public function testSourceRootMissing()

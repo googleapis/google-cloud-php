@@ -22,15 +22,12 @@
 
 namespace Google\Cloud\RecommendationEngine\Tests\Unit\V1beta1;
 
-use Google\Api\HttpBody;
-
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-
+use Google\Api\HttpBody;
 use Google\Cloud\RecommendationEngine\V1beta1\ImportUserEventsResponse;
 use Google\Cloud\RecommendationEngine\V1beta1\InputConfig;
 use Google\Cloud\RecommendationEngine\V1beta1\ListUserEventsResponse;
@@ -51,25 +48,19 @@ use stdClass;
  */
 class UserEventServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return UserEventServiceClient
-     */
+    /** @return UserEventServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -78,9 +69,7 @@ class UserEventServiceClientTest extends GeneratedTest
         return new UserEventServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function collectUserEventTest()
     {
         $transport = $this->createTransport();
@@ -112,9 +101,7 @@ class UserEventServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function collectUserEventExceptionTest()
     {
         $transport = $this->createTransport();
@@ -148,14 +135,12 @@ class UserEventServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function importUserEventsTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -215,14 +200,12 @@ class UserEventServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function importUserEventsExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -273,9 +256,7 @@ class UserEventServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listUserEventsTest()
     {
         $transport = $this->createTransport();
@@ -310,9 +291,7 @@ class UserEventServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listUserEventsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -345,14 +324,12 @@ class UserEventServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function purgeUserEventsTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -414,14 +391,12 @@ class UserEventServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function purgeUserEventsExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -472,9 +447,7 @@ class UserEventServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function writeUserEventTest()
     {
         $transport = $this->createTransport();
@@ -510,9 +483,7 @@ class UserEventServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function writeUserEventExceptionTest()
     {
         $transport = $this->createTransport();

@@ -25,7 +25,6 @@ namespace Google\Cloud\ErrorReporting\Tests\Unit\V1beta1;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\ErrorReporting\V1beta1\ErrorGroup;
 use Google\Cloud\ErrorReporting\V1beta1\ErrorGroupServiceClient;
@@ -39,25 +38,19 @@ use stdClass;
  */
 class ErrorGroupServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return ErrorGroupServiceClient
-     */
+    /** @return ErrorGroupServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -66,9 +59,7 @@ class ErrorGroupServiceClientTest extends GeneratedTest
         return new ErrorGroupServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getGroupTest()
     {
         $transport = $this->createTransport();
@@ -97,9 +88,7 @@ class ErrorGroupServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getGroupExceptionTest()
     {
         $transport = $this->createTransport();
@@ -132,9 +121,7 @@ class ErrorGroupServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateGroupTest()
     {
         $transport = $this->createTransport();
@@ -163,9 +150,7 @@ class ErrorGroupServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateGroupExceptionTest()
     {
         $transport = $this->createTransport();

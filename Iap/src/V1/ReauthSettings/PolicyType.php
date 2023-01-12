@@ -64,6 +64,4 @@ class PolicyType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(PolicyType::class, \Google\Cloud\Iap\V1\ReauthSettings_PolicyType::class);
 

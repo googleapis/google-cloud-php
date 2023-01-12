@@ -253,13 +253,14 @@ class ResultTest extends TestCase
 
     public function testUsesCorrectDefaultFormatOption()
     {
+        $fixture = $this->getStreamingDataFixture()['tests'][1];
         $mapper = $this->prophesize(ValueMapper::class);
         $mapper->decodeValues(
             Argument::any(),
             Argument::any(),
-            'nameValuePair'
-        );
-        $result = $this->getResultClass([], 'r', $mapper->reveal());
+            'associative'
+        )->shouldBeCalled();
+        $result = $this->getResultClass($fixture['chunks'], 'r', $mapper->reveal());
 
         $rows = $result->rows();
         $rows->current();
@@ -270,13 +271,14 @@ class ResultTest extends TestCase
      */
     public function testRecievesCorrectFormatOption($format)
     {
+        $fixture = $this->getStreamingDataFixture()['tests'][1];
         $mapper = $this->prophesize(ValueMapper::class);
         $mapper->decodeValues(
             Argument::any(),
             Argument::any(),
             $format
-        );
-        $result = $this->getResultClass([], 'r', $mapper->reveal());
+        )->shouldBeCalled();
+        $result = $this->getResultClass($fixture['chunks'], 'r', $mapper->reveal());
 
         $rows = $result->rows($format);
         $rows->current();

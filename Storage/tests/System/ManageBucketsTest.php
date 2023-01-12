@@ -192,7 +192,7 @@ class ManageBucketsTest extends StorageTestCase
             [['age' => 1000]],
             [['daysSinceNoncurrentTime' => 25]],
             [['daysSinceNoncurrentTime' => -5], true], // error case
-            [['daysSinceNoncurrentTime' => -5], true], // error case
+            [['daysSinceNoncurrentTime' => -1], true], // error case
 
             [['noncurrentTimeBefore' => (new \DateTime)->format("Y-m-d")]],
             [['noncurrentTimeBefore' => new \DateTime]],

@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Metadata for RejoinUserEvents method.
+ * Metadata for `RejoinUserEvents` method.
  *
  * Generated from protobuf message <code>google.cloud.retail.v2.RejoinUserEventsMetadata</code>
  */

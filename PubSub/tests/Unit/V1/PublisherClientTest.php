@@ -23,20 +23,17 @@
 namespace Google\Cloud\PubSub\Tests\Unit\V1;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-
 use Google\Cloud\Iam\V1\Policy;
-
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Cloud\PubSub\V1\DetachSubscriptionResponse;
 use Google\Cloud\PubSub\V1\ListTopicSnapshotsResponse;
-use Google\Cloud\PubSub\V1\ListTopicsResponse;
 use Google\Cloud\PubSub\V1\ListTopicSubscriptionsResponse;
-use Google\Cloud\PubSub\V1\PublisherClient;
+use Google\Cloud\PubSub\V1\ListTopicsResponse;
 use Google\Cloud\PubSub\V1\PublishResponse;
+use Google\Cloud\PubSub\V1\PublisherClient;
 use Google\Cloud\PubSub\V1\Topic;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
@@ -50,25 +47,19 @@ use stdClass;
  */
 class PublisherClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return PublisherClient
-     */
+    /** @return PublisherClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -77,9 +68,7 @@ class PublisherClientTest extends GeneratedTest
         return new PublisherClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createTopicTest()
     {
         $transport = $this->createTransport();
@@ -110,9 +99,7 @@ class PublisherClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createTopicExceptionTest()
     {
         $transport = $this->createTransport();
@@ -145,9 +132,7 @@ class PublisherClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteTopicTest()
     {
         $transport = $this->createTransport();
@@ -171,9 +156,7 @@ class PublisherClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteTopicExceptionTest()
     {
         $transport = $this->createTransport();
@@ -206,9 +189,7 @@ class PublisherClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function detachSubscriptionTest()
     {
         $transport = $this->createTransport();
@@ -233,9 +214,7 @@ class PublisherClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function detachSubscriptionExceptionTest()
     {
         $transport = $this->createTransport();
@@ -268,9 +247,7 @@ class PublisherClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getTopicTest()
     {
         $transport = $this->createTransport();
@@ -301,9 +278,7 @@ class PublisherClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getTopicExceptionTest()
     {
         $transport = $this->createTransport();
@@ -336,9 +311,7 @@ class PublisherClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listTopicSnapshotsTest()
     {
         $transport = $this->createTransport();
@@ -373,9 +346,7 @@ class PublisherClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listTopicSnapshotsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -408,9 +379,7 @@ class PublisherClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listTopicSubscriptionsTest()
     {
         $transport = $this->createTransport();
@@ -445,9 +414,7 @@ class PublisherClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listTopicSubscriptionsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -480,9 +447,7 @@ class PublisherClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listTopicsTest()
     {
         $transport = $this->createTransport();
@@ -517,9 +482,7 @@ class PublisherClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listTopicsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -552,9 +515,7 @@ class PublisherClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function publishTest()
     {
         $transport = $this->createTransport();
@@ -582,9 +543,7 @@ class PublisherClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function publishExceptionTest()
     {
         $transport = $this->createTransport();
@@ -618,9 +577,7 @@ class PublisherClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateTopicTest()
     {
         $transport = $this->createTransport();
@@ -656,9 +613,7 @@ class PublisherClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateTopicExceptionTest()
     {
         $transport = $this->createTransport();
@@ -694,9 +649,7 @@ class PublisherClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getIamPolicyTest()
     {
         $transport = $this->createTransport();
@@ -725,9 +678,7 @@ class PublisherClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -760,9 +711,7 @@ class PublisherClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setIamPolicyTest()
     {
         $transport = $this->createTransport();
@@ -794,9 +743,7 @@ class PublisherClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -830,9 +777,7 @@ class PublisherClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function testIamPermissionsTest()
     {
         $transport = $this->createTransport();
@@ -860,9 +805,7 @@ class PublisherClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function testIamPermissionsExceptionTest()
     {
         $transport = $this->createTransport();

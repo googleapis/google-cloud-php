@@ -57,13 +57,13 @@ class ServiceException extends GoogleException
     /**
      * Handle previous exceptions differently here.
      *
-     * @param string $message
+     * @param string|null $message
      * @param int $code
      * @param Exception|null $serviceException
      * @param array $metadata [optional] Exception metadata.
      */
     public function __construct(
-        $message,
+        $message = null,
         $code = 0,
         Exception $serviceException = null,
         array $metadata = []
@@ -74,7 +74,7 @@ class ServiceException extends GoogleException
         $this->errorInfoMetadata = null;
         $this->errorReason = null;
 
-        parent::__construct($message, $code);
+        parent::__construct($message ?: '', $code);
     }
 
     /**

@@ -27,13 +27,15 @@ trait DatastoreTrait
      *
      * @param string $projectId
      * @param string $namespaceId
+     * @param string $databaseId
      * @return array
      */
-    private function partitionId($projectId, $namespaceId)
+    private function partitionId($projectId, $namespaceId, $databaseId = '')
     {
         return array_filter([
+            'databaseId' => $databaseId,
             'projectId' => $projectId,
-            'namespaceId' => $namespaceId
+            'namespaceId' => $namespaceId,
         ]);
     }
 }

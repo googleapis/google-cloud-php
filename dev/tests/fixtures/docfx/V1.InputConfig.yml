@@ -53,10 +53,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\InputConfig::getGcsSource()'
     name: getGcsSource
     id: getGcsSource
-    summary: |
-      The Google Cloud Storage location to read the input from.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.GcsSource gcs_source = 1;</code>
+    summary: 'The Google Cloud Storage location to read the input from.'
     parent: \Google\Cloud\Vision\V1\InputConfig
     type: method
     langs:
@@ -85,10 +82,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\InputConfig::setGcsSource()'
     name: setGcsSource
     id: setGcsSource
-    summary: |
-      The Google Cloud Storage location to read the input from.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.GcsSource gcs_source = 1;</code>
+    summary: 'The Google Cloud Storage location to read the input from.'
     parent: \Google\Cloud\Vision\V1\InputConfig
     type: method
     langs:
@@ -113,8 +107,6 @@ items:
       representation, whereas JSON representations use base64.
       Currently, this field only works for BatchAnnotateFiles requests. It does
       not work for AsyncBatchAnnotateFiles requests.
-      
-      Generated from protobuf field <code>bytes content = 3;</code>
     parent: \Google\Cloud\Vision\V1\InputConfig
     type: method
     langs:
@@ -134,8 +126,6 @@ items:
       representation, whereas JSON representations use base64.
       Currently, this field only works for BatchAnnotateFiles requests. It does
       not work for AsyncBatchAnnotateFiles requests.
-      
-      Generated from protobuf field <code>bytes content = 3;</code>
     parent: \Google\Cloud\Vision\V1\InputConfig
     type: method
     langs:
@@ -156,8 +146,6 @@ items:
     summary: |
       The type of the file. Currently only "application/pdf", "image/tiff" and
       "image/gif" are supported. Wildcards are not supported.
-      
-      Generated from protobuf field <code>string mime_type = 2;</code>
     parent: \Google\Cloud\Vision\V1\InputConfig
     type: method
     langs:
@@ -173,8 +161,6 @@ items:
     summary: |
       The type of the file. Currently only "application/pdf", "image/tiff" and
       "image/gif" are supported. Wildcards are not supported.
-      
-      Generated from protobuf field <code>string mime_type = 2;</code>
     parent: \Google\Cloud\Vision\V1\InputConfig
     type: method
     langs:

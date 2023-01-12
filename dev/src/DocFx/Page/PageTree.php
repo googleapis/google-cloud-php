@@ -27,12 +27,12 @@ use SimpleXMLElement;
 class PageTree
 {
     private array $pages;
-    private string $filePath;
 
     public function __construct(
         private string $xmlPath,
         private string $namespace,
-        private string $packageDescription
+        private string $packageDescription,
+        private string $componentPath
     ) {}
 
     public function getPages(): array
@@ -105,7 +105,12 @@ class PageTree
                 continue;
             }
 
-            $pageMap[$fullName] = new Page($classNode, $file['path'], $this->packageDescription);
+            $pageMap[$fullName] = new Page(
+                $classNode,
+                $file['path'],
+                $this->packageDescription,
+                $this->componentPath
+            );
         }
 
         /**

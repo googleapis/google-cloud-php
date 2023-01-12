@@ -23,14 +23,11 @@
 namespace Google\Cloud\Run\Tests\Unit\V2;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
-
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Run\V2\Execution;
-
 use Google\Cloud\Run\V2\ExecutionsClient;
 use Google\Cloud\Run\V2\ListExecutionsResponse;
 use Google\LongRunning\GetOperationRequest;
@@ -46,25 +43,19 @@ use stdClass;
  */
 class ExecutionsClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return ExecutionsClient
-     */
+    /** @return ExecutionsClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -73,14 +64,12 @@ class ExecutionsClientTest extends GeneratedTest
         return new ExecutionsClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteExecutionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -161,14 +150,12 @@ class ExecutionsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteExecutionExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -218,9 +205,7 @@ class ExecutionsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getExecutionTest()
     {
         $transport = $this->createTransport();
@@ -269,9 +254,7 @@ class ExecutionsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getExecutionExceptionTest()
     {
         $transport = $this->createTransport();
@@ -304,9 +287,7 @@ class ExecutionsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listExecutionsTest()
     {
         $transport = $this->createTransport();
@@ -341,9 +322,7 @@ class ExecutionsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listExecutionsExceptionTest()
     {
         $transport = $this->createTransport();

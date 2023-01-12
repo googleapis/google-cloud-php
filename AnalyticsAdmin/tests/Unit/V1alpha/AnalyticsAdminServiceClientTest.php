@@ -23,11 +23,9 @@
 namespace Google\Analytics\Admin\Tests\Unit\V1alpha;
 
 use Google\Analytics\Admin\V1alpha\Account;
-
 use Google\Analytics\Admin\V1alpha\AccountSummary;
 use Google\Analytics\Admin\V1alpha\AcknowledgeUserDataCollectionResponse;
 use Google\Analytics\Admin\V1alpha\AnalyticsAdminServiceClient;
-
 use Google\Analytics\Admin\V1alpha\ApproveDisplayVideo360AdvertiserLinkProposalResponse;
 use Google\Analytics\Admin\V1alpha\AttributionSettings;
 use Google\Analytics\Admin\V1alpha\AttributionSettings\AcquisitionConversionEventLookbackWindow;
@@ -56,8 +54,8 @@ use Google\Analytics\Admin\V1alpha\FirebaseLink;
 use Google\Analytics\Admin\V1alpha\GlobalSiteTag;
 use Google\Analytics\Admin\V1alpha\GoogleAdsLink;
 use Google\Analytics\Admin\V1alpha\GoogleSignalsSettings;
-use Google\Analytics\Admin\V1alpha\ListAccountsResponse;
 use Google\Analytics\Admin\V1alpha\ListAccountSummariesResponse;
+use Google\Analytics\Admin\V1alpha\ListAccountsResponse;
 use Google\Analytics\Admin\V1alpha\ListAudiencesResponse;
 use Google\Analytics\Admin\V1alpha\ListConversionEventsResponse;
 use Google\Analytics\Admin\V1alpha\ListCustomDimensionsResponse;
@@ -92,25 +90,19 @@ use stdClass;
  */
 class AnalyticsAdminServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return AnalyticsAdminServiceClient
-     */
+    /** @return AnalyticsAdminServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -119,9 +111,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         return new AnalyticsAdminServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function acknowledgeUserDataCollectionTest()
     {
         $transport = $this->createTransport();
@@ -149,9 +139,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function acknowledgeUserDataCollectionExceptionTest()
     {
         $transport = $this->createTransport();
@@ -185,9 +173,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function approveDisplayVideo360AdvertiserLinkProposalTest()
     {
         $transport = $this->createTransport();
@@ -212,9 +198,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function approveDisplayVideo360AdvertiserLinkProposalExceptionTest()
     {
         $transport = $this->createTransport();
@@ -247,9 +231,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function archiveAudienceTest()
     {
         $transport = $this->createTransport();
@@ -273,9 +255,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function archiveAudienceExceptionTest()
     {
         $transport = $this->createTransport();
@@ -308,9 +288,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function archiveCustomDimensionTest()
     {
         $transport = $this->createTransport();
@@ -334,9 +312,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function archiveCustomDimensionExceptionTest()
     {
         $transport = $this->createTransport();
@@ -369,9 +345,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function archiveCustomMetricTest()
     {
         $transport = $this->createTransport();
@@ -395,9 +369,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function archiveCustomMetricExceptionTest()
     {
         $transport = $this->createTransport();
@@ -430,9 +402,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function auditUserLinksTest()
     {
         $transport = $this->createTransport();
@@ -467,9 +437,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function auditUserLinksExceptionTest()
     {
         $transport = $this->createTransport();
@@ -502,9 +470,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function batchCreateUserLinksTest()
     {
         $transport = $this->createTransport();
@@ -532,9 +498,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function batchCreateUserLinksExceptionTest()
     {
         $transport = $this->createTransport();
@@ -568,9 +532,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function batchDeleteUserLinksTest()
     {
         $transport = $this->createTransport();
@@ -597,9 +559,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function batchDeleteUserLinksExceptionTest()
     {
         $transport = $this->createTransport();
@@ -633,9 +593,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function batchGetUserLinksTest()
     {
         $transport = $this->createTransport();
@@ -665,9 +623,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function batchGetUserLinksExceptionTest()
     {
         $transport = $this->createTransport();
@@ -703,9 +659,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function batchUpdateUserLinksTest()
     {
         $transport = $this->createTransport();
@@ -733,9 +687,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function batchUpdateUserLinksExceptionTest()
     {
         $transport = $this->createTransport();
@@ -769,9 +721,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function cancelDisplayVideo360AdvertiserLinkProposalTest()
     {
         $transport = $this->createTransport();
@@ -804,9 +754,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function cancelDisplayVideo360AdvertiserLinkProposalExceptionTest()
     {
         $transport = $this->createTransport();
@@ -839,9 +787,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createAudienceTest()
     {
         $transport = $this->createTransport();
@@ -887,9 +833,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createAudienceExceptionTest()
     {
         $transport = $this->createTransport();
@@ -931,9 +875,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createConversionEventTest()
     {
         $transport = $this->createTransport();
@@ -969,9 +911,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createConversionEventExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1005,9 +945,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createCustomDimensionTest()
     {
         $transport = $this->createTransport();
@@ -1051,9 +989,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createCustomDimensionExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1093,9 +1029,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createCustomMetricTest()
     {
         $transport = $this->createTransport();
@@ -1139,9 +1073,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createCustomMetricExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1183,9 +1115,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createDataStreamTest()
     {
         $transport = $this->createTransport();
@@ -1219,9 +1149,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createDataStreamExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1257,9 +1185,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createDisplayVideo360AdvertiserLinkTest()
     {
         $transport = $this->createTransport();
@@ -1293,9 +1219,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createDisplayVideo360AdvertiserLinkExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1329,9 +1253,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createDisplayVideo360AdvertiserLinkProposalTest()
     {
         $transport = $this->createTransport();
@@ -1367,9 +1289,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createDisplayVideo360AdvertiserLinkProposalExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1403,9 +1323,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createFirebaseLinkTest()
     {
         $transport = $this->createTransport();
@@ -1437,9 +1355,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createFirebaseLinkExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1473,9 +1389,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createGoogleAdsLinkTest()
     {
         $transport = $this->createTransport();
@@ -1511,9 +1425,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createGoogleAdsLinkExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1547,9 +1459,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createMeasurementProtocolSecretTest()
     {
         $transport = $this->createTransport();
@@ -1585,9 +1495,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createMeasurementProtocolSecretExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1623,9 +1531,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createPropertyTest()
     {
         $transport = $this->createTransport();
@@ -1666,9 +1572,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createPropertyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1705,9 +1609,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createUserLinkTest()
     {
         $transport = $this->createTransport();
@@ -1739,9 +1641,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createUserLinkExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1775,9 +1675,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteAccountTest()
     {
         $transport = $this->createTransport();
@@ -1801,9 +1699,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteAccountExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1836,9 +1732,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteConversionEventTest()
     {
         $transport = $this->createTransport();
@@ -1862,9 +1756,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteConversionEventExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1897,9 +1789,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteDataStreamTest()
     {
         $transport = $this->createTransport();
@@ -1923,9 +1813,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteDataStreamExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1958,9 +1846,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteDisplayVideo360AdvertiserLinkTest()
     {
         $transport = $this->createTransport();
@@ -1984,9 +1870,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteDisplayVideo360AdvertiserLinkExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2019,9 +1903,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteDisplayVideo360AdvertiserLinkProposalTest()
     {
         $transport = $this->createTransport();
@@ -2045,9 +1927,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteDisplayVideo360AdvertiserLinkProposalExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2080,9 +1960,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteFirebaseLinkTest()
     {
         $transport = $this->createTransport();
@@ -2106,9 +1984,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteFirebaseLinkExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2141,9 +2017,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteGoogleAdsLinkTest()
     {
         $transport = $this->createTransport();
@@ -2167,9 +2041,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteGoogleAdsLinkExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2202,9 +2074,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteMeasurementProtocolSecretTest()
     {
         $transport = $this->createTransport();
@@ -2228,9 +2098,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteMeasurementProtocolSecretExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2263,9 +2131,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deletePropertyTest()
     {
         $transport = $this->createTransport();
@@ -2302,9 +2168,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deletePropertyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2337,9 +2201,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteUserLinkTest()
     {
         $transport = $this->createTransport();
@@ -2363,9 +2225,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteUserLinkExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2398,9 +2258,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getAccountTest()
     {
         $transport = $this->createTransport();
@@ -2433,9 +2291,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getAccountExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2468,9 +2324,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getAttributionSettingsTest()
     {
         $transport = $this->createTransport();
@@ -2497,9 +2351,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getAttributionSettingsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2532,9 +2384,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getAudienceTest()
     {
         $transport = $this->createTransport();
@@ -2569,9 +2419,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getAudienceExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2604,9 +2452,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getConversionEventTest()
     {
         $transport = $this->createTransport();
@@ -2639,9 +2485,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getConversionEventExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2674,9 +2518,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getCustomDimensionTest()
     {
         $transport = $this->createTransport();
@@ -2711,9 +2553,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getCustomDimensionExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2746,9 +2586,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getCustomMetricTest()
     {
         $transport = $this->createTransport();
@@ -2781,9 +2619,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getCustomMetricExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2816,9 +2652,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getDataRetentionSettingsTest()
     {
         $transport = $this->createTransport();
@@ -2847,9 +2681,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getDataRetentionSettingsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2882,9 +2714,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getDataSharingSettingsTest()
     {
         $transport = $this->createTransport();
@@ -2921,9 +2751,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getDataSharingSettingsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2956,9 +2784,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getDataStreamTest()
     {
         $transport = $this->createTransport();
@@ -2987,9 +2813,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getDataStreamExceptionTest()
     {
         $transport = $this->createTransport();
@@ -3022,9 +2846,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getDisplayVideo360AdvertiserLinkTest()
     {
         $transport = $this->createTransport();
@@ -3055,9 +2877,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getDisplayVideo360AdvertiserLinkExceptionTest()
     {
         $transport = $this->createTransport();
@@ -3090,9 +2910,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getDisplayVideo360AdvertiserLinkProposalTest()
     {
         $transport = $this->createTransport();
@@ -3125,9 +2943,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getDisplayVideo360AdvertiserLinkProposalExceptionTest()
     {
         $transport = $this->createTransport();
@@ -3160,9 +2976,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getGlobalSiteTagTest()
     {
         $transport = $this->createTransport();
@@ -3191,9 +3005,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getGlobalSiteTagExceptionTest()
     {
         $transport = $this->createTransport();
@@ -3226,9 +3038,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getGoogleSignalsSettingsTest()
     {
         $transport = $this->createTransport();
@@ -3255,9 +3065,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getGoogleSignalsSettingsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -3290,9 +3098,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getMeasurementProtocolSecretTest()
     {
         $transport = $this->createTransport();
@@ -3323,9 +3129,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getMeasurementProtocolSecretExceptionTest()
     {
         $transport = $this->createTransport();
@@ -3358,9 +3162,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getPropertyTest()
     {
         $transport = $this->createTransport();
@@ -3397,9 +3199,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getPropertyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -3432,9 +3232,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getUserLinkTest()
     {
         $transport = $this->createTransport();
@@ -3463,9 +3261,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getUserLinkExceptionTest()
     {
         $transport = $this->createTransport();
@@ -3498,9 +3294,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listAccountSummariesTest()
     {
         $transport = $this->createTransport();
@@ -3531,9 +3325,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listAccountSummariesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -3564,9 +3356,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listAccountsTest()
     {
         $transport = $this->createTransport();
@@ -3597,9 +3387,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listAccountsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -3630,9 +3418,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listAudiencesTest()
     {
         $transport = $this->createTransport();
@@ -3667,9 +3453,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listAudiencesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -3702,9 +3486,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listConversionEventsTest()
     {
         $transport = $this->createTransport();
@@ -3739,9 +3521,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listConversionEventsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -3774,9 +3554,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listCustomDimensionsTest()
     {
         $transport = $this->createTransport();
@@ -3811,9 +3589,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listCustomDimensionsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -3846,9 +3622,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listCustomMetricsTest()
     {
         $transport = $this->createTransport();
@@ -3883,9 +3657,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listCustomMetricsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -3918,9 +3690,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listDataStreamsTest()
     {
         $transport = $this->createTransport();
@@ -3955,9 +3725,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listDataStreamsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -3990,9 +3758,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listDisplayVideo360AdvertiserLinkProposalsTest()
     {
         $transport = $this->createTransport();
@@ -4027,9 +3793,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listDisplayVideo360AdvertiserLinkProposalsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -4062,9 +3826,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listDisplayVideo360AdvertiserLinksTest()
     {
         $transport = $this->createTransport();
@@ -4099,9 +3861,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listDisplayVideo360AdvertiserLinksExceptionTest()
     {
         $transport = $this->createTransport();
@@ -4134,9 +3894,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listFirebaseLinksTest()
     {
         $transport = $this->createTransport();
@@ -4171,9 +3929,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listFirebaseLinksExceptionTest()
     {
         $transport = $this->createTransport();
@@ -4206,9 +3962,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listGoogleAdsLinksTest()
     {
         $transport = $this->createTransport();
@@ -4243,9 +3997,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listGoogleAdsLinksExceptionTest()
     {
         $transport = $this->createTransport();
@@ -4278,9 +4030,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listMeasurementProtocolSecretsTest()
     {
         $transport = $this->createTransport();
@@ -4315,9 +4065,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listMeasurementProtocolSecretsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -4350,9 +4098,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listPropertiesTest()
     {
         $transport = $this->createTransport();
@@ -4387,9 +4133,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listPropertiesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -4422,9 +4166,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listUserLinksTest()
     {
         $transport = $this->createTransport();
@@ -4459,9 +4201,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listUserLinksExceptionTest()
     {
         $transport = $this->createTransport();
@@ -4494,9 +4234,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function provisionAccountTicketTest()
     {
         $transport = $this->createTransport();
@@ -4519,9 +4257,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function provisionAccountTicketExceptionTest()
     {
         $transport = $this->createTransport();
@@ -4552,9 +4288,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function runAccessReportTest()
     {
         $transport = $this->createTransport();
@@ -4577,9 +4311,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function runAccessReportExceptionTest()
     {
         $transport = $this->createTransport();
@@ -4610,9 +4342,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function searchChangeHistoryEventsTest()
     {
         $transport = $this->createTransport();
@@ -4647,9 +4377,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function searchChangeHistoryEventsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -4682,9 +4410,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateAccountTest()
     {
         $transport = $this->createTransport();
@@ -4722,9 +4448,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateAccountExceptionTest()
     {
         $transport = $this->createTransport();
@@ -4760,9 +4484,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateAttributionSettingsTest()
     {
         $transport = $this->createTransport();
@@ -4798,9 +4520,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateAttributionSettingsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -4840,9 +4560,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateAudienceTest()
     {
         $transport = $this->createTransport();
@@ -4888,9 +4606,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateAudienceExceptionTest()
     {
         $transport = $this->createTransport();
@@ -4932,9 +4648,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateCustomDimensionTest()
     {
         $transport = $this->createTransport();
@@ -4969,9 +4683,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateCustomDimensionExceptionTest()
     {
         $transport = $this->createTransport();
@@ -5004,9 +4716,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateCustomMetricTest()
     {
         $transport = $this->createTransport();
@@ -5039,9 +4749,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateCustomMetricExceptionTest()
     {
         $transport = $this->createTransport();
@@ -5074,9 +4782,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateDataRetentionSettingsTest()
     {
         $transport = $this->createTransport();
@@ -5108,9 +4814,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateDataRetentionSettingsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -5144,9 +4848,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateDataStreamTest()
     {
         $transport = $this->createTransport();
@@ -5175,9 +4877,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateDataStreamExceptionTest()
     {
         $transport = $this->createTransport();
@@ -5210,9 +4910,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateDisplayVideo360AdvertiserLinkTest()
     {
         $transport = $this->createTransport();
@@ -5243,9 +4941,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateDisplayVideo360AdvertiserLinkExceptionTest()
     {
         $transport = $this->createTransport();
@@ -5278,9 +4974,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateGoogleAdsLinkTest()
     {
         $transport = $this->createTransport();
@@ -5313,9 +5007,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateGoogleAdsLinkExceptionTest()
     {
         $transport = $this->createTransport();
@@ -5348,9 +5040,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateGoogleSignalsSettingsTest()
     {
         $transport = $this->createTransport();
@@ -5380,9 +5070,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateGoogleSignalsSettingsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -5416,9 +5104,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateMeasurementProtocolSecretTest()
     {
         $transport = $this->createTransport();
@@ -5451,9 +5137,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateMeasurementProtocolSecretExceptionTest()
     {
         $transport = $this->createTransport();
@@ -5488,9 +5172,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updatePropertyTest()
     {
         $transport = $this->createTransport();
@@ -5534,9 +5216,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updatePropertyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -5574,9 +5254,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateUserLinkTest()
     {
         $transport = $this->createTransport();
@@ -5605,9 +5283,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateUserLinkExceptionTest()
     {
         $transport = $this->createTransport();

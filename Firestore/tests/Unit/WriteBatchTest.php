@@ -348,17 +348,19 @@ class WriteBatchTest extends TestCase
 
     public function testSentinelsAfterArray()
     {
-        $this->batch->set('name', [
+        $ret = $this->batch->set('name', [
             'foo' => [
                 'a', 'b', 'c'
             ],
             'bar' => FieldValue::serverTimestamp()
         ]);
+
+        $this->assertInstanceOf(\Google\Cloud\Firestore\BulkWriter::class, $ret);
     }
 
     public function testSentinelsAfterArrayNested()
     {
-        $this->batch->set('name', [
+        $ret = $this->batch->set('name', [
             'foo' => [
                 'a' => [
                     'a', 'b', 'c',
@@ -366,6 +368,8 @@ class WriteBatchTest extends TestCase
                 'b' => FieldValue::serverTimestamp()
             ]
         ]);
+
+        $this->assertInstanceOf(\Google\Cloud\Firestore\BulkWriter::class, $ret);
     }
 
     public function testSentinelCannotContainSentinel()
@@ -516,7 +520,7 @@ class WriteBatchTest extends TestCase
         $this->connection->rollback([
             'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
             'transaction' => self::TRANSACTION
-        ]);
+        ])->shouldBeCalled();
 
         $this->batch->___setProperty('connection', $this->connection->reveal());
         $this->batch->___setProperty('transaction', self::TRANSACTION);

@@ -76,7 +76,7 @@ class VpnGateway extends \Google\Protobuf\Internal\Message
      */
     private $self_link = null;
     /**
-     * The stack type for this VPN gateway to identify the IP protocols that are enabled. If not specified, IPV4_ONLY will be used.
+     * The stack type for this VPN gateway to identify the IP protocols that are enabled. Possible values are: IPV4_ONLY, IPV4_IPV6. If not specified, IPV4_ONLY will be used.
      * Check the StackType enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string stack_type = 425908881;</code>
@@ -116,7 +116,7 @@ class VpnGateway extends \Google\Protobuf\Internal\Message
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
      *     @type string $stack_type
-     *           The stack type for this VPN gateway to identify the IP protocols that are enabled. If not specified, IPV4_ONLY will be used.
+     *           The stack type for this VPN gateway to identify the IP protocols that are enabled. Possible values are: IPV4_ONLY, IPV4_IPV6. If not specified, IPV4_ONLY will be used.
      *           Check the StackType enum for the list of possible values.
      *     @type array<\Google\Cloud\Compute\V1\VpnGatewayVpnGatewayInterface>|\Google\Protobuf\Internal\RepeatedField $vpn_interfaces
      *           The list of VPN interfaces associated with this VPN gateway.
@@ -478,7 +478,7 @@ class VpnGateway extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The stack type for this VPN gateway to identify the IP protocols that are enabled. If not specified, IPV4_ONLY will be used.
+     * The stack type for this VPN gateway to identify the IP protocols that are enabled. Possible values are: IPV4_ONLY, IPV4_IPV6. If not specified, IPV4_ONLY will be used.
      * Check the StackType enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string stack_type = 425908881;</code>
@@ -500,7 +500,7 @@ class VpnGateway extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The stack type for this VPN gateway to identify the IP protocols that are enabled. If not specified, IPV4_ONLY will be used.
+     * The stack type for this VPN gateway to identify the IP protocols that are enabled. Possible values are: IPV4_ONLY, IPV4_IPV6. If not specified, IPV4_ONLY will be used.
      * Check the StackType enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string stack_type = 425908881;</code>

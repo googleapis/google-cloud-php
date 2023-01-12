@@ -65,6 +65,4 @@ class Type
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Type::class, \Google\Cloud\Dialogflow\V2\Intent_TrainingPhrase_Type::class);
 

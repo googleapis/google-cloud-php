@@ -54,10 +54,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\Position::getX()'
     name: getX
     id: getX
-    summary: |
-      X coordinate.
-      
-      Generated from protobuf field <code>float x = 1;</code>
+    summary: 'X coordinate.'
     parent: \Google\Cloud\Vision\V1\Position
     type: method
     langs:
@@ -70,10 +67,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\Position::setX()'
     name: setX
     id: setX
-    summary: |
-      X coordinate.
-      
-      Generated from protobuf field <code>float x = 1;</code>
+    summary: 'X coordinate.'
     parent: \Google\Cloud\Vision\V1\Position
     type: method
     langs:
@@ -91,10 +85,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\Position::getY()'
     name: getY
     id: getY
-    summary: |
-      Y coordinate.
-      
-      Generated from protobuf field <code>float y = 2;</code>
+    summary: 'Y coordinate.'
     parent: \Google\Cloud\Vision\V1\Position
     type: method
     langs:
@@ -107,10 +98,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\Position::setY()'
     name: setY
     id: setY
-    summary: |
-      Y coordinate.
-      
-      Generated from protobuf field <code>float y = 2;</code>
+    summary: 'Y coordinate.'
     parent: \Google\Cloud\Vision\V1\Position
     type: method
     langs:
@@ -128,10 +116,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\Position::getZ()'
     name: getZ
     id: getZ
-    summary: |
-      Z coordinate (or depth).
-      
-      Generated from protobuf field <code>float z = 3;</code>
+    summary: 'Z coordinate (or depth).'
     parent: \Google\Cloud\Vision\V1\Position
     type: method
     langs:
@@ -144,10 +129,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\Position::setZ()'
     name: setZ
     id: setZ
-    summary: |
-      Z coordinate (or depth).
-      
-      Generated from protobuf field <code>float z = 3;</code>
+    summary: 'Z coordinate (or depth).'
     parent: \Google\Cloud\Vision\V1\Position
     type: method
     langs:

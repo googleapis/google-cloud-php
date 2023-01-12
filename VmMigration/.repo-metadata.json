@@ -1,6 +1,6 @@
 {
     "distribution_name": "google/cloud-vm-migration",
     "release_level": "beta",
-    "client_documentation": "http://googleapis.github.io/google-cloud-php/#/docs/cloud-vm-migration/latest",
+    "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-vm-migration/latest",
     "library_type": "GAPIC_AUTO"
 }

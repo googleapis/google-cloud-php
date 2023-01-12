@@ -25,7 +25,6 @@ namespace Google\Cloud\WebRisk\Tests\Unit\V1;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\WebRisk\V1\ComputeThreatListDiffRequest\Constraints;
 use Google\Cloud\WebRisk\V1\ComputeThreatListDiffResponse;
@@ -44,25 +43,19 @@ use stdClass;
  */
 class WebRiskServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return WebRiskServiceClient
-     */
+    /** @return WebRiskServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -71,9 +64,7 @@ class WebRiskServiceClientTest extends GeneratedTest
         return new WebRiskServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function computeThreatListDiffTest()
     {
         $transport = $this->createTransport();
@@ -103,9 +94,7 @@ class WebRiskServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function computeThreatListDiffExceptionTest()
     {
         $transport = $this->createTransport();
@@ -139,9 +128,7 @@ class WebRiskServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createSubmissionTest()
     {
         $transport = $this->createTransport();
@@ -173,9 +160,7 @@ class WebRiskServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createSubmissionExceptionTest()
     {
         $transport = $this->createTransport();
@@ -211,9 +196,7 @@ class WebRiskServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function searchHashesTest()
     {
         $transport = $this->createTransport();
@@ -238,9 +221,7 @@ class WebRiskServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function searchHashesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -273,9 +254,7 @@ class WebRiskServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function searchUrisTest()
     {
         $transport = $this->createTransport();
@@ -303,9 +282,7 @@ class WebRiskServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function searchUrisExceptionTest()
     {
         $transport = $this->createTransport();

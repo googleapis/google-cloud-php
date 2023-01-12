@@ -31,6 +31,13 @@ class AccessDeniedPageSettings extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.BoolValue generate_troubleshooting_uri = 2;</code>
      */
     private $generate_troubleshooting_uri = null;
+    /**
+     * Whether to generate remediation token on access denied events to this
+     * application.
+     *
+     * Generated from protobuf field <code>optional .google.protobuf.BoolValue remediation_token_generation_enabled = 3;</code>
+     */
+    private $remediation_token_generation_enabled = null;
 
     /**
      * Constructor.
@@ -42,6 +49,9 @@ class AccessDeniedPageSettings extends \Google\Protobuf\Internal\Message
      *           The URI to be redirected to when access is denied.
      *     @type \Google\Protobuf\BoolValue $generate_troubleshooting_uri
      *           Whether to generate a troubleshooting URL on access denied events to this
+     *           application.
+     *     @type \Google\Protobuf\BoolValue $remediation_token_generation_enabled
+     *           Whether to generate remediation token on access denied events to this
      *           application.
      * }
      */
@@ -178,6 +188,73 @@ class AccessDeniedPageSettings extends \Google\Protobuf\Internal\Message
     public function setGenerateTroubleshootingUriValue($var)
     {
         $this->writeWrapperValue("generate_troubleshooting_uri", $var);
+        return $this;}
+
+    /**
+     * Whether to generate remediation token on access denied events to this
+     * application.
+     *
+     * Generated from protobuf field <code>optional .google.protobuf.BoolValue remediation_token_generation_enabled = 3;</code>
+     * @return \Google\Protobuf\BoolValue|null
+     */
+    public function getRemediationTokenGenerationEnabled()
+    {
+        return $this->remediation_token_generation_enabled;
+    }
+
+    public function hasRemediationTokenGenerationEnabled()
+    {
+        return isset($this->remediation_token_generation_enabled);
+    }
+
+    public function clearRemediationTokenGenerationEnabled()
+    {
+        unset($this->remediation_token_generation_enabled);
+    }
+
+    /**
+     * Returns the unboxed value from <code>getRemediationTokenGenerationEnabled()</code>
+
+     * Whether to generate remediation token on access denied events to this
+     * application.
+     *
+     * Generated from protobuf field <code>optional .google.protobuf.BoolValue remediation_token_generation_enabled = 3;</code>
+     * @return bool|null
+     */
+    public function getRemediationTokenGenerationEnabledValue()
+    {
+        return $this->readWrapperValue("remediation_token_generation_enabled");
+    }
+
+    /**
+     * Whether to generate remediation token on access denied events to this
+     * application.
+     *
+     * Generated from protobuf field <code>optional .google.protobuf.BoolValue remediation_token_generation_enabled = 3;</code>
+     * @param \Google\Protobuf\BoolValue $var
+     * @return $this
+     */
+    public function setRemediationTokenGenerationEnabled($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\BoolValue::class);
+        $this->remediation_token_generation_enabled = $var;
+
+        return $this;
+    }
+
+    /**
+     * Sets the field by wrapping a primitive type in a Google\Protobuf\BoolValue object.
+
+     * Whether to generate remediation token on access denied events to this
+     * application.
+     *
+     * Generated from protobuf field <code>optional .google.protobuf.BoolValue remediation_token_generation_enabled = 3;</code>
+     * @param bool|null $var
+     * @return $this
+     */
+    public function setRemediationTokenGenerationEnabledValue($var)
+    {
+        $this->writeWrapperValue("remediation_token_generation_enabled", $var);
         return $this;}
 
 }

@@ -126,7 +126,7 @@ class StorageObjectTest extends TestCase
             'bucket' => $bucket,
             'object' => $object,
             'acl' => null
-        ])->willReturn([]);
+        ])->willReturn([])->shouldBeCalled();
         $object = new StorageObject(
             $this->connection->reveal(),
             $object,
@@ -643,7 +643,8 @@ class StorageObjectTest extends TestCase
     public function testRequesterPays()
     {
         $this->connection->getObject(Argument::withEntry('userProject', 'foo'))
-            ->willReturn([]);
+            ->willReturn([])
+            ->shouldBeCalled();
 
         $object = new StorageObject(
             $this->connection->reveal(),

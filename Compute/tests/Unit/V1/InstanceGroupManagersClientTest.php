@@ -25,7 +25,6 @@ namespace Google\Cloud\Compute\Tests\Unit\V1;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Compute\V1\GetZoneOperationRequest;
 use Google\Cloud\Compute\V1\InstanceGroupManager;
@@ -62,25 +61,19 @@ use stdClass;
  */
 class InstanceGroupManagersClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return InstanceGroupManagersClient
-     */
+    /** @return InstanceGroupManagersClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -89,14 +82,12 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         return new InstanceGroupManagersClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function abandonInstancesTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new ZoneOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -158,14 +149,12 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function abandonInstancesExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new ZoneOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -216,9 +205,7 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function aggregatedListTest()
     {
         $transport = $this->createTransport();
@@ -260,9 +247,7 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function aggregatedListExceptionTest()
     {
         $transport = $this->createTransport();
@@ -295,14 +280,12 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function applyUpdatesToInstancesTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new ZoneOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -364,14 +347,12 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function applyUpdatesToInstancesExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new ZoneOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -422,14 +403,12 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createInstancesTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new ZoneOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -491,14 +470,12 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createInstancesExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new ZoneOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -549,14 +526,12 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new ZoneOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -615,14 +590,12 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new ZoneOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -672,14 +645,12 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteInstancesTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new ZoneOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -741,14 +712,12 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteInstancesExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new ZoneOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -799,14 +768,12 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deletePerInstanceConfigsTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new ZoneOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -868,14 +835,12 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deletePerInstanceConfigsExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new ZoneOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -926,9 +891,7 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getTest()
     {
         $transport = $this->createTransport();
@@ -987,9 +950,7 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1024,14 +985,12 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function insertTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new ZoneOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1090,14 +1049,12 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function insertExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new ZoneOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1147,9 +1104,7 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listTest()
     {
         $transport = $this->createTransport();
@@ -1193,9 +1148,7 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1229,9 +1182,7 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listErrorsTest()
     {
         $transport = $this->createTransport();
@@ -1272,9 +1223,7 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listErrorsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1309,9 +1258,7 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listManagedInstancesTest()
     {
         $transport = $this->createTransport();
@@ -1352,9 +1299,7 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listManagedInstancesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1389,9 +1334,7 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listPerInstanceConfigsTest()
     {
         $transport = $this->createTransport();
@@ -1432,9 +1375,7 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listPerInstanceConfigsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1469,14 +1410,12 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function patchTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new ZoneOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1538,14 +1477,12 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function patchExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new ZoneOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1596,14 +1533,12 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function patchPerInstanceConfigsTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new ZoneOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1665,14 +1600,12 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function patchPerInstanceConfigsExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new ZoneOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1723,14 +1656,12 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function recreateInstancesTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new ZoneOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1792,14 +1723,12 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function recreateInstancesExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new ZoneOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1850,14 +1779,12 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function resizeTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new ZoneOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1919,14 +1846,12 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function resizeExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new ZoneOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1977,14 +1902,12 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setInstanceTemplateTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new ZoneOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -2046,14 +1969,12 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setInstanceTemplateExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new ZoneOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -2104,14 +2025,12 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setTargetPoolsTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new ZoneOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -2173,14 +2092,12 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setTargetPoolsExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new ZoneOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -2231,14 +2148,12 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updatePerInstanceConfigsTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new ZoneOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -2300,14 +2215,12 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updatePerInstanceConfigsExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new ZoneOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);

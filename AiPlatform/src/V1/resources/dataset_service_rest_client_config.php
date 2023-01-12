@@ -116,6 +116,17 @@ return [
                     ],
                 ],
             ],
+            'SearchDataItems' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{dataset=projects/*/locations/*/datasets/*}:searchDataItems',
+                'placeholders' => [
+                    'dataset' => [
+                        'getters' => [
+                            'getDataset',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateDataset' => [
                 'method' => 'patch',
                 'uriTemplate' => '/v1/{dataset.name=projects/*/locations/*/datasets/*}',

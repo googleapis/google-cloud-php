@@ -16,7 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class Service extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Immutable. The relative resource name of the metastore service, of the form:
+     * Immutable. The relative resource name of the metastore service, in the
+     * following format:
      * `projects/{project_number}/locations/{location_id}/services/{service_id}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
@@ -41,8 +42,8 @@ class Service extends \Google\Protobuf\Internal\Message
      */
     private $labels;
     /**
-     * Immutable. The relative resource name of the VPC network on which the instance can be
-     * accessed. It is specified in the following form:
+     * Immutable. The relative resource name of the VPC network on which the
+     * instance can be accessed. It is specified in the following form:
      * `projects/{project_number}/global/networks/{network_id}`.
      *
      * Generated from protobuf field <code>string network = 7 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
@@ -67,15 +68,15 @@ class Service extends \Google\Protobuf\Internal\Message
      */
     private $state = 0;
     /**
-     * Output only. Additional information about the current state of the metastore service, if
-     * available.
+     * Output only. Additional information about the current state of the
+     * metastore service, if available.
      *
      * Generated from protobuf field <code>string state_message = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $state_message = '';
     /**
-     * Output only. A Cloud Storage URI (starting with `gs://`) that specifies where artifacts
-     * related to the metastore service are stored.
+     * Output only. A Cloud Storage URI (starting with `gs://`) that specifies
+     * where artifacts related to the metastore service are stored.
      *
      * Generated from protobuf field <code>string artifact_gcs_uri = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -103,7 +104,8 @@ class Service extends \Google\Protobuf\Internal\Message
      */
     private $maintenance_window = null;
     /**
-     * Output only. The globally unique resource identifier of the metastore service.
+     * Output only. The globally unique resource identifier of the metastore
+     * service.
      *
      * Generated from protobuf field <code>string uid = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -122,17 +124,17 @@ class Service extends \Google\Protobuf\Internal\Message
      */
     private $release_channel = 0;
     /**
-     * Immutable. Information used to configure the Dataproc Metastore service to encrypt
-     * customer data at rest. Cannot be updated.
+     * Immutable. Information used to configure the Dataproc Metastore service to
+     * encrypt customer data at rest. Cannot be updated.
      *
      * Generated from protobuf field <code>.google.cloud.metastore.v1alpha.EncryptionConfig encryption_config = 20 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
     private $encryption_config = null;
     /**
-     * Immutable. The configuration specifying the network settings for the
+     * The configuration specifying the network settings for the
      * Dataproc Metastore service.
      *
-     * Generated from protobuf field <code>.google.cloud.metastore.v1alpha.NetworkConfig network_config = 21 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>.google.cloud.metastore.v1alpha.NetworkConfig network_config = 21;</code>
      */
     private $network_config = null;
     /**
@@ -141,6 +143,13 @@ class Service extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.metastore.v1alpha.Service.DatabaseType database_type = 22 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
     private $database_type = 0;
+    /**
+     * The configuration specifying telemetry settings for the Dataproc Metastore
+     * service. If unspecified defaults to `JSON`.
+     *
+     * Generated from protobuf field <code>.google.cloud.metastore.v1alpha.TelemetryConfig telemetry_config = 23;</code>
+     */
+    private $telemetry_config = null;
     protected $metastore_config;
 
     /**
@@ -153,7 +162,8 @@ class Service extends \Google\Protobuf\Internal\Message
      *           Configuration information specific to running Hive metastore
      *           software as the metastore service.
      *     @type string $name
-     *           Immutable. The relative resource name of the metastore service, of the form:
+     *           Immutable. The relative resource name of the metastore service, in the
+     *           following format:
      *           `projects/{project_number}/locations/{location_id}/services/{service_id}`.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. The time when the metastore service was created.
@@ -162,8 +172,8 @@ class Service extends \Google\Protobuf\Internal\Message
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           User-defined labels for the metastore service.
      *     @type string $network
-     *           Immutable. The relative resource name of the VPC network on which the instance can be
-     *           accessed. It is specified in the following form:
+     *           Immutable. The relative resource name of the VPC network on which the
+     *           instance can be accessed. It is specified in the following form:
      *           `projects/{project_number}/global/networks/{network_id}`.
      *     @type string $endpoint_uri
      *           Output only. The URI of the endpoint used to access the metastore service.
@@ -172,11 +182,11 @@ class Service extends \Google\Protobuf\Internal\Message
      *     @type int $state
      *           Output only. The current state of the metastore service.
      *     @type string $state_message
-     *           Output only. Additional information about the current state of the metastore service, if
-     *           available.
+     *           Output only. Additional information about the current state of the
+     *           metastore service, if available.
      *     @type string $artifact_gcs_uri
-     *           Output only. A Cloud Storage URI (starting with `gs://`) that specifies where artifacts
-     *           related to the metastore service are stored.
+     *           Output only. A Cloud Storage URI (starting with `gs://`) that specifies
+     *           where artifacts related to the metastore service are stored.
      *     @type int $tier
      *           The tier of the service.
      *     @type \Google\Cloud\Metastore\V1alpha\MetadataIntegration $metadata_integration
@@ -188,20 +198,24 @@ class Service extends \Google\Protobuf\Internal\Message
      *           Maintenance window is not needed for services with the SPANNER
      *           database type.
      *     @type string $uid
-     *           Output only. The globally unique resource identifier of the metastore service.
+     *           Output only. The globally unique resource identifier of the metastore
+     *           service.
      *     @type \Google\Cloud\Metastore\V1alpha\MetadataManagementActivity $metadata_management_activity
      *           Output only. The metadata management activities of the metastore service.
      *     @type int $release_channel
      *           Immutable. The release channel of the service.
      *           If unspecified, defaults to `STABLE`.
      *     @type \Google\Cloud\Metastore\V1alpha\EncryptionConfig $encryption_config
-     *           Immutable. Information used to configure the Dataproc Metastore service to encrypt
-     *           customer data at rest. Cannot be updated.
+     *           Immutable. Information used to configure the Dataproc Metastore service to
+     *           encrypt customer data at rest. Cannot be updated.
      *     @type \Google\Cloud\Metastore\V1alpha\NetworkConfig $network_config
-     *           Immutable. The configuration specifying the network settings for the
+     *           The configuration specifying the network settings for the
      *           Dataproc Metastore service.
      *     @type int $database_type
      *           Immutable. The database type that the Metastore service stores its data.
+     *     @type \Google\Cloud\Metastore\V1alpha\TelemetryConfig $telemetry_config
+     *           The configuration specifying telemetry settings for the Dataproc Metastore
+     *           service. If unspecified defaults to `JSON`.
      * }
      */
     public function __construct($data = NULL) {
@@ -243,7 +257,8 @@ class Service extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. The relative resource name of the metastore service, of the form:
+     * Immutable. The relative resource name of the metastore service, in the
+     * following format:
      * `projects/{project_number}/locations/{location_id}/services/{service_id}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
@@ -255,7 +270,8 @@ class Service extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. The relative resource name of the metastore service, of the form:
+     * Immutable. The relative resource name of the metastore service, in the
+     * following format:
      * `projects/{project_number}/locations/{location_id}/services/{service_id}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
@@ -369,8 +385,8 @@ class Service extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. The relative resource name of the VPC network on which the instance can be
-     * accessed. It is specified in the following form:
+     * Immutable. The relative resource name of the VPC network on which the
+     * instance can be accessed. It is specified in the following form:
      * `projects/{project_number}/global/networks/{network_id}`.
      *
      * Generated from protobuf field <code>string network = 7 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
@@ -382,8 +398,8 @@ class Service extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. The relative resource name of the VPC network on which the instance can be
-     * accessed. It is specified in the following form:
+     * Immutable. The relative resource name of the VPC network on which the
+     * instance can be accessed. It is specified in the following form:
      * `projects/{project_number}/global/networks/{network_id}`.
      *
      * Generated from protobuf field <code>string network = 7 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
@@ -477,8 +493,8 @@ class Service extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Additional information about the current state of the metastore service, if
-     * available.
+     * Output only. Additional information about the current state of the
+     * metastore service, if available.
      *
      * Generated from protobuf field <code>string state_message = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -489,8 +505,8 @@ class Service extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Additional information about the current state of the metastore service, if
-     * available.
+     * Output only. Additional information about the current state of the
+     * metastore service, if available.
      *
      * Generated from protobuf field <code>string state_message = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -505,8 +521,8 @@ class Service extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. A Cloud Storage URI (starting with `gs://`) that specifies where artifacts
-     * related to the metastore service are stored.
+     * Output only. A Cloud Storage URI (starting with `gs://`) that specifies
+     * where artifacts related to the metastore service are stored.
      *
      * Generated from protobuf field <code>string artifact_gcs_uri = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -517,8 +533,8 @@ class Service extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. A Cloud Storage URI (starting with `gs://`) that specifies where artifacts
-     * related to the metastore service are stored.
+     * Output only. A Cloud Storage URI (starting with `gs://`) that specifies
+     * where artifacts related to the metastore service are stored.
      *
      * Generated from protobuf field <code>string artifact_gcs_uri = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -639,7 +655,8 @@ class Service extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The globally unique resource identifier of the metastore service.
+     * Output only. The globally unique resource identifier of the metastore
+     * service.
      *
      * Generated from protobuf field <code>string uid = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -650,7 +667,8 @@ class Service extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The globally unique resource identifier of the metastore service.
+     * Output only. The globally unique resource identifier of the metastore
+     * service.
      *
      * Generated from protobuf field <code>string uid = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -729,8 +747,8 @@ class Service extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. Information used to configure the Dataproc Metastore service to encrypt
-     * customer data at rest. Cannot be updated.
+     * Immutable. Information used to configure the Dataproc Metastore service to
+     * encrypt customer data at rest. Cannot be updated.
      *
      * Generated from protobuf field <code>.google.cloud.metastore.v1alpha.EncryptionConfig encryption_config = 20 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return \Google\Cloud\Metastore\V1alpha\EncryptionConfig|null
@@ -751,8 +769,8 @@ class Service extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. Information used to configure the Dataproc Metastore service to encrypt
-     * customer data at rest. Cannot be updated.
+     * Immutable. Information used to configure the Dataproc Metastore service to
+     * encrypt customer data at rest. Cannot be updated.
      *
      * Generated from protobuf field <code>.google.cloud.metastore.v1alpha.EncryptionConfig encryption_config = 20 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @param \Google\Cloud\Metastore\V1alpha\EncryptionConfig $var
@@ -767,10 +785,10 @@ class Service extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. The configuration specifying the network settings for the
+     * The configuration specifying the network settings for the
      * Dataproc Metastore service.
      *
-     * Generated from protobuf field <code>.google.cloud.metastore.v1alpha.NetworkConfig network_config = 21 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>.google.cloud.metastore.v1alpha.NetworkConfig network_config = 21;</code>
      * @return \Google\Cloud\Metastore\V1alpha\NetworkConfig|null
      */
     public function getNetworkConfig()
@@ -789,10 +807,10 @@ class Service extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. The configuration specifying the network settings for the
+     * The configuration specifying the network settings for the
      * Dataproc Metastore service.
      *
-     * Generated from protobuf field <code>.google.cloud.metastore.v1alpha.NetworkConfig network_config = 21 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>.google.cloud.metastore.v1alpha.NetworkConfig network_config = 21;</code>
      * @param \Google\Cloud\Metastore\V1alpha\NetworkConfig $var
      * @return $this
      */
@@ -826,6 +844,44 @@ class Service extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Metastore\V1alpha\Service\DatabaseType::class);
         $this->database_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * The configuration specifying telemetry settings for the Dataproc Metastore
+     * service. If unspecified defaults to `JSON`.
+     *
+     * Generated from protobuf field <code>.google.cloud.metastore.v1alpha.TelemetryConfig telemetry_config = 23;</code>
+     * @return \Google\Cloud\Metastore\V1alpha\TelemetryConfig|null
+     */
+    public function getTelemetryConfig()
+    {
+        return $this->telemetry_config;
+    }
+
+    public function hasTelemetryConfig()
+    {
+        return isset($this->telemetry_config);
+    }
+
+    public function clearTelemetryConfig()
+    {
+        unset($this->telemetry_config);
+    }
+
+    /**
+     * The configuration specifying telemetry settings for the Dataproc Metastore
+     * service. If unspecified defaults to `JSON`.
+     *
+     * Generated from protobuf field <code>.google.cloud.metastore.v1alpha.TelemetryConfig telemetry_config = 23;</code>
+     * @param \Google\Cloud\Metastore\V1alpha\TelemetryConfig $var
+     * @return $this
+     */
+    public function setTelemetryConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Metastore\V1alpha\TelemetryConfig::class);
+        $this->telemetry_config = $var;
 
         return $this;
     }

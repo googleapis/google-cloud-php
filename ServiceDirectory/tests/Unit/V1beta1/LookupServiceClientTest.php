@@ -25,7 +25,6 @@ namespace Google\Cloud\ServiceDirectory\Tests\Unit\V1beta1;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\ServiceDirectory\V1beta1\LookupServiceClient;
 use Google\Cloud\ServiceDirectory\V1beta1\ResolveServiceResponse;
@@ -39,25 +38,19 @@ use stdClass;
  */
 class LookupServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return LookupServiceClient
-     */
+    /** @return LookupServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -66,9 +59,7 @@ class LookupServiceClientTest extends GeneratedTest
         return new LookupServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function resolveServiceTest()
     {
         $transport = $this->createTransport();
@@ -93,9 +84,7 @@ class LookupServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function resolveServiceExceptionTest()
     {
         $transport = $this->createTransport();

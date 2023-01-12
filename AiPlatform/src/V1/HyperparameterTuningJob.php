@@ -25,7 +25,7 @@ class HyperparameterTuningJob extends \Google\Protobuf\Internal\Message
     private $name = '';
     /**
      * Required. The display name of the HyperparameterTuningJob.
-     * The name can be up to 128 characters long and can be consist of any UTF-8
+     * The name can be up to 128 characters long and can consist of any UTF-8
      * characters.
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -139,7 +139,7 @@ class HyperparameterTuningJob extends \Google\Protobuf\Internal\Message
      *           Output only. Resource name of the HyperparameterTuningJob.
      *     @type string $display_name
      *           Required. The display name of the HyperparameterTuningJob.
-     *           The name can be up to 128 characters long and can be consist of any UTF-8
+     *           The name can be up to 128 characters long and can consist of any UTF-8
      *           characters.
      *     @type \Google\Cloud\AIPlatform\V1\StudySpec $study_spec
      *           Required. Study configuration of the HyperparameterTuningJob.
@@ -217,7 +217,7 @@ class HyperparameterTuningJob extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The display name of the HyperparameterTuningJob.
-     * The name can be up to 128 characters long and can be consist of any UTF-8
+     * The name can be up to 128 characters long and can consist of any UTF-8
      * characters.
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -230,7 +230,7 @@ class HyperparameterTuningJob extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The display name of the HyperparameterTuningJob.
-     * The name can be up to 128 characters long and can be consist of any UTF-8
+     * The name can be up to 128 characters long and can consist of any UTF-8
      * characters.
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>

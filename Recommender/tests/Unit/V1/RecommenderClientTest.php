@@ -25,7 +25,6 @@ namespace Google\Cloud\Recommender\Tests\Unit\V1;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Recommender\V1\Insight;
 use Google\Cloud\Recommender\V1\InsightTypeConfig;
@@ -44,25 +43,19 @@ use stdClass;
  */
 class RecommenderClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return RecommenderClient
-     */
+    /** @return RecommenderClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -71,9 +64,7 @@ class RecommenderClientTest extends GeneratedTest
         return new RecommenderClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getInsightTest()
     {
         $transport = $this->createTransport();
@@ -106,9 +97,7 @@ class RecommenderClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getInsightExceptionTest()
     {
         $transport = $this->createTransport();
@@ -141,9 +130,7 @@ class RecommenderClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getInsightTypeConfigTest()
     {
         $transport = $this->createTransport();
@@ -176,9 +163,7 @@ class RecommenderClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getInsightTypeConfigExceptionTest()
     {
         $transport = $this->createTransport();
@@ -211,9 +196,7 @@ class RecommenderClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getRecommendationTest()
     {
         $transport = $this->createTransport();
@@ -248,9 +231,7 @@ class RecommenderClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getRecommendationExceptionTest()
     {
         $transport = $this->createTransport();
@@ -283,9 +264,7 @@ class RecommenderClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getRecommenderConfigTest()
     {
         $transport = $this->createTransport();
@@ -318,9 +297,7 @@ class RecommenderClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getRecommenderConfigExceptionTest()
     {
         $transport = $this->createTransport();
@@ -353,9 +330,7 @@ class RecommenderClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listInsightsTest()
     {
         $transport = $this->createTransport();
@@ -390,9 +365,7 @@ class RecommenderClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listInsightsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -425,9 +398,7 @@ class RecommenderClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listRecommendationsTest()
     {
         $transport = $this->createTransport();
@@ -462,9 +433,7 @@ class RecommenderClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listRecommendationsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -497,9 +466,7 @@ class RecommenderClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function markInsightAcceptedTest()
     {
         $transport = $this->createTransport();
@@ -535,9 +502,7 @@ class RecommenderClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function markInsightAcceptedExceptionTest()
     {
         $transport = $this->createTransport();
@@ -571,9 +536,7 @@ class RecommenderClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function markRecommendationClaimedTest()
     {
         $transport = $this->createTransport();
@@ -611,9 +574,7 @@ class RecommenderClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function markRecommendationClaimedExceptionTest()
     {
         $transport = $this->createTransport();
@@ -647,9 +608,7 @@ class RecommenderClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function markRecommendationFailedTest()
     {
         $transport = $this->createTransport();
@@ -687,9 +646,7 @@ class RecommenderClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function markRecommendationFailedExceptionTest()
     {
         $transport = $this->createTransport();
@@ -723,9 +680,7 @@ class RecommenderClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function markRecommendationSucceededTest()
     {
         $transport = $this->createTransport();
@@ -763,9 +718,7 @@ class RecommenderClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function markRecommendationSucceededExceptionTest()
     {
         $transport = $this->createTransport();
@@ -799,9 +752,7 @@ class RecommenderClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateInsightTypeConfigTest()
     {
         $transport = $this->createTransport();
@@ -834,9 +785,7 @@ class RecommenderClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateInsightTypeConfigExceptionTest()
     {
         $transport = $this->createTransport();
@@ -869,9 +818,7 @@ class RecommenderClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateRecommenderConfigTest()
     {
         $transport = $this->createTransport();
@@ -904,9 +851,7 @@ class RecommenderClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateRecommenderConfigExceptionTest()
     {
         $transport = $this->createTransport();

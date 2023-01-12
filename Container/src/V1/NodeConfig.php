@@ -268,6 +268,12 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      */
     private $confidential_nodes = null;
     /**
+     * Enable or disable NCCL fast socket for the node pool.
+     *
+     * Generated from protobuf field <code>optional .google.container.v1.FastSocket fast_socket = 36;</code>
+     */
+    private $fast_socket = null;
+    /**
      * The resource labels for the node pool to use to annotate any related
      * Google Compute Engine resources.
      *
@@ -280,6 +286,25 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.container.v1.NodePoolLoggingConfig logging_config = 38;</code>
      */
     private $logging_config = null;
+    /**
+     * Parameters that can be configured on Windows nodes.
+     *
+     * Generated from protobuf field <code>.google.container.v1.WindowsNodeConfig windows_node_config = 39;</code>
+     */
+    private $windows_node_config = null;
+    /**
+     * Parameters for using raw-block Local NVMe SSDs.
+     *
+     * Generated from protobuf field <code>.google.container.v1.LocalNvmeSsdBlockConfig local_nvme_ssd_block_config = 40;</code>
+     */
+    private $local_nvme_ssd_block_config = null;
+    /**
+     * Parameters for the node ephemeral storage using Local SSDs.
+     * If unspecified, ephemeral storage is backed by the boot disk.
+     *
+     * Generated from protobuf field <code>.google.container.v1.EphemeralStorageLocalSsdConfig ephemeral_storage_local_ssd_config = 41;</code>
+     */
+    private $ephemeral_storage_local_ssd_config = null;
 
     /**
      * Constructor.
@@ -427,11 +452,20 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Container\V1\ConfidentialNodes $confidential_nodes
      *           Confidential nodes config.
      *           All the nodes in the node pool will be Confidential VM once enabled.
+     *     @type \Google\Cloud\Container\V1\FastSocket $fast_socket
+     *           Enable or disable NCCL fast socket for the node pool.
      *     @type array|\Google\Protobuf\Internal\MapField $resource_labels
      *           The resource labels for the node pool to use to annotate any related
      *           Google Compute Engine resources.
      *     @type \Google\Cloud\Container\V1\NodePoolLoggingConfig $logging_config
      *           Logging configuration.
+     *     @type \Google\Cloud\Container\V1\WindowsNodeConfig $windows_node_config
+     *           Parameters that can be configured on Windows nodes.
+     *     @type \Google\Cloud\Container\V1\LocalNvmeSsdBlockConfig $local_nvme_ssd_block_config
+     *           Parameters for using raw-block Local NVMe SSDs.
+     *     @type \Google\Cloud\Container\V1\EphemeralStorageLocalSsdConfig $ephemeral_storage_local_ssd_config
+     *           Parameters for the node ephemeral storage using Local SSDs.
+     *           If unspecified, ephemeral storage is backed by the boot disk.
      * }
      */
     public function __construct($data = NULL) {
@@ -1414,6 +1448,42 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Enable or disable NCCL fast socket for the node pool.
+     *
+     * Generated from protobuf field <code>optional .google.container.v1.FastSocket fast_socket = 36;</code>
+     * @return \Google\Cloud\Container\V1\FastSocket|null
+     */
+    public function getFastSocket()
+    {
+        return $this->fast_socket;
+    }
+
+    public function hasFastSocket()
+    {
+        return isset($this->fast_socket);
+    }
+
+    public function clearFastSocket()
+    {
+        unset($this->fast_socket);
+    }
+
+    /**
+     * Enable or disable NCCL fast socket for the node pool.
+     *
+     * Generated from protobuf field <code>optional .google.container.v1.FastSocket fast_socket = 36;</code>
+     * @param \Google\Cloud\Container\V1\FastSocket $var
+     * @return $this
+     */
+    public function setFastSocket($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\FastSocket::class);
+        $this->fast_socket = $var;
+
+        return $this;
+    }
+
+    /**
      * The resource labels for the node pool to use to annotate any related
      * Google Compute Engine resources.
      *
@@ -1473,6 +1543,116 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\NodePoolLoggingConfig::class);
         $this->logging_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Parameters that can be configured on Windows nodes.
+     *
+     * Generated from protobuf field <code>.google.container.v1.WindowsNodeConfig windows_node_config = 39;</code>
+     * @return \Google\Cloud\Container\V1\WindowsNodeConfig|null
+     */
+    public function getWindowsNodeConfig()
+    {
+        return $this->windows_node_config;
+    }
+
+    public function hasWindowsNodeConfig()
+    {
+        return isset($this->windows_node_config);
+    }
+
+    public function clearWindowsNodeConfig()
+    {
+        unset($this->windows_node_config);
+    }
+
+    /**
+     * Parameters that can be configured on Windows nodes.
+     *
+     * Generated from protobuf field <code>.google.container.v1.WindowsNodeConfig windows_node_config = 39;</code>
+     * @param \Google\Cloud\Container\V1\WindowsNodeConfig $var
+     * @return $this
+     */
+    public function setWindowsNodeConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\WindowsNodeConfig::class);
+        $this->windows_node_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Parameters for using raw-block Local NVMe SSDs.
+     *
+     * Generated from protobuf field <code>.google.container.v1.LocalNvmeSsdBlockConfig local_nvme_ssd_block_config = 40;</code>
+     * @return \Google\Cloud\Container\V1\LocalNvmeSsdBlockConfig|null
+     */
+    public function getLocalNvmeSsdBlockConfig()
+    {
+        return $this->local_nvme_ssd_block_config;
+    }
+
+    public function hasLocalNvmeSsdBlockConfig()
+    {
+        return isset($this->local_nvme_ssd_block_config);
+    }
+
+    public function clearLocalNvmeSsdBlockConfig()
+    {
+        unset($this->local_nvme_ssd_block_config);
+    }
+
+    /**
+     * Parameters for using raw-block Local NVMe SSDs.
+     *
+     * Generated from protobuf field <code>.google.container.v1.LocalNvmeSsdBlockConfig local_nvme_ssd_block_config = 40;</code>
+     * @param \Google\Cloud\Container\V1\LocalNvmeSsdBlockConfig $var
+     * @return $this
+     */
+    public function setLocalNvmeSsdBlockConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\LocalNvmeSsdBlockConfig::class);
+        $this->local_nvme_ssd_block_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Parameters for the node ephemeral storage using Local SSDs.
+     * If unspecified, ephemeral storage is backed by the boot disk.
+     *
+     * Generated from protobuf field <code>.google.container.v1.EphemeralStorageLocalSsdConfig ephemeral_storage_local_ssd_config = 41;</code>
+     * @return \Google\Cloud\Container\V1\EphemeralStorageLocalSsdConfig|null
+     */
+    public function getEphemeralStorageLocalSsdConfig()
+    {
+        return $this->ephemeral_storage_local_ssd_config;
+    }
+
+    public function hasEphemeralStorageLocalSsdConfig()
+    {
+        return isset($this->ephemeral_storage_local_ssd_config);
+    }
+
+    public function clearEphemeralStorageLocalSsdConfig()
+    {
+        unset($this->ephemeral_storage_local_ssd_config);
+    }
+
+    /**
+     * Parameters for the node ephemeral storage using Local SSDs.
+     * If unspecified, ephemeral storage is backed by the boot disk.
+     *
+     * Generated from protobuf field <code>.google.container.v1.EphemeralStorageLocalSsdConfig ephemeral_storage_local_ssd_config = 41;</code>
+     * @param \Google\Cloud\Container\V1\EphemeralStorageLocalSsdConfig $var
+     * @return $this
+     */
+    public function setEphemeralStorageLocalSsdConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\EphemeralStorageLocalSsdConfig::class);
+        $this->ephemeral_storage_local_ssd_config = $var;
 
         return $this;
     }

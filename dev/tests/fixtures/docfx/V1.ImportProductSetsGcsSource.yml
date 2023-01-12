@@ -89,8 +89,6 @@ items:
       in [0, 1] for normalized bounding polygons.
       The system will resize the image if the image resolution is too
       large to process (larger than 20MP).
-      
-      Generated from protobuf field <code>string csv_file_uri = 1;</code>
     parent: \Google\Cloud\Vision\V1\ImportProductSetsGcsSource
     type: method
     langs:
@@ -152,8 +150,6 @@ items:
       in [0, 1] for normalized bounding polygons.
       The system will resize the image if the image resolution is too
       large to process (larger than 20MP).
-      
-      Generated from protobuf field <code>string csv_file_uri = 1;</code>
     parent: \Google\Cloud\Vision\V1\ImportProductSetsGcsSource
     type: method
     langs:
