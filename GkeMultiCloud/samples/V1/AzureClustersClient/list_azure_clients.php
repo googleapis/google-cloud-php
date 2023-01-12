@@ -29,8 +29,8 @@ use Google\Cloud\GkeMultiCloud\V1\AzureClient;
 use Google\Cloud\GkeMultiCloud\V1\AzureClustersClient;
 
 /**
- * Lists all [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] resources on a given Google Cloud project and
- * region.
+ * Lists all [AzureClient][google.cloud.gkemulticloud.v1.AzureClient]
+ * resources on a given Google Cloud project and region.
  *
  * @param string $formattedParent The parent location which owns this collection of
  *                                [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] resources.

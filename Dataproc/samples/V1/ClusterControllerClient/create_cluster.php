@@ -38,8 +38,10 @@ use Google\Rpc\Status;
  *                                   belongs to.
  * @param string $region             The Dataproc region in which to handle the request.
  * @param string $clusterProjectId   The Google Cloud Platform project ID that the cluster belongs to.
- * @param string $clusterClusterName The cluster name. Cluster names within a project must be
- *                                   unique. Names of deleted clusters can be reused.
+ * @param string $clusterClusterName The cluster name, which must be unique within a project.
+ *                                   The name must start with a lowercase letter, and can contain
+ *                                   up to 51 lowercase letters, numbers, and hyphens. It cannot end
+ *                                   with a hyphen. The name of a deleted cluster can be reused.
  */
 function create_cluster_sample(
     string $projectId,

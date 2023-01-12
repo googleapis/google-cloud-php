@@ -51,8 +51,6 @@ items:
       `gs://bucket_name/object_name`. Object versioning is not supported. See
       [Google Cloud Storage Request
       URIs](https://cloud.google.com/storage/docs/reference-uris) for more info.
-      
-      Generated from protobuf field <code>string gcs_image_uri = 1;</code>
     parent: \Google\Cloud\Vision\V1\ImageSource
     type: method
     langs:
@@ -71,8 +69,6 @@ items:
       `gs://bucket_name/object_name`. Object versioning is not supported. See
       [Google Cloud Storage Request
       URIs](https://cloud.google.com/storage/docs/reference-uris) for more info.
-      
-      Generated from protobuf field <code>string gcs_image_uri = 1;</code>
     parent: \Google\Cloud\Vision\V1\ImageSource
     type: method
     langs:
@@ -106,8 +102,6 @@ items:
          depend on externally-hosted images for production applications.
       When both `gcs_image_uri` and `image_uri` are specified, `image_uri` takes
       precedence.
-      
-      Generated from protobuf field <code>string image_uri = 2;</code>
     parent: \Google\Cloud\Vision\V1\ImageSource
     type: method
     langs:
@@ -136,8 +130,6 @@ items:
          depend on externally-hosted images for production applications.
       When both `gcs_image_uri` and `image_uri` are specified, `image_uri` takes
       precedence.
-      
-      Generated from protobuf field <code>string image_uri = 2;</code>
     parent: \Google\Cloud\Vision\V1\ImageSource
     type: method
     langs:
