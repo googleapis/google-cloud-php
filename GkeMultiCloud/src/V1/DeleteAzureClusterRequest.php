@@ -16,7 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class DeleteAzureClusterRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name the [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] to delete.
+     * Required. The resource name the
+     * [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] to delete.
      * `AzureCluster` names are formatted as
      * `projects/<project-id>/locations/<region>/azureClusters/<cluster-id>`.
      * See [Resource Names](https://cloud.google.com/apis/design/resource_names)
@@ -26,9 +27,10 @@ class DeleteAzureClusterRequest extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * If set to true, and the [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] resource is not found,
-     * the request will succeed but no action will be taken on the server and a
-     * completed [Operation][google.longrunning.Operation] will be returned.
+     * If set to true, and the
+     * [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] resource is not
+     * found, the request will succeed but no action will be taken on the server
+     * and a completed [Operation][google.longrunning.Operation] will be returned.
      * Useful for idempotent deletion.
      *
      * Generated from protobuf field <code>bool allow_missing = 2;</code>
@@ -41,7 +43,8 @@ class DeleteAzureClusterRequest extends \Google\Protobuf\Internal\Message
      */
     private $validate_only = false;
     /**
-     * The current etag of the [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster].
+     * The current etag of the
+     * [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster].
      * Allows clients to perform deletions through optimistic concurrency control.
      * If the provided etag does not match the current etag of the cluster,
      * the request will fail and an ABORTED error will be returned.
@@ -57,20 +60,23 @@ class DeleteAzureClusterRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The resource name the [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] to delete.
+     *           Required. The resource name the
+     *           [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] to delete.
      *           `AzureCluster` names are formatted as
      *           `projects/<project-id>/locations/<region>/azureClusters/<cluster-id>`.
      *           See [Resource Names](https://cloud.google.com/apis/design/resource_names)
      *           for more details on GCP resource names.
      *     @type bool $allow_missing
-     *           If set to true, and the [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] resource is not found,
-     *           the request will succeed but no action will be taken on the server and a
-     *           completed [Operation][google.longrunning.Operation] will be returned.
+     *           If set to true, and the
+     *           [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] resource is not
+     *           found, the request will succeed but no action will be taken on the server
+     *           and a completed [Operation][google.longrunning.Operation] will be returned.
      *           Useful for idempotent deletion.
      *     @type bool $validate_only
      *           If set, only validate the request, but do not actually delete the resource.
      *     @type string $etag
-     *           The current etag of the [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster].
+     *           The current etag of the
+     *           [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster].
      *           Allows clients to perform deletions through optimistic concurrency control.
      *           If the provided etag does not match the current etag of the cluster,
      *           the request will fail and an ABORTED error will be returned.
@@ -82,7 +88,8 @@ class DeleteAzureClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name the [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] to delete.
+     * Required. The resource name the
+     * [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] to delete.
      * `AzureCluster` names are formatted as
      * `projects/<project-id>/locations/<region>/azureClusters/<cluster-id>`.
      * See [Resource Names](https://cloud.google.com/apis/design/resource_names)
@@ -97,7 +104,8 @@ class DeleteAzureClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name the [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] to delete.
+     * Required. The resource name the
+     * [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] to delete.
      * `AzureCluster` names are formatted as
      * `projects/<project-id>/locations/<region>/azureClusters/<cluster-id>`.
      * See [Resource Names](https://cloud.google.com/apis/design/resource_names)
@@ -116,9 +124,10 @@ class DeleteAzureClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If set to true, and the [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] resource is not found,
-     * the request will succeed but no action will be taken on the server and a
-     * completed [Operation][google.longrunning.Operation] will be returned.
+     * If set to true, and the
+     * [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] resource is not
+     * found, the request will succeed but no action will be taken on the server
+     * and a completed [Operation][google.longrunning.Operation] will be returned.
      * Useful for idempotent deletion.
      *
      * Generated from protobuf field <code>bool allow_missing = 2;</code>
@@ -130,9 +139,10 @@ class DeleteAzureClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If set to true, and the [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] resource is not found,
-     * the request will succeed but no action will be taken on the server and a
-     * completed [Operation][google.longrunning.Operation] will be returned.
+     * If set to true, and the
+     * [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] resource is not
+     * found, the request will succeed but no action will be taken on the server
+     * and a completed [Operation][google.longrunning.Operation] will be returned.
      * Useful for idempotent deletion.
      *
      * Generated from protobuf field <code>bool allow_missing = 2;</code>
@@ -174,7 +184,8 @@ class DeleteAzureClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The current etag of the [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster].
+     * The current etag of the
+     * [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster].
      * Allows clients to perform deletions through optimistic concurrency control.
      * If the provided etag does not match the current etag of the cluster,
      * the request will fail and an ABORTED error will be returned.
@@ -188,7 +199,8 @@ class DeleteAzureClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The current etag of the [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster].
+     * The current etag of the
+     * [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster].
      * Allows clients to perform deletions through optimistic concurrency control.
      * If the provided etag does not match the current etag of the cluster,
      * the request will fail and an ABORTED error will be returned.

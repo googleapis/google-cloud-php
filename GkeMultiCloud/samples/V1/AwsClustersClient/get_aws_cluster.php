@@ -28,9 +28,12 @@ use Google\Cloud\GkeMultiCloud\V1\AwsCluster;
 use Google\Cloud\GkeMultiCloud\V1\AwsClustersClient;
 
 /**
- * Describes a specific [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resource.
+ * Describes a specific [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster]
+ * resource.
  *
- * @param string $formattedName The name of the [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resource to describe.
+ * @param string $formattedName The name of the
+ *                              [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resource to
+ *                              describe.
  *
  *                              `AwsCluster` names are formatted as
  *                              `projects/<project-id>/locations/<region>/awsClusters/<cluster-id>`.

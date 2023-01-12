@@ -20,15 +20,19 @@ import subprocess
 
 import synthtool as s
 from synthtool.languages import php
+from synthtool import _tracked_paths
 
 logging.basicConfig(level=logging.DEBUG)
 
 src = Path(f"../{php.STAGING_DIR}/ApiGateway").resolve()
 dest = Path().resolve()
 
+# Added so that we can pass copy_excludes in the owlbot_main() call
+_tracked_paths.add(src)
+
 php.owlbot_main(
     src=src,
-    dest=dest
+    dest=dest,
     copy_excludes=[
         src / "**/[A-Z]*_*.php",
         src / "**/*GrpcClient.php",

@@ -29,13 +29,15 @@ use Google\Cloud\GkeMultiCloud\V1\AzureClustersClient;
 use Google\Rpc\Status;
 
 /**
- * Deletes a specific [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] resource.
+ * Deletes a specific
+ * [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] resource.
  *
  * If successful, the response contains a newly created
  * [Operation][google.longrunning.Operation] resource that can be
  * described to track the status of the operation.
  *
- * @param string $formattedName The resource name the [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] to delete.
+ * @param string $formattedName The resource name the
+ *                              [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] to delete.
  *
  *                              `AzureNodePool` names are formatted as
  *                              `projects/<project-id>/locations/<region>/azureClusters/<cluster-id>/azureNodePools/<node-pool-id>`.

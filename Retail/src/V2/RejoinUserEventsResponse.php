@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Response message for RejoinUserEvents method.
+ * Response message for `RejoinUserEvents` method.
  *
  * Generated from protobuf message <code>google.cloud.retail.v2.RejoinUserEventsResponse</code>
  */
