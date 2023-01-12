@@ -57,10 +57,9 @@ class DocFx extends Command
             throw new RuntimeException('This command must be run on PHP 8.0 or above');
         }
 
-        $component = $input->getOption('component') ?: basename(getcwd());
-        $componentPath = $input->getOption('component-path') ?: $this->getComponentPath($component);
-        $this->validateComponentFiles($componentPath, $component);
-        $output->writeln(sprintf('Generating documentation for <options=bold;fg=white>%s</>', $component));
+        $componentName = $input->getOption('component') ?: basename(getcwd());
+        $component = new Component($componentName, $input->getOption('component-path'));
+        $output->writeln(sprintf('Generating documentation for <options=bold;fg=white>%s</>', $componentName));
         $xml = $input->getOption('xml');
         $outDir = $input->getOption('out');
         if (empty($xml)) {
@@ -90,8 +89,8 @@ class DocFx extends Command
         $flags = Yaml::DUMP_MULTI_LINE_LITERAL_BLOCK;
 
         $tocItems = [];
-        $packageDescription = $this->getPackageDescription();
-        foreach ($this->getNamespaces() as $namespace) {
+        $packageDescription = $component->getPackageDescription();
+        foreach ($component->getNamespaces() as $namespace) {
             $pageTree = new PageTree(
                 $xml,
                 $namespace,
@@ -114,7 +113,7 @@ class DocFx extends Command
             $tocItems = array_merge($tocItems, $pageTree->getTocItems());
         }
 
-        $releaseLevel = $this->getReleaseLevel();
+        $releaseLevel = $component->getReleaseLevel();
         if (file_exists($overviewFile = sprintf('%s/README.md', $componentPath))) {
             $overview = new OverviewPage(
                 file_get_contents($overviewFile),
@@ -128,8 +127,8 @@ class DocFx extends Command
 
         // Write the TOC to a file
         $componentToc = array_filter([
-            'uid' => $this->getComponentUid(),
-            'name' => $this->getDistributionName(),
+            'uid' => $component->getReferenceDocumentationUid(),
+            'name' => $component->getPackageName(),
             'status' => $releaseLevel !== 'stable' ? 'beta' : '',
             'items' => $tocItems,
         ]);
@@ -143,13 +142,13 @@ class DocFx extends Command
             $output->write(sprintf('Writing docs.metadata with version <fg=white>%s</>... ', $metadataVersion));
             $process = new Process([
                 'docuploader', 'create-metadata',
-                '--name', str_replace('google/', '', $this->getDistributionName()),
+                '--name', str_replace('google/', '', $component->getDistributionName()),
                 '--version', $metadataVersion,
                 '--language', 'php',
-                '--distribution-name', $this->getDistributionName(),
-                '--product-page', $this->getProductDocumentation(),
-                '--github-repository', $this->getRepo(),
-                '--issue-tracker', $this->getIssueTracker(),
+                '--distribution-name', $component->getDistributionName(),
+                '--product-page', $component->getProductDocumentation(),
+                '--github-repository', $component->getRepoName(),
+                '--issue-tracker', $component->getIssueTracker(),
                 $outDir . '/docs.metadata'
             ]);
             $process->mustRun();
