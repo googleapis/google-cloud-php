@@ -117,7 +117,7 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
      *           If non-empty, the name of an index on [table][google.spanner.v1.ReadRequest.table]. This index is
      *           used instead of the table primary key when interpreting [key_set][google.spanner.v1.ReadRequest.key_set]
      *           and sorting result rows. See [key_set][google.spanner.v1.ReadRequest.key_set] for further information.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $columns
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $columns
      *           Required. The columns of [table][google.spanner.v1.ReadRequest.table] to be returned for each row matching
      *           this request.
      *     @type \Google\Cloud\Spanner\V1\KeySet $key_set
@@ -293,7 +293,7 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
      * this request.
      *
      * Generated from protobuf field <code>repeated string columns = 5 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setColumns($var)

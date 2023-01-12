@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class SecurityPolicyRule extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The Action to perform when the client connection triggers the rule. Can currently be either "allow" or "deny()" where valid values for status are 403, 404, and 502.
+     * The Action to perform when the rule is matched. The following are the valid actions: - allow: allow access to target. - deny(): deny access to target, returns the HTTP response code specified (valid values are 403, 404, and 502). - rate_based_ban: limit client traffic to the configured threshold and ban the client if the traffic exceeds the threshold. Configure parameters for this action in RateLimitOptions. Requires rate_limit_options to be set. - redirect: redirect to a different target. This can either be an internal reCAPTCHA redirect, or an external URL-based redirect via a 302 response. Parameters for this action can be configured via redirectOptions. - throttle: limit client traffic to the configured threshold. Configure parameters for this action in rateLimitOptions. Requires rate_limit_options to be set for this. 
      *
      * Generated from protobuf field <code>optional string action = 187661878;</code>
      */
@@ -27,6 +27,12 @@ class SecurityPolicyRule extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
     private $description = null;
+    /**
+     * Optional, additional actions that are performed on headers.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.SecurityPolicyRuleHttpHeaderAction header_action = 328077352;</code>
+     */
+    private $header_action = null;
     /**
      * [Output only] Type of the resource. Always compute#securityPolicyRule for security policy rules
      *
@@ -51,6 +57,18 @@ class SecurityPolicyRule extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional int32 priority = 445151652;</code>
      */
     private $priority = null;
+    /**
+     * Must be specified if the action is "rate_based_ban" or "throttle". Cannot be specified for any other actions.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.SecurityPolicyRuleRateLimitOptions rate_limit_options = 67544315;</code>
+     */
+    private $rate_limit_options = null;
+    /**
+     * Parameters defining the redirect action. Cannot be specified for any other actions.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.SecurityPolicyRuleRedirectOptions redirect_options = 163285307;</code>
+     */
+    private $redirect_options = null;
 
     /**
      * Constructor.
@@ -59,9 +77,11 @@ class SecurityPolicyRule extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $action
-     *           The Action to perform when the client connection triggers the rule. Can currently be either "allow" or "deny()" where valid values for status are 403, 404, and 502.
+     *           The Action to perform when the rule is matched. The following are the valid actions: - allow: allow access to target. - deny(): deny access to target, returns the HTTP response code specified (valid values are 403, 404, and 502). - rate_based_ban: limit client traffic to the configured threshold and ban the client if the traffic exceeds the threshold. Configure parameters for this action in RateLimitOptions. Requires rate_limit_options to be set. - redirect: redirect to a different target. This can either be an internal reCAPTCHA redirect, or an external URL-based redirect via a 302 response. Parameters for this action can be configured via redirectOptions. - throttle: limit client traffic to the configured threshold. Configure parameters for this action in rateLimitOptions. Requires rate_limit_options to be set for this. 
      *     @type string $description
      *           An optional description of this resource. Provide this property when you create the resource.
+     *     @type \Google\Cloud\Compute\V1\SecurityPolicyRuleHttpHeaderAction $header_action
+     *           Optional, additional actions that are performed on headers.
      *     @type string $kind
      *           [Output only] Type of the resource. Always compute#securityPolicyRule for security policy rules
      *     @type \Google\Cloud\Compute\V1\SecurityPolicyRuleMatcher $match
@@ -70,6 +90,10 @@ class SecurityPolicyRule extends \Google\Protobuf\Internal\Message
      *           If set to true, the specified action is not enforced.
      *     @type int $priority
      *           An integer indicating the priority of a rule in the list. The priority must be a positive value between 0 and 2147483647. Rules are evaluated from highest to lowest priority where 0 is the highest priority and 2147483647 is the lowest priority.
+     *     @type \Google\Cloud\Compute\V1\SecurityPolicyRuleRateLimitOptions $rate_limit_options
+     *           Must be specified if the action is "rate_based_ban" or "throttle". Cannot be specified for any other actions.
+     *     @type \Google\Cloud\Compute\V1\SecurityPolicyRuleRedirectOptions $redirect_options
+     *           Parameters defining the redirect action. Cannot be specified for any other actions.
      * }
      */
     public function __construct($data = NULL) {
@@ -78,7 +102,7 @@ class SecurityPolicyRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Action to perform when the client connection triggers the rule. Can currently be either "allow" or "deny()" where valid values for status are 403, 404, and 502.
+     * The Action to perform when the rule is matched. The following are the valid actions: - allow: allow access to target. - deny(): deny access to target, returns the HTTP response code specified (valid values are 403, 404, and 502). - rate_based_ban: limit client traffic to the configured threshold and ban the client if the traffic exceeds the threshold. Configure parameters for this action in RateLimitOptions. Requires rate_limit_options to be set. - redirect: redirect to a different target. This can either be an internal reCAPTCHA redirect, or an external URL-based redirect via a 302 response. Parameters for this action can be configured via redirectOptions. - throttle: limit client traffic to the configured threshold. Configure parameters for this action in rateLimitOptions. Requires rate_limit_options to be set for this. 
      *
      * Generated from protobuf field <code>optional string action = 187661878;</code>
      * @return string
@@ -99,7 +123,7 @@ class SecurityPolicyRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Action to perform when the client connection triggers the rule. Can currently be either "allow" or "deny()" where valid values for status are 403, 404, and 502.
+     * The Action to perform when the rule is matched. The following are the valid actions: - allow: allow access to target. - deny(): deny access to target, returns the HTTP response code specified (valid values are 403, 404, and 502). - rate_based_ban: limit client traffic to the configured threshold and ban the client if the traffic exceeds the threshold. Configure parameters for this action in RateLimitOptions. Requires rate_limit_options to be set. - redirect: redirect to a different target. This can either be an internal reCAPTCHA redirect, or an external URL-based redirect via a 302 response. Parameters for this action can be configured via redirectOptions. - throttle: limit client traffic to the configured threshold. Configure parameters for this action in rateLimitOptions. Requires rate_limit_options to be set for this. 
      *
      * Generated from protobuf field <code>optional string action = 187661878;</code>
      * @param string $var
@@ -145,6 +169,42 @@ class SecurityPolicyRule extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->description = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional, additional actions that are performed on headers.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.SecurityPolicyRuleHttpHeaderAction header_action = 328077352;</code>
+     * @return \Google\Cloud\Compute\V1\SecurityPolicyRuleHttpHeaderAction|null
+     */
+    public function getHeaderAction()
+    {
+        return $this->header_action;
+    }
+
+    public function hasHeaderAction()
+    {
+        return isset($this->header_action);
+    }
+
+    public function clearHeaderAction()
+    {
+        unset($this->header_action);
+    }
+
+    /**
+     * Optional, additional actions that are performed on headers.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.SecurityPolicyRuleHttpHeaderAction header_action = 328077352;</code>
+     * @param \Google\Cloud\Compute\V1\SecurityPolicyRuleHttpHeaderAction $var
+     * @return $this
+     */
+    public function setHeaderAction($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\SecurityPolicyRuleHttpHeaderAction::class);
+        $this->header_action = $var;
 
         return $this;
     }
@@ -289,6 +349,78 @@ class SecurityPolicyRule extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->priority = $var;
+
+        return $this;
+    }
+
+    /**
+     * Must be specified if the action is "rate_based_ban" or "throttle". Cannot be specified for any other actions.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.SecurityPolicyRuleRateLimitOptions rate_limit_options = 67544315;</code>
+     * @return \Google\Cloud\Compute\V1\SecurityPolicyRuleRateLimitOptions|null
+     */
+    public function getRateLimitOptions()
+    {
+        return $this->rate_limit_options;
+    }
+
+    public function hasRateLimitOptions()
+    {
+        return isset($this->rate_limit_options);
+    }
+
+    public function clearRateLimitOptions()
+    {
+        unset($this->rate_limit_options);
+    }
+
+    /**
+     * Must be specified if the action is "rate_based_ban" or "throttle". Cannot be specified for any other actions.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.SecurityPolicyRuleRateLimitOptions rate_limit_options = 67544315;</code>
+     * @param \Google\Cloud\Compute\V1\SecurityPolicyRuleRateLimitOptions $var
+     * @return $this
+     */
+    public function setRateLimitOptions($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\SecurityPolicyRuleRateLimitOptions::class);
+        $this->rate_limit_options = $var;
+
+        return $this;
+    }
+
+    /**
+     * Parameters defining the redirect action. Cannot be specified for any other actions.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.SecurityPolicyRuleRedirectOptions redirect_options = 163285307;</code>
+     * @return \Google\Cloud\Compute\V1\SecurityPolicyRuleRedirectOptions|null
+     */
+    public function getRedirectOptions()
+    {
+        return $this->redirect_options;
+    }
+
+    public function hasRedirectOptions()
+    {
+        return isset($this->redirect_options);
+    }
+
+    public function clearRedirectOptions()
+    {
+        unset($this->redirect_options);
+    }
+
+    /**
+     * Parameters defining the redirect action. Cannot be specified for any other actions.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.SecurityPolicyRuleRedirectOptions redirect_options = 163285307;</code>
+     * @param \Google\Cloud\Compute\V1\SecurityPolicyRuleRedirectOptions $var
+     * @return $this
+     */
+    public function setRedirectOptions($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\SecurityPolicyRuleRedirectOptions::class);
+        $this->redirect_options = $var;
 
         return $this;
     }

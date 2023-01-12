@@ -79,7 +79,7 @@ class OSPolicy extends \Google\Protobuf\Internal\Message
      *           Length of the description is limited to 1024 characters.
      *     @type int $mode
      *           Required. Policy mode
-     *     @type \Google\Cloud\OsConfig\V1\OSPolicy\ResourceGroup[]|\Google\Protobuf\Internal\RepeatedField $resource_groups
+     *     @type array<\Google\Cloud\OsConfig\V1\OSPolicy\ResourceGroup>|\Google\Protobuf\Internal\RepeatedField $resource_groups
      *           Required. List of resource groups for the policy.
      *           For a particular VM, resource groups are evaluated in the order specified
      *           and the first resource group that is applicable is selected and the rest
@@ -216,7 +216,7 @@ class OSPolicy extends \Google\Protobuf\Internal\Message
      * toggled by the flag `allow_no_resource_group_match`
      *
      * Generated from protobuf field <code>repeated .google.cloud.osconfig.v1.OSPolicy.ResourceGroup resource_groups = 4 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param \Google\Cloud\OsConfig\V1\OSPolicy\ResourceGroup[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\OsConfig\V1\OSPolicy\ResourceGroup>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setResourceGroups($var)

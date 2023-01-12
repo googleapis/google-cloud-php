@@ -35,7 +35,7 @@ class ListDatasetsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\AutoMl\V1\Dataset[]|\Google\Protobuf\Internal\RepeatedField $datasets
+     *     @type array<\Google\Cloud\AutoMl\V1\Dataset>|\Google\Protobuf\Internal\RepeatedField $datasets
      *           The datasets read.
      *     @type string $next_page_token
      *           A token to retrieve next page of results.
@@ -62,7 +62,7 @@ class ListDatasetsResponse extends \Google\Protobuf\Internal\Message
      * The datasets read.
      *
      * Generated from protobuf field <code>repeated .google.cloud.automl.v1.Dataset datasets = 1;</code>
-     * @param \Google\Cloud\AutoMl\V1\Dataset[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AutoMl\V1\Dataset>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDatasets($var)

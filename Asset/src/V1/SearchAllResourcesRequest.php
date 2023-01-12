@@ -49,7 +49,19 @@ class SearchAllResourcesRequest extends \Google\Protobuf\Internal\Message
      *   and its value is "prod".
      * * `labels.env:*` to find Cloud resources that have a label "env".
      * * `kmsKey:key` to find Cloud resources encrypted with a customer-managed
-     *   encryption key whose name contains the word "key".
+     *   encryption key whose name contains "key" as a word. This field is
+     *   deprecated. Please use the `kmsKeys` field to retrieve KMS key
+     *   information.
+     * * `kmsKeys:key` to find Cloud resources encrypted with customer-managed
+     *   encryption keys whose name contains the word "key".
+     * * `relationships:instance-group-1` to find Cloud resources that have
+     *   relationships with "instance-group-1" in the related resource name.
+     * * `relationships:INSTANCE_TO_INSTANCEGROUP` to find compute instances that
+     *   have relationships of type "INSTANCE_TO_INSTANCEGROUP".
+     * * `relationships.INSTANCE_TO_INSTANCEGROUP:instance-group-1` to find
+     *   compute instances that have relationships with "instance-group-1" in the
+     *   compute instance group resource name, for relationship type
+     *   "INSTANCE_TO_INSTANCEGROUP".
      * * `state:ACTIVE` to find Cloud resources whose state contains "ACTIVE" as a
      *   word.
      * * `NOT state:ACTIVE` to find Cloud resources whose state doesn't contain
@@ -118,15 +130,14 @@ class SearchAllResourcesRequest extends \Google\Protobuf\Internal\Message
      *   * displayName
      *   * description
      *   * location
-     *   * kmsKey
      *   * createTime
      *   * updateTime
      *   * state
      *   * parentFullResourceName
      *   * parentAssetType
-     * All the other fields such as repeated fields (e.g., `networkTags`), map
-     * fields (e.g., `labels`) and struct fields (e.g., `additionalAttributes`)
-     * are not supported.
+     * All the other fields such as repeated fields (e.g., `networkTags`,
+     * `kmsKeys`), map fields (e.g., `labels`) and struct fields (e.g.,
+     * `additionalAttributes`) are not supported.
      *
      * Generated from protobuf field <code>string order_by = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -144,9 +155,14 @@ class SearchAllResourcesRequest extends \Google\Protobuf\Internal\Message
      *   * displayName
      *   * description
      *   * location
+     *   * tagKeys
+     *   * tagValues
+     *   * tagValueIds
      *   * labels
      *   * networkTags
-     *   * kmsKey
+     *   * kmsKey (This field is deprecated. Please use the `kmsKeys` field to
+     *     retrieve KMS key information.)
+     *   * kmsKeys
      *   * createTime
      *   * updateTime
      *   * state
@@ -198,7 +214,19 @@ class SearchAllResourcesRequest extends \Google\Protobuf\Internal\Message
      *             and its value is "prod".
      *           * `labels.env:*` to find Cloud resources that have a label "env".
      *           * `kmsKey:key` to find Cloud resources encrypted with a customer-managed
-     *             encryption key whose name contains the word "key".
+     *             encryption key whose name contains "key" as a word. This field is
+     *             deprecated. Please use the `kmsKeys` field to retrieve KMS key
+     *             information.
+     *           * `kmsKeys:key` to find Cloud resources encrypted with customer-managed
+     *             encryption keys whose name contains the word "key".
+     *           * `relationships:instance-group-1` to find Cloud resources that have
+     *             relationships with "instance-group-1" in the related resource name.
+     *           * `relationships:INSTANCE_TO_INSTANCEGROUP` to find compute instances that
+     *             have relationships of type "INSTANCE_TO_INSTANCEGROUP".
+     *           * `relationships.INSTANCE_TO_INSTANCEGROUP:instance-group-1` to find
+     *             compute instances that have relationships with "instance-group-1" in the
+     *             compute instance group resource name, for relationship type
+     *             "INSTANCE_TO_INSTANCEGROUP".
      *           * `state:ACTIVE` to find Cloud resources whose state contains "ACTIVE" as a
      *             word.
      *           * `NOT state:ACTIVE` to find Cloud resources whose state doesn't contain
@@ -217,7 +245,7 @@ class SearchAllResourcesRequest extends \Google\Protobuf\Internal\Message
      *             resources that contain "Important" as a word in any of the searchable
      *             fields and are also located in the "us-west1" region or the "global"
      *             location.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $asset_types
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $asset_types
      *           Optional. A list of asset types that this request searches for. If empty, it will
      *           search all the [searchable asset
      *           types](https://cloud.google.com/asset-inventory/docs/supported-asset-types#searchable_asset_types).
@@ -251,15 +279,14 @@ class SearchAllResourcesRequest extends \Google\Protobuf\Internal\Message
      *             * displayName
      *             * description
      *             * location
-     *             * kmsKey
      *             * createTime
      *             * updateTime
      *             * state
      *             * parentFullResourceName
      *             * parentAssetType
-     *           All the other fields such as repeated fields (e.g., `networkTags`), map
-     *           fields (e.g., `labels`) and struct fields (e.g., `additionalAttributes`)
-     *           are not supported.
+     *           All the other fields such as repeated fields (e.g., `networkTags`,
+     *           `kmsKeys`), map fields (e.g., `labels`) and struct fields (e.g.,
+     *           `additionalAttributes`) are not supported.
      *     @type \Google\Protobuf\FieldMask $read_mask
      *           Optional. A comma-separated list of fields specifying which fields to be returned in
      *           ResourceSearchResult. Only '*' or combination of top level fields can be
@@ -273,9 +300,14 @@ class SearchAllResourcesRequest extends \Google\Protobuf\Internal\Message
      *             * displayName
      *             * description
      *             * location
+     *             * tagKeys
+     *             * tagValues
+     *             * tagValueIds
      *             * labels
      *             * networkTags
-     *             * kmsKey
+     *             * kmsKey (This field is deprecated. Please use the `kmsKeys` field to
+     *               retrieve KMS key information.)
+     *             * kmsKeys
      *             * createTime
      *             * updateTime
      *             * state
@@ -355,7 +387,19 @@ class SearchAllResourcesRequest extends \Google\Protobuf\Internal\Message
      *   and its value is "prod".
      * * `labels.env:*` to find Cloud resources that have a label "env".
      * * `kmsKey:key` to find Cloud resources encrypted with a customer-managed
-     *   encryption key whose name contains the word "key".
+     *   encryption key whose name contains "key" as a word. This field is
+     *   deprecated. Please use the `kmsKeys` field to retrieve KMS key
+     *   information.
+     * * `kmsKeys:key` to find Cloud resources encrypted with customer-managed
+     *   encryption keys whose name contains the word "key".
+     * * `relationships:instance-group-1` to find Cloud resources that have
+     *   relationships with "instance-group-1" in the related resource name.
+     * * `relationships:INSTANCE_TO_INSTANCEGROUP` to find compute instances that
+     *   have relationships of type "INSTANCE_TO_INSTANCEGROUP".
+     * * `relationships.INSTANCE_TO_INSTANCEGROUP:instance-group-1` to find
+     *   compute instances that have relationships with "instance-group-1" in the
+     *   compute instance group resource name, for relationship type
+     *   "INSTANCE_TO_INSTANCEGROUP".
      * * `state:ACTIVE` to find Cloud resources whose state contains "ACTIVE" as a
      *   word.
      * * `NOT state:ACTIVE` to find Cloud resources whose state doesn't contain
@@ -403,7 +447,19 @@ class SearchAllResourcesRequest extends \Google\Protobuf\Internal\Message
      *   and its value is "prod".
      * * `labels.env:*` to find Cloud resources that have a label "env".
      * * `kmsKey:key` to find Cloud resources encrypted with a customer-managed
-     *   encryption key whose name contains the word "key".
+     *   encryption key whose name contains "key" as a word. This field is
+     *   deprecated. Please use the `kmsKeys` field to retrieve KMS key
+     *   information.
+     * * `kmsKeys:key` to find Cloud resources encrypted with customer-managed
+     *   encryption keys whose name contains the word "key".
+     * * `relationships:instance-group-1` to find Cloud resources that have
+     *   relationships with "instance-group-1" in the related resource name.
+     * * `relationships:INSTANCE_TO_INSTANCEGROUP` to find compute instances that
+     *   have relationships of type "INSTANCE_TO_INSTANCEGROUP".
+     * * `relationships.INSTANCE_TO_INSTANCEGROUP:instance-group-1` to find
+     *   compute instances that have relationships with "instance-group-1" in the
+     *   compute instance group resource name, for relationship type
+     *   "INSTANCE_TO_INSTANCEGROUP".
      * * `state:ACTIVE` to find Cloud resources whose state contains "ACTIVE" as a
      *   word.
      * * `NOT state:ACTIVE` to find Cloud resources whose state doesn't contain
@@ -470,7 +526,7 @@ class SearchAllResourcesRequest extends \Google\Protobuf\Internal\Message
      * supported asset type, an INVALID_ARGUMENT error will be returned.
      *
      * Generated from protobuf field <code>repeated string asset_types = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAssetTypes($var)
@@ -557,15 +613,14 @@ class SearchAllResourcesRequest extends \Google\Protobuf\Internal\Message
      *   * displayName
      *   * description
      *   * location
-     *   * kmsKey
      *   * createTime
      *   * updateTime
      *   * state
      *   * parentFullResourceName
      *   * parentAssetType
-     * All the other fields such as repeated fields (e.g., `networkTags`), map
-     * fields (e.g., `labels`) and struct fields (e.g., `additionalAttributes`)
-     * are not supported.
+     * All the other fields such as repeated fields (e.g., `networkTags`,
+     * `kmsKeys`), map fields (e.g., `labels`) and struct fields (e.g.,
+     * `additionalAttributes`) are not supported.
      *
      * Generated from protobuf field <code>string order_by = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -587,15 +642,14 @@ class SearchAllResourcesRequest extends \Google\Protobuf\Internal\Message
      *   * displayName
      *   * description
      *   * location
-     *   * kmsKey
      *   * createTime
      *   * updateTime
      *   * state
      *   * parentFullResourceName
      *   * parentAssetType
-     * All the other fields such as repeated fields (e.g., `networkTags`), map
-     * fields (e.g., `labels`) and struct fields (e.g., `additionalAttributes`)
-     * are not supported.
+     * All the other fields such as repeated fields (e.g., `networkTags`,
+     * `kmsKeys`), map fields (e.g., `labels`) and struct fields (e.g.,
+     * `additionalAttributes`) are not supported.
      *
      * Generated from protobuf field <code>string order_by = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -622,9 +676,14 @@ class SearchAllResourcesRequest extends \Google\Protobuf\Internal\Message
      *   * displayName
      *   * description
      *   * location
+     *   * tagKeys
+     *   * tagValues
+     *   * tagValueIds
      *   * labels
      *   * networkTags
-     *   * kmsKey
+     *   * kmsKey (This field is deprecated. Please use the `kmsKeys` field to
+     *     retrieve KMS key information.)
+     *   * kmsKeys
      *   * createTime
      *   * updateTime
      *   * state
@@ -667,9 +726,14 @@ class SearchAllResourcesRequest extends \Google\Protobuf\Internal\Message
      *   * displayName
      *   * description
      *   * location
+     *   * tagKeys
+     *   * tagValues
+     *   * tagValueIds
      *   * labels
      *   * networkTags
-     *   * kmsKey
+     *   * kmsKey (This field is deprecated. Please use the `kmsKeys` field to
+     *     retrieve KMS key information.)
+     *   * kmsKeys
      *   * createTime
      *   * updateTime
      *   * state

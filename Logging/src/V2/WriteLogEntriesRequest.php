@@ -130,7 +130,7 @@ class WriteLogEntriesRequest extends \Google\Protobuf\Internal\Message
      *           entries in `entries`. If a log entry already has a label with the same key
      *           as a label in this parameter, then the log entry's label is not changed.
      *           See [LogEntry][google.logging.v2.LogEntry].
-     *     @type \Google\Cloud\Logging\V2\LogEntry[]|\Google\Protobuf\Internal\RepeatedField $entries
+     *     @type array<\Google\Cloud\Logging\V2\LogEntry>|\Google\Protobuf\Internal\RepeatedField $entries
      *           Required. The log entries to send to Logging. The order of log
      *           entries in this list does not matter. Values supplied in this method's
      *           `log_name`, `resource`, and `labels` fields are copied into those log
@@ -352,7 +352,7 @@ class WriteLogEntriesRequest extends \Google\Protobuf\Internal\Message
      * list, rather than calling this method for each individual log entry.
      *
      * Generated from protobuf field <code>repeated .google.logging.v2.LogEntry entries = 4 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param \Google\Cloud\Logging\V2\LogEntry[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Logging\V2\LogEntry>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setEntries($var)

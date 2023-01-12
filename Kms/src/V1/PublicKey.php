@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The public key for a given [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]. Obtained via
+ * The public key for a given
+ * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]. Obtained via
  * [GetPublicKey][google.cloud.kms.v1.KeyManagementService.GetPublicKey].
  *
  * Generated from protobuf message <code>google.cloud.kms.v1.PublicKey</code>
@@ -27,20 +28,22 @@ class PublicKey extends \Google\Protobuf\Internal\Message
      */
     private $pem = '';
     /**
-     * The [Algorithm][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm] associated
-     * with this key.
+     * The
+     * [Algorithm][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm]
+     * associated with this key.
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm algorithm = 2;</code>
      */
     private $algorithm = 0;
     /**
      * Integrity verification field. A CRC32C checksum of the returned
-     * [PublicKey.pem][google.cloud.kms.v1.PublicKey.pem]. An integrity check of [PublicKey.pem][google.cloud.kms.v1.PublicKey.pem] can be performed
-     * by computing the CRC32C checksum of [PublicKey.pem][google.cloud.kms.v1.PublicKey.pem] and
-     * comparing your results to this field. Discard the response in case of
-     * non-matching checksum values, and perform a limited number of retries. A
-     * persistent mismatch may indicate an issue in your computation of the CRC32C
-     * checksum.
+     * [PublicKey.pem][google.cloud.kms.v1.PublicKey.pem]. An integrity check of
+     * [PublicKey.pem][google.cloud.kms.v1.PublicKey.pem] can be performed by
+     * computing the CRC32C checksum of
+     * [PublicKey.pem][google.cloud.kms.v1.PublicKey.pem] and comparing your
+     * results to this field. Discard the response in case of non-matching
+     * checksum values, and perform a limited number of retries. A persistent
+     * mismatch may indicate an issue in your computation of the CRC32C checksum.
      * Note: This field is defined as int64 for reasons of compatibility across
      * different languages. However, it is a non-negative integer, which will
      * never exceed 2^32-1, and can be safely downconverted to uint32 in languages
@@ -51,7 +54,8 @@ class PublicKey extends \Google\Protobuf\Internal\Message
      */
     private $pem_crc32c = null;
     /**
-     * The [name][google.cloud.kms.v1.CryptoKeyVersion.name] of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] public key.
+     * The [name][google.cloud.kms.v1.CryptoKeyVersion.name] of the
+     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] public key.
      * Provided here for verification.
      * NOTE: This field is in Beta.
      *
@@ -59,7 +63,8 @@ class PublicKey extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * The [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] public key.
+     * The [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] of the
+     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] public key.
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.ProtectionLevel protection_level = 5;</code>
      */
@@ -78,27 +83,31 @@ class PublicKey extends \Google\Protobuf\Internal\Message
      *           [Textual Encoding of Subject Public Key Info]
      *           (https://tools.ietf.org/html/rfc7468#section-13).
      *     @type int $algorithm
-     *           The [Algorithm][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm] associated
-     *           with this key.
+     *           The
+     *           [Algorithm][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm]
+     *           associated with this key.
      *     @type \Google\Protobuf\Int64Value $pem_crc32c
      *           Integrity verification field. A CRC32C checksum of the returned
-     *           [PublicKey.pem][google.cloud.kms.v1.PublicKey.pem]. An integrity check of [PublicKey.pem][google.cloud.kms.v1.PublicKey.pem] can be performed
-     *           by computing the CRC32C checksum of [PublicKey.pem][google.cloud.kms.v1.PublicKey.pem] and
-     *           comparing your results to this field. Discard the response in case of
-     *           non-matching checksum values, and perform a limited number of retries. A
-     *           persistent mismatch may indicate an issue in your computation of the CRC32C
-     *           checksum.
+     *           [PublicKey.pem][google.cloud.kms.v1.PublicKey.pem]. An integrity check of
+     *           [PublicKey.pem][google.cloud.kms.v1.PublicKey.pem] can be performed by
+     *           computing the CRC32C checksum of
+     *           [PublicKey.pem][google.cloud.kms.v1.PublicKey.pem] and comparing your
+     *           results to this field. Discard the response in case of non-matching
+     *           checksum values, and perform a limited number of retries. A persistent
+     *           mismatch may indicate an issue in your computation of the CRC32C checksum.
      *           Note: This field is defined as int64 for reasons of compatibility across
      *           different languages. However, it is a non-negative integer, which will
      *           never exceed 2^32-1, and can be safely downconverted to uint32 in languages
      *           that support this type.
      *           NOTE: This field is in Beta.
      *     @type string $name
-     *           The [name][google.cloud.kms.v1.CryptoKeyVersion.name] of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] public key.
+     *           The [name][google.cloud.kms.v1.CryptoKeyVersion.name] of the
+     *           [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] public key.
      *           Provided here for verification.
      *           NOTE: This field is in Beta.
      *     @type int $protection_level
-     *           The [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] public key.
+     *           The [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] of the
+     *           [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] public key.
      * }
      */
     public function __construct($data = NULL) {
@@ -141,8 +150,9 @@ class PublicKey extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The [Algorithm][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm] associated
-     * with this key.
+     * The
+     * [Algorithm][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm]
+     * associated with this key.
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm algorithm = 2;</code>
      * @return int
@@ -153,8 +163,9 @@ class PublicKey extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The [Algorithm][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm] associated
-     * with this key.
+     * The
+     * [Algorithm][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm]
+     * associated with this key.
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm algorithm = 2;</code>
      * @param int $var
@@ -170,12 +181,13 @@ class PublicKey extends \Google\Protobuf\Internal\Message
 
     /**
      * Integrity verification field. A CRC32C checksum of the returned
-     * [PublicKey.pem][google.cloud.kms.v1.PublicKey.pem]. An integrity check of [PublicKey.pem][google.cloud.kms.v1.PublicKey.pem] can be performed
-     * by computing the CRC32C checksum of [PublicKey.pem][google.cloud.kms.v1.PublicKey.pem] and
-     * comparing your results to this field. Discard the response in case of
-     * non-matching checksum values, and perform a limited number of retries. A
-     * persistent mismatch may indicate an issue in your computation of the CRC32C
-     * checksum.
+     * [PublicKey.pem][google.cloud.kms.v1.PublicKey.pem]. An integrity check of
+     * [PublicKey.pem][google.cloud.kms.v1.PublicKey.pem] can be performed by
+     * computing the CRC32C checksum of
+     * [PublicKey.pem][google.cloud.kms.v1.PublicKey.pem] and comparing your
+     * results to this field. Discard the response in case of non-matching
+     * checksum values, and perform a limited number of retries. A persistent
+     * mismatch may indicate an issue in your computation of the CRC32C checksum.
      * Note: This field is defined as int64 for reasons of compatibility across
      * different languages. However, it is a non-negative integer, which will
      * never exceed 2^32-1, and can be safely downconverted to uint32 in languages
@@ -204,12 +216,13 @@ class PublicKey extends \Google\Protobuf\Internal\Message
      * Returns the unboxed value from <code>getPemCrc32C()</code>
 
      * Integrity verification field. A CRC32C checksum of the returned
-     * [PublicKey.pem][google.cloud.kms.v1.PublicKey.pem]. An integrity check of [PublicKey.pem][google.cloud.kms.v1.PublicKey.pem] can be performed
-     * by computing the CRC32C checksum of [PublicKey.pem][google.cloud.kms.v1.PublicKey.pem] and
-     * comparing your results to this field. Discard the response in case of
-     * non-matching checksum values, and perform a limited number of retries. A
-     * persistent mismatch may indicate an issue in your computation of the CRC32C
-     * checksum.
+     * [PublicKey.pem][google.cloud.kms.v1.PublicKey.pem]. An integrity check of
+     * [PublicKey.pem][google.cloud.kms.v1.PublicKey.pem] can be performed by
+     * computing the CRC32C checksum of
+     * [PublicKey.pem][google.cloud.kms.v1.PublicKey.pem] and comparing your
+     * results to this field. Discard the response in case of non-matching
+     * checksum values, and perform a limited number of retries. A persistent
+     * mismatch may indicate an issue in your computation of the CRC32C checksum.
      * Note: This field is defined as int64 for reasons of compatibility across
      * different languages. However, it is a non-negative integer, which will
      * never exceed 2^32-1, and can be safely downconverted to uint32 in languages
@@ -226,12 +239,13 @@ class PublicKey extends \Google\Protobuf\Internal\Message
 
     /**
      * Integrity verification field. A CRC32C checksum of the returned
-     * [PublicKey.pem][google.cloud.kms.v1.PublicKey.pem]. An integrity check of [PublicKey.pem][google.cloud.kms.v1.PublicKey.pem] can be performed
-     * by computing the CRC32C checksum of [PublicKey.pem][google.cloud.kms.v1.PublicKey.pem] and
-     * comparing your results to this field. Discard the response in case of
-     * non-matching checksum values, and perform a limited number of retries. A
-     * persistent mismatch may indicate an issue in your computation of the CRC32C
-     * checksum.
+     * [PublicKey.pem][google.cloud.kms.v1.PublicKey.pem]. An integrity check of
+     * [PublicKey.pem][google.cloud.kms.v1.PublicKey.pem] can be performed by
+     * computing the CRC32C checksum of
+     * [PublicKey.pem][google.cloud.kms.v1.PublicKey.pem] and comparing your
+     * results to this field. Discard the response in case of non-matching
+     * checksum values, and perform a limited number of retries. A persistent
+     * mismatch may indicate an issue in your computation of the CRC32C checksum.
      * Note: This field is defined as int64 for reasons of compatibility across
      * different languages. However, it is a non-negative integer, which will
      * never exceed 2^32-1, and can be safely downconverted to uint32 in languages
@@ -254,12 +268,13 @@ class PublicKey extends \Google\Protobuf\Internal\Message
      * Sets the field by wrapping a primitive type in a Google\Protobuf\Int64Value object.
 
      * Integrity verification field. A CRC32C checksum of the returned
-     * [PublicKey.pem][google.cloud.kms.v1.PublicKey.pem]. An integrity check of [PublicKey.pem][google.cloud.kms.v1.PublicKey.pem] can be performed
-     * by computing the CRC32C checksum of [PublicKey.pem][google.cloud.kms.v1.PublicKey.pem] and
-     * comparing your results to this field. Discard the response in case of
-     * non-matching checksum values, and perform a limited number of retries. A
-     * persistent mismatch may indicate an issue in your computation of the CRC32C
-     * checksum.
+     * [PublicKey.pem][google.cloud.kms.v1.PublicKey.pem]. An integrity check of
+     * [PublicKey.pem][google.cloud.kms.v1.PublicKey.pem] can be performed by
+     * computing the CRC32C checksum of
+     * [PublicKey.pem][google.cloud.kms.v1.PublicKey.pem] and comparing your
+     * results to this field. Discard the response in case of non-matching
+     * checksum values, and perform a limited number of retries. A persistent
+     * mismatch may indicate an issue in your computation of the CRC32C checksum.
      * Note: This field is defined as int64 for reasons of compatibility across
      * different languages. However, it is a non-negative integer, which will
      * never exceed 2^32-1, and can be safely downconverted to uint32 in languages
@@ -276,7 +291,8 @@ class PublicKey extends \Google\Protobuf\Internal\Message
         return $this;}
 
     /**
-     * The [name][google.cloud.kms.v1.CryptoKeyVersion.name] of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] public key.
+     * The [name][google.cloud.kms.v1.CryptoKeyVersion.name] of the
+     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] public key.
      * Provided here for verification.
      * NOTE: This field is in Beta.
      *
@@ -289,7 +305,8 @@ class PublicKey extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The [name][google.cloud.kms.v1.CryptoKeyVersion.name] of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] public key.
+     * The [name][google.cloud.kms.v1.CryptoKeyVersion.name] of the
+     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] public key.
      * Provided here for verification.
      * NOTE: This field is in Beta.
      *
@@ -306,7 +323,8 @@ class PublicKey extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] public key.
+     * The [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] of the
+     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] public key.
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.ProtectionLevel protection_level = 5;</code>
      * @return int
@@ -317,7 +335,8 @@ class PublicKey extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] public key.
+     * The [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] of the
+     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] public key.
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.ProtectionLevel protection_level = 5;</code>
      * @param int $var

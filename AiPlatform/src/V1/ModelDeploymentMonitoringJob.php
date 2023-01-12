@@ -56,6 +56,12 @@ class ModelDeploymentMonitoringJob extends \Google\Protobuf\Internal\Message
      */
     private $schedule_state = 0;
     /**
+     * Output only. Latest triggered monitoring pipeline metadata.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ModelDeploymentMonitoringJob.LatestMonitoringPipelineMetadata latest_monitoring_pipeline_metadata = 25 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $latest_monitoring_pipeline_metadata = null;
+    /**
      * Required. The config for monitoring objectives. This is a per DeployedModel config.
      * Each DeployedModel needs to be configured separately.
      *
@@ -216,7 +222,9 @@ class ModelDeploymentMonitoringJob extends \Google\Protobuf\Internal\Message
      *           Resume the job, the state will return to 'RUNNING'.
      *     @type int $schedule_state
      *           Output only. Schedule state when the monitoring job is in Running state.
-     *     @type \Google\Cloud\AIPlatform\V1\ModelDeploymentMonitoringObjectiveConfig[]|\Google\Protobuf\Internal\RepeatedField $model_deployment_monitoring_objective_configs
+     *     @type \Google\Cloud\AIPlatform\V1\ModelDeploymentMonitoringJob\LatestMonitoringPipelineMetadata $latest_monitoring_pipeline_metadata
+     *           Output only. Latest triggered monitoring pipeline metadata.
+     *     @type array<\Google\Cloud\AIPlatform\V1\ModelDeploymentMonitoringObjectiveConfig>|\Google\Protobuf\Internal\RepeatedField $model_deployment_monitoring_objective_configs
      *           Required. The config for monitoring objectives. This is a per DeployedModel config.
      *           Each DeployedModel needs to be configured separately.
      *     @type \Google\Cloud\AIPlatform\V1\ModelDeploymentMonitoringScheduleConfig $model_deployment_monitoring_schedule_config
@@ -246,7 +254,7 @@ class ModelDeploymentMonitoringJob extends \Google\Protobuf\Internal\Message
      *           instance, this field can be used to override the schema.
      *           For models trained with Vertex AI, this field must be set as all the
      *           fields in predict instance formatted as string.
-     *     @type \Google\Cloud\AIPlatform\V1\ModelDeploymentMonitoringBigQueryTable[]|\Google\Protobuf\Internal\RepeatedField $bigquery_tables
+     *     @type array<\Google\Cloud\AIPlatform\V1\ModelDeploymentMonitoringBigQueryTable>|\Google\Protobuf\Internal\RepeatedField $bigquery_tables
      *           Output only. The created bigquery tables for the job under customer project. Customer
      *           could do their own query & analysis. There could be 4 log tables in
      *           maximum:
@@ -438,6 +446,42 @@ class ModelDeploymentMonitoringJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Output only. Latest triggered monitoring pipeline metadata.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ModelDeploymentMonitoringJob.LatestMonitoringPipelineMetadata latest_monitoring_pipeline_metadata = 25 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\AIPlatform\V1\ModelDeploymentMonitoringJob\LatestMonitoringPipelineMetadata|null
+     */
+    public function getLatestMonitoringPipelineMetadata()
+    {
+        return $this->latest_monitoring_pipeline_metadata;
+    }
+
+    public function hasLatestMonitoringPipelineMetadata()
+    {
+        return isset($this->latest_monitoring_pipeline_metadata);
+    }
+
+    public function clearLatestMonitoringPipelineMetadata()
+    {
+        unset($this->latest_monitoring_pipeline_metadata);
+    }
+
+    /**
+     * Output only. Latest triggered monitoring pipeline metadata.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ModelDeploymentMonitoringJob.LatestMonitoringPipelineMetadata latest_monitoring_pipeline_metadata = 25 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\AIPlatform\V1\ModelDeploymentMonitoringJob\LatestMonitoringPipelineMetadata $var
+     * @return $this
+     */
+    public function setLatestMonitoringPipelineMetadata($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\ModelDeploymentMonitoringJob\LatestMonitoringPipelineMetadata::class);
+        $this->latest_monitoring_pipeline_metadata = $var;
+
+        return $this;
+    }
+
+    /**
      * Required. The config for monitoring objectives. This is a per DeployedModel config.
      * Each DeployedModel needs to be configured separately.
      *
@@ -454,7 +498,7 @@ class ModelDeploymentMonitoringJob extends \Google\Protobuf\Internal\Message
      * Each DeployedModel needs to be configured separately.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.ModelDeploymentMonitoringObjectiveConfig model_deployment_monitoring_objective_configs = 6 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param \Google\Cloud\AIPlatform\V1\ModelDeploymentMonitoringObjectiveConfig[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AIPlatform\V1\ModelDeploymentMonitoringObjectiveConfig>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setModelDeploymentMonitoringObjectiveConfigs($var)
@@ -714,7 +758,7 @@ class ModelDeploymentMonitoringJob extends \Google\Protobuf\Internal\Message
      * 2. Serving data logging predict request/response
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.ModelDeploymentMonitoringBigQueryTable bigquery_tables = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param \Google\Cloud\AIPlatform\V1\ModelDeploymentMonitoringBigQueryTable[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AIPlatform\V1\ModelDeploymentMonitoringBigQueryTable>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setBigqueryTables($var)

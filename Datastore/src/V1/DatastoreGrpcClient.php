@@ -2,7 +2,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 // Original file comments:
-// Copyright 2019 Google LLC.
+// Copyright 2022 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -65,6 +65,21 @@ class DatastoreGrpcClient extends \Grpc\BaseStub {
         return $this->_simpleRequest('/google.datastore.v1.Datastore/RunQuery',
         $argument,
         ['\Google\Cloud\Datastore\V1\RunQueryResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Runs an aggregation query.
+     * @param \Google\Cloud\Datastore\V1\RunAggregationQueryRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function RunAggregationQuery(\Google\Cloud\Datastore\V1\RunAggregationQueryRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.datastore.v1.Datastore/RunAggregationQuery',
+        $argument,
+        ['\Google\Cloud\Datastore\V1\RunAggregationQueryResponse', 'decode'],
         $metadata, $options);
     }
 

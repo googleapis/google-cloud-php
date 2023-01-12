@@ -30,6 +30,7 @@ use Google\ApiCore\GapicClientTrait;
 
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
+
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
@@ -38,17 +39,18 @@ use Google\Cloud\Retail\V2\SearchRequest;
 use Google\Cloud\Retail\V2\SearchRequest\BoostSpec;
 use Google\Cloud\Retail\V2\SearchRequest\DynamicFacetSpec;
 use Google\Cloud\Retail\V2\SearchRequest\FacetSpec;
+use Google\Cloud\Retail\V2\SearchRequest\PersonalizationSpec;
 use Google\Cloud\Retail\V2\SearchRequest\QueryExpansionSpec;
-use Google\Cloud\Retail\V2\SearchResponse;
 
+use Google\Cloud\Retail\V2\SearchRequest\SpellCorrectionSpec;
+use Google\Cloud\Retail\V2\SearchResponse;
 use Google\Cloud\Retail\V2\UserInfo;
 
 /**
  * Service Description: Service for search.
  *
  * This feature is only available for users who have Retail Search enabled.
- * Please submit a form [here](https://cloud.google.com/contact) to contact
- * cloud sales if you are interested in using Retail Search.
+ * Please enable Retail Search on Cloud Console before using this feature.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
@@ -296,8 +298,7 @@ class SearchServiceGapicClient
      * Performs a search.
      *
      * This feature is only available for users who have Retail Search enabled.
-     * Please submit a form [here](https://cloud.google.com/contact) to contact
-     * cloud sales if you are interested in using Retail Search.
+     * Please enable Retail Search on Cloud Console before using this feature.
      *
      * Sample code:
      * ```
@@ -323,7 +324,9 @@ class SearchServiceGapicClient
      * }
      * ```
      *
-     * @param string $placement    Required. The resource name of the search engine placement, such as
+     * @param string $placement    Required. The resource name of the Retail Search serving config, such as
+     *                             `projects/&#42;/locations/global/catalogs/default_catalog/servingConfigs/default_serving_config`
+     *                             or the name of the legacy placement resource, such as
      *                             `projects/&#42;/locations/global/catalogs/default_catalog/placements/default_search`.
      *                             This field is used to identify the serving configuration name and the set
      *                             of models that will be used to make the search.
@@ -331,6 +334,9 @@ class SearchServiceGapicClient
      *                             could be implemented with an HTTP cookie, which should be able to uniquely
      *                             identify a visitor on a single device. This unique identifier should not
      *                             change if the visitor logs in or out of the website.
+     *
+     *                             This should be the same identifier as
+     *                             [UserEvent.visitor_id][google.cloud.retail.v2.UserEvent.visitor_id].
      *
      *                             The field must be a UTF-8 encoded string with a length limit of 128
      *                             characters. Otherwise, an INVALID_ARGUMENT error is returned.
@@ -345,6 +351,11 @@ class SearchServiceGapicClient
      *           products under the default branch.
      *     @type string $query
      *           Raw search query.
+     *
+     *           If this field is empty, the request is considered a category browsing
+     *           request and returned results are based on
+     *           [filter][google.cloud.retail.v2.SearchRequest.filter] and
+     *           [page_categories][google.cloud.retail.v2.SearchRequest.page_categories].
      *     @type UserInfo $userInfo
      *           User information.
      *     @type int $pageSize
@@ -372,6 +383,9 @@ class SearchServiceGapicClient
      *
      *           If this field is unrecognizable, an INVALID_ARGUMENT is returned.
      *     @type string $canonicalFilter
+     *           The default filter that is applied when a user performs a search without
+     *           checking any filters on the search page.
+     *
      *           The filter applied to every search request when quality improvement such as
      *           query expansion is needed. For example, if a query does not have enough
      *           results, an expanded query with
@@ -395,20 +409,22 @@ class SearchServiceGapicClient
      *           A maximum of 100 values are allowed. Otherwise, an INVALID_ARGUMENT error
      *           is returned.
      *     @type DynamicFacetSpec $dynamicFacetSpec
+     *           Deprecated. Refer to https://cloud.google.com/retail/docs/configs#dynamic
+     *           to enable dynamic facets. Do not set this field.
+     *
      *           The specification for dynamically generated facets. Notice that only
      *           textual facets can be dynamically generated.
-     *
-     *           This feature requires additional allowlisting. Contact Retail Search
-     *           support team if you are interested in using dynamic facet feature.
      *     @type BoostSpec $boostSpec
      *           Boost specification to boost certain products. See more details at this
      *           [user guide](https://cloud.google.com/retail/docs/boosting).
      *
-     *           Notice that if both [ServingConfig.boost_control_ids][] and
-     *           [SearchRequest.boost_spec] are set, the boost conditions from both places
-     *           are evaluated. If a search request matches multiple boost conditions,
-     *           the final boost score is equal to the sum of the boost scores from all
-     *           matched boost conditions.
+     *           Notice that if both
+     *           [ServingConfig.boost_control_ids][google.cloud.retail.v2.ServingConfig.boost_control_ids]
+     *           and
+     *           [SearchRequest.boost_spec][google.cloud.retail.v2.SearchRequest.boost_spec]
+     *           are set, the boost conditions from both places are evaluated. If a search
+     *           request matches multiple boost conditions, the final boost score is equal
+     *           to the sum of the boost scores from all matched boost conditions.
      *     @type QueryExpansionSpec $queryExpansionSpec
      *           The query expansion specification that specifies the conditions under which
      *           query expansion will occur. See more details at this [user
@@ -416,12 +432,15 @@ class SearchServiceGapicClient
      *     @type string[] $variantRollupKeys
      *           The keys to fetch and rollup the matching
      *           [variant][google.cloud.retail.v2.Product.Type.VARIANT]
-     *           [Product][google.cloud.retail.v2.Product]s attributes. The attributes from
-     *           all the matching [variant][google.cloud.retail.v2.Product.Type.VARIANT]
-     *           [Product][google.cloud.retail.v2.Product]s are merged and de-duplicated.
-     *           Notice that rollup [variant][google.cloud.retail.v2.Product.Type.VARIANT]
-     *           [Product][google.cloud.retail.v2.Product]s attributes will lead to extra
-     *           query latency. Maximum number of keys is 10.
+     *           [Product][google.cloud.retail.v2.Product]s attributes,
+     *           [FulfillmentInfo][google.cloud.retail.v2.FulfillmentInfo] or
+     *           [LocalInventory][google.cloud.retail.v2.LocalInventory]s attributes. The
+     *           attributes from all the matching
+     *           [variant][google.cloud.retail.v2.Product.Type.VARIANT]
+     *           [Product][google.cloud.retail.v2.Product]s or
+     *           [LocalInventory][google.cloud.retail.v2.LocalInventory]s are merged and
+     *           de-duplicated. Notice that rollup attributes will lead to extra query
+     *           latency. Maximum number of keys is 30.
      *
      *           For [FulfillmentInfo][google.cloud.retail.v2.FulfillmentInfo], a
      *           fulfillment type and a fulfillment ID must be provided in the format of
@@ -436,8 +455,10 @@ class SearchServiceGapicClient
      *           * discount
      *           * variantId
      *           * inventory(place_id,price)
+     *           * inventory(place_id,original_price)
      *           * inventory(place_id,attributes.key), where key is any key in the
-     *           [Product.inventories.attributes][] map.
+     *           [Product.local_inventories.attributes][google.cloud.retail.v2.LocalInventory.attributes]
+     *           map.
      *           * attributes.key, where key is any key in the
      *           [Product.attributes][google.cloud.retail.v2.Product.attributes] map.
      *           * pickupInStore.id, where id is any
@@ -496,11 +517,42 @@ class SearchServiceGapicClient
      *           The search mode of the search request. If not specified, a single search
      *           request triggers both product search and faceted search.
      *           For allowed values, use constants defined on {@see \Google\Cloud\Retail\V2\SearchRequest\SearchMode}
+     *     @type PersonalizationSpec $personalizationSpec
+     *           The specification for personalization.
+     *
+     *           Notice that if both
+     *           [ServingConfig.personalization_spec][google.cloud.retail.v2.ServingConfig.personalization_spec]
+     *           and
+     *           [SearchRequest.personalization_spec][google.cloud.retail.v2.SearchRequest.personalization_spec]
+     *           are set.
+     *           [SearchRequest.personalization_spec][google.cloud.retail.v2.SearchRequest.personalization_spec]
+     *           will override
+     *           [ServingConfig.personalization_spec][google.cloud.retail.v2.ServingConfig.personalization_spec].
+     *     @type array $labels
+     *           The labels applied to a resource must meet the following requirements:
+     *
+     *           * Each resource can have multiple labels, up to a maximum of 64.
+     *           * Each label must be a key-value pair.
+     *           * Keys have a minimum length of 1 character and a maximum length of 63
+     *           characters and cannot be empty. Values can be empty and have a maximum
+     *           length of 63 characters.
+     *           * Keys and values can contain only lowercase letters, numeric characters,
+     *           underscores, and dashes. All characters must use UTF-8 encoding, and
+     *           international characters are allowed.
+     *           * The key portion of a label must be unique. However, you can use the same
+     *           key with multiple resources.
+     *           * Keys must start with a lowercase letter or international character.
+     *
+     *           See [Google Cloud
+     *           Document](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements)
+     *           for more details.
+     *     @type SpellCorrectionSpec $spellCorrectionSpec
+     *           The spell correction specification that specifies the mode under
+     *           which spell correction will take effect.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -578,6 +630,22 @@ class SearchServiceGapicClient
 
         if (isset($optionalArgs['searchMode'])) {
             $request->setSearchMode($optionalArgs['searchMode']);
+        }
+
+        if (isset($optionalArgs['personalizationSpec'])) {
+            $request->setPersonalizationSpec(
+                $optionalArgs['personalizationSpec']
+            );
+        }
+
+        if (isset($optionalArgs['labels'])) {
+            $request->setLabels($optionalArgs['labels']);
+        }
+
+        if (isset($optionalArgs['spellCorrectionSpec'])) {
+            $request->setSpellCorrectionSpec(
+                $optionalArgs['spellCorrectionSpec']
+            );
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(

@@ -16,7 +16,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class BatchProcessRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The processor resource name.
+     * Required. The resource name of [Processor][google.cloud.documentai.v1.Processor] or
+     * [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion].
+     * Format: `projects/{project}/locations/{location}/processors/{processor}`,
+     * or
+     * `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -48,7 +52,11 @@ class BatchProcessRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The processor resource name.
+     *           Required. The resource name of [Processor][google.cloud.documentai.v1.Processor] or
+     *           [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion].
+     *           Format: `projects/{project}/locations/{location}/processors/{processor}`,
+     *           or
+     *           `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}`
      *     @type \Google\Cloud\DocumentAI\V1\BatchDocumentsInputConfig $input_documents
      *           The input documents for batch process.
      *     @type \Google\Cloud\DocumentAI\V1\DocumentOutputConfig $document_output_config
@@ -64,7 +72,11 @@ class BatchProcessRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The processor resource name.
+     * Required. The resource name of [Processor][google.cloud.documentai.v1.Processor] or
+     * [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion].
+     * Format: `projects/{project}/locations/{location}/processors/{processor}`,
+     * or
+     * `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -75,7 +87,11 @@ class BatchProcessRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The processor resource name.
+     * Required. The resource name of [Processor][google.cloud.documentai.v1.Processor] or
+     * [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion].
+     * Format: `projects/{project}/locations/{location}/processors/{processor}`,
+     * or
+     * `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -97,7 +113,7 @@ class BatchProcessRequest extends \Google\Protobuf\Internal\Message
      */
     public function getInputDocuments()
     {
-        return isset($this->input_documents) ? $this->input_documents : null;
+        return $this->input_documents;
     }
 
     public function hasInputDocuments()
@@ -133,7 +149,7 @@ class BatchProcessRequest extends \Google\Protobuf\Internal\Message
      */
     public function getDocumentOutputConfig()
     {
-        return isset($this->document_output_config) ? $this->document_output_config : null;
+        return $this->document_output_config;
     }
 
     public function hasDocumentOutputConfig()

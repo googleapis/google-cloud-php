@@ -184,6 +184,36 @@ class EventarcGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
+     * Get a single Provider.
+     * @param \Google\Cloud\Eventarc\V1\GetProviderRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function GetProvider(\Google\Cloud\Eventarc\V1\GetProviderRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.eventarc.v1.Eventarc/GetProvider',
+        $argument,
+        ['\Google\Cloud\Eventarc\V1\Provider', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * List providers.
+     * @param \Google\Cloud\Eventarc\V1\ListProvidersRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function ListProviders(\Google\Cloud\Eventarc\V1\ListProvidersRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.eventarc.v1.Eventarc/ListProviders',
+        $argument,
+        ['\Google\Cloud\Eventarc\V1\ListProvidersResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
      * Get a single ChannelConnection.
      * @param \Google\Cloud\Eventarc\V1\GetChannelConnectionRequest $argument input argument
      * @param array $metadata metadata
@@ -240,6 +270,36 @@ class EventarcGrpcClient extends \Grpc\BaseStub {
         return $this->_simpleRequest('/google.cloud.eventarc.v1.Eventarc/DeleteChannelConnection',
         $argument,
         ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Get a GoogleChannelConfig
+     * @param \Google\Cloud\Eventarc\V1\GetGoogleChannelConfigRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function GetGoogleChannelConfig(\Google\Cloud\Eventarc\V1\GetGoogleChannelConfigRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.eventarc.v1.Eventarc/GetGoogleChannelConfig',
+        $argument,
+        ['\Google\Cloud\Eventarc\V1\GoogleChannelConfig', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Update a single GoogleChannelConfig
+     * @param \Google\Cloud\Eventarc\V1\UpdateGoogleChannelConfigRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function UpdateGoogleChannelConfig(\Google\Cloud\Eventarc\V1\UpdateGoogleChannelConfigRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.eventarc.v1.Eventarc/UpdateGoogleChannelConfig',
+        $argument,
+        ['\Google\Cloud\Eventarc\V1\GoogleChannelConfig', 'decode'],
         $metadata, $options);
     }
 

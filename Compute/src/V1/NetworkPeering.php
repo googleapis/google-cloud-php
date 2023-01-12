@@ -28,7 +28,7 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
      */
     private $exchange_subnet_routes = null;
     /**
-     * Whether to export the custom routes to peer network.
+     * Whether to export the custom routes to peer network. The default value is false.
      *
      * Generated from protobuf field <code>optional bool export_custom_routes = 60281485;</code>
      */
@@ -40,7 +40,7 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
      */
     private $export_subnet_routes_with_public_ip = null;
     /**
-     * Whether to import the custom routes from peer network.
+     * Whether to import the custom routes from peer network. The default value is false.
      *
      * Generated from protobuf field <code>optional bool import_custom_routes = 197982398;</code>
      */
@@ -70,6 +70,13 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
      */
     private $peer_mtu = null;
     /**
+     * Which IP version(s) of traffic and routes are allowed to be imported or exported between peer networks. The default value is IPV4_ONLY.
+     * Check the StackType enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string stack_type = 425908881;</code>
+     */
+    private $stack_type = null;
+    /**
      * [Output Only] State for the peering, either `ACTIVE` or `INACTIVE`. The peering is `ACTIVE` when there's a matching configuration in the peer network.
      * Check the State enum for the list of possible values.
      *
@@ -94,11 +101,11 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
      *     @type bool $exchange_subnet_routes
      *           Indicates whether full mesh connectivity is created and managed automatically between peered networks. Currently this field should always be true since Google Compute Engine will automatically create and manage subnetwork routes between two networks when peering state is ACTIVE.
      *     @type bool $export_custom_routes
-     *           Whether to export the custom routes to peer network.
+     *           Whether to export the custom routes to peer network. The default value is false.
      *     @type bool $export_subnet_routes_with_public_ip
      *           Whether subnet routes with public IP range are exported. The default value is true, all subnet routes are exported. IPv4 special-use ranges are always exported to peers and are not controlled by this field.
      *     @type bool $import_custom_routes
-     *           Whether to import the custom routes from peer network.
+     *           Whether to import the custom routes from peer network. The default value is false.
      *     @type bool $import_subnet_routes_with_public_ip
      *           Whether subnet routes with public IP range are imported. The default value is false. IPv4 special-use ranges are always imported from peers and are not controlled by this field.
      *     @type string $name
@@ -107,6 +114,9 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
      *           The URL of the peer network. It can be either full URL or partial URL. The peer network may belong to a different project. If the partial URL does not contain project, it is assumed that the peer network is in the same project as the current network.
      *     @type int $peer_mtu
      *           Maximum Transmission Unit in bytes.
+     *     @type string $stack_type
+     *           Which IP version(s) of traffic and routes are allowed to be imported or exported between peer networks. The default value is IPV4_ONLY.
+     *           Check the StackType enum for the list of possible values.
      *     @type string $state
      *           [Output Only] State for the peering, either `ACTIVE` or `INACTIVE`. The peering is `ACTIVE` when there's a matching configuration in the peer network.
      *           Check the State enum for the list of possible values.
@@ -192,7 +202,7 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether to export the custom routes to peer network.
+     * Whether to export the custom routes to peer network. The default value is false.
      *
      * Generated from protobuf field <code>optional bool export_custom_routes = 60281485;</code>
      * @return bool
@@ -213,7 +223,7 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether to export the custom routes to peer network.
+     * Whether to export the custom routes to peer network. The default value is false.
      *
      * Generated from protobuf field <code>optional bool export_custom_routes = 60281485;</code>
      * @param bool $var
@@ -264,7 +274,7 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether to import the custom routes from peer network.
+     * Whether to import the custom routes from peer network. The default value is false.
      *
      * Generated from protobuf field <code>optional bool import_custom_routes = 197982398;</code>
      * @return bool
@@ -285,7 +295,7 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether to import the custom routes from peer network.
+     * Whether to import the custom routes from peer network. The default value is false.
      *
      * Generated from protobuf field <code>optional bool import_custom_routes = 197982398;</code>
      * @param bool $var
@@ -439,6 +449,44 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->peer_mtu = $var;
+
+        return $this;
+    }
+
+    /**
+     * Which IP version(s) of traffic and routes are allowed to be imported or exported between peer networks. The default value is IPV4_ONLY.
+     * Check the StackType enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string stack_type = 425908881;</code>
+     * @return string
+     */
+    public function getStackType()
+    {
+        return isset($this->stack_type) ? $this->stack_type : '';
+    }
+
+    public function hasStackType()
+    {
+        return isset($this->stack_type);
+    }
+
+    public function clearStackType()
+    {
+        unset($this->stack_type);
+    }
+
+    /**
+     * Which IP version(s) of traffic and routes are allowed to be imported or exported between peer networks. The default value is IPV4_ONLY.
+     * Check the StackType enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string stack_type = 425908881;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setStackType($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->stack_type = $var;
 
         return $this;
     }

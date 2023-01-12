@@ -18,6 +18,7 @@
 namespace Google\Cloud\PubSub\Tests\Unit;
 
 use Google\Cloud\Core\Duration;
+use Google\Cloud\Core\Exception\BadRequestException;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Iam\Iam;
 use Google\Cloud\Core\Testing\TestHelpers;
@@ -27,8 +28,9 @@ use Google\Cloud\PubSub\Message;
 use Google\Cloud\PubSub\Snapshot;
 use Google\Cloud\PubSub\Subscription;
 use Google\Cloud\PubSub\Topic;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Prophecy\Argument;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group pubsub
@@ -36,14 +38,18 @@ use Prophecy\Argument;
  */
 class SubscriptionTest extends TestCase
 {
+    use ExpectException;
+
     const PROJECT = 'project-id';
     const SUBSCRIPTION = 'projects/project-id/subscriptions/subscription-name';
     const TOPIC = 'projects/project-id/topics/topic-name';
 
     private $subscription;
     private $connection;
+    private $ackIds;
+    private $messages;
 
-    public function setUp()
+    public function set_up()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->subscription = TestHelpers::stub(Subscription::class, [
@@ -53,6 +59,18 @@ class SubscriptionTest extends TestCase
             'topic-name',
             true
         ], ['connection', 'info']);
+        // make sure the ExponentialBackOff retries don't delay for our test.
+        Subscription::setMaxEodRetryTime(0);
+
+        $this->ackIds = [
+            'foobar',
+            'otherAckId'
+        ];
+
+        $this->messages = [];
+        foreach ($this->ackIds as $id) {
+            $this->messages[] = new Message([], ['ackId' => $id]);
+        }
     }
 
     public function testName()
@@ -92,11 +110,10 @@ class SubscriptionTest extends TestCase
         $this->assertEquals($sub['topic'], self::TOPIC);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testCreateWithoutTopicName()
     {
+        $this->expectException('InvalidArgumentException');
+
         $subscription = new Subscription(
             $this->connection->reveal(),
             'project-id',
@@ -421,31 +438,222 @@ class SubscriptionTest extends TestCase
 
     public function testAcknowledgeBatch()
     {
-        $ackIds = [
-            'foobar',
-            'otherAckId'
-        ];
-
-        $messages = [];
-        foreach ($ackIds as $id) {
-            $messages[] = new Message([], ['ackId' => $id]);
-        }
-
         $this->connection->acknowledge(Argument::allOf(
             Argument::withEntry('foo', 'bar'),
-            Argument::withEntry('ackIds', $ackIds)
+            Argument::withEntry('ackIds', $this->ackIds)
         ))->shouldBeCalledTimes(1);
 
         $this->subscription->___setProperty('connection', $this->connection->reveal());
 
-        $this->subscription->acknowledgeBatch($messages, ['foo' => 'bar']);
+        $this->subscription->acknowledgeBatch($this->messages, ['foo' => 'bar']);
     }
 
     /**
-     * @expectedException InvalidArgumentException
+     * The method acknowledgBatch should suppress any exception if it is
+     * with a reason with EOD.
      */
+    public function testAcknowledgeBatchSuppressExceptionsForEod()
+    {
+        $metadata = [
+            'foobar' => 'PERMANENT_FAILURE_INVALID_ACK_ID',
+            'otherAckId' => 'PERMANENT_FAILURE_INVALID_ACK_ID'
+        ];
+        $ex = $this->generateEodException($metadata);
+
+        $this->connection->acknowledge(Argument::allOf(
+            Argument::withEntry('ackIds', $this->ackIds)
+        ))->willThrow($ex);
+
+        $this->subscription->___setProperty('connection', $this->connection->reveal());
+
+        try {
+            $this->subscription->acknowledgeBatch($this->messages);
+            $this->assertTrue(true);
+        } catch (BadRequestException $e) {
+            // if there was an exception, then our test failed
+            $this->fail();
+        }
+    }
+
+    /**
+     * The method acknowledgBatch should bubble up any exceptions
+     * if the reason isn't EOD related.
+     */
+    public function testAcknowledgeBatchThrowsForNonEod()
+    {
+        $metadata = [
+            'foobar' => 'PERMANENT_FAILURE_INVALID_ACK_ID',
+            'otherAckId' => 'PERMANENT_FAILURE_INVALID_ACK_ID'
+        ];
+
+        // If an exception has a reason different than 'EXACTLY_ONCE_ACKID_FAILURE'
+        // in it's exception msg, then it should bubble up
+        $ex = $this->generateEodException($metadata, 'FAILURE_REASON');
+
+        $this->connection->acknowledge(Argument::allOf(
+            Argument::withEntry('ackIds', $this->ackIds)
+        ))->willThrow($ex);
+
+        $this->subscription->___setProperty('connection', $this->connection->reveal());
+
+        try {
+            $this->subscription->acknowledgeBatch($this->messages);
+            $this->fail();
+        } catch (BadRequestException $e) {
+            // we expect the exception so, our test passes
+            $this->assertTrue(true);
+        }
+    }
+
+    public function testAcknowledgeBatchWithReturn()
+    {
+        $metadata = [
+            'foobar' => 'PERMANENT_FAILURE_INVALID_ACK_ID',
+            'otherAckId' => 'PERMANENT_FAILURE_INVALID_ACK_ID'
+        ];
+
+        $ex = $this->generateEodException($metadata);
+
+        $this->connection->acknowledge(Argument::allOf(
+            Argument::withEntry('ackIds', $this->ackIds),
+            Argument::withKey('subscription')
+        ))->willThrow($ex);
+
+        $this->subscription->___setProperty('connection', $this->connection->reveal());
+        $failedMsgs = $this->subscription->acknowledgeBatch($this->messages, ['returnFailures' => true]);
+
+        // Check if the acknowledgeBatch method returned an array of failedMsgs
+        $this->assertIsArray($failedMsgs);
+        $this->assertEquals(count($failedMsgs), count($this->ackIds));
+    }
+
+    public function testAcknowledgeBatchRetryNever()
+    {
+        // Since all sent msgs are permananently failed,
+        // the retry will never take place
+        $metadata = [
+            'foobar' => 'PERMANENT_FAILURE_INVALID_ACK_ID',
+            'otherAckId' => 'PERMANENT_FAILURE_INVALID_ACK_ID'
+        ];
+
+        $ex = $this->generateEodException($metadata);
+
+        $this->connection->acknowledge(Argument::any(
+            Argument::withKey('ackIds'),
+            Argument::withKey('subscription')
+        ))->shouldBeCalledTimes(1)->willThrow($ex);
+
+        $this->subscription->___setProperty('connection', $this->connection->reveal());
+        $this->subscription->acknowledgeBatch($this->messages, ['returnFailures' => true]);
+    }
+
+    public function testAcknowledgeBatchRetryPartial()
+    {
+        // Exception with first msg as a temporary failure
+        $metadata1 = [
+            'foobar' => 'TRANSIENT_FAILURE_SERVICE_UNAVAILABLE',
+            'otherAckId' => 'PERMANENT_FAILURE_INVALID_ACK_ID'
+        ];
+
+        // Exception with both msgs as a permanent failure
+        $metadata2 = [
+            'foobar' => 'PERMANENT_FAILURE_INVALID_ACK_ID',
+            'otherAckId' => 'PERMANENT_FAILURE_INVALID_ACK_ID'
+        ];
+
+        $ex1 = $this->generateEodException($metadata1);
+        $ex2 = $this->generateEodException($metadata2);
+
+        $allEx = [$ex1, $ex1, $ex2];
+
+        $this->connection->acknowledge(Argument::any(
+            Argument::withKey('ackIds'),
+            Argument::withKey('subscription')
+        ))->shouldBeCalledTimes(3)->will(function () use (&$allEx) {
+            throw array_shift($allEx);
+        });
+
+        $this->subscription->___setProperty('connection', $this->connection->reveal());
+        $failedMsgs = $this->subscription->acknowledgeBatch($this->messages, ['returnFailures' => true]);
+
+        // eventually both msgs failed, so they should be present in our response
+        $this->assertEquals(count($failedMsgs), count($this->ackIds));
+    }
+
+    public function testAcknowledgeBatchRetryWithSuccess()
+    {
+        $metadata = [
+            'foobar' => 'TRANSIENT_FAILURE_SERVICE_UNAVAILABLE',
+            'otherAckId' => 'TRANSIENT_FAILURE_SERVICE_UNAVAILABLE'
+        ];
+
+        $ex = $this->generateEodException($metadata);
+        $allEx = [$ex, $ex];
+
+        $this->connection->acknowledge(Argument::any(
+            Argument::withKey('ackIds'),
+            Argument::withKey('subscription')
+        ))->shouldBeCalledTimes(3)->will(function () use (&$allEx) {
+            // An exception is thrown until we have in our list,
+            // then we simply return implying a success
+            if (count($allEx) > 0) {
+                throw array_shift($allEx);
+            } else {
+                return;
+            }
+        });
+
+        $this->subscription->___setProperty('connection', $this->connection->reveal());
+        $failedMsgs = $this->subscription->acknowledgeBatch($this->messages, ['returnFailures' => true]);
+
+        // eventually both msgs were acked, so our $failedMsgs should be empty
+        $this->assertEquals(count($failedMsgs), 0);
+    }
+
+    public function testAcknowledgeBatchNeverRetriesOnSuccess()
+    {
+        $this->connection->acknowledge(Argument::any(
+            Argument::withKey('ackIds'),
+            Argument::withKey('subscription')
+        ))->shouldBeCalledTimes(1)->willReturn();
+
+        $this->subscription->___setProperty('connection', $this->connection->reveal());
+        $failedMsgs = $this->subscription->acknowledgeBatch($this->messages, ['returnFailures' => true]);
+
+        // Both msgs were acked, so our $failedMsgs should be empty
+        $this->assertEquals(count($failedMsgs), 0);
+    }
+
+    /**
+     * We test if a sub with EOD disabled, behaves the same even if it is called
+     * with the `returnFailures` flag.
+     */
+    public function testAcknowledgeBatchReturnsVoidForNonEod()
+    {
+        $metadata = [
+            'foobar' => 'PERMANENT_FAILURE_INVALID_ACK_ID',
+            'otherAckId' => 'PERMANENT_FAILURE_INVALID_ACK_ID'
+        ];
+
+        // Any reason other than `EXACTLY_ONCE_ACKID_FAILURE` will work
+        $ex = $this->generateEodException($metadata, 'FAILURE_REASON');
+
+        $this->connection->acknowledge(Argument::any(
+            Argument::withKey('ackIds'),
+            Argument::withKey('subscription')
+        ))->shouldBeCalledTimes(1)->willThrow($ex);
+
+        $this->subscription->___setProperty('connection', $this->connection->reveal());
+        $failedMsgs = $this->subscription->acknowledgeBatch($this->messages, ['returnFailures' => true]);
+
+        // Both msgs were acked, so our $failedMsgs should be empty
+        $this->assertIsNotArray($failedMsgs);
+    }
+
     public function testAcknowledgeBatchInvalidArgument()
     {
+        $this->expectException('InvalidArgumentException');
+
         $this->subscription->acknowledgeBatch(['foo']);
     }
 
@@ -468,34 +676,234 @@ class SubscriptionTest extends TestCase
 
     public function testModifyAckDeadlineBatch()
     {
-        $ackIds = [
-            'foobar',
-            'otherAckId'
-        ];
-
-        $messages = [];
-        foreach ($ackIds as $id) {
-            $messages[] = new Message([], ['ackId' => $id]);
-        }
-
         $seconds = 100;
 
         $this->connection->modifyAckDeadline(Argument::allOf(
             Argument::withEntry('foo', 'bar'),
-            Argument::withEntry('ackIds', $ackIds),
+            Argument::withEntry('ackIds', $this->ackIds),
             Argument::withEntry('ackDeadlineSeconds', $seconds)
         ))->shouldBeCalledTimes(1);
 
         $this->subscription->___setProperty('connection', $this->connection->reveal());
 
-        $this->subscription->modifyAckDeadlineBatch($messages, $seconds, ['foo' => 'bar']);
+        $this->subscription->modifyAckDeadlineBatch($this->messages, $seconds, ['foo' => 'bar']);
     }
 
     /**
-     * @expectedException InvalidArgumentException
+     * The method modifyAckDeadlineBatch should suppress any exception if it is
+     * with a reason with EOD.
      */
+    public function testmodifyAckDeadlineBatchSuppressesExceptionsForEod()
+    {
+        $seconds = 10;
+        $metadata = [
+            'foobar' => 'PERMANENT_FAILURE_INVALID_ACK_ID',
+            'otherAckId' => 'PERMANENT_FAILURE_INVALID_ACK_ID'
+        ];
+        $ex = $this->generateEodException($metadata);
+
+        $this->connection->modifyAckDeadline(Argument::allOf(
+            Argument::withEntry('ackIds', $this->ackIds),
+            Argument::withEntry('ackDeadlineSeconds', $seconds)
+        ))->willThrow($ex);
+
+        $this->subscription->___setProperty('connection', $this->connection->reveal());
+
+        try {
+            $this->subscription->modifyAckDeadlineBatch($this->messages, $seconds);
+            $this->assertTrue(true);
+        } catch (BadRequestException $e) {
+            // if there was an exception, then our test failed
+            $this->fail();
+        }
+    }
+
+    /**
+     * The method modifyAckDeadlineBatch should bubble up any exceptions
+     * if the reason isn't EOD related.
+     */
+    public function testmodifyAckDeadlineBatchThrowsForNonEod()
+    {
+        $metadata = [
+            'foobar' => 'PERMANENT_FAILURE_INVALID_ACK_ID',
+            'otherAckId' => 'PERMANENT_FAILURE_INVALID_ACK_ID'
+        ];
+        $seconds = 10;
+        // If an exception has a reason different than 'EXACTLY_ONCE_ACKID_FAILURE'
+        // in it's exception msg, then it should bubble up
+        $ex = $this->generateEodException($metadata, 'FAILURE_REASON');
+
+        $this->connection->modifyAckDeadline(Argument::allOf(
+            Argument::withEntry('ackIds', $this->ackIds),
+            Argument::withEntry('ackDeadlineSeconds', $seconds)
+        ))->willThrow($ex);
+
+        $this->subscription->___setProperty('connection', $this->connection->reveal());
+
+        try {
+            $this->subscription->modifyAckDeadlineBatch($this->messages, $seconds);
+            $this->fail();
+        } catch (BadRequestException $e) {
+            // we expect the exception so, our test passes
+            $this->assertTrue(true);
+        }
+    }
+
+    public function testModifyAckDeadlineBatchWithReturn()
+    {
+        $metadata = [
+            'foobar' => 'PERMANENT_FAILURE_INVALID_ACK_ID',
+            'otherAckId' => 'PERMANENT_FAILURE_INVALID_ACK_ID'
+        ];
+
+        $ex = $this->generateEodException($metadata);
+
+        $this->connection->modifyAckDeadline(Argument::allOf(
+            Argument::withEntry('ackIds', $this->ackIds),
+            Argument::withKey('subscription'),
+            Argument::withKey('ackDeadlineSeconds')
+        ))->willThrow($ex);
+
+        $this->subscription->___setProperty('connection', $this->connection->reveal());
+        $failedMsgs = $this->subscription->modifyAckDeadlineBatch($this->messages, 10, ['returnFailures' => true]);
+
+        // Check if the modifyAckDeadlineBatch method returned an array of failedMsgs
+        $this->assertIsArray($failedMsgs);
+        $this->assertEquals(count($failedMsgs), count($this->ackIds));
+    }
+
+    public function testModifyAckDeadlineBatchRetryNever()
+    {
+        // Since all sent msgs are permananently failed,
+        // the retry will never take place
+        $metadata = [
+            'foobar' => 'PERMANENT_FAILURE_INVALID_ACK_ID',
+            'otherAckId' => 'PERMANENT_FAILURE_INVALID_ACK_ID'
+        ];
+
+        $ex = $this->generateEodException($metadata);
+
+        $this->connection->modifyAckDeadline(Argument::allOf(
+            Argument::withEntry('ackIds', $this->ackIds),
+            Argument::withKey('subscription'),
+            Argument::withKey('ackDeadlineSeconds')
+        ))->shouldBeCalledTimes(1)->willThrow($ex);
+
+        $this->subscription->___setProperty('connection', $this->connection->reveal());
+        $this->subscription->modifyAckDeadlineBatch($this->messages, 10, ['returnFailures' => true]);
+    }
+
+    public function testModifyAckDeadlineBatchRetryPartial()
+    {
+        // Exception with first msg as a temporary failure
+        $metadata1 = [
+            'foobar' => 'TRANSIENT_FAILURE_SERVICE_UNAVAILABLE',
+            'otherAckId' => 'PERMANENT_FAILURE_INVALID_ACK_ID'
+        ];
+
+        // Exception with both msgs as a permanent failure
+        $metadata2 = [
+            'foobar' => 'PERMANENT_FAILURE_INVALID_ACK_ID',
+            'otherAckId' => 'PERMANENT_FAILURE_INVALID_ACK_ID'
+        ];
+
+        $ex1 = $this->generateEodException($metadata1);
+        $ex2 = $this->generateEodException($metadata2);
+
+        $allEx = [$ex1, $ex1, $ex2];
+
+        $this->connection->modifyAckDeadline(Argument::any(
+            Argument::withKey('ackIds'),
+            Argument::withKey('subscription'),
+            Argument::withKey('ackDeadlineSeconds')
+        ))->shouldBeCalledTimes(3)->will(function () use (&$allEx) {
+            throw array_shift($allEx);
+        });
+
+        $this->subscription->___setProperty('connection', $this->connection->reveal());
+        $failedMsgs = $this->subscription->modifyAckDeadlineBatch($this->messages, 10, ['returnFailures' => true]);
+
+        // eventually both msgs failed, so they should be present in our response
+        $this->assertEquals(count($failedMsgs), count($this->ackIds));
+    }
+
+    public function testModifyAckDeadlineBatchRetryWithSuccess()
+    {
+        $metadata = [
+            'foobar' => 'TRANSIENT_FAILURE_SERVICE_UNAVAILABLE',
+            'otherAckId' => 'TRANSIENT_FAILURE_SERVICE_UNAVAILABLE'
+        ];
+
+        $ex = $this->generateEodException($metadata);
+        $allEx = [$ex, $ex];
+
+        $this->connection->modifyAckDeadline(Argument::any(
+            Argument::withKey('ackIds'),
+            Argument::withKey('subscription'),
+            Argument::withKey('ackDeadlineSeconds')
+        ))->shouldBeCalledTimes(3)->will(function () use (&$allEx) {
+            // An exception is thrown until we have in our list,
+            // then we simply return implying a success
+            if (count($allEx) > 0) {
+                throw array_shift($allEx);
+            } else {
+                return;
+            }
+        });
+
+        $this->subscription->___setProperty('connection', $this->connection->reveal());
+        $failedMsgs = $this->subscription->modifyAckDeadlineBatch($this->messages, 10, ['returnFailures' => true]);
+
+        // eventually both msgs were acked, so our $failedMsgs should be empty
+        $this->assertEquals(count($failedMsgs), 0);
+    }
+
+    public function testModifyAckDeadlineBatchNeverRetriesOnSuccess()
+    {
+        $this->connection->modifyAckDeadline(Argument::any(
+            Argument::withKey('ackIds'),
+            Argument::withKey('subscription'),
+            Argument::withKey('ackDeadlineSeconds')
+        ))->shouldBeCalledTimes(1)->willReturn();
+
+        $this->subscription->___setProperty('connection', $this->connection->reveal());
+        $failedMsgs = $this->subscription->modifyAckDeadlineBatch($this->messages, 10, ['returnFailures' => true]);
+
+        // Both msgs were acked, so our $failedMsgs should be empty
+        $this->assertEquals(count($failedMsgs), 0);
+    }
+
+    /**
+     * We test if a sub with EOD disabled, behaves the same even if it is called
+     * with the `returnFailures` flag.
+     */
+    public function testModifyAckDeadlineBatchReturnsVoidForNonEod()
+    {
+        $metadata = [
+            'foobar' => 'PERMANENT_FAILURE_INVALID_ACK_ID',
+            'otherAckId' => 'PERMANENT_FAILURE_INVALID_ACK_ID'
+        ];
+
+        // Any reason other than `EXACTLY_ONCE_ACKID_FAILURE` will work
+        $ex = $this->generateEodException($metadata, 'FAILURE_REASON');
+
+        $this->connection->modifyAckDeadline(Argument::any(
+            Argument::withKey('ackIds'),
+            Argument::withKey('subscription'),
+            Argument::withKey('ackDeadlineSeconds')
+        ))->shouldBeCalledTimes(1)->willThrow($ex);
+
+        $this->subscription->___setProperty('connection', $this->connection->reveal());
+        $failedMsgs = $this->subscription->modifyAckDeadlineBatch($this->messages, 10, ['returnFailures' => true]);
+
+        // Both msgs were acked, so our $failedMsgs should be empty
+        $this->assertIsNotArray($failedMsgs);
+    }
+
     public function testModifyAckDeadlineBatchInvalidArgument()
     {
+        $this->expectException('InvalidArgumentException');
+
         $this->subscription->modifyAckDeadlineBatch(['foo'], 100);
     }
 
@@ -564,5 +972,32 @@ class SubscriptionTest extends TestCase
         $this->subscription->___setProperty('connection', $this->connection->reveal());
 
         $this->assertEquals([], $this->subscription->detach());
+    }
+
+    // Helper method to generate the exception sent during an invalid EOD operation
+    // like acknowledge or modifyAckDeadline
+    private function generateEodException($metadata, $failureReason = 'EXACTLY_ONCE_ACKID_FAILURE')
+    {
+        $arr = [
+            'error' => [
+                'code' => 400,
+                'message' => '',
+                'status' => 'INVALID_ARGUMENT',
+                'details' => [
+                    [
+                        '@type' => 'type.googleapis.com/google.rpc.ErrorInfo',
+                        'reason' => $failureReason,
+                        'domain' => 'pubsub.googleapis.com',
+                        'metadata' => $metadata
+                    ],
+                    [
+                        '@type' => 'type.googleapis.com/google.rpc.DebugInfo',
+                        'detail' => ''
+                    ]
+                ]
+            ]
+        ];
+
+        return new BadRequestException(json_encode($arr));
     }
 }

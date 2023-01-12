@@ -17,11 +17,10 @@ class ColumnSpec
         \GPBMetadata\Google\Api\Resource::initOnce();
         \GPBMetadata\Google\Cloud\Automl\V1Beta1\DataStats::initOnce();
         \GPBMetadata\Google\Cloud\Automl\V1Beta1\DataTypes::initOnce();
-        \GPBMetadata\Google\Api\Annotations::initOnce();
         $pool->internalAddGeneratedFile(
             '
-”
--google/cloud/automl/v1beta1/column_spec.protogoogle.cloud.automl.v1beta1,google/cloud/automl/v1beta1/data_stats.proto,google/cloud/automl/v1beta1/data_types.protogoogle/api/annotations.proto"›
+ö
+-google/cloud/automl/v1beta1/column_spec.protogoogle.cloud.automl.v1beta1,google/cloud/automl/v1beta1/data_stats.proto,google/cloud/automl/v1beta1/data_types.proto"›
 
 ColumnSpec
 name (	8

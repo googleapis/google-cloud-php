@@ -21,8 +21,8 @@ class CreatePhraseSetRequest extends \Google\Protobuf\Internal\Message
      * Speech-to-Text supports three locations: `global`, `us` (US North America),
      * and `eu` (Europe). If you are calling the `speech.googleapis.com`
      * endpoint, use the `global` location. To specify a region, use a
-     * [regional endpoint](https://cloud.google.com/speech-to-text/docs/endpoints) with matching `us` or
-     * `eu` location value.
+     * [regional endpoint](https://cloud.google.com/speech-to-text/docs/endpoints)
+     * with matching `us` or `eu` location value.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -30,8 +30,8 @@ class CreatePhraseSetRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The ID to use for the phrase set, which will become the final
      * component of the phrase set's resource name.
-     * This value should be 4-63 characters, and valid characters
-     * are /[a-z][0-9]-/.
+     * This value should restrict to letters, numbers, and hyphens, with the first
+     * character a letter, the last a letter or a number, and be 4-63 characters.
      *
      * Generated from protobuf field <code>string phrase_set_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -55,13 +55,13 @@ class CreatePhraseSetRequest extends \Google\Protobuf\Internal\Message
      *           Speech-to-Text supports three locations: `global`, `us` (US North America),
      *           and `eu` (Europe). If you are calling the `speech.googleapis.com`
      *           endpoint, use the `global` location. To specify a region, use a
-     *           [regional endpoint](https://cloud.google.com/speech-to-text/docs/endpoints) with matching `us` or
-     *           `eu` location value.
+     *           [regional endpoint](https://cloud.google.com/speech-to-text/docs/endpoints)
+     *           with matching `us` or `eu` location value.
      *     @type string $phrase_set_id
      *           Required. The ID to use for the phrase set, which will become the final
      *           component of the phrase set's resource name.
-     *           This value should be 4-63 characters, and valid characters
-     *           are /[a-z][0-9]-/.
+     *           This value should restrict to letters, numbers, and hyphens, with the first
+     *           character a letter, the last a letter or a number, and be 4-63 characters.
      *     @type \Google\Cloud\Speech\V1p1beta1\PhraseSet $phrase_set
      *           Required. The phrase set to create.
      * }
@@ -77,8 +77,8 @@ class CreatePhraseSetRequest extends \Google\Protobuf\Internal\Message
      * Speech-to-Text supports three locations: `global`, `us` (US North America),
      * and `eu` (Europe). If you are calling the `speech.googleapis.com`
      * endpoint, use the `global` location. To specify a region, use a
-     * [regional endpoint](https://cloud.google.com/speech-to-text/docs/endpoints) with matching `us` or
-     * `eu` location value.
+     * [regional endpoint](https://cloud.google.com/speech-to-text/docs/endpoints)
+     * with matching `us` or `eu` location value.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -94,8 +94,8 @@ class CreatePhraseSetRequest extends \Google\Protobuf\Internal\Message
      * Speech-to-Text supports three locations: `global`, `us` (US North America),
      * and `eu` (Europe). If you are calling the `speech.googleapis.com`
      * endpoint, use the `global` location. To specify a region, use a
-     * [regional endpoint](https://cloud.google.com/speech-to-text/docs/endpoints) with matching `us` or
-     * `eu` location value.
+     * [regional endpoint](https://cloud.google.com/speech-to-text/docs/endpoints)
+     * with matching `us` or `eu` location value.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -112,8 +112,8 @@ class CreatePhraseSetRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The ID to use for the phrase set, which will become the final
      * component of the phrase set's resource name.
-     * This value should be 4-63 characters, and valid characters
-     * are /[a-z][0-9]-/.
+     * This value should restrict to letters, numbers, and hyphens, with the first
+     * character a letter, the last a letter or a number, and be 4-63 characters.
      *
      * Generated from protobuf field <code>string phrase_set_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -126,8 +126,8 @@ class CreatePhraseSetRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The ID to use for the phrase set, which will become the final
      * component of the phrase set's resource name.
-     * This value should be 4-63 characters, and valid characters
-     * are /[a-z][0-9]-/.
+     * This value should restrict to letters, numbers, and hyphens, with the first
+     * character a letter, the last a letter or a number, and be 4-63 characters.
      *
      * Generated from protobuf field <code>string phrase_set_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

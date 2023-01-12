@@ -186,7 +186,7 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *     @type int $disk_size_gb
      *           Optional. The disk size in GB used for node VMs. Minimum size is 20GB.
      *           If unspecified, defaults to 100GB. Cannot be updated.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $oauth_scopes
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $oauth_scopes
      *           Optional. The set of Google API scopes to be made available on all
      *           node VMs. If `oauth_scopes` is empty, defaults to
      *           ["https://www.googleapis.com/auth/cloud-platform"]. Cannot be updated.
@@ -194,7 +194,7 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *           Optional. The Google Cloud Platform Service Account to be used by the node
      *           VMs. If a service account is not specified, the "default" Compute Engine
      *           service account is used. Cannot be updated.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $tags
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $tags
      *           Optional. The list of instance tags applied to all node VMs. Tags are used
      *           to identify valid sources or targets for network firewalls. Each tag within
      *           the list must comply with [RFC1035](https://www.ietf.org/rfc/rfc1035.txt).
@@ -449,7 +449,7 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      * ["https://www.googleapis.com/auth/cloud-platform"]. Cannot be updated.
      *
      * Generated from protobuf field <code>repeated string oauth_scopes = 6;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setOauthScopes($var)
@@ -511,7 +511,7 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      * Cannot be updated.
      *
      * Generated from protobuf field <code>repeated string tags = 8;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTags($var)

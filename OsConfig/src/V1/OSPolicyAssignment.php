@@ -137,7 +137,7 @@ class OSPolicyAssignment extends \Google\Protobuf\Internal\Message
      *     @type string $description
      *           OS policy assignment description.
      *           Length of the description is limited to 1024 characters.
-     *     @type \Google\Cloud\OsConfig\V1\OSPolicy[]|\Google\Protobuf\Internal\RepeatedField $os_policies
+     *     @type array<\Google\Cloud\OsConfig\V1\OSPolicy>|\Google\Protobuf\Internal\RepeatedField $os_policies
      *           Required. List of OS policies to be applied to the VMs.
      *     @type \Google\Cloud\OsConfig\V1\OSPolicyAssignment\InstanceFilter $instance_filter
      *           Required. Filter to select VMs.
@@ -258,7 +258,7 @@ class OSPolicyAssignment extends \Google\Protobuf\Internal\Message
      * Required. List of OS policies to be applied to the VMs.
      *
      * Generated from protobuf field <code>repeated .google.cloud.osconfig.v1.OSPolicy os_policies = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param \Google\Cloud\OsConfig\V1\OSPolicy[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\OsConfig\V1\OSPolicy>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setOsPolicies($var)

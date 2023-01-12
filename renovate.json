@@ -22,6 +22,12 @@
                 "symfony/console"
             ],
             "allowedVersions": "< 4.0"
+        },
+        {
+            "matchDatasources": ["pypi"],
+            "matchUpdateTypes": ["minor", "patch"],
+            "groupName": "python non-major dependencies",
+            "automerge": true
         }
     ]
 }

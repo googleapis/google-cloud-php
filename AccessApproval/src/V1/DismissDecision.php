@@ -22,8 +22,8 @@ class DismissDecision extends \Google\Protobuf\Internal\Message
      */
     private $dismiss_time = null;
     /**
-     * This field will be true if the ApprovalRequest was implcitly dismissed
-     * due to inaction by the access approval approvers (the request is not acted
+     * This field will be true if the ApprovalRequest was implicitly dismissed due
+     * to inaction by the access approval approvers (the request is not acted
      * on by the approvers before the exiration time).
      *
      * Generated from protobuf field <code>bool implicit = 2;</code>
@@ -39,8 +39,8 @@ class DismissDecision extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $dismiss_time
      *           The time at which the approval request was dismissed.
      *     @type bool $implicit
-     *           This field will be true if the ApprovalRequest was implcitly dismissed
-     *           due to inaction by the access approval approvers (the request is not acted
+     *           This field will be true if the ApprovalRequest was implicitly dismissed due
+     *           to inaction by the access approval approvers (the request is not acted
      *           on by the approvers before the exiration time).
      * }
      */
@@ -86,8 +86,8 @@ class DismissDecision extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This field will be true if the ApprovalRequest was implcitly dismissed
-     * due to inaction by the access approval approvers (the request is not acted
+     * This field will be true if the ApprovalRequest was implicitly dismissed due
+     * to inaction by the access approval approvers (the request is not acted
      * on by the approvers before the exiration time).
      *
      * Generated from protobuf field <code>bool implicit = 2;</code>
@@ -99,8 +99,8 @@ class DismissDecision extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This field will be true if the ApprovalRequest was implcitly dismissed
-     * due to inaction by the access approval approvers (the request is not acted
+     * This field will be true if the ApprovalRequest was implicitly dismissed due
+     * to inaction by the access approval approvers (the request is not acted
      * on by the approvers before the exiration time).
      *
      * Generated from protobuf field <code>bool implicit = 2;</code>

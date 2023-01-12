@@ -25,7 +25,6 @@ namespace Google\Cloud\Compute\Tests\Unit\V1;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Compute\V1\Firewall;
 use Google\Cloud\Compute\V1\FirewallList;
@@ -44,25 +43,19 @@ use stdClass;
  */
 class FirewallsClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return FirewallsClient
-     */
+    /** @return FirewallsClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -71,9 +64,7 @@ class FirewallsClientTest extends GeneratedTest
         return new FirewallsClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteTest()
     {
         $operationsTransport = $this->createTransport();
@@ -83,7 +74,7 @@ class FirewallsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -101,7 +92,7 @@ class FirewallsClientTest extends GeneratedTest
         // Mock request
         $firewall = 'firewall-562725632';
         $project = 'project-309310695';
-        $response = $client->delete($firewall, $project);
+        $response = $gapicClient->delete($firewall, $project);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -133,9 +124,7 @@ class FirewallsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -145,7 +134,7 @@ class FirewallsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -169,7 +158,7 @@ class FirewallsClientTest extends GeneratedTest
         // Mock request
         $firewall = 'firewall-562725632';
         $project = 'project-309310695';
-        $response = $client->delete($firewall, $project);
+        $response = $gapicClient->delete($firewall, $project);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -189,13 +178,11 @@ class FirewallsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -225,7 +212,7 @@ class FirewallsClientTest extends GeneratedTest
         // Mock request
         $firewall = 'firewall-562725632';
         $project = 'project-309310695';
-        $response = $client->get($firewall, $project);
+        $response = $gapicClient->get($firewall, $project);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -239,13 +226,11 @@ class FirewallsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -263,8 +248,8 @@ class FirewallsClientTest extends GeneratedTest
         $firewall = 'firewall-562725632';
         $project = 'project-309310695';
         try {
-            $client->get($firewall, $project);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->get($firewall, $project);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -275,9 +260,7 @@ class FirewallsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function insertTest()
     {
         $operationsTransport = $this->createTransport();
@@ -287,7 +270,7 @@ class FirewallsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -305,7 +288,7 @@ class FirewallsClientTest extends GeneratedTest
         // Mock request
         $firewallResource = new Firewall();
         $project = 'project-309310695';
-        $response = $client->insert($firewallResource, $project);
+        $response = $gapicClient->insert($firewallResource, $project);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -337,9 +320,7 @@ class FirewallsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function insertExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -349,7 +330,7 @@ class FirewallsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -373,7 +354,7 @@ class FirewallsClientTest extends GeneratedTest
         // Mock request
         $firewallResource = new Firewall();
         $project = 'project-309310695';
-        $response = $client->insert($firewallResource, $project);
+        $response = $gapicClient->insert($firewallResource, $project);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -393,13 +374,11 @@ class FirewallsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -421,7 +400,7 @@ class FirewallsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $project = 'project-309310695';
-        $response = $client->list($project);
+        $response = $gapicClient->list($project);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -436,13 +415,11 @@ class FirewallsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -459,8 +436,8 @@ class FirewallsClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         try {
-            $client->list($project);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->list($project);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -471,9 +448,7 @@ class FirewallsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function patchTest()
     {
         $operationsTransport = $this->createTransport();
@@ -483,7 +458,7 @@ class FirewallsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -502,7 +477,7 @@ class FirewallsClientTest extends GeneratedTest
         $firewall = 'firewall-562725632';
         $firewallResource = new Firewall();
         $project = 'project-309310695';
-        $response = $client->patch($firewall, $firewallResource, $project);
+        $response = $gapicClient->patch($firewall, $firewallResource, $project);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -536,9 +511,7 @@ class FirewallsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function patchExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -548,7 +521,7 @@ class FirewallsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -573,7 +546,7 @@ class FirewallsClientTest extends GeneratedTest
         $firewall = 'firewall-562725632';
         $firewallResource = new Firewall();
         $project = 'project-309310695';
-        $response = $client->patch($firewall, $firewallResource, $project);
+        $response = $gapicClient->patch($firewall, $firewallResource, $project);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -593,9 +566,7 @@ class FirewallsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateTest()
     {
         $operationsTransport = $this->createTransport();
@@ -605,7 +576,7 @@ class FirewallsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -624,7 +595,7 @@ class FirewallsClientTest extends GeneratedTest
         $firewall = 'firewall-562725632';
         $firewallResource = new Firewall();
         $project = 'project-309310695';
-        $response = $client->update($firewall, $firewallResource, $project);
+        $response = $gapicClient->update($firewall, $firewallResource, $project);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -658,9 +629,7 @@ class FirewallsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -670,7 +639,7 @@ class FirewallsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -695,7 +664,7 @@ class FirewallsClientTest extends GeneratedTest
         $firewall = 'firewall-562725632';
         $firewallResource = new Firewall();
         $project = 'project-309310695';
-        $response = $client->update($firewall, $firewallResource, $project);
+        $response = $gapicClient->update($firewall, $firewallResource, $project);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {

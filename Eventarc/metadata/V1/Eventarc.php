@@ -20,23 +20,26 @@ class Eventarc
         \GPBMetadata\Google\Api\Resource::initOnce();
         \GPBMetadata\Google\Cloud\Eventarc\V1\Channel::initOnce();
         \GPBMetadata\Google\Cloud\Eventarc\V1\ChannelConnection::initOnce();
+        \GPBMetadata\Google\Cloud\Eventarc\V1\Discovery::initOnce();
+        \GPBMetadata\Google\Cloud\Eventarc\V1\GoogleChannelConfig::initOnce();
         \GPBMetadata\Google\Cloud\Eventarc\V1\Trigger::initOnce();
         \GPBMetadata\Google\Longrunning\Operations::initOnce();
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ù0
-\'google/cloud/eventarc/v1/eventarc.protogoogle.cloud.eventarc.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto&google/cloud/eventarc/v1/channel.proto1google/cloud/eventarc/v1/channel_connection.proto&google/cloud/eventarc/v1/trigger.proto#google/longrunning/operations.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"J
+∏<
+\'google/cloud/eventarc/v1/eventarc.protogoogle.cloud.eventarc.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto&google/cloud/eventarc/v1/channel.proto1google/cloud/eventarc/v1/channel_connection.proto(google/cloud/eventarc/v1/discovery.proto4google/cloud/eventarc/v1/google_channel_config.proto&google/cloud/eventarc/v1/trigger.proto#google/longrunning/operations.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"J
 GetTriggerRequest5
 name (	B\'‡A˙A!
-eventarc.googleapis.com/Trigger"á
+eventarc.googleapis.com/Trigger"ó
 ListTriggersRequest7
 parent (	B\'‡A˙A!eventarc.googleapis.com/Trigger
 	page_size (
 
 page_token (	
-order_by (	"y
+order_by (	
+filter (	"y
 ListTriggersResponse3
 triggers (2!.google.cloud.eventarc.v1.Trigger
 next_page_token (	
@@ -84,7 +87,21 @@ channel_id (	B‡A
 DeleteChannelRequest5
 name (	B\'‡A˙A!
 eventarc.googleapis.com/Channel
-validate_only (B‡A"^
+validate_only (B‡A"L
+GetProviderRequest6
+name (	B(‡A˙A"
+ eventarc.googleapis.com/Provider"ô
+ListProvidersRequest8
+parent (	B(‡A˙A" eventarc.googleapis.com/Provider
+	page_size (
+
+page_token (	
+order_by (	
+filter (	"|
+ListProvidersResponse5
+	providers (2".google.cloud.eventarc.v1.Provider
+next_page_token (	
+unreachable (	"^
 GetChannelConnectionRequest?
 name (	B1‡A˙A+
 )eventarc.googleapis.com/ChannelConnection"â
@@ -103,7 +120,13 @@ page_token (	"ò
 channel_connection_id (	B‡A"a
 DeleteChannelConnectionRequest?
 name (	B1‡A˙A+
-)eventarc.googleapis.com/ChannelConnection"Ä
+)eventarc.googleapis.com/ChannelConnection"¶
+ UpdateGoogleChannelConfigRequestQ
+google_channel_config (2-.google.cloud.eventarc.v1.GoogleChannelConfigB‡A/
+update_mask (2.google.protobuf.FieldMask"b
+GetGoogleChannelConfigRequestA
+name (	B3‡A˙A-
++eventarc.googleapis.com/GoogleChannelConfig"Ä
 OperationMetadata4
 create_time (2.google.protobuf.TimestampB‡A1
 end_time (2.google.protobuf.TimestampB‡A
@@ -111,7 +134,7 @@ page_token (	"ò
 verb (	B‡A
 status_message (	B‡A#
 requested_cancellation (B‡A
-api_version (	B‡A2ô
+api_version (	B‡A2œ
 Eventarcô
 
 GetTrigger+.google.cloud.eventarc.v1.GetTriggerRequest!.google.cloud.eventarc.v1.Trigger";Ç”‰ì.,/v1/{name=projects/*/locations/*/triggers/*}⁄Aname¨
@@ -130,13 +153,17 @@ GetChannel+.google.cloud.eventarc.v1.GetChannelRequest!.google.cloud.eventarc.
 UpdateChannel..google.cloud.eventarc.v1.UpdateChannelRequest.google.longrunning.Operation"zÇ”‰ì?24/v1/{channel.name=projects/*/locations/*/channels/*}:channel⁄Achannel,update_mask A
 ChannelOperationMetadata∫
 DeleteChannel..google.cloud.eventarc.v1.DeleteChannelRequest.google.longrunning.Operation"ZÇ”‰ì.*,/v1/{name=projects/*/locations/*/channels/*}⁄Aname A
-ChannelOperationMetadata¡
+ChannelOperationMetadataù
+GetProvider,.google.cloud.eventarc.v1.GetProviderRequest".google.cloud.eventarc.v1.Provider"<Ç”‰ì/-/v1/{name=projects/*/locations/*/providers/*}⁄Aname∞
+ListProviders..google.cloud.eventarc.v1.ListProvidersRequest/.google.cloud.eventarc.v1.ListProvidersResponse">Ç”‰ì/-/v1/{parent=projects/*/locations/*}/providers⁄Aparent¡
 GetChannelConnection5.google.cloud.eventarc.v1.GetChannelConnectionRequest+.google.cloud.eventarc.v1.ChannelConnection"EÇ”‰ì86/v1/{name=projects/*/locations/*/channelConnections/*}⁄Aname‘
 ListChannelConnections7.google.cloud.eventarc.v1.ListChannelConnectionsRequest8.google.cloud.eventarc.v1.ListChannelConnectionsResponse"GÇ”‰ì86/v1/{parent=projects/*/locations/*}/channelConnections⁄Aparent¢
 CreateChannelConnection8.google.cloud.eventarc.v1.CreateChannelConnectionRequest.google.longrunning.Operation"≠Ç”‰ìL"6/v1/{parent=projects/*/locations/*}/channelConnections:channel_connection⁄A/parent,channel_connection,channel_connection_id A&
 ChannelConnectionOperationMetadata‚
 DeleteChannelConnection8.google.cloud.eventarc.v1.DeleteChannelConnectionRequest.google.longrunning.Operation"nÇ”‰ì8*6/v1/{name=projects/*/locations/*/channelConnections/*}⁄Aname A&
-ChannelConnectionOperationMetadataK Aeventarc.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformB≈
+ChannelConnectionOperationMetadata∆
+GetGoogleChannelConfig7.google.cloud.eventarc.v1.GetGoogleChannelConfigRequest-.google.cloud.eventarc.v1.GoogleChannelConfig"DÇ”‰ì75/v1/{name=projects/*/locations/*/googleChannelConfig}⁄Anameó
+UpdateGoogleChannelConfig:.google.cloud.eventarc.v1.UpdateGoogleChannelConfigRequest-.google.cloud.eventarc.v1.GoogleChannelConfig"éÇ”‰ìd2K/v1/{google_channel_config.name=projects/*/locations/*/googleChannelConfig}:google_channel_config⁄A!google_channel_config,update_maskK Aeventarc.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformB≈
 com.google.cloud.eventarc.v1BEventarcProtoPZ@google.golang.org/genproto/googleapis/cloud/eventarc/v1;eventarc™Google.Cloud.Eventarc.V1 Google\\Cloud\\Eventarc\\V1ÍGoogle::Cloud::Eventarc::V1bproto3'
         , true);
 

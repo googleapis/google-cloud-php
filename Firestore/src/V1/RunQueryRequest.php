@@ -45,7 +45,8 @@ class RunQueryRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Firestore\V1\StructuredQuery $structured_query
      *           A structured query.
      *     @type string $transaction
-     *           Reads documents in a transaction.
+     *           Run the query within an already active transaction.
+     *           The value here is the opaque transaction ID to execute the query in.
      *     @type \Google\Cloud\Firestore\V1\TransactionOptions $new_transaction
      *           Starts a new transaction and reads the documents.
      *           Defaults to a read-only transaction.
@@ -129,7 +130,8 @@ class RunQueryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Reads documents in a transaction.
+     * Run the query within an already active transaction.
+     * The value here is the opaque transaction ID to execute the query in.
      *
      * Generated from protobuf field <code>bytes transaction = 5;</code>
      * @return string
@@ -145,7 +147,8 @@ class RunQueryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Reads documents in a transaction.
+     * Run the query within an already active transaction.
+     * The value here is the opaque transaction ID to execute the query in.
      *
      * Generated from protobuf field <code>bytes transaction = 5;</code>
      * @param string $var

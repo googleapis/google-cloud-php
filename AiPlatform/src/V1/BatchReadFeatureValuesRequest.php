@@ -50,6 +50,14 @@ class BatchReadFeatureValuesRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.BatchReadFeatureValuesRequest.EntityTypeSpec entity_type_specs = 7 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $entity_type_specs;
+    /**
+     * Optional. Excludes Feature values with feature generation timestamp before this
+     * timestamp. If not set, retrieve oldest values kept in Feature Store.
+     * Timestamp, if present, must not have higher than millisecond precision.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $start_time = null;
     protected $read_option;
 
     /**
@@ -84,19 +92,23 @@ class BatchReadFeatureValuesRequest extends \Google\Protobuf\Internal\Message
      *           `projects/{project}/locations/{location}/featurestores/{featurestore}`
      *     @type \Google\Cloud\AIPlatform\V1\FeatureValueDestination $destination
      *           Required. Specifies output location and format.
-     *     @type \Google\Cloud\AIPlatform\V1\BatchReadFeatureValuesRequest\PassThroughField[]|\Google\Protobuf\Internal\RepeatedField $pass_through_fields
+     *     @type array<\Google\Cloud\AIPlatform\V1\BatchReadFeatureValuesRequest\PassThroughField>|\Google\Protobuf\Internal\RepeatedField $pass_through_fields
      *           When not empty, the specified fields in the *_read_instances source will be
      *           joined as-is in the output, in addition to those fields from the
      *           Featurestore Entity.
      *           For BigQuery source, the type of the pass-through values will be
      *           automatically inferred. For CSV source, the pass-through values will be
      *           passed as opaque bytes.
-     *     @type \Google\Cloud\AIPlatform\V1\BatchReadFeatureValuesRequest\EntityTypeSpec[]|\Google\Protobuf\Internal\RepeatedField $entity_type_specs
+     *     @type array<\Google\Cloud\AIPlatform\V1\BatchReadFeatureValuesRequest\EntityTypeSpec>|\Google\Protobuf\Internal\RepeatedField $entity_type_specs
      *           Required. Specifies EntityType grouping Features to read values of and settings.
      *           Each EntityType referenced in
      *           [BatchReadFeatureValuesRequest.entity_type_specs] must have a column
      *           specifying entity IDs in the EntityType in
      *           [BatchReadFeatureValuesRequest.request][] .
+     *     @type \Google\Protobuf\Timestamp $start_time
+     *           Optional. Excludes Feature values with feature generation timestamp before this
+     *           timestamp. If not set, retrieve oldest values kept in Feature Store.
+     *           Timestamp, if present, must not have higher than millisecond precision.
      * }
      */
     public function __construct($data = NULL) {
@@ -289,7 +301,7 @@ class BatchReadFeatureValuesRequest extends \Google\Protobuf\Internal\Message
      * passed as opaque bytes.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.BatchReadFeatureValuesRequest.PassThroughField pass_through_fields = 8;</code>
-     * @param \Google\Cloud\AIPlatform\V1\BatchReadFeatureValuesRequest\PassThroughField[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AIPlatform\V1\BatchReadFeatureValuesRequest\PassThroughField>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPassThroughFields($var)
@@ -323,13 +335,53 @@ class BatchReadFeatureValuesRequest extends \Google\Protobuf\Internal\Message
      * [BatchReadFeatureValuesRequest.request][] .
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.BatchReadFeatureValuesRequest.EntityTypeSpec entity_type_specs = 7 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param \Google\Cloud\AIPlatform\V1\BatchReadFeatureValuesRequest\EntityTypeSpec[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AIPlatform\V1\BatchReadFeatureValuesRequest\EntityTypeSpec>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setEntityTypeSpecs($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\AIPlatform\V1\BatchReadFeatureValuesRequest\EntityTypeSpec::class);
         $this->entity_type_specs = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Excludes Feature values with feature generation timestamp before this
+     * timestamp. If not set, retrieve oldest values kept in Feature Store.
+     * Timestamp, if present, must not have higher than millisecond precision.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getStartTime()
+    {
+        return $this->start_time;
+    }
+
+    public function hasStartTime()
+    {
+        return isset($this->start_time);
+    }
+
+    public function clearStartTime()
+    {
+        unset($this->start_time);
+    }
+
+    /**
+     * Optional. Excludes Feature values with feature generation timestamp before this
+     * timestamp. If not set, retrieve oldest values kept in Feature Store.
+     * Timestamp, if present, must not have higher than millisecond precision.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setStartTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->start_time = $var;
 
         return $this;
     }

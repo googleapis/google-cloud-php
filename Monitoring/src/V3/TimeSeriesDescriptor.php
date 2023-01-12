@@ -34,9 +34,9 @@ class TimeSeriesDescriptor extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Api\LabelDescriptor[]|\Google\Protobuf\Internal\RepeatedField $label_descriptors
+     *     @type array<\Google\Api\LabelDescriptor>|\Google\Protobuf\Internal\RepeatedField $label_descriptors
      *           Descriptors for the labels.
-     *     @type \Google\Cloud\Monitoring\V3\TimeSeriesDescriptor\ValueDescriptor[]|\Google\Protobuf\Internal\RepeatedField $point_descriptors
+     *     @type array<\Google\Cloud\Monitoring\V3\TimeSeriesDescriptor\ValueDescriptor>|\Google\Protobuf\Internal\RepeatedField $point_descriptors
      *           Descriptors for the point data value columns.
      * }
      */
@@ -60,7 +60,7 @@ class TimeSeriesDescriptor extends \Google\Protobuf\Internal\Message
      * Descriptors for the labels.
      *
      * Generated from protobuf field <code>repeated .google.api.LabelDescriptor label_descriptors = 1;</code>
-     * @param \Google\Api\LabelDescriptor[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Api\LabelDescriptor>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setLabelDescriptors($var)
@@ -86,7 +86,7 @@ class TimeSeriesDescriptor extends \Google\Protobuf\Internal\Message
      * Descriptors for the point data value columns.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.TimeSeriesDescriptor.ValueDescriptor point_descriptors = 5;</code>
-     * @param \Google\Cloud\Monitoring\V3\TimeSeriesDescriptor\ValueDescriptor[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Monitoring\V3\TimeSeriesDescriptor\ValueDescriptor>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPointDescriptors($var)

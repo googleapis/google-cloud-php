@@ -143,6 +143,13 @@ class VirtualMachine extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.lifesciences.v2beta.Volume volumes = 14;</code>
      */
     private $volumes;
+    /**
+     * If specified, the VM will only be allocated inside the matching
+     * reservation. It will fail if the VM parameters don't match the reservation.
+     *
+     * Generated from protobuf field <code>string reservation = 15;</code>
+     */
+    private $reservation = '';
 
     /**
      * Constructor.
@@ -168,12 +175,12 @@ class VirtualMachine extends \Google\Protobuf\Internal\Message
      *           Labels keys with the prefix 'google-' are reserved for use by Google.
      *           Labels applied at creation time to the VM. Applied on a best-effort basis
      *           to attached disk resources shortly after VM creation.
-     *     @type \Google\Cloud\LifeSciences\V2beta\Disk[]|\Google\Protobuf\Internal\RepeatedField $disks
+     *     @type array<\Google\Cloud\LifeSciences\V2beta\Disk>|\Google\Protobuf\Internal\RepeatedField $disks
      *           The list of disks to create and attach to the VM.
      *           Specify either the `volumes[]` field or the `disks[]` field, but not both.
      *     @type \Google\Cloud\LifeSciences\V2beta\Network $network
      *           The VM network configuration.
-     *     @type \Google\Cloud\LifeSciences\V2beta\Accelerator[]|\Google\Protobuf\Internal\RepeatedField $accelerators
+     *     @type array<\Google\Cloud\LifeSciences\V2beta\Accelerator>|\Google\Protobuf\Internal\RepeatedField $accelerators
      *           The list of accelerators to attach to the VM.
      *     @type \Google\Cloud\LifeSciences\V2beta\ServiceAccount $service_account
      *           The service account to install on the VM. This account does not need
@@ -208,7 +215,7 @@ class VirtualMachine extends \Google\Protobuf\Internal\Message
      *           hosted in the `nvidia-drivers-us-public` bucket on Google Cloud Storage.
      *     @type bool $enable_stackdriver_monitoring
      *           Whether Stackdriver monitoring should be enabled on the VM.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $docker_cache_images
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $docker_cache_images
      *           The Compute Engine Disk Images to use as a Docker cache. The disks will be
      *           mounted into the Docker folder in a way that the images present in the
      *           cache will not need to be pulled. The digests of the cached images must
@@ -218,9 +225,12 @@ class VirtualMachine extends \Google\Protobuf\Internal\Message
      *           Docker images have already been pulled. Any images pulled that are not
      *           cached will be stored on the first cache disk instead of the boot disk.
      *           Only a single image is supported.
-     *     @type \Google\Cloud\LifeSciences\V2beta\Volume[]|\Google\Protobuf\Internal\RepeatedField $volumes
+     *     @type array<\Google\Cloud\LifeSciences\V2beta\Volume>|\Google\Protobuf\Internal\RepeatedField $volumes
      *           The list of disks and other storage to create or attach to the VM.
      *           Specify either the `volumes[]` field or the `disks[]` field, but not both.
+     *     @type string $reservation
+     *           If specified, the VM will only be allocated inside the matching
+     *           reservation. It will fail if the VM parameters don't match the reservation.
      * }
      */
     public function __construct($data = NULL) {
@@ -347,7 +357,7 @@ class VirtualMachine extends \Google\Protobuf\Internal\Message
      * Specify either the `volumes[]` field or the `disks[]` field, but not both.
      *
      * Generated from protobuf field <code>repeated .google.cloud.lifesciences.v2beta.Disk disks = 4;</code>
-     * @param \Google\Cloud\LifeSciences\V2beta\Disk[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\LifeSciences\V2beta\Disk>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDisks($var)
@@ -409,7 +419,7 @@ class VirtualMachine extends \Google\Protobuf\Internal\Message
      * The list of accelerators to attach to the VM.
      *
      * Generated from protobuf field <code>repeated .google.cloud.lifesciences.v2beta.Accelerator accelerators = 6;</code>
-     * @param \Google\Cloud\LifeSciences\V2beta\Accelerator[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\LifeSciences\V2beta\Accelerator>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAccelerators($var)
@@ -663,7 +673,7 @@ class VirtualMachine extends \Google\Protobuf\Internal\Message
      * Only a single image is supported.
      *
      * Generated from protobuf field <code>repeated string docker_cache_images = 13;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDockerCacheImages($var)
@@ -691,13 +701,41 @@ class VirtualMachine extends \Google\Protobuf\Internal\Message
      * Specify either the `volumes[]` field or the `disks[]` field, but not both.
      *
      * Generated from protobuf field <code>repeated .google.cloud.lifesciences.v2beta.Volume volumes = 14;</code>
-     * @param \Google\Cloud\LifeSciences\V2beta\Volume[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\LifeSciences\V2beta\Volume>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setVolumes($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\LifeSciences\V2beta\Volume::class);
         $this->volumes = $arr;
+
+        return $this;
+    }
+
+    /**
+     * If specified, the VM will only be allocated inside the matching
+     * reservation. It will fail if the VM parameters don't match the reservation.
+     *
+     * Generated from protobuf field <code>string reservation = 15;</code>
+     * @return string
+     */
+    public function getReservation()
+    {
+        return $this->reservation;
+    }
+
+    /**
+     * If specified, the VM will only be allocated inside the matching
+     * reservation. It will fail if the VM parameters don't match the reservation.
+     *
+     * Generated from protobuf field <code>string reservation = 15;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setReservation($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->reservation = $var;
 
         return $this;
     }

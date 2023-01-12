@@ -270,6 +270,18 @@ return [
                     ],
                 ],
             ],
+            'UndeleteTable' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{name=projects/*/instances/*/tables/*}:undelete',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateBackup' => [
                 'method' => 'patch',
                 'uriTemplate' => '/v2/{backup.name=projects/*/instances/*/clusters/*/backups/*}',
@@ -278,6 +290,22 @@ return [
                     'backup.name' => [
                         'getters' => [
                             'getBackup',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
+                ],
+            ],
+            'UpdateTable' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v2/{table.name=projects/*/instances/*/tables/*}',
+                'body' => 'table',
+                'placeholders' => [
+                    'table.name' => [
+                        'getters' => [
+                            'getTable',
                             'getName',
                         ],
                     ],

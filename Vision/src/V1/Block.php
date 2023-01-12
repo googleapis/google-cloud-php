@@ -84,7 +84,7 @@ class Block extends \Google\Protobuf\Internal\Message
      *                   |    |
      *                   1----0
      *             and the vertex order will still be (0, 1, 2, 3).
-     *     @type \Google\Cloud\Vision\V1\Paragraph[]|\Google\Protobuf\Internal\RepeatedField $paragraphs
+     *     @type array<\Google\Cloud\Vision\V1\Paragraph>|\Google\Protobuf\Internal\RepeatedField $paragraphs
      *           List of paragraphs in this block (if this blocks is of type text).
      *     @type int $block_type
      *           Detected block type (text, image etc) for this block.
@@ -212,7 +212,7 @@ class Block extends \Google\Protobuf\Internal\Message
      * List of paragraphs in this block (if this blocks is of type text).
      *
      * Generated from protobuf field <code>repeated .google.cloud.vision.v1.Paragraph paragraphs = 3;</code>
-     * @param \Google\Cloud\Vision\V1\Paragraph[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Vision\V1\Paragraph>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setParagraphs($var)

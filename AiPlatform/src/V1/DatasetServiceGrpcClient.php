@@ -154,6 +154,21 @@ class DatasetServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
+     * Lists SavedQueries in a Dataset.
+     * @param \Google\Cloud\AIPlatform\V1\ListSavedQueriesRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function ListSavedQueries(\Google\Cloud\AIPlatform\V1\ListSavedQueriesRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.aiplatform.v1.DatasetService/ListSavedQueries',
+        $argument,
+        ['\Google\Cloud\AIPlatform\V1\ListSavedQueriesResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
      * Gets an AnnotationSpec.
      * @param \Google\Cloud\AIPlatform\V1\GetAnnotationSpecRequest $argument input argument
      * @param array $metadata metadata

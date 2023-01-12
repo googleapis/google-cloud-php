@@ -86,7 +86,7 @@ class VersionsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -104,6 +104,7 @@ class VersionsClientTest extends GeneratedTest
         $runtimeChannel = 'runtimeChannel-2088002660';
         $threadsafe = false;
         $vm = false;
+        $appEngineApis = true;
         $env = 'env100589';
         $createdBy = 'createdBy1369680142';
         $diskUsageBytes = 1139084459;
@@ -120,6 +121,7 @@ class VersionsClientTest extends GeneratedTest
         $expectedResponse->setRuntimeChannel($runtimeChannel);
         $expectedResponse->setThreadsafe($threadsafe);
         $expectedResponse->setVm($vm);
+        $expectedResponse->setAppEngineApis($appEngineApis);
         $expectedResponse->setEnv($env);
         $expectedResponse->setCreatedBy($createdBy);
         $expectedResponse->setDiskUsageBytes($diskUsageBytes);
@@ -135,7 +137,7 @@ class VersionsClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $response = $client->createVersion();
+        $response = $gapicClient->createVersion();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -176,7 +178,7 @@ class VersionsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -197,7 +199,7 @@ class VersionsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $client->createVersion();
+        $response = $gapicClient->createVersion();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -231,7 +233,7 @@ class VersionsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -250,7 +252,7 @@ class VersionsClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $response = $client->deleteVersion();
+        $response = $gapicClient->deleteVersion();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -291,7 +293,7 @@ class VersionsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -312,7 +314,7 @@ class VersionsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $client->deleteVersion();
+        $response = $gapicClient->deleteVersion();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -340,7 +342,7 @@ class VersionsClientTest extends GeneratedTest
     public function getVersionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -352,6 +354,7 @@ class VersionsClientTest extends GeneratedTest
         $runtimeChannel = 'runtimeChannel-2088002660';
         $threadsafe = false;
         $vm = false;
+        $appEngineApis = true;
         $env = 'env100589';
         $createdBy = 'createdBy1369680142';
         $diskUsageBytes = 1139084459;
@@ -368,6 +371,7 @@ class VersionsClientTest extends GeneratedTest
         $expectedResponse->setRuntimeChannel($runtimeChannel);
         $expectedResponse->setThreadsafe($threadsafe);
         $expectedResponse->setVm($vm);
+        $expectedResponse->setAppEngineApis($appEngineApis);
         $expectedResponse->setEnv($env);
         $expectedResponse->setCreatedBy($createdBy);
         $expectedResponse->setDiskUsageBytes($diskUsageBytes);
@@ -377,7 +381,7 @@ class VersionsClientTest extends GeneratedTest
         $expectedResponse->setNobuildFilesRegex($nobuildFilesRegex);
         $expectedResponse->setVersionUrl($versionUrl);
         $transport->addResponse($expectedResponse);
-        $response = $client->getVersion();
+        $response = $gapicClient->getVersion();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -393,7 +397,7 @@ class VersionsClientTest extends GeneratedTest
     public function getVersionExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -408,8 +412,8 @@ class VersionsClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->getVersion();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getVersion();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -426,7 +430,7 @@ class VersionsClientTest extends GeneratedTest
     public function listVersionsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -440,7 +444,7 @@ class VersionsClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setVersions($versions);
         $transport->addResponse($expectedResponse);
-        $response = $client->listVersions();
+        $response = $gapicClient->listVersions();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -459,7 +463,7 @@ class VersionsClientTest extends GeneratedTest
     public function listVersionsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -474,8 +478,8 @@ class VersionsClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->listVersions();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listVersions();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -498,7 +502,7 @@ class VersionsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -516,6 +520,7 @@ class VersionsClientTest extends GeneratedTest
         $runtimeChannel = 'runtimeChannel-2088002660';
         $threadsafe = false;
         $vm = false;
+        $appEngineApis = true;
         $env = 'env100589';
         $createdBy = 'createdBy1369680142';
         $diskUsageBytes = 1139084459;
@@ -532,6 +537,7 @@ class VersionsClientTest extends GeneratedTest
         $expectedResponse->setRuntimeChannel($runtimeChannel);
         $expectedResponse->setThreadsafe($threadsafe);
         $expectedResponse->setVm($vm);
+        $expectedResponse->setAppEngineApis($appEngineApis);
         $expectedResponse->setEnv($env);
         $expectedResponse->setCreatedBy($createdBy);
         $expectedResponse->setDiskUsageBytes($diskUsageBytes);
@@ -547,7 +553,7 @@ class VersionsClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $response = $client->updateVersion();
+        $response = $gapicClient->updateVersion();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -588,7 +594,7 @@ class VersionsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -609,7 +615,7 @@ class VersionsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $client->updateVersion();
+        $response = $gapicClient->updateVersion();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();

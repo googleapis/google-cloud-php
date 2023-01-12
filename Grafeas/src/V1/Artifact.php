@@ -52,7 +52,7 @@ class Artifact extends \Google\Protobuf\Internal\Message
      *     @type string $id
      *           Artifact ID, if any; for container images, this will be a URL by digest
      *           like `gcr.io/projectID/imagename&#64;sha256:123456`.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $names
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $names
      *           Related artifact names. This may be the path to a binary or jar file, or in
      *           the case of a container build, the name used to push the container image to
      *           Google Container Registry, as presented to `docker push`. Note that a
@@ -144,7 +144,7 @@ class Artifact extends \Google\Protobuf\Internal\Message
      * applied to one image.
      *
      * Generated from protobuf field <code>repeated string names = 3;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setNames($var)

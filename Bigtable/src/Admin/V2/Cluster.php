@@ -21,21 +21,20 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * The unique name of the cluster. Values are of the form
      * `projects/{project}/instances/{instance}/clusters/[a-z][-a-z0-9]*`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1;</code>
      */
     private $name = '';
     /**
-     * (`CreationOnly`)
-     * The location where this cluster's nodes and storage reside. For best
+     * Immutable. The location where this cluster's nodes and storage reside. For best
      * performance, clients should be located as close as possible to this
      * cluster. Currently only zones are supported, so values should be of the
      * form `projects/{project}/locations/{zone}`.
      *
-     * Generated from protobuf field <code>string location = 2 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string location = 2 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      */
     private $location = '';
     /**
-     * The current state of the cluster.
+     * Output only. The current state of the cluster.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.Cluster.State state = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -48,11 +47,10 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     private $serve_nodes = 0;
     /**
-     * (`CreationOnly`)
-     * The type of storage used by this cluster to serve its
+     * Immutable. The type of storage used by this cluster to serve its
      * parent instance's tables, unless explicitly overridden.
      *
-     * Generated from protobuf field <code>.google.bigtable.admin.v2.StorageType default_storage_type = 5;</code>
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.StorageType default_storage_type = 5 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
     private $default_storage_type = 0;
     /**
@@ -73,21 +71,19 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *           The unique name of the cluster. Values are of the form
      *           `projects/{project}/instances/{instance}/clusters/[a-z][-a-z0-9]*`.
      *     @type string $location
-     *           (`CreationOnly`)
-     *           The location where this cluster's nodes and storage reside. For best
+     *           Immutable. The location where this cluster's nodes and storage reside. For best
      *           performance, clients should be located as close as possible to this
      *           cluster. Currently only zones are supported, so values should be of the
      *           form `projects/{project}/locations/{zone}`.
      *     @type int $state
-     *           The current state of the cluster.
+     *           Output only. The current state of the cluster.
      *     @type int $serve_nodes
      *           The number of nodes allocated to this cluster. More nodes enable higher
      *           throughput and more consistent performance.
      *     @type \Google\Cloud\Bigtable\Admin\V2\Cluster\ClusterConfig $cluster_config
      *           Configuration for this cluster.
      *     @type int $default_storage_type
-     *           (`CreationOnly`)
-     *           The type of storage used by this cluster to serve its
+     *           Immutable. The type of storage used by this cluster to serve its
      *           parent instance's tables, unless explicitly overridden.
      *     @type \Google\Cloud\Bigtable\Admin\V2\Cluster\EncryptionConfig $encryption_config
      *           Immutable. The encryption configuration for CMEK-protected clusters.
@@ -102,7 +98,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * The unique name of the cluster. Values are of the form
      * `projects/{project}/instances/{instance}/clusters/[a-z][-a-z0-9]*`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1;</code>
      * @return string
      */
     public function getName()
@@ -114,7 +110,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * The unique name of the cluster. Values are of the form
      * `projects/{project}/instances/{instance}/clusters/[a-z][-a-z0-9]*`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
      * @return $this
      */
@@ -127,13 +123,12 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * (`CreationOnly`)
-     * The location where this cluster's nodes and storage reside. For best
+     * Immutable. The location where this cluster's nodes and storage reside. For best
      * performance, clients should be located as close as possible to this
      * cluster. Currently only zones are supported, so values should be of the
      * form `projects/{project}/locations/{zone}`.
      *
-     * Generated from protobuf field <code>string location = 2 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string location = 2 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getLocation()
@@ -142,13 +137,12 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * (`CreationOnly`)
-     * The location where this cluster's nodes and storage reside. For best
+     * Immutable. The location where this cluster's nodes and storage reside. For best
      * performance, clients should be located as close as possible to this
      * cluster. Currently only zones are supported, so values should be of the
      * form `projects/{project}/locations/{zone}`.
      *
-     * Generated from protobuf field <code>string location = 2 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string location = 2 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -161,7 +155,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The current state of the cluster.
+     * Output only. The current state of the cluster.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.Cluster.State state = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
@@ -172,7 +166,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The current state of the cluster.
+     * Output only. The current state of the cluster.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.Cluster.State state = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
@@ -246,11 +240,10 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * (`CreationOnly`)
-     * The type of storage used by this cluster to serve its
+     * Immutable. The type of storage used by this cluster to serve its
      * parent instance's tables, unless explicitly overridden.
      *
-     * Generated from protobuf field <code>.google.bigtable.admin.v2.StorageType default_storage_type = 5;</code>
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.StorageType default_storage_type = 5 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return int
      */
     public function getDefaultStorageType()
@@ -259,11 +252,10 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * (`CreationOnly`)
-     * The type of storage used by this cluster to serve its
+     * Immutable. The type of storage used by this cluster to serve its
      * parent instance's tables, unless explicitly overridden.
      *
-     * Generated from protobuf field <code>.google.bigtable.admin.v2.StorageType default_storage_type = 5;</code>
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.StorageType default_storage_type = 5 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @param int $var
      * @return $this
      */

@@ -11,6 +11,11 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Configuration to control the number of findings returned for inspection.
  * This is not used for de-identification or data profiling.
+ * When redacting sensitive data from images, finding limits don't apply. They
+ * can cause unexpected or inconsistent results, where only some data is
+ * redacted. Don't include finding limits in
+ * [RedactImage][google.privacy.dlp.v2.DlpService.RedactImage]
+ * requests. Otherwise, Cloud DLP returns an error.
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.InspectConfig.FindingLimits</code>
  */
@@ -55,7 +60,7 @@ class FindingLimits extends \Google\Protobuf\Internal\Message
      *           Max number of findings that will be returned per request/job.
      *           When set within `InspectContentRequest`, the maximum returned is 2000
      *           regardless if this is set higher.
-     *     @type \Google\Cloud\Dlp\V2\InspectConfig\FindingLimits\InfoTypeLimit[]|\Google\Protobuf\Internal\RepeatedField $max_findings_per_info_type
+     *     @type array<\Google\Cloud\Dlp\V2\InspectConfig\FindingLimits\InfoTypeLimit>|\Google\Protobuf\Internal\RepeatedField $max_findings_per_info_type
      *           Configuration of findings limit given for specified infoTypes.
      * }
      */
@@ -141,7 +146,7 @@ class FindingLimits extends \Google\Protobuf\Internal\Message
      * Configuration of findings limit given for specified infoTypes.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.InspectConfig.FindingLimits.InfoTypeLimit max_findings_per_info_type = 3;</code>
-     * @param \Google\Cloud\Dlp\V2\InspectConfig\FindingLimits\InfoTypeLimit[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dlp\V2\InspectConfig\FindingLimits\InfoTypeLimit>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setMaxFindingsPerInfoType($var)

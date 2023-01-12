@@ -74,7 +74,7 @@ class StageSummary extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dataflow\V1beta3\ProgressTimeseries $progress
      *           Progress for this stage.
      *           Only applicable to Batch jobs.
-     *     @type \Google\Cloud\Dataflow\V1beta3\MetricUpdate[]|\Google\Protobuf\Internal\RepeatedField $metrics
+     *     @type array<\Google\Cloud\Dataflow\V1beta3\MetricUpdate>|\Google\Protobuf\Internal\RepeatedField $metrics
      *           Metrics for this stage.
      * }
      */
@@ -264,7 +264,7 @@ class StageSummary extends \Google\Protobuf\Internal\Message
      * Metrics for this stage.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.MetricUpdate metrics = 6;</code>
-     * @param \Google\Cloud\Dataflow\V1beta3\MetricUpdate[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dataflow\V1beta3\MetricUpdate>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setMetrics($var)

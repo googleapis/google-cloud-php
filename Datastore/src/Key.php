@@ -110,6 +110,7 @@ class Key implements JsonSerializable
      *     @type string $namespaceId Partitions data under a namespace. Useful for
      *           [Multitenant Projects](https://cloud.google.com/datastore/docs/concepts/multitenancy).
      *           Applications with no need for multitenancy should not set this value.
+     *     @type string $databaseId ID of the database to which the entities belong.
      *     @type array $path The initial Key path.
      * }
      */
@@ -118,7 +119,8 @@ class Key implements JsonSerializable
         $this->projectId = $projectId;
         $this->options = $options + [
             'path' => [],
-            'namespaceId' => null
+            'namespaceId' => null,
+            'databaseId' => '',
         ];
 
         if (is_array($this->options['path']) && !empty($this->options['path'])) {
@@ -413,7 +415,11 @@ class Key implements JsonSerializable
     public function keyObject()
     {
         return [
-            'partitionId' => $this->partitionId($this->projectId, $this->options['namespaceId']),
+            'partitionId' => $this->partitionId(
+                $this->projectId,
+                $this->options['namespaceId'],
+                $this->options['databaseId']
+            ),
             'path' => $this->path
         ];
     }

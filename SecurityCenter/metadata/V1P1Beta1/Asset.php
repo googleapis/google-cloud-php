@@ -19,11 +19,10 @@ class Asset
         \GPBMetadata\Google\Cloud\Securitycenter\V1P1Beta1\SecurityMarks::initOnce();
         \GPBMetadata\Google\Protobuf\Struct::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
-        \GPBMetadata\Google\Api\Annotations::initOnce();
         $pool->internalAddGeneratedFile(
             '
-þ
-1google/cloud/securitycenter/v1p1beta1/asset.proto%google.cloud.securitycenter.v1p1beta12google/cloud/securitycenter/v1p1beta1/folder.proto:google/cloud/securitycenter/v1p1beta1/security_marks.protogoogle/protobuf/struct.protogoogle/protobuf/timestamp.protogoogle/api/annotations.proto"Ì
+à
+1google/cloud/securitycenter/v1p1beta1/asset.proto%google.cloud.securitycenter.v1p1beta12google/cloud/securitycenter/v1p1beta1/folder.proto:google/cloud/securitycenter/v1p1beta1/security_marks.protogoogle/protobuf/struct.protogoogle/protobuf/timestamp.proto"Ì
 Asset
 name (	i
 security_center_properties (2E.google.cloud.securitycenter.v1p1beta1.Asset.SecurityCenterPropertiesa

@@ -10,7 +10,6 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Represents the spec of a CustomJob.
- * Next Id: 14
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.CustomJobSpec</code>
  */
@@ -41,7 +40,7 @@ class CustomJobSpec extends \Google\Protobuf\Internal\Message
      */
     private $service_account = '';
     /**
-     * The full name of the Compute Engine
+     * Optional. The full name of the Compute Engine
      * [network](https://cloud.google.com/compute/docs/networks-and-firewalls#networks) to which the Job
      * should be peered. For example, `projects/12345/global/networks/myVPC`.
      * [Format](https://cloud.google.com/compute/docs/reference/rest/v1/networks/insert)
@@ -53,9 +52,20 @@ class CustomJobSpec extends \Google\Protobuf\Internal\Message
      * AI](https://cloud.google.com/vertex-ai/docs/general/vpc-peering).
      * If this field is left unspecified, the job is not peered with any network.
      *
-     * Generated from protobuf field <code>string network = 5 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string network = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
     private $network = '';
+    /**
+     * Optional. A list of names for the reserved ip ranges under the VPC network
+     * that can be used for this job.
+     * If set, we will deploy the job within the provided ip ranges. Otherwise,
+     * the job will be deployed to any ip ranges under the provided VPC
+     * network.
+     * Example: ['vertex-ai-ip-range'].
+     *
+     * Generated from protobuf field <code>repeated string reserved_ip_ranges = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $reserved_ip_ranges;
     /**
      * The Cloud Storage location to store the output of this CustomJob or
      * HyperparameterTuningJob. For HyperparameterTuningJob,
@@ -104,7 +114,7 @@ class CustomJobSpec extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\AIPlatform\V1\WorkerPoolSpec[]|\Google\Protobuf\Internal\RepeatedField $worker_pool_specs
+     *     @type array<\Google\Cloud\AIPlatform\V1\WorkerPoolSpec>|\Google\Protobuf\Internal\RepeatedField $worker_pool_specs
      *           Required. The spec of the worker pools including machine type and Docker image.
      *           All worker pools except the first one are optional and can be skipped by
      *           providing an empty value.
@@ -117,7 +127,7 @@ class CustomJobSpec extends \Google\Protobuf\Internal\Message
      *           Agent](https://cloud.google.com/vertex-ai/docs/general/access-control#service-agents)
      *           for the CustomJob's project is used.
      *     @type string $network
-     *           The full name of the Compute Engine
+     *           Optional. The full name of the Compute Engine
      *           [network](https://cloud.google.com/compute/docs/networks-and-firewalls#networks) to which the Job
      *           should be peered. For example, `projects/12345/global/networks/myVPC`.
      *           [Format](https://cloud.google.com/compute/docs/reference/rest/v1/networks/insert)
@@ -128,6 +138,13 @@ class CustomJobSpec extends \Google\Protobuf\Internal\Message
      *           Peering for Vertex
      *           AI](https://cloud.google.com/vertex-ai/docs/general/vpc-peering).
      *           If this field is left unspecified, the job is not peered with any network.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $reserved_ip_ranges
+     *           Optional. A list of names for the reserved ip ranges under the VPC network
+     *           that can be used for this job.
+     *           If set, we will deploy the job within the provided ip ranges. Otherwise,
+     *           the job will be deployed to any ip ranges under the provided VPC
+     *           network.
+     *           Example: ['vertex-ai-ip-range'].
      *     @type \Google\Cloud\AIPlatform\V1\GcsDestination $base_output_directory
      *           The Cloud Storage location to store the output of this CustomJob or
      *           HyperparameterTuningJob. For HyperparameterTuningJob,
@@ -183,7 +200,7 @@ class CustomJobSpec extends \Google\Protobuf\Internal\Message
      * providing an empty value.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.WorkerPoolSpec worker_pool_specs = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param \Google\Cloud\AIPlatform\V1\WorkerPoolSpec[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AIPlatform\V1\WorkerPoolSpec>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setWorkerPoolSpecs($var)
@@ -265,7 +282,7 @@ class CustomJobSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The full name of the Compute Engine
+     * Optional. The full name of the Compute Engine
      * [network](https://cloud.google.com/compute/docs/networks-and-firewalls#networks) to which the Job
      * should be peered. For example, `projects/12345/global/networks/myVPC`.
      * [Format](https://cloud.google.com/compute/docs/reference/rest/v1/networks/insert)
@@ -277,7 +294,7 @@ class CustomJobSpec extends \Google\Protobuf\Internal\Message
      * AI](https://cloud.google.com/vertex-ai/docs/general/vpc-peering).
      * If this field is left unspecified, the job is not peered with any network.
      *
-     * Generated from protobuf field <code>string network = 5 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string network = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getNetwork()
@@ -286,7 +303,7 @@ class CustomJobSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The full name of the Compute Engine
+     * Optional. The full name of the Compute Engine
      * [network](https://cloud.google.com/compute/docs/networks-and-firewalls#networks) to which the Job
      * should be peered. For example, `projects/12345/global/networks/myVPC`.
      * [Format](https://cloud.google.com/compute/docs/reference/rest/v1/networks/insert)
@@ -298,7 +315,7 @@ class CustomJobSpec extends \Google\Protobuf\Internal\Message
      * AI](https://cloud.google.com/vertex-ai/docs/general/vpc-peering).
      * If this field is left unspecified, the job is not peered with any network.
      *
-     * Generated from protobuf field <code>string network = 5 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string network = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -306,6 +323,42 @@ class CustomJobSpec extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->network = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. A list of names for the reserved ip ranges under the VPC network
+     * that can be used for this job.
+     * If set, we will deploy the job within the provided ip ranges. Otherwise,
+     * the job will be deployed to any ip ranges under the provided VPC
+     * network.
+     * Example: ['vertex-ai-ip-range'].
+     *
+     * Generated from protobuf field <code>repeated string reserved_ip_ranges = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getReservedIpRanges()
+    {
+        return $this->reserved_ip_ranges;
+    }
+
+    /**
+     * Optional. A list of names for the reserved ip ranges under the VPC network
+     * that can be used for this job.
+     * If set, we will deploy the job within the provided ip ranges. Otherwise,
+     * the job will be deployed to any ip ranges under the provided VPC
+     * network.
+     * Example: ['vertex-ai-ip-range'].
+     *
+     * Generated from protobuf field <code>repeated string reserved_ip_ranges = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setReservedIpRanges($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->reserved_ip_ranges = $arr;
 
         return $this;
     }

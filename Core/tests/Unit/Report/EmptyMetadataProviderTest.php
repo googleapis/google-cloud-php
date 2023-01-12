@@ -18,7 +18,7 @@
 namespace Google\Cloud\Core\Tests\Unit\Report;
 
 use Google\Cloud\Core\Report\EmptyMetadataProvider;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group core
@@ -27,7 +27,7 @@ class EmptyMetadataProviderTest extends TestCase
 {
     private $metadataProvider;
 
-    public function setup()
+    public function set_up()
     {
         $this->metadataProvider = new EmptyMetadataProvider();
     }

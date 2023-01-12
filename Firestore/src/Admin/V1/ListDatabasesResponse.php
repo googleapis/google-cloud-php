@@ -28,7 +28,7 @@ class ListDatabasesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Firestore\Admin\V1\Database[]|\Google\Protobuf\Internal\RepeatedField $databases
+     *     @type array<\Google\Cloud\Firestore\Admin\V1\Database>|\Google\Protobuf\Internal\RepeatedField $databases
      *           The databases in the project.
      * }
      */
@@ -52,7 +52,7 @@ class ListDatabasesResponse extends \Google\Protobuf\Internal\Message
      * The databases in the project.
      *
      * Generated from protobuf field <code>repeated .google.firestore.admin.v1.Database databases = 1;</code>
-     * @param \Google\Cloud\Firestore\Admin\V1\Database[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Firestore\Admin\V1\Database>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDatabases($var)

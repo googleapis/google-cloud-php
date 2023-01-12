@@ -58,10 +58,10 @@ class YumSettings extends \Google\Protobuf\Internal\Message
      *           all platforms.
      *     @type bool $minimal
      *           Will cause patch to run `yum update-minimal` instead.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $excludes
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $excludes
      *           List of packages to exclude from update. These packages are excluded by
      *           using the yum `--exclude` flag.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $exclusive_packages
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $exclusive_packages
      *           An exclusive list of packages to be updated. These are the only packages
      *           that will be updated. If these packages are not installed, they will be
      *           ignored. This field must not be specified with any other patch
@@ -144,7 +144,7 @@ class YumSettings extends \Google\Protobuf\Internal\Message
      * using the yum `--exclude` flag.
      *
      * Generated from protobuf field <code>repeated string excludes = 3;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setExcludes($var)
@@ -176,7 +176,7 @@ class YumSettings extends \Google\Protobuf\Internal\Message
      * configuration fields.
      *
      * Generated from protobuf field <code>repeated string exclusive_packages = 4;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setExclusivePackages($var)

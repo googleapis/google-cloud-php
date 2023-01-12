@@ -115,7 +115,10 @@ class Grpc implements ConnectionInterface
         }
 
         if ((bool) $config['emulatorHost']) {
-            $grpcConfig += $this->emulatorGapicConfig($config['emulatorHost']);
+            $grpcConfig = array_merge(
+                $grpcConfig,
+                $this->emulatorGapicConfig($config['emulatorHost'])
+            );
         }
         //@codeCoverageIgnoreEnd
 

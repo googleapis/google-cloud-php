@@ -19,9 +19,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class CertificateProviderInstance extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Plugin instance name, used to locate and load CertificateProvider instance
-     * configuration. Set to "google_cloud_private_spiffe" to use Certificate
-     * Authority Service certificate provider instance.
+     * Required. Plugin instance name, used to locate and load CertificateProvider
+     * instance configuration. Set to "google_cloud_private_spiffe" to use
+     * Certificate Authority Service certificate provider instance.
      *
      * Generated from protobuf field <code>string plugin_instance = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -34,9 +34,9 @@ class CertificateProviderInstance extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $plugin_instance
-     *           Required. Plugin instance name, used to locate and load CertificateProvider instance
-     *           configuration. Set to "google_cloud_private_spiffe" to use Certificate
-     *           Authority Service certificate provider instance.
+     *           Required. Plugin instance name, used to locate and load CertificateProvider
+     *           instance configuration. Set to "google_cloud_private_spiffe" to use
+     *           Certificate Authority Service certificate provider instance.
      * }
      */
     public function __construct($data = NULL) {
@@ -45,9 +45,9 @@ class CertificateProviderInstance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Plugin instance name, used to locate and load CertificateProvider instance
-     * configuration. Set to "google_cloud_private_spiffe" to use Certificate
-     * Authority Service certificate provider instance.
+     * Required. Plugin instance name, used to locate and load CertificateProvider
+     * instance configuration. Set to "google_cloud_private_spiffe" to use
+     * Certificate Authority Service certificate provider instance.
      *
      * Generated from protobuf field <code>string plugin_instance = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -58,9 +58,9 @@ class CertificateProviderInstance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Plugin instance name, used to locate and load CertificateProvider instance
-     * configuration. Set to "google_cloud_private_spiffe" to use Certificate
-     * Authority Service certificate provider instance.
+     * Required. Plugin instance name, used to locate and load CertificateProvider
+     * instance configuration. Set to "google_cloud_private_spiffe" to use
+     * Certificate Authority Service certificate provider instance.
      *
      * Generated from protobuf field <code>string plugin_instance = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

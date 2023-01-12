@@ -56,6 +56,10 @@ class AnalyzeContentResponse extends \Google\Protobuf\Internal\Message
      * The suggestions for most recent human agent. The order is the same as
      * [HumanAgentAssistantConfig.SuggestionConfig.feature_configs][google.cloud.dialogflow.v2.HumanAgentAssistantConfig.SuggestionConfig.feature_configs] of
      * [HumanAgentAssistantConfig.human_agent_suggestion_config][google.cloud.dialogflow.v2.HumanAgentAssistantConfig.human_agent_suggestion_config].
+     * Note that any failure of Agent Assist features will not lead to the overall
+     * failure of an AnalyzeContent API call. Instead, the features will
+     * fail silently with the error field set in the corresponding
+     * SuggestionResult.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.SuggestionResult human_agent_suggestion_results = 6;</code>
      */
@@ -64,6 +68,10 @@ class AnalyzeContentResponse extends \Google\Protobuf\Internal\Message
      * The suggestions for end user. The order is the same as
      * [HumanAgentAssistantConfig.SuggestionConfig.feature_configs][google.cloud.dialogflow.v2.HumanAgentAssistantConfig.SuggestionConfig.feature_configs] of
      * [HumanAgentAssistantConfig.end_user_suggestion_config][google.cloud.dialogflow.v2.HumanAgentAssistantConfig.end_user_suggestion_config].
+     * Same as human_agent_suggestion_results, any failure of Agent Assist
+     * features will not lead to the overall failure of an AnalyzeContent API
+     * call. Instead, the features will fail silently with the error field set in
+     * the corresponding SuggestionResult.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.SuggestionResult end_user_suggestion_results = 7;</code>
      */
@@ -102,14 +110,22 @@ class AnalyzeContentResponse extends \Google\Protobuf\Internal\Message
      *           are always empty, use [reply_audio][google.cloud.dialogflow.v2.AnalyzeContentResponse.reply_audio] instead.
      *     @type \Google\Cloud\Dialogflow\V2\Message $message
      *           Message analyzed by CCAI.
-     *     @type \Google\Cloud\Dialogflow\V2\SuggestionResult[]|\Google\Protobuf\Internal\RepeatedField $human_agent_suggestion_results
+     *     @type array<\Google\Cloud\Dialogflow\V2\SuggestionResult>|\Google\Protobuf\Internal\RepeatedField $human_agent_suggestion_results
      *           The suggestions for most recent human agent. The order is the same as
      *           [HumanAgentAssistantConfig.SuggestionConfig.feature_configs][google.cloud.dialogflow.v2.HumanAgentAssistantConfig.SuggestionConfig.feature_configs] of
      *           [HumanAgentAssistantConfig.human_agent_suggestion_config][google.cloud.dialogflow.v2.HumanAgentAssistantConfig.human_agent_suggestion_config].
-     *     @type \Google\Cloud\Dialogflow\V2\SuggestionResult[]|\Google\Protobuf\Internal\RepeatedField $end_user_suggestion_results
+     *           Note that any failure of Agent Assist features will not lead to the overall
+     *           failure of an AnalyzeContent API call. Instead, the features will
+     *           fail silently with the error field set in the corresponding
+     *           SuggestionResult.
+     *     @type array<\Google\Cloud\Dialogflow\V2\SuggestionResult>|\Google\Protobuf\Internal\RepeatedField $end_user_suggestion_results
      *           The suggestions for end user. The order is the same as
      *           [HumanAgentAssistantConfig.SuggestionConfig.feature_configs][google.cloud.dialogflow.v2.HumanAgentAssistantConfig.SuggestionConfig.feature_configs] of
      *           [HumanAgentAssistantConfig.end_user_suggestion_config][google.cloud.dialogflow.v2.HumanAgentAssistantConfig.end_user_suggestion_config].
+     *           Same as human_agent_suggestion_results, any failure of Agent Assist
+     *           features will not lead to the overall failure of an AnalyzeContent API
+     *           call. Instead, the features will fail silently with the error field set in
+     *           the corresponding SuggestionResult.
      *     @type \Google\Cloud\Dialogflow\V2\DtmfParameters $dtmf_parameters
      *           Indicates the parameters of DTMF.
      * }
@@ -283,6 +299,10 @@ class AnalyzeContentResponse extends \Google\Protobuf\Internal\Message
      * The suggestions for most recent human agent. The order is the same as
      * [HumanAgentAssistantConfig.SuggestionConfig.feature_configs][google.cloud.dialogflow.v2.HumanAgentAssistantConfig.SuggestionConfig.feature_configs] of
      * [HumanAgentAssistantConfig.human_agent_suggestion_config][google.cloud.dialogflow.v2.HumanAgentAssistantConfig.human_agent_suggestion_config].
+     * Note that any failure of Agent Assist features will not lead to the overall
+     * failure of an AnalyzeContent API call. Instead, the features will
+     * fail silently with the error field set in the corresponding
+     * SuggestionResult.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.SuggestionResult human_agent_suggestion_results = 6;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -296,9 +316,13 @@ class AnalyzeContentResponse extends \Google\Protobuf\Internal\Message
      * The suggestions for most recent human agent. The order is the same as
      * [HumanAgentAssistantConfig.SuggestionConfig.feature_configs][google.cloud.dialogflow.v2.HumanAgentAssistantConfig.SuggestionConfig.feature_configs] of
      * [HumanAgentAssistantConfig.human_agent_suggestion_config][google.cloud.dialogflow.v2.HumanAgentAssistantConfig.human_agent_suggestion_config].
+     * Note that any failure of Agent Assist features will not lead to the overall
+     * failure of an AnalyzeContent API call. Instead, the features will
+     * fail silently with the error field set in the corresponding
+     * SuggestionResult.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.SuggestionResult human_agent_suggestion_results = 6;</code>
-     * @param \Google\Cloud\Dialogflow\V2\SuggestionResult[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dialogflow\V2\SuggestionResult>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setHumanAgentSuggestionResults($var)
@@ -313,6 +337,10 @@ class AnalyzeContentResponse extends \Google\Protobuf\Internal\Message
      * The suggestions for end user. The order is the same as
      * [HumanAgentAssistantConfig.SuggestionConfig.feature_configs][google.cloud.dialogflow.v2.HumanAgentAssistantConfig.SuggestionConfig.feature_configs] of
      * [HumanAgentAssistantConfig.end_user_suggestion_config][google.cloud.dialogflow.v2.HumanAgentAssistantConfig.end_user_suggestion_config].
+     * Same as human_agent_suggestion_results, any failure of Agent Assist
+     * features will not lead to the overall failure of an AnalyzeContent API
+     * call. Instead, the features will fail silently with the error field set in
+     * the corresponding SuggestionResult.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.SuggestionResult end_user_suggestion_results = 7;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -326,9 +354,13 @@ class AnalyzeContentResponse extends \Google\Protobuf\Internal\Message
      * The suggestions for end user. The order is the same as
      * [HumanAgentAssistantConfig.SuggestionConfig.feature_configs][google.cloud.dialogflow.v2.HumanAgentAssistantConfig.SuggestionConfig.feature_configs] of
      * [HumanAgentAssistantConfig.end_user_suggestion_config][google.cloud.dialogflow.v2.HumanAgentAssistantConfig.end_user_suggestion_config].
+     * Same as human_agent_suggestion_results, any failure of Agent Assist
+     * features will not lead to the overall failure of an AnalyzeContent API
+     * call. Instead, the features will fail silently with the error field set in
+     * the corresponding SuggestionResult.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.SuggestionResult end_user_suggestion_results = 7;</code>
-     * @param \Google\Cloud\Dialogflow\V2\SuggestionResult[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dialogflow\V2\SuggestionResult>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setEndUserSuggestionResults($var)

@@ -24,9 +24,9 @@ class CompleteQueryResponse extends \Google\Protobuf\Internal\Message
     private $completion_results;
     /**
      * A unique complete token. This should be included in the
-     * [SearchRequest][google.cloud.retail.v2.SearchRequest] resulting from this
-     * completion, which enables accurate attribution of complete model
-     * performance.
+     * [UserEvent.completion_detail][google.cloud.retail.v2.UserEvent.completion_detail]
+     * for search events resulting from this completion, which enables accurate
+     * attribution of complete model performance.
      *
      * Generated from protobuf field <code>string attribution_token = 2;</code>
      */
@@ -43,7 +43,7 @@ class CompleteQueryResponse extends \Google\Protobuf\Internal\Message
      *  * They are matched with
      *  [CompleteQueryRequest.query][google.cloud.retail.v2.CompleteQueryRequest.query]
      *  case insensitively.
-     *  * They are transformed to lower cases.
+     *  * They are transformed to lower case.
      *  * They are UTF-8 safe.
      * Recent searches are deduplicated. More recent searches will be reserved
      * when duplication happens.
@@ -58,15 +58,15 @@ class CompleteQueryResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Retail\V2\CompleteQueryResponse\CompletionResult[]|\Google\Protobuf\Internal\RepeatedField $completion_results
+     *     @type array<\Google\Cloud\Retail\V2\CompleteQueryResponse\CompletionResult>|\Google\Protobuf\Internal\RepeatedField $completion_results
      *           Results of the matching suggestions. The result list is ordered and the
      *           first result is top suggestion.
      *     @type string $attribution_token
      *           A unique complete token. This should be included in the
-     *           [SearchRequest][google.cloud.retail.v2.SearchRequest] resulting from this
-     *           completion, which enables accurate attribution of complete model
-     *           performance.
-     *     @type \Google\Cloud\Retail\V2\CompleteQueryResponse\RecentSearchResult[]|\Google\Protobuf\Internal\RepeatedField $recent_search_results
+     *           [UserEvent.completion_detail][google.cloud.retail.v2.UserEvent.completion_detail]
+     *           for search events resulting from this completion, which enables accurate
+     *           attribution of complete model performance.
+     *     @type array<\Google\Cloud\Retail\V2\CompleteQueryResponse\RecentSearchResult>|\Google\Protobuf\Internal\RepeatedField $recent_search_results
      *           Matched recent searches of this user. The maximum number of recent searches
      *           is 10. This field is a restricted feature. Contact Retail Search support
      *           team if you are interested in enabling it.
@@ -78,7 +78,7 @@ class CompleteQueryResponse extends \Google\Protobuf\Internal\Message
      *            * They are matched with
      *            [CompleteQueryRequest.query][google.cloud.retail.v2.CompleteQueryRequest.query]
      *            case insensitively.
-     *            * They are transformed to lower cases.
+     *            * They are transformed to lower case.
      *            * They are UTF-8 safe.
      *           Recent searches are deduplicated. More recent searches will be reserved
      *           when duplication happens.
@@ -106,7 +106,7 @@ class CompleteQueryResponse extends \Google\Protobuf\Internal\Message
      * first result is top suggestion.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.CompleteQueryResponse.CompletionResult completion_results = 1;</code>
-     * @param \Google\Cloud\Retail\V2\CompleteQueryResponse\CompletionResult[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Retail\V2\CompleteQueryResponse\CompletionResult>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setCompletionResults($var)
@@ -119,9 +119,9 @@ class CompleteQueryResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * A unique complete token. This should be included in the
-     * [SearchRequest][google.cloud.retail.v2.SearchRequest] resulting from this
-     * completion, which enables accurate attribution of complete model
-     * performance.
+     * [UserEvent.completion_detail][google.cloud.retail.v2.UserEvent.completion_detail]
+     * for search events resulting from this completion, which enables accurate
+     * attribution of complete model performance.
      *
      * Generated from protobuf field <code>string attribution_token = 2;</code>
      * @return string
@@ -133,9 +133,9 @@ class CompleteQueryResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * A unique complete token. This should be included in the
-     * [SearchRequest][google.cloud.retail.v2.SearchRequest] resulting from this
-     * completion, which enables accurate attribution of complete model
-     * performance.
+     * [UserEvent.completion_detail][google.cloud.retail.v2.UserEvent.completion_detail]
+     * for search events resulting from this completion, which enables accurate
+     * attribution of complete model performance.
      *
      * Generated from protobuf field <code>string attribution_token = 2;</code>
      * @param string $var
@@ -161,7 +161,7 @@ class CompleteQueryResponse extends \Google\Protobuf\Internal\Message
      *  * They are matched with
      *  [CompleteQueryRequest.query][google.cloud.retail.v2.CompleteQueryRequest.query]
      *  case insensitively.
-     *  * They are transformed to lower cases.
+     *  * They are transformed to lower case.
      *  * They are UTF-8 safe.
      * Recent searches are deduplicated. More recent searches will be reserved
      * when duplication happens.
@@ -186,13 +186,13 @@ class CompleteQueryResponse extends \Google\Protobuf\Internal\Message
      *  * They are matched with
      *  [CompleteQueryRequest.query][google.cloud.retail.v2.CompleteQueryRequest.query]
      *  case insensitively.
-     *  * They are transformed to lower cases.
+     *  * They are transformed to lower case.
      *  * They are UTF-8 safe.
      * Recent searches are deduplicated. More recent searches will be reserved
      * when duplication happens.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.CompleteQueryResponse.RecentSearchResult recent_search_results = 3;</code>
-     * @param \Google\Cloud\Retail\V2\CompleteQueryResponse\RecentSearchResult[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Retail\V2\CompleteQueryResponse\RecentSearchResult>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setRecentSearchResults($var)

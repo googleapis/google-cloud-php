@@ -64,7 +64,7 @@ class IamPolicyAnalysisResult extends \Google\Protobuf\Internal\Message
      *           of the resource to which the [iam_binding][google.cloud.asset.v1.IamPolicyAnalysisResult.iam_binding] policy attaches.
      *     @type \Google\Cloud\Iam\V1\Binding $iam_binding
      *           The Cloud IAM policy binding under analysis.
-     *     @type \Google\Cloud\Asset\V1\IamPolicyAnalysisResult\AccessControlList[]|\Google\Protobuf\Internal\RepeatedField $access_control_lists
+     *     @type array<\Google\Cloud\Asset\V1\IamPolicyAnalysisResult\AccessControlList>|\Google\Protobuf\Internal\RepeatedField $access_control_lists
      *           The access control lists derived from the [iam_binding][google.cloud.asset.v1.IamPolicyAnalysisResult.iam_binding] that match or
      *           potentially match resource and access selectors specified in the request.
      *     @type \Google\Cloud\Asset\V1\IamPolicyAnalysisResult\IdentityList $identity_list
@@ -163,7 +163,7 @@ class IamPolicyAnalysisResult extends \Google\Protobuf\Internal\Message
      * potentially match resource and access selectors specified in the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.IamPolicyAnalysisResult.AccessControlList access_control_lists = 3;</code>
-     * @param \Google\Cloud\Asset\V1\IamPolicyAnalysisResult\AccessControlList[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Asset\V1\IamPolicyAnalysisResult\AccessControlList>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAccessControlLists($var)

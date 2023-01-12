@@ -25,7 +25,6 @@ namespace Google\Cloud\Compute\Tests\Unit\V1;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Compute\V1\DeleteGlobalOrganizationOperationResponse;
 use Google\Cloud\Compute\V1\GlobalOrganizationOperationsClient;
@@ -41,25 +40,19 @@ use stdClass;
  */
 class GlobalOrganizationOperationsClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return GlobalOrganizationOperationsClient
-     */
+    /** @return GlobalOrganizationOperationsClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -68,13 +61,11 @@ class GlobalOrganizationOperationsClientTest extends GeneratedTest
         return new GlobalOrganizationOperationsClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -83,7 +74,7 @@ class GlobalOrganizationOperationsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $operation = 'operation1662702951';
-        $response = $client->delete($operation);
+        $response = $gapicClient->delete($operation);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -95,13 +86,11 @@ class GlobalOrganizationOperationsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -118,8 +107,8 @@ class GlobalOrganizationOperationsClientTest extends GeneratedTest
         // Mock request
         $operation = 'operation1662702951';
         try {
-            $client->delete($operation);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->delete($operation);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -130,13 +119,11 @@ class GlobalOrganizationOperationsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -187,7 +174,7 @@ class GlobalOrganizationOperationsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $operation = 'operation1662702951';
-        $response = $client->get($operation);
+        $response = $gapicClient->get($operation);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -199,13 +186,11 @@ class GlobalOrganizationOperationsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -222,8 +207,8 @@ class GlobalOrganizationOperationsClientTest extends GeneratedTest
         // Mock request
         $operation = 'operation1662702951';
         try {
-            $client->get($operation);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->get($operation);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -234,13 +219,11 @@ class GlobalOrganizationOperationsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -260,7 +243,7 @@ class GlobalOrganizationOperationsClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        $response = $client->list();
+        $response = $gapicClient->list();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -273,13 +256,11 @@ class GlobalOrganizationOperationsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -294,8 +275,8 @@ class GlobalOrganizationOperationsClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->list();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->list();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

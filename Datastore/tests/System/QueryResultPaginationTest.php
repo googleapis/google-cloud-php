@@ -24,15 +24,15 @@ use Google\Cloud\Datastore\Query\QueryInterface;
  * @group datastore
  * @group datastore-query-pagination
  */
-class QueryResultPaginationTest extends DatastoreTestCase
+class QueryResultPaginationTest extends DatastoreMultipleDbTestCase
 {
     private static $expectedTotal = 610;
     private static $parentKey;
     private static $testKind;
 
-    public static function setUpBeforeClass()
+    public static function set_up_before_class()
     {
-        parent::setUpBeforeClass();
+        parent::set_up_before_class();
         static $setUp = false;
         if ($setUp) {
             return;
@@ -67,9 +67,9 @@ class QueryResultPaginationTest extends DatastoreTestCase
         $setUp = true;
     }
 
-    public static function tearDownAfterClass()
+    public static function tear_down_after_class()
     {
-        self::setUpBeforeClass();
+        self::set_up_before_class();
 
         $client = self::$restClient;
         $q = $client->query()
@@ -88,7 +88,7 @@ class QueryResultPaginationTest extends DatastoreTestCase
     }
 
     /**
-     * @dataProvider clientProvider
+     * @dataProvider defaultDbClientProvider
      */
     public function testGqlQueryPagination(DatastoreClient $client)
     {
@@ -101,7 +101,7 @@ class QueryResultPaginationTest extends DatastoreTestCase
     }
 
     /**
-     * @dataProvider clientProvider
+     * @dataProvider defaultDbClientProvider
      */
     public function testQueryPagination(DatastoreClient $client)
     {
@@ -113,7 +113,7 @@ class QueryResultPaginationTest extends DatastoreTestCase
     }
 
     /**
-     * @dataProvider clientProvider
+     * @dataProvider defaultDbClientProvider
      */
     public function testGqlQueryPaginationByPage(DatastoreClient $client)
     {
@@ -135,7 +135,7 @@ class QueryResultPaginationTest extends DatastoreTestCase
     }
 
     /**
-     * @dataProvider clientProvider
+     * @dataProvider defaultDbClientProvider
      */
     public function testQueryPaginationByPage(DatastoreClient $client)
     {

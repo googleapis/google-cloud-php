@@ -105,7 +105,7 @@ class WebhookResponse extends \Google\Protobuf\Internal\Message
      *           It is recommended to use `fulfillment_messages.text.text[0]` instead.
      *           When provided, Dialogflow uses this field to populate
      *           [QueryResult.fulfillment_text][google.cloud.dialogflow.v2.QueryResult.fulfillment_text] sent to the integration or API caller.
-     *     @type \Google\Cloud\Dialogflow\V2\Intent\Message[]|\Google\Protobuf\Internal\RepeatedField $fulfillment_messages
+     *     @type array<\Google\Cloud\Dialogflow\V2\Intent\Message>|\Google\Protobuf\Internal\RepeatedField $fulfillment_messages
      *           Optional. The rich response messages intended for the end-user.
      *           When provided, Dialogflow uses this field to populate
      *           [QueryResult.fulfillment_messages][google.cloud.dialogflow.v2.QueryResult.fulfillment_messages] sent to the integration or API caller.
@@ -125,7 +125,7 @@ class WebhookResponse extends \Google\Protobuf\Internal\Message
      *           for rich response messages.
      *           See the format definition at [Google Assistant Dialogflow webhook
      *           format](https://developers.google.com/assistant/actions/build/json/dialogflow-webhook-json)
-     *     @type \Google\Cloud\Dialogflow\V2\Context[]|\Google\Protobuf\Internal\RepeatedField $output_contexts
+     *     @type array<\Google\Cloud\Dialogflow\V2\Context>|\Google\Protobuf\Internal\RepeatedField $output_contexts
      *           Optional. The collection of output contexts that will overwrite currently
      *           active contexts for the session and reset their lifespans.
      *           When provided, Dialogflow uses this field to populate
@@ -134,7 +134,7 @@ class WebhookResponse extends \Google\Protobuf\Internal\Message
      *           Optional. Invokes the supplied events.
      *           When this field is set, Dialogflow ignores the `fulfillment_text`,
      *           `fulfillment_messages`, and `payload` fields.
-     *     @type \Google\Cloud\Dialogflow\V2\SessionEntityType[]|\Google\Protobuf\Internal\RepeatedField $session_entity_types
+     *     @type array<\Google\Cloud\Dialogflow\V2\SessionEntityType>|\Google\Protobuf\Internal\RepeatedField $session_entity_types
      *           Optional. Additional session entity types to replace or extend developer
      *           entity types with. The entity synonyms apply to all languages and persist
      *           for the session. Setting this data from a webhook overwrites
@@ -198,7 +198,7 @@ class WebhookResponse extends \Google\Protobuf\Internal\Message
      * [QueryResult.fulfillment_messages][google.cloud.dialogflow.v2.QueryResult.fulfillment_messages] sent to the integration or API caller.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message fulfillment_messages = 2;</code>
-     * @param \Google\Cloud\Dialogflow\V2\Intent\Message[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dialogflow\V2\Intent\Message>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFulfillmentMessages($var)
@@ -316,7 +316,7 @@ class WebhookResponse extends \Google\Protobuf\Internal\Message
      * [QueryResult.output_contexts][google.cloud.dialogflow.v2.QueryResult.output_contexts] sent to the integration or API caller.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Context output_contexts = 5;</code>
-     * @param \Google\Cloud\Dialogflow\V2\Context[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dialogflow\V2\Context>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setOutputContexts($var)
@@ -390,7 +390,7 @@ class WebhookResponse extends \Google\Protobuf\Internal\Message
      * `streamingDetectIntent` or [SessionEntityType][google.cloud.dialogflow.v2.SessionEntityType] management methods.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.SessionEntityType session_entity_types = 10;</code>
-     * @param \Google\Cloud\Dialogflow\V2\SessionEntityType[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dialogflow\V2\SessionEntityType>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSessionEntityTypes($var)

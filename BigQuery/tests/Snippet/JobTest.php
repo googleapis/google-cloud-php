@@ -32,7 +32,7 @@ class JobTest extends SnippetTestCase
     private $identity;
     private $connection;
 
-    public function setUp()
+    public function set_up()
     {
         $this->identity = ['jobId' => 'id', 'projectId' => 'projectId'];
         $this->connection = $this->prophesize(ConnectionInterface::class);

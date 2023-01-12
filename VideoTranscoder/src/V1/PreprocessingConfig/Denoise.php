@@ -10,6 +10,7 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Denoise preprocessing configuration.
+ * **Note:** This configuration is not supported.
  *
  * Generated from protobuf message <code>google.cloud.video.transcoder.v1.PreprocessingConfig.Denoise</code>
  */

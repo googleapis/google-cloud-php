@@ -88,7 +88,7 @@ class RealmsServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -116,12 +116,12 @@ class RealmsServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $realmId = 'realmId-859416373';
         $realm = new Realm();
         $realmTimeZone = 'realmTimeZone1648425928';
         $realm->setTimeZone($realmTimeZone);
-        $response = $client->createRealm($formattedParent, $realmId, $realm);
+        $response = $gapicClient->createRealm($formattedParent, $realmId, $realm);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -168,7 +168,7 @@ class RealmsServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -190,12 +190,12 @@ class RealmsServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $realmId = 'realmId-859416373';
         $realm = new Realm();
         $realmTimeZone = 'realmTimeZone1648425928';
         $realm->setTimeZone($realmTimeZone);
-        $response = $client->createRealm($formattedParent, $realmId, $realm);
+        $response = $gapicClient->createRealm($formattedParent, $realmId, $realm);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -229,7 +229,7 @@ class RealmsServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -249,8 +249,8 @@ class RealmsServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->realmName('[PROJECT]', '[LOCATION]', '[REALM]');
-        $response = $client->deleteRealm($formattedName);
+        $formattedName = $gapicClient->realmName('[PROJECT]', '[LOCATION]', '[REALM]');
+        $response = $gapicClient->deleteRealm($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -293,7 +293,7 @@ class RealmsServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -315,8 +315,8 @@ class RealmsServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->realmName('[PROJECT]', '[LOCATION]', '[REALM]');
-        $response = $client->deleteRealm($formattedName);
+        $formattedName = $gapicClient->realmName('[PROJECT]', '[LOCATION]', '[REALM]');
+        $response = $gapicClient->deleteRealm($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -344,7 +344,7 @@ class RealmsServiceClientTest extends GeneratedTest
     public function getRealmTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -360,8 +360,8 @@ class RealmsServiceClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->realmName('[PROJECT]', '[LOCATION]', '[REALM]');
-        $response = $client->getRealm($formattedName);
+        $formattedName = $gapicClient->realmName('[PROJECT]', '[LOCATION]', '[REALM]');
+        $response = $gapicClient->getRealm($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -379,7 +379,7 @@ class RealmsServiceClientTest extends GeneratedTest
     public function getRealmExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -394,10 +394,10 @@ class RealmsServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->realmName('[PROJECT]', '[LOCATION]', '[REALM]');
+        $formattedName = $gapicClient->realmName('[PROJECT]', '[LOCATION]', '[REALM]');
         try {
-            $client->getRealm($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getRealm($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -414,7 +414,7 @@ class RealmsServiceClientTest extends GeneratedTest
     public function listRealmsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -429,8 +429,8 @@ class RealmsServiceClientTest extends GeneratedTest
         $expectedResponse->setRealms($realms);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
-        $response = $client->listRealms($formattedParent);
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->listRealms($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -451,7 +451,7 @@ class RealmsServiceClientTest extends GeneratedTest
     public function listRealmsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -466,10 +466,10 @@ class RealmsServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $client->listRealms($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listRealms($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -486,7 +486,7 @@ class RealmsServiceClientTest extends GeneratedTest
     public function previewRealmUpdateTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -500,7 +500,7 @@ class RealmsServiceClientTest extends GeneratedTest
         $realmTimeZone = 'realmTimeZone1648425928';
         $realm->setTimeZone($realmTimeZone);
         $updateMask = new FieldMask();
-        $response = $client->previewRealmUpdate($realm, $updateMask);
+        $response = $gapicClient->previewRealmUpdate($realm, $updateMask);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -520,7 +520,7 @@ class RealmsServiceClientTest extends GeneratedTest
     public function previewRealmUpdateExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -540,8 +540,8 @@ class RealmsServiceClientTest extends GeneratedTest
         $realm->setTimeZone($realmTimeZone);
         $updateMask = new FieldMask();
         try {
-            $client->previewRealmUpdate($realm, $updateMask);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->previewRealmUpdate($realm, $updateMask);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -564,7 +564,7 @@ class RealmsServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -596,7 +596,7 @@ class RealmsServiceClientTest extends GeneratedTest
         $realmTimeZone = 'realmTimeZone1648425928';
         $realm->setTimeZone($realmTimeZone);
         $updateMask = new FieldMask();
-        $response = $client->updateRealm($realm, $updateMask);
+        $response = $gapicClient->updateRealm($realm, $updateMask);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -641,7 +641,7 @@ class RealmsServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -667,7 +667,7 @@ class RealmsServiceClientTest extends GeneratedTest
         $realmTimeZone = 'realmTimeZone1648425928';
         $realm->setTimeZone($realmTimeZone);
         $updateMask = new FieldMask();
-        $response = $client->updateRealm($realm, $updateMask);
+        $response = $gapicClient->updateRealm($realm, $updateMask);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();

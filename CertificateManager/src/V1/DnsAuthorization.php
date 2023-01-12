@@ -49,15 +49,17 @@ class DnsAuthorization extends \Google\Protobuf\Internal\Message
      */
     private $description = '';
     /**
-     * Required. Immutable. A domain which is being authorized. A DnsAuthorization resource covers a
-     * single domain and its wildcard, e.g. authorization for `example.com` can
-     * be used to issue certificates for `example.com` and `*.example.com`.
+     * Required. Immutable. A domain which is being authorized. A DnsAuthorization
+     * resource covers a single domain and its wildcard, e.g. authorization for
+     * `example.com` can be used to issue certificates for `example.com` and
+     * `*.example.com`.
      *
      * Generated from protobuf field <code>string domain = 6 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
     private $domain = '';
     /**
-     * Output only. DNS Resource Record that needs to be added to DNS configuration.
+     * Output only. DNS Resource Record that needs to be added to DNS
+     * configuration.
      *
      * Generated from protobuf field <code>.google.cloud.certificatemanager.v1.DnsAuthorization.DnsResourceRecord dns_resource_record = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -82,11 +84,13 @@ class DnsAuthorization extends \Google\Protobuf\Internal\Message
      *     @type string $description
      *           One or more paragraphs of text description of a DnsAuthorization.
      *     @type string $domain
-     *           Required. Immutable. A domain which is being authorized. A DnsAuthorization resource covers a
-     *           single domain and its wildcard, e.g. authorization for `example.com` can
-     *           be used to issue certificates for `example.com` and `*.example.com`.
+     *           Required. Immutable. A domain which is being authorized. A DnsAuthorization
+     *           resource covers a single domain and its wildcard, e.g. authorization for
+     *           `example.com` can be used to issue certificates for `example.com` and
+     *           `*.example.com`.
      *     @type \Google\Cloud\CertificateManager\V1\DnsAuthorization\DnsResourceRecord $dns_resource_record
-     *           Output only. DNS Resource Record that needs to be added to DNS configuration.
+     *           Output only. DNS Resource Record that needs to be added to DNS
+     *           configuration.
      * }
      */
     public function __construct($data = NULL) {
@@ -249,9 +253,10 @@ class DnsAuthorization extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Immutable. A domain which is being authorized. A DnsAuthorization resource covers a
-     * single domain and its wildcard, e.g. authorization for `example.com` can
-     * be used to issue certificates for `example.com` and `*.example.com`.
+     * Required. Immutable. A domain which is being authorized. A DnsAuthorization
+     * resource covers a single domain and its wildcard, e.g. authorization for
+     * `example.com` can be used to issue certificates for `example.com` and
+     * `*.example.com`.
      *
      * Generated from protobuf field <code>string domain = 6 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
@@ -262,9 +267,10 @@ class DnsAuthorization extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Immutable. A domain which is being authorized. A DnsAuthorization resource covers a
-     * single domain and its wildcard, e.g. authorization for `example.com` can
-     * be used to issue certificates for `example.com` and `*.example.com`.
+     * Required. Immutable. A domain which is being authorized. A DnsAuthorization
+     * resource covers a single domain and its wildcard, e.g. authorization for
+     * `example.com` can be used to issue certificates for `example.com` and
+     * `*.example.com`.
      *
      * Generated from protobuf field <code>string domain = 6 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var
@@ -279,7 +285,8 @@ class DnsAuthorization extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. DNS Resource Record that needs to be added to DNS configuration.
+     * Output only. DNS Resource Record that needs to be added to DNS
+     * configuration.
      *
      * Generated from protobuf field <code>.google.cloud.certificatemanager.v1.DnsAuthorization.DnsResourceRecord dns_resource_record = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\CertificateManager\V1\DnsAuthorization\DnsResourceRecord|null
@@ -300,7 +307,8 @@ class DnsAuthorization extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. DNS Resource Record that needs to be added to DNS configuration.
+     * Output only. DNS Resource Record that needs to be added to DNS
+     * configuration.
      *
      * Generated from protobuf field <code>.google.cloud.certificatemanager.v1.DnsAuthorization.DnsResourceRecord dns_resource_record = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\CertificateManager\V1\DnsAuthorization\DnsResourceRecord $var

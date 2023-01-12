@@ -1,19 +1,21 @@
 on:
   push:
     branches:
-      - master
+      - main
     paths:
       - 'PubSub/**'
+      - '.github/workflows/pubsub-emulator-system-tests.yaml'
   pull_request:
     paths:
       - 'PubSub/**'
+      - '.github/workflows/pubsub-emulator-system-tests.yaml'
 name: Run PubSub System Tests With Emulator
 jobs:
   test:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - run: ./.github/emulator/start-emulator.sh pubsub
 
@@ -22,11 +24,13 @@ jobs:
         with:
           php-version: '7.4'
           tools: pecl
-          extensions: grpc-1.38.0
+          extensions: grpc
 
       - name: Install dependencies
         run: |
-          composer update --prefer-dist --no-interaction --no-suggest -d PubSub/
+          composer config minimum-stability dev -d PubSub/
+          composer config repositories.local path "../Core" -d PubSub
+          composer require "google/cloud-core:*" -d PubSub/
 
       - name: Run system tests
         run: |

@@ -42,10 +42,10 @@ class UrlMapValidationResult extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $load_errors
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $load_errors
      *     @type bool $load_succeeded
      *           Whether the given UrlMap can be successfully loaded. If false, 'loadErrors' indicates the reasons.
-     *     @type \Google\Cloud\Compute\V1\TestFailure[]|\Google\Protobuf\Internal\RepeatedField $test_failures
+     *     @type array<\Google\Cloud\Compute\V1\TestFailure>|\Google\Protobuf\Internal\RepeatedField $test_failures
      *     @type bool $test_passed
      *           If successfully loaded, this field indicates whether the test passed. If false, 'testFailures's indicate the reason of failure.
      * }
@@ -66,7 +66,7 @@ class UrlMapValidationResult extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated string load_errors = 310147300;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setLoadErrors($var)
@@ -124,7 +124,7 @@ class UrlMapValidationResult extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.TestFailure test_failures = 505934134;</code>
-     * @param \Google\Cloud\Compute\V1\TestFailure[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\TestFailure>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTestFailures($var)

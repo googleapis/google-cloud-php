@@ -19,6 +19,7 @@ namespace Google\Cloud\Storage\Tests\System;
 
 use Google\Cloud\Core\Exception\BadRequestException;
 use Google\Cloud\Storage\Bucket;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group storage
@@ -26,6 +27,8 @@ use Google\Cloud\Storage\Bucket;
  */
 class ManageBucketsTest extends StorageTestCase
 {
+    use ExpectException;
+
     public function testListsBuckets()
     {
         $foundBuckets = [];
@@ -73,6 +76,37 @@ class ManageBucketsTest extends StorageTestCase
         $this->assertEquals('multi-region', $bucket->info()['locationType']);
     }
 
+    public function testCreatesDualRegionBucket()
+    {
+        $name = uniqid(self::TESTING_PREFIX);
+        $options = [
+            'location' => 'US',
+            'customPlacementConfig' => [
+                'dataLocations' => ['US-EAST1', 'US-WEST1'],
+            ],
+        ];
+        $this->assertFalse(self::$client->bucket($name)->exists());
+
+        $bucket = self::createBucket(self::$client, $name, $options);
+        $bucket->reload();
+        $info = $bucket->info();
+
+        $this->assertTrue(self::$client->bucket($name)->exists());
+        $this->assertEquals($name, $bucket->name());
+        $this->assertEquals($options['location'], $info['location']);
+
+        $this->assertArrayHasKey('customPlacementConfig', $info);
+        $this->assertArrayHasKey('dataLocations', $info['customPlacementConfig']);
+        $this->assertContains(
+            $options['customPlacementConfig']['dataLocations'][0],
+            $info['customPlacementConfig']['dataLocations']
+        );
+        $this->assertContains(
+            $options['customPlacementConfig']['dataLocations'][1],
+            $info['customPlacementConfig']['dataLocations']
+        );
+    }
+
     public function testUpdateBucket()
     {
         $options = [
@@ -93,7 +127,7 @@ class ManageBucketsTest extends StorageTestCase
     public function testCreateBucketWithLifecycleDeleteRule(array $rule, $isError = false)
     {
         if ($isError) {
-            $this->setExpectedException(BadRequestException::class);
+            $this->expectException(BadRequestException::class);
         }
 
         $lifecycle = Bucket::lifecycle();
@@ -113,7 +147,7 @@ class ManageBucketsTest extends StorageTestCase
     public function testUpdateBucketWithLifecycleDeleteRule(array $rule, $isError = false)
     {
         if ($isError) {
-            $this->setExpectedException(BadRequestException::class);
+            $this->expectException(BadRequestException::class);
         }
 
         $lifecycle = Bucket::lifecycle();
@@ -127,6 +161,29 @@ class ManageBucketsTest extends StorageTestCase
         ]);
 
         $this->assertEquals($lifecycle->toArray(), $bucket->info()['lifecycle']);
+    }
+
+    public function testUpdateBucketWithAutoclassConfig()
+    {
+        $autoclassConfig = [
+            'autoclass' => [
+                'enabled' => true,
+            ],
+        ];
+
+        $bucket = self::createBucket(
+            self::$client,
+            uniqid(self::TESTING_PREFIX),
+            $autoclassConfig
+        );
+        $this->assertArrayHasKey('autoclass', $bucket->info());
+        $this->assertTrue($bucket->info()['autoclass']['enabled']);
+
+        // test disabling autoclass
+        $autoclassConfig['autoclass']['enabled'] = false;
+        $bucket->update($autoclassConfig);
+        $this->assertArrayHasKey('autoclass', $bucket->info());
+        $this->assertFalse($bucket->info()['autoclass']['enabled']);
     }
 
     public function lifecycleRules()
@@ -144,6 +201,12 @@ class ManageBucketsTest extends StorageTestCase
             [['customTimeBefore' => (new \DateTime)->format("Y-m-d")]],
             [['customTimeBefore' => new \DateTime]],
             [['customTimeBefore' => 'this is not a timestamp'], true], // error case
+
+            [['matchesPrefix' => ['some-prefix']]],
+            [['matchesPrefix' => ['']], true],    // error: empty strings not accepted as a prefix
+
+            [['matchesSuffix' => ['some-suffix']]],
+            [['matchesSuffix' => ['']], true],    // error: empty strings not accepted as a suffix
         ];
     }
 

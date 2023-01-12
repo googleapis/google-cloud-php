@@ -229,6 +229,21 @@ class CloudDeployGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
+     * Abandons a Release in the Delivery Pipeline.
+     * @param \Google\Cloud\Deploy\V1\AbandonReleaseRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function AbandonRelease(\Google\Cloud\Deploy\V1\AbandonReleaseRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.deploy.v1.CloudDeploy/AbandonRelease',
+        $argument,
+        ['\Google\Cloud\Deploy\V1\AbandonReleaseResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
      * Approves a Rollout.
      * @param \Google\Cloud\Deploy\V1\ApproveRolloutRequest $argument input argument
      * @param array $metadata metadata
@@ -285,6 +300,51 @@ class CloudDeployGrpcClient extends \Grpc\BaseStub {
         return $this->_simpleRequest('/google.cloud.deploy.v1.CloudDeploy/CreateRollout',
         $argument,
         ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Retries the specified Job in a Rollout.
+     * @param \Google\Cloud\Deploy\V1\RetryJobRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function RetryJob(\Google\Cloud\Deploy\V1\RetryJobRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.deploy.v1.CloudDeploy/RetryJob',
+        $argument,
+        ['\Google\Cloud\Deploy\V1\RetryJobResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Lists JobRuns in a given project and location.
+     * @param \Google\Cloud\Deploy\V1\ListJobRunsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function ListJobRuns(\Google\Cloud\Deploy\V1\ListJobRunsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.deploy.v1.CloudDeploy/ListJobRuns',
+        $argument,
+        ['\Google\Cloud\Deploy\V1\ListJobRunsResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Gets details of a single JobRun.
+     * @param \Google\Cloud\Deploy\V1\GetJobRunRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function GetJobRun(\Google\Cloud\Deploy\V1\GetJobRunRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.deploy.v1.CloudDeploy/GetJobRun',
+        $argument,
+        ['\Google\Cloud\Deploy\V1\JobRun', 'decode'],
         $metadata, $options);
     }
 

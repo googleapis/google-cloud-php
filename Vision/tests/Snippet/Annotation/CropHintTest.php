@@ -32,7 +32,7 @@ class CropHintTest extends SnippetTestCase
     private $info;
     private $crop;
 
-    public function setUp()
+    public function set_up()
     {
         $this->info = [
             'boundingPoly' => ['foo' => 'bar'],

@@ -30,6 +30,7 @@ use Google\Cloud\Spanner\Admin\Database\V1\EncryptionConfig;
 use Google\Cloud\Spanner\Admin\Database\V1\RestoreDatabaseEncryptionConfig;
 use Google\Cloud\Spanner\Admin\Instance\V1\Instance;
 use Google\Cloud\Spanner\Admin\Instance\V1\Instance\State;
+use Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig;
 use Google\Cloud\Spanner\Connection\Grpc;
 use Google\Cloud\Spanner\V1\DeleteSessionRequest;
 use Google\Cloud\Spanner\V1\ExecuteBatchDmlRequest\Statement;
@@ -44,7 +45,7 @@ use Google\Cloud\Spanner\V1\Session;
 use Google\Cloud\Spanner\V1\SpannerClient;
 use Google\Cloud\Spanner\V1\TransactionOptions;
 use Google\Cloud\Spanner\V1\TransactionOptions\PartitionedDml;
-use Google\Cloud\Spanner\V1\TransactionOptions\ReadOnly;
+use Google\Cloud\Spanner\V1\TransactionOptions\PBReadOnly;
 use Google\Cloud\Spanner\V1\TransactionOptions\ReadWrite;
 use Google\Cloud\Spanner\V1\TransactionSelector;
 use Google\Cloud\Spanner\V1\Type;
@@ -57,7 +58,7 @@ use Google\Protobuf\Timestamp;
 use Google\Protobuf\Value;
 use GuzzleHttp\Promise\PromiseInterface;
 use http\Exception\InvalidArgumentException;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Prophecy\Argument;
 
 /**
@@ -82,7 +83,7 @@ class GrpcTest extends TestCase
     private $successMessage;
     private $lro;
 
-    public function setUp()
+    public function set_up()
     {
         $this->checkAndSkipGrpcTests();
 
@@ -116,6 +117,43 @@ class GrpcTest extends TestCase
             'name' => self::CONFIG,
             'projectName' => self::PROJECT
         ], $this->expectResourceHeader(self::PROJECT, [
+            self::CONFIG
+        ]));
+    }
+
+    public function testCreateInstanceConfig()
+    {
+        list ($args, $config) = $this->instanceConfig();
+
+        $this->assertCallCorrect(
+            'createInstanceConfig',
+            [
+                'projectName' => self::PROJECT,
+                'instanceConfigId' => self::CONFIG
+            ] + $args,
+            $this->expectResourceHeader(self::CONFIG, [
+                self::PROJECT,
+                self::CONFIG,
+                $config
+            ]),
+            $this->lro,
+            null
+        );
+    }
+
+    public function testUpdateInstanceConfig()
+    {
+        list ($args, $config, $fieldMask) = $this->instanceConfig(false);
+        $this->assertCallCorrect('updateInstanceConfig', $args, $this->expectResourceHeader(self::CONFIG, [
+            $config, $fieldMask
+        ]), $this->lro, null);
+    }
+
+    public function testDeleteInstanceConfig()
+    {
+        $this->assertCallCorrect('deleteInstanceConfig', [
+            'name' => self::CONFIG
+        ], $this->expectResourceHeader(self::CONFIG, [
             self::CONFIG
         ]));
     }
@@ -612,8 +650,20 @@ class GrpcTest extends TestCase
         $gapic->executeStreamingSql(
             self::SESSION,
             $sql,
-            Argument::withEntry('queryOptions', $expectedOptions)
-        );
+            Argument::that(function ($arguments) use ($expectedOptions) {
+                $queryOptions = isset($arguments['queryOptions']) ? $arguments['queryOptions'] : null;
+                $expectedOptions += ['optimizerVersion' => null, 'optimizerStatisticsPackage' => null];
+                $this->assertEquals(
+                    $queryOptions ? $queryOptions->getOptimizerVersion() : null,
+                    $expectedOptions['optimizerVersion']
+                );
+                $this->assertEquals(
+                    $queryOptions ? $queryOptions->getOptimizerStatisticsPackage() : null,
+                    $expectedOptions['optimizerStatisticsPackage']
+                );
+                return true;
+            })
+        )->shouldBeCalledOnce();
 
         $grpc = new Grpc([
             'gapicSpannerClient' => $gapic->reveal()
@@ -866,6 +916,9 @@ class GrpcTest extends TestCase
     {
         $ts = (new \DateTime)->format('Y-m-d\TH:i:s.u\Z');
         $pbTs = new Timestamp($this->formatTimestampForApi($ts));
+        $readOnlyClass = PHP_VERSION_ID >= 80100
+            ? PBReadOnly::class
+            : 'Google\Cloud\Spanner\V1\TransactionOptions\ReadOnly';
 
         return [
             [
@@ -881,7 +934,7 @@ class GrpcTest extends TestCase
                     ]
                 ],
                 new TransactionOptions([
-                    'read_only' => new ReadOnly([
+                    'read_only' => new $readOnlyClass([
                         'min_read_timestamp' => $pbTs,
                         'read_timestamp' => $pbTs
                     ])
@@ -1354,6 +1407,42 @@ class GrpcTest extends TestCase
         return call_user_func_array([$method, 'invoke'], $args);
     }
 
+    private function instanceConfig($full = true)
+    {
+        $args = [
+            'name' => self::CONFIG,
+            'displayName' => self::CONFIG,
+        ];
+
+        if ($full) {
+            $args = array_merge($args, [
+                'baseConfig' => self::CONFIG,
+                'configType' => InstanceConfig\Type::TYPE_UNSPECIFIED,
+                'state' => State::CREATING,
+                'labels' => [],
+                'replicas' => [],
+                'optionalReplicas' => [],
+                'leaderOptions' => [],
+                'reconciling' => false,
+            ]);
+        }
+
+        $mask = [];
+        foreach (array_keys($args) as $key) {
+            if ($key != "name") {
+                $mask[] = Serializer::toSnakeCase($key);
+            }
+        }
+
+        $fieldMask = $this->serializer->decodeMessage(new FieldMask, ['paths' => $mask]);
+
+        return [
+            $args,
+            $this->serializer->decodeMessage(new InstanceConfig, $args),
+            $fieldMask
+        ];
+    }
+
     private function instance($full = true, $nodes = true)
     {
         $args = [
@@ -1381,7 +1470,9 @@ class GrpcTest extends TestCase
 
         $mask = [];
         foreach (array_keys($args) as $key) {
-            $mask[] = Serializer::toSnakeCase($key);
+            if ($key != "name") {
+                $mask[] = Serializer::toSnakeCase($key);
+            }
         }
 
         $fieldMask = $this->serializer->decodeMessage(new FieldMask, ['paths' => $mask]);

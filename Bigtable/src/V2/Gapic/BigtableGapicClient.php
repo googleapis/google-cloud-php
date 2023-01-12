@@ -53,6 +53,7 @@ use Google\Cloud\Bigtable\V2\ReadRowsResponse;
 use Google\Cloud\Bigtable\V2\RowFilter;
 use Google\Cloud\Bigtable\V2\RowSet;
 use Google\Cloud\Bigtable\V2\SampleRowKeysRequest;
+
 use Google\Cloud\Bigtable\V2\SampleRowKeysResponse;
 
 /**
@@ -353,10 +354,9 @@ class BigtableGapicClient
      *           Must contain at least one entry if `true_mutations` is empty, and at most
      *           100000.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Bigtable\V2\CheckAndMutateRowResponse
@@ -428,10 +428,9 @@ class BigtableGapicClient
      *           This value specifies routing for replication. If not specified, the
      *           "default" application profile will be used.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Bigtable\V2\MutateRowResponse
@@ -548,10 +547,9 @@ class BigtableGapicClient
      *           This value specifies routing for replication. If not specified, the
      *           "default" application profile will be used.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Bigtable\V2\PingAndWarmResponse
@@ -614,10 +612,9 @@ class BigtableGapicClient
      *           This value specifies routing for replication. If not specified, the
      *           "default" application profile will be used.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Bigtable\V2\ReadModifyWriteRowResponse
@@ -676,8 +673,8 @@ class BigtableGapicClient
      *     Optional.
      *
      *     @type string $appProfileId
-     *           This value specifies routing for replication. If not specified, the
-     *           "default" application profile will be used.
+     *           This value specifies routing for replication. This API only accepts the
+     *           empty value of app_profile_id.
      *     @type RowSet $rows
      *           The row keys and/or ranges to read sequentially. If not specified, reads
      *           from all rows.
@@ -687,6 +684,9 @@ class BigtableGapicClient
      *     @type int $rowsLimit
      *           The read will stop after committing to N rows' worth of results. The
      *           default (zero) is to return all results.
+     *     @type int $requestStatsView
+     *           The view into RequestStats, as described above.
+     *           For allowed values, use constants defined on {@see \Google\Cloud\Bigtable\V2\ReadRowsRequest\RequestStatsView}
      *     @type int $timeoutMillis
      *           Timeout to use for this call.
      * }
@@ -721,6 +721,10 @@ class BigtableGapicClient
 
         if (isset($optionalArgs['rowsLimit'])) {
             $request->setRowsLimit($optionalArgs['rowsLimit']);
+        }
+
+        if (isset($optionalArgs['requestStatsView'])) {
+            $request->setRequestStatsView($optionalArgs['requestStatsView']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);

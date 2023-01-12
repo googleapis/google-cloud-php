@@ -9,7 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [UpdateProduct][] method.
+ * Request message for
+ * [ProductService.UpdateProduct][google.cloud.retail.v2.ProductService.UpdateProduct]
+ * method.
  *
  * Generated from protobuf message <code>google.cloud.retail.v2.UpdateProductRequest</code>
  */
@@ -35,6 +37,10 @@ class UpdateProductRequest extends \Google\Protobuf\Internal\Message
      * fields that are neither immutable nor output only) are updated.
      * If an unsupported or unknown field is provided, an INVALID_ARGUMENT error
      * is returned.
+     * The attribute key can be updated by setting the mask path as
+     * "attributes.${key_name}". If a key name is present in the mask but not in
+     * the patching product from the request, this key will be deleted after the
+     * update.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
@@ -70,6 +76,10 @@ class UpdateProductRequest extends \Google\Protobuf\Internal\Message
      *           fields that are neither immutable nor output only) are updated.
      *           If an unsupported or unknown field is provided, an INVALID_ARGUMENT error
      *           is returned.
+     *           The attribute key can be updated by setting the mask path as
+     *           "attributes.${key_name}". If a key name is present in the mask but not in
+     *           the patching product from the request, this key will be deleted after the
+     *           update.
      *     @type bool $allow_missing
      *           If set to true, and the [Product][google.cloud.retail.v2.Product] is not
      *           found, a new [Product][google.cloud.retail.v2.Product] will be created. In
@@ -138,6 +148,10 @@ class UpdateProductRequest extends \Google\Protobuf\Internal\Message
      * fields that are neither immutable nor output only) are updated.
      * If an unsupported or unknown field is provided, an INVALID_ARGUMENT error
      * is returned.
+     * The attribute key can be updated by setting the mask path as
+     * "attributes.${key_name}". If a key name is present in the mask but not in
+     * the patching product from the request, this key will be deleted after the
+     * update.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      * @return \Google\Protobuf\FieldMask|null
@@ -164,6 +178,10 @@ class UpdateProductRequest extends \Google\Protobuf\Internal\Message
      * fields that are neither immutable nor output only) are updated.
      * If an unsupported or unknown field is provided, an INVALID_ARGUMENT error
      * is returned.
+     * The attribute key can be updated by setting the mask path as
+     * "attributes.${key_name}". If a key name is present in the mask but not in
+     * the patching product from the request, this key will be deleted after the
+     * update.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      * @param \Google\Protobuf\FieldMask $var

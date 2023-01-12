@@ -10,7 +10,6 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * The config for feature monitoring threshold.
- * Next ID: 3
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.ThresholdConfig</code>
  */

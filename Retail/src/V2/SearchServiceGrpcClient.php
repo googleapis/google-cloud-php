@@ -22,8 +22,7 @@ namespace Google\Cloud\Retail\V2;
  * Service for search.
  *
  * This feature is only available for users who have Retail Search enabled.
- * Please submit a form [here](https://cloud.google.com/contact) to contact
- * cloud sales if you are interested in using Retail Search.
+ * Please enable Retail Search on Cloud Console before using this feature.
  */
 class SearchServiceGrpcClient extends \Grpc\BaseStub {
 
@@ -40,8 +39,7 @@ class SearchServiceGrpcClient extends \Grpc\BaseStub {
      * Performs a search.
      *
      * This feature is only available for users who have Retail Search enabled.
-     * Please submit a form [here](https://cloud.google.com/contact) to contact
-     * cloud sales if you are interested in using Retail Search.
+     * Please enable Retail Search on Cloud Console before using this feature.
      * @param \Google\Cloud\Retail\V2\SearchRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options

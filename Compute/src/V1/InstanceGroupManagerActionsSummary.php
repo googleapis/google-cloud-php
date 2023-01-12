@@ -63,6 +63,30 @@ class InstanceGroupManagerActionsSummary extends \Google\Protobuf\Internal\Messa
      */
     private $restarting = null;
     /**
+     * [Output Only] The number of instances in the managed instance group that are scheduled to be resumed or are currently being resumed.
+     *
+     * Generated from protobuf field <code>optional int32 resuming = 201100714;</code>
+     */
+    private $resuming = null;
+    /**
+     * [Output Only] The number of instances in the managed instance group that are scheduled to be started or are currently being started.
+     *
+     * Generated from protobuf field <code>optional int32 starting = 243064896;</code>
+     */
+    private $starting = null;
+    /**
+     * [Output Only] The number of instances in the managed instance group that are scheduled to be stopped or are currently being stopped.
+     *
+     * Generated from protobuf field <code>optional int32 stopping = 105035892;</code>
+     */
+    private $stopping = null;
+    /**
+     * [Output Only] The number of instances in the managed instance group that are scheduled to be suspended or are currently being suspended.
+     *
+     * Generated from protobuf field <code>optional int32 suspending = 29113894;</code>
+     */
+    private $suspending = null;
+    /**
      * [Output Only] The number of instances in the managed instance group that are being verified. See the managedInstances[].currentAction property in the listManagedInstances method documentation.
      *
      * Generated from protobuf field <code>optional int32 verifying = 451612873;</code>
@@ -91,6 +115,14 @@ class InstanceGroupManagerActionsSummary extends \Google\Protobuf\Internal\Messa
      *           [Output Only] The number of instances in the managed instance group that are being reconfigured with properties that do not require a restart or a recreate action. For example, setting or removing target pools for the instance.
      *     @type int $restarting
      *           [Output Only] The number of instances in the managed instance group that are scheduled to be restarted or are currently being restarted.
+     *     @type int $resuming
+     *           [Output Only] The number of instances in the managed instance group that are scheduled to be resumed or are currently being resumed.
+     *     @type int $starting
+     *           [Output Only] The number of instances in the managed instance group that are scheduled to be started or are currently being started.
+     *     @type int $stopping
+     *           [Output Only] The number of instances in the managed instance group that are scheduled to be stopped or are currently being stopped.
+     *     @type int $suspending
+     *           [Output Only] The number of instances in the managed instance group that are scheduled to be suspended or are currently being suspended.
      *     @type int $verifying
      *           [Output Only] The number of instances in the managed instance group that are being verified. See the managedInstances[].currentAction property in the listManagedInstances method documentation.
      * }
@@ -384,6 +416,150 @@ class InstanceGroupManagerActionsSummary extends \Google\Protobuf\Internal\Messa
     {
         GPBUtil::checkInt32($var);
         $this->restarting = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Output Only] The number of instances in the managed instance group that are scheduled to be resumed or are currently being resumed.
+     *
+     * Generated from protobuf field <code>optional int32 resuming = 201100714;</code>
+     * @return int
+     */
+    public function getResuming()
+    {
+        return isset($this->resuming) ? $this->resuming : 0;
+    }
+
+    public function hasResuming()
+    {
+        return isset($this->resuming);
+    }
+
+    public function clearResuming()
+    {
+        unset($this->resuming);
+    }
+
+    /**
+     * [Output Only] The number of instances in the managed instance group that are scheduled to be resumed or are currently being resumed.
+     *
+     * Generated from protobuf field <code>optional int32 resuming = 201100714;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setResuming($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->resuming = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Output Only] The number of instances in the managed instance group that are scheduled to be started or are currently being started.
+     *
+     * Generated from protobuf field <code>optional int32 starting = 243064896;</code>
+     * @return int
+     */
+    public function getStarting()
+    {
+        return isset($this->starting) ? $this->starting : 0;
+    }
+
+    public function hasStarting()
+    {
+        return isset($this->starting);
+    }
+
+    public function clearStarting()
+    {
+        unset($this->starting);
+    }
+
+    /**
+     * [Output Only] The number of instances in the managed instance group that are scheduled to be started or are currently being started.
+     *
+     * Generated from protobuf field <code>optional int32 starting = 243064896;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setStarting($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->starting = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Output Only] The number of instances in the managed instance group that are scheduled to be stopped or are currently being stopped.
+     *
+     * Generated from protobuf field <code>optional int32 stopping = 105035892;</code>
+     * @return int
+     */
+    public function getStopping()
+    {
+        return isset($this->stopping) ? $this->stopping : 0;
+    }
+
+    public function hasStopping()
+    {
+        return isset($this->stopping);
+    }
+
+    public function clearStopping()
+    {
+        unset($this->stopping);
+    }
+
+    /**
+     * [Output Only] The number of instances in the managed instance group that are scheduled to be stopped or are currently being stopped.
+     *
+     * Generated from protobuf field <code>optional int32 stopping = 105035892;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setStopping($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->stopping = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Output Only] The number of instances in the managed instance group that are scheduled to be suspended or are currently being suspended.
+     *
+     * Generated from protobuf field <code>optional int32 suspending = 29113894;</code>
+     * @return int
+     */
+    public function getSuspending()
+    {
+        return isset($this->suspending) ? $this->suspending : 0;
+    }
+
+    public function hasSuspending()
+    {
+        return isset($this->suspending);
+    }
+
+    public function clearSuspending()
+    {
+        unset($this->suspending);
+    }
+
+    /**
+     * [Output Only] The number of instances in the managed instance group that are scheduled to be suspended or are currently being suspended.
+     *
+     * Generated from protobuf field <code>optional int32 suspending = 29113894;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setSuspending($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->suspending = $var;
 
         return $this;
     }

@@ -55,7 +55,7 @@ class ErrorGroup extends \Google\Protobuf\Internal\Message
      *     @type string $group_id
      *           Group IDs are unique for a given project. If the same kind of error
      *           occurs in different service contexts, it will receive the same group ID.
-     *     @type \Google\Cloud\ErrorReporting\V1beta1\TrackingIssue[]|\Google\Protobuf\Internal\RepeatedField $tracking_issues
+     *     @type array<\Google\Cloud\ErrorReporting\V1beta1\TrackingIssue>|\Google\Protobuf\Internal\RepeatedField $tracking_issues
      *           Associated tracking issues.
      *     @type int $resolution_status
      *           Error group's resolution status.
@@ -138,7 +138,7 @@ class ErrorGroup extends \Google\Protobuf\Internal\Message
      * Associated tracking issues.
      *
      * Generated from protobuf field <code>repeated .google.devtools.clouderrorreporting.v1beta1.TrackingIssue tracking_issues = 3;</code>
-     * @param \Google\Cloud\ErrorReporting\V1beta1\TrackingIssue[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\ErrorReporting\V1beta1\TrackingIssue>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTrackingIssues($var)

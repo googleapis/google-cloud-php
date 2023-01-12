@@ -25,7 +25,6 @@ namespace Google\Cloud\Compute\Tests\Unit\V1;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Compute\V1\BackendBucket;
 use Google\Cloud\Compute\V1\BackendBucketList;
@@ -34,6 +33,7 @@ use Google\Cloud\Compute\V1\GetGlobalOperationRequest;
 use Google\Cloud\Compute\V1\GlobalOperationsClient;
 use Google\Cloud\Compute\V1\Operation;
 use Google\Cloud\Compute\V1\Operation\Status;
+use Google\Cloud\Compute\V1\SecurityPolicyReference;
 use Google\Cloud\Compute\V1\SignedUrlKey;
 use Google\Rpc\Code;
 use stdClass;
@@ -45,25 +45,19 @@ use stdClass;
  */
 class BackendBucketsClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return BackendBucketsClient
-     */
+    /** @return BackendBucketsClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -72,9 +66,7 @@ class BackendBucketsClientTest extends GeneratedTest
         return new BackendBucketsClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function addSignedUrlKeyTest()
     {
         $operationsTransport = $this->createTransport();
@@ -84,7 +76,7 @@ class BackendBucketsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -103,7 +95,7 @@ class BackendBucketsClientTest extends GeneratedTest
         $backendBucket = 'backendBucket91714037';
         $project = 'project-309310695';
         $signedUrlKeyResource = new SignedUrlKey();
-        $response = $client->addSignedUrlKey($backendBucket, $project, $signedUrlKeyResource);
+        $response = $gapicClient->addSignedUrlKey($backendBucket, $project, $signedUrlKeyResource);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -137,9 +129,7 @@ class BackendBucketsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function addSignedUrlKeyExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -149,7 +139,7 @@ class BackendBucketsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -174,7 +164,7 @@ class BackendBucketsClientTest extends GeneratedTest
         $backendBucket = 'backendBucket91714037';
         $project = 'project-309310695';
         $signedUrlKeyResource = new SignedUrlKey();
-        $response = $client->addSignedUrlKey($backendBucket, $project, $signedUrlKeyResource);
+        $response = $gapicClient->addSignedUrlKey($backendBucket, $project, $signedUrlKeyResource);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -194,9 +184,7 @@ class BackendBucketsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteTest()
     {
         $operationsTransport = $this->createTransport();
@@ -206,7 +194,7 @@ class BackendBucketsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -224,7 +212,7 @@ class BackendBucketsClientTest extends GeneratedTest
         // Mock request
         $backendBucket = 'backendBucket91714037';
         $project = 'project-309310695';
-        $response = $client->delete($backendBucket, $project);
+        $response = $gapicClient->delete($backendBucket, $project);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -256,9 +244,7 @@ class BackendBucketsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -268,7 +254,7 @@ class BackendBucketsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -292,7 +278,7 @@ class BackendBucketsClientTest extends GeneratedTest
         // Mock request
         $backendBucket = 'backendBucket91714037';
         $project = 'project-309310695';
-        $response = $client->delete($backendBucket, $project);
+        $response = $gapicClient->delete($backendBucket, $project);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -312,9 +298,7 @@ class BackendBucketsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteSignedUrlKeyTest()
     {
         $operationsTransport = $this->createTransport();
@@ -324,7 +308,7 @@ class BackendBucketsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -343,7 +327,7 @@ class BackendBucketsClientTest extends GeneratedTest
         $backendBucket = 'backendBucket91714037';
         $keyName = 'keyName500938859';
         $project = 'project-309310695';
-        $response = $client->deleteSignedUrlKey($backendBucket, $keyName, $project);
+        $response = $gapicClient->deleteSignedUrlKey($backendBucket, $keyName, $project);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -377,9 +361,7 @@ class BackendBucketsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteSignedUrlKeyExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -389,7 +371,7 @@ class BackendBucketsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -414,7 +396,7 @@ class BackendBucketsClientTest extends GeneratedTest
         $backendBucket = 'backendBucket91714037';
         $keyName = 'keyName500938859';
         $project = 'project-309310695';
-        $response = $client->deleteSignedUrlKey($backendBucket, $keyName, $project);
+        $response = $gapicClient->deleteSignedUrlKey($backendBucket, $keyName, $project);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -434,20 +416,20 @@ class BackendBucketsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $bucketName = 'bucketName283610048';
+        $compressionMode = 'compressionMode-2051962660';
         $creationTimestamp = 'creationTimestamp567396278';
         $description = 'description-1724546052';
+        $edgeSecurityPolicy = 'edgeSecurityPolicy-1032704881';
         $enableCdn = false;
         $id = 3355;
         $kind = 'kind3292052';
@@ -455,8 +437,10 @@ class BackendBucketsClientTest extends GeneratedTest
         $selfLink = 'selfLink-1691268851';
         $expectedResponse = new BackendBucket();
         $expectedResponse->setBucketName($bucketName);
+        $expectedResponse->setCompressionMode($compressionMode);
         $expectedResponse->setCreationTimestamp($creationTimestamp);
         $expectedResponse->setDescription($description);
+        $expectedResponse->setEdgeSecurityPolicy($edgeSecurityPolicy);
         $expectedResponse->setEnableCdn($enableCdn);
         $expectedResponse->setId($id);
         $expectedResponse->setKind($kind);
@@ -466,7 +450,7 @@ class BackendBucketsClientTest extends GeneratedTest
         // Mock request
         $backendBucket = 'backendBucket91714037';
         $project = 'project-309310695';
-        $response = $client->get($backendBucket, $project);
+        $response = $gapicClient->get($backendBucket, $project);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -480,13 +464,11 @@ class BackendBucketsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -504,8 +486,8 @@ class BackendBucketsClientTest extends GeneratedTest
         $backendBucket = 'backendBucket91714037';
         $project = 'project-309310695';
         try {
-            $client->get($backendBucket, $project);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->get($backendBucket, $project);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -516,9 +498,7 @@ class BackendBucketsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function insertTest()
     {
         $operationsTransport = $this->createTransport();
@@ -528,7 +508,7 @@ class BackendBucketsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -546,7 +526,7 @@ class BackendBucketsClientTest extends GeneratedTest
         // Mock request
         $backendBucketResource = new BackendBucket();
         $project = 'project-309310695';
-        $response = $client->insert($backendBucketResource, $project);
+        $response = $gapicClient->insert($backendBucketResource, $project);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -578,9 +558,7 @@ class BackendBucketsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function insertExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -590,7 +568,7 @@ class BackendBucketsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -614,7 +592,7 @@ class BackendBucketsClientTest extends GeneratedTest
         // Mock request
         $backendBucketResource = new BackendBucket();
         $project = 'project-309310695';
-        $response = $client->insert($backendBucketResource, $project);
+        $response = $gapicClient->insert($backendBucketResource, $project);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -634,13 +612,11 @@ class BackendBucketsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -662,7 +638,7 @@ class BackendBucketsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $project = 'project-309310695';
-        $response = $client->list($project);
+        $response = $gapicClient->list($project);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -677,13 +653,11 @@ class BackendBucketsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -700,8 +674,8 @@ class BackendBucketsClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         try {
-            $client->list($project);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->list($project);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -712,9 +686,7 @@ class BackendBucketsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function patchTest()
     {
         $operationsTransport = $this->createTransport();
@@ -724,7 +696,7 @@ class BackendBucketsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -743,7 +715,7 @@ class BackendBucketsClientTest extends GeneratedTest
         $backendBucket = 'backendBucket91714037';
         $backendBucketResource = new BackendBucket();
         $project = 'project-309310695';
-        $response = $client->patch($backendBucket, $backendBucketResource, $project);
+        $response = $gapicClient->patch($backendBucket, $backendBucketResource, $project);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -777,9 +749,7 @@ class BackendBucketsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function patchExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -789,7 +759,7 @@ class BackendBucketsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -814,7 +784,7 @@ class BackendBucketsClientTest extends GeneratedTest
         $backendBucket = 'backendBucket91714037';
         $backendBucketResource = new BackendBucket();
         $project = 'project-309310695';
-        $response = $client->patch($backendBucket, $backendBucketResource, $project);
+        $response = $gapicClient->patch($backendBucket, $backendBucketResource, $project);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -834,9 +804,125 @@ class BackendBucketsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
+    public function setEdgeSecurityPolicyTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new GlobalOperationsClient([
+            'serviceAddress' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('customOperations/setEdgeSecurityPolicyTest');
+        $incompleteOperation->setStatus(Status::RUNNING);
+        $transport->addResponse($incompleteOperation);
+        $completeOperation = new Operation();
+        $completeOperation->setName('customOperations/setEdgeSecurityPolicyTest');
+        $completeOperation->setStatus(Status::DONE);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $backendBucket = 'backendBucket91714037';
+        $project = 'project-309310695';
+        $securityPolicyReferenceResource = new SecurityPolicyReference();
+        $response = $gapicClient->setEdgeSecurityPolicy($backendBucket, $project, $securityPolicyReferenceResource);
+        $this->assertFalse($response->isDone());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.BackendBuckets/SetEdgeSecurityPolicy', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getBackendBucket();
+        $this->assertProtobufEquals($backendBucket, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getSecurityPolicyReferenceResource();
+        $this->assertProtobufEquals($securityPolicyReferenceResource, $actualValue);
+        $expectedOperationsRequestObject = new GetGlobalOperationRequest();
+        $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.GlobalOperations/Get', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function setEdgeSecurityPolicyExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new GlobalOperationsClient([
+            'serviceAddress' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('customOperations/setEdgeSecurityPolicyExceptionTest');
+        $incompleteOperation->setStatus(Status::RUNNING);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $backendBucket = 'backendBucket91714037';
+        $project = 'project-309310695';
+        $securityPolicyReferenceResource = new SecurityPolicyReference();
+        $response = $gapicClient->setEdgeSecurityPolicy($backendBucket, $project, $securityPolicyReferenceResource);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
     public function updateTest()
     {
         $operationsTransport = $this->createTransport();
@@ -846,7 +932,7 @@ class BackendBucketsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -865,7 +951,7 @@ class BackendBucketsClientTest extends GeneratedTest
         $backendBucket = 'backendBucket91714037';
         $backendBucketResource = new BackendBucket();
         $project = 'project-309310695';
-        $response = $client->update($backendBucket, $backendBucketResource, $project);
+        $response = $gapicClient->update($backendBucket, $backendBucketResource, $project);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -899,9 +985,7 @@ class BackendBucketsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -911,7 +995,7 @@ class BackendBucketsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -936,7 +1020,7 @@ class BackendBucketsClientTest extends GeneratedTest
         $backendBucket = 'backendBucket91714037';
         $backendBucketResource = new BackendBucket();
         $project = 'project-309310695';
-        $response = $client->update($backendBucket, $backendBucketResource, $project);
+        $response = $gapicClient->update($backendBucket, $backendBucketResource, $project);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {

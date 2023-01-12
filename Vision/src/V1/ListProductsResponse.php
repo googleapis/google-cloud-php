@@ -35,7 +35,7 @@ class ListProductsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Vision\V1\Product[]|\Google\Protobuf\Internal\RepeatedField $products
+     *     @type array<\Google\Cloud\Vision\V1\Product>|\Google\Protobuf\Internal\RepeatedField $products
      *           List of products.
      *     @type string $next_page_token
      *           Token to retrieve the next page of results, or empty if there are no more
@@ -62,7 +62,7 @@ class ListProductsResponse extends \Google\Protobuf\Internal\Message
      * List of products.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vision.v1.Product products = 1;</code>
-     * @param \Google\Cloud\Vision\V1\Product[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Vision\V1\Product>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setProducts($var)

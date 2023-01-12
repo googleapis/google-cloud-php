@@ -28,7 +28,7 @@ class BatchCreateSessionsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Spanner\V1\Session[]|\Google\Protobuf\Internal\RepeatedField $session
+     *     @type array<\Google\Cloud\Spanner\V1\Session>|\Google\Protobuf\Internal\RepeatedField $session
      *           The freshly created sessions.
      * }
      */
@@ -52,7 +52,7 @@ class BatchCreateSessionsResponse extends \Google\Protobuf\Internal\Message
      * The freshly created sessions.
      *
      * Generated from protobuf field <code>repeated .google.spanner.v1.Session session = 1;</code>
-     * @param \Google\Cloud\Spanner\V1\Session[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Spanner\V1\Session>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSession($var)

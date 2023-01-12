@@ -88,6 +88,10 @@ class Metric
      */
     const COMMITTED_LOCAL_SSD_TOTAL_GB = 308393480;
     /**
+     * Generated from protobuf enum <code>COMMITTED_M3_CPUS = 585985;</code>
+     */
+    const COMMITTED_M3_CPUS = 585985;
+    /**
      * Generated from protobuf enum <code>COMMITTED_MEMORY_OPTIMIZED_CPUS = 489057886;</code>
      */
     const COMMITTED_MEMORY_OPTIMIZED_CPUS = 489057886;
@@ -103,6 +107,10 @@ class Metric
      * Generated from protobuf enum <code>COMMITTED_N2_CPUS = 322589603;</code>
      */
     const COMMITTED_N2_CPUS = 322589603;
+    /**
+     * Generated from protobuf enum <code>COMMITTED_NVIDIA_A100_80GB_GPUS = 464326565;</code>
+     */
+    const COMMITTED_NVIDIA_A100_80GB_GPUS = 464326565;
     /**
      * Generated from protobuf enum <code>COMMITTED_NVIDIA_A100_GPUS = 375799445;</code>
      */
@@ -128,6 +136,10 @@ class Metric
      */
     const COMMITTED_NVIDIA_V100_GPUS = 219562;
     /**
+     * Generated from protobuf enum <code>COMMITTED_T2A_CPUS = 296378986;</code>
+     */
+    const COMMITTED_T2A_CPUS = 296378986;
+    /**
      * Generated from protobuf enum <code>COMMITTED_T2D_CPUS = 382266439;</code>
      */
     const COMMITTED_T2D_CPUS = 382266439;
@@ -150,6 +162,10 @@ class Metric
      */
     const E2_CPUS = 481995837;
     /**
+     * Generated from protobuf enum <code>EXTERNAL_MANAGED_FORWARDING_RULES = 150790089;</code>
+     */
+    const EXTERNAL_MANAGED_FORWARDING_RULES = 150790089;
+    /**
      * Generated from protobuf enum <code>EXTERNAL_NETWORK_LB_FORWARDING_RULES = 374298265;</code>
      */
     const EXTERNAL_NETWORK_LB_FORWARDING_RULES = 374298265;
@@ -169,6 +185,10 @@ class Metric
      * Generated from protobuf enum <code>FORWARDING_RULES = 432668949;</code>
      */
     const FORWARDING_RULES = 432668949;
+    /**
+     * Generated from protobuf enum <code>GLOBAL_EXTERNAL_MANAGED_FORWARDING_RULES = 327611949;</code>
+     */
+    const GLOBAL_EXTERNAL_MANAGED_FORWARDING_RULES = 327611949;
     /**
      * Generated from protobuf enum <code>GLOBAL_INTERNAL_ADDRESSES = 42738332;</code>
      */
@@ -254,6 +274,10 @@ class Metric
      */
     const M2_CPUS = 65832517;
     /**
+     * Generated from protobuf enum <code>M3_CPUS = 94461668;</code>
+     */
+    const M3_CPUS = 94461668;
+    /**
      * Generated from protobuf enum <code>MACHINE_IMAGES = 446986640;</code>
      */
     const MACHINE_IMAGES = 446986640;
@@ -289,6 +313,10 @@ class Metric
      * Generated from protobuf enum <code>NODE_TEMPLATES = 474896668;</code>
      */
     const NODE_TEMPLATES = 474896668;
+    /**
+     * Generated from protobuf enum <code>NVIDIA_A100_80GB_GPUS = 286389320;</code>
+     */
+    const NVIDIA_A100_80GB_GPUS = 286389320;
     /**
      * Generated from protobuf enum <code>NVIDIA_A100_GPUS = 504872978;</code>
      */
@@ -341,6 +369,10 @@ class Metric
      * Generated from protobuf enum <code>PREEMPTIBLE_LOCAL_SSD_GB = 260819336;</code>
      */
     const PREEMPTIBLE_LOCAL_SSD_GB = 260819336;
+    /**
+     * Generated from protobuf enum <code>PREEMPTIBLE_NVIDIA_A100_80GB_GPUS = 151942410;</code>
+     */
+    const PREEMPTIBLE_NVIDIA_A100_80GB_GPUS = 151942410;
     /**
      * Generated from protobuf enum <code>PREEMPTIBLE_NVIDIA_A100_GPUS = 68832784;</code>
      */
@@ -464,9 +496,17 @@ class Metric
      */
     const STATIC_BYOIP_ADDRESSES = 275809649;
     /**
+     * Generated from protobuf enum <code>STATIC_EXTERNAL_IPV6_ADDRESS_RANGES = 472346774;</code>
+     */
+    const STATIC_EXTERNAL_IPV6_ADDRESS_RANGES = 472346774;
+    /**
      * Generated from protobuf enum <code>SUBNETWORKS = 421330469;</code>
      */
     const SUBNETWORKS = 421330469;
+    /**
+     * Generated from protobuf enum <code>T2A_CPUS = 522170599;</code>
+     */
+    const T2A_CPUS = 522170599;
     /**
      * Generated from protobuf enum <code>T2D_CPUS = 71187140;</code>
      */
@@ -535,26 +575,31 @@ class Metric
         self::COMMITTED_E2_CPUS => 'COMMITTED_E2_CPUS',
         self::COMMITTED_LICENSES => 'COMMITTED_LICENSES',
         self::COMMITTED_LOCAL_SSD_TOTAL_GB => 'COMMITTED_LOCAL_SSD_TOTAL_GB',
+        self::COMMITTED_M3_CPUS => 'COMMITTED_M3_CPUS',
         self::COMMITTED_MEMORY_OPTIMIZED_CPUS => 'COMMITTED_MEMORY_OPTIMIZED_CPUS',
         self::COMMITTED_N2A_CPUS => 'COMMITTED_N2A_CPUS',
         self::COMMITTED_N2D_CPUS => 'COMMITTED_N2D_CPUS',
         self::COMMITTED_N2_CPUS => 'COMMITTED_N2_CPUS',
+        self::COMMITTED_NVIDIA_A100_80GB_GPUS => 'COMMITTED_NVIDIA_A100_80GB_GPUS',
         self::COMMITTED_NVIDIA_A100_GPUS => 'COMMITTED_NVIDIA_A100_GPUS',
         self::COMMITTED_NVIDIA_K80_GPUS => 'COMMITTED_NVIDIA_K80_GPUS',
         self::COMMITTED_NVIDIA_P100_GPUS => 'COMMITTED_NVIDIA_P100_GPUS',
         self::COMMITTED_NVIDIA_P4_GPUS => 'COMMITTED_NVIDIA_P4_GPUS',
         self::COMMITTED_NVIDIA_T4_GPUS => 'COMMITTED_NVIDIA_T4_GPUS',
         self::COMMITTED_NVIDIA_V100_GPUS => 'COMMITTED_NVIDIA_V100_GPUS',
+        self::COMMITTED_T2A_CPUS => 'COMMITTED_T2A_CPUS',
         self::COMMITTED_T2D_CPUS => 'COMMITTED_T2D_CPUS',
         self::CPUS => 'CPUS',
         self::CPUS_ALL_REGIONS => 'CPUS_ALL_REGIONS',
         self::DISKS_TOTAL_GB => 'DISKS_TOTAL_GB',
         self::E2_CPUS => 'E2_CPUS',
+        self::EXTERNAL_MANAGED_FORWARDING_RULES => 'EXTERNAL_MANAGED_FORWARDING_RULES',
         self::EXTERNAL_NETWORK_LB_FORWARDING_RULES => 'EXTERNAL_NETWORK_LB_FORWARDING_RULES',
         self::EXTERNAL_PROTOCOL_FORWARDING_RULES => 'EXTERNAL_PROTOCOL_FORWARDING_RULES',
         self::EXTERNAL_VPN_GATEWAYS => 'EXTERNAL_VPN_GATEWAYS',
         self::FIREWALLS => 'FIREWALLS',
         self::FORWARDING_RULES => 'FORWARDING_RULES',
+        self::GLOBAL_EXTERNAL_MANAGED_FORWARDING_RULES => 'GLOBAL_EXTERNAL_MANAGED_FORWARDING_RULES',
         self::GLOBAL_INTERNAL_ADDRESSES => 'GLOBAL_INTERNAL_ADDRESSES',
         self::GPUS_ALL_REGIONS => 'GPUS_ALL_REGIONS',
         self::HEALTH_CHECKS => 'HEALTH_CHECKS',
@@ -576,6 +621,7 @@ class Metric
         self::LOCAL_SSD_TOTAL_GB => 'LOCAL_SSD_TOTAL_GB',
         self::M1_CPUS => 'M1_CPUS',
         self::M2_CPUS => 'M2_CPUS',
+        self::M3_CPUS => 'M3_CPUS',
         self::MACHINE_IMAGES => 'MACHINE_IMAGES',
         self::N2A_CPUS => 'N2A_CPUS',
         self::N2D_CPUS => 'N2D_CPUS',
@@ -585,6 +631,7 @@ class Metric
         self::NETWORK_FIREWALL_POLICIES => 'NETWORK_FIREWALL_POLICIES',
         self::NODE_GROUPS => 'NODE_GROUPS',
         self::NODE_TEMPLATES => 'NODE_TEMPLATES',
+        self::NVIDIA_A100_80GB_GPUS => 'NVIDIA_A100_80GB_GPUS',
         self::NVIDIA_A100_GPUS => 'NVIDIA_A100_GPUS',
         self::NVIDIA_K80_GPUS => 'NVIDIA_K80_GPUS',
         self::NVIDIA_P100_GPUS => 'NVIDIA_P100_GPUS',
@@ -598,6 +645,7 @@ class Metric
         self::PD_EXTREME_TOTAL_PROVISIONED_IOPS => 'PD_EXTREME_TOTAL_PROVISIONED_IOPS',
         self::PREEMPTIBLE_CPUS => 'PREEMPTIBLE_CPUS',
         self::PREEMPTIBLE_LOCAL_SSD_GB => 'PREEMPTIBLE_LOCAL_SSD_GB',
+        self::PREEMPTIBLE_NVIDIA_A100_80GB_GPUS => 'PREEMPTIBLE_NVIDIA_A100_80GB_GPUS',
         self::PREEMPTIBLE_NVIDIA_A100_GPUS => 'PREEMPTIBLE_NVIDIA_A100_GPUS',
         self::PREEMPTIBLE_NVIDIA_K80_GPUS => 'PREEMPTIBLE_NVIDIA_K80_GPUS',
         self::PREEMPTIBLE_NVIDIA_P100_GPUS => 'PREEMPTIBLE_NVIDIA_P100_GPUS',
@@ -628,7 +676,9 @@ class Metric
         self::SSL_CERTIFICATES => 'SSL_CERTIFICATES',
         self::STATIC_ADDRESSES => 'STATIC_ADDRESSES',
         self::STATIC_BYOIP_ADDRESSES => 'STATIC_BYOIP_ADDRESSES',
+        self::STATIC_EXTERNAL_IPV6_ADDRESS_RANGES => 'STATIC_EXTERNAL_IPV6_ADDRESS_RANGES',
         self::SUBNETWORKS => 'SUBNETWORKS',
+        self::T2A_CPUS => 'T2A_CPUS',
         self::T2D_CPUS => 'T2D_CPUS',
         self::TARGET_HTTPS_PROXIES => 'TARGET_HTTPS_PROXIES',
         self::TARGET_HTTP_PROXIES => 'TARGET_HTTP_PROXIES',

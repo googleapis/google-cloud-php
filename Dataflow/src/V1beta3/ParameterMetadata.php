@@ -73,7 +73,7 @@ class ParameterMetadata extends \Google\Protobuf\Internal\Message
      *           Required. The help text to display for the parameter.
      *     @type bool $is_optional
      *           Optional. Whether the parameter is optional. Defaults to false.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $regexes
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $regexes
      *           Optional. Regexes that the parameter must match.
      *     @type int $param_type
      *           Optional. The type of the parameter.
@@ -206,7 +206,7 @@ class ParameterMetadata extends \Google\Protobuf\Internal\Message
      * Optional. Regexes that the parameter must match.
      *
      * Generated from protobuf field <code>repeated string regexes = 5;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setRegexes($var)

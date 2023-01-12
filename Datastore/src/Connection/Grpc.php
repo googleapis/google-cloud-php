@@ -101,7 +101,10 @@ class Grpc implements ConnectionInterface
         }
 
         if ((bool) $config['emulatorHost']) {
-            $grpcConfig += $this->emulatorGapicConfig($config['emulatorHost']);
+            $grpcConfig = array_merge(
+                $grpcConfig,
+                $this->emulatorGapicConfig($config['emulatorHost'])
+            );
         }
 
         $this->datastoreClient = isset($config['gapicDatastoreClient'])
@@ -129,6 +132,12 @@ class Grpc implements ConnectionInterface
     public function beginTransaction(array $args)
     {
         if (isset($args['transactionOptions'])) {
+            array_walk($args['transactionOptions'], function (&$item) {
+                if ($item instanceof \stdClass) {
+                    $item = [];
+                }
+            });
+
             $args['transactionOptions'] = $this->serializer->decodeMessage(
                 new TransactionOptions,
                 $args['transactionOptions']
@@ -300,7 +309,10 @@ class Grpc implements ConnectionInterface
                         : null,
                     'namespace_id' => isset($key['partitionId']['namespaceId'])
                         ? $key['partitionId']['namespaceId']
-                        : null
+                        : null,
+                    'database_id' => isset($key['partitionId']['databaseId'])
+                        ? $key['partitionId']['databaseId']
+                        : null,
                 ]);
 
                 $local['partition_id'] = new PartitionId($p);

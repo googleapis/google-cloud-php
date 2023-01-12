@@ -27,7 +27,6 @@ namespace Google\Cloud\Dlp\V2\Gapic;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
@@ -130,29 +129,19 @@ class DlpServiceGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.privacy.dlp.v2.DlpService';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'dlp.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
     ];
@@ -1176,10 +1165,9 @@ class DlpServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Dlp\V2\DlpJob
@@ -1229,10 +1217,9 @@ class DlpServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @throws ApiException if the remote call fails
@@ -1258,7 +1245,7 @@ class DlpServiceGapicClient
     }
 
     /**
-     * Creates a DeidentifyTemplate for re-using frequently used configuration
+     * Creates a DeidentifyTemplate for reusing frequently used configuration
      * for de-identifying content, images, and storage.
      * See https://cloud.google.com/dlp/docs/creating-templates-deid to learn
      * more.
@@ -1307,10 +1294,9 @@ class DlpServiceGapicClient
      *     @type string $locationId
      *           Deprecated. This field has no effect.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Dlp\V2\DeidentifyTemplate
@@ -1403,10 +1389,9 @@ class DlpServiceGapicClient
      *     @type string $locationId
      *           Deprecated. This field has no effect.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Dlp\V2\DlpJob
@@ -1450,7 +1435,7 @@ class DlpServiceGapicClient
     }
 
     /**
-     * Creates an InspectTemplate for re-using frequently used configuration
+     * Creates an InspectTemplate for reusing frequently used configuration
      * for inspecting content, images, and storage.
      * See https://cloud.google.com/dlp/docs/creating-templates to learn more.
      *
@@ -1498,10 +1483,9 @@ class DlpServiceGapicClient
      *     @type string $locationId
      *           Deprecated. This field has no effect.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Dlp\V2\InspectTemplate
@@ -1585,10 +1569,9 @@ class DlpServiceGapicClient
      *     @type string $locationId
      *           Deprecated. This field has no effect.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Dlp\V2\JobTrigger
@@ -1676,10 +1659,9 @@ class DlpServiceGapicClient
      *     @type string $locationId
      *           Deprecated. This field has no effect.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Dlp\V2\StoredInfoType
@@ -1768,6 +1750,13 @@ class DlpServiceGapicClient
      *           inspect_template_name argument.
      *     @type ContentItem $item
      *           The item to de-identify. Will be treated as text.
+     *
+     *           This value must be of type
+     *           [Table][google.privacy.dlp.v2.Table] if your
+     *           [deidentify_config][google.privacy.dlp.v2.DeidentifyContentRequest.deidentify_config]
+     *           is a
+     *           [RecordTransformations][google.privacy.dlp.v2.RecordTransformations]
+     *           object.
      *     @type string $inspectTemplateName
      *           Template to use. Any configuration directly specified in
      *           inspect_config will override those set in the template. Singular fields
@@ -1783,10 +1772,9 @@ class DlpServiceGapicClient
      *     @type string $locationId
      *           Deprecated. This field has no effect.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Dlp\V2\DeidentifyContentResponse
@@ -1867,10 +1855,9 @@ class DlpServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @throws ApiException if the remote call fails
@@ -1897,7 +1884,7 @@ class DlpServiceGapicClient
 
     /**
      * Deletes a long-running DlpJob. This method indicates that the client is
-     * no longer interested in the DlpJob result. The job will be cancelled if
+     * no longer interested in the DlpJob result. The job will be canceled if
      * possible.
      * See https://cloud.google.com/dlp/docs/inspecting-storage and
      * https://cloud.google.com/dlp/docs/compute-risk-analysis to learn more.
@@ -1918,10 +1905,9 @@ class DlpServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @throws ApiException if the remote call fails
@@ -1968,10 +1954,9 @@ class DlpServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @throws ApiException if the remote call fails
@@ -2017,10 +2002,9 @@ class DlpServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @throws ApiException if the remote call fails
@@ -2068,10 +2052,9 @@ class DlpServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @throws ApiException if the remote call fails
@@ -2116,10 +2099,9 @@ class DlpServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @throws ApiException if the remote call fails
@@ -2167,10 +2149,9 @@ class DlpServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Dlp\V2\DeidentifyTemplate
@@ -2218,10 +2199,9 @@ class DlpServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Dlp\V2\DlpJob
@@ -2270,10 +2250,9 @@ class DlpServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Dlp\V2\InspectTemplate
@@ -2321,10 +2300,9 @@ class DlpServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Dlp\V2\JobTrigger
@@ -2374,10 +2352,9 @@ class DlpServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Dlp\V2\StoredInfoType
@@ -2428,10 +2405,9 @@ class DlpServiceGapicClient
      *     @type HybridContentItem $hybridItem
      *           The item to inspect.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Dlp\V2\HybridInspectResponse
@@ -2486,10 +2462,9 @@ class DlpServiceGapicClient
      *     @type HybridContentItem $hybridItem
      *           The item to inspect.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Dlp\V2\HybridInspectResponse
@@ -2575,10 +2550,9 @@ class DlpServiceGapicClient
      *     @type string $locationId
      *           Deprecated. This field has no effect.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Dlp\V2\InspectContentResponse
@@ -2696,17 +2670,16 @@ class DlpServiceGapicClient
      *
      *           Supported fields are:
      *
-     *           - `create_time`: corresponds to time the template was created.
-     *           - `update_time`: corresponds to time the template was last updated.
-     *           - `name`: corresponds to template's name.
-     *           - `display_name`: corresponds to template's display name.
+     *           - `create_time`: corresponds to the time the template was created.
+     *           - `update_time`: corresponds to the time the template was last updated.
+     *           - `name`: corresponds to the template's name.
+     *           - `display_name`: corresponds to the template's display name.
      *     @type string $locationId
      *           Deprecated. This field has no effect.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -2808,13 +2781,13 @@ class DlpServiceGapicClient
      *           * Supported fields/values for inspect jobs:
      *           - `state` - PENDING|RUNNING|CANCELED|FINISHED|FAILED
      *           - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY
-     *           - `trigger_name` - The resource name of the trigger that created job.
-     *           - 'end_time` - Corresponds to time the job finished.
-     *           - 'start_time` - Corresponds to time the job finished.
+     *           - `trigger_name` - The name of the trigger that created the job.
+     *           - 'end_time` - Corresponds to the time the job finished.
+     *           - 'start_time` - Corresponds to the time the job finished.
      *           * Supported fields for risk analysis jobs:
      *           - `state` - RUNNING|CANCELED|FINISHED|FAILED
-     *           - 'end_time` - Corresponds to time the job finished.
-     *           - 'start_time` - Corresponds to time the job finished.
+     *           - 'end_time` - Corresponds to the time the job finished.
+     *           - 'start_time` - Corresponds to the time the job finished.
      *           * The operator must be `=` or `!=`.
      *
      *           Examples:
@@ -2847,17 +2820,16 @@ class DlpServiceGapicClient
      *
      *           Supported fields are:
      *
-     *           - `create_time`: corresponds to time the job was created.
-     *           - `end_time`: corresponds to time the job ended.
-     *           - `name`: corresponds to job's name.
+     *           - `create_time`: corresponds to the time the job was created.
+     *           - `end_time`: corresponds to the time the job ended.
+     *           - `name`: corresponds to the job's name.
      *           - `state`: corresponds to `state`
      *     @type string $locationId
      *           Deprecated. This field has no effect.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -2909,7 +2881,7 @@ class DlpServiceGapicClient
     }
 
     /**
-     * Returns a list of the sensitive information types that the DLP API
+     * Returns a list of the sensitive information types that DLP API
      * supports. See https://cloud.google.com/dlp/docs/infotypes-reference to
      * learn more.
      *
@@ -2942,10 +2914,9 @@ class DlpServiceGapicClient
      *     @type string $locationId
      *           Deprecated. This field has no effect.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Dlp\V2\ListInfoTypesResponse
@@ -3056,17 +3027,16 @@ class DlpServiceGapicClient
      *
      *           Supported fields are:
      *
-     *           - `create_time`: corresponds to time the template was created.
-     *           - `update_time`: corresponds to time the template was last updated.
-     *           - `name`: corresponds to template's name.
-     *           - `display_name`: corresponds to template's display name.
+     *           - `create_time`: corresponds to the time the template was created.
+     *           - `update_time`: corresponds to the time the template was last updated.
+     *           - `name`: corresponds to the template's name.
+     *           - `display_name`: corresponds to the template's display name.
      *     @type string $locationId
      *           Deprecated. This field has no effect.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -3174,11 +3144,11 @@ class DlpServiceGapicClient
      *
      *           Supported fields are:
      *
-     *           - `create_time`: corresponds to time the JobTrigger was created.
-     *           - `update_time`: corresponds to time the JobTrigger was last updated.
+     *           - `create_time`: corresponds to the time the JobTrigger was created.
+     *           - `update_time`: corresponds to the time the JobTrigger was last updated.
      *           - `last_run_time`: corresponds to the last time the JobTrigger ran.
-     *           - `name`: corresponds to JobTrigger's name.
-     *           - `display_name`: corresponds to JobTrigger's display name.
+     *           - `name`: corresponds to the JobTrigger's name.
+     *           - `display_name`: corresponds to the JobTrigger's display name.
      *           - `status`: corresponds to JobTrigger's status.
      *     @type string $filter
      *           Allows filtering.
@@ -3211,10 +3181,9 @@ class DlpServiceGapicClient
      *     @type string $locationId
      *           Deprecated. This field has no effect.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -3303,10 +3272,6 @@ class DlpServiceGapicClient
      *                             `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
      *                             + Projects scope, no location specified (defaults to global):<br/>
      *                             `projects/`<var>PROJECT_ID</var>
-     *                             + Organizations scope, location specified:<br/>
-     *                             `organizations/`<var>ORG_ID</var>`/locations/`<var>LOCATION_ID</var>
-     *                             + Organizations scope, no location specified (defaults to global):<br/>
-     *                             `organizations/`<var>ORG_ID</var>
      *
      *                             The following example `parent` string specifies a parent project with the
      *                             identifier `example-project`, and specifies the `europe-west3` location
@@ -3335,7 +3300,7 @@ class DlpServiceGapicClient
      *
      *           Supported fields are:
      *
-     *           - `create_time`: corresponds to time the most recent version of the
+     *           - `create_time`: corresponds to the time the most recent version of the
      *           resource was created.
      *           - `state`: corresponds to the state of the resource.
      *           - `name`: corresponds to resource name.
@@ -3343,10 +3308,9 @@ class DlpServiceGapicClient
      *     @type string $locationId
      *           Deprecated. This field has no effect.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -3441,10 +3405,9 @@ class DlpServiceGapicClient
      *     @type ByteContentItem $byteItem
      *           The content must be PNG, JPEG, SVG or BMP.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Dlp\V2\RedactImageResponse
@@ -3564,10 +3527,9 @@ class DlpServiceGapicClient
      *     @type string $locationId
      *           Deprecated. This field has no effect.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Dlp\V2\ReidentifyContentResponse
@@ -3649,10 +3611,9 @@ class DlpServiceGapicClient
      *     @type FieldMask $updateMask
      *           Mask to control which fields get updated.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Dlp\V2\DeidentifyTemplate
@@ -3715,10 +3676,9 @@ class DlpServiceGapicClient
      *     @type FieldMask $updateMask
      *           Mask to control which fields get updated.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Dlp\V2\InspectTemplate
@@ -3778,10 +3738,9 @@ class DlpServiceGapicClient
      *     @type FieldMask $updateMask
      *           Mask to control which fields get updated.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Dlp\V2\JobTrigger
@@ -3846,10 +3805,9 @@ class DlpServiceGapicClient
      *     @type FieldMask $updateMask
      *           Mask to control which fields get updated.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Dlp\V2\StoredInfoType

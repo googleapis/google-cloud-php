@@ -9,7 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [SetInventory][] method.
+ * Request message for
+ * [ProductService.SetInventory][google.cloud.retail.v2.ProductService.SetInventory]
+ * method.
  *
  * Generated from protobuf message <code>google.cloud.retail.v2.SetInventoryRequest</code>
  */
@@ -24,8 +26,9 @@ class SetInventoryRequest extends \Google\Protobuf\Internal\Message
      * * [Product.fulfillment_info][google.cloud.retail.v2.Product.fulfillment_info]
      * The updated inventory fields must be specified in
      * [SetInventoryRequest.set_mask][google.cloud.retail.v2.SetInventoryRequest.set_mask].
-     * If [SetInventoryRequest.inventory.name][] is empty or invalid, an
-     * INVALID_ARGUMENT error is returned.
+     * If
+     * [SetInventoryRequest.inventory.name][google.cloud.retail.v2.Product.name]
+     * is empty or invalid, an INVALID_ARGUMENT error is returned.
      * If the caller does not have permission to update the
      * [Product][google.cloud.retail.v2.Product] named in
      * [Product.name][google.cloud.retail.v2.Product.name], regardless of whether
@@ -38,21 +41,38 @@ class SetInventoryRequest extends \Google\Protobuf\Internal\Message
      * while respecting the last update time for each inventory field, using the
      * provided or default value for
      * [SetInventoryRequest.set_time][google.cloud.retail.v2.SetInventoryRequest.set_time].
+     * The caller can replace place IDs for a subset of fulfillment types in the
+     * following ways:
+     * * Adds "fulfillment_info" in
+     * [SetInventoryRequest.set_mask][google.cloud.retail.v2.SetInventoryRequest.set_mask]
+     * * Specifies only the desired fulfillment types and corresponding place IDs
+     * to update in
+     * [SetInventoryRequest.inventory.fulfillment_info][google.cloud.retail.v2.Product.fulfillment_info]
+     * The caller can clear all place IDs from a subset of fulfillment types in
+     * the following ways:
+     * * Adds "fulfillment_info" in
+     * [SetInventoryRequest.set_mask][google.cloud.retail.v2.SetInventoryRequest.set_mask]
+     * * Specifies only the desired fulfillment types to clear in
+     * [SetInventoryRequest.inventory.fulfillment_info][google.cloud.retail.v2.Product.fulfillment_info]
+     * * Checks that only the desired fulfillment info types have empty
+     * [SetInventoryRequest.inventory.fulfillment_info.place_ids][google.cloud.retail.v2.FulfillmentInfo.place_ids]
      * The last update time is recorded for the following inventory fields:
      * * [Product.price_info][google.cloud.retail.v2.Product.price_info]
      * * [Product.availability][google.cloud.retail.v2.Product.availability]
      * * [Product.available_quantity][google.cloud.retail.v2.Product.available_quantity]
      * * [Product.fulfillment_info][google.cloud.retail.v2.Product.fulfillment_info]
      * If a full overwrite of inventory information while ignoring timestamps is
-     * needed, [UpdateProduct][] should be invoked instead.
+     * needed,
+     * [ProductService.UpdateProduct][google.cloud.retail.v2.ProductService.UpdateProduct]
+     * should be invoked instead.
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.Product inventory = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $inventory = null;
     /**
      * Indicates which inventory fields in the provided
-     * [Product][google.cloud.retail.v2.Product] to update. If not set or set with
-     * empty paths, all inventory fields will be updated.
+     * [Product][google.cloud.retail.v2.Product] to update.
+     * At least one field must be provided.
      * If an unsupported or unknown field is provided, an INVALID_ARGUMENT error
      * is returned and the entire update will be ignored.
      *
@@ -94,8 +114,9 @@ class SetInventoryRequest extends \Google\Protobuf\Internal\Message
      *           * [Product.fulfillment_info][google.cloud.retail.v2.Product.fulfillment_info]
      *           The updated inventory fields must be specified in
      *           [SetInventoryRequest.set_mask][google.cloud.retail.v2.SetInventoryRequest.set_mask].
-     *           If [SetInventoryRequest.inventory.name][] is empty or invalid, an
-     *           INVALID_ARGUMENT error is returned.
+     *           If
+     *           [SetInventoryRequest.inventory.name][google.cloud.retail.v2.Product.name]
+     *           is empty or invalid, an INVALID_ARGUMENT error is returned.
      *           If the caller does not have permission to update the
      *           [Product][google.cloud.retail.v2.Product] named in
      *           [Product.name][google.cloud.retail.v2.Product.name], regardless of whether
@@ -108,17 +129,34 @@ class SetInventoryRequest extends \Google\Protobuf\Internal\Message
      *           while respecting the last update time for each inventory field, using the
      *           provided or default value for
      *           [SetInventoryRequest.set_time][google.cloud.retail.v2.SetInventoryRequest.set_time].
+     *           The caller can replace place IDs for a subset of fulfillment types in the
+     *           following ways:
+     *           * Adds "fulfillment_info" in
+     *           [SetInventoryRequest.set_mask][google.cloud.retail.v2.SetInventoryRequest.set_mask]
+     *           * Specifies only the desired fulfillment types and corresponding place IDs
+     *           to update in
+     *           [SetInventoryRequest.inventory.fulfillment_info][google.cloud.retail.v2.Product.fulfillment_info]
+     *           The caller can clear all place IDs from a subset of fulfillment types in
+     *           the following ways:
+     *           * Adds "fulfillment_info" in
+     *           [SetInventoryRequest.set_mask][google.cloud.retail.v2.SetInventoryRequest.set_mask]
+     *           * Specifies only the desired fulfillment types to clear in
+     *           [SetInventoryRequest.inventory.fulfillment_info][google.cloud.retail.v2.Product.fulfillment_info]
+     *           * Checks that only the desired fulfillment info types have empty
+     *           [SetInventoryRequest.inventory.fulfillment_info.place_ids][google.cloud.retail.v2.FulfillmentInfo.place_ids]
      *           The last update time is recorded for the following inventory fields:
      *           * [Product.price_info][google.cloud.retail.v2.Product.price_info]
      *           * [Product.availability][google.cloud.retail.v2.Product.availability]
      *           * [Product.available_quantity][google.cloud.retail.v2.Product.available_quantity]
      *           * [Product.fulfillment_info][google.cloud.retail.v2.Product.fulfillment_info]
      *           If a full overwrite of inventory information while ignoring timestamps is
-     *           needed, [UpdateProduct][] should be invoked instead.
+     *           needed,
+     *           [ProductService.UpdateProduct][google.cloud.retail.v2.ProductService.UpdateProduct]
+     *           should be invoked instead.
      *     @type \Google\Protobuf\FieldMask $set_mask
      *           Indicates which inventory fields in the provided
-     *           [Product][google.cloud.retail.v2.Product] to update. If not set or set with
-     *           empty paths, all inventory fields will be updated.
+     *           [Product][google.cloud.retail.v2.Product] to update.
+     *           At least one field must be provided.
      *           If an unsupported or unknown field is provided, an INVALID_ARGUMENT error
      *           is returned and the entire update will be ignored.
      *     @type \Google\Protobuf\Timestamp $set_time
@@ -148,8 +186,9 @@ class SetInventoryRequest extends \Google\Protobuf\Internal\Message
      * * [Product.fulfillment_info][google.cloud.retail.v2.Product.fulfillment_info]
      * The updated inventory fields must be specified in
      * [SetInventoryRequest.set_mask][google.cloud.retail.v2.SetInventoryRequest.set_mask].
-     * If [SetInventoryRequest.inventory.name][] is empty or invalid, an
-     * INVALID_ARGUMENT error is returned.
+     * If
+     * [SetInventoryRequest.inventory.name][google.cloud.retail.v2.Product.name]
+     * is empty or invalid, an INVALID_ARGUMENT error is returned.
      * If the caller does not have permission to update the
      * [Product][google.cloud.retail.v2.Product] named in
      * [Product.name][google.cloud.retail.v2.Product.name], regardless of whether
@@ -162,13 +201,30 @@ class SetInventoryRequest extends \Google\Protobuf\Internal\Message
      * while respecting the last update time for each inventory field, using the
      * provided or default value for
      * [SetInventoryRequest.set_time][google.cloud.retail.v2.SetInventoryRequest.set_time].
+     * The caller can replace place IDs for a subset of fulfillment types in the
+     * following ways:
+     * * Adds "fulfillment_info" in
+     * [SetInventoryRequest.set_mask][google.cloud.retail.v2.SetInventoryRequest.set_mask]
+     * * Specifies only the desired fulfillment types and corresponding place IDs
+     * to update in
+     * [SetInventoryRequest.inventory.fulfillment_info][google.cloud.retail.v2.Product.fulfillment_info]
+     * The caller can clear all place IDs from a subset of fulfillment types in
+     * the following ways:
+     * * Adds "fulfillment_info" in
+     * [SetInventoryRequest.set_mask][google.cloud.retail.v2.SetInventoryRequest.set_mask]
+     * * Specifies only the desired fulfillment types to clear in
+     * [SetInventoryRequest.inventory.fulfillment_info][google.cloud.retail.v2.Product.fulfillment_info]
+     * * Checks that only the desired fulfillment info types have empty
+     * [SetInventoryRequest.inventory.fulfillment_info.place_ids][google.cloud.retail.v2.FulfillmentInfo.place_ids]
      * The last update time is recorded for the following inventory fields:
      * * [Product.price_info][google.cloud.retail.v2.Product.price_info]
      * * [Product.availability][google.cloud.retail.v2.Product.availability]
      * * [Product.available_quantity][google.cloud.retail.v2.Product.available_quantity]
      * * [Product.fulfillment_info][google.cloud.retail.v2.Product.fulfillment_info]
      * If a full overwrite of inventory information while ignoring timestamps is
-     * needed, [UpdateProduct][] should be invoked instead.
+     * needed,
+     * [ProductService.UpdateProduct][google.cloud.retail.v2.ProductService.UpdateProduct]
+     * should be invoked instead.
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.Product inventory = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Retail\V2\Product|null
@@ -197,8 +253,9 @@ class SetInventoryRequest extends \Google\Protobuf\Internal\Message
      * * [Product.fulfillment_info][google.cloud.retail.v2.Product.fulfillment_info]
      * The updated inventory fields must be specified in
      * [SetInventoryRequest.set_mask][google.cloud.retail.v2.SetInventoryRequest.set_mask].
-     * If [SetInventoryRequest.inventory.name][] is empty or invalid, an
-     * INVALID_ARGUMENT error is returned.
+     * If
+     * [SetInventoryRequest.inventory.name][google.cloud.retail.v2.Product.name]
+     * is empty or invalid, an INVALID_ARGUMENT error is returned.
      * If the caller does not have permission to update the
      * [Product][google.cloud.retail.v2.Product] named in
      * [Product.name][google.cloud.retail.v2.Product.name], regardless of whether
@@ -211,13 +268,30 @@ class SetInventoryRequest extends \Google\Protobuf\Internal\Message
      * while respecting the last update time for each inventory field, using the
      * provided or default value for
      * [SetInventoryRequest.set_time][google.cloud.retail.v2.SetInventoryRequest.set_time].
+     * The caller can replace place IDs for a subset of fulfillment types in the
+     * following ways:
+     * * Adds "fulfillment_info" in
+     * [SetInventoryRequest.set_mask][google.cloud.retail.v2.SetInventoryRequest.set_mask]
+     * * Specifies only the desired fulfillment types and corresponding place IDs
+     * to update in
+     * [SetInventoryRequest.inventory.fulfillment_info][google.cloud.retail.v2.Product.fulfillment_info]
+     * The caller can clear all place IDs from a subset of fulfillment types in
+     * the following ways:
+     * * Adds "fulfillment_info" in
+     * [SetInventoryRequest.set_mask][google.cloud.retail.v2.SetInventoryRequest.set_mask]
+     * * Specifies only the desired fulfillment types to clear in
+     * [SetInventoryRequest.inventory.fulfillment_info][google.cloud.retail.v2.Product.fulfillment_info]
+     * * Checks that only the desired fulfillment info types have empty
+     * [SetInventoryRequest.inventory.fulfillment_info.place_ids][google.cloud.retail.v2.FulfillmentInfo.place_ids]
      * The last update time is recorded for the following inventory fields:
      * * [Product.price_info][google.cloud.retail.v2.Product.price_info]
      * * [Product.availability][google.cloud.retail.v2.Product.availability]
      * * [Product.available_quantity][google.cloud.retail.v2.Product.available_quantity]
      * * [Product.fulfillment_info][google.cloud.retail.v2.Product.fulfillment_info]
      * If a full overwrite of inventory information while ignoring timestamps is
-     * needed, [UpdateProduct][] should be invoked instead.
+     * needed,
+     * [ProductService.UpdateProduct][google.cloud.retail.v2.ProductService.UpdateProduct]
+     * should be invoked instead.
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.Product inventory = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Retail\V2\Product $var
@@ -233,8 +307,8 @@ class SetInventoryRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Indicates which inventory fields in the provided
-     * [Product][google.cloud.retail.v2.Product] to update. If not set or set with
-     * empty paths, all inventory fields will be updated.
+     * [Product][google.cloud.retail.v2.Product] to update.
+     * At least one field must be provided.
      * If an unsupported or unknown field is provided, an INVALID_ARGUMENT error
      * is returned and the entire update will be ignored.
      *
@@ -258,8 +332,8 @@ class SetInventoryRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Indicates which inventory fields in the provided
-     * [Product][google.cloud.retail.v2.Product] to update. If not set or set with
-     * empty paths, all inventory fields will be updated.
+     * [Product][google.cloud.retail.v2.Product] to update.
+     * At least one field must be provided.
      * If an unsupported or unknown field is provided, an INVALID_ARGUMENT error
      * is returned and the entire update will be ignored.
      *

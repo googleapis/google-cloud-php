@@ -19,7 +19,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class GetJSONWebKeysRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The cluster (project, location, cluster id) to get keys for. Specified in
+     * The cluster (project, location, cluster name) to get keys for. Specified in
      * the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
      *
      * Generated from protobuf field <code>string parent = 1;</code>
@@ -33,7 +33,7 @@ class GetJSONWebKeysRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           The cluster (project, location, cluster id) to get keys for. Specified in
+     *           The cluster (project, location, cluster name) to get keys for. Specified in
      *           the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
      * }
      */
@@ -43,7 +43,7 @@ class GetJSONWebKeysRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The cluster (project, location, cluster id) to get keys for. Specified in
+     * The cluster (project, location, cluster name) to get keys for. Specified in
      * the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
      *
      * Generated from protobuf field <code>string parent = 1;</code>
@@ -55,7 +55,7 @@ class GetJSONWebKeysRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The cluster (project, location, cluster id) to get keys for. Specified in
+     * The cluster (project, location, cluster name) to get keys for. Specified in
      * the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
      *
      * Generated from protobuf field <code>string parent = 1;</code>

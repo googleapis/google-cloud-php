@@ -22,6 +22,41 @@ class Model extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
+     * Output only. Immutable. The version ID of the model.
+     * A new version is committed when a new model version is uploaded or
+     * trained under an existing model id. It is an auto-incrementing decimal
+     * number in string representation.
+     *
+     * Generated from protobuf field <code>string version_id = 28 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $version_id = '';
+    /**
+     * User provided version aliases so that a model version can be referenced via
+     * alias (i.e.
+     * `projects/{project}/locations/{location}/models/{model_id}&#64;{version_alias}`
+     * instead of auto-generated version id (i.e.
+     * `projects/{project}/locations/{location}/models/{model_id}&#64;{version_id})`.
+     * The format is [a-z][a-zA-Z0-9-]{0,126}[a-z0-9] to distinguish from
+     * version_id. A default version alias will be created for the first version
+     * of the model, and there must be exactly one default version alias for a
+     * model.
+     *
+     * Generated from protobuf field <code>repeated string version_aliases = 29;</code>
+     */
+    private $version_aliases;
+    /**
+     * Output only. Timestamp when this version was created.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp version_create_time = 31 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $version_create_time = null;
+    /**
+     * Output only. Timestamp when this version was most recently updated.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp version_update_time = 32 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $version_update_time = null;
+    /**
      * Required. The display name of the Model.
      * The name can be up to 128 characters long and can be consist of any UTF-8
      * characters.
@@ -35,6 +70,12 @@ class Model extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string description = 3;</code>
      */
     private $description = '';
+    /**
+     * The description of this version.
+     *
+     * Generated from protobuf field <code>string version_description = 30;</code>
+     */
+    private $version_description = '';
     /**
      * The schemata that describe formats of the Model's predictions and
      * explanations as given and returned via
@@ -246,6 +287,21 @@ class Model extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.EncryptionSpec encryption_spec = 24;</code>
      */
     private $encryption_spec = null;
+    /**
+     * Output only. Source of a model. It can either be automl training pipeline, custom
+     * training pipeline, BigQuery ML, or existing Vertex AI Model.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ModelSourceInfo model_source_info = 38 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $model_source_info = null;
+    /**
+     * Output only. The resource name of the Artifact that was created in MetadataStore when
+     * creating the Model. The Artifact resource name pattern is
+     * `projects/{project}/locations/{location}/metadataStores/{metadata_store}/artifacts/{artifact}`.
+     *
+     * Generated from protobuf field <code>string metadata_artifact = 44 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $metadata_artifact = '';
 
     /**
      * Constructor.
@@ -255,12 +311,33 @@ class Model extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           The resource name of the Model.
+     *     @type string $version_id
+     *           Output only. Immutable. The version ID of the model.
+     *           A new version is committed when a new model version is uploaded or
+     *           trained under an existing model id. It is an auto-incrementing decimal
+     *           number in string representation.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $version_aliases
+     *           User provided version aliases so that a model version can be referenced via
+     *           alias (i.e.
+     *           `projects/{project}/locations/{location}/models/{model_id}&#64;{version_alias}`
+     *           instead of auto-generated version id (i.e.
+     *           `projects/{project}/locations/{location}/models/{model_id}&#64;{version_id})`.
+     *           The format is [a-z][a-zA-Z0-9-]{0,126}[a-z0-9] to distinguish from
+     *           version_id. A default version alias will be created for the first version
+     *           of the model, and there must be exactly one default version alias for a
+     *           model.
+     *     @type \Google\Protobuf\Timestamp $version_create_time
+     *           Output only. Timestamp when this version was created.
+     *     @type \Google\Protobuf\Timestamp $version_update_time
+     *           Output only. Timestamp when this version was most recently updated.
      *     @type string $display_name
      *           Required. The display name of the Model.
      *           The name can be up to 128 characters long and can be consist of any UTF-8
      *           characters.
      *     @type string $description
      *           The description of the Model.
+     *     @type string $version_description
+     *           The description of this version.
      *     @type \Google\Cloud\AIPlatform\V1\PredictSchemata $predict_schemata
      *           The schemata that describe formats of the Model's predictions and
      *           explanations as given and returned via
@@ -280,7 +357,7 @@ class Model extends \Google\Protobuf\Internal\Message
      *           Immutable. An additional information about the Model; the schema of the metadata can
      *           be found in [metadata_schema][google.cloud.aiplatform.v1.Model.metadata_schema_uri].
      *           Unset if the Model does not have any additional information.
-     *     @type \Google\Cloud\AIPlatform\V1\Model\ExportFormat[]|\Google\Protobuf\Internal\RepeatedField $supported_export_formats
+     *     @type array<\Google\Cloud\AIPlatform\V1\Model\ExportFormat>|\Google\Protobuf\Internal\RepeatedField $supported_export_formats
      *           Output only. The formats in which this Model may be exported. If empty, this Model is
      *           not available for export.
      *     @type string $training_pipeline
@@ -296,7 +373,7 @@ class Model extends \Google\Protobuf\Internal\Message
      *           Immutable. The path to the directory containing the Model artifact and any of its
      *           supporting files.
      *           Not present for AutoML Models.
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $supported_deployment_resources_types
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $supported_deployment_resources_types
      *           Output only. When this Model is deployed, its prediction resources are described by the
      *           `prediction_resources` field of the [Endpoint.deployed_models][google.cloud.aiplatform.v1.Endpoint.deployed_models] object.
      *           Because not all Models support all resource configuration types, the
@@ -308,7 +385,7 @@ class Model extends \Google\Protobuf\Internal\Message
      *           using a [BatchPredictionJob][google.cloud.aiplatform.v1.BatchPredictionJob], if it has at least one entry each in
      *           [supported_input_storage_formats][google.cloud.aiplatform.v1.Model.supported_input_storage_formats] and
      *           [supported_output_storage_formats][google.cloud.aiplatform.v1.Model.supported_output_storage_formats].
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $supported_input_storage_formats
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $supported_input_storage_formats
      *           Output only. The formats this Model supports in
      *           [BatchPredictionJob.input_config][google.cloud.aiplatform.v1.BatchPredictionJob.input_config]. If
      *           [PredictSchemata.instance_schema_uri][google.cloud.aiplatform.v1.PredictSchemata.instance_schema_uri] exists, the instances
@@ -339,7 +416,7 @@ class Model extends \Google\Protobuf\Internal\Message
      *           [supported_deployment_resources_types][google.cloud.aiplatform.v1.Model.supported_deployment_resources_types], it could serve online
      *           predictions by using [PredictionService.Predict][google.cloud.aiplatform.v1.PredictionService.Predict] or
      *           [PredictionService.Explain][google.cloud.aiplatform.v1.PredictionService.Explain].
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $supported_output_storage_formats
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $supported_output_storage_formats
      *           Output only. The formats this Model supports in
      *           [BatchPredictionJob.output_config][google.cloud.aiplatform.v1.BatchPredictionJob.output_config]. If both
      *           [PredictSchemata.instance_schema_uri][google.cloud.aiplatform.v1.PredictSchemata.instance_schema_uri] and
@@ -369,7 +446,7 @@ class Model extends \Google\Protobuf\Internal\Message
      *           Output only. Timestamp when this Model was uploaded into Vertex AI.
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. Timestamp when this Model was most recently updated.
-     *     @type \Google\Cloud\AIPlatform\V1\DeployedModelRef[]|\Google\Protobuf\Internal\RepeatedField $deployed_models
+     *     @type array<\Google\Cloud\AIPlatform\V1\DeployedModelRef>|\Google\Protobuf\Internal\RepeatedField $deployed_models
      *           Output only. The pointers to DeployedModels created from this Model. Note that
      *           Model could have been deployed to Endpoints in different Locations.
      *     @type \Google\Cloud\AIPlatform\V1\ExplanationSpec $explanation_spec
@@ -404,6 +481,13 @@ class Model extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\AIPlatform\V1\EncryptionSpec $encryption_spec
      *           Customer-managed encryption key spec for a Model. If set, this
      *           Model and all sub-resources of this Model will be secured by this key.
+     *     @type \Google\Cloud\AIPlatform\V1\ModelSourceInfo $model_source_info
+     *           Output only. Source of a model. It can either be automl training pipeline, custom
+     *           training pipeline, BigQuery ML, or existing Vertex AI Model.
+     *     @type string $metadata_artifact
+     *           Output only. The resource name of the Artifact that was created in MetadataStore when
+     *           creating the Model. The Artifact resource name pattern is
+     *           `projects/{project}/locations/{location}/metadataStores/{metadata_store}/artifacts/{artifact}`.
      * }
      */
     public function __construct($data = NULL) {
@@ -433,6 +517,152 @@ class Model extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Immutable. The version ID of the model.
+     * A new version is committed when a new model version is uploaded or
+     * trained under an existing model id. It is an auto-incrementing decimal
+     * number in string representation.
+     *
+     * Generated from protobuf field <code>string version_id = 28 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getVersionId()
+    {
+        return $this->version_id;
+    }
+
+    /**
+     * Output only. Immutable. The version ID of the model.
+     * A new version is committed when a new model version is uploaded or
+     * trained under an existing model id. It is an auto-incrementing decimal
+     * number in string representation.
+     *
+     * Generated from protobuf field <code>string version_id = 28 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setVersionId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->version_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * User provided version aliases so that a model version can be referenced via
+     * alias (i.e.
+     * `projects/{project}/locations/{location}/models/{model_id}&#64;{version_alias}`
+     * instead of auto-generated version id (i.e.
+     * `projects/{project}/locations/{location}/models/{model_id}&#64;{version_id})`.
+     * The format is [a-z][a-zA-Z0-9-]{0,126}[a-z0-9] to distinguish from
+     * version_id. A default version alias will be created for the first version
+     * of the model, and there must be exactly one default version alias for a
+     * model.
+     *
+     * Generated from protobuf field <code>repeated string version_aliases = 29;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getVersionAliases()
+    {
+        return $this->version_aliases;
+    }
+
+    /**
+     * User provided version aliases so that a model version can be referenced via
+     * alias (i.e.
+     * `projects/{project}/locations/{location}/models/{model_id}&#64;{version_alias}`
+     * instead of auto-generated version id (i.e.
+     * `projects/{project}/locations/{location}/models/{model_id}&#64;{version_id})`.
+     * The format is [a-z][a-zA-Z0-9-]{0,126}[a-z0-9] to distinguish from
+     * version_id. A default version alias will be created for the first version
+     * of the model, and there must be exactly one default version alias for a
+     * model.
+     *
+     * Generated from protobuf field <code>repeated string version_aliases = 29;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setVersionAliases($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->version_aliases = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Timestamp when this version was created.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp version_create_time = 31 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getVersionCreateTime()
+    {
+        return $this->version_create_time;
+    }
+
+    public function hasVersionCreateTime()
+    {
+        return isset($this->version_create_time);
+    }
+
+    public function clearVersionCreateTime()
+    {
+        unset($this->version_create_time);
+    }
+
+    /**
+     * Output only. Timestamp when this version was created.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp version_create_time = 31 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setVersionCreateTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->version_create_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Timestamp when this version was most recently updated.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp version_update_time = 32 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getVersionUpdateTime()
+    {
+        return $this->version_update_time;
+    }
+
+    public function hasVersionUpdateTime()
+    {
+        return isset($this->version_update_time);
+    }
+
+    public function clearVersionUpdateTime()
+    {
+        unset($this->version_update_time);
+    }
+
+    /**
+     * Output only. Timestamp when this version was most recently updated.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp version_update_time = 32 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setVersionUpdateTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->version_update_time = $var;
 
         return $this;
     }
@@ -489,6 +719,32 @@ class Model extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->description = $var;
+
+        return $this;
+    }
+
+    /**
+     * The description of this version.
+     *
+     * Generated from protobuf field <code>string version_description = 30;</code>
+     * @return string
+     */
+    public function getVersionDescription()
+    {
+        return $this->version_description;
+    }
+
+    /**
+     * The description of this version.
+     *
+     * Generated from protobuf field <code>string version_description = 30;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setVersionDescription($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->version_description = $var;
 
         return $this;
     }
@@ -634,7 +890,7 @@ class Model extends \Google\Protobuf\Internal\Message
      * not available for export.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Model.ExportFormat supported_export_formats = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param \Google\Cloud\AIPlatform\V1\Model\ExportFormat[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AIPlatform\V1\Model\ExportFormat>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSupportedExportFormats($var)
@@ -782,7 +1038,7 @@ class Model extends \Google\Protobuf\Internal\Message
      * [supported_output_storage_formats][google.cloud.aiplatform.v1.Model.supported_output_storage_formats].
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Model.DeploymentResourcesType supported_deployment_resources_types = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSupportedDeploymentResourcesTypes($var)
@@ -866,7 +1122,7 @@ class Model extends \Google\Protobuf\Internal\Message
      * [PredictionService.Explain][google.cloud.aiplatform.v1.PredictionService.Explain].
      *
      * Generated from protobuf field <code>repeated string supported_input_storage_formats = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSupportedInputStorageFormats($var)
@@ -940,7 +1196,7 @@ class Model extends \Google\Protobuf\Internal\Message
      * [PredictionService.Explain][google.cloud.aiplatform.v1.PredictionService.Explain].
      *
      * Generated from protobuf field <code>repeated string supported_output_storage_formats = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSupportedOutputStorageFormats($var)
@@ -1040,7 +1296,7 @@ class Model extends \Google\Protobuf\Internal\Message
      * Model could have been deployed to Endpoints in different Locations.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.DeployedModelRef deployed_models = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param \Google\Cloud\AIPlatform\V1\DeployedModelRef[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AIPlatform\V1\DeployedModelRef>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDeployedModels($var)
@@ -1219,6 +1475,74 @@ class Model extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\EncryptionSpec::class);
         $this->encryption_spec = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Source of a model. It can either be automl training pipeline, custom
+     * training pipeline, BigQuery ML, or existing Vertex AI Model.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ModelSourceInfo model_source_info = 38 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\AIPlatform\V1\ModelSourceInfo|null
+     */
+    public function getModelSourceInfo()
+    {
+        return $this->model_source_info;
+    }
+
+    public function hasModelSourceInfo()
+    {
+        return isset($this->model_source_info);
+    }
+
+    public function clearModelSourceInfo()
+    {
+        unset($this->model_source_info);
+    }
+
+    /**
+     * Output only. Source of a model. It can either be automl training pipeline, custom
+     * training pipeline, BigQuery ML, or existing Vertex AI Model.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ModelSourceInfo model_source_info = 38 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\AIPlatform\V1\ModelSourceInfo $var
+     * @return $this
+     */
+    public function setModelSourceInfo($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\ModelSourceInfo::class);
+        $this->model_source_info = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The resource name of the Artifact that was created in MetadataStore when
+     * creating the Model. The Artifact resource name pattern is
+     * `projects/{project}/locations/{location}/metadataStores/{metadata_store}/artifacts/{artifact}`.
+     *
+     * Generated from protobuf field <code>string metadata_artifact = 44 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getMetadataArtifact()
+    {
+        return $this->metadata_artifact;
+    }
+
+    /**
+     * Output only. The resource name of the Artifact that was created in MetadataStore when
+     * creating the Model. The Artifact resource name pattern is
+     * `projects/{project}/locations/{location}/metadataStores/{metadata_store}/artifacts/{artifact}`.
+     *
+     * Generated from protobuf field <code>string metadata_artifact = 44 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setMetadataArtifact($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->metadata_artifact = $var;
 
         return $this;
     }

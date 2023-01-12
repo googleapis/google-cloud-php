@@ -27,7 +27,6 @@ namespace Google\Cloud\BigQuery\DataTransfer\V1\Gapic;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
@@ -39,9 +38,7 @@ use Google\Cloud\BigQuery\DataTransfer\V1\CheckValidCredsResponse;
 use Google\Cloud\BigQuery\DataTransfer\V1\CreateTransferConfigRequest;
 use Google\Cloud\BigQuery\DataTransfer\V1\DataSource;
 use Google\Cloud\BigQuery\DataTransfer\V1\DeleteTransferConfigRequest;
-
 use Google\Cloud\BigQuery\DataTransfer\V1\DeleteTransferRunRequest;
-
 use Google\Cloud\BigQuery\DataTransfer\V1\EnrollDataSourcesRequest;
 use Google\Cloud\BigQuery\DataTransfer\V1\GetDataSourceRequest;
 use Google\Cloud\BigQuery\DataTransfer\V1\GetTransferConfigRequest;
@@ -60,7 +57,6 @@ use Google\Cloud\BigQuery\DataTransfer\V1\StartManualTransferRunsRequest;
 use Google\Cloud\BigQuery\DataTransfer\V1\StartManualTransferRunsRequest\TimeRange;
 use Google\Cloud\BigQuery\DataTransfer\V1\StartManualTransferRunsResponse;
 use Google\Cloud\BigQuery\DataTransfer\V1\TransferConfig;
-
 use Google\Cloud\BigQuery\DataTransfer\V1\TransferRun;
 use Google\Cloud\BigQuery\DataTransfer\V1\UpdateTransferConfigRequest;
 use Google\Protobuf\FieldMask;
@@ -92,29 +88,19 @@ class DataTransferServiceGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.bigquery.datatransfer.v1.DataTransferService';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'bigquerydatatransfer.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
     ];
@@ -615,10 +601,9 @@ class DataTransferServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\BigQuery\DataTransfer\V1\CheckValidCredsResponse
@@ -661,38 +646,48 @@ class DataTransferServiceGapicClient
      *
      *     @type string $authorizationCode
      *           Optional OAuth2 authorization code to use with this transfer configuration.
-     *           This is required if new credentials are needed, as indicated by
-     *           `CheckValidCreds`.
-     *           In order to obtain authorization_code, please make a
-     *           request to
-     *           https://www.gstatic.com/bigquerydatatransfer/oauthz/auth?client_id=<datatransferapiclientid>&scope=<data_source_scopes>&redirect_uri=<redirect_uri>
+     *           This is required only if `transferConfig.dataSourceId` is 'youtube_channel'
+     *           and new credentials are needed, as indicated by `CheckValidCreds`. In order
+     *           to obtain authorization_code, make a request to the following URL:
+     *           <pre class="prettyprint" suppresswarning="true">
+     *           https://www.gstatic.com/bigquerydatatransfer/oauthz/auth?redirect_uri=urn:ietf:wg:oauth:2.0:oob&response_type=authorization_code&client_id=<var>client_id</var>&scope=<var>data_source_scopes</var>
+     *           </pre>
+     *           * The <var>client_id</var> is the OAuth client_id of the a data source as
+     *           returned by ListDataSources method.
+     *           * <var>data_source_scopes</var> are the scopes returned by ListDataSources
+     *           method.
      *
-     *           * client_id should be OAuth client_id of BigQuery DTS API for the given
-     *           data source returned by ListDataSources method.
-     *           * data_source_scopes are the scopes returned by ListDataSources method.
-     *           * redirect_uri is an optional parameter. If not specified, then
-     *           authorization code is posted to the opener of authorization flow window.
-     *           Otherwise it will be sent to the redirect uri. A special value of
-     *           urn:ietf:wg:oauth:2.0:oob means that authorization code should be
-     *           returned in the title bar of the browser, with the page text prompting
-     *           the user to copy the code and paste it in the application.
+     *           Note that this should not be set when `service_account_name` is used to
+     *           create the transfer config.
      *     @type string $versionInfo
-     *           Optional version info. If users want to find a very recent access token,
-     *           that is, immediately after approving access, users have to set the
-     *           version_info claim in the token request. To obtain the version_info, users
-     *           must use the "none+gsession" response type. which be return a
-     *           version_info back in the authorization response which be be put in a JWT
-     *           claim in the token request.
+     *           Optional version info. This is required only if
+     *           `transferConfig.dataSourceId` is not 'youtube_channel' and new credentials
+     *           are needed, as indicated by `CheckValidCreds`. In order to obtain version
+     *           info, make a request to the following URL:
+     *           <pre class="prettyprint" suppresswarning="true">
+     *           https://www.gstatic.com/bigquerydatatransfer/oauthz/auth?redirect_uri=urn:ietf:wg:oauth:2.0:oob&response_type=version_info&client_id=<var>client_id</var>&scope=<var>data_source_scopes</var>
+     *           </pre>
+     *           * The <var>client_id</var> is the OAuth client_id of the a data source as
+     *           returned by ListDataSources method.
+     *           * <var>data_source_scopes</var> are the scopes returned by ListDataSources
+     *           method.
+     *
+     *           Note that this should not be set when `service_account_name` is used to
+     *           create the transfer config.
      *     @type string $serviceAccountName
-     *           Optional service account name. If this field is set, transfer config will
-     *           be created with this service account credentials. It requires that
-     *           requesting user calling this API has permissions to act as this service
+     *           Optional service account name. If this field is set, the transfer config
+     *           will be created with this service account's credentials. It requires that
+     *           the requesting user calling this API has permissions to act as this service
      *           account.
+     *
+     *           Note that not all data sources support service account credentials when
+     *           creating a transfer config. For the latest list of data sources, read about
+     *           [using service
+     *           accounts](https://cloud.google.com/bigquery-transfer/docs/use-service-accounts).
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\BigQuery\DataTransfer\V1\TransferConfig
@@ -745,10 +740,9 @@ class DataTransferServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @throws ApiException if the remote call fails
@@ -785,10 +779,9 @@ class DataTransferServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @throws ApiException if the remote call fails
@@ -807,10 +800,12 @@ class DataTransferServiceGapicClient
     /**
      * Enroll data sources in a user project. This allows users to create transfer
      * configurations for these data sources. They will also appear in the
-     * ListDataSources RPC and as such, will appear in the BigQuery UI
-     * 'https://bigquery.cloud.google.com' (and the documents can be found at
-     * https://cloud.google.com/bigquery/bigquery-web-ui and
-     * https://cloud.google.com/bigquery/docs/working-with-transfers).
+     * ListDataSources RPC and as such, will appear in the
+     * [BigQuery UI](https://console.cloud.google.com/bigquery), and the documents
+     * can be found in the public guide for
+     * [BigQuery Web UI](https://cloud.google.com/bigquery/bigquery-web-ui) and
+     * [Data Transfer
+     * Service](https://cloud.google.com/bigquery/docs/working-with-transfers).
      *
      * Sample code:
      * ```
@@ -826,16 +821,14 @@ class DataTransferServiceGapicClient
      *     Optional.
      *
      *     @type string $name
-     *           The name of the project resource in the form:
-     *           `projects/{project_id}`
+     *           The name of the project resource in the form: `projects/{project_id}`
      *     @type string[] $dataSourceIds
      *           Data sources that are enrolled. It is required to provide at least one
      *           data source id.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @throws ApiException if the remote call fails
@@ -879,10 +872,9 @@ class DataTransferServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\BigQuery\DataTransfer\V1\DataSource
@@ -921,10 +913,9 @@ class DataTransferServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\BigQuery\DataTransfer\V1\TransferConfig
@@ -963,10 +954,9 @@ class DataTransferServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\BigQuery\DataTransfer\V1\TransferRun
@@ -1012,7 +1002,7 @@ class DataTransferServiceGapicClient
      *
      * @param string $parent       Required. The BigQuery project id for which data sources should be returned.
      *                             Must be in the form: `projects/{project_id}` or
-     *                             `projects/{project_id}/locations/{location_id}
+     *                             `projects/{project_id}/locations/{location_id}`
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1026,10 +1016,9 @@ class DataTransferServiceGapicClient
      *           response. The API may return fewer values in a page, even if
      *           there are additional values to be retrieved.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -1082,7 +1071,7 @@ class DataTransferServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The BigQuery project id for which data sources
+     * @param string $parent       Required. The BigQuery project id for which transfer configs
      *                             should be returned: `projects/{project_id}` or
      *                             `projects/{project_id}/locations/{location_id}`
      * @param array  $optionalArgs {
@@ -1100,10 +1089,9 @@ class DataTransferServiceGapicClient
      *           response. The API may return fewer values in a page, even if
      *           there are additional values to be retrieved.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -1179,10 +1167,9 @@ class DataTransferServiceGapicClient
      *           messages are returned.
      *           For allowed values, use constants defined on {@see \Google\Cloud\BigQuery\DataTransfer\V1\TransferMessage\MessageSeverity}
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -1261,10 +1248,9 @@ class DataTransferServiceGapicClient
      *           Indicates how run attempts are to be pulled.
      *           For allowed values, use constants defined on {@see \Google\Cloud\BigQuery\DataTransfer\V1\ListTransferRunsRequest\RunAttempt}
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -1329,10 +1315,9 @@ class DataTransferServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\BigQuery\DataTransfer\V1\ScheduleTransferRunsResponse
@@ -1383,10 +1368,9 @@ class DataTransferServiceGapicClient
      *           Specific run_time for a transfer run to be started. The
      *           requested_run_time must not be in the future.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\BigQuery\DataTransfer\V1\StartManualTransferRunsResponse
@@ -1438,39 +1422,48 @@ class DataTransferServiceGapicClient
      *
      *     @type string $authorizationCode
      *           Optional OAuth2 authorization code to use with this transfer configuration.
-     *           If it is provided, the transfer configuration will be associated with the
-     *           authorizing user.
-     *           In order to obtain authorization_code, please make a
-     *           request to
-     *           https://www.gstatic.com/bigquerydatatransfer/oauthz/auth?client_id=<datatransferapiclientid>&scope=<data_source_scopes>&redirect_uri=<redirect_uri>
+     *           This is required only if `transferConfig.dataSourceId` is 'youtube_channel'
+     *           and new credentials are needed, as indicated by `CheckValidCreds`. In order
+     *           to obtain authorization_code, make a request to the following URL:
+     *           <pre class="prettyprint" suppresswarning="true">
+     *           https://www.gstatic.com/bigquerydatatransfer/oauthz/auth?redirect_uri=urn:ietf:wg:oauth:2.0:oob&response_type=authorization_code&client_id=<var>client_id</var>&scope=<var>data_source_scopes</var>
+     *           </pre>
+     *           * The <var>client_id</var> is the OAuth client_id of the a data source as
+     *           returned by ListDataSources method.
+     *           * <var>data_source_scopes</var> are the scopes returned by ListDataSources
+     *           method.
      *
-     *           * client_id should be OAuth client_id of BigQuery DTS API for the given
-     *           data source returned by ListDataSources method.
-     *           * data_source_scopes are the scopes returned by ListDataSources method.
-     *           * redirect_uri is an optional parameter. If not specified, then
-     *           authorization code is posted to the opener of authorization flow window.
-     *           Otherwise it will be sent to the redirect uri. A special value of
-     *           urn:ietf:wg:oauth:2.0:oob means that authorization code should be
-     *           returned in the title bar of the browser, with the page text prompting
-     *           the user to copy the code and paste it in the application.
+     *           Note that this should not be set when `service_account_name` is used to
+     *           update the transfer config.
      *     @type string $versionInfo
-     *           Optional version info. If users want to find a very recent access token,
-     *           that is, immediately after approving access, users have to set the
-     *           version_info claim in the token request. To obtain the version_info, users
-     *           must use the "none+gsession" response type. which be return a
-     *           version_info back in the authorization response which be be put in a JWT
-     *           claim in the token request.
+     *           Optional version info. This is required only if
+     *           `transferConfig.dataSourceId` is not 'youtube_channel' and new credentials
+     *           are needed, as indicated by `CheckValidCreds`. In order to obtain version
+     *           info, make a request to the following URL:
+     *           <pre class="prettyprint" suppresswarning="true">
+     *           https://www.gstatic.com/bigquerydatatransfer/oauthz/auth?redirect_uri=urn:ietf:wg:oauth:2.0:oob&response_type=version_info&client_id=<var>client_id</var>&scope=<var>data_source_scopes</var>
+     *           </pre>
+     *           * The <var>client_id</var> is the OAuth client_id of the a data source as
+     *           returned by ListDataSources method.
+     *           * <var>data_source_scopes</var> are the scopes returned by ListDataSources
+     *           method.
+     *
+     *           Note that this should not be set when `service_account_name` is used to
+     *           update the transfer config.
      *     @type string $serviceAccountName
-     *           Optional service account name. If this field is set and
-     *           "service_account_name" is set in update_mask, transfer config will be
-     *           updated to use this service account credentials. It requires that
-     *           requesting user calling this API has permissions to act as this service
+     *           Optional service account name. If this field is set, the transfer config
+     *           will be created with this service account's credentials. It requires that
+     *           the requesting user calling this API has permissions to act as this service
      *           account.
+     *
+     *           Note that not all data sources support service account credentials when
+     *           creating a transfer config. For the latest list of data sources, read about
+     *           [using service
+     *           accounts](https://cloud.google.com/bigquery-transfer/docs/use-service-accounts).
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\BigQuery\DataTransfer\V1\TransferConfig

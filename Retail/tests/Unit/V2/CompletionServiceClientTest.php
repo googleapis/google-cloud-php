@@ -81,7 +81,7 @@ class CompletionServiceClientTest extends GeneratedTest
     public function completeQueryTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -91,9 +91,9 @@ class CompletionServiceClientTest extends GeneratedTest
         $expectedResponse->setAttributionToken($attributionToken);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedCatalog = $client->catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
+        $formattedCatalog = $gapicClient->catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
         $query = 'query107944136';
-        $response = $client->completeQuery($formattedCatalog, $query);
+        $response = $gapicClient->completeQuery($formattedCatalog, $query);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -113,7 +113,7 @@ class CompletionServiceClientTest extends GeneratedTest
     public function completeQueryExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -128,11 +128,11 @@ class CompletionServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedCatalog = $client->catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
+        $formattedCatalog = $gapicClient->catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
         $query = 'query107944136';
         try {
-            $client->completeQuery($formattedCatalog, $query);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->completeQuery($formattedCatalog, $query);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -155,7 +155,7 @@ class CompletionServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -175,7 +175,7 @@ class CompletionServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $client->catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
+        $formattedParent = $gapicClient->catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
         $inputConfig = new CompletionDataInputConfig();
         $inputConfigBigQuerySource = new BigQuerySource();
         $bigQuerySourceDatasetId = 'bigQuerySourceDatasetId-567522032';
@@ -183,7 +183,7 @@ class CompletionServiceClientTest extends GeneratedTest
         $bigQuerySourceTableId = 'bigQuerySourceTableId1074792998';
         $inputConfigBigQuerySource->setTableId($bigQuerySourceTableId);
         $inputConfig->setBigQuerySource($inputConfigBigQuerySource);
-        $response = $client->importCompletionData($formattedParent, $inputConfig);
+        $response = $gapicClient->importCompletionData($formattedParent, $inputConfig);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -228,7 +228,7 @@ class CompletionServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -250,7 +250,7 @@ class CompletionServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
+        $formattedParent = $gapicClient->catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
         $inputConfig = new CompletionDataInputConfig();
         $inputConfigBigQuerySource = new BigQuerySource();
         $bigQuerySourceDatasetId = 'bigQuerySourceDatasetId-567522032';
@@ -258,7 +258,7 @@ class CompletionServiceClientTest extends GeneratedTest
         $bigQuerySourceTableId = 'bigQuerySourceTableId1074792998';
         $inputConfigBigQuerySource->setTableId($bigQuerySourceTableId);
         $inputConfig->setBigQuerySource($inputConfigBigQuerySource);
-        $response = $client->importCompletionData($formattedParent, $inputConfig);
+        $response = $gapicClient->importCompletionData($formattedParent, $inputConfig);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();

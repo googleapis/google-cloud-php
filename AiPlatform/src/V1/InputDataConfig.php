@@ -63,6 +63,26 @@ class InputDataConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string annotation_schema_uri = 9;</code>
      */
     private $annotation_schema_uri = '';
+    /**
+     * Only applicable to Datasets that have SavedQueries.
+     * The ID of a SavedQuery (annotation set) under the Dataset specified by
+     * [dataset_id][google.cloud.aiplatform.v1.InputDataConfig.dataset_id] used for filtering Annotations for training.
+     * Only Annotations that are associated with this SavedQuery are used in
+     * respectively training. When used in conjunction with
+     * [annotations_filter][google.cloud.aiplatform.v1.InputDataConfig.annotations_filter], the Annotations used for training are filtered by
+     * both [saved_query_id][google.cloud.aiplatform.v1.InputDataConfig.saved_query_id] and [annotations_filter][google.cloud.aiplatform.v1.InputDataConfig.annotations_filter].
+     * Only one of [saved_query_id][google.cloud.aiplatform.v1.InputDataConfig.saved_query_id] and [annotation_schema_uri][google.cloud.aiplatform.v1.InputDataConfig.annotation_schema_uri] should be
+     * specified as both of them represent the same thing: problem type.
+     *
+     * Generated from protobuf field <code>string saved_query_id = 7;</code>
+     */
+    private $saved_query_id = '';
+    /**
+     * Whether to persist the ML use assignment to data item system labels.
+     *
+     * Generated from protobuf field <code>bool persist_ml_use_assignment = 11;</code>
+     */
+    private $persist_ml_use_assignment = false;
     protected $split;
     protected $destination;
 
@@ -153,6 +173,18 @@ class InputDataConfig extends \Google\Protobuf\Internal\Message
      *           When used in conjunction with [annotations_filter][google.cloud.aiplatform.v1.InputDataConfig.annotations_filter], the Annotations used
      *           for training are filtered by both [annotations_filter][google.cloud.aiplatform.v1.InputDataConfig.annotations_filter] and
      *           [annotation_schema_uri][google.cloud.aiplatform.v1.InputDataConfig.annotation_schema_uri].
+     *     @type string $saved_query_id
+     *           Only applicable to Datasets that have SavedQueries.
+     *           The ID of a SavedQuery (annotation set) under the Dataset specified by
+     *           [dataset_id][google.cloud.aiplatform.v1.InputDataConfig.dataset_id] used for filtering Annotations for training.
+     *           Only Annotations that are associated with this SavedQuery are used in
+     *           respectively training. When used in conjunction with
+     *           [annotations_filter][google.cloud.aiplatform.v1.InputDataConfig.annotations_filter], the Annotations used for training are filtered by
+     *           both [saved_query_id][google.cloud.aiplatform.v1.InputDataConfig.saved_query_id] and [annotations_filter][google.cloud.aiplatform.v1.InputDataConfig.annotations_filter].
+     *           Only one of [saved_query_id][google.cloud.aiplatform.v1.InputDataConfig.saved_query_id] and [annotation_schema_uri][google.cloud.aiplatform.v1.InputDataConfig.annotation_schema_uri] should be
+     *           specified as both of them represent the same thing: problem type.
+     *     @type bool $persist_ml_use_assignment
+     *           Whether to persist the ML use assignment to data item system labels.
      * }
      */
     public function __construct($data = NULL) {
@@ -573,6 +605,74 @@ class InputDataConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->annotation_schema_uri = $var;
+
+        return $this;
+    }
+
+    /**
+     * Only applicable to Datasets that have SavedQueries.
+     * The ID of a SavedQuery (annotation set) under the Dataset specified by
+     * [dataset_id][google.cloud.aiplatform.v1.InputDataConfig.dataset_id] used for filtering Annotations for training.
+     * Only Annotations that are associated with this SavedQuery are used in
+     * respectively training. When used in conjunction with
+     * [annotations_filter][google.cloud.aiplatform.v1.InputDataConfig.annotations_filter], the Annotations used for training are filtered by
+     * both [saved_query_id][google.cloud.aiplatform.v1.InputDataConfig.saved_query_id] and [annotations_filter][google.cloud.aiplatform.v1.InputDataConfig.annotations_filter].
+     * Only one of [saved_query_id][google.cloud.aiplatform.v1.InputDataConfig.saved_query_id] and [annotation_schema_uri][google.cloud.aiplatform.v1.InputDataConfig.annotation_schema_uri] should be
+     * specified as both of them represent the same thing: problem type.
+     *
+     * Generated from protobuf field <code>string saved_query_id = 7;</code>
+     * @return string
+     */
+    public function getSavedQueryId()
+    {
+        return $this->saved_query_id;
+    }
+
+    /**
+     * Only applicable to Datasets that have SavedQueries.
+     * The ID of a SavedQuery (annotation set) under the Dataset specified by
+     * [dataset_id][google.cloud.aiplatform.v1.InputDataConfig.dataset_id] used for filtering Annotations for training.
+     * Only Annotations that are associated with this SavedQuery are used in
+     * respectively training. When used in conjunction with
+     * [annotations_filter][google.cloud.aiplatform.v1.InputDataConfig.annotations_filter], the Annotations used for training are filtered by
+     * both [saved_query_id][google.cloud.aiplatform.v1.InputDataConfig.saved_query_id] and [annotations_filter][google.cloud.aiplatform.v1.InputDataConfig.annotations_filter].
+     * Only one of [saved_query_id][google.cloud.aiplatform.v1.InputDataConfig.saved_query_id] and [annotation_schema_uri][google.cloud.aiplatform.v1.InputDataConfig.annotation_schema_uri] should be
+     * specified as both of them represent the same thing: problem type.
+     *
+     * Generated from protobuf field <code>string saved_query_id = 7;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSavedQueryId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->saved_query_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Whether to persist the ML use assignment to data item system labels.
+     *
+     * Generated from protobuf field <code>bool persist_ml_use_assignment = 11;</code>
+     * @return bool
+     */
+    public function getPersistMlUseAssignment()
+    {
+        return $this->persist_ml_use_assignment;
+    }
+
+    /**
+     * Whether to persist the ML use assignment to data item system labels.
+     *
+     * Generated from protobuf field <code>bool persist_ml_use_assignment = 11;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setPersistMlUseAssignment($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->persist_ml_use_assignment = $var;
 
         return $this;
     }

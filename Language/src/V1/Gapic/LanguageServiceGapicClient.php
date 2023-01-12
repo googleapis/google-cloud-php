@@ -44,6 +44,7 @@ use Google\Cloud\Language\V1\AnalyzeSyntaxResponse;
 use Google\Cloud\Language\V1\AnnotateTextRequest;
 use Google\Cloud\Language\V1\AnnotateTextRequest\Features;
 use Google\Cloud\Language\V1\AnnotateTextResponse;
+use Google\Cloud\Language\V1\ClassificationModelOptions;
 use Google\Cloud\Language\V1\ClassifyTextRequest;
 use Google\Cloud\Language\V1\ClassifyTextResponse;
 use Google\Cloud\Language\V1\Document;
@@ -195,7 +196,7 @@ class LanguageServiceGapicClient
      * }
      * ```
      *
-     * @param Document $document     Input document.
+     * @param Document $document     Required. Input document.
      * @param array    $optionalArgs {
      *     Optional.
      *
@@ -203,10 +204,9 @@ class LanguageServiceGapicClient
      *           The encoding type used by the API to calculate offsets.
      *           For allowed values, use constants defined on {@see \Google\Cloud\Language\V1\EncodingType}
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Language\V1\AnalyzeEntitiesResponse
@@ -239,7 +239,7 @@ class LanguageServiceGapicClient
      * }
      * ```
      *
-     * @param Document $document     Input document.
+     * @param Document $document     Required. Input document.
      * @param array    $optionalArgs {
      *     Optional.
      *
@@ -247,10 +247,9 @@ class LanguageServiceGapicClient
      *           The encoding type used by the API to calculate offsets.
      *           For allowed values, use constants defined on {@see \Google\Cloud\Language\V1\EncodingType}
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Language\V1\AnalyzeEntitySentimentResponse
@@ -282,7 +281,7 @@ class LanguageServiceGapicClient
      * }
      * ```
      *
-     * @param Document $document     Input document.
+     * @param Document $document     Required. Input document.
      * @param array    $optionalArgs {
      *     Optional.
      *
@@ -290,10 +289,9 @@ class LanguageServiceGapicClient
      *           The encoding type used by the API to calculate sentence offsets.
      *           For allowed values, use constants defined on {@see \Google\Cloud\Language\V1\EncodingType}
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Language\V1\AnalyzeSentimentResponse
@@ -327,7 +325,7 @@ class LanguageServiceGapicClient
      * }
      * ```
      *
-     * @param Document $document     Input document.
+     * @param Document $document     Required. Input document.
      * @param array    $optionalArgs {
      *     Optional.
      *
@@ -335,10 +333,9 @@ class LanguageServiceGapicClient
      *           The encoding type used by the API to calculate offsets.
      *           For allowed values, use constants defined on {@see \Google\Cloud\Language\V1\EncodingType}
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Language\V1\AnalyzeSyntaxResponse
@@ -372,8 +369,8 @@ class LanguageServiceGapicClient
      * }
      * ```
      *
-     * @param Document $document     Input document.
-     * @param Features $features     The enabled features.
+     * @param Document $document     Required. Input document.
+     * @param Features $features     Required. The enabled features.
      * @param array    $optionalArgs {
      *     Optional.
      *
@@ -381,10 +378,9 @@ class LanguageServiceGapicClient
      *           The encoding type used by the API to calculate offsets.
      *           For allowed values, use constants defined on {@see \Google\Cloud\Language\V1\EncodingType}
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Language\V1\AnnotateTextResponse
@@ -417,15 +413,17 @@ class LanguageServiceGapicClient
      * }
      * ```
      *
-     * @param Document $document     Input document.
+     * @param Document $document     Required. Input document.
      * @param array    $optionalArgs {
      *     Optional.
      *
+     *     @type ClassificationModelOptions $classificationModelOptions
+     *           Model options to use for classification. Defaults to v1 options if not
+     *           specified.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Language\V1\ClassifyTextResponse
@@ -436,6 +434,10 @@ class LanguageServiceGapicClient
     {
         $request = new ClassifyTextRequest();
         $request->setDocument($document);
+        if (isset($optionalArgs['classificationModelOptions'])) {
+            $request->setClassificationModelOptions($optionalArgs['classificationModelOptions']);
+        }
+
         return $this->startCall('ClassifyText', ClassifyTextResponse::class, $optionalArgs, $request)->wait();
     }
 }

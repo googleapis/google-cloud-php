@@ -505,6 +505,10 @@
         "topic": {
           "type": "string",
           "description": "Required. The name of the topic from which this subscription is receiving messages. Format is `projects/{project}/topics/{topic}`. The value of this field will be `_deleted-topic_` if the topic has been deleted."
+        },
+        "enableExactlyOnceDelivery": {
+          "type": "boolean",
+          "description": "Indicates whether to enable 'Exactly Once Delivery' on the subscription."
         }
       },
       "type": "object"

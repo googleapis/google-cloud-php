@@ -9,8 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A phrase in the text that is a known entity type, such as a person, an
- * organization, or location.
+ * An entity that could be a phrase in the text or a property that belongs to
+ * the document. It is a known entity type, such as a person, an organization,
+ * or location.
  *
  * Generated from protobuf message <code>google.cloud.documentai.v1.Document.Entity</code>
  */
@@ -24,13 +25,13 @@ class Entity extends \Google\Protobuf\Internal\Message
      */
     private $text_anchor = null;
     /**
-     * Entity type from a schema e.g. `Address`.
+     * Required. Entity type from a schema e.g. `Address`.
      *
-     * Generated from protobuf field <code>string type = 2;</code>
+     * Generated from protobuf field <code>string type = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $type = '';
     /**
-     * Optional. Text value in the document e.g. `1600 Amphitheatre Pkwy`.
+     * Optional. Text value of the entity e.g. `1600 Amphitheatre Pkwy`.
      *
      * Generated from protobuf field <code>string mention_text = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -42,7 +43,7 @@ class Entity extends \Google\Protobuf\Internal\Message
      */
     private $mention_id = '';
     /**
-     * Optional. Confidence of detected Schema entity. Range [0, 1].
+     * Optional. Confidence of detected Schema entity. Range `[0, 1]`.
      *
      * Generated from protobuf field <code>float confidence = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -100,13 +101,13 @@ class Entity extends \Google\Protobuf\Internal\Message
      *           Optional. Provenance of the entity.
      *           Text anchor indexing into the [Document.text][google.cloud.documentai.v1.Document.text].
      *     @type string $type
-     *           Entity type from a schema e.g. `Address`.
+     *           Required. Entity type from a schema e.g. `Address`.
      *     @type string $mention_text
-     *           Optional. Text value in the document e.g. `1600 Amphitheatre Pkwy`.
+     *           Optional. Text value of the entity e.g. `1600 Amphitheatre Pkwy`.
      *     @type string $mention_id
      *           Optional. Deprecated.  Use `id` field instead.
      *     @type float $confidence
-     *           Optional. Confidence of detected Schema entity. Range [0, 1].
+     *           Optional. Confidence of detected Schema entity. Range `[0, 1]`.
      *     @type \Google\Cloud\DocumentAI\V1\Document\PageAnchor $page_anchor
      *           Optional. Represents the provenance of this entity wrt. the location on the
      *           page where it was found.
@@ -118,7 +119,7 @@ class Entity extends \Google\Protobuf\Internal\Message
      *           converted or the type (e.g. address) is not supported for certain
      *           parsers. This field is also only populated for certain supported document
      *           types.
-     *     @type \Google\Cloud\DocumentAI\V1\Document\Entity[]|\Google\Protobuf\Internal\RepeatedField $properties
+     *     @type array<\Google\Cloud\DocumentAI\V1\Document\Entity>|\Google\Protobuf\Internal\RepeatedField $properties
      *           Optional. Entities can be nested to form a hierarchical data structure representing
      *           the content in the document.
      *     @type \Google\Cloud\DocumentAI\V1\Document\Provenance $provenance
@@ -171,9 +172,9 @@ class Entity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Entity type from a schema e.g. `Address`.
+     * Required. Entity type from a schema e.g. `Address`.
      *
-     * Generated from protobuf field <code>string type = 2;</code>
+     * Generated from protobuf field <code>string type = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getType()
@@ -182,9 +183,9 @@ class Entity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Entity type from a schema e.g. `Address`.
+     * Required. Entity type from a schema e.g. `Address`.
      *
-     * Generated from protobuf field <code>string type = 2;</code>
+     * Generated from protobuf field <code>string type = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -197,7 +198,7 @@ class Entity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Text value in the document e.g. `1600 Amphitheatre Pkwy`.
+     * Optional. Text value of the entity e.g. `1600 Amphitheatre Pkwy`.
      *
      * Generated from protobuf field <code>string mention_text = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -208,7 +209,7 @@ class Entity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Text value in the document e.g. `1600 Amphitheatre Pkwy`.
+     * Optional. Text value of the entity e.g. `1600 Amphitheatre Pkwy`.
      *
      * Generated from protobuf field <code>string mention_text = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -249,7 +250,7 @@ class Entity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Confidence of detected Schema entity. Range [0, 1].
+     * Optional. Confidence of detected Schema entity. Range `[0, 1]`.
      *
      * Generated from protobuf field <code>float confidence = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return float
@@ -260,7 +261,7 @@ class Entity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Confidence of detected Schema entity. Range [0, 1].
+     * Optional. Confidence of detected Schema entity. Range `[0, 1]`.
      *
      * Generated from protobuf field <code>float confidence = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param float $var
@@ -399,7 +400,7 @@ class Entity extends \Google\Protobuf\Internal\Message
      * the content in the document.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.Entity properties = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param \Google\Cloud\DocumentAI\V1\Document\Entity[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\DocumentAI\V1\Document\Entity>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setProperties($var)
@@ -474,6 +475,4 @@ class Entity extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Entity::class, \Google\Cloud\DocumentAI\V1\Document_Entity::class);
 

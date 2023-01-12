@@ -281,10 +281,9 @@ class ApplicationsGapicClient
      *     @type Application $application
      *           Application configuration.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -320,10 +319,9 @@ class ApplicationsGapicClient
      *     @type string $name
      *           Name of the Application resource to get. Example: `apps/myapp`.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\AppEngine\V1\Application
@@ -397,10 +395,9 @@ class ApplicationsGapicClient
      *     @type string $name
      *           Name of the application to repair. Example: `apps/myapp`
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -427,6 +424,7 @@ class ApplicationsGapicClient
      *
      * * `auth_domain` - Google authentication domain for controlling user access to the application.
      * * `default_cookie_expiration` - Cookie expiration policy for the application.
+     * * `iap` - Identity-Aware Proxy properties for the application.
      *
      * Sample code:
      * ```
@@ -471,12 +469,11 @@ class ApplicationsGapicClient
      *     @type Application $application
      *           An Application containing the updated resource.
      *     @type FieldMask $updateMask
-     *           Standard field mask for the set of fields to be updated.
+     *           Required. Standard field mask for the set of fields to be updated.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse

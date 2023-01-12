@@ -22,6 +22,12 @@ class TargetHttpsProxy extends \Google\Protobuf\Internal\Message
      */
     private $authorization_policy = null;
     /**
+     * URL of a certificate map that identifies a certificate map associated with the given target proxy. This field can only be set for global target proxies. If set, sslCertificates will be ignored.
+     *
+     * Generated from protobuf field <code>optional string certificate_map = 156463796;</code>
+     */
+    private $certificate_map = null;
+    /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -115,6 +121,8 @@ class TargetHttpsProxy extends \Google\Protobuf\Internal\Message
      *
      *     @type string $authorization_policy
      *           Optional. A URL referring to a networksecurity.AuthorizationPolicy resource that describes how the proxy should authorize inbound traffic. If left blank, access will not be restricted by an authorization policy. Refer to the AuthorizationPolicy resource for additional details. authorizationPolicy only applies to a global TargetHttpsProxy attached to globalForwardingRules with the loadBalancingScheme set to INTERNAL_SELF_MANAGED. Note: This field currently has no impact.
+     *     @type string $certificate_map
+     *           URL of a certificate map that identifies a certificate map associated with the given target proxy. This field can only be set for global target proxies. If set, sslCertificates will be ignored.
      *     @type string $creation_timestamp
      *           [Output Only] Creation timestamp in RFC3339 text format.
      *     @type string $description
@@ -138,7 +146,7 @@ class TargetHttpsProxy extends \Google\Protobuf\Internal\Message
      *           [Output Only] Server-defined URL for the resource.
      *     @type string $server_tls_policy
      *           Optional. A URL referring to a networksecurity.ServerTlsPolicy resource that describes how the proxy should authenticate inbound traffic. serverTlsPolicy only applies to a global TargetHttpsProxy attached to globalForwardingRules with the loadBalancingScheme set to INTERNAL_SELF_MANAGED. If left blank, communications are not encrypted. Note: This field currently has no impact.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $ssl_certificates
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $ssl_certificates
      *           URLs to SslCertificate resources that are used to authenticate connections between users and the load balancer. At least one SSL certificate must be specified. Currently, you may specify up to 15 SSL certificates. sslCertificates do not apply when the load balancing scheme is set to INTERNAL_SELF_MANAGED.
      *     @type string $ssl_policy
      *           URL of SslPolicy resource that will be associated with the TargetHttpsProxy resource. If not set, the TargetHttpsProxy resource has no SSL policy configured.
@@ -183,6 +191,42 @@ class TargetHttpsProxy extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->authorization_policy = $var;
+
+        return $this;
+    }
+
+    /**
+     * URL of a certificate map that identifies a certificate map associated with the given target proxy. This field can only be set for global target proxies. If set, sslCertificates will be ignored.
+     *
+     * Generated from protobuf field <code>optional string certificate_map = 156463796;</code>
+     * @return string
+     */
+    public function getCertificateMap()
+    {
+        return isset($this->certificate_map) ? $this->certificate_map : '';
+    }
+
+    public function hasCertificateMap()
+    {
+        return isset($this->certificate_map);
+    }
+
+    public function clearCertificateMap()
+    {
+        unset($this->certificate_map);
+    }
+
+    /**
+     * URL of a certificate map that identifies a certificate map associated with the given target proxy. This field can only be set for global target proxies. If set, sslCertificates will be ignored.
+     *
+     * Generated from protobuf field <code>optional string certificate_map = 156463796;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setCertificateMap($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->certificate_map = $var;
 
         return $this;
     }
@@ -600,7 +644,7 @@ class TargetHttpsProxy extends \Google\Protobuf\Internal\Message
      * URLs to SslCertificate resources that are used to authenticate connections between users and the load balancer. At least one SSL certificate must be specified. Currently, you may specify up to 15 SSL certificates. sslCertificates do not apply when the load balancing scheme is set to INTERNAL_SELF_MANAGED.
      *
      * Generated from protobuf field <code>repeated string ssl_certificates = 366006543;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSslCertificates($var)

@@ -103,11 +103,11 @@ class TargetPool extends \Google\Protobuf\Internal\Message
      *           An optional description of this resource. Provide this property when you create the resource.
      *     @type float $failover_ratio
      *           This field is applicable only when the containing target pool is serving a forwarding rule as the primary pool (i.e., not as a backup pool to some other target pool). The value of the field must be in [0, 1]. If set, backupPool must also be set. They together define the fallback behavior of the primary target pool: if the ratio of the healthy instances in the primary pool is at or below this number, traffic arriving at the load-balanced IP will be directed to the backup pool. In case where failoverRatio is not set or all the instances in the backup pool are unhealthy, the traffic will be directed back to the primary pool in the "force" mode, where traffic will be spread to the healthy instances with the best effort, or to all instances when no instance is healthy.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $health_checks
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $health_checks
      *           The URL of the HttpHealthCheck resource. A member instance in this pool is considered healthy if and only if the health checks pass. Only legacy HttpHealthChecks are supported. Only one health check may be specified.
      *     @type int|string $id
      *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $instances
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $instances
      *           A list of resource URLs to the virtual machine instances serving this pool. They must live in zones contained in the same region as this pool.
      *     @type string $kind
      *           [Output Only] Type of the resource. Always compute#targetPool for target pools.
@@ -286,7 +286,7 @@ class TargetPool extends \Google\Protobuf\Internal\Message
      * The URL of the HttpHealthCheck resource. A member instance in this pool is considered healthy if and only if the health checks pass. Only legacy HttpHealthChecks are supported. Only one health check may be specified.
      *
      * Generated from protobuf field <code>repeated string health_checks = 448370606;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setHealthChecks($var)
@@ -348,7 +348,7 @@ class TargetPool extends \Google\Protobuf\Internal\Message
      * A list of resource URLs to the virtual machine instances serving this pool. They must live in zones contained in the same region as this pool.
      *
      * Generated from protobuf field <code>repeated string instances = 29097598;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setInstances($var)

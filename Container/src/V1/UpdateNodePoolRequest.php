@@ -17,7 +17,7 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Deprecated. The Google Developers Console [project ID or project
-     * number](https://support.google.com/cloud/answer/6158840).
+     * number](https://cloud.google.com/resource-manager/docs/creating-managing-projects).
      * This field has been deprecated and replaced by the name field.
      *
      * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
@@ -101,6 +101,30 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
      */
     private $upgrade_settings = null;
     /**
+     * The desired network tags to be applied to all nodes in the node pool.
+     * If this field is not present, the tags will not be changed. Otherwise,
+     * the existing network tags will be *replaced* with the provided tags.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NetworkTags tags = 16;</code>
+     */
+    private $tags = null;
+    /**
+     * The desired node taints to be applied to all nodes in the node pool.
+     * If this field is not present, the taints will not be changed. Otherwise,
+     * the existing node taints will be *replaced* with the provided taints.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodeTaints taints = 17;</code>
+     */
+    private $taints = null;
+    /**
+     * The desired node labels to be applied to all nodes in the node pool.
+     * If this field is not present, the labels will not be changed. Otherwise,
+     * the existing node labels will be *replaced* with the provided labels.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodeLabels labels = 18;</code>
+     */
+    private $labels = null;
+    /**
      * Parameters that can be configured on Linux nodes.
      *
      * Generated from protobuf field <code>.google.container.v1.LinuxNodeConfig linux_node_config = 19;</code>
@@ -113,17 +137,49 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
      */
     private $kubelet_config = null;
     /**
+     * Node network config.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodeNetworkConfig node_network_config = 21;</code>
+     */
+    private $node_network_config = null;
+    /**
      * GCFS config.
      *
      * Generated from protobuf field <code>.google.container.v1.GcfsConfig gcfs_config = 22;</code>
      */
     private $gcfs_config = null;
     /**
+     * Confidential nodes config.
+     * All the nodes in the node pool will be Confidential VM once enabled.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ConfidentialNodes confidential_nodes = 23;</code>
+     */
+    private $confidential_nodes = null;
+    /**
      * Enable or disable gvnic on the node pool.
      *
      * Generated from protobuf field <code>.google.container.v1.VirtualNIC gvnic = 29;</code>
      */
     private $gvnic = null;
+    /**
+     * Enable or disable NCCL fast socket for the node pool.
+     *
+     * Generated from protobuf field <code>.google.container.v1.FastSocket fast_socket = 31;</code>
+     */
+    private $fast_socket = null;
+    /**
+     * Logging configuration.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodePoolLoggingConfig logging_config = 32;</code>
+     */
+    private $logging_config = null;
+    /**
+     * The resource labels for the node pool to use to annotate any related
+     * Google Compute Engine resources.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ResourceLabels resource_labels = 33;</code>
+     */
+    private $resource_labels = null;
 
     /**
      * Constructor.
@@ -133,7 +189,7 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $project_id
      *           Deprecated. The Google Developers Console [project ID or project
-     *           number](https://support.google.com/cloud/answer/6158840).
+     *           number](https://cloud.google.com/resource-manager/docs/creating-managing-projects).
      *           This field has been deprecated and replaced by the name field.
      *     @type string $zone
      *           Deprecated. The name of the Google Compute Engine
@@ -162,7 +218,7 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
      *           The name (project, location, cluster, node pool) of the node pool to
      *           update. Specified in the format
      *           `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;&#47;nodePools/&#42;`.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $locations
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $locations
      *           The desired list of Google Compute Engine
      *           [zones](https://cloud.google.com/compute/docs/zones#available) in which the
      *           node pool's nodes should be located. Changing the locations for a node pool
@@ -172,14 +228,38 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
      *           The desired workload metadata config for the node pool.
      *     @type \Google\Cloud\Container\V1\NodePool\UpgradeSettings $upgrade_settings
      *           Upgrade settings control disruption and speed of the upgrade.
+     *     @type \Google\Cloud\Container\V1\NetworkTags $tags
+     *           The desired network tags to be applied to all nodes in the node pool.
+     *           If this field is not present, the tags will not be changed. Otherwise,
+     *           the existing network tags will be *replaced* with the provided tags.
+     *     @type \Google\Cloud\Container\V1\NodeTaints $taints
+     *           The desired node taints to be applied to all nodes in the node pool.
+     *           If this field is not present, the taints will not be changed. Otherwise,
+     *           the existing node taints will be *replaced* with the provided taints.
+     *     @type \Google\Cloud\Container\V1\NodeLabels $labels
+     *           The desired node labels to be applied to all nodes in the node pool.
+     *           If this field is not present, the labels will not be changed. Otherwise,
+     *           the existing node labels will be *replaced* with the provided labels.
      *     @type \Google\Cloud\Container\V1\LinuxNodeConfig $linux_node_config
      *           Parameters that can be configured on Linux nodes.
      *     @type \Google\Cloud\Container\V1\NodeKubeletConfig $kubelet_config
      *           Node kubelet configs.
+     *     @type \Google\Cloud\Container\V1\NodeNetworkConfig $node_network_config
+     *           Node network config.
      *     @type \Google\Cloud\Container\V1\GcfsConfig $gcfs_config
      *           GCFS config.
+     *     @type \Google\Cloud\Container\V1\ConfidentialNodes $confidential_nodes
+     *           Confidential nodes config.
+     *           All the nodes in the node pool will be Confidential VM once enabled.
      *     @type \Google\Cloud\Container\V1\VirtualNIC $gvnic
      *           Enable or disable gvnic on the node pool.
+     *     @type \Google\Cloud\Container\V1\FastSocket $fast_socket
+     *           Enable or disable NCCL fast socket for the node pool.
+     *     @type \Google\Cloud\Container\V1\NodePoolLoggingConfig $logging_config
+     *           Logging configuration.
+     *     @type \Google\Cloud\Container\V1\ResourceLabels $resource_labels
+     *           The resource labels for the node pool to use to annotate any related
+     *           Google Compute Engine resources.
      * }
      */
     public function __construct($data = NULL) {
@@ -189,7 +269,7 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Deprecated. The Google Developers Console [project ID or project
-     * number](https://support.google.com/cloud/answer/6158840).
+     * number](https://cloud.google.com/resource-manager/docs/creating-managing-projects).
      * This field has been deprecated and replaced by the name field.
      *
      * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
@@ -204,7 +284,7 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Deprecated. The Google Developers Console [project ID or project
-     * number](https://support.google.com/cloud/answer/6158840).
+     * number](https://cloud.google.com/resource-manager/docs/creating-managing-projects).
      * This field has been deprecated and replaced by the name field.
      *
      * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
@@ -442,7 +522,7 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
      * depending on whether locations are being added or removed.
      *
      * Generated from protobuf field <code>repeated string locations = 13;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setLocations($var)
@@ -526,6 +606,126 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * The desired network tags to be applied to all nodes in the node pool.
+     * If this field is not present, the tags will not be changed. Otherwise,
+     * the existing network tags will be *replaced* with the provided tags.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NetworkTags tags = 16;</code>
+     * @return \Google\Cloud\Container\V1\NetworkTags|null
+     */
+    public function getTags()
+    {
+        return $this->tags;
+    }
+
+    public function hasTags()
+    {
+        return isset($this->tags);
+    }
+
+    public function clearTags()
+    {
+        unset($this->tags);
+    }
+
+    /**
+     * The desired network tags to be applied to all nodes in the node pool.
+     * If this field is not present, the tags will not be changed. Otherwise,
+     * the existing network tags will be *replaced* with the provided tags.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NetworkTags tags = 16;</code>
+     * @param \Google\Cloud\Container\V1\NetworkTags $var
+     * @return $this
+     */
+    public function setTags($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\NetworkTags::class);
+        $this->tags = $var;
+
+        return $this;
+    }
+
+    /**
+     * The desired node taints to be applied to all nodes in the node pool.
+     * If this field is not present, the taints will not be changed. Otherwise,
+     * the existing node taints will be *replaced* with the provided taints.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodeTaints taints = 17;</code>
+     * @return \Google\Cloud\Container\V1\NodeTaints|null
+     */
+    public function getTaints()
+    {
+        return $this->taints;
+    }
+
+    public function hasTaints()
+    {
+        return isset($this->taints);
+    }
+
+    public function clearTaints()
+    {
+        unset($this->taints);
+    }
+
+    /**
+     * The desired node taints to be applied to all nodes in the node pool.
+     * If this field is not present, the taints will not be changed. Otherwise,
+     * the existing node taints will be *replaced* with the provided taints.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodeTaints taints = 17;</code>
+     * @param \Google\Cloud\Container\V1\NodeTaints $var
+     * @return $this
+     */
+    public function setTaints($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\NodeTaints::class);
+        $this->taints = $var;
+
+        return $this;
+    }
+
+    /**
+     * The desired node labels to be applied to all nodes in the node pool.
+     * If this field is not present, the labels will not be changed. Otherwise,
+     * the existing node labels will be *replaced* with the provided labels.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodeLabels labels = 18;</code>
+     * @return \Google\Cloud\Container\V1\NodeLabels|null
+     */
+    public function getLabels()
+    {
+        return $this->labels;
+    }
+
+    public function hasLabels()
+    {
+        return isset($this->labels);
+    }
+
+    public function clearLabels()
+    {
+        unset($this->labels);
+    }
+
+    /**
+     * The desired node labels to be applied to all nodes in the node pool.
+     * If this field is not present, the labels will not be changed. Otherwise,
+     * the existing node labels will be *replaced* with the provided labels.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodeLabels labels = 18;</code>
+     * @param \Google\Cloud\Container\V1\NodeLabels $var
+     * @return $this
+     */
+    public function setLabels($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\NodeLabels::class);
+        $this->labels = $var;
+
+        return $this;
+    }
+
+    /**
      * Parameters that can be configured on Linux nodes.
      *
      * Generated from protobuf field <code>.google.container.v1.LinuxNodeConfig linux_node_config = 19;</code>
@@ -598,6 +798,42 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Node network config.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodeNetworkConfig node_network_config = 21;</code>
+     * @return \Google\Cloud\Container\V1\NodeNetworkConfig|null
+     */
+    public function getNodeNetworkConfig()
+    {
+        return $this->node_network_config;
+    }
+
+    public function hasNodeNetworkConfig()
+    {
+        return isset($this->node_network_config);
+    }
+
+    public function clearNodeNetworkConfig()
+    {
+        unset($this->node_network_config);
+    }
+
+    /**
+     * Node network config.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodeNetworkConfig node_network_config = 21;</code>
+     * @param \Google\Cloud\Container\V1\NodeNetworkConfig $var
+     * @return $this
+     */
+    public function setNodeNetworkConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\NodeNetworkConfig::class);
+        $this->node_network_config = $var;
+
+        return $this;
+    }
+
+    /**
      * GCFS config.
      *
      * Generated from protobuf field <code>.google.container.v1.GcfsConfig gcfs_config = 22;</code>
@@ -634,6 +870,44 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Confidential nodes config.
+     * All the nodes in the node pool will be Confidential VM once enabled.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ConfidentialNodes confidential_nodes = 23;</code>
+     * @return \Google\Cloud\Container\V1\ConfidentialNodes|null
+     */
+    public function getConfidentialNodes()
+    {
+        return $this->confidential_nodes;
+    }
+
+    public function hasConfidentialNodes()
+    {
+        return isset($this->confidential_nodes);
+    }
+
+    public function clearConfidentialNodes()
+    {
+        unset($this->confidential_nodes);
+    }
+
+    /**
+     * Confidential nodes config.
+     * All the nodes in the node pool will be Confidential VM once enabled.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ConfidentialNodes confidential_nodes = 23;</code>
+     * @param \Google\Cloud\Container\V1\ConfidentialNodes $var
+     * @return $this
+     */
+    public function setConfidentialNodes($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\ConfidentialNodes::class);
+        $this->confidential_nodes = $var;
+
+        return $this;
+    }
+
+    /**
      * Enable or disable gvnic on the node pool.
      *
      * Generated from protobuf field <code>.google.container.v1.VirtualNIC gvnic = 29;</code>
@@ -665,6 +939,116 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\VirtualNIC::class);
         $this->gvnic = $var;
+
+        return $this;
+    }
+
+    /**
+     * Enable or disable NCCL fast socket for the node pool.
+     *
+     * Generated from protobuf field <code>.google.container.v1.FastSocket fast_socket = 31;</code>
+     * @return \Google\Cloud\Container\V1\FastSocket|null
+     */
+    public function getFastSocket()
+    {
+        return $this->fast_socket;
+    }
+
+    public function hasFastSocket()
+    {
+        return isset($this->fast_socket);
+    }
+
+    public function clearFastSocket()
+    {
+        unset($this->fast_socket);
+    }
+
+    /**
+     * Enable or disable NCCL fast socket for the node pool.
+     *
+     * Generated from protobuf field <code>.google.container.v1.FastSocket fast_socket = 31;</code>
+     * @param \Google\Cloud\Container\V1\FastSocket $var
+     * @return $this
+     */
+    public function setFastSocket($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\FastSocket::class);
+        $this->fast_socket = $var;
+
+        return $this;
+    }
+
+    /**
+     * Logging configuration.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodePoolLoggingConfig logging_config = 32;</code>
+     * @return \Google\Cloud\Container\V1\NodePoolLoggingConfig|null
+     */
+    public function getLoggingConfig()
+    {
+        return $this->logging_config;
+    }
+
+    public function hasLoggingConfig()
+    {
+        return isset($this->logging_config);
+    }
+
+    public function clearLoggingConfig()
+    {
+        unset($this->logging_config);
+    }
+
+    /**
+     * Logging configuration.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodePoolLoggingConfig logging_config = 32;</code>
+     * @param \Google\Cloud\Container\V1\NodePoolLoggingConfig $var
+     * @return $this
+     */
+    public function setLoggingConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\NodePoolLoggingConfig::class);
+        $this->logging_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * The resource labels for the node pool to use to annotate any related
+     * Google Compute Engine resources.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ResourceLabels resource_labels = 33;</code>
+     * @return \Google\Cloud\Container\V1\ResourceLabels|null
+     */
+    public function getResourceLabels()
+    {
+        return $this->resource_labels;
+    }
+
+    public function hasResourceLabels()
+    {
+        return isset($this->resource_labels);
+    }
+
+    public function clearResourceLabels()
+    {
+        unset($this->resource_labels);
+    }
+
+    /**
+     * The resource labels for the node pool to use to annotate any related
+     * Google Compute Engine resources.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ResourceLabels resource_labels = 33;</code>
+     * @param \Google\Cloud\Container\V1\ResourceLabels $var
+     * @return $this
+     */
+    public function setResourceLabels($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\ResourceLabels::class);
+        $this->resource_labels = $var;
 
         return $this;
     }

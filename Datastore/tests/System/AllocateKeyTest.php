@@ -18,13 +18,16 @@
 namespace Google\Cloud\Datastore\Tests\System;
 
 use Google\Cloud\Datastore\DatastoreClient;
+use Yoast\PHPUnitPolyfills\Polyfills\AssertIsType;
 
 /**
  * @group datastore
  * @group datastore-key
  */
-class AllocateKeyTest extends DatastoreTestCase
+class AllocateKeyTest extends DatastoreMultipleDbTestCase
 {
+    use AssertIsType;
+
     /**
      * @dataProvider clientProvider
      */
@@ -34,7 +37,7 @@ class AllocateKeyTest extends DatastoreTestCase
         $key = $client->key($kind);
         $path = $client->allocateId($key)->path()[0];
 
-        $this->assertInternalType('numeric', $path['id']);
+        $this->assertIsNumeric($path['id']);
         $this->assertEquals($kind, $path['kind']);
     }
 
@@ -49,7 +52,7 @@ class AllocateKeyTest extends DatastoreTestCase
 
         foreach ($allocatedKeys as $key) {
             $path = $key->path()[0];
-            $this->assertInternalType('numeric', $path['id']);
+            $this->assertIsNumeric($path['id']);
             $this->assertEquals($kind, $path['kind']);
         }
     }

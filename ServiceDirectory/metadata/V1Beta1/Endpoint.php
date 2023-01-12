@@ -17,11 +17,10 @@ class Endpoint
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Api\Resource::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
-        \GPBMetadata\Google\Api\Annotations::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Œ
-4google/cloud/servicedirectory/v1beta1/endpoint.proto%google.cloud.servicedirectory.v1beta1google/api/resource.protogoogle/protobuf/timestamp.protogoogle/api/annotations.proto"î
+∞
+4google/cloud/servicedirectory/v1beta1/endpoint.proto%google.cloud.servicedirectory.v1beta1google/api/resource.protogoogle/protobuf/timestamp.proto"î
 Endpoint
 name (	B‡A
 address (	B‡A

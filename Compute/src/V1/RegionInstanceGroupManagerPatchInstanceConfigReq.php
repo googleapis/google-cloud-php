@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class RegionInstanceGroupManagerPatchInstanceConfigReq extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The list of per-instance configs to insert or patch on this managed instance group.
+     * The list of per-instance configurations to insert or patch on this managed instance group.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.PerInstanceConfig per_instance_configs = 526265001;</code>
      */
@@ -28,8 +28,8 @@ class RegionInstanceGroupManagerPatchInstanceConfigReq extends \Google\Protobuf\
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Compute\V1\PerInstanceConfig[]|\Google\Protobuf\Internal\RepeatedField $per_instance_configs
-     *           The list of per-instance configs to insert or patch on this managed instance group.
+     *     @type array<\Google\Cloud\Compute\V1\PerInstanceConfig>|\Google\Protobuf\Internal\RepeatedField $per_instance_configs
+     *           The list of per-instance configurations to insert or patch on this managed instance group.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,7 +38,7 @@ class RegionInstanceGroupManagerPatchInstanceConfigReq extends \Google\Protobuf\
     }
 
     /**
-     * The list of per-instance configs to insert or patch on this managed instance group.
+     * The list of per-instance configurations to insert or patch on this managed instance group.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.PerInstanceConfig per_instance_configs = 526265001;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -49,10 +49,10 @@ class RegionInstanceGroupManagerPatchInstanceConfigReq extends \Google\Protobuf\
     }
 
     /**
-     * The list of per-instance configs to insert or patch on this managed instance group.
+     * The list of per-instance configurations to insert or patch on this managed instance group.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.PerInstanceConfig per_instance_configs = 526265001;</code>
-     * @param \Google\Cloud\Compute\V1\PerInstanceConfig[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\PerInstanceConfig>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPerInstanceConfigs($var)

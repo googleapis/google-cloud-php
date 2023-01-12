@@ -31,11 +31,32 @@ class Component
      * Generated from protobuf enum <code>WORKLOADS = 2;</code>
      */
     const WORKLOADS = 2;
+    /**
+     * kube-apiserver
+     *
+     * Generated from protobuf enum <code>APISERVER = 3;</code>
+     */
+    const APISERVER = 3;
+    /**
+     * kube-scheduler
+     *
+     * Generated from protobuf enum <code>SCHEDULER = 4;</code>
+     */
+    const SCHEDULER = 4;
+    /**
+     * kube-controller-manager
+     *
+     * Generated from protobuf enum <code>CONTROLLER_MANAGER = 5;</code>
+     */
+    const CONTROLLER_MANAGER = 5;
 
     private static $valueToName = [
         self::COMPONENT_UNSPECIFIED => 'COMPONENT_UNSPECIFIED',
         self::SYSTEM_COMPONENTS => 'SYSTEM_COMPONENTS',
         self::WORKLOADS => 'WORKLOADS',
+        self::APISERVER => 'APISERVER',
+        self::SCHEDULER => 'SCHEDULER',
+        self::CONTROLLER_MANAGER => 'CONTROLLER_MANAGER',
     ];
 
     public static function name($value)

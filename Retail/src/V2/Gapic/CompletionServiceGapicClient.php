@@ -47,8 +47,7 @@ use Google\LongRunning\Operation;
  * Service Description: Auto-completion service for retail.
  *
  * This feature is only available for users who have Retail Search enabled.
- * Please submit a form [here](https://cloud.google.com/contact) to contact
- * cloud sales if you are interested in using Retail Search.
+ * Please enable Retail Search on Cloud Console before using this feature.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
@@ -321,8 +320,7 @@ class CompletionServiceGapicClient
      * Completes the specified prefix with keyword suggestions.
      *
      * This feature is only available for users who have Retail Search enabled.
-     * Please submit a form [here](https://cloud.google.com/contact) to contact
-     * cloud sales if you are interested in using Retail Search.
+     * Please enable Retail Search on Cloud Console before using this feature.
      *
      * Sample code:
      * ```
@@ -347,21 +345,23 @@ class CompletionServiceGapicClient
      *     Optional.
      *
      *     @type string $visitorId
-     *           A unique identifier for tracking visitors. For example, this could be
-     *           implemented with an HTTP cookie, which should be able to uniquely identify
-     *           a visitor on a single device. This unique identifier should not change if
-     *           the visitor logs in or out of the website.
+     *           Required field. A unique identifier for tracking visitors. For example,
+     *           this could be implemented with an HTTP cookie, which should be able to
+     *           uniquely identify a visitor on a single device. This unique identifier
+     *           should not change if the visitor logs in or out of the website.
      *
      *           The field must be a UTF-8 encoded string with a length limit of 128
      *           characters. Otherwise, an INVALID_ARGUMENT error is returned.
      *     @type string[] $languageCodes
-     *           The list of languages of the query. This is
-     *           the BCP-47 language code, such as "en-US" or "sr-Latn".
-     *           For more information, see
-     *           [Tags for Identifying Languages](https://tools.ietf.org/html/bcp47).
+     *           Note that this field applies for `user-data` dataset only. For requests
+     *           with `cloud-retail` dataset, setting this field has no effect.
      *
-     *           The maximum number of allowed characters is 255.
-     *           Only "en-US" is currently supported.
+     *           The language filters applied to the output suggestions. If set, it should
+     *           contain the language of the query. If not set, suggestions are returned
+     *           without considering language restrictions. This is the BCP-47 language
+     *           code, such as "en-US" or "sr-Latn". For more information, see [Tags for
+     *           Identifying Languages](https://tools.ietf.org/html/bcp47). The maximum
+     *           number of language codes is 3.
      *     @type string $deviceType
      *           The device type context for completion suggestions.
      *           It is useful to apply different suggestions on different device types, e.g.
@@ -388,20 +388,20 @@ class CompletionServiceGapicClient
      *
      *           * user-data
      *
-     *           * cloud-retail
-     *           This option requires additional allowlisting. Before using cloud-retail,
-     *           contact Cloud Retail support team first.
+     *           * cloud-retail:
+     *           This option requires enabling auto-learning function first. See
+     *           [guidelines](https://cloud.google.com/retail/docs/completion-overview#generated-completion-dataset).
      *     @type int $maxSuggestions
      *           Completion max suggestions. If left unset or set to 0, then will fallback
-     *           to the configured value [CompletionConfig.max_suggestions][].
+     *           to the configured value
+     *           [CompletionConfig.max_suggestions][google.cloud.retail.v2.CompletionConfig.max_suggestions].
      *
      *           The maximum allowed max suggestions is 20. If it is set higher, it will be
      *           capped by 20.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Retail\V2\CompleteQueryResponse
@@ -452,11 +452,13 @@ class CompletionServiceGapicClient
     /**
      * Bulk import of processed completion dataset.
      *
-     * Request processing may be synchronous. Partial updating is not supported.
+     * Request processing is asynchronous. Partial updating is not supported.
+     *
+     * The operation is successfully finished only after the imported suggestions
+     * are indexed successfully and ready for serving. The process takes hours.
      *
      * This feature is only available for users who have Retail Search enabled.
-     * Please submit a form [here](https://cloud.google.com/contact) to contact
-     * cloud sales if you are interested in using Retail Search.
+     * Please enable Retail Search on Cloud Console before using this feature.
      *
      * Sample code:
      * ```
@@ -504,15 +506,14 @@ class CompletionServiceGapicClient
      *
      *     @type string $notificationPubsubTopic
      *           Pub/Sub topic for receiving notification. If this field is set,
-     *           when the import is finished, a notification will be sent to
-     *           specified Pub/Sub topic. The message data will be JSON string of a
+     *           when the import is finished, a notification is sent to
+     *           specified Pub/Sub topic. The message data is JSON string of a
      *           [Operation][google.longrunning.Operation].
      *           Format of the Pub/Sub topic is `projects/{project}/topics/{topic}`.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse

@@ -35,5 +35,9 @@ class Type
 
     const HIERARCHY = 'HIERARCHY';
 
+    const NETWORK = 'NETWORK';
+
+    const NETWORK_REGIONAL = 'NETWORK_REGIONAL';
+
     const UNSPECIFIED = 'UNSPECIFIED';
 }

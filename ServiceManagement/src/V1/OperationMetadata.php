@@ -47,10 +47,10 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $resource_names
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $resource_names
      *           The full name of the resources that this operation is directly
      *           associated with.
-     *     @type \Google\Cloud\ServiceManagement\V1\OperationMetadata\Step[]|\Google\Protobuf\Internal\RepeatedField $steps
+     *     @type array<\Google\Cloud\ServiceManagement\V1\OperationMetadata\Step>|\Google\Protobuf\Internal\RepeatedField $steps
      *           Detailed status information for each step. The order is undetermined.
      *     @type int $progress_percentage
      *           Percentage of completion of this operation, ranging from 0 to 100.
@@ -80,7 +80,7 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
      * associated with.
      *
      * Generated from protobuf field <code>repeated string resource_names = 1;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setResourceNames($var)
@@ -106,7 +106,7 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
      * Detailed status information for each step. The order is undetermined.
      *
      * Generated from protobuf field <code>repeated .google.api.servicemanagement.v1.OperationMetadata.Step steps = 2;</code>
-     * @param \Google\Cloud\ServiceManagement\V1\OperationMetadata\Step[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\ServiceManagement\V1\OperationMetadata\Step>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSteps($var)

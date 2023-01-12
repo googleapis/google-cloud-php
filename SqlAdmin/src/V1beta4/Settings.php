@@ -219,7 +219,7 @@ class Settings extends \Google\Protobuf\Internal\Message
      *           method to make sure concurrent updates are handled properly. During update,
      *           use the most recent settingsVersion value for this instance and do not try
      *           to update this value.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $authorized_gae_applications
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $authorized_gae_applications
      *           The App Engine app IDs that can access this instance.
      *           (Deprecated) Applied to First Generation instances only.
      *     @type string $tier
@@ -267,7 +267,7 @@ class Settings extends \Google\Protobuf\Internal\Message
      *           near as possible to either an App Engine app or Compute Engine zone for
      *           better performance. App Engine co-location was only applicable to First
      *           Generation instances.
-     *     @type \Google\Cloud\Sql\V1beta4\DatabaseFlags[]|\Google\Protobuf\Internal\RepeatedField $database_flags
+     *     @type array<\Google\Cloud\Sql\V1beta4\DatabaseFlags>|\Google\Protobuf\Internal\RepeatedField $database_flags
      *           The database flags passed to the instance at startup.
      *     @type int $data_disk_type
      *           The type of data disk: `PD_SSD` (default) or `PD_HDD`. Not used for
@@ -291,7 +291,7 @@ class Settings extends \Google\Protobuf\Internal\Message
      *           Active Directory configuration, relevant only for Cloud SQL for SQL Server.
      *     @type string $collation
      *           The name of server Instance collation.
-     *     @type \Google\Cloud\Sql\V1beta4\DenyMaintenancePeriod[]|\Google\Protobuf\Internal\RepeatedField $deny_maintenance_periods
+     *     @type array<\Google\Cloud\Sql\V1beta4\DenyMaintenancePeriod>|\Google\Protobuf\Internal\RepeatedField $deny_maintenance_periods
      *           Deny maintenance periods
      *     @type \Google\Cloud\Sql\V1beta4\InsightsConfig $insights_config
      *           Insights configuration, for now relevant only for Postgres.
@@ -400,7 +400,7 @@ class Settings extends \Google\Protobuf\Internal\Message
      * (Deprecated) Applied to First Generation instances only.
      *
      * Generated from protobuf field <code>repeated string authorized_gae_applications = 2 [deprecated = true];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      * @deprecated
      */
@@ -862,7 +862,7 @@ class Settings extends \Google\Protobuf\Internal\Message
      * The database flags passed to the instance at startup.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1beta4.DatabaseFlags database_flags = 14;</code>
-     * @param \Google\Cloud\Sql\V1beta4\DatabaseFlags[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Sql\V1beta4\DatabaseFlags>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDatabaseFlags($var)
@@ -1264,7 +1264,7 @@ class Settings extends \Google\Protobuf\Internal\Message
      * Deny maintenance periods
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1beta4.DenyMaintenancePeriod deny_maintenance_periods = 24;</code>
-     * @param \Google\Cloud\Sql\V1beta4\DenyMaintenancePeriod[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Sql\V1beta4\DenyMaintenancePeriod>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDenyMaintenancePeriods($var)

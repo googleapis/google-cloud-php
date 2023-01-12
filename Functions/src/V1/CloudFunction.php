@@ -11,7 +11,6 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Describes a Cloud Function that contains user computation executed in
  * response to an event. It encapsulate function and triggers configurations.
- * Next tag: 36
  *
  * Generated from protobuf message <code>google.cloud.functions.v1.CloudFunction</code>
  */
@@ -184,8 +183,9 @@ class CloudFunction extends \Google\Protobuf\Internal\Message
      * If specified, you must also provide an artifact registry repository using
      * the `docker_repository` field that was created with the same KMS crypto
      * key.
-     * The following service accounts need to be granted Cloud KMS crypto key
-     * encrypter/decrypter roles on the key.
+     * The following service accounts need to be granted the role 'Cloud KMS
+     * CryptoKey Encrypter/Decrypter (roles/cloudkms.cryptoKeyEncrypterDecrypter)'
+     * on the Key/KeyRing/Project/Organization (least access preferred).
      * 1. Google Cloud Functions service account
      *    (service-{project_number}&#64;gcf-admin-robot.iam.gserviceaccount.com) -
      *    Required to protect the function's image.
@@ -269,6 +269,16 @@ class CloudFunction extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string docker_repository = 34 [(.google.api.resource_reference) = {</code>
      */
     private $docker_repository = '';
+    /**
+     * Docker Registry to use for this deployment.
+     * If `docker_repository` field is specified, this field will be automatically
+     * set as `ARTIFACT_REGISTRY`.
+     * If unspecified, it currently defaults to `CONTAINER_REGISTRY`.
+     * This field may be overridden by the backend for eligible deployments.
+     *
+     * Generated from protobuf field <code>.google.cloud.functions.v1.CloudFunction.DockerRegistry docker_registry = 35;</code>
+     */
+    private $docker_registry = 0;
     protected $source_code;
     protected $trigger;
 
@@ -385,8 +395,9 @@ class CloudFunction extends \Google\Protobuf\Internal\Message
      *           If specified, you must also provide an artifact registry repository using
      *           the `docker_repository` field that was created with the same KMS crypto
      *           key.
-     *           The following service accounts need to be granted Cloud KMS crypto key
-     *           encrypter/decrypter roles on the key.
+     *           The following service accounts need to be granted the role 'Cloud KMS
+     *           CryptoKey Encrypter/Decrypter (roles/cloudkms.cryptoKeyEncrypterDecrypter)'
+     *           on the Key/KeyRing/Project/Organization (least access preferred).
      *           1. Google Cloud Functions service account
      *              (service-{project_number}&#64;gcf-admin-robot.iam.gserviceaccount.com) -
      *              Required to protect the function's image.
@@ -419,9 +430,9 @@ class CloudFunction extends \Google\Protobuf\Internal\Message
      *     @type string $build_name
      *           Output only. The Cloud Build Name of the function deployment.
      *           `projects/<project-number>/locations/<region>/builds/<build-id>`.
-     *     @type \Google\Cloud\Functions\V1\SecretEnvVar[]|\Google\Protobuf\Internal\RepeatedField $secret_environment_variables
+     *     @type array<\Google\Cloud\Functions\V1\SecretEnvVar>|\Google\Protobuf\Internal\RepeatedField $secret_environment_variables
      *           Secret environment variables configuration.
-     *     @type \Google\Cloud\Functions\V1\SecretVolume[]|\Google\Protobuf\Internal\RepeatedField $secret_volumes
+     *     @type array<\Google\Cloud\Functions\V1\SecretVolume>|\Google\Protobuf\Internal\RepeatedField $secret_volumes
      *           Secret volumes configuration.
      *     @type string $source_token
      *           Input only. An identifier for Firebase function sources. Disclaimer: This field is only
@@ -438,6 +449,12 @@ class CloudFunction extends \Google\Protobuf\Internal\Message
      *           Cross-project repositories are not supported.
      *           Cross-location repositories are not supported.
      *           Repository format must be 'DOCKER'.
+     *     @type int $docker_registry
+     *           Docker Registry to use for this deployment.
+     *           If `docker_repository` field is specified, this field will be automatically
+     *           set as `ARTIFACT_REGISTRY`.
+     *           If unspecified, it currently defaults to `CONTAINER_REGISTRY`.
+     *           This field may be overridden by the backend for eligible deployments.
      * }
      */
     public function __construct($data = NULL) {
@@ -1224,8 +1241,9 @@ class CloudFunction extends \Google\Protobuf\Internal\Message
      * If specified, you must also provide an artifact registry repository using
      * the `docker_repository` field that was created with the same KMS crypto
      * key.
-     * The following service accounts need to be granted Cloud KMS crypto key
-     * encrypter/decrypter roles on the key.
+     * The following service accounts need to be granted the role 'Cloud KMS
+     * CryptoKey Encrypter/Decrypter (roles/cloudkms.cryptoKeyEncrypterDecrypter)'
+     * on the Key/KeyRing/Project/Organization (least access preferred).
      * 1. Google Cloud Functions service account
      *    (service-{project_number}&#64;gcf-admin-robot.iam.gserviceaccount.com) -
      *    Required to protect the function's image.
@@ -1257,8 +1275,9 @@ class CloudFunction extends \Google\Protobuf\Internal\Message
      * If specified, you must also provide an artifact registry repository using
      * the `docker_repository` field that was created with the same KMS crypto
      * key.
-     * The following service accounts need to be granted Cloud KMS crypto key
-     * encrypter/decrypter roles on the key.
+     * The following service accounts need to be granted the role 'Cloud KMS
+     * CryptoKey Encrypter/Decrypter (roles/cloudkms.cryptoKeyEncrypterDecrypter)'
+     * on the Key/KeyRing/Project/Organization (least access preferred).
      * 1. Google Cloud Functions service account
      *    (service-{project_number}&#64;gcf-admin-robot.iam.gserviceaccount.com) -
      *    Required to protect the function's image.
@@ -1403,7 +1422,7 @@ class CloudFunction extends \Google\Protobuf\Internal\Message
      * Secret environment variables configuration.
      *
      * Generated from protobuf field <code>repeated .google.cloud.functions.v1.SecretEnvVar secret_environment_variables = 29;</code>
-     * @param \Google\Cloud\Functions\V1\SecretEnvVar[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Functions\V1\SecretEnvVar>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSecretEnvironmentVariables($var)
@@ -1429,7 +1448,7 @@ class CloudFunction extends \Google\Protobuf\Internal\Message
      * Secret volumes configuration.
      *
      * Generated from protobuf field <code>repeated .google.cloud.functions.v1.SecretVolume secret_volumes = 30;</code>
-     * @param \Google\Cloud\Functions\V1\SecretVolume[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Functions\V1\SecretVolume>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSecretVolumes($var)
@@ -1510,6 +1529,40 @@ class CloudFunction extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->docker_repository = $var;
+
+        return $this;
+    }
+
+    /**
+     * Docker Registry to use for this deployment.
+     * If `docker_repository` field is specified, this field will be automatically
+     * set as `ARTIFACT_REGISTRY`.
+     * If unspecified, it currently defaults to `CONTAINER_REGISTRY`.
+     * This field may be overridden by the backend for eligible deployments.
+     *
+     * Generated from protobuf field <code>.google.cloud.functions.v1.CloudFunction.DockerRegistry docker_registry = 35;</code>
+     * @return int
+     */
+    public function getDockerRegistry()
+    {
+        return $this->docker_registry;
+    }
+
+    /**
+     * Docker Registry to use for this deployment.
+     * If `docker_repository` field is specified, this field will be automatically
+     * set as `ARTIFACT_REGISTRY`.
+     * If unspecified, it currently defaults to `CONTAINER_REGISTRY`.
+     * This field may be overridden by the backend for eligible deployments.
+     *
+     * Generated from protobuf field <code>.google.cloud.functions.v1.CloudFunction.DockerRegistry docker_registry = 35;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setDockerRegistry($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Functions\V1\CloudFunction\DockerRegistry::class);
+        $this->docker_registry = $var;
 
         return $this;
     }

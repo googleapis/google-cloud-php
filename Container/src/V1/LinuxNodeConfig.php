@@ -19,6 +19,8 @@ class LinuxNodeConfig extends \Google\Protobuf\Internal\Message
      * The Linux kernel parameters to be applied to the nodes and all pods running
      * on the nodes.
      * The following parameters are supported.
+     * net.core.busy_poll
+     * net.core.busy_read
      * net.core.netdev_max_backlog
      * net.core.rmem_max
      * net.core.wmem_default
@@ -32,6 +34,12 @@ class LinuxNodeConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>map<string, string> sysctls = 1;</code>
      */
     private $sysctls;
+    /**
+     * cgroup_mode specifies the cgroup mode to be used on the node.
+     *
+     * Generated from protobuf field <code>.google.container.v1.LinuxNodeConfig.CgroupMode cgroup_mode = 2;</code>
+     */
+    private $cgroup_mode = 0;
 
     /**
      * Constructor.
@@ -43,6 +51,8 @@ class LinuxNodeConfig extends \Google\Protobuf\Internal\Message
      *           The Linux kernel parameters to be applied to the nodes and all pods running
      *           on the nodes.
      *           The following parameters are supported.
+     *           net.core.busy_poll
+     *           net.core.busy_read
      *           net.core.netdev_max_backlog
      *           net.core.rmem_max
      *           net.core.wmem_default
@@ -52,6 +62,8 @@ class LinuxNodeConfig extends \Google\Protobuf\Internal\Message
      *           net.ipv4.tcp_rmem
      *           net.ipv4.tcp_wmem
      *           net.ipv4.tcp_tw_reuse
+     *     @type int $cgroup_mode
+     *           cgroup_mode specifies the cgroup mode to be used on the node.
      * }
      */
     public function __construct($data = NULL) {
@@ -63,6 +75,8 @@ class LinuxNodeConfig extends \Google\Protobuf\Internal\Message
      * The Linux kernel parameters to be applied to the nodes and all pods running
      * on the nodes.
      * The following parameters are supported.
+     * net.core.busy_poll
+     * net.core.busy_read
      * net.core.netdev_max_backlog
      * net.core.rmem_max
      * net.core.wmem_default
@@ -85,6 +99,8 @@ class LinuxNodeConfig extends \Google\Protobuf\Internal\Message
      * The Linux kernel parameters to be applied to the nodes and all pods running
      * on the nodes.
      * The following parameters are supported.
+     * net.core.busy_poll
+     * net.core.busy_read
      * net.core.netdev_max_backlog
      * net.core.rmem_max
      * net.core.wmem_default
@@ -103,6 +119,32 @@ class LinuxNodeConfig extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
         $this->sysctls = $arr;
+
+        return $this;
+    }
+
+    /**
+     * cgroup_mode specifies the cgroup mode to be used on the node.
+     *
+     * Generated from protobuf field <code>.google.container.v1.LinuxNodeConfig.CgroupMode cgroup_mode = 2;</code>
+     * @return int
+     */
+    public function getCgroupMode()
+    {
+        return $this->cgroup_mode;
+    }
+
+    /**
+     * cgroup_mode specifies the cgroup mode to be used on the node.
+     *
+     * Generated from protobuf field <code>.google.container.v1.LinuxNodeConfig.CgroupMode cgroup_mode = 2;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setCgroupMode($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Container\V1\LinuxNodeConfig\CgroupMode::class);
+        $this->cgroup_mode = $var;
 
         return $this;
     }

@@ -11,7 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * All available features for sentiment, syntax, and semantic analysis.
  * Setting each one to true will enable that specific analysis for the input.
- * Next ID: 10
+ * Next ID: 11
  *
  * Generated from protobuf message <code>google.cloud.language.v1beta2.AnnotateTextRequest.Features</code>
  */
@@ -50,6 +50,13 @@ class Features extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool classify_text = 6;</code>
      */
     private $classify_text = false;
+    /**
+     * The model options to use for classification. Defaults to v1 options
+     * if not specified. Only used if `classify_text` is set to true.
+     *
+     * Generated from protobuf field <code>.google.cloud.language.v1beta2.ClassificationModelOptions classification_model_options = 10;</code>
+     */
+    private $classification_model_options = null;
 
     /**
      * Constructor.
@@ -70,6 +77,9 @@ class Features extends \Google\Protobuf\Internal\Message
      *           the API will use the default model which classifies into a
      *           [predefined
      *           taxonomy](https://cloud.google.com/natural-language/docs/categories).
+     *     @type \Google\Cloud\Language\V1beta2\ClassificationModelOptions $classification_model_options
+     *           The model options to use for classification. Defaults to v1 options
+     *           if not specified. Only used if `classify_text` is set to true.
      * }
      */
     public function __construct($data = NULL) {
@@ -209,6 +219,44 @@ class Features extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->classify_text = $var;
+
+        return $this;
+    }
+
+    /**
+     * The model options to use for classification. Defaults to v1 options
+     * if not specified. Only used if `classify_text` is set to true.
+     *
+     * Generated from protobuf field <code>.google.cloud.language.v1beta2.ClassificationModelOptions classification_model_options = 10;</code>
+     * @return \Google\Cloud\Language\V1beta2\ClassificationModelOptions|null
+     */
+    public function getClassificationModelOptions()
+    {
+        return $this->classification_model_options;
+    }
+
+    public function hasClassificationModelOptions()
+    {
+        return isset($this->classification_model_options);
+    }
+
+    public function clearClassificationModelOptions()
+    {
+        unset($this->classification_model_options);
+    }
+
+    /**
+     * The model options to use for classification. Defaults to v1 options
+     * if not specified. Only used if `classify_text` is set to true.
+     *
+     * Generated from protobuf field <code>.google.cloud.language.v1beta2.ClassificationModelOptions classification_model_options = 10;</code>
+     * @param \Google\Cloud\Language\V1beta2\ClassificationModelOptions $var
+     * @return $this
+     */
+    public function setClassificationModelOptions($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Language\V1beta2\ClassificationModelOptions::class);
+        $this->classification_model_options = $var;
 
         return $this;
     }

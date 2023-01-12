@@ -52,9 +52,9 @@ class RouterStatusNatStatusNatRuleStatus extends \Google\Protobuf\Internal\Messa
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $active_nat_ips
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $active_nat_ips
      *           A list of active IPs for NAT. Example: ["1.1.1.1", "179.12.26.133"].
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $drain_nat_ips
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $drain_nat_ips
      *           A list of IPs for NAT that are in drain mode. Example: ["1.1.1.1", "179.12.26.133"].
      *     @type int $min_extra_ips_needed
      *           The number of extra IPs to allocate. This will be greater than 0 only if the existing IPs in this NAT Rule are NOT enough to allow all configured VMs to use NAT.
@@ -84,7 +84,7 @@ class RouterStatusNatStatusNatRuleStatus extends \Google\Protobuf\Internal\Messa
      * A list of active IPs for NAT. Example: ["1.1.1.1", "179.12.26.133"].
      *
      * Generated from protobuf field <code>repeated string active_nat_ips = 208517077;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setActiveNatIps($var)
@@ -110,7 +110,7 @@ class RouterStatusNatStatusNatRuleStatus extends \Google\Protobuf\Internal\Messa
      * A list of IPs for NAT that are in drain mode. Example: ["1.1.1.1", "179.12.26.133"].
      *
      * Generated from protobuf field <code>repeated string drain_nat_ips = 504078535;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDrainNatIps($var)

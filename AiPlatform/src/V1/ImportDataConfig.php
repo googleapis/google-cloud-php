@@ -33,6 +33,18 @@ class ImportDataConfig extends \Google\Protobuf\Internal\Message
      */
     private $data_item_labels;
     /**
+     * Labels that will be applied to newly imported Annotations. If two
+     * Annotations are identical, one of them will be deduped. Two Annotations are
+     * considered identical if their [payload][google.cloud.aiplatform.v1.Annotation.payload],
+     * [payload_schema_uri][google.cloud.aiplatform.v1.Annotation.payload_schema_uri] and all of their
+     * [labels][google.cloud.aiplatform.v1.Annotation.labels] are the same.
+     * These labels will be overridden by Annotation labels specified inside index
+     * file referenced by [import_schema_uri][google.cloud.aiplatform.v1.ImportDataConfig.import_schema_uri], e.g. jsonl file.
+     *
+     * Generated from protobuf field <code>map<string, string> annotation_labels = 3;</code>
+     */
+    private $annotation_labels;
+    /**
      * Required. Points to a YAML file stored on Google Cloud Storage describing the import
      * format. Validation will be done against the schema. The schema is defined
      * as an [OpenAPI 3.0.2 Schema
@@ -61,6 +73,14 @@ class ImportDataConfig extends \Google\Protobuf\Internal\Message
      *           case, one of the values will be picked randomly. Two DataItems are
      *           considered identical if their content bytes are identical (e.g. image bytes
      *           or pdf bytes).
+     *           These labels will be overridden by Annotation labels specified inside index
+     *           file referenced by [import_schema_uri][google.cloud.aiplatform.v1.ImportDataConfig.import_schema_uri], e.g. jsonl file.
+     *     @type array|\Google\Protobuf\Internal\MapField $annotation_labels
+     *           Labels that will be applied to newly imported Annotations. If two
+     *           Annotations are identical, one of them will be deduped. Two Annotations are
+     *           considered identical if their [payload][google.cloud.aiplatform.v1.Annotation.payload],
+     *           [payload_schema_uri][google.cloud.aiplatform.v1.Annotation.payload_schema_uri] and all of their
+     *           [labels][google.cloud.aiplatform.v1.Annotation.labels] are the same.
      *           These labels will be overridden by Annotation labels specified inside index
      *           file referenced by [import_schema_uri][google.cloud.aiplatform.v1.ImportDataConfig.import_schema_uri], e.g. jsonl file.
      *     @type string $import_schema_uri
@@ -148,6 +168,44 @@ class ImportDataConfig extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
         $this->data_item_labels = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Labels that will be applied to newly imported Annotations. If two
+     * Annotations are identical, one of them will be deduped. Two Annotations are
+     * considered identical if their [payload][google.cloud.aiplatform.v1.Annotation.payload],
+     * [payload_schema_uri][google.cloud.aiplatform.v1.Annotation.payload_schema_uri] and all of their
+     * [labels][google.cloud.aiplatform.v1.Annotation.labels] are the same.
+     * These labels will be overridden by Annotation labels specified inside index
+     * file referenced by [import_schema_uri][google.cloud.aiplatform.v1.ImportDataConfig.import_schema_uri], e.g. jsonl file.
+     *
+     * Generated from protobuf field <code>map<string, string> annotation_labels = 3;</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getAnnotationLabels()
+    {
+        return $this->annotation_labels;
+    }
+
+    /**
+     * Labels that will be applied to newly imported Annotations. If two
+     * Annotations are identical, one of them will be deduped. Two Annotations are
+     * considered identical if their [payload][google.cloud.aiplatform.v1.Annotation.payload],
+     * [payload_schema_uri][google.cloud.aiplatform.v1.Annotation.payload_schema_uri] and all of their
+     * [labels][google.cloud.aiplatform.v1.Annotation.labels] are the same.
+     * These labels will be overridden by Annotation labels specified inside index
+     * file referenced by [import_schema_uri][google.cloud.aiplatform.v1.ImportDataConfig.import_schema_uri], e.g. jsonl file.
+     *
+     * Generated from protobuf field <code>map<string, string> annotation_labels = 3;</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setAnnotationLabels($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->annotation_labels = $arr;
 
         return $this;
     }

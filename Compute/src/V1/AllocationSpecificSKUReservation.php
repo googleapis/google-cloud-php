@@ -9,12 +9,18 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * This reservation type allows to pre allocate specific instance configuration. Next ID: 5
+ * This reservation type allows to pre allocate specific instance configuration. Next ID: 6
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.AllocationSpecificSKUReservation</code>
  */
 class AllocationSpecificSKUReservation extends \Google\Protobuf\Internal\Message
 {
+    /**
+     * [Output Only] Indicates how many instances are actually usable currently.
+     *
+     * Generated from protobuf field <code>optional int64 assured_count = 281197645;</code>
+     */
+    private $assured_count = null;
     /**
      * Specifies the number of resources that are allocated.
      *
@@ -40,6 +46,8 @@ class AllocationSpecificSKUReservation extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type int|string $assured_count
+     *           [Output Only] Indicates how many instances are actually usable currently.
      *     @type int|string $count
      *           Specifies the number of resources that are allocated.
      *     @type int|string $in_use_count
@@ -51,6 +59,42 @@ class AllocationSpecificSKUReservation extends \Google\Protobuf\Internal\Message
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Compute\V1\Compute::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * [Output Only] Indicates how many instances are actually usable currently.
+     *
+     * Generated from protobuf field <code>optional int64 assured_count = 281197645;</code>
+     * @return int|string
+     */
+    public function getAssuredCount()
+    {
+        return isset($this->assured_count) ? $this->assured_count : 0;
+    }
+
+    public function hasAssuredCount()
+    {
+        return isset($this->assured_count);
+    }
+
+    public function clearAssuredCount()
+    {
+        unset($this->assured_count);
+    }
+
+    /**
+     * [Output Only] Indicates how many instances are actually usable currently.
+     *
+     * Generated from protobuf field <code>optional int64 assured_count = 281197645;</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setAssuredCount($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->assured_count = $var;
+
+        return $this;
     }
 
     /**

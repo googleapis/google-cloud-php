@@ -25,7 +25,6 @@ namespace Google\Cloud\Compute\Tests\Unit\V1;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Compute\V1\GetRegionOperationRequest;
 use Google\Cloud\Compute\V1\InstanceGroupManager;
@@ -37,6 +36,7 @@ use Google\Cloud\Compute\V1\PerInstanceConfig;
 use Google\Cloud\Compute\V1\RegionInstanceGroupManagerDeleteInstanceConfigReq;
 use Google\Cloud\Compute\V1\RegionInstanceGroupManagerList;
 use Google\Cloud\Compute\V1\RegionInstanceGroupManagerPatchInstanceConfigReq;
+use Google\Cloud\Compute\V1\RegionInstanceGroupManagerUpdateInstanceConfigReq;
 use Google\Cloud\Compute\V1\RegionInstanceGroupManagersAbandonInstancesRequest;
 use Google\Cloud\Compute\V1\RegionInstanceGroupManagersApplyUpdatesRequest;
 use Google\Cloud\Compute\V1\RegionInstanceGroupManagersClient;
@@ -48,7 +48,6 @@ use Google\Cloud\Compute\V1\RegionInstanceGroupManagersListInstancesResponse;
 use Google\Cloud\Compute\V1\RegionInstanceGroupManagersRecreateRequest;
 use Google\Cloud\Compute\V1\RegionInstanceGroupManagersSetTargetPoolsRequest;
 use Google\Cloud\Compute\V1\RegionInstanceGroupManagersSetTemplateRequest;
-use Google\Cloud\Compute\V1\RegionInstanceGroupManagerUpdateInstanceConfigReq;
 use Google\Cloud\Compute\V1\RegionOperationsClient;
 use Google\Rpc\Code;
 use stdClass;
@@ -60,25 +59,19 @@ use stdClass;
  */
 class RegionInstanceGroupManagersClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return RegionInstanceGroupManagersClient
-     */
+    /** @return RegionInstanceGroupManagersClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -87,9 +80,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         return new RegionInstanceGroupManagersClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function abandonInstancesTest()
     {
         $operationsTransport = $this->createTransport();
@@ -99,7 +90,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -119,7 +110,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         $regionInstanceGroupManagersAbandonInstancesRequestResource = new RegionInstanceGroupManagersAbandonInstancesRequest();
-        $response = $client->abandonInstances($instanceGroupManager, $project, $region, $regionInstanceGroupManagersAbandonInstancesRequestResource);
+        $response = $gapicClient->abandonInstances($instanceGroupManager, $project, $region, $regionInstanceGroupManagersAbandonInstancesRequestResource);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -156,9 +147,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function abandonInstancesExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -168,7 +157,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -194,7 +183,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         $regionInstanceGroupManagersAbandonInstancesRequestResource = new RegionInstanceGroupManagersAbandonInstancesRequest();
-        $response = $client->abandonInstances($instanceGroupManager, $project, $region, $regionInstanceGroupManagersAbandonInstancesRequestResource);
+        $response = $gapicClient->abandonInstances($instanceGroupManager, $project, $region, $regionInstanceGroupManagersAbandonInstancesRequestResource);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -214,9 +203,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function applyUpdatesToInstancesTest()
     {
         $operationsTransport = $this->createTransport();
@@ -226,7 +213,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -246,7 +233,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         $regionInstanceGroupManagersApplyUpdatesRequestResource = new RegionInstanceGroupManagersApplyUpdatesRequest();
-        $response = $client->applyUpdatesToInstances($instanceGroupManager, $project, $region, $regionInstanceGroupManagersApplyUpdatesRequestResource);
+        $response = $gapicClient->applyUpdatesToInstances($instanceGroupManager, $project, $region, $regionInstanceGroupManagersApplyUpdatesRequestResource);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -283,9 +270,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function applyUpdatesToInstancesExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -295,7 +280,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -321,7 +306,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         $regionInstanceGroupManagersApplyUpdatesRequestResource = new RegionInstanceGroupManagersApplyUpdatesRequest();
-        $response = $client->applyUpdatesToInstances($instanceGroupManager, $project, $region, $regionInstanceGroupManagersApplyUpdatesRequestResource);
+        $response = $gapicClient->applyUpdatesToInstances($instanceGroupManager, $project, $region, $regionInstanceGroupManagersApplyUpdatesRequestResource);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -341,9 +326,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createInstancesTest()
     {
         $operationsTransport = $this->createTransport();
@@ -353,7 +336,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -373,7 +356,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         $regionInstanceGroupManagersCreateInstancesRequestResource = new RegionInstanceGroupManagersCreateInstancesRequest();
-        $response = $client->createInstances($instanceGroupManager, $project, $region, $regionInstanceGroupManagersCreateInstancesRequestResource);
+        $response = $gapicClient->createInstances($instanceGroupManager, $project, $region, $regionInstanceGroupManagersCreateInstancesRequestResource);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -410,9 +393,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createInstancesExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -422,7 +403,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -448,7 +429,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         $regionInstanceGroupManagersCreateInstancesRequestResource = new RegionInstanceGroupManagersCreateInstancesRequest();
-        $response = $client->createInstances($instanceGroupManager, $project, $region, $regionInstanceGroupManagersCreateInstancesRequestResource);
+        $response = $gapicClient->createInstances($instanceGroupManager, $project, $region, $regionInstanceGroupManagersCreateInstancesRequestResource);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -468,9 +449,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteTest()
     {
         $operationsTransport = $this->createTransport();
@@ -480,7 +459,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -499,7 +478,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $instanceGroupManager = 'instanceGroupManager-1361249341';
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $response = $client->delete($instanceGroupManager, $project, $region);
+        $response = $gapicClient->delete($instanceGroupManager, $project, $region);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -534,9 +513,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -546,7 +523,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -571,7 +548,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $instanceGroupManager = 'instanceGroupManager-1361249341';
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $response = $client->delete($instanceGroupManager, $project, $region);
+        $response = $gapicClient->delete($instanceGroupManager, $project, $region);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -591,9 +568,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteInstancesTest()
     {
         $operationsTransport = $this->createTransport();
@@ -603,7 +578,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -623,7 +598,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         $regionInstanceGroupManagersDeleteInstancesRequestResource = new RegionInstanceGroupManagersDeleteInstancesRequest();
-        $response = $client->deleteInstances($instanceGroupManager, $project, $region, $regionInstanceGroupManagersDeleteInstancesRequestResource);
+        $response = $gapicClient->deleteInstances($instanceGroupManager, $project, $region, $regionInstanceGroupManagersDeleteInstancesRequestResource);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -660,9 +635,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteInstancesExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -672,7 +645,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -698,7 +671,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         $regionInstanceGroupManagersDeleteInstancesRequestResource = new RegionInstanceGroupManagersDeleteInstancesRequest();
-        $response = $client->deleteInstances($instanceGroupManager, $project, $region, $regionInstanceGroupManagersDeleteInstancesRequestResource);
+        $response = $gapicClient->deleteInstances($instanceGroupManager, $project, $region, $regionInstanceGroupManagersDeleteInstancesRequestResource);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -718,9 +691,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deletePerInstanceConfigsTest()
     {
         $operationsTransport = $this->createTransport();
@@ -730,7 +701,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -750,7 +721,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         $regionInstanceGroupManagerDeleteInstanceConfigReqResource = new RegionInstanceGroupManagerDeleteInstanceConfigReq();
-        $response = $client->deletePerInstanceConfigs($instanceGroupManager, $project, $region, $regionInstanceGroupManagerDeleteInstanceConfigReqResource);
+        $response = $gapicClient->deletePerInstanceConfigs($instanceGroupManager, $project, $region, $regionInstanceGroupManagerDeleteInstanceConfigReqResource);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -787,9 +758,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deletePerInstanceConfigsExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -799,7 +768,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -825,7 +794,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         $regionInstanceGroupManagerDeleteInstanceConfigReqResource = new RegionInstanceGroupManagerDeleteInstanceConfigReq();
-        $response = $client->deletePerInstanceConfigs($instanceGroupManager, $project, $region, $regionInstanceGroupManagerDeleteInstanceConfigReqResource);
+        $response = $gapicClient->deletePerInstanceConfigs($instanceGroupManager, $project, $region, $regionInstanceGroupManagerDeleteInstanceConfigReqResource);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -845,13 +814,11 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -864,6 +831,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $instanceGroup = 'instanceGroup81095253';
         $instanceTemplate = 'instanceTemplate309248228';
         $kind = 'kind3292052';
+        $listManagedInstancesResults = 'listManagedInstancesResults832918068';
         $name = 'name3373707';
         $region2 = 'region2-690338393';
         $selfLink = 'selfLink-1691268851';
@@ -878,6 +846,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $expectedResponse->setInstanceGroup($instanceGroup);
         $expectedResponse->setInstanceTemplate($instanceTemplate);
         $expectedResponse->setKind($kind);
+        $expectedResponse->setListManagedInstancesResults($listManagedInstancesResults);
         $expectedResponse->setName($name);
         $expectedResponse->setRegion($region2);
         $expectedResponse->setSelfLink($selfLink);
@@ -888,7 +857,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $instanceGroupManager = 'instanceGroupManager-1361249341';
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $response = $client->get($instanceGroupManager, $project, $region);
+        $response = $gapicClient->get($instanceGroupManager, $project, $region);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -904,13 +873,11 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -929,8 +896,8 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         try {
-            $client->get($instanceGroupManager, $project, $region);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->get($instanceGroupManager, $project, $region);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -941,9 +908,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function insertTest()
     {
         $operationsTransport = $this->createTransport();
@@ -953,7 +918,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -972,7 +937,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $instanceGroupManagerResource = new InstanceGroupManager();
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $response = $client->insert($instanceGroupManagerResource, $project, $region);
+        $response = $gapicClient->insert($instanceGroupManagerResource, $project, $region);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -1007,9 +972,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function insertExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1019,7 +982,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1044,7 +1007,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $instanceGroupManagerResource = new InstanceGroupManager();
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $response = $client->insert($instanceGroupManagerResource, $project, $region);
+        $response = $gapicClient->insert($instanceGroupManagerResource, $project, $region);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -1064,13 +1027,11 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1093,7 +1054,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $response = $client->list($project, $region);
+        $response = $gapicClient->list($project, $region);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1110,13 +1071,11 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1134,8 +1093,8 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         try {
-            $client->list($project, $region);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->list($project, $region);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1146,13 +1105,11 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listErrorsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1170,7 +1127,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $instanceGroupManager = 'instanceGroupManager-1361249341';
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $response = $client->listErrors($instanceGroupManager, $project, $region);
+        $response = $gapicClient->listErrors($instanceGroupManager, $project, $region);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1189,13 +1146,11 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listErrorsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1214,8 +1169,8 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         try {
-            $client->listErrors($instanceGroupManager, $project, $region);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listErrors($instanceGroupManager, $project, $region);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1226,13 +1181,11 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listManagedInstancesTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1250,7 +1203,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $instanceGroupManager = 'instanceGroupManager-1361249341';
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $response = $client->listManagedInstances($instanceGroupManager, $project, $region);
+        $response = $gapicClient->listManagedInstances($instanceGroupManager, $project, $region);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1269,13 +1222,11 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listManagedInstancesExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1294,8 +1245,8 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         try {
-            $client->listManagedInstances($instanceGroupManager, $project, $region);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listManagedInstances($instanceGroupManager, $project, $region);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1306,13 +1257,11 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listPerInstanceConfigsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1330,7 +1279,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $instanceGroupManager = 'instanceGroupManager-1361249341';
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $response = $client->listPerInstanceConfigs($instanceGroupManager, $project, $region);
+        $response = $gapicClient->listPerInstanceConfigs($instanceGroupManager, $project, $region);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1349,13 +1298,11 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listPerInstanceConfigsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1374,8 +1321,8 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         try {
-            $client->listPerInstanceConfigs($instanceGroupManager, $project, $region);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listPerInstanceConfigs($instanceGroupManager, $project, $region);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1386,9 +1333,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function patchTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1398,7 +1343,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1418,7 +1363,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $instanceGroupManagerResource = new InstanceGroupManager();
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $response = $client->patch($instanceGroupManager, $instanceGroupManagerResource, $project, $region);
+        $response = $gapicClient->patch($instanceGroupManager, $instanceGroupManagerResource, $project, $region);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -1455,9 +1400,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function patchExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1467,7 +1410,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1493,7 +1436,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $instanceGroupManagerResource = new InstanceGroupManager();
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $response = $client->patch($instanceGroupManager, $instanceGroupManagerResource, $project, $region);
+        $response = $gapicClient->patch($instanceGroupManager, $instanceGroupManagerResource, $project, $region);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -1513,9 +1456,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function patchPerInstanceConfigsTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1525,7 +1466,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1545,7 +1486,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         $regionInstanceGroupManagerPatchInstanceConfigReqResource = new RegionInstanceGroupManagerPatchInstanceConfigReq();
-        $response = $client->patchPerInstanceConfigs($instanceGroupManager, $project, $region, $regionInstanceGroupManagerPatchInstanceConfigReqResource);
+        $response = $gapicClient->patchPerInstanceConfigs($instanceGroupManager, $project, $region, $regionInstanceGroupManagerPatchInstanceConfigReqResource);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -1582,9 +1523,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function patchPerInstanceConfigsExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1594,7 +1533,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1620,7 +1559,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         $regionInstanceGroupManagerPatchInstanceConfigReqResource = new RegionInstanceGroupManagerPatchInstanceConfigReq();
-        $response = $client->patchPerInstanceConfigs($instanceGroupManager, $project, $region, $regionInstanceGroupManagerPatchInstanceConfigReqResource);
+        $response = $gapicClient->patchPerInstanceConfigs($instanceGroupManager, $project, $region, $regionInstanceGroupManagerPatchInstanceConfigReqResource);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -1640,9 +1579,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function recreateInstancesTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1652,7 +1589,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1672,7 +1609,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         $regionInstanceGroupManagersRecreateRequestResource = new RegionInstanceGroupManagersRecreateRequest();
-        $response = $client->recreateInstances($instanceGroupManager, $project, $region, $regionInstanceGroupManagersRecreateRequestResource);
+        $response = $gapicClient->recreateInstances($instanceGroupManager, $project, $region, $regionInstanceGroupManagersRecreateRequestResource);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -1709,9 +1646,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function recreateInstancesExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1721,7 +1656,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1747,7 +1682,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         $regionInstanceGroupManagersRecreateRequestResource = new RegionInstanceGroupManagersRecreateRequest();
-        $response = $client->recreateInstances($instanceGroupManager, $project, $region, $regionInstanceGroupManagersRecreateRequestResource);
+        $response = $gapicClient->recreateInstances($instanceGroupManager, $project, $region, $regionInstanceGroupManagersRecreateRequestResource);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -1767,9 +1702,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function resizeTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1779,7 +1712,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1799,7 +1732,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         $size = 3530753;
-        $response = $client->resize($instanceGroupManager, $project, $region, $size);
+        $response = $gapicClient->resize($instanceGroupManager, $project, $region, $size);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -1836,9 +1769,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function resizeExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1848,7 +1779,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1874,7 +1805,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         $size = 3530753;
-        $response = $client->resize($instanceGroupManager, $project, $region, $size);
+        $response = $gapicClient->resize($instanceGroupManager, $project, $region, $size);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -1894,9 +1825,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setInstanceTemplateTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1906,7 +1835,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1926,7 +1855,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         $regionInstanceGroupManagersSetTemplateRequestResource = new RegionInstanceGroupManagersSetTemplateRequest();
-        $response = $client->setInstanceTemplate($instanceGroupManager, $project, $region, $regionInstanceGroupManagersSetTemplateRequestResource);
+        $response = $gapicClient->setInstanceTemplate($instanceGroupManager, $project, $region, $regionInstanceGroupManagersSetTemplateRequestResource);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -1963,9 +1892,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setInstanceTemplateExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1975,7 +1902,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -2001,7 +1928,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         $regionInstanceGroupManagersSetTemplateRequestResource = new RegionInstanceGroupManagersSetTemplateRequest();
-        $response = $client->setInstanceTemplate($instanceGroupManager, $project, $region, $regionInstanceGroupManagersSetTemplateRequestResource);
+        $response = $gapicClient->setInstanceTemplate($instanceGroupManager, $project, $region, $regionInstanceGroupManagersSetTemplateRequestResource);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -2021,9 +1948,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setTargetPoolsTest()
     {
         $operationsTransport = $this->createTransport();
@@ -2033,7 +1958,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -2053,7 +1978,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         $regionInstanceGroupManagersSetTargetPoolsRequestResource = new RegionInstanceGroupManagersSetTargetPoolsRequest();
-        $response = $client->setTargetPools($instanceGroupManager, $project, $region, $regionInstanceGroupManagersSetTargetPoolsRequestResource);
+        $response = $gapicClient->setTargetPools($instanceGroupManager, $project, $region, $regionInstanceGroupManagersSetTargetPoolsRequestResource);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -2090,9 +2015,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setTargetPoolsExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -2102,7 +2025,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -2128,7 +2051,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         $regionInstanceGroupManagersSetTargetPoolsRequestResource = new RegionInstanceGroupManagersSetTargetPoolsRequest();
-        $response = $client->setTargetPools($instanceGroupManager, $project, $region, $regionInstanceGroupManagersSetTargetPoolsRequestResource);
+        $response = $gapicClient->setTargetPools($instanceGroupManager, $project, $region, $regionInstanceGroupManagersSetTargetPoolsRequestResource);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -2148,9 +2071,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updatePerInstanceConfigsTest()
     {
         $operationsTransport = $this->createTransport();
@@ -2160,7 +2081,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -2180,7 +2101,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         $regionInstanceGroupManagerUpdateInstanceConfigReqResource = new RegionInstanceGroupManagerUpdateInstanceConfigReq();
-        $response = $client->updatePerInstanceConfigs($instanceGroupManager, $project, $region, $regionInstanceGroupManagerUpdateInstanceConfigReqResource);
+        $response = $gapicClient->updatePerInstanceConfigs($instanceGroupManager, $project, $region, $regionInstanceGroupManagerUpdateInstanceConfigReqResource);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -2217,9 +2138,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updatePerInstanceConfigsExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -2229,7 +2148,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -2255,7 +2174,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         $regionInstanceGroupManagerUpdateInstanceConfigReqResource = new RegionInstanceGroupManagerUpdateInstanceConfigReq();
-        $response = $client->updatePerInstanceConfigs($instanceGroupManager, $project, $region, $regionInstanceGroupManagerUpdateInstanceConfigReqResource);
+        $response = $gapicClient->updatePerInstanceConfigs($instanceGroupManager, $project, $region, $regionInstanceGroupManagerUpdateInstanceConfigReqResource);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {

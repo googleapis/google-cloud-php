@@ -23,7 +23,8 @@ class TextAnchor extends \Google\Protobuf\Internal\Message
     private $text_segments;
     /**
      * Contains the content of the text span so that users do
-     * not have to look it up in the text_segments.
+     * not have to look it up in the text_segments.  It is always
+     * populated for formFields.
      *
      * Generated from protobuf field <code>string content = 2;</code>
      */
@@ -35,11 +36,12 @@ class TextAnchor extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\DocumentAI\V1\Document\TextAnchor\TextSegment[]|\Google\Protobuf\Internal\RepeatedField $text_segments
+     *     @type array<\Google\Cloud\DocumentAI\V1\Document\TextAnchor\TextSegment>|\Google\Protobuf\Internal\RepeatedField $text_segments
      *           The text segments from the [Document.text][google.cloud.documentai.v1.Document.text].
      *     @type string $content
      *           Contains the content of the text span so that users do
-     *           not have to look it up in the text_segments.
+     *           not have to look it up in the text_segments.  It is always
+     *           populated for formFields.
      * }
      */
     public function __construct($data = NULL) {
@@ -62,7 +64,7 @@ class TextAnchor extends \Google\Protobuf\Internal\Message
      * The text segments from the [Document.text][google.cloud.documentai.v1.Document.text].
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.TextAnchor.TextSegment text_segments = 1;</code>
-     * @param \Google\Cloud\DocumentAI\V1\Document\TextAnchor\TextSegment[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\DocumentAI\V1\Document\TextAnchor\TextSegment>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTextSegments($var)
@@ -75,7 +77,8 @@ class TextAnchor extends \Google\Protobuf\Internal\Message
 
     /**
      * Contains the content of the text span so that users do
-     * not have to look it up in the text_segments.
+     * not have to look it up in the text_segments.  It is always
+     * populated for formFields.
      *
      * Generated from protobuf field <code>string content = 2;</code>
      * @return string
@@ -87,7 +90,8 @@ class TextAnchor extends \Google\Protobuf\Internal\Message
 
     /**
      * Contains the content of the text span so that users do
-     * not have to look it up in the text_segments.
+     * not have to look it up in the text_segments.  It is always
+     * populated for formFields.
      *
      * Generated from protobuf field <code>string content = 2;</code>
      * @param string $var
@@ -103,6 +107,4 @@ class TextAnchor extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(TextAnchor::class, \Google\Cloud\DocumentAI\V1\Document_TextAnchor::class);
 

@@ -34,7 +34,7 @@ class ListDataItemsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\DataLabeling\V1beta1\DataItem[]|\Google\Protobuf\Internal\RepeatedField $data_items
+     *     @type array<\Google\Cloud\DataLabeling\V1beta1\DataItem>|\Google\Protobuf\Internal\RepeatedField $data_items
      *           The list of data items to return.
      *     @type string $next_page_token
      *           A token to retrieve next page of results.
@@ -60,7 +60,7 @@ class ListDataItemsResponse extends \Google\Protobuf\Internal\Message
      * The list of data items to return.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datalabeling.v1beta1.DataItem data_items = 1;</code>
-     * @param \Google\Cloud\DataLabeling\V1beta1\DataItem[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\DataLabeling\V1beta1\DataItem>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDataItems($var)

@@ -44,11 +44,12 @@ class InTotoStatement extends \Google\Protobuf\Internal\Message
      *
      *     @type string $type
      *           Always `https://in-toto.io/Statement/v0.1`.
-     *     @type \Grafeas\V1\Subject[]|\Google\Protobuf\Internal\RepeatedField $subject
+     *     @type array<\Grafeas\V1\Subject>|\Google\Protobuf\Internal\RepeatedField $subject
      *     @type string $predicate_type
      *           `https://slsa.dev/provenance/v0.1` for SlsaProvenance.
      *     @type \Grafeas\V1\InTotoProvenance $provenance
      *     @type \Grafeas\V1\SlsaProvenance $slsa_provenance
+     *     @type \Grafeas\V1\SlsaProvenanceZeroTwo $slsa_provenance_zero_two
      * }
      */
     public function __construct($data = NULL) {
@@ -93,7 +94,7 @@ class InTotoStatement extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated .grafeas.v1.Subject subject = 2;</code>
-     * @param \Grafeas\V1\Subject[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Grafeas\V1\Subject>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSubject($var)
@@ -180,6 +181,33 @@ class InTotoStatement extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Grafeas\V1\SlsaProvenance::class);
         $this->writeOneof(5, $var);
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.grafeas.v1.SlsaProvenanceZeroTwo slsa_provenance_zero_two = 6;</code>
+     * @return \Grafeas\V1\SlsaProvenanceZeroTwo|null
+     */
+    public function getSlsaProvenanceZeroTwo()
+    {
+        return $this->readOneof(6);
+    }
+
+    public function hasSlsaProvenanceZeroTwo()
+    {
+        return $this->hasOneof(6);
+    }
+
+    /**
+     * Generated from protobuf field <code>.grafeas.v1.SlsaProvenanceZeroTwo slsa_provenance_zero_two = 6;</code>
+     * @param \Grafeas\V1\SlsaProvenanceZeroTwo $var
+     * @return $this
+     */
+    public function setSlsaProvenanceZeroTwo($var)
+    {
+        GPBUtil::checkMessage($var, \Grafeas\V1\SlsaProvenanceZeroTwo::class);
+        $this->writeOneof(6, $var);
 
         return $this;
     }

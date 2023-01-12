@@ -33,7 +33,7 @@ class SubnetworksScopedList extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Compute\V1\Subnetwork[]|\Google\Protobuf\Internal\RepeatedField $subnetworks
+     *     @type array<\Google\Cloud\Compute\V1\Subnetwork>|\Google\Protobuf\Internal\RepeatedField $subnetworks
      *           A list of subnetworks contained in this scope.
      *     @type \Google\Cloud\Compute\V1\Warning $warning
      *           An informational warning that appears when the list of addresses is empty.
@@ -59,7 +59,7 @@ class SubnetworksScopedList extends \Google\Protobuf\Internal\Message
      * A list of subnetworks contained in this scope.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Subnetwork subnetworks = 415853125;</code>
-     * @param \Google\Cloud\Compute\V1\Subnetwork[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\Subnetwork>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSubnetworks($var)

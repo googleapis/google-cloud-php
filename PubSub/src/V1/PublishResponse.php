@@ -30,7 +30,7 @@ class PublishResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $message_ids
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $message_ids
      *           The server-assigned ID of each published message, in the same order as
      *           the messages in the request. IDs are guaranteed to be unique within
      *           the topic.
@@ -60,7 +60,7 @@ class PublishResponse extends \Google\Protobuf\Internal\Message
      * the topic.
      *
      * Generated from protobuf field <code>repeated string message_ids = 1;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setMessageIds($var)

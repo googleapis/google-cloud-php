@@ -18,7 +18,7 @@ class SlsaProvenance
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-«
+À
  grafeas/v1/slsa_provenance.proto
 grafeas.v1google/protobuf/timestamp.proto"þ
 SlsaProvenance7
@@ -51,8 +51,8 @@ SlsaRecipe
 digest (2/.grafeas.v1.SlsaProvenance.Material.DigestEntry-
 DigestEntry
 key (	
-value (	:8BQ
-io.grafeas.v1PZ8google.golang.org/genproto/googleapis/grafeas/v1;grafeas¢GRAbproto3'
+value (	:8Bf
+io.grafeas.v1BSlsaProvenanceProtoPZ8google.golang.org/genproto/googleapis/grafeas/v1;grafeas¢GRAbproto3'
         , true);
 
         static::$is_initialized = true;

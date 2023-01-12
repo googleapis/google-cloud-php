@@ -19,11 +19,14 @@ class RecommenderService
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Api\Resource::initOnce();
         \GPBMetadata\Google\Cloud\Recommender\V1\Insight::initOnce();
+        \GPBMetadata\Google\Cloud\Recommender\V1\InsightTypeConfig::initOnce();
         \GPBMetadata\Google\Cloud\Recommender\V1\Recommendation::initOnce();
+        \GPBMetadata\Google\Cloud\Recommender\V1\RecommenderConfig::initOnce();
+        \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-À/
-5google/cloud/recommender/v1/recommender_service.protogoogle.cloud.recommender.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto)google/cloud/recommender/v1/insight.proto0google/cloud/recommender/v1/recommendation.proto"õ
+¨?
+5google/cloud/recommender/v1/recommender_service.protogoogle.cloud.recommender.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto)google/cloud/recommender/v1/insight.proto5google/cloud/recommender/v1/insight_type_config.proto0google/cloud/recommender/v1/recommendation.proto4google/cloud/recommender/v1/recommender_config.proto google/protobuf/field_mask.proto"õ
 ListInsightsRequest>
 parent (	B.‡A˙A(
 &recommender.googleapis.com/InsightType
@@ -81,7 +84,21 @@ page_token (	B‡A
 etag (	B‡A4
 StateMetadataEntry
 key (	
-value (	:82Ï
+value (	:8"a
+GetRecommenderConfigRequestB
+name (	B4‡A˙A.
+,recommender.googleapis.com/RecommenderConfig"π
+UpdateRecommenderConfigRequestO
+recommender_config (2..google.cloud.recommender.v1.RecommenderConfigB‡A/
+update_mask (2.google.protobuf.FieldMask
+validate_only ("a
+GetInsightTypeConfigRequestB
+name (	B4‡A˙A.
+,recommender.googleapis.com/InsightTypeConfig"∫
+UpdateInsightTypeConfigRequestP
+insight_type_config (2..google.cloud.recommender.v1.InsightTypeConfigB‡A/
+update_mask (2.google.protobuf.FieldMask
+validate_only (2ˇ\'
 Recommenderã
 ListInsights0.google.cloud.recommender.v1.ListInsightsRequest1.google.cloud.recommender.v1.ListInsightsResponse"ïÇ”‰ìÖ;/v1/{parent=projects/*/locations/*/insightTypes/*}/insightsZDB/v1/{parent=billingAccounts/*/locations/*/insightTypes/*}/insightsZ<:/v1/{parent=folders/*/locations/*/insightTypes/*}/insightsZB@/v1/{parent=organizations/*/locations/*/insightTypes/*}/insights⁄Aparent¯
 
@@ -91,7 +108,11 @@ GetInsight..google.cloud.recommender.v1.GetInsightRequest$.google.cloud.recomm
 GetRecommendation5.google.cloud.recommender.v1.GetRecommendationRequest+.google.cloud.recommender.v1.Recommendation"ØÇ”‰ì°B/v1/{name=projects/*/locations/*/recommenders/*/recommendations/*}ZKI/v1/{name=billingAccounts/*/locations/*/recommenders/*/recommendations/*}ZCA/v1/{name=folders/*/locations/*/recommenders/*/recommendations/*}ZIG/v1/{name=organizations/*/locations/*/recommenders/*/recommendations/*}⁄Anameâ
 MarkRecommendationClaimed=.google.cloud.recommender.v1.MarkRecommendationClaimedRequest+.google.cloud.recommender.v1.Recommendation"ˇÇ”‰ì›"N/v1/{name=projects/*/locations/*/recommenders/*/recommendations/*}:markClaimed:*ZZ"U/v1/{name=billingAccounts/*/locations/*/recommenders/*/recommendations/*}:markClaimed:*ZR"M/v1/{name=folders/*/locations/*/recommenders/*/recommendations/*}:markClaimed:*ZX"S/v1/{name=organizations/*/locations/*/recommenders/*/recommendations/*}:markClaimed:*⁄Aname,state_metadata,etagï
 MarkRecommendationSucceeded?.google.cloud.recommender.v1.MarkRecommendationSucceededRequest+.google.cloud.recommender.v1.Recommendation"áÇ”‰ìÂ"P/v1/{name=projects/*/locations/*/recommenders/*/recommendations/*}:markSucceeded:*Z\\"W/v1/{name=billingAccounts/*/locations/*/recommenders/*/recommendations/*}:markSucceeded:*ZT"O/v1/{name=folders/*/locations/*/recommenders/*/recommendations/*}:markSucceeded:*ZZ"U/v1/{name=organizations/*/locations/*/recommenders/*/recommendations/*}:markSucceeded:*⁄Aname,state_metadata,etagÉ
-MarkRecommendationFailed<.google.cloud.recommender.v1.MarkRecommendationFailedRequest+.google.cloud.recommender.v1.Recommendation"˚Ç”‰ìŸ"M/v1/{name=projects/*/locations/*/recommenders/*/recommendations/*}:markFailed:*ZY"T/v1/{name=billingAccounts/*/locations/*/recommenders/*/recommendations/*}:markFailed:*ZQ"L/v1/{name=folders/*/locations/*/recommenders/*/recommendations/*}:markFailed:*ZW"R/v1/{name=organizations/*/locations/*/recommenders/*/recommendations/*}:markFailed:*⁄Aname,state_metadata,etagN Arecommender.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformB¢
+MarkRecommendationFailed<.google.cloud.recommender.v1.MarkRecommendationFailedRequest+.google.cloud.recommender.v1.Recommendation"˚Ç”‰ìŸ"M/v1/{name=projects/*/locations/*/recommenders/*/recommendations/*}:markFailed:*ZY"T/v1/{name=billingAccounts/*/locations/*/recommenders/*/recommendations/*}:markFailed:*ZQ"L/v1/{name=folders/*/locations/*/recommenders/*/recommendations/*}:markFailed:*ZW"R/v1/{name=organizations/*/locations/*/recommenders/*/recommendations/*}:markFailed:*⁄Aname,state_metadata,etagâ
+GetRecommenderConfig8.google.cloud.recommender.v1.GetRecommenderConfigRequest..google.cloud.recommender.v1.RecommenderConfig"ÜÇ”‰ìy7/v1/{name=projects/*/locations/*/recommenders/*/config}Z></v1/{name=organizations/*/locations/*/recommenders/*/config}⁄Aname¯
+UpdateRecommenderConfig;.google.cloud.recommender.v1.UpdateRecommenderConfigRequest..google.cloud.recommender.v1.RecommenderConfig"ÔÇ”‰ì«2J/v1/{recommender_config.name=projects/*/locations/*/recommenders/*/config}:recommender_configZe2O/v1/{recommender_config.name=organizations/*/locations/*/recommenders/*/config}:recommender_config⁄Arecommender_config,update_maskâ
+GetInsightTypeConfig8.google.cloud.recommender.v1.GetInsightTypeConfigRequest..google.cloud.recommender.v1.InsightTypeConfig"ÜÇ”‰ìy7/v1/{name=projects/*/locations/*/insightTypes/*/config}Z></v1/{name=organizations/*/locations/*/insightTypes/*/config}⁄Aname˝
+UpdateInsightTypeConfig;.google.cloud.recommender.v1.UpdateInsightTypeConfigRequest..google.cloud.recommender.v1.InsightTypeConfig"ÙÇ”‰ìÀ2K/v1/{insight_type_config.name=projects/*/locations/*/insightTypes/*/config}:insight_type_configZg2P/v1/{insight_type_config.name=organizations/*/locations/*/insightTypes/*/config}:insight_type_config⁄Ainsight_type_config,update_maskN Arecommender.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformB¢
 com.google.cloud.recommender.v1BRecommenderProtoPZFgoogle.golang.org/genproto/googleapis/cloud/recommender/v1;recommender¢CREC™Google.Cloud.Recommender.V1bproto3'
         , true);
 

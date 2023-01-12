@@ -72,7 +72,7 @@ class UpdateDatabaseDdlRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $database
      *           Required. The database to update.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $statements
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $statements
      *           Required. DDL statements to be applied to the database.
      *     @type string $operation_id
      *           If empty, the new update request is assigned an
@@ -140,7 +140,7 @@ class UpdateDatabaseDdlRequest extends \Google\Protobuf\Internal\Message
      * Required. DDL statements to be applied to the database.
      *
      * Generated from protobuf field <code>repeated string statements = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setStatements($var)

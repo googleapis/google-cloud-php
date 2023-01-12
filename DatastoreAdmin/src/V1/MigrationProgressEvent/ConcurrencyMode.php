@@ -31,11 +31,18 @@ class ConcurrencyMode
      * Generated from protobuf enum <code>OPTIMISTIC = 2;</code>
      */
     const OPTIMISTIC = 2;
+    /**
+     * Optimistic concurrency with entity groups.
+     *
+     * Generated from protobuf enum <code>OPTIMISTIC_WITH_ENTITY_GROUPS = 3;</code>
+     */
+    const OPTIMISTIC_WITH_ENTITY_GROUPS = 3;
 
     private static $valueToName = [
         self::CONCURRENCY_MODE_UNSPECIFIED => 'CONCURRENCY_MODE_UNSPECIFIED',
         self::PESSIMISTIC => 'PESSIMISTIC',
         self::OPTIMISTIC => 'OPTIMISTIC',
+        self::OPTIMISTIC_WITH_ENTITY_GROUPS => 'OPTIMISTIC_WITH_ENTITY_GROUPS',
     ];
 
     public static function name($value)

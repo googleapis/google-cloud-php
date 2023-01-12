@@ -28,8 +28,8 @@ class ListPipelineJobsRequest extends \Google\Protobuf\Internal\Message
      * * `pipeline_name`: Supports `=` and `!=` comparisons.
      * * `display_name`: Supports `=`, `!=` comparisons, and `:` wildcard.
      * * `pipeline_job_user_id`: Supports `=`, `!=` comparisons, and `:` wildcard.
-     *  for example, can check if pipeline's display_name contains *step* by doing
-     *   display_name:\"*step*\"
+     *   for example, can check if pipeline's display_name contains *step* by
+     *   doing display_name:\"*step*\"
      * * `state`: Supports `=` and `!=` comparisons.
      * * `create_time`: Supports `=`, `!=`, `<`, `>`, `<=`, and `>=` comparisons.
      *   Values must be in RFC 3339 format.
@@ -38,6 +38,9 @@ class ListPipelineJobsRequest extends \Google\Protobuf\Internal\Message
      * * `end_time`: Supports `=`, `!=`, `<`, `>`, `<=`, and `>=` comparisons.
      *   Values must be in RFC 3339 format.
      * * `labels`: Supports key-value equality and key presence.
+     * * `template_uri`: Supports `=`, `!=` comparisons, and `:` wildcard.
+     * * `template_metadata.version`: Supports `=`, `!=` comparisons, and `:`
+     *   wildcard.
      * Filter expressions can be combined together using logical operators
      * (`AND` & `OR`).
      * For example: `pipeline_name="test" AND create_time>"2020-05-18T13:30:00Z"`.
@@ -85,6 +88,12 @@ class ListPipelineJobsRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string order_by = 6;</code>
      */
     private $order_by = '';
+    /**
+     * Mask specifying which fields to read.
+     *
+     * Generated from protobuf field <code>.google.protobuf.FieldMask read_mask = 7;</code>
+     */
+    private $read_mask = null;
 
     /**
      * Constructor.
@@ -101,8 +110,8 @@ class ListPipelineJobsRequest extends \Google\Protobuf\Internal\Message
      *           * `pipeline_name`: Supports `=` and `!=` comparisons.
      *           * `display_name`: Supports `=`, `!=` comparisons, and `:` wildcard.
      *           * `pipeline_job_user_id`: Supports `=`, `!=` comparisons, and `:` wildcard.
-     *            for example, can check if pipeline's display_name contains *step* by doing
-     *             display_name:\"*step*\"
+     *             for example, can check if pipeline's display_name contains *step* by
+     *             doing display_name:\"*step*\"
      *           * `state`: Supports `=` and `!=` comparisons.
      *           * `create_time`: Supports `=`, `!=`, `<`, `>`, `<=`, and `>=` comparisons.
      *             Values must be in RFC 3339 format.
@@ -111,6 +120,9 @@ class ListPipelineJobsRequest extends \Google\Protobuf\Internal\Message
      *           * `end_time`: Supports `=`, `!=`, `<`, `>`, `<=`, and `>=` comparisons.
      *             Values must be in RFC 3339 format.
      *           * `labels`: Supports key-value equality and key presence.
+     *           * `template_uri`: Supports `=`, `!=` comparisons, and `:` wildcard.
+     *           * `template_metadata.version`: Supports `=`, `!=` comparisons, and `:`
+     *             wildcard.
      *           Filter expressions can be combined together using logical operators
      *           (`AND` & `OR`).
      *           For example: `pipeline_name="test" AND create_time>"2020-05-18T13:30:00Z"`.
@@ -142,6 +154,8 @@ class ListPipelineJobsRequest extends \Google\Protobuf\Internal\Message
      *             * `update_time`
      *             * `end_time`
      *             * `start_time`
+     *     @type \Google\Protobuf\FieldMask $read_mask
+     *           Mask specifying which fields to read.
      * }
      */
     public function __construct($data = NULL) {
@@ -183,8 +197,8 @@ class ListPipelineJobsRequest extends \Google\Protobuf\Internal\Message
      * * `pipeline_name`: Supports `=` and `!=` comparisons.
      * * `display_name`: Supports `=`, `!=` comparisons, and `:` wildcard.
      * * `pipeline_job_user_id`: Supports `=`, `!=` comparisons, and `:` wildcard.
-     *  for example, can check if pipeline's display_name contains *step* by doing
-     *   display_name:\"*step*\"
+     *   for example, can check if pipeline's display_name contains *step* by
+     *   doing display_name:\"*step*\"
      * * `state`: Supports `=` and `!=` comparisons.
      * * `create_time`: Supports `=`, `!=`, `<`, `>`, `<=`, and `>=` comparisons.
      *   Values must be in RFC 3339 format.
@@ -193,6 +207,9 @@ class ListPipelineJobsRequest extends \Google\Protobuf\Internal\Message
      * * `end_time`: Supports `=`, `!=`, `<`, `>`, `<=`, and `>=` comparisons.
      *   Values must be in RFC 3339 format.
      * * `labels`: Supports key-value equality and key presence.
+     * * `template_uri`: Supports `=`, `!=` comparisons, and `:` wildcard.
+     * * `template_metadata.version`: Supports `=`, `!=` comparisons, and `:`
+     *   wildcard.
      * Filter expressions can be combined together using logical operators
      * (`AND` & `OR`).
      * For example: `pipeline_name="test" AND create_time>"2020-05-18T13:30:00Z"`.
@@ -219,8 +236,8 @@ class ListPipelineJobsRequest extends \Google\Protobuf\Internal\Message
      * * `pipeline_name`: Supports `=` and `!=` comparisons.
      * * `display_name`: Supports `=`, `!=` comparisons, and `:` wildcard.
      * * `pipeline_job_user_id`: Supports `=`, `!=` comparisons, and `:` wildcard.
-     *  for example, can check if pipeline's display_name contains *step* by doing
-     *   display_name:\"*step*\"
+     *   for example, can check if pipeline's display_name contains *step* by
+     *   doing display_name:\"*step*\"
      * * `state`: Supports `=` and `!=` comparisons.
      * * `create_time`: Supports `=`, `!=`, `<`, `>`, `<=`, and `>=` comparisons.
      *   Values must be in RFC 3339 format.
@@ -229,6 +246,9 @@ class ListPipelineJobsRequest extends \Google\Protobuf\Internal\Message
      * * `end_time`: Supports `=`, `!=`, `<`, `>`, `<=`, and `>=` comparisons.
      *   Values must be in RFC 3339 format.
      * * `labels`: Supports key-value equality and key presence.
+     * * `template_uri`: Supports `=`, `!=` comparisons, and `:` wildcard.
+     * * `template_metadata.version`: Supports `=`, `!=` comparisons, and `:`
+     *   wildcard.
      * Filter expressions can be combined together using logical operators
      * (`AND` & `OR`).
      * For example: `pipeline_name="test" AND create_time>"2020-05-18T13:30:00Z"`.
@@ -355,6 +375,42 @@ class ListPipelineJobsRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->order_by = $var;
+
+        return $this;
+    }
+
+    /**
+     * Mask specifying which fields to read.
+     *
+     * Generated from protobuf field <code>.google.protobuf.FieldMask read_mask = 7;</code>
+     * @return \Google\Protobuf\FieldMask|null
+     */
+    public function getReadMask()
+    {
+        return $this->read_mask;
+    }
+
+    public function hasReadMask()
+    {
+        return isset($this->read_mask);
+    }
+
+    public function clearReadMask()
+    {
+        unset($this->read_mask);
+    }
+
+    /**
+     * Mask specifying which fields to read.
+     *
+     * Generated from protobuf field <code>.google.protobuf.FieldMask read_mask = 7;</code>
+     * @param \Google\Protobuf\FieldMask $var
+     * @return $this
+     */
+    public function setReadMask($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\FieldMask::class);
+        $this->read_mask = $var;
 
         return $this;
     }

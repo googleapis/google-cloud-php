@@ -49,7 +49,7 @@ class BatchEnableServicesRequest extends \Google\Protobuf\Internal\Message
      *           An example name would be:
      *           `projects/123` where `123` is the project number.
      *           The `BatchEnableServices` method currently only supports projects.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $service_ids
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $service_ids
      *           The identifiers of the services to enable on the project.
      *           A valid identifier would be:
      *           serviceusage.googleapis.com
@@ -126,7 +126,7 @@ class BatchEnableServicesRequest extends \Google\Protobuf\Internal\Message
      * will occur.
      *
      * Generated from protobuf field <code>repeated string service_ids = 2;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setServiceIds($var)

@@ -23,15 +23,12 @@
 namespace Google\Cloud\RecommendationEngine\Tests\Unit\V1beta1;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\RecommendationEngine\V1beta1\CatalogItem;
 use Google\Cloud\RecommendationEngine\V1beta1\CatalogServiceClient;
-
 use Google\Cloud\RecommendationEngine\V1beta1\ImportCatalogItemsResponse;
 use Google\Cloud\RecommendationEngine\V1beta1\InputConfig;
 use Google\Cloud\RecommendationEngine\V1beta1\ListCatalogItemsResponse;
@@ -49,25 +46,19 @@ use stdClass;
  */
 class CatalogServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return CatalogServiceClient
-     */
+    /** @return CatalogServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -76,13 +67,11 @@ class CatalogServiceClientTest extends GeneratedTest
         return new CatalogServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createCatalogItemTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -100,7 +89,7 @@ class CatalogServiceClientTest extends GeneratedTest
         $expectedResponse->setItemGroupId($itemGroupId);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
+        $formattedParent = $gapicClient->catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
         $catalogItem = new CatalogItem();
         $catalogItemId = 'catalogItemId-1850269433';
         $catalogItem->setId($catalogItemId);
@@ -108,7 +97,7 @@ class CatalogServiceClientTest extends GeneratedTest
         $catalogItem->setCategoryHierarchies($catalogItemCategoryHierarchies);
         $catalogItemTitle = 'catalogItemTitle244020972';
         $catalogItem->setTitle($catalogItemTitle);
-        $response = $client->createCatalogItem($formattedParent, $catalogItem);
+        $response = $gapicClient->createCatalogItem($formattedParent, $catalogItem);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -122,13 +111,11 @@ class CatalogServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createCatalogItemExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -143,7 +130,7 @@ class CatalogServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
+        $formattedParent = $gapicClient->catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
         $catalogItem = new CatalogItem();
         $catalogItemId = 'catalogItemId-1850269433';
         $catalogItem->setId($catalogItemId);
@@ -152,8 +139,8 @@ class CatalogServiceClientTest extends GeneratedTest
         $catalogItemTitle = 'catalogItemTitle244020972';
         $catalogItem->setTitle($catalogItemTitle);
         try {
-            $client->createCatalogItem($formattedParent, $catalogItem);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->createCatalogItem($formattedParent, $catalogItem);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -164,13 +151,11 @@ class CatalogServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteCatalogItemTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -178,8 +163,8 @@ class CatalogServiceClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->catalogItemPathName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[CATALOG_ITEM_PATH]');
-        $client->deleteCatalogItem($formattedName);
+        $formattedName = $gapicClient->catalogItemPathName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[CATALOG_ITEM_PATH]');
+        $gapicClient->deleteCatalogItem($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -190,13 +175,11 @@ class CatalogServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteCatalogItemExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -211,10 +194,10 @@ class CatalogServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->catalogItemPathName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[CATALOG_ITEM_PATH]');
+        $formattedName = $gapicClient->catalogItemPathName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[CATALOG_ITEM_PATH]');
         try {
-            $client->deleteCatalogItem($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->deleteCatalogItem($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -225,13 +208,11 @@ class CatalogServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getCatalogItemTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -249,8 +230,8 @@ class CatalogServiceClientTest extends GeneratedTest
         $expectedResponse->setItemGroupId($itemGroupId);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->catalogItemPathName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[CATALOG_ITEM_PATH]');
-        $response = $client->getCatalogItem($formattedName);
+        $formattedName = $gapicClient->catalogItemPathName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[CATALOG_ITEM_PATH]');
+        $response = $gapicClient->getCatalogItem($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -262,13 +243,11 @@ class CatalogServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getCatalogItemExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -283,10 +262,10 @@ class CatalogServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->catalogItemPathName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[CATALOG_ITEM_PATH]');
+        $formattedName = $gapicClient->catalogItemPathName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[CATALOG_ITEM_PATH]');
         try {
-            $client->getCatalogItem($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getCatalogItem($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -297,9 +276,7 @@ class CatalogServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function importCatalogItemsTest()
     {
         $operationsTransport = $this->createTransport();
@@ -309,7 +286,7 @@ class CatalogServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -329,9 +306,9 @@ class CatalogServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $client->catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
+        $formattedParent = $gapicClient->catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
         $inputConfig = new InputConfig();
-        $response = $client->importCatalogItems($formattedParent, $inputConfig);
+        $response = $gapicClient->importCatalogItems($formattedParent, $inputConfig);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -364,9 +341,7 @@ class CatalogServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function importCatalogItemsExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -376,7 +351,7 @@ class CatalogServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -398,9 +373,9 @@ class CatalogServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
+        $formattedParent = $gapicClient->catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
         $inputConfig = new InputConfig();
-        $response = $client->importCatalogItems($formattedParent, $inputConfig);
+        $response = $gapicClient->importCatalogItems($formattedParent, $inputConfig);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -422,13 +397,11 @@ class CatalogServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listCatalogItemsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -443,8 +416,8 @@ class CatalogServiceClientTest extends GeneratedTest
         $expectedResponse->setCatalogItems($catalogItems);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
-        $response = $client->listCatalogItems($formattedParent);
+        $formattedParent = $gapicClient->catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
+        $response = $gapicClient->listCatalogItems($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -459,13 +432,11 @@ class CatalogServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listCatalogItemsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -480,10 +451,10 @@ class CatalogServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
+        $formattedParent = $gapicClient->catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
         try {
-            $client->listCatalogItems($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listCatalogItems($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -494,13 +465,11 @@ class CatalogServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateCatalogItemTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -518,7 +487,7 @@ class CatalogServiceClientTest extends GeneratedTest
         $expectedResponse->setItemGroupId($itemGroupId);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->catalogItemPathName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[CATALOG_ITEM_PATH]');
+        $formattedName = $gapicClient->catalogItemPathName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[CATALOG_ITEM_PATH]');
         $catalogItem = new CatalogItem();
         $catalogItemId = 'catalogItemId-1850269433';
         $catalogItem->setId($catalogItemId);
@@ -526,7 +495,7 @@ class CatalogServiceClientTest extends GeneratedTest
         $catalogItem->setCategoryHierarchies($catalogItemCategoryHierarchies);
         $catalogItemTitle = 'catalogItemTitle244020972';
         $catalogItem->setTitle($catalogItemTitle);
-        $response = $client->updateCatalogItem($formattedName, $catalogItem);
+        $response = $gapicClient->updateCatalogItem($formattedName, $catalogItem);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -540,13 +509,11 @@ class CatalogServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateCatalogItemExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -561,7 +528,7 @@ class CatalogServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->catalogItemPathName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[CATALOG_ITEM_PATH]');
+        $formattedName = $gapicClient->catalogItemPathName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[CATALOG_ITEM_PATH]');
         $catalogItem = new CatalogItem();
         $catalogItemId = 'catalogItemId-1850269433';
         $catalogItem->setId($catalogItemId);
@@ -570,8 +537,8 @@ class CatalogServiceClientTest extends GeneratedTest
         $catalogItemTitle = 'catalogItemTitle244020972';
         $catalogItem->setTitle($catalogItemTitle);
         try {
-            $client->updateCatalogItem($formattedName, $catalogItem);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->updateCatalogItem($formattedName, $catalogItem);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

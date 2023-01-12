@@ -370,22 +370,21 @@ class AdaptationGapicClient
      *                                   Speech-to-Text supports three locations: `global`, `us` (US North America),
      *                                   and `eu` (Europe). If you are calling the `speech.googleapis.com`
      *                                   endpoint, use the `global` location. To specify a region, use a
-     *                                   [regional endpoint](https://cloud.google.com/speech-to-text/docs/endpoints) with matching `us` or
-     *                                   `eu` location value.
+     *                                   [regional endpoint](https://cloud.google.com/speech-to-text/docs/endpoints)
+     *                                   with matching `us` or `eu` location value.
      * @param string      $customClassId Required. The ID to use for the custom class, which will become the final
      *                                   component of the custom class' resource name.
      *
-     *                                   This value should be 4-63 characters, and valid characters
-     *                                   are /[a-z][0-9]-/.
+     *                                   This value should restrict to letters, numbers, and hyphens, with the first
+     *                                   character a letter, the last a letter or a number, and be 4-63 characters.
      * @param CustomClass $customClass   Required. The custom class to create.
      * @param array       $optionalArgs  {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Speech\V1p1beta1\CustomClass
@@ -432,22 +431,21 @@ class AdaptationGapicClient
      *                                Speech-to-Text supports three locations: `global`, `us` (US North America),
      *                                and `eu` (Europe). If you are calling the `speech.googleapis.com`
      *                                endpoint, use the `global` location. To specify a region, use a
-     *                                [regional endpoint](https://cloud.google.com/speech-to-text/docs/endpoints) with matching `us` or
-     *                                `eu` location value.
+     *                                [regional endpoint](https://cloud.google.com/speech-to-text/docs/endpoints)
+     *                                with matching `us` or `eu` location value.
      * @param string    $phraseSetId  Required. The ID to use for the phrase set, which will become the final
      *                                component of the phrase set's resource name.
      *
-     *                                This value should be 4-63 characters, and valid characters
-     *                                are /[a-z][0-9]-/.
+     *                                This value should restrict to letters, numbers, and hyphens, with the first
+     *                                character a letter, the last a letter or a number, and be 4-63 characters.
      * @param PhraseSet $phraseSet    Required. The phrase set to create.
      * @param array     $optionalArgs {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Speech\V1p1beta1\PhraseSet
@@ -490,16 +488,15 @@ class AdaptationGapicClient
      *                             Speech-to-Text supports three locations: `global`, `us` (US North America),
      *                             and `eu` (Europe). If you are calling the `speech.googleapis.com`
      *                             endpoint, use the `global` location. To specify a region, use a
-     *                             [regional endpoint](https://cloud.google.com/speech-to-text/docs/endpoints) with matching `us` or
-     *                             `eu` location value.
+     *                             [regional endpoint](https://cloud.google.com/speech-to-text/docs/endpoints)
+     *                             with matching `us` or `eu` location value.
      * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @throws ApiException if the remote call fails
@@ -538,10 +535,9 @@ class AdaptationGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @throws ApiException if the remote call fails
@@ -580,10 +576,9 @@ class AdaptationGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Speech\V1p1beta1\CustomClass
@@ -624,16 +619,15 @@ class AdaptationGapicClient
      *                             Speech-to-Text supports three locations: `global`, `us` (US North America),
      *                             and `eu` (Europe). If you are calling the `speech.googleapis.com`
      *                             endpoint, use the `global` location. To specify a region, use a
-     *                             [regional endpoint](https://cloud.google.com/speech-to-text/docs/endpoints) with matching `us` or
-     *                             `eu` location value.
+     *                             [regional endpoint](https://cloud.google.com/speech-to-text/docs/endpoints)
+     *                             with matching `us` or `eu` location value.
      * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Speech\V1p1beta1\PhraseSet
@@ -686,8 +680,8 @@ class AdaptationGapicClient
      *                             Speech-to-Text supports three locations: `global`, `us` (US North America),
      *                             and `eu` (Europe). If you are calling the `speech.googleapis.com`
      *                             endpoint, use the `global` location. To specify a region, use a
-     *                             [regional endpoint](https://cloud.google.com/speech-to-text/docs/endpoints) with matching `us` or
-     *                             `eu` location value.
+     *                             [regional endpoint](https://cloud.google.com/speech-to-text/docs/endpoints)
+     *                             with matching `us` or `eu` location value.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -701,10 +695,9 @@ class AdaptationGapicClient
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -765,8 +758,8 @@ class AdaptationGapicClient
      *                             Speech-to-Text supports three locations: `global`, `us` (US North America),
      *                             and `eu` (Europe). If you are calling the `speech.googleapis.com`
      *                             endpoint, use the `global` location. To specify a region, use a
-     *                             [regional endpoint](https://cloud.google.com/speech-to-text/docs/endpoints) with matching `us` or
-     *                             `eu` location value.
+     *                             [regional endpoint](https://cloud.google.com/speech-to-text/docs/endpoints)
+     *                             with matching `us` or `eu` location value.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -780,10 +773,9 @@ class AdaptationGapicClient
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -835,18 +827,17 @@ class AdaptationGapicClient
      *                                  Speech-to-Text supports three locations: `global`, `us` (US North America),
      *                                  and `eu` (Europe). If you are calling the `speech.googleapis.com`
      *                                  endpoint, use the `global` location. To specify a region, use a
-     *                                  [regional endpoint](https://cloud.google.com/speech-to-text/docs/endpoints) with matching `us` or
-     *                                  `eu` location value.
+     *                                  [regional endpoint](https://cloud.google.com/speech-to-text/docs/endpoints)
+     *                                  with matching `us` or `eu` location value.
      * @param array       $optionalArgs {
      *     Optional.
      *
      *     @type FieldMask $updateMask
      *           The list of fields to be updated.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Speech\V1p1beta1\CustomClass
@@ -894,18 +885,17 @@ class AdaptationGapicClient
      *                                Speech-to-Text supports three locations: `global`, `us` (US North America),
      *                                and `eu` (Europe). If you are calling the `speech.googleapis.com`
      *                                endpoint, use the `global` location. To specify a region, use a
-     *                                [regional endpoint](https://cloud.google.com/speech-to-text/docs/endpoints) with matching `us` or
-     *                                `eu` location value.
+     *                                [regional endpoint](https://cloud.google.com/speech-to-text/docs/endpoints)
+     *                                with matching `us` or `eu` location value.
      * @param array     $optionalArgs {
      *     Optional.
      *
      *     @type FieldMask $updateMask
      *           The list of fields to be updated.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Speech\V1p1beta1\PhraseSet

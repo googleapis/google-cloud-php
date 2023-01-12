@@ -58,9 +58,12 @@ class Featurestore extends \Google\Protobuf\Internal\Message
      */
     private $labels;
     /**
-     * Required. Config for online serving resources.
+     * Optional. Config for online storage resources. The field should not co-exist with the
+     * field of `OnlineStoreReplicationConfig`. If both of it and
+     * OnlineStoreReplicationConfig are unset, the feature store will not have an
+     * online store and cannot be used for online serving.
      *
-     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Featurestore.OnlineServingConfig online_serving_config = 7 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Featurestore.OnlineServingConfig online_serving_config = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $online_serving_config = null;
     /**
@@ -104,7 +107,10 @@ class Featurestore extends \Google\Protobuf\Internal\Message
      *           System reserved label keys are prefixed with "aiplatform.googleapis.com/"
      *           and are immutable.
      *     @type \Google\Cloud\AIPlatform\V1\Featurestore\OnlineServingConfig $online_serving_config
-     *           Required. Config for online serving resources.
+     *           Optional. Config for online storage resources. The field should not co-exist with the
+     *           field of `OnlineStoreReplicationConfig`. If both of it and
+     *           OnlineStoreReplicationConfig are unset, the feature store will not have an
+     *           online store and cannot be used for online serving.
      *     @type int $state
      *           Output only. State of the featurestore.
      *     @type \Google\Cloud\AIPlatform\V1\EncryptionSpec $encryption_spec
@@ -288,9 +294,12 @@ class Featurestore extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Config for online serving resources.
+     * Optional. Config for online storage resources. The field should not co-exist with the
+     * field of `OnlineStoreReplicationConfig`. If both of it and
+     * OnlineStoreReplicationConfig are unset, the feature store will not have an
+     * online store and cannot be used for online serving.
      *
-     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Featurestore.OnlineServingConfig online_serving_config = 7 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Featurestore.OnlineServingConfig online_serving_config = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\AIPlatform\V1\Featurestore\OnlineServingConfig|null
      */
     public function getOnlineServingConfig()
@@ -309,9 +318,12 @@ class Featurestore extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Config for online serving resources.
+     * Optional. Config for online storage resources. The field should not co-exist with the
+     * field of `OnlineStoreReplicationConfig`. If both of it and
+     * OnlineStoreReplicationConfig are unset, the feature store will not have an
+     * online store and cannot be used for online serving.
      *
-     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Featurestore.OnlineServingConfig online_serving_config = 7 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Featurestore.OnlineServingConfig online_serving_config = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\AIPlatform\V1\Featurestore\OnlineServingConfig $var
      * @return $this
      */

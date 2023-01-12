@@ -40,7 +40,7 @@ class TopicTest extends SnippetTestCase
     private $pubsub;
     private $topic;
 
-    public function setUp()
+    public function set_up()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->pubsub = TestHelpers::stub(PubSubClient::class, [

@@ -18,7 +18,7 @@ class ClusterState extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The state of replication for the table in this cluster.
      *
-     * Generated from protobuf field <code>.google.bigtable.admin.v2.Table.ClusterState.ReplicationState replication_state = 1;</code>
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Table.ClusterState.ReplicationState replication_state = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $replication_state = 0;
     /**
@@ -40,7 +40,7 @@ class ClusterState extends \Google\Protobuf\Internal\Message
      *
      *     @type int $replication_state
      *           Output only. The state of replication for the table in this cluster.
-     *     @type \Google\Cloud\Bigtable\Admin\V2\EncryptionInfo[]|\Google\Protobuf\Internal\RepeatedField $encryption_info
+     *     @type array<\Google\Cloud\Bigtable\Admin\V2\EncryptionInfo>|\Google\Protobuf\Internal\RepeatedField $encryption_info
      *           Output only. The encryption information for the table in this cluster.
      *           If the encryption key protecting this resource is customer managed, then
      *           its version can be rotated in Cloud Key Management Service (Cloud KMS).
@@ -56,7 +56,7 @@ class ClusterState extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The state of replication for the table in this cluster.
      *
-     * Generated from protobuf field <code>.google.bigtable.admin.v2.Table.ClusterState.ReplicationState replication_state = 1;</code>
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Table.ClusterState.ReplicationState replication_state = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
      */
     public function getReplicationState()
@@ -67,7 +67,7 @@ class ClusterState extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The state of replication for the table in this cluster.
      *
-     * Generated from protobuf field <code>.google.bigtable.admin.v2.Table.ClusterState.ReplicationState replication_state = 1;</code>
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Table.ClusterState.ReplicationState replication_state = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
      * @return $this
      */
@@ -102,7 +102,7 @@ class ClusterState extends \Google\Protobuf\Internal\Message
      * changes propagate from Cloud KMS.
      *
      * Generated from protobuf field <code>repeated .google.bigtable.admin.v2.EncryptionInfo encryption_info = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param \Google\Cloud\Bigtable\Admin\V2\EncryptionInfo[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Bigtable\Admin\V2\EncryptionInfo>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setEncryptionInfo($var)

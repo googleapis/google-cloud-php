@@ -35,16 +35,18 @@ use Google\Rpc\BadRequest\FieldViolation;
 use Google\Rpc\Code;
 use Google\Rpc\PreconditionFailure;
 use Google\Rpc\Status;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group core
  */
 class GrpcRequestWrapperTest extends TestCase
 {
+    use ExpectException;
     use GrpcTestTrait;
 
-    public function setUp()
+    public function set_up()
     {
         $this->checkAndSkipGrpcTests();
     }
@@ -107,11 +109,10 @@ class GrpcRequestWrapperTest extends TestCase
         ];
     }
 
-    /**
-     * @expectedException Google\Cloud\Core\Exception\GoogleException
-     */
     public function testThrowsExceptionWhenRequestFails()
     {
+        $this->expectException('Google\Cloud\Core\Exception\GoogleException');
+
         $requestWrapper = new GrpcRequestWrapper();
 
         $requestWrapper->send(function () {
@@ -163,11 +164,10 @@ class GrpcRequestWrapperTest extends TestCase
         }
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testThrowsExceptionWithInvalidCredentialsFetcher()
     {
+        $this->expectException('InvalidArgumentException');
+
         $credentialsFetcher = new \stdClass();
 
         $requestWrapper = new GrpcRequestWrapper([

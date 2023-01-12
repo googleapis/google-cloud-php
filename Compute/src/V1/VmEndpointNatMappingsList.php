@@ -64,7 +64,7 @@ class VmEndpointNatMappingsList extends \Google\Protobuf\Internal\Message
      *           [Output Only] Type of resource. Always compute#vmEndpointNatMappingsList for lists of Nat mappings of VM endpoints.
      *     @type string $next_page_token
      *           [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
-     *     @type \Google\Cloud\Compute\V1\VmEndpointNatMappings[]|\Google\Protobuf\Internal\RepeatedField $result
+     *     @type array<\Google\Cloud\Compute\V1\VmEndpointNatMappings>|\Google\Protobuf\Internal\RepeatedField $result
      *           [Output Only] A list of Nat mapping information of VM endpoints.
      *     @type string $self_link
      *           [Output Only] Server-defined URL for this resource.
@@ -200,7 +200,7 @@ class VmEndpointNatMappingsList extends \Google\Protobuf\Internal\Message
      * [Output Only] A list of Nat mapping information of VM endpoints.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.VmEndpointNatMappings result = 139315229;</code>
-     * @param \Google\Cloud\Compute\V1\VmEndpointNatMappings[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\VmEndpointNatMappings>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setResult($var)

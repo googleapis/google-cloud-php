@@ -16,18 +16,22 @@ use Google\Protobuf\Internal\GPBUtil;
 class Source extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. List of peer identities to match for authorization. At least one
-     * principal should match. Each peer can be an exact match, or a prefix
-     * match (example, "namespace/&#42;") or a suffix match (example, //
-     * *&#47;service-account") or a presence match "*".
+     * Optional. List of peer identities to match for authorization. At least
+     * one principal should match. Each peer can be an exact match, or a
+     * prefix match (example, "namespace/&#42;") or a suffix match (example,
+     * "*&#47;service-account") or a presence match "*". Authorization based on
+     * the principal name without certificate validation (configured by
+     * ServerTlsPolicy resource) is considered insecure.
      *
      * Generated from protobuf field <code>repeated string principals = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $principals;
     /**
-     * Optional. List of CIDR ranges to match based on source IP address. At least one
-     * IP block should match. Single IP (e.g., "1.2.3.4") and CIDR (e.g.,
-     * "1.2.3.0/24") are supported.
+     * Optional. List of CIDR ranges to match based on source IP address. At
+     * least one IP block should match. Single IP (e.g., "1.2.3.4") and CIDR
+     * (e.g., "1.2.3.0/24") are supported. Authorization based on source IP
+     * alone should be avoided. The IP addresses of any load balancers or
+     * proxies should be considered untrusted.
      *
      * Generated from protobuf field <code>repeated string ip_blocks = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -39,15 +43,19 @@ class Source extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $principals
-     *           Optional. List of peer identities to match for authorization. At least one
-     *           principal should match. Each peer can be an exact match, or a prefix
-     *           match (example, "namespace/&#42;") or a suffix match (example, //
-     *           *&#47;service-account") or a presence match "*".
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $ip_blocks
-     *           Optional. List of CIDR ranges to match based on source IP address. At least one
-     *           IP block should match. Single IP (e.g., "1.2.3.4") and CIDR (e.g.,
-     *           "1.2.3.0/24") are supported.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $principals
+     *           Optional. List of peer identities to match for authorization. At least
+     *           one principal should match. Each peer can be an exact match, or a
+     *           prefix match (example, "namespace/&#42;") or a suffix match (example,
+     *           "*&#47;service-account") or a presence match "*". Authorization based on
+     *           the principal name without certificate validation (configured by
+     *           ServerTlsPolicy resource) is considered insecure.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $ip_blocks
+     *           Optional. List of CIDR ranges to match based on source IP address. At
+     *           least one IP block should match. Single IP (e.g., "1.2.3.4") and CIDR
+     *           (e.g., "1.2.3.0/24") are supported. Authorization based on source IP
+     *           alone should be avoided. The IP addresses of any load balancers or
+     *           proxies should be considered untrusted.
      * }
      */
     public function __construct($data = NULL) {
@@ -56,10 +64,12 @@ class Source extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. List of peer identities to match for authorization. At least one
-     * principal should match. Each peer can be an exact match, or a prefix
-     * match (example, "namespace/&#42;") or a suffix match (example, //
-     * *&#47;service-account") or a presence match "*".
+     * Optional. List of peer identities to match for authorization. At least
+     * one principal should match. Each peer can be an exact match, or a
+     * prefix match (example, "namespace/&#42;") or a suffix match (example,
+     * "*&#47;service-account") or a presence match "*". Authorization based on
+     * the principal name without certificate validation (configured by
+     * ServerTlsPolicy resource) is considered insecure.
      *
      * Generated from protobuf field <code>repeated string principals = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -70,13 +80,15 @@ class Source extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. List of peer identities to match for authorization. At least one
-     * principal should match. Each peer can be an exact match, or a prefix
-     * match (example, "namespace/&#42;") or a suffix match (example, //
-     * *&#47;service-account") or a presence match "*".
+     * Optional. List of peer identities to match for authorization. At least
+     * one principal should match. Each peer can be an exact match, or a
+     * prefix match (example, "namespace/&#42;") or a suffix match (example,
+     * "*&#47;service-account") or a presence match "*". Authorization based on
+     * the principal name without certificate validation (configured by
+     * ServerTlsPolicy resource) is considered insecure.
      *
      * Generated from protobuf field <code>repeated string principals = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPrincipals($var)
@@ -88,9 +100,11 @@ class Source extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. List of CIDR ranges to match based on source IP address. At least one
-     * IP block should match. Single IP (e.g., "1.2.3.4") and CIDR (e.g.,
-     * "1.2.3.0/24") are supported.
+     * Optional. List of CIDR ranges to match based on source IP address. At
+     * least one IP block should match. Single IP (e.g., "1.2.3.4") and CIDR
+     * (e.g., "1.2.3.0/24") are supported. Authorization based on source IP
+     * alone should be avoided. The IP addresses of any load balancers or
+     * proxies should be considered untrusted.
      *
      * Generated from protobuf field <code>repeated string ip_blocks = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -101,12 +115,14 @@ class Source extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. List of CIDR ranges to match based on source IP address. At least one
-     * IP block should match. Single IP (e.g., "1.2.3.4") and CIDR (e.g.,
-     * "1.2.3.0/24") are supported.
+     * Optional. List of CIDR ranges to match based on source IP address. At
+     * least one IP block should match. Single IP (e.g., "1.2.3.4") and CIDR
+     * (e.g., "1.2.3.0/24") are supported. Authorization based on source IP
+     * alone should be avoided. The IP addresses of any load balancers or
+     * proxies should be considered untrusted.
      *
      * Generated from protobuf field <code>repeated string ip_blocks = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setIpBlocks($var)

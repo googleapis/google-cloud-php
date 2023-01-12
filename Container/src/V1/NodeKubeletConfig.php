@@ -51,6 +51,15 @@ class NodeKubeletConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string cpu_cfs_quota_period = 3;</code>
      */
     private $cpu_cfs_quota_period = '';
+    /**
+     * Set the Pod PID limits. See
+     * https://kubernetes.io/docs/concepts/policy/pid-limiting/#pod-pid-limits
+     * Controls the maximum number of processes allowed to run in a pod. The value
+     * must be greater than or equal to 1024 and less than 4194304.
+     *
+     * Generated from protobuf field <code>int64 pod_pids_limit = 4;</code>
+     */
+    private $pod_pids_limit = 0;
 
     /**
      * Constructor.
@@ -82,6 +91,11 @@ class NodeKubeletConfig extends \Google\Protobuf\Internal\Message
      *           fraction and a unit suffix, such as "300ms".
      *           Valid time units are "ns", "us" (or "µs"), "ms", "s", "m", "h".
      *           The value must be a positive duration.
+     *     @type int|string $pod_pids_limit
+     *           Set the Pod PID limits. See
+     *           https://kubernetes.io/docs/concepts/policy/pid-limiting/#pod-pid-limits
+     *           Controls the maximum number of processes allowed to run in a pod. The value
+     *           must be greater than or equal to 1024 and less than 4194304.
      * }
      */
     public function __construct($data = NULL) {
@@ -250,6 +264,38 @@ class NodeKubeletConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->cpu_cfs_quota_period = $var;
+
+        return $this;
+    }
+
+    /**
+     * Set the Pod PID limits. See
+     * https://kubernetes.io/docs/concepts/policy/pid-limiting/#pod-pid-limits
+     * Controls the maximum number of processes allowed to run in a pod. The value
+     * must be greater than or equal to 1024 and less than 4194304.
+     *
+     * Generated from protobuf field <code>int64 pod_pids_limit = 4;</code>
+     * @return int|string
+     */
+    public function getPodPidsLimit()
+    {
+        return $this->pod_pids_limit;
+    }
+
+    /**
+     * Set the Pod PID limits. See
+     * https://kubernetes.io/docs/concepts/policy/pid-limiting/#pod-pid-limits
+     * Controls the maximum number of processes allowed to run in a pod. The value
+     * must be greater than or equal to 1024 and less than 4194304.
+     *
+     * Generated from protobuf field <code>int64 pod_pids_limit = 4;</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setPodPidsLimit($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->pod_pids_limit = $var;
 
         return $this;
     }

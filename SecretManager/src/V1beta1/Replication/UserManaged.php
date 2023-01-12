@@ -30,7 +30,7 @@ class UserManaged extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\SecretManager\V1beta1\Replication\UserManaged\Replica[]|\Google\Protobuf\Internal\RepeatedField $replicas
+     *     @type array<\Google\Cloud\SecretManager\V1beta1\Replication\UserManaged\Replica>|\Google\Protobuf\Internal\RepeatedField $replicas
      *           Required. The list of Replicas for this [Secret][google.cloud.secrets.v1beta1.Secret].
      *           Cannot be empty.
      * }
@@ -57,7 +57,7 @@ class UserManaged extends \Google\Protobuf\Internal\Message
      * Cannot be empty.
      *
      * Generated from protobuf field <code>repeated .google.cloud.secrets.v1beta1.Replication.UserManaged.Replica replicas = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param \Google\Cloud\SecretManager\V1beta1\Replication\UserManaged\Replica[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\SecretManager\V1beta1\Replication\UserManaged\Replica>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setReplicas($var)

@@ -22,8 +22,8 @@ class ListDatacenterConnectorsRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
-     * Optional. The maximum number of connectors to return. The service may return
-     * fewer than this value. If unspecified, at most 500 sources will be
+     * Optional. The maximum number of connectors to return. The service may
+     * return fewer than this value. If unspecified, at most 500 sources will be
      * returned. The maximum value is 1000; values above 1000 will be coerced to
      * 1000.
      *
@@ -31,8 +31,8 @@ class ListDatacenterConnectorsRequest extends \Google\Protobuf\Internal\Message
      */
     private $page_size = 0;
     /**
-     * Required. A page token, received from a previous `ListDatacenterConnectors` call.
-     * Provide this to retrieve the subsequent page.
+     * Required. A page token, received from a previous `ListDatacenterConnectors`
+     * call. Provide this to retrieve the subsequent page.
      * When paginating, all other parameters provided to
      * `ListDatacenterConnectors` must match the call that provided the page
      * token.
@@ -62,13 +62,13 @@ class ListDatacenterConnectorsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. The parent, which owns this collection of connectors.
      *     @type int $page_size
-     *           Optional. The maximum number of connectors to return. The service may return
-     *           fewer than this value. If unspecified, at most 500 sources will be
+     *           Optional. The maximum number of connectors to return. The service may
+     *           return fewer than this value. If unspecified, at most 500 sources will be
      *           returned. The maximum value is 1000; values above 1000 will be coerced to
      *           1000.
      *     @type string $page_token
-     *           Required. A page token, received from a previous `ListDatacenterConnectors` call.
-     *           Provide this to retrieve the subsequent page.
+     *           Required. A page token, received from a previous `ListDatacenterConnectors`
+     *           call. Provide this to retrieve the subsequent page.
      *           When paginating, all other parameters provided to
      *           `ListDatacenterConnectors` must match the call that provided the page
      *           token.
@@ -110,8 +110,8 @@ class ListDatacenterConnectorsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The maximum number of connectors to return. The service may return
-     * fewer than this value. If unspecified, at most 500 sources will be
+     * Optional. The maximum number of connectors to return. The service may
+     * return fewer than this value. If unspecified, at most 500 sources will be
      * returned. The maximum value is 1000; values above 1000 will be coerced to
      * 1000.
      *
@@ -124,8 +124,8 @@ class ListDatacenterConnectorsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The maximum number of connectors to return. The service may return
-     * fewer than this value. If unspecified, at most 500 sources will be
+     * Optional. The maximum number of connectors to return. The service may
+     * return fewer than this value. If unspecified, at most 500 sources will be
      * returned. The maximum value is 1000; values above 1000 will be coerced to
      * 1000.
      *
@@ -142,8 +142,8 @@ class ListDatacenterConnectorsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. A page token, received from a previous `ListDatacenterConnectors` call.
-     * Provide this to retrieve the subsequent page.
+     * Required. A page token, received from a previous `ListDatacenterConnectors`
+     * call. Provide this to retrieve the subsequent page.
      * When paginating, all other parameters provided to
      * `ListDatacenterConnectors` must match the call that provided the page
      * token.
@@ -157,8 +157,8 @@ class ListDatacenterConnectorsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. A page token, received from a previous `ListDatacenterConnectors` call.
-     * Provide this to retrieve the subsequent page.
+     * Required. A page token, received from a previous `ListDatacenterConnectors`
+     * call. Provide this to retrieve the subsequent page.
      * When paginating, all other parameters provided to
      * `ListDatacenterConnectors` must match the call that provided the page
      * token.

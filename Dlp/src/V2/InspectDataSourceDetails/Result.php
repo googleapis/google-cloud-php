@@ -51,7 +51,7 @@ class Result extends \Google\Protobuf\Internal\Message
      *           Total size in bytes that were processed.
      *     @type int|string $total_estimated_bytes
      *           Estimate of the number of bytes to process.
-     *     @type \Google\Cloud\Dlp\V2\InfoTypeStats[]|\Google\Protobuf\Internal\RepeatedField $info_type_stats
+     *     @type array<\Google\Cloud\Dlp\V2\InfoTypeStats>|\Google\Protobuf\Internal\RepeatedField $info_type_stats
      *           Statistics of how many instances of each info type were found during
      *           inspect job.
      *     @type \Google\Cloud\Dlp\V2\HybridInspectStatistics $hybrid_stats
@@ -132,7 +132,7 @@ class Result extends \Google\Protobuf\Internal\Message
      * inspect job.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.InfoTypeStats info_type_stats = 3;</code>
-     * @param \Google\Cloud\Dlp\V2\InfoTypeStats[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dlp\V2\InfoTypeStats>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setInfoTypeStats($var)

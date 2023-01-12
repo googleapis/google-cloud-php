@@ -72,7 +72,7 @@ class ExecuteBatchDmlRequest extends \Google\Protobuf\Internal\Message
      *           To protect against replays, single-use transactions are not supported. The
      *           caller must either supply an existing transaction ID or begin a new
      *           transaction.
-     *     @type \Google\Cloud\Spanner\V1\ExecuteBatchDmlRequest\Statement[]|\Google\Protobuf\Internal\RepeatedField $statements
+     *     @type array<\Google\Cloud\Spanner\V1\ExecuteBatchDmlRequest\Statement>|\Google\Protobuf\Internal\RepeatedField $statements
      *           Required. The list of statements to execute in this batch. Statements are executed
      *           serially, such that the effects of statement `i` are visible to statement
      *           `i+1`. Each statement must be a DML statement. Execution stops at the
@@ -186,7 +186,7 @@ class ExecuteBatchDmlRequest extends \Google\Protobuf\Internal\Message
      * Callers must provide at least one statement.
      *
      * Generated from protobuf field <code>repeated .google.spanner.v1.ExecuteBatchDmlRequest.Statement statements = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param \Google\Cloud\Spanner\V1\ExecuteBatchDmlRequest\Statement[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Spanner\V1\ExecuteBatchDmlRequest\Statement>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setStatements($var)

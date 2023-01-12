@@ -68,6 +68,12 @@ class Code
      */
     const INJECTED_KERNELS_DEPRECATED = 417377419;
     /**
+     * A WEIGHTED_MAGLEV backend service is associated with a health check that is not of type HTTP/HTTPS/HTTP2.
+     *
+     * Generated from protobuf enum <code>INVALID_HEALTH_CHECK_FOR_DYNAMIC_WIEGHTED_LB = 401542606;</code>
+     */
+    const INVALID_HEALTH_CHECK_FOR_DYNAMIC_WIEGHTED_LB = 401542606;
+    /**
      * When deploying a deployment with a exceedingly large number of resources
      *
      * Generated from protobuf enum <code>LARGE_DEPLOYMENT_WARNING = 481440678;</code>
@@ -91,6 +97,12 @@ class Code
      * Generated from protobuf enum <code>NEXT_HOP_CANNOT_IP_FORWARD = 383382887;</code>
      */
     const NEXT_HOP_CANNOT_IP_FORWARD = 383382887;
+    /**
+     * The route's nextHopInstance URL refers to an instance that does not have an ipv6 interface on the same network as the route.
+     *
+     * Generated from protobuf enum <code>NEXT_HOP_INSTANCE_HAS_NO_IPV6_INTERFACE = 146748434;</code>
+     */
+    const NEXT_HOP_INSTANCE_HAS_NO_IPV6_INTERFACE = 146748434;
     /**
      * The route's nextHopInstance URL refers to an instance that does not exist.
      *
@@ -180,10 +192,12 @@ class Code
         self::EXTERNAL_API_WARNING => 'EXTERNAL_API_WARNING',
         self::FIELD_VALUE_OVERRIDEN => 'FIELD_VALUE_OVERRIDEN',
         self::INJECTED_KERNELS_DEPRECATED => 'INJECTED_KERNELS_DEPRECATED',
+        self::INVALID_HEALTH_CHECK_FOR_DYNAMIC_WIEGHTED_LB => 'INVALID_HEALTH_CHECK_FOR_DYNAMIC_WIEGHTED_LB',
         self::LARGE_DEPLOYMENT_WARNING => 'LARGE_DEPLOYMENT_WARNING',
         self::MISSING_TYPE_DEPENDENCY => 'MISSING_TYPE_DEPENDENCY',
         self::NEXT_HOP_ADDRESS_NOT_ASSIGNED => 'NEXT_HOP_ADDRESS_NOT_ASSIGNED',
         self::NEXT_HOP_CANNOT_IP_FORWARD => 'NEXT_HOP_CANNOT_IP_FORWARD',
+        self::NEXT_HOP_INSTANCE_HAS_NO_IPV6_INTERFACE => 'NEXT_HOP_INSTANCE_HAS_NO_IPV6_INTERFACE',
         self::NEXT_HOP_INSTANCE_NOT_FOUND => 'NEXT_HOP_INSTANCE_NOT_FOUND',
         self::NEXT_HOP_INSTANCE_NOT_ON_NETWORK => 'NEXT_HOP_INSTANCE_NOT_ON_NETWORK',
         self::NEXT_HOP_NOT_RUNNING => 'NEXT_HOP_NOT_RUNNING',

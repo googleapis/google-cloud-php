@@ -26,11 +26,9 @@ namespace Google\Cloud\Firestore\V1\Gapic;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\Call;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
-
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
@@ -58,8 +56,11 @@ use Google\Cloud\Firestore\V1\PartitionQueryRequest;
 use Google\Cloud\Firestore\V1\PartitionQueryResponse;
 use Google\Cloud\Firestore\V1\Precondition;
 use Google\Cloud\Firestore\V1\RollbackRequest;
+use Google\Cloud\Firestore\V1\RunAggregationQueryRequest;
+use Google\Cloud\Firestore\V1\RunAggregationQueryResponse;
 use Google\Cloud\Firestore\V1\RunQueryRequest;
 use Google\Cloud\Firestore\V1\RunQueryResponse;
+use Google\Cloud\Firestore\V1\StructuredAggregationQuery;
 use Google\Cloud\Firestore\V1\StructuredQuery;
 use Google\Cloud\Firestore\V1\TransactionOptions;
 use Google\Cloud\Firestore\V1\UpdateDocumentRequest;
@@ -101,29 +102,19 @@ class FirestoreGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.firestore.v1.Firestore';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'firestore.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
         'https://www.googleapis.com/auth/datastore',
@@ -329,10 +320,9 @@ class FirestoreGapicClient
      *     @type array $labels
      *           Labels associated with this batch write.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Firestore\V1\BatchWriteResponse
@@ -384,10 +374,9 @@ class FirestoreGapicClient
      *           The options for the transaction.
      *           Defaults to a read-write transaction.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Firestore\V1\BeginTransactionResponse
@@ -435,10 +424,9 @@ class FirestoreGapicClient
      *     @type string $transaction
      *           If set, applies all writes in this transaction, and commits it.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Firestore\V1\CommitResponse
@@ -495,10 +483,9 @@ class FirestoreGapicClient
      *           If the document has a field that is not present in this mask, that field
      *           will not be returned in the response.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Firestore\V1\Document
@@ -547,10 +534,9 @@ class FirestoreGapicClient
      *           An optional precondition on the document.
      *           The request will fail if this is set and not met by the target document.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @throws ApiException if the remote call fails
@@ -600,10 +586,9 @@ class FirestoreGapicClient
      *           Reads the version of the document at the given time.
      *           This may not be older than 270 seconds.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Firestore\V1\Document
@@ -675,11 +660,13 @@ class FirestoreGapicClient
      *           If no page token is specified (the default), the first page
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
+     *     @type Timestamp $readTime
+     *           Reads documents as they were at the given time.
+     *           This may not be older than 270 seconds.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -698,6 +685,10 @@ class FirestoreGapicClient
 
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        if (isset($optionalArgs['readTime'])) {
+            $request->setReadTime($optionalArgs['readTime']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -773,10 +764,9 @@ class FirestoreGapicClient
      *           Requests with `show_missing` may not specify `where` or
      *           `order_by`.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -943,11 +933,13 @@ class FirestoreGapicClient
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
      *           there are additional values to be retrieved.
+     *     @type Timestamp $readTime
+     *           Reads documents as they were at the given time.
+     *           This may not be older than 270 seconds.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -979,6 +971,10 @@ class FirestoreGapicClient
             $request->setPageSize($optionalArgs['pageSize']);
         }
 
+        if (isset($optionalArgs['readTime'])) {
+            $request->setReadTime($optionalArgs['readTime']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->getPagedListResponse('PartitionQuery', $optionalArgs, PartitionQueryResponse::class, $request);
@@ -992,7 +988,7 @@ class FirestoreGapicClient
      * $firestoreClient = new FirestoreClient();
      * try {
      *     $database = 'database';
-     *     $transaction = '';
+     *     $transaction = '...';
      *     $firestoreClient->rollback($database, $transaction);
      * } finally {
      *     $firestoreClient->close();
@@ -1006,10 +1002,9 @@ class FirestoreGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @throws ApiException if the remote call fails
@@ -1024,6 +1019,96 @@ class FirestoreGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('Rollback', GPBEmpty::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Runs an aggregation query.
+     *
+     * Rather than producing [Document][google.firestore.v1.Document] results like [Firestore.RunQuery][google.firestore.v1.Firestore.RunQuery],
+     * this API allows running an aggregation to produce a series of
+     * [AggregationResult][google.firestore.v1.AggregationResult] server-side.
+     *
+     * High-Level Example:
+     *
+     * ```
+     * -- Return the number of documents in table given a filter.
+     * SELECT COUNT(*) FROM ( SELECT * FROM k where a = true );
+     * ```
+     *
+     * Sample code:
+     * ```
+     * $firestoreClient = new FirestoreClient();
+     * try {
+     *     $parent = 'parent';
+     *     // Read all responses until the stream is complete
+     *     $stream = $firestoreClient->runAggregationQuery($parent);
+     *     foreach ($stream->readAll() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $firestoreClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The parent resource name. In the format:
+     *                             `projects/{project_id}/databases/{database_id}/documents` or
+     *                             `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
+     *                             For example:
+     *                             `projects/my-project/databases/my-database/documents` or
+     *                             `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type StructuredAggregationQuery $structuredAggregationQuery
+     *           An aggregation query.
+     *     @type string $transaction
+     *           Run the aggregation within an already active transaction.
+     *
+     *           The value here is the opaque transaction ID to execute the query in.
+     *     @type TransactionOptions $newTransaction
+     *           Starts a new transaction as part of the query, defaulting to read-only.
+     *
+     *           The new transaction ID will be returned as the first response in the
+     *           stream.
+     *     @type Timestamp $readTime
+     *           Executes the query at the given timestamp.
+     *
+     *           Requires:
+     *
+     *           * Cannot be more than 270 seconds in the past.
+     *     @type int $timeoutMillis
+     *           Timeout to use for this call.
+     * }
+     *
+     * @return \Google\ApiCore\ServerStream
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function runAggregationQuery($parent, array $optionalArgs = [])
+    {
+        $request = new RunAggregationQueryRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['structuredAggregationQuery'])) {
+            $request->setStructuredAggregationQuery($optionalArgs['structuredAggregationQuery']);
+        }
+
+        if (isset($optionalArgs['transaction'])) {
+            $request->setTransaction($optionalArgs['transaction']);
+        }
+
+        if (isset($optionalArgs['newTransaction'])) {
+            $request->setNewTransaction($optionalArgs['newTransaction']);
+        }
+
+        if (isset($optionalArgs['readTime'])) {
+            $request->setReadTime($optionalArgs['readTime']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('RunAggregationQuery', RunAggregationQueryResponse::class, $optionalArgs, $request, Call::SERVER_STREAMING_CALL);
     }
 
     /**
@@ -1056,7 +1141,9 @@ class FirestoreGapicClient
      *     @type StructuredQuery $structuredQuery
      *           A structured query.
      *     @type string $transaction
-     *           Reads documents in a transaction.
+     *           Run the query within an already active transaction.
+     *
+     *           The value here is the opaque transaction ID to execute the query in.
      *     @type TransactionOptions $newTransaction
      *           Starts a new transaction and reads the documents.
      *           Defaults to a read-only transaction.
@@ -1136,10 +1223,9 @@ class FirestoreGapicClient
      *           An optional precondition on the document.
      *           The request will fail if this is set and not met by the target document.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Firestore\V1\Document

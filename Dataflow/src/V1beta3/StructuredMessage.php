@@ -48,7 +48,7 @@ class StructuredMessage extends \Google\Protobuf\Internal\Message
      *     @type string $message_key
      *           Identifier for this message type.  Used by external systems to
      *           internationalize or personalize message.
-     *     @type \Google\Cloud\Dataflow\V1beta3\StructuredMessage\Parameter[]|\Google\Protobuf\Internal\RepeatedField $parameters
+     *     @type array<\Google\Cloud\Dataflow\V1beta3\StructuredMessage\Parameter>|\Google\Protobuf\Internal\RepeatedField $parameters
      *           The structured data associated with this message.
      * }
      */
@@ -126,7 +126,7 @@ class StructuredMessage extends \Google\Protobuf\Internal\Message
      * The structured data associated with this message.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.StructuredMessage.Parameter parameters = 3;</code>
-     * @param \Google\Cloud\Dataflow\V1beta3\StructuredMessage\Parameter[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dataflow\V1beta3\StructuredMessage\Parameter>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setParameters($var)

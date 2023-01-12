@@ -181,15 +181,15 @@ class Entity extends AbstractFeature
     /**
      * Create an entity annotation result.
      *
-     * This class is created internally by {@see Google\Cloud\Vision\Annotation} and is used to represent various
+     * This class is created internally by {@see Annotation} and is used to represent various
      * annotation feature results.
      *
      * This class should not be instantiated externally.
      *
-     * Entities are returned by {@see Google\Cloud\Vision\Annotation::landmarks()},
-     * {@see Google\Cloud\Vision\Annotation::logos()},
-     * {@see Google\Cloud\Vision\Annotation::labels()} and
-     * {@see Google\Cloud\Vision\Annotation::text()}.
+     * Entities are returned by {@see Annotation::landmarks()},
+     * {@see Annotation::logos()},
+     * {@see Annotation::labels()} and
+     * {@see Annotation::text()}.
      *
      * @param array $info The entity annotation result
      */

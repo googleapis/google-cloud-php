@@ -56,8 +56,16 @@ class BigQuerySource extends \Google\Protobuf\Internal\Message
      * Supported values for user events imports:
      * * `user_event` (default): One JSON
      * [UserEvent][google.cloud.retail.v2.UserEvent] per line.
-     * * `user_event_ga360`: Using
+     * * `user_event_ga360`:
+     *   The schema is available here:
      *   https://support.google.com/analytics/answer/3437719.
+     * * `user_event_ga4`:
+     *   The schema is available here:
+     *   https://support.google.com/analytics/answer/7029846.
+     * Supported values for auto-completion imports:
+     * * `suggestions` (default): One JSON completion suggestion per line.
+     * * `denylist`:  One JSON deny suggestion per line.
+     * * `allowlist`:  One JSON allow suggestion per line.
      *
      * Generated from protobuf field <code>string data_schema = 4;</code>
      */
@@ -72,9 +80,8 @@ class BigQuerySource extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Type\Date $partition_date
      *           BigQuery time partitioned table's _PARTITIONDATE in YYYY-MM-DD format.
-     *           Only supported when
-     *           [ImportProductsRequest.reconciliation_mode][google.cloud.retail.v2.ImportProductsRequest.reconciliation_mode]
-     *           is set to `FULL`.
+     *           Only supported in
+     *           [ImportProductsRequest][google.cloud.retail.v2.ImportProductsRequest].
      *     @type string $project_id
      *           The project ID (can be project # or ID) that the BigQuery source is in with
      *           a length limit of 128 characters. If not specified, inherits the project
@@ -100,8 +107,16 @@ class BigQuerySource extends \Google\Protobuf\Internal\Message
      *           Supported values for user events imports:
      *           * `user_event` (default): One JSON
      *           [UserEvent][google.cloud.retail.v2.UserEvent] per line.
-     *           * `user_event_ga360`: Using
+     *           * `user_event_ga360`:
+     *             The schema is available here:
      *             https://support.google.com/analytics/answer/3437719.
+     *           * `user_event_ga4`:
+     *             The schema is available here:
+     *             https://support.google.com/analytics/answer/7029846.
+     *           Supported values for auto-completion imports:
+     *           * `suggestions` (default): One JSON completion suggestion per line.
+     *           * `denylist`:  One JSON deny suggestion per line.
+     *           * `allowlist`:  One JSON allow suggestion per line.
      * }
      */
     public function __construct($data = NULL) {
@@ -111,9 +126,8 @@ class BigQuerySource extends \Google\Protobuf\Internal\Message
 
     /**
      * BigQuery time partitioned table's _PARTITIONDATE in YYYY-MM-DD format.
-     * Only supported when
-     * [ImportProductsRequest.reconciliation_mode][google.cloud.retail.v2.ImportProductsRequest.reconciliation_mode]
-     * is set to `FULL`.
+     * Only supported in
+     * [ImportProductsRequest][google.cloud.retail.v2.ImportProductsRequest].
      *
      * Generated from protobuf field <code>.google.type.Date partition_date = 6;</code>
      * @return \Google\Type\Date|null
@@ -130,9 +144,8 @@ class BigQuerySource extends \Google\Protobuf\Internal\Message
 
     /**
      * BigQuery time partitioned table's _PARTITIONDATE in YYYY-MM-DD format.
-     * Only supported when
-     * [ImportProductsRequest.reconciliation_mode][google.cloud.retail.v2.ImportProductsRequest.reconciliation_mode]
-     * is set to `FULL`.
+     * Only supported in
+     * [ImportProductsRequest][google.cloud.retail.v2.ImportProductsRequest].
      *
      * Generated from protobuf field <code>.google.type.Date partition_date = 6;</code>
      * @param \Google\Type\Date $var
@@ -273,8 +286,16 @@ class BigQuerySource extends \Google\Protobuf\Internal\Message
      * Supported values for user events imports:
      * * `user_event` (default): One JSON
      * [UserEvent][google.cloud.retail.v2.UserEvent] per line.
-     * * `user_event_ga360`: Using
+     * * `user_event_ga360`:
+     *   The schema is available here:
      *   https://support.google.com/analytics/answer/3437719.
+     * * `user_event_ga4`:
+     *   The schema is available here:
+     *   https://support.google.com/analytics/answer/7029846.
+     * Supported values for auto-completion imports:
+     * * `suggestions` (default): One JSON completion suggestion per line.
+     * * `denylist`:  One JSON deny suggestion per line.
+     * * `allowlist`:  One JSON allow suggestion per line.
      *
      * Generated from protobuf field <code>string data_schema = 4;</code>
      * @return string
@@ -295,8 +316,16 @@ class BigQuerySource extends \Google\Protobuf\Internal\Message
      * Supported values for user events imports:
      * * `user_event` (default): One JSON
      * [UserEvent][google.cloud.retail.v2.UserEvent] per line.
-     * * `user_event_ga360`: Using
+     * * `user_event_ga360`:
+     *   The schema is available here:
      *   https://support.google.com/analytics/answer/3437719.
+     * * `user_event_ga4`:
+     *   The schema is available here:
+     *   https://support.google.com/analytics/answer/7029846.
+     * Supported values for auto-completion imports:
+     * * `suggestions` (default): One JSON completion suggestion per line.
+     * * `denylist`:  One JSON deny suggestion per line.
+     * * `allowlist`:  One JSON allow suggestion per line.
      *
      * Generated from protobuf field <code>string data_schema = 4;</code>
      * @param string $var

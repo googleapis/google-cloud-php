@@ -21,6 +21,13 @@ class MonitoringConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.container.v1.MonitoringComponentConfig component_config = 1;</code>
      */
     private $component_config = null;
+    /**
+     * Enable Google Cloud Managed Service for Prometheus
+     * in the cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ManagedPrometheusConfig managed_prometheus_config = 2;</code>
+     */
+    private $managed_prometheus_config = null;
 
     /**
      * Constructor.
@@ -30,6 +37,9 @@ class MonitoringConfig extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Container\V1\MonitoringComponentConfig $component_config
      *           Monitoring components configuration
+     *     @type \Google\Cloud\Container\V1\ManagedPrometheusConfig $managed_prometheus_config
+     *           Enable Google Cloud Managed Service for Prometheus
+     *           in the cluster.
      * }
      */
     public function __construct($data = NULL) {
@@ -69,6 +79,44 @@ class MonitoringConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\MonitoringComponentConfig::class);
         $this->component_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Enable Google Cloud Managed Service for Prometheus
+     * in the cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ManagedPrometheusConfig managed_prometheus_config = 2;</code>
+     * @return \Google\Cloud\Container\V1\ManagedPrometheusConfig|null
+     */
+    public function getManagedPrometheusConfig()
+    {
+        return $this->managed_prometheus_config;
+    }
+
+    public function hasManagedPrometheusConfig()
+    {
+        return isset($this->managed_prometheus_config);
+    }
+
+    public function clearManagedPrometheusConfig()
+    {
+        unset($this->managed_prometheus_config);
+    }
+
+    /**
+     * Enable Google Cloud Managed Service for Prometheus
+     * in the cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ManagedPrometheusConfig managed_prometheus_config = 2;</code>
+     * @param \Google\Cloud\Container\V1\ManagedPrometheusConfig $var
+     * @return $this
+     */
+    public function setManagedPrometheusConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\ManagedPrometheusConfig::class);
+        $this->managed_prometheus_config = $var;
 
         return $this;
     }

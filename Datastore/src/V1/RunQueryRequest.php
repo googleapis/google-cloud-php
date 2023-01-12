@@ -22,6 +22,14 @@ class RunQueryRequest extends \Google\Protobuf\Internal\Message
      */
     private $project_id = '';
     /**
+     * The ID of the database against which to make the request.
+     * '(default)' is not allowed; please use empty string '' to refer the default
+     * database.
+     *
+     * Generated from protobuf field <code>string database_id = 9;</code>
+     */
+    private $database_id = '';
+    /**
      * Entities are partitioned into subsets, identified by a partition ID.
      * Queries are scoped to a single partition.
      * This partition ID is normalized with the standard default context
@@ -46,6 +54,10 @@ class RunQueryRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $project_id
      *           Required. The ID of the project against which to make the request.
+     *     @type string $database_id
+     *           The ID of the database against which to make the request.
+     *           '(default)' is not allowed; please use empty string '' to refer the default
+     *           database.
      *     @type \Google\Cloud\Datastore\V1\PartitionId $partition_id
      *           Entities are partitioned into subsets, identified by a partition ID.
      *           Queries are scoped to a single partition.
@@ -56,7 +68,7 @@ class RunQueryRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Datastore\V1\Query $query
      *           The query to run.
      *     @type \Google\Cloud\Datastore\V1\GqlQuery $gql_query
-     *           The GQL query to run.
+     *           The GQL query to run. This query must be a non-aggregation query.
      * }
      */
     public function __construct($data = NULL) {
@@ -86,6 +98,36 @@ class RunQueryRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->project_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * The ID of the database against which to make the request.
+     * '(default)' is not allowed; please use empty string '' to refer the default
+     * database.
+     *
+     * Generated from protobuf field <code>string database_id = 9;</code>
+     * @return string
+     */
+    public function getDatabaseId()
+    {
+        return $this->database_id;
+    }
+
+    /**
+     * The ID of the database against which to make the request.
+     * '(default)' is not allowed; please use empty string '' to refer the default
+     * database.
+     *
+     * Generated from protobuf field <code>string database_id = 9;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDatabaseId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->database_id = $var;
 
         return $this;
     }
@@ -200,7 +242,7 @@ class RunQueryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The GQL query to run.
+     * The GQL query to run. This query must be a non-aggregation query.
      *
      * Generated from protobuf field <code>.google.datastore.v1.GqlQuery gql_query = 7;</code>
      * @return \Google\Cloud\Datastore\V1\GqlQuery|null
@@ -216,7 +258,7 @@ class RunQueryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The GQL query to run.
+     * The GQL query to run. This query must be a non-aggregation query.
      *
      * Generated from protobuf field <code>.google.datastore.v1.GqlQuery gql_query = 7;</code>
      * @param \Google\Cloud\Datastore\V1\GqlQuery $var

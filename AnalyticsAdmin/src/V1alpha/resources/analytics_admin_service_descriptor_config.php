@@ -33,14 +33,14 @@ return [
                     'resourcesGetMethod' => 'getAccounts',
                 ],
             ],
-            'ListAndroidAppDataStreams' => [
+            'ListAudiences' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
                     'requestPageTokenSetMethod' => 'setPageToken',
                     'requestPageSizeGetMethod' => 'getPageSize',
                     'requestPageSizeSetMethod' => 'setPageSize',
                     'responsePageTokenGetMethod' => 'getNextPageToken',
-                    'resourcesGetMethod' => 'getAndroidAppDataStreams',
+                    'resourcesGetMethod' => 'getAudiences',
                 ],
             ],
             'ListConversionEvents' => [
@@ -123,16 +123,6 @@ return [
                     'resourcesGetMethod' => 'getGoogleAdsLinks',
                 ],
             ],
-            'ListIosAppDataStreams' => [
-                'pageStreaming' => [
-                    'requestPageTokenGetMethod' => 'getPageToken',
-                    'requestPageTokenSetMethod' => 'setPageToken',
-                    'requestPageSizeGetMethod' => 'getPageSize',
-                    'requestPageSizeSetMethod' => 'setPageSize',
-                    'responsePageTokenGetMethod' => 'getNextPageToken',
-                    'resourcesGetMethod' => 'getIosAppDataStreams',
-                ],
-            ],
             'ListMeasurementProtocolSecrets' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
@@ -161,16 +151,6 @@ return [
                     'requestPageSizeSetMethod' => 'setPageSize',
                     'responsePageTokenGetMethod' => 'getNextPageToken',
                     'resourcesGetMethod' => 'getUserLinks',
-                ],
-            ],
-            'ListWebDataStreams' => [
-                'pageStreaming' => [
-                    'requestPageTokenGetMethod' => 'getPageToken',
-                    'requestPageTokenSetMethod' => 'setPageToken',
-                    'requestPageSizeGetMethod' => 'getPageSize',
-                    'requestPageSizeSetMethod' => 'setPageSize',
-                    'responsePageTokenGetMethod' => 'getNextPageToken',
-                    'resourcesGetMethod' => 'getWebDataStreams',
                 ],
             ],
             'SearchChangeHistoryEvents' => [

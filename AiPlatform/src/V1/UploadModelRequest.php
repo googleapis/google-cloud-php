@@ -23,6 +23,22 @@ class UploadModelRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
+     * Optional. The resource name of the model into which to upload the version. Only
+     * specify this field when uploading a new version.
+     *
+     * Generated from protobuf field <code>string parent_model = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $parent_model = '';
+    /**
+     * Optional. The ID to use for the uploaded Model, which will become the final
+     * component of the model resource name.
+     * This value may be up to 63 characters, and valid characters are
+     * `[a-z0-9_-]`. The first character cannot be a number or hyphen.
+     *
+     * Generated from protobuf field <code>string model_id = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $model_id = '';
+    /**
      * Required. The Model to create.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Model model = 2 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -38,6 +54,14 @@ class UploadModelRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. The resource name of the Location into which to upload the Model.
      *           Format: `projects/{project}/locations/{location}`
+     *     @type string $parent_model
+     *           Optional. The resource name of the model into which to upload the version. Only
+     *           specify this field when uploading a new version.
+     *     @type string $model_id
+     *           Optional. The ID to use for the uploaded Model, which will become the final
+     *           component of the model resource name.
+     *           This value may be up to 63 characters, and valid characters are
+     *           `[a-z0-9_-]`. The first character cannot be a number or hyphen.
      *     @type \Google\Cloud\AIPlatform\V1\Model $model
      *           Required. The Model to create.
      * }
@@ -71,6 +95,66 @@ class UploadModelRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->parent = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The resource name of the model into which to upload the version. Only
+     * specify this field when uploading a new version.
+     *
+     * Generated from protobuf field <code>string parent_model = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getParentModel()
+    {
+        return $this->parent_model;
+    }
+
+    /**
+     * Optional. The resource name of the model into which to upload the version. Only
+     * specify this field when uploading a new version.
+     *
+     * Generated from protobuf field <code>string parent_model = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setParentModel($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->parent_model = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The ID to use for the uploaded Model, which will become the final
+     * component of the model resource name.
+     * This value may be up to 63 characters, and valid characters are
+     * `[a-z0-9_-]`. The first character cannot be a number or hyphen.
+     *
+     * Generated from protobuf field <code>string model_id = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getModelId()
+    {
+        return $this->model_id;
+    }
+
+    /**
+     * Optional. The ID to use for the uploaded Model, which will become the final
+     * component of the model resource name.
+     * This value may be up to 63 characters, and valid characters are
+     * `[a-z0-9_-]`. The first character cannot be a number or hyphen.
+     *
+     * Generated from protobuf field <code>string model_id = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setModelId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->model_id = $var;
 
         return $this;
     }

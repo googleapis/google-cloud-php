@@ -182,12 +182,12 @@ class CertificateAuthority extends \Google\Protobuf\Internal\Message
      *           be updated, but this [CertificateAuthority][google.cloud.security.privateca.v1beta1.CertificateAuthority] must continue to validate.
      *     @type int $state
      *           Output only. The [State][google.cloud.security.privateca.v1beta1.CertificateAuthority.State] for this [CertificateAuthority][google.cloud.security.privateca.v1beta1.CertificateAuthority].
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $pem_ca_certificates
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $pem_ca_certificates
      *           Output only. This [CertificateAuthority][google.cloud.security.privateca.v1beta1.CertificateAuthority]'s certificate chain, including the current
      *           [CertificateAuthority][google.cloud.security.privateca.v1beta1.CertificateAuthority]'s certificate. Ordered such that the root issuer
      *           is the final element (consistent with RFC 5246). For a self-signed CA, this
      *           will only list the current [CertificateAuthority][google.cloud.security.privateca.v1beta1.CertificateAuthority]'s certificate.
-     *     @type \Google\Cloud\Security\PrivateCA\V1beta1\CertificateDescription[]|\Google\Protobuf\Internal\RepeatedField $ca_certificate_descriptions
+     *     @type array<\Google\Cloud\Security\PrivateCA\V1beta1\CertificateDescription>|\Google\Protobuf\Internal\RepeatedField $ca_certificate_descriptions
      *           Output only. A structured description of this [CertificateAuthority][google.cloud.security.privateca.v1beta1.CertificateAuthority]'s CA certificate
      *           and its issuers. Ordered as self-to-root.
      *     @type string $gcs_bucket
@@ -304,7 +304,7 @@ class CertificateAuthority extends \Google\Protobuf\Internal\Message
      */
     public function getConfig()
     {
-        return isset($this->config) ? $this->config : null;
+        return $this->config;
     }
 
     public function hasConfig()
@@ -342,7 +342,7 @@ class CertificateAuthority extends \Google\Protobuf\Internal\Message
      */
     public function getLifetime()
     {
-        return isset($this->lifetime) ? $this->lifetime : null;
+        return $this->lifetime;
     }
 
     public function hasLifetime()
@@ -383,7 +383,7 @@ class CertificateAuthority extends \Google\Protobuf\Internal\Message
      */
     public function getKeySpec()
     {
-        return isset($this->key_spec) ? $this->key_spec : null;
+        return $this->key_spec;
     }
 
     public function hasKeySpec()
@@ -423,7 +423,7 @@ class CertificateAuthority extends \Google\Protobuf\Internal\Message
      */
     public function getCertificatePolicy()
     {
-        return isset($this->certificate_policy) ? $this->certificate_policy : null;
+        return $this->certificate_policy;
     }
 
     public function hasCertificatePolicy()
@@ -461,7 +461,7 @@ class CertificateAuthority extends \Google\Protobuf\Internal\Message
      */
     public function getIssuingOptions()
     {
-        return isset($this->issuing_options) ? $this->issuing_options : null;
+        return $this->issuing_options;
     }
 
     public function hasIssuingOptions()
@@ -500,7 +500,7 @@ class CertificateAuthority extends \Google\Protobuf\Internal\Message
      */
     public function getSubordinateConfig()
     {
-        return isset($this->subordinate_config) ? $this->subordinate_config : null;
+        return $this->subordinate_config;
     }
 
     public function hasSubordinateConfig()
@@ -577,7 +577,7 @@ class CertificateAuthority extends \Google\Protobuf\Internal\Message
      * will only list the current [CertificateAuthority][google.cloud.security.privateca.v1beta1.CertificateAuthority]'s certificate.
      *
      * Generated from protobuf field <code>repeated string pem_ca_certificates = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPemCaCertificates($var)
@@ -605,7 +605,7 @@ class CertificateAuthority extends \Google\Protobuf\Internal\Message
      * and its issuers. Ordered as self-to-root.
      *
      * Generated from protobuf field <code>repeated .google.cloud.security.privateca.v1beta1.CertificateDescription ca_certificate_descriptions = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param \Google\Cloud\Security\PrivateCA\V1beta1\CertificateDescription[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Security\PrivateCA\V1beta1\CertificateDescription>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setCaCertificateDescriptions($var)
@@ -661,7 +661,7 @@ class CertificateAuthority extends \Google\Protobuf\Internal\Message
      */
     public function getAccessUrls()
     {
-        return isset($this->access_urls) ? $this->access_urls : null;
+        return $this->access_urls;
     }
 
     public function hasAccessUrls()
@@ -698,7 +698,7 @@ class CertificateAuthority extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -734,7 +734,7 @@ class CertificateAuthority extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateTime()
     {
-        return isset($this->update_time) ? $this->update_time : null;
+        return $this->update_time;
     }
 
     public function hasUpdateTime()
@@ -771,7 +771,7 @@ class CertificateAuthority extends \Google\Protobuf\Internal\Message
      */
     public function getDeleteTime()
     {
-        return isset($this->delete_time) ? $this->delete_time : null;
+        return $this->delete_time;
     }
 
     public function hasDeleteTime()

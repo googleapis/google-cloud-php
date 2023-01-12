@@ -138,14 +138,11 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      */
     private $metastore_config = null;
     /**
-     * Optional. BETA. The Kubernetes Engine config for Dataproc clusters deployed to
-     * Kubernetes. Setting this is considered mutually exclusive with Compute
-     * Engine-based options such as `gce_cluster_config`, `master_config`,
-     * `worker_config`, `secondary_worker_config`, and `autoscaling_config`.
+     * Optional. The config for Dataproc metrics.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.GkeClusterConfig gke_cluster_config = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.DataprocMetricConfig dataproc_metric_config = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $gke_cluster_config = null;
+    private $dataproc_metric_config = null;
 
     /**
      * Constructor.
@@ -193,7 +190,7 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      *           a cluster's secondary worker instances
      *     @type \Google\Cloud\Dataproc\V1\SoftwareConfig $software_config
      *           Optional. The config settings for cluster software.
-     *     @type \Google\Cloud\Dataproc\V1\NodeInitializationAction[]|\Google\Protobuf\Internal\RepeatedField $initialization_actions
+     *     @type array<\Google\Cloud\Dataproc\V1\NodeInitializationAction>|\Google\Protobuf\Internal\RepeatedField $initialization_actions
      *           Optional. Commands to execute on each node after config is
      *           completed. By default, executables are run on master and all worker nodes.
      *           You can test a node's `role` metadata to run an executable on
@@ -219,11 +216,8 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      *           Optional. Port/endpoint configuration for this cluster
      *     @type \Google\Cloud\Dataproc\V1\MetastoreConfig $metastore_config
      *           Optional. Metastore configuration.
-     *     @type \Google\Cloud\Dataproc\V1\GkeClusterConfig $gke_cluster_config
-     *           Optional. BETA. The Kubernetes Engine config for Dataproc clusters deployed to
-     *           Kubernetes. Setting this is considered mutually exclusive with Compute
-     *           Engine-based options such as `gce_cluster_config`, `master_config`,
-     *           `worker_config`, `secondary_worker_config`, and `autoscaling_config`.
+     *     @type \Google\Cloud\Dataproc\V1\DataprocMetricConfig $dataproc_metric_config
+     *           Optional. The config for Dataproc metrics.
      * }
      */
     public function __construct($data = NULL) {
@@ -552,7 +546,7 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      *     fi
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.NodeInitializationAction initialization_actions = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param \Google\Cloud\Dataproc\V1\NodeInitializationAction[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dataproc\V1\NodeInitializationAction>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setInitializationActions($var)
@@ -782,43 +776,37 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. BETA. The Kubernetes Engine config for Dataproc clusters deployed to
-     * Kubernetes. Setting this is considered mutually exclusive with Compute
-     * Engine-based options such as `gce_cluster_config`, `master_config`,
-     * `worker_config`, `secondary_worker_config`, and `autoscaling_config`.
+     * Optional. The config for Dataproc metrics.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.GkeClusterConfig gke_cluster_config = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Cloud\Dataproc\V1\GkeClusterConfig|null
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.DataprocMetricConfig dataproc_metric_config = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Dataproc\V1\DataprocMetricConfig|null
      */
-    public function getGkeClusterConfig()
+    public function getDataprocMetricConfig()
     {
-        return $this->gke_cluster_config;
+        return $this->dataproc_metric_config;
     }
 
-    public function hasGkeClusterConfig()
+    public function hasDataprocMetricConfig()
     {
-        return isset($this->gke_cluster_config);
+        return isset($this->dataproc_metric_config);
     }
 
-    public function clearGkeClusterConfig()
+    public function clearDataprocMetricConfig()
     {
-        unset($this->gke_cluster_config);
+        unset($this->dataproc_metric_config);
     }
 
     /**
-     * Optional. BETA. The Kubernetes Engine config for Dataproc clusters deployed to
-     * Kubernetes. Setting this is considered mutually exclusive with Compute
-     * Engine-based options such as `gce_cluster_config`, `master_config`,
-     * `worker_config`, `secondary_worker_config`, and `autoscaling_config`.
+     * Optional. The config for Dataproc metrics.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.GkeClusterConfig gke_cluster_config = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param \Google\Cloud\Dataproc\V1\GkeClusterConfig $var
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.DataprocMetricConfig dataproc_metric_config = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dataproc\V1\DataprocMetricConfig $var
      * @return $this
      */
-    public function setGkeClusterConfig($var)
+    public function setDataprocMetricConfig($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Dataproc\V1\GkeClusterConfig::class);
-        $this->gke_cluster_config = $var;
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataproc\V1\DataprocMetricConfig::class);
+        $this->dataproc_metric_config = $var;
 
         return $this;
     }

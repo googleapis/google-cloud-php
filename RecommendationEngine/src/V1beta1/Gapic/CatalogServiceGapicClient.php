@@ -29,9 +29,7 @@ namespace Google\Cloud\RecommendationEngine\V1beta1\Gapic;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-
 use Google\ApiCore\LongRunning\OperationsClient;
-
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
@@ -81,29 +79,19 @@ class CatalogServiceGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.recommendationengine.v1beta1.CatalogService';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'recommendationengine.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
     ];
@@ -147,7 +135,7 @@ class CatalogServiceGapicClient
     private static function getCatalogItemPathNameTemplate()
     {
         if (self::$catalogItemPathNameTemplate == null) {
-            self::$catalogItemPathNameTemplate = new PathTemplate('projects/{project}/locations/{location}/catalogs/{catalog}/catalogItems/{catalog_item_path=**}');
+            self::$catalogItemPathNameTemplate = new PathTemplate('projects/{project}/locations/{location}/catalogs/{catalog}/catalogItems/{catalog_item_path}');
         }
 
         return self::$catalogItemPathNameTemplate;
@@ -214,7 +202,7 @@ class CatalogServiceGapicClient
      * The following name formats are supported:
      * Template: Pattern
      * - catalog: projects/{project}/locations/{location}/catalogs/{catalog}
-     * - catalogItemPath: projects/{project}/locations/{location}/catalogs/{catalog}/catalogItems/{catalog_item_path=**}
+     * - catalogItemPath: projects/{project}/locations/{location}/catalogs/{catalog}/catalogItems/{catalog_item_path}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -374,10 +362,9 @@ class CatalogServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\RecommendationEngine\V1beta1\CatalogItem
@@ -418,10 +405,9 @@ class CatalogServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @throws ApiException if the remote call fails
@@ -459,10 +445,9 @@ class CatalogServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\RecommendationEngine\V1beta1\CatalogItem
@@ -540,10 +525,9 @@ class CatalogServiceGapicClient
      *     @type ImportErrorsConfig $errorsConfig
      *           Optional. The desired location of errors incurred during the Import.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -615,10 +599,9 @@ class CatalogServiceGapicClient
      *     @type string $filter
      *           Optional. A filter to apply on the list results.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -667,7 +650,7 @@ class CatalogServiceGapicClient
      * ```
      *
      * @param string      $name         Required. Full resource name of catalog item, such as
-     *                                  "projects/&#42;/locations/global/catalogs/default_catalog/catalogItems/some_catalog_item_id".
+     *                                  `projects/&#42;/locations/global/catalogs/default_catalog/catalogItems/some_catalog_item_id`.
      * @param CatalogItem $catalogItem  Required. The catalog item to update/create. The 'catalog_item_id' field
      *                                  has to match that in the 'name'.
      * @param array       $optionalArgs {
@@ -677,10 +660,9 @@ class CatalogServiceGapicClient
      *           Optional. Indicates which fields in the provided 'item' to update. If not
      *           set, will by default update all fields.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\RecommendationEngine\V1beta1\CatalogItem

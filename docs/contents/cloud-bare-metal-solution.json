@@ -1,0 +1,15 @@
+{
+    "title": "BareMetalSolution",
+    "defaultService": "baremetalsolution\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "baremetalsolution\/readme"
+        },
+        {
+            "title": "BareMetalSolutionClient (v2)",
+            "type": "baremetalsolution\/v2\/baremetalsolutionclient"
+        }
+    ],
+    "pattern": "baremetalsolution\/\\w{1,}"
+}

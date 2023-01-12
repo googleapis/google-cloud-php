@@ -36,7 +36,7 @@ class BatchRunPivotReportsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Analytics\Data\V1beta\RunPivotReportResponse[]|\Google\Protobuf\Internal\RepeatedField $pivot_reports
+     *     @type array<\Google\Analytics\Data\V1beta\RunPivotReportResponse>|\Google\Protobuf\Internal\RepeatedField $pivot_reports
      *           Individual responses. Each response has a separate pivot report request.
      *     @type string $kind
      *           Identifies what kind of resource this message is. This `kind` is always the
@@ -64,7 +64,7 @@ class BatchRunPivotReportsResponse extends \Google\Protobuf\Internal\Message
      * Individual responses. Each response has a separate pivot report request.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.RunPivotReportResponse pivot_reports = 1;</code>
-     * @param \Google\Analytics\Data\V1beta\RunPivotReportResponse[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Analytics\Data\V1beta\RunPivotReportResponse>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPivotReports($var)

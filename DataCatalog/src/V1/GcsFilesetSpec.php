@@ -57,7 +57,7 @@ class GcsFilesetSpec extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $file_patterns
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $file_patterns
      *           Required. Patterns to identify a set of files in Google Cloud Storage.
      *           For more information, see [Wildcard Names]
      *           (https://cloud.google.com/storage/docs/gsutil/addlhelp/WildcardNames).
@@ -81,7 +81,7 @@ class GcsFilesetSpec extends \Google\Protobuf\Internal\Message
      *            * `gs://another_bucket/a.txt`: matches `gs://another_bucket/a.txt`
      *           You can combine wildcards to match complex sets of files, for example:
      *           `gs://bucket_name/[a-m]??.j*g`
-     *     @type \Google\Cloud\DataCatalog\V1\GcsFileSpec[]|\Google\Protobuf\Internal\RepeatedField $sample_gcs_file_specs
+     *     @type array<\Google\Cloud\DataCatalog\V1\GcsFileSpec>|\Google\Protobuf\Internal\RepeatedField $sample_gcs_file_specs
      *           Output only. Sample files contained in this fileset, not all files
      *           contained in this fileset are represented here.
      * }
@@ -150,7 +150,7 @@ class GcsFilesetSpec extends \Google\Protobuf\Internal\Message
      * `gs://bucket_name/[a-m]??.j*g`
      *
      * Generated from protobuf field <code>repeated string file_patterns = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFilePatterns($var)
@@ -178,7 +178,7 @@ class GcsFilesetSpec extends \Google\Protobuf\Internal\Message
      * contained in this fileset are represented here.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datacatalog.v1.GcsFileSpec sample_gcs_file_specs = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param \Google\Cloud\DataCatalog\V1\GcsFileSpec[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\DataCatalog\V1\GcsFileSpec>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSampleGcsFileSpecs($var)

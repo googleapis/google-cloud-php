@@ -76,7 +76,7 @@ class BudgetServiceClientTest extends GeneratedTest
     public function createBudgetTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -90,11 +90,11 @@ class BudgetServiceClientTest extends GeneratedTest
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->billingAccountName('[BILLING_ACCOUNT]');
+        $formattedParent = $gapicClient->billingAccountName('[BILLING_ACCOUNT]');
         $budget = new Budget();
         $budgetAmount = new BudgetAmount();
         $budget->setAmount($budgetAmount);
-        $response = $client->createBudget($formattedParent, $budget);
+        $response = $gapicClient->createBudget($formattedParent, $budget);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -114,7 +114,7 @@ class BudgetServiceClientTest extends GeneratedTest
     public function createBudgetExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -129,13 +129,13 @@ class BudgetServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->billingAccountName('[BILLING_ACCOUNT]');
+        $formattedParent = $gapicClient->billingAccountName('[BILLING_ACCOUNT]');
         $budget = new Budget();
         $budgetAmount = new BudgetAmount();
         $budget->setAmount($budgetAmount);
         try {
-            $client->createBudget($formattedParent, $budget);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->createBudget($formattedParent, $budget);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -152,7 +152,7 @@ class BudgetServiceClientTest extends GeneratedTest
     public function deleteBudgetTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -160,8 +160,8 @@ class BudgetServiceClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->budgetName('[BILLING_ACCOUNT]', '[BUDGET]');
-        $client->deleteBudget($formattedName);
+        $formattedName = $gapicClient->budgetName('[BILLING_ACCOUNT]', '[BUDGET]');
+        $gapicClient->deleteBudget($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -178,7 +178,7 @@ class BudgetServiceClientTest extends GeneratedTest
     public function deleteBudgetExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -193,10 +193,10 @@ class BudgetServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->budgetName('[BILLING_ACCOUNT]', '[BUDGET]');
+        $formattedName = $gapicClient->budgetName('[BILLING_ACCOUNT]', '[BUDGET]');
         try {
-            $client->deleteBudget($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->deleteBudget($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -213,7 +213,7 @@ class BudgetServiceClientTest extends GeneratedTest
     public function getBudgetTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -227,8 +227,8 @@ class BudgetServiceClientTest extends GeneratedTest
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->budgetName('[BILLING_ACCOUNT]', '[BUDGET]');
-        $response = $client->getBudget($formattedName);
+        $formattedName = $gapicClient->budgetName('[BILLING_ACCOUNT]', '[BUDGET]');
+        $response = $gapicClient->getBudget($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -246,7 +246,7 @@ class BudgetServiceClientTest extends GeneratedTest
     public function getBudgetExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -261,10 +261,10 @@ class BudgetServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->budgetName('[BILLING_ACCOUNT]', '[BUDGET]');
+        $formattedName = $gapicClient->budgetName('[BILLING_ACCOUNT]', '[BUDGET]');
         try {
-            $client->getBudget($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getBudget($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -281,7 +281,7 @@ class BudgetServiceClientTest extends GeneratedTest
     public function listBudgetsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -296,8 +296,8 @@ class BudgetServiceClientTest extends GeneratedTest
         $expectedResponse->setBudgets($budgets);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->billingAccountName('[BILLING_ACCOUNT]');
-        $response = $client->listBudgets($formattedParent);
+        $formattedParent = $gapicClient->billingAccountName('[BILLING_ACCOUNT]');
+        $response = $gapicClient->listBudgets($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -318,7 +318,7 @@ class BudgetServiceClientTest extends GeneratedTest
     public function listBudgetsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -333,10 +333,10 @@ class BudgetServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->billingAccountName('[BILLING_ACCOUNT]');
+        $formattedParent = $gapicClient->billingAccountName('[BILLING_ACCOUNT]');
         try {
-            $client->listBudgets($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listBudgets($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -353,7 +353,7 @@ class BudgetServiceClientTest extends GeneratedTest
     public function updateBudgetTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -370,7 +370,7 @@ class BudgetServiceClientTest extends GeneratedTest
         $budget = new Budget();
         $budgetAmount = new BudgetAmount();
         $budget->setAmount($budgetAmount);
-        $response = $client->updateBudget($budget);
+        $response = $gapicClient->updateBudget($budget);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -388,7 +388,7 @@ class BudgetServiceClientTest extends GeneratedTest
     public function updateBudgetExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -407,8 +407,8 @@ class BudgetServiceClientTest extends GeneratedTest
         $budgetAmount = new BudgetAmount();
         $budget->setAmount($budgetAmount);
         try {
-            $client->updateBudget($budget);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->updateBudget($budget);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

@@ -17,12 +17,13 @@ class CompletionStats
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         $pool->internalAddGeneratedFile(
             '
-û
-1google/cloud/aiplatform/v1/completion_stats.protogoogle.cloud.aiplatform.v1"j
+Õ
+1google/cloud/aiplatform/v1/completion_stats.protogoogle.cloud.aiplatform.v1"ò
 CompletionStats
 successful_count (B‡A
 failed_count (B‡A
-incomplete_count (B‡ABÿ
+incomplete_count (B‡A,
+successful_forecast_point_count (B‡ABÿ
 com.google.cloud.aiplatform.v1BCompletionStatsProtoPZDgoogle.golang.org/genproto/googleapis/cloud/aiplatform/v1;aiplatform™Google.Cloud.AIPlatform.V1 Google\\Cloud\\AIPlatform\\V1ÍGoogle::Cloud::AIPlatform::V1bproto3'
         , true);
 

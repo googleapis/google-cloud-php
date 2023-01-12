@@ -88,7 +88,7 @@ class RedactImageRequest extends \Google\Protobuf\Internal\Message
      *           Deprecated. This field has no effect.
      *     @type \Google\Cloud\Dlp\V2\InspectConfig $inspect_config
      *           Configuration for the inspector.
-     *     @type \Google\Cloud\Dlp\V2\RedactImageRequest\ImageRedactionConfig[]|\Google\Protobuf\Internal\RepeatedField $image_redaction_configs
+     *     @type array<\Google\Cloud\Dlp\V2\RedactImageRequest\ImageRedactionConfig>|\Google\Protobuf\Internal\RepeatedField $image_redaction_configs
      *           The configuration for specifying what content to redact from images.
      *     @type bool $include_findings
      *           Whether the response should include findings along with the redacted
@@ -227,7 +227,7 @@ class RedactImageRequest extends \Google\Protobuf\Internal\Message
      * The configuration for specifying what content to redact from images.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.RedactImageRequest.ImageRedactionConfig image_redaction_configs = 5;</code>
-     * @param \Google\Cloud\Dlp\V2\RedactImageRequest\ImageRedactionConfig[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dlp\V2\RedactImageRequest\ImageRedactionConfig>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setImageRedactionConfigs($var)

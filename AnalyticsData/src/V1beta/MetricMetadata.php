@@ -98,7 +98,7 @@ class MetricMetadata extends \Google\Protobuf\Internal\Message
      *           `Event count`.
      *     @type string $description
      *           Description of how this metric is used and calculated.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $deprecated_api_names
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $deprecated_api_names
      *           Still usable but deprecated names for this metric. If populated, this
      *           metric is available by either `apiName` or one of `deprecatedApiNames`
      *           for a period of time. After the deprecation period, the metric will be
@@ -111,7 +111,7 @@ class MetricMetadata extends \Google\Protobuf\Internal\Message
      *           are not expressions, and for non-expressions, this field is empty.
      *     @type bool $custom_definition
      *           True if the metric is a custom metric for this property.
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $blocked_reasons
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $blocked_reasons
      *           If reasons are specified, your access is blocked to this metric for this
      *           property. API requests from you to this property for this metric will
      *           succeed; however, the report will contain only zeros for this metric. API
@@ -232,7 +232,7 @@ class MetricMetadata extends \Google\Protobuf\Internal\Message
      * available only by `apiName`.
      *
      * Generated from protobuf field <code>repeated string deprecated_api_names = 4;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDeprecatedApiNames($var)
@@ -352,7 +352,7 @@ class MetricMetadata extends \Google\Protobuf\Internal\Message
      * management](https://support.google.com/analytics/answer/10851388).
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.MetricMetadata.BlockedReason blocked_reasons = 8;</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setBlockedReasons($var)

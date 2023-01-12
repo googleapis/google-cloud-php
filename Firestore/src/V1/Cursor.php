@@ -37,7 +37,7 @@ class Cursor extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Firestore\V1\Value[]|\Google\Protobuf\Internal\RepeatedField $values
+     *     @type array<\Google\Cloud\Firestore\V1\Value>|\Google\Protobuf\Internal\RepeatedField $values
      *           The values that represent a position, in the order they appear in
      *           the order by clause of a query.
      *           Can contain fewer values than specified in the order by clause.
@@ -70,7 +70,7 @@ class Cursor extends \Google\Protobuf\Internal\Message
      * Can contain fewer values than specified in the order by clause.
      *
      * Generated from protobuf field <code>repeated .google.firestore.v1.Value values = 1;</code>
-     * @param \Google\Cloud\Firestore\V1\Value[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Firestore\V1\Value>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setValues($var)

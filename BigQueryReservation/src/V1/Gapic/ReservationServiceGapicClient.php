@@ -61,6 +61,7 @@ use Google\Cloud\BigQuery\Reservation\V1\SearchAssignmentsRequest;
 use Google\Cloud\BigQuery\Reservation\V1\SearchAssignmentsResponse;
 use Google\Cloud\BigQuery\Reservation\V1\SplitCapacityCommitmentRequest;
 use Google\Cloud\BigQuery\Reservation\V1\SplitCapacityCommitmentResponse;
+use Google\Cloud\BigQuery\Reservation\V1\UpdateAssignmentRequest;
 use Google\Cloud\BigQuery\Reservation\V1\UpdateBiReservationRequest;
 use Google\Cloud\BigQuery\Reservation\V1\UpdateCapacityCommitmentRequest;
 use Google\Cloud\BigQuery\Reservation\V1\UpdateReservationRequest;
@@ -513,13 +514,12 @@ class ReservationServiceGapicClient
      *     @type string $assignmentId
      *           The optional assignment ID. Assignment name will be generated automatically
      *           if this field is empty.
-     *           This field must only contain lower case alphanumeric characters or dash.
+     *           This field must only contain lower case alphanumeric characters or dashes.
      *           Max length is 64 characters.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\BigQuery\Reservation\V1\Assignment
@@ -581,14 +581,13 @@ class ReservationServiceGapicClient
      *     @type string $capacityCommitmentId
      *           The optional capacity commitment ID. Capacity commitment name will be
      *           generated automatically if this field is empty.
-     *           This field must only contain lower case alphanumeric characters or dash.
-     *           Max length is 64 characters.
+     *           This field must only contain lower case alphanumeric characters or dashes.
+     *           The first and last character cannot be a dash. Max length is 64 characters.
      *           NOTE: this ID won't be kept if the capacity commitment is split or merged.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\BigQuery\Reservation\V1\CapacityCommitment
@@ -653,15 +652,15 @@ class ReservationServiceGapicClient
      *     Optional.
      *
      *     @type string $reservationId
-     *           The reservation ID. This field must only contain lower case alphanumeric
-     *           characters or dash. Max length is 64 characters.
+     *           The reservation ID. It must only contain lower case alphanumeric
+     *           characters or dashes. It must start with a letter and must not end
+     *           with a dash. Its maximum length is 64 characters.
      *     @type Reservation $reservation
      *           Definition of the new reservation to create.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\BigQuery\Reservation\V1\Reservation
@@ -730,10 +729,9 @@ class ReservationServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @throws ApiException if the remote call fails
@@ -784,10 +782,9 @@ class ReservationServiceGapicClient
      *           commitments with assignments may cause queries to fail if they no longer
      *           have access to slots.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @throws ApiException if the remote call fails
@@ -838,10 +835,9 @@ class ReservationServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @throws ApiException if the remote call fails
@@ -886,10 +882,9 @@ class ReservationServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\BigQuery\Reservation\V1\BiReservation
@@ -936,10 +931,9 @@ class ReservationServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\BigQuery\Reservation\V1\CapacityCommitment
@@ -986,10 +980,9 @@ class ReservationServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\BigQuery\Reservation\V1\Reservation
@@ -1082,10 +1075,9 @@ class ReservationServiceGapicClient
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -1161,10 +1153,9 @@ class ReservationServiceGapicClient
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -1240,10 +1231,9 @@ class ReservationServiceGapicClient
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -1310,10 +1300,9 @@ class ReservationServiceGapicClient
      *           ID is the last portion of capacity commitment name e.g., 'abc' for
      *           projects/myproject/locations/US/capacityCommitments/abc
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\BigQuery\Reservation\V1\CapacityCommitment
@@ -1377,10 +1366,9 @@ class ReservationServiceGapicClient
      *           The new reservation ID, e.g.:
      *           `projects/myotherproject/locations/US/reservations/team2-prod`
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\BigQuery\Reservation\V1\Assignment
@@ -1480,10 +1468,9 @@ class ReservationServiceGapicClient
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -1523,8 +1510,8 @@ class ReservationServiceGapicClient
     }
 
     /**
-     * Deprecated: Looks up assignments for a specified resource for a particular region.
-     * If the request is about a project:
+     * Deprecated: Looks up assignments for a specified resource for a particular
+     * region. If the request is about a project:
      *
      * 1. Assignments created on the project will be returned if they exist.
      * 2. Otherwise assignments created on the closest ancestor will be
@@ -1594,10 +1581,9 @@ class ReservationServiceGapicClient
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -1646,7 +1632,7 @@ class ReservationServiceGapicClient
      *
      * For example, in order to downgrade from 10000 slots to 8000, you might
      * split a 10000 capacity commitment into commitments of 2000 and 8000. Then,
-     * you would change the plan of the first one to `FLEX` and then delete it.
+     * you delete the first one after the commitment end time passes.
      *
      * Sample code:
      * ```
@@ -1667,10 +1653,9 @@ class ReservationServiceGapicClient
      *     @type int $slotCount
      *           Number of slots in the capacity commitment after the split.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\BigQuery\Reservation\V1\SplitCapacityCommitmentResponse
@@ -1696,6 +1681,64 @@ class ReservationServiceGapicClient
         return $this->startCall(
             'SplitCapacityCommitment',
             SplitCapacityCommitmentResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Updates an existing assignment.
+     *
+     * Only the `priority` field can be updated.
+     *
+     * Sample code:
+     * ```
+     * $reservationServiceClient = new ReservationServiceClient();
+     * try {
+     *     $response = $reservationServiceClient->updateAssignment();
+     * } finally {
+     *     $reservationServiceClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type Assignment $assignment
+     *           Content of the assignment to update.
+     *     @type FieldMask $updateMask
+     *           Standard field mask for the set of fields to be updated.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\BigQuery\Reservation\V1\Assignment
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function updateAssignment(array $optionalArgs = [])
+    {
+        $request = new UpdateAssignmentRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['assignment'])) {
+            $request->setAssignment($optionalArgs['assignment']);
+        }
+
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'UpdateAssignment',
+            Assignment::class,
             $optionalArgs,
             $request
         )->wait();
@@ -1729,10 +1772,9 @@ class ReservationServiceGapicClient
      *     @type FieldMask $updateMask
      *           A list of fields to be updated in this request.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\BigQuery\Reservation\V1\BiReservation
@@ -1792,10 +1834,9 @@ class ReservationServiceGapicClient
      *     @type FieldMask $updateMask
      *           Standard field mask for the set of fields to be updated.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\BigQuery\Reservation\V1\CapacityCommitment
@@ -1851,10 +1892,9 @@ class ReservationServiceGapicClient
      *     @type FieldMask $updateMask
      *           Standard field mask for the set of fields to be updated.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\BigQuery\Reservation\V1\Reservation

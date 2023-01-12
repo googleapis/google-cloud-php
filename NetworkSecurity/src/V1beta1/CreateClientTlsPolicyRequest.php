@@ -23,9 +23,10 @@ class CreateClientTlsPolicyRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
-     * Required. Short name of the ClientTlsPolicy resource to be created. This value should
-     * be 1-63 characters long, containing only letters, numbers, hyphens, and
-     * underscores, and should not start with a number. E.g. "client_mtls_policy".
+     * Required. Short name of the ClientTlsPolicy resource to be created. This
+     * value should be 1-63 characters long, containing only letters, numbers,
+     * hyphens, and underscores, and should not start with a number. E.g.
+     * "client_mtls_policy".
      *
      * Generated from protobuf field <code>string client_tls_policy_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -47,9 +48,10 @@ class CreateClientTlsPolicyRequest extends \Google\Protobuf\Internal\Message
      *           Required. The parent resource of the ClientTlsPolicy. Must be in
      *           the format `projects/&#42;&#47;locations/{location}`.
      *     @type string $client_tls_policy_id
-     *           Required. Short name of the ClientTlsPolicy resource to be created. This value should
-     *           be 1-63 characters long, containing only letters, numbers, hyphens, and
-     *           underscores, and should not start with a number. E.g. "client_mtls_policy".
+     *           Required. Short name of the ClientTlsPolicy resource to be created. This
+     *           value should be 1-63 characters long, containing only letters, numbers,
+     *           hyphens, and underscores, and should not start with a number. E.g.
+     *           "client_mtls_policy".
      *     @type \Google\Cloud\NetworkSecurity\V1beta1\ClientTlsPolicy $client_tls_policy
      *           Required. ClientTlsPolicy resource to be created.
      * }
@@ -88,9 +90,10 @@ class CreateClientTlsPolicyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Short name of the ClientTlsPolicy resource to be created. This value should
-     * be 1-63 characters long, containing only letters, numbers, hyphens, and
-     * underscores, and should not start with a number. E.g. "client_mtls_policy".
+     * Required. Short name of the ClientTlsPolicy resource to be created. This
+     * value should be 1-63 characters long, containing only letters, numbers,
+     * hyphens, and underscores, and should not start with a number. E.g.
+     * "client_mtls_policy".
      *
      * Generated from protobuf field <code>string client_tls_policy_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -101,9 +104,10 @@ class CreateClientTlsPolicyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Short name of the ClientTlsPolicy resource to be created. This value should
-     * be 1-63 characters long, containing only letters, numbers, hyphens, and
-     * underscores, and should not start with a number. E.g. "client_mtls_policy".
+     * Required. Short name of the ClientTlsPolicy resource to be created. This
+     * value should be 1-63 characters long, containing only letters, numbers,
+     * hyphens, and underscores, and should not start with a number. E.g.
+     * "client_mtls_policy".
      *
      * Generated from protobuf field <code>string client_tls_policy_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

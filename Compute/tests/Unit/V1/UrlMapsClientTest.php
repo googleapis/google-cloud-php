@@ -25,7 +25,6 @@ namespace Google\Cloud\Compute\Tests\Unit\V1;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Compute\V1\CacheInvalidationRule;
 use Google\Cloud\Compute\V1\GetGlobalOperationRequest;
@@ -49,25 +48,19 @@ use stdClass;
  */
 class UrlMapsClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return UrlMapsClient
-     */
+    /** @return UrlMapsClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -76,13 +69,11 @@ class UrlMapsClientTest extends GeneratedTest
         return new UrlMapsClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function aggregatedListTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -103,7 +94,7 @@ class UrlMapsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $project = 'project-309310695';
-        $response = $client->aggregatedList($project);
+        $response = $gapicClient->aggregatedList($project);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -120,13 +111,11 @@ class UrlMapsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function aggregatedListExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -143,8 +132,8 @@ class UrlMapsClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         try {
-            $client->aggregatedList($project);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->aggregatedList($project);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -155,9 +144,7 @@ class UrlMapsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteTest()
     {
         $operationsTransport = $this->createTransport();
@@ -167,7 +154,7 @@ class UrlMapsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -185,7 +172,7 @@ class UrlMapsClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         $urlMap = 'urlMap-169850228';
-        $response = $client->delete($project, $urlMap);
+        $response = $gapicClient->delete($project, $urlMap);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -217,9 +204,7 @@ class UrlMapsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -229,7 +214,7 @@ class UrlMapsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -253,7 +238,7 @@ class UrlMapsClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         $urlMap = 'urlMap-169850228';
-        $response = $client->delete($project, $urlMap);
+        $response = $gapicClient->delete($project, $urlMap);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -273,13 +258,11 @@ class UrlMapsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -307,7 +290,7 @@ class UrlMapsClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         $urlMap = 'urlMap-169850228';
-        $response = $client->get($project, $urlMap);
+        $response = $gapicClient->get($project, $urlMap);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -321,13 +304,11 @@ class UrlMapsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -345,8 +326,8 @@ class UrlMapsClientTest extends GeneratedTest
         $project = 'project-309310695';
         $urlMap = 'urlMap-169850228';
         try {
-            $client->get($project, $urlMap);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->get($project, $urlMap);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -357,9 +338,7 @@ class UrlMapsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function insertTest()
     {
         $operationsTransport = $this->createTransport();
@@ -369,7 +348,7 @@ class UrlMapsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -387,7 +366,7 @@ class UrlMapsClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         $urlMapResource = new UrlMap();
-        $response = $client->insert($project, $urlMapResource);
+        $response = $gapicClient->insert($project, $urlMapResource);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -419,9 +398,7 @@ class UrlMapsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function insertExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -431,7 +408,7 @@ class UrlMapsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -455,7 +432,7 @@ class UrlMapsClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         $urlMapResource = new UrlMap();
-        $response = $client->insert($project, $urlMapResource);
+        $response = $gapicClient->insert($project, $urlMapResource);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -475,9 +452,7 @@ class UrlMapsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function invalidateCacheTest()
     {
         $operationsTransport = $this->createTransport();
@@ -487,7 +462,7 @@ class UrlMapsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -506,7 +481,7 @@ class UrlMapsClientTest extends GeneratedTest
         $cacheInvalidationRuleResource = new CacheInvalidationRule();
         $project = 'project-309310695';
         $urlMap = 'urlMap-169850228';
-        $response = $client->invalidateCache($cacheInvalidationRuleResource, $project, $urlMap);
+        $response = $gapicClient->invalidateCache($cacheInvalidationRuleResource, $project, $urlMap);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -540,9 +515,7 @@ class UrlMapsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function invalidateCacheExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -552,7 +525,7 @@ class UrlMapsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -577,7 +550,7 @@ class UrlMapsClientTest extends GeneratedTest
         $cacheInvalidationRuleResource = new CacheInvalidationRule();
         $project = 'project-309310695';
         $urlMap = 'urlMap-169850228';
-        $response = $client->invalidateCache($cacheInvalidationRuleResource, $project, $urlMap);
+        $response = $gapicClient->invalidateCache($cacheInvalidationRuleResource, $project, $urlMap);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -597,13 +570,11 @@ class UrlMapsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -625,7 +596,7 @@ class UrlMapsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $project = 'project-309310695';
-        $response = $client->list($project);
+        $response = $gapicClient->list($project);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -640,13 +611,11 @@ class UrlMapsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -663,8 +632,8 @@ class UrlMapsClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         try {
-            $client->list($project);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->list($project);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -675,9 +644,7 @@ class UrlMapsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function patchTest()
     {
         $operationsTransport = $this->createTransport();
@@ -687,7 +654,7 @@ class UrlMapsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -706,7 +673,7 @@ class UrlMapsClientTest extends GeneratedTest
         $project = 'project-309310695';
         $urlMap = 'urlMap-169850228';
         $urlMapResource = new UrlMap();
-        $response = $client->patch($project, $urlMap, $urlMapResource);
+        $response = $gapicClient->patch($project, $urlMap, $urlMapResource);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -740,9 +707,7 @@ class UrlMapsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function patchExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -752,7 +717,7 @@ class UrlMapsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -777,7 +742,7 @@ class UrlMapsClientTest extends GeneratedTest
         $project = 'project-309310695';
         $urlMap = 'urlMap-169850228';
         $urlMapResource = new UrlMap();
-        $response = $client->patch($project, $urlMap, $urlMapResource);
+        $response = $gapicClient->patch($project, $urlMap, $urlMapResource);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -797,9 +762,7 @@ class UrlMapsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateTest()
     {
         $operationsTransport = $this->createTransport();
@@ -809,7 +772,7 @@ class UrlMapsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -828,7 +791,7 @@ class UrlMapsClientTest extends GeneratedTest
         $project = 'project-309310695';
         $urlMap = 'urlMap-169850228';
         $urlMapResource = new UrlMap();
-        $response = $client->update($project, $urlMap, $urlMapResource);
+        $response = $gapicClient->update($project, $urlMap, $urlMapResource);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -862,9 +825,7 @@ class UrlMapsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -874,7 +835,7 @@ class UrlMapsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -899,7 +860,7 @@ class UrlMapsClientTest extends GeneratedTest
         $project = 'project-309310695';
         $urlMap = 'urlMap-169850228';
         $urlMapResource = new UrlMap();
-        $response = $client->update($project, $urlMap, $urlMapResource);
+        $response = $gapicClient->update($project, $urlMap, $urlMapResource);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -919,13 +880,11 @@ class UrlMapsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function validateTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -936,7 +895,7 @@ class UrlMapsClientTest extends GeneratedTest
         $project = 'project-309310695';
         $urlMap = 'urlMap-169850228';
         $urlMapsValidateRequestResource = new UrlMapsValidateRequest();
-        $response = $client->validate($project, $urlMap, $urlMapsValidateRequestResource);
+        $response = $gapicClient->validate($project, $urlMap, $urlMapsValidateRequestResource);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -952,13 +911,11 @@ class UrlMapsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function validateExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -977,8 +934,8 @@ class UrlMapsClientTest extends GeneratedTest
         $urlMap = 'urlMap-169850228';
         $urlMapsValidateRequestResource = new UrlMapsValidateRequest();
         try {
-            $client->validate($project, $urlMap, $urlMapsValidateRequestResource);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->validate($project, $urlMap, $urlMapsValidateRequestResource);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

@@ -58,11 +58,11 @@ class CallAnalysisMetadata extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\ContactCenterInsights\V1\CallAnnotation[]|\Google\Protobuf\Internal\RepeatedField $annotations
+     *     @type array<\Google\Cloud\ContactCenterInsights\V1\CallAnnotation>|\Google\Protobuf\Internal\RepeatedField $annotations
      *           A list of call annotations that apply to this call.
      *     @type array|\Google\Protobuf\Internal\MapField $entities
      *           All the entities in the call.
-     *     @type \Google\Cloud\ContactCenterInsights\V1\ConversationLevelSentiment[]|\Google\Protobuf\Internal\RepeatedField $sentiments
+     *     @type array<\Google\Cloud\ContactCenterInsights\V1\ConversationLevelSentiment>|\Google\Protobuf\Internal\RepeatedField $sentiments
      *           Overall conversation-level sentiment for each channel of the call.
      *     @type array|\Google\Protobuf\Internal\MapField $intents
      *           All the matched intents in the call.
@@ -92,7 +92,7 @@ class CallAnalysisMetadata extends \Google\Protobuf\Internal\Message
      * A list of call annotations that apply to this call.
      *
      * Generated from protobuf field <code>repeated .google.cloud.contactcenterinsights.v1.CallAnnotation annotations = 2;</code>
-     * @param \Google\Cloud\ContactCenterInsights\V1\CallAnnotation[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\ContactCenterInsights\V1\CallAnnotation>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAnnotations($var)
@@ -144,7 +144,7 @@ class CallAnalysisMetadata extends \Google\Protobuf\Internal\Message
      * Overall conversation-level sentiment for each channel of the call.
      *
      * Generated from protobuf field <code>repeated .google.cloud.contactcenterinsights.v1.ConversationLevelSentiment sentiments = 4;</code>
-     * @param \Google\Cloud\ContactCenterInsights\V1\ConversationLevelSentiment[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\ContactCenterInsights\V1\ConversationLevelSentiment>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSentiments($var)

@@ -44,7 +44,7 @@ class TagTemplate extends \Google\Protobuf\Internal\Message
      * do not require tag template access to appear in
      * [ListTags][google.cloud.datacatalog.v1.ListTags] API response.
      * Additionally, you can search for a public tag by value with a
-     * simple search query instead of using a ``tag:`` predicate.
+     * simple search query in addition to using a ``tag:`` predicate.
      *
      * Generated from protobuf field <code>bool is_publicly_readable = 5;</code>
      */
@@ -84,7 +84,7 @@ class TagTemplate extends \Google\Protobuf\Internal\Message
      *           do not require tag template access to appear in
      *           [ListTags][google.cloud.datacatalog.v1.ListTags] API response.
      *           Additionally, you can search for a public tag by value with a
-     *           simple search query instead of using a ``tag:`` predicate.
+     *           simple search query in addition to using a ``tag:`` predicate.
      *     @type array|\Google\Protobuf\Internal\MapField $fields
      *           Required. Map of tag template field IDs to the settings for the field.
      *           This map is an exhaustive list of the allowed fields. The map must contain
@@ -169,7 +169,7 @@ class TagTemplate extends \Google\Protobuf\Internal\Message
      * do not require tag template access to appear in
      * [ListTags][google.cloud.datacatalog.v1.ListTags] API response.
      * Additionally, you can search for a public tag by value with a
-     * simple search query instead of using a ``tag:`` predicate.
+     * simple search query in addition to using a ``tag:`` predicate.
      *
      * Generated from protobuf field <code>bool is_publicly_readable = 5;</code>
      * @return bool
@@ -184,7 +184,7 @@ class TagTemplate extends \Google\Protobuf\Internal\Message
      * do not require tag template access to appear in
      * [ListTags][google.cloud.datacatalog.v1.ListTags] API response.
      * Additionally, you can search for a public tag by value with a
-     * simple search query instead of using a ``tag:`` predicate.
+     * simple search query in addition to using a ``tag:`` predicate.
      *
      * Generated from protobuf field <code>bool is_publicly_readable = 5;</code>
      * @param bool $var

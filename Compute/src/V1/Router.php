@@ -40,7 +40,7 @@ class Router extends \Google\Protobuf\Internal\Message
      */
     private $description = null;
     /**
-     * Indicates if a router is dedicated for use with encrypted VLAN attachments (interconnectAttachments). Not currently available publicly. 
+     * Indicates if a router is dedicated for use with encrypted VLAN attachments (interconnectAttachments).
      *
      * Generated from protobuf field <code>optional bool encrypted_interconnect_router = 297996575;</code>
      */
@@ -63,6 +63,12 @@ class Router extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
     private $kind = null;
+    /**
+     * Keys used for MD5 authentication.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouterMd5AuthenticationKey md5_authentication_keys = 71063322;</code>
+     */
+    private $md5_authentication_keys;
     /**
      * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
@@ -102,23 +108,25 @@ class Router extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Compute\V1\RouterBgp $bgp
      *           BGP information specific to this router.
-     *     @type \Google\Cloud\Compute\V1\RouterBgpPeer[]|\Google\Protobuf\Internal\RepeatedField $bgp_peers
+     *     @type array<\Google\Cloud\Compute\V1\RouterBgpPeer>|\Google\Protobuf\Internal\RepeatedField $bgp_peers
      *           BGP information that must be configured into the routing stack to establish BGP peering. This information must specify the peer ASN and either the interface name, IP address, or peer IP address. Please refer to RFC4273.
      *     @type string $creation_timestamp
      *           [Output Only] Creation timestamp in RFC3339 text format.
      *     @type string $description
      *           An optional description of this resource. Provide this property when you create the resource.
      *     @type bool $encrypted_interconnect_router
-     *           Indicates if a router is dedicated for use with encrypted VLAN attachments (interconnectAttachments). Not currently available publicly. 
+     *           Indicates if a router is dedicated for use with encrypted VLAN attachments (interconnectAttachments).
      *     @type int|string $id
      *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
-     *     @type \Google\Cloud\Compute\V1\RouterInterface[]|\Google\Protobuf\Internal\RepeatedField $interfaces
+     *     @type array<\Google\Cloud\Compute\V1\RouterInterface>|\Google\Protobuf\Internal\RepeatedField $interfaces
      *           Router interfaces. Each interface requires either one linked resource, (for example, linkedVpnTunnel), or IP address and IP address range (for example, ipRange), or both.
      *     @type string $kind
      *           [Output Only] Type of resource. Always compute#router for routers.
+     *     @type array<\Google\Cloud\Compute\V1\RouterMd5AuthenticationKey>|\Google\Protobuf\Internal\RepeatedField $md5_authentication_keys
+     *           Keys used for MD5 authentication.
      *     @type string $name
      *           Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
-     *     @type \Google\Cloud\Compute\V1\RouterNat[]|\Google\Protobuf\Internal\RepeatedField $nats
+     *     @type array<\Google\Cloud\Compute\V1\RouterNat>|\Google\Protobuf\Internal\RepeatedField $nats
      *           A list of NAT services created in this router.
      *     @type string $network
      *           URI of the network to which this router belongs.
@@ -184,7 +192,7 @@ class Router extends \Google\Protobuf\Internal\Message
      * BGP information that must be configured into the routing stack to establish BGP peering. This information must specify the peer ASN and either the interface name, IP address, or peer IP address. Please refer to RFC4273.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouterBgpPeer bgp_peers = 452695773;</code>
-     * @param \Google\Cloud\Compute\V1\RouterBgpPeer[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\RouterBgpPeer>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setBgpPeers($var)
@@ -268,7 +276,7 @@ class Router extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Indicates if a router is dedicated for use with encrypted VLAN attachments (interconnectAttachments). Not currently available publicly. 
+     * Indicates if a router is dedicated for use with encrypted VLAN attachments (interconnectAttachments).
      *
      * Generated from protobuf field <code>optional bool encrypted_interconnect_router = 297996575;</code>
      * @return bool
@@ -289,7 +297,7 @@ class Router extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Indicates if a router is dedicated for use with encrypted VLAN attachments (interconnectAttachments). Not currently available publicly. 
+     * Indicates if a router is dedicated for use with encrypted VLAN attachments (interconnectAttachments).
      *
      * Generated from protobuf field <code>optional bool encrypted_interconnect_router = 297996575;</code>
      * @param bool $var
@@ -354,7 +362,7 @@ class Router extends \Google\Protobuf\Internal\Message
      * Router interfaces. Each interface requires either one linked resource, (for example, linkedVpnTunnel), or IP address and IP address range (for example, ipRange), or both.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouterInterface interfaces = 12073562;</code>
-     * @param \Google\Cloud\Compute\V1\RouterInterface[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\RouterInterface>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setInterfaces($var)
@@ -397,6 +405,32 @@ class Router extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->kind = $var;
+
+        return $this;
+    }
+
+    /**
+     * Keys used for MD5 authentication.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouterMd5AuthenticationKey md5_authentication_keys = 71063322;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getMd5AuthenticationKeys()
+    {
+        return $this->md5_authentication_keys;
+    }
+
+    /**
+     * Keys used for MD5 authentication.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouterMd5AuthenticationKey md5_authentication_keys = 71063322;</code>
+     * @param array<\Google\Cloud\Compute\V1\RouterMd5AuthenticationKey>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setMd5AuthenticationKeys($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Compute\V1\RouterMd5AuthenticationKey::class);
+        $this->md5_authentication_keys = $arr;
 
         return $this;
     }
@@ -452,7 +486,7 @@ class Router extends \Google\Protobuf\Internal\Message
      * A list of NAT services created in this router.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouterNat nats = 3373938;</code>
-     * @param \Google\Cloud\Compute\V1\RouterNat[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\RouterNat>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setNats($var)

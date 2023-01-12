@@ -93,6 +93,12 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      */
     private $desired_shielded_nodes = null;
     /**
+     * The desired configuration for the fine-grained cost management feature.
+     *
+     * Generated from protobuf field <code>.google.container.v1.CostManagementConfig desired_cost_management_config = 49;</code>
+     */
+    private $desired_cost_management_config = null;
+    /**
      * DNSConfig contains clusterDNS config for this cluster.
      *
      * Generated from protobuf field <code>.google.container.v1.DNSConfig desired_dns_config = 53;</code>
@@ -229,12 +235,24 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      */
     private $desired_monitoring_config = null;
     /**
+     * The desired Identity Service component configuration.
+     *
+     * Generated from protobuf field <code>.google.container.v1.IdentityServiceConfig desired_identity_service_config = 66;</code>
+     */
+    private $desired_identity_service_config = null;
+    /**
      * ServiceExternalIPsConfig specifies the config for the use of Services with
      * ExternalIPs field.
      *
      * Generated from protobuf field <code>.google.container.v1.ServiceExternalIPsConfig desired_service_external_ips_config = 60;</code>
      */
     private $desired_service_external_ips_config = null;
+    /**
+     * Enable/Disable private endpoint for the cluster's master.
+     *
+     * Generated from protobuf field <code>optional bool desired_enable_private_endpoint = 71;</code>
+     */
+    private $desired_enable_private_endpoint = null;
     /**
      * The Kubernetes version to change the master to.
      * Users may specify either explicit versions offered by
@@ -254,6 +272,25 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.container.v1.GcfsConfig desired_gcfs_config = 109;</code>
      */
     private $desired_gcfs_config = null;
+    /**
+     * The desired network tags that apply to all auto-provisioned node pools
+     * in autopilot clusters and node auto-provisioning enabled clusters.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NetworkTags desired_node_pool_auto_config_network_tags = 110;</code>
+     */
+    private $desired_node_pool_auto_config_network_tags = null;
+    /**
+     * The desired config of Gateway API on this cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.GatewayAPIConfig desired_gateway_api_config = 114;</code>
+     */
+    private $desired_gateway_api_config = null;
+    /**
+     * The desired node pool logging configuration defaults for the cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodePoolLoggingConfig desired_node_pool_logging_config = 116;</code>
+     */
+    private $desired_node_pool_logging_config = null;
 
     /**
      * Constructor.
@@ -300,6 +337,8 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      *           pods.
      *     @type \Google\Cloud\Container\V1\ShieldedNodes $desired_shielded_nodes
      *           Configuration for Shielded Nodes.
+     *     @type \Google\Cloud\Container\V1\CostManagementConfig $desired_cost_management_config
+     *           The desired configuration for the fine-grained cost management feature.
      *     @type \Google\Cloud\Container\V1\DNSConfig $desired_dns_config
      *           DNSConfig contains clusterDNS config for this cluster.
      *     @type \Google\Cloud\Container\V1\NodePoolAutoscaling $desired_node_pool_autoscaling
@@ -307,7 +346,7 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      *           desired_node_pool_id. If there is only one pool in the
      *           cluster and desired_node_pool_id is not provided then
      *           the change applies to that single node pool.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $desired_locations
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $desired_locations
      *           The desired list of Google Compute Engine
      *           [zones](https://cloud.google.com/compute/docs/zones#available) in which the
      *           cluster's nodes should be located.
@@ -356,9 +395,13 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      *           The desired logging configuration.
      *     @type \Google\Cloud\Container\V1\MonitoringConfig $desired_monitoring_config
      *           The desired monitoring configuration.
+     *     @type \Google\Cloud\Container\V1\IdentityServiceConfig $desired_identity_service_config
+     *           The desired Identity Service component configuration.
      *     @type \Google\Cloud\Container\V1\ServiceExternalIPsConfig $desired_service_external_ips_config
      *           ServiceExternalIPsConfig specifies the config for the use of Services with
      *           ExternalIPs field.
+     *     @type bool $desired_enable_private_endpoint
+     *           Enable/Disable private endpoint for the cluster's master.
      *     @type string $desired_master_version
      *           The Kubernetes version to change the master to.
      *           Users may specify either explicit versions offered by
@@ -370,6 +413,13 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      *           - "-": picks the default Kubernetes version
      *     @type \Google\Cloud\Container\V1\GcfsConfig $desired_gcfs_config
      *           The desired GCFS config for the cluster
+     *     @type \Google\Cloud\Container\V1\NetworkTags $desired_node_pool_auto_config_network_tags
+     *           The desired network tags that apply to all auto-provisioned node pools
+     *           in autopilot clusters and node auto-provisioning enabled clusters.
+     *     @type \Google\Cloud\Container\V1\GatewayAPIConfig $desired_gateway_api_config
+     *           The desired config of Gateway API on this cluster.
+     *     @type \Google\Cloud\Container\V1\NodePoolLoggingConfig $desired_node_pool_logging_config
+     *           The desired node pool logging configuration defaults for the cluster.
      * }
      */
     public function __construct($data = NULL) {
@@ -704,6 +754,42 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * The desired configuration for the fine-grained cost management feature.
+     *
+     * Generated from protobuf field <code>.google.container.v1.CostManagementConfig desired_cost_management_config = 49;</code>
+     * @return \Google\Cloud\Container\V1\CostManagementConfig|null
+     */
+    public function getDesiredCostManagementConfig()
+    {
+        return $this->desired_cost_management_config;
+    }
+
+    public function hasDesiredCostManagementConfig()
+    {
+        return isset($this->desired_cost_management_config);
+    }
+
+    public function clearDesiredCostManagementConfig()
+    {
+        unset($this->desired_cost_management_config);
+    }
+
+    /**
+     * The desired configuration for the fine-grained cost management feature.
+     *
+     * Generated from protobuf field <code>.google.container.v1.CostManagementConfig desired_cost_management_config = 49;</code>
+     * @param \Google\Cloud\Container\V1\CostManagementConfig $var
+     * @return $this
+     */
+    public function setDesiredCostManagementConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\CostManagementConfig::class);
+        $this->desired_cost_management_config = $var;
+
+        return $this;
+    }
+
+    /**
      * DNSConfig contains clusterDNS config for this cluster.
      *
      * Generated from protobuf field <code>.google.container.v1.DNSConfig desired_dns_config = 53;</code>
@@ -806,7 +892,7 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      * pools and will result in nodes being added and/or removed.
      *
      * Generated from protobuf field <code>repeated string desired_locations = 10;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDesiredLocations($var)
@@ -1416,6 +1502,42 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * The desired Identity Service component configuration.
+     *
+     * Generated from protobuf field <code>.google.container.v1.IdentityServiceConfig desired_identity_service_config = 66;</code>
+     * @return \Google\Cloud\Container\V1\IdentityServiceConfig|null
+     */
+    public function getDesiredIdentityServiceConfig()
+    {
+        return $this->desired_identity_service_config;
+    }
+
+    public function hasDesiredIdentityServiceConfig()
+    {
+        return isset($this->desired_identity_service_config);
+    }
+
+    public function clearDesiredIdentityServiceConfig()
+    {
+        unset($this->desired_identity_service_config);
+    }
+
+    /**
+     * The desired Identity Service component configuration.
+     *
+     * Generated from protobuf field <code>.google.container.v1.IdentityServiceConfig desired_identity_service_config = 66;</code>
+     * @param \Google\Cloud\Container\V1\IdentityServiceConfig $var
+     * @return $this
+     */
+    public function setDesiredIdentityServiceConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\IdentityServiceConfig::class);
+        $this->desired_identity_service_config = $var;
+
+        return $this;
+    }
+
+    /**
      * ServiceExternalIPsConfig specifies the config for the use of Services with
      * ExternalIPs field.
      *
@@ -1449,6 +1571,42 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\ServiceExternalIPsConfig::class);
         $this->desired_service_external_ips_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Enable/Disable private endpoint for the cluster's master.
+     *
+     * Generated from protobuf field <code>optional bool desired_enable_private_endpoint = 71;</code>
+     * @return bool
+     */
+    public function getDesiredEnablePrivateEndpoint()
+    {
+        return isset($this->desired_enable_private_endpoint) ? $this->desired_enable_private_endpoint : false;
+    }
+
+    public function hasDesiredEnablePrivateEndpoint()
+    {
+        return isset($this->desired_enable_private_endpoint);
+    }
+
+    public function clearDesiredEnablePrivateEndpoint()
+    {
+        unset($this->desired_enable_private_endpoint);
+    }
+
+    /**
+     * Enable/Disable private endpoint for the cluster's master.
+     *
+     * Generated from protobuf field <code>optional bool desired_enable_private_endpoint = 71;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setDesiredEnablePrivateEndpoint($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->desired_enable_private_endpoint = $var;
 
         return $this;
     }
@@ -1525,6 +1683,116 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\GcfsConfig::class);
         $this->desired_gcfs_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * The desired network tags that apply to all auto-provisioned node pools
+     * in autopilot clusters and node auto-provisioning enabled clusters.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NetworkTags desired_node_pool_auto_config_network_tags = 110;</code>
+     * @return \Google\Cloud\Container\V1\NetworkTags|null
+     */
+    public function getDesiredNodePoolAutoConfigNetworkTags()
+    {
+        return $this->desired_node_pool_auto_config_network_tags;
+    }
+
+    public function hasDesiredNodePoolAutoConfigNetworkTags()
+    {
+        return isset($this->desired_node_pool_auto_config_network_tags);
+    }
+
+    public function clearDesiredNodePoolAutoConfigNetworkTags()
+    {
+        unset($this->desired_node_pool_auto_config_network_tags);
+    }
+
+    /**
+     * The desired network tags that apply to all auto-provisioned node pools
+     * in autopilot clusters and node auto-provisioning enabled clusters.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NetworkTags desired_node_pool_auto_config_network_tags = 110;</code>
+     * @param \Google\Cloud\Container\V1\NetworkTags $var
+     * @return $this
+     */
+    public function setDesiredNodePoolAutoConfigNetworkTags($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\NetworkTags::class);
+        $this->desired_node_pool_auto_config_network_tags = $var;
+
+        return $this;
+    }
+
+    /**
+     * The desired config of Gateway API on this cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.GatewayAPIConfig desired_gateway_api_config = 114;</code>
+     * @return \Google\Cloud\Container\V1\GatewayAPIConfig|null
+     */
+    public function getDesiredGatewayApiConfig()
+    {
+        return $this->desired_gateway_api_config;
+    }
+
+    public function hasDesiredGatewayApiConfig()
+    {
+        return isset($this->desired_gateway_api_config);
+    }
+
+    public function clearDesiredGatewayApiConfig()
+    {
+        unset($this->desired_gateway_api_config);
+    }
+
+    /**
+     * The desired config of Gateway API on this cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.GatewayAPIConfig desired_gateway_api_config = 114;</code>
+     * @param \Google\Cloud\Container\V1\GatewayAPIConfig $var
+     * @return $this
+     */
+    public function setDesiredGatewayApiConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\GatewayAPIConfig::class);
+        $this->desired_gateway_api_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * The desired node pool logging configuration defaults for the cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodePoolLoggingConfig desired_node_pool_logging_config = 116;</code>
+     * @return \Google\Cloud\Container\V1\NodePoolLoggingConfig|null
+     */
+    public function getDesiredNodePoolLoggingConfig()
+    {
+        return $this->desired_node_pool_logging_config;
+    }
+
+    public function hasDesiredNodePoolLoggingConfig()
+    {
+        return isset($this->desired_node_pool_logging_config);
+    }
+
+    public function clearDesiredNodePoolLoggingConfig()
+    {
+        unset($this->desired_node_pool_logging_config);
+    }
+
+    /**
+     * The desired node pool logging configuration defaults for the cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodePoolLoggingConfig desired_node_pool_logging_config = 116;</code>
+     * @param \Google\Cloud\Container\V1\NodePoolLoggingConfig $var
+     * @return $this
+     */
+    public function setDesiredNodePoolLoggingConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\NodePoolLoggingConfig::class);
+        $this->desired_node_pool_logging_config = $var;
 
         return $this;
     }

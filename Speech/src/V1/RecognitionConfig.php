@@ -207,6 +207,15 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *     <td><b>Description</b></td>
      *   </tr>
      *   <tr>
+     *     <td><code>latest_long</code></td>
+     *     <td>Best for long form content like media or conversation.</td>
+     *   </tr>
+     *   <tr>
+     *     <td><code>latest_short</code></td>
+     *     <td>Best for short form content like commands or single shot directed
+     *     speech.</td>
+     *   </tr>
+     *   <tr>
      *     <td><code>command_and_search</code></td>
      *     <td>Best for short queries such as voice commands or voice search.</td>
      *   </tr>
@@ -227,6 +236,16 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *     <td>Best for audio that is not one of the specific audio models.
      *         For example, long-form audio. Ideally the audio is high-fidelity,
      *         recorded at a 16khz or greater sampling rate.</td>
+     *   </tr>
+     *   <tr>
+     *     <td><code>medical_conversation</code></td>
+     *     <td>Best for audio that originated from a conversation between a
+     *         medical provider and patient.</td>
+     *   </tr>
+     *   <tr>
+     *     <td><code>medical_dictation</code></td>
+     *     <td>Best for audio that originated from dictation notes by a medical
+     *         provider.</td>
      *   </tr>
      * </table>
      *
@@ -288,7 +307,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *           See [Language
      *           Support](https://cloud.google.com/speech-to-text/docs/languages) for a list
      *           of the currently supported language codes.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $alternative_language_codes
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $alternative_language_codes
      *           A list of up to 3 additional
      *           [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tags,
      *           listing possible alternative languages of the supplied audio.
@@ -319,7 +338,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *           adaptation](https://cloud.google.com/speech-to-text/docs/adaptation)
      *           documentation.
      *           When speech adaptation is set it supersedes the `speech_contexts` field.
-     *     @type \Google\Cloud\Speech\V1\SpeechContext[]|\Google\Protobuf\Internal\RepeatedField $speech_contexts
+     *     @type array<\Google\Cloud\Speech\V1\SpeechContext>|\Google\Protobuf\Internal\RepeatedField $speech_contexts
      *           Array of [SpeechContext][google.cloud.speech.v1.SpeechContext].
      *           A means to provide context to assist the speech recognition. For more
      *           information, see
@@ -375,6 +394,15 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *               <td><b>Description</b></td>
      *             </tr>
      *             <tr>
+     *               <td><code>latest_long</code></td>
+     *               <td>Best for long form content like media or conversation.</td>
+     *             </tr>
+     *             <tr>
+     *               <td><code>latest_short</code></td>
+     *               <td>Best for short form content like commands or single shot directed
+     *               speech.</td>
+     *             </tr>
+     *             <tr>
      *               <td><code>command_and_search</code></td>
      *               <td>Best for short queries such as voice commands or voice search.</td>
      *             </tr>
@@ -395,6 +423,16 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *               <td>Best for audio that is not one of the specific audio models.
      *                   For example, long-form audio. Ideally the audio is high-fidelity,
      *                   recorded at a 16khz or greater sampling rate.</td>
+     *             </tr>
+     *             <tr>
+     *               <td><code>medical_conversation</code></td>
+     *               <td>Best for audio that originated from a conversation between a
+     *                   medical provider and patient.</td>
+     *             </tr>
+     *             <tr>
+     *               <td><code>medical_dictation</code></td>
+     *               <td>Best for audio that originated from dictation notes by a medical
+     *                   provider.</td>
      *             </tr>
      *           </table>
      *     @type bool $use_enhanced
@@ -631,7 +669,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      * transcription).
      *
      * Generated from protobuf field <code>repeated string alternative_language_codes = 18;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAlternativeLanguageCodes($var)
@@ -777,7 +815,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      * adaptation](https://cloud.google.com/speech-to-text/docs/adaptation).
      *
      * Generated from protobuf field <code>repeated .google.cloud.speech.v1.SpeechContext speech_contexts = 6;</code>
-     * @param \Google\Cloud\Speech\V1\SpeechContext[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Speech\V1\SpeechContext>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSpeechContexts($var)
@@ -1145,6 +1183,15 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *     <td><b>Description</b></td>
      *   </tr>
      *   <tr>
+     *     <td><code>latest_long</code></td>
+     *     <td>Best for long form content like media or conversation.</td>
+     *   </tr>
+     *   <tr>
+     *     <td><code>latest_short</code></td>
+     *     <td>Best for short form content like commands or single shot directed
+     *     speech.</td>
+     *   </tr>
+     *   <tr>
      *     <td><code>command_and_search</code></td>
      *     <td>Best for short queries such as voice commands or voice search.</td>
      *   </tr>
@@ -1165,6 +1212,16 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *     <td>Best for audio that is not one of the specific audio models.
      *         For example, long-form audio. Ideally the audio is high-fidelity,
      *         recorded at a 16khz or greater sampling rate.</td>
+     *   </tr>
+     *   <tr>
+     *     <td><code>medical_conversation</code></td>
+     *     <td>Best for audio that originated from a conversation between a
+     *         medical provider and patient.</td>
+     *   </tr>
+     *   <tr>
+     *     <td><code>medical_dictation</code></td>
+     *     <td>Best for audio that originated from dictation notes by a medical
+     *         provider.</td>
      *   </tr>
      * </table>
      *
@@ -1187,6 +1244,15 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *     <td><b>Description</b></td>
      *   </tr>
      *   <tr>
+     *     <td><code>latest_long</code></td>
+     *     <td>Best for long form content like media or conversation.</td>
+     *   </tr>
+     *   <tr>
+     *     <td><code>latest_short</code></td>
+     *     <td>Best for short form content like commands or single shot directed
+     *     speech.</td>
+     *   </tr>
+     *   <tr>
      *     <td><code>command_and_search</code></td>
      *     <td>Best for short queries such as voice commands or voice search.</td>
      *   </tr>
@@ -1207,6 +1273,16 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *     <td>Best for audio that is not one of the specific audio models.
      *         For example, long-form audio. Ideally the audio is high-fidelity,
      *         recorded at a 16khz or greater sampling rate.</td>
+     *   </tr>
+     *   <tr>
+     *     <td><code>medical_conversation</code></td>
+     *     <td>Best for audio that originated from a conversation between a
+     *         medical provider and patient.</td>
+     *   </tr>
+     *   <tr>
+     *     <td><code>medical_dictation</code></td>
+     *     <td>Best for audio that originated from dictation notes by a medical
+     *         provider.</td>
      *   </tr>
      * </table>
      *

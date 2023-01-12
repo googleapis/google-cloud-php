@@ -63,8 +63,8 @@ class Asset extends \Google\Protobuf\Internal\Message
      * effectively policy is the union of both the policy set on this resource
      * and each policy set on all of the resource's ancestry resource levels in
      * the hierarchy. See
-     * [this topic](https://cloud.google.com/iam/docs/policies#inheritance) for
-     * more information.
+     * [this topic](https://cloud.google.com/iam/help/allow-policies/inheritance)
+     * for more information.
      *
      * Generated from protobuf field <code>.google.iam.v1.Policy iam_policy = 4;</code>
      */
@@ -87,12 +87,22 @@ class Asset extends \Google\Protobuf\Internal\Message
      */
     private $os_inventory = null;
     /**
-     * The related assets of the asset of one relationship type.
-     * One asset only represents one type of relationship.
+     * DEPRECATED. This field only presents for the purpose of
+     * backward-compatibility. The server will never generate responses with this
+     * field.
+     * The related assets of the asset of one relationship type. One asset
+     * only represents one type of relationship.
      *
-     * Generated from protobuf field <code>.google.cloud.asset.v1.RelatedAssets related_assets = 13;</code>
+     * Generated from protobuf field <code>.google.cloud.asset.v1.RelatedAssets related_assets = 13 [deprecated = true];</code>
+     * @deprecated
      */
-    private $related_assets = null;
+    protected $related_assets = null;
+    /**
+     * One related asset of the current asset.
+     *
+     * Generated from protobuf field <code>.google.cloud.asset.v1.RelatedAsset related_asset = 15;</code>
+     */
+    private $related_asset = null;
     /**
      * The ancestry path of an asset in Google Cloud [resource
      * hierarchy](https://cloud.google.com/resource-manager/docs/cloud-platform-resource-hierarchy),
@@ -137,9 +147,9 @@ class Asset extends \Google\Protobuf\Internal\Message
      *           effectively policy is the union of both the policy set on this resource
      *           and each policy set on all of the resource's ancestry resource levels in
      *           the hierarchy. See
-     *           [this topic](https://cloud.google.com/iam/docs/policies#inheritance) for
-     *           more information.
-     *     @type \Google\Cloud\OrgPolicy\V1\Policy[]|\Google\Protobuf\Internal\RepeatedField $org_policy
+     *           [this topic](https://cloud.google.com/iam/help/allow-policies/inheritance)
+     *           for more information.
+     *     @type array<\Google\Cloud\OrgPolicy\V1\Policy>|\Google\Protobuf\Internal\RepeatedField $org_policy
      *           A representation of an [organization
      *           policy](https://cloud.google.com/resource-manager/docs/organization-policy/overview#organization_policy).
      *           There can be more than one organization policy with different constraints
@@ -158,9 +168,14 @@ class Asset extends \Google\Protobuf\Internal\Message
      *           topic](https://cloud.google.com/compute/docs/instances/os-inventory-management)
      *           for more information.
      *     @type \Google\Cloud\Asset\V1\RelatedAssets $related_assets
-     *           The related assets of the asset of one relationship type.
-     *           One asset only represents one type of relationship.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $ancestors
+     *           DEPRECATED. This field only presents for the purpose of
+     *           backward-compatibility. The server will never generate responses with this
+     *           field.
+     *           The related assets of the asset of one relationship type. One asset
+     *           only represents one type of relationship.
+     *     @type \Google\Cloud\Asset\V1\RelatedAsset $related_asset
+     *           One related asset of the current asset.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $ancestors
      *           The ancestry path of an asset in Google Cloud [resource
      *           hierarchy](https://cloud.google.com/resource-manager/docs/cloud-platform-resource-hierarchy),
      *           represented as a list of relative resource names. An ancestry path starts
@@ -323,8 +338,8 @@ class Asset extends \Google\Protobuf\Internal\Message
      * effectively policy is the union of both the policy set on this resource
      * and each policy set on all of the resource's ancestry resource levels in
      * the hierarchy. See
-     * [this topic](https://cloud.google.com/iam/docs/policies#inheritance) for
-     * more information.
+     * [this topic](https://cloud.google.com/iam/help/allow-policies/inheritance)
+     * for more information.
      *
      * Generated from protobuf field <code>.google.iam.v1.Policy iam_policy = 4;</code>
      * @return \Google\Cloud\Iam\V1\Policy|null
@@ -352,8 +367,8 @@ class Asset extends \Google\Protobuf\Internal\Message
      * effectively policy is the union of both the policy set on this resource
      * and each policy set on all of the resource's ancestry resource levels in
      * the hierarchy. See
-     * [this topic](https://cloud.google.com/iam/docs/policies#inheritance) for
-     * more information.
+     * [this topic](https://cloud.google.com/iam/help/allow-policies/inheritance)
+     * for more information.
      *
      * Generated from protobuf field <code>.google.iam.v1.Policy iam_policy = 4;</code>
      * @param \Google\Cloud\Iam\V1\Policy $var
@@ -388,7 +403,7 @@ class Asset extends \Google\Protobuf\Internal\Message
      * set on a given resource.
      *
      * Generated from protobuf field <code>repeated .google.cloud.orgpolicy.v1.Policy org_policy = 6;</code>
-     * @param \Google\Cloud\OrgPolicy\V1\Policy[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\OrgPolicy\V1\Policy>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setOrgPolicy($var)
@@ -539,39 +554,87 @@ class Asset extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The related assets of the asset of one relationship type.
-     * One asset only represents one type of relationship.
+     * DEPRECATED. This field only presents for the purpose of
+     * backward-compatibility. The server will never generate responses with this
+     * field.
+     * The related assets of the asset of one relationship type. One asset
+     * only represents one type of relationship.
      *
-     * Generated from protobuf field <code>.google.cloud.asset.v1.RelatedAssets related_assets = 13;</code>
+     * Generated from protobuf field <code>.google.cloud.asset.v1.RelatedAssets related_assets = 13 [deprecated = true];</code>
      * @return \Google\Cloud\Asset\V1\RelatedAssets|null
+     * @deprecated
      */
     public function getRelatedAssets()
     {
+        @trigger_error('related_assets is deprecated.', E_USER_DEPRECATED);
         return $this->related_assets;
     }
 
     public function hasRelatedAssets()
     {
+        @trigger_error('related_assets is deprecated.', E_USER_DEPRECATED);
         return isset($this->related_assets);
     }
 
     public function clearRelatedAssets()
     {
+        @trigger_error('related_assets is deprecated.', E_USER_DEPRECATED);
         unset($this->related_assets);
     }
 
     /**
-     * The related assets of the asset of one relationship type.
-     * One asset only represents one type of relationship.
+     * DEPRECATED. This field only presents for the purpose of
+     * backward-compatibility. The server will never generate responses with this
+     * field.
+     * The related assets of the asset of one relationship type. One asset
+     * only represents one type of relationship.
      *
-     * Generated from protobuf field <code>.google.cloud.asset.v1.RelatedAssets related_assets = 13;</code>
+     * Generated from protobuf field <code>.google.cloud.asset.v1.RelatedAssets related_assets = 13 [deprecated = true];</code>
      * @param \Google\Cloud\Asset\V1\RelatedAssets $var
      * @return $this
+     * @deprecated
      */
     public function setRelatedAssets($var)
     {
+        @trigger_error('related_assets is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkMessage($var, \Google\Cloud\Asset\V1\RelatedAssets::class);
         $this->related_assets = $var;
+
+        return $this;
+    }
+
+    /**
+     * One related asset of the current asset.
+     *
+     * Generated from protobuf field <code>.google.cloud.asset.v1.RelatedAsset related_asset = 15;</code>
+     * @return \Google\Cloud\Asset\V1\RelatedAsset|null
+     */
+    public function getRelatedAsset()
+    {
+        return $this->related_asset;
+    }
+
+    public function hasRelatedAsset()
+    {
+        return isset($this->related_asset);
+    }
+
+    public function clearRelatedAsset()
+    {
+        unset($this->related_asset);
+    }
+
+    /**
+     * One related asset of the current asset.
+     *
+     * Generated from protobuf field <code>.google.cloud.asset.v1.RelatedAsset related_asset = 15;</code>
+     * @param \Google\Cloud\Asset\V1\RelatedAsset $var
+     * @return $this
+     */
+    public function setRelatedAsset($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Asset\V1\RelatedAsset::class);
+        $this->related_asset = $var;
 
         return $this;
     }
@@ -603,7 +666,7 @@ class Asset extends \Google\Protobuf\Internal\Message
      * Example: `["projects/123456789", "folders/5432", "organizations/1234"]`
      *
      * Generated from protobuf field <code>repeated string ancestors = 10;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAncestors($var)

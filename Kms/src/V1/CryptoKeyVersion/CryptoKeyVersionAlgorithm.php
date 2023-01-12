@@ -7,13 +7,16 @@ namespace Google\Cloud\Kms\V1\CryptoKeyVersion;
 use UnexpectedValueException;
 
 /**
- * The algorithm of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion], indicating what
+ * The algorithm of the
+ * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion], indicating what
  * parameters must be used for each cryptographic operation.
  * The
  * [GOOGLE_SYMMETRIC_ENCRYPTION][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm.GOOGLE_SYMMETRIC_ENCRYPTION]
- * algorithm is usable with [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose]
+ * algorithm is usable with
+ * [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose]
  * [ENCRYPT_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ENCRYPT_DECRYPT].
- * Algorithms beginning with "RSA_SIGN_" are usable with [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose]
+ * Algorithms beginning with "RSA_SIGN_" are usable with
+ * [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose]
  * [ASYMMETRIC_SIGN][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ASYMMETRIC_SIGN].
  * The fields in the name after "RSA_SIGN_" correspond to the following
  * parameters: padding algorithm, modulus bit length, and digest algorithm.
@@ -26,11 +29,13 @@ use UnexpectedValueException;
  * [ASYMMETRIC_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ASYMMETRIC_DECRYPT].
  * The fields in the name after "RSA_DECRYPT_" correspond to the following
  * parameters: padding algorithm, modulus bit length, and digest algorithm.
- * Algorithms beginning with "EC_SIGN_" are usable with [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose]
+ * Algorithms beginning with "EC_SIGN_" are usable with
+ * [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose]
  * [ASYMMETRIC_SIGN][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ASYMMETRIC_SIGN].
  * The fields in the name after "EC_SIGN_" correspond to the following
  * parameters: elliptic curve, digest algorithm.
- * Algorithms beginning with "HMAC_" are usable with [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose]
+ * Algorithms beginning with "HMAC_" are usable with
+ * [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose]
  * [MAC][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.MAC].
  * The suffix following "HMAC_" corresponds to the hash algorithm being used
  * (eg. SHA256).
@@ -187,6 +192,30 @@ class CryptoKeyVersionAlgorithm
      */
     const HMAC_SHA256 = 32;
     /**
+     * HMAC-SHA1 signing with a 160 bit key.
+     *
+     * Generated from protobuf enum <code>HMAC_SHA1 = 33;</code>
+     */
+    const HMAC_SHA1 = 33;
+    /**
+     * HMAC-SHA384 signing with a 384 bit key.
+     *
+     * Generated from protobuf enum <code>HMAC_SHA384 = 34;</code>
+     */
+    const HMAC_SHA384 = 34;
+    /**
+     * HMAC-SHA512 signing with a 512 bit key.
+     *
+     * Generated from protobuf enum <code>HMAC_SHA512 = 35;</code>
+     */
+    const HMAC_SHA512 = 35;
+    /**
+     * HMAC-SHA224 signing with a 224 bit key.
+     *
+     * Generated from protobuf enum <code>HMAC_SHA224 = 36;</code>
+     */
+    const HMAC_SHA224 = 36;
+    /**
      * Algorithm representing symmetric encryption by an external key manager.
      *
      * Generated from protobuf enum <code>EXTERNAL_SYMMETRIC_ENCRYPTION = 18;</code>
@@ -218,6 +247,10 @@ class CryptoKeyVersionAlgorithm
         self::EC_SIGN_P384_SHA384 => 'EC_SIGN_P384_SHA384',
         self::EC_SIGN_SECP256K1_SHA256 => 'EC_SIGN_SECP256K1_SHA256',
         self::HMAC_SHA256 => 'HMAC_SHA256',
+        self::HMAC_SHA1 => 'HMAC_SHA1',
+        self::HMAC_SHA384 => 'HMAC_SHA384',
+        self::HMAC_SHA512 => 'HMAC_SHA512',
+        self::HMAC_SHA224 => 'HMAC_SHA224',
         self::EXTERNAL_SYMMETRIC_ENCRYPTION => 'EXTERNAL_SYMMETRIC_ENCRYPTION',
     ];
 

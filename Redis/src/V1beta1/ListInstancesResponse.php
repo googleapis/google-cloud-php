@@ -50,7 +50,7 @@ class ListInstancesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Redis\V1beta1\Instance[]|\Google\Protobuf\Internal\RepeatedField $instances
+     *     @type array<\Google\Cloud\Redis\V1beta1\Instance>|\Google\Protobuf\Internal\RepeatedField $instances
      *           A list of Redis instances in the project in the specified location,
      *           or across all locations.
      *           If the `location_id` in the parent field of the request is "-", all regions
@@ -64,7 +64,7 @@ class ListInstancesResponse extends \Google\Protobuf\Internal\Message
      *     @type string $next_page_token
      *           Token to retrieve the next page of results, or empty if there are no more
      *           results in the list.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
      *           Locations that could not be reached.
      * }
      */
@@ -106,7 +106,7 @@ class ListInstancesResponse extends \Google\Protobuf\Internal\Message
      * available for ListInstances".
      *
      * Generated from protobuf field <code>repeated .google.cloud.redis.v1beta1.Instance instances = 1;</code>
-     * @param \Google\Cloud\Redis\V1beta1\Instance[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Redis\V1beta1\Instance>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setInstances($var)
@@ -160,7 +160,7 @@ class ListInstancesResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setUnreachable($var)

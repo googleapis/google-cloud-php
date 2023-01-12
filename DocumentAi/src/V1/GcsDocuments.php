@@ -28,7 +28,7 @@ class GcsDocuments extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\DocumentAI\V1\GcsDocument[]|\Google\Protobuf\Internal\RepeatedField $documents
+     *     @type array<\Google\Cloud\DocumentAI\V1\GcsDocument>|\Google\Protobuf\Internal\RepeatedField $documents
      *           The list of documents.
      * }
      */
@@ -52,7 +52,7 @@ class GcsDocuments extends \Google\Protobuf\Internal\Message
      * The list of documents.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.GcsDocument documents = 1;</code>
-     * @param \Google\Cloud\DocumentAI\V1\GcsDocument[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\DocumentAI\V1\GcsDocument>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDocuments($var)

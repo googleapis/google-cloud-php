@@ -25,12 +25,13 @@
 namespace Google\Cloud\Eventarc\V1\Gapic;
 
 use Google\ApiCore\ApiException;
+use Google\ApiCore\Call;
 use Google\ApiCore\CredentialsWrapper;
+
 use Google\ApiCore\GapicClientTrait;
-
 use Google\ApiCore\LongRunning\OperationsClient;
-use Google\ApiCore\OperationResponse;
 
+use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
@@ -47,16 +48,33 @@ use Google\Cloud\Eventarc\V1\DeleteChannelRequest;
 use Google\Cloud\Eventarc\V1\DeleteTriggerRequest;
 use Google\Cloud\Eventarc\V1\GetChannelConnectionRequest;
 use Google\Cloud\Eventarc\V1\GetChannelRequest;
+use Google\Cloud\Eventarc\V1\GetGoogleChannelConfigRequest;
+use Google\Cloud\Eventarc\V1\GetProviderRequest;
 use Google\Cloud\Eventarc\V1\GetTriggerRequest;
+use Google\Cloud\Eventarc\V1\GoogleChannelConfig;
 use Google\Cloud\Eventarc\V1\ListChannelConnectionsRequest;
 use Google\Cloud\Eventarc\V1\ListChannelConnectionsResponse;
 use Google\Cloud\Eventarc\V1\ListChannelsRequest;
 use Google\Cloud\Eventarc\V1\ListChannelsResponse;
+use Google\Cloud\Eventarc\V1\ListProvidersRequest;
+use Google\Cloud\Eventarc\V1\ListProvidersResponse;
 use Google\Cloud\Eventarc\V1\ListTriggersRequest;
 use Google\Cloud\Eventarc\V1\ListTriggersResponse;
+use Google\Cloud\Eventarc\V1\Provider;
 use Google\Cloud\Eventarc\V1\Trigger;
 use Google\Cloud\Eventarc\V1\UpdateChannelRequest;
+use Google\Cloud\Eventarc\V1\UpdateGoogleChannelConfigRequest;
 use Google\Cloud\Eventarc\V1\UpdateTriggerRequest;
+use Google\Cloud\Iam\V1\GetIamPolicyRequest;
+use Google\Cloud\Iam\V1\GetPolicyOptions;
+use Google\Cloud\Iam\V1\Policy;
+use Google\Cloud\Iam\V1\SetIamPolicyRequest;
+use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
+use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
+use Google\Cloud\Location\GetLocationRequest;
+use Google\Cloud\Location\ListLocationsRequest;
+use Google\Cloud\Location\ListLocationsResponse;
+use Google\Cloud\Location\Location;
 use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
 
@@ -145,7 +163,13 @@ class EventarcGapicClient
 
     private static $channelConnectionNameTemplate;
 
+    private static $cryptoKeyNameTemplate;
+
+    private static $googleChannelConfigNameTemplate;
+
     private static $locationNameTemplate;
+
+    private static $providerNameTemplate;
 
     private static $serviceAccountNameTemplate;
 
@@ -202,6 +226,28 @@ class EventarcGapicClient
         return self::$channelConnectionNameTemplate;
     }
 
+    private static function getCryptoKeyNameTemplate()
+    {
+        if (self::$cryptoKeyNameTemplate == null) {
+            self::$cryptoKeyNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}'
+            );
+        }
+
+        return self::$cryptoKeyNameTemplate;
+    }
+
+    private static function getGoogleChannelConfigNameTemplate()
+    {
+        if (self::$googleChannelConfigNameTemplate == null) {
+            self::$googleChannelConfigNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/googleChannelConfig'
+            );
+        }
+
+        return self::$googleChannelConfigNameTemplate;
+    }
+
     private static function getLocationNameTemplate()
     {
         if (self::$locationNameTemplate == null) {
@@ -211,6 +257,17 @@ class EventarcGapicClient
         }
 
         return self::$locationNameTemplate;
+    }
+
+    private static function getProviderNameTemplate()
+    {
+        if (self::$providerNameTemplate == null) {
+            self::$providerNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/providers/{provider}'
+            );
+        }
+
+        return self::$providerNameTemplate;
     }
 
     private static function getServiceAccountNameTemplate()
@@ -241,7 +298,10 @@ class EventarcGapicClient
             self::$pathTemplateMap = [
                 'channel' => self::getChannelNameTemplate(),
                 'channelConnection' => self::getChannelConnectionNameTemplate(),
+                'cryptoKey' => self::getCryptoKeyNameTemplate(),
+                'googleChannelConfig' => self::getGoogleChannelConfigNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
+                'provider' => self::getProviderNameTemplate(),
                 'serviceAccount' => self::getServiceAccountNameTemplate(),
                 'trigger' => self::getTriggerNameTemplate(),
             ];
@@ -292,6 +352,48 @@ class EventarcGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a crypto_key
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $keyRing
+     * @param string $cryptoKey
+     *
+     * @return string The formatted crypto_key resource.
+     */
+    public static function cryptoKeyName(
+        $project,
+        $location,
+        $keyRing,
+        $cryptoKey
+    ) {
+        return self::getCryptoKeyNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'key_ring' => $keyRing,
+            'crypto_key' => $cryptoKey,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * google_channel_config resource.
+     *
+     * @param string $project
+     * @param string $location
+     *
+     * @return string The formatted google_channel_config resource.
+     */
+    public static function googleChannelConfigName($project, $location)
+    {
+        return self::getGoogleChannelConfigNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a location
      * resource.
      *
@@ -305,6 +407,25 @@ class EventarcGapicClient
         return self::getLocationNameTemplate()->render([
             'project' => $project,
             'location' => $location,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a provider
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $provider
+     *
+     * @return string The formatted provider resource.
+     */
+    public static function providerName($project, $location, $provider)
+    {
+        return self::getProviderNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'provider' => $provider,
         ]);
     }
 
@@ -350,7 +471,10 @@ class EventarcGapicClient
      * Template: Pattern
      * - channel: projects/{project}/locations/{location}/channels/{channel}
      * - channelConnection: projects/{project}/locations/{location}/channelConnections/{channel_connection}
+     * - cryptoKey: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}
+     * - googleChannelConfig: projects/{project}/locations/{location}/googleChannelConfig
      * - location: projects/{project}/locations/{location}
+     * - provider: projects/{project}/locations/{location}/providers/{provider}
      * - serviceAccount: projects/{project}/serviceAccounts/{service_account}
      * - trigger: projects/{project}/locations/{location}/triggers/{trigger}
      *
@@ -543,10 +667,9 @@ class EventarcGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -629,10 +752,9 @@ class EventarcGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -716,10 +838,9 @@ class EventarcGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -801,10 +922,9 @@ class EventarcGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -879,10 +999,9 @@ class EventarcGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -962,10 +1081,9 @@ class EventarcGapicClient
      *           If set to true, and the trigger is not found, the request will succeed
      *           but no action will be taken on the server.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -1023,10 +1141,9 @@ class EventarcGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Eventarc\V1\Channel
@@ -1072,10 +1189,9 @@ class EventarcGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Eventarc\V1\ChannelConnection
@@ -1103,6 +1219,102 @@ class EventarcGapicClient
     }
 
     /**
+     * Get a GoogleChannelConfig
+     *
+     * Sample code:
+     * ```
+     * $eventarcClient = new EventarcClient();
+     * try {
+     *     $formattedName = $eventarcClient->googleChannelConfigName('[PROJECT]', '[LOCATION]');
+     *     $response = $eventarcClient->getGoogleChannelConfig($formattedName);
+     * } finally {
+     *     $eventarcClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the config to get.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Eventarc\V1\GoogleChannelConfig
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getGoogleChannelConfig($name, array $optionalArgs = [])
+    {
+        $request = new GetGoogleChannelConfigRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetGoogleChannelConfig',
+            GoogleChannelConfig::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Get a single Provider.
+     *
+     * Sample code:
+     * ```
+     * $eventarcClient = new EventarcClient();
+     * try {
+     *     $formattedName = $eventarcClient->providerName('[PROJECT]', '[LOCATION]', '[PROVIDER]');
+     *     $response = $eventarcClient->getProvider($formattedName);
+     * } finally {
+     *     $eventarcClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the provider to get.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Eventarc\V1\Provider
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getProvider($name, array $optionalArgs = [])
+    {
+        $request = new GetProviderRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetProvider',
+            Provider::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Get a single trigger.
      *
      * Sample code:
@@ -1121,10 +1333,9 @@ class EventarcGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Eventarc\V1\Trigger
@@ -1191,10 +1402,9 @@ class EventarcGapicClient
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -1274,10 +1484,9 @@ class EventarcGapicClient
      *           specify descending order for a field, append a `desc` suffix; for example:
      *           `name desc, channel_id`.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -1312,6 +1521,98 @@ class EventarcGapicClient
             'ListChannels',
             $optionalArgs,
             ListChannelsResponse::class,
+            $request
+        );
+    }
+
+    /**
+     * List providers.
+     *
+     * Sample code:
+     * ```
+     * $eventarcClient = new EventarcClient();
+     * try {
+     *     $formattedParent = $eventarcClient->locationName('[PROJECT]', '[LOCATION]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $eventarcClient->listProviders($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $eventarcClient->listProviders($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $eventarcClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The parent of the provider to get.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type string $orderBy
+     *           The sorting order of the resources returned. Value should be a
+     *           comma-separated list of fields. The default sorting oder is ascending. To
+     *           specify descending order for a field, append a `desc` suffix; for example:
+     *           `name desc, _id`.
+     *     @type string $filter
+     *           The filter field that the list request will filter on.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listProviders($parent, array $optionalArgs = [])
+    {
+        $request = new ListProvidersRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        if (isset($optionalArgs['orderBy'])) {
+            $request->setOrderBy($optionalArgs['orderBy']);
+        }
+
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListProviders',
+            $optionalArgs,
+            ListProvidersResponse::class,
             $request
         );
     }
@@ -1360,11 +1661,14 @@ class EventarcGapicClient
      *           comma-separated list of fields. The default sorting order is ascending. To
      *           specify descending order for a field, append a `desc` suffix; for example:
      *           `name desc, trigger_id`.
+     *     @type string $filter
+     *           Filter field. Used to filter the Triggers to be listed. Possible filters
+     *           are described in https://google.aip.dev/160. For example, using
+     *           "?filter=destination:gke" would list only Triggers with a gke destination.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -1387,6 +1691,10 @@ class EventarcGapicClient
 
         if (isset($optionalArgs['orderBy'])) {
             $request->setOrderBy($optionalArgs['orderBy']);
+        }
+
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
@@ -1454,10 +1762,9 @@ class EventarcGapicClient
      *           If no field mask is provided, all provided fields in the request are
      *           updated. To update all fields, provide a field mask of "*".
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -1488,6 +1795,66 @@ class EventarcGapicClient
             $optionalArgs,
             $request,
             $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Update a single GoogleChannelConfig
+     *
+     * Sample code:
+     * ```
+     * $eventarcClient = new EventarcClient();
+     * try {
+     *     $googleChannelConfig = new GoogleChannelConfig();
+     *     $response = $eventarcClient->updateGoogleChannelConfig($googleChannelConfig);
+     * } finally {
+     *     $eventarcClient->close();
+     * }
+     * ```
+     *
+     * @param GoogleChannelConfig $googleChannelConfig Required. The config to be updated.
+     * @param array               $optionalArgs        {
+     *     Optional.
+     *
+     *     @type FieldMask $updateMask
+     *           The fields to be updated; only fields explicitly provided are updated.
+     *           If no field mask is provided, all provided fields in the request are
+     *           updated. To update all fields, provide a field mask of "*".
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Eventarc\V1\GoogleChannelConfig
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function updateGoogleChannelConfig(
+        $googleChannelConfig,
+        array $optionalArgs = []
+    ) {
+        $request = new UpdateGoogleChannelConfigRequest();
+        $requestParamHeaders = [];
+        $request->setGoogleChannelConfig($googleChannelConfig);
+        $requestParamHeaders[
+            'google_channel_config.name'
+        ] = $googleChannelConfig->getName();
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'UpdateGoogleChannelConfig',
+            GoogleChannelConfig::class,
+            $optionalArgs,
+            $request
         )->wait();
     }
 
@@ -1545,10 +1912,9 @@ class EventarcGapicClient
      *           If set to true, and the trigger is not found, a new trigger will be
      *           created. In this situation, `update_mask` is ignored.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -1583,6 +1949,342 @@ class EventarcGapicClient
             $optionalArgs,
             $request,
             $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Gets information about a location.
+     *
+     * Sample code:
+     * ```
+     * $eventarcClient = new EventarcClient();
+     * try {
+     *     $response = $eventarcClient->getLocation();
+     * } finally {
+     *     $eventarcClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $name
+     *           Resource name for the location.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Location\Location
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getLocation(array $optionalArgs = [])
+    {
+        $request = new GetLocationRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetLocation',
+            Location::class,
+            $optionalArgs,
+            $request,
+            Call::UNARY_CALL,
+            'google.cloud.location.Locations'
+        )->wait();
+    }
+
+    /**
+     * Lists information about the supported locations for this service.
+     *
+     * Sample code:
+     * ```
+     * $eventarcClient = new EventarcClient();
+     * try {
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $eventarcClient->listLocations();
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $eventarcClient->listLocations();
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $eventarcClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $name
+     *           The resource that owns the locations collection, if applicable.
+     *     @type string $filter
+     *           The standard list filter.
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listLocations(array $optionalArgs = [])
+    {
+        $request = new ListLocationsRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListLocations',
+            $optionalArgs,
+            ListLocationsResponse::class,
+            $request,
+            'google.cloud.location.Locations'
+        );
+    }
+
+    /**
+     * Gets the access control policy for a resource. Returns an empty policy
+    if the resource exists and does not have a policy set.
+     *
+     * Sample code:
+     * ```
+     * $eventarcClient = new EventarcClient();
+     * try {
+     *     $resource = 'resource';
+     *     $response = $eventarcClient->getIamPolicy($resource);
+     * } finally {
+     *     $eventarcClient->close();
+     * }
+     * ```
+     *
+     * @param string $resource     REQUIRED: The resource for which the policy is being requested.
+     *                             See the operation documentation for the appropriate value for this field.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type GetPolicyOptions $options
+     *           OPTIONAL: A `GetPolicyOptions` object for specifying options to
+     *           `GetIamPolicy`.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Iam\V1\Policy
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getIamPolicy($resource, array $optionalArgs = [])
+    {
+        $request = new GetIamPolicyRequest();
+        $requestParamHeaders = [];
+        $request->setResource($resource);
+        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['options'])) {
+            $request->setOptions($optionalArgs['options']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetIamPolicy',
+            Policy::class,
+            $optionalArgs,
+            $request,
+            Call::UNARY_CALL,
+            'google.iam.v1.IAMPolicy'
+        )->wait();
+    }
+
+    /**
+     * Sets the access control policy on the specified resource. Replaces
+    any existing policy.
+
+    Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+    errors.
+     *
+     * Sample code:
+     * ```
+     * $eventarcClient = new EventarcClient();
+     * try {
+     *     $resource = 'resource';
+     *     $policy = new Policy();
+     *     $response = $eventarcClient->setIamPolicy($resource, $policy);
+     * } finally {
+     *     $eventarcClient->close();
+     * }
+     * ```
+     *
+     * @param string $resource     REQUIRED: The resource for which the policy is being specified.
+     *                             See the operation documentation for the appropriate value for this field.
+     * @param Policy $policy       REQUIRED: The complete policy to be applied to the `resource`. The size of
+     *                             the policy is limited to a few 10s of KB. An empty policy is a
+     *                             valid policy but certain Cloud Platform services (such as Projects)
+     *                             might reject them.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type FieldMask $updateMask
+     *           OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only
+     *           the fields in the mask will be modified. If no mask is provided, the
+     *           following default mask is used:
+     *
+     *           `paths: "bindings, etag"`
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Iam\V1\Policy
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function setIamPolicy($resource, $policy, array $optionalArgs = [])
+    {
+        $request = new SetIamPolicyRequest();
+        $requestParamHeaders = [];
+        $request->setResource($resource);
+        $request->setPolicy($policy);
+        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'SetIamPolicy',
+            Policy::class,
+            $optionalArgs,
+            $request,
+            Call::UNARY_CALL,
+            'google.iam.v1.IAMPolicy'
+        )->wait();
+    }
+
+    /**
+     * Returns permissions that a caller has on the specified resource. If the
+    resource does not exist, this will return an empty set of
+    permissions, not a `NOT_FOUND` error.
+
+    Note: This operation is designed to be used for building
+    permission-aware UIs and command-line tools, not for authorization
+    checking. This operation may "fail open" without warning.
+     *
+     * Sample code:
+     * ```
+     * $eventarcClient = new EventarcClient();
+     * try {
+     *     $resource = 'resource';
+     *     $permissions = [];
+     *     $response = $eventarcClient->testIamPermissions($resource, $permissions);
+     * } finally {
+     *     $eventarcClient->close();
+     * }
+     * ```
+     *
+     * @param string   $resource     REQUIRED: The resource for which the policy detail is being requested.
+     *                               See the operation documentation for the appropriate value for this field.
+     * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
+     *                               wildcards (such as '*' or 'storage.*') are not allowed. For more
+     *                               information see
+     *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
+     * @param array    $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Iam\V1\TestIamPermissionsResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function testIamPermissions(
+        $resource,
+        $permissions,
+        array $optionalArgs = []
+    ) {
+        $request = new TestIamPermissionsRequest();
+        $requestParamHeaders = [];
+        $request->setResource($resource);
+        $request->setPermissions($permissions);
+        $requestParamHeaders['resource'] = $resource;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'TestIamPermissions',
+            TestIamPermissionsResponse::class,
+            $optionalArgs,
+            $request,
+            Call::UNARY_CALL,
+            'google.iam.v1.IAMPolicy'
         )->wait();
     }
 }

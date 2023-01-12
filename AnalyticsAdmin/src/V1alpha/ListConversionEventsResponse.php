@@ -35,7 +35,7 @@ class ListConversionEventsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Analytics\Admin\V1alpha\ConversionEvent[]|\Google\Protobuf\Internal\RepeatedField $conversion_events
+     *     @type array<\Google\Analytics\Admin\V1alpha\ConversionEvent>|\Google\Protobuf\Internal\RepeatedField $conversion_events
      *           The requested conversion events
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -62,7 +62,7 @@ class ListConversionEventsResponse extends \Google\Protobuf\Internal\Message
      * The requested conversion events
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.ConversionEvent conversion_events = 1;</code>
-     * @param \Google\Analytics\Admin\V1alpha\ConversionEvent[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Analytics\Admin\V1alpha\ConversionEvent>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setConversionEvents($var)

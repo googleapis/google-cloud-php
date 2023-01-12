@@ -28,6 +28,13 @@ class BackendBucket extends \Google\Protobuf\Internal\Message
      */
     private $cdn_policy = null;
     /**
+     * Compress text responses using Brotli or gzip compression, based on the client's Accept-Encoding header.
+     * Check the CompressionMode enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string compression_mode = 95520988;</code>
+     */
+    private $compression_mode = null;
+    /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -45,6 +52,12 @@ class BackendBucket extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
     private $description = null;
+    /**
+     * [Output Only] The resource URL for the edge security policy associated with this backend bucket.
+     *
+     * Generated from protobuf field <code>optional string edge_security_policy = 41036943;</code>
+     */
+    private $edge_security_policy = null;
     /**
      * If true, enable Cloud CDN for this BackendBucket.
      *
@@ -86,12 +99,17 @@ class BackendBucket extends \Google\Protobuf\Internal\Message
      *           Cloud Storage bucket name.
      *     @type \Google\Cloud\Compute\V1\BackendBucketCdnPolicy $cdn_policy
      *           Cloud CDN configuration for this BackendBucket.
+     *     @type string $compression_mode
+     *           Compress text responses using Brotli or gzip compression, based on the client's Accept-Encoding header.
+     *           Check the CompressionMode enum for the list of possible values.
      *     @type string $creation_timestamp
      *           [Output Only] Creation timestamp in RFC3339 text format.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $custom_response_headers
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $custom_response_headers
      *           Headers that the HTTP/S load balancer should add to proxied responses.
      *     @type string $description
      *           An optional textual description of the resource; provided by the client when the resource is created.
+     *     @type string $edge_security_policy
+     *           [Output Only] The resource URL for the edge security policy associated with this backend bucket.
      *     @type bool $enable_cdn
      *           If true, enable Cloud CDN for this BackendBucket.
      *     @type int|string $id
@@ -182,6 +200,44 @@ class BackendBucket extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Compress text responses using Brotli or gzip compression, based on the client's Accept-Encoding header.
+     * Check the CompressionMode enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string compression_mode = 95520988;</code>
+     * @return string
+     */
+    public function getCompressionMode()
+    {
+        return isset($this->compression_mode) ? $this->compression_mode : '';
+    }
+
+    public function hasCompressionMode()
+    {
+        return isset($this->compression_mode);
+    }
+
+    public function clearCompressionMode()
+    {
+        unset($this->compression_mode);
+    }
+
+    /**
+     * Compress text responses using Brotli or gzip compression, based on the client's Accept-Encoding header.
+     * Check the CompressionMode enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string compression_mode = 95520988;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setCompressionMode($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->compression_mode = $var;
+
+        return $this;
+    }
+
+    /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -232,7 +288,7 @@ class BackendBucket extends \Google\Protobuf\Internal\Message
      * Headers that the HTTP/S load balancer should add to proxied responses.
      *
      * Generated from protobuf field <code>repeated string custom_response_headers = 387539094;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setCustomResponseHeaders($var)
@@ -275,6 +331,42 @@ class BackendBucket extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->description = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Output Only] The resource URL for the edge security policy associated with this backend bucket.
+     *
+     * Generated from protobuf field <code>optional string edge_security_policy = 41036943;</code>
+     * @return string
+     */
+    public function getEdgeSecurityPolicy()
+    {
+        return isset($this->edge_security_policy) ? $this->edge_security_policy : '';
+    }
+
+    public function hasEdgeSecurityPolicy()
+    {
+        return isset($this->edge_security_policy);
+    }
+
+    public function clearEdgeSecurityPolicy()
+    {
+        unset($this->edge_security_policy);
+    }
+
+    /**
+     * [Output Only] The resource URL for the edge security policy associated with this backend bucket.
+     *
+     * Generated from protobuf field <code>optional string edge_security_policy = 41036943;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setEdgeSecurityPolicy($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->edge_security_policy = $var;
 
         return $this;
     }

@@ -18,8 +18,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class KubernetesResource extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Input only. The YAML representation of the Membership CR. This field is
-     * ignored for GKE clusters where Hub can read the CR directly.
+     * Input only. The YAML representation of the Membership CR. This field is ignored for GKE
+     * clusters where Hub can read the CR directly.
      * Callers should provide the CR that is currently present in the cluster
      * during CreateMembership or UpdateMembership, or leave this field empty if
      * none exists. The CR manifest is used to validate the cluster has not been
@@ -29,8 +29,8 @@ class KubernetesResource extends \Google\Protobuf\Internal\Message
      */
     private $membership_cr_manifest = '';
     /**
-     * Output only. Additional Kubernetes resources that need to be applied to the
-     * cluster after Membership creation, and after every update.
+     * Output only. Additional Kubernetes resources that need to be applied to the cluster
+     * after Membership creation, and after every update.
      * This field is only populated in the Membership returned from a successful
      * long-running operation from CreateMembership or UpdateMembership. It is not
      * populated during normal GetMembership or ListMemberships requests. To get
@@ -65,21 +65,21 @@ class KubernetesResource extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $membership_cr_manifest
-     *           Input only. The YAML representation of the Membership CR. This field is
-     *           ignored for GKE clusters where Hub can read the CR directly.
+     *           Input only. The YAML representation of the Membership CR. This field is ignored for GKE
+     *           clusters where Hub can read the CR directly.
      *           Callers should provide the CR that is currently present in the cluster
      *           during CreateMembership or UpdateMembership, or leave this field empty if
      *           none exists. The CR manifest is used to validate the cluster has not been
      *           registered with another Membership.
-     *     @type \Google\Cloud\GkeHub\V1beta1\ResourceManifest[]|\Google\Protobuf\Internal\RepeatedField $membership_resources
-     *           Output only. Additional Kubernetes resources that need to be applied to the
-     *           cluster after Membership creation, and after every update.
+     *     @type array<\Google\Cloud\GkeHub\V1beta1\ResourceManifest>|\Google\Protobuf\Internal\RepeatedField $membership_resources
+     *           Output only. Additional Kubernetes resources that need to be applied to the cluster
+     *           after Membership creation, and after every update.
      *           This field is only populated in the Membership returned from a successful
      *           long-running operation from CreateMembership or UpdateMembership. It is not
      *           populated during normal GetMembership or ListMemberships requests. To get
      *           the resource manifest after the initial registration, the caller should
      *           make a UpdateMembership call with an empty field mask.
-     *     @type \Google\Cloud\GkeHub\V1beta1\ResourceManifest[]|\Google\Protobuf\Internal\RepeatedField $connect_resources
+     *     @type array<\Google\Cloud\GkeHub\V1beta1\ResourceManifest>|\Google\Protobuf\Internal\RepeatedField $connect_resources
      *           Output only. The Kubernetes resources for installing the GKE Connect agent
      *           This field is only populated in the Membership returned from a successful
      *           long-running operation from CreateMembership or UpdateMembership. It is not
@@ -96,8 +96,8 @@ class KubernetesResource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Input only. The YAML representation of the Membership CR. This field is
-     * ignored for GKE clusters where Hub can read the CR directly.
+     * Input only. The YAML representation of the Membership CR. This field is ignored for GKE
+     * clusters where Hub can read the CR directly.
      * Callers should provide the CR that is currently present in the cluster
      * during CreateMembership or UpdateMembership, or leave this field empty if
      * none exists. The CR manifest is used to validate the cluster has not been
@@ -112,8 +112,8 @@ class KubernetesResource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Input only. The YAML representation of the Membership CR. This field is
-     * ignored for GKE clusters where Hub can read the CR directly.
+     * Input only. The YAML representation of the Membership CR. This field is ignored for GKE
+     * clusters where Hub can read the CR directly.
      * Callers should provide the CR that is currently present in the cluster
      * during CreateMembership or UpdateMembership, or leave this field empty if
      * none exists. The CR manifest is used to validate the cluster has not been
@@ -132,8 +132,8 @@ class KubernetesResource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Additional Kubernetes resources that need to be applied to the
-     * cluster after Membership creation, and after every update.
+     * Output only. Additional Kubernetes resources that need to be applied to the cluster
+     * after Membership creation, and after every update.
      * This field is only populated in the Membership returned from a successful
      * long-running operation from CreateMembership or UpdateMembership. It is not
      * populated during normal GetMembership or ListMemberships requests. To get
@@ -149,8 +149,8 @@ class KubernetesResource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Additional Kubernetes resources that need to be applied to the
-     * cluster after Membership creation, and after every update.
+     * Output only. Additional Kubernetes resources that need to be applied to the cluster
+     * after Membership creation, and after every update.
      * This field is only populated in the Membership returned from a successful
      * long-running operation from CreateMembership or UpdateMembership. It is not
      * populated during normal GetMembership or ListMemberships requests. To get
@@ -158,7 +158,7 @@ class KubernetesResource extends \Google\Protobuf\Internal\Message
      * make a UpdateMembership call with an empty field mask.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkehub.v1beta1.ResourceManifest membership_resources = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param \Google\Cloud\GkeHub\V1beta1\ResourceManifest[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\GkeHub\V1beta1\ResourceManifest>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setMembershipResources($var)
@@ -194,7 +194,7 @@ class KubernetesResource extends \Google\Protobuf\Internal\Message
      * make a UpdateMembership call with an empty field mask.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkehub.v1beta1.ResourceManifest connect_resources = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param \Google\Cloud\GkeHub\V1beta1\ResourceManifest[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\GkeHub\V1beta1\ResourceManifest>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setConnectResources($var)

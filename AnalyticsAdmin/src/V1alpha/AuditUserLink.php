@@ -55,12 +55,12 @@ class AuditUserLink extends \Google\Protobuf\Internal\Message
      *           Example format: properties/1234/userLinks/5678
      *     @type string $email_address
      *           Email address of the linked user
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $direct_roles
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $direct_roles
      *           Roles directly assigned to this user for this entity.
      *           Format: predefinedRoles/viewer
      *           Excludes roles that are inherited from an account (if this is for a
      *           property), group, or organization admin role.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $effective_roles
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $effective_roles
      *           Union of all permissions a user has at this account or property (includes
      *           direct permissions, group-inherited permissions, etc.).
      *           Format: predefinedRoles/viewer
@@ -144,7 +144,7 @@ class AuditUserLink extends \Google\Protobuf\Internal\Message
      * property), group, or organization admin role.
      *
      * Generated from protobuf field <code>repeated string direct_roles = 3;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDirectRoles($var)
@@ -174,7 +174,7 @@ class AuditUserLink extends \Google\Protobuf\Internal\Message
      * Format: predefinedRoles/viewer
      *
      * Generated from protobuf field <code>repeated string effective_roles = 4;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setEffectiveRoles($var)

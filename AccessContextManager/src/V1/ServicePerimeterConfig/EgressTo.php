@@ -60,7 +60,7 @@ class EgressTo extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $resources
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $resources
      *           A list of resources, currently only projects in the form
      *           `projects/<projectnumber>`, that are allowed to be accessed by sources
      *           defined in the corresponding [EgressFrom]
@@ -69,7 +69,7 @@ class EgressTo extends \Google\Protobuf\Internal\Message
      *           specified for `resources`, then this [EgressTo]
      *           [google.identity.accesscontextmanager.v1.ServicePerimeterConfig.EgressTo]
      *           rule will authorize access to all resources outside the perimeter.
-     *     @type \Google\Identity\AccessContextManager\V1\ServicePerimeterConfig\ApiOperation[]|\Google\Protobuf\Internal\RepeatedField $operations
+     *     @type array<\Google\Identity\AccessContextManager\V1\ServicePerimeterConfig\ApiOperation>|\Google\Protobuf\Internal\RepeatedField $operations
      *           A list of [ApiOperations]
      *           [google.identity.accesscontextmanager.v1.ServicePerimeterConfig.ApiOperation]
      *           allowed to be performed by the sources specified in the corresponding
@@ -112,7 +112,7 @@ class EgressTo extends \Google\Protobuf\Internal\Message
      * rule will authorize access to all resources outside the perimeter.
      *
      * Generated from protobuf field <code>repeated string resources = 1;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setResources($var)
@@ -148,7 +148,7 @@ class EgressTo extends \Google\Protobuf\Internal\Message
      * A request matches if it uses an operation/service in this list.
      *
      * Generated from protobuf field <code>repeated .google.identity.accesscontextmanager.v1.ServicePerimeterConfig.ApiOperation operations = 2;</code>
-     * @param \Google\Identity\AccessContextManager\V1\ServicePerimeterConfig\ApiOperation[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Identity\AccessContextManager\V1\ServicePerimeterConfig\ApiOperation>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setOperations($var)

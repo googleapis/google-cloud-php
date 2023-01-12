@@ -28,7 +28,7 @@ class BatchUpdateIntentsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Dialogflow\V2\Intent[]|\Google\Protobuf\Internal\RepeatedField $intents
+     *     @type array<\Google\Cloud\Dialogflow\V2\Intent>|\Google\Protobuf\Internal\RepeatedField $intents
      *           The collection of updated or created intents.
      * }
      */
@@ -52,7 +52,7 @@ class BatchUpdateIntentsResponse extends \Google\Protobuf\Internal\Message
      * The collection of updated or created intents.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent intents = 1;</code>
-     * @param \Google\Cloud\Dialogflow\V2\Intent[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dialogflow\V2\Intent>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setIntents($var)

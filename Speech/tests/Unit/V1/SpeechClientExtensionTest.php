@@ -21,6 +21,7 @@ use Google\ApiCore\BidiStream;
 use Google\ApiCore\Call;
 use Google\ApiCore\Testing\MockBidiStreamingCall;
 use Google\ApiCore\Transport\TransportInterface;
+use Google\Cloud\Core\InsecureCredentialsWrapper;
 use Google\Cloud\Speech\V1\RecognitionAudio;
 use Google\Cloud\Speech\V1\RecognitionConfig;
 use Google\Cloud\Speech\V1\RecognitionConfig_AudioEncoding;
@@ -29,7 +30,7 @@ use Google\Cloud\Speech\V1\StreamingRecognitionConfig;
 use Google\Cloud\Speech\V1\StreamingRecognizeRequest;
 use Google\Cloud\Speech\V1\StreamingRecognizeResponse;
 use Prophecy\Argument;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group speech
@@ -41,11 +42,12 @@ class SpeechClientExtensionTest extends TestCase
     /** @var TransportInterface */
     private $transport;
 
-    public function setUp()
+    public function set_up()
     {
         $this->transport = $this->prophesize(TransportInterface::class);
         $this->client = new SpeechClient([
             'transport' => $this->transport->reveal(),
+            'credentials' => new InsecureCredentialsWrapper(),
         ]);
     }
 

@@ -9,7 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [CreateProduct][] method.
+ * Request message for
+ * [ProductService.CreateProduct][google.cloud.retail.v2.ProductService.CreateProduct]
+ * method.
  *
  * Generated from protobuf message <code>google.cloud.retail.v2.CreateProductRequest</code>
  */

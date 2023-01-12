@@ -72,7 +72,7 @@ class CompletionClientTest extends GeneratedTest
     public function completeQueryTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -80,10 +80,10 @@ class CompletionClientTest extends GeneratedTest
         $expectedResponse = new CompleteQueryResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedTenant = $client->tenantName('[PROJECT]', '[TENANT]');
+        $formattedTenant = $gapicClient->tenantName('[PROJECT]', '[TENANT]');
         $query = 'query107944136';
         $pageSize = 883849137;
-        $response = $client->completeQuery($formattedTenant, $query, $pageSize);
+        $response = $gapicClient->completeQuery($formattedTenant, $query, $pageSize);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -105,7 +105,7 @@ class CompletionClientTest extends GeneratedTest
     public function completeQueryExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -120,12 +120,12 @@ class CompletionClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedTenant = $client->tenantName('[PROJECT]', '[TENANT]');
+        $formattedTenant = $gapicClient->tenantName('[PROJECT]', '[TENANT]');
         $query = 'query107944136';
         $pageSize = 883849137;
         try {
-            $client->completeQuery($formattedTenant, $query, $pageSize);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->completeQuery($formattedTenant, $query, $pageSize);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

@@ -9,7 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [RemoveFulfillmentPlaces][] method.
+ * Request message for
+ * [ProductService.RemoveFulfillmentPlaces][google.cloud.retail.v2.ProductService.RemoveFulfillmentPlaces]
+ * method.
  *
  * Generated from protobuf message <code>google.cloud.retail.v2.RemoveFulfillmentPlacesRequest</code>
  */
@@ -41,7 +43,8 @@ class RemoveFulfillmentPlacesRequest extends \Google\Protobuf\Internal\Message
      * * "custom-type-5"
      * If this field is set to an invalid value other than these, an
      * INVALID_ARGUMENT error is returned.
-     * This field directly corresponds to [Product.fulfillment_info.type][].
+     * This field directly corresponds to
+     * [Product.fulfillment_info.type][google.cloud.retail.v2.FulfillmentInfo.type].
      *
      * Generated from protobuf field <code>string type = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -108,8 +111,9 @@ class RemoveFulfillmentPlacesRequest extends \Google\Protobuf\Internal\Message
      *           * "custom-type-5"
      *           If this field is set to an invalid value other than these, an
      *           INVALID_ARGUMENT error is returned.
-     *           This field directly corresponds to [Product.fulfillment_info.type][].
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $place_ids
+     *           This field directly corresponds to
+     *           [Product.fulfillment_info.type][google.cloud.retail.v2.FulfillmentInfo.type].
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $place_ids
      *           Required. The IDs for this
      *           [type][google.cloud.retail.v2.RemoveFulfillmentPlacesRequest.type], such as
      *           the store IDs for "pickup-in-store" or the region IDs for
@@ -188,7 +192,8 @@ class RemoveFulfillmentPlacesRequest extends \Google\Protobuf\Internal\Message
      * * "custom-type-5"
      * If this field is set to an invalid value other than these, an
      * INVALID_ARGUMENT error is returned.
-     * This field directly corresponds to [Product.fulfillment_info.type][].
+     * This field directly corresponds to
+     * [Product.fulfillment_info.type][google.cloud.retail.v2.FulfillmentInfo.type].
      *
      * Generated from protobuf field <code>string type = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -213,7 +218,8 @@ class RemoveFulfillmentPlacesRequest extends \Google\Protobuf\Internal\Message
      * * "custom-type-5"
      * If this field is set to an invalid value other than these, an
      * INVALID_ARGUMENT error is returned.
-     * This field directly corresponds to [Product.fulfillment_info.type][].
+     * This field directly corresponds to
+     * [Product.fulfillment_info.type][google.cloud.retail.v2.FulfillmentInfo.type].
      *
      * Generated from protobuf field <code>string type = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -258,7 +264,7 @@ class RemoveFulfillmentPlacesRequest extends \Google\Protobuf\Internal\Message
      * INVALID_ARGUMENT error is returned.
      *
      * Generated from protobuf field <code>repeated string place_ids = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPlaceIds($var)

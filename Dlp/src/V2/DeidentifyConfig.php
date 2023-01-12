@@ -37,6 +37,8 @@ class DeidentifyConfig extends \Google\Protobuf\Internal\Message
      *           Treat the dataset as structured. Transformations can be applied to
      *           specific locations within structured datasets, such as transforming
      *           a column within a table.
+     *     @type \Google\Cloud\Dlp\V2\ImageTransformations $image_transformations
+     *           Treat the dataset as an image and redact.
      *     @type \Google\Cloud\Dlp\V2\TransformationErrorHandling $transformation_error_handling
      *           Mode for handling transformation errors. If left unspecified, the default
      *           mode is `TransformationErrorHandling.ThrowError`.
@@ -111,6 +113,37 @@ class DeidentifyConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\RecordTransformations::class);
         $this->writeOneof(2, $var);
+
+        return $this;
+    }
+
+    /**
+     * Treat the dataset as an image and redact.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.ImageTransformations image_transformations = 4;</code>
+     * @return \Google\Cloud\Dlp\V2\ImageTransformations|null
+     */
+    public function getImageTransformations()
+    {
+        return $this->readOneof(4);
+    }
+
+    public function hasImageTransformations()
+    {
+        return $this->hasOneof(4);
+    }
+
+    /**
+     * Treat the dataset as an image and redact.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.ImageTransformations image_transformations = 4;</code>
+     * @param \Google\Cloud\Dlp\V2\ImageTransformations $var
+     * @return $this
+     */
+    public function setImageTransformations($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\ImageTransformations::class);
+        $this->writeOneof(4, $var);
 
         return $this;
     }

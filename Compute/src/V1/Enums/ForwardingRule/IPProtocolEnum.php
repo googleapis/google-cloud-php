@@ -38,6 +38,8 @@ class IPProtocolEnum
 
     const ICMP = 'ICMP';
 
+    const L3_DEFAULT = 'L3_DEFAULT';
+
     const SCTP = 'SCTP';
 
     const TCP = 'TCP';

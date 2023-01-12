@@ -46,6 +46,7 @@ class Taxonomy extends \Google\Protobuf\Internal\Message
      * The name can't start or end with spaces, must contain only Unicode letters,
      * numbers, underscores, dashes, and spaces, and be at most 200 bytes long
      * when encoded in UTF-8.
+     * The taxonomy display name must be unique within an organization.
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -93,6 +94,7 @@ class Taxonomy extends \Google\Protobuf\Internal\Message
      *           The name can't start or end with spaces, must contain only Unicode letters,
      *           numbers, underscores, dashes, and spaces, and be at most 200 bytes long
      *           when encoded in UTF-8.
+     *           The taxonomy display name must be unique within an organization.
      *     @type string $description
      *           Optional. Description of this taxonomy. If not set, defaults to empty.
      *           The description must contain only Unicode characters, tabs, newlines,
@@ -102,7 +104,7 @@ class Taxonomy extends \Google\Protobuf\Internal\Message
      *           Output only. Number of policy tags in this taxonomy.
      *     @type \Google\Cloud\DataCatalog\V1\SystemTimestamps $taxonomy_timestamps
      *           Output only. Creation and modification timestamps of this taxonomy.
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $activated_policy_types
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $activated_policy_types
      *           Optional. A list of policy types that are activated for this taxonomy. If not set,
      *           defaults to an empty list.
      * }
@@ -145,6 +147,7 @@ class Taxonomy extends \Google\Protobuf\Internal\Message
      * The name can't start or end with spaces, must contain only Unicode letters,
      * numbers, underscores, dashes, and spaces, and be at most 200 bytes long
      * when encoded in UTF-8.
+     * The taxonomy display name must be unique within an organization.
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -159,6 +162,7 @@ class Taxonomy extends \Google\Protobuf\Internal\Message
      * The name can't start or end with spaces, must contain only Unicode letters,
      * numbers, underscores, dashes, and spaces, and be at most 200 bytes long
      * when encoded in UTF-8.
+     * The taxonomy display name must be unique within an organization.
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -283,7 +287,7 @@ class Taxonomy extends \Google\Protobuf\Internal\Message
      * defaults to an empty list.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datacatalog.v1.Taxonomy.PolicyType activated_policy_types = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setActivatedPolicyTypes($var)

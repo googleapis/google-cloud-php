@@ -31,9 +31,10 @@ class Line extends \Google\Protobuf\Internal\Message
     /**
      * The  history of this annotation.
      *
-     * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Provenance provenance = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Provenance provenance = 3 [deprecated = true];</code>
+     * @deprecated
      */
-    private $provenance = null;
+    protected $provenance = null;
 
     /**
      * Constructor.
@@ -43,7 +44,7 @@ class Line extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\DocumentAI\V1\Document\Page\Layout $layout
      *           [Layout][google.cloud.documentai.v1.Document.Page.Layout] for [Line][google.cloud.documentai.v1.Document.Page.Line].
-     *     @type \Google\Cloud\DocumentAI\V1\Document\Page\DetectedLanguage[]|\Google\Protobuf\Internal\RepeatedField $detected_languages
+     *     @type array<\Google\Cloud\DocumentAI\V1\Document\Page\DetectedLanguage>|\Google\Protobuf\Internal\RepeatedField $detected_languages
      *           A list of detected languages together with confidence.
      *     @type \Google\Cloud\DocumentAI\V1\Document\Provenance $provenance
      *           The  history of this annotation.
@@ -105,7 +106,7 @@ class Line extends \Google\Protobuf\Internal\Message
      * A list of detected languages together with confidence.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.Page.DetectedLanguage detected_languages = 2;</code>
-     * @param \Google\Cloud\DocumentAI\V1\Document\Page\DetectedLanguage[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\DocumentAI\V1\Document\Page\DetectedLanguage>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDetectedLanguages($var)
@@ -119,33 +120,39 @@ class Line extends \Google\Protobuf\Internal\Message
     /**
      * The  history of this annotation.
      *
-     * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Provenance provenance = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Provenance provenance = 3 [deprecated = true];</code>
      * @return \Google\Cloud\DocumentAI\V1\Document\Provenance|null
+     * @deprecated
      */
     public function getProvenance()
     {
+        @trigger_error('provenance is deprecated.', E_USER_DEPRECATED);
         return $this->provenance;
     }
 
     public function hasProvenance()
     {
+        @trigger_error('provenance is deprecated.', E_USER_DEPRECATED);
         return isset($this->provenance);
     }
 
     public function clearProvenance()
     {
+        @trigger_error('provenance is deprecated.', E_USER_DEPRECATED);
         unset($this->provenance);
     }
 
     /**
      * The  history of this annotation.
      *
-     * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Provenance provenance = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Provenance provenance = 3 [deprecated = true];</code>
      * @param \Google\Cloud\DocumentAI\V1\Document\Provenance $var
      * @return $this
+     * @deprecated
      */
     public function setProvenance($var)
     {
+        @trigger_error('provenance is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkMessage($var, \Google\Cloud\DocumentAI\V1\Document\Provenance::class);
         $this->provenance = $var;
 
@@ -154,6 +161,4 @@ class Line extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Line::class, \Google\Cloud\DocumentAI\V1\Document_Page_Line::class);
 

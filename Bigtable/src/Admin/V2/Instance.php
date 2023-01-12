@@ -22,7 +22,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * The unique name of the instance. Values are of the form
      * `projects/{project}/instances/[a-z][a-z0-9\\-]+[a-z0-9]`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1;</code>
      */
     private $name = '';
     /**
@@ -69,6 +69,12 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $create_time = null;
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzs = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $satisfies_pzs = null;
 
     /**
      * Constructor.
@@ -103,6 +109,8 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           Output only. A server-assigned timestamp representing when this Instance was created.
      *           For instances created before this field was added (August 2021), this value
      *           is `seconds: 0, nanos: 1`.
+     *     @type bool $satisfies_pzs
+     *           Output only. Reserved for future use.
      * }
      */
     public function __construct($data = NULL) {
@@ -114,7 +122,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * The unique name of the instance. Values are of the form
      * `projects/{project}/instances/[a-z][a-z0-9\\-]+[a-z0-9]`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1;</code>
      * @return string
      */
     public function getName()
@@ -126,7 +134,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * The unique name of the instance. Values are of the form
      * `projects/{project}/instances/[a-z][a-z0-9\\-]+[a-z0-9]`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
      * @return $this
      */
@@ -302,6 +310,42 @@ class Instance extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->create_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzs = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSatisfiesPzs()
+    {
+        return isset($this->satisfies_pzs) ? $this->satisfies_pzs : false;
+    }
+
+    public function hasSatisfiesPzs()
+    {
+        return isset($this->satisfies_pzs);
+    }
+
+    public function clearSatisfiesPzs()
+    {
+        unset($this->satisfies_pzs);
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzs = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzs($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzs = $var;
 
         return $this;
     }

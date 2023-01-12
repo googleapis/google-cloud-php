@@ -31,7 +31,7 @@ class DocumentsTarget extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $documents
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $documents
      *           The names of the documents to retrieve. In the format:
      *           `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
      *           The request will fail if any of the document is not a child resource of
@@ -64,7 +64,7 @@ class DocumentsTarget extends \Google\Protobuf\Internal\Message
      * the given `database`. Duplicate names will be elided.
      *
      * Generated from protobuf field <code>repeated string documents = 2;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDocuments($var)

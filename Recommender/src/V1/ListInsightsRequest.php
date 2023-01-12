@@ -32,18 +32,18 @@ class ListInsightsRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
-     * Optional. The maximum number of results to return from this request.  Non-positive
-     * values are ignored. If not specified, the server will determine the number
-     * of results to return.
+     * Optional. The maximum number of results to return from this request.
+     * Non-positive values are ignored. If not specified, the server will
+     * determine the number of results to return.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_size = 0;
     /**
-     * Optional. If present, retrieves the next batch of results from the preceding call to
-     * this method. `page_token` must be the value of `next_page_token` from the
-     * previous response. The values of other method parameters must be identical
-     * to those in the previous call.
+     * Optional. If present, retrieves the next batch of results from the
+     * preceding call to this method. `page_token` must be the value of
+     * `next_page_token` from the previous response. The values of other method
+     * parameters must be identical to those in the previous call.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -85,14 +85,14 @@ class ListInsightsRequest extends \Google\Protobuf\Internal\Message
      *           INSIGHT_TYPE_ID refers to supported insight types:
      *           https://cloud.google.com/recommender/docs/insights/insight-types.
      *     @type int $page_size
-     *           Optional. The maximum number of results to return from this request.  Non-positive
-     *           values are ignored. If not specified, the server will determine the number
-     *           of results to return.
+     *           Optional. The maximum number of results to return from this request.
+     *           Non-positive values are ignored. If not specified, the server will
+     *           determine the number of results to return.
      *     @type string $page_token
-     *           Optional. If present, retrieves the next batch of results from the preceding call to
-     *           this method. `page_token` must be the value of `next_page_token` from the
-     *           previous response. The values of other method parameters must be identical
-     *           to those in the previous call.
+     *           Optional. If present, retrieves the next batch of results from the
+     *           preceding call to this method. `page_token` must be the value of
+     *           `next_page_token` from the previous response. The values of other method
+     *           parameters must be identical to those in the previous call.
      *     @type string $filter
      *           Optional. Filter expression to restrict the insights returned. Supported
      *           filter fields:
@@ -160,9 +160,9 @@ class ListInsightsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The maximum number of results to return from this request.  Non-positive
-     * values are ignored. If not specified, the server will determine the number
-     * of results to return.
+     * Optional. The maximum number of results to return from this request.
+     * Non-positive values are ignored. If not specified, the server will
+     * determine the number of results to return.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -173,9 +173,9 @@ class ListInsightsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The maximum number of results to return from this request.  Non-positive
-     * values are ignored. If not specified, the server will determine the number
-     * of results to return.
+     * Optional. The maximum number of results to return from this request.
+     * Non-positive values are ignored. If not specified, the server will
+     * determine the number of results to return.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
@@ -190,10 +190,10 @@ class ListInsightsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If present, retrieves the next batch of results from the preceding call to
-     * this method. `page_token` must be the value of `next_page_token` from the
-     * previous response. The values of other method parameters must be identical
-     * to those in the previous call.
+     * Optional. If present, retrieves the next batch of results from the
+     * preceding call to this method. `page_token` must be the value of
+     * `next_page_token` from the previous response. The values of other method
+     * parameters must be identical to those in the previous call.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -204,10 +204,10 @@ class ListInsightsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If present, retrieves the next batch of results from the preceding call to
-     * this method. `page_token` must be the value of `next_page_token` from the
-     * previous response. The values of other method parameters must be identical
-     * to those in the previous call.
+     * Optional. If present, retrieves the next batch of results from the
+     * preceding call to this method. `page_token` must be the value of
+     * `next_page_token` from the previous response. The values of other method
+     * parameters must be identical to those in the previous call.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

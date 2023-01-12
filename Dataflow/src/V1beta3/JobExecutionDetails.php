@@ -36,7 +36,7 @@ class JobExecutionDetails extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Dataflow\V1beta3\StageSummary[]|\Google\Protobuf\Internal\RepeatedField $stages
+     *     @type array<\Google\Cloud\Dataflow\V1beta3\StageSummary>|\Google\Protobuf\Internal\RepeatedField $stages
      *           The stages of the job execution.
      *     @type string $next_page_token
      *           If present, this response does not contain all requested tasks.  To obtain
@@ -64,7 +64,7 @@ class JobExecutionDetails extends \Google\Protobuf\Internal\Message
      * The stages of the job execution.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.StageSummary stages = 1;</code>
-     * @param \Google\Cloud\Dataflow\V1beta3\StageSummary[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dataflow\V1beta3\StageSummary>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setStages($var)

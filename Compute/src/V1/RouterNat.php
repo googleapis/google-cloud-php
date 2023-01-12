@@ -22,9 +22,22 @@ class RouterNat extends \Google\Protobuf\Internal\Message
      */
     private $drain_nat_ips;
     /**
+     * Enable Dynamic Port Allocation. If not specified, it is disabled by default. If set to true, - Dynamic Port Allocation will be enabled on this NAT config. - enableEndpointIndependentMapping cannot be set to true. - If minPorts is set, minPortsPerVm must be set to a power of two greater than or equal to 32. If minPortsPerVm is not set, a minimum of 32 ports will be allocated to a VM from this NAT config. 
+     *
+     * Generated from protobuf field <code>optional bool enable_dynamic_port_allocation = 532106402;</code>
+     */
+    private $enable_dynamic_port_allocation = null;
+    /**
      * Generated from protobuf field <code>optional bool enable_endpoint_independent_mapping = 259441819;</code>
      */
     private $enable_endpoint_independent_mapping = null;
+    /**
+     * List of NAT-ted endpoint types supported by the Nat Gateway. If the list is empty, then it will be equivalent to include ENDPOINT_TYPE_VM
+     * Check the EndpointTypes enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>repeated string endpoint_types = 502633807;</code>
+     */
+    private $endpoint_types;
     /**
      * Timeout (in seconds) for ICMP connections. Defaults to 30s if not set.
      *
@@ -37,6 +50,12 @@ class RouterNat extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.RouterNatLogConfig log_config = 351299741;</code>
      */
     private $log_config = null;
+    /**
+     * Maximum number of ports allocated to a VM from this NAT config when Dynamic Port Allocation is enabled. If Dynamic Port Allocation is not enabled, this field has no effect. If Dynamic Port Allocation is enabled, and this field is set, it must be set to a power of two greater than minPortsPerVm, or 64 if minPortsPerVm is not set. If Dynamic Port Allocation is enabled and this field is not set, a maximum of 65536 ports will be allocated to a VM from this NAT config.
+     *
+     * Generated from protobuf field <code>optional int32 max_ports_per_vm = 250062049;</code>
+     */
+    private $max_ports_per_vm = null;
     /**
      * Minimum number of ports allocated to a VM from this NAT config. If not set, a default number of ports is allocated to a VM. This is rounded up to the nearest power of 2. For example, if the value of this field is 50, at least 64 ports are allocated to a VM.
      *
@@ -112,13 +131,20 @@ class RouterNat extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $drain_nat_ips
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $drain_nat_ips
      *           A list of URLs of the IP resources to be drained. These IPs must be valid static external IPs that have been assigned to the NAT. These IPs should be used for updating/patching a NAT only.
+     *     @type bool $enable_dynamic_port_allocation
+     *           Enable Dynamic Port Allocation. If not specified, it is disabled by default. If set to true, - Dynamic Port Allocation will be enabled on this NAT config. - enableEndpointIndependentMapping cannot be set to true. - If minPorts is set, minPortsPerVm must be set to a power of two greater than or equal to 32. If minPortsPerVm is not set, a minimum of 32 ports will be allocated to a VM from this NAT config. 
      *     @type bool $enable_endpoint_independent_mapping
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $endpoint_types
+     *           List of NAT-ted endpoint types supported by the Nat Gateway. If the list is empty, then it will be equivalent to include ENDPOINT_TYPE_VM
+     *           Check the EndpointTypes enum for the list of possible values.
      *     @type int $icmp_idle_timeout_sec
      *           Timeout (in seconds) for ICMP connections. Defaults to 30s if not set.
      *     @type \Google\Cloud\Compute\V1\RouterNatLogConfig $log_config
      *           Configure logging on this NAT.
+     *     @type int $max_ports_per_vm
+     *           Maximum number of ports allocated to a VM from this NAT config when Dynamic Port Allocation is enabled. If Dynamic Port Allocation is not enabled, this field has no effect. If Dynamic Port Allocation is enabled, and this field is set, it must be set to a power of two greater than minPortsPerVm, or 64 if minPortsPerVm is not set. If Dynamic Port Allocation is enabled and this field is not set, a maximum of 65536 ports will be allocated to a VM from this NAT config.
      *     @type int $min_ports_per_vm
      *           Minimum number of ports allocated to a VM from this NAT config. If not set, a default number of ports is allocated to a VM. This is rounded up to the nearest power of 2. For example, if the value of this field is 50, at least 64 ports are allocated to a VM.
      *     @type string $name
@@ -126,14 +152,14 @@ class RouterNat extends \Google\Protobuf\Internal\Message
      *     @type string $nat_ip_allocate_option
      *           Specify the NatIpAllocateOption, which can take one of the following values: - MANUAL_ONLY: Uses only Nat IP addresses provided by customers. When there are not enough specified Nat IPs, the Nat service fails for new VMs. - AUTO_ONLY: Nat IPs are allocated by Google Cloud Platform; customers can't specify any Nat IPs. When choosing AUTO_ONLY, then nat_ip should be empty.
      *           Check the NatIpAllocateOption enum for the list of possible values.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $nat_ips
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $nat_ips
      *           A list of URLs of the IP resources used for this Nat service. These IP addresses must be valid static external IP addresses assigned to the project.
-     *     @type \Google\Cloud\Compute\V1\RouterNatRule[]|\Google\Protobuf\Internal\RepeatedField $rules
+     *     @type array<\Google\Cloud\Compute\V1\RouterNatRule>|\Google\Protobuf\Internal\RepeatedField $rules
      *           A list of rules associated with this NAT.
      *     @type string $source_subnetwork_ip_ranges_to_nat
      *           Specify the Nat option, which can take one of the following values: - ALL_SUBNETWORKS_ALL_IP_RANGES: All of the IP ranges in every Subnetwork are allowed to Nat. - ALL_SUBNETWORKS_ALL_PRIMARY_IP_RANGES: All of the primary IP ranges in every Subnetwork are allowed to Nat. - LIST_OF_SUBNETWORKS: A list of Subnetworks are allowed to Nat (specified in the field subnetwork below) The default is SUBNETWORK_IP_RANGE_TO_NAT_OPTION_UNSPECIFIED. Note that if this field contains ALL_SUBNETWORKS_ALL_IP_RANGES or ALL_SUBNETWORKS_ALL_PRIMARY_IP_RANGES, then there should not be any other Router.Nat section in any Router for this network in this region.
      *           Check the SourceSubnetworkIpRangesToNat enum for the list of possible values.
-     *     @type \Google\Cloud\Compute\V1\RouterNatSubnetworkToNat[]|\Google\Protobuf\Internal\RepeatedField $subnetworks
+     *     @type array<\Google\Cloud\Compute\V1\RouterNatSubnetworkToNat>|\Google\Protobuf\Internal\RepeatedField $subnetworks
      *           A list of Subnetwork resources whose traffic should be translated by NAT Gateway. It is used only when LIST_OF_SUBNETWORKS is selected for the SubnetworkIpRangeToNatOption above.
      *     @type int $tcp_established_idle_timeout_sec
      *           Timeout (in seconds) for TCP established connections. Defaults to 1200s if not set.
@@ -165,13 +191,49 @@ class RouterNat extends \Google\Protobuf\Internal\Message
      * A list of URLs of the IP resources to be drained. These IPs must be valid static external IPs that have been assigned to the NAT. These IPs should be used for updating/patching a NAT only.
      *
      * Generated from protobuf field <code>repeated string drain_nat_ips = 504078535;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDrainNatIps($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->drain_nat_ips = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Enable Dynamic Port Allocation. If not specified, it is disabled by default. If set to true, - Dynamic Port Allocation will be enabled on this NAT config. - enableEndpointIndependentMapping cannot be set to true. - If minPorts is set, minPortsPerVm must be set to a power of two greater than or equal to 32. If minPortsPerVm is not set, a minimum of 32 ports will be allocated to a VM from this NAT config. 
+     *
+     * Generated from protobuf field <code>optional bool enable_dynamic_port_allocation = 532106402;</code>
+     * @return bool
+     */
+    public function getEnableDynamicPortAllocation()
+    {
+        return isset($this->enable_dynamic_port_allocation) ? $this->enable_dynamic_port_allocation : false;
+    }
+
+    public function hasEnableDynamicPortAllocation()
+    {
+        return isset($this->enable_dynamic_port_allocation);
+    }
+
+    public function clearEnableDynamicPortAllocation()
+    {
+        unset($this->enable_dynamic_port_allocation);
+    }
+
+    /**
+     * Enable Dynamic Port Allocation. If not specified, it is disabled by default. If set to true, - Dynamic Port Allocation will be enabled on this NAT config. - enableEndpointIndependentMapping cannot be set to true. - If minPorts is set, minPortsPerVm must be set to a power of two greater than or equal to 32. If minPortsPerVm is not set, a minimum of 32 ports will be allocated to a VM from this NAT config. 
+     *
+     * Generated from protobuf field <code>optional bool enable_dynamic_port_allocation = 532106402;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnableDynamicPortAllocation($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_dynamic_port_allocation = $var;
 
         return $this;
     }
@@ -204,6 +266,34 @@ class RouterNat extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->enable_endpoint_independent_mapping = $var;
+
+        return $this;
+    }
+
+    /**
+     * List of NAT-ted endpoint types supported by the Nat Gateway. If the list is empty, then it will be equivalent to include ENDPOINT_TYPE_VM
+     * Check the EndpointTypes enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>repeated string endpoint_types = 502633807;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getEndpointTypes()
+    {
+        return $this->endpoint_types;
+    }
+
+    /**
+     * List of NAT-ted endpoint types supported by the Nat Gateway. If the list is empty, then it will be equivalent to include ENDPOINT_TYPE_VM
+     * Check the EndpointTypes enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>repeated string endpoint_types = 502633807;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setEndpointTypes($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->endpoint_types = $arr;
 
         return $this;
     }
@@ -276,6 +366,42 @@ class RouterNat extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\RouterNatLogConfig::class);
         $this->log_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Maximum number of ports allocated to a VM from this NAT config when Dynamic Port Allocation is enabled. If Dynamic Port Allocation is not enabled, this field has no effect. If Dynamic Port Allocation is enabled, and this field is set, it must be set to a power of two greater than minPortsPerVm, or 64 if minPortsPerVm is not set. If Dynamic Port Allocation is enabled and this field is not set, a maximum of 65536 ports will be allocated to a VM from this NAT config.
+     *
+     * Generated from protobuf field <code>optional int32 max_ports_per_vm = 250062049;</code>
+     * @return int
+     */
+    public function getMaxPortsPerVm()
+    {
+        return isset($this->max_ports_per_vm) ? $this->max_ports_per_vm : 0;
+    }
+
+    public function hasMaxPortsPerVm()
+    {
+        return isset($this->max_ports_per_vm);
+    }
+
+    public function clearMaxPortsPerVm()
+    {
+        unset($this->max_ports_per_vm);
+    }
+
+    /**
+     * Maximum number of ports allocated to a VM from this NAT config when Dynamic Port Allocation is enabled. If Dynamic Port Allocation is not enabled, this field has no effect. If Dynamic Port Allocation is enabled, and this field is set, it must be set to a power of two greater than minPortsPerVm, or 64 if minPortsPerVm is not set. If Dynamic Port Allocation is enabled and this field is not set, a maximum of 65536 ports will be allocated to a VM from this NAT config.
+     *
+     * Generated from protobuf field <code>optional int32 max_ports_per_vm = 250062049;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setMaxPortsPerVm($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->max_ports_per_vm = $var;
 
         return $this;
     }
@@ -405,7 +531,7 @@ class RouterNat extends \Google\Protobuf\Internal\Message
      * A list of URLs of the IP resources used for this Nat service. These IP addresses must be valid static external IP addresses assigned to the project.
      *
      * Generated from protobuf field <code>repeated string nat_ips = 117635086;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setNatIps($var)
@@ -431,7 +557,7 @@ class RouterNat extends \Google\Protobuf\Internal\Message
      * A list of rules associated with this NAT.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouterNatRule rules = 108873975;</code>
-     * @param \Google\Cloud\Compute\V1\RouterNatRule[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\RouterNatRule>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setRules($var)
@@ -495,7 +621,7 @@ class RouterNat extends \Google\Protobuf\Internal\Message
      * A list of Subnetwork resources whose traffic should be translated by NAT Gateway. It is used only when LIST_OF_SUBNETWORKS is selected for the SubnetworkIpRangeToNatOption above.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouterNatSubnetworkToNat subnetworks = 415853125;</code>
-     * @param \Google\Cloud\Compute\V1\RouterNatSubnetworkToNat[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\RouterNatSubnetworkToNat>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSubnetworks($var)

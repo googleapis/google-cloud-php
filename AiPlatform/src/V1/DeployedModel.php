@@ -24,12 +24,20 @@ class DeployedModel extends \Google\Protobuf\Internal\Message
      */
     private $id = '';
     /**
-     * Required. The name of the Model that this is the deployment of. Note that the Model
-     * may be in a different location than the DeployedModel's Endpoint.
+     * Required. The resource name of the Model that this is the deployment of. Note that
+     * the Model may be in a different location than the DeployedModel's Endpoint.
+     * The resource name may contain version id or version alias to specify the
+     * version, if no version is specified, the default version will be deployed.
      *
      * Generated from protobuf field <code>string model = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $model = '';
+    /**
+     * Output only. The version ID of the model that is deployed.
+     *
+     * Generated from protobuf field <code>string model_version_id = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $model_version_id = '';
     /**
      * The display name of the DeployedModel. If not provided upon creation,
      * the Model's display_name is used.
@@ -115,8 +123,12 @@ class DeployedModel extends \Google\Protobuf\Internal\Message
      *           will generate a value for this ID.
      *           This value should be 1-10 characters, and valid characters are /[0-9]/.
      *     @type string $model
-     *           Required. The name of the Model that this is the deployment of. Note that the Model
-     *           may be in a different location than the DeployedModel's Endpoint.
+     *           Required. The resource name of the Model that this is the deployment of. Note that
+     *           the Model may be in a different location than the DeployedModel's Endpoint.
+     *           The resource name may contain version id or version alias to specify the
+     *           version, if no version is specified, the default version will be deployed.
+     *     @type string $model_version_id
+     *           Output only. The version ID of the model that is deployed.
      *     @type string $display_name
      *           The display name of the DeployedModel. If not provided upon creation,
      *           the Model's display_name is used.
@@ -259,8 +271,10 @@ class DeployedModel extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the Model that this is the deployment of. Note that the Model
-     * may be in a different location than the DeployedModel's Endpoint.
+     * Required. The resource name of the Model that this is the deployment of. Note that
+     * the Model may be in a different location than the DeployedModel's Endpoint.
+     * The resource name may contain version id or version alias to specify the
+     * version, if no version is specified, the default version will be deployed.
      *
      * Generated from protobuf field <code>string model = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -271,8 +285,10 @@ class DeployedModel extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the Model that this is the deployment of. Note that the Model
-     * may be in a different location than the DeployedModel's Endpoint.
+     * Required. The resource name of the Model that this is the deployment of. Note that
+     * the Model may be in a different location than the DeployedModel's Endpoint.
+     * The resource name may contain version id or version alias to specify the
+     * version, if no version is specified, the default version will be deployed.
      *
      * Generated from protobuf field <code>string model = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -282,6 +298,32 @@ class DeployedModel extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->model = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The version ID of the model that is deployed.
+     *
+     * Generated from protobuf field <code>string model_version_id = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getModelVersionId()
+    {
+        return $this->model_version_id;
+    }
+
+    /**
+     * Output only. The version ID of the model that is deployed.
+     *
+     * Generated from protobuf field <code>string model_version_id = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setModelVersionId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->model_version_id = $var;
 
         return $this;
     }

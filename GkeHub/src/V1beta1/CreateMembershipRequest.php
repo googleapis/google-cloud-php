@@ -16,15 +16,15 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateMembershipRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The parent (project and location) where the Memberships will be
-     * created. Specified in the format `projects/&#42;&#47;locations/&#42;`.
+     * Required. The parent (project and location) where the Memberships will be created.
+     * Specified in the format `projects/&#42;&#47;locations/&#42;`.
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
-     * Required. Client chosen ID for the membership. `membership_id` must be a
-     * valid RFC 1123 compliant DNS label:
+     * Required. Client chosen ID for the membership. `membership_id` must be a valid RFC
+     * 1123 compliant DNS label:
      *   1. At most 63 characters in length
      *   2. It must consist of lower case alphanumeric characters or `-`
      *   3. It must start and end with an alphanumeric character
@@ -64,11 +64,11 @@ class CreateMembershipRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The parent (project and location) where the Memberships will be
-     *           created. Specified in the format `projects/&#42;&#47;locations/&#42;`.
+     *           Required. The parent (project and location) where the Memberships will be created.
+     *           Specified in the format `projects/&#42;&#47;locations/&#42;`.
      *     @type string $membership_id
-     *           Required. Client chosen ID for the membership. `membership_id` must be a
-     *           valid RFC 1123 compliant DNS label:
+     *           Required. Client chosen ID for the membership. `membership_id` must be a valid RFC
+     *           1123 compliant DNS label:
      *             1. At most 63 characters in length
      *             2. It must consist of lower case alphanumeric characters or `-`
      *             3. It must start and end with an alphanumeric character
@@ -96,10 +96,10 @@ class CreateMembershipRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent (project and location) where the Memberships will be
-     * created. Specified in the format `projects/&#42;&#47;locations/&#42;`.
+     * Required. The parent (project and location) where the Memberships will be created.
+     * Specified in the format `projects/&#42;&#47;locations/&#42;`.
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -108,10 +108,10 @@ class CreateMembershipRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent (project and location) where the Memberships will be
-     * created. Specified in the format `projects/&#42;&#47;locations/&#42;`.
+     * Required. The parent (project and location) where the Memberships will be created.
+     * Specified in the format `projects/&#42;&#47;locations/&#42;`.
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -124,8 +124,8 @@ class CreateMembershipRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Client chosen ID for the membership. `membership_id` must be a
-     * valid RFC 1123 compliant DNS label:
+     * Required. Client chosen ID for the membership. `membership_id` must be a valid RFC
+     * 1123 compliant DNS label:
      *   1. At most 63 characters in length
      *   2. It must consist of lower case alphanumeric characters or `-`
      *   3. It must start and end with an alphanumeric character
@@ -141,8 +141,8 @@ class CreateMembershipRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Client chosen ID for the membership. `membership_id` must be a
-     * valid RFC 1123 compliant DNS label:
+     * Required. Client chosen ID for the membership. `membership_id` must be a valid RFC
+     * 1123 compliant DNS label:
      *   1. At most 63 characters in length
      *   2. It must consist of lower case alphanumeric characters or `-`
      *   3. It must start and end with an alphanumeric character

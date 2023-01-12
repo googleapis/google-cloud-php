@@ -25,12 +25,13 @@
 namespace Google\Cloud\CertificateManager\V1\Gapic;
 
 use Google\ApiCore\ApiException;
+use Google\ApiCore\Call;
 use Google\ApiCore\CredentialsWrapper;
+
 use Google\ApiCore\GapicClientTrait;
-
 use Google\ApiCore\LongRunning\OperationsClient;
-use Google\ApiCore\OperationResponse;
 
+use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
@@ -39,21 +40,27 @@ use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\CertificateManager\V1\Certificate;
+use Google\Cloud\CertificateManager\V1\CertificateIssuanceConfig;
 use Google\Cloud\CertificateManager\V1\CertificateMap;
 use Google\Cloud\CertificateManager\V1\CertificateMapEntry;
+use Google\Cloud\CertificateManager\V1\CreateCertificateIssuanceConfigRequest;
 use Google\Cloud\CertificateManager\V1\CreateCertificateMapEntryRequest;
 use Google\Cloud\CertificateManager\V1\CreateCertificateMapRequest;
 use Google\Cloud\CertificateManager\V1\CreateCertificateRequest;
 use Google\Cloud\CertificateManager\V1\CreateDnsAuthorizationRequest;
+use Google\Cloud\CertificateManager\V1\DeleteCertificateIssuanceConfigRequest;
 use Google\Cloud\CertificateManager\V1\DeleteCertificateMapEntryRequest;
 use Google\Cloud\CertificateManager\V1\DeleteCertificateMapRequest;
 use Google\Cloud\CertificateManager\V1\DeleteCertificateRequest;
 use Google\Cloud\CertificateManager\V1\DeleteDnsAuthorizationRequest;
 use Google\Cloud\CertificateManager\V1\DnsAuthorization;
+use Google\Cloud\CertificateManager\V1\GetCertificateIssuanceConfigRequest;
 use Google\Cloud\CertificateManager\V1\GetCertificateMapEntryRequest;
 use Google\Cloud\CertificateManager\V1\GetCertificateMapRequest;
 use Google\Cloud\CertificateManager\V1\GetCertificateRequest;
 use Google\Cloud\CertificateManager\V1\GetDnsAuthorizationRequest;
+use Google\Cloud\CertificateManager\V1\ListCertificateIssuanceConfigsRequest;
+use Google\Cloud\CertificateManager\V1\ListCertificateIssuanceConfigsResponse;
 use Google\Cloud\CertificateManager\V1\ListCertificateMapEntriesRequest;
 use Google\Cloud\CertificateManager\V1\ListCertificateMapEntriesResponse;
 use Google\Cloud\CertificateManager\V1\ListCertificateMapsRequest;
@@ -66,6 +73,10 @@ use Google\Cloud\CertificateManager\V1\UpdateCertificateMapEntryRequest;
 use Google\Cloud\CertificateManager\V1\UpdateCertificateMapRequest;
 use Google\Cloud\CertificateManager\V1\UpdateCertificateRequest;
 use Google\Cloud\CertificateManager\V1\UpdateDnsAuthorizationRequest;
+use Google\Cloud\Location\GetLocationRequest;
+use Google\Cloud\Location\ListLocationsRequest;
+use Google\Cloud\Location\ListLocationsResponse;
+use Google\Cloud\Location\Location;
 use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
 
@@ -175,6 +186,8 @@ class CertificateManagerGapicClient
 
     private static $certificateNameTemplate;
 
+    private static $certificateIssuanceConfigNameTemplate;
+
     private static $certificateMapNameTemplate;
 
     private static $certificateMapEntryNameTemplate;
@@ -223,6 +236,17 @@ class CertificateManagerGapicClient
         }
 
         return self::$certificateNameTemplate;
+    }
+
+    private static function getCertificateIssuanceConfigNameTemplate()
+    {
+        if (self::$certificateIssuanceConfigNameTemplate == null) {
+            self::$certificateIssuanceConfigNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/certificateIssuanceConfigs/{certificate_issuance_config}'
+            );
+        }
+
+        return self::$certificateIssuanceConfigNameTemplate;
     }
 
     private static function getCertificateMapNameTemplate()
@@ -274,6 +298,7 @@ class CertificateManagerGapicClient
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
                 'certificate' => self::getCertificateNameTemplate(),
+                'certificateIssuanceConfig' => self::getCertificateIssuanceConfigNameTemplate(),
                 'certificateMap' => self::getCertificateMapNameTemplate(),
                 'certificateMapEntry' => self::getCertificateMapEntryNameTemplate(),
                 'dnsAuthorization' => self::getDnsAuthorizationNameTemplate(),
@@ -300,6 +325,28 @@ class CertificateManagerGapicClient
             'project' => $project,
             'location' => $location,
             'certificate' => $certificate,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * certificate_issuance_config resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $certificateIssuanceConfig
+     *
+     * @return string The formatted certificate_issuance_config resource.
+     */
+    public static function certificateIssuanceConfigName(
+        $project,
+        $location,
+        $certificateIssuanceConfig
+    ) {
+        return self::getCertificateIssuanceConfigNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'certificate_issuance_config' => $certificateIssuanceConfig,
         ]);
     }
 
@@ -394,6 +441,7 @@ class CertificateManagerGapicClient
      * The following name formats are supported:
      * Template: Pattern
      * - certificate: projects/{project}/locations/{location}/certificates/{certificate}
+     * - certificateIssuanceConfig: projects/{project}/locations/{location}/certificateIssuanceConfigs/{certificate_issuance_config}
      * - certificateMap: projects/{project}/locations/{location}/certificateMaps/{certificate_map}
      * - certificateMapEntry: projects/{project}/locations/{location}/certificateMaps/{certificate_map}/certificateMapEntries/{certificate_map_entry}
      * - dnsAuthorization: projects/{project}/locations/{location}/dnsAuthorizations/{dns_authorization}
@@ -586,10 +634,9 @@ class CertificateManagerGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -616,6 +663,90 @@ class CertificateManagerGapicClient
             : $requestParams->getHeader();
         return $this->startOperationsCall(
             'CreateCertificate',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Creates a new CertificateIssuanceConfig in a given project and location.
+     *
+     * Sample code:
+     * ```
+     * $certificateManagerClient = new CertificateManagerClient();
+     * try {
+     *     $formattedParent = $certificateManagerClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $certificateIssuanceConfigId = 'certificate_issuance_config_id';
+     *     $certificateIssuanceConfig = new CertificateIssuanceConfig();
+     *     $operationResponse = $certificateManagerClient->createCertificateIssuanceConfig($formattedParent, $certificateIssuanceConfigId, $certificateIssuanceConfig);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $certificateManagerClient->createCertificateIssuanceConfig($formattedParent, $certificateIssuanceConfigId, $certificateIssuanceConfig);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $certificateManagerClient->resumeOperation($operationName, 'createCertificateIssuanceConfig');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $certificateManagerClient->close();
+     * }
+     * ```
+     *
+     * @param string                    $parent                      Required. The parent resource of the certificate issuance config. Must be
+     *                                                               in the format `projects/&#42;/locations/*`.
+     * @param string                    $certificateIssuanceConfigId Required. A user-provided name of the certificate config.
+     * @param CertificateIssuanceConfig $certificateIssuanceConfig   Required. A definition of the certificate issuance config to create.
+     * @param array                     $optionalArgs                {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function createCertificateIssuanceConfig(
+        $parent,
+        $certificateIssuanceConfigId,
+        $certificateIssuanceConfig,
+        array $optionalArgs = []
+    ) {
+        $request = new CreateCertificateIssuanceConfigRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setCertificateIssuanceConfigId($certificateIssuanceConfigId);
+        $request->setCertificateIssuanceConfig($certificateIssuanceConfig);
+        $requestParamHeaders['parent'] = $parent;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'CreateCertificateIssuanceConfig',
             $optionalArgs,
             $request,
             $this->getOperationsClient()
@@ -671,10 +802,9 @@ class CertificateManagerGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -756,10 +886,9 @@ class CertificateManagerGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -833,18 +962,17 @@ class CertificateManagerGapicClient
      * }
      * ```
      *
-     * @param string           $parent             Required. The parent resource of the dns authorization. Must be in the format
-     *                                             `projects/&#42;/locations/*`.
+     * @param string           $parent             Required. The parent resource of the dns authorization. Must be in the
+     *                                             format `projects/&#42;/locations/*`.
      * @param string           $dnsAuthorizationId Required. A user-provided name of the dns authorization.
      * @param DnsAuthorization $dnsAuthorization   Required. A definition of the dns authorization to create.
      * @param array            $optionalArgs       {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -920,10 +1048,9 @@ class CertificateManagerGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -944,6 +1071,80 @@ class CertificateManagerGapicClient
             : $requestParams->getHeader();
         return $this->startOperationsCall(
             'DeleteCertificate',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Deletes a single CertificateIssuanceConfig.
+     *
+     * Sample code:
+     * ```
+     * $certificateManagerClient = new CertificateManagerClient();
+     * try {
+     *     $formattedName = $certificateManagerClient->certificateIssuanceConfigName('[PROJECT]', '[LOCATION]', '[CERTIFICATE_ISSUANCE_CONFIG]');
+     *     $operationResponse = $certificateManagerClient->deleteCertificateIssuanceConfig($formattedName);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         // operation succeeded and returns no value
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $certificateManagerClient->deleteCertificateIssuanceConfig($formattedName);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $certificateManagerClient->resumeOperation($operationName, 'deleteCertificateIssuanceConfig');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         // operation succeeded and returns no value
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $certificateManagerClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. A name of the certificate issuance config to delete. Must be in
+     *                             the format `projects/&#42;/locations/&#42;/certificateIssuanceConfigs/*`.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function deleteCertificateIssuanceConfig(
+        $name,
+        array $optionalArgs = []
+    ) {
+        $request = new DeleteCertificateIssuanceConfigRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'DeleteCertificateIssuanceConfig',
             $optionalArgs,
             $request,
             $this->getOperationsClient()
@@ -995,10 +1196,9 @@ class CertificateManagerGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -1062,16 +1262,15 @@ class CertificateManagerGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. A name of the certificate map entry to delete. Must be in the format
-     *                             `projects/&#42;/locations/&#42;/certificateMaps/&#42;/certificateMapEntries/*`.
+     * @param string $name         Required. A name of the certificate map entry to delete. Must be in the
+     *                             format `projects/&#42;/locations/&#42;/certificateMaps/&#42;/certificateMapEntries/*`.
      * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -1141,10 +1340,9 @@ class CertificateManagerGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -1191,10 +1389,9 @@ class CertificateManagerGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\CertificateManager\V1\Certificate
@@ -1222,6 +1419,57 @@ class CertificateManagerGapicClient
     }
 
     /**
+     * Gets details of a single CertificateIssuanceConfig.
+     *
+     * Sample code:
+     * ```
+     * $certificateManagerClient = new CertificateManagerClient();
+     * try {
+     *     $formattedName = $certificateManagerClient->certificateIssuanceConfigName('[PROJECT]', '[LOCATION]', '[CERTIFICATE_ISSUANCE_CONFIG]');
+     *     $response = $certificateManagerClient->getCertificateIssuanceConfig($formattedName);
+     * } finally {
+     *     $certificateManagerClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. A name of the certificate issuance config to describe. Must be in
+     *                             the format `projects/&#42;/locations/&#42;/certificateIssuanceConfigs/*`.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\CertificateManager\V1\CertificateIssuanceConfig
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getCertificateIssuanceConfig(
+        $name,
+        array $optionalArgs = []
+    ) {
+        $request = new GetCertificateIssuanceConfigRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetCertificateIssuanceConfig',
+            CertificateIssuanceConfig::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Gets details of a single CertificateMap.
      *
      * Sample code:
@@ -1241,10 +1489,9 @@ class CertificateManagerGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\CertificateManager\V1\CertificateMap
@@ -1291,10 +1538,9 @@ class CertificateManagerGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\CertificateManager\V1\CertificateMapEntry
@@ -1335,16 +1581,15 @@ class CertificateManagerGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. A name of the dns authorization to describe. Must be in the format
-     *                             `projects/&#42;/locations/&#42;/dnsAuthorizations/*`.
+     * @param string $name         Required. A name of the dns authorization to describe. Must be in the
+     *                             format `projects/&#42;/locations/&#42;/dnsAuthorizations/*`.
      * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\CertificateManager\V1\DnsAuthorization
@@ -1369,6 +1614,100 @@ class CertificateManagerGapicClient
             $optionalArgs,
             $request
         )->wait();
+    }
+
+    /**
+     * Lists CertificateIssuanceConfigs in a given project and location.
+     *
+     * Sample code:
+     * ```
+     * $certificateManagerClient = new CertificateManagerClient();
+     * try {
+     *     $formattedParent = $certificateManagerClient->locationName('[PROJECT]', '[LOCATION]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $certificateManagerClient->listCertificateIssuanceConfigs($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $certificateManagerClient->listCertificateIssuanceConfigs($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $certificateManagerClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The project and location from which the certificate should be
+     *                             listed, specified in the format `projects/&#42;/locations/*`.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type string $filter
+     *           Filter expression to restrict the Certificates Configs returned.
+     *     @type string $orderBy
+     *           A list of Certificate Config field names used to specify the order of the
+     *           returned results. The default sorting order is ascending. To specify
+     *           descending order for a field, add a suffix " desc".
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listCertificateIssuanceConfigs(
+        $parent,
+        array $optionalArgs = []
+    ) {
+        $request = new ListCertificateIssuanceConfigsRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['orderBy'])) {
+            $request->setOrderBy($optionalArgs['orderBy']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListCertificateIssuanceConfigs',
+            $optionalArgs,
+            ListCertificateIssuanceConfigsResponse::class,
+            $request
+        );
     }
 
     /**
@@ -1397,8 +1736,8 @@ class CertificateManagerGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The project, location and certificate map from which the certificate map
-     *                             entries should be listed, specified in the format
+     * @param string $parent       Required. The project, location and certificate map from which the
+     *                             certificate map entries should be listed, specified in the format
      *                             `projects/&#42;/locations/&#42;/certificateMaps/*`.
      * @param array  $optionalArgs {
      *     Optional.
@@ -1419,10 +1758,9 @@ class CertificateManagerGapicClient
      *           the order of the returned results. The default sorting order is ascending.
      *           To specify descending order for a field, add a suffix " desc".
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -1491,8 +1829,8 @@ class CertificateManagerGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The project and location from which the certificate maps should be listed,
-     *                             specified in the format `projects/&#42;/locations/*`.
+     * @param string $parent       Required. The project and location from which the certificate maps should
+     *                             be listed, specified in the format `projects/&#42;/locations/*`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1512,10 +1850,9 @@ class CertificateManagerGapicClient
      *           returned results. The default sorting order is ascending. To specify
      *           descending order for a field, add a suffix " desc".
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -1584,8 +1921,8 @@ class CertificateManagerGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The project and location from which the certificate should be listed,
-     *                             specified in the format `projects/&#42;/locations/*`.
+     * @param string $parent       Required. The project and location from which the certificate should be
+     *                             listed, specified in the format `projects/&#42;/locations/*`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1605,10 +1942,9 @@ class CertificateManagerGapicClient
      *           results. The default sorting order is ascending. To specify descending
      *           order for a field, add a suffix " desc".
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -1677,8 +2013,8 @@ class CertificateManagerGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The project and location from which the dns authorizations should be
-     *                             listed, specified in the format `projects/&#42;/locations/*`.
+     * @param string $parent       Required. The project and location from which the dns authorizations should
+     *                             be listed, specified in the format `projects/&#42;/locations/*`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1698,10 +2034,9 @@ class CertificateManagerGapicClient
      *           returned results. The default sorting order is ascending. To specify
      *           descending order for a field, add a suffix " desc".
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -1785,17 +2120,16 @@ class CertificateManagerGapicClient
      * ```
      *
      * @param Certificate $certificate  Required. A definition of the certificate to update.
-     * @param FieldMask   $updateMask   Required. The update mask applies to the resource. For the `FieldMask` definition,
-     *                                  see
+     * @param FieldMask   $updateMask   Required. The update mask applies to the resource. For the `FieldMask`
+     *                                  definition, see
      *                                  https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask.
      * @param array       $optionalArgs {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -1867,17 +2201,16 @@ class CertificateManagerGapicClient
      * ```
      *
      * @param CertificateMap $certificateMap Required. A definition of the certificate map to update.
-     * @param FieldMask      $updateMask     Required. The update mask applies to the resource. For the `FieldMask` definition,
-     *                                       see
+     * @param FieldMask      $updateMask     Required. The update mask applies to the resource. For the `FieldMask`
+     *                                       definition, see
      *                                       https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask.
      * @param array          $optionalArgs   {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -1951,17 +2284,16 @@ class CertificateManagerGapicClient
      * ```
      *
      * @param CertificateMapEntry $certificateMapEntry Required. A definition of the certificate map entry to create map entry.
-     * @param FieldMask           $updateMask          Required. The update mask applies to the resource. For the `FieldMask` definition,
-     *                                                 see
+     * @param FieldMask           $updateMask          Required. The update mask applies to the resource. For the `FieldMask`
+     *                                                 definition, see
      *                                                 https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask.
      * @param array               $optionalArgs        {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -2035,17 +2367,16 @@ class CertificateManagerGapicClient
      * ```
      *
      * @param DnsAuthorization $dnsAuthorization Required. A definition of the dns authorization to update.
-     * @param FieldMask        $updateMask       Required. The update mask applies to the resource. For the `FieldMask` definition,
-     *                                           see
+     * @param FieldMask        $updateMask       Required. The update mask applies to the resource. For the `FieldMask`
+     *                                           definition, see
      *                                           https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask.
      * @param array            $optionalArgs     {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -2076,5 +2407,145 @@ class CertificateManagerGapicClient
             $request,
             $this->getOperationsClient()
         )->wait();
+    }
+
+    /**
+     * Gets information about a location.
+     *
+     * Sample code:
+     * ```
+     * $certificateManagerClient = new CertificateManagerClient();
+     * try {
+     *     $response = $certificateManagerClient->getLocation();
+     * } finally {
+     *     $certificateManagerClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $name
+     *           Resource name for the location.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Location\Location
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getLocation(array $optionalArgs = [])
+    {
+        $request = new GetLocationRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetLocation',
+            Location::class,
+            $optionalArgs,
+            $request,
+            Call::UNARY_CALL,
+            'google.cloud.location.Locations'
+        )->wait();
+    }
+
+    /**
+     * Lists information about the supported locations for this service.
+     *
+     * Sample code:
+     * ```
+     * $certificateManagerClient = new CertificateManagerClient();
+     * try {
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $certificateManagerClient->listLocations();
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $certificateManagerClient->listLocations();
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $certificateManagerClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $name
+     *           The resource that owns the locations collection, if applicable.
+     *     @type string $filter
+     *           The standard list filter.
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listLocations(array $optionalArgs = [])
+    {
+        $request = new ListLocationsRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListLocations',
+            $optionalArgs,
+            ListLocationsResponse::class,
+            $request,
+            'google.cloud.location.Locations'
+        );
     }
 }

@@ -35,7 +35,7 @@ class ListModelsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\AIPlatform\V1\Model[]|\Google\Protobuf\Internal\RepeatedField $models
+     *     @type array<\Google\Cloud\AIPlatform\V1\Model>|\Google\Protobuf\Internal\RepeatedField $models
      *           List of Models in the requested page.
      *     @type string $next_page_token
      *           A token to retrieve next page of results.
@@ -62,7 +62,7 @@ class ListModelsResponse extends \Google\Protobuf\Internal\Message
      * List of Models in the requested page.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Model models = 1;</code>
-     * @param \Google\Cloud\AIPlatform\V1\Model[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AIPlatform\V1\Model>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setModels($var)

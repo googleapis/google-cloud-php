@@ -74,14 +74,14 @@ class SnapshotsV1Beta3ClientTest extends GeneratedTest
     public function deleteSnapshotTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $expectedResponse = new DeleteSnapshotResponse();
         $transport->addResponse($expectedResponse);
-        $response = $client->deleteSnapshot();
+        $response = $gapicClient->deleteSnapshot();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -97,7 +97,7 @@ class SnapshotsV1Beta3ClientTest extends GeneratedTest
     public function deleteSnapshotExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -112,8 +112,8 @@ class SnapshotsV1Beta3ClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->deleteSnapshot();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->deleteSnapshot();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -130,7 +130,7 @@ class SnapshotsV1Beta3ClientTest extends GeneratedTest
     public function getSnapshotTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -149,7 +149,7 @@ class SnapshotsV1Beta3ClientTest extends GeneratedTest
         $expectedResponse->setDiskSizeBytes($diskSizeBytes);
         $expectedResponse->setRegion($region);
         $transport->addResponse($expectedResponse);
-        $response = $client->getSnapshot();
+        $response = $gapicClient->getSnapshot();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -165,7 +165,7 @@ class SnapshotsV1Beta3ClientTest extends GeneratedTest
     public function getSnapshotExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -180,8 +180,8 @@ class SnapshotsV1Beta3ClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->getSnapshot();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getSnapshot();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -198,14 +198,14 @@ class SnapshotsV1Beta3ClientTest extends GeneratedTest
     public function listSnapshotsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $expectedResponse = new ListSnapshotsResponse();
         $transport->addResponse($expectedResponse);
-        $response = $client->listSnapshots();
+        $response = $gapicClient->listSnapshots();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -221,7 +221,7 @@ class SnapshotsV1Beta3ClientTest extends GeneratedTest
     public function listSnapshotsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -236,8 +236,8 @@ class SnapshotsV1Beta3ClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->listSnapshots();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listSnapshots();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

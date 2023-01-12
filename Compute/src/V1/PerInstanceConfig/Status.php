@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\PerInstanceConfig;
 use UnexpectedValueException;
 
 /**
- * The status of applying this per-instance config on the corresponding managed instance.
+ * The status of applying this per-instance configuration on the corresponding managed instance.
  *
  * Protobuf type <code>google.cloud.compute.v1.PerInstanceConfig.Status</code>
  */
@@ -20,37 +20,37 @@ class Status
      */
     const UNDEFINED_STATUS = 0;
     /**
-     * The per-instance config is being applied to the instance, but is not yet effective, possibly waiting for the instance to, for example, REFRESH.
+     * The per-instance configuration is being applied to the instance, but is not yet effective, possibly waiting for the instance to, for example, REFRESH.
      *
      * Generated from protobuf enum <code>APPLYING = 352003508;</code>
      */
     const APPLYING = 352003508;
     /**
-     * The per-instance config deletion is being applied on the instance, possibly waiting for the instance to, for example, REFRESH.
+     * The per-instance configuration deletion is being applied on the instance, possibly waiting for the instance to, for example, REFRESH.
      *
      * Generated from protobuf enum <code>DELETING = 528602024;</code>
      */
     const DELETING = 528602024;
     /**
-     * The per-instance config is effective on the instance, meaning that all disks, ips and metadata specified in this config are attached or set on the instance.
+     * The per-instance configuration is effective on the instance, meaning that all disks, ips and metadata specified in this configuration are attached or set on the instance.
      *
      * Generated from protobuf enum <code>EFFECTIVE = 244201863;</code>
      */
     const EFFECTIVE = 244201863;
     /**
-     * *[Default]* The default status, when no per-instance config exists.
+     * *[Default]* The default status, when no per-instance configuration exists.
      *
      * Generated from protobuf enum <code>NONE = 2402104;</code>
      */
     const NONE = 2402104;
     /**
-     * The per-instance config is set on an instance but not been applied yet.
+     * The per-instance configuration is set on an instance but not been applied yet.
      *
      * Generated from protobuf enum <code>UNAPPLIED = 483935140;</code>
      */
     const UNAPPLIED = 483935140;
     /**
-     * The per-instance config has been deleted, but the deletion is not yet applied.
+     * The per-instance configuration has been deleted, but the deletion is not yet applied.
      *
      * Generated from protobuf enum <code>UNAPPLIED_DELETION = 313956873;</code>
      */

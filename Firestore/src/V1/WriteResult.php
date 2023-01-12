@@ -43,7 +43,7 @@ class WriteResult extends \Google\Protobuf\Internal\Message
      *           after a `delete`.
      *           If the write did not actually change the document, this will be the
      *           previous update_time.
-     *     @type \Google\Cloud\Firestore\V1\Value[]|\Google\Protobuf\Internal\RepeatedField $transform_results
+     *     @type array<\Google\Cloud\Firestore\V1\Value>|\Google\Protobuf\Internal\RepeatedField $transform_results
      *           The results of applying each [DocumentTransform.FieldTransform][google.firestore.v1.DocumentTransform.FieldTransform], in the
      *           same order.
      * }
@@ -112,7 +112,7 @@ class WriteResult extends \Google\Protobuf\Internal\Message
      * same order.
      *
      * Generated from protobuf field <code>repeated .google.firestore.v1.Value transform_results = 2;</code>
-     * @param \Google\Cloud\Firestore\V1\Value[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Firestore\V1\Value>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTransformResults($var)

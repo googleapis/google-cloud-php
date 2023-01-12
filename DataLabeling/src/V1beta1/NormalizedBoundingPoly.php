@@ -28,7 +28,7 @@ class NormalizedBoundingPoly extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\DataLabeling\V1beta1\NormalizedVertex[]|\Google\Protobuf\Internal\RepeatedField $normalized_vertices
+     *     @type array<\Google\Cloud\DataLabeling\V1beta1\NormalizedVertex>|\Google\Protobuf\Internal\RepeatedField $normalized_vertices
      *           The bounding polygon normalized vertices.
      * }
      */
@@ -52,7 +52,7 @@ class NormalizedBoundingPoly extends \Google\Protobuf\Internal\Message
      * The bounding polygon normalized vertices.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datalabeling.v1beta1.NormalizedVertex normalized_vertices = 1;</code>
-     * @param \Google\Cloud\DataLabeling\V1beta1\NormalizedVertex[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\DataLabeling\V1beta1\NormalizedVertex>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setNormalizedVertices($var)

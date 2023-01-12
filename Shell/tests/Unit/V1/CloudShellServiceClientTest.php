@@ -23,14 +23,11 @@
 namespace Google\Cloud\Shell\Tests\Unit\V1;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
-
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Shell\V1\AddPublicKeyResponse;
-
 use Google\Cloud\Shell\V1\AuthorizeEnvironmentResponse;
 use Google\Cloud\Shell\V1\CloudShellServiceClient;
 use Google\Cloud\Shell\V1\Environment;
@@ -49,25 +46,19 @@ use stdClass;
  */
 class CloudShellServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return CloudShellServiceClient
-     */
+    /** @return CloudShellServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -76,9 +67,7 @@ class CloudShellServiceClientTest extends GeneratedTest
         return new CloudShellServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function addPublicKeyTest()
     {
         $operationsTransport = $this->createTransport();
@@ -88,7 +77,7 @@ class CloudShellServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -109,7 +98,7 @@ class CloudShellServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $response = $client->addPublicKey();
+        $response = $gapicClient->addPublicKey();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -138,9 +127,7 @@ class CloudShellServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function addPublicKeyExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -150,7 +137,7 @@ class CloudShellServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -171,7 +158,7 @@ class CloudShellServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $client->addPublicKey();
+        $response = $gapicClient->addPublicKey();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -193,9 +180,7 @@ class CloudShellServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function authorizeEnvironmentTest()
     {
         $operationsTransport = $this->createTransport();
@@ -205,7 +190,7 @@ class CloudShellServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -224,7 +209,7 @@ class CloudShellServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $response = $client->authorizeEnvironment();
+        $response = $gapicClient->authorizeEnvironment();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -253,9 +238,7 @@ class CloudShellServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function authorizeEnvironmentExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -265,7 +248,7 @@ class CloudShellServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -286,7 +269,7 @@ class CloudShellServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $client->authorizeEnvironment();
+        $response = $gapicClient->authorizeEnvironment();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -308,13 +291,11 @@ class CloudShellServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getEnvironmentTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -336,8 +317,8 @@ class CloudShellServiceClientTest extends GeneratedTest
         $expectedResponse->setSshPort($sshPort);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->environmentName('[USER]', '[ENVIRONMENT]');
-        $response = $client->getEnvironment($formattedName);
+        $formattedName = $gapicClient->environmentName('[USER]', '[ENVIRONMENT]');
+        $response = $gapicClient->getEnvironment($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -349,13 +330,11 @@ class CloudShellServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getEnvironmentExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -370,10 +349,10 @@ class CloudShellServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->environmentName('[USER]', '[ENVIRONMENT]');
+        $formattedName = $gapicClient->environmentName('[USER]', '[ENVIRONMENT]');
         try {
-            $client->getEnvironment($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getEnvironment($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -384,9 +363,7 @@ class CloudShellServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function removePublicKeyTest()
     {
         $operationsTransport = $this->createTransport();
@@ -396,7 +373,7 @@ class CloudShellServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -415,7 +392,7 @@ class CloudShellServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $response = $client->removePublicKey();
+        $response = $gapicClient->removePublicKey();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -444,9 +421,7 @@ class CloudShellServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function removePublicKeyExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -456,7 +431,7 @@ class CloudShellServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -477,7 +452,7 @@ class CloudShellServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $client->removePublicKey();
+        $response = $gapicClient->removePublicKey();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -499,9 +474,7 @@ class CloudShellServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function startEnvironmentTest()
     {
         $operationsTransport = $this->createTransport();
@@ -511,7 +484,7 @@ class CloudShellServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -530,7 +503,7 @@ class CloudShellServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $response = $client->startEnvironment();
+        $response = $gapicClient->startEnvironment();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -559,9 +532,7 @@ class CloudShellServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function startEnvironmentExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -571,7 +542,7 @@ class CloudShellServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -592,7 +563,7 @@ class CloudShellServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $client->startEnvironment();
+        $response = $gapicClient->startEnvironment();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();

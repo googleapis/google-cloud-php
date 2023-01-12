@@ -38,7 +38,7 @@ class TimeSeries extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Protobuf\Duration $interval_duration
      *           The duration of each interval.
-     *     @type \Google\Cloud\ContactCenterInsights\V1\CalculateStatsResponse\TimeSeries\Interval[]|\Google\Protobuf\Internal\RepeatedField $points
+     *     @type array<\Google\Cloud\ContactCenterInsights\V1\CalculateStatsResponse\TimeSeries\Interval>|\Google\Protobuf\Internal\RepeatedField $points
      *           An ordered list of intervals from earliest to latest, where each interval
      *           represents the number of conversations that transpired during the time
      *           window.
@@ -104,7 +104,7 @@ class TimeSeries extends \Google\Protobuf\Internal\Message
      * window.
      *
      * Generated from protobuf field <code>repeated .google.cloud.contactcenterinsights.v1.CalculateStatsResponse.TimeSeries.Interval points = 2;</code>
-     * @param \Google\Cloud\ContactCenterInsights\V1\CalculateStatsResponse\TimeSeries\Interval[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\ContactCenterInsights\V1\CalculateStatsResponse\TimeSeries\Interval>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPoints($var)

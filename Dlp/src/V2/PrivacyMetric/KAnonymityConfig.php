@@ -46,7 +46,7 @@ class KAnonymityConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Dlp\V2\FieldId[]|\Google\Protobuf\Internal\RepeatedField $quasi_ids
+     *     @type array<\Google\Cloud\Dlp\V2\FieldId>|\Google\Protobuf\Internal\RepeatedField $quasi_ids
      *           Set of fields to compute k-anonymity over. When multiple fields are
      *           specified, they are considered a single composite key. Structs and
      *           repeated data types are not supported; however, nested fields are
@@ -92,7 +92,7 @@ class KAnonymityConfig extends \Google\Protobuf\Internal\Message
      * a repeated field.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.FieldId quasi_ids = 1;</code>
-     * @param \Google\Cloud\Dlp\V2\FieldId[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dlp\V2\FieldId>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setQuasiIds($var)

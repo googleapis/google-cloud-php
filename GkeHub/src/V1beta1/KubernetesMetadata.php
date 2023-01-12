@@ -17,16 +17,15 @@ use Google\Protobuf\Internal\GPBUtil;
 class KubernetesMetadata extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. Kubernetes API server version string as reported by
-     * '/version'.
+     * Output only. Kubernetes API server version string as reported by '/version'.
      *
      * Generated from protobuf field <code>string kubernetes_api_server_version = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $kubernetes_api_server_version = '';
     /**
-     * Output only. Node providerID as reported by the first node in the list of
-     * nodes on the Kubernetes endpoint. On Kubernetes platforms that support
-     * zero-node clusters (like GKE-on-GCP), the node_count will be zero and the
+     * Output only. Node providerID as reported by the first node in the list of nodes on
+     * the Kubernetes endpoint. On Kubernetes platforms that support zero-node
+     * clusters (like GKE-on-GCP), the node_count will be zero and the
      * node_provider_id will be empty.
      *
      * Generated from protobuf field <code>string node_provider_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -45,16 +44,16 @@ class KubernetesMetadata extends \Google\Protobuf\Internal\Message
      */
     private $vcpu_count = 0;
     /**
-     * Output only. The total memory capacity as reported by the sum of all
-     * Kubernetes nodes resources, defined in MB.
+     * Output only. The total memory capacity as reported by the sum of all Kubernetes nodes
+     * resources, defined in MB.
      *
      * Generated from protobuf field <code>int32 memory_mb = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $memory_mb = 0;
     /**
-     * Output only. The time at which these details were last updated. This
-     * update_time is different from the Membership-level update_time since
-     * EndpointDetails are updated internally for API consumers.
+     * Output only. The time at which these details were last updated. This update_time is
+     * different from the Membership-level update_time since EndpointDetails are
+     * updated internally for API consumers.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 100 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -67,24 +66,23 @@ class KubernetesMetadata extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $kubernetes_api_server_version
-     *           Output only. Kubernetes API server version string as reported by
-     *           '/version'.
+     *           Output only. Kubernetes API server version string as reported by '/version'.
      *     @type string $node_provider_id
-     *           Output only. Node providerID as reported by the first node in the list of
-     *           nodes on the Kubernetes endpoint. On Kubernetes platforms that support
-     *           zero-node clusters (like GKE-on-GCP), the node_count will be zero and the
+     *           Output only. Node providerID as reported by the first node in the list of nodes on
+     *           the Kubernetes endpoint. On Kubernetes platforms that support zero-node
+     *           clusters (like GKE-on-GCP), the node_count will be zero and the
      *           node_provider_id will be empty.
      *     @type int $node_count
      *           Output only. Node count as reported by Kubernetes nodes resources.
      *     @type int $vcpu_count
      *           Output only. vCPU count as reported by Kubernetes nodes resources.
      *     @type int $memory_mb
-     *           Output only. The total memory capacity as reported by the sum of all
-     *           Kubernetes nodes resources, defined in MB.
+     *           Output only. The total memory capacity as reported by the sum of all Kubernetes nodes
+     *           resources, defined in MB.
      *     @type \Google\Protobuf\Timestamp $update_time
-     *           Output only. The time at which these details were last updated. This
-     *           update_time is different from the Membership-level update_time since
-     *           EndpointDetails are updated internally for API consumers.
+     *           Output only. The time at which these details were last updated. This update_time is
+     *           different from the Membership-level update_time since EndpointDetails are
+     *           updated internally for API consumers.
      * }
      */
     public function __construct($data = NULL) {
@@ -93,8 +91,7 @@ class KubernetesMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Kubernetes API server version string as reported by
-     * '/version'.
+     * Output only. Kubernetes API server version string as reported by '/version'.
      *
      * Generated from protobuf field <code>string kubernetes_api_server_version = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -105,8 +102,7 @@ class KubernetesMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Kubernetes API server version string as reported by
-     * '/version'.
+     * Output only. Kubernetes API server version string as reported by '/version'.
      *
      * Generated from protobuf field <code>string kubernetes_api_server_version = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -121,9 +117,9 @@ class KubernetesMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Node providerID as reported by the first node in the list of
-     * nodes on the Kubernetes endpoint. On Kubernetes platforms that support
-     * zero-node clusters (like GKE-on-GCP), the node_count will be zero and the
+     * Output only. Node providerID as reported by the first node in the list of nodes on
+     * the Kubernetes endpoint. On Kubernetes platforms that support zero-node
+     * clusters (like GKE-on-GCP), the node_count will be zero and the
      * node_provider_id will be empty.
      *
      * Generated from protobuf field <code>string node_provider_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -135,9 +131,9 @@ class KubernetesMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Node providerID as reported by the first node in the list of
-     * nodes on the Kubernetes endpoint. On Kubernetes platforms that support
-     * zero-node clusters (like GKE-on-GCP), the node_count will be zero and the
+     * Output only. Node providerID as reported by the first node in the list of nodes on
+     * the Kubernetes endpoint. On Kubernetes platforms that support zero-node
+     * clusters (like GKE-on-GCP), the node_count will be zero and the
      * node_provider_id will be empty.
      *
      * Generated from protobuf field <code>string node_provider_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -205,8 +201,8 @@ class KubernetesMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The total memory capacity as reported by the sum of all
-     * Kubernetes nodes resources, defined in MB.
+     * Output only. The total memory capacity as reported by the sum of all Kubernetes nodes
+     * resources, defined in MB.
      *
      * Generated from protobuf field <code>int32 memory_mb = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
@@ -217,8 +213,8 @@ class KubernetesMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The total memory capacity as reported by the sum of all
-     * Kubernetes nodes resources, defined in MB.
+     * Output only. The total memory capacity as reported by the sum of all Kubernetes nodes
+     * resources, defined in MB.
      *
      * Generated from protobuf field <code>int32 memory_mb = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
@@ -233,9 +229,9 @@ class KubernetesMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The time at which these details were last updated. This
-     * update_time is different from the Membership-level update_time since
-     * EndpointDetails are updated internally for API consumers.
+     * Output only. The time at which these details were last updated. This update_time is
+     * different from the Membership-level update_time since EndpointDetails are
+     * updated internally for API consumers.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 100 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -256,9 +252,9 @@ class KubernetesMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The time at which these details were last updated. This
-     * update_time is different from the Membership-level update_time since
-     * EndpointDetails are updated internally for API consumers.
+     * Output only. The time at which these details were last updated. This update_time is
+     * different from the Membership-level update_time since EndpointDetails are
+     * updated internally for API consumers.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 100 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var

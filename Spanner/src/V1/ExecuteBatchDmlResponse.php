@@ -57,7 +57,7 @@ class ExecuteBatchDmlResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Spanner\V1\ResultSet[]|\Google\Protobuf\Internal\RepeatedField $result_sets
+     *     @type array<\Google\Cloud\Spanner\V1\ResultSet>|\Google\Protobuf\Internal\RepeatedField $result_sets
      *           One [ResultSet][google.spanner.v1.ResultSet] for each statement in the request that ran successfully,
      *           in the same order as the statements in the request. Each [ResultSet][google.spanner.v1.ResultSet] does
      *           not contain any rows. The [ResultSetStats][google.spanner.v1.ResultSetStats] in each [ResultSet][google.spanner.v1.ResultSet] contain
@@ -99,7 +99,7 @@ class ExecuteBatchDmlResponse extends \Google\Protobuf\Internal\Message
      * [ResultSetMetadata][google.spanner.v1.ResultSetMetadata].
      *
      * Generated from protobuf field <code>repeated .google.spanner.v1.ResultSet result_sets = 1;</code>
-     * @param \Google\Cloud\Spanner\V1\ResultSet[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Spanner\V1\ResultSet>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setResultSets($var)

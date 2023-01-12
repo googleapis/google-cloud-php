@@ -9,32 +9,38 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Response message for [KeyManagementService.Decrypt][google.cloud.kms.v1.KeyManagementService.Decrypt].
+ * Response message for
+ * [KeyManagementService.Decrypt][google.cloud.kms.v1.KeyManagementService.Decrypt].
  *
  * Generated from protobuf message <code>google.cloud.kms.v1.DecryptResponse</code>
  */
 class DecryptResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The decrypted data originally supplied in [EncryptRequest.plaintext][google.cloud.kms.v1.EncryptRequest.plaintext].
+     * The decrypted data originally supplied in
+     * [EncryptRequest.plaintext][google.cloud.kms.v1.EncryptRequest.plaintext].
      *
      * Generated from protobuf field <code>bytes plaintext = 1;</code>
      */
     private $plaintext = '';
     /**
      * Integrity verification field. A CRC32C checksum of the returned
-     * [DecryptResponse.plaintext][google.cloud.kms.v1.DecryptResponse.plaintext]. An integrity check of
-     * [DecryptResponse.plaintext][google.cloud.kms.v1.DecryptResponse.plaintext] can be performed by computing the CRC32C
-     * checksum of [DecryptResponse.plaintext][google.cloud.kms.v1.DecryptResponse.plaintext] and comparing your results to
-     * this field. Discard the response in case of non-matching checksum values,
-     * and perform a limited number of retries. A persistent mismatch may indicate
-     * an issue in your computation of the CRC32C checksum. Note: receiving this
-     * response message indicates that [KeyManagementService][google.cloud.kms.v1.KeyManagementService] is able to
-     * successfully decrypt the [ciphertext][google.cloud.kms.v1.DecryptRequest.ciphertext].
-     * Note: This field is defined as int64 for reasons of compatibility across
-     * different languages. However, it is a non-negative integer, which will
-     * never exceed 2^32-1, and can be safely downconverted to uint32 in languages
-     * that support this type.
+     * [DecryptResponse.plaintext][google.cloud.kms.v1.DecryptResponse.plaintext].
+     * An integrity check of
+     * [DecryptResponse.plaintext][google.cloud.kms.v1.DecryptResponse.plaintext]
+     * can be performed by computing the CRC32C checksum of
+     * [DecryptResponse.plaintext][google.cloud.kms.v1.DecryptResponse.plaintext]
+     * and comparing your results to this field. Discard the response in case of
+     * non-matching checksum values, and perform a limited number of retries. A
+     * persistent mismatch may indicate an issue in your computation of the CRC32C
+     * checksum. Note: receiving this response message indicates that
+     * [KeyManagementService][google.cloud.kms.v1.KeyManagementService] is able to
+     * successfully decrypt the
+     * [ciphertext][google.cloud.kms.v1.DecryptRequest.ciphertext]. Note: This
+     * field is defined as int64 for reasons of compatibility across different
+     * languages. However, it is a non-negative integer, which will never exceed
+     * 2^32-1, and can be safely downconverted to uint32 in languages that support
+     * this type.
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value plaintext_crc32c = 2;</code>
      */
@@ -46,7 +52,9 @@ class DecryptResponse extends \Google\Protobuf\Internal\Message
      */
     private $used_primary = false;
     /**
-     * The [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] used in decryption.
+     * The [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] of the
+     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] used in
+     * decryption.
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.ProtectionLevel protection_level = 4;</code>
      */
@@ -59,25 +67,32 @@ class DecryptResponse extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $plaintext
-     *           The decrypted data originally supplied in [EncryptRequest.plaintext][google.cloud.kms.v1.EncryptRequest.plaintext].
+     *           The decrypted data originally supplied in
+     *           [EncryptRequest.plaintext][google.cloud.kms.v1.EncryptRequest.plaintext].
      *     @type \Google\Protobuf\Int64Value $plaintext_crc32c
      *           Integrity verification field. A CRC32C checksum of the returned
-     *           [DecryptResponse.plaintext][google.cloud.kms.v1.DecryptResponse.plaintext]. An integrity check of
-     *           [DecryptResponse.plaintext][google.cloud.kms.v1.DecryptResponse.plaintext] can be performed by computing the CRC32C
-     *           checksum of [DecryptResponse.plaintext][google.cloud.kms.v1.DecryptResponse.plaintext] and comparing your results to
-     *           this field. Discard the response in case of non-matching checksum values,
-     *           and perform a limited number of retries. A persistent mismatch may indicate
-     *           an issue in your computation of the CRC32C checksum. Note: receiving this
-     *           response message indicates that [KeyManagementService][google.cloud.kms.v1.KeyManagementService] is able to
-     *           successfully decrypt the [ciphertext][google.cloud.kms.v1.DecryptRequest.ciphertext].
-     *           Note: This field is defined as int64 for reasons of compatibility across
-     *           different languages. However, it is a non-negative integer, which will
-     *           never exceed 2^32-1, and can be safely downconverted to uint32 in languages
-     *           that support this type.
+     *           [DecryptResponse.plaintext][google.cloud.kms.v1.DecryptResponse.plaintext].
+     *           An integrity check of
+     *           [DecryptResponse.plaintext][google.cloud.kms.v1.DecryptResponse.plaintext]
+     *           can be performed by computing the CRC32C checksum of
+     *           [DecryptResponse.plaintext][google.cloud.kms.v1.DecryptResponse.plaintext]
+     *           and comparing your results to this field. Discard the response in case of
+     *           non-matching checksum values, and perform a limited number of retries. A
+     *           persistent mismatch may indicate an issue in your computation of the CRC32C
+     *           checksum. Note: receiving this response message indicates that
+     *           [KeyManagementService][google.cloud.kms.v1.KeyManagementService] is able to
+     *           successfully decrypt the
+     *           [ciphertext][google.cloud.kms.v1.DecryptRequest.ciphertext]. Note: This
+     *           field is defined as int64 for reasons of compatibility across different
+     *           languages. However, it is a non-negative integer, which will never exceed
+     *           2^32-1, and can be safely downconverted to uint32 in languages that support
+     *           this type.
      *     @type bool $used_primary
      *           Whether the Decryption was performed using the primary key version.
      *     @type int $protection_level
-     *           The [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] used in decryption.
+     *           The [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] of the
+     *           [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] used in
+     *           decryption.
      * }
      */
     public function __construct($data = NULL) {
@@ -86,7 +101,8 @@ class DecryptResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The decrypted data originally supplied in [EncryptRequest.plaintext][google.cloud.kms.v1.EncryptRequest.plaintext].
+     * The decrypted data originally supplied in
+     * [EncryptRequest.plaintext][google.cloud.kms.v1.EncryptRequest.plaintext].
      *
      * Generated from protobuf field <code>bytes plaintext = 1;</code>
      * @return string
@@ -97,7 +113,8 @@ class DecryptResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The decrypted data originally supplied in [EncryptRequest.plaintext][google.cloud.kms.v1.EncryptRequest.plaintext].
+     * The decrypted data originally supplied in
+     * [EncryptRequest.plaintext][google.cloud.kms.v1.EncryptRequest.plaintext].
      *
      * Generated from protobuf field <code>bytes plaintext = 1;</code>
      * @param string $var
@@ -113,18 +130,22 @@ class DecryptResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * Integrity verification field. A CRC32C checksum of the returned
-     * [DecryptResponse.plaintext][google.cloud.kms.v1.DecryptResponse.plaintext]. An integrity check of
-     * [DecryptResponse.plaintext][google.cloud.kms.v1.DecryptResponse.plaintext] can be performed by computing the CRC32C
-     * checksum of [DecryptResponse.plaintext][google.cloud.kms.v1.DecryptResponse.plaintext] and comparing your results to
-     * this field. Discard the response in case of non-matching checksum values,
-     * and perform a limited number of retries. A persistent mismatch may indicate
-     * an issue in your computation of the CRC32C checksum. Note: receiving this
-     * response message indicates that [KeyManagementService][google.cloud.kms.v1.KeyManagementService] is able to
-     * successfully decrypt the [ciphertext][google.cloud.kms.v1.DecryptRequest.ciphertext].
-     * Note: This field is defined as int64 for reasons of compatibility across
-     * different languages. However, it is a non-negative integer, which will
-     * never exceed 2^32-1, and can be safely downconverted to uint32 in languages
-     * that support this type.
+     * [DecryptResponse.plaintext][google.cloud.kms.v1.DecryptResponse.plaintext].
+     * An integrity check of
+     * [DecryptResponse.plaintext][google.cloud.kms.v1.DecryptResponse.plaintext]
+     * can be performed by computing the CRC32C checksum of
+     * [DecryptResponse.plaintext][google.cloud.kms.v1.DecryptResponse.plaintext]
+     * and comparing your results to this field. Discard the response in case of
+     * non-matching checksum values, and perform a limited number of retries. A
+     * persistent mismatch may indicate an issue in your computation of the CRC32C
+     * checksum. Note: receiving this response message indicates that
+     * [KeyManagementService][google.cloud.kms.v1.KeyManagementService] is able to
+     * successfully decrypt the
+     * [ciphertext][google.cloud.kms.v1.DecryptRequest.ciphertext]. Note: This
+     * field is defined as int64 for reasons of compatibility across different
+     * languages. However, it is a non-negative integer, which will never exceed
+     * 2^32-1, and can be safely downconverted to uint32 in languages that support
+     * this type.
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value plaintext_crc32c = 2;</code>
      * @return \Google\Protobuf\Int64Value|null
@@ -148,18 +169,22 @@ class DecryptResponse extends \Google\Protobuf\Internal\Message
      * Returns the unboxed value from <code>getPlaintextCrc32C()</code>
 
      * Integrity verification field. A CRC32C checksum of the returned
-     * [DecryptResponse.plaintext][google.cloud.kms.v1.DecryptResponse.plaintext]. An integrity check of
-     * [DecryptResponse.plaintext][google.cloud.kms.v1.DecryptResponse.plaintext] can be performed by computing the CRC32C
-     * checksum of [DecryptResponse.plaintext][google.cloud.kms.v1.DecryptResponse.plaintext] and comparing your results to
-     * this field. Discard the response in case of non-matching checksum values,
-     * and perform a limited number of retries. A persistent mismatch may indicate
-     * an issue in your computation of the CRC32C checksum. Note: receiving this
-     * response message indicates that [KeyManagementService][google.cloud.kms.v1.KeyManagementService] is able to
-     * successfully decrypt the [ciphertext][google.cloud.kms.v1.DecryptRequest.ciphertext].
-     * Note: This field is defined as int64 for reasons of compatibility across
-     * different languages. However, it is a non-negative integer, which will
-     * never exceed 2^32-1, and can be safely downconverted to uint32 in languages
-     * that support this type.
+     * [DecryptResponse.plaintext][google.cloud.kms.v1.DecryptResponse.plaintext].
+     * An integrity check of
+     * [DecryptResponse.plaintext][google.cloud.kms.v1.DecryptResponse.plaintext]
+     * can be performed by computing the CRC32C checksum of
+     * [DecryptResponse.plaintext][google.cloud.kms.v1.DecryptResponse.plaintext]
+     * and comparing your results to this field. Discard the response in case of
+     * non-matching checksum values, and perform a limited number of retries. A
+     * persistent mismatch may indicate an issue in your computation of the CRC32C
+     * checksum. Note: receiving this response message indicates that
+     * [KeyManagementService][google.cloud.kms.v1.KeyManagementService] is able to
+     * successfully decrypt the
+     * [ciphertext][google.cloud.kms.v1.DecryptRequest.ciphertext]. Note: This
+     * field is defined as int64 for reasons of compatibility across different
+     * languages. However, it is a non-negative integer, which will never exceed
+     * 2^32-1, and can be safely downconverted to uint32 in languages that support
+     * this type.
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value plaintext_crc32c = 2;</code>
      * @return int|string|null
@@ -171,18 +196,22 @@ class DecryptResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * Integrity verification field. A CRC32C checksum of the returned
-     * [DecryptResponse.plaintext][google.cloud.kms.v1.DecryptResponse.plaintext]. An integrity check of
-     * [DecryptResponse.plaintext][google.cloud.kms.v1.DecryptResponse.plaintext] can be performed by computing the CRC32C
-     * checksum of [DecryptResponse.plaintext][google.cloud.kms.v1.DecryptResponse.plaintext] and comparing your results to
-     * this field. Discard the response in case of non-matching checksum values,
-     * and perform a limited number of retries. A persistent mismatch may indicate
-     * an issue in your computation of the CRC32C checksum. Note: receiving this
-     * response message indicates that [KeyManagementService][google.cloud.kms.v1.KeyManagementService] is able to
-     * successfully decrypt the [ciphertext][google.cloud.kms.v1.DecryptRequest.ciphertext].
-     * Note: This field is defined as int64 for reasons of compatibility across
-     * different languages. However, it is a non-negative integer, which will
-     * never exceed 2^32-1, and can be safely downconverted to uint32 in languages
-     * that support this type.
+     * [DecryptResponse.plaintext][google.cloud.kms.v1.DecryptResponse.plaintext].
+     * An integrity check of
+     * [DecryptResponse.plaintext][google.cloud.kms.v1.DecryptResponse.plaintext]
+     * can be performed by computing the CRC32C checksum of
+     * [DecryptResponse.plaintext][google.cloud.kms.v1.DecryptResponse.plaintext]
+     * and comparing your results to this field. Discard the response in case of
+     * non-matching checksum values, and perform a limited number of retries. A
+     * persistent mismatch may indicate an issue in your computation of the CRC32C
+     * checksum. Note: receiving this response message indicates that
+     * [KeyManagementService][google.cloud.kms.v1.KeyManagementService] is able to
+     * successfully decrypt the
+     * [ciphertext][google.cloud.kms.v1.DecryptRequest.ciphertext]. Note: This
+     * field is defined as int64 for reasons of compatibility across different
+     * languages. However, it is a non-negative integer, which will never exceed
+     * 2^32-1, and can be safely downconverted to uint32 in languages that support
+     * this type.
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value plaintext_crc32c = 2;</code>
      * @param \Google\Protobuf\Int64Value $var
@@ -200,18 +229,22 @@ class DecryptResponse extends \Google\Protobuf\Internal\Message
      * Sets the field by wrapping a primitive type in a Google\Protobuf\Int64Value object.
 
      * Integrity verification field. A CRC32C checksum of the returned
-     * [DecryptResponse.plaintext][google.cloud.kms.v1.DecryptResponse.plaintext]. An integrity check of
-     * [DecryptResponse.plaintext][google.cloud.kms.v1.DecryptResponse.plaintext] can be performed by computing the CRC32C
-     * checksum of [DecryptResponse.plaintext][google.cloud.kms.v1.DecryptResponse.plaintext] and comparing your results to
-     * this field. Discard the response in case of non-matching checksum values,
-     * and perform a limited number of retries. A persistent mismatch may indicate
-     * an issue in your computation of the CRC32C checksum. Note: receiving this
-     * response message indicates that [KeyManagementService][google.cloud.kms.v1.KeyManagementService] is able to
-     * successfully decrypt the [ciphertext][google.cloud.kms.v1.DecryptRequest.ciphertext].
-     * Note: This field is defined as int64 for reasons of compatibility across
-     * different languages. However, it is a non-negative integer, which will
-     * never exceed 2^32-1, and can be safely downconverted to uint32 in languages
-     * that support this type.
+     * [DecryptResponse.plaintext][google.cloud.kms.v1.DecryptResponse.plaintext].
+     * An integrity check of
+     * [DecryptResponse.plaintext][google.cloud.kms.v1.DecryptResponse.plaintext]
+     * can be performed by computing the CRC32C checksum of
+     * [DecryptResponse.plaintext][google.cloud.kms.v1.DecryptResponse.plaintext]
+     * and comparing your results to this field. Discard the response in case of
+     * non-matching checksum values, and perform a limited number of retries. A
+     * persistent mismatch may indicate an issue in your computation of the CRC32C
+     * checksum. Note: receiving this response message indicates that
+     * [KeyManagementService][google.cloud.kms.v1.KeyManagementService] is able to
+     * successfully decrypt the
+     * [ciphertext][google.cloud.kms.v1.DecryptRequest.ciphertext]. Note: This
+     * field is defined as int64 for reasons of compatibility across different
+     * languages. However, it is a non-negative integer, which will never exceed
+     * 2^32-1, and can be safely downconverted to uint32 in languages that support
+     * this type.
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value plaintext_crc32c = 2;</code>
      * @param int|string|null $var
@@ -249,7 +282,9 @@ class DecryptResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] used in decryption.
+     * The [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] of the
+     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] used in
+     * decryption.
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.ProtectionLevel protection_level = 4;</code>
      * @return int
@@ -260,7 +295,9 @@ class DecryptResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] used in decryption.
+     * The [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] of the
+     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] used in
+     * decryption.
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.ProtectionLevel protection_level = 4;</code>
      * @param int $var

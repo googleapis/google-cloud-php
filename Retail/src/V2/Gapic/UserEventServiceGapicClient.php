@@ -357,10 +357,9 @@ class UserEventServiceGapicClient
      *           otherwise identical get requests. The name is abbreviated to reduce the
      *           payload bytes.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Api\HttpBody
@@ -404,9 +403,9 @@ class UserEventServiceGapicClient
      * synchronous. Events that already exist are skipped.
      * Use this method for backfilling historical user events.
      *
-     * Operation.response is of type ImportResponse. Note that it is
+     * `Operation.response` is of type `ImportResponse`. Note that it is
      * possible for a subset of the items to be successfully inserted.
-     * Operation.metadata is of type ImportMetadata.
+     * `Operation.metadata` is of type `ImportMetadata`.
      *
      * Sample code:
      * ```
@@ -454,10 +453,9 @@ class UserEventServiceGapicClient
      *           The desired location of errors incurred during the Import. Cannot be set
      *           for inline user event imports.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -502,9 +500,9 @@ class UserEventServiceGapicClient
      * ```
      * $userEventServiceClient = new UserEventServiceClient();
      * try {
-     *     $parent = 'parent';
+     *     $formattedParent = $userEventServiceClient->catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
      *     $filter = 'filter';
-     *     $operationResponse = $userEventServiceClient->purgeUserEvents($parent, $filter);
+     *     $operationResponse = $userEventServiceClient->purgeUserEvents($formattedParent, $filter);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -515,7 +513,7 @@ class UserEventServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $userEventServiceClient->purgeUserEvents($parent, $filter);
+     *     $operationResponse = $userEventServiceClient->purgeUserEvents($formattedParent, $filter);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $userEventServiceClient->resumeOperation($operationName, 'purgeUserEvents');
@@ -569,10 +567,9 @@ class UserEventServiceGapicClient
      *           If `force` is set to false, the method will return the expected purge count
      *           without deleting any user events.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -605,13 +602,14 @@ class UserEventServiceGapicClient
     }
 
     /**
-     * Triggers a user event rejoin operation with latest product catalog. Events
+     * Starts a user event rejoin operation with latest product catalog. Events
      * will not be annotated with detailed product information if product is
      * missing from the catalog at the time the user event is ingested, and these
      * events are stored as unjoined events with a limited usage on training and
-     * serving. This API can be used to trigger a 'join' operation on specified
+     * serving. This method can be used to start a join operation on specified
      * events with latest version of product catalog. It can also be used to
-     * correct events joined with wrong product catalog.
+     * correct events joined with the wrong product catalog. A rejoin operation
+     * can take hours or days to complete.
      *
      * Sample code:
      * ```
@@ -661,10 +659,9 @@ class UserEventServiceGapicClient
      *           invalid integer value.
      *           For allowed values, use constants defined on {@see \Google\Cloud\Retail\V2\RejoinUserEventsRequest\UserEventRejoinScope}
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -719,10 +716,9 @@ class UserEventServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Retail\V2\UserEvent

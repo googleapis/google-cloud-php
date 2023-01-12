@@ -29,6 +29,13 @@ class JobTemplate extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.video.transcoder.v1.JobConfig config = 2;</code>
      */
     private $config = null;
+    /**
+     * The labels associated with this job template. You can use these to organize
+     * and group your job templates.
+     *
+     * Generated from protobuf field <code>map<string, string> labels = 3;</code>
+     */
+    private $labels;
 
     /**
      * Constructor.
@@ -42,6 +49,9 @@ class JobTemplate extends \Google\Protobuf\Internal\Message
      *           `projects/{project_number}/locations/{location}/jobTemplates/{job_template}`
      *     @type \Google\Cloud\Video\Transcoder\V1\JobConfig $config
      *           The configuration for this template.
+     *     @type array|\Google\Protobuf\Internal\MapField $labels
+     *           The labels associated with this job template. You can use these to organize
+     *           and group your job templates.
      * }
      */
     public function __construct($data = NULL) {
@@ -111,6 +121,34 @@ class JobTemplate extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Video\Transcoder\V1\JobConfig::class);
         $this->config = $var;
+
+        return $this;
+    }
+
+    /**
+     * The labels associated with this job template. You can use these to organize
+     * and group your job templates.
+     *
+     * Generated from protobuf field <code>map<string, string> labels = 3;</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getLabels()
+    {
+        return $this->labels;
+    }
+
+    /**
+     * The labels associated with this job template. You can use these to organize
+     * and group your job templates.
+     *
+     * Generated from protobuf field <code>map<string, string> labels = 3;</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setLabels($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->labels = $arr;
 
         return $this;
     }

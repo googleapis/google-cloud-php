@@ -52,7 +52,7 @@ class ModelMonitoringStatsAnomalies extends \Google\Protobuf\Internal\Message
      *           Deployed Model ID.
      *     @type int $anomaly_count
      *           Number of anomalies within all stats.
-     *     @type \Google\Cloud\AIPlatform\V1\ModelMonitoringStatsAnomalies\FeatureHistoricStatsAnomalies[]|\Google\Protobuf\Internal\RepeatedField $feature_stats
+     *     @type array<\Google\Cloud\AIPlatform\V1\ModelMonitoringStatsAnomalies\FeatureHistoricStatsAnomalies>|\Google\Protobuf\Internal\RepeatedField $feature_stats
      *           A list of historical Stats and Anomalies generated for all Features.
      * }
      */
@@ -154,7 +154,7 @@ class ModelMonitoringStatsAnomalies extends \Google\Protobuf\Internal\Message
      * A list of historical Stats and Anomalies generated for all Features.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.ModelMonitoringStatsAnomalies.FeatureHistoricStatsAnomalies feature_stats = 4;</code>
-     * @param \Google\Cloud\AIPlatform\V1\ModelMonitoringStatsAnomalies\FeatureHistoricStatsAnomalies[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AIPlatform\V1\ModelMonitoringStatsAnomalies\FeatureHistoricStatsAnomalies>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFeatureStats($var)

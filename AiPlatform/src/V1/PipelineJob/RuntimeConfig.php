@@ -49,6 +49,24 @@ class RuntimeConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>map<string, .google.protobuf.Value> parameter_values = 3;</code>
      */
     private $parameter_values;
+    /**
+     * Represents the failure policy of a pipeline. Currently, the default of a
+     * pipeline is that the pipeline will continue to run until no more tasks
+     * can be executed, also known as PIPELINE_FAILURE_POLICY_FAIL_SLOW.
+     * However, if a pipeline is set to PIPELINE_FAILURE_POLICY_FAIL_FAST, it
+     * will stop scheduling any new tasks when a task has failed. Any scheduled
+     * tasks will continue to completion.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PipelineFailurePolicy failure_policy = 4;</code>
+     */
+    private $failure_policy = 0;
+    /**
+     * The runtime artifacts of the PipelineJob. The key will be the input
+     * artifact name and the value would be one of the InputArtifact.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.aiplatform.v1.PipelineJob.RuntimeConfig.InputArtifact> input_artifacts = 5;</code>
+     */
+    private $input_artifacts;
 
     /**
      * Constructor.
@@ -77,6 +95,16 @@ class RuntimeConfig extends \Google\Protobuf\Internal\Message
      *           at runtime. This field is used by pipelines built using
      *           `PipelineJob.pipeline_spec.schema_version` 2.1.0, such as pipelines built
      *           using Kubeflow Pipelines SDK 1.9 or higher and the v2 DSL.
+     *     @type int $failure_policy
+     *           Represents the failure policy of a pipeline. Currently, the default of a
+     *           pipeline is that the pipeline will continue to run until no more tasks
+     *           can be executed, also known as PIPELINE_FAILURE_POLICY_FAIL_SLOW.
+     *           However, if a pipeline is set to PIPELINE_FAILURE_POLICY_FAIL_FAST, it
+     *           will stop scheduling any new tasks when a task has failed. Any scheduled
+     *           tasks will continue to completion.
+     *     @type array|\Google\Protobuf\Internal\MapField $input_artifacts
+     *           The runtime artifacts of the PipelineJob. The key will be the input
+     *           artifact name and the value would be one of the InputArtifact.
      * }
      */
     public function __construct($data = NULL) {
@@ -192,6 +220,70 @@ class RuntimeConfig extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Protobuf\Value::class);
         $this->parameter_values = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Represents the failure policy of a pipeline. Currently, the default of a
+     * pipeline is that the pipeline will continue to run until no more tasks
+     * can be executed, also known as PIPELINE_FAILURE_POLICY_FAIL_SLOW.
+     * However, if a pipeline is set to PIPELINE_FAILURE_POLICY_FAIL_FAST, it
+     * will stop scheduling any new tasks when a task has failed. Any scheduled
+     * tasks will continue to completion.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PipelineFailurePolicy failure_policy = 4;</code>
+     * @return int
+     */
+    public function getFailurePolicy()
+    {
+        return $this->failure_policy;
+    }
+
+    /**
+     * Represents the failure policy of a pipeline. Currently, the default of a
+     * pipeline is that the pipeline will continue to run until no more tasks
+     * can be executed, also known as PIPELINE_FAILURE_POLICY_FAIL_SLOW.
+     * However, if a pipeline is set to PIPELINE_FAILURE_POLICY_FAIL_FAST, it
+     * will stop scheduling any new tasks when a task has failed. Any scheduled
+     * tasks will continue to completion.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PipelineFailurePolicy failure_policy = 4;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setFailurePolicy($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\AIPlatform\V1\PipelineFailurePolicy::class);
+        $this->failure_policy = $var;
+
+        return $this;
+    }
+
+    /**
+     * The runtime artifacts of the PipelineJob. The key will be the input
+     * artifact name and the value would be one of the InputArtifact.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.aiplatform.v1.PipelineJob.RuntimeConfig.InputArtifact> input_artifacts = 5;</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getInputArtifacts()
+    {
+        return $this->input_artifacts;
+    }
+
+    /**
+     * The runtime artifacts of the PipelineJob. The key will be the input
+     * artifact name and the value would be one of the InputArtifact.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.aiplatform.v1.PipelineJob.RuntimeConfig.InputArtifact> input_artifacts = 5;</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setInputArtifacts($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\AIPlatform\V1\PipelineJob\RuntimeConfig\InputArtifact::class);
+        $this->input_artifacts = $arr;
 
         return $this;
     }

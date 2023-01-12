@@ -247,6 +247,22 @@ class VmMigrationGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
+     * Upgrades the appliance relate to this DatacenterConnector to the in-place
+     * updateable version.
+     * @param \Google\Cloud\VMMigration\V1\UpgradeApplianceRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function UpgradeAppliance(\Google\Cloud\VMMigration\V1\UpgradeApplianceRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.vmmigration.v1.VmMigration/UpgradeAppliance',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
      * Creates a new MigratingVm in a given Source.
      * @param \Google\Cloud\VMMigration\V1\CreateMigratingVmRequest $argument input argument
      * @param array $metadata metadata

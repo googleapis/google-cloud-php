@@ -1,19 +1,21 @@
 on:
   push:
     branches:
-      - master
+      - main
     paths:
       - 'Firestore/**'
+      - '.github/workflows/firestore-emulator-system-tests.yaml'
   pull_request:
     paths:
       - 'Firestore/**'
+      - '.github/workflows/firestore-emulator-system-tests.yaml'
 name: Run Firestore System Tests With Emulator
 jobs:
   test:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - run: ./.github/emulator/start-emulator.sh firestore
 
@@ -26,7 +28,9 @@ jobs:
 
       - name: Install dependencies
         run: |
-          composer update --prefer-dist --no-interaction --no-suggest -d Firestore/
+          composer config minimum-stability dev -d Firestore/
+          composer config repositories.local path "../Core" -d Firestore
+          composer require "google/cloud-core:*" -d Firestore/
 
       - name: Run system tests
         run: |

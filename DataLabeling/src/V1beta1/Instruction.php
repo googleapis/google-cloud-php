@@ -109,7 +109,7 @@ class Instruction extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\DataLabeling\V1beta1\PdfInstruction $pdf_instruction
      *           Instruction from a PDF document. The PDF should be in a Cloud Storage
      *           bucket.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $blocking_resources
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $blocking_resources
      *           Output only. The names of any related resources that are blocking changes
      *           to the instruction.
      * }
@@ -404,7 +404,7 @@ class Instruction extends \Google\Protobuf\Internal\Message
      * to the instruction.
      *
      * Generated from protobuf field <code>repeated string blocking_resources = 10;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setBlockingResources($var)

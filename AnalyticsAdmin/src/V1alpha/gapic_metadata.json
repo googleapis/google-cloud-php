@@ -20,6 +20,11 @@
                                 "approveDisplayVideo360AdvertiserLinkProposal"
                             ]
                         },
+                        "ArchiveAudience": {
+                            "methods": [
+                                "archiveAudience"
+                            ]
+                        },
                         "ArchiveCustomDimension": {
                             "methods": [
                                 "archiveCustomDimension"
@@ -58,6 +63,11 @@
                         "CancelDisplayVideo360AdvertiserLinkProposal": {
                             "methods": [
                                 "cancelDisplayVideo360AdvertiserLinkProposal"
+                            ]
+                        },
+                        "CreateAudience": {
+                            "methods": [
+                                "createAudience"
                             ]
                         },
                         "CreateConversionEvent": {
@@ -115,19 +125,9 @@
                                 "createUserLink"
                             ]
                         },
-                        "CreateWebDataStream": {
-                            "methods": [
-                                "createWebDataStream"
-                            ]
-                        },
                         "DeleteAccount": {
                             "methods": [
                                 "deleteAccount"
-                            ]
-                        },
-                        "DeleteAndroidAppDataStream": {
-                            "methods": [
-                                "deleteAndroidAppDataStream"
                             ]
                         },
                         "DeleteConversionEvent": {
@@ -160,11 +160,6 @@
                                 "deleteGoogleAdsLink"
                             ]
                         },
-                        "DeleteIosAppDataStream": {
-                            "methods": [
-                                "deleteIosAppDataStream"
-                            ]
-                        },
                         "DeleteMeasurementProtocolSecret": {
                             "methods": [
                                 "deleteMeasurementProtocolSecret"
@@ -180,19 +175,19 @@
                                 "deleteUserLink"
                             ]
                         },
-                        "DeleteWebDataStream": {
-                            "methods": [
-                                "deleteWebDataStream"
-                            ]
-                        },
                         "GetAccount": {
                             "methods": [
                                 "getAccount"
                             ]
                         },
-                        "GetAndroidAppDataStream": {
+                        "GetAttributionSettings": {
                             "methods": [
-                                "getAndroidAppDataStream"
+                                "getAttributionSettings"
+                            ]
+                        },
+                        "GetAudience": {
+                            "methods": [
+                                "getAudience"
                             ]
                         },
                         "GetConversionEvent": {
@@ -245,11 +240,6 @@
                                 "getGoogleSignalsSettings"
                             ]
                         },
-                        "GetIosAppDataStream": {
-                            "methods": [
-                                "getIosAppDataStream"
-                            ]
-                        },
                         "GetMeasurementProtocolSecret": {
                             "methods": [
                                 "getMeasurementProtocolSecret"
@@ -265,11 +255,6 @@
                                 "getUserLink"
                             ]
                         },
-                        "GetWebDataStream": {
-                            "methods": [
-                                "getWebDataStream"
-                            ]
-                        },
                         "ListAccountSummaries": {
                             "methods": [
                                 "listAccountSummaries"
@@ -280,9 +265,9 @@
                                 "listAccounts"
                             ]
                         },
-                        "ListAndroidAppDataStreams": {
+                        "ListAudiences": {
                             "methods": [
-                                "listAndroidAppDataStreams"
+                                "listAudiences"
                             ]
                         },
                         "ListConversionEvents": {
@@ -325,11 +310,6 @@
                                 "listGoogleAdsLinks"
                             ]
                         },
-                        "ListIosAppDataStreams": {
-                            "methods": [
-                                "listIosAppDataStreams"
-                            ]
-                        },
                         "ListMeasurementProtocolSecrets": {
                             "methods": [
                                 "listMeasurementProtocolSecrets"
@@ -345,14 +325,14 @@
                                 "listUserLinks"
                             ]
                         },
-                        "ListWebDataStreams": {
-                            "methods": [
-                                "listWebDataStreams"
-                            ]
-                        },
                         "ProvisionAccountTicket": {
                             "methods": [
                                 "provisionAccountTicket"
+                            ]
+                        },
+                        "RunAccessReport": {
+                            "methods": [
+                                "runAccessReport"
                             ]
                         },
                         "SearchChangeHistoryEvents": {
@@ -365,9 +345,14 @@
                                 "updateAccount"
                             ]
                         },
-                        "UpdateAndroidAppDataStream": {
+                        "UpdateAttributionSettings": {
                             "methods": [
-                                "updateAndroidAppDataStream"
+                                "updateAttributionSettings"
+                            ]
+                        },
+                        "UpdateAudience": {
+                            "methods": [
+                                "updateAudience"
                             ]
                         },
                         "UpdateCustomDimension": {
@@ -405,11 +390,6 @@
                                 "updateGoogleSignalsSettings"
                             ]
                         },
-                        "UpdateIosAppDataStream": {
-                            "methods": [
-                                "updateIosAppDataStream"
-                            ]
-                        },
                         "UpdateMeasurementProtocolSecret": {
                             "methods": [
                                 "updateMeasurementProtocolSecret"
@@ -423,11 +403,6 @@
                         "UpdateUserLink": {
                             "methods": [
                                 "updateUserLink"
-                            ]
-                        },
-                        "UpdateWebDataStream": {
-                            "methods": [
-                                "updateWebDataStream"
                             ]
                         }
                     }

@@ -25,11 +25,12 @@
 namespace Google\Cloud\AIPlatform\V1\Gapic;
 
 use Google\ApiCore\ApiException;
+use Google\ApiCore\Call;
 use Google\ApiCore\CredentialsWrapper;
+
 use Google\ApiCore\GapicClientTrait;
 
 use Google\ApiCore\LongRunning\OperationsClient;
-
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
@@ -37,23 +38,40 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\AIPlatform\V1\BatchImportModelEvaluationSlicesRequest;
+use Google\Cloud\AIPlatform\V1\BatchImportModelEvaluationSlicesResponse;
 use Google\Cloud\AIPlatform\V1\DeleteModelRequest;
+use Google\Cloud\AIPlatform\V1\DeleteModelVersionRequest;
 use Google\Cloud\AIPlatform\V1\ExportModelRequest;
 use Google\Cloud\AIPlatform\V1\ExportModelRequest\OutputConfig;
 use Google\Cloud\AIPlatform\V1\GetModelEvaluationRequest;
 use Google\Cloud\AIPlatform\V1\GetModelEvaluationSliceRequest;
 use Google\Cloud\AIPlatform\V1\GetModelRequest;
+use Google\Cloud\AIPlatform\V1\ImportModelEvaluationRequest;
 use Google\Cloud\AIPlatform\V1\ListModelEvaluationSlicesRequest;
 use Google\Cloud\AIPlatform\V1\ListModelEvaluationSlicesResponse;
 use Google\Cloud\AIPlatform\V1\ListModelEvaluationsRequest;
 use Google\Cloud\AIPlatform\V1\ListModelEvaluationsResponse;
 use Google\Cloud\AIPlatform\V1\ListModelsRequest;
 use Google\Cloud\AIPlatform\V1\ListModelsResponse;
+use Google\Cloud\AIPlatform\V1\ListModelVersionsRequest;
+use Google\Cloud\AIPlatform\V1\ListModelVersionsResponse;
+use Google\Cloud\AIPlatform\V1\MergeVersionAliasesRequest;
 use Google\Cloud\AIPlatform\V1\Model;
 use Google\Cloud\AIPlatform\V1\ModelEvaluation;
 use Google\Cloud\AIPlatform\V1\ModelEvaluationSlice;
 use Google\Cloud\AIPlatform\V1\UpdateModelRequest;
 use Google\Cloud\AIPlatform\V1\UploadModelRequest;
+use Google\Cloud\Iam\V1\GetIamPolicyRequest;
+use Google\Cloud\Iam\V1\GetPolicyOptions;
+use Google\Cloud\Iam\V1\Policy;
+use Google\Cloud\Iam\V1\SetIamPolicyRequest;
+use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
+use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
+use Google\Cloud\Location\GetLocationRequest;
+use Google\Cloud\Location\ListLocationsRequest;
+use Google\Cloud\Location\ListLocationsResponse;
+use Google\Cloud\Location\Location;
 use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
 
@@ -66,31 +84,9 @@ use Google\Protobuf\FieldMask;
  * ```
  * $modelServiceClient = new ModelServiceClient();
  * try {
- *     $formattedName = $modelServiceClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
- *     $operationResponse = $modelServiceClient->deleteModel($formattedName);
- *     $operationResponse->pollUntilComplete();
- *     if ($operationResponse->operationSucceeded()) {
- *         // operation succeeded and returns no value
- *     } else {
- *         $error = $operationResponse->getError();
- *         // handleError($error)
- *     }
- *     // Alternatively:
- *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $modelServiceClient->deleteModel($formattedName);
- *     $operationName = $operationResponse->getName();
- *     // ... do other work
- *     $newOperationResponse = $modelServiceClient->resumeOperation($operationName, 'deleteModel');
- *     while (!$newOperationResponse->isDone()) {
- *         // ... do other work
- *         $newOperationResponse->reload();
- *     }
- *     if ($newOperationResponse->operationSucceeded()) {
- *         // operation succeeded and returns no value
- *     } else {
- *         $error = $newOperationResponse->getError();
- *         // handleError($error)
- *     }
+ *     $formattedParent = $modelServiceClient->modelEvaluationName('[PROJECT]', '[LOCATION]', '[MODEL]', '[EVALUATION]');
+ *     $modelEvaluationSlices = [];
+ *     $response = $modelServiceClient->batchImportModelEvaluationSlices($formattedParent, $modelEvaluationSlices);
  * } finally {
  *     $modelServiceClient->close();
  * }
@@ -501,6 +497,62 @@ class ModelServiceGapicClient
     }
 
     /**
+     * Imports a list of externally generated ModelEvaluationSlice.
+     *
+     * Sample code:
+     * ```
+     * $modelServiceClient = new ModelServiceClient();
+     * try {
+     *     $formattedParent = $modelServiceClient->modelEvaluationName('[PROJECT]', '[LOCATION]', '[MODEL]', '[EVALUATION]');
+     *     $modelEvaluationSlices = [];
+     *     $response = $modelServiceClient->batchImportModelEvaluationSlices($formattedParent, $modelEvaluationSlices);
+     * } finally {
+     *     $modelServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string                 $parent                Required. The name of the parent ModelEvaluation resource.
+     *                                                      Format:
+     *                                                      `projects/{project}/locations/{location}/models/{model}/evaluations/{evaluation}`
+     * @param ModelEvaluationSlice[] $modelEvaluationSlices Required. Model evaluation slice resource to be imported.
+     * @param array                  $optionalArgs          {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\AIPlatform\V1\BatchImportModelEvaluationSlicesResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function batchImportModelEvaluationSlices(
+        $parent,
+        $modelEvaluationSlices,
+        array $optionalArgs = []
+    ) {
+        $request = new BatchImportModelEvaluationSlicesRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setModelEvaluationSlices($modelEvaluationSlices);
+        $requestParamHeaders['parent'] = $parent;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'BatchImportModelEvaluationSlices',
+            BatchImportModelEvaluationSlicesResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Deletes a Model.
      *
      * A model cannot be deleted if any [Endpoint][google.cloud.aiplatform.v1.Endpoint] resource has a
@@ -547,10 +599,9 @@ class ModelServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -571,6 +622,84 @@ class ModelServiceGapicClient
             : $requestParams->getHeader();
         return $this->startOperationsCall(
             'DeleteModel',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Deletes a Model version.
+     *
+     * Model version can only be deleted if there are no [DeployedModels][]
+     * created from it. Deleting the only version in the Model is not allowed. Use
+     * [DeleteModel][google.cloud.aiplatform.v1.ModelService.DeleteModel] for deleting the Model instead.
+     *
+     * Sample code:
+     * ```
+     * $modelServiceClient = new ModelServiceClient();
+     * try {
+     *     $formattedName = $modelServiceClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
+     *     $operationResponse = $modelServiceClient->deleteModelVersion($formattedName);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         // operation succeeded and returns no value
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $modelServiceClient->deleteModelVersion($formattedName);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $modelServiceClient->resumeOperation($operationName, 'deleteModelVersion');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         // operation succeeded and returns no value
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $modelServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the model version to be deleted, with a version ID explicitly
+     *                             included.
+     *
+     *                             Example: `projects/{project}/locations/{location}/models/{model}&#64;1234`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function deleteModelVersion($name, array $optionalArgs = [])
+    {
+        $request = new DeleteModelVersionRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'DeleteModelVersion',
             $optionalArgs,
             $request,
             $this->getOperationsClient()
@@ -620,15 +749,16 @@ class ModelServiceGapicClient
      * ```
      *
      * @param string       $name         Required. The resource name of the Model to export.
+     *                                   The resource name may contain version id or version alias to specify the
+     *                                   version, if no version is specified, the default version will be exported.
      * @param OutputConfig $outputConfig Required. The desired output location and configuration.
      * @param array        $optionalArgs {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -672,14 +802,23 @@ class ModelServiceGapicClient
      *
      * @param string $name         Required. The name of the Model resource.
      *                             Format: `projects/{project}/locations/{location}/models/{model}`
+     *
+     *                             In order to retrieve a specific version of the model, also provide
+     *                             the version ID or version alias.
+     *                             Example: `projects/{project}/locations/{location}/models/{model}&#64;2`
+     *                             or
+     *                             `projects/{project}/locations/{location}/models/{model}&#64;golden`
+     *                             If no version ID or alias is specified, the "default" version will be
+     *                             returned. The "default" version alias is created for the first version of
+     *                             the model, and can be moved to other versions later on. There will be
+     *                             exactly one default version.
      * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\AIPlatform\V1\Model
@@ -727,10 +866,9 @@ class ModelServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\AIPlatform\V1\ModelEvaluation
@@ -778,10 +916,9 @@ class ModelServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\AIPlatform\V1\ModelEvaluationSlice
@@ -803,6 +940,61 @@ class ModelServiceGapicClient
         return $this->startCall(
             'GetModelEvaluationSlice',
             ModelEvaluationSlice::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Imports an externally generated ModelEvaluation.
+     *
+     * Sample code:
+     * ```
+     * $modelServiceClient = new ModelServiceClient();
+     * try {
+     *     $formattedParent = $modelServiceClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
+     *     $modelEvaluation = new ModelEvaluation();
+     *     $response = $modelServiceClient->importModelEvaluation($formattedParent, $modelEvaluation);
+     * } finally {
+     *     $modelServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string          $parent          Required. The name of the parent model resource.
+     *                                         Format: `projects/{project}/locations/{location}/models/{model}`
+     * @param ModelEvaluation $modelEvaluation Required. Model evaluation resource to be imported.
+     * @param array           $optionalArgs    {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\AIPlatform\V1\ModelEvaluation
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function importModelEvaluation(
+        $parent,
+        $modelEvaluation,
+        array $optionalArgs = []
+    ) {
+        $request = new ImportModelEvaluationRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setModelEvaluation($modelEvaluation);
+        $requestParamHeaders['parent'] = $parent;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'ImportModelEvaluation',
+            ModelEvaluation::class,
             $optionalArgs,
             $request
         )->wait();
@@ -856,10 +1048,9 @@ class ModelServiceGapicClient
      *     @type FieldMask $readMask
      *           Mask specifying which fields to read.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -947,10 +1138,9 @@ class ModelServiceGapicClient
      *     @type FieldMask $readMask
      *           Mask specifying which fields to read.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -989,6 +1179,105 @@ class ModelServiceGapicClient
             'ListModelEvaluations',
             $optionalArgs,
             ListModelEvaluationsResponse::class,
+            $request
+        );
+    }
+
+    /**
+     * Lists versions of the specified model.
+     *
+     * Sample code:
+     * ```
+     * $modelServiceClient = new ModelServiceClient();
+     * try {
+     *     $formattedName = $modelServiceClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $modelServiceClient->listModelVersions($formattedName);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $modelServiceClient->listModelVersions($formattedName);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $modelServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the model to list versions for.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type string $filter
+     *           An expression for filtering the results of the request. For field names
+     *           both snake_case and camelCase are supported.
+     *
+     *           * `labels` supports general map functions that is:
+     *           * `labels.key=value` - key:value equality
+     *           * `labels.key:* or labels:key - key existence
+     *           * A key including a space must be quoted. `labels."a key"`.
+     *
+     *           Some examples:
+     *
+     *           * `labels.myKey="myValue"`
+     *     @type FieldMask $readMask
+     *           Mask specifying which fields to read.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listModelVersions($name, array $optionalArgs = [])
+    {
+        $request = new ListModelVersionsRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['readMask'])) {
+            $request->setReadMask($optionalArgs['readMask']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListModelVersions',
+            $optionalArgs,
+            ListModelVersionsResponse::class,
             $request
         );
     }
@@ -1037,6 +1326,7 @@ class ModelServiceGapicClient
      *           * A key including a space must be quoted. `labels."a key"`.
      *
      *           Some examples:
+     *
      *           * `model=1234`
      *           * `displayName="myDisplayName"`
      *           * `labels.myKey="myValue"`
@@ -1055,16 +1345,16 @@ class ModelServiceGapicClient
      *           A comma-separated list of fields to order by, sorted in ascending order.
      *           Use "desc" after a field name for descending.
      *           Supported fields:
+     *
      *           * `display_name`
      *           * `create_time`
      *           * `update_time`
      *
      *           Example: `display_name, create_time desc`.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -1112,6 +1402,74 @@ class ModelServiceGapicClient
     }
 
     /**
+     * Merges a set of aliases for a Model version.
+     *
+     * Sample code:
+     * ```
+     * $modelServiceClient = new ModelServiceClient();
+     * try {
+     *     $formattedName = $modelServiceClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
+     *     $versionAliases = [];
+     *     $response = $modelServiceClient->mergeVersionAliases($formattedName, $versionAliases);
+     * } finally {
+     *     $modelServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string   $name           Required. The name of the model version to merge aliases, with a version ID
+     *                                 explicitly included.
+     *
+     *                                 Example: `projects/{project}/locations/{location}/models/{model}&#64;1234`
+     * @param string[] $versionAliases Required. The set of version aliases to merge.
+     *                                 The alias should be at most 128 characters, and match
+     *                                 `[a-z][a-zA-Z0-9-]{0,126}[a-z-0-9]`.
+     *                                 Add the `-` prefix to an alias means removing that alias from the version.
+     *                                 `-` is NOT counted in the 128 characters. Example: `-golden` means removing
+     *                                 the `golden` alias from the version.
+     *
+     *                                 There is NO ordering in aliases, which means
+     *                                 1) The aliases returned from GetModel API might not have the exactly same
+     *                                 order from this MergeVersionAliases API. 2) Adding and deleting the same
+     *                                 alias in the request is not recommended, and the 2 operations will be
+     *                                 cancelled out.
+     * @param array    $optionalArgs   {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\AIPlatform\V1\Model
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function mergeVersionAliases(
+        $name,
+        $versionAliases,
+        array $optionalArgs = []
+    ) {
+        $request = new MergeVersionAliasesRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $request->setVersionAliases($versionAliases);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'MergeVersionAliases',
+            Model::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Updates a Model.
      *
      * Sample code:
@@ -1127,16 +1485,32 @@ class ModelServiceGapicClient
      * ```
      *
      * @param Model     $model        Required. The Model which replaces the resource on the server.
+     *                                When Model Versioning is enabled, the model.name will be used to determine
+     *                                whether to update the model or model version.
+     *                                1. model.name with the &#64; value, e.g. models/123&#64;1, refers to a version
+     *                                specific update.
+     *                                2. model.name without the &#64; value, e.g. models/123, refers to a model
+     *                                update.
+     *                                3. model.name with &#64;-, e.g. models/123&#64;-, refers to a model update.
+     *                                4. Supported model fields: display_name, description; supported
+     *                                version-specific fields: version_description. Labels are supported in both
+     *                                scenarios. Both the model labels and the version labels are merged when a
+     *                                model is returned. When updating labels, if the request is for
+     *                                model-specific update, model label gets updated. Otherwise, version labels
+     *                                get updated.
+     *                                5. A model name or model version name fields update mismatch will cause a
+     *                                precondition error.
+     *                                6. One request cannot update both the model and the version fields. You
+     *                                must update them separately.
      * @param FieldMask $updateMask   Required. The update mask applies to the resource.
      *                                For the `FieldMask` definition, see [google.protobuf.FieldMask][google.protobuf.FieldMask].
      * @param array     $optionalArgs {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\AIPlatform\V1\Model
@@ -1210,11 +1584,19 @@ class ModelServiceGapicClient
      * @param array  $optionalArgs {
      *     Optional.
      *
+     *     @type string $parentModel
+     *           Optional. The resource name of the model into which to upload the version. Only
+     *           specify this field when uploading a new version.
+     *     @type string $modelId
+     *           Optional. The ID to use for the uploaded Model, which will become the final
+     *           component of the model resource name.
+     *
+     *           This value may be up to 63 characters, and valid characters are
+     *           `[a-z0-9_-]`. The first character cannot be a number or hyphen.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -1228,6 +1610,14 @@ class ModelServiceGapicClient
         $request->setParent($parent);
         $request->setModel($model);
         $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parentModel'])) {
+            $request->setParentModel($optionalArgs['parentModel']);
+        }
+
+        if (isset($optionalArgs['modelId'])) {
+            $request->setModelId($optionalArgs['modelId']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1239,6 +1629,342 @@ class ModelServiceGapicClient
             $optionalArgs,
             $request,
             $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Gets information about a location.
+     *
+     * Sample code:
+     * ```
+     * $modelServiceClient = new ModelServiceClient();
+     * try {
+     *     $response = $modelServiceClient->getLocation();
+     * } finally {
+     *     $modelServiceClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $name
+     *           Resource name for the location.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Location\Location
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getLocation(array $optionalArgs = [])
+    {
+        $request = new GetLocationRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetLocation',
+            Location::class,
+            $optionalArgs,
+            $request,
+            Call::UNARY_CALL,
+            'google.cloud.location.Locations'
+        )->wait();
+    }
+
+    /**
+     * Lists information about the supported locations for this service.
+     *
+     * Sample code:
+     * ```
+     * $modelServiceClient = new ModelServiceClient();
+     * try {
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $modelServiceClient->listLocations();
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $modelServiceClient->listLocations();
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $modelServiceClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $name
+     *           The resource that owns the locations collection, if applicable.
+     *     @type string $filter
+     *           The standard list filter.
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listLocations(array $optionalArgs = [])
+    {
+        $request = new ListLocationsRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListLocations',
+            $optionalArgs,
+            ListLocationsResponse::class,
+            $request,
+            'google.cloud.location.Locations'
+        );
+    }
+
+    /**
+     * Gets the access control policy for a resource. Returns an empty policy
+    if the resource exists and does not have a policy set.
+     *
+     * Sample code:
+     * ```
+     * $modelServiceClient = new ModelServiceClient();
+     * try {
+     *     $resource = 'resource';
+     *     $response = $modelServiceClient->getIamPolicy($resource);
+     * } finally {
+     *     $modelServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $resource     REQUIRED: The resource for which the policy is being requested.
+     *                             See the operation documentation for the appropriate value for this field.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type GetPolicyOptions $options
+     *           OPTIONAL: A `GetPolicyOptions` object for specifying options to
+     *           `GetIamPolicy`.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Iam\V1\Policy
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getIamPolicy($resource, array $optionalArgs = [])
+    {
+        $request = new GetIamPolicyRequest();
+        $requestParamHeaders = [];
+        $request->setResource($resource);
+        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['options'])) {
+            $request->setOptions($optionalArgs['options']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetIamPolicy',
+            Policy::class,
+            $optionalArgs,
+            $request,
+            Call::UNARY_CALL,
+            'google.iam.v1.IAMPolicy'
+        )->wait();
+    }
+
+    /**
+     * Sets the access control policy on the specified resource. Replaces
+    any existing policy.
+
+    Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+    errors.
+     *
+     * Sample code:
+     * ```
+     * $modelServiceClient = new ModelServiceClient();
+     * try {
+     *     $resource = 'resource';
+     *     $policy = new Policy();
+     *     $response = $modelServiceClient->setIamPolicy($resource, $policy);
+     * } finally {
+     *     $modelServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $resource     REQUIRED: The resource for which the policy is being specified.
+     *                             See the operation documentation for the appropriate value for this field.
+     * @param Policy $policy       REQUIRED: The complete policy to be applied to the `resource`. The size of
+     *                             the policy is limited to a few 10s of KB. An empty policy is a
+     *                             valid policy but certain Cloud Platform services (such as Projects)
+     *                             might reject them.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type FieldMask $updateMask
+     *           OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only
+     *           the fields in the mask will be modified. If no mask is provided, the
+     *           following default mask is used:
+     *
+     *           `paths: "bindings, etag"`
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Iam\V1\Policy
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function setIamPolicy($resource, $policy, array $optionalArgs = [])
+    {
+        $request = new SetIamPolicyRequest();
+        $requestParamHeaders = [];
+        $request->setResource($resource);
+        $request->setPolicy($policy);
+        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'SetIamPolicy',
+            Policy::class,
+            $optionalArgs,
+            $request,
+            Call::UNARY_CALL,
+            'google.iam.v1.IAMPolicy'
+        )->wait();
+    }
+
+    /**
+     * Returns permissions that a caller has on the specified resource. If the
+    resource does not exist, this will return an empty set of
+    permissions, not a `NOT_FOUND` error.
+
+    Note: This operation is designed to be used for building
+    permission-aware UIs and command-line tools, not for authorization
+    checking. This operation may "fail open" without warning.
+     *
+     * Sample code:
+     * ```
+     * $modelServiceClient = new ModelServiceClient();
+     * try {
+     *     $resource = 'resource';
+     *     $permissions = [];
+     *     $response = $modelServiceClient->testIamPermissions($resource, $permissions);
+     * } finally {
+     *     $modelServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string   $resource     REQUIRED: The resource for which the policy detail is being requested.
+     *                               See the operation documentation for the appropriate value for this field.
+     * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
+     *                               wildcards (such as '*' or 'storage.*') are not allowed. For more
+     *                               information see
+     *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
+     * @param array    $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Iam\V1\TestIamPermissionsResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function testIamPermissions(
+        $resource,
+        $permissions,
+        array $optionalArgs = []
+    ) {
+        $request = new TestIamPermissionsRequest();
+        $requestParamHeaders = [];
+        $request->setResource($resource);
+        $request->setPermissions($permissions);
+        $requestParamHeaders['resource'] = $resource;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'TestIamPermissions',
+            TestIamPermissionsResponse::class,
+            $optionalArgs,
+            $request,
+            Call::UNARY_CALL,
+            'google.iam.v1.IAMPolicy'
         )->wait();
     }
 }

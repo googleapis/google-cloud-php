@@ -20,6 +20,17 @@ return [
                     ],
                 ],
             ],
+            'AggregatedList' => [
+                'method' => 'get',
+                'uriTemplate' => '/compute/v1/projects/{project}/aggregated/securityPolicies',
+                'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                ],
+            ],
             'Delete' => [
                 'method' => 'delete',
                 'uriTemplate' => '/compute/v1/projects/{project}/global/securityPolicies/{security_policy}',
@@ -148,6 +159,23 @@ return [
                     'security_policy' => [
                         'getters' => [
                             'getSecurityPolicy',
+                        ],
+                    ],
+                ],
+            ],
+            'SetLabels' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/global/securityPolicies/{resource}/setLabels',
+                'body' => 'global_set_labels_request_resource',
+                'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'resource' => [
+                        'getters' => [
+                            'getResource',
                         ],
                     ],
                 ],

@@ -16,17 +16,17 @@ use Google\Protobuf\Internal\GPBUtil;
 class ProvisioningIssue extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Reason for provisioning failures.
+     * Output only. Reason for provisioning failures.
      *
-     * Generated from protobuf field <code>.google.cloud.certificatemanager.v1.Certificate.ManagedCertificate.ProvisioningIssue.Reason reason = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.certificatemanager.v1.Certificate.ManagedCertificate.ProvisioningIssue.Reason reason = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $reason = 0;
     /**
-     * Human readable explanation about the issue. Provided to help address
-     * the configuration issues.
-     * Not guaranteed to be stable. For programmatic access use Reason enum.
+     * Output only. Human readable explanation about the issue. Provided to
+     * help address the configuration issues. Not guaranteed to be stable. For
+     * programmatic access use Reason enum.
      *
-     * Generated from protobuf field <code>string details = 2;</code>
+     * Generated from protobuf field <code>string details = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $details = '';
 
@@ -37,11 +37,11 @@ class ProvisioningIssue extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $reason
-     *           Reason for provisioning failures.
+     *           Output only. Reason for provisioning failures.
      *     @type string $details
-     *           Human readable explanation about the issue. Provided to help address
-     *           the configuration issues.
-     *           Not guaranteed to be stable. For programmatic access use Reason enum.
+     *           Output only. Human readable explanation about the issue. Provided to
+     *           help address the configuration issues. Not guaranteed to be stable. For
+     *           programmatic access use Reason enum.
      * }
      */
     public function __construct($data = NULL) {
@@ -50,9 +50,9 @@ class ProvisioningIssue extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Reason for provisioning failures.
+     * Output only. Reason for provisioning failures.
      *
-     * Generated from protobuf field <code>.google.cloud.certificatemanager.v1.Certificate.ManagedCertificate.ProvisioningIssue.Reason reason = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.certificatemanager.v1.Certificate.ManagedCertificate.ProvisioningIssue.Reason reason = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
      */
     public function getReason()
@@ -61,9 +61,9 @@ class ProvisioningIssue extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Reason for provisioning failures.
+     * Output only. Reason for provisioning failures.
      *
-     * Generated from protobuf field <code>.google.cloud.certificatemanager.v1.Certificate.ManagedCertificate.ProvisioningIssue.Reason reason = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.certificatemanager.v1.Certificate.ManagedCertificate.ProvisioningIssue.Reason reason = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
      * @return $this
      */
@@ -76,11 +76,11 @@ class ProvisioningIssue extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Human readable explanation about the issue. Provided to help address
-     * the configuration issues.
-     * Not guaranteed to be stable. For programmatic access use Reason enum.
+     * Output only. Human readable explanation about the issue. Provided to
+     * help address the configuration issues. Not guaranteed to be stable. For
+     * programmatic access use Reason enum.
      *
-     * Generated from protobuf field <code>string details = 2;</code>
+     * Generated from protobuf field <code>string details = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getDetails()
@@ -89,11 +89,11 @@ class ProvisioningIssue extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Human readable explanation about the issue. Provided to help address
-     * the configuration issues.
-     * Not guaranteed to be stable. For programmatic access use Reason enum.
+     * Output only. Human readable explanation about the issue. Provided to
+     * help address the configuration issues. Not guaranteed to be stable. For
+     * programmatic access use Reason enum.
      *
-     * Generated from protobuf field <code>string details = 2;</code>
+     * Generated from protobuf field <code>string details = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */

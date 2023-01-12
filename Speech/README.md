@@ -13,6 +13,10 @@ that project.
 Enables easy integration of Google speech recognition technologies into developer applications. Send audio and receive a
 text transcription from the Speech-to-Text API service.
 
+### Experimental Notice for V2 Surface
+
+Please note the V2 API surface is currently considered experimental and as a result it is subject to change.
+
 ### Installation
 
 To begin, install the preferred dependency manager for PHP, [Composer](https://getcomposer.org/).

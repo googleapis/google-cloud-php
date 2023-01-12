@@ -27,6 +27,26 @@ use Google\Protobuf\Internal\GPBUtil;
  * simultaneously. It creates 2 additional (upgraded) nodes, then it brings
  * down 3 old (not yet upgraded) nodes at the same time. This ensures that
  * there are always at least 4 nodes available.
+ * These upgrade settings configure the upgrade strategy for the node pool.
+ * Use strategy to switch between the strategies applied to the node pool.
+ * If the strategy is ROLLING, use max_surge and max_unavailable to control
+ * the level of parallelism and the level of disruption caused by upgrade.
+ * 1. maxSurge controls the number of additional nodes that can be added to
+ * the node pool temporarily for the time of the upgrade to increase the
+ * number of available nodes.
+ * 2. maxUnavailable controls the number of nodes that can be simultaneously
+ * unavailable.
+ * 3. (maxUnavailable + maxSurge) determines the level of parallelism (how
+ * many nodes are being upgraded at the same time).
+ * If the strategy is BLUE_GREEN, use blue_green_settings to configure the
+ * blue-green upgrade related settings.
+ * 1. standard_rollout_policy is the default policy. The policy is used to
+ * control the way blue pool gets drained. The draining is executed in the
+ * batch mode. The batch size could be specified as either percentage of the
+ * node pool size or the number of nodes. batch_soak_duration is the soak
+ * time after each batch gets drained.
+ * 2. node_pool_soak_duration is the soak time after all blue nodes are
+ * drained. After this period, the blue pool nodes will be deleted.
  *
  * Generated from protobuf message <code>google.container.v1.NodePool.UpgradeSettings</code>
  */
@@ -47,6 +67,18 @@ class UpgradeSettings extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int32 max_unavailable = 2;</code>
      */
     private $max_unavailable = 0;
+    /**
+     * Update strategy of the node pool.
+     *
+     * Generated from protobuf field <code>optional .google.container.v1.NodePoolUpdateStrategy strategy = 3;</code>
+     */
+    private $strategy = null;
+    /**
+     * Settings for blue-green upgrade strategy.
+     *
+     * Generated from protobuf field <code>optional .google.container.v1.BlueGreenSettings blue_green_settings = 4;</code>
+     */
+    private $blue_green_settings = null;
 
     /**
      * Constructor.
@@ -61,6 +93,10 @@ class UpgradeSettings extends \Google\Protobuf\Internal\Message
      *           The maximum number of nodes that can be simultaneously unavailable during
      *           the upgrade process. A node is considered available if its status is
      *           Ready.
+     *     @type int $strategy
+     *           Update strategy of the node pool.
+     *     @type \Google\Cloud\Container\V1\BlueGreenSettings $blue_green_settings
+     *           Settings for blue-green upgrade strategy.
      * }
      */
     public function __construct($data = NULL) {
@@ -122,6 +158,78 @@ class UpgradeSettings extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->max_unavailable = $var;
+
+        return $this;
+    }
+
+    /**
+     * Update strategy of the node pool.
+     *
+     * Generated from protobuf field <code>optional .google.container.v1.NodePoolUpdateStrategy strategy = 3;</code>
+     * @return int
+     */
+    public function getStrategy()
+    {
+        return isset($this->strategy) ? $this->strategy : 0;
+    }
+
+    public function hasStrategy()
+    {
+        return isset($this->strategy);
+    }
+
+    public function clearStrategy()
+    {
+        unset($this->strategy);
+    }
+
+    /**
+     * Update strategy of the node pool.
+     *
+     * Generated from protobuf field <code>optional .google.container.v1.NodePoolUpdateStrategy strategy = 3;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setStrategy($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Container\V1\NodePoolUpdateStrategy::class);
+        $this->strategy = $var;
+
+        return $this;
+    }
+
+    /**
+     * Settings for blue-green upgrade strategy.
+     *
+     * Generated from protobuf field <code>optional .google.container.v1.BlueGreenSettings blue_green_settings = 4;</code>
+     * @return \Google\Cloud\Container\V1\BlueGreenSettings|null
+     */
+    public function getBlueGreenSettings()
+    {
+        return $this->blue_green_settings;
+    }
+
+    public function hasBlueGreenSettings()
+    {
+        return isset($this->blue_green_settings);
+    }
+
+    public function clearBlueGreenSettings()
+    {
+        unset($this->blue_green_settings);
+    }
+
+    /**
+     * Settings for blue-green upgrade strategy.
+     *
+     * Generated from protobuf field <code>optional .google.container.v1.BlueGreenSettings blue_green_settings = 4;</code>
+     * @param \Google\Cloud\Container\V1\BlueGreenSettings $var
+     * @return $this
+     */
+    public function setBlueGreenSettings($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\BlueGreenSettings::class);
+        $this->blue_green_settings = $var;
 
         return $this;
     }

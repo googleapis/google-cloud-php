@@ -25,16 +25,22 @@ use Google\Protobuf\Internal\GPBUtil;
 class CloneJob extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The time the clone job was created (as an API call, not when it was
-     * actually created in the target).
+     * Output only. The time the clone job was created (as an API call, not when
+     * it was actually created in the target).
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $create_time = null;
     /**
-     * The name of the clone.
+     * Output only. The time the clone job was ended.
      *
-     * Generated from protobuf field <code>string name = 3;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $end_time = null;
+    /**
+     * Output only. The name of the clone.
+     *
+     * Generated from protobuf field <code>string name = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $name = '';
     /**
@@ -50,7 +56,8 @@ class CloneJob extends \Google\Protobuf\Internal\Message
      */
     private $state_time = null;
     /**
-     * Output only. Provides details for the errors that led to the Clone Job's state.
+     * Output only. Provides details for the errors that led to the Clone Job's
+     * state.
      *
      * Generated from protobuf field <code>.google.rpc.Status error = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -66,16 +73,19 @@ class CloneJob extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\VMMigration\V1\ComputeEngineTargetDetails $compute_engine_target_details
      *           Output only. Details of the target VM in Compute Engine.
      *     @type \Google\Protobuf\Timestamp $create_time
-     *           Output only. The time the clone job was created (as an API call, not when it was
-     *           actually created in the target).
+     *           Output only. The time the clone job was created (as an API call, not when
+     *           it was actually created in the target).
+     *     @type \Google\Protobuf\Timestamp $end_time
+     *           Output only. The time the clone job was ended.
      *     @type string $name
-     *           The name of the clone.
+     *           Output only. The name of the clone.
      *     @type int $state
      *           Output only. State of the clone job.
      *     @type \Google\Protobuf\Timestamp $state_time
      *           Output only. The time the state was last updated.
      *     @type \Google\Rpc\Status $error
-     *           Output only. Provides details for the errors that led to the Clone Job's state.
+     *           Output only. Provides details for the errors that led to the Clone Job's
+     *           state.
      * }
      */
     public function __construct($data = NULL) {
@@ -115,8 +125,8 @@ class CloneJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The time the clone job was created (as an API call, not when it was
-     * actually created in the target).
+     * Output only. The time the clone job was created (as an API call, not when
+     * it was actually created in the target).
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -137,8 +147,8 @@ class CloneJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The time the clone job was created (as an API call, not when it was
-     * actually created in the target).
+     * Output only. The time the clone job was created (as an API call, not when
+     * it was actually created in the target).
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -153,9 +163,45 @@ class CloneJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the clone.
+     * Output only. The time the clone job was ended.
      *
-     * Generated from protobuf field <code>string name = 3;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getEndTime()
+    {
+        return $this->end_time;
+    }
+
+    public function hasEndTime()
+    {
+        return isset($this->end_time);
+    }
+
+    public function clearEndTime()
+    {
+        unset($this->end_time);
+    }
+
+    /**
+     * Output only. The time the clone job was ended.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setEndTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->end_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The name of the clone.
+     *
+     * Generated from protobuf field <code>string name = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getName()
@@ -164,9 +210,9 @@ class CloneJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the clone.
+     * Output only. The name of the clone.
      *
-     * Generated from protobuf field <code>string name = 3;</code>
+     * Generated from protobuf field <code>string name = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -241,7 +287,8 @@ class CloneJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Provides details for the errors that led to the Clone Job's state.
+     * Output only. Provides details for the errors that led to the Clone Job's
+     * state.
      *
      * Generated from protobuf field <code>.google.rpc.Status error = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Rpc\Status|null
@@ -262,7 +309,8 @@ class CloneJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Provides details for the errors that led to the Clone Job's state.
+     * Output only. Provides details for the errors that led to the Clone Job's
+     * state.
      *
      * Generated from protobuf field <code>.google.rpc.Status error = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Rpc\Status $var

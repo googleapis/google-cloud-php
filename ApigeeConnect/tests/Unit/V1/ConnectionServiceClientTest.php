@@ -73,7 +73,7 @@ class ConnectionServiceClientTest extends GeneratedTest
     public function listConnectionsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -88,8 +88,8 @@ class ConnectionServiceClientTest extends GeneratedTest
         $expectedResponse->setConnections($connections);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->endpointName('[PROJECT]', '[ENDPOINT]');
-        $response = $client->listConnections($formattedParent);
+        $formattedParent = $gapicClient->endpointName('[PROJECT]', '[ENDPOINT]');
+        $response = $gapicClient->listConnections($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -110,7 +110,7 @@ class ConnectionServiceClientTest extends GeneratedTest
     public function listConnectionsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -125,10 +125,10 @@ class ConnectionServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->endpointName('[PROJECT]', '[ENDPOINT]');
+        $formattedParent = $gapicClient->endpointName('[PROJECT]', '[ENDPOINT]');
         try {
-            $client->listConnections($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listConnections($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

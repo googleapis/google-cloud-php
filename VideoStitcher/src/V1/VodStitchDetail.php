@@ -38,7 +38,7 @@ class VodStitchDetail extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           The name of the stitch detail in the specified VOD session, in the form of
      *           `projects/{project}/locations/{location}/vodSessions/{vod_session_id}/vodStitchDetails/{id}`.
-     *     @type \Google\Cloud\Video\Stitcher\V1\AdStitchDetail[]|\Google\Protobuf\Internal\RepeatedField $ad_stitch_details
+     *     @type array<\Google\Cloud\Video\Stitcher\V1\AdStitchDetail>|\Google\Protobuf\Internal\RepeatedField $ad_stitch_details
      *           A list of ad processing details for the fetched ad playlist.
      * }
      */
@@ -90,7 +90,7 @@ class VodStitchDetail extends \Google\Protobuf\Internal\Message
      * A list of ad processing details for the fetched ad playlist.
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.stitcher.v1.AdStitchDetail ad_stitch_details = 3;</code>
-     * @param \Google\Cloud\Video\Stitcher\V1\AdStitchDetail[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Video\Stitcher\V1\AdStitchDetail>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAdStitchDetails($var)

@@ -28,6 +28,12 @@ class CommonOperationMetadata extends \Google\Protobuf\Internal\Message
      */
     private $state_message = '';
     /**
+     * A related resource to this operation.
+     *
+     * Generated from protobuf field <code>string resource = 5;</code>
+     */
+    private $resource = '';
+    /**
      * The creation time of the operation.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3;</code>
@@ -50,6 +56,8 @@ class CommonOperationMetadata extends \Google\Protobuf\Internal\Message
      *           The state of the operation.
      *     @type string $state_message
      *           A message providing more details about the current state of processing.
+     *     @type string $resource
+     *           A related resource to this operation.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           The creation time of the operation.
      *     @type \Google\Protobuf\Timestamp $update_time
@@ -114,6 +122,32 @@ class CommonOperationMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * A related resource to this operation.
+     *
+     * Generated from protobuf field <code>string resource = 5;</code>
+     * @return string
+     */
+    public function getResource()
+    {
+        return $this->resource;
+    }
+
+    /**
+     * A related resource to this operation.
+     *
+     * Generated from protobuf field <code>string resource = 5;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setResource($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->resource = $var;
+
+        return $this;
+    }
+
+    /**
      * The creation time of the operation.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3;</code>
@@ -121,7 +155,7 @@ class CommonOperationMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -157,7 +191,7 @@ class CommonOperationMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateTime()
     {
-        return isset($this->update_time) ? $this->update_time : null;
+        return $this->update_time;
     }
 
     public function hasUpdateTime()

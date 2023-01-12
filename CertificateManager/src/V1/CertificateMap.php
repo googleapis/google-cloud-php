@@ -49,6 +49,8 @@ class CertificateMap extends \Google\Protobuf\Internal\Message
     private $labels;
     /**
      * Output only. A list of GCLB targets which use this Certificate Map.
+     * A Target Proxy is only present on this list if it's attached to a
+     * Forwarding Rule.
      *
      * Generated from protobuf field <code>repeated .google.cloud.certificatemanager.v1.CertificateMap.GclbTarget gclb_targets = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -72,8 +74,10 @@ class CertificateMap extends \Google\Protobuf\Internal\Message
      *           Output only. The update timestamp of a Certificate Map.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Set of labels associated with a Certificate Map.
-     *     @type \Google\Cloud\CertificateManager\V1\CertificateMap\GclbTarget[]|\Google\Protobuf\Internal\RepeatedField $gclb_targets
+     *     @type array<\Google\Cloud\CertificateManager\V1\CertificateMap\GclbTarget>|\Google\Protobuf\Internal\RepeatedField $gclb_targets
      *           Output only. A list of GCLB targets which use this Certificate Map.
+     *           A Target Proxy is only present on this list if it's attached to a
+     *           Forwarding Rule.
      * }
      */
     public function __construct($data = NULL) {
@@ -237,6 +241,8 @@ class CertificateMap extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. A list of GCLB targets which use this Certificate Map.
+     * A Target Proxy is only present on this list if it's attached to a
+     * Forwarding Rule.
      *
      * Generated from protobuf field <code>repeated .google.cloud.certificatemanager.v1.CertificateMap.GclbTarget gclb_targets = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -248,9 +254,11 @@ class CertificateMap extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. A list of GCLB targets which use this Certificate Map.
+     * A Target Proxy is only present on this list if it's attached to a
+     * Forwarding Rule.
      *
      * Generated from protobuf field <code>repeated .google.cloud.certificatemanager.v1.CertificateMap.GclbTarget gclb_targets = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param \Google\Cloud\CertificateManager\V1\CertificateMap\GclbTarget[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\CertificateManager\V1\CertificateMap\GclbTarget>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setGclbTargets($var)

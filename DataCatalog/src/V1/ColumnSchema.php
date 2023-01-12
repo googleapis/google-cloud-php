@@ -77,7 +77,7 @@ class ColumnSchema extends \Google\Protobuf\Internal\Message
      *           nullable, or repeated.
      *           Only `NULLABLE`, `REQUIRED`, and `REPEATED` values are supported.
      *           Default mode is `NULLABLE`.
-     *     @type \Google\Cloud\DataCatalog\V1\ColumnSchema[]|\Google\Protobuf\Internal\RepeatedField $subcolumns
+     *     @type array<\Google\Cloud\DataCatalog\V1\ColumnSchema>|\Google\Protobuf\Internal\RepeatedField $subcolumns
      *           Optional. Schema of sub-columns. A column can have zero or more sub-columns.
      * }
      */
@@ -221,7 +221,7 @@ class ColumnSchema extends \Google\Protobuf\Internal\Message
      * Optional. Schema of sub-columns. A column can have zero or more sub-columns.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datacatalog.v1.ColumnSchema subcolumns = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param \Google\Cloud\DataCatalog\V1\ColumnSchema[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\DataCatalog\V1\ColumnSchema>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSubcolumns($var)

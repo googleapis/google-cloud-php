@@ -52,6 +52,7 @@ class FacetKey extends \Google\Protobuf\Internal\Message
      *     * "ratingCount"
      *     * "attributes.key"
      *     * "inventory(place_id,price)"
+     *     * "inventory(place_id,original_price)"
      *     * "inventory(place_id,attributes.key)"
      *
      * Generated from protobuf field <code>string key = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -69,8 +70,8 @@ class FacetKey extends \Google\Protobuf\Internal\Message
      * Only get facet for the given restricted values. For example, when using
      * "pickupInStore" as key and set restricted values to
      * ["store123", "store456"], only facets for "store123" and "store456" are
-     * returned. Only supported on textual fields and fulfillments.
-     * Maximum is 20.
+     * returned. Only supported on predefined textual fields, custom textual
+     * attributes and fulfillments. Maximum is 20.
      * Must be set for the fulfillment facet keys:
      * * pickupInStore
      * * shipToStore
@@ -106,11 +107,22 @@ class FacetKey extends \Google\Protobuf\Internal\Message
      */
     private $contains;
     /**
-     * The order in which [Facet.values][] are returned.
+     * True to make facet keys case insensitive when getting faceting
+     * values with prefixes or contains; false otherwise.
+     *
+     * Generated from protobuf field <code>bool case_insensitive = 10;</code>
+     */
+    private $case_insensitive = false;
+    /**
+     * The order in which
+     * [SearchResponse.Facet.values][google.cloud.retail.v2.SearchResponse.Facet.values]
+     * are returned.
      * Allowed values are:
-     * * "count desc", which means order by [Facet.FacetValue.count][]
+     * * "count desc", which means order by
+     * [SearchResponse.Facet.values.count][google.cloud.retail.v2.SearchResponse.Facet.FacetValue.count]
      * descending.
-     * * "value desc", which means order by [Facet.FacetValue.value][]
+     * * "value desc", which means order by
+     * [SearchResponse.Facet.values.value][google.cloud.retail.v2.SearchResponse.Facet.FacetValue.value]
      * descending.
      *   Only applies to textual facets.
      * If not set, textual values are sorted in [natural
@@ -132,9 +144,11 @@ class FacetKey extends \Google\Protobuf\Internal\Message
      * detail syntax and limitations. Notice that there is no limitation on
      * [FacetKey.key][google.cloud.retail.v2.SearchRequest.FacetSpec.FacetKey.key]
      * when query is specified.
-     * In the response, [FacetValue.value][] will be always "1" and
-     * [FacetValue.count][] will be the number of results that matches the
-     * query.
+     * In the response,
+     * [SearchResponse.Facet.values.value][google.cloud.retail.v2.SearchResponse.Facet.FacetValue.value]
+     * will be always "1" and
+     * [SearchResponse.Facet.values.count][google.cloud.retail.v2.SearchResponse.Facet.FacetValue.count]
+     * will be the number of results that match the query.
      * For example, you can set a customized facet for "shipToStore",
      * where
      * [FacetKey.key][google.cloud.retail.v2.SearchRequest.FacetSpec.FacetKey.key]
@@ -147,6 +161,13 @@ class FacetKey extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string query = 5;</code>
      */
     private $query = '';
+    /**
+     * Returns the min and max value for each numerical facet intervals.
+     * Ignored for textual facets.
+     *
+     * Generated from protobuf field <code>bool return_min_max = 11;</code>
+     */
+    private $return_min_max = false;
 
     /**
      * Constructor.
@@ -191,17 +212,18 @@ class FacetKey extends \Google\Protobuf\Internal\Message
      *               * "ratingCount"
      *               * "attributes.key"
      *               * "inventory(place_id,price)"
+     *               * "inventory(place_id,original_price)"
      *               * "inventory(place_id,attributes.key)"
-     *     @type \Google\Cloud\Retail\V2\Interval[]|\Google\Protobuf\Internal\RepeatedField $intervals
+     *     @type array<\Google\Cloud\Retail\V2\Interval>|\Google\Protobuf\Internal\RepeatedField $intervals
      *           Set only if values should be bucketized into intervals. Must be set
      *           for facets with numerical values. Must not be set for facet with text
      *           values. Maximum number of intervals is 30.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $restricted_values
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $restricted_values
      *           Only get facet for the given restricted values. For example, when using
      *           "pickupInStore" as key and set restricted values to
      *           ["store123", "store456"], only facets for "store123" and "store456" are
-     *           returned. Only supported on textual fields and fulfillments.
-     *           Maximum is 20.
+     *           returned. Only supported on predefined textual fields, custom textual
+     *           attributes and fulfillments. Maximum is 20.
      *           Must be set for the fulfillment facet keys:
      *           * pickupInStore
      *           * shipToStore
@@ -212,24 +234,31 @@ class FacetKey extends \Google\Protobuf\Internal\Message
      *           * customFulfillment3
      *           * customFulfillment4
      *           * customFulfillment5
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $prefixes
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $prefixes
      *           Only get facet values that start with the given string prefix. For
      *           example, suppose "categories" has three values "Women > Shoe",
      *           "Women > Dress" and "Men > Shoe". If set "prefixes" to "Women", the
      *           "categories" facet will give only "Women > Shoe" and "Women > Dress".
      *           Only supported on textual fields. Maximum is 10.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $contains
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $contains
      *           Only get facet values that contains the given strings. For example,
      *           suppose "categories" has three values "Women > Shoe",
      *           "Women > Dress" and "Men > Shoe". If set "contains" to "Shoe", the
      *           "categories" facet will give only "Women > Shoe" and "Men > Shoe".
      *           Only supported on textual fields. Maximum is 10.
+     *     @type bool $case_insensitive
+     *           True to make facet keys case insensitive when getting faceting
+     *           values with prefixes or contains; false otherwise.
      *     @type string $order_by
-     *           The order in which [Facet.values][] are returned.
+     *           The order in which
+     *           [SearchResponse.Facet.values][google.cloud.retail.v2.SearchResponse.Facet.values]
+     *           are returned.
      *           Allowed values are:
-     *           * "count desc", which means order by [Facet.FacetValue.count][]
+     *           * "count desc", which means order by
+     *           [SearchResponse.Facet.values.count][google.cloud.retail.v2.SearchResponse.Facet.FacetValue.count]
      *           descending.
-     *           * "value desc", which means order by [Facet.FacetValue.value][]
+     *           * "value desc", which means order by
+     *           [SearchResponse.Facet.values.value][google.cloud.retail.v2.SearchResponse.Facet.FacetValue.value]
      *           descending.
      *             Only applies to textual facets.
      *           If not set, textual values are sorted in [natural
@@ -247,9 +276,11 @@ class FacetKey extends \Google\Protobuf\Internal\Message
      *           detail syntax and limitations. Notice that there is no limitation on
      *           [FacetKey.key][google.cloud.retail.v2.SearchRequest.FacetSpec.FacetKey.key]
      *           when query is specified.
-     *           In the response, [FacetValue.value][] will be always "1" and
-     *           [FacetValue.count][] will be the number of results that matches the
-     *           query.
+     *           In the response,
+     *           [SearchResponse.Facet.values.value][google.cloud.retail.v2.SearchResponse.Facet.FacetValue.value]
+     *           will be always "1" and
+     *           [SearchResponse.Facet.values.count][google.cloud.retail.v2.SearchResponse.Facet.FacetValue.count]
+     *           will be the number of results that match the query.
      *           For example, you can set a customized facet for "shipToStore",
      *           where
      *           [FacetKey.key][google.cloud.retail.v2.SearchRequest.FacetSpec.FacetKey.key]
@@ -258,6 +289,9 @@ class FacetKey extends \Google\Protobuf\Internal\Message
      *           is "availability: ANY(\"IN_STOCK\") AND shipToStore: ANY(\"123\")".
      *           Then the facet will count the products that are both in stock and ship
      *           to store "123".
+     *     @type bool $return_min_max
+     *           Returns the min and max value for each numerical facet intervals.
+     *           Ignored for textual facets.
      * }
      */
     public function __construct($data = NULL) {
@@ -302,6 +336,7 @@ class FacetKey extends \Google\Protobuf\Internal\Message
      *     * "ratingCount"
      *     * "attributes.key"
      *     * "inventory(place_id,price)"
+     *     * "inventory(place_id,original_price)"
      *     * "inventory(place_id,attributes.key)"
      *
      * Generated from protobuf field <code>string key = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -349,6 +384,7 @@ class FacetKey extends \Google\Protobuf\Internal\Message
      *     * "ratingCount"
      *     * "attributes.key"
      *     * "inventory(place_id,price)"
+     *     * "inventory(place_id,original_price)"
      *     * "inventory(place_id,attributes.key)"
      *
      * Generated from protobuf field <code>string key = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -382,7 +418,7 @@ class FacetKey extends \Google\Protobuf\Internal\Message
      * values. Maximum number of intervals is 30.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.Interval intervals = 2;</code>
-     * @param \Google\Cloud\Retail\V2\Interval[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Retail\V2\Interval>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setIntervals($var)
@@ -397,8 +433,8 @@ class FacetKey extends \Google\Protobuf\Internal\Message
      * Only get facet for the given restricted values. For example, when using
      * "pickupInStore" as key and set restricted values to
      * ["store123", "store456"], only facets for "store123" and "store456" are
-     * returned. Only supported on textual fields and fulfillments.
-     * Maximum is 20.
+     * returned. Only supported on predefined textual fields, custom textual
+     * attributes and fulfillments. Maximum is 20.
      * Must be set for the fulfillment facet keys:
      * * pickupInStore
      * * shipToStore
@@ -422,8 +458,8 @@ class FacetKey extends \Google\Protobuf\Internal\Message
      * Only get facet for the given restricted values. For example, when using
      * "pickupInStore" as key and set restricted values to
      * ["store123", "store456"], only facets for "store123" and "store456" are
-     * returned. Only supported on textual fields and fulfillments.
-     * Maximum is 20.
+     * returned. Only supported on predefined textual fields, custom textual
+     * attributes and fulfillments. Maximum is 20.
      * Must be set for the fulfillment facet keys:
      * * pickupInStore
      * * shipToStore
@@ -436,7 +472,7 @@ class FacetKey extends \Google\Protobuf\Internal\Message
      * * customFulfillment5
      *
      * Generated from protobuf field <code>repeated string restricted_values = 3;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setRestrictedValues($var)
@@ -470,7 +506,7 @@ class FacetKey extends \Google\Protobuf\Internal\Message
      * Only supported on textual fields. Maximum is 10.
      *
      * Generated from protobuf field <code>repeated string prefixes = 8;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPrefixes($var)
@@ -504,7 +540,7 @@ class FacetKey extends \Google\Protobuf\Internal\Message
      * Only supported on textual fields. Maximum is 10.
      *
      * Generated from protobuf field <code>repeated string contains = 9;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setContains($var)
@@ -516,11 +552,43 @@ class FacetKey extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The order in which [Facet.values][] are returned.
+     * True to make facet keys case insensitive when getting faceting
+     * values with prefixes or contains; false otherwise.
+     *
+     * Generated from protobuf field <code>bool case_insensitive = 10;</code>
+     * @return bool
+     */
+    public function getCaseInsensitive()
+    {
+        return $this->case_insensitive;
+    }
+
+    /**
+     * True to make facet keys case insensitive when getting faceting
+     * values with prefixes or contains; false otherwise.
+     *
+     * Generated from protobuf field <code>bool case_insensitive = 10;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setCaseInsensitive($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->case_insensitive = $var;
+
+        return $this;
+    }
+
+    /**
+     * The order in which
+     * [SearchResponse.Facet.values][google.cloud.retail.v2.SearchResponse.Facet.values]
+     * are returned.
      * Allowed values are:
-     * * "count desc", which means order by [Facet.FacetValue.count][]
+     * * "count desc", which means order by
+     * [SearchResponse.Facet.values.count][google.cloud.retail.v2.SearchResponse.Facet.FacetValue.count]
      * descending.
-     * * "value desc", which means order by [Facet.FacetValue.value][]
+     * * "value desc", which means order by
+     * [SearchResponse.Facet.values.value][google.cloud.retail.v2.SearchResponse.Facet.FacetValue.value]
      * descending.
      *   Only applies to textual facets.
      * If not set, textual values are sorted in [natural
@@ -540,11 +608,15 @@ class FacetKey extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The order in which [Facet.values][] are returned.
+     * The order in which
+     * [SearchResponse.Facet.values][google.cloud.retail.v2.SearchResponse.Facet.values]
+     * are returned.
      * Allowed values are:
-     * * "count desc", which means order by [Facet.FacetValue.count][]
+     * * "count desc", which means order by
+     * [SearchResponse.Facet.values.count][google.cloud.retail.v2.SearchResponse.Facet.FacetValue.count]
      * descending.
-     * * "value desc", which means order by [Facet.FacetValue.value][]
+     * * "value desc", which means order by
+     * [SearchResponse.Facet.values.value][google.cloud.retail.v2.SearchResponse.Facet.FacetValue.value]
      * descending.
      *   Only applies to textual facets.
      * If not set, textual values are sorted in [natural
@@ -575,9 +647,11 @@ class FacetKey extends \Google\Protobuf\Internal\Message
      * detail syntax and limitations. Notice that there is no limitation on
      * [FacetKey.key][google.cloud.retail.v2.SearchRequest.FacetSpec.FacetKey.key]
      * when query is specified.
-     * In the response, [FacetValue.value][] will be always "1" and
-     * [FacetValue.count][] will be the number of results that matches the
-     * query.
+     * In the response,
+     * [SearchResponse.Facet.values.value][google.cloud.retail.v2.SearchResponse.Facet.FacetValue.value]
+     * will be always "1" and
+     * [SearchResponse.Facet.values.count][google.cloud.retail.v2.SearchResponse.Facet.FacetValue.count]
+     * will be the number of results that match the query.
      * For example, you can set a customized facet for "shipToStore",
      * where
      * [FacetKey.key][google.cloud.retail.v2.SearchRequest.FacetSpec.FacetKey.key]
@@ -603,9 +677,11 @@ class FacetKey extends \Google\Protobuf\Internal\Message
      * detail syntax and limitations. Notice that there is no limitation on
      * [FacetKey.key][google.cloud.retail.v2.SearchRequest.FacetSpec.FacetKey.key]
      * when query is specified.
-     * In the response, [FacetValue.value][] will be always "1" and
-     * [FacetValue.count][] will be the number of results that matches the
-     * query.
+     * In the response,
+     * [SearchResponse.Facet.values.value][google.cloud.retail.v2.SearchResponse.Facet.FacetValue.value]
+     * will be always "1" and
+     * [SearchResponse.Facet.values.count][google.cloud.retail.v2.SearchResponse.Facet.FacetValue.count]
+     * will be the number of results that match the query.
      * For example, you can set a customized facet for "shipToStore",
      * where
      * [FacetKey.key][google.cloud.retail.v2.SearchRequest.FacetSpec.FacetKey.key]
@@ -623,6 +699,34 @@ class FacetKey extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->query = $var;
+
+        return $this;
+    }
+
+    /**
+     * Returns the min and max value for each numerical facet intervals.
+     * Ignored for textual facets.
+     *
+     * Generated from protobuf field <code>bool return_min_max = 11;</code>
+     * @return bool
+     */
+    public function getReturnMinMax()
+    {
+        return $this->return_min_max;
+    }
+
+    /**
+     * Returns the min and max value for each numerical facet intervals.
+     * Ignored for textual facets.
+     *
+     * Generated from protobuf field <code>bool return_min_max = 11;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setReturnMinMax($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->return_min_max = $var;
 
         return $this;
     }

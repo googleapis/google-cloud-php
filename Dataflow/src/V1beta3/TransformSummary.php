@@ -64,11 +64,11 @@ class TransformSummary extends \Google\Protobuf\Internal\Message
      *           SDK generated id of this transform instance.
      *     @type string $name
      *           User provided name for this transform instance.
-     *     @type \Google\Cloud\Dataflow\V1beta3\DisplayData[]|\Google\Protobuf\Internal\RepeatedField $display_data
+     *     @type array<\Google\Cloud\Dataflow\V1beta3\DisplayData>|\Google\Protobuf\Internal\RepeatedField $display_data
      *           Transform-specific display data.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $output_collection_name
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $output_collection_name
      *           User  names for all collection outputs to this transform.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $input_collection_name
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $input_collection_name
      *           User names for all collection inputs to this transform.
      * }
      */
@@ -170,7 +170,7 @@ class TransformSummary extends \Google\Protobuf\Internal\Message
      * Transform-specific display data.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.DisplayData display_data = 4;</code>
-     * @param \Google\Cloud\Dataflow\V1beta3\DisplayData[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dataflow\V1beta3\DisplayData>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDisplayData($var)
@@ -196,7 +196,7 @@ class TransformSummary extends \Google\Protobuf\Internal\Message
      * User  names for all collection outputs to this transform.
      *
      * Generated from protobuf field <code>repeated string output_collection_name = 5;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setOutputCollectionName($var)
@@ -222,7 +222,7 @@ class TransformSummary extends \Google\Protobuf\Internal\Message
      * User names for all collection inputs to this transform.
      *
      * Generated from protobuf field <code>repeated string input_collection_name = 6;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setInputCollectionName($var)

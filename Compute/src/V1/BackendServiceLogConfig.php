@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class BackendServiceLogConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * This field denotes whether to enable logging for the load balancer traffic served by this backend service.
+     * Denotes whether to enable logging for the load balancer traffic served by this backend service. The default value is false.
      *
      * Generated from protobuf field <code>optional bool enable = 311764355;</code>
      */
@@ -35,7 +35,7 @@ class BackendServiceLogConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $enable
-     *           This field denotes whether to enable logging for the load balancer traffic served by this backend service.
+     *           Denotes whether to enable logging for the load balancer traffic served by this backend service. The default value is false.
      *     @type float $sample_rate
      *           This field can only be specified if logging is enabled for this backend service. The value of the field must be in [0, 1]. This configures the sampling rate of requests to the load balancer where 1.0 means all logged requests are reported and 0.0 means no logged requests are reported. The default value is 1.0.
      * }
@@ -46,7 +46,7 @@ class BackendServiceLogConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This field denotes whether to enable logging for the load balancer traffic served by this backend service.
+     * Denotes whether to enable logging for the load balancer traffic served by this backend service. The default value is false.
      *
      * Generated from protobuf field <code>optional bool enable = 311764355;</code>
      * @return bool
@@ -67,7 +67,7 @@ class BackendServiceLogConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This field denotes whether to enable logging for the load balancer traffic served by this backend service.
+     * Denotes whether to enable logging for the load balancer traffic served by this backend service. The default value is false.
      *
      * Generated from protobuf field <code>optional bool enable = 311764355;</code>
      * @param bool $var

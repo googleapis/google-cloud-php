@@ -40,7 +40,7 @@ class FaceDetectionAnnotation extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\VideoIntelligence\V1\Track[]|\Google\Protobuf\Internal\RepeatedField $tracks
+     *     @type array<\Google\Cloud\VideoIntelligence\V1\Track>|\Google\Protobuf\Internal\RepeatedField $tracks
      *           The face tracks with attributes.
      *     @type string $thumbnail
      *           The thumbnail of a person's face.
@@ -68,7 +68,7 @@ class FaceDetectionAnnotation extends \Google\Protobuf\Internal\Message
      * The face tracks with attributes.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.Track tracks = 3;</code>
-     * @param \Google\Cloud\VideoIntelligence\V1\Track[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\VideoIntelligence\V1\Track>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTracks($var)

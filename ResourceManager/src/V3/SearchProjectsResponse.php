@@ -47,7 +47,7 @@ class SearchProjectsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\ResourceManager\V3\Project[]|\Google\Protobuf\Internal\RepeatedField $projects
+     *     @type array<\Google\Cloud\ResourceManager\V3\Project>|\Google\Protobuf\Internal\RepeatedField $projects
      *           The list of Projects that matched the list filter query. This list can
      *           be paginated.
      *     @type string $next_page_token
@@ -83,7 +83,7 @@ class SearchProjectsResponse extends \Google\Protobuf\Internal\Message
      * be paginated.
      *
      * Generated from protobuf field <code>repeated .google.cloud.resourcemanager.v3.Project projects = 1;</code>
-     * @param \Google\Cloud\ResourceManager\V3\Project[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\ResourceManager\V3\Project>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setProjects($var)

@@ -1,0 +1,5 @@
+#!/bin/bash
+
+set -e
+
+$(dirname $0)/../../vendor/bin/phpcbf --standard=$(dirname $0)/../../phpcs-ruleset.xml

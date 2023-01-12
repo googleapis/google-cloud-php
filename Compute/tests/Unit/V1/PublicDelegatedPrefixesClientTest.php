@@ -25,16 +25,15 @@ namespace Google\Cloud\Compute\Tests\Unit\V1;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Compute\V1\GetRegionOperationRequest;
 use Google\Cloud\Compute\V1\Operation;
 use Google\Cloud\Compute\V1\Operation\Status;
 use Google\Cloud\Compute\V1\PublicDelegatedPrefix;
 use Google\Cloud\Compute\V1\PublicDelegatedPrefixAggregatedList;
+use Google\Cloud\Compute\V1\PublicDelegatedPrefixList;
 use Google\Cloud\Compute\V1\PublicDelegatedPrefixesClient;
 use Google\Cloud\Compute\V1\PublicDelegatedPrefixesScopedList;
-use Google\Cloud\Compute\V1\PublicDelegatedPrefixList;
 use Google\Cloud\Compute\V1\RegionOperationsClient;
 use Google\Rpc\Code;
 use stdClass;
@@ -46,25 +45,19 @@ use stdClass;
  */
 class PublicDelegatedPrefixesClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return PublicDelegatedPrefixesClient
-     */
+    /** @return PublicDelegatedPrefixesClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -73,13 +66,11 @@ class PublicDelegatedPrefixesClientTest extends GeneratedTest
         return new PublicDelegatedPrefixesClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function aggregatedListTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -100,7 +91,7 @@ class PublicDelegatedPrefixesClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $project = 'project-309310695';
-        $response = $client->aggregatedList($project);
+        $response = $gapicClient->aggregatedList($project);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -117,13 +108,11 @@ class PublicDelegatedPrefixesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function aggregatedListExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -140,8 +129,8 @@ class PublicDelegatedPrefixesClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         try {
-            $client->aggregatedList($project);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->aggregatedList($project);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -152,9 +141,7 @@ class PublicDelegatedPrefixesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteTest()
     {
         $operationsTransport = $this->createTransport();
@@ -164,7 +151,7 @@ class PublicDelegatedPrefixesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -183,7 +170,7 @@ class PublicDelegatedPrefixesClientTest extends GeneratedTest
         $project = 'project-309310695';
         $publicDelegatedPrefix = 'publicDelegatedPrefix1814851176';
         $region = 'region-934795532';
-        $response = $client->delete($project, $publicDelegatedPrefix, $region);
+        $response = $gapicClient->delete($project, $publicDelegatedPrefix, $region);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -218,9 +205,7 @@ class PublicDelegatedPrefixesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -230,7 +215,7 @@ class PublicDelegatedPrefixesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -255,7 +240,7 @@ class PublicDelegatedPrefixesClientTest extends GeneratedTest
         $project = 'project-309310695';
         $publicDelegatedPrefix = 'publicDelegatedPrefix1814851176';
         $region = 'region-934795532';
-        $response = $client->delete($project, $publicDelegatedPrefix, $region);
+        $response = $gapicClient->delete($project, $publicDelegatedPrefix, $region);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -275,13 +260,11 @@ class PublicDelegatedPrefixesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -316,7 +299,7 @@ class PublicDelegatedPrefixesClientTest extends GeneratedTest
         $project = 'project-309310695';
         $publicDelegatedPrefix = 'publicDelegatedPrefix1814851176';
         $region = 'region-934795532';
-        $response = $client->get($project, $publicDelegatedPrefix, $region);
+        $response = $gapicClient->get($project, $publicDelegatedPrefix, $region);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -332,13 +315,11 @@ class PublicDelegatedPrefixesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -357,8 +338,8 @@ class PublicDelegatedPrefixesClientTest extends GeneratedTest
         $publicDelegatedPrefix = 'publicDelegatedPrefix1814851176';
         $region = 'region-934795532';
         try {
-            $client->get($project, $publicDelegatedPrefix, $region);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->get($project, $publicDelegatedPrefix, $region);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -369,9 +350,7 @@ class PublicDelegatedPrefixesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function insertTest()
     {
         $operationsTransport = $this->createTransport();
@@ -381,7 +360,7 @@ class PublicDelegatedPrefixesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -400,7 +379,7 @@ class PublicDelegatedPrefixesClientTest extends GeneratedTest
         $project = 'project-309310695';
         $publicDelegatedPrefixResource = new PublicDelegatedPrefix();
         $region = 'region-934795532';
-        $response = $client->insert($project, $publicDelegatedPrefixResource, $region);
+        $response = $gapicClient->insert($project, $publicDelegatedPrefixResource, $region);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -435,9 +414,7 @@ class PublicDelegatedPrefixesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function insertExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -447,7 +424,7 @@ class PublicDelegatedPrefixesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -472,7 +449,7 @@ class PublicDelegatedPrefixesClientTest extends GeneratedTest
         $project = 'project-309310695';
         $publicDelegatedPrefixResource = new PublicDelegatedPrefix();
         $region = 'region-934795532';
-        $response = $client->insert($project, $publicDelegatedPrefixResource, $region);
+        $response = $gapicClient->insert($project, $publicDelegatedPrefixResource, $region);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -492,13 +469,11 @@ class PublicDelegatedPrefixesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -521,7 +496,7 @@ class PublicDelegatedPrefixesClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $response = $client->list($project, $region);
+        $response = $gapicClient->list($project, $region);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -538,13 +513,11 @@ class PublicDelegatedPrefixesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -562,8 +535,8 @@ class PublicDelegatedPrefixesClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         try {
-            $client->list($project, $region);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->list($project, $region);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -574,9 +547,7 @@ class PublicDelegatedPrefixesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function patchTest()
     {
         $operationsTransport = $this->createTransport();
@@ -586,7 +557,7 @@ class PublicDelegatedPrefixesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -606,7 +577,7 @@ class PublicDelegatedPrefixesClientTest extends GeneratedTest
         $publicDelegatedPrefix = 'publicDelegatedPrefix1814851176';
         $publicDelegatedPrefixResource = new PublicDelegatedPrefix();
         $region = 'region-934795532';
-        $response = $client->patch($project, $publicDelegatedPrefix, $publicDelegatedPrefixResource, $region);
+        $response = $gapicClient->patch($project, $publicDelegatedPrefix, $publicDelegatedPrefixResource, $region);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -643,9 +614,7 @@ class PublicDelegatedPrefixesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function patchExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -655,7 +624,7 @@ class PublicDelegatedPrefixesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -681,7 +650,7 @@ class PublicDelegatedPrefixesClientTest extends GeneratedTest
         $publicDelegatedPrefix = 'publicDelegatedPrefix1814851176';
         $publicDelegatedPrefixResource = new PublicDelegatedPrefix();
         $region = 'region-934795532';
-        $response = $client->patch($project, $publicDelegatedPrefix, $publicDelegatedPrefixResource, $region);
+        $response = $gapicClient->patch($project, $publicDelegatedPrefix, $publicDelegatedPrefixResource, $region);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {

@@ -16,10 +16,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListAssetsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Name of the organization or project the assets belong to. Format:
+     * Required. Name of the organization, folder, or project the assets belong to. Format:
      * "organizations/[organization-number]" (such as "organizations/123"),
-     * "projects/[project-id]" (such as "projects/my-project-id"), or
-     * "projects/[project-number]" (such as "projects/12345").
+     * "projects/[project-id]" (such as "projects/my-project-id"),
+     * "projects/[project-number]" (such as "projects/12345"), or
+     * "folders/[folder-number]" (such as "folders/12345").
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -103,17 +104,18 @@ class ListAssetsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. Name of the organization or project the assets belong to. Format:
+     *           Required. Name of the organization, folder, or project the assets belong to. Format:
      *           "organizations/[organization-number]" (such as "organizations/123"),
-     *           "projects/[project-id]" (such as "projects/my-project-id"), or
-     *           "projects/[project-number]" (such as "projects/12345").
+     *           "projects/[project-id]" (such as "projects/my-project-id"),
+     *           "projects/[project-number]" (such as "projects/12345"), or
+     *           "folders/[folder-number]" (such as "folders/12345").
      *     @type \Google\Protobuf\Timestamp $read_time
      *           Timestamp to take an asset snapshot. This can only be set to a timestamp
      *           between the current time and the current time minus 35 days (inclusive).
      *           If not specified, the current time will be used. Due to delays in resource
      *           data collection and indexing, there is a volatile window during which
      *           running the same query may get different results.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $asset_types
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $asset_types
      *           A list of asset types to take a snapshot for. For example:
      *           "compute.googleapis.com/Disk".
      *           Regular expression is also supported. For example:
@@ -138,7 +140,7 @@ class ListAssetsRequest extends \Google\Protobuf\Internal\Message
      *           The `next_page_token` returned from the previous `ListAssetsResponse`, or
      *           unspecified for the first `ListAssetsRequest`. It is a continuation of a
      *           prior `ListAssets` call, and the API should return the next page of assets.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $relationship_types
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $relationship_types
      *           A list of relationship types to output, for example:
      *           `INSTANCE_TO_INSTANCEGROUP`. This field should only be specified if
      *           content_type=RELATIONSHIP.
@@ -162,10 +164,11 @@ class ListAssetsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Name of the organization or project the assets belong to. Format:
+     * Required. Name of the organization, folder, or project the assets belong to. Format:
      * "organizations/[organization-number]" (such as "organizations/123"),
-     * "projects/[project-id]" (such as "projects/my-project-id"), or
-     * "projects/[project-number]" (such as "projects/12345").
+     * "projects/[project-id]" (such as "projects/my-project-id"),
+     * "projects/[project-number]" (such as "projects/12345"), or
+     * "folders/[folder-number]" (such as "folders/12345").
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -176,10 +179,11 @@ class ListAssetsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Name of the organization or project the assets belong to. Format:
+     * Required. Name of the organization, folder, or project the assets belong to. Format:
      * "organizations/[organization-number]" (such as "organizations/123"),
-     * "projects/[project-id]" (such as "projects/my-project-id"), or
-     * "projects/[project-number]" (such as "projects/12345").
+     * "projects/[project-id]" (such as "projects/my-project-id"),
+     * "projects/[project-number]" (such as "projects/12345"), or
+     * "folders/[folder-number]" (such as "folders/12345").
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -278,7 +282,7 @@ class ListAssetsRequest extends \Google\Protobuf\Internal\Message
      * for all supported asset types.
      *
      * Generated from protobuf field <code>repeated string asset_types = 3;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAssetTypes($var)
@@ -418,7 +422,7 @@ class ListAssetsRequest extends \Google\Protobuf\Internal\Message
      * for all supported asset types and relationship types.
      *
      * Generated from protobuf field <code>repeated string relationship_types = 7;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setRelationshipTypes($var)

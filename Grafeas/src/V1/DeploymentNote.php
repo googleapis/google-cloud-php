@@ -28,7 +28,7 @@ class DeploymentNote extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $resource_uri
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $resource_uri
      *           Required. Resource URI for the artifact being deployed.
      * }
      */
@@ -52,7 +52,7 @@ class DeploymentNote extends \Google\Protobuf\Internal\Message
      * Required. Resource URI for the artifact being deployed.
      *
      * Generated from protobuf field <code>repeated string resource_uri = 1;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setResourceUri($var)

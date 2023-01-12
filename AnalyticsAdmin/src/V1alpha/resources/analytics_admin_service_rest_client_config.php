@@ -27,6 +27,18 @@ return [
                     ],
                 ],
             ],
+            'ArchiveAudience' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1alpha/{name=properties/*/audiences/*}:archive',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'ArchiveCustomDimension' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1alpha/{name=properties/*/customDimensions/*}:archive',
@@ -156,6 +168,18 @@ return [
                     ],
                 ],
             ],
+            'CreateAudience' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1alpha/{parent=properties/*}/audiences',
+                'body' => 'audience',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateConversionEvent' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1alpha/{parent=properties/*}/conversionEvents',
@@ -254,20 +278,8 @@ return [
             ],
             'CreateMeasurementProtocolSecret' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1alpha/{parent=properties/*/webDataStreams/*}/measurementProtocolSecrets',
+                'uriTemplate' => '/v1alpha/{parent=properties/*/dataStreams/*}/measurementProtocolSecrets',
                 'body' => 'measurement_protocol_secret',
-                'additionalBindings' => [
-                    [
-                        'method' => 'post',
-                        'uriTemplate' => '/v1alpha/{parent=properties/*/iosAppDataStreams/*}/measurementProtocolSecrets',
-                        'body' => 'measurement_protocol_secret',
-                    ],
-                    [
-                        'method' => 'post',
-                        'uriTemplate' => '/v1alpha/{parent=properties/*/androidAppDataStreams/*}/measurementProtocolSecrets',
-                        'body' => 'measurement_protocol_secret',
-                    ],
-                ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -300,32 +312,9 @@ return [
                     ],
                 ],
             ],
-            'CreateWebDataStream' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1alpha/{parent=properties/*}/webDataStreams',
-                'body' => 'web_data_stream',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
             'DeleteAccount' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1alpha/{name=accounts/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'DeleteAndroidAppDataStream' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v1alpha/{name=properties/*/androidAppDataStreams/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -400,30 +389,9 @@ return [
                     ],
                 ],
             ],
-            'DeleteIosAppDataStream' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v1alpha/{name=properties/*/iosAppDataStreams/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
             'DeleteMeasurementProtocolSecret' => [
                 'method' => 'delete',
-                'uriTemplate' => '/v1alpha/{name=properties/*/webDataStreams/*/measurementProtocolSecrets/*}',
-                'additionalBindings' => [
-                    [
-                        'method' => 'delete',
-                        'uriTemplate' => '/v1alpha/{name=properties/*/iosAppDataStreams/*/measurementProtocolSecrets/*}',
-                    ],
-                    [
-                        'method' => 'delete',
-                        'uriTemplate' => '/v1alpha/{name=properties/*/androidAppDataStreams/*/measurementProtocolSecrets/*}',
-                    ],
-                ],
+                'uriTemplate' => '/v1alpha/{name=properties/*/dataStreams/*/measurementProtocolSecrets/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -460,17 +428,6 @@ return [
                     ],
                 ],
             ],
-            'DeleteWebDataStream' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v1alpha/{name=properties/*/webDataStreams/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
             'GetAccount' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1alpha/{name=accounts/*}',
@@ -482,9 +439,20 @@ return [
                     ],
                 ],
             ],
-            'GetAndroidAppDataStream' => [
+            'GetAttributionSettings' => [
                 'method' => 'get',
-                'uriTemplate' => '/v1alpha/{name=properties/*/androidAppDataStreams/*}',
+                'uriTemplate' => '/v1alpha/{name=properties/*/attributionSettings}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetAudience' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{name=properties/*/audiences/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -583,7 +551,7 @@ return [
             ],
             'GetGlobalSiteTag' => [
                 'method' => 'get',
-                'uriTemplate' => '/v1alpha/{name=properties/*/webDataStreams/*/globalSiteTag}',
+                'uriTemplate' => '/v1alpha/{name=properties/*/dataStreams/*/globalSiteTag}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -603,30 +571,9 @@ return [
                     ],
                 ],
             ],
-            'GetIosAppDataStream' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1alpha/{name=properties/*/iosAppDataStreams/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
             'GetMeasurementProtocolSecret' => [
                 'method' => 'get',
-                'uriTemplate' => '/v1alpha/{name=properties/*/webDataStreams/*/measurementProtocolSecrets/*}',
-                'additionalBindings' => [
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v1alpha/{name=properties/*/iosAppDataStreams/*/measurementProtocolSecrets/*}',
-                    ],
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v1alpha/{name=properties/*/androidAppDataStreams/*/measurementProtocolSecrets/*}',
-                    ],
-                ],
+                'uriTemplate' => '/v1alpha/{name=properties/*/dataStreams/*/measurementProtocolSecrets/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -663,17 +610,6 @@ return [
                     ],
                 ],
             ],
-            'GetWebDataStream' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1alpha/{name=properties/*/webDataStreams/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
             'ListAccountSummaries' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1alpha/accountSummaries',
@@ -682,9 +618,9 @@ return [
                 'method' => 'get',
                 'uriTemplate' => '/v1alpha/accounts',
             ],
-            'ListAndroidAppDataStreams' => [
+            'ListAudiences' => [
                 'method' => 'get',
-                'uriTemplate' => '/v1alpha/{parent=properties/*}/androidAppDataStreams',
+                'uriTemplate' => '/v1alpha/{parent=properties/*}/audiences',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -781,30 +717,9 @@ return [
                     ],
                 ],
             ],
-            'ListIosAppDataStreams' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1alpha/{parent=properties/*}/iosAppDataStreams',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
             'ListMeasurementProtocolSecrets' => [
                 'method' => 'get',
-                'uriTemplate' => '/v1alpha/{parent=properties/*/webDataStreams/*}/measurementProtocolSecrets',
-                'additionalBindings' => [
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v1alpha/{parent=properties/*/iosAppDataStreams/*}/measurementProtocolSecrets',
-                    ],
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v1alpha/{parent=properties/*/androidAppDataStreams/*}/measurementProtocolSecrets',
-                    ],
-                ],
+                'uriTemplate' => '/v1alpha/{parent=properties/*/dataStreams/*}/measurementProtocolSecrets',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -837,21 +752,22 @@ return [
                     ],
                 ],
             ],
-            'ListWebDataStreams' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1alpha/{parent=properties/*}/webDataStreams',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
             'ProvisionAccountTicket' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1alpha/accounts:provisionAccountTicket',
                 'body' => '*',
+            ],
+            'RunAccessReport' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1alpha/{entity=properties/*}:runAccessReport',
+                'body' => '*',
+                'placeholders' => [
+                    'entity' => [
+                        'getters' => [
+                            'getEntity',
+                        ],
+                    ],
+                ],
             ],
             'SearchChangeHistoryEvents' => [
                 'method' => 'post',
@@ -881,14 +797,30 @@ return [
                     'update_mask',
                 ],
             ],
-            'UpdateAndroidAppDataStream' => [
+            'UpdateAttributionSettings' => [
                 'method' => 'patch',
-                'uriTemplate' => '/v1alpha/{android_app_data_stream.name=properties/*/androidAppDataStreams/*}',
-                'body' => 'android_app_data_stream',
+                'uriTemplate' => '/v1alpha/{attribution_settings.name=properties/*/attributionSettings}',
+                'body' => 'attribution_settings',
                 'placeholders' => [
-                    'android_app_data_stream.name' => [
+                    'attribution_settings.name' => [
                         'getters' => [
-                            'getAndroidAppDataStream',
+                            'getAttributionSettings',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
+                ],
+            ],
+            'UpdateAudience' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1alpha/{audience.name=properties/*/audiences/*}',
+                'body' => 'audience',
+                'placeholders' => [
+                    'audience.name' => [
+                        'getters' => [
+                            'getAudience',
                             'getName',
                         ],
                     ],
@@ -1009,38 +941,10 @@ return [
                     'update_mask',
                 ],
             ],
-            'UpdateIosAppDataStream' => [
-                'method' => 'patch',
-                'uriTemplate' => '/v1alpha/{ios_app_data_stream.name=properties/*/iosAppDataStreams/*}',
-                'body' => 'ios_app_data_stream',
-                'placeholders' => [
-                    'ios_app_data_stream.name' => [
-                        'getters' => [
-                            'getIosAppDataStream',
-                            'getName',
-                        ],
-                    ],
-                ],
-                'queryParams' => [
-                    'update_mask',
-                ],
-            ],
             'UpdateMeasurementProtocolSecret' => [
                 'method' => 'patch',
-                'uriTemplate' => '/v1alpha/{measurement_protocol_secret.name=properties/*/webDataStreams/*/measurementProtocolSecrets/*}',
+                'uriTemplate' => '/v1alpha/{measurement_protocol_secret.name=properties/*/dataStreams/*/measurementProtocolSecrets/*}',
                 'body' => 'measurement_protocol_secret',
-                'additionalBindings' => [
-                    [
-                        'method' => 'patch',
-                        'uriTemplate' => '/v1alpha/{measurement_protocol_secret.name=properties/*/iosAppDataStreams/*/measurementProtocolSecrets/*}',
-                        'body' => 'measurement_protocol_secret',
-                    ],
-                    [
-                        'method' => 'patch',
-                        'uriTemplate' => '/v1alpha/{measurement_protocol_secret.name=properties/*/androidAppDataStreams/*/measurementProtocolSecrets/*}',
-                        'body' => 'measurement_protocol_secret',
-                    ],
-                ],
                 'placeholders' => [
                     'measurement_protocol_secret.name' => [
                         'getters' => [
@@ -1084,22 +988,6 @@ return [
                             'getName',
                         ],
                     ],
-                ],
-            ],
-            'UpdateWebDataStream' => [
-                'method' => 'patch',
-                'uriTemplate' => '/v1alpha/{web_data_stream.name=properties/*/webDataStreams/*}',
-                'body' => 'web_data_stream',
-                'placeholders' => [
-                    'web_data_stream.name' => [
-                        'getters' => [
-                            'getWebDataStream',
-                            'getName',
-                        ],
-                    ],
-                ],
-                'queryParams' => [
-                    'update_mask',
                 ],
             ],
         ],

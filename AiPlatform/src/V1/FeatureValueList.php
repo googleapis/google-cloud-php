@@ -28,7 +28,7 @@ class FeatureValueList extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\AIPlatform\V1\FeatureValue[]|\Google\Protobuf\Internal\RepeatedField $values
+     *     @type array<\Google\Cloud\AIPlatform\V1\FeatureValue>|\Google\Protobuf\Internal\RepeatedField $values
      *           A list of feature values. All of them should be the same data type.
      * }
      */
@@ -52,7 +52,7 @@ class FeatureValueList extends \Google\Protobuf\Internal\Message
      * A list of feature values. All of them should be the same data type.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.FeatureValue values = 1;</code>
-     * @param \Google\Cloud\AIPlatform\V1\FeatureValue[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AIPlatform\V1\FeatureValue>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setValues($var)

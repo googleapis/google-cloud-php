@@ -47,14 +47,14 @@ class LDiversityEquivalenceClass extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Dlp\V2\Value[]|\Google\Protobuf\Internal\RepeatedField $quasi_ids_values
+     *     @type array<\Google\Cloud\Dlp\V2\Value>|\Google\Protobuf\Internal\RepeatedField $quasi_ids_values
      *           Quasi-identifier values defining the k-anonymity equivalence
      *           class. The order is always the same as the original request.
      *     @type int|string $equivalence_class_size
      *           Size of the k-anonymity equivalence class.
      *     @type int|string $num_distinct_sensitive_values
      *           Number of distinct sensitive values in this equivalence class.
-     *     @type \Google\Cloud\Dlp\V2\ValueFrequency[]|\Google\Protobuf\Internal\RepeatedField $top_sensitive_values
+     *     @type array<\Google\Cloud\Dlp\V2\ValueFrequency>|\Google\Protobuf\Internal\RepeatedField $top_sensitive_values
      *           Estimated frequencies of top sensitive values.
      * }
      */
@@ -80,7 +80,7 @@ class LDiversityEquivalenceClass extends \Google\Protobuf\Internal\Message
      * class. The order is always the same as the original request.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Value quasi_ids_values = 1;</code>
-     * @param \Google\Cloud\Dlp\V2\Value[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dlp\V2\Value>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setQuasiIdsValues($var)
@@ -158,7 +158,7 @@ class LDiversityEquivalenceClass extends \Google\Protobuf\Internal\Message
      * Estimated frequencies of top sensitive values.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.ValueFrequency top_sensitive_values = 4;</code>
-     * @param \Google\Cloud\Dlp\V2\ValueFrequency[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dlp\V2\ValueFrequency>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTopSensitiveValues($var)

@@ -19,16 +19,22 @@ class TransferJob extends \Google\Protobuf\Internal\Message
     /**
      * A unique name (within the transfer project) assigned when the job is
      * created.  If this field is empty in a CreateTransferJobRequest, Storage
-     * Transfer Service will assign a unique name. Otherwise, the specified name
+     * Transfer Service assigns a unique name. Otherwise, the specified name
      * is used as the unique name for this job.
      * If the specified name is in use by a job, the creation request fails with
      * an [ALREADY_EXISTS][google.rpc.Code.ALREADY_EXISTS] error.
      * This name must start with `"transferJobs/"` prefix and end with a letter or
-     * a number, and should be no more than 128 characters. This name must not
-     * start with 'transferJobs/OPI'. 'transferJobs/OPI' is a reserved prefix.
-     * Example:
+     * a number, and should be no more than 128 characters. For transfers
+     * involving PosixFilesystem, this name must start with `transferJobs/OPI`
+     * specifically. For all other transfer types, this name must not start with
+     * `transferJobs/OPI`.
+     * Non-PosixFilesystem example:
      * `"transferJobs/^(?!OPI)[A-Za-z0-9-._~]*[A-Za-z0-9]$"`
-     * Invalid job names will fail with an
+     * PosixFilesystem example:
+     * `"transferJobs/OPI^[A-Za-z0-9-._~]*[A-Za-z0-9]$"`
+     * Applications must not rely on the enforcement of naming requirements
+     * involving OPI.
+     * Invalid job names fail with an
      * [INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT] error.
      *
      * Generated from protobuf field <code>string name = 1;</code>
@@ -42,7 +48,7 @@ class TransferJob extends \Google\Protobuf\Internal\Message
      */
     private $description = '';
     /**
-     * The ID of the Google Cloud Platform Project that owns the job.
+     * The ID of the Google Cloud project that owns the job.
      *
      * Generated from protobuf field <code>string project_id = 3;</code>
      */
@@ -54,15 +60,22 @@ class TransferJob extends \Google\Protobuf\Internal\Message
      */
     private $transfer_spec = null;
     /**
-     * Notification configuration.
+     * Notification configuration. This is not supported for transfers involving
+     * PosixFilesystem.
      *
      * Generated from protobuf field <code>.google.storagetransfer.v1.NotificationConfig notification_config = 11;</code>
      */
     private $notification_config = null;
     /**
+     * Logging configuration.
+     *
+     * Generated from protobuf field <code>.google.storagetransfer.v1.LoggingConfig logging_config = 14;</code>
+     */
+    private $logging_config = null;
+    /**
      * Specifies schedule for the transfer job.
-     * This is an optional field. When the field is not set, the job will never
-     * execute a transfer, unless you invoke RunTransferJob or update the job to
+     * This is an optional field. When the field is not set, the job never
+     * executes a transfer, unless you invoke RunTransferJob or update the job to
      * have a non-empty schedule.
      *
      * Generated from protobuf field <code>.google.storagetransfer.v1.Schedule schedule = 5;</code>
@@ -73,10 +86,9 @@ class TransferJob extends \Google\Protobuf\Internal\Message
      * `CreateTransferJobRequests`.
      * **Note:** The effect of the new job status takes place during a subsequent
      * job run. For example, if you change the job status from
-     * [ENABLED][google.storagetransfer.v1.TransferJob.Status.ENABLED] to
-     * [DISABLED][google.storagetransfer.v1.TransferJob.Status.DISABLED], and an
-     * operation spawned by the transfer is running, the status change would not
-     * affect the current operation.
+     * [ENABLED][google.storagetransfer.v1.TransferJob.Status.ENABLED] to [DISABLED][google.storagetransfer.v1.TransferJob.Status.DISABLED], and an operation
+     * spawned by the transfer is running, the status change would not affect the
+     * current operation.
      *
      * Generated from protobuf field <code>.google.storagetransfer.v1.TransferJob.Status status = 6;</code>
      */
@@ -116,40 +128,48 @@ class TransferJob extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           A unique name (within the transfer project) assigned when the job is
      *           created.  If this field is empty in a CreateTransferJobRequest, Storage
-     *           Transfer Service will assign a unique name. Otherwise, the specified name
+     *           Transfer Service assigns a unique name. Otherwise, the specified name
      *           is used as the unique name for this job.
      *           If the specified name is in use by a job, the creation request fails with
      *           an [ALREADY_EXISTS][google.rpc.Code.ALREADY_EXISTS] error.
      *           This name must start with `"transferJobs/"` prefix and end with a letter or
-     *           a number, and should be no more than 128 characters. This name must not
-     *           start with 'transferJobs/OPI'. 'transferJobs/OPI' is a reserved prefix.
-     *           Example:
+     *           a number, and should be no more than 128 characters. For transfers
+     *           involving PosixFilesystem, this name must start with `transferJobs/OPI`
+     *           specifically. For all other transfer types, this name must not start with
+     *           `transferJobs/OPI`.
+     *           Non-PosixFilesystem example:
      *           `"transferJobs/^(?!OPI)[A-Za-z0-9-._~]*[A-Za-z0-9]$"`
-     *           Invalid job names will fail with an
+     *           PosixFilesystem example:
+     *           `"transferJobs/OPI^[A-Za-z0-9-._~]*[A-Za-z0-9]$"`
+     *           Applications must not rely on the enforcement of naming requirements
+     *           involving OPI.
+     *           Invalid job names fail with an
      *           [INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT] error.
      *     @type string $description
      *           A description provided by the user for the job. Its max length is 1024
      *           bytes when Unicode-encoded.
      *     @type string $project_id
-     *           The ID of the Google Cloud Platform Project that owns the job.
+     *           The ID of the Google Cloud project that owns the job.
      *     @type \Google\Cloud\StorageTransfer\V1\TransferSpec $transfer_spec
      *           Transfer specification.
      *     @type \Google\Cloud\StorageTransfer\V1\NotificationConfig $notification_config
-     *           Notification configuration.
+     *           Notification configuration. This is not supported for transfers involving
+     *           PosixFilesystem.
+     *     @type \Google\Cloud\StorageTransfer\V1\LoggingConfig $logging_config
+     *           Logging configuration.
      *     @type \Google\Cloud\StorageTransfer\V1\Schedule $schedule
      *           Specifies schedule for the transfer job.
-     *           This is an optional field. When the field is not set, the job will never
-     *           execute a transfer, unless you invoke RunTransferJob or update the job to
+     *           This is an optional field. When the field is not set, the job never
+     *           executes a transfer, unless you invoke RunTransferJob or update the job to
      *           have a non-empty schedule.
      *     @type int $status
      *           Status of the job. This value MUST be specified for
      *           `CreateTransferJobRequests`.
      *           **Note:** The effect of the new job status takes place during a subsequent
      *           job run. For example, if you change the job status from
-     *           [ENABLED][google.storagetransfer.v1.TransferJob.Status.ENABLED] to
-     *           [DISABLED][google.storagetransfer.v1.TransferJob.Status.DISABLED], and an
-     *           operation spawned by the transfer is running, the status change would not
-     *           affect the current operation.
+     *           [ENABLED][google.storagetransfer.v1.TransferJob.Status.ENABLED] to [DISABLED][google.storagetransfer.v1.TransferJob.Status.DISABLED], and an operation
+     *           spawned by the transfer is running, the status change would not affect the
+     *           current operation.
      *     @type \Google\Protobuf\Timestamp $creation_time
      *           Output only. The time that the transfer job was created.
      *     @type \Google\Protobuf\Timestamp $last_modification_time
@@ -169,16 +189,22 @@ class TransferJob extends \Google\Protobuf\Internal\Message
     /**
      * A unique name (within the transfer project) assigned when the job is
      * created.  If this field is empty in a CreateTransferJobRequest, Storage
-     * Transfer Service will assign a unique name. Otherwise, the specified name
+     * Transfer Service assigns a unique name. Otherwise, the specified name
      * is used as the unique name for this job.
      * If the specified name is in use by a job, the creation request fails with
      * an [ALREADY_EXISTS][google.rpc.Code.ALREADY_EXISTS] error.
      * This name must start with `"transferJobs/"` prefix and end with a letter or
-     * a number, and should be no more than 128 characters. This name must not
-     * start with 'transferJobs/OPI'. 'transferJobs/OPI' is a reserved prefix.
-     * Example:
+     * a number, and should be no more than 128 characters. For transfers
+     * involving PosixFilesystem, this name must start with `transferJobs/OPI`
+     * specifically. For all other transfer types, this name must not start with
+     * `transferJobs/OPI`.
+     * Non-PosixFilesystem example:
      * `"transferJobs/^(?!OPI)[A-Za-z0-9-._~]*[A-Za-z0-9]$"`
-     * Invalid job names will fail with an
+     * PosixFilesystem example:
+     * `"transferJobs/OPI^[A-Za-z0-9-._~]*[A-Za-z0-9]$"`
+     * Applications must not rely on the enforcement of naming requirements
+     * involving OPI.
+     * Invalid job names fail with an
      * [INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT] error.
      *
      * Generated from protobuf field <code>string name = 1;</code>
@@ -192,16 +218,22 @@ class TransferJob extends \Google\Protobuf\Internal\Message
     /**
      * A unique name (within the transfer project) assigned when the job is
      * created.  If this field is empty in a CreateTransferJobRequest, Storage
-     * Transfer Service will assign a unique name. Otherwise, the specified name
+     * Transfer Service assigns a unique name. Otherwise, the specified name
      * is used as the unique name for this job.
      * If the specified name is in use by a job, the creation request fails with
      * an [ALREADY_EXISTS][google.rpc.Code.ALREADY_EXISTS] error.
      * This name must start with `"transferJobs/"` prefix and end with a letter or
-     * a number, and should be no more than 128 characters. This name must not
-     * start with 'transferJobs/OPI'. 'transferJobs/OPI' is a reserved prefix.
-     * Example:
+     * a number, and should be no more than 128 characters. For transfers
+     * involving PosixFilesystem, this name must start with `transferJobs/OPI`
+     * specifically. For all other transfer types, this name must not start with
+     * `transferJobs/OPI`.
+     * Non-PosixFilesystem example:
      * `"transferJobs/^(?!OPI)[A-Za-z0-9-._~]*[A-Za-z0-9]$"`
-     * Invalid job names will fail with an
+     * PosixFilesystem example:
+     * `"transferJobs/OPI^[A-Za-z0-9-._~]*[A-Za-z0-9]$"`
+     * Applications must not rely on the enforcement of naming requirements
+     * involving OPI.
+     * Invalid job names fail with an
      * [INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT] error.
      *
      * Generated from protobuf field <code>string name = 1;</code>
@@ -245,7 +277,7 @@ class TransferJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The ID of the Google Cloud Platform Project that owns the job.
+     * The ID of the Google Cloud project that owns the job.
      *
      * Generated from protobuf field <code>string project_id = 3;</code>
      * @return string
@@ -256,7 +288,7 @@ class TransferJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The ID of the Google Cloud Platform Project that owns the job.
+     * The ID of the Google Cloud project that owns the job.
      *
      * Generated from protobuf field <code>string project_id = 3;</code>
      * @param string $var
@@ -307,7 +339,8 @@ class TransferJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Notification configuration.
+     * Notification configuration. This is not supported for transfers involving
+     * PosixFilesystem.
      *
      * Generated from protobuf field <code>.google.storagetransfer.v1.NotificationConfig notification_config = 11;</code>
      * @return \Google\Cloud\StorageTransfer\V1\NotificationConfig|null
@@ -328,7 +361,8 @@ class TransferJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Notification configuration.
+     * Notification configuration. This is not supported for transfers involving
+     * PosixFilesystem.
      *
      * Generated from protobuf field <code>.google.storagetransfer.v1.NotificationConfig notification_config = 11;</code>
      * @param \Google\Cloud\StorageTransfer\V1\NotificationConfig $var
@@ -343,9 +377,45 @@ class TransferJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Logging configuration.
+     *
+     * Generated from protobuf field <code>.google.storagetransfer.v1.LoggingConfig logging_config = 14;</code>
+     * @return \Google\Cloud\StorageTransfer\V1\LoggingConfig|null
+     */
+    public function getLoggingConfig()
+    {
+        return $this->logging_config;
+    }
+
+    public function hasLoggingConfig()
+    {
+        return isset($this->logging_config);
+    }
+
+    public function clearLoggingConfig()
+    {
+        unset($this->logging_config);
+    }
+
+    /**
+     * Logging configuration.
+     *
+     * Generated from protobuf field <code>.google.storagetransfer.v1.LoggingConfig logging_config = 14;</code>
+     * @param \Google\Cloud\StorageTransfer\V1\LoggingConfig $var
+     * @return $this
+     */
+    public function setLoggingConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\StorageTransfer\V1\LoggingConfig::class);
+        $this->logging_config = $var;
+
+        return $this;
+    }
+
+    /**
      * Specifies schedule for the transfer job.
-     * This is an optional field. When the field is not set, the job will never
-     * execute a transfer, unless you invoke RunTransferJob or update the job to
+     * This is an optional field. When the field is not set, the job never
+     * executes a transfer, unless you invoke RunTransferJob or update the job to
      * have a non-empty schedule.
      *
      * Generated from protobuf field <code>.google.storagetransfer.v1.Schedule schedule = 5;</code>
@@ -368,8 +438,8 @@ class TransferJob extends \Google\Protobuf\Internal\Message
 
     /**
      * Specifies schedule for the transfer job.
-     * This is an optional field. When the field is not set, the job will never
-     * execute a transfer, unless you invoke RunTransferJob or update the job to
+     * This is an optional field. When the field is not set, the job never
+     * executes a transfer, unless you invoke RunTransferJob or update the job to
      * have a non-empty schedule.
      *
      * Generated from protobuf field <code>.google.storagetransfer.v1.Schedule schedule = 5;</code>
@@ -389,10 +459,9 @@ class TransferJob extends \Google\Protobuf\Internal\Message
      * `CreateTransferJobRequests`.
      * **Note:** The effect of the new job status takes place during a subsequent
      * job run. For example, if you change the job status from
-     * [ENABLED][google.storagetransfer.v1.TransferJob.Status.ENABLED] to
-     * [DISABLED][google.storagetransfer.v1.TransferJob.Status.DISABLED], and an
-     * operation spawned by the transfer is running, the status change would not
-     * affect the current operation.
+     * [ENABLED][google.storagetransfer.v1.TransferJob.Status.ENABLED] to [DISABLED][google.storagetransfer.v1.TransferJob.Status.DISABLED], and an operation
+     * spawned by the transfer is running, the status change would not affect the
+     * current operation.
      *
      * Generated from protobuf field <code>.google.storagetransfer.v1.TransferJob.Status status = 6;</code>
      * @return int
@@ -407,10 +476,9 @@ class TransferJob extends \Google\Protobuf\Internal\Message
      * `CreateTransferJobRequests`.
      * **Note:** The effect of the new job status takes place during a subsequent
      * job run. For example, if you change the job status from
-     * [ENABLED][google.storagetransfer.v1.TransferJob.Status.ENABLED] to
-     * [DISABLED][google.storagetransfer.v1.TransferJob.Status.DISABLED], and an
-     * operation spawned by the transfer is running, the status change would not
-     * affect the current operation.
+     * [ENABLED][google.storagetransfer.v1.TransferJob.Status.ENABLED] to [DISABLED][google.storagetransfer.v1.TransferJob.Status.DISABLED], and an operation
+     * spawned by the transfer is running, the status change would not affect the
+     * current operation.
      *
      * Generated from protobuf field <code>.google.storagetransfer.v1.TransferJob.Status status = 6;</code>
      * @param int $var

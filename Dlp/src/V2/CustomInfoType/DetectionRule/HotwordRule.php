@@ -23,14 +23,18 @@ class HotwordRule extends \Google\Protobuf\Internal\Message
      */
     private $hotword_regex = null;
     /**
-     * Proximity of the finding within which the entire hotword must reside.
-     * The total length of the window cannot exceed 1000 characters. Note that
-     * the finding itself will be included in the window, so that hotwords may
-     * be used to match substrings of the finding itself. For example, the
-     * certainty of a phone number regex "\(\d{3}\) \d{3}-\d{4}" could be
-     * adjusted upwards if the area code is known to be the local area code of
-     * a company office using the hotword regex "\(xxx\)", where "xxx"
-     * is the area code in question.
+     * Range of characters within which the entire hotword must reside.
+     * The total length of the window cannot exceed 1000 characters.
+     * The finding itself will be included in the window, so that hotwords can
+     * be used to match substrings of the finding itself. Suppose you
+     * want Cloud DLP to promote the likelihood of the phone number
+     * regex "\(\d{3}\) \d{3}-\d{4}" if the area code is known to be the
+     * area code of a company's office. In this case, use the hotword regex
+     * "\(xxx\)", where "xxx" is the area code in question.
+     * For tabular data, if you want to modify the likelihood of an entire
+     * column of findngs, see
+     * [Hotword example: Set the match likelihood of a table column]
+     * (https://cloud.google.com/dlp/docs/creating-custom-infotypes-likelihood#match-column-values).
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.CustomInfoType.DetectionRule.Proximity proximity = 2;</code>
      */
@@ -51,14 +55,18 @@ class HotwordRule extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dlp\V2\CustomInfoType\Regex $hotword_regex
      *           Regular expression pattern defining what qualifies as a hotword.
      *     @type \Google\Cloud\Dlp\V2\CustomInfoType\DetectionRule\Proximity $proximity
-     *           Proximity of the finding within which the entire hotword must reside.
-     *           The total length of the window cannot exceed 1000 characters. Note that
-     *           the finding itself will be included in the window, so that hotwords may
-     *           be used to match substrings of the finding itself. For example, the
-     *           certainty of a phone number regex "\(\d{3}\) \d{3}-\d{4}" could be
-     *           adjusted upwards if the area code is known to be the local area code of
-     *           a company office using the hotword regex "\(xxx\)", where "xxx"
-     *           is the area code in question.
+     *           Range of characters within which the entire hotword must reside.
+     *           The total length of the window cannot exceed 1000 characters.
+     *           The finding itself will be included in the window, so that hotwords can
+     *           be used to match substrings of the finding itself. Suppose you
+     *           want Cloud DLP to promote the likelihood of the phone number
+     *           regex "\(\d{3}\) \d{3}-\d{4}" if the area code is known to be the
+     *           area code of a company's office. In this case, use the hotword regex
+     *           "\(xxx\)", where "xxx" is the area code in question.
+     *           For tabular data, if you want to modify the likelihood of an entire
+     *           column of findngs, see
+     *           [Hotword example: Set the match likelihood of a table column]
+     *           (https://cloud.google.com/dlp/docs/creating-custom-infotypes-likelihood#match-column-values).
      *     @type \Google\Cloud\Dlp\V2\CustomInfoType\DetectionRule\LikelihoodAdjustment $likelihood_adjustment
      *           Likelihood adjustment to apply to all matching findings.
      * }
@@ -105,14 +113,18 @@ class HotwordRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Proximity of the finding within which the entire hotword must reside.
-     * The total length of the window cannot exceed 1000 characters. Note that
-     * the finding itself will be included in the window, so that hotwords may
-     * be used to match substrings of the finding itself. For example, the
-     * certainty of a phone number regex "\(\d{3}\) \d{3}-\d{4}" could be
-     * adjusted upwards if the area code is known to be the local area code of
-     * a company office using the hotword regex "\(xxx\)", where "xxx"
-     * is the area code in question.
+     * Range of characters within which the entire hotword must reside.
+     * The total length of the window cannot exceed 1000 characters.
+     * The finding itself will be included in the window, so that hotwords can
+     * be used to match substrings of the finding itself. Suppose you
+     * want Cloud DLP to promote the likelihood of the phone number
+     * regex "\(\d{3}\) \d{3}-\d{4}" if the area code is known to be the
+     * area code of a company's office. In this case, use the hotword regex
+     * "\(xxx\)", where "xxx" is the area code in question.
+     * For tabular data, if you want to modify the likelihood of an entire
+     * column of findngs, see
+     * [Hotword example: Set the match likelihood of a table column]
+     * (https://cloud.google.com/dlp/docs/creating-custom-infotypes-likelihood#match-column-values).
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.CustomInfoType.DetectionRule.Proximity proximity = 2;</code>
      * @return \Google\Cloud\Dlp\V2\CustomInfoType\DetectionRule\Proximity|null
@@ -133,14 +145,18 @@ class HotwordRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Proximity of the finding within which the entire hotword must reside.
-     * The total length of the window cannot exceed 1000 characters. Note that
-     * the finding itself will be included in the window, so that hotwords may
-     * be used to match substrings of the finding itself. For example, the
-     * certainty of a phone number regex "\(\d{3}\) \d{3}-\d{4}" could be
-     * adjusted upwards if the area code is known to be the local area code of
-     * a company office using the hotword regex "\(xxx\)", where "xxx"
-     * is the area code in question.
+     * Range of characters within which the entire hotword must reside.
+     * The total length of the window cannot exceed 1000 characters.
+     * The finding itself will be included in the window, so that hotwords can
+     * be used to match substrings of the finding itself. Suppose you
+     * want Cloud DLP to promote the likelihood of the phone number
+     * regex "\(\d{3}\) \d{3}-\d{4}" if the area code is known to be the
+     * area code of a company's office. In this case, use the hotword regex
+     * "\(xxx\)", where "xxx" is the area code in question.
+     * For tabular data, if you want to modify the likelihood of an entire
+     * column of findngs, see
+     * [Hotword example: Set the match likelihood of a table column]
+     * (https://cloud.google.com/dlp/docs/creating-custom-infotypes-likelihood#match-column-values).
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.CustomInfoType.DetectionRule.Proximity proximity = 2;</code>
      * @param \Google\Cloud\Dlp\V2\CustomInfoType\DetectionRule\Proximity $var

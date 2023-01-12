@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * ## IAM policy analysis query message.
+ * IAM policy analysis query message.
  *
  * Generated from protobuf message <code>google.cloud.asset.v1.IamPolicyAnalysisQuery</code>
  */

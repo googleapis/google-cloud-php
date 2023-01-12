@@ -36,6 +36,9 @@ class ExclusionRule extends \Google\Protobuf\Internal\Message
      *           Regular expression which defines the rule.
      *     @type \Google\Cloud\Dlp\V2\ExcludeInfoTypes $exclude_info_types
      *           Set of infoTypes for which findings would affect this rule.
+     *     @type \Google\Cloud\Dlp\V2\ExcludeByHotword $exclude_by_hotword
+     *           Drop if the hotword rule is contained in the proximate context. For
+     *           tabular data, the context includes the column name.
      *     @type int $matching_type
      *           How the rule is applied, see MatchingType documentation for details.
      * }
@@ -134,6 +137,39 @@ class ExclusionRule extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\ExcludeInfoTypes::class);
         $this->writeOneof(3, $var);
+
+        return $this;
+    }
+
+    /**
+     * Drop if the hotword rule is contained in the proximate context. For
+     * tabular data, the context includes the column name.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.ExcludeByHotword exclude_by_hotword = 5;</code>
+     * @return \Google\Cloud\Dlp\V2\ExcludeByHotword|null
+     */
+    public function getExcludeByHotword()
+    {
+        return $this->readOneof(5);
+    }
+
+    public function hasExcludeByHotword()
+    {
+        return $this->hasOneof(5);
+    }
+
+    /**
+     * Drop if the hotword rule is contained in the proximate context. For
+     * tabular data, the context includes the column name.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.ExcludeByHotword exclude_by_hotword = 5;</code>
+     * @param \Google\Cloud\Dlp\V2\ExcludeByHotword $var
+     * @return $this
+     */
+    public function setExcludeByHotword($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\ExcludeByHotword::class);
+        $this->writeOneof(5, $var);
 
         return $this;
     }

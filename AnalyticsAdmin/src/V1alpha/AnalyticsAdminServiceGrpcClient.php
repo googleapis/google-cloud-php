@@ -392,210 +392,6 @@ class AnalyticsAdminServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Lookup for a single WebDataStream
-     * @param \Google\Analytics\Admin\V1alpha\GetWebDataStreamRequest $argument input argument
-     * @param array $metadata metadata
-     * @param array $options call options
-     * @return \Grpc\UnaryCall
-     */
-    public function GetWebDataStream(\Google\Analytics\Admin\V1alpha\GetWebDataStreamRequest $argument,
-      $metadata = [], $options = []) {
-        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/GetWebDataStream',
-        $argument,
-        ['\Google\Analytics\Admin\V1alpha\WebDataStream', 'decode'],
-        $metadata, $options);
-    }
-
-    /**
-     * Deletes a web stream on a property.
-     * @param \Google\Analytics\Admin\V1alpha\DeleteWebDataStreamRequest $argument input argument
-     * @param array $metadata metadata
-     * @param array $options call options
-     * @return \Grpc\UnaryCall
-     */
-    public function DeleteWebDataStream(\Google\Analytics\Admin\V1alpha\DeleteWebDataStreamRequest $argument,
-      $metadata = [], $options = []) {
-        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteWebDataStream',
-        $argument,
-        ['\Google\Protobuf\GPBEmpty', 'decode'],
-        $metadata, $options);
-    }
-
-    /**
-     * Updates a web stream on a property.
-     * @param \Google\Analytics\Admin\V1alpha\UpdateWebDataStreamRequest $argument input argument
-     * @param array $metadata metadata
-     * @param array $options call options
-     * @return \Grpc\UnaryCall
-     */
-    public function UpdateWebDataStream(\Google\Analytics\Admin\V1alpha\UpdateWebDataStreamRequest $argument,
-      $metadata = [], $options = []) {
-        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateWebDataStream',
-        $argument,
-        ['\Google\Analytics\Admin\V1alpha\WebDataStream', 'decode'],
-        $metadata, $options);
-    }
-
-    /**
-     * Creates a web stream with the specified location and attributes.
-     * @param \Google\Analytics\Admin\V1alpha\CreateWebDataStreamRequest $argument input argument
-     * @param array $metadata metadata
-     * @param array $options call options
-     * @return \Grpc\UnaryCall
-     */
-    public function CreateWebDataStream(\Google\Analytics\Admin\V1alpha\CreateWebDataStreamRequest $argument,
-      $metadata = [], $options = []) {
-        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateWebDataStream',
-        $argument,
-        ['\Google\Analytics\Admin\V1alpha\WebDataStream', 'decode'],
-        $metadata, $options);
-    }
-
-    /**
-     * Returns child web data streams under the specified parent property.
-     *
-     * Web data streams will be excluded if the caller does not have access.
-     * Returns an empty list if no relevant web data streams are found.
-     * @param \Google\Analytics\Admin\V1alpha\ListWebDataStreamsRequest $argument input argument
-     * @param array $metadata metadata
-     * @param array $options call options
-     * @return \Grpc\UnaryCall
-     */
-    public function ListWebDataStreams(\Google\Analytics\Admin\V1alpha\ListWebDataStreamsRequest $argument,
-      $metadata = [], $options = []) {
-        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/ListWebDataStreams',
-        $argument,
-        ['\Google\Analytics\Admin\V1alpha\ListWebDataStreamsResponse', 'decode'],
-        $metadata, $options);
-    }
-
-    /**
-     * Lookup for a single IosAppDataStream
-     * @param \Google\Analytics\Admin\V1alpha\GetIosAppDataStreamRequest $argument input argument
-     * @param array $metadata metadata
-     * @param array $options call options
-     * @return \Grpc\UnaryCall
-     */
-    public function GetIosAppDataStream(\Google\Analytics\Admin\V1alpha\GetIosAppDataStreamRequest $argument,
-      $metadata = [], $options = []) {
-        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/GetIosAppDataStream',
-        $argument,
-        ['\Google\Analytics\Admin\V1alpha\IosAppDataStream', 'decode'],
-        $metadata, $options);
-    }
-
-    /**
-     * Deletes an iOS app stream on a property.
-     * @param \Google\Analytics\Admin\V1alpha\DeleteIosAppDataStreamRequest $argument input argument
-     * @param array $metadata metadata
-     * @param array $options call options
-     * @return \Grpc\UnaryCall
-     */
-    public function DeleteIosAppDataStream(\Google\Analytics\Admin\V1alpha\DeleteIosAppDataStreamRequest $argument,
-      $metadata = [], $options = []) {
-        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteIosAppDataStream',
-        $argument,
-        ['\Google\Protobuf\GPBEmpty', 'decode'],
-        $metadata, $options);
-    }
-
-    /**
-     * Updates an iOS app stream on a property.
-     * @param \Google\Analytics\Admin\V1alpha\UpdateIosAppDataStreamRequest $argument input argument
-     * @param array $metadata metadata
-     * @param array $options call options
-     * @return \Grpc\UnaryCall
-     */
-    public function UpdateIosAppDataStream(\Google\Analytics\Admin\V1alpha\UpdateIosAppDataStreamRequest $argument,
-      $metadata = [], $options = []) {
-        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateIosAppDataStream',
-        $argument,
-        ['\Google\Analytics\Admin\V1alpha\IosAppDataStream', 'decode'],
-        $metadata, $options);
-    }
-
-    /**
-     * Returns child iOS app data streams under the specified parent property.
-     *
-     * iOS app data streams will be excluded if the caller does not have access.
-     * Returns an empty list if no relevant iOS app data streams are found.
-     * @param \Google\Analytics\Admin\V1alpha\ListIosAppDataStreamsRequest $argument input argument
-     * @param array $metadata metadata
-     * @param array $options call options
-     * @return \Grpc\UnaryCall
-     */
-    public function ListIosAppDataStreams(\Google\Analytics\Admin\V1alpha\ListIosAppDataStreamsRequest $argument,
-      $metadata = [], $options = []) {
-        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/ListIosAppDataStreams',
-        $argument,
-        ['\Google\Analytics\Admin\V1alpha\ListIosAppDataStreamsResponse', 'decode'],
-        $metadata, $options);
-    }
-
-    /**
-     * Lookup for a single AndroidAppDataStream
-     * @param \Google\Analytics\Admin\V1alpha\GetAndroidAppDataStreamRequest $argument input argument
-     * @param array $metadata metadata
-     * @param array $options call options
-     * @return \Grpc\UnaryCall
-     */
-    public function GetAndroidAppDataStream(\Google\Analytics\Admin\V1alpha\GetAndroidAppDataStreamRequest $argument,
-      $metadata = [], $options = []) {
-        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/GetAndroidAppDataStream',
-        $argument,
-        ['\Google\Analytics\Admin\V1alpha\AndroidAppDataStream', 'decode'],
-        $metadata, $options);
-    }
-
-    /**
-     * Deletes an android app stream on a property.
-     * @param \Google\Analytics\Admin\V1alpha\DeleteAndroidAppDataStreamRequest $argument input argument
-     * @param array $metadata metadata
-     * @param array $options call options
-     * @return \Grpc\UnaryCall
-     */
-    public function DeleteAndroidAppDataStream(\Google\Analytics\Admin\V1alpha\DeleteAndroidAppDataStreamRequest $argument,
-      $metadata = [], $options = []) {
-        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteAndroidAppDataStream',
-        $argument,
-        ['\Google\Protobuf\GPBEmpty', 'decode'],
-        $metadata, $options);
-    }
-
-    /**
-     * Updates an android app stream on a property.
-     * @param \Google\Analytics\Admin\V1alpha\UpdateAndroidAppDataStreamRequest $argument input argument
-     * @param array $metadata metadata
-     * @param array $options call options
-     * @return \Grpc\UnaryCall
-     */
-    public function UpdateAndroidAppDataStream(\Google\Analytics\Admin\V1alpha\UpdateAndroidAppDataStreamRequest $argument,
-      $metadata = [], $options = []) {
-        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateAndroidAppDataStream',
-        $argument,
-        ['\Google\Analytics\Admin\V1alpha\AndroidAppDataStream', 'decode'],
-        $metadata, $options);
-    }
-
-    /**
-     * Returns child android app streams under the specified parent property.
-     *
-     * Android app streams will be excluded if the caller does not have access.
-     * Returns an empty list if no relevant android app streams are found.
-     * @param \Google\Analytics\Admin\V1alpha\ListAndroidAppDataStreamsRequest $argument input argument
-     * @param array $metadata metadata
-     * @param array $options call options
-     * @return \Grpc\UnaryCall
-     */
-    public function ListAndroidAppDataStreams(\Google\Analytics\Admin\V1alpha\ListAndroidAppDataStreamsRequest $argument,
-      $metadata = [], $options = []) {
-        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/ListAndroidAppDataStreams',
-        $argument,
-        ['\Google\Analytics\Admin\V1alpha\ListAndroidAppDataStreamsResponse', 'decode'],
-        $metadata, $options);
-    }
-
-    /**
      * Creates a FirebaseLink.
      *
      * Properties can have at most one FirebaseLink.
@@ -1365,6 +1161,140 @@ class AnalyticsAdminServiceGrpcClient extends \Grpc\BaseStub {
         return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/GetDataStream',
         $argument,
         ['\Google\Analytics\Admin\V1alpha\DataStream', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Lookup for a single Audience.
+     * Audiences created before 2020 may not be supported.
+     * @param \Google\Analytics\Admin\V1alpha\GetAudienceRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function GetAudience(\Google\Analytics\Admin\V1alpha\GetAudienceRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/GetAudience',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\Audience', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Lists Audiences on a property.
+     * Audiences created before 2020 may not be supported.
+     * @param \Google\Analytics\Admin\V1alpha\ListAudiencesRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function ListAudiences(\Google\Analytics\Admin\V1alpha\ListAudiencesRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/ListAudiences',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\ListAudiencesResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Creates an Audience.
+     * @param \Google\Analytics\Admin\V1alpha\CreateAudienceRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function CreateAudience(\Google\Analytics\Admin\V1alpha\CreateAudienceRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateAudience',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\Audience', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Updates an Audience on a property.
+     * @param \Google\Analytics\Admin\V1alpha\UpdateAudienceRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function UpdateAudience(\Google\Analytics\Admin\V1alpha\UpdateAudienceRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateAudience',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\Audience', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Archives an Audience on a property.
+     * @param \Google\Analytics\Admin\V1alpha\ArchiveAudienceRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function ArchiveAudience(\Google\Analytics\Admin\V1alpha\ArchiveAudienceRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/ArchiveAudience',
+        $argument,
+        ['\Google\Protobuf\GPBEmpty', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Lookup for a AttributionSettings singleton.
+     * @param \Google\Analytics\Admin\V1alpha\GetAttributionSettingsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function GetAttributionSettings(\Google\Analytics\Admin\V1alpha\GetAttributionSettingsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/GetAttributionSettings',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\AttributionSettings', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Updates attribution settings on a property.
+     * @param \Google\Analytics\Admin\V1alpha\UpdateAttributionSettingsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function UpdateAttributionSettings(\Google\Analytics\Admin\V1alpha\UpdateAttributionSettingsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateAttributionSettings',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\AttributionSettings', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Returns a customized report of data access records. The report provides
+     * records of each time a user reads Google Analytics reporting data. Access
+     * records are retained for up to 2 years.
+     *
+     * Data Access Reports can be requested for a property. The property must be
+     * in Google Analytics 360. This method is only available to Administrators.
+     *
+     * These data access records include GA4 UI Reporting, GA4 UI Explorations,
+     * GA4 Data API, and other products like Firebase & Admob that can retrieve
+     * data from Google Analytics through a linkage. These records don't include
+     * property configuration changes like adding a stream or changing a
+     * property's time zone. For configuration change history, see
+     * [searchChangeHistoryEvents](https://developers.google.com/analytics/devguides/config/admin/v1/rest/v1alpha/accounts/searchChangeHistoryEvents).
+     * @param \Google\Analytics\Admin\V1alpha\RunAccessReportRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function RunAccessReport(\Google\Analytics\Admin\V1alpha\RunAccessReportRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/RunAccessReport',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\RunAccessReportResponse', 'decode'],
         $metadata, $options);
     }
 

@@ -78,6 +78,28 @@ return [
                     ],
                 ],
             ],
+            'Patch' => [
+                'method' => 'patch',
+                'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/targetHttpsProxies/{target_https_proxy}',
+                'body' => 'target_https_proxy_resource',
+                'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'region' => [
+                        'getters' => [
+                            'getRegion',
+                        ],
+                    ],
+                    'target_https_proxy' => [
+                        'getters' => [
+                            'getTargetHttpsProxy',
+                        ],
+                    ],
+                ],
+            ],
             'SetSslCertificates' => [
                 'method' => 'post',
                 'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/targetHttpsProxies/{target_https_proxy}/setSslCertificates',

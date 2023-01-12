@@ -34,7 +34,7 @@ class ListAnnotatedDatasetsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\DataLabeling\V1beta1\AnnotatedDataset[]|\Google\Protobuf\Internal\RepeatedField $annotated_datasets
+     *     @type array<\Google\Cloud\DataLabeling\V1beta1\AnnotatedDataset>|\Google\Protobuf\Internal\RepeatedField $annotated_datasets
      *           The list of annotated datasets to return.
      *     @type string $next_page_token
      *           A token to retrieve next page of results.
@@ -60,7 +60,7 @@ class ListAnnotatedDatasetsResponse extends \Google\Protobuf\Internal\Message
      * The list of annotated datasets to return.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datalabeling.v1beta1.AnnotatedDataset annotated_datasets = 1;</code>
-     * @param \Google\Cloud\DataLabeling\V1beta1\AnnotatedDataset[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\DataLabeling\V1beta1\AnnotatedDataset>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAnnotatedDatasets($var)

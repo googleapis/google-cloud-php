@@ -111,6 +111,28 @@ return [
                     ],
                 ],
             ],
+            'GetGoogleChannelConfig' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/googleChannelConfig}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetProvider' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/providers/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetTrigger' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/triggers/*}',
@@ -144,6 +166,17 @@ return [
                     ],
                 ],
             ],
+            'ListProviders' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/providers',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListTriggers' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/triggers',
@@ -169,6 +202,19 @@ return [
                 ],
                 'queryParams' => [
                     'validate_only',
+                ],
+            ],
+            'UpdateGoogleChannelConfig' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{google_channel_config.name=projects/*/locations/*/googleChannelConfig}',
+                'body' => 'google_channel_config',
+                'placeholders' => [
+                    'google_channel_config.name' => [
+                        'getters' => [
+                            'getGoogleChannelConfig',
+                            'getName',
+                        ],
+                    ],
                 ],
             ],
             'UpdateTrigger' => [

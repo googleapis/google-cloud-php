@@ -20,6 +20,7 @@ namespace Google\Cloud\Core\Tests\Unit\Lock;
 use Google\Cloud\Core\Testing\Lock\MockValues;
 use Google\Cloud\Core\Lock\SemaphoreLock;
 use Google\Cloud\Core\SysvTrait;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group core
@@ -27,6 +28,8 @@ use Google\Cloud\Core\SysvTrait;
  */
 trait CommonLockTrait
 {
+    use ExpectException;
+
     private $lock;
 
     private function setLock($lock)
@@ -57,11 +60,10 @@ trait CommonLockTrait
         $this->assertTrue($return);
     }
 
-    /**
-     * @expectedException \Exception
-     */
     public function testSynchronizeLockThrowsException()
     {
+        $this->expectException('\Exception');
+
         $this->lock->synchronize(function () {
             throw new \Exception();
         });

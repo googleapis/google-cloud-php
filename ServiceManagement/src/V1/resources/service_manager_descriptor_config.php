@@ -33,26 +33,6 @@ return [
                     'totalPollTimeoutMillis' => '300000',
                 ],
             ],
-            'DisableService' => [
-                'longRunning' => [
-                    'operationReturnType' => '\Google\Cloud\ServiceManagement\V1\DisableServiceResponse',
-                    'metadataReturnType' => '\Google\Cloud\ServiceManagement\V1\OperationMetadata',
-                    'initialPollDelayMillis' => '500',
-                    'pollDelayMultiplier' => '1.5',
-                    'maxPollDelayMillis' => '5000',
-                    'totalPollTimeoutMillis' => '300000',
-                ],
-            ],
-            'EnableService' => [
-                'longRunning' => [
-                    'operationReturnType' => '\Google\Cloud\ServiceManagement\V1\EnableServiceResponse',
-                    'metadataReturnType' => '\Google\Cloud\ServiceManagement\V1\OperationMetadata',
-                    'initialPollDelayMillis' => '500',
-                    'pollDelayMultiplier' => '1.5',
-                    'maxPollDelayMillis' => '5000',
-                    'totalPollTimeoutMillis' => '300000',
-                ],
-            ],
             'SubmitConfigSource' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\ServiceManagement\V1\SubmitConfigSourceResponse',

@@ -1,0 +1,15 @@
+{
+    "title": "BigQueryMigration",
+    "defaultService": "bigquerymigration\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "bigquerymigration\/readme"
+        },
+        {
+            "title": "MigrationServiceClient (v2)",
+            "type": "bigquerymigration\/v2\/migrationserviceclient"
+        }
+    ],
+    "pattern": "bigquerymigration\/\\w{1,}"
+}

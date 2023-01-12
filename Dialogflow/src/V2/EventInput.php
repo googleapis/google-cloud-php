@@ -49,6 +49,10 @@ class EventInput extends \Google\Protobuf\Internal\Message
      * Support](https://cloud.google.com/dialogflow/docs/reference/language)
      * for a list of the currently supported language codes. Note that queries in
      * the same session do not necessarily need to specify the same language.
+     * This field is ignored when used in the context of a
+     * [WebhookResponse.followup_event_input][google.cloud.dialogflow.v2.WebhookResponse.followup_event_input] field,
+     * because the language was already defined in the originating detect
+     * intent request.
      *
      * Generated from protobuf field <code>string language_code = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -82,6 +86,10 @@ class EventInput extends \Google\Protobuf\Internal\Message
      *           Support](https://cloud.google.com/dialogflow/docs/reference/language)
      *           for a list of the currently supported language codes. Note that queries in
      *           the same session do not necessarily need to specify the same language.
+     *           This field is ignored when used in the context of a
+     *           [WebhookResponse.followup_event_input][google.cloud.dialogflow.v2.WebhookResponse.followup_event_input] field,
+     *           because the language was already defined in the originating detect
+     *           intent request.
      * }
      */
     public function __construct($data = NULL) {
@@ -182,6 +190,10 @@ class EventInput extends \Google\Protobuf\Internal\Message
      * Support](https://cloud.google.com/dialogflow/docs/reference/language)
      * for a list of the currently supported language codes. Note that queries in
      * the same session do not necessarily need to specify the same language.
+     * This field is ignored when used in the context of a
+     * [WebhookResponse.followup_event_input][google.cloud.dialogflow.v2.WebhookResponse.followup_event_input] field,
+     * because the language was already defined in the originating detect
+     * intent request.
      *
      * Generated from protobuf field <code>string language_code = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -196,6 +208,10 @@ class EventInput extends \Google\Protobuf\Internal\Message
      * Support](https://cloud.google.com/dialogflow/docs/reference/language)
      * for a list of the currently supported language codes. Note that queries in
      * the same session do not necessarily need to specify the same language.
+     * This field is ignored when used in the context of a
+     * [WebhookResponse.followup_event_input][google.cloud.dialogflow.v2.WebhookResponse.followup_event_input] field,
+     * because the language was already defined in the originating detect
+     * intent request.
      *
      * Generated from protobuf field <code>string language_code = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

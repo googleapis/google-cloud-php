@@ -16,6 +16,12 @@ use Google\Protobuf\Internal\GPBUtil;
 class Commitment extends \Google\Protobuf\Internal\Message
 {
     /**
+     * Specifies whether to enable automatic renewal for the commitment. The default value is false if not specified. The field can be updated until the day of the commitment expiration at 12:00am PST. If the field is set to true, the commitment will be automatically renewed for either one or three years according to the terms of the existing commitment.
+     *
+     * Generated from protobuf field <code>optional bool auto_renew = 495520765;</code>
+     */
+    private $auto_renew = null;
+    /**
      * The category of the commitment. Category MACHINE specifies commitments composed of machine resources such as VCPU or MEMORY, listed in resources. Category LICENSE specifies commitments composed of software licenses, listed in licenseResources. Note that only MACHINE commitments should have a Type specified.
      * Check the Category enum for the list of possible values.
      *
@@ -59,6 +65,12 @@ class Commitment extends \Google\Protobuf\Internal\Message
      */
     private $license_resource = null;
     /**
+     * List of source commitments to be merged into a new commitment.
+     *
+     * Generated from protobuf field <code>repeated string merge_source_commitments = 188093761;</code>
+     */
+    private $merge_source_commitments;
+    /**
      * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
@@ -96,6 +108,12 @@ class Commitment extends \Google\Protobuf\Internal\Message
      */
     private $self_link = null;
     /**
+     * Source commitment to be splitted into a new commitment.
+     *
+     * Generated from protobuf field <code>optional string split_source_commitment = 402611156;</code>
+     */
+    private $split_source_commitment = null;
+    /**
      * [Output Only] Commitment start time in RFC3339 text format.
      *
      * Generated from protobuf field <code>optional string start_timestamp = 83645817;</code>
@@ -128,6 +146,8 @@ class Commitment extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type bool $auto_renew
+     *           Specifies whether to enable automatic renewal for the commitment. The default value is false if not specified. The field can be updated until the day of the commitment expiration at 12:00am PST. If the field is set to true, the commitment will be automatically renewed for either one or three years according to the terms of the existing commitment.
      *     @type string $category
      *           The category of the commitment. Category MACHINE specifies commitments composed of machine resources such as VCPU or MEMORY, listed in resources. Category LICENSE specifies commitments composed of software licenses, listed in licenseResources. Note that only MACHINE commitments should have a Type specified.
      *           Check the Category enum for the list of possible values.
@@ -143,6 +163,8 @@ class Commitment extends \Google\Protobuf\Internal\Message
      *           [Output Only] Type of the resource. Always compute#commitment for commitments.
      *     @type \Google\Cloud\Compute\V1\LicenseResourceCommitment $license_resource
      *           The license specification required as part of a license commitment.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $merge_source_commitments
+     *           List of source commitments to be merged into a new commitment.
      *     @type string $name
      *           Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *     @type string $plan
@@ -150,12 +172,14 @@ class Commitment extends \Google\Protobuf\Internal\Message
      *           Check the Plan enum for the list of possible values.
      *     @type string $region
      *           [Output Only] URL of the region where this commitment may be used.
-     *     @type \Google\Cloud\Compute\V1\Reservation[]|\Google\Protobuf\Internal\RepeatedField $reservations
+     *     @type array<\Google\Cloud\Compute\V1\Reservation>|\Google\Protobuf\Internal\RepeatedField $reservations
      *           List of reservations in this commitment.
-     *     @type \Google\Cloud\Compute\V1\ResourceCommitment[]|\Google\Protobuf\Internal\RepeatedField $resources
+     *     @type array<\Google\Cloud\Compute\V1\ResourceCommitment>|\Google\Protobuf\Internal\RepeatedField $resources
      *           A list of commitment amounts for particular resources. Note that VCPU and MEMORY resource commitments must occur together.
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
+     *     @type string $split_source_commitment
+     *           Source commitment to be splitted into a new commitment.
      *     @type string $start_timestamp
      *           [Output Only] Commitment start time in RFC3339 text format.
      *     @type string $status
@@ -171,6 +195,42 @@ class Commitment extends \Google\Protobuf\Internal\Message
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Compute\V1\Compute::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * Specifies whether to enable automatic renewal for the commitment. The default value is false if not specified. The field can be updated until the day of the commitment expiration at 12:00am PST. If the field is set to true, the commitment will be automatically renewed for either one or three years according to the terms of the existing commitment.
+     *
+     * Generated from protobuf field <code>optional bool auto_renew = 495520765;</code>
+     * @return bool
+     */
+    public function getAutoRenew()
+    {
+        return isset($this->auto_renew) ? $this->auto_renew : false;
+    }
+
+    public function hasAutoRenew()
+    {
+        return isset($this->auto_renew);
+    }
+
+    public function clearAutoRenew()
+    {
+        unset($this->auto_renew);
+    }
+
+    /**
+     * Specifies whether to enable automatic renewal for the commitment. The default value is false if not specified. The field can be updated until the day of the commitment expiration at 12:00am PST. If the field is set to true, the commitment will be automatically renewed for either one or three years according to the terms of the existing commitment.
+     *
+     * Generated from protobuf field <code>optional bool auto_renew = 495520765;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setAutoRenew($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->auto_renew = $var;
+
+        return $this;
     }
 
     /**
@@ -428,6 +488,32 @@ class Commitment extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * List of source commitments to be merged into a new commitment.
+     *
+     * Generated from protobuf field <code>repeated string merge_source_commitments = 188093761;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getMergeSourceCommitments()
+    {
+        return $this->merge_source_commitments;
+    }
+
+    /**
+     * List of source commitments to be merged into a new commitment.
+     *
+     * Generated from protobuf field <code>repeated string merge_source_commitments = 188093761;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setMergeSourceCommitments($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->merge_source_commitments = $arr;
+
+        return $this;
+    }
+
+    /**
      * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
@@ -552,7 +638,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
      * List of reservations in this commitment.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Reservation reservations = 399717927;</code>
-     * @param \Google\Cloud\Compute\V1\Reservation[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\Reservation>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setReservations($var)
@@ -578,7 +664,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
      * A list of commitment amounts for particular resources. Note that VCPU and MEMORY resource commitments must occur together.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.ResourceCommitment resources = 164412965;</code>
-     * @param \Google\Cloud\Compute\V1\ResourceCommitment[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\ResourceCommitment>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setResources($var)
@@ -621,6 +707,42 @@ class Commitment extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->self_link = $var;
+
+        return $this;
+    }
+
+    /**
+     * Source commitment to be splitted into a new commitment.
+     *
+     * Generated from protobuf field <code>optional string split_source_commitment = 402611156;</code>
+     * @return string
+     */
+    public function getSplitSourceCommitment()
+    {
+        return isset($this->split_source_commitment) ? $this->split_source_commitment : '';
+    }
+
+    public function hasSplitSourceCommitment()
+    {
+        return isset($this->split_source_commitment);
+    }
+
+    public function clearSplitSourceCommitment()
+    {
+        unset($this->split_source_commitment);
+    }
+
+    /**
+     * Source commitment to be splitted into a new commitment.
+     *
+     * Generated from protobuf field <code>optional string split_source_commitment = 402611156;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSplitSourceCommitment($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->split_source_commitment = $var;
 
         return $this;
     }

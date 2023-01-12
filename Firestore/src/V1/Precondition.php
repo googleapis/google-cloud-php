@@ -28,7 +28,7 @@ class Precondition extends \Google\Protobuf\Internal\Message
      *           When set to `false`, the target document must not exist.
      *     @type \Google\Protobuf\Timestamp $update_time
      *           When set, the target document must exist and have been last updated at
-     *           that time.
+     *           that time. Timestamp must be microsecond aligned.
      * }
      */
     public function __construct($data = NULL) {
@@ -71,7 +71,7 @@ class Precondition extends \Google\Protobuf\Internal\Message
 
     /**
      * When set, the target document must exist and have been last updated at
-     * that time.
+     * that time. Timestamp must be microsecond aligned.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 2;</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -88,7 +88,7 @@ class Precondition extends \Google\Protobuf\Internal\Message
 
     /**
      * When set, the target document must exist and have been last updated at
-     * that time.
+     * that time. Timestamp must be microsecond aligned.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 2;</code>
      * @param \Google\Protobuf\Timestamp $var

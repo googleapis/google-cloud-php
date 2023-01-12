@@ -40,7 +40,7 @@ class ListReferenceImagesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Vision\V1\ReferenceImage[]|\Google\Protobuf\Internal\RepeatedField $reference_images
+     *     @type array<\Google\Cloud\Vision\V1\ReferenceImage>|\Google\Protobuf\Internal\RepeatedField $reference_images
      *           The list of reference images.
      *     @type int $page_size
      *           The maximum number of items to return. Default 10, maximum 100.
@@ -68,7 +68,7 @@ class ListReferenceImagesResponse extends \Google\Protobuf\Internal\Message
      * The list of reference images.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vision.v1.ReferenceImage reference_images = 1;</code>
-     * @param \Google\Cloud\Vision\V1\ReferenceImage[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Vision\V1\ReferenceImage>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setReferenceImages($var)

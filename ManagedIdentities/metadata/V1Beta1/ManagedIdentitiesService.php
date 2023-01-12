@@ -15,16 +15,17 @@ class ManagedIdentitiesService
           return;
         }
         \GPBMetadata\Google\Api\Annotations::initOnce();
+        \GPBMetadata\Google\Api\Client::initOnce();
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
+        \GPBMetadata\Google\Api\Resource::initOnce();
         \GPBMetadata\Google\Cloud\Managedidentities\V1Beta1\Resource::initOnce();
         \GPBMetadata\Google\Longrunning\Operations::initOnce();
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
-        \GPBMetadata\Google\Api\Client::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Õ 
-Ggoogle/cloud/managedidentities/v1beta1/managed_identities_service.proto&google.cloud.managedidentities.v1beta1google/api/field_behavior.proto5google/cloud/managedidentities/v1beta1/resource.proto#google/longrunning/operations.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.protogoogle/api/client.proto"Ü
+„&
+Ggoogle/cloud/managedidentities/v1beta1/managed_identities_service.proto&google.cloud.managedidentities.v1beta1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto5google/cloud/managedidentities/v1beta1/resource.proto#google/longrunning/operations.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"Ü
 
 OpMetadata4
 create_time (2.google.protobuf.TimestampBàA1
@@ -32,17 +33,18 @@ OpMetadata4
 target (	BàA
 verb (	BàA#
 requested_cancellation (BàA
-api_version (	BàA"…
-CreateMicrosoftAdDomainRequest
-parent (	
-domain_name (	>
-domain (2..google.cloud.managedidentities.v1beta1.Domain")
-ResetAdminPasswordRequest
-name (	".
+api_version (	BàA"À
+CreateMicrosoftAdDomainRequest?
+parent (	B/àAúA)\'managedidentities.googleapis.com/Domain
+domain_name (	BàAC
+domain (2..google.cloud.managedidentities.v1beta1.DomainBàA"Z
+ResetAdminPasswordRequest=
+name (	B/àAúA)
+\'managedidentities.googleapis.com/Domain".
 ResetAdminPasswordResponse
-password (	"m
-ListDomainsRequest
-parent (	
+password (	"ž
+ListDomainsRequest?
+parent (	B/àAúA)\'managedidentities.googleapis.com/Domain
 	page_size (
 
 page_token (	
@@ -51,50 +53,59 @@ page_token (	
 ListDomainsResponse?
 domains (2..google.cloud.managedidentities.v1beta1.Domain
 next_page_token (	
-unreachable (	" 
-GetDomainRequest
-name (	"†
-UpdateDomainRequest/
-update_mask (2.google.protobuf.FieldMask>
-domain (2..google.cloud.managedidentities.v1beta1.Domain"#
-DeleteDomainRequest
-name (	"`
-AttachTrustRequest
-name (	<
-trust (2-.google.cloud.managedidentities.v1beta1.Trust"d
-ReconfigureTrustRequest
-name (	
-target_domain_name (	
-target_dns_ip_addresses (	"`
-DetachTrustRequest
-name (	<
-trust (2-.google.cloud.managedidentities.v1beta1.Trust"b
-ValidateTrustRequest
-name (	<
-trust (2-.google.cloud.managedidentities.v1beta1.Trust2¼
-ManagedIdentitiesServiceÞ
-CreateMicrosoftAdDomainF.google.cloud.managedidentities.v1beta1.CreateMicrosoftAdDomainRequest.google.longrunning.Operation"\\‚Óä“?"5/v1beta1/{parent=projects/*/locations/global}/domains:domainÊA
+unreachable (	"Q
+GetDomainRequest=
+name (	B/àAúA)
+\'managedidentities.googleapis.com/Domain"
+UpdateDomainRequest4
+update_mask (2.google.protobuf.FieldMaskBàAC
+domain (2..google.cloud.managedidentities.v1beta1.DomainBàA"T
+DeleteDomainRequest=
+name (	B/àAúA)
+\'managedidentities.googleapis.com/Domain"–
+AttachTrustRequest=
+name (	B/àAúA)
+\'managedidentities.googleapis.com/DomainA
+trust (2-.google.cloud.managedidentities.v1beta1.TrustBàA"Ÿ
+ReconfigureTrustRequest=
+name (	B/àAúA)
+\'managedidentities.googleapis.com/Domain
+target_domain_name (	BàA$
+target_dns_ip_addresses (	BàA"–
+DetachTrustRequest=
+name (	B/àAúA)
+\'managedidentities.googleapis.com/DomainA
+trust (2-.google.cloud.managedidentities.v1beta1.TrustBàA"˜
+ValidateTrustRequest=
+name (	B/àAúA)
+\'managedidentities.googleapis.com/DomainA
+trust (2-.google.cloud.managedidentities.v1beta1.TrustBàA2å
+ManagedIdentitiesServiceú
+CreateMicrosoftAdDomainF.google.cloud.managedidentities.v1beta1.CreateMicrosoftAdDomainRequest.google.longrunning.Operation"x‚Óä“?"5/v1beta1/{parent=projects/*/locations/global}/domains:domainÚAparent,domain_name,domainÊA
 Domain
-OpMetadatað
-ResetAdminPasswordA.google.cloud.managedidentities.v1beta1.ResetAdminPasswordRequestB.google.cloud.managedidentities.v1beta1.ResetAdminPasswordResponse"S‚Óä“M"H/v1beta1/{name=projects/*/locations/global/domains/*}:resetAdminPassword:*Å
-ListDomains:.google.cloud.managedidentities.v1beta1.ListDomainsRequest;.google.cloud.managedidentities.v1beta1.ListDomainsResponse"=‚Óä“75/v1beta1/{parent=projects/*/locations/global}/domains´
-	GetDomain8.google.cloud.managedidentities.v1beta1.GetDomainRequest..google.cloud.managedidentities.v1beta1.Domain"=‚Óä“75/v1beta1/{name=projects/*/locations/global/domains/*}Ï
-UpdateDomain;.google.cloud.managedidentities.v1beta1.UpdateDomainRequest.google.longrunning.Operation"c‚Óä“F2</v1beta1/{domain.name=projects/*/locations/global/domains/*}:domainÊA
+OpMetadata÷
+ResetAdminPasswordA.google.cloud.managedidentities.v1beta1.ResetAdminPasswordRequestB.google.cloud.managedidentities.v1beta1.ResetAdminPasswordResponse"Z‚Óä“M"H/v1beta1/{name=projects/*/locations/global/domains/*}:resetAdminPassword:*ÚAnameÎ
+ListDomains:.google.cloud.managedidentities.v1beta1.ListDomainsRequest;.google.cloud.managedidentities.v1beta1.ListDomainsResponse"F‚Óä“75/v1beta1/{parent=projects/*/locations/global}/domainsÚAparent»
+	GetDomain8.google.cloud.managedidentities.v1beta1.GetDomainRequest..google.cloud.managedidentities.v1beta1.Domain"D‚Óä“75/v1beta1/{name=projects/*/locations/global/domains/*}ÚAnameä
+UpdateDomain;.google.cloud.managedidentities.v1beta1.UpdateDomainRequest.google.longrunning.Operation"x‚Óä“F2</v1beta1/{domain.name=projects/*/locations/global/domains/*}:domainÚAdomain,update_maskÊA
 Domain
-OpMetadataÏ
-DeleteDomain;.google.cloud.managedidentities.v1beta1.DeleteDomainRequest.google.longrunning.Operation"c‚Óä“7*5/v1beta1/{name=projects/*/locations/global/domains/*}ÊA#
+OpMetadataÖ
+DeleteDomain;.google.cloud.managedidentities.v1beta1.DeleteDomainRequest.google.longrunning.Operation"j‚Óä“7*5/v1beta1/{name=projects/*/locations/global/domains/*}ÚAnameÊA#
 google.protobuf.Empty
-OpMetadataÍ
-AttachTrust:.google.cloud.managedidentities.v1beta1.AttachTrustRequest.google.longrunning.Operation"c‚Óä“F"A/v1beta1/{name=projects/*/locations/global/domains/*}:attachTrust:*ÊA
+OpMetadataÚ
+AttachTrust:.google.cloud.managedidentities.v1beta1.AttachTrustRequest.google.longrunning.Operation"p‚Óä“F"A/v1beta1/{name=projects/*/locations/global/domains/*}:attachTrust:*ÚA
+name,trustÊA
 Domain
-OpMetadataÜ
-ReconfigureTrust?.google.cloud.managedidentities.v1beta1.ReconfigureTrustRequest.google.longrunning.Operation"h‚Óä“K"F/v1beta1/{name=projects/*/locations/global/domains/*}:reconfigureTrust:*ÊA
+OpMetadata
+ReconfigureTrust?.google.cloud.managedidentities.v1beta1.ReconfigureTrustRequest.google.longrunning.Operation"š‚Óä“K"F/v1beta1/{name=projects/*/locations/global/domains/*}:reconfigureTrust:*ÚA/name,target_domain_name,target_dns_ip_addressesÊA
 Domain
-OpMetadataÍ
-DetachTrust:.google.cloud.managedidentities.v1beta1.DetachTrustRequest.google.longrunning.Operation"c‚Óä“F"A/v1beta1/{name=projects/*/locations/global/domains/*}:detachTrust:*ÊA
+OpMetadataÚ
+DetachTrust:.google.cloud.managedidentities.v1beta1.DetachTrustRequest.google.longrunning.Operation"p‚Óä“F"A/v1beta1/{name=projects/*/locations/global/domains/*}:detachTrust:*ÚA
+name,trustÊA
 Domain
-OpMetadataÓ
-ValidateTrust<.google.cloud.managedidentities.v1beta1.ValidateTrustRequest.google.longrunning.Operation"e‚Óä“H"C/v1beta1/{name=projects/*/locations/global/domains/*}:validateTrust:*ÊA
+OpMetadataà
+ValidateTrust<.google.cloud.managedidentities.v1beta1.ValidateTrustRequest.google.longrunning.Operation"r‚Óä“H"C/v1beta1/{name=projects/*/locations/global/domains/*}:validateTrust:*ÚA
+name,trustÊA
 Domain
 OpMetadataTÊA managedidentities.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB«
 *com.google.cloud.managedidentities.v1beta1BManagedIdentitiesServiceProtoPZWgoogle.golang.org/genproto/googleapis/cloud/managedidentities/v1beta1;managedidentities¢GCMIª&Google.Cloud.ManagedIdentities.V1Beta1Ê&Google\\Cloud\\ManagedIdentities\\V1beta1ê)Google::Cloud::ManagedIdentities::V1beta1bproto3'

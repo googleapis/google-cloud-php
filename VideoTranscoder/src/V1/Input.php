@@ -25,7 +25,9 @@ class Input extends \Google\Protobuf\Internal\Message
     /**
      * URI of the media. Input files must be at least 5 seconds in duration and
      * stored in Cloud Storage (for example, `gs://bucket/inputs/file.mp4`).
-     * If empty, the value will be populated from `Job.input_uri`.
+     * If empty, the value is populated from `Job.input_uri`. See
+     * [Supported input and output
+     * formats](https://cloud.google.com/transcoder/docs/concepts/supported-input-and-output-formats).
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      */
@@ -49,7 +51,9 @@ class Input extends \Google\Protobuf\Internal\Message
      *     @type string $uri
      *           URI of the media. Input files must be at least 5 seconds in duration and
      *           stored in Cloud Storage (for example, `gs://bucket/inputs/file.mp4`).
-     *           If empty, the value will be populated from `Job.input_uri`.
+     *           If empty, the value is populated from `Job.input_uri`. See
+     *           [Supported input and output
+     *           formats](https://cloud.google.com/transcoder/docs/concepts/supported-input-and-output-formats).
      *     @type \Google\Cloud\Video\Transcoder\V1\PreprocessingConfig $preprocessing_config
      *           Preprocessing configurations.
      * }
@@ -90,7 +94,9 @@ class Input extends \Google\Protobuf\Internal\Message
     /**
      * URI of the media. Input files must be at least 5 seconds in duration and
      * stored in Cloud Storage (for example, `gs://bucket/inputs/file.mp4`).
-     * If empty, the value will be populated from `Job.input_uri`.
+     * If empty, the value is populated from `Job.input_uri`. See
+     * [Supported input and output
+     * formats](https://cloud.google.com/transcoder/docs/concepts/supported-input-and-output-formats).
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      * @return string
@@ -103,7 +109,9 @@ class Input extends \Google\Protobuf\Internal\Message
     /**
      * URI of the media. Input files must be at least 5 seconds in duration and
      * stored in Cloud Storage (for example, `gs://bucket/inputs/file.mp4`).
-     * If empty, the value will be populated from `Job.input_uri`.
+     * If empty, the value is populated from `Job.input_uri`. See
+     * [Supported input and output
+     * formats](https://cloud.google.com/transcoder/docs/concepts/supported-input-and-output-formats).
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      * @param string $var

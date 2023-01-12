@@ -33,6 +33,12 @@ class FirewallPolicyRuleMatcher extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string src_ip_ranges = 432128083;</code>
      */
     private $src_ip_ranges;
+    /**
+     * List of secure tag values, which should be matched at the source of the traffic. For INGRESS rule, if all the srcSecureTag are INEFFECTIVE, and there is no srcIpRange, this rule will be ignored. Maximum number of source tag values allowed is 256.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.FirewallPolicyRuleSecureTag src_secure_tags = 508791302;</code>
+     */
+    private $src_secure_tags;
 
     /**
      * Constructor.
@@ -40,12 +46,14 @@ class FirewallPolicyRuleMatcher extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $dest_ip_ranges
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $dest_ip_ranges
      *           CIDR IP address range. Maximum number of destination CIDR IP ranges allowed is 5000.
-     *     @type \Google\Cloud\Compute\V1\FirewallPolicyRuleMatcherLayer4Config[]|\Google\Protobuf\Internal\RepeatedField $layer4_configs
+     *     @type array<\Google\Cloud\Compute\V1\FirewallPolicyRuleMatcherLayer4Config>|\Google\Protobuf\Internal\RepeatedField $layer4_configs
      *           Pairs of IP protocols and ports that the rule should match.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $src_ip_ranges
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $src_ip_ranges
      *           CIDR IP address range. Maximum number of source CIDR IP ranges allowed is 5000.
+     *     @type array<\Google\Cloud\Compute\V1\FirewallPolicyRuleSecureTag>|\Google\Protobuf\Internal\RepeatedField $src_secure_tags
+     *           List of secure tag values, which should be matched at the source of the traffic. For INGRESS rule, if all the srcSecureTag are INEFFECTIVE, and there is no srcIpRange, this rule will be ignored. Maximum number of source tag values allowed is 256.
      * }
      */
     public function __construct($data = NULL) {
@@ -68,7 +76,7 @@ class FirewallPolicyRuleMatcher extends \Google\Protobuf\Internal\Message
      * CIDR IP address range. Maximum number of destination CIDR IP ranges allowed is 5000.
      *
      * Generated from protobuf field <code>repeated string dest_ip_ranges = 337357713;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDestIpRanges($var)
@@ -94,7 +102,7 @@ class FirewallPolicyRuleMatcher extends \Google\Protobuf\Internal\Message
      * Pairs of IP protocols and ports that the rule should match.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.FirewallPolicyRuleMatcherLayer4Config layer4_configs = 373534261;</code>
-     * @param \Google\Cloud\Compute\V1\FirewallPolicyRuleMatcherLayer4Config[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\FirewallPolicyRuleMatcherLayer4Config>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setLayer4Configs($var)
@@ -120,13 +128,39 @@ class FirewallPolicyRuleMatcher extends \Google\Protobuf\Internal\Message
      * CIDR IP address range. Maximum number of source CIDR IP ranges allowed is 5000.
      *
      * Generated from protobuf field <code>repeated string src_ip_ranges = 432128083;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSrcIpRanges($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->src_ip_ranges = $arr;
+
+        return $this;
+    }
+
+    /**
+     * List of secure tag values, which should be matched at the source of the traffic. For INGRESS rule, if all the srcSecureTag are INEFFECTIVE, and there is no srcIpRange, this rule will be ignored. Maximum number of source tag values allowed is 256.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.FirewallPolicyRuleSecureTag src_secure_tags = 508791302;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getSrcSecureTags()
+    {
+        return $this->src_secure_tags;
+    }
+
+    /**
+     * List of secure tag values, which should be matched at the source of the traffic. For INGRESS rule, if all the srcSecureTag are INEFFECTIVE, and there is no srcIpRange, this rule will be ignored. Maximum number of source tag values allowed is 256.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.FirewallPolicyRuleSecureTag src_secure_tags = 508791302;</code>
+     * @param array<\Google\Cloud\Compute\V1\FirewallPolicyRuleSecureTag>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setSrcSecureTags($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Compute\V1\FirewallPolicyRuleSecureTag::class);
+        $this->src_secure_tags = $arr;
 
         return $this;
     }

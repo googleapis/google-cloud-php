@@ -25,7 +25,6 @@ namespace Google\Cloud\Compute\Tests\Unit\V1;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Compute\V1\GetRegionOperationRequest;
 use Google\Cloud\Compute\V1\Operation;
@@ -44,25 +43,19 @@ use stdClass;
  */
 class RegionSslCertificatesClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return RegionSslCertificatesClient
-     */
+    /** @return RegionSslCertificatesClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -71,9 +64,7 @@ class RegionSslCertificatesClientTest extends GeneratedTest
         return new RegionSslCertificatesClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteTest()
     {
         $operationsTransport = $this->createTransport();
@@ -83,7 +74,7 @@ class RegionSslCertificatesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -102,7 +93,7 @@ class RegionSslCertificatesClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         $sslCertificate = 'sslCertificate-1027298332';
-        $response = $client->delete($project, $region, $sslCertificate);
+        $response = $gapicClient->delete($project, $region, $sslCertificate);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -137,9 +128,7 @@ class RegionSslCertificatesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -149,7 +138,7 @@ class RegionSslCertificatesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -174,7 +163,7 @@ class RegionSslCertificatesClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         $sslCertificate = 'sslCertificate-1027298332';
-        $response = $client->delete($project, $region, $sslCertificate);
+        $response = $gapicClient->delete($project, $region, $sslCertificate);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -194,13 +183,11 @@ class RegionSslCertificatesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -233,7 +220,7 @@ class RegionSslCertificatesClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         $sslCertificate = 'sslCertificate-1027298332';
-        $response = $client->get($project, $region, $sslCertificate);
+        $response = $gapicClient->get($project, $region, $sslCertificate);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -249,13 +236,11 @@ class RegionSslCertificatesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -274,8 +259,8 @@ class RegionSslCertificatesClientTest extends GeneratedTest
         $region = 'region-934795532';
         $sslCertificate = 'sslCertificate-1027298332';
         try {
-            $client->get($project, $region, $sslCertificate);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->get($project, $region, $sslCertificate);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -286,9 +271,7 @@ class RegionSslCertificatesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function insertTest()
     {
         $operationsTransport = $this->createTransport();
@@ -298,7 +281,7 @@ class RegionSslCertificatesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -317,7 +300,7 @@ class RegionSslCertificatesClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         $sslCertificateResource = new SslCertificate();
-        $response = $client->insert($project, $region, $sslCertificateResource);
+        $response = $gapicClient->insert($project, $region, $sslCertificateResource);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -352,9 +335,7 @@ class RegionSslCertificatesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function insertExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -364,7 +345,7 @@ class RegionSslCertificatesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -389,7 +370,7 @@ class RegionSslCertificatesClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         $sslCertificateResource = new SslCertificate();
-        $response = $client->insert($project, $region, $sslCertificateResource);
+        $response = $gapicClient->insert($project, $region, $sslCertificateResource);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -409,13 +390,11 @@ class RegionSslCertificatesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -438,7 +417,7 @@ class RegionSslCertificatesClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $response = $client->list($project, $region);
+        $response = $gapicClient->list($project, $region);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -455,13 +434,11 @@ class RegionSslCertificatesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -479,8 +456,8 @@ class RegionSslCertificatesClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         try {
-            $client->list($project, $region);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->list($project, $region);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

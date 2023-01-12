@@ -49,10 +49,14 @@ class Rollout extends \Google\Protobuf\Internal\Message
     /**
      * Labels are attributes that can be set and used by both the
      * user and by Google Cloud Deploy. Labels must meet the following
-     * constraints: Each resource is limited to 64 labels. Keys must conform to
-     * the regexp: `[a-zA-Z][a-zA-Z0-9_-]{0,62}`. Values must conform to the
-     * regexp: `[a-zA-Z0-9_-]{0,63}`. Both keys and values are additionally
-     * constrained to be <= 128 bytes in size.
+     * constraints:
+     * * Keys and values can contain only lowercase letters, numeric characters,
+     * underscores, and dashes.
+     * * All characters must use UTF-8 encoding, and international characters are
+     * allowed.
+     * * Keys must start with a lowercase letter or international character.
+     * * Each resource is limited to a maximum of 64 labels.
+     * Both keys and values are additionally constrained to be <= 128 bytes.
      *
      * Generated from protobuf field <code>map<string, string> labels = 5;</code>
      */
@@ -106,7 +110,7 @@ class Rollout extends \Google\Protobuf\Internal\Message
      */
     private $state = 0;
     /**
-     * Output only. Reason the build failed. Empty if the build succeeded.
+     * Output only. Additional information about the rollout failure, if available.
      *
      * Generated from protobuf field <code>string failure_reason = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -127,6 +131,25 @@ class Rollout extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string etag = 16;</code>
      */
     private $etag = '';
+    /**
+     * Output only. The reason this rollout failed. This will always be unspecified while the
+     * rollout is in progress.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.Rollout.FailureCause deploy_failure_cause = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $deploy_failure_cause = 0;
+    /**
+     * Output only. The phases that represent the workflows of this `Rollout`.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.Phase phases = 23 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $phases;
+    /**
+     * Output only. Metadata contains information about the rollout.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.Metadata metadata = 24 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $metadata = null;
 
     /**
      * Constructor.
@@ -151,10 +174,14 @@ class Rollout extends \Google\Protobuf\Internal\Message
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Labels are attributes that can be set and used by both the
      *           user and by Google Cloud Deploy. Labels must meet the following
-     *           constraints: Each resource is limited to 64 labels. Keys must conform to
-     *           the regexp: `[a-zA-Z][a-zA-Z0-9_-]{0,62}`. Values must conform to the
-     *           regexp: `[a-zA-Z0-9_-]{0,63}`. Both keys and values are additionally
-     *           constrained to be <= 128 bytes in size.
+     *           constraints:
+     *           * Keys and values can contain only lowercase letters, numeric characters,
+     *           underscores, and dashes.
+     *           * All characters must use UTF-8 encoding, and international characters are
+     *           allowed.
+     *           * Keys must start with a lowercase letter or international character.
+     *           * Each resource is limited to a maximum of 64 labels.
+     *           Both keys and values are additionally constrained to be <= 128 bytes.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. Time at which the `Rollout` was created.
      *     @type \Google\Protobuf\Timestamp $approve_time
@@ -172,7 +199,7 @@ class Rollout extends \Google\Protobuf\Internal\Message
      *     @type int $state
      *           Output only. Current state of the `Rollout`.
      *     @type string $failure_reason
-     *           Output only. Reason the build failed. Empty if the build succeeded.
+     *           Output only. Additional information about the rollout failure, if available.
      *     @type string $deploying_build
      *           Output only. The resource name of the Cloud Build `Build` object that is used to deploy
      *           the Rollout. Format is
@@ -181,6 +208,13 @@ class Rollout extends \Google\Protobuf\Internal\Message
      *           This checksum is computed by the server based on the value of other
      *           fields, and may be sent on update and delete requests to ensure the
      *           client has an up-to-date value before proceeding.
+     *     @type int $deploy_failure_cause
+     *           Output only. The reason this rollout failed. This will always be unspecified while the
+     *           rollout is in progress.
+     *     @type array<\Google\Cloud\Deploy\V1\Phase>|\Google\Protobuf\Internal\RepeatedField $phases
+     *           Output only. The phases that represent the workflows of this `Rollout`.
+     *     @type \Google\Cloud\Deploy\V1\Metadata $metadata
+     *           Output only. Metadata contains information about the rollout.
      * }
      */
     public function __construct($data = NULL) {
@@ -307,10 +341,14 @@ class Rollout extends \Google\Protobuf\Internal\Message
     /**
      * Labels are attributes that can be set and used by both the
      * user and by Google Cloud Deploy. Labels must meet the following
-     * constraints: Each resource is limited to 64 labels. Keys must conform to
-     * the regexp: `[a-zA-Z][a-zA-Z0-9_-]{0,62}`. Values must conform to the
-     * regexp: `[a-zA-Z0-9_-]{0,63}`. Both keys and values are additionally
-     * constrained to be <= 128 bytes in size.
+     * constraints:
+     * * Keys and values can contain only lowercase letters, numeric characters,
+     * underscores, and dashes.
+     * * All characters must use UTF-8 encoding, and international characters are
+     * allowed.
+     * * Keys must start with a lowercase letter or international character.
+     * * Each resource is limited to a maximum of 64 labels.
+     * Both keys and values are additionally constrained to be <= 128 bytes.
      *
      * Generated from protobuf field <code>map<string, string> labels = 5;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -323,10 +361,14 @@ class Rollout extends \Google\Protobuf\Internal\Message
     /**
      * Labels are attributes that can be set and used by both the
      * user and by Google Cloud Deploy. Labels must meet the following
-     * constraints: Each resource is limited to 64 labels. Keys must conform to
-     * the regexp: `[a-zA-Z][a-zA-Z0-9_-]{0,62}`. Values must conform to the
-     * regexp: `[a-zA-Z0-9_-]{0,63}`. Both keys and values are additionally
-     * constrained to be <= 128 bytes in size.
+     * constraints:
+     * * Keys and values can contain only lowercase letters, numeric characters,
+     * underscores, and dashes.
+     * * All characters must use UTF-8 encoding, and international characters are
+     * allowed.
+     * * Keys must start with a lowercase letter or international character.
+     * * Each resource is limited to a maximum of 64 labels.
+     * Both keys and values are additionally constrained to be <= 128 bytes.
      *
      * Generated from protobuf field <code>map<string, string> labels = 5;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
@@ -599,7 +641,7 @@ class Rollout extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Reason the build failed. Empty if the build succeeded.
+     * Output only. Additional information about the rollout failure, if available.
      *
      * Generated from protobuf field <code>string failure_reason = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -610,7 +652,7 @@ class Rollout extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Reason the build failed. Empty if the build succeeded.
+     * Output only. Additional information about the rollout failure, if available.
      *
      * Generated from protobuf field <code>string failure_reason = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -680,6 +722,96 @@ class Rollout extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->etag = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The reason this rollout failed. This will always be unspecified while the
+     * rollout is in progress.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.Rollout.FailureCause deploy_failure_cause = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getDeployFailureCause()
+    {
+        return $this->deploy_failure_cause;
+    }
+
+    /**
+     * Output only. The reason this rollout failed. This will always be unspecified while the
+     * rollout is in progress.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.Rollout.FailureCause deploy_failure_cause = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setDeployFailureCause($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Deploy\V1\Rollout\FailureCause::class);
+        $this->deploy_failure_cause = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The phases that represent the workflows of this `Rollout`.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.Phase phases = 23 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getPhases()
+    {
+        return $this->phases;
+    }
+
+    /**
+     * Output only. The phases that represent the workflows of this `Rollout`.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.Phase phases = 23 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array<\Google\Cloud\Deploy\V1\Phase>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setPhases($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Deploy\V1\Phase::class);
+        $this->phases = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Metadata contains information about the rollout.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.Metadata metadata = 24 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Deploy\V1\Metadata|null
+     */
+    public function getMetadata()
+    {
+        return $this->metadata;
+    }
+
+    public function hasMetadata()
+    {
+        return isset($this->metadata);
+    }
+
+    public function clearMetadata()
+    {
+        unset($this->metadata);
+    }
+
+    /**
+     * Output only. Metadata contains information about the rollout.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.Metadata metadata = 24 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Deploy\V1\Metadata $var
+     * @return $this
+     */
+    public function setMetadata($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Deploy\V1\Metadata::class);
+        $this->metadata = $var;
 
         return $this;
     }

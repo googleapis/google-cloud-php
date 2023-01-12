@@ -35,7 +35,7 @@ use Google\Cloud\PubSub\V1\Topic;
 use Google\Protobuf\Duration;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\Timestamp;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Prophecy\Argument;
 
 /**
@@ -57,7 +57,7 @@ class GrpcTest extends TestCase
     private $snapshotName = 'projects/foo/snapshots/bar';
     private $pageSize = ['pageSize' => 3];
 
-    public function setUp()
+    public function set_up()
     {
         $this->checkAndSkipGrpcTests();
 

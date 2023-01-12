@@ -23,7 +23,7 @@ class SuggestTrialsRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
-     * Required. The number of suggestions requested.
+     * Required. The number of suggestions requested. It must be positive.
      *
      * Generated from protobuf field <code>int32 suggestion_count = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -48,7 +48,7 @@ class SuggestTrialsRequest extends \Google\Protobuf\Internal\Message
      *           Required. The project and location that the Study belongs to.
      *           Format: `projects/{project}/locations/{location}/studies/{study}`
      *     @type int $suggestion_count
-     *           Required. The number of suggestions requested.
+     *           Required. The number of suggestions requested. It must be positive.
      *     @type string $client_id
      *           Required. The identifier of the client that is requesting the suggestion.
      *           If multiple SuggestTrialsRequests have the same `client_id`,
@@ -90,7 +90,7 @@ class SuggestTrialsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The number of suggestions requested.
+     * Required. The number of suggestions requested. It must be positive.
      *
      * Generated from protobuf field <code>int32 suggestion_count = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
@@ -101,7 +101,7 @@ class SuggestTrialsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The number of suggestions requested.
+     * Required. The number of suggestions requested. It must be positive.
      *
      * Generated from protobuf field <code>int32 suggestion_count = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var

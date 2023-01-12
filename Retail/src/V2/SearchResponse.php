@@ -39,7 +39,9 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
      */
     private $total_size = 0;
     /**
-     * If spell correction applies, the corrected query. Otherwise, empty.
+     * Contains the spell corrected query, if found. If the spell correction type
+     * is AUTOMATIC, then the search results are based on corrected_query.
+     * Otherwise the original query is used for search.
      *
      * Generated from protobuf field <code>string corrected_query = 4;</code>
      */
@@ -69,14 +71,29 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
     private $query_expansion_info = null;
     /**
      * The URI of a customer-defined redirect page. If redirect action is
-     * triggered, no search will be performed, and only
+     * triggered, no search is performed, and only
      * [redirect_uri][google.cloud.retail.v2.SearchResponse.redirect_uri] and
      * [attribution_token][google.cloud.retail.v2.SearchResponse.attribution_token]
-     * will be set in the response.
+     * are set in the response.
      *
      * Generated from protobuf field <code>string redirect_uri = 10;</code>
      */
     private $redirect_uri = '';
+    /**
+     * The fully qualified resource name of applied
+     * [controls](https://cloud.google.com/retail/docs/serving-control-rules).
+     *
+     * Generated from protobuf field <code>repeated string applied_controls = 12;</code>
+     */
+    private $applied_controls;
+    /**
+     * The invalid
+     * [SearchRequest.BoostSpec.condition_boost_specs][google.cloud.retail.v2.SearchRequest.BoostSpec.condition_boost_specs]
+     * that are not applied during serving.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.retail.v2.SearchRequest.BoostSpec.ConditionBoostSpec invalid_condition_boost_specs = 14;</code>
+     */
+    private $invalid_condition_boost_specs;
 
     /**
      * Constructor.
@@ -84,9 +101,9 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Retail\V2\SearchResponse\SearchResult[]|\Google\Protobuf\Internal\RepeatedField $results
+     *     @type array<\Google\Cloud\Retail\V2\SearchResponse\SearchResult>|\Google\Protobuf\Internal\RepeatedField $results
      *           A list of matched items. The order represents the ranking.
-     *     @type \Google\Cloud\Retail\V2\SearchResponse\Facet[]|\Google\Protobuf\Internal\RepeatedField $facets
+     *     @type array<\Google\Cloud\Retail\V2\SearchResponse\Facet>|\Google\Protobuf\Internal\RepeatedField $facets
      *           Results of facets requested by user.
      *     @type int $total_size
      *           The estimated total count of matched items irrespective of pagination. The
@@ -95,7 +112,9 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
      *           [total_size][google.cloud.retail.v2.SearchResponse.total_size] that
      *           matches.
      *     @type string $corrected_query
-     *           If spell correction applies, the corrected query. Otherwise, empty.
+     *           Contains the spell corrected query, if found. If the spell correction type
+     *           is AUTOMATIC, then the search results are based on corrected_query.
+     *           Otherwise the original query is used for search.
      *     @type string $attribution_token
      *           A unique search token. This should be included in the
      *           [UserEvent][google.cloud.retail.v2.UserEvent] logs resulting from this
@@ -109,10 +128,17 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
      *           Query expansion information for the returned results.
      *     @type string $redirect_uri
      *           The URI of a customer-defined redirect page. If redirect action is
-     *           triggered, no search will be performed, and only
+     *           triggered, no search is performed, and only
      *           [redirect_uri][google.cloud.retail.v2.SearchResponse.redirect_uri] and
      *           [attribution_token][google.cloud.retail.v2.SearchResponse.attribution_token]
-     *           will be set in the response.
+     *           are set in the response.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $applied_controls
+     *           The fully qualified resource name of applied
+     *           [controls](https://cloud.google.com/retail/docs/serving-control-rules).
+     *     @type array<\Google\Cloud\Retail\V2\SearchRequest\BoostSpec\ConditionBoostSpec>|\Google\Protobuf\Internal\RepeatedField $invalid_condition_boost_specs
+     *           The invalid
+     *           [SearchRequest.BoostSpec.condition_boost_specs][google.cloud.retail.v2.SearchRequest.BoostSpec.condition_boost_specs]
+     *           that are not applied during serving.
      * }
      */
     public function __construct($data = NULL) {
@@ -135,7 +161,7 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
      * A list of matched items. The order represents the ranking.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.SearchResponse.SearchResult results = 1;</code>
-     * @param \Google\Cloud\Retail\V2\SearchResponse\SearchResult[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Retail\V2\SearchResponse\SearchResult>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setResults($var)
@@ -161,7 +187,7 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
      * Results of facets requested by user.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.SearchResponse.Facet facets = 2;</code>
-     * @param \Google\Cloud\Retail\V2\SearchResponse\Facet[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Retail\V2\SearchResponse\Facet>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFacets($var)
@@ -207,7 +233,9 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If spell correction applies, the corrected query. Otherwise, empty.
+     * Contains the spell corrected query, if found. If the spell correction type
+     * is AUTOMATIC, then the search results are based on corrected_query.
+     * Otherwise the original query is used for search.
      *
      * Generated from protobuf field <code>string corrected_query = 4;</code>
      * @return string
@@ -218,7 +246,9 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If spell correction applies, the corrected query. Otherwise, empty.
+     * Contains the spell corrected query, if found. If the spell correction type
+     * is AUTOMATIC, then the search results are based on corrected_query.
+     * Otherwise the original query is used for search.
      *
      * Generated from protobuf field <code>string corrected_query = 4;</code>
      * @param string $var
@@ -332,10 +362,10 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * The URI of a customer-defined redirect page. If redirect action is
-     * triggered, no search will be performed, and only
+     * triggered, no search is performed, and only
      * [redirect_uri][google.cloud.retail.v2.SearchResponse.redirect_uri] and
      * [attribution_token][google.cloud.retail.v2.SearchResponse.attribution_token]
-     * will be set in the response.
+     * are set in the response.
      *
      * Generated from protobuf field <code>string redirect_uri = 10;</code>
      * @return string
@@ -347,10 +377,10 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * The URI of a customer-defined redirect page. If redirect action is
-     * triggered, no search will be performed, and only
+     * triggered, no search is performed, and only
      * [redirect_uri][google.cloud.retail.v2.SearchResponse.redirect_uri] and
      * [attribution_token][google.cloud.retail.v2.SearchResponse.attribution_token]
-     * will be set in the response.
+     * are set in the response.
      *
      * Generated from protobuf field <code>string redirect_uri = 10;</code>
      * @param string $var
@@ -360,6 +390,64 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->redirect_uri = $var;
+
+        return $this;
+    }
+
+    /**
+     * The fully qualified resource name of applied
+     * [controls](https://cloud.google.com/retail/docs/serving-control-rules).
+     *
+     * Generated from protobuf field <code>repeated string applied_controls = 12;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getAppliedControls()
+    {
+        return $this->applied_controls;
+    }
+
+    /**
+     * The fully qualified resource name of applied
+     * [controls](https://cloud.google.com/retail/docs/serving-control-rules).
+     *
+     * Generated from protobuf field <code>repeated string applied_controls = 12;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setAppliedControls($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->applied_controls = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The invalid
+     * [SearchRequest.BoostSpec.condition_boost_specs][google.cloud.retail.v2.SearchRequest.BoostSpec.condition_boost_specs]
+     * that are not applied during serving.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.retail.v2.SearchRequest.BoostSpec.ConditionBoostSpec invalid_condition_boost_specs = 14;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getInvalidConditionBoostSpecs()
+    {
+        return $this->invalid_condition_boost_specs;
+    }
+
+    /**
+     * The invalid
+     * [SearchRequest.BoostSpec.condition_boost_specs][google.cloud.retail.v2.SearchRequest.BoostSpec.condition_boost_specs]
+     * that are not applied during serving.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.retail.v2.SearchRequest.BoostSpec.ConditionBoostSpec invalid_condition_boost_specs = 14;</code>
+     * @param array<\Google\Cloud\Retail\V2\SearchRequest\BoostSpec\ConditionBoostSpec>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setInvalidConditionBoostSpecs($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Retail\V2\SearchRequest\BoostSpec\ConditionBoostSpec::class);
+        $this->invalid_condition_boost_specs = $arr;
 
         return $this;
     }

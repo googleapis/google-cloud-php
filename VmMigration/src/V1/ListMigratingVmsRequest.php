@@ -22,10 +22,10 @@ class ListMigratingVmsRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
-     * Optional. The maximum number of migrating VMs to return. The service may return
-     * fewer than this value. If unspecified, at most 500 migrating VMs will be
-     * returned. The maximum value is 1000; values above 1000 will be coerced to
-     * 1000.
+     * Optional. The maximum number of migrating VMs to return. The service may
+     * return fewer than this value. If unspecified, at most 500 migrating VMs
+     * will be returned. The maximum value is 1000; values above 1000 will be
+     * coerced to 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -51,6 +51,12 @@ class ListMigratingVmsRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $order_by = '';
+    /**
+     * Optional. The level of details of each migrating VM.
+     *
+     * Generated from protobuf field <code>.google.cloud.vmmigration.v1.MigratingVmView view = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $view = 0;
 
     /**
      * Constructor.
@@ -61,10 +67,10 @@ class ListMigratingVmsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. The parent, which owns this collection of MigratingVms.
      *     @type int $page_size
-     *           Optional. The maximum number of migrating VMs to return. The service may return
-     *           fewer than this value. If unspecified, at most 500 migrating VMs will be
-     *           returned. The maximum value is 1000; values above 1000 will be coerced to
-     *           1000.
+     *           Optional. The maximum number of migrating VMs to return. The service may
+     *           return fewer than this value. If unspecified, at most 500 migrating VMs
+     *           will be returned. The maximum value is 1000; values above 1000 will be
+     *           coerced to 1000.
      *     @type string $page_token
      *           Required. A page token, received from a previous `ListMigratingVms` call.
      *           Provide this to retrieve the subsequent page.
@@ -74,6 +80,8 @@ class ListMigratingVmsRequest extends \Google\Protobuf\Internal\Message
      *           Optional. The filter request.
      *     @type string $order_by
      *           Optional. the order by fields for the result.
+     *     @type int $view
+     *           Optional. The level of details of each migrating VM.
      * }
      */
     public function __construct($data = NULL) {
@@ -108,10 +116,10 @@ class ListMigratingVmsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The maximum number of migrating VMs to return. The service may return
-     * fewer than this value. If unspecified, at most 500 migrating VMs will be
-     * returned. The maximum value is 1000; values above 1000 will be coerced to
-     * 1000.
+     * Optional. The maximum number of migrating VMs to return. The service may
+     * return fewer than this value. If unspecified, at most 500 migrating VMs
+     * will be returned. The maximum value is 1000; values above 1000 will be
+     * coerced to 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -122,10 +130,10 @@ class ListMigratingVmsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The maximum number of migrating VMs to return. The service may return
-     * fewer than this value. If unspecified, at most 500 migrating VMs will be
-     * returned. The maximum value is 1000; values above 1000 will be coerced to
-     * 1000.
+     * Optional. The maximum number of migrating VMs to return. The service may
+     * return fewer than this value. If unspecified, at most 500 migrating VMs
+     * will be returned. The maximum value is 1000; values above 1000 will be
+     * coerced to 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
@@ -219,6 +227,32 @@ class ListMigratingVmsRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->order_by = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The level of details of each migrating VM.
+     *
+     * Generated from protobuf field <code>.google.cloud.vmmigration.v1.MigratingVmView view = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getView()
+    {
+        return $this->view;
+    }
+
+    /**
+     * Optional. The level of details of each migrating VM.
+     *
+     * Generated from protobuf field <code>.google.cloud.vmmigration.v1.MigratingVmView view = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setView($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\VMMigration\V1\MigratingVmView::class);
+        $this->view = $var;
 
         return $this;
     }

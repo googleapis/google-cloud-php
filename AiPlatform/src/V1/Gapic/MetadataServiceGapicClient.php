@@ -25,12 +25,13 @@
 namespace Google\Cloud\AIPlatform\V1\Gapic;
 
 use Google\ApiCore\ApiException;
+use Google\ApiCore\Call;
 use Google\ApiCore\CredentialsWrapper;
+
 use Google\ApiCore\GapicClientTrait;
-
 use Google\ApiCore\LongRunning\OperationsClient;
-use Google\ApiCore\OperationResponse;
 
+use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
@@ -80,9 +81,21 @@ use Google\Cloud\AIPlatform\V1\PurgeExecutionsRequest;
 use Google\Cloud\AIPlatform\V1\QueryArtifactLineageSubgraphRequest;
 use Google\Cloud\AIPlatform\V1\QueryContextLineageSubgraphRequest;
 use Google\Cloud\AIPlatform\V1\QueryExecutionInputsAndOutputsRequest;
+use Google\Cloud\AIPlatform\V1\RemoveContextChildrenRequest;
+use Google\Cloud\AIPlatform\V1\RemoveContextChildrenResponse;
 use Google\Cloud\AIPlatform\V1\UpdateArtifactRequest;
 use Google\Cloud\AIPlatform\V1\UpdateContextRequest;
 use Google\Cloud\AIPlatform\V1\UpdateExecutionRequest;
+use Google\Cloud\Iam\V1\GetIamPolicyRequest;
+use Google\Cloud\Iam\V1\GetPolicyOptions;
+use Google\Cloud\Iam\V1\Policy;
+use Google\Cloud\Iam\V1\SetIamPolicyRequest;
+use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
+use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
+use Google\Cloud\Location\GetLocationRequest;
+use Google\Cloud\Location\ListLocationsRequest;
+use Google\Cloud\Location\ListLocationsResponse;
+use Google\Cloud\Location\Location;
 use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
 
@@ -585,10 +598,9 @@ class MetadataServiceGapicClient
      *           Format:
      *           `projects/{project}/locations/{location}/metadataStores/{metadatastore}/executions/{execution}`
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\AIPlatform\V1\AddContextArtifactsAndExecutionsResponse
@@ -653,10 +665,9 @@ class MetadataServiceGapicClient
      *     @type string[] $childContexts
      *           The resource names of the child Contexts.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\AIPlatform\V1\AddContextChildrenResponse
@@ -714,10 +725,9 @@ class MetadataServiceGapicClient
      *     @type Event[] $events
      *           The Events to create and add.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\AIPlatform\V1\AddExecutionEventsResponse
@@ -780,10 +790,9 @@ class MetadataServiceGapicClient
      *           the request will fail with ALREADY_EXISTS, or PERMISSION_DENIED if the
      *           caller can't view the preexisting Artifact.)
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\AIPlatform\V1\Artifact
@@ -847,10 +856,9 @@ class MetadataServiceGapicClient
      *           the request will fail with ALREADY_EXISTS, or PERMISSION_DENIED if the
      *           caller can't view the preexisting Context.)
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\AIPlatform\V1\Context
@@ -915,10 +923,9 @@ class MetadataServiceGapicClient
      *           (Otherwise the request will fail with ALREADY_EXISTS, or PERMISSION_DENIED
      *           if the caller can't view the preexisting Execution.)
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\AIPlatform\V1\Execution
@@ -986,10 +993,9 @@ class MetadataServiceGapicClient
      *           (Otherwise the request will fail with ALREADY_EXISTS, or PERMISSION_DENIED
      *           if the caller can't view the preexisting MetadataSchema.)
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\AIPlatform\V1\MetadataSchema
@@ -1081,10 +1087,9 @@ class MetadataServiceGapicClient
      *           (Otherwise the request will fail with ALREADY_EXISTS, or PERMISSION_DENIED
      *           if the caller can't view the preexisting MetadataStore.)
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -1167,10 +1172,9 @@ class MetadataServiceGapicClient
      *           If this is provided, it must match the server's etag. Otherwise, the
      *           request will fail with a FAILED_PRECONDITION.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -1252,10 +1256,9 @@ class MetadataServiceGapicClient
      *           If this is provided, it must match the server's etag. Otherwise, the
      *           request will fail with a FAILED_PRECONDITION.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -1338,10 +1341,9 @@ class MetadataServiceGapicClient
      *           If this is provided, it must match the server's etag. Otherwise, the
      *           request will fail with a FAILED_PRECONDITION.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -1419,10 +1421,9 @@ class MetadataServiceGapicClient
      *     @type bool $force
      *           Deprecated: Field is no longer supported.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -1474,10 +1475,9 @@ class MetadataServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\AIPlatform\V1\Artifact
@@ -1525,10 +1525,9 @@ class MetadataServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\AIPlatform\V1\Context
@@ -1576,10 +1575,9 @@ class MetadataServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\AIPlatform\V1\Execution
@@ -1627,10 +1625,9 @@ class MetadataServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\AIPlatform\V1\MetadataSchema
@@ -1678,10 +1675,9 @@ class MetadataServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\AIPlatform\V1\MetadataStore
@@ -1774,14 +1770,21 @@ class MetadataServiceGapicClient
      *           `in_context("projects/<project_number>/locations/<location>/metadataStores/<metadatastore_name>/contexts/<context-id>")`
      *
      *           Each of the above supported filter types can be combined together using
-     *           logical operators (`AND` & `OR`).
+     *           logical operators (`AND` & `OR`). Maximum nested expression depth allowed
+     *           is 5.
      *
      *           For example: `display_name = "test" AND metadata.field1.bool_value = true`.
+     *     @type string $orderBy
+     *           How the list of messages is ordered. Specify the values to order by and an
+     *           ordering operation. The default sorting order is ascending. To specify
+     *           descending order for a field, users append a " desc" suffix; for example:
+     *           "foo desc, bar".
+     *           Subfields are specified with a `.` character, such as foo.bar.
+     *           see https://google.aip.dev/132#ordering for more details.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -1804,6 +1807,10 @@ class MetadataServiceGapicClient
 
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['orderBy'])) {
+            $request->setOrderBy($optionalArgs['orderBy']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
@@ -1890,14 +1897,21 @@ class MetadataServiceGapicClient
      *           ```
      *
      *           Each of the above supported filters can be combined together using
-     *           logical operators (`AND` & `OR`).
+     *           logical operators (`AND` & `OR`). Maximum nested expression depth allowed
+     *           is 5.
      *
      *           For example: `display_name = "test" AND metadata.field1.bool_value = true`.
+     *     @type string $orderBy
+     *           How the list of messages is ordered. Specify the values to order by and an
+     *           ordering operation. The default sorting order is ascending. To specify
+     *           descending order for a field, users append a " desc" suffix; for example:
+     *           "foo desc, bar".
+     *           Subfields are specified with a `.` character, such as foo.bar.
+     *           see https://google.aip.dev/132#ordering for more details.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -1920,6 +1934,10 @@ class MetadataServiceGapicClient
 
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['orderBy'])) {
+            $request->setOrderBy($optionalArgs['orderBy']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
@@ -2002,13 +2020,21 @@ class MetadataServiceGapicClient
      *           `in_context("projects/<project_number>/locations/<location>/metadataStores/<metadatastore_name>/contexts/<context-id>")`
      *
      *           Each of the above supported filters can be combined together using
-     *           logical operators (`AND` & `OR`).
+     *           logical operators (`AND` & `OR`). Maximum nested expression depth allowed
+     *           is 5.
+     *
      *           For example: `display_name = "test" AND metadata.field1.bool_value = true`.
+     *     @type string $orderBy
+     *           How the list of messages is ordered. Specify the values to order by and an
+     *           ordering operation. The default sorting order is ascending. To specify
+     *           descending order for a field, users append a " desc" suffix; for example:
+     *           "foo desc, bar".
+     *           Subfields are specified with a `.` character, such as foo.bar.
+     *           see https://google.aip.dev/132#ordering for more details.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -2031,6 +2057,10 @@ class MetadataServiceGapicClient
 
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['orderBy'])) {
+            $request->setOrderBy($optionalArgs['orderBy']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
@@ -2091,10 +2121,9 @@ class MetadataServiceGapicClient
      *     @type string $filter
      *           A query to filter available MetadataSchemas for matching results.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -2175,10 +2204,9 @@ class MetadataServiceGapicClient
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -2266,10 +2294,9 @@ class MetadataServiceGapicClient
      *           If `force` is set to false, the method will return a sample of
      *           Artifact names that would be deleted.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -2354,10 +2381,9 @@ class MetadataServiceGapicClient
      *           If `force` is set to false, the method will return a sample of
      *           Context names that would be deleted.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -2442,10 +2468,9 @@ class MetadataServiceGapicClient
      *           If `force` is set to false, the method will return a sample of
      *           Execution names that would be deleted.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -2528,14 +2553,14 @@ class MetadataServiceGapicClient
      *           For example: `metadata.field_1.number_value = 10.0`
      *
      *           Each of the above supported filter types can be combined together using
-     *           logical operators (`AND` & `OR`).
+     *           logical operators (`AND` & `OR`). Maximum nested expression depth allowed
+     *           is 5.
      *
      *           For example: `display_name = "test" AND metadata.field1.bool_value = true`.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\AIPlatform\V1\LineageSubgraph
@@ -2599,10 +2624,9 @@ class MetadataServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\AIPlatform\V1\LineageSubgraph
@@ -2655,10 +2679,9 @@ class MetadataServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\AIPlatform\V1\LineageSubgraph
@@ -2688,6 +2711,65 @@ class MetadataServiceGapicClient
     }
 
     /**
+     * Remove a set of children contexts from a parent Context. If any of the
+     * child Contexts were NOT added to the parent Context, they are
+     * simply skipped.
+     *
+     * Sample code:
+     * ```
+     * $metadataServiceClient = new MetadataServiceClient();
+     * try {
+     *     $formattedContext = $metadataServiceClient->contextName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]', '[CONTEXT]');
+     *     $response = $metadataServiceClient->removeContextChildren($formattedContext);
+     * } finally {
+     *     $metadataServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $context      Required. The resource name of the parent Context.
+     *
+     *                             Format:
+     *                             `projects/{project}/locations/{location}/metadataStores/{metadatastore}/contexts/{context}`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string[] $childContexts
+     *           The resource names of the child Contexts.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\AIPlatform\V1\RemoveContextChildrenResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function removeContextChildren($context, array $optionalArgs = [])
+    {
+        $request = new RemoveContextChildrenRequest();
+        $requestParamHeaders = [];
+        $request->setContext($context);
+        $requestParamHeaders['context'] = $context;
+        if (isset($optionalArgs['childContexts'])) {
+            $request->setChildContexts($optionalArgs['childContexts']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'RemoveContextChildren',
+            RemoveContextChildrenResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Updates a stored Artifact.
      *
      * Sample code:
@@ -2695,47 +2777,46 @@ class MetadataServiceGapicClient
      * $metadataServiceClient = new MetadataServiceClient();
      * try {
      *     $artifact = new Artifact();
-     *     $updateMask = new FieldMask();
-     *     $response = $metadataServiceClient->updateArtifact($artifact, $updateMask);
+     *     $response = $metadataServiceClient->updateArtifact($artifact);
      * } finally {
      *     $metadataServiceClient->close();
      * }
      * ```
      *
-     * @param Artifact  $artifact     Required. The Artifact containing updates.
-     *                                The Artifact's [Artifact.name][google.cloud.aiplatform.v1.Artifact.name] field is used to identify the Artifact to
-     *                                be updated.
-     *                                Format:
-     *                                `projects/{project}/locations/{location}/metadataStores/{metadatastore}/artifacts/{artifact}`
-     * @param FieldMask $updateMask   Required. A FieldMask indicating which fields should be updated.
-     *                                Functionality of this field is not yet supported.
-     * @param array     $optionalArgs {
+     * @param Artifact $artifact     Required. The Artifact containing updates.
+     *                               The Artifact's [Artifact.name][google.cloud.aiplatform.v1.Artifact.name] field is used to identify the Artifact to
+     *                               be updated.
+     *                               Format:
+     *                               `projects/{project}/locations/{location}/metadataStores/{metadatastore}/artifacts/{artifact}`
+     * @param array    $optionalArgs {
      *     Optional.
      *
+     *     @type FieldMask $updateMask
+     *           Optional. A FieldMask indicating which fields should be updated.
+     *           Functionality of this field is not yet supported.
      *     @type bool $allowMissing
      *           If set to true, and the [Artifact][google.cloud.aiplatform.v1.Artifact] is not found, a new [Artifact][google.cloud.aiplatform.v1.Artifact] is
      *           created.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\AIPlatform\V1\Artifact
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateArtifact(
-        $artifact,
-        $updateMask,
-        array $optionalArgs = []
-    ) {
+    public function updateArtifact($artifact, array $optionalArgs = [])
+    {
         $request = new UpdateArtifactRequest();
         $requestParamHeaders = [];
         $request->setArtifact($artifact);
-        $request->setUpdateMask($updateMask);
         $requestParamHeaders['artifact.name'] = $artifact->getName();
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
         if (isset($optionalArgs['allowMissing'])) {
             $request->setAllowMissing($optionalArgs['allowMissing']);
         }
@@ -2762,47 +2843,46 @@ class MetadataServiceGapicClient
      * $metadataServiceClient = new MetadataServiceClient();
      * try {
      *     $context = new Context();
-     *     $updateMask = new FieldMask();
-     *     $response = $metadataServiceClient->updateContext($context, $updateMask);
+     *     $response = $metadataServiceClient->updateContext($context);
      * } finally {
      *     $metadataServiceClient->close();
      * }
      * ```
      *
-     * @param Context   $context      Required. The Context containing updates.
-     *                                The Context's [Context.name][google.cloud.aiplatform.v1.Context.name] field is used to identify the Context to be
-     *                                updated.
-     *                                Format:
-     *                                `projects/{project}/locations/{location}/metadataStores/{metadatastore}/contexts/{context}`
-     * @param FieldMask $updateMask   Required. A FieldMask indicating which fields should be updated.
-     *                                Functionality of this field is not yet supported.
-     * @param array     $optionalArgs {
+     * @param Context $context      Required. The Context containing updates.
+     *                              The Context's [Context.name][google.cloud.aiplatform.v1.Context.name] field is used to identify the Context to be
+     *                              updated.
+     *                              Format:
+     *                              `projects/{project}/locations/{location}/metadataStores/{metadatastore}/contexts/{context}`
+     * @param array   $optionalArgs {
      *     Optional.
      *
+     *     @type FieldMask $updateMask
+     *           Optional. A FieldMask indicating which fields should be updated.
+     *           Functionality of this field is not yet supported.
      *     @type bool $allowMissing
      *           If set to true, and the [Context][google.cloud.aiplatform.v1.Context] is not found, a new [Context][google.cloud.aiplatform.v1.Context] is
      *           created.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\AIPlatform\V1\Context
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateContext(
-        $context,
-        $updateMask,
-        array $optionalArgs = []
-    ) {
+    public function updateContext($context, array $optionalArgs = [])
+    {
         $request = new UpdateContextRequest();
         $requestParamHeaders = [];
         $request->setContext($context);
-        $request->setUpdateMask($updateMask);
         $requestParamHeaders['context.name'] = $context->getName();
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
         if (isset($optionalArgs['allowMissing'])) {
             $request->setAllowMissing($optionalArgs['allowMissing']);
         }
@@ -2829,8 +2909,7 @@ class MetadataServiceGapicClient
      * $metadataServiceClient = new MetadataServiceClient();
      * try {
      *     $execution = new Execution();
-     *     $updateMask = new FieldMask();
-     *     $response = $metadataServiceClient->updateExecution($execution, $updateMask);
+     *     $response = $metadataServiceClient->updateExecution($execution);
      * } finally {
      *     $metadataServiceClient->close();
      * }
@@ -2841,35 +2920,35 @@ class MetadataServiceGapicClient
      *                                to be updated.
      *                                Format:
      *                                `projects/{project}/locations/{location}/metadataStores/{metadatastore}/executions/{execution}`
-     * @param FieldMask $updateMask   Required. A FieldMask indicating which fields should be updated.
-     *                                Functionality of this field is not yet supported.
      * @param array     $optionalArgs {
      *     Optional.
      *
+     *     @type FieldMask $updateMask
+     *           Optional. A FieldMask indicating which fields should be updated.
+     *           Functionality of this field is not yet supported.
      *     @type bool $allowMissing
      *           If set to true, and the [Execution][google.cloud.aiplatform.v1.Execution] is not found, a new [Execution][google.cloud.aiplatform.v1.Execution]
      *           is created.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\AIPlatform\V1\Execution
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateExecution(
-        $execution,
-        $updateMask,
-        array $optionalArgs = []
-    ) {
+    public function updateExecution($execution, array $optionalArgs = [])
+    {
         $request = new UpdateExecutionRequest();
         $requestParamHeaders = [];
         $request->setExecution($execution);
-        $request->setUpdateMask($updateMask);
         $requestParamHeaders['execution.name'] = $execution->getName();
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
         if (isset($optionalArgs['allowMissing'])) {
             $request->setAllowMissing($optionalArgs['allowMissing']);
         }
@@ -2885,6 +2964,342 @@ class MetadataServiceGapicClient
             Execution::class,
             $optionalArgs,
             $request
+        )->wait();
+    }
+
+    /**
+     * Gets information about a location.
+     *
+     * Sample code:
+     * ```
+     * $metadataServiceClient = new MetadataServiceClient();
+     * try {
+     *     $response = $metadataServiceClient->getLocation();
+     * } finally {
+     *     $metadataServiceClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $name
+     *           Resource name for the location.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Location\Location
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getLocation(array $optionalArgs = [])
+    {
+        $request = new GetLocationRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetLocation',
+            Location::class,
+            $optionalArgs,
+            $request,
+            Call::UNARY_CALL,
+            'google.cloud.location.Locations'
+        )->wait();
+    }
+
+    /**
+     * Lists information about the supported locations for this service.
+     *
+     * Sample code:
+     * ```
+     * $metadataServiceClient = new MetadataServiceClient();
+     * try {
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $metadataServiceClient->listLocations();
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $metadataServiceClient->listLocations();
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $metadataServiceClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $name
+     *           The resource that owns the locations collection, if applicable.
+     *     @type string $filter
+     *           The standard list filter.
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listLocations(array $optionalArgs = [])
+    {
+        $request = new ListLocationsRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListLocations',
+            $optionalArgs,
+            ListLocationsResponse::class,
+            $request,
+            'google.cloud.location.Locations'
+        );
+    }
+
+    /**
+     * Gets the access control policy for a resource. Returns an empty policy
+    if the resource exists and does not have a policy set.
+     *
+     * Sample code:
+     * ```
+     * $metadataServiceClient = new MetadataServiceClient();
+     * try {
+     *     $resource = 'resource';
+     *     $response = $metadataServiceClient->getIamPolicy($resource);
+     * } finally {
+     *     $metadataServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $resource     REQUIRED: The resource for which the policy is being requested.
+     *                             See the operation documentation for the appropriate value for this field.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type GetPolicyOptions $options
+     *           OPTIONAL: A `GetPolicyOptions` object for specifying options to
+     *           `GetIamPolicy`.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Iam\V1\Policy
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getIamPolicy($resource, array $optionalArgs = [])
+    {
+        $request = new GetIamPolicyRequest();
+        $requestParamHeaders = [];
+        $request->setResource($resource);
+        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['options'])) {
+            $request->setOptions($optionalArgs['options']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetIamPolicy',
+            Policy::class,
+            $optionalArgs,
+            $request,
+            Call::UNARY_CALL,
+            'google.iam.v1.IAMPolicy'
+        )->wait();
+    }
+
+    /**
+     * Sets the access control policy on the specified resource. Replaces
+    any existing policy.
+
+    Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+    errors.
+     *
+     * Sample code:
+     * ```
+     * $metadataServiceClient = new MetadataServiceClient();
+     * try {
+     *     $resource = 'resource';
+     *     $policy = new Policy();
+     *     $response = $metadataServiceClient->setIamPolicy($resource, $policy);
+     * } finally {
+     *     $metadataServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $resource     REQUIRED: The resource for which the policy is being specified.
+     *                             See the operation documentation for the appropriate value for this field.
+     * @param Policy $policy       REQUIRED: The complete policy to be applied to the `resource`. The size of
+     *                             the policy is limited to a few 10s of KB. An empty policy is a
+     *                             valid policy but certain Cloud Platform services (such as Projects)
+     *                             might reject them.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type FieldMask $updateMask
+     *           OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only
+     *           the fields in the mask will be modified. If no mask is provided, the
+     *           following default mask is used:
+     *
+     *           `paths: "bindings, etag"`
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Iam\V1\Policy
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function setIamPolicy($resource, $policy, array $optionalArgs = [])
+    {
+        $request = new SetIamPolicyRequest();
+        $requestParamHeaders = [];
+        $request->setResource($resource);
+        $request->setPolicy($policy);
+        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'SetIamPolicy',
+            Policy::class,
+            $optionalArgs,
+            $request,
+            Call::UNARY_CALL,
+            'google.iam.v1.IAMPolicy'
+        )->wait();
+    }
+
+    /**
+     * Returns permissions that a caller has on the specified resource. If the
+    resource does not exist, this will return an empty set of
+    permissions, not a `NOT_FOUND` error.
+
+    Note: This operation is designed to be used for building
+    permission-aware UIs and command-line tools, not for authorization
+    checking. This operation may "fail open" without warning.
+     *
+     * Sample code:
+     * ```
+     * $metadataServiceClient = new MetadataServiceClient();
+     * try {
+     *     $resource = 'resource';
+     *     $permissions = [];
+     *     $response = $metadataServiceClient->testIamPermissions($resource, $permissions);
+     * } finally {
+     *     $metadataServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string   $resource     REQUIRED: The resource for which the policy detail is being requested.
+     *                               See the operation documentation for the appropriate value for this field.
+     * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
+     *                               wildcards (such as '*' or 'storage.*') are not allowed. For more
+     *                               information see
+     *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
+     * @param array    $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Iam\V1\TestIamPermissionsResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function testIamPermissions(
+        $resource,
+        $permissions,
+        array $optionalArgs = []
+    ) {
+        $request = new TestIamPermissionsRequest();
+        $requestParamHeaders = [];
+        $request->setResource($resource);
+        $request->setPermissions($permissions);
+        $requestParamHeaders['resource'] = $resource;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'TestIamPermissions',
+            TestIamPermissionsResponse::class,
+            $optionalArgs,
+            $request,
+            Call::UNARY_CALL,
+            'google.iam.v1.IAMPolicy'
         )->wait();
     }
 }

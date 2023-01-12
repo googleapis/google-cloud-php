@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\NetworkEndpointGroup;
 use UnexpectedValueException;
 
 /**
- * Type of network endpoints in this network endpoint group. Can be one of GCE_VM_IP_PORT, NON_GCP_PRIVATE_IP_PORT, INTERNET_FQDN_PORT, INTERNET_IP_PORT, SERVERLESS, PRIVATE_SERVICE_CONNECT.
+ * Type of network endpoints in this network endpoint group. Can be one of GCE_VM_IP, GCE_VM_IP_PORT, NON_GCP_PRIVATE_IP_PORT, INTERNET_FQDN_PORT, INTERNET_IP_PORT, SERVERLESS, PRIVATE_SERVICE_CONNECT.
  *
  * Protobuf type <code>google.cloud.compute.v1.NetworkEndpointGroup.NetworkEndpointType</code>
  */
@@ -50,6 +50,12 @@ class NetworkEndpointType
      */
     const NON_GCP_PRIVATE_IP_PORT = 336447968;
     /**
+     * The network endpoint is either public Google APIs or services exposed by other GCP Project with a Service Attachment. The connection is set up by private service connect
+     *
+     * Generated from protobuf enum <code>PRIVATE_SERVICE_CONNECT = 48134724;</code>
+     */
+    const PRIVATE_SERVICE_CONNECT = 48134724;
+    /**
      * The network endpoint is handled by specified serverless infrastructure.
      *
      * Generated from protobuf enum <code>SERVERLESS = 270492508;</code>
@@ -63,6 +69,7 @@ class NetworkEndpointType
         self::INTERNET_FQDN_PORT => 'INTERNET_FQDN_PORT',
         self::INTERNET_IP_PORT => 'INTERNET_IP_PORT',
         self::NON_GCP_PRIVATE_IP_PORT => 'NON_GCP_PRIVATE_IP_PORT',
+        self::PRIVATE_SERVICE_CONNECT => 'PRIVATE_SERVICE_CONNECT',
         self::SERVERLESS => 'SERVERLESS',
     ];
 

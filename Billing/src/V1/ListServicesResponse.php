@@ -36,7 +36,7 @@ class ListServicesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Billing\V1\Service[]|\Google\Protobuf\Internal\RepeatedField $services
+     *     @type array<\Google\Cloud\Billing\V1\Service>|\Google\Protobuf\Internal\RepeatedField $services
      *           A list of services.
      *     @type string $next_page_token
      *           A token to retrieve the next page of results. To retrieve the next page,
@@ -64,7 +64,7 @@ class ListServicesResponse extends \Google\Protobuf\Internal\Message
      * A list of services.
      *
      * Generated from protobuf field <code>repeated .google.cloud.billing.v1.Service services = 1;</code>
-     * @param \Google\Cloud\Billing\V1\Service[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Billing\V1\Service>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setServices($var)

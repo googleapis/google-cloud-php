@@ -127,7 +127,7 @@ class AnnotatedDataset extends \Google\Protobuf\Internal\Message
      *           Output only. Time the AnnotatedDataset was created.
      *     @type \Google\Cloud\DataLabeling\V1beta1\AnnotatedDatasetMetadata $metadata
      *           Output only. Additional information about AnnotatedDataset.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $blocking_resources
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $blocking_resources
      *           Output only. The names of any related resources that are blocking changes
      *           to the annotated dataset.
      * }
@@ -460,7 +460,7 @@ class AnnotatedDataset extends \Google\Protobuf\Internal\Message
      * to the annotated dataset.
      *
      * Generated from protobuf field <code>repeated string blocking_resources = 11;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setBlockingResources($var)

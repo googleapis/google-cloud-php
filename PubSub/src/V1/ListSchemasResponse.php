@@ -35,7 +35,7 @@ class ListSchemasResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\PubSub\V1\Schema[]|\Google\Protobuf\Internal\RepeatedField $schemas
+     *     @type array<\Google\Cloud\PubSub\V1\Schema>|\Google\Protobuf\Internal\RepeatedField $schemas
      *           The resulting schemas.
      *     @type string $next_page_token
      *           If not empty, indicates that there may be more schemas that match the
@@ -62,7 +62,7 @@ class ListSchemasResponse extends \Google\Protobuf\Internal\Message
      * The resulting schemas.
      *
      * Generated from protobuf field <code>repeated .google.pubsub.v1.Schema schemas = 1;</code>
-     * @param \Google\Cloud\PubSub\V1\Schema[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\PubSub\V1\Schema>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSchemas($var)

@@ -40,7 +40,7 @@ class ListHotTabletsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Bigtable\Admin\V2\HotTablet[]|\Google\Protobuf\Internal\RepeatedField $hot_tablets
+     *     @type array<\Google\Cloud\Bigtable\Admin\V2\HotTablet>|\Google\Protobuf\Internal\RepeatedField $hot_tablets
      *           List of hot tablets in the tables of the requested cluster that fall
      *           within the requested time range. Hot tablets are ordered by node cpu usage
      *           percent. If there are multiple hot tablets that correspond to the same
@@ -80,7 +80,7 @@ class ListHotTabletsResponse extends \Google\Protobuf\Internal\Message
      * node cpu usage will be included in the response.
      *
      * Generated from protobuf field <code>repeated .google.bigtable.admin.v2.HotTablet hot_tablets = 1;</code>
-     * @param \Google\Cloud\Bigtable\Admin\V2\HotTablet[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Bigtable\Admin\V2\HotTablet>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setHotTablets($var)

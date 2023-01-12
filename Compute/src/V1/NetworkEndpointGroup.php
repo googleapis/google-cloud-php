@@ -82,12 +82,22 @@ class NetworkEndpointGroup extends \Google\Protobuf\Internal\Message
      */
     private $network = null;
     /**
-     * Type of network endpoints in this network endpoint group. Can be one of GCE_VM_IP_PORT, NON_GCP_PRIVATE_IP_PORT, INTERNET_FQDN_PORT, INTERNET_IP_PORT, SERVERLESS, PRIVATE_SERVICE_CONNECT.
+     * Type of network endpoints in this network endpoint group. Can be one of GCE_VM_IP, GCE_VM_IP_PORT, NON_GCP_PRIVATE_IP_PORT, INTERNET_FQDN_PORT, INTERNET_IP_PORT, SERVERLESS, PRIVATE_SERVICE_CONNECT.
      * Check the NetworkEndpointType enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string network_endpoint_type = 118301523;</code>
      */
     private $network_endpoint_type = null;
+    /**
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.NetworkEndpointGroupPscData psc_data = 71937481;</code>
+     */
+    private $psc_data = null;
+    /**
+     * The target service url used to set up private service connection to a Google API or a PSC Producer Service Attachment. An example value is: "asia-northeast3-cloudkms.googleapis.com"
+     *
+     * Generated from protobuf field <code>optional string psc_target_service = 269132134;</code>
+     */
+    private $psc_target_service = null;
     /**
      * [Output Only] The URL of the region where the network endpoint group is located.
      *
@@ -148,8 +158,11 @@ class NetworkEndpointGroup extends \Google\Protobuf\Internal\Message
      *     @type string $network
      *           The URL of the network to which all network endpoints in the NEG belong. Uses "default" project network if unspecified.
      *     @type string $network_endpoint_type
-     *           Type of network endpoints in this network endpoint group. Can be one of GCE_VM_IP_PORT, NON_GCP_PRIVATE_IP_PORT, INTERNET_FQDN_PORT, INTERNET_IP_PORT, SERVERLESS, PRIVATE_SERVICE_CONNECT.
+     *           Type of network endpoints in this network endpoint group. Can be one of GCE_VM_IP, GCE_VM_IP_PORT, NON_GCP_PRIVATE_IP_PORT, INTERNET_FQDN_PORT, INTERNET_IP_PORT, SERVERLESS, PRIVATE_SERVICE_CONNECT.
      *           Check the NetworkEndpointType enum for the list of possible values.
+     *     @type \Google\Cloud\Compute\V1\NetworkEndpointGroupPscData $psc_data
+     *     @type string $psc_target_service
+     *           The target service url used to set up private service connection to a Google API or a PSC Producer Service Attachment. An example value is: "asia-northeast3-cloudkms.googleapis.com"
      *     @type string $region
      *           [Output Only] The URL of the region where the network endpoint group is located.
      *     @type string $self_link
@@ -554,7 +567,7 @@ class NetworkEndpointGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Type of network endpoints in this network endpoint group. Can be one of GCE_VM_IP_PORT, NON_GCP_PRIVATE_IP_PORT, INTERNET_FQDN_PORT, INTERNET_IP_PORT, SERVERLESS, PRIVATE_SERVICE_CONNECT.
+     * Type of network endpoints in this network endpoint group. Can be one of GCE_VM_IP, GCE_VM_IP_PORT, NON_GCP_PRIVATE_IP_PORT, INTERNET_FQDN_PORT, INTERNET_IP_PORT, SERVERLESS, PRIVATE_SERVICE_CONNECT.
      * Check the NetworkEndpointType enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string network_endpoint_type = 118301523;</code>
@@ -576,7 +589,7 @@ class NetworkEndpointGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Type of network endpoints in this network endpoint group. Can be one of GCE_VM_IP_PORT, NON_GCP_PRIVATE_IP_PORT, INTERNET_FQDN_PORT, INTERNET_IP_PORT, SERVERLESS, PRIVATE_SERVICE_CONNECT.
+     * Type of network endpoints in this network endpoint group. Can be one of GCE_VM_IP, GCE_VM_IP_PORT, NON_GCP_PRIVATE_IP_PORT, INTERNET_FQDN_PORT, INTERNET_IP_PORT, SERVERLESS, PRIVATE_SERVICE_CONNECT.
      * Check the NetworkEndpointType enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string network_endpoint_type = 118301523;</code>
@@ -587,6 +600,74 @@ class NetworkEndpointGroup extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->network_endpoint_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.NetworkEndpointGroupPscData psc_data = 71937481;</code>
+     * @return \Google\Cloud\Compute\V1\NetworkEndpointGroupPscData|null
+     */
+    public function getPscData()
+    {
+        return $this->psc_data;
+    }
+
+    public function hasPscData()
+    {
+        return isset($this->psc_data);
+    }
+
+    public function clearPscData()
+    {
+        unset($this->psc_data);
+    }
+
+    /**
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.NetworkEndpointGroupPscData psc_data = 71937481;</code>
+     * @param \Google\Cloud\Compute\V1\NetworkEndpointGroupPscData $var
+     * @return $this
+     */
+    public function setPscData($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\NetworkEndpointGroupPscData::class);
+        $this->psc_data = $var;
+
+        return $this;
+    }
+
+    /**
+     * The target service url used to set up private service connection to a Google API or a PSC Producer Service Attachment. An example value is: "asia-northeast3-cloudkms.googleapis.com"
+     *
+     * Generated from protobuf field <code>optional string psc_target_service = 269132134;</code>
+     * @return string
+     */
+    public function getPscTargetService()
+    {
+        return isset($this->psc_target_service) ? $this->psc_target_service : '';
+    }
+
+    public function hasPscTargetService()
+    {
+        return isset($this->psc_target_service);
+    }
+
+    public function clearPscTargetService()
+    {
+        unset($this->psc_target_service);
+    }
+
+    /**
+     * The target service url used to set up private service connection to a Google API or a PSC Producer Service Attachment. An example value is: "asia-northeast3-cloudkms.googleapis.com"
+     *
+     * Generated from protobuf field <code>optional string psc_target_service = 269132134;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPscTargetService($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->psc_target_service = $var;
 
         return $this;
     }

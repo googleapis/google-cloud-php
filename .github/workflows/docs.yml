@@ -13,9 +13,9 @@ jobs:
         steps:
         - id: getTag
           name: Get Tag
-          run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
+          run: echo "tag=${GITHUB_REF#refs/*/}" >> $GITHUB_OUTPUT
         - name: Checkout
-          uses: actions/checkout@v2
+          uses: actions/checkout@v3
           with:
             persist-credentials: false
         - name: Setup PHP
@@ -24,7 +24,7 @@ jobs:
             php-version: '7.4'
             ini-values: memory_limit=2048M
         - name: Install Dependencies
-          uses: nick-invision/retry@v1
+          uses: nick-fields/retry@v2
           with:
             timeout_minutes: 10
             max_attempts: 3

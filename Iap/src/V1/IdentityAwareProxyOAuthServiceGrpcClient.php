@@ -52,11 +52,12 @@ class IdentityAwareProxyOAuthServiceGrpcClient extends \Grpc\BaseStub {
     /**
      * Constructs a new OAuth brand for the project if one does not exist.
      * The created brand is "internal only", meaning that OAuth clients created
-     * under it only accept requests from users who belong to the same G Suite
-     * organization as the project. The brand is created in an un-reviewed status.
-     * NOTE: The "internal only" status can be manually changed in the Google
-     * Cloud console. Requires that a brand does not already exist for the
-     * project, and that the specified support email is owned by the caller.
+     * under it only accept requests from users who belong to the same Google
+     * Workspace organization as the project. The brand is created in an
+     * un-reviewed status. NOTE: The "internal only" status can be manually
+     * changed in the Google Cloud Console. Requires that a brand does not already
+     * exist for the project, and that the specified support email is owned by the
+     * caller.
      * @param \Google\Cloud\Iap\V1\CreateBrandRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options

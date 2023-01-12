@@ -23,14 +23,13 @@
 namespace Google\Cloud\Tpu\Tests\Unit\V1;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
-
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
+use Google\Cloud\Location\ListLocationsResponse;
+use Google\Cloud\Location\Location;
 use Google\Cloud\Tpu\V1\AcceleratorType;
-
 use Google\Cloud\Tpu\V1\ListAcceleratorTypesResponse;
 use Google\Cloud\Tpu\V1\ListNodesResponse;
 use Google\Cloud\Tpu\V1\ListTensorFlowVersionsResponse;
@@ -50,25 +49,19 @@ use stdClass;
  */
 class TpuClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return TpuClient
-     */
+    /** @return TpuClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -77,9 +70,7 @@ class TpuClientTest extends GeneratedTest
         return new TpuClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createNodeTest()
     {
         $operationsTransport = $this->createTransport();
@@ -89,7 +80,7 @@ class TpuClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -131,13 +122,13 @@ class TpuClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $node = new Node();
         $nodeAcceleratorType = 'nodeAcceleratorType-620315165';
         $node->setAcceleratorType($nodeAcceleratorType);
         $nodeTensorflowVersion = 'nodeTensorflowVersion-1950315537';
         $node->setTensorflowVersion($nodeTensorflowVersion);
-        $response = $client->createNode($formattedParent, $node);
+        $response = $gapicClient->createNode($formattedParent, $node);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -170,9 +161,7 @@ class TpuClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createNodeExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -182,7 +171,7 @@ class TpuClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -204,13 +193,13 @@ class TpuClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $node = new Node();
         $nodeAcceleratorType = 'nodeAcceleratorType-620315165';
         $node->setAcceleratorType($nodeAcceleratorType);
         $nodeTensorflowVersion = 'nodeTensorflowVersion-1950315537';
         $node->setTensorflowVersion($nodeTensorflowVersion);
-        $response = $client->createNode($formattedParent, $node);
+        $response = $gapicClient->createNode($formattedParent, $node);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -232,9 +221,7 @@ class TpuClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteNodeTest()
     {
         $operationsTransport = $this->createTransport();
@@ -244,7 +231,7 @@ class TpuClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -286,8 +273,8 @@ class TpuClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->nodeName('[PROJECT]', '[LOCATION]', '[NODE]');
-        $response = $client->deleteNode($formattedName);
+        $formattedName = $gapicClient->nodeName('[PROJECT]', '[LOCATION]', '[NODE]');
+        $response = $gapicClient->deleteNode($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -318,9 +305,7 @@ class TpuClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteNodeExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -330,7 +315,7 @@ class TpuClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -352,8 +337,8 @@ class TpuClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->nodeName('[PROJECT]', '[LOCATION]', '[NODE]');
-        $response = $client->deleteNode($formattedName);
+        $formattedName = $gapicClient->nodeName('[PROJECT]', '[LOCATION]', '[NODE]');
+        $response = $gapicClient->deleteNode($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -375,13 +360,11 @@ class TpuClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getAcceleratorTypeTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -393,8 +376,8 @@ class TpuClientTest extends GeneratedTest
         $expectedResponse->setType($type);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->acceleratorTypeName('[PROJECT]', '[LOCATION]', '[ACCELERATOR_TYPE]');
-        $response = $client->getAcceleratorType($formattedName);
+        $formattedName = $gapicClient->acceleratorTypeName('[PROJECT]', '[LOCATION]', '[ACCELERATOR_TYPE]');
+        $response = $gapicClient->getAcceleratorType($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -406,13 +389,11 @@ class TpuClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getAcceleratorTypeExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -427,10 +408,10 @@ class TpuClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->acceleratorTypeName('[PROJECT]', '[LOCATION]', '[ACCELERATOR_TYPE]');
+        $formattedName = $gapicClient->acceleratorTypeName('[PROJECT]', '[LOCATION]', '[ACCELERATOR_TYPE]');
         try {
-            $client->getAcceleratorType($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getAcceleratorType($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -441,13 +422,11 @@ class TpuClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getNodeTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -477,8 +456,8 @@ class TpuClientTest extends GeneratedTest
         $expectedResponse->setUseServiceNetworking($useServiceNetworking);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->nodeName('[PROJECT]', '[LOCATION]', '[NODE]');
-        $response = $client->getNode($formattedName);
+        $formattedName = $gapicClient->nodeName('[PROJECT]', '[LOCATION]', '[NODE]');
+        $response = $gapicClient->getNode($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -490,13 +469,11 @@ class TpuClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getNodeExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -511,10 +488,10 @@ class TpuClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->nodeName('[PROJECT]', '[LOCATION]', '[NODE]');
+        $formattedName = $gapicClient->nodeName('[PROJECT]', '[LOCATION]', '[NODE]');
         try {
-            $client->getNode($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getNode($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -525,13 +502,11 @@ class TpuClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getTensorFlowVersionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -543,8 +518,8 @@ class TpuClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->tensorFlowVersionName('[PROJECT]', '[LOCATION]', '[TENSOR_FLOW_VERSION]');
-        $response = $client->getTensorFlowVersion($formattedName);
+        $formattedName = $gapicClient->tensorFlowVersionName('[PROJECT]', '[LOCATION]', '[TENSOR_FLOW_VERSION]');
+        $response = $gapicClient->getTensorFlowVersion($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -556,13 +531,11 @@ class TpuClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getTensorFlowVersionExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -577,10 +550,10 @@ class TpuClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->tensorFlowVersionName('[PROJECT]', '[LOCATION]', '[TENSOR_FLOW_VERSION]');
+        $formattedName = $gapicClient->tensorFlowVersionName('[PROJECT]', '[LOCATION]', '[TENSOR_FLOW_VERSION]');
         try {
-            $client->getTensorFlowVersion($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getTensorFlowVersion($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -591,13 +564,11 @@ class TpuClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listAcceleratorTypesTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -612,8 +583,8 @@ class TpuClientTest extends GeneratedTest
         $expectedResponse->setAcceleratorTypes($acceleratorTypes);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->acceleratorTypeName('[PROJECT]', '[LOCATION]', '[ACCELERATOR_TYPE]');
-        $response = $client->listAcceleratorTypes($formattedParent);
+        $formattedParent = $gapicClient->acceleratorTypeName('[PROJECT]', '[LOCATION]', '[ACCELERATOR_TYPE]');
+        $response = $gapicClient->listAcceleratorTypes($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -628,13 +599,11 @@ class TpuClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listAcceleratorTypesExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -649,10 +618,10 @@ class TpuClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->acceleratorTypeName('[PROJECT]', '[LOCATION]', '[ACCELERATOR_TYPE]');
+        $formattedParent = $gapicClient->acceleratorTypeName('[PROJECT]', '[LOCATION]', '[ACCELERATOR_TYPE]');
         try {
-            $client->listAcceleratorTypes($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listAcceleratorTypes($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -663,13 +632,11 @@ class TpuClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listNodesTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -684,8 +651,8 @@ class TpuClientTest extends GeneratedTest
         $expectedResponse->setNodes($nodes);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
-        $response = $client->listNodes($formattedParent);
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->listNodes($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -700,13 +667,11 @@ class TpuClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listNodesExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -721,10 +686,10 @@ class TpuClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $client->listNodes($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listNodes($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -735,13 +700,11 @@ class TpuClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listTensorFlowVersionsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -756,8 +719,8 @@ class TpuClientTest extends GeneratedTest
         $expectedResponse->setTensorflowVersions($tensorflowVersions);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->tensorFlowVersionName('[PROJECT]', '[LOCATION]', '[TENSOR_FLOW_VERSION]');
-        $response = $client->listTensorFlowVersions($formattedParent);
+        $formattedParent = $gapicClient->tensorFlowVersionName('[PROJECT]', '[LOCATION]', '[TENSOR_FLOW_VERSION]');
+        $response = $gapicClient->listTensorFlowVersions($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -772,13 +735,11 @@ class TpuClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listTensorFlowVersionsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -793,10 +754,10 @@ class TpuClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->tensorFlowVersionName('[PROJECT]', '[LOCATION]', '[TENSOR_FLOW_VERSION]');
+        $formattedParent = $gapicClient->tensorFlowVersionName('[PROJECT]', '[LOCATION]', '[TENSOR_FLOW_VERSION]');
         try {
-            $client->listTensorFlowVersions($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listTensorFlowVersions($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -807,9 +768,7 @@ class TpuClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function reimageNodeTest()
     {
         $operationsTransport = $this->createTransport();
@@ -819,7 +778,7 @@ class TpuClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -860,7 +819,7 @@ class TpuClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $response = $client->reimageNode();
+        $response = $gapicClient->reimageNode();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -889,9 +848,7 @@ class TpuClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function reimageNodeExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -901,7 +858,7 @@ class TpuClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -922,7 +879,7 @@ class TpuClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $client->reimageNode();
+        $response = $gapicClient->reimageNode();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -944,9 +901,7 @@ class TpuClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function startNodeTest()
     {
         $operationsTransport = $this->createTransport();
@@ -956,7 +911,7 @@ class TpuClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -997,7 +952,7 @@ class TpuClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $response = $client->startNode();
+        $response = $gapicClient->startNode();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1026,9 +981,7 @@ class TpuClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function startNodeExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1038,7 +991,7 @@ class TpuClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1059,7 +1012,7 @@ class TpuClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $client->startNode();
+        $response = $gapicClient->startNode();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1081,9 +1034,7 @@ class TpuClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function stopNodeTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1093,7 +1044,7 @@ class TpuClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1134,7 +1085,7 @@ class TpuClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $response = $client->stopNode();
+        $response = $gapicClient->stopNode();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1163,9 +1114,7 @@ class TpuClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function stopNodeExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1175,7 +1124,7 @@ class TpuClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1196,7 +1145,7 @@ class TpuClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $client->stopNode();
+        $response = $gapicClient->stopNode();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1216,5 +1165,125 @@ class TpuClientTest extends GeneratedTest
         $operationsTransport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
         $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function getLocationTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $locationId = 'locationId552319461';
+        $displayName = 'displayName1615086568';
+        $expectedResponse = new Location();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setLocationId($locationId);
+        $expectedResponse->setDisplayName($displayName);
+        $transport->addResponse($expectedResponse);
+        $response = $gapicClient->getLocation();
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.location.Locations/GetLocation', $actualFuncCall);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getLocationExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        try {
+            $gapicClient->getLocation();
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listLocationsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $locationsElement = new Location();
+        $locations = [
+            $locationsElement,
+        ];
+        $expectedResponse = new ListLocationsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setLocations($locations);
+        $transport->addResponse($expectedResponse);
+        $response = $gapicClient->listLocations();
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getLocations()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.location.Locations/ListLocations', $actualFuncCall);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listLocationsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        try {
+            $gapicClient->listLocations();
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 }

@@ -25,10 +25,12 @@ use Google\Cloud\Spanner\Session\CacheSessionPool;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Cache\CacheItemInterface;
 use Psr\Cache\CacheItemPoolInterface;
 use Prophecy\Argument;
 use Prophecy\Argument\ArgumentsWildcard;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group spanner
@@ -36,6 +38,7 @@ use PHPUnit\Framework\TestCase;
  */
 class CacheSessionPoolTest extends TestCase
 {
+    use ExpectException;
     use GrpcTestTrait;
 
     const CACHE_KEY_TEMPLATE = CacheSessionPool::CACHE_KEY_TEMPLATE;
@@ -46,7 +49,7 @@ class CacheSessionPoolTest extends TestCase
     private $time;
     private $cacheKey;
 
-    public function setUp()
+    public function set_up()
     {
         $this->checkAndSkipGrpcTests();
         putenv('GOOGLE_CLOUD_SYSV_ID=U');
@@ -83,11 +86,41 @@ class CacheSessionPoolTest extends TestCase
         ];
     }
 
-    /**
-     * @expectedException \RuntimeException
-     */
+    public function testAcquireThrowsExceptionUnableToSaveItem()
+    {
+        $this->expectException('\RuntimeException');
+        $this->expectExceptionMessage(
+            'Failed to save session pool data. This can often be related to ' .
+            'your chosen cache implementation running out of memory. ' .
+            'If so, please attempt to configure a greater memory alottment ' .
+            'and try again. When using the Google\Auth\Cache\SysVCacheItemPool ' .
+            'implementation we recommend setting the memory allottment to ' .
+            '250000 (250kb) in order to safely handle the default maximum ' .
+            'of 500 sessions handled by the pool. If you require more ' .
+            'maximum sessions please plan accordingly and increase the memory ' .
+            'allocation.'
+        );
+        $config = ['maxSessions' => 1];
+        $cacheItem = $this->prophesize(CacheItemInterface::class);
+        $cacheItem->get()
+            ->willReturn(null);
+        $cacheItem->set(Argument::any())
+            ->willReturn($cacheItem);
+        $cacheItemPool = $this->prophesize(CacheItemPoolInterface::class);
+        $cacheItemPool->save(Argument::any())
+            ->willReturn(false);
+        $cacheItemPool->getItem(Argument::any())
+            ->willReturn($cacheItem->reveal());
+
+        $pool = new CacheSessionPoolStub($cacheItemPool->reveal(), $config, $this->time);
+        $pool->setDatabase($this->getDatabase());
+        $pool->acquire();
+    }
+
     public function testAcquireThrowsExceptionWhenMaxCyclesMet()
     {
+        $this->expectException('\RuntimeException');
+
         $config = [
             'maxSessions' => 1,
             'maxCyclesToWaitForSession' => 1
@@ -110,11 +143,10 @@ class CacheSessionPoolTest extends TestCase
         $pool->acquire();
     }
 
-    /**
-     * @expectedException \RuntimeException
-     */
     public function testAcquireThrowsExceptionWithNoAvailableSessions()
     {
+        $this->expectException('\RuntimeException');
+
         $config = [
             'maxSessions' => 1,
             'shouldWaitForSession' => false
@@ -843,11 +875,10 @@ class CacheSessionPoolTest extends TestCase
         $this->assertEquals($data, $gotData);
     }
 
-    /**
-     * @expectedException \LogicException
-     */
     public function testMaintainNoDatabase()
     {
+        $this->expectException('\LogicException');
+
         $cache = $this->getCacheItemPool();
         $pool = new CacheSessionPoolStub($cache, [], $this->time);
         $pool->maintain();

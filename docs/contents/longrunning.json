@@ -1,0 +1,15 @@
+{
+    "title": "Google LongRunning",
+    "defaultService": "longrunning\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "longrunning\/readme"
+        },
+	{
+            "title": "OperationsClient",
+            "type": "longrunning\/apicore\/longrunning\/operationsclient"
+        }
+    ],
+    "pattern": "longrunning\/\\w{1,}"
+}

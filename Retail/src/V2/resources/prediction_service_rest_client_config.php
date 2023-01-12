@@ -7,6 +7,13 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v2/{placement=projects/*/locations/*/catalogs/*/placements/*}:predict',
                 'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{placement=projects/*/locations/*/catalogs/*/servingConfigs/*}:predict',
+                        'body' => '*',
+                    ],
+                ],
                 'placeholders' => [
                     'placement' => [
                         'getters' => [
@@ -29,6 +36,10 @@ return [
                         'method' => 'get',
                         'uriTemplate' => '/v2/{name=projects/*/locations/*/catalogs/*/operations/*}',
                     ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{name=projects/*/operations/*}',
+                    ],
                 ],
                 'placeholders' => [
                     'name' => [
@@ -45,6 +56,10 @@ return [
                     [
                         'method' => 'get',
                         'uriTemplate' => '/v2/{name=projects/*/locations/*/catalogs/*}/operations',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{name=projects/*}/operations',
                     ],
                 ],
                 'placeholders' => [

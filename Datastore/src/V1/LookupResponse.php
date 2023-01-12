@@ -39,6 +39,12 @@ class LookupResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.datastore.v1.Key deferred = 3;</code>
      */
     private $deferred;
+    /**
+     * The time at which these entities were read or found missing.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 7;</code>
+     */
+    private $read_time = null;
 
     /**
      * Constructor.
@@ -46,18 +52,20 @@ class LookupResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Datastore\V1\EntityResult[]|\Google\Protobuf\Internal\RepeatedField $found
+     *     @type array<\Google\Cloud\Datastore\V1\EntityResult>|\Google\Protobuf\Internal\RepeatedField $found
      *           Entities found as `ResultType.FULL` entities. The order of results in this
      *           field is undefined and has no relation to the order of the keys in the
      *           input.
-     *     @type \Google\Cloud\Datastore\V1\EntityResult[]|\Google\Protobuf\Internal\RepeatedField $missing
+     *     @type array<\Google\Cloud\Datastore\V1\EntityResult>|\Google\Protobuf\Internal\RepeatedField $missing
      *           Entities not found as `ResultType.KEY_ONLY` entities. The order of results
      *           in this field is undefined and has no relation to the order of the keys
      *           in the input.
-     *     @type \Google\Cloud\Datastore\V1\Key[]|\Google\Protobuf\Internal\RepeatedField $deferred
+     *     @type array<\Google\Cloud\Datastore\V1\Key>|\Google\Protobuf\Internal\RepeatedField $deferred
      *           A list of keys that were not looked up due to resource constraints. The
      *           order of results in this field is undefined and has no relation to the
      *           order of the keys in the input.
+     *     @type \Google\Protobuf\Timestamp $read_time
+     *           The time at which these entities were read or found missing.
      * }
      */
     public function __construct($data = NULL) {
@@ -84,7 +92,7 @@ class LookupResponse extends \Google\Protobuf\Internal\Message
      * input.
      *
      * Generated from protobuf field <code>repeated .google.datastore.v1.EntityResult found = 1;</code>
-     * @param \Google\Cloud\Datastore\V1\EntityResult[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Datastore\V1\EntityResult>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFound($var)
@@ -114,7 +122,7 @@ class LookupResponse extends \Google\Protobuf\Internal\Message
      * in the input.
      *
      * Generated from protobuf field <code>repeated .google.datastore.v1.EntityResult missing = 2;</code>
-     * @param \Google\Cloud\Datastore\V1\EntityResult[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Datastore\V1\EntityResult>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setMissing($var)
@@ -144,13 +152,49 @@ class LookupResponse extends \Google\Protobuf\Internal\Message
      * order of the keys in the input.
      *
      * Generated from protobuf field <code>repeated .google.datastore.v1.Key deferred = 3;</code>
-     * @param \Google\Cloud\Datastore\V1\Key[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Datastore\V1\Key>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDeferred($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Datastore\V1\Key::class);
         $this->deferred = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The time at which these entities were read or found missing.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 7;</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getReadTime()
+    {
+        return $this->read_time;
+    }
+
+    public function hasReadTime()
+    {
+        return isset($this->read_time);
+    }
+
+    public function clearReadTime()
+    {
+        unset($this->read_time);
+    }
+
+    /**
+     * The time at which these entities were read or found missing.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 7;</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setReadTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->read_time = $var;
 
         return $this;
     }

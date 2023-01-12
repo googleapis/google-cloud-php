@@ -82,6 +82,12 @@ class Document extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>map<string, string> metadata = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $metadata;
+    /**
+     * Output only. The current state of the document.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Document.State state = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $state = 0;
     protected $source;
 
     /**
@@ -100,7 +106,7 @@ class Document extends \Google\Protobuf\Internal\Message
      *           less; otherwise, the creation request fails.
      *     @type string $mime_type
      *           Required. The MIME type of this document.
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $knowledge_types
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $knowledge_types
      *           Required. The knowledge type of document content.
      *     @type string $content_uri
      *           The URI where the file content is located.
@@ -136,6 +142,8 @@ class Document extends \Google\Protobuf\Internal\Message
      *           key-value pairs. Suggested use cases include storing a document's title,
      *           an external URL distinct from the document's content_uri, etc.
      *           The max size of a `key` or a `value` of the metadata is 1024 bytes.
+     *     @type int $state
+     *           Output only. The current state of the document.
      * }
      */
     public function __construct($data = NULL) {
@@ -244,7 +252,7 @@ class Document extends \Google\Protobuf\Internal\Message
      * Required. The knowledge type of document content.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Document.KnowledgeType knowledge_types = 4 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setKnowledgeTypes($var)
@@ -449,6 +457,32 @@ class Document extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
         $this->metadata = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The current state of the document.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Document.State state = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getState()
+    {
+        return $this->state;
+    }
+
+    /**
+     * Output only. The current state of the document.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Document.State state = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setState($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Dialogflow\V2\Document\State::class);
+        $this->state = $var;
 
         return $this;
     }

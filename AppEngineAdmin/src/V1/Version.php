@@ -96,6 +96,13 @@ class Version extends \Google\Protobuf\Internal\Message
      */
     private $vm = false;
     /**
+     * Allows App Engine second generation runtimes to access the legacy bundled
+     * services.
+     *
+     * Generated from protobuf field <code>bool app_engine_apis = 128;</code>
+     */
+    private $app_engine_apis = false;
+    /**
      * Metadata settings that are supplied to this version to enable
      * beta runtime features.
      *
@@ -314,7 +321,7 @@ class Version extends \Google\Protobuf\Internal\Message
      *           A service with manual scaling runs continuously, allowing you to perform
      *           complex initialization and rely on the state of its memory over time.
      *           Manually scaled versions are sometimes referred to as "backends".
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $inbound_services
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $inbound_services
      *           Before an application can receive email or XMPP messages, the application
      *           must be configured to enable the service.
      *     @type string $instance_class
@@ -326,7 +333,7 @@ class Version extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\AppEngine\V1\Network $network
      *           Extra network settings.
      *           Only applicable in the App Engine flexible environment.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $zones
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $zones
      *           The Google Compute Engine zones that are supported by this version in the
      *           App Engine flexible environment. Deprecated.
      *     @type \Google\Cloud\AppEngine\V1\Resources $resources
@@ -341,6 +348,9 @@ class Version extends \Google\Protobuf\Internal\Message
      *           Whether multiple requests can be dispatched to this version at once.
      *     @type bool $vm
      *           Whether to deploy this version in a container on a virtual machine.
+     *     @type bool $app_engine_apis
+     *           Allows App Engine second generation runtimes to access the legacy bundled
+     *           services.
      *     @type array|\Google\Protobuf\Internal\MapField $beta_settings
      *           Metadata settings that are supplied to this version to enable
      *           beta runtime features.
@@ -371,15 +381,15 @@ class Version extends \Google\Protobuf\Internal\Message
      *           The identity that the deployed version will run as.
      *           Admin API will use the App Engine Appspot service account as default if
      *           this field is neither provided in app.yaml file nor through CLI flag.
-     *     @type \Google\Cloud\AppEngine\V1\UrlMap[]|\Google\Protobuf\Internal\RepeatedField $handlers
+     *     @type array<\Google\Cloud\AppEngine\V1\UrlMap>|\Google\Protobuf\Internal\RepeatedField $handlers
      *           An ordered list of URL-matching patterns that should be applied to incoming
      *           requests. The first matching URL handles the request and other request
      *           handlers are not attempted.
      *           Only returned in `GET` requests if `view=FULL` is set.
-     *     @type \Google\Cloud\AppEngine\V1\ErrorHandler[]|\Google\Protobuf\Internal\RepeatedField $error_handlers
+     *     @type array<\Google\Cloud\AppEngine\V1\ErrorHandler>|\Google\Protobuf\Internal\RepeatedField $error_handlers
      *           Custom static error pages. Limited to 10KB per page.
      *           Only returned in `GET` requests if `view=FULL` is set.
-     *     @type \Google\Cloud\AppEngine\V1\Library[]|\Google\Protobuf\Internal\RepeatedField $libraries
+     *     @type array<\Google\Cloud\AppEngine\V1\Library>|\Google\Protobuf\Internal\RepeatedField $libraries
      *           Configuration for third-party Python runtime libraries that are required
      *           by the application.
      *           Only returned in `GET` requests if `view=FULL` is set.
@@ -622,7 +632,7 @@ class Version extends \Google\Protobuf\Internal\Message
      * must be configured to enable the service.
      *
      * Generated from protobuf field <code>repeated .google.appengine.v1.InboundServiceType inbound_services = 6;</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setInboundServices($var)
@@ -722,7 +732,7 @@ class Version extends \Google\Protobuf\Internal\Message
      * App Engine flexible environment. Deprecated.
      *
      * Generated from protobuf field <code>repeated string zones = 118;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setZones($var)
@@ -873,6 +883,34 @@ class Version extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->vm = $var;
+
+        return $this;
+    }
+
+    /**
+     * Allows App Engine second generation runtimes to access the legacy bundled
+     * services.
+     *
+     * Generated from protobuf field <code>bool app_engine_apis = 128;</code>
+     * @return bool
+     */
+    public function getAppEngineApis()
+    {
+        return $this->app_engine_apis;
+    }
+
+    /**
+     * Allows App Engine second generation runtimes to access the legacy bundled
+     * services.
+     *
+     * Generated from protobuf field <code>bool app_engine_apis = 128;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setAppEngineApis($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->app_engine_apis = $var;
 
         return $this;
     }
@@ -1166,7 +1204,7 @@ class Version extends \Google\Protobuf\Internal\Message
      * Only returned in `GET` requests if `view=FULL` is set.
      *
      * Generated from protobuf field <code>repeated .google.appengine.v1.UrlMap handlers = 100;</code>
-     * @param \Google\Cloud\AppEngine\V1\UrlMap[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AppEngine\V1\UrlMap>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setHandlers($var)
@@ -1194,7 +1232,7 @@ class Version extends \Google\Protobuf\Internal\Message
      * Only returned in `GET` requests if `view=FULL` is set.
      *
      * Generated from protobuf field <code>repeated .google.appengine.v1.ErrorHandler error_handlers = 101;</code>
-     * @param \Google\Cloud\AppEngine\V1\ErrorHandler[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AppEngine\V1\ErrorHandler>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setErrorHandlers($var)
@@ -1224,7 +1262,7 @@ class Version extends \Google\Protobuf\Internal\Message
      * Only returned in `GET` requests if `view=FULL` is set.
      *
      * Generated from protobuf field <code>repeated .google.appengine.v1.Library libraries = 102;</code>
-     * @param \Google\Cloud\AppEngine\V1\Library[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AppEngine\V1\Library>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setLibraries($var)

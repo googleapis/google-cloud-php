@@ -34,12 +34,14 @@ use Google\Cloud\Datastore\Query\QueryInterface;
 use Google\Cloud\Datastore\ReadOnlyTransaction;
 use Google\Cloud\Datastore\Transaction;
 use Prophecy\Argument;
+use Yoast\PHPUnitPolyfills\Polyfills\AssertIsType;
 
 /**
  * @group datastore
  */
 class DatastoreClientTest extends SnippetTestCase
 {
+    use AssertIsType;
     use DatastoreOperationRefreshTrait;
 
     const PROJECT = 'example-project';
@@ -49,7 +51,7 @@ class DatastoreClientTest extends SnippetTestCase
     private $client;
     private $key;
 
-    public function setUp()
+    public function set_up()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->client = TestHelpers::stub(DatastoreClient::class, [], ['operation']);
@@ -93,6 +95,28 @@ class DatastoreClientTest extends SnippetTestCase
         $this->assertEquals('my-application-namespace', $nsProp->getValue($op));
     }
 
+    public function testMultipleDatabases()
+    {
+        $snippet = $this->snippetFromClass(DatastoreClient::class, 3);
+        $res = $snippet->invoke('datastore');
+
+        $this->assertInstanceOf(DatastoreClient::class, $res->returnVal());
+
+        $ds = $res->returnVal();
+
+        $ref = new \ReflectionClass($ds);
+        $opProp = $ref->getProperty('operation');
+        $opProp->setAccessible(true);
+
+        $op = $opProp->getValue($ds);
+
+        $opRef = new \ReflectionClass($op);
+        $dsProp = $opRef->getProperty('databaseId');
+        $dsProp->setAccessible(true);
+
+        $this->assertEquals('my-database', $dsProp->getValue($op));
+    }
+
     public function testEmulator()
     {
         $snippet = $this->snippetFromClass(DatastoreClient::class, 2);
@@ -134,7 +158,7 @@ class DatastoreClientTest extends SnippetTestCase
         $snippet->addLocal('datastore', $this->client);
 
         $res = $snippet->invoke('keys');
-        $this->assertInternalType('array', $res->returnVal());
+        $this->assertIsArray($res->returnVal());
         $this->assertCount(10, $res->returnVal());
         $this->assertInstanceOf(Key::class, $res->returnVal()[0]);
         $this->assertEquals('Person', $res->returnVal()[0]->keyObject()['path'][0]['kind']);
@@ -147,7 +171,7 @@ class DatastoreClientTest extends SnippetTestCase
 
         $res = $snippet->invoke('keys');
 
-        $this->assertInternalType('array', $res->returnVal());
+        $this->assertIsArray($res->returnVal());
         $this->assertCount(3, $res->returnVal());
         $this->assertInstanceOf(Key::class, $res->returnVal()[0]);
 

@@ -82,7 +82,7 @@ class Condition extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $ip_subnetworks
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $ip_subnetworks
      *           CIDR block IP subnetwork specification. May be IPv4 or IPv6. Note that for
      *           a CIDR IP address block, the specified IP address portion must be properly
      *           truncated (i.e. all the host bits must be zero) or the input is considered
@@ -94,7 +94,7 @@ class Condition extends \Google\Protobuf\Internal\Message
      *     @type \Google\Identity\AccessContextManager\V1\DevicePolicy $device_policy
      *           Device specific restrictions, all restrictions must hold for the
      *           Condition to be true. If not specified, all devices are allowed.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $required_access_levels
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $required_access_levels
      *           A list of other access levels defined in the same `Policy`, referenced by
      *           resource name. Referencing an `AccessLevel` which does not exist is an
      *           error. All access levels listed must be granted for the Condition
@@ -104,14 +104,14 @@ class Condition extends \Google\Protobuf\Internal\Message
      *           Whether to negate the Condition. If true, the Condition becomes a NAND over
      *           its non-empty fields, each field must be false for the Condition overall to
      *           be satisfied. Defaults to false.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $members
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $members
      *           The request must be made by one of the provided user or service
      *           accounts. Groups are not supported.
      *           Syntax:
      *           `user:{emailid}`
      *           `serviceAccount:{emailid}`
      *           If not specified, a request may come from any user.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $regions
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $regions
      *           The request must originate from one of the provided countries/regions.
      *           Must be valid ISO 3166-1 alpha-2 codes.
      * }
@@ -150,7 +150,7 @@ class Condition extends \Google\Protobuf\Internal\Message
      * addresses are allowed.
      *
      * Generated from protobuf field <code>repeated string ip_subnetworks = 1;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setIpSubnetworks($var)
@@ -222,7 +222,7 @@ class Condition extends \Google\Protobuf\Internal\Message
      * "`accessPolicies/MY_POLICY/accessLevels/LEVEL_NAME"`
      *
      * Generated from protobuf field <code>repeated string required_access_levels = 3;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setRequiredAccessLevels($var)
@@ -288,7 +288,7 @@ class Condition extends \Google\Protobuf\Internal\Message
      * If not specified, a request may come from any user.
      *
      * Generated from protobuf field <code>repeated string members = 6;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setMembers($var)
@@ -316,7 +316,7 @@ class Condition extends \Google\Protobuf\Internal\Message
      * Must be valid ISO 3166-1 alpha-2 codes.
      *
      * Generated from protobuf field <code>repeated string regions = 7;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setRegions($var)

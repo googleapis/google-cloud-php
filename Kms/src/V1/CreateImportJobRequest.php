@@ -9,14 +9,16 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [KeyManagementService.CreateImportJob][google.cloud.kms.v1.KeyManagementService.CreateImportJob].
+ * Request message for
+ * [KeyManagementService.CreateImportJob][google.cloud.kms.v1.KeyManagementService.CreateImportJob].
  *
  * Generated from protobuf message <code>google.cloud.kms.v1.CreateImportJobRequest</code>
  */
 class CreateImportJobRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The [name][google.cloud.kms.v1.KeyRing.name] of the [KeyRing][google.cloud.kms.v1.KeyRing] associated with the
+     * Required. The [name][google.cloud.kms.v1.KeyRing.name] of the
+     * [KeyRing][google.cloud.kms.v1.KeyRing] associated with the
      * [ImportJobs][google.cloud.kms.v1.ImportJob].
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -30,7 +32,8 @@ class CreateImportJobRequest extends \Google\Protobuf\Internal\Message
      */
     private $import_job_id = '';
     /**
-     * Required. An [ImportJob][google.cloud.kms.v1.ImportJob] with initial field values.
+     * Required. An [ImportJob][google.cloud.kms.v1.ImportJob] with initial field
+     * values.
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.ImportJob import_job = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -43,13 +46,15 @@ class CreateImportJobRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The [name][google.cloud.kms.v1.KeyRing.name] of the [KeyRing][google.cloud.kms.v1.KeyRing] associated with the
+     *           Required. The [name][google.cloud.kms.v1.KeyRing.name] of the
+     *           [KeyRing][google.cloud.kms.v1.KeyRing] associated with the
      *           [ImportJobs][google.cloud.kms.v1.ImportJob].
      *     @type string $import_job_id
      *           Required. It must be unique within a KeyRing and match the regular
      *           expression `[a-zA-Z0-9_-]{1,63}`
      *     @type \Google\Cloud\Kms\V1\ImportJob $import_job
-     *           Required. An [ImportJob][google.cloud.kms.v1.ImportJob] with initial field values.
+     *           Required. An [ImportJob][google.cloud.kms.v1.ImportJob] with initial field
+     *           values.
      * }
      */
     public function __construct($data = NULL) {
@@ -58,7 +63,8 @@ class CreateImportJobRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The [name][google.cloud.kms.v1.KeyRing.name] of the [KeyRing][google.cloud.kms.v1.KeyRing] associated with the
+     * Required. The [name][google.cloud.kms.v1.KeyRing.name] of the
+     * [KeyRing][google.cloud.kms.v1.KeyRing] associated with the
      * [ImportJobs][google.cloud.kms.v1.ImportJob].
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -70,7 +76,8 @@ class CreateImportJobRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The [name][google.cloud.kms.v1.KeyRing.name] of the [KeyRing][google.cloud.kms.v1.KeyRing] associated with the
+     * Required. The [name][google.cloud.kms.v1.KeyRing.name] of the
+     * [KeyRing][google.cloud.kms.v1.KeyRing] associated with the
      * [ImportJobs][google.cloud.kms.v1.ImportJob].
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -114,7 +121,8 @@ class CreateImportJobRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. An [ImportJob][google.cloud.kms.v1.ImportJob] with initial field values.
+     * Required. An [ImportJob][google.cloud.kms.v1.ImportJob] with initial field
+     * values.
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.ImportJob import_job = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Kms\V1\ImportJob|null
@@ -135,7 +143,8 @@ class CreateImportJobRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. An [ImportJob][google.cloud.kms.v1.ImportJob] with initial field values.
+     * Required. An [ImportJob][google.cloud.kms.v1.ImportJob] with initial field
+     * values.
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.ImportJob import_job = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Kms\V1\ImportJob $var

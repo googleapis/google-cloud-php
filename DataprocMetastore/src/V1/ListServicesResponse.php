@@ -41,12 +41,12 @@ class ListServicesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Metastore\V1\Service[]|\Google\Protobuf\Internal\RepeatedField $services
+     *     @type array<\Google\Cloud\Metastore\V1\Service>|\Google\Protobuf\Internal\RepeatedField $services
      *           The services in the specified location.
      *     @type string $next_page_token
      *           A token that can be sent as `page_token` to retrieve the next page. If this
      *           field is omitted, there are no subsequent pages.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
      *           Locations that could not be reached.
      * }
      */
@@ -70,7 +70,7 @@ class ListServicesResponse extends \Google\Protobuf\Internal\Message
      * The services in the specified location.
      *
      * Generated from protobuf field <code>repeated .google.cloud.metastore.v1.Service services = 1;</code>
-     * @param \Google\Cloud\Metastore\V1\Service[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Metastore\V1\Service>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setServices($var)
@@ -124,7 +124,7 @@ class ListServicesResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setUnreachable($var)

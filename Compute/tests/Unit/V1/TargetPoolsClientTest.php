@@ -25,7 +25,6 @@ namespace Google\Cloud\Compute\Tests\Unit\V1;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Compute\V1\GetRegionOperationRequest;
 use Google\Cloud\Compute\V1\InstanceReference;
@@ -53,25 +52,19 @@ use stdClass;
  */
 class TargetPoolsClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return TargetPoolsClient
-     */
+    /** @return TargetPoolsClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -80,9 +73,7 @@ class TargetPoolsClientTest extends GeneratedTest
         return new TargetPoolsClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function addHealthCheckTest()
     {
         $operationsTransport = $this->createTransport();
@@ -92,7 +83,7 @@ class TargetPoolsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -112,7 +103,7 @@ class TargetPoolsClientTest extends GeneratedTest
         $region = 'region-934795532';
         $targetPool = 'targetPool-2084687350';
         $targetPoolsAddHealthCheckRequestResource = new TargetPoolsAddHealthCheckRequest();
-        $response = $client->addHealthCheck($project, $region, $targetPool, $targetPoolsAddHealthCheckRequestResource);
+        $response = $gapicClient->addHealthCheck($project, $region, $targetPool, $targetPoolsAddHealthCheckRequestResource);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -149,9 +140,7 @@ class TargetPoolsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function addHealthCheckExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -161,7 +150,7 @@ class TargetPoolsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -187,7 +176,7 @@ class TargetPoolsClientTest extends GeneratedTest
         $region = 'region-934795532';
         $targetPool = 'targetPool-2084687350';
         $targetPoolsAddHealthCheckRequestResource = new TargetPoolsAddHealthCheckRequest();
-        $response = $client->addHealthCheck($project, $region, $targetPool, $targetPoolsAddHealthCheckRequestResource);
+        $response = $gapicClient->addHealthCheck($project, $region, $targetPool, $targetPoolsAddHealthCheckRequestResource);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -207,9 +196,7 @@ class TargetPoolsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function addInstanceTest()
     {
         $operationsTransport = $this->createTransport();
@@ -219,7 +206,7 @@ class TargetPoolsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -239,7 +226,7 @@ class TargetPoolsClientTest extends GeneratedTest
         $region = 'region-934795532';
         $targetPool = 'targetPool-2084687350';
         $targetPoolsAddInstanceRequestResource = new TargetPoolsAddInstanceRequest();
-        $response = $client->addInstance($project, $region, $targetPool, $targetPoolsAddInstanceRequestResource);
+        $response = $gapicClient->addInstance($project, $region, $targetPool, $targetPoolsAddInstanceRequestResource);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -276,9 +263,7 @@ class TargetPoolsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function addInstanceExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -288,7 +273,7 @@ class TargetPoolsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -314,7 +299,7 @@ class TargetPoolsClientTest extends GeneratedTest
         $region = 'region-934795532';
         $targetPool = 'targetPool-2084687350';
         $targetPoolsAddInstanceRequestResource = new TargetPoolsAddInstanceRequest();
-        $response = $client->addInstance($project, $region, $targetPool, $targetPoolsAddInstanceRequestResource);
+        $response = $gapicClient->addInstance($project, $region, $targetPool, $targetPoolsAddInstanceRequestResource);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -334,13 +319,11 @@ class TargetPoolsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function aggregatedListTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -361,7 +344,7 @@ class TargetPoolsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $project = 'project-309310695';
-        $response = $client->aggregatedList($project);
+        $response = $gapicClient->aggregatedList($project);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -378,13 +361,11 @@ class TargetPoolsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function aggregatedListExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -401,8 +382,8 @@ class TargetPoolsClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         try {
-            $client->aggregatedList($project);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->aggregatedList($project);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -413,9 +394,7 @@ class TargetPoolsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteTest()
     {
         $operationsTransport = $this->createTransport();
@@ -425,7 +404,7 @@ class TargetPoolsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -444,7 +423,7 @@ class TargetPoolsClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         $targetPool = 'targetPool-2084687350';
-        $response = $client->delete($project, $region, $targetPool);
+        $response = $gapicClient->delete($project, $region, $targetPool);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -479,9 +458,7 @@ class TargetPoolsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -491,7 +468,7 @@ class TargetPoolsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -516,7 +493,7 @@ class TargetPoolsClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         $targetPool = 'targetPool-2084687350';
-        $response = $client->delete($project, $region, $targetPool);
+        $response = $gapicClient->delete($project, $region, $targetPool);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -536,13 +513,11 @@ class TargetPoolsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -573,7 +548,7 @@ class TargetPoolsClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         $targetPool = 'targetPool-2084687350';
-        $response = $client->get($project, $region, $targetPool);
+        $response = $gapicClient->get($project, $region, $targetPool);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -589,13 +564,11 @@ class TargetPoolsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -614,8 +587,8 @@ class TargetPoolsClientTest extends GeneratedTest
         $region = 'region-934795532';
         $targetPool = 'targetPool-2084687350';
         try {
-            $client->get($project, $region, $targetPool);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->get($project, $region, $targetPool);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -626,13 +599,11 @@ class TargetPoolsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getHealthTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -646,7 +617,7 @@ class TargetPoolsClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         $targetPool = 'targetPool-2084687350';
-        $response = $client->getHealth($instanceReferenceResource, $project, $region, $targetPool);
+        $response = $gapicClient->getHealth($instanceReferenceResource, $project, $region, $targetPool);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -664,13 +635,11 @@ class TargetPoolsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getHealthExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -690,8 +659,8 @@ class TargetPoolsClientTest extends GeneratedTest
         $region = 'region-934795532';
         $targetPool = 'targetPool-2084687350';
         try {
-            $client->getHealth($instanceReferenceResource, $project, $region, $targetPool);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getHealth($instanceReferenceResource, $project, $region, $targetPool);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -702,9 +671,7 @@ class TargetPoolsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function insertTest()
     {
         $operationsTransport = $this->createTransport();
@@ -714,7 +681,7 @@ class TargetPoolsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -733,7 +700,7 @@ class TargetPoolsClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         $targetPoolResource = new TargetPool();
-        $response = $client->insert($project, $region, $targetPoolResource);
+        $response = $gapicClient->insert($project, $region, $targetPoolResource);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -768,9 +735,7 @@ class TargetPoolsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function insertExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -780,7 +745,7 @@ class TargetPoolsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -805,7 +770,7 @@ class TargetPoolsClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         $targetPoolResource = new TargetPool();
-        $response = $client->insert($project, $region, $targetPoolResource);
+        $response = $gapicClient->insert($project, $region, $targetPoolResource);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -825,13 +790,11 @@ class TargetPoolsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -854,7 +817,7 @@ class TargetPoolsClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $response = $client->list($project, $region);
+        $response = $gapicClient->list($project, $region);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -871,13 +834,11 @@ class TargetPoolsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -895,8 +856,8 @@ class TargetPoolsClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         try {
-            $client->list($project, $region);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->list($project, $region);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -907,9 +868,7 @@ class TargetPoolsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function removeHealthCheckTest()
     {
         $operationsTransport = $this->createTransport();
@@ -919,7 +878,7 @@ class TargetPoolsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -939,7 +898,7 @@ class TargetPoolsClientTest extends GeneratedTest
         $region = 'region-934795532';
         $targetPool = 'targetPool-2084687350';
         $targetPoolsRemoveHealthCheckRequestResource = new TargetPoolsRemoveHealthCheckRequest();
-        $response = $client->removeHealthCheck($project, $region, $targetPool, $targetPoolsRemoveHealthCheckRequestResource);
+        $response = $gapicClient->removeHealthCheck($project, $region, $targetPool, $targetPoolsRemoveHealthCheckRequestResource);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -976,9 +935,7 @@ class TargetPoolsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function removeHealthCheckExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -988,7 +945,7 @@ class TargetPoolsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1014,7 +971,7 @@ class TargetPoolsClientTest extends GeneratedTest
         $region = 'region-934795532';
         $targetPool = 'targetPool-2084687350';
         $targetPoolsRemoveHealthCheckRequestResource = new TargetPoolsRemoveHealthCheckRequest();
-        $response = $client->removeHealthCheck($project, $region, $targetPool, $targetPoolsRemoveHealthCheckRequestResource);
+        $response = $gapicClient->removeHealthCheck($project, $region, $targetPool, $targetPoolsRemoveHealthCheckRequestResource);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -1034,9 +991,7 @@ class TargetPoolsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function removeInstanceTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1046,7 +1001,7 @@ class TargetPoolsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1066,7 +1021,7 @@ class TargetPoolsClientTest extends GeneratedTest
         $region = 'region-934795532';
         $targetPool = 'targetPool-2084687350';
         $targetPoolsRemoveInstanceRequestResource = new TargetPoolsRemoveInstanceRequest();
-        $response = $client->removeInstance($project, $region, $targetPool, $targetPoolsRemoveInstanceRequestResource);
+        $response = $gapicClient->removeInstance($project, $region, $targetPool, $targetPoolsRemoveInstanceRequestResource);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -1103,9 +1058,7 @@ class TargetPoolsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function removeInstanceExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1115,7 +1068,7 @@ class TargetPoolsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1141,7 +1094,7 @@ class TargetPoolsClientTest extends GeneratedTest
         $region = 'region-934795532';
         $targetPool = 'targetPool-2084687350';
         $targetPoolsRemoveInstanceRequestResource = new TargetPoolsRemoveInstanceRequest();
-        $response = $client->removeInstance($project, $region, $targetPool, $targetPoolsRemoveInstanceRequestResource);
+        $response = $gapicClient->removeInstance($project, $region, $targetPool, $targetPoolsRemoveInstanceRequestResource);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -1161,9 +1114,7 @@ class TargetPoolsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setBackupTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1173,7 +1124,7 @@ class TargetPoolsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1193,7 +1144,7 @@ class TargetPoolsClientTest extends GeneratedTest
         $region = 'region-934795532';
         $targetPool = 'targetPool-2084687350';
         $targetReferenceResource = new TargetReference();
-        $response = $client->setBackup($project, $region, $targetPool, $targetReferenceResource);
+        $response = $gapicClient->setBackup($project, $region, $targetPool, $targetReferenceResource);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -1230,9 +1181,7 @@ class TargetPoolsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setBackupExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1242,7 +1191,7 @@ class TargetPoolsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1268,7 +1217,7 @@ class TargetPoolsClientTest extends GeneratedTest
         $region = 'region-934795532';
         $targetPool = 'targetPool-2084687350';
         $targetReferenceResource = new TargetReference();
-        $response = $client->setBackup($project, $region, $targetPool, $targetReferenceResource);
+        $response = $gapicClient->setBackup($project, $region, $targetPool, $targetReferenceResource);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {

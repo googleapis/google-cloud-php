@@ -41,7 +41,7 @@ class JobMetrics extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Protobuf\Timestamp $metric_time
      *           Timestamp as of which metric values are current.
-     *     @type \Google\Cloud\Dataflow\V1beta3\MetricUpdate[]|\Google\Protobuf\Internal\RepeatedField $metrics
+     *     @type array<\Google\Cloud\Dataflow\V1beta3\MetricUpdate>|\Google\Protobuf\Internal\RepeatedField $metrics
      *           All metrics for this job.
      * }
      */
@@ -101,7 +101,7 @@ class JobMetrics extends \Google\Protobuf\Internal\Message
      * All metrics for this job.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.MetricUpdate metrics = 2;</code>
-     * @param \Google\Cloud\Dataflow\V1beta3\MetricUpdate[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dataflow\V1beta3\MetricUpdate>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setMetrics($var)

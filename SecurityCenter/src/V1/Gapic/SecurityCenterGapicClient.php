@@ -27,11 +27,8 @@ namespace Google\Cloud\SecurityCenter\V1\Gapic;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-
 use Google\ApiCore\LongRunning\OperationsClient;
-
 use Google\ApiCore\OperationResponse;
-
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
@@ -44,17 +41,21 @@ use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\SetIamPolicyRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
+use Google\Cloud\SecurityCenter\V1\BigQueryExport;
 use Google\Cloud\SecurityCenter\V1\BulkMuteFindingsRequest;
+use Google\Cloud\SecurityCenter\V1\CreateBigQueryExportRequest;
 use Google\Cloud\SecurityCenter\V1\CreateFindingRequest;
 use Google\Cloud\SecurityCenter\V1\CreateMuteConfigRequest;
 use Google\Cloud\SecurityCenter\V1\CreateNotificationConfigRequest;
 use Google\Cloud\SecurityCenter\V1\CreateSourceRequest;
+use Google\Cloud\SecurityCenter\V1\DeleteBigQueryExportRequest;
 use Google\Cloud\SecurityCenter\V1\DeleteMuteConfigRequest;
 use Google\Cloud\SecurityCenter\V1\DeleteNotificationConfigRequest;
 use Google\Cloud\SecurityCenter\V1\ExternalSystem;
 use Google\Cloud\SecurityCenter\V1\Finding;
 use Google\Cloud\SecurityCenter\V1\Finding\Mute;
 use Google\Cloud\SecurityCenter\V1\Finding\State;
+use Google\Cloud\SecurityCenter\V1\GetBigQueryExportRequest;
 use Google\Cloud\SecurityCenter\V1\GetMuteConfigRequest;
 use Google\Cloud\SecurityCenter\V1\GetNotificationConfigRequest;
 use Google\Cloud\SecurityCenter\V1\GetOrganizationSettingsRequest;
@@ -65,6 +66,8 @@ use Google\Cloud\SecurityCenter\V1\GroupFindingsRequest;
 use Google\Cloud\SecurityCenter\V1\GroupFindingsResponse;
 use Google\Cloud\SecurityCenter\V1\ListAssetsRequest;
 use Google\Cloud\SecurityCenter\V1\ListAssetsResponse;
+use Google\Cloud\SecurityCenter\V1\ListBigQueryExportsRequest;
+use Google\Cloud\SecurityCenter\V1\ListBigQueryExportsResponse;
 use Google\Cloud\SecurityCenter\V1\ListFindingsRequest;
 use Google\Cloud\SecurityCenter\V1\ListFindingsResponse;
 use Google\Cloud\SecurityCenter\V1\ListMuteConfigsRequest;
@@ -81,6 +84,7 @@ use Google\Cloud\SecurityCenter\V1\SecurityMarks;
 use Google\Cloud\SecurityCenter\V1\SetFindingStateRequest;
 use Google\Cloud\SecurityCenter\V1\SetMuteRequest;
 use Google\Cloud\SecurityCenter\V1\Source;
+use Google\Cloud\SecurityCenter\V1\UpdateBigQueryExportRequest;
 use Google\Cloud\SecurityCenter\V1\UpdateExternalSystemRequest;
 use Google\Cloud\SecurityCenter\V1\UpdateFindingRequest;
 use Google\Cloud\SecurityCenter\V1\UpdateMuteConfigRequest;
@@ -144,32 +148,24 @@ class SecurityCenterGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.securitycenter.v1.SecurityCenter';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'securitycenter.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
     ];
+
+    private static $bigQueryExportNameTemplate;
 
     private static $externalSystemNameTemplate;
 
@@ -179,7 +175,11 @@ class SecurityCenterGapicClient
 
     private static $folderAssetSecurityMarksNameTemplate;
 
+    private static $folderExportNameTemplate;
+
     private static $folderMuteConfigNameTemplate;
+
+    private static $folderNotificationConfigNameTemplate;
 
     private static $folderSourceNameTemplate;
 
@@ -197,7 +197,11 @@ class SecurityCenterGapicClient
 
     private static $organizationAssetSecurityMarksNameTemplate;
 
+    private static $organizationExportNameTemplate;
+
     private static $organizationMuteConfigNameTemplate;
+
+    private static $organizationNotificationConfigNameTemplate;
 
     private static $organizationSettingsNameTemplate;
 
@@ -213,7 +217,11 @@ class SecurityCenterGapicClient
 
     private static $projectAssetSecurityMarksNameTemplate;
 
+    private static $projectExportNameTemplate;
+
     private static $projectMuteConfigNameTemplate;
+
+    private static $projectNotificationConfigNameTemplate;
 
     private static $projectSourceNameTemplate;
 
@@ -252,6 +260,15 @@ class SecurityCenterGapicClient
         ];
     }
 
+    private static function getBigQueryExportNameTemplate()
+    {
+        if (self::$bigQueryExportNameTemplate == null) {
+            self::$bigQueryExportNameTemplate = new PathTemplate('organizations/{organization}/bigQueryExports/{export}');
+        }
+
+        return self::$bigQueryExportNameTemplate;
+    }
+
     private static function getExternalSystemNameTemplate()
     {
         if (self::$externalSystemNameTemplate == null) {
@@ -288,6 +305,15 @@ class SecurityCenterGapicClient
         return self::$folderAssetSecurityMarksNameTemplate;
     }
 
+    private static function getFolderExportNameTemplate()
+    {
+        if (self::$folderExportNameTemplate == null) {
+            self::$folderExportNameTemplate = new PathTemplate('folders/{folder}/bigQueryExports/{export}');
+        }
+
+        return self::$folderExportNameTemplate;
+    }
+
     private static function getFolderMuteConfigNameTemplate()
     {
         if (self::$folderMuteConfigNameTemplate == null) {
@@ -295,6 +321,15 @@ class SecurityCenterGapicClient
         }
 
         return self::$folderMuteConfigNameTemplate;
+    }
+
+    private static function getFolderNotificationConfigNameTemplate()
+    {
+        if (self::$folderNotificationConfigNameTemplate == null) {
+            self::$folderNotificationConfigNameTemplate = new PathTemplate('folders/{folder}/notificationConfigs/{notification_config}');
+        }
+
+        return self::$folderNotificationConfigNameTemplate;
     }
 
     private static function getFolderSourceNameTemplate()
@@ -369,6 +404,15 @@ class SecurityCenterGapicClient
         return self::$organizationAssetSecurityMarksNameTemplate;
     }
 
+    private static function getOrganizationExportNameTemplate()
+    {
+        if (self::$organizationExportNameTemplate == null) {
+            self::$organizationExportNameTemplate = new PathTemplate('organizations/{organization}/bigQueryExports/{export}');
+        }
+
+        return self::$organizationExportNameTemplate;
+    }
+
     private static function getOrganizationMuteConfigNameTemplate()
     {
         if (self::$organizationMuteConfigNameTemplate == null) {
@@ -376,6 +420,15 @@ class SecurityCenterGapicClient
         }
 
         return self::$organizationMuteConfigNameTemplate;
+    }
+
+    private static function getOrganizationNotificationConfigNameTemplate()
+    {
+        if (self::$organizationNotificationConfigNameTemplate == null) {
+            self::$organizationNotificationConfigNameTemplate = new PathTemplate('organizations/{organization}/notificationConfigs/{notification_config}');
+        }
+
+        return self::$organizationNotificationConfigNameTemplate;
     }
 
     private static function getOrganizationSettingsNameTemplate()
@@ -441,6 +494,15 @@ class SecurityCenterGapicClient
         return self::$projectAssetSecurityMarksNameTemplate;
     }
 
+    private static function getProjectExportNameTemplate()
+    {
+        if (self::$projectExportNameTemplate == null) {
+            self::$projectExportNameTemplate = new PathTemplate('projects/{project}/bigQueryExports/{export}');
+        }
+
+        return self::$projectExportNameTemplate;
+    }
+
     private static function getProjectMuteConfigNameTemplate()
     {
         if (self::$projectMuteConfigNameTemplate == null) {
@@ -448,6 +510,15 @@ class SecurityCenterGapicClient
         }
 
         return self::$projectMuteConfigNameTemplate;
+    }
+
+    private static function getProjectNotificationConfigNameTemplate()
+    {
+        if (self::$projectNotificationConfigNameTemplate == null) {
+            self::$projectNotificationConfigNameTemplate = new PathTemplate('projects/{project}/notificationConfigs/{notification_config}');
+        }
+
+        return self::$projectNotificationConfigNameTemplate;
     }
 
     private static function getProjectSourceNameTemplate()
@@ -517,11 +588,14 @@ class SecurityCenterGapicClient
     {
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
+                'bigQueryExport' => self::getBigQueryExportNameTemplate(),
                 'externalSystem' => self::getExternalSystemNameTemplate(),
                 'finding' => self::getFindingNameTemplate(),
                 'folder' => self::getFolderNameTemplate(),
                 'folderAssetSecurityMarks' => self::getFolderAssetSecurityMarksNameTemplate(),
+                'folderExport' => self::getFolderExportNameTemplate(),
                 'folderMuteConfig' => self::getFolderMuteConfigNameTemplate(),
+                'folderNotificationConfig' => self::getFolderNotificationConfigNameTemplate(),
                 'folderSource' => self::getFolderSourceNameTemplate(),
                 'folderSourceFinding' => self::getFolderSourceFindingNameTemplate(),
                 'folderSourceFindingExternalsystem' => self::getFolderSourceFindingExternalsystemNameTemplate(),
@@ -530,7 +604,9 @@ class SecurityCenterGapicClient
                 'notificationConfig' => self::getNotificationConfigNameTemplate(),
                 'organization' => self::getOrganizationNameTemplate(),
                 'organizationAssetSecurityMarks' => self::getOrganizationAssetSecurityMarksNameTemplate(),
+                'organizationExport' => self::getOrganizationExportNameTemplate(),
                 'organizationMuteConfig' => self::getOrganizationMuteConfigNameTemplate(),
+                'organizationNotificationConfig' => self::getOrganizationNotificationConfigNameTemplate(),
                 'organizationSettings' => self::getOrganizationSettingsNameTemplate(),
                 'organizationSource' => self::getOrganizationSourceNameTemplate(),
                 'organizationSourceFinding' => self::getOrganizationSourceFindingNameTemplate(),
@@ -538,7 +614,9 @@ class SecurityCenterGapicClient
                 'organizationSourceFindingSecurityMarks' => self::getOrganizationSourceFindingSecurityMarksNameTemplate(),
                 'project' => self::getProjectNameTemplate(),
                 'projectAssetSecurityMarks' => self::getProjectAssetSecurityMarksNameTemplate(),
+                'projectExport' => self::getProjectExportNameTemplate(),
                 'projectMuteConfig' => self::getProjectMuteConfigNameTemplate(),
+                'projectNotificationConfig' => self::getProjectNotificationConfigNameTemplate(),
                 'projectSource' => self::getProjectSourceNameTemplate(),
                 'projectSourceFinding' => self::getProjectSourceFindingNameTemplate(),
                 'projectSourceFindingExternalsystem' => self::getProjectSourceFindingExternalsystemNameTemplate(),
@@ -550,6 +628,23 @@ class SecurityCenterGapicClient
         }
 
         return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * big_query_export resource.
+     *
+     * @param string $organization
+     * @param string $export
+     *
+     * @return string The formatted big_query_export resource.
+     */
+    public static function bigQueryExportName($organization, $export)
+    {
+        return self::getBigQueryExportNameTemplate()->render([
+            'organization' => $organization,
+            'export' => $export,
+        ]);
     }
 
     /**
@@ -626,6 +721,23 @@ class SecurityCenterGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * folder_export resource.
+     *
+     * @param string $folder
+     * @param string $export
+     *
+     * @return string The formatted folder_export resource.
+     */
+    public static function folderExportName($folder, $export)
+    {
+        return self::getFolderExportNameTemplate()->render([
+            'folder' => $folder,
+            'export' => $export,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * folder_mute_config resource.
      *
      * @param string $folder
@@ -638,6 +750,23 @@ class SecurityCenterGapicClient
         return self::getFolderMuteConfigNameTemplate()->render([
             'folder' => $folder,
             'mute_config' => $muteConfig,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * folder_notification_config resource.
+     *
+     * @param string $folder
+     * @param string $notificationConfig
+     *
+     * @return string The formatted folder_notification_config resource.
+     */
+    public static function folderNotificationConfigName($folder, $notificationConfig)
+    {
+        return self::getFolderNotificationConfigNameTemplate()->render([
+            'folder' => $folder,
+            'notification_config' => $notificationConfig,
         ]);
     }
 
@@ -785,6 +914,23 @@ class SecurityCenterGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * organization_export resource.
+     *
+     * @param string $organization
+     * @param string $export
+     *
+     * @return string The formatted organization_export resource.
+     */
+    public static function organizationExportName($organization, $export)
+    {
+        return self::getOrganizationExportNameTemplate()->render([
+            'organization' => $organization,
+            'export' => $export,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * organization_mute_config resource.
      *
      * @param string $organization
@@ -797,6 +943,23 @@ class SecurityCenterGapicClient
         return self::getOrganizationMuteConfigNameTemplate()->render([
             'organization' => $organization,
             'mute_config' => $muteConfig,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * organization_notification_config resource.
+     *
+     * @param string $organization
+     * @param string $notificationConfig
+     *
+     * @return string The formatted organization_notification_config resource.
+     */
+    public static function organizationNotificationConfigName($organization, $notificationConfig)
+    {
+        return self::getOrganizationNotificationConfigNameTemplate()->render([
+            'organization' => $organization,
+            'notification_config' => $notificationConfig,
         ]);
     }
 
@@ -925,6 +1088,23 @@ class SecurityCenterGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * project_export resource.
+     *
+     * @param string $project
+     * @param string $export
+     *
+     * @return string The formatted project_export resource.
+     */
+    public static function projectExportName($project, $export)
+    {
+        return self::getProjectExportNameTemplate()->render([
+            'project' => $project,
+            'export' => $export,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * project_mute_config resource.
      *
      * @param string $project
@@ -937,6 +1117,23 @@ class SecurityCenterGapicClient
         return self::getProjectMuteConfigNameTemplate()->render([
             'project' => $project,
             'mute_config' => $muteConfig,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_notification_config resource.
+     *
+     * @param string $project
+     * @param string $notificationConfig
+     *
+     * @return string The formatted project_notification_config resource.
+     */
+    public static function projectNotificationConfigName($project, $notificationConfig)
+    {
+        return self::getProjectNotificationConfigNameTemplate()->render([
+            'project' => $project,
+            'notification_config' => $notificationConfig,
         ]);
     }
 
@@ -1071,11 +1268,14 @@ class SecurityCenterGapicClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - bigQueryExport: organizations/{organization}/bigQueryExports/{export}
      * - externalSystem: organizations/{organization}/sources/{source}/findings/{finding}/externalSystems/{externalsystem}
      * - finding: organizations/{organization}/sources/{source}/findings/{finding}
      * - folder: folders/{folder}
      * - folderAssetSecurityMarks: folders/{folder}/assets/{asset}/securityMarks
+     * - folderExport: folders/{folder}/bigQueryExports/{export}
      * - folderMuteConfig: folders/{folder}/muteConfigs/{mute_config}
+     * - folderNotificationConfig: folders/{folder}/notificationConfigs/{notification_config}
      * - folderSource: folders/{folder}/sources/{source}
      * - folderSourceFinding: folders/{folder}/sources/{source}/findings/{finding}
      * - folderSourceFindingExternalsystem: folders/{folder}/sources/{source}/findings/{finding}/externalSystems/{externalsystem}
@@ -1084,7 +1284,9 @@ class SecurityCenterGapicClient
      * - notificationConfig: organizations/{organization}/notificationConfigs/{notification_config}
      * - organization: organizations/{organization}
      * - organizationAssetSecurityMarks: organizations/{organization}/assets/{asset}/securityMarks
+     * - organizationExport: organizations/{organization}/bigQueryExports/{export}
      * - organizationMuteConfig: organizations/{organization}/muteConfigs/{mute_config}
+     * - organizationNotificationConfig: organizations/{organization}/notificationConfigs/{notification_config}
      * - organizationSettings: organizations/{organization}/organizationSettings
      * - organizationSource: organizations/{organization}/sources/{source}
      * - organizationSourceFinding: organizations/{organization}/sources/{source}/findings/{finding}
@@ -1092,7 +1294,9 @@ class SecurityCenterGapicClient
      * - organizationSourceFindingSecurityMarks: organizations/{organization}/sources/{source}/findings/{finding}/securityMarks
      * - project: projects/{project}
      * - projectAssetSecurityMarks: projects/{project}/assets/{asset}/securityMarks
+     * - projectExport: projects/{project}/bigQueryExports/{export}
      * - projectMuteConfig: projects/{project}/muteConfigs/{mute_config}
+     * - projectNotificationConfig: projects/{project}/notificationConfigs/{notification_config}
      * - projectSource: projects/{project}/sources/{source}
      * - projectSourceFinding: projects/{project}/sources/{source}/findings/{finding}
      * - projectSourceFindingExternalsystem: projects/{project}/sources/{source}/findings/{finding}/externalSystems/{externalsystem}
@@ -1270,8 +1474,8 @@ class SecurityCenterGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent, at which bulk action needs to be applied. Its format is
-     *                             "organizations/[organization_id]", "folders/[folder_id]",
+     * @param string $parent       Required. The parent, at which bulk action needs to be applied. Its format
+     *                             is "organizations/[organization_id]", "folders/[folder_id]",
      *                             "projects/[project_id]".
      * @param array  $optionalArgs {
      *     Optional.
@@ -1301,10 +1505,9 @@ class SecurityCenterGapicClient
      *           This can be a mute configuration name or any identifier for mute/unmute
      *           of findings based on the filter.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -1331,6 +1534,56 @@ class SecurityCenterGapicClient
     }
 
     /**
+     * Creates a big query export.
+     *
+     * Sample code:
+     * ```
+     * $securityCenterClient = new SecurityCenterClient();
+     * try {
+     *     $formattedParent = $securityCenterClient->projectName('[PROJECT]');
+     *     $bigQueryExport = new BigQueryExport();
+     *     $bigQueryExportId = 'big_query_export_id';
+     *     $response = $securityCenterClient->createBigQueryExport($formattedParent, $bigQueryExport, $bigQueryExportId);
+     * } finally {
+     *     $securityCenterClient->close();
+     * }
+     * ```
+     *
+     * @param string         $parent           Required. Resource name of the new big query export's parent. Its format is
+     *                                         "organizations/[organization_id]", "folders/[folder_id]", or
+     *                                         "projects/[project_id]".
+     * @param BigQueryExport $bigQueryExport   Required. The big query export being created.
+     * @param string         $bigQueryExportId Required. Unique identifier provided by the client within the parent scope.
+     *                                         It must consist of lower case letters, numbers, and hyphen, with the first
+     *                                         character a letter, the last a letter or a number, and a 63 character
+     *                                         maximum.
+     * @param array          $optionalArgs     {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\SecurityCenter\V1\BigQueryExport
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function createBigQueryExport($parent, $bigQueryExport, $bigQueryExportId, array $optionalArgs = [])
+    {
+        $request = new CreateBigQueryExportRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setBigQueryExport($bigQueryExport);
+        $request->setBigQueryExportId($bigQueryExportId);
+        $requestParamHeaders['parent'] = $parent;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('CreateBigQueryExport', BigQueryExport::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Creates a finding. The corresponding source must exist for finding creation
      * to succeed.
      *
@@ -1352,16 +1605,15 @@ class SecurityCenterGapicClient
      * @param string  $findingId    Required. Unique identifier provided by the client within the parent scope.
      *                              It must be alphanumeric and less than or equal to 32 characters and
      *                              greater than 0 characters in length.
-     * @param Finding $finding      Required. The Finding being created. The name and security_marks will be ignored as
-     *                              they are both output only fields on this resource.
+     * @param Finding $finding      Required. The Finding being created. The name and security_marks will be
+     *                              ignored as they are both output only fields on this resource.
      * @param array   $optionalArgs {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\SecurityCenter\V1\Finding
@@ -1409,10 +1661,9 @@ class SecurityCenterGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\SecurityCenter\V1\MuteConfig
@@ -1439,7 +1690,7 @@ class SecurityCenterGapicClient
      * ```
      * $securityCenterClient = new SecurityCenterClient();
      * try {
-     *     $formattedParent = $securityCenterClient->organizationName('[ORGANIZATION]');
+     *     $formattedParent = $securityCenterClient->projectName('[PROJECT]');
      *     $configId = 'config_id';
      *     $notificationConfig = new NotificationConfig();
      *     $response = $securityCenterClient->createNotificationConfig($formattedParent, $configId, $notificationConfig);
@@ -1448,22 +1699,23 @@ class SecurityCenterGapicClient
      * }
      * ```
      *
-     * @param string             $parent             Required. Resource name of the new notification config's parent. Its format is
-     *                                               "organizations/[organization_id]".
+     * @param string             $parent             Required. Resource name of the new notification config's parent. Its format
+     *                                               is "organizations/[organization_id]", "folders/[folder_id]", or
+     *                                               "projects/[project_id]".
      * @param string             $configId           Required.
      *                                               Unique identifier provided by the client within the parent scope.
      *                                               It must be between 1 and 128 characters, and contains alphanumeric
      *                                               characters, underscores or hyphens only.
-     * @param NotificationConfig $notificationConfig Required. The notification config being created. The name and the service account
-     *                                               will be ignored as they are both output only fields on this resource.
+     * @param NotificationConfig $notificationConfig Required. The notification config being created. The name and the service
+     *                                               account will be ignored as they are both output only fields on this
+     *                                               resource.
      * @param array              $optionalArgs       {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\SecurityCenter\V1\NotificationConfig
@@ -1500,16 +1752,15 @@ class SecurityCenterGapicClient
      *
      * @param string $parent       Required. Resource name of the new source's parent. Its format should be
      *                             "organizations/[organization_id]".
-     * @param Source $source       Required. The Source being created, only the display_name and description will be
-     *                             used. All other fields will be ignored.
+     * @param Source $source       Required. The Source being created, only the display_name and description
+     *                             will be used. All other fields will be ignored.
      * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\SecurityCenter\V1\Source
@@ -1526,6 +1777,46 @@ class SecurityCenterGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CreateSource', Source::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Deletes an existing big query export.
+     *
+     * Sample code:
+     * ```
+     * $securityCenterClient = new SecurityCenterClient();
+     * try {
+     *     $formattedName = $securityCenterClient->bigQueryExportName('[ORGANIZATION]', '[EXPORT]');
+     *     $securityCenterClient->deleteBigQueryExport($formattedName);
+     * } finally {
+     *     $securityCenterClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Name of the big query export to delete. Its format is
+     *                             organizations/{organization}/bigQueryExports/{export_id},
+     *                             folders/{folder}/bigQueryExports/{export_id}, or
+     *                             projects/{project}/bigQueryExports/{export_id}
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function deleteBigQueryExport($name, array $optionalArgs = [])
+    {
+        $request = new DeleteBigQueryExportRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('DeleteBigQueryExport', GPBEmpty::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -1550,10 +1841,9 @@ class SecurityCenterGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @throws ApiException if the remote call fails
@@ -1589,10 +1879,9 @@ class SecurityCenterGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @throws ApiException if the remote call fails
@@ -1606,6 +1895,48 @@ class SecurityCenterGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteNotificationConfig', GPBEmpty::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Gets a big query export.
+     *
+     * Sample code:
+     * ```
+     * $securityCenterClient = new SecurityCenterClient();
+     * try {
+     *     $formattedName = $securityCenterClient->bigQueryExportName('[ORGANIZATION]', '[EXPORT]');
+     *     $response = $securityCenterClient->getBigQueryExport($formattedName);
+     * } finally {
+     *     $securityCenterClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Name of the big query export to retrieve. Its format is
+     *                             organizations/{organization}/bigQueryExports/{export_id},
+     *                             folders/{folder}/bigQueryExports/{export_id}, or
+     *                             projects/{project}/bigQueryExports/{export_id}
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\SecurityCenter\V1\BigQueryExport
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getBigQueryExport($name, array $optionalArgs = [])
+    {
+        $request = new GetBigQueryExportRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetBigQueryExport', BigQueryExport::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -1629,12 +1960,11 @@ class SecurityCenterGapicClient
      *
      *     @type GetPolicyOptions $options
      *           OPTIONAL: A `GetPolicyOptions` object for specifying options to
-     *           `GetIamPolicy`. This field is only used by Cloud IAM.
+     *           `GetIamPolicy`.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Iam\V1\Policy
@@ -1678,10 +2008,9 @@ class SecurityCenterGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\SecurityCenter\V1\MuteConfig
@@ -1719,10 +2048,9 @@ class SecurityCenterGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\SecurityCenter\V1\NotificationConfig
@@ -1754,16 +2082,15 @@ class SecurityCenterGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Name of the organization to get organization settings for. Its format is
-     *                             "organizations/[organization_id]/organizationSettings".
+     * @param string $name         Required. Name of the organization to get organization settings for. Its
+     *                             format is "organizations/[organization_id]/organizationSettings".
      * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\SecurityCenter\V1\OrganizationSettings
@@ -1801,10 +2128,9 @@ class SecurityCenterGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\SecurityCenter\V1\Source
@@ -1853,9 +2179,9 @@ class SecurityCenterGapicClient
      * @param string $parent       Required. Name of the organization to groupBy. Its format is
      *                             "organizations/[organization_id], folders/[folder_id], or
      *                             projects/[project_id]".
-     * @param string $groupBy      Required. Expression that defines what assets fields to use for grouping. The string
-     *                             value should follow SQL syntax: comma separated list of fields. For
-     *                             example:
+     * @param string $groupBy      Required. Expression that defines what assets fields to use for grouping.
+     *                             The string value should follow SQL syntax: comma separated list of fields.
+     *                             For example:
      *                             "security_center_properties.resource_project,security_center_properties.project".
      *
      *                             The following fields are supported when compare_duration is not set:
@@ -1980,10 +2306,9 @@ class SecurityCenterGapicClient
      *           response. The API may return fewer values in a page, even if
      *           there are additional values to be retrieved.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -2062,9 +2387,9 @@ class SecurityCenterGapicClient
      *                             provide a source_id of `-`. For example:
      *                             organizations/{organization_id}/sources/-, folders/{folder_id}/sources/-,
      *                             or projects/{project_id}/sources/-
-     * @param string $groupBy      Required. Expression that defines what assets fields to use for grouping (including
-     *                             `state_change`). The string value should follow SQL syntax: comma separated
-     *                             list of fields. For example: "parent,resource_name".
+     * @param string $groupBy      Required. Expression that defines what assets fields to use for grouping
+     *                             (including `state_change`). The string value should follow SQL syntax:
+     *                             comma separated list of fields. For example: "parent,resource_name".
      *
      *                             The following fields are supported:
      *
@@ -2188,10 +2513,9 @@ class SecurityCenterGapicClient
      *           response. The API may return fewer values in a page, even if
      *           there are additional values to be retrieved.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -2391,10 +2715,9 @@ class SecurityCenterGapicClient
      *           response. The API may return fewer values in a page, even if
      *           there are additional values to be retrieved.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -2438,6 +2761,80 @@ class SecurityCenterGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->getPagedListResponse('ListAssets', $optionalArgs, ListAssetsResponse::class, $request);
+    }
+
+    /**
+     * Lists BigQuery exports. Note that when requesting BigQuery exports at a
+     * given level all exports under that level are also returned e.g. if
+     * requesting BigQuery exports under a folder, then all BigQuery exports
+     * immediately under the folder plus the ones created under the projects
+     * within the folder are returned.
+     *
+     * Sample code:
+     * ```
+     * $securityCenterClient = new SecurityCenterClient();
+     * try {
+     *     $formattedParent = $securityCenterClient->projectName('[PROJECT]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $securityCenterClient->listBigQueryExports($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $securityCenterClient->listBigQueryExports($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $securityCenterClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The parent, which owns the collection of BigQuery exports. Its
+     *                             format is "organizations/[organization_id]", "folders/[folder_id]",
+     *                             "projects/[project_id]".
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listBigQueryExports($parent, array $optionalArgs = [])
+    {
+        $request = new ListBigQueryExportsRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->getPagedListResponse('ListBigQueryExports', $optionalArgs, ListBigQueryExportsResponse::class, $request);
     }
 
     /**
@@ -2609,10 +3006,9 @@ class SecurityCenterGapicClient
      *           response. The API may return fewer values in a page, even if
      *           there are additional values to be retrieved.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -2684,8 +3080,8 @@ class SecurityCenterGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent, which owns the collection of mute configs. Its format is
-     *                             "organizations/[organization_id]", "folders/[folder_id]",
+     * @param string $parent       Required. The parent, which owns the collection of mute configs. Its format
+     *                             is "organizations/[organization_id]", "folders/[folder_id]",
      *                             "projects/[project_id]".
      * @param array  $optionalArgs {
      *     Optional.
@@ -2700,10 +3096,9 @@ class SecurityCenterGapicClient
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -2736,7 +3131,7 @@ class SecurityCenterGapicClient
      * ```
      * $securityCenterClient = new SecurityCenterClient();
      * try {
-     *     $formattedParent = $securityCenterClient->organizationName('[ORGANIZATION]');
+     *     $formattedParent = $securityCenterClient->projectName('[PROJECT]');
      *     // Iterate over pages of elements
      *     $pagedResponse = $securityCenterClient->listNotificationConfigs($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
@@ -2755,8 +3150,9 @@ class SecurityCenterGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. Name of the organization to list notification configs.
-     *                             Its format is "organizations/[organization_id]".
+     * @param string $parent       Required. Name of the organization to list notification configs. Its format
+     *                             is "organizations/[organization_id]", "folders/[folder_id]", or
+     *                             "projects/[project_id]".
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -2770,10 +3166,9 @@ class SecurityCenterGapicClient
      *           response. The API may return fewer values in a page, even if
      *           there are additional values to be retrieved.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -2825,8 +3220,8 @@ class SecurityCenterGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. Resource name of the parent of sources to list. Its format should be
-     *                             "organizations/[organization_id], folders/[folder_id], or
+     * @param string $parent       Required. Resource name of the parent of sources to list. Its format should
+     *                             be "organizations/[organization_id], folders/[folder_id], or
      *                             projects/[project_id]".
      * @param array  $optionalArgs {
      *     Optional.
@@ -2841,10 +3236,9 @@ class SecurityCenterGapicClient
      *           response. The API may return fewer values in a page, even if
      *           there are additional values to be retrieved.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -2914,16 +3308,15 @@ class SecurityCenterGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. Name of the organization to run asset discovery for. Its format is
-     *                             "organizations/[organization_id]".
+     * @param string $parent       Required. Name of the organization to run asset discovery for. Its format
+     *                             is "organizations/[organization_id]".
      * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -2960,7 +3353,7 @@ class SecurityCenterGapicClient
      * @param string    $name         Required. The relative resource name of the finding. See:
      *                                https://cloud.google.com/apis/design/resource_names#relative_resource_name
      *                                Example:
-     *                                "organizations/{organization_id}/sources/{source_id}/finding/{finding_id}".
+     *                                "organizations/{organization_id}/sources/{source_id}/findings/{finding_id}".
      * @param int       $state        Required. The desired State of the finding.
      *                                For allowed values, use constants defined on {@see \Google\Cloud\SecurityCenter\V1\Finding\State}
      * @param Timestamp $startTime    Required. The time at which the updated state takes effect.
@@ -2968,10 +3361,9 @@ class SecurityCenterGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\SecurityCenter\V1\Finding
@@ -3015,11 +3407,16 @@ class SecurityCenterGapicClient
      * @param array  $optionalArgs {
      *     Optional.
      *
+     *     @type FieldMask $updateMask
+     *           OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only
+     *           the fields in the mask will be modified. If no mask is provided, the
+     *           following default mask is used:
+     *
+     *           `paths: "bindings, etag"`
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Iam\V1\Policy
@@ -3033,6 +3430,10 @@ class SecurityCenterGapicClient
         $request->setResource($resource);
         $request->setPolicy($policy);
         $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('SetIamPolicy', Policy::class, $optionalArgs, $request)->wait();
@@ -3056,19 +3457,18 @@ class SecurityCenterGapicClient
      * @param string $name         Required. The relative resource name of the finding. See:
      *                             https://cloud.google.com/apis/design/resource_names#relative_resource_name
      *                             Example:
-     *                             "organizations/{organization_id}/sources/{source_id}/finding/{finding_id}",
-     *                             "folders/{folder_id}/sources/{source_id}/finding/{finding_id}",
-     *                             "projects/{project_id}/sources/{source_id}/finding/{finding_id}".
+     *                             "organizations/{organization_id}/sources/{source_id}/findings/{finding_id}",
+     *                             "folders/{folder_id}/sources/{source_id}/findings/{finding_id}",
+     *                             "projects/{project_id}/sources/{source_id}/findings/{finding_id}".
      * @param int    $mute         Required. The desired state of the Mute.
      *                             For allowed values, use constants defined on {@see \Google\Cloud\SecurityCenter\V1\Finding\Mute}
      * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\SecurityCenter\V1\Finding
@@ -3112,10 +3512,9 @@ class SecurityCenterGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Iam\V1\TestIamPermissionsResponse
@@ -3132,6 +3531,52 @@ class SecurityCenterGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('TestIamPermissions', TestIamPermissionsResponse::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Updates a BigQuery export.
+     *
+     * Sample code:
+     * ```
+     * $securityCenterClient = new SecurityCenterClient();
+     * try {
+     *     $bigQueryExport = new BigQueryExport();
+     *     $response = $securityCenterClient->updateBigQueryExport($bigQueryExport);
+     * } finally {
+     *     $securityCenterClient->close();
+     * }
+     * ```
+     *
+     * @param BigQueryExport $bigQueryExport Required. The BigQuery export being updated.
+     * @param array          $optionalArgs   {
+     *     Optional.
+     *
+     *     @type FieldMask $updateMask
+     *           The list of fields to be updated.
+     *           If empty all mutable fields will be updated.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\SecurityCenter\V1\BigQueryExport
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function updateBigQueryExport($bigQueryExport, array $optionalArgs = [])
+    {
+        $request = new UpdateBigQueryExportRequest();
+        $requestParamHeaders = [];
+        $request->setBigQueryExport($bigQueryExport);
+        $requestParamHeaders['big_query_export.name'] = $bigQueryExport->getName();
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('UpdateBigQueryExport', BigQueryExport::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -3157,10 +3602,9 @@ class SecurityCenterGapicClient
      *
      *           If empty all mutable fields will be updated.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\SecurityCenter\V1\ExternalSystem
@@ -3197,8 +3641,8 @@ class SecurityCenterGapicClient
      * }
      * ```
      *
-     * @param Finding $finding      Required. The finding resource to update or create if it does not already exist.
-     *                              parent, security_marks, and update_time will be ignored.
+     * @param Finding $finding      Required. The finding resource to update or create if it does not already
+     *                              exist. parent, security_marks, and update_time will be ignored.
      *
      *                              In the case of creation, the finding id portion of the name must be
      *                              alphanumeric and less than or equal to 32 characters and greater than 0
@@ -3215,10 +3659,9 @@ class SecurityCenterGapicClient
      *           be added/updated by using "source_properties.<property key>" in the field
      *           mask.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\SecurityCenter\V1\Finding
@@ -3262,10 +3705,9 @@ class SecurityCenterGapicClient
      *           The list of fields to be updated.
      *           If empty all mutable fields will be updated.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\SecurityCenter\V1\MuteConfig
@@ -3312,10 +3754,9 @@ class SecurityCenterGapicClient
      *
      *           If empty all mutable fields will be updated.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\SecurityCenter\V1\NotificationConfig
@@ -3360,10 +3801,9 @@ class SecurityCenterGapicClient
      *
      *           If empty all mutable fields will be updated.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\SecurityCenter\V1\OrganizationSettings
@@ -3413,12 +3853,11 @@ class SecurityCenterGapicClient
      *           The time at which the updated SecurityMarks take effect.
      *           If not set uses current server time.  Updates will be applied to the
      *           SecurityMarks that are active immediately preceding this time. Must be
-     *           smaller or equal to the server time.
+     *           earlier or equal to the server time.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\SecurityCenter\V1\SecurityMarks
@@ -3467,10 +3906,9 @@ class SecurityCenterGapicClient
      *
      *           If empty all mutable fields will be updated.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\SecurityCenter\V1\Source

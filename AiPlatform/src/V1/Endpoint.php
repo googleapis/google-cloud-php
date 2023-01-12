@@ -110,7 +110,7 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      */
     private $network = '';
     /**
-     * If true, expose the Endpoint via private service connect.
+     * Deprecated: If true, expose the Endpoint via private service connect.
      * Only one of the fields, [network][google.cloud.aiplatform.v1.Endpoint.network] or
      * [enable_private_service_connect][google.cloud.aiplatform.v1.Endpoint.enable_private_service_connect],
      * can be set.
@@ -149,7 +149,7 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      *           characters.
      *     @type string $description
      *           The description of the Endpoint.
-     *     @type \Google\Cloud\AIPlatform\V1\DeployedModel[]|\Google\Protobuf\Internal\RepeatedField $deployed_models
+     *     @type array<\Google\Cloud\AIPlatform\V1\DeployedModel>|\Google\Protobuf\Internal\RepeatedField $deployed_models
      *           Output only. The models deployed in this Endpoint.
      *           To add or remove DeployedModels use [EndpointService.DeployModel][google.cloud.aiplatform.v1.EndpointService.DeployModel] and
      *           [EndpointService.UndeployModel][google.cloud.aiplatform.v1.EndpointService.UndeployModel] respectively.
@@ -191,7 +191,7 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      *           Where `{project}` is a project number, as in `12345`, and `{network}` is
      *           network name.
      *     @type bool $enable_private_service_connect
-     *           If true, expose the Endpoint via private service connect.
+     *           Deprecated: If true, expose the Endpoint via private service connect.
      *           Only one of the fields, [network][google.cloud.aiplatform.v1.Endpoint.network] or
      *           [enable_private_service_connect][google.cloud.aiplatform.v1.Endpoint.enable_private_service_connect],
      *           can be set.
@@ -310,7 +310,7 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      * [EndpointService.UndeployModel][google.cloud.aiplatform.v1.EndpointService.UndeployModel] respectively.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.DeployedModel deployed_models = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param \Google\Cloud\AIPlatform\V1\DeployedModel[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AIPlatform\V1\DeployedModel>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDeployedModels($var)
@@ -580,7 +580,7 @@ class Endpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If true, expose the Endpoint via private service connect.
+     * Deprecated: If true, expose the Endpoint via private service connect.
      * Only one of the fields, [network][google.cloud.aiplatform.v1.Endpoint.network] or
      * [enable_private_service_connect][google.cloud.aiplatform.v1.Endpoint.enable_private_service_connect],
      * can be set.
@@ -596,7 +596,7 @@ class Endpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If true, expose the Endpoint via private service connect.
+     * Deprecated: If true, expose the Endpoint via private service connect.
      * Only one of the fields, [network][google.cloud.aiplatform.v1.Endpoint.network] or
      * [enable_private_service_connect][google.cloud.aiplatform.v1.Endpoint.enable_private_service_connect],
      * can be set.

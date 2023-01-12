@@ -28,7 +28,7 @@ class CategoricalStatsResult extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\CategoricalStatsResult\CategoricalStatsHistogramBucket[]|\Google\Protobuf\Internal\RepeatedField $value_frequency_histogram_buckets
+     *     @type array<\Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\CategoricalStatsResult\CategoricalStatsHistogramBucket>|\Google\Protobuf\Internal\RepeatedField $value_frequency_histogram_buckets
      *           Histogram of value frequencies in the column.
      * }
      */
@@ -52,7 +52,7 @@ class CategoricalStatsResult extends \Google\Protobuf\Internal\Message
      * Histogram of value frequencies in the column.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.CategoricalStatsResult.CategoricalStatsHistogramBucket value_frequency_histogram_buckets = 5;</code>
-     * @param \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\CategoricalStatsResult\CategoricalStatsHistogramBucket[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\CategoricalStatsResult\CategoricalStatsHistogramBucket>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setValueFrequencyHistogramBuckets($var)

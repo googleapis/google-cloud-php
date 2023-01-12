@@ -54,6 +54,13 @@ class Address extends \Google\Protobuf\Internal\Message
      */
     private $ip_version = null;
     /**
+     * The endpoint type of this address, which should be VM or NETLB. This is used for deciding which type of endpoint this address can be used after the external IPv6 address reservation.
+     * Check the Ipv6EndpointType enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string ipv6_endpoint_type = 97501004;</code>
+     */
+    private $ipv6_endpoint_type = null;
+    /**
      * [Output Only] Type of the resource. Always compute#address for addresses.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -85,7 +92,7 @@ class Address extends \Google\Protobuf\Internal\Message
      */
     private $prefix_length = null;
     /**
-     * The purpose of this resource, which can be one of the following values: - GCE_ENDPOINT for addresses that are used by VM instances, alias IP ranges, load balancers, and similar resources. - DNS_RESOLVER for a DNS resolver address in a subnetwork for a Cloud DNS inbound forwarder IP addresses (regional internal IP address in a subnet of a VPC network) - VPC_PEERING for global internal IP addresses used for private services access allocated ranges. - NAT_AUTO for the regional external IP addresses used by Cloud NAT when allocating addresses using . - IPSEC_INTERCONNECT for addresses created from a private IP range that are reserved for a VLAN attachment in an *IPsec-encrypted Cloud Interconnect* configuration. These addresses are regional resources. Not currently available publicly. - `SHARED_LOADBALANCER_VIP` for an internal IP address that is assigned to multiple internal forwarding rules. - `PRIVATE_SERVICE_CONNECT` for a private network address that is used to configure Private Service Connect. Only global internal addresses can use this purpose.
+     * The purpose of this resource, which can be one of the following values: - GCE_ENDPOINT for addresses that are used by VM instances, alias IP ranges, load balancers, and similar resources. - DNS_RESOLVER for a DNS resolver address in a subnetwork for a Cloud DNS inbound forwarder IP addresses (regional internal IP address in a subnet of a VPC network) - VPC_PEERING for global internal IP addresses used for private services access allocated ranges. - NAT_AUTO for the regional external IP addresses used by Cloud NAT when allocating addresses using automatic NAT IP address allocation. - IPSEC_INTERCONNECT for addresses created from a private IP range that are reserved for a VLAN attachment in an *HA VPN over Cloud Interconnect* configuration. These addresses are regional resources. - `SHARED_LOADBALANCER_VIP` for an internal IP address that is assigned to multiple internal forwarding rules. - `PRIVATE_SERVICE_CONNECT` for a private network address that is used to configure Private Service Connect. Only global internal addresses can use this purpose.
      * Check the Purpose enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string purpose = 316407070;</code>
@@ -143,6 +150,9 @@ class Address extends \Google\Protobuf\Internal\Message
      *     @type string $ip_version
      *           The IP version that will be used by this address. Valid options are IPV4 or IPV6. This can only be specified for a global address.
      *           Check the IpVersion enum for the list of possible values.
+     *     @type string $ipv6_endpoint_type
+     *           The endpoint type of this address, which should be VM or NETLB. This is used for deciding which type of endpoint this address can be used after the external IPv6 address reservation.
+     *           Check the Ipv6EndpointType enum for the list of possible values.
      *     @type string $kind
      *           [Output Only] Type of the resource. Always compute#address for addresses.
      *     @type string $name
@@ -155,7 +165,7 @@ class Address extends \Google\Protobuf\Internal\Message
      *     @type int $prefix_length
      *           The prefix length if the resource represents an IP range.
      *     @type string $purpose
-     *           The purpose of this resource, which can be one of the following values: - GCE_ENDPOINT for addresses that are used by VM instances, alias IP ranges, load balancers, and similar resources. - DNS_RESOLVER for a DNS resolver address in a subnetwork for a Cloud DNS inbound forwarder IP addresses (regional internal IP address in a subnet of a VPC network) - VPC_PEERING for global internal IP addresses used for private services access allocated ranges. - NAT_AUTO for the regional external IP addresses used by Cloud NAT when allocating addresses using . - IPSEC_INTERCONNECT for addresses created from a private IP range that are reserved for a VLAN attachment in an *IPsec-encrypted Cloud Interconnect* configuration. These addresses are regional resources. Not currently available publicly. - `SHARED_LOADBALANCER_VIP` for an internal IP address that is assigned to multiple internal forwarding rules. - `PRIVATE_SERVICE_CONNECT` for a private network address that is used to configure Private Service Connect. Only global internal addresses can use this purpose.
+     *           The purpose of this resource, which can be one of the following values: - GCE_ENDPOINT for addresses that are used by VM instances, alias IP ranges, load balancers, and similar resources. - DNS_RESOLVER for a DNS resolver address in a subnetwork for a Cloud DNS inbound forwarder IP addresses (regional internal IP address in a subnet of a VPC network) - VPC_PEERING for global internal IP addresses used for private services access allocated ranges. - NAT_AUTO for the regional external IP addresses used by Cloud NAT when allocating addresses using automatic NAT IP address allocation. - IPSEC_INTERCONNECT for addresses created from a private IP range that are reserved for a VLAN attachment in an *HA VPN over Cloud Interconnect* configuration. These addresses are regional resources. - `SHARED_LOADBALANCER_VIP` for an internal IP address that is assigned to multiple internal forwarding rules. - `PRIVATE_SERVICE_CONNECT` for a private network address that is used to configure Private Service Connect. Only global internal addresses can use this purpose.
      *           Check the Purpose enum for the list of possible values.
      *     @type string $region
      *           [Output Only] The URL of the region where a regional address resides. For regional addresses, you must specify the region as a path parameter in the HTTP request URL. *This field is not applicable to global addresses.*
@@ -166,7 +176,7 @@ class Address extends \Google\Protobuf\Internal\Message
      *           Check the Status enum for the list of possible values.
      *     @type string $subnetwork
      *           The URL of the subnetwork in which to reserve the address. If an IP address is specified, it must be within the subnetwork's IP range. This field can only be used with INTERNAL type with a GCE_ENDPOINT or DNS_RESOLVER purpose.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $users
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $users
      *           [Output Only] The URLs of the resources that are using this address.
      * }
      */
@@ -396,6 +406,44 @@ class Address extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * The endpoint type of this address, which should be VM or NETLB. This is used for deciding which type of endpoint this address can be used after the external IPv6 address reservation.
+     * Check the Ipv6EndpointType enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string ipv6_endpoint_type = 97501004;</code>
+     * @return string
+     */
+    public function getIpv6EndpointType()
+    {
+        return isset($this->ipv6_endpoint_type) ? $this->ipv6_endpoint_type : '';
+    }
+
+    public function hasIpv6EndpointType()
+    {
+        return isset($this->ipv6_endpoint_type);
+    }
+
+    public function clearIpv6EndpointType()
+    {
+        unset($this->ipv6_endpoint_type);
+    }
+
+    /**
+     * The endpoint type of this address, which should be VM or NETLB. This is used for deciding which type of endpoint this address can be used after the external IPv6 address reservation.
+     * Check the Ipv6EndpointType enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string ipv6_endpoint_type = 97501004;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setIpv6EndpointType($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->ipv6_endpoint_type = $var;
+
+        return $this;
+    }
+
+    /**
      * [Output Only] Type of the resource. Always compute#address for addresses.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -578,7 +626,7 @@ class Address extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The purpose of this resource, which can be one of the following values: - GCE_ENDPOINT for addresses that are used by VM instances, alias IP ranges, load balancers, and similar resources. - DNS_RESOLVER for a DNS resolver address in a subnetwork for a Cloud DNS inbound forwarder IP addresses (regional internal IP address in a subnet of a VPC network) - VPC_PEERING for global internal IP addresses used for private services access allocated ranges. - NAT_AUTO for the regional external IP addresses used by Cloud NAT when allocating addresses using . - IPSEC_INTERCONNECT for addresses created from a private IP range that are reserved for a VLAN attachment in an *IPsec-encrypted Cloud Interconnect* configuration. These addresses are regional resources. Not currently available publicly. - `SHARED_LOADBALANCER_VIP` for an internal IP address that is assigned to multiple internal forwarding rules. - `PRIVATE_SERVICE_CONNECT` for a private network address that is used to configure Private Service Connect. Only global internal addresses can use this purpose.
+     * The purpose of this resource, which can be one of the following values: - GCE_ENDPOINT for addresses that are used by VM instances, alias IP ranges, load balancers, and similar resources. - DNS_RESOLVER for a DNS resolver address in a subnetwork for a Cloud DNS inbound forwarder IP addresses (regional internal IP address in a subnet of a VPC network) - VPC_PEERING for global internal IP addresses used for private services access allocated ranges. - NAT_AUTO for the regional external IP addresses used by Cloud NAT when allocating addresses using automatic NAT IP address allocation. - IPSEC_INTERCONNECT for addresses created from a private IP range that are reserved for a VLAN attachment in an *HA VPN over Cloud Interconnect* configuration. These addresses are regional resources. - `SHARED_LOADBALANCER_VIP` for an internal IP address that is assigned to multiple internal forwarding rules. - `PRIVATE_SERVICE_CONNECT` for a private network address that is used to configure Private Service Connect. Only global internal addresses can use this purpose.
      * Check the Purpose enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string purpose = 316407070;</code>
@@ -600,7 +648,7 @@ class Address extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The purpose of this resource, which can be one of the following values: - GCE_ENDPOINT for addresses that are used by VM instances, alias IP ranges, load balancers, and similar resources. - DNS_RESOLVER for a DNS resolver address in a subnetwork for a Cloud DNS inbound forwarder IP addresses (regional internal IP address in a subnet of a VPC network) - VPC_PEERING for global internal IP addresses used for private services access allocated ranges. - NAT_AUTO for the regional external IP addresses used by Cloud NAT when allocating addresses using . - IPSEC_INTERCONNECT for addresses created from a private IP range that are reserved for a VLAN attachment in an *IPsec-encrypted Cloud Interconnect* configuration. These addresses are regional resources. Not currently available publicly. - `SHARED_LOADBALANCER_VIP` for an internal IP address that is assigned to multiple internal forwarding rules. - `PRIVATE_SERVICE_CONNECT` for a private network address that is used to configure Private Service Connect. Only global internal addresses can use this purpose.
+     * The purpose of this resource, which can be one of the following values: - GCE_ENDPOINT for addresses that are used by VM instances, alias IP ranges, load balancers, and similar resources. - DNS_RESOLVER for a DNS resolver address in a subnetwork for a Cloud DNS inbound forwarder IP addresses (regional internal IP address in a subnet of a VPC network) - VPC_PEERING for global internal IP addresses used for private services access allocated ranges. - NAT_AUTO for the regional external IP addresses used by Cloud NAT when allocating addresses using automatic NAT IP address allocation. - IPSEC_INTERCONNECT for addresses created from a private IP range that are reserved for a VLAN attachment in an *HA VPN over Cloud Interconnect* configuration. These addresses are regional resources. - `SHARED_LOADBALANCER_VIP` for an internal IP address that is assigned to multiple internal forwarding rules. - `PRIVATE_SERVICE_CONNECT` for a private network address that is used to configure Private Service Connect. Only global internal addresses can use this purpose.
      * Check the Purpose enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string purpose = 316407070;</code>
@@ -776,7 +824,7 @@ class Address extends \Google\Protobuf\Internal\Message
      * [Output Only] The URLs of the resources that are using this address.
      *
      * Generated from protobuf field <code>repeated string users = 111578632;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setUsers($var)

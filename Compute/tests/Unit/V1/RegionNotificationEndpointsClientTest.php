@@ -25,7 +25,6 @@ namespace Google\Cloud\Compute\Tests\Unit\V1;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Compute\V1\GetRegionOperationRequest;
 use Google\Cloud\Compute\V1\NotificationEndpoint;
@@ -44,25 +43,19 @@ use stdClass;
  */
 class RegionNotificationEndpointsClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return RegionNotificationEndpointsClient
-     */
+    /** @return RegionNotificationEndpointsClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -71,9 +64,7 @@ class RegionNotificationEndpointsClientTest extends GeneratedTest
         return new RegionNotificationEndpointsClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteTest()
     {
         $operationsTransport = $this->createTransport();
@@ -83,7 +74,7 @@ class RegionNotificationEndpointsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -102,7 +93,7 @@ class RegionNotificationEndpointsClientTest extends GeneratedTest
         $notificationEndpoint = 'notificationEndpoint-696934807';
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $response = $client->delete($notificationEndpoint, $project, $region);
+        $response = $gapicClient->delete($notificationEndpoint, $project, $region);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -137,9 +128,7 @@ class RegionNotificationEndpointsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -149,7 +138,7 @@ class RegionNotificationEndpointsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -174,7 +163,7 @@ class RegionNotificationEndpointsClientTest extends GeneratedTest
         $notificationEndpoint = 'notificationEndpoint-696934807';
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $response = $client->delete($notificationEndpoint, $project, $region);
+        $response = $gapicClient->delete($notificationEndpoint, $project, $region);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -194,13 +183,11 @@ class RegionNotificationEndpointsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -225,7 +212,7 @@ class RegionNotificationEndpointsClientTest extends GeneratedTest
         $notificationEndpoint = 'notificationEndpoint-696934807';
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $response = $client->get($notificationEndpoint, $project, $region);
+        $response = $gapicClient->get($notificationEndpoint, $project, $region);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -241,13 +228,11 @@ class RegionNotificationEndpointsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -266,8 +251,8 @@ class RegionNotificationEndpointsClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         try {
-            $client->get($notificationEndpoint, $project, $region);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->get($notificationEndpoint, $project, $region);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -278,9 +263,7 @@ class RegionNotificationEndpointsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function insertTest()
     {
         $operationsTransport = $this->createTransport();
@@ -290,7 +273,7 @@ class RegionNotificationEndpointsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -309,7 +292,7 @@ class RegionNotificationEndpointsClientTest extends GeneratedTest
         $notificationEndpointResource = new NotificationEndpoint();
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $response = $client->insert($notificationEndpointResource, $project, $region);
+        $response = $gapicClient->insert($notificationEndpointResource, $project, $region);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -344,9 +327,7 @@ class RegionNotificationEndpointsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function insertExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -356,7 +337,7 @@ class RegionNotificationEndpointsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -381,7 +362,7 @@ class RegionNotificationEndpointsClientTest extends GeneratedTest
         $notificationEndpointResource = new NotificationEndpoint();
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $response = $client->insert($notificationEndpointResource, $project, $region);
+        $response = $gapicClient->insert($notificationEndpointResource, $project, $region);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -401,13 +382,11 @@ class RegionNotificationEndpointsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -430,7 +409,7 @@ class RegionNotificationEndpointsClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $response = $client->list($project, $region);
+        $response = $gapicClient->list($project, $region);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -447,13 +426,11 @@ class RegionNotificationEndpointsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -471,8 +448,8 @@ class RegionNotificationEndpointsClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         try {
-            $client->list($project, $region);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->list($project, $region);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

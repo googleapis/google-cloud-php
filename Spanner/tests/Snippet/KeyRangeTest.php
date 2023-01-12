@@ -30,7 +30,7 @@ class KeyRangeTest extends SnippetTestCase
 
     private $range;
 
-    public function setUp()
+    public function set_up()
     {
         $this->checkAndSkipGrpcTests();
 

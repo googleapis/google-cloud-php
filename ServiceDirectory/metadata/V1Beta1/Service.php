@@ -18,11 +18,10 @@ class Service
         \GPBMetadata\Google\Api\Resource::initOnce();
         \GPBMetadata\Google\Cloud\Servicedirectory\V1Beta1\Endpoint::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
-        \GPBMetadata\Google\Api\Annotations::initOnce();
         $pool->internalAddGeneratedFile(
             '
-â
-3google/cloud/servicedirectory/v1beta1/service.proto%google.cloud.servicedirectory.v1beta1google/api/resource.proto4google/cloud/servicedirectory/v1beta1/endpoint.protogoogle/protobuf/timestamp.protogoogle/api/annotations.proto"Ø
+Ä
+3google/cloud/servicedirectory/v1beta1/service.proto%google.cloud.servicedirectory.v1beta1google/api/resource.proto4google/cloud/servicedirectory/v1beta1/endpoint.protogoogle/protobuf/timestamp.proto"Ø
 Service
 name (	BàAS
 metadata (2<.google.cloud.servicedirectory.v1beta1.Service.MetadataEntryBàAG

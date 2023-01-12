@@ -37,7 +37,9 @@ class SearchMode
     /**
      * Only faceted search will be performed. The product search will be
      * disabled.
-     * When in this mode, one or both of [SearchRequest.facet_spec][] and
+     * When in this mode, one or both of
+     * [SearchRequest.facet_specs][google.cloud.retail.v2.SearchRequest.facet_specs]
+     * and
      * [SearchRequest.dynamic_facet_spec][google.cloud.retail.v2.SearchRequest.dynamic_facet_spec]
      * should be set. Otherwise, an INVALID_ARGUMENT error is returned. Only
      * [SearchResponse.Facet] will be returned. [SearchResponse.SearchResult]

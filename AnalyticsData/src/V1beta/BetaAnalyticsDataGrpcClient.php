@@ -40,6 +40,10 @@ class BetaAnalyticsDataGrpcClient extends \Grpc\BaseStub {
      * measurements of user activity on your property, such as active users or
      * event count. Dimensions break down metrics across some common criteria,
      * such as country or event name.
+     *
+     * For a guide to constructing requests & understanding responses, see
+     * [Creating a
+     * Report](https://developers.google.com/analytics/devguides/reporting/data/v1/basics).
      * @param \Google\Analytics\Data\V1beta\RunReportRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -129,9 +133,15 @@ class BetaAnalyticsDataGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * The Google Analytics Realtime API returns a customized report of realtime
-     * event data for your property. These reports show events and usage from the
-     * last 30 minutes.
+     * Returns a customized report of realtime event data for your property.
+     * Events appear in realtime reports seconds after they have been sent to
+     * the Google Analytics. Realtime reports show events and usage data for the
+     * periods of time ranging from the present moment to 30 minutes ago (up to
+     * 60 minutes for Google Analytics 360 properties).
+     *
+     * For a guide to constructing realtime requests & understanding responses,
+     * see [Creating a Realtime
+     * Report](https://developers.google.com/analytics/devguides/reporting/data/v1/realtime-basics).
      * @param \Google\Analytics\Data\V1beta\RunRealtimeReportRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options

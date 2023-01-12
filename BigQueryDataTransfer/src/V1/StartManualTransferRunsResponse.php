@@ -28,7 +28,7 @@ class StartManualTransferRunsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\BigQuery\DataTransfer\V1\TransferRun[]|\Google\Protobuf\Internal\RepeatedField $runs
+     *     @type array<\Google\Cloud\BigQuery\DataTransfer\V1\TransferRun>|\Google\Protobuf\Internal\RepeatedField $runs
      *           The transfer runs that were created.
      * }
      */
@@ -52,7 +52,7 @@ class StartManualTransferRunsResponse extends \Google\Protobuf\Internal\Message
      * The transfer runs that were created.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.datatransfer.v1.TransferRun runs = 1;</code>
-     * @param \Google\Cloud\BigQuery\DataTransfer\V1\TransferRun[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\BigQuery\DataTransfer\V1\TransferRun>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setRuns($var)

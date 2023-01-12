@@ -35,6 +35,21 @@ class Document extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string language = 4;</code>
      */
     private $language = '';
+    /**
+     * The web URI where the document comes from. This URI is not used for
+     * fetching the content, but as a hint for analyzing the document.
+     *
+     * Generated from protobuf field <code>string reference_web_uri = 5;</code>
+     */
+    private $reference_web_uri = '';
+    /**
+     * Indicates how detected boilerplate(e.g. advertisements, copyright
+     * declarations, banners) should be handled for this document. If not
+     * specified, boilerplate will be treated the same as content.
+     *
+     * Generated from protobuf field <code>.google.cloud.language.v1beta2.Document.BoilerplateHandling boilerplate_handling = 6;</code>
+     */
+    private $boilerplate_handling = 0;
     protected $source;
 
     /**
@@ -63,6 +78,13 @@ class Document extends \Google\Protobuf\Internal\Message
      *           currently supported languages for each API method. If the language (either
      *           specified by the caller or automatically detected) is not supported by the
      *           called API method, an `INVALID_ARGUMENT` error is returned.
+     *     @type string $reference_web_uri
+     *           The web URI where the document comes from. This URI is not used for
+     *           fetching the content, but as a hint for analyzing the document.
+     *     @type int $boilerplate_handling
+     *           Indicates how detected boilerplate(e.g. advertisements, copyright
+     *           declarations, banners) should be handled for this document. If not
+     *           specified, boilerplate will be treated the same as content.
      * }
      */
     public function __construct($data = NULL) {
@@ -204,6 +226,64 @@ class Document extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->language = $var;
+
+        return $this;
+    }
+
+    /**
+     * The web URI where the document comes from. This URI is not used for
+     * fetching the content, but as a hint for analyzing the document.
+     *
+     * Generated from protobuf field <code>string reference_web_uri = 5;</code>
+     * @return string
+     */
+    public function getReferenceWebUri()
+    {
+        return $this->reference_web_uri;
+    }
+
+    /**
+     * The web URI where the document comes from. This URI is not used for
+     * fetching the content, but as a hint for analyzing the document.
+     *
+     * Generated from protobuf field <code>string reference_web_uri = 5;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setReferenceWebUri($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->reference_web_uri = $var;
+
+        return $this;
+    }
+
+    /**
+     * Indicates how detected boilerplate(e.g. advertisements, copyright
+     * declarations, banners) should be handled for this document. If not
+     * specified, boilerplate will be treated the same as content.
+     *
+     * Generated from protobuf field <code>.google.cloud.language.v1beta2.Document.BoilerplateHandling boilerplate_handling = 6;</code>
+     * @return int
+     */
+    public function getBoilerplateHandling()
+    {
+        return $this->boilerplate_handling;
+    }
+
+    /**
+     * Indicates how detected boilerplate(e.g. advertisements, copyright
+     * declarations, banners) should be handled for this document. If not
+     * specified, boilerplate will be treated the same as content.
+     *
+     * Generated from protobuf field <code>.google.cloud.language.v1beta2.Document.BoilerplateHandling boilerplate_handling = 6;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setBoilerplateHandling($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Language\V1beta2\Document\BoilerplateHandling::class);
+        $this->boilerplate_handling = $var;
 
         return $this;
     }

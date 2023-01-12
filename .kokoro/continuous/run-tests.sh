@@ -47,8 +47,8 @@ vendor/bin/phpunit -c phpunit-snippets.xml.dist --verbose --log-junit \
                    ${SNIPPETS_LOG_FILENAME}
 
 echo "Running System Test Suite"
-vendor/bin/phpunit -c phpunit${PHPUNIT_SUFFIX}-system.xml.dist --verbose --log-junit \
-                   ${SYSTEM_LOG_FILENAME}
+vendor/bin/phpunit -d memory_limit=512M -c phpunit${PHPUNIT_SUFFIX}-system.xml.dist \
+                   --verbose --log-junit ${SYSTEM_LOG_FILENAME}
 
 echo "Running package integration Test"
 

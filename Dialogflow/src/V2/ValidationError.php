@@ -54,7 +54,7 @@ class ValidationError extends \Google\Protobuf\Internal\Message
      *
      *     @type int $severity
      *           The severity of the error.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $entries
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $entries
      *           The names of the entries that the error is associated with.
      *           Format:
      *           - "projects/<Project ID>/agent", if the error is associated with the entire
@@ -142,7 +142,7 @@ class ValidationError extends \Google\Protobuf\Internal\Message
      * associated with certain entities.
      *
      * Generated from protobuf field <code>repeated string entries = 3;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setEntries($var)

@@ -45,9 +45,9 @@ class ListInstancesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Bigtable\Admin\V2\Instance[]|\Google\Protobuf\Internal\RepeatedField $instances
+     *     @type array<\Google\Cloud\Bigtable\Admin\V2\Instance>|\Google\Protobuf\Internal\RepeatedField $instances
      *           The list of requested instances.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $failed_locations
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $failed_locations
      *           Locations from which Instance information could not be retrieved,
      *           due to an outage or some other transient condition.
      *           Instances whose Clusters are all in one of the failed locations
@@ -78,7 +78,7 @@ class ListInstancesResponse extends \Google\Protobuf\Internal\Message
      * The list of requested instances.
      *
      * Generated from protobuf field <code>repeated .google.bigtable.admin.v2.Instance instances = 1;</code>
-     * @param \Google\Cloud\Bigtable\Admin\V2\Instance[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Bigtable\Admin\V2\Instance>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setInstances($var)
@@ -114,7 +114,7 @@ class ListInstancesResponse extends \Google\Protobuf\Internal\Message
      * Values are of the form `projects/<project>/locations/<zone_id>`
      *
      * Generated from protobuf field <code>repeated string failed_locations = 2;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFailedLocations($var)

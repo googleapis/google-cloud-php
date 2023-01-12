@@ -59,7 +59,7 @@ class WriteResponse extends \Google\Protobuf\Internal\Message
      *           A token that represents the position of this response in the stream.
      *           This can be used by a client to resume the stream at this point.
      *           This field is always set.
-     *     @type \Google\Cloud\Firestore\V1\WriteResult[]|\Google\Protobuf\Internal\RepeatedField $write_results
+     *     @type array<\Google\Cloud\Firestore\V1\WriteResult>|\Google\Protobuf\Internal\RepeatedField $write_results
      *           The result of applying the writes.
      *           This i-th write result corresponds to the i-th write in the
      *           request.
@@ -150,7 +150,7 @@ class WriteResponse extends \Google\Protobuf\Internal\Message
      * request.
      *
      * Generated from protobuf field <code>repeated .google.firestore.v1.WriteResult write_results = 3;</code>
-     * @param \Google\Cloud\Firestore\V1\WriteResult[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Firestore\V1\WriteResult>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setWriteResults($var)

@@ -25,9 +25,10 @@
 namespace Google\Cloud\Dialogflow\V2\Gapic;
 
 use Google\ApiCore\ApiException;
+use Google\ApiCore\Call;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\GapicClientTrait;
 
+use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
@@ -45,6 +46,8 @@ use Google\Cloud\Dialogflow\V2\ListParticipantsResponse;
 use Google\Cloud\Dialogflow\V2\OutputAudioConfig;
 use Google\Cloud\Dialogflow\V2\Participant;
 use Google\Cloud\Dialogflow\V2\QueryParameters;
+use Google\Cloud\Dialogflow\V2\StreamingAnalyzeContentRequest;
+use Google\Cloud\Dialogflow\V2\StreamingAnalyzeContentResponse;
 use Google\Cloud\Dialogflow\V2\SuggestArticlesRequest;
 use Google\Cloud\Dialogflow\V2\SuggestArticlesResponse;
 use Google\Cloud\Dialogflow\V2\SuggestFaqAnswersRequest;
@@ -53,7 +56,12 @@ use Google\Cloud\Dialogflow\V2\SuggestSmartRepliesRequest;
 use Google\Cloud\Dialogflow\V2\SuggestSmartRepliesResponse;
 use Google\Cloud\Dialogflow\V2\TextInput;
 use Google\Cloud\Dialogflow\V2\UpdateParticipantRequest;
+use Google\Cloud\Location\GetLocationRequest;
+use Google\Cloud\Location\ListLocationsRequest;
+use Google\Cloud\Location\ListLocationsResponse;
+use Google\Cloud\Location\Location;
 use Google\Protobuf\FieldMask;
+use Google\Protobuf\Struct;
 
 /**
  * Service Description: Service for managing [Participants][google.cloud.dialogflow.v2.Participant].
@@ -569,15 +577,21 @@ class ParticipantsGapicClient
      *           Parameters for a Dialogflow virtual-agent query.
      *     @type AssistQueryParameters $assistQueryParams
      *           Parameters for a human assist query.
+     *     @type Struct $cxParameters
+     *           Additional parameters to be put into Dialogflow CX session parameters. To
+     *           remove a parameter from the session, clients should explicitly set the
+     *           parameter value to null.
+     *
+     *           Note: this field should only be used if you are connecting to a Dialogflow
+     *           CX agent.
      *     @type string $requestId
      *           A unique identifier for this request. Restricted to 36 ASCII characters.
      *           A random UUID is recommended.
      *           This request is only idempotent if a `request_id` is provided.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Dialogflow\V2\AnalyzeContentResponse
@@ -608,6 +622,10 @@ class ParticipantsGapicClient
 
         if (isset($optionalArgs['assistQueryParams'])) {
             $request->setAssistQueryParams($optionalArgs['assistQueryParams']);
+        }
+
+        if (isset($optionalArgs['cxParameters'])) {
+            $request->setCxParameters($optionalArgs['cxParameters']);
         }
 
         if (isset($optionalArgs['requestId'])) {
@@ -642,10 +660,9 @@ class ParticipantsGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Dialogflow\V2\Participant
@@ -685,10 +702,9 @@ class ParticipantsGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Dialogflow\V2\Participant
@@ -748,10 +764,9 @@ class ParticipantsGapicClient
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -775,6 +790,81 @@ class ParticipantsGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->getPagedListResponse('ListParticipants', $optionalArgs, ListParticipantsResponse::class, $request);
+    }
+
+    /**
+     * Adds a text (chat, for example), or audio (phone recording, for example)
+     * message from a participant into the conversation.
+     * Note: This method is only available through the gRPC API (not REST).
+     *
+     * The top-level message sent to the client by the server is
+     * `StreamingAnalyzeContentResponse`. Multiple response messages can be
+     * returned in order. The first one or more messages contain the
+     * `recognition_result` field. Each result represents a more complete
+     * transcript of what the user said. The next message contains the
+     * `reply_text` field and potentially the `reply_audio` field. The message can
+     * also contain the `automated_agent_reply` field.
+     *
+     * Note: Always use agent versions for production traffic
+     * sent to virtual agents. See [Versions and
+     * environments](https://cloud.google.com/dialogflow/es/docs/agents-versions).
+     *
+     * Sample code:
+     * ```
+     * $participantsClient = new ParticipantsClient();
+     * try {
+     *     $participant = 'participant';
+     *     $request = new StreamingAnalyzeContentRequest();
+     *     $request->setParticipant($participant);
+     *     // Write all requests to the server, then read all responses until the
+     *     // stream is complete
+     *     $requests = [
+     *         $request,
+     *     ];
+     *     $stream = $participantsClient->streamingAnalyzeContent();
+     *     $stream->writeAll($requests);
+     *     foreach ($stream->closeWriteAndReadAll() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     *     // Alternatively:
+     *     // Write requests individually, making read() calls if
+     *     // required. Call closeWrite() once writes are complete, and read the
+     *     // remaining responses from the server.
+     *     $requests = [
+     *         $request,
+     *     ];
+     *     $stream = $participantsClient->streamingAnalyzeContent();
+     *     foreach ($requests as $request) {
+     *         $stream->write($request);
+     *         // if required, read a single response from the stream
+     *         $element = $stream->read();
+     *         // doSomethingWith($element)
+     *     }
+     *     $stream->closeWrite();
+     *     $element = $stream->read();
+     *     while (!is_null($element)) {
+     *         // doSomethingWith($element)
+     *         $element = $stream->read();
+     *     }
+     * } finally {
+     *     $participantsClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $timeoutMillis
+     *           Timeout to use for this call.
+     * }
+     *
+     * @return \Google\ApiCore\BidiStream
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function streamingAnalyzeContent(array $optionalArgs = [])
+    {
+        return $this->startCall('StreamingAnalyzeContent', StreamingAnalyzeContentResponse::class, $optionalArgs, null, Call::BIDI_STREAMING_CALL);
     }
 
     /**
@@ -811,10 +901,9 @@ class ParticipantsGapicClient
      *     @type AssistQueryParameters $assistQueryParams
      *           Parameters for a human assist query.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Dialogflow\V2\SuggestArticlesResponse
@@ -878,10 +967,9 @@ class ParticipantsGapicClient
      *     @type AssistQueryParameters $assistQueryParams
      *           Parameters for a human assist query.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Dialogflow\V2\SuggestFaqAnswersResponse
@@ -947,10 +1035,9 @@ class ParticipantsGapicClient
      *           [latest_message] to use as context when compiling the
      *           suggestion. By default 20 and at most 50.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Dialogflow\V2\SuggestSmartRepliesResponse
@@ -1001,10 +1088,9 @@ class ParticipantsGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Dialogflow\V2\Participant
@@ -1021,5 +1107,124 @@ class ParticipantsGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('UpdateParticipant', Participant::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Gets information about a location.
+     *
+     * Sample code:
+     * ```
+     * $participantsClient = new ParticipantsClient();
+     * try {
+     *     $response = $participantsClient->getLocation();
+     * } finally {
+     *     $participantsClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $name
+     *           Resource name for the location.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Location\Location
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getLocation(array $optionalArgs = [])
+    {
+        $request = new GetLocationRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetLocation', Location::class, $optionalArgs, $request, Call::UNARY_CALL, 'google.cloud.location.Locations')->wait();
+    }
+
+    /**
+     * Lists information about the supported locations for this service.
+     *
+     * Sample code:
+     * ```
+     * $participantsClient = new ParticipantsClient();
+     * try {
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $participantsClient->listLocations();
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $participantsClient->listLocations();
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $participantsClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $name
+     *           The resource that owns the locations collection, if applicable.
+     *     @type string $filter
+     *           The standard list filter.
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listLocations(array $optionalArgs = [])
+    {
+        $request = new ListLocationsRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->getPagedListResponse('ListLocations', $optionalArgs, ListLocationsResponse::class, $request, 'google.cloud.location.Locations');
     }
 }

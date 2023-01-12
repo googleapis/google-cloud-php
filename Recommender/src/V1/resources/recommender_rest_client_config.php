@@ -28,6 +28,23 @@ return [
                     ],
                 ],
             ],
+            'GetInsightTypeConfig' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/insightTypes/*/config}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=organizations/*/locations/*/insightTypes/*/config}',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetRecommendation' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/recommenders/*/recommendations/*}',
@@ -43,6 +60,23 @@ return [
                     [
                         'method' => 'get',
                         'uriTemplate' => '/v1/{name=organizations/*/locations/*/recommenders/*/recommendations/*}',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetRecommenderConfig' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/recommenders/*/config}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=organizations/*/locations/*/recommenders/*/config}',
                     ],
                 ],
                 'placeholders' => [
@@ -214,6 +248,46 @@ return [
                 'placeholders' => [
                     'name' => [
                         'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateInsightTypeConfig' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{insight_type_config.name=projects/*/locations/*/insightTypes/*/config}',
+                'body' => 'insight_type_config',
+                'additionalBindings' => [
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v1/{insight_type_config.name=organizations/*/locations/*/insightTypes/*/config}',
+                        'body' => 'insight_type_config',
+                    ],
+                ],
+                'placeholders' => [
+                    'insight_type_config.name' => [
+                        'getters' => [
+                            'getInsightTypeConfig',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateRecommenderConfig' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{recommender_config.name=projects/*/locations/*/recommenders/*/config}',
+                'body' => 'recommender_config',
+                'additionalBindings' => [
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v1/{recommender_config.name=organizations/*/locations/*/recommenders/*/config}',
+                        'body' => 'recommender_config',
+                    ],
+                ],
+                'placeholders' => [
+                    'recommender_config.name' => [
+                        'getters' => [
+                            'getRecommenderConfig',
                             'getName',
                         ],
                     ],

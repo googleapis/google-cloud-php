@@ -23,7 +23,7 @@ use Google\Cloud\Debugger\SourceContext;
 use Google\Cloud\Debugger\ExtendedSourceContext;
 use Google\Cloud\Debugger\Connection\ConnectionInterface;
 use Prophecy\Argument;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group debugger
@@ -32,7 +32,7 @@ class DebuggeeTest extends TestCase
 {
     private $connection;
 
-    public function setUp()
+    public function set_up()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
     }
@@ -94,7 +94,7 @@ class DebuggeeTest extends TestCase
     {
         $this->connection->updateBreakpoint(Argument::that(function ($args) {
             return $args['id'] == 'breakpoint1';
-        }))->willReturn([]);
+        }))->willReturn([])->shouldBeCalled();
         $debuggee = new Debuggee($this->connection->reveal(), ['id' => 'debuggee1', 'project' => 'project1']);
 
         $breakpoint = new Breakpoint([
