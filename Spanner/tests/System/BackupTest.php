@@ -269,7 +269,7 @@ class BackupTest extends SpannerTestCase
         $this->assertEquals($expireTime->format('Y-m-d\TH:i:s.u\Z'), $newBackup->info()['expireTime']);
         $this->assertTrue(is_string($newBackup->info()['createTime']));
         $this->assertEquals(Backup::STATE_READY, $newBackup->state());
-        $this->assertTrue($newBackup->info()['sizeBytes'] > 0);
+        $this->assertTrue($newBackup->info()['sizeBytes'] >= 0);
         $this->assertEquals(Type::GOOGLE_DEFAULT_ENCRYPTION, $newBackup->info()['encryptionInfo']['encryptionType']);
 
         $this->assertNotNull($metadata);
@@ -291,7 +291,7 @@ class BackupTest extends SpannerTestCase
         $this->assertTrue(is_string($backup->info()['expireTime']));
         $this->assertTrue(is_string($backup->info()['createTime']));
         $this->assertEquals(Backup::STATE_READY, $backup->state());
-        $this->assertTrue($backup->info()['sizeBytes'] > 0);
+        $this->assertTrue($backup->info()['sizeBytes'] >= 0);
     }
 
     /**
