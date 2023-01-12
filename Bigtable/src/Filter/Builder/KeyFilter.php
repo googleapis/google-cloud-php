@@ -71,7 +71,7 @@ class KeyFilter
      * $keyFilter = $builder->exactMatch('r1');
      * ```
      *
-     * @param string $value An exact value.
+     * @param array|string $value An exact value.
      * @return SimpleFilter
      * @throws \InvalidArgumentException When the provided value is not an array
      *         or string.

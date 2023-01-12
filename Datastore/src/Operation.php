@@ -152,7 +152,7 @@ class Operation
             'number' => 1,
             'ancestors' => [],
             'id' => null,
-            'name' => null
+            'name' => null,
         ];
 
         if ($options['number'] < 1) {
@@ -167,7 +167,7 @@ class Operation
         $path[] = array_filter([
             'kind' => $kind,
             'id' => $options['id'],
-            'name' => $options['name']
+            'name' => $options['name'],
         ]);
 
         $key = new Key($this->projectId, [
@@ -226,7 +226,7 @@ class Operation
     public function entity($key = null, array $entity = [], array $options = [])
     {
         $options += [
-            'className' => null
+            'className' => null,
         ];
 
         if ($key && !is_string($key) && !($key instanceof Key)) {
@@ -362,7 +362,7 @@ class Operation
     {
         $options += [
             'className' => Entity::class,
-            'sort' => false
+            'sort' => false,
         ];
 
         $serviceKeys = [];
@@ -446,7 +446,7 @@ class Operation
         $options += [
             'className' => Entity::class,
             'namespaceId' => $this->namespaceId,
-            'databaseId' => $this->databaseId
+            'databaseId' => $this->databaseId,
         ];
 
         $iteratorConfig = [
@@ -465,17 +465,23 @@ class Operation
                 }
 
                 return false;
-            }
+            },
         ];
 
+        if (array_key_exists('limit', $query->queryObject())) {
+            $remainingLimit = $query->queryObject()['limit'];
+        }
         $runQueryObj = clone $query;
-        $runQueryFn = function (array $args = []) use (&$runQueryObj, $options) {
+        $runQueryFn = function (array $args = []) use (&$runQueryObj, $options, &$remainingLimit) {
             $args += [
-                'query' => []
+                'query' => [],
             ];
 
             // The iterator provides the startCursor for subsequent pages as an argument.
             $requestQueryArr = $args['query'] + $runQueryObj->queryObject();
+            if (isset($remainingLimit)) {
+                $requestQueryArr['limit'] = $remainingLimit;
+            }
             $request = [
                 'projectId' => $this->projectId,
                 'partitionId' => $this->partitionId(
@@ -483,7 +489,7 @@ class Operation
                     $options['namespaceId'],
                     $options['databaseId']
                 ),
-                $runQueryObj->queryKey() => $requestQueryArr
+                $runQueryObj->queryKey() => $requestQueryArr,
             ] + $this->readOptions($options) + $options;
 
             $res = $this->connection->runQuery($request);
@@ -496,6 +502,17 @@ class Operation
             // instance prior to the next iteration of the page.
             if (isset($res['query'])) {
                 $runQueryObj = new Query($this->entityMapper, $res['query']);
+            }
+            if (isset($res['query']['limit'])) {
+                // limit for GqlQuery in REST mode
+                $remainingLimit = $res['query']['limit'];
+            }
+            if (isset($remainingLimit['value'])) {
+                // limit for GqlQuery in GRPC mode
+                $remainingLimit = $remainingLimit['value'];
+            }
+            if (!is_null($remainingLimit)) {
+                $remainingLimit -= count($res['batch']['entityResults']);
             }
 
             return $res;
@@ -541,7 +558,7 @@ class Operation
         $res = $this->connection->commit($options + [
             'mode' => ($options['transaction']) ? 'TRANSACTIONAL' : 'NON_TRANSACTIONAL',
             'mutations' => $mutations,
-            'projectId' => $this->projectId
+            'projectId' => $this->projectId,
         ]);
 
         return $res;
@@ -622,7 +639,7 @@ class Operation
 
         return array_filter([
             $operation => $data,
-            'baseVersion' => $baseVersion
+            'baseVersion' => $baseVersion,
         ]);
     }
 
@@ -657,9 +674,9 @@ class Operation
         foreach ($entities as $entity) {
             if (!$entity->populatedByService() && !$allowOverwrite) {
                 throw new \InvalidArgumentException(sprintf(
-                    'Given entity cannot be saved because it may overwrite an '.
-                    'existing record. When updating manually created entities, '.
-                    'please set the options `$allowOverwrite` flag to `true`. '.
+                    'Given entity cannot be saved because it may overwrite an ' .
+                    'existing record. When updating manually created entities, ' .
+                    'please set the options `$allowOverwrite` flag to `true`. ' .
                     'Invalid entity key was %s',
                     (string) $entity->key()
                 ));
@@ -734,7 +751,7 @@ class Operation
             'className' => $className,
             'populatedByService' => true,
             'excludeFromIndexes' => $excludes,
-            'meanings' => $meanings
+            'meanings' => $meanings,
         ]);
     }
 
@@ -754,16 +771,16 @@ class Operation
     {
         $options += [
             'readConsistency' => null,
-            'transaction' => null
+            'transaction' => null,
         ];
 
         $readOptions = array_filter([
             'readConsistency' => $options['readConsistency'],
-            'transaction' => $options['transaction']
+            'transaction' => $options['transaction'],
         ]);
 
         return array_filter([
-            'readOptions' => $readOptions
+            'readOptions' => $readOptions,
         ]);
     }
 

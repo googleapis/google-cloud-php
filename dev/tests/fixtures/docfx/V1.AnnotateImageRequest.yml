@@ -56,10 +56,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\AnnotateImageRequest::getImage()'
     name: getImage
     id: getImage
-    summary: |
-      The image to be processed.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.Image image = 1;</code>
+    summary: 'The image to be processed.'
     parent: \Google\Cloud\Vision\V1\AnnotateImageRequest
     type: method
     langs:
@@ -88,10 +85,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\AnnotateImageRequest::setImage()'
     name: setImage
     id: setImage
-    summary: |
-      The image to be processed.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.Image image = 1;</code>
+    summary: 'The image to be processed.'
     parent: \Google\Cloud\Vision\V1\AnnotateImageRequest
     type: method
     langs:
@@ -109,10 +103,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\AnnotateImageRequest::getFeatures()'
     name: getFeatures
     id: getFeatures
-    summary: |
-      Requested features.
-      
-      Generated from protobuf field <code>repeated .google.cloud.vision.v1.Feature features = 2;</code>
+    summary: 'Requested features.'
     parent: \Google\Cloud\Vision\V1\AnnotateImageRequest
     type: method
     langs:
@@ -120,15 +111,12 @@ items:
     syntax:
       returns:
         -
-          var_type: Google\Protobuf\Internal\RepeatedField
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Internal/RepeatedField">Google\Protobuf\Internal\RepeatedField</a>'
   -
     uid: '\Google\Cloud\Vision\V1\AnnotateImageRequest::setFeatures()'
     name: setFeatures
     id: setFeatures
-    summary: |
-      Requested features.
-      
-      Generated from protobuf field <code>repeated .google.cloud.vision.v1.Feature features = 2;</code>
+    summary: 'Requested features.'
     parent: \Google\Cloud\Vision\V1\AnnotateImageRequest
     type: method
     langs:
@@ -146,10 +134,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\AnnotateImageRequest::getImageContext()'
     name: getImageContext
     id: getImageContext
-    summary: |
-      Additional context that may accompany the image.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.ImageContext image_context = 3;</code>
+    summary: 'Additional context that may accompany the image.'
     parent: \Google\Cloud\Vision\V1\AnnotateImageRequest
     type: method
     langs:
@@ -178,10 +163,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\AnnotateImageRequest::setImageContext()'
     name: setImageContext
     id: setImageContext
-    summary: |
-      Additional context that may accompany the image.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.ImageContext image_context = 3;</code>
+    summary: 'Additional context that may accompany the image.'
     parent: \Google\Cloud\Vision\V1\AnnotateImageRequest
     type: method
     langs:

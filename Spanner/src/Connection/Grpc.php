@@ -778,7 +778,15 @@ class Grpc implements ConnectionInterface
 
         $session = $this->pluck('session', $args, false);
         if ($session) {
-            $args['session'] = $this->serializer->decodeMessage(new Session, $session);
+            $args['session'] = $this->serializer->decodeMessage(
+                new Session,
+                array_filter(
+                    $session,
+                    function ($value) {
+                        return !is_null($value);
+                    }
+                )
+            );
         }
 
         return $this->send([$this->spannerClient, 'createSession'], [

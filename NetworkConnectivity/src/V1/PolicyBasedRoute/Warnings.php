@@ -153,6 +153,4 @@ class Warnings extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Warnings::class, \Google\Cloud\NetworkConnectivity\V1\PolicyBasedRoute_Warnings::class);
 

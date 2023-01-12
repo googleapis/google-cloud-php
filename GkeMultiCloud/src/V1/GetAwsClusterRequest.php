@@ -16,7 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class GetAwsClusterRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The name of the [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resource to describe.
+     * Required. The name of the
+     * [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resource to
+     * describe.
      * `AwsCluster` names are formatted as
      * `projects/<project-id>/locations/<region>/awsClusters/<cluster-id>`.
      * See [Resource Names](https://cloud.google.com/apis/design/resource_names)
@@ -33,7 +35,9 @@ class GetAwsClusterRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The name of the [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resource to describe.
+     *           Required. The name of the
+     *           [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resource to
+     *           describe.
      *           `AwsCluster` names are formatted as
      *           `projects/<project-id>/locations/<region>/awsClusters/<cluster-id>`.
      *           See [Resource Names](https://cloud.google.com/apis/design/resource_names)
@@ -46,7 +50,9 @@ class GetAwsClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resource to describe.
+     * Required. The name of the
+     * [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resource to
+     * describe.
      * `AwsCluster` names are formatted as
      * `projects/<project-id>/locations/<region>/awsClusters/<cluster-id>`.
      * See [Resource Names](https://cloud.google.com/apis/design/resource_names)
@@ -61,7 +67,9 @@ class GetAwsClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resource to describe.
+     * Required. The name of the
+     * [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resource to
+     * describe.
      * `AwsCluster` names are formatted as
      * `projects/<project-id>/locations/<region>/awsClusters/<cluster-id>`.
      * See [Resource Names](https://cloud.google.com/apis/design/resource_names)

@@ -45,10 +45,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\BoundingPoly::getVertices()'
     name: getVertices
     id: getVertices
-    summary: |
-      The bounding polygon vertices.
-      
-      Generated from protobuf field <code>repeated .google.cloud.vision.v1.Vertex vertices = 1;</code>
+    summary: 'The bounding polygon vertices.'
     parent: \Google\Cloud\Vision\V1\BoundingPoly
     type: method
     langs:
@@ -56,15 +53,12 @@ items:
     syntax:
       returns:
         -
-          var_type: Google\Protobuf\Internal\RepeatedField
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Internal/RepeatedField">Google\Protobuf\Internal\RepeatedField</a>'
   -
     uid: '\Google\Cloud\Vision\V1\BoundingPoly::setVertices()'
     name: setVertices
     id: setVertices
-    summary: |
-      The bounding polygon vertices.
-      
-      Generated from protobuf field <code>repeated .google.cloud.vision.v1.Vertex vertices = 1;</code>
+    summary: 'The bounding polygon vertices.'
     parent: \Google\Cloud\Vision\V1\BoundingPoly
     type: method
     langs:
@@ -82,10 +76,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\BoundingPoly::getNormalizedVertices()'
     name: getNormalizedVertices
     id: getNormalizedVertices
-    summary: |
-      The bounding polygon normalized vertices.
-      
-      Generated from protobuf field <code>repeated .google.cloud.vision.v1.NormalizedVertex normalized_vertices = 2;</code>
+    summary: 'The bounding polygon normalized vertices.'
     parent: \Google\Cloud\Vision\V1\BoundingPoly
     type: method
     langs:
@@ -93,15 +84,12 @@ items:
     syntax:
       returns:
         -
-          var_type: Google\Protobuf\Internal\RepeatedField
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Internal/RepeatedField">Google\Protobuf\Internal\RepeatedField</a>'
   -
     uid: '\Google\Cloud\Vision\V1\BoundingPoly::setNormalizedVertices()'
     name: setNormalizedVertices
     id: setNormalizedVertices
-    summary: |
-      The bounding polygon normalized vertices.
-      
-      Generated from protobuf field <code>repeated .google.cloud.vision.v1.NormalizedVertex normalized_vertices = 2;</code>
+    summary: 'The bounding polygon normalized vertices.'
     parent: \Google\Cloud\Vision\V1\BoundingPoly
     type: method
     langs:

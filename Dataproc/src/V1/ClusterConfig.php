@@ -32,15 +32,13 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      */
     private $config_bucket = '';
     /**
-     * Optional. A Cloud Storage bucket used to store ephemeral cluster and jobs data,
-     * such as Spark and MapReduce history files.
-     * If you do not specify a temp bucket,
-     * Dataproc will determine a Cloud Storage location (US,
-     * ASIA, or EU) for your cluster's temp bucket according to the
-     * Compute Engine zone where your cluster is deployed, and then create
-     * and manage this project-level, per-location bucket. The default bucket has
-     * a TTL of 90 days, but you can use any TTL (or none) if you specify a
-     * bucket (see
+     * Optional. A Cloud Storage bucket used to store ephemeral cluster and jobs
+     * data, such as Spark and MapReduce history files. If you do not specify a
+     * temp bucket, Dataproc will determine a Cloud Storage location (US, ASIA, or
+     * EU) for your cluster's temp bucket according to the Compute Engine zone
+     * where your cluster is deployed, and then create and manage this
+     * project-level, per-location bucket. The default bucket has a TTL of 90
+     * days, but you can use any TTL (or none) if you specify a bucket (see
      * [Dataproc staging and temp
      * buckets](https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/staging-bucket)).
      * **This field requires a Cloud Storage bucket name, not a `gs://...` URI to
@@ -143,6 +141,12 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.DataprocMetricConfig dataproc_metric_config = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $dataproc_metric_config = null;
+    /**
+     * Optional. The node group settings.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.AuxiliaryNodeGroup auxiliary_node_groups = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $auxiliary_node_groups;
 
     /**
      * Constructor.
@@ -163,15 +167,13 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      *           **This field requires a Cloud Storage bucket name, not a `gs://...` URI to
      *           a Cloud Storage bucket.**
      *     @type string $temp_bucket
-     *           Optional. A Cloud Storage bucket used to store ephemeral cluster and jobs data,
-     *           such as Spark and MapReduce history files.
-     *           If you do not specify a temp bucket,
-     *           Dataproc will determine a Cloud Storage location (US,
-     *           ASIA, or EU) for your cluster's temp bucket according to the
-     *           Compute Engine zone where your cluster is deployed, and then create
-     *           and manage this project-level, per-location bucket. The default bucket has
-     *           a TTL of 90 days, but you can use any TTL (or none) if you specify a
-     *           bucket (see
+     *           Optional. A Cloud Storage bucket used to store ephemeral cluster and jobs
+     *           data, such as Spark and MapReduce history files. If you do not specify a
+     *           temp bucket, Dataproc will determine a Cloud Storage location (US, ASIA, or
+     *           EU) for your cluster's temp bucket according to the Compute Engine zone
+     *           where your cluster is deployed, and then create and manage this
+     *           project-level, per-location bucket. The default bucket has a TTL of 90
+     *           days, but you can use any TTL (or none) if you specify a bucket (see
      *           [Dataproc staging and temp
      *           buckets](https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/staging-bucket)).
      *           **This field requires a Cloud Storage bucket name, not a `gs://...` URI to
@@ -218,6 +220,8 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      *           Optional. Metastore configuration.
      *     @type \Google\Cloud\Dataproc\V1\DataprocMetricConfig $dataproc_metric_config
      *           Optional. The config for Dataproc metrics.
+     *     @type array<\Google\Cloud\Dataproc\V1\AuxiliaryNodeGroup>|\Google\Protobuf\Internal\RepeatedField $auxiliary_node_groups
+     *           Optional. The node group settings.
      * }
      */
     public function __construct($data = NULL) {
@@ -272,15 +276,13 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A Cloud Storage bucket used to store ephemeral cluster and jobs data,
-     * such as Spark and MapReduce history files.
-     * If you do not specify a temp bucket,
-     * Dataproc will determine a Cloud Storage location (US,
-     * ASIA, or EU) for your cluster's temp bucket according to the
-     * Compute Engine zone where your cluster is deployed, and then create
-     * and manage this project-level, per-location bucket. The default bucket has
-     * a TTL of 90 days, but you can use any TTL (or none) if you specify a
-     * bucket (see
+     * Optional. A Cloud Storage bucket used to store ephemeral cluster and jobs
+     * data, such as Spark and MapReduce history files. If you do not specify a
+     * temp bucket, Dataproc will determine a Cloud Storage location (US, ASIA, or
+     * EU) for your cluster's temp bucket according to the Compute Engine zone
+     * where your cluster is deployed, and then create and manage this
+     * project-level, per-location bucket. The default bucket has a TTL of 90
+     * days, but you can use any TTL (or none) if you specify a bucket (see
      * [Dataproc staging and temp
      * buckets](https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/staging-bucket)).
      * **This field requires a Cloud Storage bucket name, not a `gs://...` URI to
@@ -295,15 +297,13 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A Cloud Storage bucket used to store ephemeral cluster and jobs data,
-     * such as Spark and MapReduce history files.
-     * If you do not specify a temp bucket,
-     * Dataproc will determine a Cloud Storage location (US,
-     * ASIA, or EU) for your cluster's temp bucket according to the
-     * Compute Engine zone where your cluster is deployed, and then create
-     * and manage this project-level, per-location bucket. The default bucket has
-     * a TTL of 90 days, but you can use any TTL (or none) if you specify a
-     * bucket (see
+     * Optional. A Cloud Storage bucket used to store ephemeral cluster and jobs
+     * data, such as Spark and MapReduce history files. If you do not specify a
+     * temp bucket, Dataproc will determine a Cloud Storage location (US, ASIA, or
+     * EU) for your cluster's temp bucket according to the Compute Engine zone
+     * where your cluster is deployed, and then create and manage this
+     * project-level, per-location bucket. The default bucket has a TTL of 90
+     * days, but you can use any TTL (or none) if you specify a bucket (see
      * [Dataproc staging and temp
      * buckets](https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/staging-bucket)).
      * **This field requires a Cloud Storage bucket name, not a `gs://...` URI to
@@ -807,6 +807,32 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dataproc\V1\DataprocMetricConfig::class);
         $this->dataproc_metric_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The node group settings.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.AuxiliaryNodeGroup auxiliary_node_groups = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getAuxiliaryNodeGroups()
+    {
+        return $this->auxiliary_node_groups;
+    }
+
+    /**
+     * Optional. The node group settings.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.AuxiliaryNodeGroup auxiliary_node_groups = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<\Google\Cloud\Dataproc\V1\AuxiliaryNodeGroup>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setAuxiliaryNodeGroups($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dataproc\V1\AuxiliaryNodeGroup::class);
+        $this->auxiliary_node_groups = $arr;
 
         return $this;
     }

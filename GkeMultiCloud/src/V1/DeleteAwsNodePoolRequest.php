@@ -9,14 +9,15 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for `AwsClusters.DeleteNodePool` method.
+ * Request message for `AwsClusters.DeleteAwsNodePool` method.
  *
  * Generated from protobuf message <code>google.cloud.gkemulticloud.v1.DeleteAwsNodePoolRequest</code>
  */
 class DeleteAwsNodePoolRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name the [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] to delete.
+     * Required. The resource name the
+     * [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] to delete.
      * `AwsNodePool` names are formatted as
      * `projects/<project-id>/locations/<region>/awsClusters/<cluster-id>/awsNodePools/<node-pool-id>`.
      * See [Resource Names](https://cloud.google.com/apis/design/resource_names)
@@ -33,16 +34,18 @@ class DeleteAwsNodePoolRequest extends \Google\Protobuf\Internal\Message
      */
     private $validate_only = false;
     /**
-     * If set to true, and the [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] resource is not found,
-     * the request will succeed but no action will be taken on the server and a
-     * completed [Operation][google.longrunning.Operation] will be returned.
+     * If set to true, and the
+     * [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] resource is not
+     * found, the request will succeed but no action will be taken on the server
+     * and a completed [Operation][google.longrunning.Operation] will be returned.
      * Useful for idempotent deletion.
      *
      * Generated from protobuf field <code>bool allow_missing = 3;</code>
      */
     private $allow_missing = false;
     /**
-     * The current ETag of the [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool].
+     * The current ETag of the
+     * [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool].
      * Allows clients to perform deletions through optimistic concurrency control.
      * If the provided ETag does not match the current etag of the node pool,
      * the request will fail and an ABORTED error will be returned.
@@ -58,7 +61,8 @@ class DeleteAwsNodePoolRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The resource name the [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] to delete.
+     *           Required. The resource name the
+     *           [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] to delete.
      *           `AwsNodePool` names are formatted as
      *           `projects/<project-id>/locations/<region>/awsClusters/<cluster-id>/awsNodePools/<node-pool-id>`.
      *           See [Resource Names](https://cloud.google.com/apis/design/resource_names)
@@ -67,12 +71,14 @@ class DeleteAwsNodePoolRequest extends \Google\Protobuf\Internal\Message
      *           If set, only validate the request, but do not actually delete the node
      *           pool.
      *     @type bool $allow_missing
-     *           If set to true, and the [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] resource is not found,
-     *           the request will succeed but no action will be taken on the server and a
-     *           completed [Operation][google.longrunning.Operation] will be returned.
+     *           If set to true, and the
+     *           [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] resource is not
+     *           found, the request will succeed but no action will be taken on the server
+     *           and a completed [Operation][google.longrunning.Operation] will be returned.
      *           Useful for idempotent deletion.
      *     @type string $etag
-     *           The current ETag of the [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool].
+     *           The current ETag of the
+     *           [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool].
      *           Allows clients to perform deletions through optimistic concurrency control.
      *           If the provided ETag does not match the current etag of the node pool,
      *           the request will fail and an ABORTED error will be returned.
@@ -84,7 +90,8 @@ class DeleteAwsNodePoolRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name the [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] to delete.
+     * Required. The resource name the
+     * [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] to delete.
      * `AwsNodePool` names are formatted as
      * `projects/<project-id>/locations/<region>/awsClusters/<cluster-id>/awsNodePools/<node-pool-id>`.
      * See [Resource Names](https://cloud.google.com/apis/design/resource_names)
@@ -99,7 +106,8 @@ class DeleteAwsNodePoolRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name the [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] to delete.
+     * Required. The resource name the
+     * [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] to delete.
      * `AwsNodePool` names are formatted as
      * `projects/<project-id>/locations/<region>/awsClusters/<cluster-id>/awsNodePools/<node-pool-id>`.
      * See [Resource Names](https://cloud.google.com/apis/design/resource_names)
@@ -146,9 +154,10 @@ class DeleteAwsNodePoolRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If set to true, and the [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] resource is not found,
-     * the request will succeed but no action will be taken on the server and a
-     * completed [Operation][google.longrunning.Operation] will be returned.
+     * If set to true, and the
+     * [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] resource is not
+     * found, the request will succeed but no action will be taken on the server
+     * and a completed [Operation][google.longrunning.Operation] will be returned.
      * Useful for idempotent deletion.
      *
      * Generated from protobuf field <code>bool allow_missing = 3;</code>
@@ -160,9 +169,10 @@ class DeleteAwsNodePoolRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If set to true, and the [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] resource is not found,
-     * the request will succeed but no action will be taken on the server and a
-     * completed [Operation][google.longrunning.Operation] will be returned.
+     * If set to true, and the
+     * [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] resource is not
+     * found, the request will succeed but no action will be taken on the server
+     * and a completed [Operation][google.longrunning.Operation] will be returned.
      * Useful for idempotent deletion.
      *
      * Generated from protobuf field <code>bool allow_missing = 3;</code>
@@ -178,7 +188,8 @@ class DeleteAwsNodePoolRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The current ETag of the [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool].
+     * The current ETag of the
+     * [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool].
      * Allows clients to perform deletions through optimistic concurrency control.
      * If the provided ETag does not match the current etag of the node pool,
      * the request will fail and an ABORTED error will be returned.
@@ -192,7 +203,8 @@ class DeleteAwsNodePoolRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The current ETag of the [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool].
+     * The current ETag of the
+     * [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool].
      * Allows clients to perform deletions through optimistic concurrency control.
      * If the provided ETag does not match the current etag of the node pool,
      * the request will fail and an ABORTED error will be returned.

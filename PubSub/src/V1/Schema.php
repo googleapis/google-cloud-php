@@ -36,6 +36,18 @@ class Schema extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string definition = 3;</code>
      */
     private $definition = '';
+    /**
+     * Output only. Immutable. The revision ID of the schema.
+     *
+     * Generated from protobuf field <code>string revision_id = 4 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $revision_id = '';
+    /**
+     * Output only. The timestamp that the revision was created.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp revision_create_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $revision_create_time = null;
 
     /**
      * Constructor.
@@ -52,6 +64,10 @@ class Schema extends \Google\Protobuf\Internal\Message
      *           The definition of the schema. This should contain a string representing
      *           the full definition of the schema that is a valid schema definition of
      *           the type specified in `type`.
+     *     @type string $revision_id
+     *           Output only. Immutable. The revision ID of the schema.
+     *     @type \Google\Protobuf\Timestamp $revision_create_time
+     *           Output only. The timestamp that the revision was created.
      * }
      */
     public function __construct($data = NULL) {
@@ -139,6 +155,68 @@ class Schema extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->definition = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Immutable. The revision ID of the schema.
+     *
+     * Generated from protobuf field <code>string revision_id = 4 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getRevisionId()
+    {
+        return $this->revision_id;
+    }
+
+    /**
+     * Output only. Immutable. The revision ID of the schema.
+     *
+     * Generated from protobuf field <code>string revision_id = 4 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setRevisionId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->revision_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The timestamp that the revision was created.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp revision_create_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getRevisionCreateTime()
+    {
+        return $this->revision_create_time;
+    }
+
+    public function hasRevisionCreateTime()
+    {
+        return isset($this->revision_create_time);
+    }
+
+    public function clearRevisionCreateTime()
+    {
+        unset($this->revision_create_time);
+    }
+
+    /**
+     * Output only. The timestamp that the revision was created.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp revision_create_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setRevisionCreateTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->revision_create_time = $var;
 
         return $this;
     }
