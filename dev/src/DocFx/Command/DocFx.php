@@ -182,7 +182,7 @@ class DocFx extends Command
             '-d',
             sprintf('%s/src', $componentPath),
             '--template',
-            realpath(__DIR__ . '/../../../data/templates/xml'),
+            'xml',
             '--target',
             $outDir
         ]);

@@ -87,7 +87,7 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" &&
 # Build phpDocumentor from HEAD until they create a new release
 # TODO: Remove once phpDocumentor tags a new release
 # @see https://github.com/phpDocumentor/phpDocumentor/issues/3434
-RUN wget -O phpDocumentor.tar.gz "https://github.com/phpDocumentor/phpDocumentor/archive/master.tar.gz" \
+RUN wget -O phpDocumentor.tar.gz "https://github.com/phpDocumentor/phpDocumentor/archive/7e6028d870e4e3a59d35e954f92b3569bec2dbae.tar.gz" \
     && tar -xzf phpDocumentor.tar.gz \
     && composer require -d phpDocumentor-master \
     && ln -s ${pwd}/phpDocumentor-master/bin/phpdoc /usr/local/bin/phpdoc
