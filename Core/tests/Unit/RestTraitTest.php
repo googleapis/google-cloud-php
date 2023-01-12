@@ -100,7 +100,7 @@ class RestTraitTest extends TestCase
 
         $actualRetryFunction = null;
         $this->requestWrapper->send(Argument::any(), Argument::any())
-            ->will(function($args) use (&$actualRetryFunction, $responseBody) {
+            ->will(function ($args) use (&$actualRetryFunction, $responseBody) {
                 $actualRetryFunction = $args[1]['restRetryFunction'];
                 return new Response(200, [], $responseBody);
             })
