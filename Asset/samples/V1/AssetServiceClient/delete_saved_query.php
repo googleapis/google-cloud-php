@@ -29,7 +29,8 @@ use Google\Cloud\Asset\V1\AssetServiceClient;
 /**
  * Deletes a saved query.
  *
- * @param string $formattedName The name of the saved query to delete. It must be in the format of:
+ * @param string $formattedName The name of the saved query to delete. It must be in the format
+ *                              of:
  *
  *                              * projects/project_number/savedQueries/saved_query_id
  *                              * folders/folder_number/savedQueries/saved_query_id

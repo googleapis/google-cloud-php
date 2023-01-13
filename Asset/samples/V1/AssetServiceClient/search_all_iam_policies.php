@@ -34,9 +34,9 @@ use Google\Cloud\Asset\V1\IamPolicySearchResult;
  * `cloudasset.assets.searchAllIamPolicies` permission on the desired scope,
  * otherwise the request will be rejected.
  *
- * @param string $scope A scope can be a project, a folder, or an organization. The search is
- *                      limited to the IAM policies within the `scope`. The caller must be granted
- *                      the
+ * @param string $scope A scope can be a project, a folder, or an organization. The
+ *                      search is limited to the IAM policies within the `scope`. The caller must
+ *                      be granted the
  *                      [`cloudasset.assets.searchAllIamPolicies`](https://cloud.google.com/asset-inventory/docs/access-control#required_permissions)
  *                      permission on the desired scope.
  *
