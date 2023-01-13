@@ -697,8 +697,14 @@ class StorageObject
         };
 
         $options += [
-            'restOnRetryExceptionFunction' => function (\Exception $e, $attempt, &$arguments)
- use ($resultStream, $requestedBytes) {
+            'restOnRetryExceptionFunction' => function (
+                \Exception $e,
+                $attempt,
+                &$arguments
+            ) use (
+                $resultStream,
+                $requestedBytes
+            ) {
                     // if the exception has a response for us to use
                 if ($e instanceof RequestException && $e->hasResponse()) {
                     $msg = (string) $e->getResponse()->getBody();
@@ -1353,7 +1359,6 @@ class StorageObject
                 $bytes = explode('-', $range[1]);
                 $startByte = $bytes[0];
                 $endByte = $bytes[1];
-                $rangeSupplied = true;
             }
         }
 

@@ -641,7 +641,7 @@ class Rest implements ConnectionInterface
      *
      * @return array
      */
-    private function addRetryHeaderCallbacks(array $args): array
+    private function addRetryHeaderCallbacks(array $args)
     {
         $requestHash = Uuid::uuid4()->toString();
         $args['restOnRetryExceptionFunction'] = function (
@@ -660,7 +660,7 @@ class Rest implements ConnectionInterface
             );
         };
 
-        $args['onExecutionStart'] = function (&$arguments) use ($requestHash) {
+        $args['restOnExecutionStartFunction'] = function (&$arguments) use ($requestHash) {
             $this->updateRetryHeaders(
                 $arguments,
                 $requestHash
@@ -673,6 +673,12 @@ class Rest implements ConnectionInterface
      * Updates the api client identification header value with UUID
      * and retry count
      *
+     * @param array &$arguments The arguments array(passed by reference) used by
+     * execute method of ExponentialBackoff object.
+     * @param string $requestHash A UUID4 string value that represents a request and
+     * it's retries.
+     * @param int $currentAttempt The original attempt is of a value 1, and retries are
+     * 2, 3 and so on.
      * @return void
      */
     private function updateRetryHeaders(
@@ -717,7 +723,7 @@ class Rest implements ConnectionInterface
         array &$arguments,
         string $value,
         bool $getHeaderFromRequest = true
-    ): void {
+    ) {
         // Fetch request and options
         $request = $this->fetchRequest($arguments);
         $options = $this->fetchOptions($arguments);
@@ -770,7 +776,7 @@ class Rest implements ConnectionInterface
      * @param mixed $arguments
      * @return array
      */
-    private function fetchOptions($arguments): array
+    private function fetchOptions($arguments)
     {
         foreach ($arguments as $argument) {
             if (is_array($argument) && isset($argument['headers'])) {
@@ -786,7 +792,7 @@ class Rest implements ConnectionInterface
      * @param array $options
      * @return void
      */
-    private function setOptions(array &$arguments, array $options): void
+    private function setOptions(array &$arguments, array $options)
     {
         foreach ($arguments as &$argument) {
             if (is_array($argument) && isset($argument['headers'])) {

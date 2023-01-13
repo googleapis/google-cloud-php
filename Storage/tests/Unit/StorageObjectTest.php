@@ -424,7 +424,6 @@ class StorageObjectTest extends TestCase
         $object = new StorageObject($this->connection->reveal(), $object, $bucket);
 
         $this->assertEquals($string, $object->downloadAsString([
-            'size' => $stream->getSize(),
             'encryptionKey' => $key,
             'encryptionKeySHA256' => $hash
         ]));
@@ -446,7 +445,6 @@ class StorageObjectTest extends TestCase
         $object = new StorageObject($this->connection->reveal(), $object, $bucket);
 
         $contents = $object->downloadToFile('php://temp', [
-            'size' => $stream->getSize(),
             'encryptionKey' => $key,
             'encryptionKeySHA256' => $hash
         ])->getContents();
@@ -463,7 +461,7 @@ class StorageObjectTest extends TestCase
         $object = new StorageObject($this->connection->reveal(), $object, self::BUCKET);
         $throws = false;
         try {
-            $object->downloadToFile($downloadFilePath, ['size' => 0]);
+            $object->downloadToFile($downloadFilePath);
         } catch (NotFoundException $e) {
             $this->assertStringContainsString($e->getMessage(), $exceptionString);
             $throws = true;
@@ -485,7 +483,7 @@ class StorageObjectTest extends TestCase
 
         $object = new StorageObject($this->connection->reveal(), $object, $bucket);
 
-        $body = $object->downloadAsStream(['size' => $stream->getSize()]);
+        $body = $object->downloadAsStream();
 
         $this->assertInstanceOf(StreamInterface::class, $body);
         $this->assertEquals($string, $body);
@@ -508,8 +506,7 @@ class StorageObjectTest extends TestCase
 
         $body = $object->downloadAsStream([
             'encryptionKey' => $key,
-            'encryptionKeySHA256' => $hash,
-            'size' => $stream->getSize()
+            'encryptionKeySHA256' => $hash
         ]);
 
         $this->assertInstanceOf(StreamInterface::class, $body);
@@ -538,10 +535,7 @@ class StorageObjectTest extends TestCase
 
         $object = new StorageObject($this->connection->reveal(), $object, $bucket);
 
-        // The size param is passed just to avoid an extra call to
-        // $this->connection->getObject
         $body = $object->downloadAsStream([
-            'size' => $stream->getSize(),
             'restOptions' => [
                 'headers' => [
                     'Range' => 'bytes=0-'
@@ -562,24 +556,6 @@ class StorageObjectTest extends TestCase
         $object = self::OBJECT;
         $stream = Utils::streamFor($string = 'abcdefg');
         $this->connection->getObject()->shouldNotBeCalled();
-        $this->connection->downloadObject(Argument::any())->willReturn($stream);
-
-        $object = new StorageObject($this->connection->reveal(), $object, $bucket);
-        $object->downloadAsStream([
-            'size' => 6
-        ]);
-    }
-
-    /**
-     * Checks if leaving out the size parameter
-     * makes the info call.
-     */
-    public function testDownloadAsStreamWithoutSizeParam()
-    {
-        $bucket = 'bucket';
-        $object = self::OBJECT;
-        $stream = Utils::streamFor($string = 'abcdefg');
-        $this->connection->getObject(Argument::any())->shouldBeCalled();
         $this->connection->downloadObject(Argument::any())->willReturn($stream);
 
         $object = new StorageObject($this->connection->reveal(), $object, $bucket);

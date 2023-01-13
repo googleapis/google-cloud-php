@@ -52,7 +52,7 @@ class ExponentialBackoff
     /**
      * @var callable|null
      */
-    private $onExecutionStart;
+    private $onExecutionStartFunction;
 
     /**
      * @param int $retries [optional] Number of retries for a failed request.
@@ -63,7 +63,7 @@ class ExponentialBackoff
      *        Function definition should match: function (\Exception $e, int $attempt, array &$arguments) : void
      *        Ex: One might want to change headers on every retry, this function can be used to achieve
      *        such a functionality.
-     * @param callable $onExecutionStart [optional] runs before execution of the
+     * @param callable $onExecutionStartFunction [optional] runs before execution of the
      *        execute function. Taken in $arguments as reference and thus gives users,
      *        the flexibility to add custom logic before the execution of request
      *        and override request / options in the $arguments.
@@ -73,12 +73,12 @@ class ExponentialBackoff
         $retries = null,
         callable $retryFunction = null,
         callable $onRetryExceptionFunction = null,
-        callable $onExecutionStart = null
+        callable $onExecutionStartFunction = null
     ) {
         $this->retries = $retries !== null ? (int) $retries : 3;
         $this->retryFunction = $retryFunction;
         $this->onRetryExceptionFunction = $onRetryExceptionFunction;
-        $this->onExecutionStart = $onExecutionStart;
+        $this->onExecutionStartFunction = $onExecutionStartFunction;
         // @todo revisit this approach
         // @codeCoverageIgnoreStart
         $this->delayFunction = static function ($delay) {
@@ -104,8 +104,8 @@ class ExponentialBackoff
 
         // The $arguments are passed by reference
         // thus are modifiable before the execution starts.
-        if ($this->onExecutionStart) {
-            call_user_func_array($this->onExecutionStart, [&$arguments]);
+        if ($this->onExecutionStartFunction) {
+            call_user_func_array($this->onExecutionStartFunction, [&$arguments]);
         }
 
         while (true) {
