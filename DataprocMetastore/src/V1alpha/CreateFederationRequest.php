@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateFederationRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The relative resource name of the location in which to create a federation
-     * service, in the following form:
+     * Required. The relative resource name of the location in which to create a
+     * federation service, in the following form:
      * `projects/{project_number}/locations/{location_id}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -42,10 +42,10 @@ class CreateFederationRequest extends \Google\Protobuf\Internal\Message
      */
     private $federation = null;
     /**
-     * Optional. A request ID. Specify a unique request ID to allow the server to ignore the
-     * request if it has completed. The server will ignore subsequent requests
-     * that provide a duplicate request ID for at least 60 minutes after the first
-     * request.
+     * Optional. A request ID. Specify a unique request ID to allow the server to
+     * ignore the request if it has completed. The server will ignore subsequent
+     * requests that provide a duplicate request ID for at least 60 minutes after
+     * the first request.
      * For example, if an initial request times out, followed by another request
      * with the same request ID, the server ignores the second request to prevent
      * the creation of duplicate commitments.
@@ -64,8 +64,8 @@ class CreateFederationRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The relative resource name of the location in which to create a federation
-     *           service, in the following form:
+     *           Required. The relative resource name of the location in which to create a
+     *           federation service, in the following form:
      *           `projects/{project_number}/locations/{location_id}`.
      *     @type string $federation_id
      *           Required. The ID of the metastore federation, which is used as the final
@@ -78,10 +78,10 @@ class CreateFederationRequest extends \Google\Protobuf\Internal\Message
      *           ignored. The ID of the created metastore federation must be
      *           provided in the request's `federation_id` field.
      *     @type string $request_id
-     *           Optional. A request ID. Specify a unique request ID to allow the server to ignore the
-     *           request if it has completed. The server will ignore subsequent requests
-     *           that provide a duplicate request ID for at least 60 minutes after the first
-     *           request.
+     *           Optional. A request ID. Specify a unique request ID to allow the server to
+     *           ignore the request if it has completed. The server will ignore subsequent
+     *           requests that provide a duplicate request ID for at least 60 minutes after
+     *           the first request.
      *           For example, if an initial request times out, followed by another request
      *           with the same request ID, the server ignores the second request to prevent
      *           the creation of duplicate commitments.
@@ -96,8 +96,8 @@ class CreateFederationRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The relative resource name of the location in which to create a federation
-     * service, in the following form:
+     * Required. The relative resource name of the location in which to create a
+     * federation service, in the following form:
      * `projects/{project_number}/locations/{location_id}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -109,8 +109,8 @@ class CreateFederationRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The relative resource name of the location in which to create a federation
-     * service, in the following form:
+     * Required. The relative resource name of the location in which to create a
+     * federation service, in the following form:
      * `projects/{project_number}/locations/{location_id}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -200,10 +200,10 @@ class CreateFederationRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A request ID. Specify a unique request ID to allow the server to ignore the
-     * request if it has completed. The server will ignore subsequent requests
-     * that provide a duplicate request ID for at least 60 minutes after the first
-     * request.
+     * Optional. A request ID. Specify a unique request ID to allow the server to
+     * ignore the request if it has completed. The server will ignore subsequent
+     * requests that provide a duplicate request ID for at least 60 minutes after
+     * the first request.
      * For example, if an initial request times out, followed by another request
      * with the same request ID, the server ignores the second request to prevent
      * the creation of duplicate commitments.
@@ -220,10 +220,10 @@ class CreateFederationRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A request ID. Specify a unique request ID to allow the server to ignore the
-     * request if it has completed. The server will ignore subsequent requests
-     * that provide a duplicate request ID for at least 60 minutes after the first
-     * request.
+     * Optional. A request ID. Specify a unique request ID to allow the server to
+     * ignore the request if it has completed. The server will ignore subsequent
+     * requests that provide a duplicate request ID for at least 60 minutes after
+     * the first request.
      * For example, if an initial request times out, followed by another request
      * with the same request ID, the server ignores the second request to prevent
      * the creation of duplicate commitments.

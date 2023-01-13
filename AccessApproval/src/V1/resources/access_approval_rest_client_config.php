@@ -207,4 +207,5 @@ return [
             ],
         ],
     ],
+    'numericEnums' => true,
 ];

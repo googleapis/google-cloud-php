@@ -39,7 +39,7 @@ items:
           description: 'Optional. Data for populating the Message object.'
         -
           id: '↳ index_time'
-          var_type: Google\Protobuf\Timestamp
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Timestamp">Google\Protobuf\Timestamp</a>'
           description: 'Timestamp of the index which provided these results. Products added to the product set and products removed from the product set after this time are not reflected in the current results.'
         -
           id: '↳ results'
@@ -57,8 +57,6 @@ items:
       Timestamp of the index which provided these results. Products added to the
       product set and products removed from the product set after this time are
       not reflected in the current results.
-      
-      Generated from protobuf field <code>.google.protobuf.Timestamp index_time = 2;</code>
     parent: \Google\Cloud\Vision\V1\ProductSearchResults
     type: method
     langs:
@@ -66,7 +64,7 @@ items:
     syntax:
       returns:
         -
-          var_type: Google\Protobuf\Timestamp|null
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Timestamp">Google\Protobuf\Timestamp</a>|null'
   -
     uid: '\Google\Cloud\Vision\V1\ProductSearchResults::hasIndexTime()'
     name: hasIndexTime
@@ -91,8 +89,6 @@ items:
       Timestamp of the index which provided these results. Products added to the
       product set and products removed from the product set after this time are
       not reflected in the current results.
-      
-      Generated from protobuf field <code>.google.protobuf.Timestamp index_time = 2;</code>
     parent: \Google\Cloud\Vision\V1\ProductSearchResults
     type: method
     langs:
@@ -101,7 +97,7 @@ items:
       parameters:
         -
           id: var
-          var_type: Google\Protobuf\Timestamp
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Timestamp">Google\Protobuf\Timestamp</a>'
           description: ''
       returns:
         -
@@ -110,10 +106,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\ProductSearchResults::getResults()'
     name: getResults
     id: getResults
-    summary: |
-      List of results, one for each product match.
-      
-      Generated from protobuf field <code>repeated .google.cloud.vision.v1.ProductSearchResults.Result results = 5;</code>
+    summary: 'List of results, one for each product match.'
     parent: \Google\Cloud\Vision\V1\ProductSearchResults
     type: method
     langs:
@@ -121,15 +114,12 @@ items:
     syntax:
       returns:
         -
-          var_type: Google\Protobuf\Internal\RepeatedField
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Internal/RepeatedField">Google\Protobuf\Internal\RepeatedField</a>'
   -
     uid: '\Google\Cloud\Vision\V1\ProductSearchResults::setResults()'
     name: setResults
     id: setResults
-    summary: |
-      List of results, one for each product match.
-      
-      Generated from protobuf field <code>repeated .google.cloud.vision.v1.ProductSearchResults.Result results = 5;</code>
+    summary: 'List of results, one for each product match.'
     parent: \Google\Cloud\Vision\V1\ProductSearchResults
     type: method
     langs:
@@ -152,8 +142,6 @@ items:
       corresponds to one bounding polygon in the query image, and contains the
       matching products specific to that region. There may be duplicate product
       matches in the union of all the per-product results.
-      
-      Generated from protobuf field <code>repeated .google.cloud.vision.v1.ProductSearchResults.GroupedResult product_grouped_results = 6;</code>
     parent: \Google\Cloud\Vision\V1\ProductSearchResults
     type: method
     langs:
@@ -161,7 +149,7 @@ items:
     syntax:
       returns:
         -
-          var_type: Google\Protobuf\Internal\RepeatedField
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Internal/RepeatedField">Google\Protobuf\Internal\RepeatedField</a>'
   -
     uid: '\Google\Cloud\Vision\V1\ProductSearchResults::setProductGroupedResults()'
     name: setProductGroupedResults
@@ -171,8 +159,6 @@ items:
       corresponds to one bounding polygon in the query image, and contains the
       matching products specific to that region. There may be duplicate product
       matches in the union of all the per-product results.
-      
-      Generated from protobuf field <code>repeated .google.cloud.vision.v1.ProductSearchResults.GroupedResult product_grouped_results = 6;</code>
     parent: \Google\Cloud\Vision\V1\ProductSearchResults
     type: method
     langs:

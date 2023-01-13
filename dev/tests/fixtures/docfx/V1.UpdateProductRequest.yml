@@ -43,8 +43,8 @@ items:
           description: 'Required. The Product resource which replaces the one on the server. product.name is immutable.'
         -
           id: '↳ update_mask'
-          var_type: Google\Protobuf\FieldMask
-          description: 'The FieldMask that specifies which fields to update. If update_mask isn''t specified, all mutable fields are to be updated. Valid mask paths include `product_labels`, `display_name`, and `description`.'
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/FieldMask">Google\Protobuf\FieldMask</a>'
+          description: 'The <a href="https://protobuf.dev/reference/php/api-docs/FieldMask">FieldMask</a> that specifies which fields to update. If update_mask isn''t specified, all mutable fields are to be updated. Valid mask paths include `product_labels`, `display_name`, and `description`.'
   -
     uid: '\Google\Cloud\Vision\V1\UpdateProductRequest::getProduct()'
     name: getProduct
@@ -53,8 +53,6 @@ items:
       Required. The Product resource which replaces the one on the server.
       
       product.name is immutable.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.Product product = 1 [(.google.api.field_behavior) = REQUIRED];</code>
     parent: \Google\Cloud\Vision\V1\UpdateProductRequest
     type: method
     langs:
@@ -87,8 +85,6 @@ items:
       Required. The Product resource which replaces the one on the server.
       
       product.name is immutable.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.Product product = 1 [(.google.api.field_behavior) = REQUIRED];</code>
     parent: \Google\Cloud\Vision\V1\UpdateProductRequest
     type: method
     langs:
@@ -107,14 +103,12 @@ items:
     name: getUpdateMask
     id: getUpdateMask
     summary: |
-      The FieldMask that specifies which fields
+      The <a href="https://protobuf.dev/reference/php/api-docs/FieldMask">FieldMask</a> that specifies which fields
       to update.
       
       If update_mask isn't specified, all mutable fields are to be updated.
       Valid mask paths include `product_labels`, `display_name`, and
       `description`.
-      
-      Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
     parent: \Google\Cloud\Vision\V1\UpdateProductRequest
     type: method
     langs:
@@ -122,7 +116,7 @@ items:
     syntax:
       returns:
         -
-          var_type: Google\Protobuf\FieldMask|null
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/FieldMask">Google\Protobuf\FieldMask</a>|null'
   -
     uid: '\Google\Cloud\Vision\V1\UpdateProductRequest::hasUpdateMask()'
     name: hasUpdateMask
@@ -144,14 +138,12 @@ items:
     name: setUpdateMask
     id: setUpdateMask
     summary: |
-      The FieldMask that specifies which fields
+      The <a href="https://protobuf.dev/reference/php/api-docs/FieldMask">FieldMask</a> that specifies which fields
       to update.
       
       If update_mask isn't specified, all mutable fields are to be updated.
       Valid mask paths include `product_labels`, `display_name`, and
       `description`.
-      
-      Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
     parent: \Google\Cloud\Vision\V1\UpdateProductRequest
     type: method
     langs:
@@ -160,7 +152,7 @@ items:
       parameters:
         -
           id: var
-          var_type: Google\Protobuf\FieldMask
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/FieldMask">Google\Protobuf\FieldMask</a>'
           description: ''
       returns:
         -

@@ -58,8 +58,6 @@ items:
       
       Format is
       `projects/PROJECT_ID/locations/LOC_ID`.
-      
-      Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
     parent: \Google\Cloud\Vision\V1\CreateProductRequest
     type: method
     langs:
@@ -77,8 +75,6 @@ items:
       
       Format is
       `projects/PROJECT_ID/locations/LOC_ID`.
-      
-      Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
     parent: \Google\Cloud\Vision\V1\CreateProductRequest
     type: method
     langs:
@@ -96,10 +92,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\CreateProductRequest::getProduct()'
     name: getProduct
     id: getProduct
-    summary: |
-      Required. The product to create.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.Product product = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+    summary: 'Required. The product to create.'
     parent: \Google\Cloud\Vision\V1\CreateProductRequest
     type: method
     langs:
@@ -128,10 +121,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\CreateProductRequest::setProduct()'
     name: setProduct
     id: setProduct
-    summary: |
-      Required. The product to create.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.Product product = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+    summary: 'Required. The product to create.'
     parent: \Google\Cloud\Vision\V1\CreateProductRequest
     type: method
     langs:
@@ -154,8 +144,6 @@ items:
       attempt to use this value as the resource id. If it is already in use, an
       error is returned with code ALREADY_EXISTS. Must be at most 128 characters
       long. It cannot contain the character `/`.
-      
-      Generated from protobuf field <code>string product_id = 3;</code>
     parent: \Google\Cloud\Vision\V1\CreateProductRequest
     type: method
     langs:
@@ -173,8 +161,6 @@ items:
       attempt to use this value as the resource id. If it is already in use, an
       error is returned with code ALREADY_EXISTS. Must be at most 128 characters
       long. It cannot contain the character `/`.
-      
-      Generated from protobuf field <code>string product_id = 3;</code>
     parent: \Google\Cloud\Vision\V1\CreateProductRequest
     type: method
     langs:

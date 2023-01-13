@@ -53,7 +53,7 @@ items:
           description: 'The user-provided name for this ProductSet. Must not be empty. Must be at most 4096 characters long.'
         -
           id: '↳ index_time'
-          var_type: Google\Protobuf\Timestamp
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Timestamp">Google\Protobuf\Timestamp</a>'
           description: 'Output only. The time at which this ProductSet was last indexed. Query results will reflect all updates before this time. If this ProductSet has never been indexed, this timestamp is the default value "1970-01-01T00:00:00Z". This field is ignored when creating a ProductSet.'
         -
           id: '↳ index_error'
@@ -69,8 +69,6 @@ items:
       Format is:
       `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`.
       This field is ignored when creating a ProductSet.
-      
-      Generated from protobuf field <code>string name = 1;</code>
     parent: \Google\Cloud\Vision\V1\ProductSet
     type: method
     langs:
@@ -89,8 +87,6 @@ items:
       Format is:
       `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`.
       This field is ignored when creating a ProductSet.
-      
-      Generated from protobuf field <code>string name = 1;</code>
     parent: \Google\Cloud\Vision\V1\ProductSet
     type: method
     langs:
@@ -111,8 +107,6 @@ items:
     summary: |
       The user-provided name for this ProductSet. Must not be empty. Must be at
       most 4096 characters long.
-      
-      Generated from protobuf field <code>string display_name = 2;</code>
     parent: \Google\Cloud\Vision\V1\ProductSet
     type: method
     langs:
@@ -128,8 +122,6 @@ items:
     summary: |
       The user-provided name for this ProductSet. Must not be empty. Must be at
       most 4096 characters long.
-      
-      Generated from protobuf field <code>string display_name = 2;</code>
     parent: \Google\Cloud\Vision\V1\ProductSet
     type: method
     langs:
@@ -154,8 +146,6 @@ items:
       "1970-01-01T00:00:00Z".
       
       This field is ignored when creating a ProductSet.
-      
-      Generated from protobuf field <code>.google.protobuf.Timestamp index_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
     parent: \Google\Cloud\Vision\V1\ProductSet
     type: method
     langs:
@@ -163,7 +153,7 @@ items:
     syntax:
       returns:
         -
-          var_type: Google\Protobuf\Timestamp|null
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Timestamp">Google\Protobuf\Timestamp</a>|null'
   -
     uid: '\Google\Cloud\Vision\V1\ProductSet::hasIndexTime()'
     name: hasIndexTime
@@ -191,8 +181,6 @@ items:
       "1970-01-01T00:00:00Z".
       
       This field is ignored when creating a ProductSet.
-      
-      Generated from protobuf field <code>.google.protobuf.Timestamp index_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
     parent: \Google\Cloud\Vision\V1\ProductSet
     type: method
     langs:
@@ -201,7 +189,7 @@ items:
       parameters:
         -
           id: var
-          var_type: Google\Protobuf\Timestamp
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Timestamp">Google\Protobuf\Timestamp</a>'
           description: ''
       returns:
         -
@@ -215,8 +203,6 @@ items:
       is populated.
       
       This field is ignored when creating a ProductSet.
-      
-      Generated from protobuf field <code>.google.rpc.Status index_error = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
     parent: \Google\Cloud\Vision\V1\ProductSet
     type: method
     langs:
@@ -250,8 +236,6 @@ items:
       is populated.
       
       This field is ignored when creating a ProductSet.
-      
-      Generated from protobuf field <code>.google.rpc.Status index_error = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
     parent: \Google\Cloud\Vision\V1\ProductSet
     type: method
     langs:
