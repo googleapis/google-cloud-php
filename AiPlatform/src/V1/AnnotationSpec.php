@@ -23,7 +23,7 @@ class AnnotationSpec extends \Google\Protobuf\Internal\Message
     private $name = '';
     /**
      * Required. The user-defined name of the AnnotationSpec.
-     * The name can be up to 128 characters long and can be consist of any UTF-8
+     * The name can be up to 128 characters long and can consist of any UTF-8
      * characters.
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -59,7 +59,7 @@ class AnnotationSpec extends \Google\Protobuf\Internal\Message
      *           Output only. Resource name of the AnnotationSpec.
      *     @type string $display_name
      *           Required. The user-defined name of the AnnotationSpec.
-     *           The name can be up to 128 characters long and can be consist of any UTF-8
+     *           The name can be up to 128 characters long and can consist of any UTF-8
      *           characters.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. Timestamp when this AnnotationSpec was created.
@@ -103,7 +103,7 @@ class AnnotationSpec extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The user-defined name of the AnnotationSpec.
-     * The name can be up to 128 characters long and can be consist of any UTF-8
+     * The name can be up to 128 characters long and can consist of any UTF-8
      * characters.
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -116,7 +116,7 @@ class AnnotationSpec extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The user-defined name of the AnnotationSpec.
-     * The name can be up to 128 characters long and can be consist of any UTF-8
+     * The name can be up to 128 characters long and can consist of any UTF-8
      * characters.
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>

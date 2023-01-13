@@ -4,7 +4,7 @@
 
 [![Latest Stable Version](https://poser.pugx.org/google/cloud-ai-platform/v/stable)](https://packagist.org/packages/google/cloud-ai-platform) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-ai-platform.svg)](https://packagist.org/packages/google/cloud-ai-platform)
 
-* [API documentation](http://googleapis.github.io/google-cloud-php/#/docs/cloud-ai-platform/latest/aiplatform/readme)
+* [API documentation](https://cloud.google.com/php/docs/reference/cloud-ai-platform/latest)
 
 **NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googleapis/google-cloud-php). Any
 support requests, bug reports, or development contributions should be directed to

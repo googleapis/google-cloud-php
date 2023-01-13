@@ -17,12 +17,13 @@ class PredictionService
         \GPBMetadata\Google\Api\Annotations::initOnce();
         \GPBMetadata\Google\Api\Client::initOnce();
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
+        \GPBMetadata\Google\Api\Resource::initOnce();
         \GPBMetadata\Google\Cloud\Retail\V2\UserEvent::initOnce();
         \GPBMetadata\Google\Protobuf\Struct::initOnce();
         $pool->internalAddGeneratedFile(
             '
-•
-/google/cloud/retail/v2/prediction_service.protogoogle.cloud.retail.v2google/api/client.protogoogle/api/field_behavior.proto\'google/cloud/retail/v2/user_event.protogoogle/protobuf/struct.proto"¥
+¿
+/google/cloud/retail/v2/prediction_service.protogoogle.cloud.retail.v2google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto\'google/cloud/retail/v2/user_event.protogoogle/protobuf/struct.proto"¥
 PredictRequest
 	placement (	B‡A:
 

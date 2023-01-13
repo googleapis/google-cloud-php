@@ -25,7 +25,6 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_RegionAutoscalers_List_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Compute\V1\Autoscaler;
 use Google\Cloud\Compute\V1\RegionAutoscalersClient;
 
 /**
@@ -44,7 +43,6 @@ function list_sample(string $project, string $region): void
         /** @var PagedListResponse $response */
         $response = $regionAutoscalersClient->list($project, $region);
 
-        /** @var Autoscaler $element */
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
         }

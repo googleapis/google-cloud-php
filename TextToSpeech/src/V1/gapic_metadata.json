@@ -23,6 +23,20 @@
                     }
                 }
             }
+        },
+        "TextToSpeechLongAudioSynthesize": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "TextToSpeechLongAudioSynthesizeGapicClient",
+                    "rpcs": {
+                        "SynthesizeLongAudio": {
+                            "methods": [
+                                "synthesizeLongAudio"
+                            ]
+                        }
+                    }
+                }
+            }
         }
     }
 }

@@ -123,6 +123,4 @@ class AllowedIpRange extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(AllowedIpRange::class, \Google\Cloud\Orchestration\Airflow\Service\V1\WebServerNetworkAccessControl_AllowedIpRange::class);
 

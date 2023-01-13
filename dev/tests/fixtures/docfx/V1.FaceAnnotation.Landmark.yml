@@ -47,10 +47,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark::getType()'
     name: getType
     id: getType
-    summary: |
-      Face landmark type.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.FaceAnnotation.Landmark.Type type = 3;</code>
+    summary: 'Face landmark type.'
     parent: \Google\Cloud\Vision\V1\FaceAnnotation\Landmark
     type: method
     langs:
@@ -63,10 +60,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark::setType()'
     name: setType
     id: setType
-    summary: |
-      Face landmark type.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.FaceAnnotation.Landmark.Type type = 3;</code>
+    summary: 'Face landmark type.'
     parent: \Google\Cloud\Vision\V1\FaceAnnotation\Landmark
     type: method
     langs:
@@ -84,10 +78,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark::getPosition()'
     name: getPosition
     id: getPosition
-    summary: |
-      Face landmark position.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.Position position = 4;</code>
+    summary: 'Face landmark position.'
     parent: \Google\Cloud\Vision\V1\FaceAnnotation\Landmark
     type: method
     langs:
@@ -116,10 +107,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark::setPosition()'
     name: setPosition
     id: setPosition
-    summary: |
-      Face landmark position.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.Position position = 4;</code>
+    summary: 'Face landmark position.'
     parent: \Google\Cloud\Vision\V1\FaceAnnotation\Landmark
     type: method
     langs:

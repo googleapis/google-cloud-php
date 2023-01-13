@@ -23,11 +23,9 @@
 namespace Google\Cloud\OsLogin\Tests\Unit\V1beta;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-
 use Google\Cloud\OsLogin\Common\SshPublicKey;
 use Google\Cloud\OsLogin\V1beta\ImportSshPublicKeyResponse;
 use Google\Cloud\OsLogin\V1beta\LoginProfile;
@@ -43,25 +41,19 @@ use stdClass;
  */
 class OsLoginServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return OsLoginServiceClient
-     */
+    /** @return OsLoginServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -70,9 +62,77 @@ class OsLoginServiceClientTest extends GeneratedTest
         return new OsLoginServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
+    public function createSshPublicKeyTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $key = 'key106079';
+        $expirationTimeUsec = 2058878882;
+        $fingerprint = 'fingerprint-1375934236';
+        $name = 'name3373707';
+        $expectedResponse = new SshPublicKey();
+        $expectedResponse->setKey($key);
+        $expectedResponse->setExpirationTimeUsec($expirationTimeUsec);
+        $expectedResponse->setFingerprint($fingerprint);
+        $expectedResponse->setName($name);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->userName('[USER]');
+        $sshPublicKey = new SshPublicKey();
+        $response = $gapicClient->createSshPublicKey($formattedParent, $sshPublicKey);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.oslogin.v1beta.OsLoginService/CreateSshPublicKey', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getSshPublicKey();
+        $this->assertProtobufEquals($sshPublicKey, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function createSshPublicKeyExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->userName('[USER]');
+        $sshPublicKey = new SshPublicKey();
+        try {
+            $gapicClient->createSshPublicKey($formattedParent, $sshPublicKey);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function deletePosixAccountTest()
     {
         $transport = $this->createTransport();
@@ -96,9 +156,7 @@ class OsLoginServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deletePosixAccountExceptionTest()
     {
         $transport = $this->createTransport();
@@ -131,9 +189,7 @@ class OsLoginServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteSshPublicKeyTest()
     {
         $transport = $this->createTransport();
@@ -157,9 +213,7 @@ class OsLoginServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteSshPublicKeyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -192,9 +246,7 @@ class OsLoginServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getLoginProfileTest()
     {
         $transport = $this->createTransport();
@@ -221,9 +273,7 @@ class OsLoginServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getLoginProfileExceptionTest()
     {
         $transport = $this->createTransport();
@@ -256,9 +306,7 @@ class OsLoginServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getSshPublicKeyTest()
     {
         $transport = $this->createTransport();
@@ -291,9 +339,7 @@ class OsLoginServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getSshPublicKeyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -326,9 +372,7 @@ class OsLoginServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function importSshPublicKeyTest()
     {
         $transport = $this->createTransport();
@@ -337,7 +381,9 @@ class OsLoginServiceClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
+        $details = 'details1557721666';
         $expectedResponse = new ImportSshPublicKeyResponse();
+        $expectedResponse->setDetails($details);
         $transport->addResponse($expectedResponse);
         // Mock request
         $sshPublicKey = new SshPublicKey();
@@ -353,9 +399,7 @@ class OsLoginServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function importSshPublicKeyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -388,9 +432,7 @@ class OsLoginServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateSshPublicKeyTest()
     {
         $transport = $this->createTransport();
@@ -426,9 +468,7 @@ class OsLoginServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateSshPublicKeyExceptionTest()
     {
         $transport = $this->createTransport();

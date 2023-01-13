@@ -47,10 +47,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\OutputConfig::getGcsDestination()'
     name: getGcsDestination
     id: getGcsDestination
-    summary: |
-      The Google Cloud Storage location to write the output(s) to.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.GcsDestination gcs_destination = 1;</code>
+    summary: 'The Google Cloud Storage location to write the output(s) to.'
     parent: \Google\Cloud\Vision\V1\OutputConfig
     type: method
     langs:
@@ -79,10 +76,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\OutputConfig::setGcsDestination()'
     name: setGcsDestination
     id: setGcsDestination
-    summary: |
-      The Google Cloud Storage location to write the output(s) to.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.GcsDestination gcs_destination = 1;</code>
+    summary: 'The Google Cloud Storage location to write the output(s) to.'
     parent: \Google\Cloud\Vision\V1\OutputConfig
     type: method
     langs:
@@ -111,8 +105,6 @@ items:
       `gcs_destination`.`uri`.
       Currently, batch_size only applies to GcsDestination, with potential future
       support for other output configurations.
-      
-      Generated from protobuf field <code>int32 batch_size = 2;</code>
     parent: \Google\Cloud\Vision\V1\OutputConfig
     type: method
     langs:
@@ -136,8 +128,6 @@ items:
       `gcs_destination`.`uri`.
       Currently, batch_size only applies to GcsDestination, with potential future
       support for other output configurations.
-      
-      Generated from protobuf field <code>int32 batch_size = 2;</code>
     parent: \Google\Cloud\Vision\V1\OutputConfig
     type: method
     langs:

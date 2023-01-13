@@ -77,7 +77,7 @@ class InstanceGroupsClientTest extends GeneratedTest
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new ZoneOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -144,7 +144,7 @@ class InstanceGroupsClientTest extends GeneratedTest
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new ZoneOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -275,7 +275,7 @@ class InstanceGroupsClientTest extends GeneratedTest
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new ZoneOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -339,7 +339,7 @@ class InstanceGroupsClientTest extends GeneratedTest
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new ZoneOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -484,7 +484,7 @@ class InstanceGroupsClientTest extends GeneratedTest
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new ZoneOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -548,7 +548,7 @@ class InstanceGroupsClientTest extends GeneratedTest
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new ZoneOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -767,7 +767,7 @@ class InstanceGroupsClientTest extends GeneratedTest
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new ZoneOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -834,7 +834,7 @@ class InstanceGroupsClientTest extends GeneratedTest
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new ZoneOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -890,7 +890,7 @@ class InstanceGroupsClientTest extends GeneratedTest
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new ZoneOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -957,7 +957,7 @@ class InstanceGroupsClientTest extends GeneratedTest
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new ZoneOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);

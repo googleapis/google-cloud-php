@@ -26,7 +26,6 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\Compute\V1\FirewallPoliciesClient;
-use Google\Cloud\Compute\V1\FirewallPolicy;
 
 /**
  * Lists all the policies that have been configured for the specified folder or organization.
@@ -47,7 +46,6 @@ function list_sample(): void
         /** @var PagedListResponse $response */
         $response = $firewallPoliciesClient->list();
 
-        /** @var FirewallPolicy $element */
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
         }

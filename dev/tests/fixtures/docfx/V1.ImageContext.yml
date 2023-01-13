@@ -79,10 +79,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\ImageContext::getLatLongRect()'
     name: getLatLongRect
     id: getLatLongRect
-    summary: |
-      Not used.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.LatLongRect lat_long_rect = 1;</code>
+    summary: 'Not used.'
     parent: \Google\Cloud\Vision\V1\ImageContext
     type: method
     langs:
@@ -111,10 +108,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\ImageContext::setLatLongRect()'
     name: setLatLongRect
     id: setLatLongRect
-    summary: |
-      Not used.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.LatLongRect lat_long_rect = 1;</code>
+    summary: 'Not used.'
     parent: \Google\Cloud\Vision\V1\ImageContext
     type: method
     langs:
@@ -141,8 +135,6 @@ items:
       significant hindrance if the hint is wrong). Text detection returns an
       error if one or more of the specified languages is not one of the
       [supported languages](https://cloud.google.com/vision/docs/languages).
-      
-      Generated from protobuf field <code>repeated string language_hints = 2;</code>
     parent: \Google\Cloud\Vision\V1\ImageContext
     type: method
     langs:
@@ -150,7 +142,7 @@ items:
     syntax:
       returns:
         -
-          var_type: Google\Protobuf\Internal\RepeatedField
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Internal/RepeatedField">Google\Protobuf\Internal\RepeatedField</a>'
   -
     uid: '\Google\Cloud\Vision\V1\ImageContext::setLanguageHints()'
     name: setLanguageHints
@@ -164,8 +156,6 @@ items:
       significant hindrance if the hint is wrong). Text detection returns an
       error if one or more of the specified languages is not one of the
       [supported languages](https://cloud.google.com/vision/docs/languages).
-      
-      Generated from protobuf field <code>repeated string language_hints = 2;</code>
     parent: \Google\Cloud\Vision\V1\ImageContext
     type: method
     langs:
@@ -183,10 +173,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\ImageContext::getCropHintsParams()'
     name: getCropHintsParams
     id: getCropHintsParams
-    summary: |
-      Parameters for crop hints annotation request.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.CropHintsParams crop_hints_params = 4;</code>
+    summary: 'Parameters for crop hints annotation request.'
     parent: \Google\Cloud\Vision\V1\ImageContext
     type: method
     langs:
@@ -215,10 +202,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\ImageContext::setCropHintsParams()'
     name: setCropHintsParams
     id: setCropHintsParams
-    summary: |
-      Parameters for crop hints annotation request.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.CropHintsParams crop_hints_params = 4;</code>
+    summary: 'Parameters for crop hints annotation request.'
     parent: \Google\Cloud\Vision\V1\ImageContext
     type: method
     langs:
@@ -236,10 +220,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\ImageContext::getProductSearchParams()'
     name: getProductSearchParams
     id: getProductSearchParams
-    summary: |
-      Parameters for product search.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.ProductSearchParams product_search_params = 5;</code>
+    summary: 'Parameters for product search.'
     parent: \Google\Cloud\Vision\V1\ImageContext
     type: method
     langs:
@@ -268,10 +249,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\ImageContext::setProductSearchParams()'
     name: setProductSearchParams
     id: setProductSearchParams
-    summary: |
-      Parameters for product search.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.ProductSearchParams product_search_params = 5;</code>
+    summary: 'Parameters for product search.'
     parent: \Google\Cloud\Vision\V1\ImageContext
     type: method
     langs:
@@ -289,10 +267,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\ImageContext::getWebDetectionParams()'
     name: getWebDetectionParams
     id: getWebDetectionParams
-    summary: |
-      Parameters for web detection.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.WebDetectionParams web_detection_params = 6;</code>
+    summary: 'Parameters for web detection.'
     parent: \Google\Cloud\Vision\V1\ImageContext
     type: method
     langs:
@@ -321,10 +296,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\ImageContext::setWebDetectionParams()'
     name: setWebDetectionParams
     id: setWebDetectionParams
-    summary: |
-      Parameters for web detection.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.WebDetectionParams web_detection_params = 6;</code>
+    summary: 'Parameters for web detection.'
     parent: \Google\Cloud\Vision\V1\ImageContext
     type: method
     langs:
@@ -342,10 +314,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\ImageContext::getTextDetectionParams()'
     name: getTextDetectionParams
     id: getTextDetectionParams
-    summary: |
-      Parameters for text detection and document text detection.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.TextDetectionParams text_detection_params = 12;</code>
+    summary: 'Parameters for text detection and document text detection.'
     parent: \Google\Cloud\Vision\V1\ImageContext
     type: method
     langs:
@@ -374,10 +343,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\ImageContext::setTextDetectionParams()'
     name: setTextDetectionParams
     id: setTextDetectionParams
-    summary: |
-      Parameters for text detection and document text detection.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.TextDetectionParams text_detection_params = 12;</code>
+    summary: 'Parameters for text detection and document text detection.'
     parent: \Google\Cloud\Vision\V1\ImageContext
     type: method
     langs:

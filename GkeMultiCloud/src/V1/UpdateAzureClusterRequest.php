@@ -16,7 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class UpdateAzureClusterRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] resource to update.
+     * Required. The [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster]
+     * resource to update.
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AzureCluster azure_cluster = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -32,13 +33,18 @@ class UpdateAzureClusterRequest extends \Google\Protobuf\Internal\Message
      * this field. The elements of the repeated paths field can only include these
      * fields from [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster]:
      *  *   `description`.
-     *  *   `annotations`.
      *  *   `azureClient`.
      *  *   `control_plane.version`.
      *  *   `control_plane.vm_size`.
+     *  *   `annotations`.
      *  *   `authorization.admin_users`.
      *  *   `control_plane.root_volume.size_gib`.
-     *  *   `logging_config`
+     *  *   `control_plane.proxy_config`.
+     *  *   `control_plane.proxy_config.resource_group_id`.
+     *  *   `control_plane.proxy_config.secret_id`.
+     *  *   `control_plane.ssh_config.authorized_key`.
+     *  *   `logging_config.component_config.enable_components`
+     *  *   `monitoring_config.managed_prometheus_config.enabled`.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -51,7 +57,8 @@ class UpdateAzureClusterRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\GkeMultiCloud\V1\AzureCluster $azure_cluster
-     *           Required. The [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] resource to update.
+     *           Required. The [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster]
+     *           resource to update.
      *     @type bool $validate_only
      *           If set, only validate the request, but do not actually update the cluster.
      *     @type \Google\Protobuf\FieldMask $update_mask
@@ -59,13 +66,18 @@ class UpdateAzureClusterRequest extends \Google\Protobuf\Internal\Message
      *           this field. The elements of the repeated paths field can only include these
      *           fields from [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster]:
      *            *   `description`.
-     *            *   `annotations`.
      *            *   `azureClient`.
      *            *   `control_plane.version`.
      *            *   `control_plane.vm_size`.
+     *            *   `annotations`.
      *            *   `authorization.admin_users`.
      *            *   `control_plane.root_volume.size_gib`.
-     *            *   `logging_config`
+     *            *   `control_plane.proxy_config`.
+     *            *   `control_plane.proxy_config.resource_group_id`.
+     *            *   `control_plane.proxy_config.secret_id`.
+     *            *   `control_plane.ssh_config.authorized_key`.
+     *            *   `logging_config.component_config.enable_components`
+     *            *   `monitoring_config.managed_prometheus_config.enabled`.
      * }
      */
     public function __construct($data = NULL) {
@@ -74,7 +86,8 @@ class UpdateAzureClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] resource to update.
+     * Required. The [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster]
+     * resource to update.
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AzureCluster azure_cluster = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\GkeMultiCloud\V1\AzureCluster|null
@@ -95,7 +108,8 @@ class UpdateAzureClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] resource to update.
+     * Required. The [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster]
+     * resource to update.
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AzureCluster azure_cluster = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\GkeMultiCloud\V1\AzureCluster $var
@@ -140,13 +154,18 @@ class UpdateAzureClusterRequest extends \Google\Protobuf\Internal\Message
      * this field. The elements of the repeated paths field can only include these
      * fields from [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster]:
      *  *   `description`.
-     *  *   `annotations`.
      *  *   `azureClient`.
      *  *   `control_plane.version`.
      *  *   `control_plane.vm_size`.
+     *  *   `annotations`.
      *  *   `authorization.admin_users`.
      *  *   `control_plane.root_volume.size_gib`.
-     *  *   `logging_config`
+     *  *   `control_plane.proxy_config`.
+     *  *   `control_plane.proxy_config.resource_group_id`.
+     *  *   `control_plane.proxy_config.secret_id`.
+     *  *   `control_plane.ssh_config.authorized_key`.
+     *  *   `logging_config.component_config.enable_components`
+     *  *   `monitoring_config.managed_prometheus_config.enabled`.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\FieldMask|null
@@ -171,13 +190,18 @@ class UpdateAzureClusterRequest extends \Google\Protobuf\Internal\Message
      * this field. The elements of the repeated paths field can only include these
      * fields from [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster]:
      *  *   `description`.
-     *  *   `annotations`.
      *  *   `azureClient`.
      *  *   `control_plane.version`.
      *  *   `control_plane.vm_size`.
+     *  *   `annotations`.
      *  *   `authorization.admin_users`.
      *  *   `control_plane.root_volume.size_gib`.
-     *  *   `logging_config`
+     *  *   `control_plane.proxy_config`.
+     *  *   `control_plane.proxy_config.resource_group_id`.
+     *  *   `control_plane.proxy_config.secret_id`.
+     *  *   `control_plane.ssh_config.authorized_key`.
+     *  *   `logging_config.component_config.enable_components`
+     *  *   `monitoring_config.managed_prometheus_config.enabled`.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Protobuf\FieldMask $var

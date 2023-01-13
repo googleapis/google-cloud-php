@@ -84,9 +84,18 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" &&
     php -r "if (hash_file('SHA384', 'composer-setup.php') === rtrim(file_get_contents('https://composer.github.io/installer.sig'))) { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;" && \
     php composer-setup.php --filename=composer --install-dir=/usr/local/bin
 
+# Build phpDocumentor from HEAD until they create a new release
+# TODO: Remove once phpDocumentor tags a new release
+# @see https://github.com/phpDocumentor/phpDocumentor/issues/3434
+RUN wget -O phpDocumentor.tar.gz "https://github.com/phpDocumentor/phpDocumentor/archive/master.tar.gz" \
+    && tar -xzf phpDocumentor.tar.gz \
+    && composer require -d phpDocumentor-master \
+    && ln -s ${pwd}/phpDocumentor-master/bin/phpdoc /usr/local/bin/phpdoc
+
 # Install phpdoc
-RUN wget -O /usr/local/bin/phpdoc "https://github.com/phpDocumentor/phpDocumentor/releases/download/v3.3.1/phpDocumentor.phar" \
-  && chmod +x /usr/local/bin/phpdoc
+# TODO: uncomment once phpDocumentor creates a new release
+# RUN wget -O /usr/local/bin/phpdoc "https://github.com/phpDocumentor/phpDocumentor/releases/download/v3.3.1/phpDocumentor.phar" \
+#   && chmod +x /usr/local/bin/phpdoc
 
 # Install Python3
 RUN wget https://www.python.org/ftp/python/3.9.14/Python-3.9.14.tgz \

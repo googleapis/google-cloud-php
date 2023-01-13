@@ -4,7 +4,7 @@
 
 [![Latest Stable Version](https://poser.pugx.org/google/cloud-secret-manager/v/stable)](https://packagist.org/packages/google/cloud-secret-manager) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-secret-manager.svg)](https://packagist.org/packages/google/cloud-secret-manager)
 
-* [API documentation](http://googleapis.github.io/google-cloud-php/#/docs/cloud-secret-manager/latest/secretmanager/readme)
+* [API documentation](https://cloud.google.com/php/docs/reference/cloud-secret-manager/latest)
 
 **NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googleapis/google-cloud-php). Any
 support requests, bug reports, or development contributions should be directed to

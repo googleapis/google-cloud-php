@@ -50,8 +50,6 @@ items:
       By default, Cloud Vision API only includes confidence score for
       DOCUMENT_TEXT_DETECTION result. Set the flag to true to include confidence
       score for TEXT_DETECTION as well.
-      
-      Generated from protobuf field <code>bool enable_text_detection_confidence_score = 9;</code>
     parent: \Google\Cloud\Vision\V1\TextDetectionParams
     type: method
     langs:
@@ -68,8 +66,6 @@ items:
       By default, Cloud Vision API only includes confidence score for
       DOCUMENT_TEXT_DETECTION result. Set the flag to true to include confidence
       score for TEXT_DETECTION as well.
-      
-      Generated from protobuf field <code>bool enable_text_detection_confidence_score = 9;</code>
     parent: \Google\Cloud\Vision\V1\TextDetectionParams
     type: method
     langs:
@@ -87,10 +83,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\TextDetectionParams::getAdvancedOcrOptions()'
     name: getAdvancedOcrOptions
     id: getAdvancedOcrOptions
-    summary: |
-      A list of advanced OCR options to fine-tune OCR behavior.
-      
-      Generated from protobuf field <code>repeated string advanced_ocr_options = 11;</code>
+    summary: 'A list of advanced OCR options to fine-tune OCR behavior.'
     parent: \Google\Cloud\Vision\V1\TextDetectionParams
     type: method
     langs:
@@ -98,15 +91,12 @@ items:
     syntax:
       returns:
         -
-          var_type: Google\Protobuf\Internal\RepeatedField
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Internal/RepeatedField">Google\Protobuf\Internal\RepeatedField</a>'
   -
     uid: '\Google\Cloud\Vision\V1\TextDetectionParams::setAdvancedOcrOptions()'
     name: setAdvancedOcrOptions
     id: setAdvancedOcrOptions
-    summary: |
-      A list of advanced OCR options to fine-tune OCR behavior.
-      
-      Generated from protobuf field <code>repeated string advanced_ocr_options = 11;</code>
+    summary: 'A list of advanced OCR options to fine-tune OCR behavior.'
     parent: \Google\Cloud\Vision\V1\TextDetectionParams
     type: method
     langs:

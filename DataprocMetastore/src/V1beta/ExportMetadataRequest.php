@@ -19,7 +19,7 @@ class ExportMetadataRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The relative resource name of the metastore service to run
      * export, in the following form:
-     * `projects/{project_id}/locations/{location_id}/services/{service_id}`
+     * `projects/{project_id}/locations/{location_id}/services/{service_id}`.
      *
      * Generated from protobuf field <code>string service = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -61,7 +61,7 @@ class ExportMetadataRequest extends \Google\Protobuf\Internal\Message
      *     @type string $service
      *           Required. The relative resource name of the metastore service to run
      *           export, in the following form:
-     *           `projects/{project_id}/locations/{location_id}/services/{service_id}`
+     *           `projects/{project_id}/locations/{location_id}/services/{service_id}`.
      *     @type string $request_id
      *           Optional. A request ID. Specify a unique request ID to allow the server to
      *           ignore the request if it has completed. The server will ignore subsequent
@@ -121,7 +121,7 @@ class ExportMetadataRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The relative resource name of the metastore service to run
      * export, in the following form:
-     * `projects/{project_id}/locations/{location_id}/services/{service_id}`
+     * `projects/{project_id}/locations/{location_id}/services/{service_id}`.
      *
      * Generated from protobuf field <code>string service = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -134,7 +134,7 @@ class ExportMetadataRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The relative resource name of the metastore service to run
      * export, in the following form:
-     * `projects/{project_id}/locations/{location_id}/services/{service_id}`
+     * `projects/{project_id}/locations/{location_id}/services/{service_id}`.
      *
      * Generated from protobuf field <code>string service = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

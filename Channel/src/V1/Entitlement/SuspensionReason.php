@@ -83,6 +83,4 @@ class SuspensionReason
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(SuspensionReason::class, \Google\Cloud\Channel\V1\Entitlement_SuspensionReason::class);
 

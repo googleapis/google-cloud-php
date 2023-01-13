@@ -65,8 +65,7 @@ class TaskSpec extends \Google\Protobuf\Internal\Message
      */
     private $lifecycle_policies;
     /**
-     * Environment variables to set before running the Task.
-     * You can set up to 100 environments.
+     * Deprecated: please use environment(non-plural) instead.
      *
      * Generated from protobuf field <code>map<string, string> environments = 6 [deprecated = true];</code>
      * @deprecated
@@ -121,8 +120,7 @@ class TaskSpec extends \Google\Protobuf\Internal\Message
      *           the default policy. Default policy means if the exit code is 0, exit task.
      *           If task ends with non-zero exit code, retry the task with max_retry_count.
      *     @type array|\Google\Protobuf\Internal\MapField $environments
-     *           Environment variables to set before running the Task.
-     *           You can set up to 100 environments.
+     *           Deprecated: please use environment(non-plural) instead.
      *     @type array<\Google\Cloud\Batch\V1\Volume>|\Google\Protobuf\Internal\RepeatedField $volumes
      *           Volumes to mount before running Tasks using this TaskSpec.
      *     @type \Google\Cloud\Batch\V1\Environment $environment
@@ -323,8 +321,7 @@ class TaskSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Environment variables to set before running the Task.
-     * You can set up to 100 environments.
+     * Deprecated: please use environment(non-plural) instead.
      *
      * Generated from protobuf field <code>map<string, string> environments = 6 [deprecated = true];</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -337,8 +334,7 @@ class TaskSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Environment variables to set before running the Task.
-     * You can set up to 100 environments.
+     * Deprecated: please use environment(non-plural) instead.
      *
      * Generated from protobuf field <code>map<string, string> environments = 6 [deprecated = true];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var

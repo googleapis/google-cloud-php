@@ -52,6 +52,4 @@ class ProtocolVersion
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ProtocolVersion::class, \Google\Cloud\NetworkConnectivity\V1\PolicyBasedRoute_Filter_ProtocolVersion::class);
 

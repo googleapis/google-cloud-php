@@ -25,7 +25,6 @@ namespace Google\Cloud\ContainerAnalysis\Tests\Unit\V1;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\ContainerAnalysis\V1\ContainerAnalysisClient;
 use Google\Cloud\ContainerAnalysis\V1\VulnerabilityOccurrencesSummary;
@@ -41,25 +40,19 @@ use stdClass;
  */
 class ContainerAnalysisClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return ContainerAnalysisClient
-     */
+    /** @return ContainerAnalysisClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -68,9 +61,7 @@ class ContainerAnalysisClientTest extends GeneratedTest
         return new ContainerAnalysisClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getIamPolicyTest()
     {
         $transport = $this->createTransport();
@@ -99,9 +90,7 @@ class ContainerAnalysisClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -134,9 +123,7 @@ class ContainerAnalysisClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getVulnerabilityOccurrencesSummaryTest()
     {
         $transport = $this->createTransport();
@@ -161,9 +148,7 @@ class ContainerAnalysisClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getVulnerabilityOccurrencesSummaryExceptionTest()
     {
         $transport = $this->createTransport();
@@ -196,9 +181,7 @@ class ContainerAnalysisClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setIamPolicyTest()
     {
         $transport = $this->createTransport();
@@ -230,9 +213,7 @@ class ContainerAnalysisClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -266,9 +247,7 @@ class ContainerAnalysisClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function testIamPermissionsTest()
     {
         $transport = $this->createTransport();
@@ -296,9 +275,7 @@ class ContainerAnalysisClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function testIamPermissionsExceptionTest()
     {
         $transport = $this->createTransport();

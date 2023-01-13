@@ -24,7 +24,7 @@ class DataLabelingJob extends \Google\Protobuf\Internal\Message
     private $name = '';
     /**
      * Required. The user-defined name of the DataLabelingJob.
-     * The name can be up to 128 characters long and can be consist of any UTF-8
+     * The name can be up to 128 characters long and can consist of any UTF-8
      * characters.
      * Display name of a DataLabelingJob.
      *
@@ -169,7 +169,7 @@ class DataLabelingJob extends \Google\Protobuf\Internal\Message
      *           Output only. Resource name of the DataLabelingJob.
      *     @type string $display_name
      *           Required. The user-defined name of the DataLabelingJob.
-     *           The name can be up to 128 characters long and can be consist of any UTF-8
+     *           The name can be up to 128 characters long and can consist of any UTF-8
      *           characters.
      *           Display name of a DataLabelingJob.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $datasets
@@ -270,7 +270,7 @@ class DataLabelingJob extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The user-defined name of the DataLabelingJob.
-     * The name can be up to 128 characters long and can be consist of any UTF-8
+     * The name can be up to 128 characters long and can consist of any UTF-8
      * characters.
      * Display name of a DataLabelingJob.
      *
@@ -284,7 +284,7 @@ class DataLabelingJob extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The user-defined name of the DataLabelingJob.
-     * The name can be up to 128 characters long and can be consist of any UTF-8
+     * The name can be up to 128 characters long and can consist of any UTF-8
      * characters.
      * Display name of a DataLabelingJob.
      *

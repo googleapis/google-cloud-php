@@ -25,7 +25,6 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_RegionInstanceGroupManagers_ListPerInstanceConfigs_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Compute\V1\PerInstanceConfig;
 use Google\Cloud\Compute\V1\RegionInstanceGroupManagersClient;
 
 /**
@@ -52,7 +51,6 @@ function list_per_instance_configs_sample(
             $region
         );
 
-        /** @var PerInstanceConfig $element */
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
         }

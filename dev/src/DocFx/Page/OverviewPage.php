@@ -24,6 +24,10 @@ class OverviewPage
 {
     public function __construct(private string $contents, private bool $isBeta)
     {
+        // Prune out API documentation link as it will redirect back to itself
+        // on cloud site.
+        $contents = preg_replace('/\* \[API documentation\].*\n\n/', '', $contents);
+
         if ($isBeta) {
             // If the README starts with a H1
             if (0 === strpos($contents, '#')) {
@@ -33,9 +37,10 @@ class OverviewPage
                     $contents = substr($contents, 0, $newlinePos) . "\n\n" . $betaNotice .
                         substr($contents, $newlinePos + 1);
                 }
-                $this->contents = $contents;
             }
         }
+
+        $this->contents = $contents;
     }
 
     public function getContents(): string

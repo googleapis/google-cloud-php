@@ -17,7 +17,7 @@ class ListServingConfigsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The catalog resource name. Format:
-     * projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}
+     * `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -46,7 +46,7 @@ class ListServingConfigsRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The catalog resource name. Format:
-     *           projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}
+     *           `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}`
      *     @type int $page_size
      *           Optional. Maximum number of results to return. If unspecified, defaults
      *           to 100. If a value greater than 100 is provided, at most 100 results are
@@ -63,7 +63,7 @@ class ListServingConfigsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The catalog resource name. Format:
-     * projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}
+     * `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -75,7 +75,7 @@ class ListServingConfigsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The catalog resource name. Format:
-     * projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}
+     * `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

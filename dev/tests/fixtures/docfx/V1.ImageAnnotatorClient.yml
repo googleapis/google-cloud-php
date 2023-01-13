@@ -85,21 +85,18 @@ items:
       
       Example:
       ```php
-      
       $imageResource = fopen('path/to/image.jpg', 'r');
       $image = $imageAnnotatorClient->createImageObject($imageResource);
       $response = $imageAnnotatorClient->faceDetection($image);
       ```
       
       ```
-      
       $imageData = file_get_contents('path/to/image.jpg');
       $image = $imageAnnotatorClient->createImageObject($imageData);
       $response = $imageAnnotatorClient->faceDetection($image);
       ```
       
       ```
-      
       $imageUri = "gs://my-bucket/image.jpg";
       $image = $imageAnnotatorClient->createImageObject($imageUri);
       $response = $imageAnnotatorClient->faceDetection($image);
@@ -113,7 +110,11 @@ items:
         -
           id: imageInput
           var_type: resource|string
-          description: 'An image to configure with the given settings. This parameter will accept a resource, a string of bytes, or the URI of an image in a publicly-accessible web location.'
+          description: |
+            An image to configure with
+            the given settings. This parameter will accept a resource, a
+            string of bytes, or the URI of an image in a publicly-accessible
+            web location.
       returns:
         -
           var_type: '<xref uid="\Google\Cloud\Vision\V1\Image">Google\Cloud\Vision\V1\Image</xref>'
@@ -152,9 +153,9 @@ items:
           var_type: array
           description: 'Configuration Options.'
         -
-          id: '↳ '
+          id: '↳ imageContext'
           var_type: ImageContext
-          description: '$imageContext Additional context that may accompany the image.'
+          description: 'Additional context that may accompany the image.'
         -
           id: '↳ retrySettings'
           var_type: RetrySettings|array
@@ -189,9 +190,9 @@ items:
           var_type: array
           description: 'Configuration Options.'
         -
-          id: '↳ '
+          id: '↳ imageContext'
           var_type: ImageContext
-          description: '$imageContext Additional context that may accompany the image.'
+          description: 'Additional context that may accompany the image.'
         -
           id: '↳ retrySettings'
           var_type: RetrySettings|array
@@ -226,9 +227,9 @@ items:
           var_type: array
           description: 'Configuration Options.'
         -
-          id: '↳ '
+          id: '↳ imageContext'
           var_type: ImageContext
-          description: '$imageContext Additional context that may accompany the image.'
+          description: 'Additional context that may accompany the image.'
         -
           id: '↳ retrySettings'
           var_type: RetrySettings|array
@@ -263,9 +264,9 @@ items:
           var_type: array
           description: 'Configuration Options.'
         -
-          id: '↳ '
+          id: '↳ imageContext'
           var_type: ImageContext
-          description: '$imageContext Additional context that may accompany the image.'
+          description: 'Additional context that may accompany the image.'
         -
           id: '↳ retrySettings'
           var_type: RetrySettings|array
@@ -300,9 +301,9 @@ items:
           var_type: array
           description: 'Configuration Options.'
         -
-          id: '↳ '
+          id: '↳ imageContext'
           var_type: ImageContext
-          description: '$imageContext Additional context that may accompany the image.'
+          description: 'Additional context that may accompany the image.'
         -
           id: '↳ retrySettings'
           var_type: RetrySettings|array
@@ -337,9 +338,9 @@ items:
           var_type: array
           description: 'Configuration Options.'
         -
-          id: '↳ '
+          id: '↳ imageContext'
           var_type: ImageContext
-          description: '$imageContext Additional context that may accompany the image.'
+          description: 'Additional context that may accompany the image.'
         -
           id: '↳ retrySettings'
           var_type: RetrySettings|array
@@ -374,9 +375,9 @@ items:
           var_type: array
           description: 'Configuration Options.'
         -
-          id: '↳ '
+          id: '↳ imageContext'
           var_type: ImageContext
-          description: '$imageContext Additional context that may accompany the image.'
+          description: 'Additional context that may accompany the image.'
         -
           id: '↳ retrySettings'
           var_type: RetrySettings|array
@@ -411,9 +412,9 @@ items:
           var_type: array
           description: 'Configuration Options.'
         -
-          id: '↳ '
+          id: '↳ imageContext'
           var_type: ImageContext
-          description: '$imageContext Additional context that may accompany the image.'
+          description: 'Additional context that may accompany the image.'
         -
           id: '↳ retrySettings'
           var_type: RetrySettings|array
@@ -448,9 +449,9 @@ items:
           var_type: array
           description: 'Configuration Options.'
         -
-          id: '↳ '
+          id: '↳ imageContext'
           var_type: ImageContext
-          description: '$imageContext Additional context that may accompany the image.'
+          description: 'Additional context that may accompany the image.'
         -
           id: '↳ retrySettings'
           var_type: RetrySettings|array
@@ -485,9 +486,9 @@ items:
           var_type: array
           description: 'Configuration Options.'
         -
-          id: '↳ '
+          id: '↳ imageContext'
           var_type: ImageContext
-          description: '$imageContext Additional context that may accompany the image.'
+          description: 'Additional context that may accompany the image.'
         -
           id: '↳ retrySettings'
           var_type: RetrySettings|array
@@ -522,9 +523,9 @@ items:
           var_type: array
           description: 'Configuration Options.'
         -
-          id: '↳ '
+          id: '↳ imageContext'
           var_type: ImageContext
-          description: '$imageContext Additional context that may accompany the image.'
+          description: 'Additional context that may accompany the image.'
         -
           id: '↳ retrySettings'
           var_type: RetrySettings|array
@@ -559,9 +560,9 @@ items:
           var_type: array
           description: 'Configuration Options.'
         -
-          id: '↳ '
+          id: '↳ imageContext'
           var_type: ImageContext
-          description: '$imageContext Additional context that may accompany the image.'
+          description: 'Additional context that may accompany the image.'
         -
           id: '↳ retrySettings'
           var_type: RetrySettings|array
@@ -603,15 +604,18 @@ items:
         -
           id: productSearchParams
           var_type: '<xref uid="\Google\Cloud\Vision\V1\ProductSearchParams">Google\Cloud\Vision\V1\ProductSearchParams</xref>'
-          description: 'Parameters for a product search request. Please note, this value will override the {@see \Google\Cloud\Vision\V1\Google\Cloud\Vision\V1\ProductSearchParams} in the {@see \Google\Cloud\Vision\V1\Google\Cloud\Vision\V1\ImageContext} instance if provided.'
+          description: |
+            Parameters for a product search request. Please note, this
+            value will override the {@see \Google\Cloud\Vision\V1\ProductSearchParams} in the
+            {@see \Google\Cloud\Vision\V1\ImageContext} instance if provided.
         -
           id: optionalArgs
           var_type: array
           description: 'Configuration Options.'
         -
-          id: '↳ '
+          id: '↳ imageContext'
           var_type: ImageContext
-          description: '$imageContext Additional context that may accompany the image.'
+          description: 'Additional context that may accompany the image.'
         -
           id: '↳ retrySettings'
           var_type: RetrySettings|array
@@ -674,10 +678,6 @@ items:
           var_type: array
           description: 'Optional. Options for configuring the service API wrapper.'
         -
-          id: '↳ serviceAddress'
-          var_type: string
-          description: '**Deprecated**. This option will be removed in a future major release. Please utilize the `$apiEndpoint` option instead.'
-        -
           id: '↳ apiEndpoint'
           var_type: string
           description: 'The address of the API remote host. May optionally include the port, formatted as "<uri>:<port>". Default ''vision.googleapis.com:443''.'
@@ -700,7 +700,7 @@ items:
         -
           id: '↳ transport'
           var_type: string|TransportInterface
-          description: 'The transport used for executing network requests. May be either the string `rest` or `grpc`. Defaults to `grpc` if gRPC support is detected on the system. *Advanced usage*: Additionally, it is possible to pass in an already instantiated <a href="https://googleapis.github.io/gax-php#Google/ApiCore/Transport/TransportInterface">Google\ApiCore\Transport\TransportInterface</a> object. Note that when this object is provided, any settings in $transportConfig, and any $serviceAddress setting, will be ignored.'
+          description: 'The transport used for executing network requests. May be either the string `rest` or `grpc`. Defaults to `grpc` if gRPC support is detected on the system. *Advanced usage*: Additionally, it is possible to pass in an already instantiated <a href="https://googleapis.github.io/gax-php#Google/ApiCore/Transport/TransportInterface">Google\ApiCore\Transport\TransportInterface</a> object. Note that when this object is provided, any settings in $transportConfig, and any $apiEndpoint setting, will be ignored.'
         -
           id: '↳ transportConfig'
           var_type: array
@@ -722,45 +722,56 @@ items:
       `Operation.metadata` contains `OperationMetadata` (metadata).
       `Operation.response` contains `AsyncBatchAnnotateFilesResponse` (results).
       
-      Sample code:
-      ```php
-      $imageAnnotatorClient = new ImageAnnotatorClient();
-      try {
-          $requests = [];
-          $operationResponse = $imageAnnotatorClient->asyncBatchAnnotateFiles($requests);
-          $operationResponse->pollUntilComplete();
-          if ($operationResponse->operationSucceeded()) {
-              $result = $operationResponse->getResult();
-          // doSomethingWith($result)
-          } else {
-              $error = $operationResponse->getError();
-              // handleError($error)
-          }
-          // Alternatively:
-          // start the operation, keep the operation name, and resume later
-          $operationResponse = $imageAnnotatorClient->asyncBatchAnnotateFiles($requests);
-          $operationName = $operationResponse->getName();
-          // ... do other work
-          $newOperationResponse = $imageAnnotatorClient->resumeOperation($operationName, 'asyncBatchAnnotateFiles');
-          while (!$newOperationResponse->isDone()) {
-              // ... do other work
-              $newOperationResponse->reload();
-          }
-          if ($newOperationResponse->operationSucceeded()) {
-              $result = $newOperationResponse->getResult();
-          // doSomethingWith($result)
-          } else {
-              $error = $newOperationResponse->getError();
-              // handleError($error)
-          }
-      } finally {
-          $imageAnnotatorClient->close();
-      }
-      ```
+      
     parent: \Google\Cloud\Vision\V1\ImageAnnotatorClient
     type: method
     langs:
       - php
+    example:
+      - |
+        ```php
+        use Google\ApiCore\ApiException;
+        use Google\ApiCore\OperationResponse;
+        use Google\Cloud\Vision\V1\AsyncAnnotateFileRequest;
+        use Google\Cloud\Vision\V1\AsyncBatchAnnotateFilesResponse;
+        use Google\Cloud\Vision\V1\ImageAnnotatorClient;
+        use Google\Rpc\Status;
+        
+        /**
+         * This sample has been automatically generated and should be regarded as a code
+         * template only. It will require modifications to work:
+         *  - It may require correct/in-range values for request initialization.
+         *  - It may require specifying regional endpoints when creating the service client,
+         *    please see the apiEndpoint client configuration option for more details.
+         */
+        function async_batch_annotate_files_sample(): void
+        {
+            // Create a client.
+            $imageAnnotatorClient = new ImageAnnotatorClient();
+        
+            // Prepare any non-scalar elements to be passed along with the request.
+            $requests = [new AsyncAnnotateFileRequest()];
+        
+            // Call the API and handle any network failures.
+            try {
+                /** @var OperationResponse $response */
+                $response = $imageAnnotatorClient->asyncBatchAnnotateFiles($requests);
+                $response->pollUntilComplete();
+        
+                if ($response->operationSucceeded()) {
+                    /** @var AsyncBatchAnnotateFilesResponse $result */
+                    $result = $response->getResult();
+                    printf('Operation successful with response data: %s' . PHP_EOL, $result->serializeToJsonString());
+                } else {
+                    /** @var Status $error */
+                    $error = $response->getError();
+                    printf('Operation failed with error data: %s' . PHP_EOL, $error->serializeToJsonString());
+                }
+            } catch (ApiException $ex) {
+                printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+            }
+        }
+        ```
     syntax:
       parameters:
         -
@@ -797,46 +808,58 @@ items:
       This service will write image annotation outputs to json files in customer
       GCS bucket, each json file containing BatchAnnotateImagesResponse proto.
       
-      Sample code:
-      ```php
-      $imageAnnotatorClient = new ImageAnnotatorClient();
-      try {
-          $requests = [];
-          $outputConfig = new OutputConfig();
-          $operationResponse = $imageAnnotatorClient->asyncBatchAnnotateImages($requests, $outputConfig);
-          $operationResponse->pollUntilComplete();
-          if ($operationResponse->operationSucceeded()) {
-              $result = $operationResponse->getResult();
-          // doSomethingWith($result)
-          } else {
-              $error = $operationResponse->getError();
-              // handleError($error)
-          }
-          // Alternatively:
-          // start the operation, keep the operation name, and resume later
-          $operationResponse = $imageAnnotatorClient->asyncBatchAnnotateImages($requests, $outputConfig);
-          $operationName = $operationResponse->getName();
-          // ... do other work
-          $newOperationResponse = $imageAnnotatorClient->resumeOperation($operationName, 'asyncBatchAnnotateImages');
-          while (!$newOperationResponse->isDone()) {
-              // ... do other work
-              $newOperationResponse->reload();
-          }
-          if ($newOperationResponse->operationSucceeded()) {
-              $result = $newOperationResponse->getResult();
-          // doSomethingWith($result)
-          } else {
-              $error = $newOperationResponse->getError();
-              // handleError($error)
-          }
-      } finally {
-          $imageAnnotatorClient->close();
-      }
-      ```
+      
     parent: \Google\Cloud\Vision\V1\ImageAnnotatorClient
     type: method
     langs:
       - php
+    example:
+      - |
+        ```php
+        use Google\ApiCore\ApiException;
+        use Google\ApiCore\OperationResponse;
+        use Google\Cloud\Vision\V1\AnnotateImageRequest;
+        use Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesResponse;
+        use Google\Cloud\Vision\V1\ImageAnnotatorClient;
+        use Google\Cloud\Vision\V1\OutputConfig;
+        use Google\Rpc\Status;
+        
+        /**
+         * This sample has been automatically generated and should be regarded as a code
+         * template only. It will require modifications to work:
+         *  - It may require correct/in-range values for request initialization.
+         *  - It may require specifying regional endpoints when creating the service client,
+         *    please see the apiEndpoint client configuration option for more details.
+         */
+        function async_batch_annotate_images_sample(): void
+        {
+            // Create a client.
+            $imageAnnotatorClient = new ImageAnnotatorClient();
+        
+            // Prepare any non-scalar elements to be passed along with the request.
+            $requests = [new AnnotateImageRequest()];
+            $outputConfig = new OutputConfig();
+        
+            // Call the API and handle any network failures.
+            try {
+                /** @var OperationResponse $response */
+                $response = $imageAnnotatorClient->asyncBatchAnnotateImages($requests, $outputConfig);
+                $response->pollUntilComplete();
+        
+                if ($response->operationSucceeded()) {
+                    /** @var AsyncBatchAnnotateImagesResponse $result */
+                    $result = $response->getResult();
+                    printf('Operation successful with response data: %s' . PHP_EOL, $result->serializeToJsonString());
+                } else {
+                    /** @var Status $error */
+                    $error = $response->getError();
+                    printf('Operation failed with error data: %s' . PHP_EOL, $error->serializeToJsonString());
+                }
+            } catch (ApiException $ex) {
+                printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+            }
+        }
+        ```
     syntax:
       parameters:
         -
@@ -876,26 +899,52 @@ items:
       file provided and perform detection and annotation for each image
       extracted.
       
-      Sample code:
-      ```php
-      $imageAnnotatorClient = new ImageAnnotatorClient();
-      try {
-          $requests = [];
-          $response = $imageAnnotatorClient->batchAnnotateFiles($requests);
-      } finally {
-          $imageAnnotatorClient->close();
-      }
-      ```
+      
     parent: \Google\Cloud\Vision\V1\ImageAnnotatorClient
     type: method
     langs:
       - php
+    example:
+      - |
+        ```php
+        use Google\ApiCore\ApiException;
+        use Google\Cloud\Vision\V1\AnnotateFileRequest;
+        use Google\Cloud\Vision\V1\BatchAnnotateFilesResponse;
+        use Google\Cloud\Vision\V1\ImageAnnotatorClient;
+        
+        /**
+         * This sample has been automatically generated and should be regarded as a code
+         * template only. It will require modifications to work:
+         *  - It may require correct/in-range values for request initialization.
+         *  - It may require specifying regional endpoints when creating the service client,
+         *    please see the apiEndpoint client configuration option for more details.
+         */
+        function batch_annotate_files_sample(): void
+        {
+            // Create a client.
+            $imageAnnotatorClient = new ImageAnnotatorClient();
+        
+            // Prepare any non-scalar elements to be passed along with the request.
+            $requests = [new AnnotateFileRequest()];
+        
+            // Call the API and handle any network failures.
+            try {
+                /** @var BatchAnnotateFilesResponse $response */
+                $response = $imageAnnotatorClient->batchAnnotateFiles($requests);
+                printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+            } catch (ApiException $ex) {
+                printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+            }
+        }
+        ```
     syntax:
       parameters:
         -
           id: requests
           var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\AnnotateFileRequest">Google\Cloud\Vision\V1\AnnotateFileRequest</xref>&gt;'
-          description: 'Required. The list of file annotation requests. Right now we support only one AnnotateFileRequest in BatchAnnotateFilesRequest.'
+          description: |
+            Required. The list of file annotation requests. Right now we support only one
+            AnnotateFileRequest in BatchAnnotateFilesRequest.
         -
           id: optionalArgs
           var_type: array
@@ -918,20 +967,44 @@ items:
     summary: |
       Run image detection and annotation for a batch of images.
       
-      Sample code:
-      ```php
-      $imageAnnotatorClient = new ImageAnnotatorClient();
-      try {
-          $requests = [];
-          $response = $imageAnnotatorClient->batchAnnotateImages($requests);
-      } finally {
-          $imageAnnotatorClient->close();
-      }
-      ```
+      
     parent: \Google\Cloud\Vision\V1\ImageAnnotatorClient
     type: method
     langs:
       - php
+    example:
+      - |
+        ```php
+        use Google\ApiCore\ApiException;
+        use Google\Cloud\Vision\V1\AnnotateImageRequest;
+        use Google\Cloud\Vision\V1\BatchAnnotateImagesResponse;
+        use Google\Cloud\Vision\V1\ImageAnnotatorClient;
+        
+        /**
+         * This sample has been automatically generated and should be regarded as a code
+         * template only. It will require modifications to work:
+         *  - It may require correct/in-range values for request initialization.
+         *  - It may require specifying regional endpoints when creating the service client,
+         *    please see the apiEndpoint client configuration option for more details.
+         */
+        function batch_annotate_images_sample(): void
+        {
+            // Create a client.
+            $imageAnnotatorClient = new ImageAnnotatorClient();
+        
+            // Prepare any non-scalar elements to be passed along with the request.
+            $requests = [new AnnotateImageRequest()];
+        
+            // Call the API and handle any network failures.
+            try {
+                /** @var BatchAnnotateImagesResponse $response */
+                $response = $imageAnnotatorClient->batchAnnotateImages($requests);
+                printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+            } catch (ApiException $ex) {
+                printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+            }
+        }
+        ```
     syntax:
       parameters:
         -

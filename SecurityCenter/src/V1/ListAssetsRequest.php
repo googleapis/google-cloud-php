@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListAssetsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Name of the organization assets should belong to. Its format is
-     * "organizations/[organization_id], folders/[folder_id], or
+     * Required. The name of the parent that the listed assets belong to. Its
+     * format is "organizations/[organization_id], folders/[folder_id], or
      * projects/[project_id]".
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -165,8 +165,8 @@ class ListAssetsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. Name of the organization assets should belong to. Its format is
-     *           "organizations/[organization_id], folders/[folder_id], or
+     *           Required. The name of the parent that the listed assets belong to. Its
+     *           format is "organizations/[organization_id], folders/[folder_id], or
      *           projects/[project_id]".
      *     @type string $filter
      *           Expression that defines the filter to apply across assets.
@@ -282,8 +282,8 @@ class ListAssetsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Name of the organization assets should belong to. Its format is
-     * "organizations/[organization_id], folders/[folder_id], or
+     * Required. The name of the parent that the listed assets belong to. Its
+     * format is "organizations/[organization_id], folders/[folder_id], or
      * projects/[project_id]".
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -295,8 +295,8 @@ class ListAssetsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Name of the organization assets should belong to. Its format is
-     * "organizations/[organization_id], folders/[folder_id], or
+     * Required. The name of the parent that the listed assets belong to. Its
+     * format is "organizations/[organization_id], folders/[folder_id], or
      * projects/[project_id]".
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>

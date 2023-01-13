@@ -27,6 +27,18 @@ return [
                     ],
                 ],
             ],
+            'WriteFeatureValues' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{entity_type=projects/*/locations/*/featurestores/*/entityTypes/*}:writeFeatureValues',
+                'body' => '*',
+                'placeholders' => [
+                    'entity_type' => [
+                        'getters' => [
+                            'getEntityType',
+                        ],
+                    ],
+                ],
+            ],
         ],
         'google.cloud.location.Locations' => [
             'GetLocation' => [

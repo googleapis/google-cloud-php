@@ -15,8 +15,10 @@ class SearchMode
 {
     /**
      * Default value. In this case both product search and faceted search will
-     * be performed. Both [SearchResponse.SearchResult] and
-     * [SearchResponse.Facet] will be returned.
+     * be performed. Both
+     * [SearchResponse.SearchResult][google.cloud.retail.v2.SearchResponse.SearchResult]
+     * and [SearchResponse.Facet][google.cloud.retail.v2.SearchResponse.Facet]
+     * will be returned.
      *
      * Generated from protobuf enum <code>SEARCH_MODE_UNSPECIFIED = 0;</code>
      */
@@ -24,8 +26,11 @@ class SearchMode
     /**
      * Only product search will be performed. The faceted search will be
      * disabled.
-     * Only [SearchResponse.SearchResult] will be returned.
-     * [SearchResponse.Facet] will not be returned, even if
+     * Only
+     * [SearchResponse.SearchResult][google.cloud.retail.v2.SearchResponse.SearchResult]
+     * will be returned.
+     * [SearchResponse.Facet][google.cloud.retail.v2.SearchResponse.Facet] will
+     * not be returned, even if
      * [SearchRequest.facet_specs][google.cloud.retail.v2.SearchRequest.facet_specs]
      * or
      * [SearchRequest.dynamic_facet_spec][google.cloud.retail.v2.SearchRequest.dynamic_facet_spec]
@@ -42,7 +47,9 @@ class SearchMode
      * and
      * [SearchRequest.dynamic_facet_spec][google.cloud.retail.v2.SearchRequest.dynamic_facet_spec]
      * should be set. Otherwise, an INVALID_ARGUMENT error is returned. Only
-     * [SearchResponse.Facet] will be returned. [SearchResponse.SearchResult]
+     * [SearchResponse.Facet][google.cloud.retail.v2.SearchResponse.Facet] will
+     * be returned.
+     * [SearchResponse.SearchResult][google.cloud.retail.v2.SearchResponse.SearchResult]
      * will not be returned.
      *
      * Generated from protobuf enum <code>FACETED_SEARCH_ONLY = 2;</code>

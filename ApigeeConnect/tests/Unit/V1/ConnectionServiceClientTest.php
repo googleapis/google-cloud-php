@@ -25,7 +25,6 @@ namespace Google\Cloud\ApigeeConnect\Tests\Unit\V1;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\ApigeeConnect\V1\Connection;
 use Google\Cloud\ApigeeConnect\V1\ConnectionServiceClient;
@@ -40,25 +39,19 @@ use stdClass;
  */
 class ConnectionServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return ConnectionServiceClient
-     */
+    /** @return ConnectionServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -67,9 +60,7 @@ class ConnectionServiceClientTest extends GeneratedTest
         return new ConnectionServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listConnectionsTest()
     {
         $transport = $this->createTransport();
@@ -104,9 +95,7 @@ class ConnectionServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listConnectionsExceptionTest()
     {
         $transport = $this->createTransport();

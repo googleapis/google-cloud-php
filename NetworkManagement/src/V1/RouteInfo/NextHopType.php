@@ -128,6 +128,4 @@ class NextHopType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(NextHopType::class, \Google\Cloud\NetworkManagement\V1\RouteInfo_NextHopType::class);
 

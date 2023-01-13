@@ -25,7 +25,6 @@ namespace Google\Cloud\Iam\Credentials\Tests\Unit\V1;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Iam\Credentials\V1\GenerateAccessTokenResponse;
 use Google\Cloud\Iam\Credentials\V1\GenerateIdTokenResponse;
@@ -42,25 +41,19 @@ use stdClass;
  */
 class IAMCredentialsClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return IAMCredentialsClient
-     */
+    /** @return IAMCredentialsClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -69,9 +62,7 @@ class IAMCredentialsClientTest extends GeneratedTest
         return new IAMCredentialsClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function generateAccessTokenTest()
     {
         $transport = $this->createTransport();
@@ -101,9 +92,7 @@ class IAMCredentialsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function generateAccessTokenExceptionTest()
     {
         $transport = $this->createTransport();
@@ -137,9 +126,7 @@ class IAMCredentialsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function generateIdTokenTest()
     {
         $transport = $this->createTransport();
@@ -169,9 +156,7 @@ class IAMCredentialsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function generateIdTokenExceptionTest()
     {
         $transport = $this->createTransport();
@@ -205,9 +190,7 @@ class IAMCredentialsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function signBlobTest()
     {
         $transport = $this->createTransport();
@@ -239,9 +222,7 @@ class IAMCredentialsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function signBlobExceptionTest()
     {
         $transport = $this->createTransport();
@@ -275,9 +256,7 @@ class IAMCredentialsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function signJwtTest()
     {
         $transport = $this->createTransport();
@@ -309,9 +288,7 @@ class IAMCredentialsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function signJwtExceptionTest()
     {
         $transport = $this->createTransport();

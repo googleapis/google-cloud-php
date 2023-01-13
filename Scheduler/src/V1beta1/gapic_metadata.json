@@ -49,6 +49,16 @@
                             "methods": [
                                 "updateJob"
                             ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
                         }
                     }
                 }

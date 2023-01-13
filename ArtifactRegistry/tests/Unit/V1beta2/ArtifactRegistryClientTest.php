@@ -23,15 +23,12 @@
 namespace Google\Cloud\ArtifactRegistry\Tests\Unit\V1beta2;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\ArtifactRegistry\V1beta2\ArtifactRegistryClient;
 use Google\Cloud\ArtifactRegistry\V1beta2\File;
-
 use Google\Cloud\ArtifactRegistry\V1beta2\ImportAptArtifactsResponse;
 use Google\Cloud\ArtifactRegistry\V1beta2\ImportYumArtifactsResponse;
 use Google\Cloud\ArtifactRegistry\V1beta2\ListFilesResponse;
@@ -60,25 +57,19 @@ use stdClass;
  */
 class ArtifactRegistryClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return ArtifactRegistryClient
-     */
+    /** @return ArtifactRegistryClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -87,14 +78,12 @@ class ArtifactRegistryClientTest extends GeneratedTest
         return new ArtifactRegistryClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createRepositoryTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -157,14 +146,12 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createRepositoryExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -214,9 +201,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createTagTest()
     {
         $transport = $this->createTransport();
@@ -241,9 +226,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createTagExceptionTest()
     {
         $transport = $this->createTransport();
@@ -274,14 +257,12 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deletePackageTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -334,14 +315,12 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deletePackageExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -389,14 +368,12 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteRepositoryTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -453,14 +430,12 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteRepositoryExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -510,9 +485,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteTagTest()
     {
         $transport = $this->createTransport();
@@ -532,9 +505,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteTagExceptionTest()
     {
         $transport = $this->createTransport();
@@ -565,14 +536,12 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteVersionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -625,14 +594,12 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteVersionExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -680,9 +647,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getFileTest()
     {
         $transport = $this->createTransport();
@@ -709,9 +674,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getFileExceptionTest()
     {
         $transport = $this->createTransport();
@@ -742,9 +705,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getIamPolicyTest()
     {
         $transport = $this->createTransport();
@@ -773,9 +734,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -808,9 +767,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getPackageTest()
     {
         $transport = $this->createTransport();
@@ -835,9 +792,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getPackageExceptionTest()
     {
         $transport = $this->createTransport();
@@ -868,9 +823,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getProjectSettingsTest()
     {
         $transport = $this->createTransport();
@@ -897,9 +850,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getProjectSettingsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -932,9 +883,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getRepositoryTest()
     {
         $transport = $this->createTransport();
@@ -965,9 +914,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getRepositoryExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1000,9 +947,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getTagTest()
     {
         $transport = $this->createTransport();
@@ -1027,9 +972,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getTagExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1060,9 +1003,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getVersionTest()
     {
         $transport = $this->createTransport();
@@ -1087,9 +1028,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getVersionExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1120,14 +1059,12 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function importAptArtifactsTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1180,14 +1117,12 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function importAptArtifactsExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1235,14 +1170,12 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function importYumArtifactsTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1295,14 +1228,12 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function importYumArtifactsExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1350,9 +1281,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listFilesTest()
     {
         $transport = $this->createTransport();
@@ -1383,9 +1312,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listFilesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1416,9 +1343,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listPackagesTest()
     {
         $transport = $this->createTransport();
@@ -1449,9 +1374,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listPackagesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1482,9 +1405,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listRepositoriesTest()
     {
         $transport = $this->createTransport();
@@ -1519,9 +1440,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listRepositoriesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1554,9 +1473,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listTagsTest()
     {
         $transport = $this->createTransport();
@@ -1587,9 +1504,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listTagsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1620,9 +1535,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listVersionsTest()
     {
         $transport = $this->createTransport();
@@ -1653,9 +1566,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listVersionsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1686,9 +1597,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setIamPolicyTest()
     {
         $transport = $this->createTransport();
@@ -1720,9 +1629,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1756,9 +1663,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function testIamPermissionsTest()
     {
         $transport = $this->createTransport();
@@ -1786,9 +1691,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function testIamPermissionsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1822,9 +1725,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateProjectSettingsTest()
     {
         $transport = $this->createTransport();
@@ -1847,9 +1748,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateProjectSettingsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1880,9 +1779,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateRepositoryTest()
     {
         $transport = $this->createTransport();
@@ -1909,9 +1806,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateRepositoryExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1942,9 +1837,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateTagTest()
     {
         $transport = $this->createTransport();
@@ -1969,9 +1862,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateTagExceptionTest()
     {
         $transport = $this->createTransport();

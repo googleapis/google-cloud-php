@@ -11,8 +11,8 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Contains text input to be synthesized. Either `text` or `ssml` must be
  * supplied. Supplying both or neither returns
- * [google.rpc.Code.INVALID_ARGUMENT][]. The input size is limited to 5000
- * characters.
+ * [google.rpc.Code.INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT]. The
+ * input size is limited to 5000 bytes.
  *
  * Generated from protobuf message <code>google.cloud.texttospeech.v1.SynthesisInput</code>
  */
@@ -31,7 +31,8 @@ class SynthesisInput extends \Google\Protobuf\Internal\Message
      *     @type string $ssml
      *           The SSML document to be synthesized. The SSML document must be valid
      *           and well-formed. Otherwise the RPC will fail and return
-     *           [google.rpc.Code.INVALID_ARGUMENT][]. For more information, see
+     *           [google.rpc.Code.INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT]. For
+     *           more information, see
      *           [SSML](https://cloud.google.com/text-to-speech/docs/ssml).
      * }
      */
@@ -74,7 +75,8 @@ class SynthesisInput extends \Google\Protobuf\Internal\Message
     /**
      * The SSML document to be synthesized. The SSML document must be valid
      * and well-formed. Otherwise the RPC will fail and return
-     * [google.rpc.Code.INVALID_ARGUMENT][]. For more information, see
+     * [google.rpc.Code.INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT]. For
+     * more information, see
      * [SSML](https://cloud.google.com/text-to-speech/docs/ssml).
      *
      * Generated from protobuf field <code>string ssml = 2;</code>
@@ -93,7 +95,8 @@ class SynthesisInput extends \Google\Protobuf\Internal\Message
     /**
      * The SSML document to be synthesized. The SSML document must be valid
      * and well-formed. Otherwise the RPC will fail and return
-     * [google.rpc.Code.INVALID_ARGUMENT][]. For more information, see
+     * [google.rpc.Code.INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT]. For
+     * more information, see
      * [SSML](https://cloud.google.com/text-to-speech/docs/ssml).
      *
      * Generated from protobuf field <code>string ssml = 2;</code>

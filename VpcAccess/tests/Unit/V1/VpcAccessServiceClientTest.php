@@ -23,15 +23,12 @@
 namespace Google\Cloud\VpcAccess\Tests\Unit\V1;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Location\ListLocationsResponse;
 use Google\Cloud\Location\Location;
-
 use Google\Cloud\VpcAccess\V1\Connector;
 use Google\Cloud\VpcAccess\V1\ListConnectorsResponse;
 use Google\Cloud\VpcAccess\V1\VpcAccessServiceClient;
@@ -49,25 +46,19 @@ use stdClass;
  */
 class VpcAccessServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return VpcAccessServiceClient
-     */
+    /** @return VpcAccessServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -76,14 +67,12 @@ class VpcAccessServiceClientTest extends GeneratedTest
         return new VpcAccessServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createConnectorTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -162,14 +151,12 @@ class VpcAccessServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createConnectorExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -221,14 +208,12 @@ class VpcAccessServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteConnectorTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -285,14 +270,12 @@ class VpcAccessServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteConnectorExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -342,9 +325,7 @@ class VpcAccessServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getConnectorTest()
     {
         $transport = $this->createTransport();
@@ -385,9 +366,7 @@ class VpcAccessServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getConnectorExceptionTest()
     {
         $transport = $this->createTransport();
@@ -420,9 +399,7 @@ class VpcAccessServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listConnectorsTest()
     {
         $transport = $this->createTransport();
@@ -457,9 +434,7 @@ class VpcAccessServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listConnectorsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -492,9 +467,7 @@ class VpcAccessServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listLocationsTest()
     {
         $transport = $this->createTransport();
@@ -525,9 +498,7 @@ class VpcAccessServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listLocationsExceptionTest()
     {
         $transport = $this->createTransport();

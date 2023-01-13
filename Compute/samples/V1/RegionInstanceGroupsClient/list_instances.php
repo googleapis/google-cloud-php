@@ -25,7 +25,6 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_RegionInstanceGroups_ListInstances_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Compute\V1\InstanceWithNamedPorts;
 use Google\Cloud\Compute\V1\RegionInstanceGroupsClient;
 use Google\Cloud\Compute\V1\RegionInstanceGroupsListInstancesRequest;
 
@@ -54,7 +53,6 @@ function list_instances_sample(string $instanceGroup, string $project, string $r
             $regionInstanceGroupsListInstancesRequestResource
         );
 
-        /** @var InstanceWithNamedPorts $element */
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
         }

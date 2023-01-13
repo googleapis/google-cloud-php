@@ -27,13 +27,10 @@ namespace Google\Cloud\GkeMultiCloud\V1\Gapic;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
-
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
-
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
@@ -118,29 +115,19 @@ class AzureClustersGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.gkemulticloud.v1.AzureClusters';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'gkemulticloud.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
     ];
@@ -441,9 +428,6 @@ class AzureClustersGapicClient
      * @param array $options {
      *     Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress
-     *           **Deprecated**. This option will be removed in a future major release. Please
-     *           utilize the `$apiEndpoint` option instead.
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'gkemulticloud.googleapis.com:443'.
@@ -473,7 +457,7 @@ class AzureClustersGapicClient
      *           *Advanced usage*: Additionally, it is possible to pass in an already
      *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
      *           that when this object is provided, any settings in $transportConfig, and any
-     *           $serviceAddress setting, will be ignored.
+     *           $apiEndpoint setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
      *           each supported transport type should be passed in a key for that transport. For
@@ -500,8 +484,8 @@ class AzureClustersGapicClient
     }
 
     /**
-     * Creates a new [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] resource on a given Google Cloud project
-     * and region.
+     * Creates a new [AzureClient][google.cloud.gkemulticloud.v1.AzureClient]
+     * resource on a given Google Cloud project and region.
      *
      * `AzureClient` resources hold client authentication
      * information needed by the Anthos Multicloud API to manage Azure resources
@@ -549,22 +533,25 @@ class AzureClustersGapicClient
      * }
      * ```
      *
-     * @param string      $parent        Required. The parent location where this [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] resource
-     *                                   will be created.
+     * @param string      $parent        Required. The parent location where this
+     *                                   [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] resource will be
+     *                                   created.
      *
      *                                   Location names are formatted as `projects/<project-id>/locations/<region>`.
      *
      *                                   See [Resource Names](https://cloud.google.com/apis/design/resource_names)
      *                                   for more details on Google Cloud resource names.
-     * @param AzureClient $azureClient   Required. The specification of the [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] to create.
-     * @param string      $azureClientId Required. A client provided ID the resource. Must be unique within the parent
-     *                                   resource.
+     * @param AzureClient $azureClient   Required. The specification of the
+     *                                   [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] to create.
+     * @param string      $azureClientId Required. A client provided ID the resource. Must be unique within the
+     *                                   parent resource.
      *
-     *                                   The provided ID will be part of the [AzureClient][google.cloud.gkemulticloud.v1.AzureClient]
-     *                                   resource name formatted as
+     *                                   The provided ID will be part of the
+     *                                   [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] resource name
+     *                                   formatted as
      *                                   `projects/<project-id>/locations/<region>/azureClients/<client-id>`.
      *
-     *                                   Valid characters are `/[a-z][0-9]-/`. Cannot be longer than 40 characters.
+     *                                   Valid characters are `/[a-z][0-9]-/`. Cannot be longer than 63 characters.
      * @param array       $optionalArgs  {
      *     Optional.
      *
@@ -611,7 +598,8 @@ class AzureClustersGapicClient
     }
 
     /**
-     * Creates a new [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] resource on a given GCP project and region.
+     * Creates a new [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster]
+     * resource on a given GCP project and region.
      *
      * If successful, the response contains a newly created
      * [Operation][google.longrunning.Operation] resource that can be
@@ -655,22 +643,25 @@ class AzureClustersGapicClient
      * }
      * ```
      *
-     * @param string       $parent         Required. The parent location where this [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] resource
-     *                                     will be created.
+     * @param string       $parent         Required. The parent location where this
+     *                                     [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] resource will be
+     *                                     created.
      *
      *                                     Location names are formatted as `projects/<project-id>/locations/<region>`.
      *
      *                                     See [Resource Names](https://cloud.google.com/apis/design/resource_names)
      *                                     for more details on Google Cloud resource names.
-     * @param AzureCluster $azureCluster   Required. The specification of the [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] to create.
-     * @param string       $azureClusterId Required. A client provided ID the resource. Must be unique within the parent
-     *                                     resource.
+     * @param AzureCluster $azureCluster   Required. The specification of the
+     *                                     [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] to create.
+     * @param string       $azureClusterId Required. A client provided ID the resource. Must be unique within the
+     *                                     parent resource.
      *
-     *                                     The provided ID will be part of the [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster]
-     *                                     resource name formatted as
+     *                                     The provided ID will be part of the
+     *                                     [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] resource name
+     *                                     formatted as
      *                                     `projects/<project-id>/locations/<region>/azureClusters/<cluster-id>`.
      *
-     *                                     Valid characters are `/[a-z][0-9]-/`. Cannot be longer than 40 characters.
+     *                                     Valid characters are `/[a-z][0-9]-/`. Cannot be longer than 63 characters.
      * @param array        $optionalArgs   {
      *     Optional.
      *
@@ -717,7 +708,9 @@ class AzureClustersGapicClient
     }
 
     /**
-     * Creates a new [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool], attached to a given [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster].
+     * Creates a new [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool],
+     * attached to a given
+     * [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster].
      *
      * If successful, the response contains a newly created
      * [Operation][google.longrunning.Operation] resource that can be
@@ -761,21 +754,24 @@ class AzureClustersGapicClient
      * }
      * ```
      *
-     * @param string        $parent          Required. The [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] resource where this node pool will be created.
+     * @param string        $parent          Required. The [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster]
+     *                                       resource where this node pool will be created.
      *
      *                                       Location names are formatted as `projects/<project-id>/locations/<region>`.
      *
      *                                       See [Resource Names](https://cloud.google.com/apis/design/resource_names)
      *                                       for more details on Google Cloud resource names.
-     * @param AzureNodePool $azureNodePool   Required. The specification of the [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] to create.
-     * @param string        $azureNodePoolId Required. A client provided ID the resource. Must be unique within the parent
-     *                                       resource.
+     * @param AzureNodePool $azureNodePool   Required. The specification of the
+     *                                       [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] to create.
+     * @param string        $azureNodePoolId Required. A client provided ID the resource. Must be unique within the
+     *                                       parent resource.
      *
-     *                                       The provided ID will be part of the [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool]
-     *                                       resource name formatted as
+     *                                       The provided ID will be part of the
+     *                                       [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] resource name
+     *                                       formatted as
      *                                       `projects/<project-id>/locations/<region>/azureClusters/<cluster-id>/azureNodePools/<node-pool-id>`.
      *
-     *                                       Valid characters are `/[a-z][0-9]-/`. Cannot be longer than 40 characters.
+     *                                       Valid characters are `/[a-z][0-9]-/`. Cannot be longer than 63 characters.
      * @param array         $optionalArgs    {
      *     Optional.
      *
@@ -823,7 +819,8 @@ class AzureClustersGapicClient
     }
 
     /**
-     * Deletes a specific [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] resource.
+     * Deletes a specific [AzureClient][google.cloud.gkemulticloud.v1.AzureClient]
+     * resource.
      *
      * If the client is used by one or more clusters, deletion will
      * fail and a `FAILED_PRECONDITION` error will be returned.
@@ -866,9 +863,11 @@ class AzureClustersGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The resource name the [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] to delete.
+     * @param string $name         Required. The resource name the
+     *                             [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] to delete.
      *
-     *                             [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] names are formatted as
+     *                             [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] names are
+     *                             formatted as
      *                             `projects/<project-id>/locations/<region>/azureClients/<client-id>`.
      *
      *                             See [Resource Names](https://cloud.google.com/apis/design/resource_names)
@@ -877,9 +876,10 @@ class AzureClustersGapicClient
      *     Optional.
      *
      *     @type bool $allowMissing
-     *           If set to true, and the [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] resource is not found,
-     *           the request will succeed but no action will be taken on the server and a
-     *           completed [Operation][google.longrunning.Operation] will be returned.
+     *           If set to true, and the
+     *           [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] resource is not
+     *           found, the request will succeed but no action will be taken on the server
+     *           and a completed [Operation][google.longrunning.Operation] will be returned.
      *
      *           Useful for idempotent deletion.
      *     @type bool $validateOnly
@@ -923,10 +923,11 @@ class AzureClustersGapicClient
     }
 
     /**
-     * Deletes a specific [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] resource.
+     * Deletes a specific
+     * [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] resource.
      *
-     * Fails if the cluster has one or more associated [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool]
-     * resources.
+     * Fails if the cluster has one or more associated
+     * [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] resources.
      *
      * If successful, the response contains a newly created
      * [Operation][google.longrunning.Operation] resource that can be
@@ -966,7 +967,8 @@ class AzureClustersGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The resource name the [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] to delete.
+     * @param string $name         Required. The resource name the
+     *                             [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] to delete.
      *
      *                             `AzureCluster` names are formatted as
      *                             `projects/<project-id>/locations/<region>/azureClusters/<cluster-id>`.
@@ -977,15 +979,17 @@ class AzureClustersGapicClient
      *     Optional.
      *
      *     @type bool $allowMissing
-     *           If set to true, and the [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] resource is not found,
-     *           the request will succeed but no action will be taken on the server and a
-     *           completed [Operation][google.longrunning.Operation] will be returned.
+     *           If set to true, and the
+     *           [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] resource is not
+     *           found, the request will succeed but no action will be taken on the server
+     *           and a completed [Operation][google.longrunning.Operation] will be returned.
      *
      *           Useful for idempotent deletion.
      *     @type bool $validateOnly
      *           If set, only validate the request, but do not actually delete the resource.
      *     @type string $etag
-     *           The current etag of the [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster].
+     *           The current etag of the
+     *           [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster].
      *
      *           Allows clients to perform deletions through optimistic concurrency control.
      *
@@ -1034,7 +1038,8 @@ class AzureClustersGapicClient
     }
 
     /**
-     * Deletes a specific [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] resource.
+     * Deletes a specific
+     * [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] resource.
      *
      * If successful, the response contains a newly created
      * [Operation][google.longrunning.Operation] resource that can be
@@ -1074,7 +1079,8 @@ class AzureClustersGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The resource name the [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] to delete.
+     * @param string $name         Required. The resource name the
+     *                             [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] to delete.
      *
      *                             `AzureNodePool` names are formatted as
      *                             `projects/<project-id>/locations/<region>/azureClusters/<cluster-id>/azureNodePools/<node-pool-id>`.
@@ -1088,13 +1094,16 @@ class AzureClustersGapicClient
      *           If set, only validate the request, but do not actually delete the node
      *           pool.
      *     @type bool $allowMissing
-     *           If set to true, and the [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] resource is not found,
-     *           the request will succeed but no action will be taken on the server and a
-     *           completed [Operation][google.longrunning.Operation] will be returned.
+     *           If set to true, and the
+     *           [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] resource is
+     *           not found, the request will succeed but no action will be taken on the
+     *           server and a completed [Operation][google.longrunning.Operation] will be
+     *           returned.
      *
      *           Useful for idempotent deletion.
      *     @type string $etag
-     *           The current ETag of the [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool].
+     *           The current ETag of the
+     *           [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool].
      *
      *           Allows clients to perform deletions through optimistic concurrency control.
      *
@@ -1157,7 +1166,9 @@ class AzureClustersGapicClient
      * }
      * ```
      *
-     * @param string $azureCluster Required. The name of the [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] resource to authenticate to.
+     * @param string $azureCluster Required. The name of the
+     *                             [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] resource to
+     *                             authenticate to.
      *
      *                             `AzureCluster` names are formatted as
      *                             `projects/<project-id>/locations/<region>/AzureClusters/<cluster-id>`.
@@ -1200,7 +1211,8 @@ class AzureClustersGapicClient
     }
 
     /**
-     * Describes a specific [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] resource.
+     * Describes a specific
+     * [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] resource.
      *
      * Sample code:
      * ```
@@ -1213,9 +1225,12 @@ class AzureClustersGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The name of the [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] resource to describe.
+     * @param string $name         Required. The name of the
+     *                             [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] resource to
+     *                             describe.
      *
-     *                             [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] names are formatted as
+     *                             [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] names are
+     *                             formatted as
      *                             `projects/<project-id>/locations/<region>/azureClients/<client-id>`.
      *
      *                             See [Resource Names](https://cloud.google.com/apis/design/resource_names)
@@ -1254,7 +1269,8 @@ class AzureClustersGapicClient
     }
 
     /**
-     * Describes a specific [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] resource.
+     * Describes a specific
+     * [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] resource.
      *
      * Sample code:
      * ```
@@ -1267,7 +1283,9 @@ class AzureClustersGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The name of the [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] resource to describe.
+     * @param string $name         Required. The name of the
+     *                             [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] resource to
+     *                             describe.
      *
      *                             `AzureCluster` names are formatted as
      *                             `projects/<project-id>/locations/<region>/azureClusters/<cluster-id>`.
@@ -1308,7 +1326,8 @@ class AzureClustersGapicClient
     }
 
     /**
-     * Describes a specific [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] resource.
+     * Describes a specific
+     * [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] resource.
      *
      * Sample code:
      * ```
@@ -1321,7 +1340,9 @@ class AzureClustersGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The name of the [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] resource to describe.
+     * @param string $name         Required. The name of the
+     *                             [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] resource to
+     *                             describe.
      *
      *                             `AzureNodePool` names are formatted as
      *                             `projects/<project-id>/locations/<region>/azureClusters/<cluster-id>/azureNodePools/<node-pool-id>`.
@@ -1376,7 +1397,9 @@ class AzureClustersGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The name of the [AzureServerConfig][google.cloud.gkemulticloud.v1.AzureServerConfig] resource to describe.
+     * @param string $name         Required. The name of the
+     *                             [AzureServerConfig][google.cloud.gkemulticloud.v1.AzureServerConfig]
+     *                             resource to describe.
      *
      *                             `AzureServerConfig` names are formatted as
      *                             `projects/<project-id>/locations/<region>/azureServerConfig`.
@@ -1417,8 +1440,8 @@ class AzureClustersGapicClient
     }
 
     /**
-     * Lists all [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] resources on a given Google Cloud project and
-     * region.
+     * Lists all [AzureClient][google.cloud.gkemulticloud.v1.AzureClient]
+     * resources on a given Google Cloud project and region.
      *
      * Sample code:
      * ```
@@ -1501,8 +1524,8 @@ class AzureClustersGapicClient
     }
 
     /**
-     * Lists all [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] resources on a given Google Cloud project and
-     * region.
+     * Lists all [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster]
+     * resources on a given Google Cloud project and region.
      *
      * Sample code:
      * ```
@@ -1585,7 +1608,9 @@ class AzureClustersGapicClient
     }
 
     /**
-     * Lists all [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] resources on a given [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster].
+     * Lists all [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool]
+     * resources on a given
+     * [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster].
      *
      * Sample code:
      * ```
@@ -1708,19 +1733,25 @@ class AzureClustersGapicClient
      * }
      * ```
      *
-     * @param AzureCluster $azureCluster Required. The [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] resource to update.
+     * @param AzureCluster $azureCluster Required. The [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster]
+     *                                   resource to update.
      * @param FieldMask    $updateMask   Required. Mask of fields to update. At least one path must be supplied in
      *                                   this field. The elements of the repeated paths field can only include these
      *                                   fields from [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster]:
      *
      *                                   *   `description`.
-     *                                   *   `annotations`.
      *                                   *   `azureClient`.
      *                                   *   `control_plane.version`.
      *                                   *   `control_plane.vm_size`.
+     *                                   *   `annotations`.
      *                                   *   `authorization.admin_users`.
      *                                   *   `control_plane.root_volume.size_gib`.
-     *                                   *   `logging_config`
+     *                                   *   `control_plane.proxy_config`.
+     *                                   *   `control_plane.proxy_config.resource_group_id`.
+     *                                   *   `control_plane.proxy_config.secret_id`.
+     *                                   *   `control_plane.ssh_config.authorized_key`.
+     *                                   *   `logging_config.component_config.enable_components`
+     *                                   *   `monitoring_config.managed_prometheus_config.enabled`.
      * @param array        $optionalArgs {
      *     Optional.
      *
@@ -1804,7 +1835,8 @@ class AzureClustersGapicClient
      * }
      * ```
      *
-     * @param AzureNodePool $azureNodePool Required. The [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] resource to update.
+     * @param AzureNodePool $azureNodePool Required. The [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool]
+     *                                     resource to update.
      * @param FieldMask     $updateMask    Required. Mask of fields to update. At least one path must be supplied in
      *                                     this field. The elements of the repeated paths field can only include these
      *                                     fields from [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool]:
@@ -1813,7 +1845,7 @@ class AzureClustersGapicClient
      *                                     *   `version`.
      *                                     *   `autoscaling.min_node_count`.
      *                                     *   `autoscaling.max_node_count`.
-     *                                     *   `config.vm_size`.
+     *                                     *   `config.ssh_config.authorized_key`.
      * @param array         $optionalArgs  {
      *     Optional.
      *

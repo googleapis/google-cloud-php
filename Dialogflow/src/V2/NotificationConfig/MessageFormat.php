@@ -59,6 +59,4 @@ class MessageFormat
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(MessageFormat::class, \Google\Cloud\Dialogflow\V2\NotificationConfig_MessageFormat::class);
 
