@@ -41,11 +41,14 @@ use Google\Cloud\Dialogflow\V2\ConversationsClient;
  * For Assist Stage, there's no dialogflow agent responding to user queries.
  * But we will provide suggestions which are generated from conversation.
  *
- * If [Conversation.conversation_profile][google.cloud.dialogflow.v2.Conversation.conversation_profile] is configured for a dialogflow
- * agent, conversation will start from `Automated Agent Stage`, otherwise, it
- * will start from `Assist Stage`. And during `Automated Agent Stage`, once an
- * [Intent][google.cloud.dialogflow.v2.Intent] with [Intent.live_agent_handoff][google.cloud.dialogflow.v2.Intent.live_agent_handoff] is triggered, conversation
- * will transfer to Assist Stage.
+ * If
+ * [Conversation.conversation_profile][google.cloud.dialogflow.v2.Conversation.conversation_profile]
+ * is configured for a dialogflow agent, conversation will start from
+ * `Automated Agent Stage`, otherwise, it will start from `Assist Stage`. And
+ * during `Automated Agent Stage`, once an
+ * [Intent][google.cloud.dialogflow.v2.Intent] with
+ * [Intent.live_agent_handoff][google.cloud.dialogflow.v2.Intent.live_agent_handoff]
+ * is triggered, conversation will transfer to Assist Stage.
  *
  * @param string $formattedParent                          Resource identifier of the project creating the conversation.
  *                                                         Format: `projects/<Project ID>/locations/<Location ID>`. Please see

@@ -39,8 +39,10 @@ use Google\Rpc\Status;
  * operation](https://cloud.google.com/dialogflow/es/docs/how/long-running-operations).
  * The returned `Operation` type has the following method-specific fields:
  *
- * - `metadata`: [ClearSuggestionFeatureConfigOperationMetadata][google.cloud.dialogflow.v2.ClearSuggestionFeatureConfigOperationMetadata]
- * - `response`: [ConversationProfile][google.cloud.dialogflow.v2.ConversationProfile]
+ * - `metadata`:
+ * [ClearSuggestionFeatureConfigOperationMetadata][google.cloud.dialogflow.v2.ClearSuggestionFeatureConfigOperationMetadata]
+ * - `response`:
+ * [ConversationProfile][google.cloud.dialogflow.v2.ConversationProfile]
  *
  * @param string $conversationProfile   The Conversation Profile to add or update the suggestion feature
  *                                      config. Format: `projects/<Project ID>/locations/<Location

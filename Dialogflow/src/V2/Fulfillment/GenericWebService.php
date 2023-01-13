@@ -40,14 +40,15 @@ class GenericWebService extends \Google\Protobuf\Internal\Message
      */
     private $password = '';
     /**
-     * Optional. The HTTP request headers to send together with fulfillment requests.
+     * Optional. The HTTP request headers to send together with fulfillment
+     * requests.
      *
      * Generated from protobuf field <code>map<string, string> request_headers = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $request_headers;
     /**
-     * Optional. Indicates if generic web service is created through Cloud Functions
-     * integration. Defaults to false.
+     * Optional. Indicates if generic web service is created through Cloud
+     * Functions integration. Defaults to false.
      * is_cloud_function is deprecated. Cloud functions can be configured by
      * its uri as a regular web service now.
      *
@@ -70,10 +71,11 @@ class GenericWebService extends \Google\Protobuf\Internal\Message
      *     @type string $password
      *           Optional. The password for HTTP Basic authentication.
      *     @type array|\Google\Protobuf\Internal\MapField $request_headers
-     *           Optional. The HTTP request headers to send together with fulfillment requests.
+     *           Optional. The HTTP request headers to send together with fulfillment
+     *           requests.
      *     @type bool $is_cloud_function
-     *           Optional. Indicates if generic web service is created through Cloud Functions
-     *           integration. Defaults to false.
+     *           Optional. Indicates if generic web service is created through Cloud
+     *           Functions integration. Defaults to false.
      *           is_cloud_function is deprecated. Cloud functions can be configured by
      *           its uri as a regular web service now.
      * }
@@ -164,7 +166,8 @@ class GenericWebService extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The HTTP request headers to send together with fulfillment requests.
+     * Optional. The HTTP request headers to send together with fulfillment
+     * requests.
      *
      * Generated from protobuf field <code>map<string, string> request_headers = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -175,7 +178,8 @@ class GenericWebService extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The HTTP request headers to send together with fulfillment requests.
+     * Optional. The HTTP request headers to send together with fulfillment
+     * requests.
      *
      * Generated from protobuf field <code>map<string, string> request_headers = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
@@ -190,8 +194,8 @@ class GenericWebService extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Indicates if generic web service is created through Cloud Functions
-     * integration. Defaults to false.
+     * Optional. Indicates if generic web service is created through Cloud
+     * Functions integration. Defaults to false.
      * is_cloud_function is deprecated. Cloud functions can be configured by
      * its uri as a regular web service now.
      *
@@ -206,8 +210,8 @@ class GenericWebService extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Indicates if generic web service is created through Cloud Functions
-     * integration. Defaults to false.
+     * Optional. Indicates if generic web service is created through Cloud
+     * Functions integration. Defaults to false.
      * is_cloud_function is deprecated. Cloud functions can be configured by
      * its uri as a regular web service now.
      *
