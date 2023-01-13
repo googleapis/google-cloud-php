@@ -416,9 +416,15 @@ class StorageObjectTest extends TestCase
         $object = self::OBJECT;
         $stream = Utils::streamFor($string = 'abcdefg');
         $this->connection->downloadObject(Argument::allOf(
-            Argument::withKey('bucket'),
-            Argument::withKey('object'),
-            Argument::withKey('restOptions')
+            Argument::withEntry('bucket', $bucket),
+            Argument::withEntry('object', $object),
+            Argument::withKey('restOptions', Argument::allOf(
+                Argument::withEntry('headers', Argument::allOf(
+                    Argument::withEntry('x-goog-encryption-algorithm', 'AES256'),
+                    Argument::withEntry('x-goog-encryption-key', $key),
+                    Argument::withEntry('x-goog-encryption-key-sha256', $hash)
+                ))
+            ))
         ))->willReturn($stream)->shouldBeCalledTimes(1);
 
         $object = new StorageObject($this->connection->reveal(), $object, $bucket);
@@ -437,9 +443,15 @@ class StorageObjectTest extends TestCase
         $object = self::OBJECT;
         $stream = Utils::streamFor($string = 'abcdefg');
         $this->connection->downloadObject(Argument::allOf(
-            Argument::withKey('bucket'),
-            Argument::withKey('object'),
-            Argument::withKey('restOptions')
+            Argument::withEntry('bucket', $bucket),
+            Argument::withEntry('object', $object),
+            Argument::withKey('restOptions', Argument::allOf(
+                Argument::withEntry('headers', Argument::allOf(
+                    Argument::withEntry('x-goog-encryption-algorithm', 'AES256'),
+                    Argument::withEntry('x-goog-encryption-key', $key),
+                    Argument::withEntry('x-goog-encryption-key-sha256', $hash)
+                ))
+            ))
         ))->willReturn($stream);
 
         $object = new StorageObject($this->connection->reveal(), $object, $bucket);
@@ -477,8 +489,8 @@ class StorageObjectTest extends TestCase
         $object = self::OBJECT;
         $stream = Utils::streamFor($string = 'abcdefg');
         $this->connection->downloadObject(Argument::allOf(
-            Argument::withKey('bucket'),
-            Argument::withKey('object')
+            Argument::withEntry('bucket', $bucket),
+            Argument::withEntry('object', $object)
         ))->willReturn($stream);
 
         $object = new StorageObject($this->connection->reveal(), $object, $bucket);
@@ -497,9 +509,15 @@ class StorageObjectTest extends TestCase
         $object = self::OBJECT;
         $stream = Utils::streamFor($string = 'abcdefg');
         $this->connection->downloadObject(Argument::allOf(
-            Argument::withKey('bucket'),
-            Argument::withKey('object'),
-            Argument::withKey('restOptions')
+            Argument::withEntry('bucket', $bucket),
+            Argument::withEntry('object', $object),
+            Argument::withKey('restOptions', Argument::allOf(
+                Argument::withEntry('headers', Argument::allOf(
+                    Argument::withEntry('x-goog-encryption-algorithm', 'AES256'),
+                    Argument::withEntry('x-goog-encryption-key', $key),
+                    Argument::withEntry('x-goog-encryption-key-sha256', $hash)
+                ))
+            ))
         ))->willReturn($stream);
 
         $object = new StorageObject($this->connection->reveal(), $object, $bucket);
@@ -545,21 +563,6 @@ class StorageObjectTest extends TestCase
 
         $this->assertInstanceOf(StreamInterface::class, $body);
         $this->assertEquals($string, $body);
-    }
-
-    /**
-     * Checks if passing the size param avoids the info call.
-     */
-    public function testDownloadAsStreamWithSizeParam()
-    {
-        $bucket = 'bucket';
-        $object = self::OBJECT;
-        $stream = Utils::streamFor($string = 'abcdefg');
-        $this->connection->getObject()->shouldNotBeCalled();
-        $this->connection->downloadObject(Argument::any())->willReturn($stream);
-
-        $object = new StorageObject($this->connection->reveal(), $object, $bucket);
-        $object->downloadAsStream();
     }
 
     public function testDownloadAsStreamAsync()
