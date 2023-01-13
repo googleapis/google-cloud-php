@@ -716,6 +716,8 @@ class CacheSessionPoolTest extends TestCase
             ->willReturn(false);
         $promise->wait()
             ->willReturn(null);
+        $promise->then(Argument::any(), Argument::any())
+            ->willReturn(null);
         $connection->deleteSessionAsync(Argument::any())
             ->willReturn($promise->reveal());
 

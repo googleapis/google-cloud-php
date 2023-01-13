@@ -23,9 +23,8 @@ use Google\Cloud\Core\Lock\LockInterface;
 use Google\Cloud\Core\Lock\SemaphoreLock;
 use Google\Cloud\Core\SysvTrait;
 use Google\Cloud\Spanner\Database;
-use Grpc\UnaryCall;
-use GuzzleHttp\Promise;
 use GuzzleHttp\Promise\PromiseInterface;
+use GuzzleHttp\Promise\Utils;
 use Psr\Cache\CacheItemInterface;
 use Psr\Cache\CacheItemPoolInterface;
 
@@ -322,6 +321,7 @@ class CacheSessionPool implements SessionPoolInterface
         }
 
         if ($this->deleteQueue) {
+            // Note: This might not delete all sessions.
             $this->deleteSessions($this->deleteQueue);
             $this->deleteQueue = [];
         }
@@ -490,6 +490,7 @@ class CacheSessionPool implements SessionPoolInterface
      * exceed the maximum number of sessions available per node, please be sure
      * to check the return value of this method to be certain all sessions have
      * been deleted.
+     * @return bool Returns true if all provided sessions are deleted, false otherwise.
      */
     public function clear()
     {
@@ -502,7 +503,7 @@ class CacheSessionPool implements SessionPoolInterface
             return $sessions;
         });
 
-        $this->deleteSessions($sessions);
+        return $this->deleteSessions($sessions);
     }
 
     /**
@@ -829,14 +830,11 @@ class CacheSessionPool implements SessionPoolInterface
      * Delete the provided sessions.
      *
      * @param array $sessions
+     * @return bool Returns true if all provided sessions are deleted, false otherwise.
      */
     private function deleteSessions(array $sessions)
     {
-        // gRPC calls appear to cancel when the corresponding UnaryCall object
-        // goes out of scope. Keeping the calls in scope allows time for the
-        // calls to complete at the expense of a small memory footprint.
         $this->deleteCalls = [];
-
         foreach ($sessions as $session) {
             $this->deleteCalls[] = $this->database->connection()
                 ->deleteSessionAsync([
@@ -844,6 +842,14 @@ class CacheSessionPool implements SessionPoolInterface
                     'database' => $this->database->name()
                 ]);
         }
+
+        // try clearing sessions otherwise it could lead to leaking of sessions
+        try {
+            Utils::all($this->deleteCalls)->wait();
+        } catch (\GuzzleHttp\Promise\RejectionException $ex) {
+            return false;
+        }
+        return true;
     }
 
     /**
