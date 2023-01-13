@@ -38,6 +38,14 @@ class SpeechAdaptation extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.speech.v1p1beta1.CustomClass custom_classes = 3;</code>
      */
     private $custom_classes;
+    /**
+     * Augmented Backus-Naur form (ABNF) is a standardized grammar notation
+     * comprised by a set of derivation rules.
+     * See specifications: https://www.w3.org/TR/speech-grammar
+     *
+     * Generated from protobuf field <code>.google.cloud.speech.v1p1beta1.SpeechAdaptation.ABNFGrammar abnf_grammar = 4;</code>
+     */
+    private $abnf_grammar = null;
 
     /**
      * Constructor.
@@ -56,6 +64,10 @@ class SpeechAdaptation extends \Google\Protobuf\Internal\Message
      *           class' `name` blank and fill in the rest of its fields, giving it a unique
      *           `custom_class_id`. Refer to the inline defined class in phrase hints by its
      *           `custom_class_id`.
+     *     @type \Google\Cloud\Speech\V1p1beta1\SpeechAdaptation\ABNFGrammar $abnf_grammar
+     *           Augmented Backus-Naur form (ABNF) is a standardized grammar notation
+     *           comprised by a set of derivation rules.
+     *           See specifications: https://www.w3.org/TR/speech-grammar
      * }
      */
     public function __construct($data = NULL) {
@@ -147,6 +159,46 @@ class SpeechAdaptation extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Speech\V1p1beta1\CustomClass::class);
         $this->custom_classes = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Augmented Backus-Naur form (ABNF) is a standardized grammar notation
+     * comprised by a set of derivation rules.
+     * See specifications: https://www.w3.org/TR/speech-grammar
+     *
+     * Generated from protobuf field <code>.google.cloud.speech.v1p1beta1.SpeechAdaptation.ABNFGrammar abnf_grammar = 4;</code>
+     * @return \Google\Cloud\Speech\V1p1beta1\SpeechAdaptation\ABNFGrammar|null
+     */
+    public function getAbnfGrammar()
+    {
+        return $this->abnf_grammar;
+    }
+
+    public function hasAbnfGrammar()
+    {
+        return isset($this->abnf_grammar);
+    }
+
+    public function clearAbnfGrammar()
+    {
+        unset($this->abnf_grammar);
+    }
+
+    /**
+     * Augmented Backus-Naur form (ABNF) is a standardized grammar notation
+     * comprised by a set of derivation rules.
+     * See specifications: https://www.w3.org/TR/speech-grammar
+     *
+     * Generated from protobuf field <code>.google.cloud.speech.v1p1beta1.SpeechAdaptation.ABNFGrammar abnf_grammar = 4;</code>
+     * @param \Google\Cloud\Speech\V1p1beta1\SpeechAdaptation\ABNFGrammar $var
+     * @return $this
+     */
+    public function setAbnfGrammar($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Speech\V1p1beta1\SpeechAdaptation\ABNFGrammar::class);
+        $this->abnf_grammar = $var;
 
         return $this;
     }
