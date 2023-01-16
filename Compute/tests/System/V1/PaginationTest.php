@@ -44,6 +44,14 @@ class PaginationTest extends TestCase
         self::$zonesClient = new ZonesClient();
         self::$acceleratorTypesClient = new AcceleratorTypesClient();
         self::$zone = 'us-central1-a';
+
+        // test needs 4 or more instances
+        $response = self::$instancesClient->aggregatedList(self::$projectId);
+        $page = $response->getPage();
+        $allResults = self::getInstancesFromAggregatedPage($page);
+        if (count($allResults) < 4) {
+            self::fail('Atleast 4 instances are required for test run');
+        }
     }
 
     public static function tearDownAfterClass(): void
@@ -167,8 +175,8 @@ class PaginationTest extends TestCase
         );
         $page = $response->getPage();
         $nextPage = $page->getNextPage(1);
-        $content = $this->getInstancesFromAggregatedPage($page);
-        $nextContent = $this->getInstancesFromAggregatedPage($nextPage);
+        $content = self::getInstancesFromAggregatedPage($page);
+        $nextContent = self::getInstancesFromAggregatedPage($nextPage);
 
         self::assertNotEquals(
             current($content)->getId(),
@@ -184,7 +192,7 @@ class PaginationTest extends TestCase
         );
         $page = $response->getPage();
         $nextPage = $page->getNextPage(2);
-        $nextContent = $this->getInstancesFromAggregatedPage($nextPage);
+        $nextContent = self::getInstancesFromAggregatedPage($nextPage);
         self::assertCount(2, $nextContent);
     }
 
@@ -195,17 +203,17 @@ class PaginationTest extends TestCase
             ['maxResults' => 3]
         );
         $page = $response->getPage();
-        $allResults = $this->getInstancesFromAggregatedPage($page);
+        $allResults = self::getInstancesFromAggregatedPage($page);
         self::assertCount(3, $allResults);
     }
 
-    private function getInstancesFromAggregatedPage($page)
+    private static function getInstancesFromAggregatedPage($page)
     {
         $results = [];
         foreach ($page->getIterator() as $zone => $instancesList) {
             $pageResults = iterator_to_array($instancesList->getInstances());
             $results = array_merge($results, $pageResults);
-      }
-      return $results;
+        }
+        return $results;
     }
 }
