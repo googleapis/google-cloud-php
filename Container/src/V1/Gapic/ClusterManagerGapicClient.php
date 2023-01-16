@@ -95,6 +95,7 @@ use Google\Cloud\Container\V1\UpdateClusterRequest;
 use Google\Cloud\Container\V1\UpdateMasterRequest;
 use Google\Cloud\Container\V1\UpdateNodePoolRequest;
 use Google\Cloud\Container\V1\VirtualNIC;
+use Google\Cloud\Container\V1\WindowsNodeConfig;
 use Google\Cloud\Container\V1\WorkloadMetadataConfig;
 use Google\Protobuf\GPBEmpty;
 
@@ -2652,6 +2653,10 @@ class ClusterManagerGapicClient
      *           All the nodes in the node pool will be Confidential VM once enabled.
      *     @type VirtualNIC $gvnic
      *           Enable or disable gvnic on the node pool.
+     *     @type string $etag
+     *           The current etag of the node pool.
+     *           If an etag is provided and does not match the current etag of the node
+     *           pool, update will be blocked and an ABORTED error will be returned.
      *     @type FastSocket $fastSocket
      *           Enable or disable NCCL fast socket for the node pool.
      *     @type NodePoolLoggingConfig $loggingConfig
@@ -2659,6 +2664,8 @@ class ClusterManagerGapicClient
      *     @type ResourceLabels $resourceLabels
      *           The resource labels for the node pool to use to annotate any related
      *           Google Compute Engine resources.
+     *     @type WindowsNodeConfig $windowsNodeConfig
+     *           Parameters that can be configured on Windows nodes.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2748,6 +2755,10 @@ class ClusterManagerGapicClient
             $request->setGvnic($optionalArgs['gvnic']);
         }
 
+        if (isset($optionalArgs['etag'])) {
+            $request->setEtag($optionalArgs['etag']);
+        }
+
         if (isset($optionalArgs['fastSocket'])) {
             $request->setFastSocket($optionalArgs['fastSocket']);
         }
@@ -2758,6 +2769,10 @@ class ClusterManagerGapicClient
 
         if (isset($optionalArgs['resourceLabels'])) {
             $request->setResourceLabels($optionalArgs['resourceLabels']);
+        }
+
+        if (isset($optionalArgs['windowsNodeConfig'])) {
+            $request->setWindowsNodeConfig($optionalArgs['windowsNodeConfig']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);

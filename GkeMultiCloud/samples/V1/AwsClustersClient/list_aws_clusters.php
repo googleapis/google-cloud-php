@@ -29,8 +29,8 @@ use Google\Cloud\GkeMultiCloud\V1\AwsCluster;
 use Google\Cloud\GkeMultiCloud\V1\AwsClustersClient;
 
 /**
- * Lists all [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resources on a given Google Cloud project and
- * region.
+ * Lists all [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resources
+ * on a given Google Cloud project and region.
  *
  * @param string $formattedParent The parent location which owns this collection of
  *                                [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resources.

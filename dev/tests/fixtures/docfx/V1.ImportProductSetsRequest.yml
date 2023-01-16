@@ -51,8 +51,6 @@ items:
       Required. The project in which the ProductSets should be imported.
       
       Format is `projects/PROJECT_ID/locations/LOC_ID`.
-      
-      Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
     parent: \Google\Cloud\Vision\V1\ImportProductSetsRequest
     type: method
     langs:
@@ -69,8 +67,6 @@ items:
       Required. The project in which the ProductSets should be imported.
       
       Format is `projects/PROJECT_ID/locations/LOC_ID`.
-      
-      Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
     parent: \Google\Cloud\Vision\V1\ImportProductSetsRequest
     type: method
     langs:
@@ -88,10 +84,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\ImportProductSetsRequest::getInputConfig()'
     name: getInputConfig
     id: getInputConfig
-    summary: |
-      Required. The input content for the list of requests.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.ImportProductSetsInputConfig input_config = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+    summary: 'Required. The input content for the list of requests.'
     parent: \Google\Cloud\Vision\V1\ImportProductSetsRequest
     type: method
     langs:
@@ -120,10 +113,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\ImportProductSetsRequest::setInputConfig()'
     name: setInputConfig
     id: setInputConfig
-    summary: |
-      Required. The input content for the list of requests.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.ImportProductSetsInputConfig input_config = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+    summary: 'Required. The input content for the list of requests.'
     parent: \Google\Cloud\Vision\V1\ImportProductSetsRequest
     type: method
     langs:

@@ -29,7 +29,9 @@ use Google\Cloud\GkeMultiCloud\V1\AzureClustersClient;
 use Google\Cloud\GkeMultiCloud\V1\AzureNodePool;
 
 /**
- * Lists all [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] resources on a given [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster].
+ * Lists all [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool]
+ * resources on a given
+ * [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster].
  *
  * @param string $formattedParent The parent `AzureCluster` which owns this collection of
  *                                [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] resources.

@@ -20,8 +20,8 @@ class QueryTerm extends \Google\Protobuf\Internal\Message
      * Value cannot be empty.
      * Value can have at most 3 terms if specified as a partial match. Each
      * space separated string is considered as one term.
-     * Example) "a b c" is 3 terms and allowed, " a b c d" is 4 terms and not
-     * allowed for partial match.
+     * For example, "a b c" is 3 terms and allowed, but " a b c d" is 4 terms
+     * and not allowed for a partial match.
      *
      * Generated from protobuf field <code>string value = 1;</code>
      */
@@ -44,8 +44,8 @@ class QueryTerm extends \Google\Protobuf\Internal\Message
      *           Value cannot be empty.
      *           Value can have at most 3 terms if specified as a partial match. Each
      *           space separated string is considered as one term.
-     *           Example) "a b c" is 3 terms and allowed, " a b c d" is 4 terms and not
-     *           allowed for partial match.
+     *           For example, "a b c" is 3 terms and allowed, but " a b c d" is 4 terms
+     *           and not allowed for a partial match.
      *     @type bool $full_match
      *           Whether this is supposed to be a full or partial match.
      * }
@@ -60,8 +60,8 @@ class QueryTerm extends \Google\Protobuf\Internal\Message
      * Value cannot be empty.
      * Value can have at most 3 terms if specified as a partial match. Each
      * space separated string is considered as one term.
-     * Example) "a b c" is 3 terms and allowed, " a b c d" is 4 terms and not
-     * allowed for partial match.
+     * For example, "a b c" is 3 terms and allowed, but " a b c d" is 4 terms
+     * and not allowed for a partial match.
      *
      * Generated from protobuf field <code>string value = 1;</code>
      * @return string
@@ -76,8 +76,8 @@ class QueryTerm extends \Google\Protobuf\Internal\Message
      * Value cannot be empty.
      * Value can have at most 3 terms if specified as a partial match. Each
      * space separated string is considered as one term.
-     * Example) "a b c" is 3 terms and allowed, " a b c d" is 4 terms and not
-     * allowed for partial match.
+     * For example, "a b c" is 3 terms and allowed, but " a b c d" is 4 terms
+     * and not allowed for a partial match.
      *
      * Generated from protobuf field <code>string value = 1;</code>
      * @param string $var

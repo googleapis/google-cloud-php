@@ -28,9 +28,12 @@ use Google\Cloud\GkeMultiCloud\V1\AwsClustersClient;
 use Google\Cloud\GkeMultiCloud\V1\AwsNodePool;
 
 /**
- * Describes a specific [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] resource.
+ * Describes a specific
+ * [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] resource.
  *
- * @param string $formattedName The name of the [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] resource to describe.
+ * @param string $formattedName The name of the
+ *                              [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] resource to
+ *                              describe.
  *
  *                              `AwsNodePool` names are formatted as
  *                              `projects/<project-id>/locations/<region>/awsClusters/<cluster-id>/awsNodePools/<node-pool-id>`.

@@ -36,8 +36,8 @@ class NodeTest extends TestCase
 
         $params = $method->getParameters();
 
-        // Assert 6 parameters have been parsed
-        $this->assertCount(7, $params);
+        // Assert the parameters have been parsed
+        $this->assertCount(8, $params);
 
         // Assert parent option parameter
         $this->assertEquals('data', $params[1]->getName());
@@ -62,6 +62,14 @@ class NodeTest extends TestCase
             'Additional context that may accompany the image.',
             $params[6]->getDescription()
         );
+
+        // Assert nested parameter with special characters
+        $this->assertEquals('↳ exampleString', $params[7]->getName());
+        $this->assertEquals('string', $params[7]->getType());
+        $this->assertEquals(
+            'Ensure special chars are decoded, such as alice@example.com.',
+            $params[7]->getDescription()
+        );
     }
 
     public function testProtoRefInParameters()
@@ -70,9 +78,6 @@ class NodeTest extends TestCase
         $method = new MethodNode(new SimpleXMLElement($nestedParamsXml));
 
         $params = $method->getParameters();
-
-        // Assert 6 parameters have been parsed
-        $this->assertCount(7, $params);
 
         // Assert proto ref
         $this->assertStringContainsString(

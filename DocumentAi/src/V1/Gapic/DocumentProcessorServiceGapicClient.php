@@ -508,7 +508,8 @@ class DocumentProcessorServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of [Processor][google.cloud.documentai.v1.Processor] or
+     * @param string $name         Required. The resource name of
+     *                             [Processor][google.cloud.documentai.v1.Processor] or
      *                             [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion].
      *                             Format: `projects/{project}/locations/{location}/processors/{processor}`,
      *                             or
@@ -583,10 +584,11 @@ class DocumentProcessorServiceGapicClient
      * }
      * ```
      *
-     * @param string    $parent       Required. The parent (project and location) under which to create the processor.
-     *                                Format: `projects/{project}/locations/{location}`
-     * @param Processor $processor    Required. The processor to be created, requires [processor_type] and [display_name]
-     *                                to be set. Also, the processor is under CMEK if CMEK fields are set.
+     * @param string    $parent       Required. The parent (project and location) under which to create the
+     *                                processor. Format: `projects/{project}/locations/{location}`
+     * @param Processor $processor    Required. The processor to be created, requires [processor_type] and
+     *                                [display_name] to be set. Also, the processor is under CMEK if CMEK fields
+     *                                are set.
      * @param array     $optionalArgs {
      *     Optional.
      *
@@ -1239,8 +1241,9 @@ class DocumentProcessorServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent (project, location and processor) to list all versions.
-     *                             Format: `projects/{project}/locations/{location}/processors/{processor}`
+     * @param string $parent       Required. The parent (project, location and processor) to list all
+     *                             versions. Format:
+     *                             `projects/{project}/locations/{location}/processors/{processor}`
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1317,8 +1320,8 @@ class DocumentProcessorServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent (project and location) which owns this collection of Processors.
-     *                             Format: `projects/{project}/locations/{location}`
+     * @param string $parent       Required. The parent (project and location) which owns this collection of
+     *                             Processors. Format: `projects/{project}/locations/{location}`
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1383,11 +1386,15 @@ class DocumentProcessorServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the [Processor][google.cloud.documentai.v1.Processor] or
+     * @param string $name         Required. The resource name of the
+     *                             [Processor][google.cloud.documentai.v1.Processor] or
      *                             [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion]
-     *                             to use for processing. If a [Processor][google.cloud.documentai.v1.Processor] is specified, the server will use
-     *                             its [default version][google.cloud.documentai.v1.Processor.default_processor_version]. Format:
-     *                             `projects/{project}/locations/{location}/processors/{processor}`, or
+     *                             to use for processing. If a
+     *                             [Processor][google.cloud.documentai.v1.Processor] is specified, the server
+     *                             will use its [default
+     *                             version][google.cloud.documentai.v1.Processor.default_processor_version].
+     *                             Format: `projects/{project}/locations/{location}/processors/{processor}`,
+     *                             or
      *                             `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}`
      * @param array  $optionalArgs {
      *     Optional.
@@ -1489,8 +1496,8 @@ class DocumentProcessorServiceGapicClient
      * }
      * ```
      *
-     * @param string $humanReviewConfig Required. The resource name of the HumanReviewConfig that the document will be
-     *                                  reviewed with.
+     * @param string $humanReviewConfig Required. The resource name of the HumanReviewConfig that the document will
+     *                                  be reviewed with.
      * @param array  $optionalArgs      {
      *     Optional.
      *
@@ -1552,8 +1559,10 @@ class DocumentProcessorServiceGapicClient
     }
 
     /**
-     * Set the default (active) version of a [Processor][google.cloud.documentai.v1.Processor] that will be used in
-     * [ProcessDocument][google.cloud.documentai.v1.DocumentProcessorService.ProcessDocument] and
+     * Set the default (active) version of a
+     * [Processor][google.cloud.documentai.v1.Processor] that will be used in
+     * [ProcessDocument][google.cloud.documentai.v1.DocumentProcessorService.ProcessDocument]
+     * and
      * [BatchProcessDocuments][google.cloud.documentai.v1.DocumentProcessorService.BatchProcessDocuments].
      *
      * Sample code:
@@ -1593,9 +1602,12 @@ class DocumentProcessorServiceGapicClient
      * }
      * ```
      *
-     * @param string $processor               Required. The resource name of the [Processor][google.cloud.documentai.v1.Processor] to change default version.
-     * @param string $defaultProcessorVersion Required. The resource name of child [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion] to use as default.
-     *                                        Format:
+     * @param string $processor               Required. The resource name of the
+     *                                        [Processor][google.cloud.documentai.v1.Processor] to change default
+     *                                        version.
+     * @param string $defaultProcessorVersion Required. The resource name of child
+     *                                        [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion] to use as
+     *                                        default. Format:
      *                                        `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{version}`
      * @param array  $optionalArgs            {
      *     Optional.
