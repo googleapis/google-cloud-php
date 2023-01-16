@@ -418,7 +418,7 @@ class StorageObjectTest extends TestCase
         $this->connection->downloadObject(Argument::allOf(
             Argument::withEntry('bucket', $bucket),
             Argument::withEntry('object', $object),
-            Argument::withKey('restOptions', Argument::allOf(
+            Argument::withEntry('restOptions', Argument::allOf(
                 Argument::withEntry('headers', Argument::allOf(
                     Argument::withEntry('x-goog-encryption-algorithm', 'AES256'),
                     Argument::withEntry('x-goog-encryption-key', $key),
@@ -445,7 +445,7 @@ class StorageObjectTest extends TestCase
         $this->connection->downloadObject(Argument::allOf(
             Argument::withEntry('bucket', $bucket),
             Argument::withEntry('object', $object),
-            Argument::withKey('restOptions', Argument::allOf(
+            Argument::withEntry('restOptions', Argument::allOf(
                 Argument::withEntry('headers', Argument::allOf(
                     Argument::withEntry('x-goog-encryption-algorithm', 'AES256'),
                     Argument::withEntry('x-goog-encryption-key', $key),
@@ -511,7 +511,7 @@ class StorageObjectTest extends TestCase
         $this->connection->downloadObject(Argument::allOf(
             Argument::withEntry('bucket', $bucket),
             Argument::withEntry('object', $object),
-            Argument::withKey('restOptions', Argument::allOf(
+            Argument::withEntry('restOptions', Argument::allOf(
                 Argument::withEntry('headers', Argument::allOf(
                     Argument::withEntry('x-goog-encryption-algorithm', 'AES256'),
                     Argument::withEntry('x-goog-encryption-key', $key),
@@ -525,40 +525,6 @@ class StorageObjectTest extends TestCase
         $body = $object->downloadAsStream([
             'encryptionKey' => $key,
             'encryptionKeySHA256' => $hash
-        ]);
-
-        $this->assertInstanceOf(StreamInterface::class, $body);
-        $this->assertEquals($string, $body);
-    }
-
-    /**
-     * Checks if the `onRetryException` callable is passed
-     * when the user has supplied their own Range headers.
-     */
-    public function testDownloadAsStreamWithRangeHeaders()
-    {
-        $bucket = 'bucket';
-        $object = self::OBJECT;
-        $stream = Utils::streamFor($string = 'abcdefg');
-        $this->connection->downloadObject(Argument::allOf(
-            Argument::withKey('bucket'),
-            Argument::withKey('object')
-        ))->willReturn($stream);
-
-        // We expect no $options['onRetryException] param to be passed
-        // to the downloadObject method
-        $this->connection->downloadObject(
-            Argument::withKey('onRetryException')
-        )->shouldNotBeCalled();
-
-        $object = new StorageObject($this->connection->reveal(), $object, $bucket);
-
-        $body = $object->downloadAsStream([
-            'restOptions' => [
-                'headers' => [
-                    'Range' => 'bytes=0-'
-                ]
-            ]
         ]);
 
         $this->assertInstanceOf(StreamInterface::class, $body);
