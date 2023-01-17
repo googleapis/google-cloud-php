@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [VmwareEngine.UpdatePrivateCloud][google.cloud.vmwareengine.v1.VmwareEngine.UpdatePrivateCloud]
+ * Request message for
+ * [VmwareEngine.UpdatePrivateCloud][google.cloud.vmwareengine.v1.VmwareEngine.UpdatePrivateCloud]
  *
  * Generated from protobuf message <code>google.cloud.vmwareengine.v1.UpdatePrivateCloudRequest</code>
  */
@@ -32,8 +33,8 @@ class UpdatePrivateCloudRequest extends \Google\Protobuf\Internal\Message
      */
     private $update_mask = null;
     /**
-     * Optional. The request ID must be a valid UUID with the exception that zero UUID is
-     * not supported (00000000-0000-0000-0000-000000000000).
+     * Optional. The request ID must be a valid UUID with the exception that zero
+     * UUID is not supported (00000000-0000-0000-0000-000000000000).
      *
      * Generated from protobuf field <code>string request_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -54,8 +55,8 @@ class UpdatePrivateCloudRequest extends \Google\Protobuf\Internal\Message
      *           overwritten if it is in the mask. If the user does not provide a mask then
      *           all fields will be overwritten.
      *     @type string $request_id
-     *           Optional. The request ID must be a valid UUID with the exception that zero UUID is
-     *           not supported (00000000-0000-0000-0000-000000000000).
+     *           Optional. The request ID must be a valid UUID with the exception that zero
+     *           UUID is not supported (00000000-0000-0000-0000-000000000000).
      * }
      */
     public function __construct($data = NULL) {
@@ -144,8 +145,8 @@ class UpdatePrivateCloudRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The request ID must be a valid UUID with the exception that zero UUID is
-     * not supported (00000000-0000-0000-0000-000000000000).
+     * Optional. The request ID must be a valid UUID with the exception that zero
+     * UUID is not supported (00000000-0000-0000-0000-000000000000).
      *
      * Generated from protobuf field <code>string request_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -156,8 +157,8 @@ class UpdatePrivateCloudRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The request ID must be a valid UUID with the exception that zero UUID is
-     * not supported (00000000-0000-0000-0000-000000000000).
+     * Optional. The request ID must be a valid UUID with the exception that zero
+     * UUID is not supported (00000000-0000-0000-0000-000000000000).
      *
      * Generated from protobuf field <code>string request_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

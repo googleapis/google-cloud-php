@@ -20,7 +20,7 @@ class PrivateCloud extends \Google\Protobuf\Internal\Message
      * Resource names are schemeless URIs that follow the conventions in
      * https://cloud.google.com/apis/design/resource_names.
      * For example:
-     * `projects/my-project/locations/us-west1-a/privateClouds/my-cloud`
+     * `projects/my-project/locations/us-central1-a/privateClouds/my-cloud`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -114,7 +114,7 @@ class PrivateCloud extends \Google\Protobuf\Internal\Message
      *           Resource names are schemeless URIs that follow the conventions in
      *           https://cloud.google.com/apis/design/resource_names.
      *           For example:
-     *           `projects/my-project/locations/us-west1-a/privateClouds/my-cloud`
+     *           `projects/my-project/locations/us-central1-a/privateClouds/my-cloud`
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. Creation time of this resource.
      *     @type \Google\Protobuf\Timestamp $update_time
@@ -156,7 +156,7 @@ class PrivateCloud extends \Google\Protobuf\Internal\Message
      * Resource names are schemeless URIs that follow the conventions in
      * https://cloud.google.com/apis/design/resource_names.
      * For example:
-     * `projects/my-project/locations/us-west1-a/privateClouds/my-cloud`
+     * `projects/my-project/locations/us-central1-a/privateClouds/my-cloud`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -171,7 +171,7 @@ class PrivateCloud extends \Google\Protobuf\Internal\Message
      * Resource names are schemeless URIs that follow the conventions in
      * https://cloud.google.com/apis/design/resource_names.
      * For example:
-     * `projects/my-project/locations/us-west1-a/privateClouds/my-cloud`
+     * `projects/my-project/locations/us-central1-a/privateClouds/my-cloud`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var

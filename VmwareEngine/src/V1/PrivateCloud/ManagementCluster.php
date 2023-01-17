@@ -29,8 +29,8 @@ class ManagementCluster extends \Google\Protobuf\Internal\Message
      */
     private $cluster_id = '';
     /**
-     * Required. The map of cluster node types in this cluster, where the key is canonical
-     * identifier of the node type (corresponds to the `NodeType`).
+     * Required. The map of cluster node types in this cluster, where the key is
+     * canonical identifier of the node type (corresponds to the `NodeType`).
      *
      * Generated from protobuf field <code>map<string, .google.cloud.vmwareengine.v1.NodeTypeConfig> node_type_configs = 7 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -52,8 +52,8 @@ class ManagementCluster extends \Google\Protobuf\Internal\Message
      *           * Complies with [RFC
      *           1034](https://datatracker.ietf.org/doc/html/rfc1034) (section 3.5)
      *     @type array|\Google\Protobuf\Internal\MapField $node_type_configs
-     *           Required. The map of cluster node types in this cluster, where the key is canonical
-     *           identifier of the node type (corresponds to the `NodeType`).
+     *           Required. The map of cluster node types in this cluster, where the key is
+     *           canonical identifier of the node type (corresponds to the `NodeType`).
      * }
      */
     public function __construct($data = NULL) {
@@ -102,8 +102,8 @@ class ManagementCluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The map of cluster node types in this cluster, where the key is canonical
-     * identifier of the node type (corresponds to the `NodeType`).
+     * Required. The map of cluster node types in this cluster, where the key is
+     * canonical identifier of the node type (corresponds to the `NodeType`).
      *
      * Generated from protobuf field <code>map<string, .google.cloud.vmwareengine.v1.NodeTypeConfig> node_type_configs = 7 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -114,8 +114,8 @@ class ManagementCluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The map of cluster node types in this cluster, where the key is canonical
-     * identifier of the node type (corresponds to the `NodeType`).
+     * Required. The map of cluster node types in this cluster, where the key is
+     * canonical identifier of the node type (corresponds to the `NodeType`).
      *
      * Generated from protobuf field <code>map<string, .google.cloud.vmwareengine.v1.NodeTypeConfig> node_type_configs = 7 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
