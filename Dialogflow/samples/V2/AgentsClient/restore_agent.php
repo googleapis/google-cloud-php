@@ -35,8 +35,9 @@ use Google\Rpc\Status;
  * entity types in the older version are deleted. After the restore, the
  * restored draft agent will be trained automatically (unless disabled in
  * agent settings). However, once the restore is done, training may not be
- * completed yet. Please call [TrainAgent][google.cloud.dialogflow.v2.Agents.TrainAgent] and wait for the operation it
- * returns in order to train explicitly.
+ * completed yet. Please call
+ * [TrainAgent][google.cloud.dialogflow.v2.Agents.TrainAgent] and wait for the
+ * operation it returns in order to train explicitly.
  *
  * This method is a [long-running
  * operation](https://cloud.google.com/dialogflow/es/docs/how/long-running-operations).

@@ -35,7 +35,9 @@ class TrainingPhrase extends \Google\Protobuf\Internal\Message
      * Note: Do not forget to include whitespace at part boundaries,
      * so the training phrase is well formatted when the parts are concatenated.
      * If the training phrase does not need to be annotated with parameters,
-     * you just need a single part with only the [Part.text][google.cloud.dialogflow.v2.Intent.TrainingPhrase.Part.text] field set.
+     * you just need a single part with only the
+     * [Part.text][google.cloud.dialogflow.v2.Intent.TrainingPhrase.Part.text]
+     * field set.
      * If you want to annotate the training phrase, you must create multiple
      * parts, where the fields of each part are populated in one of two ways:
      * -   `Part.text` is set to a part of the phrase that has no parameters.
@@ -73,7 +75,9 @@ class TrainingPhrase extends \Google\Protobuf\Internal\Message
      *           Note: Do not forget to include whitespace at part boundaries,
      *           so the training phrase is well formatted when the parts are concatenated.
      *           If the training phrase does not need to be annotated with parameters,
-     *           you just need a single part with only the [Part.text][google.cloud.dialogflow.v2.Intent.TrainingPhrase.Part.text] field set.
+     *           you just need a single part with only the
+     *           [Part.text][google.cloud.dialogflow.v2.Intent.TrainingPhrase.Part.text]
+     *           field set.
      *           If you want to annotate the training phrase, you must create multiple
      *           parts, where the fields of each part are populated in one of two ways:
      *           -   `Part.text` is set to a part of the phrase that has no parameters.
@@ -151,7 +155,9 @@ class TrainingPhrase extends \Google\Protobuf\Internal\Message
      * Note: Do not forget to include whitespace at part boundaries,
      * so the training phrase is well formatted when the parts are concatenated.
      * If the training phrase does not need to be annotated with parameters,
-     * you just need a single part with only the [Part.text][google.cloud.dialogflow.v2.Intent.TrainingPhrase.Part.text] field set.
+     * you just need a single part with only the
+     * [Part.text][google.cloud.dialogflow.v2.Intent.TrainingPhrase.Part.text]
+     * field set.
      * If you want to annotate the training phrase, you must create multiple
      * parts, where the fields of each part are populated in one of two ways:
      * -   `Part.text` is set to a part of the phrase that has no parameters.
@@ -175,7 +181,9 @@ class TrainingPhrase extends \Google\Protobuf\Internal\Message
      * Note: Do not forget to include whitespace at part boundaries,
      * so the training phrase is well formatted when the parts are concatenated.
      * If the training phrase does not need to be annotated with parameters,
-     * you just need a single part with only the [Part.text][google.cloud.dialogflow.v2.Intent.TrainingPhrase.Part.text] field set.
+     * you just need a single part with only the
+     * [Part.text][google.cloud.dialogflow.v2.Intent.TrainingPhrase.Part.text]
+     * field set.
      * If you want to annotate the training phrase, you must create multiple
      * parts, where the fields of each part are populated in one of two ways:
      * -   `Part.text` is set to a part of the phrase that has no parameters.
