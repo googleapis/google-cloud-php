@@ -101,7 +101,7 @@ class GrpcTraitTest extends TestCase
         $timesCalled = 0;
         $options = [
             'retries' => 1,
-            'retryFunction' => function (\Exception $ex) {
+            'grpcRetryFunction' => function (\Exception $ex) {
                 return $ex->getMessage() === 'test retry';
             }
         ];

@@ -128,7 +128,7 @@ class GrpcRequestWrapperTest extends TestCase
             [[]],
             [
                 'retries' => 1,
-                'retryFunction' => function (\Exception $ex) {
+                'grpcRetryFunction' => function (\Exception $ex) {
                     return $ex->getMessage() === 'Retryable exception';
                 }
             ]

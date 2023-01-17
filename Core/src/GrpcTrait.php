@@ -73,7 +73,7 @@ trait GrpcTrait
             'grpcOptions',
             'retries',
             'requestTimeout',
-            'retryFunction'
+            'grpcRetryFunction'
         ], $args[count($args) - 1]);
 
         try {
