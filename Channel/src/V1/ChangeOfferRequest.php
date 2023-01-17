@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [CloudChannelService.ChangeOffer][google.cloud.channel.v1.CloudChannelService.ChangeOffer].
+ * Request message for
+ * [CloudChannelService.ChangeOffer][google.cloud.channel.v1.CloudChannelService.ChangeOffer].
  *
  * Generated from protobuf message <code>google.cloud.channel.v1.ChangeOfferRequest</code>
  */
@@ -31,8 +32,10 @@ class ChangeOfferRequest extends \Google\Protobuf\Internal\Message
      */
     private $offer = '';
     /**
-     * Optional. Parameters needed to purchase the Offer. To view the available Parameters
-     * refer to the [Offer.parameter_definitions][google.cloud.channel.v1.Offer.parameter_definitions] from the desired offer.
+     * Optional. Parameters needed to purchase the Offer. To view the available
+     * Parameters refer to the
+     * [Offer.parameter_definitions][google.cloud.channel.v1.Offer.parameter_definitions]
+     * from the desired offer.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.Parameter parameters = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -44,8 +47,9 @@ class ChangeOfferRequest extends \Google\Protobuf\Internal\Message
      */
     private $purchase_order_id = '';
     /**
-     * Optional. You can specify an optional unique request ID, and if you need to retry
-     * your request, the server will know to ignore the request if it's complete.
+     * Optional. You can specify an optional unique request ID, and if you need to
+     * retry your request, the server will know to ignore the request if it's
+     * complete.
      * For example, you make an initial request and the request times out. If you
      * make the request again with the same request ID, the server can check if
      * it received the original operation with the same request ID. If it did, it
@@ -71,14 +75,17 @@ class ChangeOfferRequest extends \Google\Protobuf\Internal\Message
      *     @type string $offer
      *           Required. New Offer.
      *           Format: accounts/{account_id}/offers/{offer_id}.
-     *     @type \Google\Cloud\Channel\V1\Parameter[]|\Google\Protobuf\Internal\RepeatedField $parameters
-     *           Optional. Parameters needed to purchase the Offer. To view the available Parameters
-     *           refer to the [Offer.parameter_definitions][google.cloud.channel.v1.Offer.parameter_definitions] from the desired offer.
+     *     @type array<\Google\Cloud\Channel\V1\Parameter>|\Google\Protobuf\Internal\RepeatedField $parameters
+     *           Optional. Parameters needed to purchase the Offer. To view the available
+     *           Parameters refer to the
+     *           [Offer.parameter_definitions][google.cloud.channel.v1.Offer.parameter_definitions]
+     *           from the desired offer.
      *     @type string $purchase_order_id
      *           Optional. Purchase order id provided by the reseller.
      *     @type string $request_id
-     *           Optional. You can specify an optional unique request ID, and if you need to retry
-     *           your request, the server will know to ignore the request if it's complete.
+     *           Optional. You can specify an optional unique request ID, and if you need to
+     *           retry your request, the server will know to ignore the request if it's
+     *           complete.
      *           For example, you make an initial request and the request times out. If you
      *           make the request again with the same request ID, the server can check if
      *           it received the original operation with the same request ID. If it did, it
@@ -152,8 +159,10 @@ class ChangeOfferRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Parameters needed to purchase the Offer. To view the available Parameters
-     * refer to the [Offer.parameter_definitions][google.cloud.channel.v1.Offer.parameter_definitions] from the desired offer.
+     * Optional. Parameters needed to purchase the Offer. To view the available
+     * Parameters refer to the
+     * [Offer.parameter_definitions][google.cloud.channel.v1.Offer.parameter_definitions]
+     * from the desired offer.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.Parameter parameters = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -164,11 +173,13 @@ class ChangeOfferRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Parameters needed to purchase the Offer. To view the available Parameters
-     * refer to the [Offer.parameter_definitions][google.cloud.channel.v1.Offer.parameter_definitions] from the desired offer.
+     * Optional. Parameters needed to purchase the Offer. To view the available
+     * Parameters refer to the
+     * [Offer.parameter_definitions][google.cloud.channel.v1.Offer.parameter_definitions]
+     * from the desired offer.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.Parameter parameters = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param \Google\Cloud\Channel\V1\Parameter[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Channel\V1\Parameter>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setParameters($var)
@@ -206,8 +217,9 @@ class ChangeOfferRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. You can specify an optional unique request ID, and if you need to retry
-     * your request, the server will know to ignore the request if it's complete.
+     * Optional. You can specify an optional unique request ID, and if you need to
+     * retry your request, the server will know to ignore the request if it's
+     * complete.
      * For example, you make an initial request and the request times out. If you
      * make the request again with the same request ID, the server can check if
      * it received the original operation with the same request ID. If it did, it
@@ -225,8 +237,9 @@ class ChangeOfferRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. You can specify an optional unique request ID, and if you need to retry
-     * your request, the server will know to ignore the request if it's complete.
+     * Optional. You can specify an optional unique request ID, and if you need to
+     * retry your request, the server will know to ignore the request if it's
+     * complete.
      * For example, you make an initial request and the request times out. If you
      * make the request again with the same request ID, the server can check if
      * it received the original operation with the same request ID. If it did, it
