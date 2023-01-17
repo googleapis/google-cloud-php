@@ -35,13 +35,13 @@ use Google\Cloud\Asset\V1\AssetServiceClient;
  * resource migration takes place.
  *
  * @param string $resource          Name of the resource to perform the analysis against.
- *                                  Only GCP Project are supported as of today. Hence, this can only be Project
- *                                  ID (such as "projects/my-project-id") or a Project Number (such as
- *                                  "projects/12345").
- * @param string $destinationParent Name of the GCP Folder or Organization to reparent the target
- *                                  resource. The analysis will be performed against hypothetically moving the
- *                                  resource to this specified desitination parent. This can only be a Folder
- *                                  number (such as "folders/123") or an Organization number (such as
+ *                                  Only Google Cloud projects are supported as of today. Hence, this can only
+ *                                  be a project ID (such as "projects/my-project-id") or a project number
+ *                                  (such as "projects/12345").
+ * @param string $destinationParent Name of the Google Cloud folder or organization to reparent the
+ *                                  target resource. The analysis will be performed against hypothetically
+ *                                  moving the resource to this specified desitination parent. This can only be
+ *                                  a folder number (such as "folders/123") or an organization number (such as
  *                                  "organizations/123").
  */
 function analyze_move_sample(string $resource, string $destinationParent): void
