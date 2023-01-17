@@ -316,7 +316,7 @@ class StorageObjectTest extends SnippetTestCase
                 Argument::withEntry('headers', Argument::allOf(
                     Argument::withKey('Range')
                 ))
-            )),
+            ))
         ))
         ->shouldBeCalled()
         ->willReturn(Utils::streamFor('test'));
