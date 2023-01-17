@@ -722,7 +722,7 @@ class Rest implements ConnectionInterface
         string $headerLine,
         array &$arguments,
         string $value,
-        bool $getHeaderFromRequest = true
+        $getHeaderFromRequest = true
     ) {
         // Fetch request and options
         $request = $this->fetchRequest($arguments);
