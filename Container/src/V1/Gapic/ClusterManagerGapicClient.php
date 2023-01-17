@@ -1411,8 +1411,8 @@ class ClusterManagerGapicClient
      * }
      * ```
      *
-     * @param AddonsConfig $addonsConfig Required. The desired configurations for the various addons available to run in the
-     *                                   cluster.
+     * @param AddonsConfig $addonsConfig Required. The desired configurations for the various addons available to
+     *                                   run in the cluster.
      * @param array        $optionalArgs {
      *     Optional.
      *
