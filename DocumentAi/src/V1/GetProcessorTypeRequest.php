@@ -9,18 +9,18 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for the delete processor version method.
+ * Request message for get processor.
  *
- * Generated from protobuf message <code>google.cloud.documentai.v1.DeleteProcessorVersionRequest</code>
+ * Generated from protobuf message <code>google.cloud.documentai.v1.GetProcessorTypeRequest</code>
  */
-class DeleteProcessorVersionRequest extends \Google\Protobuf\Internal\Message
+class GetProcessorTypeRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The processor version resource name to be deleted.
+     * Required. The processor type resource name.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    protected $name = '';
+    private $name = '';
 
     /**
      * Constructor.
@@ -29,7 +29,7 @@ class DeleteProcessorVersionRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The processor version resource name to be deleted.
+     *           Required. The processor type resource name.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,7 +38,7 @@ class DeleteProcessorVersionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The processor version resource name to be deleted.
+     * Required. The processor type resource name.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -49,7 +49,7 @@ class DeleteProcessorVersionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The processor version resource name to be deleted.
+     * Required. The processor type resource name.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
