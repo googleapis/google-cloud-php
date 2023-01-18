@@ -111,6 +111,20 @@ class CustomJobSpec extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool enable_web_access = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $enable_web_access = false;
+    /**
+     * Optional. Whether you want Vertex AI to enable access to the customized
+     * dashboard in training chief container.
+     * If set to `true`, you can access the dashboard at the URIs given
+     * by
+     * [CustomJob.web_access_uris][google.cloud.aiplatform.v1.CustomJob.web_access_uris]
+     * or
+     * [Trial.web_access_uris][google.cloud.aiplatform.v1.Trial.web_access_uris]
+     * (within
+     * [HyperparameterTuningJob.trials][google.cloud.aiplatform.v1.HyperparameterTuningJob.trials]).
+     *
+     * Generated from protobuf field <code>bool enable_dashboard_access = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $enable_dashboard_access = false;
 
     /**
      * Constructor.
@@ -176,6 +190,16 @@ class CustomJobSpec extends \Google\Protobuf\Internal\Message
      *           access](https://cloud.google.com/vertex-ai/docs/training/monitor-debug-interactive-shell)
      *           to training containers.
      *           If set to `true`, you can access interactive shells at the URIs given
+     *           by
+     *           [CustomJob.web_access_uris][google.cloud.aiplatform.v1.CustomJob.web_access_uris]
+     *           or
+     *           [Trial.web_access_uris][google.cloud.aiplatform.v1.Trial.web_access_uris]
+     *           (within
+     *           [HyperparameterTuningJob.trials][google.cloud.aiplatform.v1.HyperparameterTuningJob.trials]).
+     *     @type bool $enable_dashboard_access
+     *           Optional. Whether you want Vertex AI to enable access to the customized
+     *           dashboard in training chief container.
+     *           If set to `true`, you can access the dashboard at the URIs given
      *           by
      *           [CustomJob.web_access_uris][google.cloud.aiplatform.v1.CustomJob.web_access_uris]
      *           or
@@ -509,6 +533,48 @@ class CustomJobSpec extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->enable_web_access = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Whether you want Vertex AI to enable access to the customized
+     * dashboard in training chief container.
+     * If set to `true`, you can access the dashboard at the URIs given
+     * by
+     * [CustomJob.web_access_uris][google.cloud.aiplatform.v1.CustomJob.web_access_uris]
+     * or
+     * [Trial.web_access_uris][google.cloud.aiplatform.v1.Trial.web_access_uris]
+     * (within
+     * [HyperparameterTuningJob.trials][google.cloud.aiplatform.v1.HyperparameterTuningJob.trials]).
+     *
+     * Generated from protobuf field <code>bool enable_dashboard_access = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getEnableDashboardAccess()
+    {
+        return $this->enable_dashboard_access;
+    }
+
+    /**
+     * Optional. Whether you want Vertex AI to enable access to the customized
+     * dashboard in training chief container.
+     * If set to `true`, you can access the dashboard at the URIs given
+     * by
+     * [CustomJob.web_access_uris][google.cloud.aiplatform.v1.CustomJob.web_access_uris]
+     * or
+     * [Trial.web_access_uris][google.cloud.aiplatform.v1.Trial.web_access_uris]
+     * (within
+     * [HyperparameterTuningJob.trials][google.cloud.aiplatform.v1.HyperparameterTuningJob.trials]).
+     *
+     * Generated from protobuf field <code>bool enable_dashboard_access = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnableDashboardAccess($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_dashboard_access = $var;
 
         return $this;
     }
