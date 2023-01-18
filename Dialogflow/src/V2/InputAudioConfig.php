@@ -42,10 +42,12 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      */
     private $language_code = '';
     /**
-     * If `true`, Dialogflow returns [SpeechWordInfo][google.cloud.dialogflow.v2.SpeechWordInfo] in
-     * [StreamingRecognitionResult][google.cloud.dialogflow.v2.StreamingRecognitionResult] with information about the recognized speech
-     * words, e.g. start and end time offsets. If false or unspecified, Speech
-     * doesn't return any word-level information.
+     * If `true`, Dialogflow returns
+     * [SpeechWordInfo][google.cloud.dialogflow.v2.SpeechWordInfo] in
+     * [StreamingRecognitionResult][google.cloud.dialogflow.v2.StreamingRecognitionResult]
+     * with information about the recognized speech words, e.g. start and end time
+     * offsets. If false or unspecified, Speech doesn't return any word-level
+     * information.
      *
      * Generated from protobuf field <code>bool enable_word_info = 13;</code>
      */
@@ -90,7 +92,8 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      */
     private $model = '';
     /**
-     * Which variant of the [Speech model][google.cloud.dialogflow.v2.InputAudioConfig.model] to use.
+     * Which variant of the [Speech
+     * model][google.cloud.dialogflow.v2.InputAudioConfig.model] to use.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SpeechModelVariant model_variant = 10;</code>
      */
@@ -111,7 +114,9 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      */
     private $single_utterance = false;
     /**
-     * Only used in [Participants.AnalyzeContent][google.cloud.dialogflow.v2.Participants.AnalyzeContent] and
+     * Only used in
+     * [Participants.AnalyzeContent][google.cloud.dialogflow.v2.Participants.AnalyzeContent]
+     * and
      * [Participants.StreamingAnalyzeContent][google.cloud.dialogflow.v2.Participants.StreamingAnalyzeContent].
      * If `false` and recognition doesn't return any result, trigger
      * `NO_SPEECH_RECOGNIZED` event to Dialogflow agent.
@@ -141,10 +146,12 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      *           for a list of the currently supported language codes. Note that queries in
      *           the same session do not necessarily need to specify the same language.
      *     @type bool $enable_word_info
-     *           If `true`, Dialogflow returns [SpeechWordInfo][google.cloud.dialogflow.v2.SpeechWordInfo] in
-     *           [StreamingRecognitionResult][google.cloud.dialogflow.v2.StreamingRecognitionResult] with information about the recognized speech
-     *           words, e.g. start and end time offsets. If false or unspecified, Speech
-     *           doesn't return any word-level information.
+     *           If `true`, Dialogflow returns
+     *           [SpeechWordInfo][google.cloud.dialogflow.v2.SpeechWordInfo] in
+     *           [StreamingRecognitionResult][google.cloud.dialogflow.v2.StreamingRecognitionResult]
+     *           with information about the recognized speech words, e.g. start and end time
+     *           offsets. If false or unspecified, Speech doesn't return any word-level
+     *           information.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $phrase_hints
      *           A list of strings containing words and phrases that the speech
      *           recognizer should recognize with higher likelihood.
@@ -172,7 +179,8 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      *           documentation](https://cloud.google.com/speech-to-text/docs/basics#select-model)
      *           for more details.
      *     @type int $model_variant
-     *           Which variant of the [Speech model][google.cloud.dialogflow.v2.InputAudioConfig.model] to use.
+     *           Which variant of the [Speech
+     *           model][google.cloud.dialogflow.v2.InputAudioConfig.model] to use.
      *     @type bool $single_utterance
      *           If `false` (default), recognition does not cease until the
      *           client closes the stream.
@@ -185,7 +193,9 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      *           Note: When specified, InputAudioConfig.single_utterance takes precedence
      *           over StreamingDetectIntentRequest.single_utterance.
      *     @type bool $disable_no_speech_recognized_event
-     *           Only used in [Participants.AnalyzeContent][google.cloud.dialogflow.v2.Participants.AnalyzeContent] and
+     *           Only used in
+     *           [Participants.AnalyzeContent][google.cloud.dialogflow.v2.Participants.AnalyzeContent]
+     *           and
      *           [Participants.StreamingAnalyzeContent][google.cloud.dialogflow.v2.Participants.StreamingAnalyzeContent].
      *           If `false` and recognition doesn't return any result, trigger
      *           `NO_SPEECH_RECOGNIZED` event to Dialogflow agent.
@@ -291,10 +301,12 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If `true`, Dialogflow returns [SpeechWordInfo][google.cloud.dialogflow.v2.SpeechWordInfo] in
-     * [StreamingRecognitionResult][google.cloud.dialogflow.v2.StreamingRecognitionResult] with information about the recognized speech
-     * words, e.g. start and end time offsets. If false or unspecified, Speech
-     * doesn't return any word-level information.
+     * If `true`, Dialogflow returns
+     * [SpeechWordInfo][google.cloud.dialogflow.v2.SpeechWordInfo] in
+     * [StreamingRecognitionResult][google.cloud.dialogflow.v2.StreamingRecognitionResult]
+     * with information about the recognized speech words, e.g. start and end time
+     * offsets. If false or unspecified, Speech doesn't return any word-level
+     * information.
      *
      * Generated from protobuf field <code>bool enable_word_info = 13;</code>
      * @return bool
@@ -305,10 +317,12 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If `true`, Dialogflow returns [SpeechWordInfo][google.cloud.dialogflow.v2.SpeechWordInfo] in
-     * [StreamingRecognitionResult][google.cloud.dialogflow.v2.StreamingRecognitionResult] with information about the recognized speech
-     * words, e.g. start and end time offsets. If false or unspecified, Speech
-     * doesn't return any word-level information.
+     * If `true`, Dialogflow returns
+     * [SpeechWordInfo][google.cloud.dialogflow.v2.SpeechWordInfo] in
+     * [StreamingRecognitionResult][google.cloud.dialogflow.v2.StreamingRecognitionResult]
+     * with information about the recognized speech words, e.g. start and end time
+     * offsets. If false or unspecified, Speech doesn't return any word-level
+     * information.
      *
      * Generated from protobuf field <code>bool enable_word_info = 13;</code>
      * @param bool $var
@@ -445,7 +459,8 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Which variant of the [Speech model][google.cloud.dialogflow.v2.InputAudioConfig.model] to use.
+     * Which variant of the [Speech
+     * model][google.cloud.dialogflow.v2.InputAudioConfig.model] to use.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SpeechModelVariant model_variant = 10;</code>
      * @return int
@@ -456,7 +471,8 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Which variant of the [Speech model][google.cloud.dialogflow.v2.InputAudioConfig.model] to use.
+     * Which variant of the [Speech
+     * model][google.cloud.dialogflow.v2.InputAudioConfig.model] to use.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SpeechModelVariant model_variant = 10;</code>
      * @param int $var
@@ -515,7 +531,9 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Only used in [Participants.AnalyzeContent][google.cloud.dialogflow.v2.Participants.AnalyzeContent] and
+     * Only used in
+     * [Participants.AnalyzeContent][google.cloud.dialogflow.v2.Participants.AnalyzeContent]
+     * and
      * [Participants.StreamingAnalyzeContent][google.cloud.dialogflow.v2.Participants.StreamingAnalyzeContent].
      * If `false` and recognition doesn't return any result, trigger
      * `NO_SPEECH_RECOGNIZED` event to Dialogflow agent.
@@ -529,7 +547,9 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Only used in [Participants.AnalyzeContent][google.cloud.dialogflow.v2.Participants.AnalyzeContent] and
+     * Only used in
+     * [Participants.AnalyzeContent][google.cloud.dialogflow.v2.Participants.AnalyzeContent]
+     * and
      * [Participants.StreamingAnalyzeContent][google.cloud.dialogflow.v2.Participants.StreamingAnalyzeContent].
      * If `false` and recognition doesn't return any result, trigger
      * `NO_SPEECH_RECOGNIZED` event to Dialogflow agent.

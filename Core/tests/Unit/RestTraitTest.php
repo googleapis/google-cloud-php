@@ -86,6 +86,34 @@ class RestTraitTest extends TestCase
         $this->assertEquals(json_decode($responseBody, true), $actualResponse);
     }
 
+    public function testRestSendsRequestWithRetryFunction()
+    {
+        $retryFunction = function (\Exception $ex) {
+            return true;
+        };
+        $restOptions = [
+            'restRetryFunction' => $retryFunction,
+        ];
+        $responseBody = '{"whatAWonderful": "response"}';
+        $this->requestBuilder->build('resource', 'method', Argument::any())
+            ->willReturn(new Request('GET', 'http://www.example.com'));
+
+        $actualRetryFunction = null;
+        $this->requestWrapper->send(Argument::any(), Argument::any())
+            ->will(function ($args) use (&$actualRetryFunction, $responseBody) {
+                $actualRetryFunction = $args[1]['restRetryFunction'];
+                return new Response(200, [], $responseBody);
+            })
+            ->shouldBeCalledOnce();
+        $this->implementation->setRequestBuilder($this->requestBuilder->reveal());
+        $this->implementation->setRequestWrapper($this->requestWrapper->reveal());
+
+        $actualResponse = $this->implementation->send('resource', 'method', $restOptions);
+
+        $this->assertEquals($retryFunction, $actualRetryFunction);
+        $this->assertEquals($actualResponse, json_decode($responseBody, true));
+    }
+
     public function testSendsRequestNotFoundWhitelisted()
     {
         $this->requestWrapper->send(

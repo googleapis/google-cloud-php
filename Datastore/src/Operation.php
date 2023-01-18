@@ -351,6 +351,7 @@ class Operation
      *     @type bool $sort If set to true, results in each set will be sorted
      *           to match the order given in $keys. **Defaults to** `false`.
      *     @type string $databaseId ID of the database to which the entities belong.
+     *     @type timestamp $readTime Reads entities as they were at the given timestamp.
      * }
      * @return array Returns an array with keys [`found`, `missing`, and `deferred`].
      *         Members of `found` will be instance of
@@ -438,6 +439,7 @@ class Operation
      *     @type string $readConsistency See
      *           [ReadConsistency](https://cloud.google.com/datastore/reference/rest/v1/ReadOptions#ReadConsistency).
      *     @type string $databaseId ID of the database to which the entities belong.
+     *     @type timestamp $readTime Reads entities as they were at the given timestamp.
      * }
      * @return EntityIterator<EntityInterface>
      */
@@ -764,6 +766,7 @@ class Operation
      *      @type string $transaction If set, query or lookup will run in transaction.
      *      @type string $readConsistency See
      *           [ReadConsistency](https://cloud.google.com/datastore/reference/rest/v1/ReadOptions#ReadConsistency).
+     *      @type timestamp $readTime Reads entities as they were at the given timestamp.
      * }
      * @return array
      */
@@ -772,11 +775,13 @@ class Operation
         $options += [
             'readConsistency' => null,
             'transaction' => null,
+            'readTime' => null
         ];
 
         $readOptions = array_filter([
             'readConsistency' => $options['readConsistency'],
             'transaction' => $options['transaction'],
+            'readTime' => $options['readTime']
         ]);
 
         return array_filter([

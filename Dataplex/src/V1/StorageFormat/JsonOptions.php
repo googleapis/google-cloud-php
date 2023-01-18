@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class JsonOptions extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. The character encoding of the data. Accepts "US-ASCII", "UTF-8" and
-     * "ISO-8859-1". Defaults to UTF-8 if not specified.
+     * Optional. The character encoding of the data. Accepts "US-ASCII", "UTF-8"
+     * and "ISO-8859-1". Defaults to UTF-8 if not specified.
      *
      * Generated from protobuf field <code>string encoding = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -30,8 +30,8 @@ class JsonOptions extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $encoding
-     *           Optional. The character encoding of the data. Accepts "US-ASCII", "UTF-8" and
-     *           "ISO-8859-1". Defaults to UTF-8 if not specified.
+     *           Optional. The character encoding of the data. Accepts "US-ASCII", "UTF-8"
+     *           and "ISO-8859-1". Defaults to UTF-8 if not specified.
      * }
      */
     public function __construct($data = NULL) {
@@ -40,8 +40,8 @@ class JsonOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The character encoding of the data. Accepts "US-ASCII", "UTF-8" and
-     * "ISO-8859-1". Defaults to UTF-8 if not specified.
+     * Optional. The character encoding of the data. Accepts "US-ASCII", "UTF-8"
+     * and "ISO-8859-1". Defaults to UTF-8 if not specified.
      *
      * Generated from protobuf field <code>string encoding = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -52,8 +52,8 @@ class JsonOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The character encoding of the data. Accepts "US-ASCII", "UTF-8" and
-     * "ISO-8859-1". Defaults to UTF-8 if not specified.
+     * Optional. The character encoding of the data. Accepts "US-ASCII", "UTF-8"
+     * and "ISO-8859-1". Defaults to UTF-8 if not specified.
      *
      * Generated from protobuf field <code>string encoding = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

@@ -23,16 +23,16 @@ class ListContentRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
-     * Optional. Maximum number of content to return. The service may return fewer than
-     * this value. If unspecified, at most 10 content will be returned. The
+     * Optional. Maximum number of content to return. The service may return fewer
+     * than this value. If unspecified, at most 10 content will be returned. The
      * maximum value is 1000; values above 1000 will be coerced to 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_size = 0;
     /**
-     * Optional. Page token received from a previous `ListContent` call. Provide this
-     * to retrieve the subsequent page. When paginating, all other parameters
+     * Optional. Page token received from a previous `ListContent` call. Provide
+     * this to retrieve the subsequent page. When paginating, all other parameters
      * provided to `ListContent` must match the call that provided the page
      * token.
      *
@@ -62,12 +62,12 @@ class ListContentRequest extends \Google\Protobuf\Internal\Message
      *           Required. The resource name of the parent lake:
      *           projects/{project_id}/locations/{location_id}/lakes/{lake_id}
      *     @type int $page_size
-     *           Optional. Maximum number of content to return. The service may return fewer than
-     *           this value. If unspecified, at most 10 content will be returned. The
+     *           Optional. Maximum number of content to return. The service may return fewer
+     *           than this value. If unspecified, at most 10 content will be returned. The
      *           maximum value is 1000; values above 1000 will be coerced to 1000.
      *     @type string $page_token
-     *           Optional. Page token received from a previous `ListContent` call. Provide this
-     *           to retrieve the subsequent page. When paginating, all other parameters
+     *           Optional. Page token received from a previous `ListContent` call. Provide
+     *           this to retrieve the subsequent page. When paginating, all other parameters
      *           provided to `ListContent` must match the call that provided the page
      *           token.
      *     @type string $filter
@@ -114,8 +114,8 @@ class ListContentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Maximum number of content to return. The service may return fewer than
-     * this value. If unspecified, at most 10 content will be returned. The
+     * Optional. Maximum number of content to return. The service may return fewer
+     * than this value. If unspecified, at most 10 content will be returned. The
      * maximum value is 1000; values above 1000 will be coerced to 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -127,8 +127,8 @@ class ListContentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Maximum number of content to return. The service may return fewer than
-     * this value. If unspecified, at most 10 content will be returned. The
+     * Optional. Maximum number of content to return. The service may return fewer
+     * than this value. If unspecified, at most 10 content will be returned. The
      * maximum value is 1000; values above 1000 will be coerced to 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -144,8 +144,8 @@ class ListContentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Page token received from a previous `ListContent` call. Provide this
-     * to retrieve the subsequent page. When paginating, all other parameters
+     * Optional. Page token received from a previous `ListContent` call. Provide
+     * this to retrieve the subsequent page. When paginating, all other parameters
      * provided to `ListContent` must match the call that provided the page
      * token.
      *
@@ -158,8 +158,8 @@ class ListContentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Page token received from a previous `ListContent` call. Provide this
-     * to retrieve the subsequent page. When paginating, all other parameters
+     * Optional. Page token received from a previous `ListContent` call. Provide
+     * this to retrieve the subsequent page. When paginating, all other parameters
      * provided to `ListContent` must match the call that provided the page
      * token.
      *

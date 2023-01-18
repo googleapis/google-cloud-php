@@ -25,14 +25,113 @@
                                 "getContent"
                             ]
                         },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
                         "ListContent": {
                             "methods": [
                                 "listContent"
                             ]
                         },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        },
                         "UpdateContent": {
                             "methods": [
                                 "updateContent"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "DataScanService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "DataScanServiceGapicClient",
+                    "rpcs": {
+                        "CreateDataScan": {
+                            "methods": [
+                                "createDataScan"
+                            ]
+                        },
+                        "DeleteDataScan": {
+                            "methods": [
+                                "deleteDataScan"
+                            ]
+                        },
+                        "GetDataScan": {
+                            "methods": [
+                                "getDataScan"
+                            ]
+                        },
+                        "GetDataScanJob": {
+                            "methods": [
+                                "getDataScanJob"
+                            ]
+                        },
+                        "ListDataScanJobs": {
+                            "methods": [
+                                "listDataScanJobs"
+                            ]
+                        },
+                        "ListDataScans": {
+                            "methods": [
+                                "listDataScans"
+                            ]
+                        },
+                        "RunDataScan": {
+                            "methods": [
+                                "runDataScan"
+                            ]
+                        },
+                        "UpdateDataScan": {
+                            "methods": [
+                                "updateDataScan"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
                             ]
                         }
                     }
@@ -87,6 +186,31 @@
                         "UpdateEntity": {
                             "methods": [
                                 "updateEntity"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
                             ]
                         }
                     }
@@ -256,6 +380,31 @@
                         "UpdateZone": {
                             "methods": [
                                 "updateZone"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
                             ]
                         }
                     }

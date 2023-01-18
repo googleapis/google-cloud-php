@@ -88,7 +88,8 @@ trait RestTrait
         $requestOptions = $this->pluckArray([
             'restOptions',
             'retries',
-            'requestTimeout'
+            'requestTimeout',
+            'restRetryFunction'
         ], $options);
 
         try {

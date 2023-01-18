@@ -8,4 +8,4 @@ easily invoked by running `composer google-cloud` at the command line.
 
 * `composer google-cloud release <major|minor|patch|version-number>` Create a new release of Google Cloud PHP.
 * `composer google-cloud docfx` Generate and upload Google Cloud PHP documentation in DocFX format (PHP 8.0 only).
-* [DEPRECATED] `composer google-cloud docs [<source] [<output>]` Generate Google Cloud PHP documentation.
+

@@ -35,7 +35,8 @@ use Google\Rpc\Status;
  * @param string $parent              Format:
  *                                    `parent=projects/{project_id}/locations/{location}`
  * @param string $instanceId          User-defined unique ID of this instance.
- * @param string $instanceMachineType The [Compute Engine machine type](/compute/docs/machine-types) of this
+ * @param string $instanceMachineType The [Compute Engine machine
+ *                                    type](https://cloud.google.com/compute/docs/machine-types) of this
  *                                    instance.
  */
 function create_instance_sample(

@@ -882,8 +882,9 @@ class ParticipantsGapicClient
      *           ID>/conversations/<Conversation ID>/messages/<Message ID>`.
      *     @type int $contextSize
      *           Optional. Max number of messages prior to and including
-     *           [latest_message][google.cloud.dialogflow.v2.SuggestArticlesRequest.latest_message] to use as context
-     *           when compiling the suggestion. By default 20 and at most 50.
+     *           [latest_message][google.cloud.dialogflow.v2.SuggestArticlesRequest.latest_message]
+     *           to use as context when compiling the suggestion. By default 20 and at
+     *           most 50.
      *     @type AssistQueryParameters $assistQueryParams
      *           Parameters for a human assist query.
      *     @type RetrySettings|array $retrySettings

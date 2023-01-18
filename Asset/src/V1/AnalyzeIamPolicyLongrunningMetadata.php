@@ -10,7 +10,7 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Represents the metadata of the longrunning operation for the
- * AnalyzeIamPolicyLongrunning rpc.
+ * AnalyzeIamPolicyLongrunning RPC.
  *
  * Generated from protobuf message <code>google.cloud.asset.v1.AnalyzeIamPolicyLongrunningMetadata</code>
  */

@@ -223,9 +223,11 @@ class ConversationModelsClientTest extends GeneratedTest
         $transport->addResponse($incompleteOperation);
         $name = 'name3373707';
         $displayName = 'displayName1615086568';
+        $rawHumanEvalTemplateCsv = 'rawHumanEvalTemplateCsv-1393080869';
         $expectedResponse = new ConversationModelEvaluation();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setRawHumanEvalTemplateCsv($rawHumanEvalTemplateCsv);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -634,9 +636,11 @@ class ConversationModelsClientTest extends GeneratedTest
         // Mock response
         $name2 = 'name2-1052831874';
         $displayName = 'displayName1615086568';
+        $rawHumanEvalTemplateCsv = 'rawHumanEvalTemplateCsv-1393080869';
         $expectedResponse = new ConversationModelEvaluation();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setRawHumanEvalTemplateCsv($rawHumanEvalTemplateCsv);
         $transport->addResponse($expectedResponse);
         // Mock request
         $name = 'name3373707';
