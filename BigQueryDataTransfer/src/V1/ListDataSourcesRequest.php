@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListDataSourcesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The BigQuery project id for which data sources should be returned.
-     * Must be in the form: `projects/{project_id}` or
+     * Required. The BigQuery project id for which data sources should be
+     * returned. Must be in the form: `projects/{project_id}` or
      * `projects/{project_id}/locations/{location_id}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -47,8 +47,8 @@ class ListDataSourcesRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The BigQuery project id for which data sources should be returned.
-     *           Must be in the form: `projects/{project_id}` or
+     *           Required. The BigQuery project id for which data sources should be
+     *           returned. Must be in the form: `projects/{project_id}` or
      *           `projects/{project_id}/locations/{location_id}`
      *     @type string $page_token
      *           Pagination token, which can be used to request a specific page
@@ -66,8 +66,8 @@ class ListDataSourcesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The BigQuery project id for which data sources should be returned.
-     * Must be in the form: `projects/{project_id}` or
+     * Required. The BigQuery project id for which data sources should be
+     * returned. Must be in the form: `projects/{project_id}` or
      * `projects/{project_id}/locations/{location_id}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -79,8 +79,8 @@ class ListDataSourcesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The BigQuery project id for which data sources should be returned.
-     * Must be in the form: `projects/{project_id}` or
+     * Required. The BigQuery project id for which data sources should be
+     * returned. Must be in the form: `projects/{project_id}` or
      * `projects/{project_id}/locations/{location_id}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>

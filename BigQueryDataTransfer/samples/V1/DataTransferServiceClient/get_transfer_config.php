@@ -30,8 +30,8 @@ use Google\Cloud\BigQuery\DataTransfer\V1\TransferConfig;
 /**
  * Returns information about a data transfer config.
  *
- * @param string $formattedName The field will contain name of the resource requested, for example:
- *                              `projects/{project_id}/transferConfigs/{config_id}` or
+ * @param string $formattedName The field will contain name of the resource requested, for
+ *                              example: `projects/{project_id}/transferConfigs/{config_id}` or
  *                              `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`
  *                              Please see {@see DataTransferServiceClient::transferConfigName()} for help formatting this field.
  */
