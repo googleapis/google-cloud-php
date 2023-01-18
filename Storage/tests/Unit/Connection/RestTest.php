@@ -24,6 +24,7 @@ use Google\Cloud\Core\Upload\MultipartUploader;
 use Google\Cloud\Core\Upload\ResumableUploader;
 use Google\Cloud\Core\Upload\StreamableUploader;
 use Google\Cloud\Storage\Connection\Rest;
+use Google\Cloud\Storage\Connection\RetryTrait;
 use Google\CRC32\CRC32;
 use GuzzleHttp\Promise;
 use GuzzleHttp\Promise\PromiseInterface;
@@ -407,7 +408,7 @@ class RestTest extends TestCase
      */
     public function testChooseValidationMethod($args, $extensionLoaded, $supportsBuiltin, $expected)
     {
-        $rest = new RestCrc32cStub;
+        $rest = new RestCrc32cStub();
         $rest->extensionLoaded = $extensionLoaded;
         $rest->supportsBuiltin = $supportsBuiltin;
 
@@ -495,6 +496,7 @@ class RestTest extends TestCase
 
     /**
      * @dataProvider retryFunctionReturnValues
+     * @dataProvider retryStrategyCases
      */
     public function testRetryFunction(
         $resource,
@@ -512,7 +514,10 @@ class RestTest extends TestCase
         $restRetryFunction = $property->getValue($rest);
         $retryFun = $rest->getRestRetryFunction($resource, $op, $args, $restRetryFunction);
 
-        $this->assertEquals($expected, $retryFun(new \Exception('', $errorCode), $currAttempt));
+        $this->assertEquals(
+            $expected,
+            $retryFun(new \Exception('', $errorCode), $currAttempt)
+        );
     }
 
     public function retryFunctionReturnValues()
@@ -560,8 +565,8 @@ class RestTest extends TestCase
             // precondition not provided
             ['buckets', 'update', [], [], 400, 1, false],
             // Non idempotent
-            ['bucket_acl', 'delete', [], [], 503, 4, false],
-            ['bucket_acl', 'delete', [], [], 400, 4, false],
+            ['bucket_acl', 'delete', [], [], 503, 2, false],
+            ['bucket_acl', 'delete', [], [], 400, 3, false],
             // Max retry reached
             ['buckets', 'get', [], [], 503, 4, false],
             // User given restRetryFunction in the StorageClient which internally reaches Rest
@@ -574,6 +579,51 @@ class RestTest extends TestCase
             ['buckets', 'get', $restRetryFunctionArg, $opRetryFunctionArg, 503, $opMaxRetry+1, false],
             ['buckets', 'get', $restRetryFunctionArg, $opRetryFunctionArg, 503, $opMaxRetry, true]
         ];
+    }
+
+    /**
+     * Creates retry strategy test cases(for 'always' and 'never' retry cases)
+     * from the existing retry cases of @dataprovider: retryFunctionReturnValues
+     *
+     * Each case of this @dataprovider is of the format
+     * [
+     *     $resource,
+     *     $operation,
+     *     $restConfig,
+     *     $args,
+     *     $errorCode,
+     *     $retryCount,
+     *     $expectedResult
+     * ]
+     *
+     * @return array<array>
+     */
+    public function retryStrategyCases()
+    {
+        $retryCases = $this->retryFunctionReturnValues();
+        $retryStrategyCases = [];
+        foreach ($retryCases as $retryCase) {
+            // For retry always
+            $case = $retryCase;
+            $case[3]['retryStrategy'] = RetryTrait::$RETRY_STRATEGY_ALWAYS;
+            $case[6] = $this->assignExpectedOutcome(true, $retryCase);
+            if (!in_array(
+                $retryCase[4],
+                RetryTrait::$httpRetryCodes
+            ) || $retryCase[5] > 3
+            ) {
+                $case[6] = $this->assignExpectedOutcome(false, $retryCase);
+            }
+            $retryStrategyCases[] = $case;
+
+            // For retry never
+            $case = $retryCase;
+            $case[3]['retryStrategy'] = RetryTrait::$RETRY_STRATEGY_NEVER;
+            $case[6] = $this->assignExpectedOutcome(false, $retryCase);
+            $retryStrategyCases[] = $case;
+        }
+
+        return $retryStrategyCases;
     }
 
     private function getContentTypeAndMetadata(RequestInterface $request)
@@ -592,6 +642,21 @@ class RestTest extends TestCase
             trim(explode(':', $lines[7])[1]),
             json_decode($lines[5], true)
         ];
+    }
+
+    /**
+     * Method to check if we need to change the expected outcome incase of
+     * specific retry strategies like 'always' and 'never'.
+     */
+    private function assignExpectedOutcome($expected, $retryCase)
+    {
+        if (isset($retryCase[3]['restRetryFunction'])
+            || isset($retryCase[2]['restRetryFunction'])
+        ) {
+            return $retryCase[6];
+        }
+
+        return $expected;
     }
 }
 
