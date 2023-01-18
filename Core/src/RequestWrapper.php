@@ -38,6 +38,8 @@ class RequestWrapper
     use RequestWrapperTrait;
     use RetryDeciderTrait;
 
+    const HEADER_API_CLIENT_IDENTIFICATION = 'x-goog-api-client';
+
     /**
      * @var string|null The current version of the component from which the request
      * originated.
@@ -116,6 +118,13 @@ class RequestWrapper
      *     @type callable $restRetryFunction Sets the conditions for whether or
      *           not a request should attempt to retry. Function signature should
      *           match: `function (\Exception $ex) : bool`.
+     *     @type callable $restOnRetryExceptionFunction Runs before the restRetryFunction.
+     *           This miight be used to simply consume the exception b/w retries.
+     *           The $arguments parameter is passed by reference so that they may be
+     *           modified on demand, for ex: changing the headers in b/w retries.
+     *     @type callable $restOnExecutionStartFunction Runs before the $request is sent.
+     *           This might be used as an alternative to sending options for the
+     *           purpose of setting args/headers for a request.
      *     @type callable $restDelayFunction Executes a delay, defaults to
      *           utilizing `usleep`. Function signature should match:
      *           `function (int $delay) : void`.
@@ -136,6 +145,8 @@ class RequestWrapper
             'shouldSignRequest' => true,
             'componentVersion' => null,
             'restRetryFunction' => null,
+            'restOnRetryExceptionFunction' => null,
+            'restOnExecutionStartFunction' => null,
             'restDelayFunction' => null,
             'restCalcDelayFunction' => null
         ];
@@ -172,6 +183,13 @@ class RequestWrapper
      *     @type callable $restRetryFunction Sets the conditions for whether or
      *           not a request should attempt to retry. Function signature should
      *           match: `function (\Exception $ex) : bool`.
+     *     @type callable $restOnRetryExceptionFunction Runs before the restRetryFunction.
+     *           This miight be used to simply consume the exception b/w retries.
+     *           The $arguments parameter is passed by reference so that they may be
+     *           modified on demand, for ex: changing the headers in b/w retries.
+     *     @type callable $restOnExecutionStartFunction Runs before the $request is sent.
+     *           This might be used as an alternative to sending options for the
+     *           purpose of setting args/headers for a request.
      *     @type callable $restDelayFunction Executes a delay, defaults to
      *           utilizing `usleep`. Function signature should match:
      *           `function (int $delay) : void`.
@@ -187,7 +205,9 @@ class RequestWrapper
         $retryOptions = $this->getRetryOptions($options);
         $backoff = new ExponentialBackoff(
             $retryOptions['retries'],
-            $retryOptions['retryFunction']
+            $retryOptions['retryFunction'],
+            $retryOptions['onRetryExceptionFunction'],
+            $retryOptions['onExecutionStartFunction']
         );
 
         if ($retryOptions['delayFunction']) {
@@ -427,6 +447,12 @@ class RequestWrapper
             'retryFunction' => isset($options['restRetryFunction'])
                 ? $options['restRetryFunction']
                 : $this->retryFunction,
+            'onRetryExceptionFunction' => isset($options['restOnRetryExceptionFunction'])
+                ? $options['restOnRetryExceptionFunction']
+                : null,
+            'onExecutionStartFunction' => isset($options['restOnExecutionStartFunction'])
+                ? $options['restOnExecutionStartFunction']
+                : null,
             'delayFunction' => isset($options['restDelayFunction'])
                 ? $options['restDelayFunction']
                 : $this->delayFunction,

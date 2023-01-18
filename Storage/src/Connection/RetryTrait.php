@@ -30,6 +30,7 @@ trait RetryTrait
      */
     public static $httpRetryCodes = [
         0, // connetion-refused OR connection-reset gives status code of 0
+        200, // partial download cases
         408,
         429,
         500,
