@@ -58,8 +58,6 @@ items:
       
       Format is
       `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.
-      
-      Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
     parent: \Google\Cloud\Vision\V1\CreateReferenceImageRequest
     type: method
     langs:
@@ -77,8 +75,6 @@ items:
       
       Format is
       `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.
-      
-      Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
     parent: \Google\Cloud\Vision\V1\CreateReferenceImageRequest
     type: method
     langs:
@@ -100,8 +96,6 @@ items:
       Required. The reference image to create.
       
       If an image ID is specified, it is ignored.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.ReferenceImage reference_image = 2 [(.google.api.field_behavior) = REQUIRED];</code>
     parent: \Google\Cloud\Vision\V1\CreateReferenceImageRequest
     type: method
     langs:
@@ -134,8 +128,6 @@ items:
       Required. The reference image to create.
       
       If an image ID is specified, it is ignored.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.ReferenceImage reference_image = 2 [(.google.api.field_behavior) = REQUIRED];</code>
     parent: \Google\Cloud\Vision\V1\CreateReferenceImageRequest
     type: method
     langs:
@@ -158,8 +150,6 @@ items:
       the server will attempt to use this value as the resource id. If it is
       already in use, an error is returned with code ALREADY_EXISTS. Must be at
       most 128 characters long. It cannot contain the character `/`.
-      
-      Generated from protobuf field <code>string reference_image_id = 3;</code>
     parent: \Google\Cloud\Vision\V1\CreateReferenceImageRequest
     type: method
     langs:
@@ -177,8 +167,6 @@ items:
       the server will attempt to use this value as the resource id. If it is
       already in use, an error is returned with code ALREADY_EXISTS. Must be at
       most 128 characters long. It cannot contain the character `/`.
-      
-      Generated from protobuf field <code>string reference_image_id = 3;</code>
     parent: \Google\Cloud\Vision\V1\CreateReferenceImageRequest
     type: method
     langs:

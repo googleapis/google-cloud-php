@@ -30,8 +30,8 @@ use Google\Cloud\GkeMultiCloud\V1\AzureClustersClient;
 use Google\Rpc\Status;
 
 /**
- * Creates a new [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] resource on a given Google Cloud project
- * and region.
+ * Creates a new [AzureClient][google.cloud.gkemulticloud.v1.AzureClient]
+ * resource on a given Google Cloud project and region.
  *
  * `AzureClient` resources hold client authentication
  * information needed by the Anthos Multicloud API to manage Azure resources
@@ -41,8 +41,9 @@ use Google\Rpc\Status;
  * [Operation][google.longrunning.Operation] resource that can be
  * described to track the status of the operation.
  *
- * @param string $formattedParent          The parent location where this [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] resource
- *                                         will be created.
+ * @param string $formattedParent          The parent location where this
+ *                                         [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] resource will be
+ *                                         created.
  *
  *                                         Location names are formatted as `projects/<project-id>/locations/<region>`.
  *
@@ -51,14 +52,15 @@ use Google\Rpc\Status;
  *                                         {@see AzureClustersClient::locationName()} for help formatting this field.
  * @param string $azureClientTenantId      The Azure Active Directory Tenant ID.
  * @param string $azureClientApplicationId The Azure Active Directory Application ID.
- * @param string $azureClientId            A client provided ID the resource. Must be unique within the parent
- *                                         resource.
+ * @param string $azureClientId            A client provided ID the resource. Must be unique within the
+ *                                         parent resource.
  *
- *                                         The provided ID will be part of the [AzureClient][google.cloud.gkemulticloud.v1.AzureClient]
- *                                         resource name formatted as
+ *                                         The provided ID will be part of the
+ *                                         [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] resource name
+ *                                         formatted as
  *                                         `projects/<project-id>/locations/<region>/azureClients/<client-id>`.
  *
- *                                         Valid characters are `/[a-z][0-9]-/`. Cannot be longer than 40 characters.
+ *                                         Valid characters are `/[a-z][0-9]-/`. Cannot be longer than 63 characters.
  */
 function create_azure_client_sample(
     string $formattedParent,

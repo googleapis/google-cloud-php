@@ -32,7 +32,7 @@ use Google\Cloud\Retail\V2\ServingConfigServiceClient;
  * Lists all ServingConfigs linked to this catalog.
  *
  * @param string $formattedParent The catalog resource name. Format:
- *                                projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}
+ *                                `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}`
  *                                Please see {@see ServingConfigServiceClient::catalogName()} for help formatting this field.
  */
 function list_serving_configs_sample(string $formattedParent): void

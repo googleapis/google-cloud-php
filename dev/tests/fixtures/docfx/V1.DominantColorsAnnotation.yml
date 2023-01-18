@@ -39,10 +39,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\DominantColorsAnnotation::getColors()'
     name: getColors
     id: getColors
-    summary: |
-      RGB color values with their score and pixel fraction.
-      
-      Generated from protobuf field <code>repeated .google.cloud.vision.v1.ColorInfo colors = 1;</code>
+    summary: 'RGB color values with their score and pixel fraction.'
     parent: \Google\Cloud\Vision\V1\DominantColorsAnnotation
     type: method
     langs:
@@ -55,10 +52,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\DominantColorsAnnotation::setColors()'
     name: setColors
     id: setColors
-    summary: |
-      RGB color values with their score and pixel fraction.
-      
-      Generated from protobuf field <code>repeated .google.cloud.vision.v1.ColorInfo colors = 1;</code>
+    summary: 'RGB color values with their score and pixel fraction.'
     parent: \Google\Cloud\Vision\V1\DominantColorsAnnotation
     type: method
     langs:

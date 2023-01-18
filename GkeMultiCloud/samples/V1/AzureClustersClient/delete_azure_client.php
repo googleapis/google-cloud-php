@@ -29,7 +29,8 @@ use Google\Cloud\GkeMultiCloud\V1\AzureClustersClient;
 use Google\Rpc\Status;
 
 /**
- * Deletes a specific [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] resource.
+ * Deletes a specific [AzureClient][google.cloud.gkemulticloud.v1.AzureClient]
+ * resource.
  *
  * If the client is used by one or more clusters, deletion will
  * fail and a `FAILED_PRECONDITION` error will be returned.
@@ -38,9 +39,11 @@ use Google\Rpc\Status;
  * [Operation][google.longrunning.Operation] resource that can be
  * described to track the status of the operation.
  *
- * @param string $formattedName The resource name the [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] to delete.
+ * @param string $formattedName The resource name the
+ *                              [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] to delete.
  *
- *                              [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] names are formatted as
+ *                              [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] names are
+ *                              formatted as
  *                              `projects/<project-id>/locations/<region>/azureClients/<client-id>`.
  *
  *                              See [Resource Names](https://cloud.google.com/apis/design/resource_names)

@@ -57,15 +57,15 @@ class Environment extends \Google\Protobuf\Internal\Message
      */
     private $agent_version = '';
     /**
-     * Output only. The state of this environment. This field is read-only, i.e., it cannot be
-     * set by create and update methods.
+     * Output only. The state of this environment. This field is read-only, i.e.,
+     * it cannot be set by create and update methods.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Environment.State state = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $state = 0;
     /**
-     * Output only. The last update time of this environment. This field is read-only, i.e., it
-     * cannot be set by create and update methods.
+     * Output only. The last update time of this environment. This field is
+     * read-only, i.e., it cannot be set by create and update methods.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -106,11 +106,11 @@ class Environment extends \Google\Protobuf\Internal\Message
      *           - `projects/<Project ID>/locations/<Location ID>/agent/versions/<Version
      *             ID>`
      *     @type int $state
-     *           Output only. The state of this environment. This field is read-only, i.e., it cannot be
-     *           set by create and update methods.
+     *           Output only. The state of this environment. This field is read-only, i.e.,
+     *           it cannot be set by create and update methods.
      *     @type \Google\Protobuf\Timestamp $update_time
-     *           Output only. The last update time of this environment. This field is read-only, i.e., it
-     *           cannot be set by create and update methods.
+     *           Output only. The last update time of this environment. This field is
+     *           read-only, i.e., it cannot be set by create and update methods.
      *     @type \Google\Cloud\Dialogflow\V2\TextToSpeechSettings $text_to_speech_settings
      *           Optional. Text to speech settings for this environment.
      *     @type \Google\Cloud\Dialogflow\V2\Fulfillment $fulfillment
@@ -221,8 +221,8 @@ class Environment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The state of this environment. This field is read-only, i.e., it cannot be
-     * set by create and update methods.
+     * Output only. The state of this environment. This field is read-only, i.e.,
+     * it cannot be set by create and update methods.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Environment.State state = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
@@ -233,8 +233,8 @@ class Environment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The state of this environment. This field is read-only, i.e., it cannot be
-     * set by create and update methods.
+     * Output only. The state of this environment. This field is read-only, i.e.,
+     * it cannot be set by create and update methods.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Environment.State state = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
@@ -249,8 +249,8 @@ class Environment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The last update time of this environment. This field is read-only, i.e., it
-     * cannot be set by create and update methods.
+     * Output only. The last update time of this environment. This field is
+     * read-only, i.e., it cannot be set by create and update methods.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -271,8 +271,8 @@ class Environment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The last update time of this environment. This field is read-only, i.e., it
-     * cannot be set by create and update methods.
+     * Output only. The last update time of this environment. This field is
+     * read-only, i.e., it cannot be set by create and update methods.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var

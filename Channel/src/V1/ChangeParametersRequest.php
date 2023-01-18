@@ -24,16 +24,19 @@ class ChangeParametersRequest extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * Required. Entitlement parameters to update. You can only change editable parameters.
+     * Required. Entitlement parameters to update. You can only change editable
+     * parameters.
      * To view the available Parameters for a request, refer to the
-     * [Offer.parameter_definitions][google.cloud.channel.v1.Offer.parameter_definitions] from the desired offer.
+     * [Offer.parameter_definitions][google.cloud.channel.v1.Offer.parameter_definitions]
+     * from the desired offer.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.Parameter parameters = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $parameters;
     /**
-     * Optional. You can specify an optional unique request ID, and if you need to retry
-     * your request, the server will know to ignore the request if it's complete.
+     * Optional. You can specify an optional unique request ID, and if you need to
+     * retry your request, the server will know to ignore the request if it's
+     * complete.
      * For example, you make an initial request and the request times out. If you
      * make the request again with the same request ID, the server can check if
      * it received the original operation with the same request ID. If it did, it
@@ -62,13 +65,16 @@ class ChangeParametersRequest extends \Google\Protobuf\Internal\Message
      *           Required. The name of the entitlement to update.
      *           Name uses the format:
      *           accounts/{account_id}/customers/{customer_id}/entitlements/{entitlement_id}
-     *     @type \Google\Cloud\Channel\V1\Parameter[]|\Google\Protobuf\Internal\RepeatedField $parameters
-     *           Required. Entitlement parameters to update. You can only change editable parameters.
+     *     @type array<\Google\Cloud\Channel\V1\Parameter>|\Google\Protobuf\Internal\RepeatedField $parameters
+     *           Required. Entitlement parameters to update. You can only change editable
+     *           parameters.
      *           To view the available Parameters for a request, refer to the
-     *           [Offer.parameter_definitions][google.cloud.channel.v1.Offer.parameter_definitions] from the desired offer.
+     *           [Offer.parameter_definitions][google.cloud.channel.v1.Offer.parameter_definitions]
+     *           from the desired offer.
      *     @type string $request_id
-     *           Optional. You can specify an optional unique request ID, and if you need to retry
-     *           your request, the server will know to ignore the request if it's complete.
+     *           Optional. You can specify an optional unique request ID, and if you need to
+     *           retry your request, the server will know to ignore the request if it's
+     *           complete.
      *           For example, you make an initial request and the request times out. If you
      *           make the request again with the same request ID, the server can check if
      *           it received the original operation with the same request ID. If it did, it
@@ -116,9 +122,11 @@ class ChangeParametersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Entitlement parameters to update. You can only change editable parameters.
+     * Required. Entitlement parameters to update. You can only change editable
+     * parameters.
      * To view the available Parameters for a request, refer to the
-     * [Offer.parameter_definitions][google.cloud.channel.v1.Offer.parameter_definitions] from the desired offer.
+     * [Offer.parameter_definitions][google.cloud.channel.v1.Offer.parameter_definitions]
+     * from the desired offer.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.Parameter parameters = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -129,12 +137,14 @@ class ChangeParametersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Entitlement parameters to update. You can only change editable parameters.
+     * Required. Entitlement parameters to update. You can only change editable
+     * parameters.
      * To view the available Parameters for a request, refer to the
-     * [Offer.parameter_definitions][google.cloud.channel.v1.Offer.parameter_definitions] from the desired offer.
+     * [Offer.parameter_definitions][google.cloud.channel.v1.Offer.parameter_definitions]
+     * from the desired offer.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.Parameter parameters = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param \Google\Cloud\Channel\V1\Parameter[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Channel\V1\Parameter>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setParameters($var)
@@ -146,8 +156,9 @@ class ChangeParametersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. You can specify an optional unique request ID, and if you need to retry
-     * your request, the server will know to ignore the request if it's complete.
+     * Optional. You can specify an optional unique request ID, and if you need to
+     * retry your request, the server will know to ignore the request if it's
+     * complete.
      * For example, you make an initial request and the request times out. If you
      * make the request again with the same request ID, the server can check if
      * it received the original operation with the same request ID. If it did, it
@@ -165,8 +176,9 @@ class ChangeParametersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. You can specify an optional unique request ID, and if you need to retry
-     * your request, the server will know to ignore the request if it's complete.
+     * Optional. You can specify an optional unique request ID, and if you need to
+     * retry your request, the server will know to ignore the request if it's
+     * complete.
      * For example, you make an initial request and the request times out. If you
      * make the request again with the same request ID, the server can check if
      * it received the original operation with the same request ID. If it did, it

@@ -16,11 +16,15 @@ use Google\Protobuf\Internal\GPBUtil;
 class ProcessRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name of the [Processor][google.cloud.documentai.v1.Processor] or
+     * Required. The resource name of the
+     * [Processor][google.cloud.documentai.v1.Processor] or
      * [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion]
-     * to use for processing. If a [Processor][google.cloud.documentai.v1.Processor] is specified, the server will use
-     * its [default version][google.cloud.documentai.v1.Processor.default_processor_version]. Format:
-     * `projects/{project}/locations/{location}/processors/{processor}`, or
+     * to use for processing. If a
+     * [Processor][google.cloud.documentai.v1.Processor] is specified, the server
+     * will use its [default
+     * version][google.cloud.documentai.v1.Processor.default_processor_version].
+     * Format: `projects/{project}/locations/{location}/processors/{processor}`,
+     * or
      * `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -54,11 +58,15 @@ class ProcessRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\DocumentAI\V1\RawDocument $raw_document
      *           A raw document content (bytes).
      *     @type string $name
-     *           Required. The resource name of the [Processor][google.cloud.documentai.v1.Processor] or
+     *           Required. The resource name of the
+     *           [Processor][google.cloud.documentai.v1.Processor] or
      *           [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion]
-     *           to use for processing. If a [Processor][google.cloud.documentai.v1.Processor] is specified, the server will use
-     *           its [default version][google.cloud.documentai.v1.Processor.default_processor_version]. Format:
-     *           `projects/{project}/locations/{location}/processors/{processor}`, or
+     *           to use for processing. If a
+     *           [Processor][google.cloud.documentai.v1.Processor] is specified, the server
+     *           will use its [default
+     *           version][google.cloud.documentai.v1.Processor.default_processor_version].
+     *           Format: `projects/{project}/locations/{location}/processors/{processor}`,
+     *           or
      *           `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}`
      *     @type bool $skip_human_review
      *           Whether Human Review feature should be skipped for this request. Default to
@@ -137,11 +145,15 @@ class ProcessRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the [Processor][google.cloud.documentai.v1.Processor] or
+     * Required. The resource name of the
+     * [Processor][google.cloud.documentai.v1.Processor] or
      * [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion]
-     * to use for processing. If a [Processor][google.cloud.documentai.v1.Processor] is specified, the server will use
-     * its [default version][google.cloud.documentai.v1.Processor.default_processor_version]. Format:
-     * `projects/{project}/locations/{location}/processors/{processor}`, or
+     * to use for processing. If a
+     * [Processor][google.cloud.documentai.v1.Processor] is specified, the server
+     * will use its [default
+     * version][google.cloud.documentai.v1.Processor.default_processor_version].
+     * Format: `projects/{project}/locations/{location}/processors/{processor}`,
+     * or
      * `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -153,11 +165,15 @@ class ProcessRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the [Processor][google.cloud.documentai.v1.Processor] or
+     * Required. The resource name of the
+     * [Processor][google.cloud.documentai.v1.Processor] or
      * [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion]
-     * to use for processing. If a [Processor][google.cloud.documentai.v1.Processor] is specified, the server will use
-     * its [default version][google.cloud.documentai.v1.Processor.default_processor_version]. Format:
-     * `projects/{project}/locations/{location}/processors/{processor}`, or
+     * to use for processing. If a
+     * [Processor][google.cloud.documentai.v1.Processor] is specified, the server
+     * will use its [default
+     * version][google.cloud.documentai.v1.Processor.default_processor_version].
+     * Format: `projects/{project}/locations/{location}/processors/{processor}`,
+     * or
      * `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>

@@ -34,13 +34,15 @@ use Google\Cloud\GkeMultiCloud\V1\MaxPodsConstraint;
 use Google\Rpc\Status;
 
 /**
- * Creates a new [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool], attached to a given [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster].
+ * Creates a new [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool],
+ * attached to a given [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster].
  *
  * If successful, the response contains a newly created
  * [Operation][google.longrunning.Operation] resource that can be
  * described to track the status of the operation.
  *
- * @param string $formattedParent                            The [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resource where this node pool will be created.
+ * @param string $formattedParent                            The [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster]
+ *                                                           resource where this node pool will be created.
  *
  *                                                           `AwsCluster` names are formatted as
  *                                                           `projects/<project-id>/locations/<region>/awsClusters/<cluster-id>`.
@@ -48,27 +50,30 @@ use Google\Rpc\Status;
  *                                                           See [Resource Names](https://cloud.google.com/apis/design/resource_names)
  *                                                           for more details on Google Cloud resource names. Please see
  *                                                           {@see AwsClustersClient::awsClusterName()} for help formatting this field.
- * @param string $awsNodePoolVersion                         The Kubernetes version to run on this node pool (e.g. `1.19.10-gke.1000`).
+ * @param string $awsNodePoolVersion                         The Kubernetes version to run on this node pool (e.g.
+ *                                                           `1.19.10-gke.1000`).
  *
  *                                                           You can list all supported versions on a given Google Cloud region by
  *                                                           calling
  *                                                           [GetAwsServerConfig][google.cloud.gkemulticloud.v1.AwsClusters.GetAwsServerConfig].
- * @param string $awsNodePoolConfigIamInstanceProfile        The name or ARN of the AWS IAM role assigned to nodes in the pool.
+ * @param string $awsNodePoolConfigIamInstanceProfile        The name or ARN of the AWS IAM role assigned to nodes in the
+ *                                                           pool.
  * @param string $awsNodePoolConfigConfigEncryptionKmsKeyArn The ARN of the AWS KMS key used to encrypt user data.
- * @param int    $awsNodePoolAutoscalingMinNodeCount         Minimum number of nodes in the node pool. Must be greater than or equal to
- *                                                           1 and less than or equal to max_node_count.
- * @param int    $awsNodePoolAutoscalingMaxNodeCount         Maximum number of nodes in the node pool. Must be greater than or equal to
- *                                                           min_node_count and less than or equal to 50.
+ * @param int    $awsNodePoolAutoscalingMinNodeCount         Minimum number of nodes in the node pool. Must be greater than or
+ *                                                           equal to 1 and less than or equal to max_node_count.
+ * @param int    $awsNodePoolAutoscalingMaxNodeCount         Maximum number of nodes in the node pool. Must be greater than or
+ *                                                           equal to min_node_count and less than or equal to 50.
  * @param string $awsNodePoolSubnetId                        The subnet where the node pool node run.
  * @param int    $awsNodePoolMaxPodsConstraintMaxPodsPerNode The maximum number of pods to schedule on a single node.
- * @param string $awsNodePoolId                              A client provided ID the resource. Must be unique within the parent
- *                                                           resource.
+ * @param string $awsNodePoolId                              A client provided ID the resource. Must be unique within the
+ *                                                           parent resource.
  *
- *                                                           The provided ID will be part of the [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool]
- *                                                           resource name formatted as
+ *                                                           The provided ID will be part of the
+ *                                                           [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] resource name
+ *                                                           formatted as
  *                                                           `projects/<project-id>/locations/<region>/awsClusters/<cluster-id>/awsNodePools/<node-pool-id>`.
  *
- *                                                           Valid characters are `/[a-z][0-9]-/`. Cannot be longer than 40 characters.
+ *                                                           Valid characters are `/[a-z][0-9]-/`. Cannot be longer than 63 characters.
  */
 function create_aws_node_pool_sample(
     string $formattedParent,

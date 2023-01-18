@@ -40,6 +40,12 @@ use Google\Cloud\Asset\V1\AnalyzeIamPolicyRequest;
 use Google\Cloud\Asset\V1\AnalyzeIamPolicyResponse;
 use Google\Cloud\Asset\V1\AnalyzeMoveRequest;
 use Google\Cloud\Asset\V1\AnalyzeMoveResponse;
+use Google\Cloud\Asset\V1\AnalyzeOrgPoliciesRequest;
+use Google\Cloud\Asset\V1\AnalyzeOrgPoliciesResponse;
+use Google\Cloud\Asset\V1\AnalyzeOrgPolicyGovernedAssetsRequest;
+use Google\Cloud\Asset\V1\AnalyzeOrgPolicyGovernedAssetsResponse;
+use Google\Cloud\Asset\V1\AnalyzeOrgPolicyGovernedContainersRequest;
+use Google\Cloud\Asset\V1\AnalyzeOrgPolicyGovernedContainersResponse;
 use Google\Cloud\Asset\V1\BatchGetAssetsHistoryRequest;
 use Google\Cloud\Asset\V1\BatchGetAssetsHistoryResponse;
 use Google\Cloud\Asset\V1\BatchGetEffectiveIamPoliciesRequest;
@@ -681,7 +687,8 @@ class AssetServiceGapicClient
      *           0 or empty string, etc., because we use proto3, which doesn't support field
      *           presence yet.
      *     @type Duration $executionTimeout
-     *           Optional. Amount of time executable has to complete.  See JSON representation of
+     *           Optional. Amount of time executable has to complete.  See JSON
+     *           representation of
      *           [Duration](https://developers.google.com/protocol-buffers/docs/proto3#json).
      *
      *           If this field is set with a value less than the RPC deadline, and the
@@ -738,11 +745,12 @@ class AssetServiceGapicClient
      * accesses on which resources, and writes the analysis results to a Google
      * Cloud Storage or a BigQuery destination. For Cloud Storage destination, the
      * output format is the JSON format that represents a
-     * [AnalyzeIamPolicyResponse][google.cloud.asset.v1.AnalyzeIamPolicyResponse]. This method implements the
-     * [google.longrunning.Operation][google.longrunning.Operation], which allows you to track the operation
-     * status. We recommend intervals of at least 2 seconds with exponential
-     * backoff retry to poll the operation result. The metadata contains the
-     * metadata for the long-running operation.
+     * [AnalyzeIamPolicyResponse][google.cloud.asset.v1.AnalyzeIamPolicyResponse].
+     * This method implements the
+     * [google.longrunning.Operation][google.longrunning.Operation], which allows
+     * you to track the operation status. We recommend intervals of at least 2
+     * seconds with exponential backoff retry to poll the operation result. The
+     * metadata contains the metadata for the long-running operation.
      *
      * Sample code:
      * ```
@@ -782,7 +790,8 @@ class AssetServiceGapicClient
      * ```
      *
      * @param IamPolicyAnalysisQuery        $analysisQuery Required. The request query.
-     * @param IamPolicyAnalysisOutputConfig $outputConfig  Required. Output configuration indicating where the results will be output to.
+     * @param IamPolicyAnalysisOutputConfig $outputConfig  Required. Output configuration indicating where the results will be output
+     *                                                     to.
      * @param array                         $optionalArgs  {
      *     Optional.
      *
@@ -865,13 +874,13 @@ class AssetServiceGapicClient
      * ```
      *
      * @param string $resource          Required. Name of the resource to perform the analysis against.
-     *                                  Only GCP Project are supported as of today. Hence, this can only be Project
-     *                                  ID (such as "projects/my-project-id") or a Project Number (such as
-     *                                  "projects/12345").
-     * @param string $destinationParent Required. Name of the GCP Folder or Organization to reparent the target
-     *                                  resource. The analysis will be performed against hypothetically moving the
-     *                                  resource to this specified desitination parent. This can only be a Folder
-     *                                  number (such as "folders/123") or an Organization number (such as
+     *                                  Only Google Cloud projects are supported as of today. Hence, this can only
+     *                                  be a project ID (such as "projects/my-project-id") or a project number
+     *                                  (such as "projects/12345").
+     * @param string $destinationParent Required. Name of the Google Cloud folder or organization to reparent the
+     *                                  target resource. The analysis will be performed against hypothetically
+     *                                  moving the resource to this specified desitination parent. This can only be
+     *                                  a folder number (such as "folders/123") or an organization number (such as
      *                                  "organizations/123").
      * @param array  $optionalArgs      {
      *     Optional.
@@ -916,6 +925,335 @@ class AssetServiceGapicClient
             $optionalArgs,
             $request
         )->wait();
+    }
+
+    /**
+     * Analyzes organization policies under a scope.
+     *
+     * Sample code:
+     * ```
+     * $assetServiceClient = new AssetServiceClient();
+     * try {
+     *     $scope = 'scope';
+     *     $constraint = 'constraint';
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $assetServiceClient->analyzeOrgPolicies($scope, $constraint);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $assetServiceClient->analyzeOrgPolicies($scope, $constraint);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $assetServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $scope        Required. The organization to scope the request. Only organization
+     *                             policies within the scope will be analyzed.
+     *
+     *                             * organizations/{ORGANIZATION_NUMBER} (e.g., "organizations/123456")
+     * @param string $constraint   Required. The name of the constraint to analyze organization policies for.
+     *                             The response only contains analyzed organization policies for the provided
+     *                             constraint.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $filter
+     *           The expression to filter
+     *           [AnalyzeOrgPoliciesResponse.org_policy_results][google.cloud.asset.v1.AnalyzeOrgPoliciesResponse.org_policy_results].
+     *           The only supported field is `consolidated_policy.attached_resource`, and
+     *           the only supported operator is `=`.
+     *
+     *           Example:
+     *           consolidated_policy.attached_resource="//cloudresourcemanager.googleapis.com/folders/001"
+     *           will return the org policy results of"folders/001".
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function analyzeOrgPolicies(
+        $scope,
+        $constraint,
+        array $optionalArgs = []
+    ) {
+        $request = new AnalyzeOrgPoliciesRequest();
+        $requestParamHeaders = [];
+        $request->setScope($scope);
+        $request->setConstraint($constraint);
+        $requestParamHeaders['scope'] = $scope;
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'AnalyzeOrgPolicies',
+            $optionalArgs,
+            AnalyzeOrgPoliciesResponse::class,
+            $request
+        );
+    }
+
+    /**
+     * Analyzes organization policies governed assets (Google Cloud resources or
+     * policies) under a scope. This RPC supports custom constraints and the
+     * following 10 canned constraints:
+     *
+     * * storage.uniformBucketLevelAccess
+     * * iam.disableServiceAccountKeyCreation
+     * * iam.allowedPolicyMemberDomains
+     * * compute.vmExternalIpAccess
+     * * appengine.enforceServiceAccountActAsCheck
+     * * gcp.resourceLocations
+     * * compute.trustedImageProjects
+     * * compute.skipDefaultNetworkCreation
+     * * compute.requireOsLogin
+     * * compute.disableNestedVirtualization
+     *
+     * This RPC only returns either resources of types supported by [searchable
+     * asset
+     * types](https://cloud.google.com/asset-inventory/docs/supported-asset-types#searchable_asset_types),
+     * or IAM policies.
+     *
+     * Sample code:
+     * ```
+     * $assetServiceClient = new AssetServiceClient();
+     * try {
+     *     $scope = 'scope';
+     *     $constraint = 'constraint';
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $assetServiceClient->analyzeOrgPolicyGovernedAssets($scope, $constraint);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $assetServiceClient->analyzeOrgPolicyGovernedAssets($scope, $constraint);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $assetServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $scope        Required. The organization to scope the request. Only organization
+     *                             policies within the scope will be analyzed. The output assets will
+     *                             also be limited to the ones governed by those in-scope organization
+     *                             policies.
+     *
+     *                             * organizations/{ORGANIZATION_NUMBER} (e.g., "organizations/123456")
+     * @param string $constraint   Required. The name of the constraint to analyze governed assets for. The
+     *                             analysis only contains analyzed organization policies for the provided
+     *                             constraint.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $filter
+     *           The expression to filter the governed assets in result. The only supported
+     *           fields for governed resources are `governed_resource.project` and
+     *           `governed_resource.folders`. The only supported fields for governed iam
+     *           policies are `governed_iam_policy.project` and
+     *           `governed_iam_policy.folders`. The only supported operator is `=`.
+     *
+     *           Example 1: governed_resource.project="projects/12345678" filter will return
+     *           all governed resources under projects/12345678 including the project
+     *           ifself, if applicable.
+     *
+     *           Example 2: governed_iam_policy.folders="folders/12345678" filter will
+     *           return all governed iam policies under folders/12345678, if applicable.
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function analyzeOrgPolicyGovernedAssets(
+        $scope,
+        $constraint,
+        array $optionalArgs = []
+    ) {
+        $request = new AnalyzeOrgPolicyGovernedAssetsRequest();
+        $requestParamHeaders = [];
+        $request->setScope($scope);
+        $request->setConstraint($constraint);
+        $requestParamHeaders['scope'] = $scope;
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'AnalyzeOrgPolicyGovernedAssets',
+            $optionalArgs,
+            AnalyzeOrgPolicyGovernedAssetsResponse::class,
+            $request
+        );
+    }
+
+    /**
+     * Analyzes organization policies governed containers (projects, folders or
+     * organization) under a scope.
+     *
+     * Sample code:
+     * ```
+     * $assetServiceClient = new AssetServiceClient();
+     * try {
+     *     $scope = 'scope';
+     *     $constraint = 'constraint';
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $assetServiceClient->analyzeOrgPolicyGovernedContainers($scope, $constraint);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $assetServiceClient->analyzeOrgPolicyGovernedContainers($scope, $constraint);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $assetServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $scope        Required. The organization to scope the request. Only organization
+     *                             policies within the scope will be analyzed. The output containers will
+     *                             also be limited to the ones governed by those in-scope organization
+     *                             policies.
+     *
+     *                             * organizations/{ORGANIZATION_NUMBER} (e.g., "organizations/123456")
+     * @param string $constraint   Required. The name of the constraint to analyze governed containers for.
+     *                             The analysis only contains organization policies for the provided
+     *                             constraint.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $filter
+     *           The expression to filter the governed containers in result.
+     *           The only supported field is `parent`, and the only supported operator is
+     *           `=`.
+     *
+     *           Example:
+     *           parent="//cloudresourcemanager.googleapis.com/folders/001" will return all
+     *           containers under "folders/001".
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function analyzeOrgPolicyGovernedContainers(
+        $scope,
+        $constraint,
+        array $optionalArgs = []
+    ) {
+        $request = new AnalyzeOrgPolicyGovernedContainersRequest();
+        $requestParamHeaders = [];
+        $request->setScope($scope);
+        $request->setConstraint($constraint);
+        $requestParamHeaders['scope'] = $scope;
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'AnalyzeOrgPolicyGovernedContainers',
+            $optionalArgs,
+            AnalyzeOrgPolicyGovernedContainersResponse::class,
+            $request
+        );
     }
 
     /**
@@ -1116,9 +1454,8 @@ class AssetServiceGapicClient
      *                             "projects/12345").
      * @param string $feedId       Required. This is the client-assigned asset feed identifier and it needs to
      *                             be unique under a specific parent project/folder/organization.
-     * @param Feed   $feed         Required. The feed details. The field `name` must be empty and it will be generated
-     *                             in the format of:
-     *                             projects/project_number/feeds/feed_id
+     * @param Feed   $feed         Required. The feed details. The field `name` must be empty and it will be
+     *                             generated in the format of: projects/project_number/feeds/feed_id
      *                             folders/folder_number/feeds/feed_id
      *                             organizations/organization_number/feeds/feed_id
      * @param array  $optionalArgs {
@@ -1176,19 +1513,19 @@ class AssetServiceGapicClient
      * }
      * ```
      *
-     * @param string     $parent       Required. The name of the project/folder/organization where this saved_query
-     *                                 should be created in. It can only be an organization number (such as
-     *                                 "organizations/123"), a folder number (such as "folders/123"), a project ID
-     *                                 (such as "projects/my-project-id")", or a project number (such as
-     *                                 "projects/12345").
-     * @param SavedQuery $savedQuery   Required. The saved_query details. The `name` field must be empty as it will be
-     *                                 generated based on the parent and saved_query_id.
-     * @param string     $savedQueryId Required. The ID to use for the saved query, which must be unique in the specified
-     *                                 parent. It will become the final component of the saved query's resource
-     *                                 name.
+     * @param string     $parent       Required. The name of the project/folder/organization where this
+     *                                 saved_query should be created in. It can only be an organization number
+     *                                 (such as "organizations/123"), a folder number (such as "folders/123"), a
+     *                                 project ID (such as "projects/my-project-id")", or a project number (such
+     *                                 as "projects/12345").
+     * @param SavedQuery $savedQuery   Required. The saved_query details. The `name` field must be empty as it
+     *                                 will be generated based on the parent and saved_query_id.
+     * @param string     $savedQueryId Required. The ID to use for the saved query, which must be unique in the
+     *                                 specified parent. It will become the final component of the saved query's
+     *                                 resource name.
      *
      *                                 This value should be 4-63 characters, and valid characters
-     *                                 are /[a-z][0-9]-/.
+     *                                 are `[a-z][0-9]-`.
      *
      *                                 Notice that this field is required in the saved query creation, and the
      *                                 `name` field of the `saved_query` will be ignored.
@@ -1294,7 +1631,8 @@ class AssetServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The name of the saved query to delete. It must be in the format of:
+     * @param string $name         Required. The name of the saved query to delete. It must be in the format
+     *                             of:
      *
      *                             * projects/project_number/savedQueries/saved_query_id
      *                             * folders/folder_number/savedQueries/saved_query_id
@@ -1334,13 +1672,14 @@ class AssetServiceGapicClient
      * Exports assets with time and resource types to a given Cloud Storage
      * location/BigQuery table. For Cloud Storage location destinations, the
      * output format is newline-delimited JSON. Each line represents a
-     * [google.cloud.asset.v1.Asset][google.cloud.asset.v1.Asset] in the JSON format; for BigQuery table
-     * destinations, the output table stores the fields in asset Protobuf as
-     * columns. This API implements the [google.longrunning.Operation][google.longrunning.Operation] API,
-     * which allows you to keep track of the export. We recommend intervals of at
-     * least 2 seconds with exponential retry to poll the export operation result.
-     * For regular-size resource parent, the export operation usually finishes
-     * within 5 minutes.
+     * [google.cloud.asset.v1.Asset][google.cloud.asset.v1.Asset] in the JSON
+     * format; for BigQuery table destinations, the output table stores the fields
+     * in asset Protobuf as columns. This API implements the
+     * [google.longrunning.Operation][google.longrunning.Operation] API, which
+     * allows you to keep track of the export. We recommend intervals of at least
+     * 2 seconds with exponential retry to poll the export operation result. For
+     * regular-size resource parent, the export operation usually finishes within
+     * 5 minutes.
      *
      * Sample code:
      * ```
@@ -1383,7 +1722,8 @@ class AssetServiceGapicClient
      *                                   organization number (such as "organizations/123"), a project ID (such as
      *                                   "projects/my-project-id"), or a project number (such as "projects/12345"),
      *                                   or a folder number (such as "folders/123").
-     * @param OutputConfig $outputConfig Required. Output configuration indicating where the results will be output to.
+     * @param OutputConfig $outputConfig Required. Output configuration indicating where the results will be output
+     *                                   to.
      * @param array        $optionalArgs {
      *     Optional.
      *
@@ -1612,11 +1952,11 @@ class AssetServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. Name of the organization, folder, or project the assets belong to. Format:
-     *                             "organizations/[organization-number]" (such as "organizations/123"),
-     *                             "projects/[project-id]" (such as "projects/my-project-id"),
-     *                             "projects/[project-number]" (such as "projects/12345"), or
-     *                             "folders/[folder-number]" (such as "folders/12345").
+     * @param string $parent       Required. Name of the organization, folder, or project the assets belong
+     *                             to. Format: "organizations/[organization-number]" (such as
+     *                             "organizations/123"), "projects/[project-id]" (such as
+     *                             "projects/my-project-id"), "projects/[project-number]" (such as
+     *                             "projects/12345"), or "folders/[folder-number]" (such as "folders/12345").
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1804,8 +2144,8 @@ class AssetServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent project/folder/organization whose savedQueries are to be
-     *                             listed. It can only be using project/folder/organization number (such as
+     * @param string $parent       Required. The parent project/folder/organization whose savedQueries are to
+     *                             be listed. It can only be using project/folder/organization number (such as
      *                             "folders/12345")", or a project ID (such as "projects/my-project-id").
      * @param array  $optionalArgs {
      *     Optional.
@@ -1909,11 +2249,11 @@ class AssetServiceGapicClient
      *           Optional. A SQL statement that's compatible with [BigQuery Standard
      *           SQL](http://cloud/bigquery/docs/reference/standard-sql/enabling-standard-sql).
      *     @type string $jobReference
-     *           Optional. Reference to the query job, which is from the `QueryAssetsResponse` of
-     *           previous `QueryAssets` call.
+     *           Optional. Reference to the query job, which is from the
+     *           `QueryAssetsResponse` of previous `QueryAssets` call.
      *     @type int $pageSize
-     *           Optional. The maximum number of rows to return in the results. Responses are limited
-     *           to 10 MB and 1000 rows.
+     *           Optional. The maximum number of rows to return in the results. Responses
+     *           are limited to 10 MB and 1000 rows.
      *
      *           By default, the maximum row count is 1000. When the byte or row count limit
      *           is reached, the rest of the query results will be paginated.
@@ -1924,10 +2264,11 @@ class AssetServiceGapicClient
      *
      *           The field will be ignored when [output_config] is specified.
      *     @type Duration $timeout
-     *           Optional. Specifies the maximum amount of time that the client is willing to wait
-     *           for the query to complete. By default, this limit is 5 min for the first
-     *           query, and 1 minute for the following queries. If the query is complete,
-     *           the `done` field in the `QueryAssetsResponse` is true, otherwise false.
+     *           Optional. Specifies the maximum amount of time that the client is willing
+     *           to wait for the query to complete. By default, this limit is 5 min for the
+     *           first query, and 1 minute for the following queries. If the query is
+     *           complete, the `done` field in the `QueryAssetsResponse` is true, otherwise
+     *           false.
      *
      *           Like BigQuery [jobs.query
      *           API](https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs/query#queryrequest)
@@ -1937,11 +2278,12 @@ class AssetServiceGapicClient
      *
      *           The field will be ignored when [output_config] is specified.
      *     @type TimeWindow $readTimeWindow
-     *           Optional. [start_time] is required. [start_time] must be less than [end_time]
-     *           Defaults [end_time] to now if [start_time] is set and [end_time] isn't.
-     *           Maximum permitted time range is 7 days.
+     *           Optional. [start_time] is required. [start_time] must be less than
+     *           [end_time] Defaults [end_time] to now if [start_time] is set and
+     *           [end_time] isn't. Maximum permitted time range is 7 days.
      *     @type Timestamp $readTime
-     *           Optional. Queries cloud assets as they appeared at the specified point in time.
+     *           Optional. Queries cloud assets as they appeared at the specified point in
+     *           time.
      *     @type QueryAssetsOutputConfig $outputConfig
      *           Optional. Destination where the query results will be saved.
      *
@@ -2043,9 +2385,9 @@ class AssetServiceGapicClient
      * }
      * ```
      *
-     * @param string $scope        Required. A scope can be a project, a folder, or an organization. The search is
-     *                             limited to the IAM policies within the `scope`. The caller must be granted
-     *                             the
+     * @param string $scope        Required. A scope can be a project, a folder, or an organization. The
+     *                             search is limited to the IAM policies within the `scope`. The caller must
+     *                             be granted the
      *                             [`cloudasset.assets.searchAllIamPolicies`](https://cloud.google.com/asset-inventory/docs/access-control#required_permissions)
      *                             permission on the desired scope.
      *
@@ -2063,8 +2405,8 @@ class AssetServiceGapicClient
      *           query](https://cloud.google.com/asset-inventory/docs/searching-iam-policies#how_to_construct_a_query)
      *           for more information. If not specified or empty, it will search all the
      *           IAM policies within the specified `scope`. Note that the query string is
-     *           compared against each Cloud IAM policy binding, including its principals,
-     *           roles, and Cloud IAM conditions. The returned Cloud IAM policies will only
+     *           compared against each IAM policy binding, including its principals,
+     *           roles, and IAM conditions. The returned IAM policies will only
      *           contain the bindings that match your query. To learn more about the IAM
      *           policy structure, see the [IAM policy
      *           documentation](https://cloud.google.com/iam/help/allow-policies/structure).
@@ -2111,8 +2453,9 @@ class AssetServiceGapicClient
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
      *     @type string[] $assetTypes
-     *           Optional. A list of asset types that the IAM policies are attached to. If empty, it
-     *           will search the IAM policies that are attached to all the [searchable asset
+     *           Optional. A list of asset types that the IAM policies are attached to. If
+     *           empty, it will search the IAM policies that are attached to all the
+     *           [searchable asset
      *           types](https://cloud.google.com/asset-inventory/docs/supported-asset-types#searchable_asset_types).
      *
      *           Regular expressions are also supported. For example:
@@ -2128,9 +2471,9 @@ class AssetServiceGapicClient
      *           regular expression syntax. If the regular expression does not match any
      *           supported asset type, an INVALID_ARGUMENT error will be returned.
      *     @type string $orderBy
-     *           Optional. A comma-separated list of fields specifying the sorting order of the
-     *           results. The default order is ascending. Add " DESC" after the field name
-     *           to indicate descending order. Redundant space characters are ignored.
+     *           Optional. A comma-separated list of fields specifying the sorting order of
+     *           the results. The default order is ascending. Add " DESC" after the field
+     *           name to indicate descending order. Redundant space characters are ignored.
      *           Example: "assetType DESC, resource".
      *           Only singular primitive fields in the response are sortable:
      *           * resource
@@ -2189,8 +2532,8 @@ class AssetServiceGapicClient
     }
 
     /**
-     * Searches all Cloud resources within the specified scope, such as a project,
-     * folder, or organization. The caller must be granted the
+     * Searches all Google Cloud resources within the specified scope, such as a
+     * project, folder, or organization. The caller must be granted the
      * `cloudasset.assets.searchAllResources` permission on the desired scope,
      * otherwise the request will be rejected.
      *
@@ -2217,8 +2560,9 @@ class AssetServiceGapicClient
      * }
      * ```
      *
-     * @param string $scope        Required. A scope can be a project, a folder, or an organization. The search is
-     *                             limited to the resources within the `scope`. The caller must be granted the
+     * @param string $scope        Required. A scope can be a project, a folder, or an organization. The
+     *                             search is limited to the resources within the `scope`. The caller must be
+     *                             granted the
      *                             [`cloudasset.assets.searchAllResources`](https://cloud.google.com/asset-inventory/docs/access-control#required_permissions)
      *                             permission on the desired scope.
      *
@@ -2239,54 +2583,54 @@ class AssetServiceGapicClient
      *
      *           Examples:
      *
-     *           * `name:Important` to find Cloud resources whose name contains
+     *           * `name:Important` to find Google Cloud resources whose name contains
      *           "Important" as a word.
-     *           * `name=Important` to find the Cloud resource whose name is exactly
+     *           * `name=Important` to find the Google Cloud resource whose name is exactly
      *           "Important".
-     *           * `displayName:Impor*` to find Cloud resources whose display name
+     *           * `displayName:Impor*` to find Google Cloud resources whose display name
      *           contains "Impor" as a prefix of any word in the field.
-     *           * `location:us-west*` to find Cloud resources whose location contains both
-     *           "us" and "west" as prefixes.
-     *           * `labels:prod` to find Cloud resources whose labels contain "prod" as
-     *           a key or value.
-     *           * `labels.env:prod` to find Cloud resources that have a label "env"
+     *           * `location:us-west*` to find Google Cloud resources whose location
+     *           contains both "us" and "west" as prefixes.
+     *           * `labels:prod` to find Google Cloud resources whose labels contain "prod"
+     *           as a key or value.
+     *           * `labels.env:prod` to find Google Cloud resources that have a label "env"
      *           and its value is "prod".
-     *           * `labels.env:*` to find Cloud resources that have a label "env".
-     *           * `kmsKey:key` to find Cloud resources encrypted with a customer-managed
-     *           encryption key whose name contains "key" as a word. This field is
-     *           deprecated. Please use the `kmsKeys` field to retrieve KMS key
-     *           information.
-     *           * `kmsKeys:key` to find Cloud resources encrypted with customer-managed
-     *           encryption keys whose name contains the word "key".
-     *           * `relationships:instance-group-1` to find Cloud resources that have
+     *           * `labels.env:*` to find Google Cloud resources that have a label "env".
+     *           * `kmsKey:key` to find Google Cloud resources encrypted with a
+     *           customer-managed encryption key whose name contains "key" as a word. This
+     *           field is deprecated. Please use the `kmsKeys` field to retrieve Cloud KMS
+     *           key information.
+     *           * `kmsKeys:key` to find Google Cloud resources encrypted with
+     *           customer-managed encryption keys whose name contains the word "key".
+     *           * `relationships:instance-group-1` to find Google Cloud resources that have
      *           relationships with "instance-group-1" in the related resource name.
-     *           * `relationships:INSTANCE_TO_INSTANCEGROUP` to find compute instances that
-     *           have relationships of type "INSTANCE_TO_INSTANCEGROUP".
+     *           * `relationships:INSTANCE_TO_INSTANCEGROUP` to find Compute Engine
+     *           instances that have relationships of type "INSTANCE_TO_INSTANCEGROUP".
      *           * `relationships.INSTANCE_TO_INSTANCEGROUP:instance-group-1` to find
-     *           compute instances that have relationships with "instance-group-1" in the
-     *           compute instance group resource name, for relationship type
+     *           Compute Engine instances that have relationships with "instance-group-1"
+     *           in the Compute Engine instance group resource name, for relationship type
      *           "INSTANCE_TO_INSTANCEGROUP".
-     *           * `state:ACTIVE` to find Cloud resources whose state contains "ACTIVE" as a
-     *           word.
-     *           * `NOT state:ACTIVE` to find Cloud resources whose state doesn't contain
+     *           * `state:ACTIVE` to find Google Cloud resources whose state contains
      *           "ACTIVE" as a word.
-     *           * `createTime<1609459200` to find Cloud resources that were created before
-     *           "2021-01-01 00:00:00 UTC". 1609459200 is the epoch timestamp of
+     *           * `NOT state:ACTIVE` to find Google Cloud resources whose state doesn't
+     *           contain "ACTIVE" as a word.
+     *           * `createTime<1609459200` to find Google Cloud resources that were created
+     *           before "2021-01-01 00:00:00 UTC". 1609459200 is the epoch timestamp of
      *           "2021-01-01 00:00:00 UTC" in seconds.
-     *           * `updateTime>1609459200` to find Cloud resources that were updated after
-     *           "2021-01-01 00:00:00 UTC". 1609459200 is the epoch timestamp of
+     *           * `updateTime>1609459200` to find Google Cloud resources that were updated
+     *           after "2021-01-01 00:00:00 UTC". 1609459200 is the epoch timestamp of
      *           "2021-01-01 00:00:00 UTC" in seconds.
-     *           * `Important` to find Cloud resources that contain "Important" as a word
-     *           in any of the searchable fields.
-     *           * `Impor*` to find Cloud resources that contain "Impor" as a prefix of any
+     *           * `Important` to find Google Cloud resources that contain "Important" as a
      *           word in any of the searchable fields.
-     *           * `Important location:(us-west1 OR global)` to find Cloud
+     *           * `Impor*` to find Google Cloud resources that contain "Impor" as a prefix
+     *           of any word in any of the searchable fields.
+     *           * `Important location:(us-west1 OR global)` to find Google Cloud
      *           resources that contain "Important" as a word in any of the searchable
      *           fields and are also located in the "us-west1" region or the "global"
      *           location.
      *     @type string[] $assetTypes
-     *           Optional. A list of asset types that this request searches for. If empty, it will
-     *           search all the [searchable asset
+     *           Optional. A list of asset types that this request searches for. If empty,
+     *           it will search all the [searchable asset
      *           types](https://cloud.google.com/asset-inventory/docs/supported-asset-types#searchable_asset_types).
      *
      *           Regular expressions are also supported. For example:
@@ -2309,9 +2653,9 @@ class AssetServiceGapicClient
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
      *     @type string $orderBy
-     *           Optional. A comma-separated list of fields specifying the sorting order of the
-     *           results. The default order is ascending. Add " DESC" after the field name
-     *           to indicate descending order. Redundant space characters are ignored.
+     *           Optional. A comma-separated list of fields specifying the sorting order of
+     *           the results. The default order is ascending. Add " DESC" after the field
+     *           name to indicate descending order. Redundant space characters are ignored.
      *           Example: "location DESC, name".
      *           Only singular primitive fields in the response are sortable:
      *
@@ -2331,10 +2675,10 @@ class AssetServiceGapicClient
      *           `kmsKeys`), map fields (e.g., `labels`) and struct fields (e.g.,
      *           `additionalAttributes`) are not supported.
      *     @type FieldMask $readMask
-     *           Optional. A comma-separated list of fields specifying which fields to be returned in
-     *           ResourceSearchResult. Only '*' or combination of top level fields can be
-     *           specified. Field names of both snake_case and camelCase are supported.
-     *           Examples: `"*"`, `"name,location"`, `"name,versionedResources"`.
+     *           Optional. A comma-separated list of fields specifying which fields to be
+     *           returned in ResourceSearchResult. Only '*' or combination of top level
+     *           fields can be specified. Field names of both snake_case and camelCase are
+     *           supported. Examples: `"*"`, `"name,location"`, `"name,versionedResources"`.
      *
      *           The read_mask paths must be valid field paths listed but not limited to
      *           (both snake_case and camelCase are supported):
@@ -2351,7 +2695,7 @@ class AssetServiceGapicClient
      *           * labels
      *           * networkTags
      *           * kmsKey (This field is deprecated. Please use the `kmsKeys` field to
-     *           retrieve KMS key information.)
+     *           retrieve Cloud KMS key information.)
      *           * kmsKeys
      *           * createTime
      *           * updateTime
@@ -2433,8 +2777,8 @@ class AssetServiceGapicClient
      * }
      * ```
      *
-     * @param Feed      $feed         Required. The new values of feed details. It must match an existing feed and the
-     *                                field `name` must be in the format of:
+     * @param Feed      $feed         Required. The new values of feed details. It must match an existing feed
+     *                                and the field `name` must be in the format of:
      *                                projects/project_number/feeds/feed_id or
      *                                folders/folder_number/feeds/feed_id or
      *                                organizations/organization_number/feeds/feed_id.

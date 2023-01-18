@@ -593,6 +593,7 @@ class SpannerClient
      *
      *     @type SessionPoolInterface $sessionPool A pool used to manage
      *           sessions.
+     *     @type string $databaseRole The user created database role which creates the session.
      * }
      * @return Database
      */

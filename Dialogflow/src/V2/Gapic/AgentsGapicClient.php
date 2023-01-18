@@ -455,7 +455,8 @@ class AgentsGapicClient
      *
      * - `metadata`: An empty [Struct
      * message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#struct)
-     * - `response`: [ExportAgentResponse][google.cloud.dialogflow.v2.ExportAgentResponse]
+     * - `response`:
+     * [ExportAgentResponse][google.cloud.dialogflow.v2.ExportAgentResponse]
      *
      * Sample code:
      * ```
@@ -496,10 +497,10 @@ class AgentsGapicClient
      *
      * @param string $parent       Required. The project that the agent to export is associated with.
      *                             Format: `projects/<Project ID>`.
-     * @param string $agentUri     Required. The [Google Cloud Storage](https://cloud.google.com/storage/docs/)
-     *                             URI to export the agent to.
-     *                             The format of this URI must be `gs://<bucket-name>/<object-name>`.
-     *                             If left unspecified, the serialized agent is returned inline.
+     * @param string $agentUri     Required. The [Google Cloud
+     *                             Storage](https://cloud.google.com/storage/docs/) URI to export the agent
+     *                             to. The format of this URI must be `gs://<bucket-name>/<object-name>`. If
+     *                             left unspecified, the serialized agent is returned inline.
      *
      *                             Dialogflow performs a write operation for the Cloud Storage object
      *                             on the caller's behalf, so your request authentication must
@@ -627,11 +628,13 @@ class AgentsGapicClient
      *
      * Uploads new intents and entity types without deleting the existing ones.
      * Intents and entity types with the same name are replaced with the new
-     * versions from [ImportAgentRequest][google.cloud.dialogflow.v2.ImportAgentRequest]. After the import, the imported draft
-     * agent will be trained automatically (unless disabled in agent settings).
-     * However, once the import is done, training may not be completed yet. Please
-     * call [TrainAgent][google.cloud.dialogflow.v2.Agents.TrainAgent] and wait for the operation it returns in order to train
-     * explicitly.
+     * versions from
+     * [ImportAgentRequest][google.cloud.dialogflow.v2.ImportAgentRequest]. After
+     * the import, the imported draft agent will be trained automatically (unless
+     * disabled in agent settings). However, once the import is done, training may
+     * not be completed yet. Please call
+     * [TrainAgent][google.cloud.dialogflow.v2.Agents.TrainAgent] and wait for the
+     * operation it returns in order to train explicitly.
      *
      * This method is a [long-running
      * operation](https://cloud.google.com/dialogflow/es/docs/how/long-running-operations).
@@ -735,8 +738,9 @@ class AgentsGapicClient
      * entity types in the older version are deleted. After the restore, the
      * restored draft agent will be trained automatically (unless disabled in
      * agent settings). However, once the restore is done, training may not be
-     * completed yet. Please call [TrainAgent][google.cloud.dialogflow.v2.Agents.TrainAgent] and wait for the operation it
-     * returns in order to train explicitly.
+     * completed yet. Please call
+     * [TrainAgent][google.cloud.dialogflow.v2.Agents.TrainAgent] and wait for the
+     * operation it returns in order to train explicitly.
      *
      * This method is a [long-running
      * operation](https://cloud.google.com/dialogflow/es/docs/how/long-running-operations).

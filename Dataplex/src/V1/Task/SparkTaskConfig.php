@@ -16,16 +16,16 @@ use Google\Protobuf\Internal\GPBUtil;
 class SparkTaskConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. Cloud Storage URIs of files to be placed in the working directory of each
-     * executor.
+     * Optional. Cloud Storage URIs of files to be placed in the working
+     * directory of each executor.
      *
      * Generated from protobuf field <code>repeated string file_uris = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $file_uris;
     /**
-     * Optional. Cloud Storage URIs of archives to be extracted into the working directory
-     * of each executor. Supported file types: .jar, .tar, .tar.gz, .tgz, and
-     * .zip.
+     * Optional. Cloud Storage URIs of archives to be extracted into the working
+     * directory of each executor. Supported file types: .jar, .tar, .tar.gz,
+     * .tgz, and .zip.
      *
      * Generated from protobuf field <code>repeated string archive_uris = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -67,13 +67,13 @@ class SparkTaskConfig extends \Google\Protobuf\Internal\Message
      *           The query text.
      *           The execution args are used to declare a set of script variables
      *           (`set key="value";`).
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $file_uris
-     *           Optional. Cloud Storage URIs of files to be placed in the working directory of each
-     *           executor.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $archive_uris
-     *           Optional. Cloud Storage URIs of archives to be extracted into the working directory
-     *           of each executor. Supported file types: .jar, .tar, .tar.gz, .tgz, and
-     *           .zip.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $file_uris
+     *           Optional. Cloud Storage URIs of files to be placed in the working
+     *           directory of each executor.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $archive_uris
+     *           Optional. Cloud Storage URIs of archives to be extracted into the working
+     *           directory of each executor. Supported file types: .jar, .tar, .tar.gz,
+     *           .tgz, and .zip.
      *     @type \Google\Cloud\Dataplex\V1\Task\InfrastructureSpec $infrastructure_spec
      *           Optional. Infrastructure specification for the execution.
      * }
@@ -265,8 +265,8 @@ class SparkTaskConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Cloud Storage URIs of files to be placed in the working directory of each
-     * executor.
+     * Optional. Cloud Storage URIs of files to be placed in the working
+     * directory of each executor.
      *
      * Generated from protobuf field <code>repeated string file_uris = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -277,11 +277,11 @@ class SparkTaskConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Cloud Storage URIs of files to be placed in the working directory of each
-     * executor.
+     * Optional. Cloud Storage URIs of files to be placed in the working
+     * directory of each executor.
      *
      * Generated from protobuf field <code>repeated string file_uris = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFileUris($var)
@@ -293,9 +293,9 @@ class SparkTaskConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Cloud Storage URIs of archives to be extracted into the working directory
-     * of each executor. Supported file types: .jar, .tar, .tar.gz, .tgz, and
-     * .zip.
+     * Optional. Cloud Storage URIs of archives to be extracted into the working
+     * directory of each executor. Supported file types: .jar, .tar, .tar.gz,
+     * .tgz, and .zip.
      *
      * Generated from protobuf field <code>repeated string archive_uris = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -306,12 +306,12 @@ class SparkTaskConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Cloud Storage URIs of archives to be extracted into the working directory
-     * of each executor. Supported file types: .jar, .tar, .tar.gz, .tgz, and
-     * .zip.
+     * Optional. Cloud Storage URIs of archives to be extracted into the working
+     * directory of each executor. Supported file types: .jar, .tar, .tar.gz,
+     * .tgz, and .zip.
      *
      * Generated from protobuf field <code>repeated string archive_uris = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setArchiveUris($var)

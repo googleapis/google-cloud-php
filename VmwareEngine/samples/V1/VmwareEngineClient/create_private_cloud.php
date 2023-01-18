@@ -43,7 +43,7 @@ use Google\Rpc\Status;
  *                                                        private cloud in. Resource names are schemeless URIs that follow the
  *                                                        conventions in https://cloud.google.com/apis/design/resource_names.
  *                                                        For example:
- *                                                        `projects/my-project/locations/us-west1-a`
+ *                                                        `projects/my-project/locations/us-central1-a`
  *                                                        Please see {@see VmwareEngineClient::locationName()} for help formatting this field.
  * @param string $privateCloudId                          The user-provided identifier of the private cloud to be created.
  *                                                        This identifier must be unique among each `PrivateCloud` within the parent

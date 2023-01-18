@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request message for [Agents.DeleteAgent][google.cloud.dialogflow.v2.Agents.DeleteAgent].
+ * The request message for
+ * [Agents.DeleteAgent][google.cloud.dialogflow.v2.Agents.DeleteAgent].
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.DeleteAgentRequest</code>
  */

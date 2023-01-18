@@ -28,6 +28,7 @@ use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
+use Google\Cloud\PubSub\V1\ListSchemaRevisionsResponse;
 use Google\Cloud\PubSub\V1\ListSchemasResponse;
 use Google\Cloud\PubSub\V1\Schema;
 use Google\Cloud\PubSub\V1\SchemaServiceClient;
@@ -66,6 +67,78 @@ class SchemaServiceClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function commitSchemaTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $definition = 'definition-1014418093';
+        $revisionId = 'revisionId513861631';
+        $expectedResponse = new Schema();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setDefinition($definition);
+        $expectedResponse->setRevisionId($revisionId);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->schemaName('[PROJECT]', '[SCHEMA]');
+        $schema = new Schema();
+        $schemaName = 'schemaName-448762932';
+        $schema->setName($schemaName);
+        $response = $gapicClient->commitSchema($formattedName, $schema);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.pubsub.v1.SchemaService/CommitSchema', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualRequestObject->getSchema();
+        $this->assertProtobufEquals($schema, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function commitSchemaExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->schemaName('[PROJECT]', '[SCHEMA]');
+        $schema = new Schema();
+        $schemaName = 'schemaName-448762932';
+        $schema->setName($schemaName);
+        try {
+            $gapicClient->commitSchema($formattedName, $schema);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function createSchemaTest()
     {
         $transport = $this->createTransport();
@@ -76,9 +149,11 @@ class SchemaServiceClientTest extends GeneratedTest
         // Mock response
         $name = 'name3373707';
         $definition = 'definition-1014418093';
+        $revisionId = 'revisionId513861631';
         $expectedResponse = new Schema();
         $expectedResponse->setName($name);
         $expectedResponse->setDefinition($definition);
+        $expectedResponse->setRevisionId($revisionId);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
@@ -193,6 +268,74 @@ class SchemaServiceClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function deleteSchemaRevisionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $definition = 'definition-1014418093';
+        $revisionId2 = 'revisionId2-100208654';
+        $expectedResponse = new Schema();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setDefinition($definition);
+        $expectedResponse->setRevisionId($revisionId2);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->schemaName('[PROJECT]', '[SCHEMA]');
+        $revisionId = 'revisionId513861631';
+        $response = $gapicClient->deleteSchemaRevision($formattedName, $revisionId);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.pubsub.v1.SchemaService/DeleteSchemaRevision', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualRequestObject->getRevisionId();
+        $this->assertProtobufEquals($revisionId, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteSchemaRevisionExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->schemaName('[PROJECT]', '[SCHEMA]');
+        $revisionId = 'revisionId513861631';
+        try {
+            $gapicClient->deleteSchemaRevision($formattedName, $revisionId);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function getSchemaTest()
     {
         $transport = $this->createTransport();
@@ -203,9 +346,11 @@ class SchemaServiceClientTest extends GeneratedTest
         // Mock response
         $name2 = 'name2-1052831874';
         $definition = 'definition-1014418093';
+        $revisionId = 'revisionId513861631';
         $expectedResponse = new Schema();
         $expectedResponse->setName($name2);
         $expectedResponse->setDefinition($definition);
+        $expectedResponse->setRevisionId($revisionId);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->schemaName('[PROJECT]', '[SCHEMA]');
@@ -243,6 +388,74 @@ class SchemaServiceClientTest extends GeneratedTest
         $formattedName = $gapicClient->schemaName('[PROJECT]', '[SCHEMA]');
         try {
             $gapicClient->getSchema($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listSchemaRevisionsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $schemasElement = new Schema();
+        $schemas = [
+            $schemasElement,
+        ];
+        $expectedResponse = new ListSchemaRevisionsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setSchemas($schemas);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->schemaName('[PROJECT]', '[SCHEMA]');
+        $response = $gapicClient->listSchemaRevisions($formattedName);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getSchemas()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.pubsub.v1.SchemaService/ListSchemaRevisions', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listSchemaRevisionsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->schemaName('[PROJECT]', '[SCHEMA]');
+        try {
+            $gapicClient->listSchemaRevisions($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -311,6 +524,74 @@ class SchemaServiceClientTest extends GeneratedTest
         $formattedParent = $gapicClient->projectName('[PROJECT]');
         try {
             $gapicClient->listSchemas($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function rollbackSchemaTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $definition = 'definition-1014418093';
+        $revisionId2 = 'revisionId2-100208654';
+        $expectedResponse = new Schema();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setDefinition($definition);
+        $expectedResponse->setRevisionId($revisionId2);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->schemaName('[PROJECT]', '[SCHEMA]');
+        $revisionId = 'revisionId513861631';
+        $response = $gapicClient->rollbackSchema($formattedName, $revisionId);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.pubsub.v1.SchemaService/RollbackSchema', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualRequestObject->getRevisionId();
+        $this->assertProtobufEquals($revisionId, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function rollbackSchemaExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->schemaName('[PROJECT]', '[SCHEMA]');
+        $revisionId = 'revisionId513861631';
+        try {
+            $gapicClient->rollbackSchema($formattedName, $revisionId);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

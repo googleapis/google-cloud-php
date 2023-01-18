@@ -64,6 +64,4 @@ class ConnectionType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ConnectionType::class, \Google\Cloud\Orchestration\Airflow\Service\V1\NetworkingConfig_ConnectionType::class);
 

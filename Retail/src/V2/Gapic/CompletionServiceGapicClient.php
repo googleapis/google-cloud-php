@@ -45,7 +45,7 @@ use Google\LongRunning\Operation;
  * Service Description: Auto-completion service for retail.
  *
  * This feature is only available for users who have Retail Search enabled.
- * Please enable Retail Search on Cloud Console before using this feature.
+ * Enable Retail Search on Cloud Console before using this feature.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
@@ -305,7 +305,7 @@ class CompletionServiceGapicClient
      * Completes the specified prefix with keyword suggestions.
      *
      * This feature is only available for users who have Retail Search enabled.
-     * Please enable Retail Search on Cloud Console before using this feature.
+     * Enable Retail Search on Cloud Console before using this feature.
      *
      * Sample code:
      * ```
@@ -348,8 +348,10 @@ class CompletionServiceGapicClient
      *           Identifying Languages](https://tools.ietf.org/html/bcp47). The maximum
      *           number of language codes is 3.
      *     @type string $deviceType
-     *           The device type context for completion suggestions.
-     *           It is useful to apply different suggestions on different device types, e.g.
+     *           The device type context for completion suggestions. We recommend that you
+     *           leave this field empty.
+     *
+     *           It can apply different suggestions on different device types, e.g.
      *           `DESKTOP`, `MOBILE`. If it is empty, the suggestions are across all device
      *           types.
      *
@@ -443,7 +445,7 @@ class CompletionServiceGapicClient
      * are indexed successfully and ready for serving. The process takes hours.
      *
      * This feature is only available for users who have Retail Search enabled.
-     * Please enable Retail Search on Cloud Console before using this feature.
+     * Enable Retail Search on Cloud Console before using this feature.
      *
      * Sample code:
      * ```
