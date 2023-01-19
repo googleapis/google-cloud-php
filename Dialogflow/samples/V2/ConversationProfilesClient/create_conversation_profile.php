@@ -32,7 +32,8 @@ use Google\Cloud\Dialogflow\V2\ConversationProfilesClient;
  *
  * [ConversationProfile.CreateTime][] and [ConversationProfile.UpdateTime][]
  * aren't populated in the response. You can retrieve them via
- * [GetConversationProfile][google.cloud.dialogflow.v2.ConversationProfiles.GetConversationProfile] API.
+ * [GetConversationProfile][google.cloud.dialogflow.v2.ConversationProfiles.GetConversationProfile]
+ * API.
  *
  * @param string $formattedParent                The project to create a conversation profile for.
  *                                               Format: `projects/<Project ID>/locations/<Location ID>`. Please see

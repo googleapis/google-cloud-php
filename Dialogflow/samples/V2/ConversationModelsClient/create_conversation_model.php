@@ -38,8 +38,10 @@ use Google\Rpc\Status;
  * operation](https://cloud.google.com/dialogflow/es/docs/how/long-running-operations).
  * The returned `Operation` type has the following method-specific fields:
  *
- * - `metadata`: [CreateConversationModelOperationMetadata][google.cloud.dialogflow.v2.CreateConversationModelOperationMetadata]
- * - `response`: [ConversationModel][google.cloud.dialogflow.v2.ConversationModel]
+ * - `metadata`:
+ * [CreateConversationModelOperationMetadata][google.cloud.dialogflow.v2.CreateConversationModelOperationMetadata]
+ * - `response`:
+ * [ConversationModel][google.cloud.dialogflow.v2.ConversationModel]
  *
  * @param string $conversationModelDisplayName              The display name of the model. At most 64 bytes long.
  * @param string $formattedConversationModelDatasetsDataset ConversationDataset resource name. Format:

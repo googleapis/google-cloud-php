@@ -35,7 +35,7 @@ class ListActionsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Dataplex\V1\Action[]|\Google\Protobuf\Internal\RepeatedField $actions
+     *     @type array<\Google\Cloud\Dataplex\V1\Action>|\Google\Protobuf\Internal\RepeatedField $actions
      *           Actions under the given parent lake/zone/asset.
      *     @type string $next_page_token
      *           Token to retrieve the next page of results, or empty if there are no more
@@ -62,7 +62,7 @@ class ListActionsResponse extends \Google\Protobuf\Internal\Message
      * Actions under the given parent lake/zone/asset.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.Action actions = 1;</code>
-     * @param \Google\Cloud\Dataplex\V1\Action[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dataplex\V1\Action>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setActions($var)

@@ -30,10 +30,11 @@ use Google\Cloud\BigQuery\DataTransfer\V1\TransferConfig;
 /**
  * Creates a new data transfer configuration.
  *
- * @param string $formattedParent The BigQuery project id where the transfer configuration should be created.
- *                                Must be in the format projects/{project_id}/locations/{location_id} or
- *                                projects/{project_id}. If specified location and location of the
- *                                destination bigquery dataset do not match - the request will fail. Please see
+ * @param string $formattedParent The BigQuery project id where the transfer configuration should
+ *                                be created. Must be in the format
+ *                                projects/{project_id}/locations/{location_id} or projects/{project_id}. If
+ *                                specified location and location of the destination bigquery dataset do not
+ *                                match - the request will fail. Please see
  *                                {@see DataTransferServiceClient::projectName()} for help formatting this field.
  */
 function create_transfer_config_sample(string $formattedParent): void

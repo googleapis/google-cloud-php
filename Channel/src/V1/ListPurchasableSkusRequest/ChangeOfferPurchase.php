@@ -10,7 +10,8 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * List SKUs for upgrading or downgrading an entitlement. Make the purchase
- * using [CloudChannelService.ChangeOffer][google.cloud.channel.v1.CloudChannelService.ChangeOffer].
+ * using
+ * [CloudChannelService.ChangeOffer][google.cloud.channel.v1.CloudChannelService.ChangeOffer].
  *
  * Generated from protobuf message <code>google.cloud.channel.v1.ListPurchasableSkusRequest.ChangeOfferPurchase</code>
  */
