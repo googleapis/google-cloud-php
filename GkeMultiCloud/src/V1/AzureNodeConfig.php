@@ -34,8 +34,8 @@ class AzureNodeConfig extends \Google\Protobuf\Internal\Message
      */
     private $root_volume = null;
     /**
-     * Optional. A set of tags to apply to all underlying Azure resources for this node
-     * pool. This currently only includes Virtual Machine Scale Sets.
+     * Optional. A set of tags to apply to all underlying Azure resources for this
+     * node pool. This currently only includes Virtual Machine Scale Sets.
      * Specify at most 50 pairs containing alphanumerics, spaces, and symbols
      * (.+-=_:&#64;/). Keys can be up to 127 Unicode characters. Values can be up to
      * 255 Unicode characters.
@@ -101,8 +101,8 @@ class AzureNodeConfig extends \Google\Protobuf\Internal\Message
      *           node pool machine.
      *           When unspecified, it defaults to a 32-GiB Azure Disk.
      *     @type array|\Google\Protobuf\Internal\MapField $tags
-     *           Optional. A set of tags to apply to all underlying Azure resources for this node
-     *           pool. This currently only includes Virtual Machine Scale Sets.
+     *           Optional. A set of tags to apply to all underlying Azure resources for this
+     *           node pool. This currently only includes Virtual Machine Scale Sets.
      *           Specify at most 50 pairs containing alphanumerics, spaces, and symbols
      *           (.+-=_:&#64;/). Keys can be up to 127 Unicode characters. Values can be up to
      *           255 Unicode characters.
@@ -203,8 +203,8 @@ class AzureNodeConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A set of tags to apply to all underlying Azure resources for this node
-     * pool. This currently only includes Virtual Machine Scale Sets.
+     * Optional. A set of tags to apply to all underlying Azure resources for this
+     * node pool. This currently only includes Virtual Machine Scale Sets.
      * Specify at most 50 pairs containing alphanumerics, spaces, and symbols
      * (.+-=_:&#64;/). Keys can be up to 127 Unicode characters. Values can be up to
      * 255 Unicode characters.
@@ -218,8 +218,8 @@ class AzureNodeConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A set of tags to apply to all underlying Azure resources for this node
-     * pool. This currently only includes Virtual Machine Scale Sets.
+     * Optional. A set of tags to apply to all underlying Azure resources for this
+     * node pool. This currently only includes Virtual Machine Scale Sets.
      * Specify at most 50 pairs containing alphanumerics, spaces, and symbols
      * (.+-=_:&#64;/). Keys can be up to 127 Unicode characters. Values can be up to
      * 255 Unicode characters.

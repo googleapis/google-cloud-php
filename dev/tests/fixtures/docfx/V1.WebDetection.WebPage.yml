@@ -63,10 +63,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\WebDetection\WebPage::getUrl()'
     name: getUrl
     id: getUrl
-    summary: |
-      The result web page URL.
-      
-      Generated from protobuf field <code>string url = 1;</code>
+    summary: 'The result web page URL.'
     parent: \Google\Cloud\Vision\V1\WebDetection\WebPage
     type: method
     langs:
@@ -79,10 +76,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\WebDetection\WebPage::setUrl()'
     name: setUrl
     id: setUrl
-    summary: |
-      The result web page URL.
-      
-      Generated from protobuf field <code>string url = 1;</code>
+    summary: 'The result web page URL.'
     parent: \Google\Cloud\Vision\V1\WebDetection\WebPage
     type: method
     langs:
@@ -100,10 +94,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\WebDetection\WebPage::getScore()'
     name: getScore
     id: getScore
-    summary: |
-      (Deprecated) Overall relevancy score for the web page.
-      
-      Generated from protobuf field <code>float score = 2;</code>
+    summary: '(Deprecated) Overall relevancy score for the web page.'
     parent: \Google\Cloud\Vision\V1\WebDetection\WebPage
     type: method
     langs:
@@ -116,10 +107,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\WebDetection\WebPage::setScore()'
     name: setScore
     id: setScore
-    summary: |
-      (Deprecated) Overall relevancy score for the web page.
-      
-      Generated from protobuf field <code>float score = 2;</code>
+    summary: '(Deprecated) Overall relevancy score for the web page.'
     parent: \Google\Cloud\Vision\V1\WebDetection\WebPage
     type: method
     langs:
@@ -137,10 +125,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\WebDetection\WebPage::getPageTitle()'
     name: getPageTitle
     id: getPageTitle
-    summary: |
-      Title for the web page, may contain HTML markups.
-      
-      Generated from protobuf field <code>string page_title = 3;</code>
+    summary: 'Title for the web page, may contain HTML markups.'
     parent: \Google\Cloud\Vision\V1\WebDetection\WebPage
     type: method
     langs:
@@ -153,10 +138,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\WebDetection\WebPage::setPageTitle()'
     name: setPageTitle
     id: setPageTitle
-    summary: |
-      Title for the web page, may contain HTML markups.
-      
-      Generated from protobuf field <code>string page_title = 3;</code>
+    summary: 'Title for the web page, may contain HTML markups.'
     parent: \Google\Cloud\Vision\V1\WebDetection\WebPage
     type: method
     langs:
@@ -178,8 +160,6 @@ items:
       Fully matching images on the page.
       
       Can include resized copies of the query image.
-      
-      Generated from protobuf field <code>repeated .google.cloud.vision.v1.WebDetection.WebImage full_matching_images = 4;</code>
     parent: \Google\Cloud\Vision\V1\WebDetection\WebPage
     type: method
     langs:
@@ -187,7 +167,7 @@ items:
     syntax:
       returns:
         -
-          var_type: Google\Protobuf\Internal\RepeatedField
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Internal/RepeatedField">Google\Protobuf\Internal\RepeatedField</a>'
   -
     uid: '\Google\Cloud\Vision\V1\WebDetection\WebPage::setFullMatchingImages()'
     name: setFullMatchingImages
@@ -196,8 +176,6 @@ items:
       Fully matching images on the page.
       
       Can include resized copies of the query image.
-      
-      Generated from protobuf field <code>repeated .google.cloud.vision.v1.WebDetection.WebImage full_matching_images = 4;</code>
     parent: \Google\Cloud\Vision\V1\WebDetection\WebPage
     type: method
     langs:
@@ -221,8 +199,6 @@ items:
       Those images are similar enough to share some key-point features. For
       example an original image will likely have partial matching for its
       crops.
-      
-      Generated from protobuf field <code>repeated .google.cloud.vision.v1.WebDetection.WebImage partial_matching_images = 5;</code>
     parent: \Google\Cloud\Vision\V1\WebDetection\WebPage
     type: method
     langs:
@@ -230,7 +206,7 @@ items:
     syntax:
       returns:
         -
-          var_type: Google\Protobuf\Internal\RepeatedField
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Internal/RepeatedField">Google\Protobuf\Internal\RepeatedField</a>'
   -
     uid: '\Google\Cloud\Vision\V1\WebDetection\WebPage::setPartialMatchingImages()'
     name: setPartialMatchingImages
@@ -241,8 +217,6 @@ items:
       Those images are similar enough to share some key-point features. For
       example an original image will likely have partial matching for its
       crops.
-      
-      Generated from protobuf field <code>repeated .google.cloud.vision.v1.WebDetection.WebImage partial_matching_images = 5;</code>
     parent: \Google\Cloud\Vision\V1\WebDetection\WebPage
     type: method
     langs:

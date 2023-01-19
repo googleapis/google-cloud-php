@@ -4,7 +4,7 @@
 
 [![Latest Stable Version](https://poser.pugx.org/google/cloud-resource-settings/v/stable)](https://packagist.org/packages/google/cloud-resource-settings) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-resource-settings.svg)](https://packagist.org/packages/google/cloud-resource-settings)
 
-* [API documentation](http://googleapis.github.io/google-cloud-php/#/docs/cloud-resource-settings/latest/resourcesettings/readme)
+* [API documentation](https://cloud.google.com/php/docs/reference/cloud-resource-settings/latest)
 
 **NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googleapis/google-cloud-php). Any
 support requests, bug reports, or development contributions should be directed to

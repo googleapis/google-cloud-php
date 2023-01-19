@@ -399,4 +399,14 @@ class InstanceTest extends SnippetTestCase
         $this->assertInstanceOf(ItemIterator::class, $res->returnVal());
         $this->assertContainsOnlyInstancesOf(LongRunningOperation::class, $res->returnVal());
     }
+
+    public function testDatabaseWithDatabaseRole()
+    {
+        $snippet = $this->snippetFromMethod(Instance::class, 'database', 1);
+        $snippet->addLocal('instance', $this->instance);
+
+        $res = $snippet->invoke('database');
+        $this->assertInstanceOf(Database::class, $res->returnVal());
+        $this->assertEquals(self::DATABASE, DatabaseAdminClient::parseName($res->returnVal()->name())['database']);
+    }
 }

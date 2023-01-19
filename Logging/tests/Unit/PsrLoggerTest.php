@@ -17,13 +17,10 @@
 
 namespace Google\Cloud\Logging\Tests\Unit;
 
-use Google\Cloud\Core\Batch\BatchRunner;
-use Google\Cloud\Core\Batch\OpisClosureSerializer;
 use Google\Cloud\Core\Report\EmptyMetadataProvider;
 use Google\Cloud\Logging\Logger;
 use Google\Cloud\Logging\PsrLogger;
 use Google\Cloud\Logging\Connection\ConnectionInterface;
-use Prophecy\Argument;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 

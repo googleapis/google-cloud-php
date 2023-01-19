@@ -3,6 +3,16 @@
 return [
     'interfaces' => [
         'google.cloud.metastore.v1beta.DataprocMetastore' => [
+            'AlterMetadataResourceLocation' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Metastore\V1beta\AlterMetadataResourceLocationResponse',
+                    'metadataReturnType' => '\Google\Cloud\Metastore\V1beta\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+            ],
             'CreateBackup' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\Metastore\V1beta\Backup',
@@ -61,6 +71,26 @@ return [
                     'pollDelayMultiplier' => '1.5',
                     'maxPollDelayMillis' => '120000',
                     'totalPollTimeoutMillis' => '4800000',
+                ],
+            ],
+            'MoveTableToDatabase' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Metastore\V1beta\MoveTableToDatabaseResponse',
+                    'metadataReturnType' => '\Google\Cloud\Metastore\V1beta\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+            ],
+            'QueryMetadata' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Metastore\V1beta\QueryMetadataResponse',
+                    'metadataReturnType' => '\Google\Cloud\Metastore\V1beta\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
                 ],
             ],
             'RestoreService' => [

@@ -32,7 +32,7 @@ use Google\Cloud\Retail\V2\ServingConfigServiceClient;
  * Returns a NotFound error if the ServingConfig does not exist.
  *
  * @param string $formattedName The resource name of the ServingConfig to delete. Format:
- *                              projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/servingConfigs/{serving_config_id}
+ *                              `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/servingConfigs/{serving_config_id}`
  *                              Please see {@see ServingConfigServiceClient::servingConfigName()} for help formatting this field.
  */
 function delete_serving_config_sample(string $formattedName): void

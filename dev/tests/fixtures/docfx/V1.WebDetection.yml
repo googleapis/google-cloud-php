@@ -69,10 +69,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\WebDetection::getWebEntities()'
     name: getWebEntities
     id: getWebEntities
-    summary: |
-      Deduced entities from similar images on the Internet.
-      
-      Generated from protobuf field <code>repeated .google.cloud.vision.v1.WebDetection.WebEntity web_entities = 1;</code>
+    summary: 'Deduced entities from similar images on the Internet.'
     parent: \Google\Cloud\Vision\V1\WebDetection
     type: method
     langs:
@@ -80,15 +77,12 @@ items:
     syntax:
       returns:
         -
-          var_type: Google\Protobuf\Internal\RepeatedField
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Internal/RepeatedField">Google\Protobuf\Internal\RepeatedField</a>'
   -
     uid: '\Google\Cloud\Vision\V1\WebDetection::setWebEntities()'
     name: setWebEntities
     id: setWebEntities
-    summary: |
-      Deduced entities from similar images on the Internet.
-      
-      Generated from protobuf field <code>repeated .google.cloud.vision.v1.WebDetection.WebEntity web_entities = 1;</code>
+    summary: 'Deduced entities from similar images on the Internet.'
     parent: \Google\Cloud\Vision\V1\WebDetection
     type: method
     langs:
@@ -110,8 +104,6 @@ items:
       Fully matching images from the Internet.
       
       Can include resized copies of the query image.
-      
-      Generated from protobuf field <code>repeated .google.cloud.vision.v1.WebDetection.WebImage full_matching_images = 2;</code>
     parent: \Google\Cloud\Vision\V1\WebDetection
     type: method
     langs:
@@ -119,7 +111,7 @@ items:
     syntax:
       returns:
         -
-          var_type: Google\Protobuf\Internal\RepeatedField
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Internal/RepeatedField">Google\Protobuf\Internal\RepeatedField</a>'
   -
     uid: '\Google\Cloud\Vision\V1\WebDetection::setFullMatchingImages()'
     name: setFullMatchingImages
@@ -128,8 +120,6 @@ items:
       Fully matching images from the Internet.
       
       Can include resized copies of the query image.
-      
-      Generated from protobuf field <code>repeated .google.cloud.vision.v1.WebDetection.WebImage full_matching_images = 2;</code>
     parent: \Google\Cloud\Vision\V1\WebDetection
     type: method
     langs:
@@ -152,8 +142,6 @@ items:
       
       Those images are similar enough to share some key-point features. For
       example an original image will likely have partial matching for its crops.
-      
-      Generated from protobuf field <code>repeated .google.cloud.vision.v1.WebDetection.WebImage partial_matching_images = 3;</code>
     parent: \Google\Cloud\Vision\V1\WebDetection
     type: method
     langs:
@@ -161,7 +149,7 @@ items:
     syntax:
       returns:
         -
-          var_type: Google\Protobuf\Internal\RepeatedField
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Internal/RepeatedField">Google\Protobuf\Internal\RepeatedField</a>'
   -
     uid: '\Google\Cloud\Vision\V1\WebDetection::setPartialMatchingImages()'
     name: setPartialMatchingImages
@@ -171,8 +159,6 @@ items:
       
       Those images are similar enough to share some key-point features. For
       example an original image will likely have partial matching for its crops.
-      
-      Generated from protobuf field <code>repeated .google.cloud.vision.v1.WebDetection.WebImage partial_matching_images = 3;</code>
     parent: \Google\Cloud\Vision\V1\WebDetection
     type: method
     langs:
@@ -190,10 +176,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\WebDetection::getPagesWithMatchingImages()'
     name: getPagesWithMatchingImages
     id: getPagesWithMatchingImages
-    summary: |
-      Web pages containing the matching images from the Internet.
-      
-      Generated from protobuf field <code>repeated .google.cloud.vision.v1.WebDetection.WebPage pages_with_matching_images = 4;</code>
+    summary: 'Web pages containing the matching images from the Internet.'
     parent: \Google\Cloud\Vision\V1\WebDetection
     type: method
     langs:
@@ -201,15 +184,12 @@ items:
     syntax:
       returns:
         -
-          var_type: Google\Protobuf\Internal\RepeatedField
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Internal/RepeatedField">Google\Protobuf\Internal\RepeatedField</a>'
   -
     uid: '\Google\Cloud\Vision\V1\WebDetection::setPagesWithMatchingImages()'
     name: setPagesWithMatchingImages
     id: setPagesWithMatchingImages
-    summary: |
-      Web pages containing the matching images from the Internet.
-      
-      Generated from protobuf field <code>repeated .google.cloud.vision.v1.WebDetection.WebPage pages_with_matching_images = 4;</code>
+    summary: 'Web pages containing the matching images from the Internet.'
     parent: \Google\Cloud\Vision\V1\WebDetection
     type: method
     langs:
@@ -227,10 +207,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\WebDetection::getVisuallySimilarImages()'
     name: getVisuallySimilarImages
     id: getVisuallySimilarImages
-    summary: |
-      The visually similar image results.
-      
-      Generated from protobuf field <code>repeated .google.cloud.vision.v1.WebDetection.WebImage visually_similar_images = 6;</code>
+    summary: 'The visually similar image results.'
     parent: \Google\Cloud\Vision\V1\WebDetection
     type: method
     langs:
@@ -238,15 +215,12 @@ items:
     syntax:
       returns:
         -
-          var_type: Google\Protobuf\Internal\RepeatedField
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Internal/RepeatedField">Google\Protobuf\Internal\RepeatedField</a>'
   -
     uid: '\Google\Cloud\Vision\V1\WebDetection::setVisuallySimilarImages()'
     name: setVisuallySimilarImages
     id: setVisuallySimilarImages
-    summary: |
-      The visually similar image results.
-      
-      Generated from protobuf field <code>repeated .google.cloud.vision.v1.WebDetection.WebImage visually_similar_images = 6;</code>
+    summary: 'The visually similar image results.'
     parent: \Google\Cloud\Vision\V1\WebDetection
     type: method
     langs:
@@ -268,8 +242,6 @@ items:
       The service's best guess as to the topic of the request image.
       
       Inferred from similar images on the open web.
-      
-      Generated from protobuf field <code>repeated .google.cloud.vision.v1.WebDetection.WebLabel best_guess_labels = 8;</code>
     parent: \Google\Cloud\Vision\V1\WebDetection
     type: method
     langs:
@@ -277,7 +249,7 @@ items:
     syntax:
       returns:
         -
-          var_type: Google\Protobuf\Internal\RepeatedField
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Internal/RepeatedField">Google\Protobuf\Internal\RepeatedField</a>'
   -
     uid: '\Google\Cloud\Vision\V1\WebDetection::setBestGuessLabels()'
     name: setBestGuessLabels
@@ -286,8 +258,6 @@ items:
       The service's best guess as to the topic of the request image.
       
       Inferred from similar images on the open web.
-      
-      Generated from protobuf field <code>repeated .google.cloud.vision.v1.WebDetection.WebLabel best_guess_labels = 8;</code>
     parent: \Google\Cloud\Vision\V1\WebDetection
     type: method
     langs:

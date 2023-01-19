@@ -25,7 +25,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     /**
      * Path to a Bash script that automatically runs after a notebook instance
      * fully boots up. The path must be a URL or
-     * Cloud Storage path (gs://path-to-file/file-name).
+     * Cloud Storage path (`gs://path-to-file/file-name`).
      *
      * Generated from protobuf field <code>string post_startup_script = 4;</code>
      */
@@ -58,7 +58,8 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     private $service_account = '';
     /**
-     * Required. The [Compute Engine machine type](https://cloud.google.com/compute/docs/machine-types) of this
+     * Required. The [Compute Engine machine
+     * type](https://cloud.google.com/compute/docs/machine-types) of this
      * instance.
      *
      * Generated from protobuf field <code>string machine_type = 8 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -67,8 +68,8 @@ class Instance extends \Google\Protobuf\Internal\Message
     /**
      * The hardware accelerator used on this instance. If you use
      * accelerators, make sure that your configuration has
-     * [enough vCPUs and memory to support the `machine_type` you
-     * have selected](https://cloud.google.com/compute/docs/gpus/#gpus-list).
+     * [enough vCPUs and memory to support the `machine_type` you have
+     * selected](https://cloud.google.com/compute/docs/gpus/#gpus-list).
      *
      * Generated from protobuf field <code>.google.cloud.notebooks.v1beta1.Instance.AcceleratorConfig accelerator_config = 9;</code>
      */
@@ -104,8 +105,8 @@ class Instance extends \Google\Protobuf\Internal\Message
     private $boot_disk_type = 0;
     /**
      * Input only. The size of the boot disk in GB attached to this instance, up to a maximum
-     * of 64000&nbsp;GB (64&nbsp;TB). The minimum recommended value is
-     * 100&nbsp;GB. If not specified, this defaults to 100.
+     * of 64000 GB (64 TB). The minimum recommended value is 100 GB. If not
+     * specified, this defaults to 100.
      *
      * Generated from protobuf field <code>int64 boot_disk_size_gb = 14 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      */
@@ -119,9 +120,8 @@ class Instance extends \Google\Protobuf\Internal\Message
     private $data_disk_type = 0;
     /**
      * Input only. The size of the data disk in GB attached to this instance, up to a maximum
-     * of 64000&nbsp;GB (64&nbsp;TB). You can choose the size of the data disk
-     * based on how big your notebooks and data are. If not specified, this
-     * defaults to 100.
+     * of 64000 GB (64 TB). You can choose the size of the data disk based on how
+     * big your notebooks and data are. If not specified, this defaults to 100.
      *
      * Generated from protobuf field <code>int64 data_disk_size_gb = 26 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      */
@@ -143,7 +143,8 @@ class Instance extends \Google\Protobuf\Internal\Message
      * is CMEK.
      * Format:
      * `projects/{project_id}/locations/{location}/keyRings/{key_ring_id}/cryptoKeys/{key_id}`
-     * Learn more about [using your own encryption keys](https://cloud.google.com/kms/docs/quickstart).
+     * Learn more about [using your own encryption
+     * keys](https://cloud.google.com/kms/docs/quickstart).
      *
      * Generated from protobuf field <code>string kms_key = 16 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      */
@@ -242,7 +243,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      *     @type string $post_startup_script
      *           Path to a Bash script that automatically runs after a notebook instance
      *           fully boots up. The path must be a URL or
-     *           Cloud Storage path (gs://path-to-file/file-name).
+     *           Cloud Storage path (`gs://path-to-file/file-name`).
      *     @type string $proxy_uri
      *           Output only. The proxy endpoint that is used to access the Jupyter notebook.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $instance_owners
@@ -259,13 +260,14 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           account](https://cloud.google.com/compute/docs/access/service-accounts#default_service_account)
      *           is used.
      *     @type string $machine_type
-     *           Required. The [Compute Engine machine type](https://cloud.google.com/compute/docs/machine-types) of this
+     *           Required. The [Compute Engine machine
+     *           type](https://cloud.google.com/compute/docs/machine-types) of this
      *           instance.
      *     @type \Google\Cloud\Notebooks\V1beta1\Instance\AcceleratorConfig $accelerator_config
      *           The hardware accelerator used on this instance. If you use
      *           accelerators, make sure that your configuration has
-     *           [enough vCPUs and memory to support the `machine_type` you
-     *           have selected](https://cloud.google.com/compute/docs/gpus/#gpus-list).
+     *           [enough vCPUs and memory to support the `machine_type` you have
+     *           selected](https://cloud.google.com/compute/docs/gpus/#gpus-list).
      *     @type int $state
      *           Output only. The state of this instance.
      *     @type bool $install_gpu_driver
@@ -281,16 +283,15 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           standard persistent disk (`PD_STANDARD`).
      *     @type int|string $boot_disk_size_gb
      *           Input only. The size of the boot disk in GB attached to this instance, up to a maximum
-     *           of 64000&nbsp;GB (64&nbsp;TB). The minimum recommended value is
-     *           100&nbsp;GB. If not specified, this defaults to 100.
+     *           of 64000 GB (64 TB). The minimum recommended value is 100 GB. If not
+     *           specified, this defaults to 100.
      *     @type int $data_disk_type
      *           Input only. The type of the data disk attached to this instance, defaults to
      *           standard persistent disk (`PD_STANDARD`).
      *     @type int|string $data_disk_size_gb
      *           Input only. The size of the data disk in GB attached to this instance, up to a maximum
-     *           of 64000&nbsp;GB (64&nbsp;TB). You can choose the size of the data disk
-     *           based on how big your notebooks and data are. If not specified, this
-     *           defaults to 100.
+     *           of 64000 GB (64 TB). You can choose the size of the data disk based on how
+     *           big your notebooks and data are. If not specified, this defaults to 100.
      *     @type bool $no_remove_data_disk
      *           Input only. If true, the data disk will not be auto deleted when deleting the instance.
      *     @type int $disk_encryption
@@ -300,7 +301,8 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           is CMEK.
      *           Format:
      *           `projects/{project_id}/locations/{location}/keyRings/{key_ring_id}/cryptoKeys/{key_id}`
-     *           Learn more about [using your own encryption keys](https://cloud.google.com/kms/docs/quickstart).
+     *           Learn more about [using your own encryption
+     *           keys](https://cloud.google.com/kms/docs/quickstart).
      *     @type bool $no_public_ip
      *           If true, no public IP will be assigned to this instance.
      *     @type bool $no_proxy_access
@@ -433,7 +435,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     /**
      * Path to a Bash script that automatically runs after a notebook instance
      * fully boots up. The path must be a URL or
-     * Cloud Storage path (gs://path-to-file/file-name).
+     * Cloud Storage path (`gs://path-to-file/file-name`).
      *
      * Generated from protobuf field <code>string post_startup_script = 4;</code>
      * @return string
@@ -446,7 +448,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     /**
      * Path to a Bash script that automatically runs after a notebook instance
      * fully boots up. The path must be a URL or
-     * Cloud Storage path (gs://path-to-file/file-name).
+     * Cloud Storage path (`gs://path-to-file/file-name`).
      *
      * Generated from protobuf field <code>string post_startup_script = 4;</code>
      * @param string $var
@@ -557,7 +559,8 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The [Compute Engine machine type](https://cloud.google.com/compute/docs/machine-types) of this
+     * Required. The [Compute Engine machine
+     * type](https://cloud.google.com/compute/docs/machine-types) of this
      * instance.
      *
      * Generated from protobuf field <code>string machine_type = 8 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -569,7 +572,8 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The [Compute Engine machine type](https://cloud.google.com/compute/docs/machine-types) of this
+     * Required. The [Compute Engine machine
+     * type](https://cloud.google.com/compute/docs/machine-types) of this
      * instance.
      *
      * Generated from protobuf field <code>string machine_type = 8 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -587,8 +591,8 @@ class Instance extends \Google\Protobuf\Internal\Message
     /**
      * The hardware accelerator used on this instance. If you use
      * accelerators, make sure that your configuration has
-     * [enough vCPUs and memory to support the `machine_type` you
-     * have selected](https://cloud.google.com/compute/docs/gpus/#gpus-list).
+     * [enough vCPUs and memory to support the `machine_type` you have
+     * selected](https://cloud.google.com/compute/docs/gpus/#gpus-list).
      *
      * Generated from protobuf field <code>.google.cloud.notebooks.v1beta1.Instance.AcceleratorConfig accelerator_config = 9;</code>
      * @return \Google\Cloud\Notebooks\V1beta1\Instance\AcceleratorConfig|null
@@ -611,8 +615,8 @@ class Instance extends \Google\Protobuf\Internal\Message
     /**
      * The hardware accelerator used on this instance. If you use
      * accelerators, make sure that your configuration has
-     * [enough vCPUs and memory to support the `machine_type` you
-     * have selected](https://cloud.google.com/compute/docs/gpus/#gpus-list).
+     * [enough vCPUs and memory to support the `machine_type` you have
+     * selected](https://cloud.google.com/compute/docs/gpus/#gpus-list).
      *
      * Generated from protobuf field <code>.google.cloud.notebooks.v1beta1.Instance.AcceleratorConfig accelerator_config = 9;</code>
      * @param \Google\Cloud\Notebooks\V1beta1\Instance\AcceleratorConfig $var
@@ -742,8 +746,8 @@ class Instance extends \Google\Protobuf\Internal\Message
 
     /**
      * Input only. The size of the boot disk in GB attached to this instance, up to a maximum
-     * of 64000&nbsp;GB (64&nbsp;TB). The minimum recommended value is
-     * 100&nbsp;GB. If not specified, this defaults to 100.
+     * of 64000 GB (64 TB). The minimum recommended value is 100 GB. If not
+     * specified, this defaults to 100.
      *
      * Generated from protobuf field <code>int64 boot_disk_size_gb = 14 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      * @return int|string
@@ -755,8 +759,8 @@ class Instance extends \Google\Protobuf\Internal\Message
 
     /**
      * Input only. The size of the boot disk in GB attached to this instance, up to a maximum
-     * of 64000&nbsp;GB (64&nbsp;TB). The minimum recommended value is
-     * 100&nbsp;GB. If not specified, this defaults to 100.
+     * of 64000 GB (64 TB). The minimum recommended value is 100 GB. If not
+     * specified, this defaults to 100.
      *
      * Generated from protobuf field <code>int64 boot_disk_size_gb = 14 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      * @param int|string $var
@@ -800,9 +804,8 @@ class Instance extends \Google\Protobuf\Internal\Message
 
     /**
      * Input only. The size of the data disk in GB attached to this instance, up to a maximum
-     * of 64000&nbsp;GB (64&nbsp;TB). You can choose the size of the data disk
-     * based on how big your notebooks and data are. If not specified, this
-     * defaults to 100.
+     * of 64000 GB (64 TB). You can choose the size of the data disk based on how
+     * big your notebooks and data are. If not specified, this defaults to 100.
      *
      * Generated from protobuf field <code>int64 data_disk_size_gb = 26 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      * @return int|string
@@ -814,9 +817,8 @@ class Instance extends \Google\Protobuf\Internal\Message
 
     /**
      * Input only. The size of the data disk in GB attached to this instance, up to a maximum
-     * of 64000&nbsp;GB (64&nbsp;TB). You can choose the size of the data disk
-     * based on how big your notebooks and data are. If not specified, this
-     * defaults to 100.
+     * of 64000 GB (64 TB). You can choose the size of the data disk based on how
+     * big your notebooks and data are. If not specified, this defaults to 100.
      *
      * Generated from protobuf field <code>int64 data_disk_size_gb = 26 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      * @param int|string $var
@@ -887,7 +889,8 @@ class Instance extends \Google\Protobuf\Internal\Message
      * is CMEK.
      * Format:
      * `projects/{project_id}/locations/{location}/keyRings/{key_ring_id}/cryptoKeys/{key_id}`
-     * Learn more about [using your own encryption keys](https://cloud.google.com/kms/docs/quickstart).
+     * Learn more about [using your own encryption
+     * keys](https://cloud.google.com/kms/docs/quickstart).
      *
      * Generated from protobuf field <code>string kms_key = 16 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      * @return string
@@ -902,7 +905,8 @@ class Instance extends \Google\Protobuf\Internal\Message
      * is CMEK.
      * Format:
      * `projects/{project_id}/locations/{location}/keyRings/{key_ring_id}/cryptoKeys/{key_id}`
-     * Learn more about [using your own encryption keys](https://cloud.google.com/kms/docs/quickstart).
+     * Learn more about [using your own encryption
+     * keys](https://cloud.google.com/kms/docs/quickstart).
      *
      * Generated from protobuf field <code>string kms_key = 16 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      * @param string $var

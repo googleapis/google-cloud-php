@@ -9,16 +9,17 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [CloudChannelService.TransferEntitlements][google.cloud.channel.v1.CloudChannelService.TransferEntitlements].
+ * Request message for
+ * [CloudChannelService.TransferEntitlements][google.cloud.channel.v1.CloudChannelService.TransferEntitlements].
  *
  * Generated from protobuf message <code>google.cloud.channel.v1.TransferEntitlementsRequest</code>
  */
 class TransferEntitlementsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name of the reseller's customer account that will receive
-     * transferred entitlements.
-     * Parent uses the format: accounts/{account_id}/customers/{customer_id}
+     * Required. The resource name of the reseller's customer account that will
+     * receive transferred entitlements. Parent uses the format:
+     * accounts/{account_id}/customers/{customer_id}
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -39,8 +40,9 @@ class TransferEntitlementsRequest extends \Google\Protobuf\Internal\Message
      */
     private $auth_token = '';
     /**
-     * Optional. You can specify an optional unique request ID, and if you need to retry
-     * your request, the server will know to ignore the request if it's complete.
+     * Optional. You can specify an optional unique request ID, and if you need to
+     * retry your request, the server will know to ignore the request if it's
+     * complete.
      * For example, you make an initial request and the request times out. If you
      * make the request again with the same request ID, the server can check if
      * it received the original operation with the same request ID. If it did, it
@@ -60,10 +62,10 @@ class TransferEntitlementsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The resource name of the reseller's customer account that will receive
-     *           transferred entitlements.
-     *           Parent uses the format: accounts/{account_id}/customers/{customer_id}
-     *     @type \Google\Cloud\Channel\V1\Entitlement[]|\Google\Protobuf\Internal\RepeatedField $entitlements
+     *           Required. The resource name of the reseller's customer account that will
+     *           receive transferred entitlements. Parent uses the format:
+     *           accounts/{account_id}/customers/{customer_id}
+     *     @type array<\Google\Cloud\Channel\V1\Entitlement>|\Google\Protobuf\Internal\RepeatedField $entitlements
      *           Required. The new entitlements to create or transfer.
      *     @type string $auth_token
      *           The super admin of the resold customer generates this token to
@@ -71,8 +73,9 @@ class TransferEntitlementsRequest extends \Google\Protobuf\Internal\Message
      *           entitlements on their behalf. You can omit this token after authorization.
      *           See https://support.google.com/a/answer/7643790 for more details.
      *     @type string $request_id
-     *           Optional. You can specify an optional unique request ID, and if you need to retry
-     *           your request, the server will know to ignore the request if it's complete.
+     *           Optional. You can specify an optional unique request ID, and if you need to
+     *           retry your request, the server will know to ignore the request if it's
+     *           complete.
      *           For example, you make an initial request and the request times out. If you
      *           make the request again with the same request ID, the server can check if
      *           it received the original operation with the same request ID. If it did, it
@@ -88,9 +91,9 @@ class TransferEntitlementsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the reseller's customer account that will receive
-     * transferred entitlements.
-     * Parent uses the format: accounts/{account_id}/customers/{customer_id}
+     * Required. The resource name of the reseller's customer account that will
+     * receive transferred entitlements. Parent uses the format:
+     * accounts/{account_id}/customers/{customer_id}
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -101,9 +104,9 @@ class TransferEntitlementsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the reseller's customer account that will receive
-     * transferred entitlements.
-     * Parent uses the format: accounts/{account_id}/customers/{customer_id}
+     * Required. The resource name of the reseller's customer account that will
+     * receive transferred entitlements. Parent uses the format:
+     * accounts/{account_id}/customers/{customer_id}
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -132,7 +135,7 @@ class TransferEntitlementsRequest extends \Google\Protobuf\Internal\Message
      * Required. The new entitlements to create or transfer.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.Entitlement entitlements = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param \Google\Cloud\Channel\V1\Entitlement[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Channel\V1\Entitlement>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setEntitlements($var)
@@ -176,8 +179,9 @@ class TransferEntitlementsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. You can specify an optional unique request ID, and if you need to retry
-     * your request, the server will know to ignore the request if it's complete.
+     * Optional. You can specify an optional unique request ID, and if you need to
+     * retry your request, the server will know to ignore the request if it's
+     * complete.
      * For example, you make an initial request and the request times out. If you
      * make the request again with the same request ID, the server can check if
      * it received the original operation with the same request ID. If it did, it
@@ -195,8 +199,9 @@ class TransferEntitlementsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. You can specify an optional unique request ID, and if you need to retry
-     * your request, the server will know to ignore the request if it's complete.
+     * Optional. You can specify an optional unique request ID, and if you need to
+     * retry your request, the server will know to ignore the request if it's
+     * complete.
      * For example, you make an initial request and the request times out. If you
      * make the request again with the same request ID, the server can check if
      * it received the original operation with the same request ID. If it did, it

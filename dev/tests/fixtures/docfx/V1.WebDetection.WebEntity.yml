@@ -51,10 +51,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\WebDetection\WebEntity::getEntityId()'
     name: getEntityId
     id: getEntityId
-    summary: |
-      Opaque entity ID.
-      
-      Generated from protobuf field <code>string entity_id = 1;</code>
+    summary: 'Opaque entity ID.'
     parent: \Google\Cloud\Vision\V1\WebDetection\WebEntity
     type: method
     langs:
@@ -67,10 +64,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\WebDetection\WebEntity::setEntityId()'
     name: setEntityId
     id: setEntityId
-    summary: |
-      Opaque entity ID.
-      
-      Generated from protobuf field <code>string entity_id = 1;</code>
+    summary: 'Opaque entity ID.'
     parent: \Google\Cloud\Vision\V1\WebDetection\WebEntity
     type: method
     langs:
@@ -92,8 +86,6 @@ items:
       Overall relevancy score for the entity.
       
       Not normalized and not comparable across different image queries.
-      
-      Generated from protobuf field <code>float score = 2;</code>
     parent: \Google\Cloud\Vision\V1\WebDetection\WebEntity
     type: method
     langs:
@@ -110,8 +102,6 @@ items:
       Overall relevancy score for the entity.
       
       Not normalized and not comparable across different image queries.
-      
-      Generated from protobuf field <code>float score = 2;</code>
     parent: \Google\Cloud\Vision\V1\WebDetection\WebEntity
     type: method
     langs:
@@ -129,10 +119,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\WebDetection\WebEntity::getDescription()'
     name: getDescription
     id: getDescription
-    summary: |
-      Canonical description of the entity, in English.
-      
-      Generated from protobuf field <code>string description = 3;</code>
+    summary: 'Canonical description of the entity, in English.'
     parent: \Google\Cloud\Vision\V1\WebDetection\WebEntity
     type: method
     langs:
@@ -145,10 +132,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\WebDetection\WebEntity::setDescription()'
     name: setDescription
     id: setDescription
-    summary: |
-      Canonical description of the entity, in English.
-      
-      Generated from protobuf field <code>string description = 3;</code>
+    summary: 'Canonical description of the entity, in English.'
     parent: \Google\Cloud\Vision\V1\WebDetection\WebEntity
     type: method
     langs:

@@ -4,7 +4,7 @@
 
 [![Latest Stable Version](https://poser.pugx.org/google/cloud-domains/v/stable)](https://packagist.org/packages/google/cloud-domains) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-domains.svg)](https://packagist.org/packages/google/cloud-domains)
 
-* [API documentation](http://googleapis.github.io/google-cloud-php/#/docs/cloud-domains/latest/domains/readme)
+* [API documentation](https://cloud.google.com/php/docs/reference/cloud-domains/latest)
 
 **NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googleapis/google-cloud-php). Any
 support requests, bug reports, or development contributions should be directed to

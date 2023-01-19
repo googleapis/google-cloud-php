@@ -133,10 +133,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\AnnotateImageResponse::getFaceAnnotations()'
     name: getFaceAnnotations
     id: getFaceAnnotations
-    summary: |
-      If present, face detection has completed successfully.
-      
-      Generated from protobuf field <code>repeated .google.cloud.vision.v1.FaceAnnotation face_annotations = 1;</code>
+    summary: 'If present, face detection has completed successfully.'
     parent: \Google\Cloud\Vision\V1\AnnotateImageResponse
     type: method
     langs:
@@ -144,15 +141,12 @@ items:
     syntax:
       returns:
         -
-          var_type: Google\Protobuf\Internal\RepeatedField
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Internal/RepeatedField">Google\Protobuf\Internal\RepeatedField</a>'
   -
     uid: '\Google\Cloud\Vision\V1\AnnotateImageResponse::setFaceAnnotations()'
     name: setFaceAnnotations
     id: setFaceAnnotations
-    summary: |
-      If present, face detection has completed successfully.
-      
-      Generated from protobuf field <code>repeated .google.cloud.vision.v1.FaceAnnotation face_annotations = 1;</code>
+    summary: 'If present, face detection has completed successfully.'
     parent: \Google\Cloud\Vision\V1\AnnotateImageResponse
     type: method
     langs:
@@ -170,10 +164,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\AnnotateImageResponse::getLandmarkAnnotations()'
     name: getLandmarkAnnotations
     id: getLandmarkAnnotations
-    summary: |
-      If present, landmark detection has completed successfully.
-      
-      Generated from protobuf field <code>repeated .google.cloud.vision.v1.EntityAnnotation landmark_annotations = 2;</code>
+    summary: 'If present, landmark detection has completed successfully.'
     parent: \Google\Cloud\Vision\V1\AnnotateImageResponse
     type: method
     langs:
@@ -181,15 +172,12 @@ items:
     syntax:
       returns:
         -
-          var_type: Google\Protobuf\Internal\RepeatedField
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Internal/RepeatedField">Google\Protobuf\Internal\RepeatedField</a>'
   -
     uid: '\Google\Cloud\Vision\V1\AnnotateImageResponse::setLandmarkAnnotations()'
     name: setLandmarkAnnotations
     id: setLandmarkAnnotations
-    summary: |
-      If present, landmark detection has completed successfully.
-      
-      Generated from protobuf field <code>repeated .google.cloud.vision.v1.EntityAnnotation landmark_annotations = 2;</code>
+    summary: 'If present, landmark detection has completed successfully.'
     parent: \Google\Cloud\Vision\V1\AnnotateImageResponse
     type: method
     langs:
@@ -207,10 +195,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\AnnotateImageResponse::getLogoAnnotations()'
     name: getLogoAnnotations
     id: getLogoAnnotations
-    summary: |
-      If present, logo detection has completed successfully.
-      
-      Generated from protobuf field <code>repeated .google.cloud.vision.v1.EntityAnnotation logo_annotations = 3;</code>
+    summary: 'If present, logo detection has completed successfully.'
     parent: \Google\Cloud\Vision\V1\AnnotateImageResponse
     type: method
     langs:
@@ -218,15 +203,12 @@ items:
     syntax:
       returns:
         -
-          var_type: Google\Protobuf\Internal\RepeatedField
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Internal/RepeatedField">Google\Protobuf\Internal\RepeatedField</a>'
   -
     uid: '\Google\Cloud\Vision\V1\AnnotateImageResponse::setLogoAnnotations()'
     name: setLogoAnnotations
     id: setLogoAnnotations
-    summary: |
-      If present, logo detection has completed successfully.
-      
-      Generated from protobuf field <code>repeated .google.cloud.vision.v1.EntityAnnotation logo_annotations = 3;</code>
+    summary: 'If present, logo detection has completed successfully.'
     parent: \Google\Cloud\Vision\V1\AnnotateImageResponse
     type: method
     langs:
@@ -244,10 +226,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\AnnotateImageResponse::getLabelAnnotations()'
     name: getLabelAnnotations
     id: getLabelAnnotations
-    summary: |
-      If present, label detection has completed successfully.
-      
-      Generated from protobuf field <code>repeated .google.cloud.vision.v1.EntityAnnotation label_annotations = 4;</code>
+    summary: 'If present, label detection has completed successfully.'
     parent: \Google\Cloud\Vision\V1\AnnotateImageResponse
     type: method
     langs:
@@ -255,15 +234,12 @@ items:
     syntax:
       returns:
         -
-          var_type: Google\Protobuf\Internal\RepeatedField
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Internal/RepeatedField">Google\Protobuf\Internal\RepeatedField</a>'
   -
     uid: '\Google\Cloud\Vision\V1\AnnotateImageResponse::setLabelAnnotations()'
     name: setLabelAnnotations
     id: setLabelAnnotations
-    summary: |
-      If present, label detection has completed successfully.
-      
-      Generated from protobuf field <code>repeated .google.cloud.vision.v1.EntityAnnotation label_annotations = 4;</code>
+    summary: 'If present, label detection has completed successfully.'
     parent: \Google\Cloud\Vision\V1\AnnotateImageResponse
     type: method
     langs:
@@ -285,8 +261,6 @@ items:
       If present, localized object detection has completed successfully.
       
       This will be sorted descending by confidence score.
-      
-      Generated from protobuf field <code>repeated .google.cloud.vision.v1.LocalizedObjectAnnotation localized_object_annotations = 22;</code>
     parent: \Google\Cloud\Vision\V1\AnnotateImageResponse
     type: method
     langs:
@@ -294,7 +268,7 @@ items:
     syntax:
       returns:
         -
-          var_type: Google\Protobuf\Internal\RepeatedField
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Internal/RepeatedField">Google\Protobuf\Internal\RepeatedField</a>'
   -
     uid: '\Google\Cloud\Vision\V1\AnnotateImageResponse::setLocalizedObjectAnnotations()'
     name: setLocalizedObjectAnnotations
@@ -303,8 +277,6 @@ items:
       If present, localized object detection has completed successfully.
       
       This will be sorted descending by confidence score.
-      
-      Generated from protobuf field <code>repeated .google.cloud.vision.v1.LocalizedObjectAnnotation localized_object_annotations = 22;</code>
     parent: \Google\Cloud\Vision\V1\AnnotateImageResponse
     type: method
     langs:
@@ -322,10 +294,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\AnnotateImageResponse::getTextAnnotations()'
     name: getTextAnnotations
     id: getTextAnnotations
-    summary: |
-      If present, text (OCR) detection has completed successfully.
-      
-      Generated from protobuf field <code>repeated .google.cloud.vision.v1.EntityAnnotation text_annotations = 5;</code>
+    summary: 'If present, text (OCR) detection has completed successfully.'
     parent: \Google\Cloud\Vision\V1\AnnotateImageResponse
     type: method
     langs:
@@ -333,15 +302,12 @@ items:
     syntax:
       returns:
         -
-          var_type: Google\Protobuf\Internal\RepeatedField
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Internal/RepeatedField">Google\Protobuf\Internal\RepeatedField</a>'
   -
     uid: '\Google\Cloud\Vision\V1\AnnotateImageResponse::setTextAnnotations()'
     name: setTextAnnotations
     id: setTextAnnotations
-    summary: |
-      If present, text (OCR) detection has completed successfully.
-      
-      Generated from protobuf field <code>repeated .google.cloud.vision.v1.EntityAnnotation text_annotations = 5;</code>
+    summary: 'If present, text (OCR) detection has completed successfully.'
     parent: \Google\Cloud\Vision\V1\AnnotateImageResponse
     type: method
     langs:
@@ -365,8 +331,6 @@ items:
       
       This annotation provides the structural hierarchy for the OCR detected
       text.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.TextAnnotation full_text_annotation = 12;</code>
     parent: \Google\Cloud\Vision\V1\AnnotateImageResponse
     type: method
     langs:
@@ -401,8 +365,6 @@ items:
       
       This annotation provides the structural hierarchy for the OCR detected
       text.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.TextAnnotation full_text_annotation = 12;</code>
     parent: \Google\Cloud\Vision\V1\AnnotateImageResponse
     type: method
     langs:
@@ -420,10 +382,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\AnnotateImageResponse::getSafeSearchAnnotation()'
     name: getSafeSearchAnnotation
     id: getSafeSearchAnnotation
-    summary: |
-      If present, safe-search annotation has completed successfully.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.SafeSearchAnnotation safe_search_annotation = 6;</code>
+    summary: 'If present, safe-search annotation has completed successfully.'
     parent: \Google\Cloud\Vision\V1\AnnotateImageResponse
     type: method
     langs:
@@ -452,10 +411,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\AnnotateImageResponse::setSafeSearchAnnotation()'
     name: setSafeSearchAnnotation
     id: setSafeSearchAnnotation
-    summary: |
-      If present, safe-search annotation has completed successfully.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.SafeSearchAnnotation safe_search_annotation = 6;</code>
+    summary: 'If present, safe-search annotation has completed successfully.'
     parent: \Google\Cloud\Vision\V1\AnnotateImageResponse
     type: method
     langs:
@@ -473,10 +429,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\AnnotateImageResponse::getImagePropertiesAnnotation()'
     name: getImagePropertiesAnnotation
     id: getImagePropertiesAnnotation
-    summary: |
-      If present, image properties were extracted successfully.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.ImageProperties image_properties_annotation = 8;</code>
+    summary: 'If present, image properties were extracted successfully.'
     parent: \Google\Cloud\Vision\V1\AnnotateImageResponse
     type: method
     langs:
@@ -505,10 +458,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\AnnotateImageResponse::setImagePropertiesAnnotation()'
     name: setImagePropertiesAnnotation
     id: setImagePropertiesAnnotation
-    summary: |
-      If present, image properties were extracted successfully.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.ImageProperties image_properties_annotation = 8;</code>
+    summary: 'If present, image properties were extracted successfully.'
     parent: \Google\Cloud\Vision\V1\AnnotateImageResponse
     type: method
     langs:
@@ -526,10 +476,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\AnnotateImageResponse::getCropHintsAnnotation()'
     name: getCropHintsAnnotation
     id: getCropHintsAnnotation
-    summary: |
-      If present, crop hints have completed successfully.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.CropHintsAnnotation crop_hints_annotation = 11;</code>
+    summary: 'If present, crop hints have completed successfully.'
     parent: \Google\Cloud\Vision\V1\AnnotateImageResponse
     type: method
     langs:
@@ -558,10 +505,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\AnnotateImageResponse::setCropHintsAnnotation()'
     name: setCropHintsAnnotation
     id: setCropHintsAnnotation
-    summary: |
-      If present, crop hints have completed successfully.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.CropHintsAnnotation crop_hints_annotation = 11;</code>
+    summary: 'If present, crop hints have completed successfully.'
     parent: \Google\Cloud\Vision\V1\AnnotateImageResponse
     type: method
     langs:
@@ -579,10 +523,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\AnnotateImageResponse::getWebDetection()'
     name: getWebDetection
     id: getWebDetection
-    summary: |
-      If present, web detection has completed successfully.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.WebDetection web_detection = 13;</code>
+    summary: 'If present, web detection has completed successfully.'
     parent: \Google\Cloud\Vision\V1\AnnotateImageResponse
     type: method
     langs:
@@ -611,10 +552,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\AnnotateImageResponse::setWebDetection()'
     name: setWebDetection
     id: setWebDetection
-    summary: |
-      If present, web detection has completed successfully.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.WebDetection web_detection = 13;</code>
+    summary: 'If present, web detection has completed successfully.'
     parent: \Google\Cloud\Vision\V1\AnnotateImageResponse
     type: method
     langs:
@@ -632,10 +570,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\AnnotateImageResponse::getProductSearchResults()'
     name: getProductSearchResults
     id: getProductSearchResults
-    summary: |
-      If present, product search has completed successfully.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.ProductSearchResults product_search_results = 14;</code>
+    summary: 'If present, product search has completed successfully.'
     parent: \Google\Cloud\Vision\V1\AnnotateImageResponse
     type: method
     langs:
@@ -664,10 +599,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\AnnotateImageResponse::setProductSearchResults()'
     name: setProductSearchResults
     id: setProductSearchResults
-    summary: |
-      If present, product search has completed successfully.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.ProductSearchResults product_search_results = 14;</code>
+    summary: 'If present, product search has completed successfully.'
     parent: \Google\Cloud\Vision\V1\AnnotateImageResponse
     type: method
     langs:
@@ -690,8 +622,6 @@ items:
       
       Note that filled-in image annotations are guaranteed to be
       correct, even when `error` is set.
-      
-      Generated from protobuf field <code>.google.rpc.Status error = 9;</code>
     parent: \Google\Cloud\Vision\V1\AnnotateImageResponse
     type: method
     langs:
@@ -725,8 +655,6 @@ items:
       
       Note that filled-in image annotations are guaranteed to be
       correct, even when `error` is set.
-      
-      Generated from protobuf field <code>.google.rpc.Status error = 9;</code>
     parent: \Google\Cloud\Vision\V1\AnnotateImageResponse
     type: method
     langs:
@@ -747,8 +675,6 @@ items:
     summary: |
       If present, contextual information is needed to understand where this image
       comes from.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.ImageAnnotationContext context = 21;</code>
     parent: \Google\Cloud\Vision\V1\AnnotateImageResponse
     type: method
     langs:
@@ -780,8 +706,6 @@ items:
     summary: |
       If present, contextual information is needed to understand where this image
       comes from.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.ImageAnnotationContext context = 21;</code>
     parent: \Google\Cloud\Vision\V1\AnnotateImageResponse
     type: method
     langs:

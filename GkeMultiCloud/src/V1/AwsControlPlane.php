@@ -57,8 +57,8 @@ class AwsControlPlane extends \Google\Protobuf\Internal\Message
      */
     private $security_group_ids;
     /**
-     * Required. The name or ARN of the AWS IAM instance profile to assign to each control
-     * plane replica.
+     * Required. The name or ARN of the AWS IAM instance profile to assign to each
+     * control plane replica.
      *
      * Generated from protobuf field <code>string iam_instance_profile = 7 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -91,8 +91,8 @@ class AwsControlPlane extends \Google\Protobuf\Internal\Message
      */
     private $database_encryption = null;
     /**
-     * Optional. A set of AWS resource tags to propagate to all underlying managed AWS
-     * resources.
+     * Optional. A set of AWS resource tags to propagate to all underlying managed
+     * AWS resources.
      * Specify at most 50 pairs containing alphanumerics, spaces, and symbols
      * (.+-=_:&#64;/). Keys can be up to 127 Unicode characters. Values can be up to
      * 255 Unicode characters.
@@ -154,8 +154,8 @@ class AwsControlPlane extends \Google\Protobuf\Internal\Message
      *           replicas. The Anthos Multi-Cloud API will automatically create and manage
      *           security groups with the minimum rules needed for a functioning cluster.
      *     @type string $iam_instance_profile
-     *           Required. The name or ARN of the AWS IAM instance profile to assign to each control
-     *           plane replica.
+     *           Required. The name or ARN of the AWS IAM instance profile to assign to each
+     *           control plane replica.
      *     @type \Google\Cloud\GkeMultiCloud\V1\AwsVolumeTemplate $root_volume
      *           Optional. Configuration related to the root volume provisioned for each
      *           control plane replica.
@@ -172,8 +172,8 @@ class AwsControlPlane extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\GkeMultiCloud\V1\AwsDatabaseEncryption $database_encryption
      *           Required. The ARN of the AWS KMS key used to encrypt cluster secrets.
      *     @type array|\Google\Protobuf\Internal\MapField $tags
-     *           Optional. A set of AWS resource tags to propagate to all underlying managed AWS
-     *           resources.
+     *           Optional. A set of AWS resource tags to propagate to all underlying managed
+     *           AWS resources.
      *           Specify at most 50 pairs containing alphanumerics, spaces, and symbols
      *           (.+-=_:&#64;/). Keys can be up to 127 Unicode characters. Values can be up to
      *           255 Unicode characters.
@@ -356,8 +356,8 @@ class AwsControlPlane extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name or ARN of the AWS IAM instance profile to assign to each control
-     * plane replica.
+     * Required. The name or ARN of the AWS IAM instance profile to assign to each
+     * control plane replica.
      *
      * Generated from protobuf field <code>string iam_instance_profile = 7 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -368,8 +368,8 @@ class AwsControlPlane extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name or ARN of the AWS IAM instance profile to assign to each control
-     * plane replica.
+     * Required. The name or ARN of the AWS IAM instance profile to assign to each
+     * control plane replica.
      *
      * Generated from protobuf field <code>string iam_instance_profile = 7 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -510,8 +510,8 @@ class AwsControlPlane extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A set of AWS resource tags to propagate to all underlying managed AWS
-     * resources.
+     * Optional. A set of AWS resource tags to propagate to all underlying managed
+     * AWS resources.
      * Specify at most 50 pairs containing alphanumerics, spaces, and symbols
      * (.+-=_:&#64;/). Keys can be up to 127 Unicode characters. Values can be up to
      * 255 Unicode characters.
@@ -525,8 +525,8 @@ class AwsControlPlane extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A set of AWS resource tags to propagate to all underlying managed AWS
-     * resources.
+     * Optional. A set of AWS resource tags to propagate to all underlying managed
+     * AWS resources.
      * Specify at most 50 pairs containing alphanumerics, spaces, and symbols
      * (.+-=_:&#64;/). Keys can be up to 127 Unicode characters. Values can be up to
      * 255 Unicode characters.

@@ -242,7 +242,7 @@ class Grpc implements ConnectionInterface
                 $query['filter'] = $this->convertFilterProps($query['filter']);
             }
 
-            if (isset($query['limit'])) {
+            if (isset($query['limit']) && is_int($query['limit'])) {
                 $query['limit'] = [
                     'value' => $query['limit']
                 ];

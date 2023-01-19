@@ -31,7 +31,9 @@ use Google\Cloud\GkeMultiCloud\V1\AzureServerConfig;
  * Returns information, such as supported Azure regions and Kubernetes
  * versions, on a given Google Cloud location.
  *
- * @param string $formattedName The name of the [AzureServerConfig][google.cloud.gkemulticloud.v1.AzureServerConfig] resource to describe.
+ * @param string $formattedName The name of the
+ *                              [AzureServerConfig][google.cloud.gkemulticloud.v1.AzureServerConfig]
+ *                              resource to describe.
  *
  *                              `AzureServerConfig` names are formatted as
  *                              `projects/<project-id>/locations/<region>/azureServerConfig`.

@@ -23,6 +23,7 @@ use Google\Cloud\Core\RequestWrapper;
 use Google\Cloud\Core\RestTrait;
 use Google\Cloud\Core\UriTrait;
 use Google\Cloud\Datastore\DatastoreClient;
+use Google\Cloud\Core\Timestamp;
 
 /**
  * Implementation of the
@@ -76,7 +77,8 @@ class Rest implements ConnectionInterface
      */
     public function beginTransaction(array $args)
     {
-        return $this->send('projects', 'beginTransaction', $args);
+        $argsWithReadTime = $this->setReadTime($args);
+        return $this->send('projects', 'beginTransaction', $argsWithReadTime);
     }
 
     /**
@@ -92,7 +94,8 @@ class Rest implements ConnectionInterface
      */
     public function lookup(array $args)
     {
-        return $this->send('projects', 'lookup', $args);
+        $argsWithReadTime = $this->setReadTime($args);
+        return $this->send('projects', 'lookup', $argsWithReadTime);
     }
 
     /**
@@ -108,6 +111,29 @@ class Rest implements ConnectionInterface
      */
     public function runQuery(array $args)
     {
-        return $this->send('projects', 'runQuery', $args);
+        $argsWithReadTime = $this->setReadTime($args);
+        return $this->send('projects', 'runQuery', $argsWithReadTime);
+    }
+
+    /**
+     * @param array $args
+     */
+    private function setReadTime(array $args)
+    {
+        if (isset($args['readOptions']['readTime'])) {
+            $this->setReadTimeOption($args['readOptions']['readTime']);
+        } elseif (isset($args['transactionOptions']['readOnly']['readTime'])) {
+            $this->setReadTimeOption($args['transactionOptions']['readOnly']['readTime']);
+        }
+        return $args;
+    }
+
+    /**
+     * @param timestamp $readTime
+     */
+    private function setReadTimeOption(&$readTime)
+    {
+        $date = date('Y/m/d H:i:s.u\Z', $readTime->getSeconds());
+        $readTime = new Timestamp(new \DateTime($date));
     }
 }

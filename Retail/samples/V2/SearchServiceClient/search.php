@@ -32,13 +32,13 @@ use Google\Cloud\Retail\V2\SearchServiceClient;
  * Performs a search.
  *
  * This feature is only available for users who have Retail Search enabled.
- * Please enable Retail Search on Cloud Console before using this feature.
+ * Enable Retail Search on Cloud Console before using this feature.
  *
  * @param string $placement The resource name of the Retail Search serving config, such as
  *                          `projects/&#42;/locations/global/catalogs/default_catalog/servingConfigs/default_serving_config`
  *                          or the name of the legacy placement resource, such as
  *                          `projects/&#42;/locations/global/catalogs/default_catalog/placements/default_search`.
- *                          This field is used to identify the serving configuration name and the set
+ *                          This field is used to identify the serving config name and the set
  *                          of models that will be used to make the search.
  * @param string $visitorId A unique identifier for tracking visitors. For example, this
  *                          could be implemented with an HTTP cookie, which should be able to uniquely
