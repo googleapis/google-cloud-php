@@ -85,7 +85,6 @@ class ReleaseBuilder extends GoogleCloudCommand
      */
     private $token;
 
-
     /**
      * A list of allowable release types.
      *
