@@ -211,7 +211,8 @@ class SpannerClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedSession = $gapicClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
-        $response = $gapicClient->commit($formattedSession);
+        $mutation = new \Google\Cloud\Spanner\V1\Mutation();
+        $response = $gapicClient->commit($formattedSession, [$mutation]);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -244,7 +245,8 @@ class SpannerClientTest extends GeneratedTest
         // Mock request
         $formattedSession = $gapicClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
         try {
-            $gapicClient->commit($formattedSession);
+            $mutation = new \Google\Cloud\Spanner\V1\Mutation();
+            $gapicClient->commit($formattedSession, [$mutation]);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
