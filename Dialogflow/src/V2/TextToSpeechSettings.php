@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class TextToSpeechSettings extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. Indicates whether text to speech is enabled. Even when this field is false,
-     * other settings in this proto are still retained.
+     * Optional. Indicates whether text to speech is enabled. Even when this field
+     * is false, other settings in this proto are still retained.
      *
      * Generated from protobuf field <code>bool enable_text_to_speech = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -29,18 +29,18 @@ class TextToSpeechSettings extends \Google\Protobuf\Internal\Message
      */
     private $output_audio_encoding = 0;
     /**
-     * Optional. The synthesis sample rate (in hertz) for this audio. If not provided, then
-     * the synthesizer will use the default sample rate based on the audio
-     * encoding. If this is different from the voice's natural sample rate, then
-     * the synthesizer will honor this request by converting to the desired sample
-     * rate (which might result in worse audio quality).
+     * Optional. The synthesis sample rate (in hertz) for this audio. If not
+     * provided, then the synthesizer will use the default sample rate based on
+     * the audio encoding. If this is different from the voice's natural sample
+     * rate, then the synthesizer will honor this request by converting to the
+     * desired sample rate (which might result in worse audio quality).
      *
      * Generated from protobuf field <code>int32 sample_rate_hertz = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $sample_rate_hertz = 0;
     /**
-     * Optional. Configuration of how speech should be synthesized, mapping from language
-     * (https://cloud.google.com/dialogflow/docs/reference/language) to
+     * Optional. Configuration of how speech should be synthesized, mapping from
+     * language (https://cloud.google.com/dialogflow/docs/reference/language) to
      * SynthesizeSpeechConfig.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.dialogflow.v2.SynthesizeSpeechConfig> synthesize_speech_configs = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -54,19 +54,19 @@ class TextToSpeechSettings extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $enable_text_to_speech
-     *           Optional. Indicates whether text to speech is enabled. Even when this field is false,
-     *           other settings in this proto are still retained.
+     *           Optional. Indicates whether text to speech is enabled. Even when this field
+     *           is false, other settings in this proto are still retained.
      *     @type int $output_audio_encoding
      *           Required. Audio encoding of the synthesized audio content.
      *     @type int $sample_rate_hertz
-     *           Optional. The synthesis sample rate (in hertz) for this audio. If not provided, then
-     *           the synthesizer will use the default sample rate based on the audio
-     *           encoding. If this is different from the voice's natural sample rate, then
-     *           the synthesizer will honor this request by converting to the desired sample
-     *           rate (which might result in worse audio quality).
+     *           Optional. The synthesis sample rate (in hertz) for this audio. If not
+     *           provided, then the synthesizer will use the default sample rate based on
+     *           the audio encoding. If this is different from the voice's natural sample
+     *           rate, then the synthesizer will honor this request by converting to the
+     *           desired sample rate (which might result in worse audio quality).
      *     @type array|\Google\Protobuf\Internal\MapField $synthesize_speech_configs
-     *           Optional. Configuration of how speech should be synthesized, mapping from language
-     *           (https://cloud.google.com/dialogflow/docs/reference/language) to
+     *           Optional. Configuration of how speech should be synthesized, mapping from
+     *           language (https://cloud.google.com/dialogflow/docs/reference/language) to
      *           SynthesizeSpeechConfig.
      * }
      */
@@ -76,8 +76,8 @@ class TextToSpeechSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Indicates whether text to speech is enabled. Even when this field is false,
-     * other settings in this proto are still retained.
+     * Optional. Indicates whether text to speech is enabled. Even when this field
+     * is false, other settings in this proto are still retained.
      *
      * Generated from protobuf field <code>bool enable_text_to_speech = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
@@ -88,8 +88,8 @@ class TextToSpeechSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Indicates whether text to speech is enabled. Even when this field is false,
-     * other settings in this proto are still retained.
+     * Optional. Indicates whether text to speech is enabled. Even when this field
+     * is false, other settings in this proto are still retained.
      *
      * Generated from protobuf field <code>bool enable_text_to_speech = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
@@ -130,11 +130,11 @@ class TextToSpeechSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The synthesis sample rate (in hertz) for this audio. If not provided, then
-     * the synthesizer will use the default sample rate based on the audio
-     * encoding. If this is different from the voice's natural sample rate, then
-     * the synthesizer will honor this request by converting to the desired sample
-     * rate (which might result in worse audio quality).
+     * Optional. The synthesis sample rate (in hertz) for this audio. If not
+     * provided, then the synthesizer will use the default sample rate based on
+     * the audio encoding. If this is different from the voice's natural sample
+     * rate, then the synthesizer will honor this request by converting to the
+     * desired sample rate (which might result in worse audio quality).
      *
      * Generated from protobuf field <code>int32 sample_rate_hertz = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -145,11 +145,11 @@ class TextToSpeechSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The synthesis sample rate (in hertz) for this audio. If not provided, then
-     * the synthesizer will use the default sample rate based on the audio
-     * encoding. If this is different from the voice's natural sample rate, then
-     * the synthesizer will honor this request by converting to the desired sample
-     * rate (which might result in worse audio quality).
+     * Optional. The synthesis sample rate (in hertz) for this audio. If not
+     * provided, then the synthesizer will use the default sample rate based on
+     * the audio encoding. If this is different from the voice's natural sample
+     * rate, then the synthesizer will honor this request by converting to the
+     * desired sample rate (which might result in worse audio quality).
      *
      * Generated from protobuf field <code>int32 sample_rate_hertz = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
@@ -164,8 +164,8 @@ class TextToSpeechSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Configuration of how speech should be synthesized, mapping from language
-     * (https://cloud.google.com/dialogflow/docs/reference/language) to
+     * Optional. Configuration of how speech should be synthesized, mapping from
+     * language (https://cloud.google.com/dialogflow/docs/reference/language) to
      * SynthesizeSpeechConfig.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.dialogflow.v2.SynthesizeSpeechConfig> synthesize_speech_configs = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -177,8 +177,8 @@ class TextToSpeechSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Configuration of how speech should be synthesized, mapping from language
-     * (https://cloud.google.com/dialogflow/docs/reference/language) to
+     * Optional. Configuration of how speech should be synthesized, mapping from
+     * language (https://cloud.google.com/dialogflow/docs/reference/language) to
      * SynthesizeSpeechConfig.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.dialogflow.v2.SynthesizeSpeechConfig> synthesize_speech_configs = 4 [(.google.api.field_behavior) = OPTIONAL];</code>

@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [VmwareEngine.CreateVmwareEngineNetwork][google.cloud.vmwareengine.v1.VmwareEngine.CreateVmwareEngineNetwork]
+ * Request message for
+ * [VmwareEngine.CreateVmwareEngineNetwork][google.cloud.vmwareengine.v1.VmwareEngine.CreateVmwareEngineNetwork]
  *
  * Generated from protobuf message <code>google.cloud.vmwareengine.v1.CreateVmwareEngineNetworkRequest</code>
  */
@@ -34,7 +35,7 @@ class CreateVmwareEngineNetworkRequest extends \Google\Protobuf\Internal\Message
      * identifier must meet the following requirements:
      * * For networks of type LEGACY, adheres to the format:
      * `{region-id}-default`. Replace `{region-id}` with the region where you want
-     * to create the VMware Engine network. For example, "us-west1-default".
+     * to create the VMware Engine network. For example, "us-central1-default".
      * * Only contains 1-63 alphanumeric characters and hyphens
      * * Begins with an alphabetical character
      * * Ends with a non-hyphen character
@@ -90,7 +91,7 @@ class CreateVmwareEngineNetworkRequest extends \Google\Protobuf\Internal\Message
      *           identifier must meet the following requirements:
      *           * For networks of type LEGACY, adheres to the format:
      *           `{region-id}-default`. Replace `{region-id}` with the region where you want
-     *           to create the VMware Engine network. For example, "us-west1-default".
+     *           to create the VMware Engine network. For example, "us-central1-default".
      *           * Only contains 1-63 alphanumeric characters and hyphens
      *           * Begins with an alphabetical character
      *           * Ends with a non-hyphen character
@@ -164,7 +165,7 @@ class CreateVmwareEngineNetworkRequest extends \Google\Protobuf\Internal\Message
      * identifier must meet the following requirements:
      * * For networks of type LEGACY, adheres to the format:
      * `{region-id}-default`. Replace `{region-id}` with the region where you want
-     * to create the VMware Engine network. For example, "us-west1-default".
+     * to create the VMware Engine network. For example, "us-central1-default".
      * * Only contains 1-63 alphanumeric characters and hyphens
      * * Begins with an alphabetical character
      * * Ends with a non-hyphen character
@@ -187,7 +188,7 @@ class CreateVmwareEngineNetworkRequest extends \Google\Protobuf\Internal\Message
      * identifier must meet the following requirements:
      * * For networks of type LEGACY, adheres to the format:
      * `{region-id}-default`. Replace `{region-id}` with the region where you want
-     * to create the VMware Engine network. For example, "us-west1-default".
+     * to create the VMware Engine network. For example, "us-central1-default".
      * * Only contains 1-63 alphanumeric characters and hyphens
      * * Begins with an alphabetical character
      * * Ends with a non-hyphen character

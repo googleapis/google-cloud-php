@@ -63,7 +63,7 @@ class IncompatibleDataSchema extends \Google\Protobuf\Internal\Message
      *     @type string $new_schema
      *           The new and incompatible schema within the table. The schema is provided
      *           as a JSON formatted structured listing columns and data types.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $sampled_data_locations
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $sampled_data_locations
      *           The list of data locations sampled and used for format/schema
      *           inference.
      *     @type int $schema_change
@@ -174,7 +174,7 @@ class IncompatibleDataSchema extends \Google\Protobuf\Internal\Message
      * inference.
      *
      * Generated from protobuf field <code>repeated string sampled_data_locations = 4;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSampledDataLocations($var)

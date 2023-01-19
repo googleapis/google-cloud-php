@@ -5,6 +5,30 @@
     "protoPackage": "google.cloud.channel.v1",
     "libraryPackage": "Google\\Cloud\\Channel\\V1",
     "services": {
+        "CloudChannelReportsService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "CloudChannelReportsServiceGapicClient",
+                    "rpcs": {
+                        "FetchReportResults": {
+                            "methods": [
+                                "fetchReportResults"
+                            ]
+                        },
+                        "ListReports": {
+                            "methods": [
+                                "listReports"
+                            ]
+                        },
+                        "RunReportJob": {
+                            "methods": [
+                                "runReportJob"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "CloudChannelService": {
             "clients": {
                 "grpc": {
@@ -45,9 +69,19 @@
                                 "createChannelPartnerLink"
                             ]
                         },
+                        "CreateChannelPartnerRepricingConfig": {
+                            "methods": [
+                                "createChannelPartnerRepricingConfig"
+                            ]
+                        },
                         "CreateCustomer": {
                             "methods": [
                                 "createCustomer"
+                            ]
+                        },
+                        "CreateCustomerRepricingConfig": {
+                            "methods": [
+                                "createCustomerRepricingConfig"
                             ]
                         },
                         "CreateEntitlement": {
@@ -55,9 +89,19 @@
                                 "createEntitlement"
                             ]
                         },
+                        "DeleteChannelPartnerRepricingConfig": {
+                            "methods": [
+                                "deleteChannelPartnerRepricingConfig"
+                            ]
+                        },
                         "DeleteCustomer": {
                             "methods": [
                                 "deleteCustomer"
+                            ]
+                        },
+                        "DeleteCustomerRepricingConfig": {
+                            "methods": [
+                                "deleteCustomerRepricingConfig"
                             ]
                         },
                         "GetChannelPartnerLink": {
@@ -65,9 +109,19 @@
                                 "getChannelPartnerLink"
                             ]
                         },
+                        "GetChannelPartnerRepricingConfig": {
+                            "methods": [
+                                "getChannelPartnerRepricingConfig"
+                            ]
+                        },
                         "GetCustomer": {
                             "methods": [
                                 "getCustomer"
+                            ]
+                        },
+                        "GetCustomerRepricingConfig": {
+                            "methods": [
+                                "getCustomerRepricingConfig"
                             ]
                         },
                         "GetEntitlement": {
@@ -83,6 +137,16 @@
                         "ListChannelPartnerLinks": {
                             "methods": [
                                 "listChannelPartnerLinks"
+                            ]
+                        },
+                        "ListChannelPartnerRepricingConfigs": {
+                            "methods": [
+                                "listChannelPartnerRepricingConfigs"
+                            ]
+                        },
+                        "ListCustomerRepricingConfigs": {
+                            "methods": [
+                                "listCustomerRepricingConfigs"
                             ]
                         },
                         "ListCustomers": {
@@ -180,9 +244,19 @@
                                 "updateChannelPartnerLink"
                             ]
                         },
+                        "UpdateChannelPartnerRepricingConfig": {
+                            "methods": [
+                                "updateChannelPartnerRepricingConfig"
+                            ]
+                        },
                         "UpdateCustomer": {
                             "methods": [
                                 "updateCustomer"
+                            ]
+                        },
+                        "UpdateCustomerRepricingConfig": {
+                            "methods": [
+                                "updateCustomerRepricingConfig"
                             ]
                         }
                     }

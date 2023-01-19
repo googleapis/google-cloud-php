@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [VmwareEngine.DeleteCluster][google.cloud.vmwareengine.v1.VmwareEngine.DeleteCluster]
+ * Request message for
+ * [VmwareEngine.DeleteCluster][google.cloud.vmwareengine.v1.VmwareEngine.DeleteCluster]
  *
  * Generated from protobuf message <code>google.cloud.vmwareengine.v1.DeleteClusterRequest</code>
  */
@@ -20,14 +21,14 @@ class DeleteClusterRequest extends \Google\Protobuf\Internal\Message
      * Resource names are schemeless URIs that follow the conventions in
      * https://cloud.google.com/apis/design/resource_names.
      * For example:
-     * `projects/my-project/locations/us-west1-a/privateClouds/my-cloud/clusters/my-cluster`
+     * `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/clusters/my-cluster`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
     /**
-     * Optional. The request ID must be a valid UUID with the exception that zero UUID is
-     * not supported (00000000-0000-0000-0000-000000000000).
+     * Optional. The request ID must be a valid UUID with the exception that zero
+     * UUID is not supported (00000000-0000-0000-0000-000000000000).
      *
      * Generated from protobuf field <code>string request_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -44,10 +45,10 @@ class DeleteClusterRequest extends \Google\Protobuf\Internal\Message
      *           Resource names are schemeless URIs that follow the conventions in
      *           https://cloud.google.com/apis/design/resource_names.
      *           For example:
-     *           `projects/my-project/locations/us-west1-a/privateClouds/my-cloud/clusters/my-cluster`
+     *           `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/clusters/my-cluster`
      *     @type string $request_id
-     *           Optional. The request ID must be a valid UUID with the exception that zero UUID is
-     *           not supported (00000000-0000-0000-0000-000000000000).
+     *           Optional. The request ID must be a valid UUID with the exception that zero
+     *           UUID is not supported (00000000-0000-0000-0000-000000000000).
      * }
      */
     public function __construct($data = NULL) {
@@ -60,7 +61,7 @@ class DeleteClusterRequest extends \Google\Protobuf\Internal\Message
      * Resource names are schemeless URIs that follow the conventions in
      * https://cloud.google.com/apis/design/resource_names.
      * For example:
-     * `projects/my-project/locations/us-west1-a/privateClouds/my-cloud/clusters/my-cluster`
+     * `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/clusters/my-cluster`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -75,7 +76,7 @@ class DeleteClusterRequest extends \Google\Protobuf\Internal\Message
      * Resource names are schemeless URIs that follow the conventions in
      * https://cloud.google.com/apis/design/resource_names.
      * For example:
-     * `projects/my-project/locations/us-west1-a/privateClouds/my-cloud/clusters/my-cluster`
+     * `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/clusters/my-cluster`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -90,8 +91,8 @@ class DeleteClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The request ID must be a valid UUID with the exception that zero UUID is
-     * not supported (00000000-0000-0000-0000-000000000000).
+     * Optional. The request ID must be a valid UUID with the exception that zero
+     * UUID is not supported (00000000-0000-0000-0000-000000000000).
      *
      * Generated from protobuf field <code>string request_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -102,8 +103,8 @@ class DeleteClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The request ID must be a valid UUID with the exception that zero UUID is
-     * not supported (00000000-0000-0000-0000-000000000000).
+     * Optional. The request ID must be a valid UUID with the exception that zero
+     * UUID is not supported (00000000-0000-0000-0000-000000000000).
      *
      * Generated from protobuf field <code>string request_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

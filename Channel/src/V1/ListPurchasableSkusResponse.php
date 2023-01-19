@@ -34,7 +34,7 @@ class ListPurchasableSkusResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Channel\V1\PurchasableSku[]|\Google\Protobuf\Internal\RepeatedField $purchasable_skus
+     *     @type array<\Google\Cloud\Channel\V1\PurchasableSku>|\Google\Protobuf\Internal\RepeatedField $purchasable_skus
      *           The list of SKUs requested.
      *     @type string $next_page_token
      *           A token to retrieve the next page of results.
@@ -60,7 +60,7 @@ class ListPurchasableSkusResponse extends \Google\Protobuf\Internal\Message
      * The list of SKUs requested.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.PurchasableSku purchasable_skus = 1;</code>
-     * @param \Google\Cloud\Channel\V1\PurchasableSku[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Channel\V1\PurchasableSku>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPurchasableSkus($var)

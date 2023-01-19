@@ -35,7 +35,7 @@ class ListEnvironmentsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Dataplex\V1\Environment[]|\Google\Protobuf\Internal\RepeatedField $environments
+     *     @type array<\Google\Cloud\Dataplex\V1\Environment>|\Google\Protobuf\Internal\RepeatedField $environments
      *           Environments under the given parent lake.
      *     @type string $next_page_token
      *           Token to retrieve the next page of results, or empty if there are no more
@@ -62,7 +62,7 @@ class ListEnvironmentsResponse extends \Google\Protobuf\Internal\Message
      * Environments under the given parent lake.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.Environment environments = 1;</code>
-     * @param \Google\Cloud\Dataplex\V1\Environment[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dataplex\V1\Environment>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setEnvironments($var)

@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request message for [Versions.CreateVersion][google.cloud.dialogflow.v2.Versions.CreateVersion].
+ * The request message for
+ * [Versions.CreateVersion][google.cloud.dialogflow.v2.Versions.CreateVersion].
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.CreateVersionRequest</code>
  */
