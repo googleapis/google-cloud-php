@@ -4,5 +4,6 @@
     "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-bigquery-analyticshub/latest",
     "library_type": "GAPIC_AUTO",
     "product_documentation": "https://cloud.google.com/analytics-hub",
-    "issue_tracker": "https://github.com/googleapis/google-cloud-php/issues"
+    "issue_tracker": "https://github.com/googleapis/google-cloud-php/issues",
+    "api_shortname": "analyticshub"
 }
