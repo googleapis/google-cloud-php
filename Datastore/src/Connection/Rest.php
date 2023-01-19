@@ -77,8 +77,7 @@ class Rest implements ConnectionInterface
      */
     public function beginTransaction(array $args)
     {
-        $argsWithReadTime = $this->setReadTime($args);
-        return $this->send('projects', 'beginTransaction', $argsWithReadTime);
+        return $this->send('projects', 'beginTransaction', $args);
     }
 
     /**
@@ -94,8 +93,7 @@ class Rest implements ConnectionInterface
      */
     public function lookup(array $args)
     {
-        $argsWithReadTime = $this->setReadTime($args);
-        return $this->send('projects', 'lookup', $argsWithReadTime);
+        return $this->send('projects', 'lookup', $args);
     }
 
     /**
@@ -111,29 +109,6 @@ class Rest implements ConnectionInterface
      */
     public function runQuery(array $args)
     {
-        $argsWithReadTime = $this->setReadTime($args);
-        return $this->send('projects', 'runQuery', $argsWithReadTime);
-    }
-
-    /**
-     * @param array $args
-     */
-    private function setReadTime(array $args)
-    {
-        if (isset($args['readOptions']['readTime'])) {
-            $this->setReadTimeOption($args['readOptions']['readTime']);
-        } elseif (isset($args['transactionOptions']['readOnly']['readTime'])) {
-            $this->setReadTimeOption($args['transactionOptions']['readOnly']['readTime']);
-        }
-        return $args;
-    }
-
-    /**
-     * @param timestamp $readTime
-     */
-    private function setReadTimeOption(&$readTime)
-    {
-        $date = date('Y/m/d H:i:s.u\Z', $readTime->getSeconds());
-        $readTime = new Timestamp(new \DateTime($date));
+        return $this->send('projects', 'runQuery', $args);
     }
 }

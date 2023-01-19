@@ -17,8 +17,8 @@
 
 namespace Google\Cloud\Datastore\Tests\System;
 
+use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Datastore\DatastoreClient;
-use Google\Protobuf\Timestamp;
 
 /**
  * @group datastore
@@ -350,7 +350,7 @@ class RunQueryTest extends DatastoreMultipleDbTestCase
 
         sleep(2);
 
-        $time = new Timestamp(['seconds' => time()]);
+        $time = new Timestamp(new \DateTime());
 
         sleep(2);
 
@@ -370,7 +370,7 @@ class RunQueryTest extends DatastoreMultipleDbTestCase
         $this->assertEquals($personListEntities[0]['lastName'], $newLastName);
 
         // Person lastName should be the lastName BEFORE update
-        $result = $client->runQuery($query, ['readTime' => $time]);
+        $result = $client->runQuery($query, ['readTime' => $time->formatForApi()]);
         $personListEntities = iterator_to_array($result);
         $this->assertEquals($personListEntities[0]['lastName'], $lastName);
     }

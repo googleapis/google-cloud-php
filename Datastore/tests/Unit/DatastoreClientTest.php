@@ -21,6 +21,7 @@ use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\Testing\DatastoreOperationRefreshTrait;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
+use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Datastore\Blob;
 use Google\Cloud\Datastore\Connection\ConnectionInterface;
 use Google\Cloud\Datastore\Connection\Grpc;
@@ -37,7 +38,6 @@ use Google\Cloud\Datastore\Transaction;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 use Prophecy\Argument;
-use Google\Protobuf\Timestamp;
 
 /**
  * @group datastore
@@ -554,7 +554,7 @@ class DatastoreClientTest extends TestCase
     public function testLookupBatchWithReadTime()
     {
         $key = $this->client->key('Person', 'John');
-        $time = new Timestamp(['seconds' => time()]);
+        $time = new Timestamp(new \DateTime());
 
         $this->connection->lookup(
             Argument::withEntry('readTime', $time)
@@ -577,7 +577,7 @@ class DatastoreClientTest extends TestCase
     public function testLookupWithReadTime()
     {
         $key = $this->client->key('Person', 'John');
-        $time = new Timestamp(['seconds' => time()]);
+        $time = new Timestamp(new \DateTime());
 
         $this->connection->lookup(Argument::allOf(
             Argument::withEntry('keys', [$key->keyObject()]),
@@ -646,7 +646,7 @@ class DatastoreClientTest extends TestCase
     public function testRunQueryWithReadTime()
     {
         $key = $this->client->key('Person', 'John');
-        $time = new Timestamp(['seconds' => time()]);
+        $time = new Timestamp(new \DateTime());
 
         $this->connection->runQuery(Argument::allOf(
             Argument::withEntry('partitionId', ['projectId' => self::PROJECT]),

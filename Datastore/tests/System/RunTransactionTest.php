@@ -17,8 +17,8 @@
 
 namespace Google\Cloud\Datastore\Tests\System;
 
+use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Datastore\DatastoreClient;
-use Google\Protobuf\Timestamp;
 
 /**
  * @group datastore
@@ -101,7 +101,7 @@ class RunTransactionTest extends DatastoreMultipleDbTestCase
 
         sleep(2);
 
-        $time = new Timestamp(['seconds' => time()]);
+        $time = new Timestamp(new \DateTime());
 
         sleep(2);
 
@@ -123,7 +123,7 @@ class RunTransactionTest extends DatastoreMultipleDbTestCase
         $this->assertEquals($personListEntities[0]['lastName'], $newLastName);
 
         $transaction2 = $client->readOnlyTransaction(
-            ['transactionOptions' => ['readTime' => $time]]
+            ['transactionOptions' => ['readTime' => $time->formatForApi()]]
         );
         // runQuery function: Person lastName should be the lastName BEFORE update
         $persons = $transaction2->runQuery($query);

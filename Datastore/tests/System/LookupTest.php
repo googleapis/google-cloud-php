@@ -17,8 +17,8 @@
 
 namespace Google\Cloud\Datastore\Tests\System;
 
+use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Datastore\DatastoreClient;
-use Google\Protobuf\Timestamp;
 
 /**
  * @group datastore
@@ -44,7 +44,7 @@ class LookupTest extends DatastoreMultipleDbTestCase
 
         sleep(2);
 
-        $time = new Timestamp(['seconds' => time()]);
+        $time = new Timestamp(new \DateTime());
 
         sleep(2);
 
@@ -59,7 +59,7 @@ class LookupTest extends DatastoreMultipleDbTestCase
         $this->assertEquals($person['lastName'], $newLastName);
 
         // Person lastName should be the lastName BEFORE update
-        $person = $client->lookup($key, ['readTime' => $time]);
+        $person = $client->lookup($key, ['readTime' => $time->formatForApi()]);
         $this->assertEquals($person['lastName'], $lastName);
     }
 
@@ -81,7 +81,7 @@ class LookupTest extends DatastoreMultipleDbTestCase
 
         sleep(2);
 
-        $time = new Timestamp(['seconds' => time()]);
+        $time = new Timestamp(new \DateTime());
 
         sleep(2);
 
@@ -96,7 +96,7 @@ class LookupTest extends DatastoreMultipleDbTestCase
         $this->assertEquals($person['found'][0]['lastName'], $newLastName);
 
         // Person lastName should be the lastName BEFORE update
-        $person = $client->lookupBatch([$key], ['readTime' => $time]);
+        $person = $client->lookupBatch([$key], ['readTime' => $time->formatForApi()]);
         $this->assertEquals($person['found'][0]['lastName'], $lastName);
     }
 }
