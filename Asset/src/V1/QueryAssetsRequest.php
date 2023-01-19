@@ -26,8 +26,8 @@ class QueryAssetsRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
-     * Optional. The maximum number of rows to return in the results. Responses are limited
-     * to 10 MB and 1000 rows.
+     * Optional. The maximum number of rows to return in the results. Responses
+     * are limited to 10 MB and 1000 rows.
      * By default, the maximum row count is 1000. When the byte or row count limit
      * is reached, the rest of the query results will be paginated.
      * The field will be ignored when [output_config] is specified.
@@ -43,10 +43,11 @@ class QueryAssetsRequest extends \Google\Protobuf\Internal\Message
      */
     private $page_token = '';
     /**
-     * Optional. Specifies the maximum amount of time that the client is willing to wait
-     * for the query to complete. By default, this limit is 5 min for the first
-     * query, and 1 minute for the following queries. If the query is complete,
-     * the `done` field in the `QueryAssetsResponse` is true, otherwise false.
+     * Optional. Specifies the maximum amount of time that the client is willing
+     * to wait for the query to complete. By default, this limit is 5 min for the
+     * first query, and 1 minute for the following queries. If the query is
+     * complete, the `done` field in the `QueryAssetsResponse` is true, otherwise
+     * false.
      * Like BigQuery [jobs.query
      * API](https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs/query#queryrequest)
      * The call is not guaranteed to wait for the specified timeout; it typically
@@ -88,11 +89,11 @@ class QueryAssetsRequest extends \Google\Protobuf\Internal\Message
      *           Optional. A SQL statement that's compatible with [BigQuery Standard
      *           SQL](http://cloud/bigquery/docs/reference/standard-sql/enabling-standard-sql).
      *     @type string $job_reference
-     *           Optional. Reference to the query job, which is from the `QueryAssetsResponse` of
-     *           previous `QueryAssets` call.
+     *           Optional. Reference to the query job, which is from the
+     *           `QueryAssetsResponse` of previous `QueryAssets` call.
      *     @type int $page_size
-     *           Optional. The maximum number of rows to return in the results. Responses are limited
-     *           to 10 MB and 1000 rows.
+     *           Optional. The maximum number of rows to return in the results. Responses
+     *           are limited to 10 MB and 1000 rows.
      *           By default, the maximum row count is 1000. When the byte or row count limit
      *           is reached, the rest of the query results will be paginated.
      *           The field will be ignored when [output_config] is specified.
@@ -100,10 +101,11 @@ class QueryAssetsRequest extends \Google\Protobuf\Internal\Message
      *           Optional. A page token received from previous `QueryAssets`.
      *           The field will be ignored when [output_config] is specified.
      *     @type \Google\Protobuf\Duration $timeout
-     *           Optional. Specifies the maximum amount of time that the client is willing to wait
-     *           for the query to complete. By default, this limit is 5 min for the first
-     *           query, and 1 minute for the following queries. If the query is complete,
-     *           the `done` field in the `QueryAssetsResponse` is true, otherwise false.
+     *           Optional. Specifies the maximum amount of time that the client is willing
+     *           to wait for the query to complete. By default, this limit is 5 min for the
+     *           first query, and 1 minute for the following queries. If the query is
+     *           complete, the `done` field in the `QueryAssetsResponse` is true, otherwise
+     *           false.
      *           Like BigQuery [jobs.query
      *           API](https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs/query#queryrequest)
      *           The call is not guaranteed to wait for the specified timeout; it typically
@@ -111,11 +113,12 @@ class QueryAssetsRequest extends \Google\Protobuf\Internal\Message
      *           is not complete.
      *           The field will be ignored when [output_config] is specified.
      *     @type \Google\Cloud\Asset\V1\TimeWindow $read_time_window
-     *           Optional. [start_time] is required. [start_time] must be less than [end_time]
-     *           Defaults [end_time] to now if [start_time] is set and [end_time] isn't.
-     *           Maximum permitted time range is 7 days.
+     *           Optional. [start_time] is required. [start_time] must be less than
+     *           [end_time] Defaults [end_time] to now if [start_time] is set and
+     *           [end_time] isn't. Maximum permitted time range is 7 days.
      *     @type \Google\Protobuf\Timestamp $read_time
-     *           Optional. Queries cloud assets as they appeared at the specified point in time.
+     *           Optional. Queries cloud assets as they appeared at the specified point in
+     *           time.
      *     @type \Google\Cloud\Asset\V1\QueryAssetsOutputConfig $output_config
      *           Optional. Destination where the query results will be saved.
      *           When this field is specified, the query results won't be saved in the
@@ -199,8 +202,8 @@ class QueryAssetsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Reference to the query job, which is from the `QueryAssetsResponse` of
-     * previous `QueryAssets` call.
+     * Optional. Reference to the query job, which is from the
+     * `QueryAssetsResponse` of previous `QueryAssets` call.
      *
      * Generated from protobuf field <code>string job_reference = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -216,8 +219,8 @@ class QueryAssetsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Reference to the query job, which is from the `QueryAssetsResponse` of
-     * previous `QueryAssets` call.
+     * Optional. Reference to the query job, which is from the
+     * `QueryAssetsResponse` of previous `QueryAssets` call.
      *
      * Generated from protobuf field <code>string job_reference = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -232,8 +235,8 @@ class QueryAssetsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The maximum number of rows to return in the results. Responses are limited
-     * to 10 MB and 1000 rows.
+     * Optional. The maximum number of rows to return in the results. Responses
+     * are limited to 10 MB and 1000 rows.
      * By default, the maximum row count is 1000. When the byte or row count limit
      * is reached, the rest of the query results will be paginated.
      * The field will be ignored when [output_config] is specified.
@@ -247,8 +250,8 @@ class QueryAssetsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The maximum number of rows to return in the results. Responses are limited
-     * to 10 MB and 1000 rows.
+     * Optional. The maximum number of rows to return in the results. Responses
+     * are limited to 10 MB and 1000 rows.
      * By default, the maximum row count is 1000. When the byte or row count limit
      * is reached, the rest of the query results will be paginated.
      * The field will be ignored when [output_config] is specified.
@@ -294,10 +297,11 @@ class QueryAssetsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Specifies the maximum amount of time that the client is willing to wait
-     * for the query to complete. By default, this limit is 5 min for the first
-     * query, and 1 minute for the following queries. If the query is complete,
-     * the `done` field in the `QueryAssetsResponse` is true, otherwise false.
+     * Optional. Specifies the maximum amount of time that the client is willing
+     * to wait for the query to complete. By default, this limit is 5 min for the
+     * first query, and 1 minute for the following queries. If the query is
+     * complete, the `done` field in the `QueryAssetsResponse` is true, otherwise
+     * false.
      * Like BigQuery [jobs.query
      * API](https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs/query#queryrequest)
      * The call is not guaranteed to wait for the specified timeout; it typically
@@ -324,10 +328,11 @@ class QueryAssetsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Specifies the maximum amount of time that the client is willing to wait
-     * for the query to complete. By default, this limit is 5 min for the first
-     * query, and 1 minute for the following queries. If the query is complete,
-     * the `done` field in the `QueryAssetsResponse` is true, otherwise false.
+     * Optional. Specifies the maximum amount of time that the client is willing
+     * to wait for the query to complete. By default, this limit is 5 min for the
+     * first query, and 1 minute for the following queries. If the query is
+     * complete, the `done` field in the `QueryAssetsResponse` is true, otherwise
+     * false.
      * Like BigQuery [jobs.query
      * API](https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs/query#queryrequest)
      * The call is not guaranteed to wait for the specified timeout; it typically
@@ -348,9 +353,9 @@ class QueryAssetsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. [start_time] is required. [start_time] must be less than [end_time]
-     * Defaults [end_time] to now if [start_time] is set and [end_time] isn't.
-     * Maximum permitted time range is 7 days.
+     * Optional. [start_time] is required. [start_time] must be less than
+     * [end_time] Defaults [end_time] to now if [start_time] is set and
+     * [end_time] isn't. Maximum permitted time range is 7 days.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.TimeWindow read_time_window = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Asset\V1\TimeWindow|null
@@ -366,9 +371,9 @@ class QueryAssetsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. [start_time] is required. [start_time] must be less than [end_time]
-     * Defaults [end_time] to now if [start_time] is set and [end_time] isn't.
-     * Maximum permitted time range is 7 days.
+     * Optional. [start_time] is required. [start_time] must be less than
+     * [end_time] Defaults [end_time] to now if [start_time] is set and
+     * [end_time] isn't. Maximum permitted time range is 7 days.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.TimeWindow read_time_window = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Asset\V1\TimeWindow $var
@@ -383,7 +388,8 @@ class QueryAssetsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Queries cloud assets as they appeared at the specified point in time.
+     * Optional. Queries cloud assets as they appeared at the specified point in
+     * time.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -399,7 +405,8 @@ class QueryAssetsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Queries cloud assets as they appeared at the specified point in time.
+     * Optional. Queries cloud assets as they appeared at the specified point in
+     * time.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\Timestamp $var

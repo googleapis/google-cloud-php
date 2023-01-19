@@ -17,7 +17,7 @@ class AnalyzeMoveResponse extends \Google\Protobuf\Internal\Message
 {
     /**
      * The list of analyses returned from performing the intended resource move
-     * analysis. The analysis is grouped by different Cloud services.
+     * analysis. The analysis is grouped by different Google Cloud services.
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.MoveAnalysis move_analysis = 1;</code>
      */
@@ -31,7 +31,7 @@ class AnalyzeMoveResponse extends \Google\Protobuf\Internal\Message
      *
      *     @type array<\Google\Cloud\Asset\V1\MoveAnalysis>|\Google\Protobuf\Internal\RepeatedField $move_analysis
      *           The list of analyses returned from performing the intended resource move
-     *           analysis. The analysis is grouped by different Cloud services.
+     *           analysis. The analysis is grouped by different Google Cloud services.
      * }
      */
     public function __construct($data = NULL) {
@@ -41,7 +41,7 @@ class AnalyzeMoveResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * The list of analyses returned from performing the intended resource move
-     * analysis. The analysis is grouped by different Cloud services.
+     * analysis. The analysis is grouped by different Google Cloud services.
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.MoveAnalysis move_analysis = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -53,7 +53,7 @@ class AnalyzeMoveResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * The list of analyses returned from performing the intended resource move
-     * analysis. The analysis is grouped by different Cloud services.
+     * analysis. The analysis is grouped by different Google Cloud services.
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.MoveAnalysis move_analysis = 1;</code>
      * @param array<\Google\Cloud\Asset\V1\MoveAnalysis>|\Google\Protobuf\Internal\RepeatedField $var

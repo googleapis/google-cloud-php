@@ -22,10 +22,10 @@ class ListSubscribersRequest extends \Google\Protobuf\Internal\Message
      */
     private $account = '';
     /**
-     * Optional. The maximum number of service accounts to return. The service may return
-     * fewer than this value.
-     * If unspecified, returns at most 100 service accounts.
-     * The maximum value is 1000; the server will coerce values above 1000.
+     * Optional. The maximum number of service accounts to return. The service may
+     * return fewer than this value. If unspecified, returns at most 100 service
+     * accounts. The maximum value is 1000; the server will coerce values above
+     * 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -49,10 +49,10 @@ class ListSubscribersRequest extends \Google\Protobuf\Internal\Message
      *     @type string $account
      *           Required. Resource name of the account.
      *     @type int $page_size
-     *           Optional. The maximum number of service accounts to return. The service may return
-     *           fewer than this value.
-     *           If unspecified, returns at most 100 service accounts.
-     *           The maximum value is 1000; the server will coerce values above 1000.
+     *           Optional. The maximum number of service accounts to return. The service may
+     *           return fewer than this value. If unspecified, returns at most 100 service
+     *           accounts. The maximum value is 1000; the server will coerce values above
+     *           1000.
      *     @type string $page_token
      *           Optional. A page token, received from a previous `ListSubscribers` call.
      *           Provide this to retrieve the subsequent page.
@@ -92,10 +92,10 @@ class ListSubscribersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The maximum number of service accounts to return. The service may return
-     * fewer than this value.
-     * If unspecified, returns at most 100 service accounts.
-     * The maximum value is 1000; the server will coerce values above 1000.
+     * Optional. The maximum number of service accounts to return. The service may
+     * return fewer than this value. If unspecified, returns at most 100 service
+     * accounts. The maximum value is 1000; the server will coerce values above
+     * 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -106,10 +106,10 @@ class ListSubscribersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The maximum number of service accounts to return. The service may return
-     * fewer than this value.
-     * If unspecified, returns at most 100 service accounts.
-     * The maximum value is 1000; the server will coerce values above 1000.
+     * Optional. The maximum number of service accounts to return. The service may
+     * return fewer than this value. If unspecified, returns at most 100 service
+     * accounts. The maximum value is 1000; the server will coerce values above
+     * 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var

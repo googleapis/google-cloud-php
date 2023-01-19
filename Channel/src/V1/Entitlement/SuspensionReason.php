@@ -7,7 +7,9 @@ namespace Google\Cloud\Channel\V1\Entitlement;
 use UnexpectedValueException;
 
 /**
- * Suspension reason for an entitlement if [provisioning_state][google.cloud.channel.v1.Entitlement.provisioning_state] = SUSPENDED.
+ * Suspension reason for an entitlement if
+ * [provisioning_state][google.cloud.channel.v1.Entitlement.provisioning_state]
+ * = SUSPENDED.
  *
  * Protobuf type <code>google.cloud.channel.v1.Entitlement.SuspensionReason</code>
  */

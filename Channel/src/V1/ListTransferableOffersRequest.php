@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [CloudChannelService.ListTransferableOffers][google.cloud.channel.v1.CloudChannelService.ListTransferableOffers]
+ * Request message for
+ * [CloudChannelService.ListTransferableOffers][google.cloud.channel.v1.CloudChannelService.ListTransferableOffers]
  *
  * Generated from protobuf message <code>google.cloud.channel.v1.ListTransferableOffersRequest</code>
  */
@@ -32,8 +33,10 @@ class ListTransferableOffersRequest extends \Google\Protobuf\Internal\Message
     /**
      * A token for a page of results other than the first page.
      * Obtained using
-     * [ListTransferableOffersResponse.next_page_token][google.cloud.channel.v1.ListTransferableOffersResponse.next_page_token] of the previous
-     * [CloudChannelService.ListTransferableOffers][google.cloud.channel.v1.CloudChannelService.ListTransferableOffers] call.
+     * [ListTransferableOffersResponse.next_page_token][google.cloud.channel.v1.ListTransferableOffersResponse.next_page_token]
+     * of the previous
+     * [CloudChannelService.ListTransferableOffers][google.cloud.channel.v1.CloudChannelService.ListTransferableOffers]
+     * call.
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
@@ -45,11 +48,11 @@ class ListTransferableOffersRequest extends \Google\Protobuf\Internal\Message
      */
     private $sku = '';
     /**
-     * The BCP-47 language code. For example, "en-US". The
+     * Optional. The BCP-47 language code. For example, "en-US". The
      * response will localize in the corresponding language code, if specified.
      * The default value is "en-US".
      *
-     * Generated from protobuf field <code>string language_code = 7;</code>
+     * Generated from protobuf field <code>string language_code = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $language_code = '';
     protected $transferred_customer_identity;
@@ -74,12 +77,14 @@ class ListTransferableOffersRequest extends \Google\Protobuf\Internal\Message
      *     @type string $page_token
      *           A token for a page of results other than the first page.
      *           Obtained using
-     *           [ListTransferableOffersResponse.next_page_token][google.cloud.channel.v1.ListTransferableOffersResponse.next_page_token] of the previous
-     *           [CloudChannelService.ListTransferableOffers][google.cloud.channel.v1.CloudChannelService.ListTransferableOffers] call.
+     *           [ListTransferableOffersResponse.next_page_token][google.cloud.channel.v1.ListTransferableOffersResponse.next_page_token]
+     *           of the previous
+     *           [CloudChannelService.ListTransferableOffers][google.cloud.channel.v1.CloudChannelService.ListTransferableOffers]
+     *           call.
      *     @type string $sku
      *           Required. The SKU to look up Offers for.
      *     @type string $language_code
-     *           The BCP-47 language code. For example, "en-US". The
+     *           Optional. The BCP-47 language code. For example, "en-US". The
      *           response will localize in the corresponding language code, if specified.
      *           The default value is "en-US".
      * }
@@ -212,8 +217,10 @@ class ListTransferableOffersRequest extends \Google\Protobuf\Internal\Message
     /**
      * A token for a page of results other than the first page.
      * Obtained using
-     * [ListTransferableOffersResponse.next_page_token][google.cloud.channel.v1.ListTransferableOffersResponse.next_page_token] of the previous
-     * [CloudChannelService.ListTransferableOffers][google.cloud.channel.v1.CloudChannelService.ListTransferableOffers] call.
+     * [ListTransferableOffersResponse.next_page_token][google.cloud.channel.v1.ListTransferableOffersResponse.next_page_token]
+     * of the previous
+     * [CloudChannelService.ListTransferableOffers][google.cloud.channel.v1.CloudChannelService.ListTransferableOffers]
+     * call.
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      * @return string
@@ -226,8 +233,10 @@ class ListTransferableOffersRequest extends \Google\Protobuf\Internal\Message
     /**
      * A token for a page of results other than the first page.
      * Obtained using
-     * [ListTransferableOffersResponse.next_page_token][google.cloud.channel.v1.ListTransferableOffersResponse.next_page_token] of the previous
-     * [CloudChannelService.ListTransferableOffers][google.cloud.channel.v1.CloudChannelService.ListTransferableOffers] call.
+     * [ListTransferableOffersResponse.next_page_token][google.cloud.channel.v1.ListTransferableOffersResponse.next_page_token]
+     * of the previous
+     * [CloudChannelService.ListTransferableOffers][google.cloud.channel.v1.CloudChannelService.ListTransferableOffers]
+     * call.
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      * @param string $var
@@ -268,11 +277,11 @@ class ListTransferableOffersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The BCP-47 language code. For example, "en-US". The
+     * Optional. The BCP-47 language code. For example, "en-US". The
      * response will localize in the corresponding language code, if specified.
      * The default value is "en-US".
      *
-     * Generated from protobuf field <code>string language_code = 7;</code>
+     * Generated from protobuf field <code>string language_code = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getLanguageCode()
@@ -281,11 +290,11 @@ class ListTransferableOffersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The BCP-47 language code. For example, "en-US". The
+     * Optional. The BCP-47 language code. For example, "en-US". The
      * response will localize in the corresponding language code, if specified.
      * The default value is "en-US".
      *
-     * Generated from protobuf field <code>string language_code = 7;</code>
+     * Generated from protobuf field <code>string language_code = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class ResourceSpec extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Immutable. Relative name of the cloud resource that contains the data that is
-     * being managed within a lake. For example:
+     * Immutable. Relative name of the cloud resource that contains the data
+     * that is being managed within a lake. For example:
      *   `projects/{project_number}/buckets/{bucket_id}`
      *   `projects/{project_number}/datasets/{dataset_id}`
      *
@@ -38,8 +38,8 @@ class ResourceSpec extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Immutable. Relative name of the cloud resource that contains the data that is
-     *           being managed within a lake. For example:
+     *           Immutable. Relative name of the cloud resource that contains the data
+     *           that is being managed within a lake. For example:
      *             `projects/{project_number}/buckets/{bucket_id}`
      *             `projects/{project_number}/datasets/{dataset_id}`
      *     @type int $type
@@ -52,8 +52,8 @@ class ResourceSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. Relative name of the cloud resource that contains the data that is
-     * being managed within a lake. For example:
+     * Immutable. Relative name of the cloud resource that contains the data
+     * that is being managed within a lake. For example:
      *   `projects/{project_number}/buckets/{bucket_id}`
      *   `projects/{project_number}/datasets/{dataset_id}`
      *
@@ -66,8 +66,8 @@ class ResourceSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. Relative name of the cloud resource that contains the data that is
-     * being managed within a lake. For example:
+     * Immutable. Relative name of the cloud resource that contains the data
+     * that is being managed within a lake. For example:
      *   `projects/{project_number}/buckets/{bucket_id}`
      *   `projects/{project_number}/datasets/{dataset_id}`
      *

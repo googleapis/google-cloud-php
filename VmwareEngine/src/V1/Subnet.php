@@ -21,7 +21,7 @@ class Subnet extends \Google\Protobuf\Internal\Message
      * Resource names are schemeless URIs that follow the conventions in
      * https://cloud.google.com/apis/design/resource_names.
      * For example:
-     * `projects/my-project/locations/us-west1-a/privateClouds/my-cloud/subnets/my-subnet`
+     * `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/subnets/my-subnet`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -40,7 +40,8 @@ class Subnet extends \Google\Protobuf\Internal\Message
      */
     private $gateway_ip = '';
     /**
-     * Output only. The type of the subnet. For example "management" or "userDefined".
+     * Output only. The type of the subnet. For example "management" or
+     * "userDefined".
      *
      * Generated from protobuf field <code>string type = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -63,14 +64,15 @@ class Subnet extends \Google\Protobuf\Internal\Message
      *           Resource names are schemeless URIs that follow the conventions in
      *           https://cloud.google.com/apis/design/resource_names.
      *           For example:
-     *           `projects/my-project/locations/us-west1-a/privateClouds/my-cloud/subnets/my-subnet`
+     *           `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/subnets/my-subnet`
      *     @type string $ip_cidr_range
      *           The IP address range of the subnet in CIDR format '10.0.0.0/24'.
      *     @type string $gateway_ip
      *           The IP address of the gateway of this subnet.
      *           Must fall within the IP prefix defined above.
      *     @type string $type
-     *           Output only. The type of the subnet. For example "management" or "userDefined".
+     *           Output only. The type of the subnet. For example "management" or
+     *           "userDefined".
      *     @type int $state
      *           Output only. The state of the resource.
      * }
@@ -85,7 +87,7 @@ class Subnet extends \Google\Protobuf\Internal\Message
      * Resource names are schemeless URIs that follow the conventions in
      * https://cloud.google.com/apis/design/resource_names.
      * For example:
-     * `projects/my-project/locations/us-west1-a/privateClouds/my-cloud/subnets/my-subnet`
+     * `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/subnets/my-subnet`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -100,7 +102,7 @@ class Subnet extends \Google\Protobuf\Internal\Message
      * Resource names are schemeless URIs that follow the conventions in
      * https://cloud.google.com/apis/design/resource_names.
      * For example:
-     * `projects/my-project/locations/us-west1-a/privateClouds/my-cloud/subnets/my-subnet`
+     * `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/subnets/my-subnet`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -169,7 +171,8 @@ class Subnet extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The type of the subnet. For example "management" or "userDefined".
+     * Output only. The type of the subnet. For example "management" or
+     * "userDefined".
      *
      * Generated from protobuf field <code>string type = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -180,7 +183,8 @@ class Subnet extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The type of the subnet. For example "management" or "userDefined".
+     * Output only. The type of the subnet. For example "management" or
+     * "userDefined".
      *
      * Generated from protobuf field <code>string type = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
