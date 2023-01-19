@@ -27,8 +27,8 @@ class PublishLifecycleEventRequest extends \Google\Protobuf\Internal\Message
      */
     private $service_level = 0;
     /**
-     * Required. The lifecycle build event. If this is a build tool event, the RPC will fail
-     * with INVALID_REQUEST.
+     * Required. The lifecycle build event. If this is a build tool event, the RPC
+     * will fail with INVALID_REQUEST.
      *
      * Generated from protobuf field <code>.google.devtools.build.v1.OrderedBuildEvent build_event = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -81,8 +81,8 @@ class PublishLifecycleEventRequest extends \Google\Protobuf\Internal\Message
      *     @type int $service_level
      *           The interactivity of this build.
      *     @type \Google\Cloud\Build\V1\OrderedBuildEvent $build_event
-     *           Required. The lifecycle build event. If this is a build tool event, the RPC will fail
-     *           with INVALID_REQUEST.
+     *           Required. The lifecycle build event. If this is a build tool event, the RPC
+     *           will fail with INVALID_REQUEST.
      *     @type \Google\Protobuf\Duration $stream_timeout
      *           If the next event for this build or invocation (depending on the event
      *           type) hasn't been published after this duration from when {build_event}
@@ -139,8 +139,8 @@ class PublishLifecycleEventRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The lifecycle build event. If this is a build tool event, the RPC will fail
-     * with INVALID_REQUEST.
+     * Required. The lifecycle build event. If this is a build tool event, the RPC
+     * will fail with INVALID_REQUEST.
      *
      * Generated from protobuf field <code>.google.devtools.build.v1.OrderedBuildEvent build_event = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Build\V1\OrderedBuildEvent|null
@@ -161,8 +161,8 @@ class PublishLifecycleEventRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The lifecycle build event. If this is a build tool event, the RPC will fail
-     * with INVALID_REQUEST.
+     * Required. The lifecycle build event. If this is a build tool event, the RPC
+     * will fail with INVALID_REQUEST.
      *
      * Generated from protobuf field <code>.google.devtools.build.v1.OrderedBuildEvent build_event = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Build\V1\OrderedBuildEvent $var
