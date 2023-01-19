@@ -70,6 +70,7 @@ use Google\Protobuf\ListValue;
 use Google\Protobuf\Struct;
 use Google\Protobuf\Value;
 use Google\Protobuf\Timestamp;
+use Google\Rpc\Code;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**
@@ -1044,7 +1045,22 @@ class Grpc implements ConnectionInterface
         return $this->send([$this->spannerClient, 'beginTransaction'], [
             $this->pluck('session', $args),
             $options,
-            $this->addResourcePrefixHeader($args, $databaseName)
+            $this->addResourcePrefixHeader($args, $databaseName),
+            [
+                'grpcRetryFunction' => function (\Exception $ex) {
+                    $statusCode = $ex->getCode();
+                    if ($statusCode === Code::NOT_FOUND &&
+                        str_contains($ex->getMessage(), 'Session not found')) {
+                        return true;
+                    }
+                    return in_array($statusCode, [
+                        Code::UNKNOWN,
+                        Code::INTERNAL,
+                        Code::UNAVAILABLE,
+                        Code::DATA_LOSS,
+                    ]);
+                }
+            ]
         ]);
     }
 

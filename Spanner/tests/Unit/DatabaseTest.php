@@ -46,6 +46,7 @@ use Google\Cloud\Spanner\Tests\StubCreationTrait;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Spanner\V1\SpannerClient;
+use Google\Rpc\Code;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Prophecy\Argument;
 use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
@@ -743,6 +744,29 @@ class DatabaseTest extends TestCase
         $this->database->runTransaction(function ($t) {
             $this->database->runTransaction($this->noop());
         });
+    }
+
+    public function testBeginTransactionShouldRetryOnSessionNotFound()
+    {
+        $this->expectException('Google\Cloud\Core\Exception\NotFoundException');
+        $this->expectExceptionMessage('Session not found');
+        $err = new NotFoundException('Session not found', Code::NOT_FOUND);
+
+        $this->connection->beginTransaction(Argument::allOf(
+            Argument::withEntry('session', $this->session->name()),
+            Argument::withEntry(
+                'database',
+                DatabaseAdminClient::databaseName(
+                    self::PROJECT,
+                    self::INSTANCE,
+                    self::DATABASE
+                )
+            )
+        ))
+            ->shouldBeCalledTimes(3)
+            ->willThrow($err);
+
+        $this->database->transaction();
     }
 
     public function testRunTransactionRetry()
