@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class SourceInstanceParams extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Attached disks configuration. If not provided, defaults are applied: For boot disk and any other R/W disks, new custom images will be created from each disk. For read-only disks, they will be attached in read-only mode. Local SSD disks will be created as blank volumes.
+     * Attached disks configuration. If not provided, defaults are applied: For boot disk and any other R/W disks, the source images for each disk will be used. For read-only disks, they will be attached in read-only mode. Local SSD disks will be created as blank volumes.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.DiskInstantiationConfig disk_configs = 235580623;</code>
      */
@@ -29,7 +29,7 @@ class SourceInstanceParams extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<\Google\Cloud\Compute\V1\DiskInstantiationConfig>|\Google\Protobuf\Internal\RepeatedField $disk_configs
-     *           Attached disks configuration. If not provided, defaults are applied: For boot disk and any other R/W disks, new custom images will be created from each disk. For read-only disks, they will be attached in read-only mode. Local SSD disks will be created as blank volumes.
+     *           Attached disks configuration. If not provided, defaults are applied: For boot disk and any other R/W disks, the source images for each disk will be used. For read-only disks, they will be attached in read-only mode. Local SSD disks will be created as blank volumes.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,7 +38,7 @@ class SourceInstanceParams extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Attached disks configuration. If not provided, defaults are applied: For boot disk and any other R/W disks, new custom images will be created from each disk. For read-only disks, they will be attached in read-only mode. Local SSD disks will be created as blank volumes.
+     * Attached disks configuration. If not provided, defaults are applied: For boot disk and any other R/W disks, the source images for each disk will be used. For read-only disks, they will be attached in read-only mode. Local SSD disks will be created as blank volumes.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.DiskInstantiationConfig disk_configs = 235580623;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -49,7 +49,7 @@ class SourceInstanceParams extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Attached disks configuration. If not provided, defaults are applied: For boot disk and any other R/W disks, new custom images will be created from each disk. For read-only disks, they will be attached in read-only mode. Local SSD disks will be created as blank volumes.
+     * Attached disks configuration. If not provided, defaults are applied: For boot disk and any other R/W disks, the source images for each disk will be used. For read-only disks, they will be attached in read-only mode. Local SSD disks will be created as blank volumes.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.DiskInstantiationConfig disk_configs = 235580623;</code>
      * @param array<\Google\Cloud\Compute\V1\DiskInstantiationConfig>|\Google\Protobuf\Internal\RepeatedField $var
