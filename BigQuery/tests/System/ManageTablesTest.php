@@ -111,8 +111,6 @@ class ManageTablesTest extends BigQueryTestCase
         $this->assertTrue(self::$dataset->table($id)->exists());
         $this->assertEquals($id, $table->id());
         $this->assertEquals($table->info()['rangePartitioning'], $options['rangePartitioning']);
-
-        return $table;
     }
 
     public function testExtractsTable()
@@ -320,7 +318,7 @@ class ManageTablesTest extends BigQueryTestCase
      */
     public function testUpdateClone($table)
     {
-        $row = ['Name' => 'Dave', 'Age' => 101];
+        $row = ['Name' => 'Yash', 'Age' => 22];
         self::$table->insertRow($row);
         $insertResponse = $table->insertRow($row);
 
