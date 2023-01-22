@@ -29,16 +29,18 @@ use Google\Cloud\GkeMultiCloud\V1\AwsClustersClient;
 use Google\Rpc\Status;
 
 /**
- * Deletes a specific [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resource.
+ * Deletes a specific [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster]
+ * resource.
  *
- * Fails if the cluster has one or more associated [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool]
- * resources.
+ * Fails if the cluster has one or more associated
+ * [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] resources.
  *
  * If successful, the response contains a newly created
  * [Operation][google.longrunning.Operation] resource that can be
  * described to track the status of the operation.
  *
- * @param string $formattedName The resource name the [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] to delete.
+ * @param string $formattedName The resource name the
+ *                              [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] to delete.
  *
  *                              `AwsCluster` names are formatted as
  *                              `projects/<project-id>/locations/<region>/awsClusters/<cluster-id>`.

@@ -17,7 +17,7 @@ class Resource
         \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
             '
-†
+÷
 %google/cloud/speech/v1/resource.protogoogle.cloud.speech.v1"ü
 CustomClass
 name (	
@@ -33,12 +33,15 @@ class Resource
 Phrase
 value (	
 boost (:eêAb
-speech.googleapis.com/PhraseSet?projects/{project}/locations/{location}/phraseSets/{phrase_set}"Ì
+speech.googleapis.com/PhraseSet?projects/{project}/locations/{location}/phraseSets/{phrase_set}"½
 SpeechAdaptation6
 phrase_sets (2!.google.cloud.speech.v1.PhraseSetC
 phrase_set_references (	B$úA!
 speech.googleapis.com/PhraseSet;
-custom_classes (2#.google.cloud.speech.v1.CustomClassBz
+custom_classes (2#.google.cloud.speech.v1.CustomClassJ
+abnf_grammar (24.google.cloud.speech.v1.SpeechAdaptation.ABNFGrammar#
+ABNFGrammar
+abnf_strings (	Bz
 com.google.cloud.speech.v1BSpeechResourceProtoPZ<google.golang.org/genproto/googleapis/cloud/speech/v1;speechø¢GCSbproto3'
         , true);
 

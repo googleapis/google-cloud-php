@@ -143,9 +143,9 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
      */
     private $email_preferences = null;
     /**
-     * Output only. Information about the user whose credentials are used to transfer data.
-     * Populated only for `transferConfigs.get` requests. In case the user
-     * information is not available, this field will not be populated.
+     * Output only. Information about the user whose credentials are used to
+     * transfer data. Populated only for `transferConfigs.get` requests. In case
+     * the user information is not available, this field will not be populated.
      *
      * Generated from protobuf field <code>optional .google.cloud.bigquery.datatransfer.v1.UserInfo owner_info = 27 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -223,9 +223,9 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
      *           Email notifications will be sent according to these preferences
      *           to the email address of the user who owns this transfer config.
      *     @type \Google\Cloud\BigQuery\DataTransfer\V1\UserInfo $owner_info
-     *           Output only. Information about the user whose credentials are used to transfer data.
-     *           Populated only for `transferConfigs.get` requests. In case the user
-     *           information is not available, this field will not be populated.
+     *           Output only. Information about the user whose credentials are used to
+     *           transfer data. Populated only for `transferConfigs.get` requests. In case
+     *           the user information is not available, this field will not be populated.
      * }
      */
     public function __construct($data = NULL) {
@@ -769,9 +769,9 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Information about the user whose credentials are used to transfer data.
-     * Populated only for `transferConfigs.get` requests. In case the user
-     * information is not available, this field will not be populated.
+     * Output only. Information about the user whose credentials are used to
+     * transfer data. Populated only for `transferConfigs.get` requests. In case
+     * the user information is not available, this field will not be populated.
      *
      * Generated from protobuf field <code>optional .google.cloud.bigquery.datatransfer.v1.UserInfo owner_info = 27 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\BigQuery\DataTransfer\V1\UserInfo|null
@@ -792,9 +792,9 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Information about the user whose credentials are used to transfer data.
-     * Populated only for `transferConfigs.get` requests. In case the user
-     * information is not available, this field will not be populated.
+     * Output only. Information about the user whose credentials are used to
+     * transfer data. Populated only for `transferConfigs.get` requests. In case
+     * the user information is not available, this field will not be populated.
      *
      * Generated from protobuf field <code>optional .google.cloud.bigquery.datatransfer.v1.UserInfo owner_info = 27 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\BigQuery\DataTransfer\V1\UserInfo $var

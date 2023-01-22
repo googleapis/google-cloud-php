@@ -41,10 +41,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\ImageProperties::getDominantColors()'
     name: getDominantColors
     id: getDominantColors
-    summary: |
-      If present, dominant colors completed successfully.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.DominantColorsAnnotation dominant_colors = 1;</code>
+    summary: 'If present, dominant colors completed successfully.'
     parent: \Google\Cloud\Vision\V1\ImageProperties
     type: method
     langs:
@@ -73,10 +70,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\ImageProperties::setDominantColors()'
     name: setDominantColors
     id: setDominantColors
-    summary: |
-      If present, dominant colors completed successfully.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.DominantColorsAnnotation dominant_colors = 1;</code>
+    summary: 'If present, dominant colors completed successfully.'
     parent: \Google\Cloud\Vision\V1\ImageProperties
     type: method
     langs:

@@ -17,8 +17,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListConversationDatasetsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The project and location name to list all conversation datasets for.
-     * Format: `projects/<Project ID>/locations/<Location ID>`
+     * Required. The project and location name to list all conversation datasets
+     * for. Format: `projects/<Project ID>/locations/<Location ID>`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -44,8 +44,8 @@ class ListConversationDatasetsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The project and location name to list all conversation datasets for.
-     *           Format: `projects/<Project ID>/locations/<Location ID>`
+     *           Required. The project and location name to list all conversation datasets
+     *           for. Format: `projects/<Project ID>/locations/<Location ID>`
      *     @type int $page_size
      *           Optional. Maximum number of conversation datasets to return in a single
      *           page. By default 100 and at most 1000.
@@ -59,8 +59,8 @@ class ListConversationDatasetsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The project and location name to list all conversation datasets for.
-     * Format: `projects/<Project ID>/locations/<Location ID>`
+     * Required. The project and location name to list all conversation datasets
+     * for. Format: `projects/<Project ID>/locations/<Location ID>`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -71,8 +71,8 @@ class ListConversationDatasetsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The project and location name to list all conversation datasets for.
-     * Format: `projects/<Project ID>/locations/<Location ID>`
+     * Required. The project and location name to list all conversation datasets
+     * for. Format: `projects/<Project ID>/locations/<Location ID>`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

@@ -19,6 +19,7 @@ namespace Google\Cloud\Core\Testing\System;
 
 use Google\Cloud\BigQuery\BigQueryClient;
 use Google\Cloud\BigQuery\Dataset;
+use Google\Cloud\Core\Exception\BadRequestException;
 use Google\Cloud\Core\ExponentialBackoff;
 use Google\Cloud\PubSub\PubSubClient;
 use Google\Cloud\PubSub\Topic;
@@ -97,8 +98,9 @@ class SystemTestCase extends TestCase
      */
     public static function createBucket(StorageClient $client, $bucketName, array $options = [])
     {
-        $backoff = new ExponentialBackoff(8);
-
+        $backoff = new ExponentialBackoff(8, function ($ex) {
+            return !($ex instanceof BadRequestException);
+        });
         $bucket = $backoff->execute(function () use ($client, $bucketName, $options) {
             return $client->createBucket($bucketName, $options);
         });

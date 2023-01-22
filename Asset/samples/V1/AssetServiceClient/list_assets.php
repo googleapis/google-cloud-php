@@ -32,11 +32,11 @@ use Google\Cloud\Asset\V1\AssetServiceClient;
  * Lists assets with time and resource types and returns paged results in
  * response.
  *
- * @param string $parent Name of the organization, folder, or project the assets belong to. Format:
- *                       "organizations/[organization-number]" (such as "organizations/123"),
- *                       "projects/[project-id]" (such as "projects/my-project-id"),
- *                       "projects/[project-number]" (such as "projects/12345"), or
- *                       "folders/[folder-number]" (such as "folders/12345").
+ * @param string $parent Name of the organization, folder, or project the assets belong
+ *                       to. Format: "organizations/[organization-number]" (such as
+ *                       "organizations/123"), "projects/[project-id]" (such as
+ *                       "projects/my-project-id"), "projects/[project-number]" (such as
+ *                       "projects/12345"), or "folders/[folder-number]" (such as "folders/12345").
  */
 function list_assets_sample(string $parent): void
 {

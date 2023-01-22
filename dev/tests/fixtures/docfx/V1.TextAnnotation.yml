@@ -52,10 +52,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\TextAnnotation::getPages()'
     name: getPages
     id: getPages
-    summary: |
-      List of pages detected by OCR.
-      
-      Generated from protobuf field <code>repeated .google.cloud.vision.v1.Page pages = 1;</code>
+    summary: 'List of pages detected by OCR.'
     parent: \Google\Cloud\Vision\V1\TextAnnotation
     type: method
     langs:
@@ -63,15 +60,12 @@ items:
     syntax:
       returns:
         -
-          var_type: Google\Protobuf\Internal\RepeatedField
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Internal/RepeatedField">Google\Protobuf\Internal\RepeatedField</a>'
   -
     uid: '\Google\Cloud\Vision\V1\TextAnnotation::setPages()'
     name: setPages
     id: setPages
-    summary: |
-      List of pages detected by OCR.
-      
-      Generated from protobuf field <code>repeated .google.cloud.vision.v1.Page pages = 1;</code>
+    summary: 'List of pages detected by OCR.'
     parent: \Google\Cloud\Vision\V1\TextAnnotation
     type: method
     langs:
@@ -89,10 +83,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\TextAnnotation::getText()'
     name: getText
     id: getText
-    summary: |
-      UTF-8 text detected on the pages.
-      
-      Generated from protobuf field <code>string text = 2;</code>
+    summary: 'UTF-8 text detected on the pages.'
     parent: \Google\Cloud\Vision\V1\TextAnnotation
     type: method
     langs:
@@ -105,10 +96,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\TextAnnotation::setText()'
     name: setText
     id: setText
-    summary: |
-      UTF-8 text detected on the pages.
-      
-      Generated from protobuf field <code>string text = 2;</code>
+    summary: 'UTF-8 text detected on the pages.'
     parent: \Google\Cloud\Vision\V1\TextAnnotation
     type: method
     langs:

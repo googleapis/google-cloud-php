@@ -31,8 +31,8 @@ use Google\Cloud\BigQuery\DataTransfer\V1\DataTransferServiceClient;
 /**
  * Lists supported data sources and returns their settings.
  *
- * @param string $formattedParent The BigQuery project id for which data sources should be returned.
- *                                Must be in the form: `projects/{project_id}` or
+ * @param string $formattedParent The BigQuery project id for which data sources should be
+ *                                returned. Must be in the form: `projects/{project_id}` or
  *                                `projects/{project_id}/locations/{location_id}`
  *                                Please see {@see DataTransferServiceClient::projectName()} for help formatting this field.
  */

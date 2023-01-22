@@ -33,8 +33,9 @@ class EntityOverrideMode
      * `GetSessionEntityType`, `CreateSessionEntityType` and
      * `UpdateSessionEntityType` only return the additional entities added in
      * this session entity type. If you want to get the supplemented list,
-     * please call [EntityTypes.GetEntityType][google.cloud.dialogflow.v2.EntityTypes.GetEntityType] on the custom entity type
-     * and merge.
+     * please call
+     * [EntityTypes.GetEntityType][google.cloud.dialogflow.v2.EntityTypes.GetEntityType]
+     * on the custom entity type and merge.
      *
      * Generated from protobuf enum <code>ENTITY_OVERRIDE_MODE_SUPPLEMENT = 2;</code>
      */

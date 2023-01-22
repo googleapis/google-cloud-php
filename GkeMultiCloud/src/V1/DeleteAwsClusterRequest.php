@@ -16,7 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class DeleteAwsClusterRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name the [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] to delete.
+     * Required. The resource name the
+     * [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] to delete.
      * `AwsCluster` names are formatted as
      * `projects/<project-id>/locations/<region>/awsClusters/<cluster-id>`.
      * See [Resource Names](https://cloud.google.com/apis/design/resource_names)
@@ -32,16 +33,18 @@ class DeleteAwsClusterRequest extends \Google\Protobuf\Internal\Message
      */
     private $validate_only = false;
     /**
-     * If set to true, and the [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resource is not found,
-     * the request will succeed but no action will be taken on the server and a
-     * completed [Operation][google.longrunning.Operation] will be returned.
+     * If set to true, and the
+     * [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resource is not
+     * found, the request will succeed but no action will be taken on the server
+     * and a completed [Operation][google.longrunning.Operation] will be returned.
      * Useful for idempotent deletion.
      *
      * Generated from protobuf field <code>bool allow_missing = 3;</code>
      */
     private $allow_missing = false;
     /**
-     * The current etag of the [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster].
+     * The current etag of the
+     * [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster].
      * Allows clients to perform deletions through optimistic concurrency control.
      * If the provided etag does not match the current etag of the cluster,
      * the request will fail and an ABORTED error will be returned.
@@ -57,7 +60,8 @@ class DeleteAwsClusterRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The resource name the [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] to delete.
+     *           Required. The resource name the
+     *           [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] to delete.
      *           `AwsCluster` names are formatted as
      *           `projects/<project-id>/locations/<region>/awsClusters/<cluster-id>`.
      *           See [Resource Names](https://cloud.google.com/apis/design/resource_names)
@@ -65,12 +69,14 @@ class DeleteAwsClusterRequest extends \Google\Protobuf\Internal\Message
      *     @type bool $validate_only
      *           If set, only validate the request, but do not actually delete the resource.
      *     @type bool $allow_missing
-     *           If set to true, and the [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resource is not found,
-     *           the request will succeed but no action will be taken on the server and a
-     *           completed [Operation][google.longrunning.Operation] will be returned.
+     *           If set to true, and the
+     *           [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resource is not
+     *           found, the request will succeed but no action will be taken on the server
+     *           and a completed [Operation][google.longrunning.Operation] will be returned.
      *           Useful for idempotent deletion.
      *     @type string $etag
-     *           The current etag of the [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster].
+     *           The current etag of the
+     *           [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster].
      *           Allows clients to perform deletions through optimistic concurrency control.
      *           If the provided etag does not match the current etag of the cluster,
      *           the request will fail and an ABORTED error will be returned.
@@ -82,7 +88,8 @@ class DeleteAwsClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name the [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] to delete.
+     * Required. The resource name the
+     * [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] to delete.
      * `AwsCluster` names are formatted as
      * `projects/<project-id>/locations/<region>/awsClusters/<cluster-id>`.
      * See [Resource Names](https://cloud.google.com/apis/design/resource_names)
@@ -97,7 +104,8 @@ class DeleteAwsClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name the [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] to delete.
+     * Required. The resource name the
+     * [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] to delete.
      * `AwsCluster` names are formatted as
      * `projects/<project-id>/locations/<region>/awsClusters/<cluster-id>`.
      * See [Resource Names](https://cloud.google.com/apis/design/resource_names)
@@ -142,9 +150,10 @@ class DeleteAwsClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If set to true, and the [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resource is not found,
-     * the request will succeed but no action will be taken on the server and a
-     * completed [Operation][google.longrunning.Operation] will be returned.
+     * If set to true, and the
+     * [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resource is not
+     * found, the request will succeed but no action will be taken on the server
+     * and a completed [Operation][google.longrunning.Operation] will be returned.
      * Useful for idempotent deletion.
      *
      * Generated from protobuf field <code>bool allow_missing = 3;</code>
@@ -156,9 +165,10 @@ class DeleteAwsClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If set to true, and the [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resource is not found,
-     * the request will succeed but no action will be taken on the server and a
-     * completed [Operation][google.longrunning.Operation] will be returned.
+     * If set to true, and the
+     * [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resource is not
+     * found, the request will succeed but no action will be taken on the server
+     * and a completed [Operation][google.longrunning.Operation] will be returned.
      * Useful for idempotent deletion.
      *
      * Generated from protobuf field <code>bool allow_missing = 3;</code>
@@ -174,7 +184,8 @@ class DeleteAwsClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The current etag of the [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster].
+     * The current etag of the
+     * [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster].
      * Allows clients to perform deletions through optimistic concurrency control.
      * If the provided etag does not match the current etag of the cluster,
      * the request will fail and an ABORTED error will be returned.
@@ -188,7 +199,8 @@ class DeleteAwsClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The current etag of the [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster].
+     * The current etag of the
+     * [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster].
      * Allows clients to perform deletions through optimistic concurrency control.
      * If the provided etag does not match the current etag of the cluster,
      * the request will fail and an ABORTED error will be returned.

@@ -41,10 +41,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\AsyncAnnotateFileResponse::getOutputConfig()'
     name: getOutputConfig
     id: getOutputConfig
-    summary: |
-      The output location and metadata from AsyncAnnotateFileRequest.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.OutputConfig output_config = 1;</code>
+    summary: 'The output location and metadata from AsyncAnnotateFileRequest.'
     parent: \Google\Cloud\Vision\V1\AsyncAnnotateFileResponse
     type: method
     langs:
@@ -73,10 +70,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\AsyncAnnotateFileResponse::setOutputConfig()'
     name: setOutputConfig
     id: setOutputConfig
-    summary: |
-      The output location and metadata from AsyncAnnotateFileRequest.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.OutputConfig output_config = 1;</code>
+    summary: 'The output location and metadata from AsyncAnnotateFileRequest.'
     parent: \Google\Cloud\Vision\V1\AsyncAnnotateFileResponse
     type: method
     langs:

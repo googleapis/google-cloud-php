@@ -16,7 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class BatchProcessRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name of [Processor][google.cloud.documentai.v1.Processor] or
+     * Required. The resource name of
+     * [Processor][google.cloud.documentai.v1.Processor] or
      * [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion].
      * Format: `projects/{project}/locations/{location}/processors/{processor}`,
      * or
@@ -52,7 +53,8 @@ class BatchProcessRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The resource name of [Processor][google.cloud.documentai.v1.Processor] or
+     *           Required. The resource name of
+     *           [Processor][google.cloud.documentai.v1.Processor] or
      *           [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion].
      *           Format: `projects/{project}/locations/{location}/processors/{processor}`,
      *           or
@@ -72,7 +74,8 @@ class BatchProcessRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of [Processor][google.cloud.documentai.v1.Processor] or
+     * Required. The resource name of
+     * [Processor][google.cloud.documentai.v1.Processor] or
      * [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion].
      * Format: `projects/{project}/locations/{location}/processors/{processor}`,
      * or
@@ -87,7 +90,8 @@ class BatchProcessRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of [Processor][google.cloud.documentai.v1.Processor] or
+     * Required. The resource name of
+     * [Processor][google.cloud.documentai.v1.Processor] or
      * [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion].
      * Format: `projects/{project}/locations/{location}/processors/{processor}`,
      * or

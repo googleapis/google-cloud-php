@@ -16,9 +16,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListAssetsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The name of the parent that the listed assets belong to. Its
-     * format is "organizations/[organization_id], folders/[folder_id], or
-     * projects/[project_id]".
+     * Required. The name of the parent resource that contains the assets. The
+     * value that you can specify on parent depends on the method in which you
+     * specify parent. You can specify one of the following values:
+     * "organizations/[organization_id]", "folders/[folder_id]", or
+     * "projects/[project_id]".
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -165,9 +167,11 @@ class ListAssetsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The name of the parent that the listed assets belong to. Its
-     *           format is "organizations/[organization_id], folders/[folder_id], or
-     *           projects/[project_id]".
+     *           Required. The name of the parent resource that contains the assets. The
+     *           value that you can specify on parent depends on the method in which you
+     *           specify parent. You can specify one of the following values:
+     *           "organizations/[organization_id]", "folders/[folder_id]", or
+     *           "projects/[project_id]".
      *     @type string $filter
      *           Expression that defines the filter to apply across assets.
      *           The expression is a list of zero or more restrictions combined via logical
@@ -282,9 +286,11 @@ class ListAssetsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the parent that the listed assets belong to. Its
-     * format is "organizations/[organization_id], folders/[folder_id], or
-     * projects/[project_id]".
+     * Required. The name of the parent resource that contains the assets. The
+     * value that you can specify on parent depends on the method in which you
+     * specify parent. You can specify one of the following values:
+     * "organizations/[organization_id]", "folders/[folder_id]", or
+     * "projects/[project_id]".
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -295,9 +301,11 @@ class ListAssetsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the parent that the listed assets belong to. Its
-     * format is "organizations/[organization_id], folders/[folder_id], or
-     * projects/[project_id]".
+     * Required. The name of the parent resource that contains the assets. The
+     * value that you can specify on parent depends on the method in which you
+     * specify parent. You can specify one of the following values:
+     * "organizations/[organization_id]", "folders/[folder_id]", or
+     * "projects/[project_id]".
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

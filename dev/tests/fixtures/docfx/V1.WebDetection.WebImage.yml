@@ -45,10 +45,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\WebDetection\WebImage::getUrl()'
     name: getUrl
     id: getUrl
-    summary: |
-      The result image URL.
-      
-      Generated from protobuf field <code>string url = 1;</code>
+    summary: 'The result image URL.'
     parent: \Google\Cloud\Vision\V1\WebDetection\WebImage
     type: method
     langs:
@@ -61,10 +58,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\WebDetection\WebImage::setUrl()'
     name: setUrl
     id: setUrl
-    summary: |
-      The result image URL.
-      
-      Generated from protobuf field <code>string url = 1;</code>
+    summary: 'The result image URL.'
     parent: \Google\Cloud\Vision\V1\WebDetection\WebImage
     type: method
     langs:
@@ -82,10 +76,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\WebDetection\WebImage::getScore()'
     name: getScore
     id: getScore
-    summary: |
-      (Deprecated) Overall relevancy score for the image.
-      
-      Generated from protobuf field <code>float score = 2;</code>
+    summary: '(Deprecated) Overall relevancy score for the image.'
     parent: \Google\Cloud\Vision\V1\WebDetection\WebImage
     type: method
     langs:
@@ -98,10 +89,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\WebDetection\WebImage::setScore()'
     name: setScore
     id: setScore
-    summary: |
-      (Deprecated) Overall relevancy score for the image.
-      
-      Generated from protobuf field <code>float score = 2;</code>
+    summary: '(Deprecated) Overall relevancy score for the image.'
     parent: \Google\Cloud\Vision\V1\WebDetection\WebImage
     type: method
     langs:

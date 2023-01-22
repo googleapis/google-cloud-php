@@ -16,8 +16,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class GetAzureClientRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The name of the [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] resource to describe.
-     * [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] names are formatted as
+     * Required. The name of the
+     * [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] resource to
+     * describe.
+     * [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] names are
+     * formatted as
      * `projects/<project-id>/locations/<region>/azureClients/<client-id>`.
      * See [Resource Names](https://cloud.google.com/apis/design/resource_names)
      * for more details on Google Cloud resource names.
@@ -33,8 +36,11 @@ class GetAzureClientRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The name of the [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] resource to describe.
-     *           [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] names are formatted as
+     *           Required. The name of the
+     *           [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] resource to
+     *           describe.
+     *           [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] names are
+     *           formatted as
      *           `projects/<project-id>/locations/<region>/azureClients/<client-id>`.
      *           See [Resource Names](https://cloud.google.com/apis/design/resource_names)
      *           for more details on Google Cloud resource names.
@@ -46,8 +52,11 @@ class GetAzureClientRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] resource to describe.
-     * [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] names are formatted as
+     * Required. The name of the
+     * [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] resource to
+     * describe.
+     * [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] names are
+     * formatted as
      * `projects/<project-id>/locations/<region>/azureClients/<client-id>`.
      * See [Resource Names](https://cloud.google.com/apis/design/resource_names)
      * for more details on Google Cloud resource names.
@@ -61,8 +70,11 @@ class GetAzureClientRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] resource to describe.
-     * [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] names are formatted as
+     * Required. The name of the
+     * [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] resource to
+     * describe.
+     * [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] names are
+     * formatted as
      * `projects/<project-id>/locations/<region>/azureClients/<client-id>`.
      * See [Resource Names](https://cloud.google.com/apis/design/resource_names)
      * for more details on Google Cloud resource names.

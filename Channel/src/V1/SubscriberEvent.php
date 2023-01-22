@@ -10,7 +10,7 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Represents information which resellers will get as part of notification from
- * Cloud Pub/Sub.
+ * Pub/Sub.
  *
  * Generated from protobuf message <code>google.cloud.channel.v1.SubscriberEvent</code>
  */
@@ -25,9 +25,9 @@ class SubscriberEvent extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Channel\V1\CustomerEvent $customer_event
-     *           Customer event send as part of Pub/Sub event to partners.
+     *           Customer event sent as part of Pub/Sub event to partners.
      *     @type \Google\Cloud\Channel\V1\EntitlementEvent $entitlement_event
-     *           Entitlement event send as part of Pub/Sub event to partners.
+     *           Entitlement event sent as part of Pub/Sub event to partners.
      * }
      */
     public function __construct($data = NULL) {
@@ -36,7 +36,7 @@ class SubscriberEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Customer event send as part of Pub/Sub event to partners.
+     * Customer event sent as part of Pub/Sub event to partners.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.CustomerEvent customer_event = 1;</code>
      * @return \Google\Cloud\Channel\V1\CustomerEvent|null
@@ -52,7 +52,7 @@ class SubscriberEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Customer event send as part of Pub/Sub event to partners.
+     * Customer event sent as part of Pub/Sub event to partners.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.CustomerEvent customer_event = 1;</code>
      * @param \Google\Cloud\Channel\V1\CustomerEvent $var
@@ -67,7 +67,7 @@ class SubscriberEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Entitlement event send as part of Pub/Sub event to partners.
+     * Entitlement event sent as part of Pub/Sub event to partners.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.EntitlementEvent entitlement_event = 2;</code>
      * @return \Google\Cloud\Channel\V1\EntitlementEvent|null
@@ -83,7 +83,7 @@ class SubscriberEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Entitlement event send as part of Pub/Sub event to partners.
+     * Entitlement event sent as part of Pub/Sub event to partners.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.EntitlementEvent entitlement_event = 2;</code>
      * @param \Google\Cloud\Channel\V1\EntitlementEvent $var

@@ -31,7 +31,7 @@ use Google\Cloud\Retail\V2\CompletionConfig;
  * Gets a [CompletionConfig][google.cloud.retail.v2.CompletionConfig].
  *
  * @param string $formattedName Full CompletionConfig resource name. Format:
- *                              projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/completionConfig
+ *                              `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/completionConfig`
  *                              Please see {@see CatalogServiceClient::completionConfigName()} for help formatting this field.
  */
 function get_completion_config_sample(string $formattedName): void
