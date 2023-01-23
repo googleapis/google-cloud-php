@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Firestore\Tests\System;
 
+use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Firestore\CollectionReference;
 use Google\Cloud\Firestore\DocumentReference;
 
@@ -42,6 +43,17 @@ class DocumentAndCollectionTest extends FirestoreTestCase
         $document->create(['firstName' => 'Kate']);
         $this->assertTrue($document->snapshot()->exists());
         $this->assertEquals(['firstName' => 'Kate'], $document->snapshot()->data());
+    }
+
+    public function testSnapshotWithReadTime()
+    {
+        $readTime = new Timestamp(new \DateTimeImmutable());
+        $snapshotData = $this->document->snapshot([
+            'readTime' => $readTime
+        ])->data();
+
+        $this->assertEquals('John', $snapshotData['firstName']);
+        $this->assertEquals('USA', $snapshotData['country']);
     }
 
     public function testUpdate()
