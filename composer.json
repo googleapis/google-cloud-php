@@ -600,5 +600,29 @@
                 "ServiceBuilder.php"
             ]
         }
+    },
+    "archive": {
+        "exclude": [
+            "/.gitattributes",
+            "/*/.gitattributes",
+            "/.gitignore",
+            "/dev",
+            "/docs",
+            "/tests",
+            "/*.xml",
+            "/*.xml.dist",
+            "/*/tests",
+            "/*/samples",
+            "/.travis.yml",
+            "/appveyor.yml",
+            "/codecov.yml",
+            "/.github",
+            "/*/.github",
+            "/*/.repo-metadata.json",
+            "/*/.OwlBot.yaml",
+            "/*/.owlbot",
+            "/*/owlbot.py",
+            "/*/src/**/gapic_metadata.json"
+        ]
     }
 }
