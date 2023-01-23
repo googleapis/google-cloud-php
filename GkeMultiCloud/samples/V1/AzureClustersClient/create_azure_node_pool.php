@@ -34,38 +34,43 @@ use Google\Cloud\GkeMultiCloud\V1\MaxPodsConstraint;
 use Google\Rpc\Status;
 
 /**
- * Creates a new [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool], attached to a given [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster].
+ * Creates a new [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool],
+ * attached to a given
+ * [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster].
  *
  * If successful, the response contains a newly created
  * [Operation][google.longrunning.Operation] resource that can be
  * described to track the status of the operation.
  *
- * @param string $formattedParent                              The [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] resource where this node pool will be created.
+ * @param string $formattedParent                              The [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster]
+ *                                                             resource where this node pool will be created.
  *
  *                                                             Location names are formatted as `projects/<project-id>/locations/<region>`.
  *
  *                                                             See [Resource Names](https://cloud.google.com/apis/design/resource_names)
  *                                                             for more details on Google Cloud resource names. Please see
  *                                                             {@see AzureClustersClient::azureClusterName()} for help formatting this field.
- * @param string $azureNodePoolVersion                         The Kubernetes version (e.g. `1.19.10-gke.1000`) running on this node pool.
- * @param string $azureNodePoolConfigSshConfigAuthorizedKey    The SSH public key data for VMs managed by Anthos. This accepts the
- *                                                             authorized_keys file format used in OpenSSH according to the sshd(8) manual
- *                                                             page.
- * @param string $azureNodePoolSubnetId                        The ARM ID of the subnet where the node pool VMs run. Make sure it's a
- *                                                             subnet under the virtual network in the cluster configuration.
- * @param int    $azureNodePoolAutoscalingMinNodeCount         Minimum number of nodes in the node pool. Must be greater than or equal to
- *                                                             1 and less than or equal to max_node_count.
- * @param int    $azureNodePoolAutoscalingMaxNodeCount         Maximum number of nodes in the node pool. Must be greater than or equal to
- *                                                             min_node_count and less than or equal to 50.
+ * @param string $azureNodePoolVersion                         The Kubernetes version (e.g. `1.19.10-gke.1000`) running on this
+ *                                                             node pool.
+ * @param string $azureNodePoolConfigSshConfigAuthorizedKey    The SSH public key data for VMs managed by Anthos. This accepts
+ *                                                             the authorized_keys file format used in OpenSSH according to the sshd(8)
+ *                                                             manual page.
+ * @param string $azureNodePoolSubnetId                        The ARM ID of the subnet where the node pool VMs run. Make sure
+ *                                                             it's a subnet under the virtual network in the cluster configuration.
+ * @param int    $azureNodePoolAutoscalingMinNodeCount         Minimum number of nodes in the node pool. Must be greater than or
+ *                                                             equal to 1 and less than or equal to max_node_count.
+ * @param int    $azureNodePoolAutoscalingMaxNodeCount         Maximum number of nodes in the node pool. Must be greater than or
+ *                                                             equal to min_node_count and less than or equal to 50.
  * @param int    $azureNodePoolMaxPodsConstraintMaxPodsPerNode The maximum number of pods to schedule on a single node.
- * @param string $azureNodePoolId                              A client provided ID the resource. Must be unique within the parent
- *                                                             resource.
+ * @param string $azureNodePoolId                              A client provided ID the resource. Must be unique within the
+ *                                                             parent resource.
  *
- *                                                             The provided ID will be part of the [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool]
- *                                                             resource name formatted as
+ *                                                             The provided ID will be part of the
+ *                                                             [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] resource name
+ *                                                             formatted as
  *                                                             `projects/<project-id>/locations/<region>/azureClusters/<cluster-id>/azureNodePools/<node-pool-id>`.
  *
- *                                                             Valid characters are `/[a-z][0-9]-/`. Cannot be longer than 40 characters.
+ *                                                             Valid characters are `/[a-z][0-9]-/`. Cannot be longer than 63 characters.
  */
 function create_azure_node_pool_sample(
     string $formattedParent,

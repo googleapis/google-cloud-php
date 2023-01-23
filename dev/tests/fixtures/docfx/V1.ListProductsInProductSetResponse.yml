@@ -45,10 +45,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\ListProductsInProductSetResponse::getProducts()'
     name: getProducts
     id: getProducts
-    summary: |
-      The list of Products.
-      
-      Generated from protobuf field <code>repeated .google.cloud.vision.v1.Product products = 1;</code>
+    summary: 'The list of Products.'
     parent: \Google\Cloud\Vision\V1\ListProductsInProductSetResponse
     type: method
     langs:
@@ -56,15 +53,12 @@ items:
     syntax:
       returns:
         -
-          var_type: Google\Protobuf\Internal\RepeatedField
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Internal/RepeatedField">Google\Protobuf\Internal\RepeatedField</a>'
   -
     uid: '\Google\Cloud\Vision\V1\ListProductsInProductSetResponse::setProducts()'
     name: setProducts
     id: setProducts
-    summary: |
-      The list of Products.
-      
-      Generated from protobuf field <code>repeated .google.cloud.vision.v1.Product products = 1;</code>
+    summary: 'The list of Products.'
     parent: \Google\Cloud\Vision\V1\ListProductsInProductSetResponse
     type: method
     langs:
@@ -85,8 +79,6 @@ items:
     summary: |
       Token to retrieve the next page of results, or empty if there are no more
       results in the list.
-      
-      Generated from protobuf field <code>string next_page_token = 2;</code>
     parent: \Google\Cloud\Vision\V1\ListProductsInProductSetResponse
     type: method
     langs:
@@ -102,8 +94,6 @@ items:
     summary: |
       Token to retrieve the next page of results, or empty if there are no more
       results in the list.
-      
-      Generated from protobuf field <code>string next_page_token = 2;</code>
     parent: \Google\Cloud\Vision\V1\ListProductsInProductSetResponse
     type: method
     langs:

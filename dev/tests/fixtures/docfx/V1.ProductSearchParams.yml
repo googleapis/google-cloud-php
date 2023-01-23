@@ -63,8 +63,6 @@ items:
       The bounding polygon around the area of interest in the image.
       
       If it is not specified, system discretion will be applied.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 9;</code>
     parent: \Google\Cloud\Vision\V1\ProductSearchParams
     type: method
     langs:
@@ -97,8 +95,6 @@ items:
       The bounding polygon around the area of interest in the image.
       
       If it is not specified, system discretion will be applied.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 9;</code>
     parent: \Google\Cloud\Vision\V1\ProductSearchParams
     type: method
     langs:
@@ -121,8 +117,6 @@ items:
       
       Format is:
       `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`.
-      
-      Generated from protobuf field <code>string product_set = 6 [(.google.api.resource_reference) = {</code>
     parent: \Google\Cloud\Vision\V1\ProductSearchParams
     type: method
     langs:
@@ -140,8 +134,6 @@ items:
       
       Format is:
       `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`.
-      
-      Generated from protobuf field <code>string product_set = 6 [(.google.api.resource_reference) = {</code>
     parent: \Google\Cloud\Vision\V1\ProductSearchParams
     type: method
     langs:
@@ -167,8 +159,6 @@ items:
       be deprecated. For new products, please use "homegoods-v2", "apparel-v2",
       or "toys-v2" for better product search accuracy. It is recommended to
       migrate existing products to these categories as well.
-      
-      Generated from protobuf field <code>repeated string product_categories = 7;</code>
     parent: \Google\Cloud\Vision\V1\ProductSearchParams
     type: method
     langs:
@@ -176,7 +166,7 @@ items:
     syntax:
       returns:
         -
-          var_type: Google\Protobuf\Internal\RepeatedField
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Internal/RepeatedField">Google\Protobuf\Internal\RepeatedField</a>'
   -
     uid: '\Google\Cloud\Vision\V1\ProductSearchParams::setProductCategories()'
     name: setProductCategories
@@ -189,8 +179,6 @@ items:
       be deprecated. For new products, please use "homegoods-v2", "apparel-v2",
       or "toys-v2" for better product search accuracy. It is recommended to
       migrate existing products to these categories as well.
-      
-      Generated from protobuf field <code>repeated string product_categories = 7;</code>
     parent: \Google\Cloud\Vision\V1\ProductSearchParams
     type: method
     langs:
@@ -217,8 +205,6 @@ items:
       For example, "(color = red OR color = blue) AND brand = Google" is
       acceptable, but "(color = red OR brand = Google)" is not acceptable.
       "color: red" is not acceptable because it uses a ':' instead of an '='.
-      
-      Generated from protobuf field <code>string filter = 8;</code>
     parent: \Google\Cloud\Vision\V1\ProductSearchParams
     type: method
     langs:
@@ -240,8 +226,6 @@ items:
       For example, "(color = red OR color = blue) AND brand = Google" is
       acceptable, but "(color = red OR brand = Google)" is not acceptable.
       "color: red" is not acceptable because it uses a ':' instead of an '='.
-      
-      Generated from protobuf field <code>string filter = 8;</code>
     parent: \Google\Cloud\Vision\V1\ProductSearchParams
     type: method
     langs:

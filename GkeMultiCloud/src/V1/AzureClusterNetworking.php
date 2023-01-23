@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class AzureClusterNetworking extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The Azure Resource Manager (ARM) ID of the VNet associated with your
-     * cluster.
+     * Required. The Azure Resource Manager (ARM) ID of the VNet associated with
+     * your cluster.
      * All components in the cluster (i.e. control plane and node pools) run on a
      * single VNet.
      * Example:
@@ -48,8 +48,8 @@ class AzureClusterNetworking extends \Google\Protobuf\Internal\Message
      */
     private $service_address_cidr_blocks;
     /**
-     * Optional. The ARM ID of the subnet where Kubernetes private service type load
-     * balancers are deployed. When unspecified, it defaults to
+     * Optional. The ARM ID of the subnet where Kubernetes private service type
+     * load balancers are deployed. When unspecified, it defaults to
      * AzureControlPlane.subnet_id.
      * Example:
      * "/subscriptions/d00494d6-6f3c-4280-bbb2-899e163d1d30/resourceGroups/anthos_cluster_gkeust4/providers/Microsoft.Network/virtualNetworks/gke-vnet-gkeust4/subnets/subnetid456"
@@ -65,8 +65,8 @@ class AzureClusterNetworking extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $virtual_network_id
-     *           Required. The Azure Resource Manager (ARM) ID of the VNet associated with your
-     *           cluster.
+     *           Required. The Azure Resource Manager (ARM) ID of the VNet associated with
+     *           your cluster.
      *           All components in the cluster (i.e. control plane and node pools) run on a
      *           single VNet.
      *           Example:
@@ -85,8 +85,8 @@ class AzureClusterNetworking extends \Google\Protobuf\Internal\Message
      *           ranges. Only a single range is supported.
      *           This field cannot be changed after creating a cluster.
      *     @type string $service_load_balancer_subnet_id
-     *           Optional. The ARM ID of the subnet where Kubernetes private service type load
-     *           balancers are deployed. When unspecified, it defaults to
+     *           Optional. The ARM ID of the subnet where Kubernetes private service type
+     *           load balancers are deployed. When unspecified, it defaults to
      *           AzureControlPlane.subnet_id.
      *           Example:
      *           "/subscriptions/d00494d6-6f3c-4280-bbb2-899e163d1d30/resourceGroups/anthos_cluster_gkeust4/providers/Microsoft.Network/virtualNetworks/gke-vnet-gkeust4/subnets/subnetid456"
@@ -98,8 +98,8 @@ class AzureClusterNetworking extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The Azure Resource Manager (ARM) ID of the VNet associated with your
-     * cluster.
+     * Required. The Azure Resource Manager (ARM) ID of the VNet associated with
+     * your cluster.
      * All components in the cluster (i.e. control plane and node pools) run on a
      * single VNet.
      * Example:
@@ -115,8 +115,8 @@ class AzureClusterNetworking extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The Azure Resource Manager (ARM) ID of the VNet associated with your
-     * cluster.
+     * Required. The Azure Resource Manager (ARM) ID of the VNet associated with
+     * your cluster.
      * All components in the cluster (i.e. control plane and node pools) run on a
      * single VNet.
      * Example:
@@ -204,8 +204,8 @@ class AzureClusterNetworking extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The ARM ID of the subnet where Kubernetes private service type load
-     * balancers are deployed. When unspecified, it defaults to
+     * Optional. The ARM ID of the subnet where Kubernetes private service type
+     * load balancers are deployed. When unspecified, it defaults to
      * AzureControlPlane.subnet_id.
      * Example:
      * "/subscriptions/d00494d6-6f3c-4280-bbb2-899e163d1d30/resourceGroups/anthos_cluster_gkeust4/providers/Microsoft.Network/virtualNetworks/gke-vnet-gkeust4/subnets/subnetid456"
@@ -219,8 +219,8 @@ class AzureClusterNetworking extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The ARM ID of the subnet where Kubernetes private service type load
-     * balancers are deployed. When unspecified, it defaults to
+     * Optional. The ARM ID of the subnet where Kubernetes private service type
+     * load balancers are deployed. When unspecified, it defaults to
      * AzureControlPlane.subnet_id.
      * Example:
      * "/subscriptions/d00494d6-6f3c-4280-bbb2-899e163d1d30/resourceGroups/anthos_cluster_gkeust4/providers/Microsoft.Network/virtualNetworks/gke-vnet-gkeust4/subnets/subnetid456"

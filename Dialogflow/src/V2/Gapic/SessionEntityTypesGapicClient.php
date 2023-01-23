@@ -49,7 +49,8 @@ use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 
 /**
- * Service Description: Service for managing [SessionEntityTypes][google.cloud.dialogflow.v2.SessionEntityType].
+ * Service Description: Service for managing
+ * [SessionEntityTypes][google.cloud.dialogflow.v2.SessionEntityType].
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:

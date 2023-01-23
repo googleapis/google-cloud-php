@@ -32,8 +32,8 @@ use Google\Rpc\Status;
 /**
  * Creates a metastore federation in a project and location.
  *
- * @param string $formattedParent The relative resource name of the location in which to create a federation
- *                                service, in the following form:
+ * @param string $formattedParent The relative resource name of the location in which to create a
+ *                                federation service, in the following form:
  *
  *                                `projects/{project_number}/locations/{location_id}`. Please see
  *                                {@see DataprocMetastoreFederationClient::locationName()} for help formatting this field.

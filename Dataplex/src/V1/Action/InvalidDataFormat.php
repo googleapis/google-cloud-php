@@ -41,7 +41,7 @@ class InvalidDataFormat extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $sampled_data_locations
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $sampled_data_locations
      *           The list of data locations sampled and used for format/schema
      *           inference.
      *     @type string $expected_format
@@ -72,7 +72,7 @@ class InvalidDataFormat extends \Google\Protobuf\Internal\Message
      * inference.
      *
      * Generated from protobuf field <code>repeated string sampled_data_locations = 1;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSampledDataLocations($var)

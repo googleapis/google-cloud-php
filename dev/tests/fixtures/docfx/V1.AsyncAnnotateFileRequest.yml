@@ -63,10 +63,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\AsyncAnnotateFileRequest::getInputConfig()'
     name: getInputConfig
     id: getInputConfig
-    summary: |
-      Required. Information about the input file.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.InputConfig input_config = 1;</code>
+    summary: 'Required. Information about the input file.'
     parent: \Google\Cloud\Vision\V1\AsyncAnnotateFileRequest
     type: method
     langs:
@@ -95,10 +92,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\AsyncAnnotateFileRequest::setInputConfig()'
     name: setInputConfig
     id: setInputConfig
-    summary: |
-      Required. Information about the input file.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.InputConfig input_config = 1;</code>
+    summary: 'Required. Information about the input file.'
     parent: \Google\Cloud\Vision\V1\AsyncAnnotateFileRequest
     type: method
     langs:
@@ -116,10 +110,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\AsyncAnnotateFileRequest::getFeatures()'
     name: getFeatures
     id: getFeatures
-    summary: |
-      Required. Requested features.
-      
-      Generated from protobuf field <code>repeated .google.cloud.vision.v1.Feature features = 2;</code>
+    summary: 'Required. Requested features.'
     parent: \Google\Cloud\Vision\V1\AsyncAnnotateFileRequest
     type: method
     langs:
@@ -127,15 +118,12 @@ items:
     syntax:
       returns:
         -
-          var_type: Google\Protobuf\Internal\RepeatedField
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Internal/RepeatedField">Google\Protobuf\Internal\RepeatedField</a>'
   -
     uid: '\Google\Cloud\Vision\V1\AsyncAnnotateFileRequest::setFeatures()'
     name: setFeatures
     id: setFeatures
-    summary: |
-      Required. Requested features.
-      
-      Generated from protobuf field <code>repeated .google.cloud.vision.v1.Feature features = 2;</code>
+    summary: 'Required. Requested features.'
     parent: \Google\Cloud\Vision\V1\AsyncAnnotateFileRequest
     type: method
     langs:
@@ -153,10 +141,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\AsyncAnnotateFileRequest::getImageContext()'
     name: getImageContext
     id: getImageContext
-    summary: |
-      Additional context that may accompany the image(s) in the file.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.ImageContext image_context = 3;</code>
+    summary: 'Additional context that may accompany the image(s) in the file.'
     parent: \Google\Cloud\Vision\V1\AsyncAnnotateFileRequest
     type: method
     langs:
@@ -185,10 +170,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\AsyncAnnotateFileRequest::setImageContext()'
     name: setImageContext
     id: setImageContext
-    summary: |
-      Additional context that may accompany the image(s) in the file.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.ImageContext image_context = 3;</code>
+    summary: 'Additional context that may accompany the image(s) in the file.'
     parent: \Google\Cloud\Vision\V1\AsyncAnnotateFileRequest
     type: method
     langs:
@@ -206,10 +188,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\AsyncAnnotateFileRequest::getOutputConfig()'
     name: getOutputConfig
     id: getOutputConfig
-    summary: |
-      Required. The desired output location and metadata (e.g. format).
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.OutputConfig output_config = 4;</code>
+    summary: 'Required. The desired output location and metadata (e.g. format).'
     parent: \Google\Cloud\Vision\V1\AsyncAnnotateFileRequest
     type: method
     langs:
@@ -238,10 +217,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\AsyncAnnotateFileRequest::setOutputConfig()'
     name: setOutputConfig
     id: setOutputConfig
-    summary: |
-      Required. The desired output location and metadata (e.g. format).
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.OutputConfig output_config = 4;</code>
+    summary: 'Required. The desired output location and metadata (e.g. format).'
     parent: \Google\Cloud\Vision\V1\AsyncAnnotateFileRequest
     type: method
     langs:

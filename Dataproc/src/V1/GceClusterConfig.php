@@ -132,7 +132,8 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      */
     private $node_group_affinity = null;
     /**
-     * Optional. Shielded Instance Config for clusters using [Compute Engine Shielded
+     * Optional. Shielded Instance Config for clusters using [Compute Engine
+     * Shielded
      * VMs](https://cloud.google.com/security/shielded-cloud/shielded-vm).
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.ShieldedInstanceConfig shielded_instance_config = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -224,7 +225,8 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dataproc\V1\NodeGroupAffinity $node_group_affinity
      *           Optional. Node Group Affinity for sole-tenant clusters.
      *     @type \Google\Cloud\Dataproc\V1\ShieldedInstanceConfig $shielded_instance_config
-     *           Optional. Shielded Instance Config for clusters using [Compute Engine Shielded
+     *           Optional. Shielded Instance Config for clusters using [Compute Engine
+     *           Shielded
      *           VMs](https://cloud.google.com/security/shielded-cloud/shielded-vm).
      *     @type \Google\Cloud\Dataproc\V1\ConfidentialInstanceConfig $confidential_instance_config
      *           Optional. Confidential Instance Config for clusters using [Confidential
@@ -641,7 +643,8 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Shielded Instance Config for clusters using [Compute Engine Shielded
+     * Optional. Shielded Instance Config for clusters using [Compute Engine
+     * Shielded
      * VMs](https://cloud.google.com/security/shielded-cloud/shielded-vm).
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.ShieldedInstanceConfig shielded_instance_config = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -663,7 +666,8 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Shielded Instance Config for clusters using [Compute Engine Shielded
+     * Optional. Shielded Instance Config for clusters using [Compute Engine
+     * Shielded
      * VMs](https://cloud.google.com/security/shielded-cloud/shielded-vm).
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.ShieldedInstanceConfig shielded_instance_config = 14 [(.google.api.field_behavior) = OPTIONAL];</code>

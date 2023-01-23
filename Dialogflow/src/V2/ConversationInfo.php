@@ -16,9 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class ConversationInfo extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. The language code of the conversation data within this dataset. See
-     * https://cloud.google.com/apis/design/standard_fields for more information.
-     * Supports all UTF-8 languages.
+     * Optional. The language code of the conversation data within this dataset.
+     * See https://cloud.google.com/apis/design/standard_fields for more
+     * information. Supports all UTF-8 languages.
      *
      * Generated from protobuf field <code>string language_code = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -31,9 +31,9 @@ class ConversationInfo extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $language_code
-     *           Optional. The language code of the conversation data within this dataset. See
-     *           https://cloud.google.com/apis/design/standard_fields for more information.
-     *           Supports all UTF-8 languages.
+     *           Optional. The language code of the conversation data within this dataset.
+     *           See https://cloud.google.com/apis/design/standard_fields for more
+     *           information. Supports all UTF-8 languages.
      * }
      */
     public function __construct($data = NULL) {
@@ -42,9 +42,9 @@ class ConversationInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The language code of the conversation data within this dataset. See
-     * https://cloud.google.com/apis/design/standard_fields for more information.
-     * Supports all UTF-8 languages.
+     * Optional. The language code of the conversation data within this dataset.
+     * See https://cloud.google.com/apis/design/standard_fields for more
+     * information. Supports all UTF-8 languages.
      *
      * Generated from protobuf field <code>string language_code = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -55,9 +55,9 @@ class ConversationInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The language code of the conversation data within this dataset. See
-     * https://cloud.google.com/apis/design/standard_fields for more information.
-     * Supports all UTF-8 languages.
+     * Optional. The language code of the conversation data within this dataset.
+     * See https://cloud.google.com/apis/design/standard_fields for more
+     * information. Supports all UTF-8 languages.
      *
      * Generated from protobuf field <code>string language_code = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

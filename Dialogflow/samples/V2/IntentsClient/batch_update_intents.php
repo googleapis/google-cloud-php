@@ -38,7 +38,8 @@ use Google\Rpc\Status;
  *
  * - `metadata`: An empty [Struct
  * message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#struct)
- * - `response`: [BatchUpdateIntentsResponse][google.cloud.dialogflow.v2.BatchUpdateIntentsResponse]
+ * - `response`:
+ * [BatchUpdateIntentsResponse][google.cloud.dialogflow.v2.BatchUpdateIntentsResponse]
  *
  * Note: You should always train an agent prior to sending it queries. See the
  * [training

@@ -37,16 +37,17 @@ use Google\Rpc\Status;
 /**
  * Updates an [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool].
  *
- * @param string $azureNodePoolVersion                         The Kubernetes version (e.g. `1.19.10-gke.1000`) running on this node pool.
- * @param string $azureNodePoolConfigSshConfigAuthorizedKey    The SSH public key data for VMs managed by Anthos. This accepts the
- *                                                             authorized_keys file format used in OpenSSH according to the sshd(8) manual
- *                                                             page.
- * @param string $azureNodePoolSubnetId                        The ARM ID of the subnet where the node pool VMs run. Make sure it's a
- *                                                             subnet under the virtual network in the cluster configuration.
- * @param int    $azureNodePoolAutoscalingMinNodeCount         Minimum number of nodes in the node pool. Must be greater than or equal to
- *                                                             1 and less than or equal to max_node_count.
- * @param int    $azureNodePoolAutoscalingMaxNodeCount         Maximum number of nodes in the node pool. Must be greater than or equal to
- *                                                             min_node_count and less than or equal to 50.
+ * @param string $azureNodePoolVersion                         The Kubernetes version (e.g. `1.19.10-gke.1000`) running on this
+ *                                                             node pool.
+ * @param string $azureNodePoolConfigSshConfigAuthorizedKey    The SSH public key data for VMs managed by Anthos. This accepts
+ *                                                             the authorized_keys file format used in OpenSSH according to the sshd(8)
+ *                                                             manual page.
+ * @param string $azureNodePoolSubnetId                        The ARM ID of the subnet where the node pool VMs run. Make sure
+ *                                                             it's a subnet under the virtual network in the cluster configuration.
+ * @param int    $azureNodePoolAutoscalingMinNodeCount         Minimum number of nodes in the node pool. Must be greater than or
+ *                                                             equal to 1 and less than or equal to max_node_count.
+ * @param int    $azureNodePoolAutoscalingMaxNodeCount         Maximum number of nodes in the node pool. Must be greater than or
+ *                                                             equal to min_node_count and less than or equal to 50.
  * @param int    $azureNodePoolMaxPodsConstraintMaxPodsPerNode The maximum number of pods to schedule on a single node.
  */
 function update_azure_node_pool_sample(

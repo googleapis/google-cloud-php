@@ -576,6 +576,7 @@ class ClusterManagerClientTest extends GeneratedTest
         $enableTpu = false;
         $tpuIpv4CidrBlock = 'tpuIpv4CidrBlock1137906646';
         $id = 'id3355';
+        $etag = 'etag3123477';
         $expectedResponse = new Cluster();
         $expectedResponse->setName($name2);
         $expectedResponse->setDescription($description);
@@ -603,6 +604,7 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setEnableTpu($enableTpu);
         $expectedResponse->setTpuIpv4CidrBlock($tpuIpv4CidrBlock);
         $expectedResponse->setId($id);
+        $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
         $response = $gapicClient->getCluster();
         $this->assertEquals($expectedResponse, $response);
@@ -712,6 +714,7 @@ class ClusterManagerClientTest extends GeneratedTest
         $version = 'version351608024';
         $statusMessage = 'statusMessage-239442758';
         $podIpv4CidrSize = 1098768716;
+        $etag = 'etag3123477';
         $expectedResponse = new NodePool();
         $expectedResponse->setName($name2);
         $expectedResponse->setInitialNodeCount($initialNodeCount);
@@ -719,6 +722,7 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setStatusMessage($statusMessage);
         $expectedResponse->setPodIpv4CidrSize($podIpv4CidrSize);
+        $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
         $response = $gapicClient->getNodePool();
         $this->assertEquals($expectedResponse, $response);

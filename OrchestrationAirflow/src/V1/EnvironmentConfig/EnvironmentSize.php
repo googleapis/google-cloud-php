@@ -66,6 +66,4 @@ class EnvironmentSize
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(EnvironmentSize::class, \Google\Cloud\Orchestration\Airflow\Service\V1\EnvironmentConfig_EnvironmentSize::class);
 

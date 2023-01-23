@@ -9,8 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Response used for [ConversationDatasets.ImportConversationData][google.cloud.dialogflow.v2.ConversationDatasets.ImportConversationData] long
- * running operation.
+ * Response used for
+ * [ConversationDatasets.ImportConversationData][google.cloud.dialogflow.v2.ConversationDatasets.ImportConversationData]
+ * long running operation.
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.ImportConversationDataOperationResponse</code>
  */

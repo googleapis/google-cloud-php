@@ -31,15 +31,16 @@ class ListAwsNodePoolsRequest extends \Google\Protobuf\Internal\Message
      * If not specified, a default value of 50 will be used by the service.
      * Regardless of the pageSize value, the response can include a partial list
      * and a caller should only rely on response's
-     * [nextPageToken][google.cloud.gkemulticloud.v1.ListAwsNodePoolsResponse.next_page_token] to determine if
-     * there are more instances left to be queried.
+     * [nextPageToken][google.cloud.gkemulticloud.v1.ListAwsNodePoolsResponse.next_page_token]
+     * to determine if there are more instances left to be queried.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      */
     private $page_size = 0;
     /**
      * The `nextPageToken` value returned from a previous
-     * [awsNodePools.list][google.cloud.gkemulticloud.v1.AwsClusters.ListAwsNodePools] request, if any.
+     * [awsNodePools.list][google.cloud.gkemulticloud.v1.AwsClusters.ListAwsNodePools]
+     * request, if any.
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
@@ -63,11 +64,12 @@ class ListAwsNodePoolsRequest extends \Google\Protobuf\Internal\Message
      *           If not specified, a default value of 50 will be used by the service.
      *           Regardless of the pageSize value, the response can include a partial list
      *           and a caller should only rely on response's
-     *           [nextPageToken][google.cloud.gkemulticloud.v1.ListAwsNodePoolsResponse.next_page_token] to determine if
-     *           there are more instances left to be queried.
+     *           [nextPageToken][google.cloud.gkemulticloud.v1.ListAwsNodePoolsResponse.next_page_token]
+     *           to determine if there are more instances left to be queried.
      *     @type string $page_token
      *           The `nextPageToken` value returned from a previous
-     *           [awsNodePools.list][google.cloud.gkemulticloud.v1.AwsClusters.ListAwsNodePools] request, if any.
+     *           [awsNodePools.list][google.cloud.gkemulticloud.v1.AwsClusters.ListAwsNodePools]
+     *           request, if any.
      * }
      */
     public function __construct($data = NULL) {
@@ -116,8 +118,8 @@ class ListAwsNodePoolsRequest extends \Google\Protobuf\Internal\Message
      * If not specified, a default value of 50 will be used by the service.
      * Regardless of the pageSize value, the response can include a partial list
      * and a caller should only rely on response's
-     * [nextPageToken][google.cloud.gkemulticloud.v1.ListAwsNodePoolsResponse.next_page_token] to determine if
-     * there are more instances left to be queried.
+     * [nextPageToken][google.cloud.gkemulticloud.v1.ListAwsNodePoolsResponse.next_page_token]
+     * to determine if there are more instances left to be queried.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      * @return int
@@ -132,8 +134,8 @@ class ListAwsNodePoolsRequest extends \Google\Protobuf\Internal\Message
      * If not specified, a default value of 50 will be used by the service.
      * Regardless of the pageSize value, the response can include a partial list
      * and a caller should only rely on response's
-     * [nextPageToken][google.cloud.gkemulticloud.v1.ListAwsNodePoolsResponse.next_page_token] to determine if
-     * there are more instances left to be queried.
+     * [nextPageToken][google.cloud.gkemulticloud.v1.ListAwsNodePoolsResponse.next_page_token]
+     * to determine if there are more instances left to be queried.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      * @param int $var
@@ -149,7 +151,8 @@ class ListAwsNodePoolsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The `nextPageToken` value returned from a previous
-     * [awsNodePools.list][google.cloud.gkemulticloud.v1.AwsClusters.ListAwsNodePools] request, if any.
+     * [awsNodePools.list][google.cloud.gkemulticloud.v1.AwsClusters.ListAwsNodePools]
+     * request, if any.
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      * @return string
@@ -161,7 +164,8 @@ class ListAwsNodePoolsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The `nextPageToken` value returned from a previous
-     * [awsNodePools.list][google.cloud.gkemulticloud.v1.AwsClusters.ListAwsNodePools] request, if any.
+     * [awsNodePools.list][google.cloud.gkemulticloud.v1.AwsClusters.ListAwsNodePools]
+     * request, if any.
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      * @param string $var

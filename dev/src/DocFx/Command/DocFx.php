@@ -66,15 +66,7 @@ class DocFx extends Command
         if (empty($xml)) {
             $output->write('Running phpdoc to generate structure.xml... ');
             // Run "phpdoc"
-            $process = new Process([
-                'phpdoc',
-                '-d',
-                sprintf('%s/src', $componentPath),
-                '--template',
-                'xml',
-                '--target',
-                $outDir
-            ]);
+            $process = self::getPhpDocCommand($componentPath, $outDir);
             $process->mustRun();
             $output->writeln('Done.');
             $xml = $outDir . '/structure.xml';
@@ -183,6 +175,19 @@ class DocFx extends Command
         }
     }
 
+    public static function getPhpDocCommand(string $componentPath, string $outDir): Process
+    {
+        return new Process([
+            'phpdoc',
+            '-d',
+            sprintf('%s/src', $componentPath),
+            '--template',
+            'xml',
+            '--target',
+            $outDir
+        ]);
+    }
+
     private function getComponentPath(string $component): string
     {
         $rootDir = __DIR__ . '/../../../../';
@@ -194,7 +199,7 @@ class DocFx extends Command
             }
         }
         if (!in_array($component, $components)) {
-            throw new \Exception($component ? 'Invalid component provided'
+            throw new \Exception($component ? 'Invalid component provided: ' . $component
                 : 'You are not in a component directory. Run this command from a valid component'
                   . ' directory or provide a valid component using the "component" option.');
         }

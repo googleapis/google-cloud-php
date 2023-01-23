@@ -37,7 +37,7 @@ use Google\Rpc\Status;
  *                                      Resource names are schemeless URIs that follow the conventions in
  *                                      https://cloud.google.com/apis/design/resource_names.
  *                                      For example:
- *                                      `projects/my-project/locations/us-west1-a/privateClouds/my-cloud`
+ *                                      `projects/my-project/locations/us-central1-a/privateClouds/my-cloud`
  *                                      Please see {@see VmwareEngineClient::privateCloudName()} for help formatting this field.
  */
 function reset_nsx_credentials_sample(string $formattedPrivateCloud): void

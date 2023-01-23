@@ -9,7 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Metadata for a [ConversationModels.UndeployConversationModel][google.cloud.dialogflow.v2.ConversationModels.UndeployConversationModel] operation.
+ * Metadata for a
+ * [ConversationModels.UndeployConversationModel][google.cloud.dialogflow.v2.ConversationModels.UndeployConversationModel]
+ * operation.
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.UndeployConversationModelOperationMetadata</code>
  */

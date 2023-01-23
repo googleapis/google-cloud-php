@@ -33,11 +33,13 @@ use Google\Rpc\Status;
  *
  * Uploads new intents and entity types without deleting the existing ones.
  * Intents and entity types with the same name are replaced with the new
- * versions from [ImportAgentRequest][google.cloud.dialogflow.v2.ImportAgentRequest]. After the import, the imported draft
- * agent will be trained automatically (unless disabled in agent settings).
- * However, once the import is done, training may not be completed yet. Please
- * call [TrainAgent][google.cloud.dialogflow.v2.Agents.TrainAgent] and wait for the operation it returns in order to train
- * explicitly.
+ * versions from
+ * [ImportAgentRequest][google.cloud.dialogflow.v2.ImportAgentRequest]. After
+ * the import, the imported draft agent will be trained automatically (unless
+ * disabled in agent settings). However, once the import is done, training may
+ * not be completed yet. Please call
+ * [TrainAgent][google.cloud.dialogflow.v2.Agents.TrainAgent] and wait for the
+ * operation it returns in order to train explicitly.
  *
  * This method is a [long-running
  * operation](https://cloud.google.com/dialogflow/es/docs/how/long-running-operations).

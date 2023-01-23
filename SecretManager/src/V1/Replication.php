@@ -24,9 +24,11 @@ class Replication extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\SecretManager\V1\Replication\Automatic $automatic
-     *           The [Secret][google.cloud.secretmanager.v1.Secret] will automatically be replicated without any restrictions.
+     *           The [Secret][google.cloud.secretmanager.v1.Secret] will automatically be
+     *           replicated without any restrictions.
      *     @type \Google\Cloud\SecretManager\V1\Replication\UserManaged $user_managed
-     *           The [Secret][google.cloud.secretmanager.v1.Secret] will only be replicated into the locations specified.
+     *           The [Secret][google.cloud.secretmanager.v1.Secret] will only be
+     *           replicated into the locations specified.
      * }
      */
     public function __construct($data = NULL) {
@@ -35,7 +37,8 @@ class Replication extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The [Secret][google.cloud.secretmanager.v1.Secret] will automatically be replicated without any restrictions.
+     * The [Secret][google.cloud.secretmanager.v1.Secret] will automatically be
+     * replicated without any restrictions.
      *
      * Generated from protobuf field <code>.google.cloud.secretmanager.v1.Replication.Automatic automatic = 1;</code>
      * @return \Google\Cloud\SecretManager\V1\Replication\Automatic|null
@@ -51,7 +54,8 @@ class Replication extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The [Secret][google.cloud.secretmanager.v1.Secret] will automatically be replicated without any restrictions.
+     * The [Secret][google.cloud.secretmanager.v1.Secret] will automatically be
+     * replicated without any restrictions.
      *
      * Generated from protobuf field <code>.google.cloud.secretmanager.v1.Replication.Automatic automatic = 1;</code>
      * @param \Google\Cloud\SecretManager\V1\Replication\Automatic $var
@@ -66,7 +70,8 @@ class Replication extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The [Secret][google.cloud.secretmanager.v1.Secret] will only be replicated into the locations specified.
+     * The [Secret][google.cloud.secretmanager.v1.Secret] will only be
+     * replicated into the locations specified.
      *
      * Generated from protobuf field <code>.google.cloud.secretmanager.v1.Replication.UserManaged user_managed = 2;</code>
      * @return \Google\Cloud\SecretManager\V1\Replication\UserManaged|null
@@ -82,7 +87,8 @@ class Replication extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The [Secret][google.cloud.secretmanager.v1.Secret] will only be replicated into the locations specified.
+     * The [Secret][google.cloud.secretmanager.v1.Secret] will only be
+     * replicated into the locations specified.
      *
      * Generated from protobuf field <code>.google.cloud.secretmanager.v1.Replication.UserManaged user_managed = 2;</code>
      * @param \Google\Cloud\SecretManager\V1\Replication\UserManaged $var

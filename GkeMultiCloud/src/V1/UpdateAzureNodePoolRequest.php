@@ -16,7 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class UpdateAzureNodePoolRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] resource to update.
+     * Required. The [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool]
+     * resource to update.
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AzureNodePool azure_node_pool = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -35,7 +36,7 @@ class UpdateAzureNodePoolRequest extends \Google\Protobuf\Internal\Message
      *  *   `version`.
      *  *   `autoscaling.min_node_count`.
      *  *   `autoscaling.max_node_count`.
-     *  *   `config.vm_size`.
+     *  *   `config.ssh_config.authorized_key`.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -48,7 +49,8 @@ class UpdateAzureNodePoolRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\GkeMultiCloud\V1\AzureNodePool $azure_node_pool
-     *           Required. The [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] resource to update.
+     *           Required. The [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool]
+     *           resource to update.
      *     @type bool $validate_only
      *           If set, only validate the request, but don't actually update the node pool.
      *     @type \Google\Protobuf\FieldMask $update_mask
@@ -59,7 +61,7 @@ class UpdateAzureNodePoolRequest extends \Google\Protobuf\Internal\Message
      *            *   `version`.
      *            *   `autoscaling.min_node_count`.
      *            *   `autoscaling.max_node_count`.
-     *            *   `config.vm_size`.
+     *            *   `config.ssh_config.authorized_key`.
      * }
      */
     public function __construct($data = NULL) {
@@ -68,7 +70,8 @@ class UpdateAzureNodePoolRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] resource to update.
+     * Required. The [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool]
+     * resource to update.
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AzureNodePool azure_node_pool = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\GkeMultiCloud\V1\AzureNodePool|null
@@ -89,7 +92,8 @@ class UpdateAzureNodePoolRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] resource to update.
+     * Required. The [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool]
+     * resource to update.
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AzureNodePool azure_node_pool = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\GkeMultiCloud\V1\AzureNodePool $var
@@ -137,7 +141,7 @@ class UpdateAzureNodePoolRequest extends \Google\Protobuf\Internal\Message
      *  *   `version`.
      *  *   `autoscaling.min_node_count`.
      *  *   `autoscaling.max_node_count`.
-     *  *   `config.vm_size`.
+     *  *   `config.ssh_config.authorized_key`.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\FieldMask|null
@@ -165,7 +169,7 @@ class UpdateAzureNodePoolRequest extends \Google\Protobuf\Internal\Message
      *  *   `version`.
      *  *   `autoscaling.min_node_count`.
      *  *   `autoscaling.max_node_count`.
-     *  *   `config.vm_size`.
+     *  *   `config.ssh_config.authorized_key`.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Protobuf\FieldMask $var

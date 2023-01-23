@@ -30,15 +30,16 @@ class ListAwsClustersRequest extends \Google\Protobuf\Internal\Message
      * If not specified, a default value of 50 will be used by the service.
      * Regardless of the pageSize value, the response can include a partial list
      * and a caller should only rely on response's
-     * [nextPageToken][google.cloud.gkemulticloud.v1.ListAwsClustersResponse.next_page_token] to determine if
-     * there are more instances left to be queried.
+     * [nextPageToken][google.cloud.gkemulticloud.v1.ListAwsClustersResponse.next_page_token]
+     * to determine if there are more instances left to be queried.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      */
     private $page_size = 0;
     /**
      * The `nextPageToken` value returned from a previous
-     * [awsClusters.list][google.cloud.gkemulticloud.v1.AwsClusters.ListAwsClusters] request, if any.
+     * [awsClusters.list][google.cloud.gkemulticloud.v1.AwsClusters.ListAwsClusters]
+     * request, if any.
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
@@ -61,11 +62,12 @@ class ListAwsClustersRequest extends \Google\Protobuf\Internal\Message
      *           If not specified, a default value of 50 will be used by the service.
      *           Regardless of the pageSize value, the response can include a partial list
      *           and a caller should only rely on response's
-     *           [nextPageToken][google.cloud.gkemulticloud.v1.ListAwsClustersResponse.next_page_token] to determine if
-     *           there are more instances left to be queried.
+     *           [nextPageToken][google.cloud.gkemulticloud.v1.ListAwsClustersResponse.next_page_token]
+     *           to determine if there are more instances left to be queried.
      *     @type string $page_token
      *           The `nextPageToken` value returned from a previous
-     *           [awsClusters.list][google.cloud.gkemulticloud.v1.AwsClusters.ListAwsClusters] request, if any.
+     *           [awsClusters.list][google.cloud.gkemulticloud.v1.AwsClusters.ListAwsClusters]
+     *           request, if any.
      * }
      */
     public function __construct($data = NULL) {
@@ -112,8 +114,8 @@ class ListAwsClustersRequest extends \Google\Protobuf\Internal\Message
      * If not specified, a default value of 50 will be used by the service.
      * Regardless of the pageSize value, the response can include a partial list
      * and a caller should only rely on response's
-     * [nextPageToken][google.cloud.gkemulticloud.v1.ListAwsClustersResponse.next_page_token] to determine if
-     * there are more instances left to be queried.
+     * [nextPageToken][google.cloud.gkemulticloud.v1.ListAwsClustersResponse.next_page_token]
+     * to determine if there are more instances left to be queried.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      * @return int
@@ -128,8 +130,8 @@ class ListAwsClustersRequest extends \Google\Protobuf\Internal\Message
      * If not specified, a default value of 50 will be used by the service.
      * Regardless of the pageSize value, the response can include a partial list
      * and a caller should only rely on response's
-     * [nextPageToken][google.cloud.gkemulticloud.v1.ListAwsClustersResponse.next_page_token] to determine if
-     * there are more instances left to be queried.
+     * [nextPageToken][google.cloud.gkemulticloud.v1.ListAwsClustersResponse.next_page_token]
+     * to determine if there are more instances left to be queried.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      * @param int $var
@@ -145,7 +147,8 @@ class ListAwsClustersRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The `nextPageToken` value returned from a previous
-     * [awsClusters.list][google.cloud.gkemulticloud.v1.AwsClusters.ListAwsClusters] request, if any.
+     * [awsClusters.list][google.cloud.gkemulticloud.v1.AwsClusters.ListAwsClusters]
+     * request, if any.
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      * @return string
@@ -157,7 +160,8 @@ class ListAwsClustersRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The `nextPageToken` value returned from a previous
-     * [awsClusters.list][google.cloud.gkemulticloud.v1.AwsClusters.ListAwsClusters] request, if any.
+     * [awsClusters.list][google.cloud.gkemulticloud.v1.AwsClusters.ListAwsClusters]
+     * request, if any.
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      * @param string $var

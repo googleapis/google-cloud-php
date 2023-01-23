@@ -31,7 +31,9 @@ use Google\Cloud\GkeMultiCloud\V1\AwsServerConfig;
  * Returns information, such as supported AWS regions and Kubernetes
  * versions, on a given Google Cloud location.
  *
- * @param string $formattedName The name of the [AwsServerConfig][google.cloud.gkemulticloud.v1.AwsServerConfig] resource to describe.
+ * @param string $formattedName The name of the
+ *                              [AwsServerConfig][google.cloud.gkemulticloud.v1.AwsServerConfig] resource
+ *                              to describe.
  *
  *                              `AwsServerConfig` names are formatted as
  *                              `projects/<project-id>/locations/<region>/awsServerConfig`.

@@ -68,7 +68,7 @@ class FamilyFilter
      * $familyFilter = $builder->exactMatch('cf1');
      * ```
      *
-     * @param string $value An exact value to match.
+     * @param array|string $value An exact value to match.
      * @return SimpleFilter
      * @throws \InvalidArgumentException When the provided value is not an array
      *         or string.
