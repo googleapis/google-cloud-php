@@ -12,8 +12,9 @@ use Google\Protobuf\Internal\GPBUtil;
  * A span represents a single operation within a trace. Spans can be
  * nested to form a trace tree. Often, a trace contains a root span
  * that describes the end-to-end latency, and one or more subspans for
- * its sub-operations. A trace can also contain multiple root spans,
- * or none at all. Spans do not need to be contiguous&mdash;there may be
+ * its sub-operations.
+ * A trace can also contain multiple root spans, or none at all.
+ * Spans do not need to be contiguous&mdash;there might be
  * gaps or overlaps between spans in a trace.
  *
  * Generated from protobuf message <code>google.devtools.cloudtrace.v2.Span</code>
@@ -22,23 +23,26 @@ class Span extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The resource name of the span in the following format:
-     *     projects/[PROJECT_ID]/traces/[TRACE_ID]/spans/[SPAN_ID]
-     * [TRACE_ID] is a unique identifier for a trace within a project;
-     * it is a 32-character hexadecimal encoding of a 16-byte array.
-     * [SPAN_ID] is a unique identifier for a span within a trace; it
-     * is a 16-character hexadecimal encoding of an 8-byte array.
+     *  * `projects/[PROJECT_ID]/traces/[TRACE_ID]/spans/[SPAN_ID]`
+     * `[TRACE_ID]` is a unique identifier for a trace within a project;
+     * it is a 32-character hexadecimal encoding of a 16-byte array. It should
+     * not be zero.
+     * `[SPAN_ID]` is a unique identifier for a span within a trace; it
+     * is a 16-character hexadecimal encoding of an 8-byte array. It should not
+     * be zero.
+     * .
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $name = '';
     /**
-     * Required. The [SPAN_ID] portion of the span's resource name.
+     * Required. The `[SPAN_ID]` portion of the span's resource name.
      *
      * Generated from protobuf field <code>string span_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $span_id = '';
     /**
-     * The [SPAN_ID] of this span's parent span. If this is a root span,
+     * The `[SPAN_ID]` of this span's parent span. If this is a root span,
      * then this field must be empty.
      *
      * Generated from protobuf field <code>string parent_span_id = 3;</code>
@@ -46,8 +50,8 @@ class Span extends \Google\Protobuf\Internal\Message
     private $parent_span_id = '';
     /**
      * Required. A description of the span's operation (up to 128 bytes).
-     * Stackdriver Trace displays the description in the
-     * Google Cloud Platform Console.
+     * Cloud Trace displays the description in the
+     * Cloud console.
      * For example, the display name can be a qualified method name or a file name
      * and a line number where the operation is called. A best practice is to use
      * the same display name within an application and at the same call point.
@@ -57,17 +61,18 @@ class Span extends \Google\Protobuf\Internal\Message
      */
     private $display_name = null;
     /**
-     * Required. The start time of the span. On the client side, this is the time kept by
-     * the local machine where the span execution starts. On the server side, this
-     * is the time when the server's application handler starts running.
+     * Required. The start time of the span. On the client side, this is the time
+     * kept by the local machine where the span execution starts. On the server
+     * side, this is the time when the server's application handler starts
+     * running.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $start_time = null;
     /**
-     * Required. The end time of the span. On the client side, this is the time kept by
-     * the local machine where the span execution ends. On the server side, this
-     * is the time when the server application handler stops running.
+     * Required. The end time of the span. On the client side, this is the time
+     * kept by the local machine where the span execution ends. On the server
+     * side, this is the time when the server application handler stops running.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -107,8 +112,7 @@ class Span extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Set this parameter to indicate whether this span is in
      * the same process as its parent. If you do not set this parameter,
-     * Stackdriver Trace is unable to take advantage of this helpful
-     * information.
+     * Trace is unable to take advantage of this helpful information.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue same_process_as_parent_span = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -121,9 +125,9 @@ class Span extends \Google\Protobuf\Internal\Message
      */
     private $child_span_count = null;
     /**
-     * Optional. Distinguishes between spans generated in a particular context. For example,
-     * two spans with the same name may be distinguished using `CLIENT` (caller)
-     * and `SERVER` (callee) to identify an RPC call.
+     * Optional. Distinguishes between spans generated in a particular context.
+     * For example, two spans with the same name may be distinguished using
+     * `CLIENT` (caller) and `SERVER` (callee) to identify an RPC call.
      *
      * Generated from protobuf field <code>.google.devtools.cloudtrace.v2.Span.SpanKind span_kind = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -137,32 +141,36 @@ class Span extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. The resource name of the span in the following format:
-     *               projects/[PROJECT_ID]/traces/[TRACE_ID]/spans/[SPAN_ID]
-     *           [TRACE_ID] is a unique identifier for a trace within a project;
-     *           it is a 32-character hexadecimal encoding of a 16-byte array.
-     *           [SPAN_ID] is a unique identifier for a span within a trace; it
-     *           is a 16-character hexadecimal encoding of an 8-byte array.
+     *            * `projects/[PROJECT_ID]/traces/[TRACE_ID]/spans/[SPAN_ID]`
+     *           `[TRACE_ID]` is a unique identifier for a trace within a project;
+     *           it is a 32-character hexadecimal encoding of a 16-byte array. It should
+     *           not be zero.
+     *           `[SPAN_ID]` is a unique identifier for a span within a trace; it
+     *           is a 16-character hexadecimal encoding of an 8-byte array. It should not
+     *           be zero.
+     *           .
      *     @type string $span_id
-     *           Required. The [SPAN_ID] portion of the span's resource name.
+     *           Required. The `[SPAN_ID]` portion of the span's resource name.
      *     @type string $parent_span_id
-     *           The [SPAN_ID] of this span's parent span. If this is a root span,
+     *           The `[SPAN_ID]` of this span's parent span. If this is a root span,
      *           then this field must be empty.
      *     @type \Google\Cloud\Trace\V2\TruncatableString $display_name
      *           Required. A description of the span's operation (up to 128 bytes).
-     *           Stackdriver Trace displays the description in the
-     *           Google Cloud Platform Console.
+     *           Cloud Trace displays the description in the
+     *           Cloud console.
      *           For example, the display name can be a qualified method name or a file name
      *           and a line number where the operation is called. A best practice is to use
      *           the same display name within an application and at the same call point.
      *           This makes it easier to correlate spans in different traces.
      *     @type \Google\Protobuf\Timestamp $start_time
-     *           Required. The start time of the span. On the client side, this is the time kept by
-     *           the local machine where the span execution starts. On the server side, this
-     *           is the time when the server's application handler starts running.
+     *           Required. The start time of the span. On the client side, this is the time
+     *           kept by the local machine where the span execution starts. On the server
+     *           side, this is the time when the server's application handler starts
+     *           running.
      *     @type \Google\Protobuf\Timestamp $end_time
-     *           Required. The end time of the span. On the client side, this is the time kept by
-     *           the local machine where the span execution ends. On the server side, this
-     *           is the time when the server application handler stops running.
+     *           Required. The end time of the span. On the client side, this is the time
+     *           kept by the local machine where the span execution ends. On the server
+     *           side, this is the time when the server application handler stops running.
      *     @type \Google\Cloud\Trace\V2\Span\Attributes $attributes
      *           A set of attributes on the span. You can have up to 32 attributes per
      *           span.
@@ -178,15 +186,14 @@ class Span extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\BoolValue $same_process_as_parent_span
      *           Optional. Set this parameter to indicate whether this span is in
      *           the same process as its parent. If you do not set this parameter,
-     *           Stackdriver Trace is unable to take advantage of this helpful
-     *           information.
+     *           Trace is unable to take advantage of this helpful information.
      *     @type \Google\Protobuf\Int32Value $child_span_count
      *           Optional. The number of child spans that were generated while this span
      *           was active. If set, allows implementation to detect missing child spans.
      *     @type int $span_kind
-     *           Optional. Distinguishes between spans generated in a particular context. For example,
-     *           two spans with the same name may be distinguished using `CLIENT` (caller)
-     *           and `SERVER` (callee) to identify an RPC call.
+     *           Optional. Distinguishes between spans generated in a particular context.
+     *           For example, two spans with the same name may be distinguished using
+     *           `CLIENT` (caller) and `SERVER` (callee) to identify an RPC call.
      * }
      */
     public function __construct($data = NULL) {
@@ -196,11 +203,14 @@ class Span extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the span in the following format:
-     *     projects/[PROJECT_ID]/traces/[TRACE_ID]/spans/[SPAN_ID]
-     * [TRACE_ID] is a unique identifier for a trace within a project;
-     * it is a 32-character hexadecimal encoding of a 16-byte array.
-     * [SPAN_ID] is a unique identifier for a span within a trace; it
-     * is a 16-character hexadecimal encoding of an 8-byte array.
+     *  * `projects/[PROJECT_ID]/traces/[TRACE_ID]/spans/[SPAN_ID]`
+     * `[TRACE_ID]` is a unique identifier for a trace within a project;
+     * it is a 32-character hexadecimal encoding of a 16-byte array. It should
+     * not be zero.
+     * `[SPAN_ID]` is a unique identifier for a span within a trace; it
+     * is a 16-character hexadecimal encoding of an 8-byte array. It should not
+     * be zero.
+     * .
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -212,11 +222,14 @@ class Span extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the span in the following format:
-     *     projects/[PROJECT_ID]/traces/[TRACE_ID]/spans/[SPAN_ID]
-     * [TRACE_ID] is a unique identifier for a trace within a project;
-     * it is a 32-character hexadecimal encoding of a 16-byte array.
-     * [SPAN_ID] is a unique identifier for a span within a trace; it
-     * is a 16-character hexadecimal encoding of an 8-byte array.
+     *  * `projects/[PROJECT_ID]/traces/[TRACE_ID]/spans/[SPAN_ID]`
+     * `[TRACE_ID]` is a unique identifier for a trace within a project;
+     * it is a 32-character hexadecimal encoding of a 16-byte array. It should
+     * not be zero.
+     * `[SPAN_ID]` is a unique identifier for a span within a trace; it
+     * is a 16-character hexadecimal encoding of an 8-byte array. It should not
+     * be zero.
+     * .
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -231,7 +244,7 @@ class Span extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The [SPAN_ID] portion of the span's resource name.
+     * Required. The `[SPAN_ID]` portion of the span's resource name.
      *
      * Generated from protobuf field <code>string span_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -242,7 +255,7 @@ class Span extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The [SPAN_ID] portion of the span's resource name.
+     * Required. The `[SPAN_ID]` portion of the span's resource name.
      *
      * Generated from protobuf field <code>string span_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -257,7 +270,7 @@ class Span extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The [SPAN_ID] of this span's parent span. If this is a root span,
+     * The `[SPAN_ID]` of this span's parent span. If this is a root span,
      * then this field must be empty.
      *
      * Generated from protobuf field <code>string parent_span_id = 3;</code>
@@ -269,7 +282,7 @@ class Span extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The [SPAN_ID] of this span's parent span. If this is a root span,
+     * The `[SPAN_ID]` of this span's parent span. If this is a root span,
      * then this field must be empty.
      *
      * Generated from protobuf field <code>string parent_span_id = 3;</code>
@@ -286,8 +299,8 @@ class Span extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. A description of the span's operation (up to 128 bytes).
-     * Stackdriver Trace displays the description in the
-     * Google Cloud Platform Console.
+     * Cloud Trace displays the description in the
+     * Cloud console.
      * For example, the display name can be a qualified method name or a file name
      * and a line number where the operation is called. A best practice is to use
      * the same display name within an application and at the same call point.
@@ -313,8 +326,8 @@ class Span extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. A description of the span's operation (up to 128 bytes).
-     * Stackdriver Trace displays the description in the
-     * Google Cloud Platform Console.
+     * Cloud Trace displays the description in the
+     * Cloud console.
      * For example, the display name can be a qualified method name or a file name
      * and a line number where the operation is called. A best practice is to use
      * the same display name within an application and at the same call point.
@@ -333,9 +346,10 @@ class Span extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The start time of the span. On the client side, this is the time kept by
-     * the local machine where the span execution starts. On the server side, this
-     * is the time when the server's application handler starts running.
+     * Required. The start time of the span. On the client side, this is the time
+     * kept by the local machine where the span execution starts. On the server
+     * side, this is the time when the server's application handler starts
+     * running.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -356,9 +370,10 @@ class Span extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The start time of the span. On the client side, this is the time kept by
-     * the local machine where the span execution starts. On the server side, this
-     * is the time when the server's application handler starts running.
+     * Required. The start time of the span. On the client side, this is the time
+     * kept by the local machine where the span execution starts. On the server
+     * side, this is the time when the server's application handler starts
+     * running.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -373,9 +388,9 @@ class Span extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The end time of the span. On the client side, this is the time kept by
-     * the local machine where the span execution ends. On the server side, this
-     * is the time when the server application handler stops running.
+     * Required. The end time of the span. On the client side, this is the time
+     * kept by the local machine where the span execution ends. On the server
+     * side, this is the time when the server application handler stops running.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -396,9 +411,9 @@ class Span extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The end time of the span. On the client side, this is the time kept by
-     * the local machine where the span execution ends. On the server side, this
-     * is the time when the server application handler stops running.
+     * Required. The end time of the span. On the client side, this is the time
+     * kept by the local machine where the span execution ends. On the server
+     * side, this is the time when the server application handler stops running.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -599,8 +614,7 @@ class Span extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Set this parameter to indicate whether this span is in
      * the same process as its parent. If you do not set this parameter,
-     * Stackdriver Trace is unable to take advantage of this helpful
-     * information.
+     * Trace is unable to take advantage of this helpful information.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue same_process_as_parent_span = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\BoolValue|null
@@ -625,8 +639,7 @@ class Span extends \Google\Protobuf\Internal\Message
 
      * Optional. Set this parameter to indicate whether this span is in
      * the same process as its parent. If you do not set this parameter,
-     * Stackdriver Trace is unable to take advantage of this helpful
-     * information.
+     * Trace is unable to take advantage of this helpful information.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue same_process_as_parent_span = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool|null
@@ -639,8 +652,7 @@ class Span extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Set this parameter to indicate whether this span is in
      * the same process as its parent. If you do not set this parameter,
-     * Stackdriver Trace is unable to take advantage of this helpful
-     * information.
+     * Trace is unable to take advantage of this helpful information.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue same_process_as_parent_span = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\BoolValue $var
@@ -659,8 +671,7 @@ class Span extends \Google\Protobuf\Internal\Message
 
      * Optional. Set this parameter to indicate whether this span is in
      * the same process as its parent. If you do not set this parameter,
-     * Stackdriver Trace is unable to take advantage of this helpful
-     * information.
+     * Trace is unable to take advantage of this helpful information.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue same_process_as_parent_span = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool|null $var
@@ -739,9 +750,9 @@ class Span extends \Google\Protobuf\Internal\Message
         return $this;}
 
     /**
-     * Optional. Distinguishes between spans generated in a particular context. For example,
-     * two spans with the same name may be distinguished using `CLIENT` (caller)
-     * and `SERVER` (callee) to identify an RPC call.
+     * Optional. Distinguishes between spans generated in a particular context.
+     * For example, two spans with the same name may be distinguished using
+     * `CLIENT` (caller) and `SERVER` (callee) to identify an RPC call.
      *
      * Generated from protobuf field <code>.google.devtools.cloudtrace.v2.Span.SpanKind span_kind = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -752,9 +763,9 @@ class Span extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Distinguishes between spans generated in a particular context. For example,
-     * two spans with the same name may be distinguished using `CLIENT` (caller)
-     * and `SERVER` (callee) to identify an RPC call.
+     * Optional. Distinguishes between spans generated in a particular context.
+     * For example, two spans with the same name may be distinguished using
+     * `CLIENT` (caller) and `SERVER` (callee) to identify an RPC call.
      *
      * Generated from protobuf field <code>.google.devtools.cloudtrace.v2.Span.SpanKind span_kind = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
