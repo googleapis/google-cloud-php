@@ -123,7 +123,7 @@ class RunTransactionTest extends DatastoreMultipleDbTestCase
         $this->assertEquals($personListEntities[0]['lastName'], $newLastName);
 
         $transaction2 = $client->readOnlyTransaction(
-            ['transactionOptions' => ['readTime' => $time->formatForApi()]]
+            ['transactionOptions' => ['readTime' => $time]]
         );
         // runQuery function: Person lastName should be the lastName BEFORE update
         $persons = $transaction2->runQuery($query);

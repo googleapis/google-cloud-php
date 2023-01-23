@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Datastore;
 
+use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\ValidateTrait;
 use Google\Cloud\Datastore\Connection\ConnectionInterface;
 use Google\Cloud\Datastore\Query\Query;
@@ -264,6 +265,14 @@ class Operation
      */
     public function beginTransaction($transactionOptions, array $options = [])
     {
+        // Read Only option might not be present or empty
+        // Parse only when Read Time is valid
+        if (isset($transactionOptions['readOnly']) &&
+            is_array($transactionOptions['readOnly']) &&
+            isset($transactionOptions['readOnly']['readTime'])) {
+            $readTime = &$transactionOptions['readOnly']['readTime'];
+            $readTime = $this->parseCoreTimestamp($readTime);
+        }
         $res = $this->connection->beginTransaction($options + [
             'projectId' => $this->projectId,
             'databaseId' => $this->databaseId,
@@ -778,6 +787,10 @@ class Operation
             'readTime' => null
         ];
 
+        if (isset($options['readTime'])) {
+            $options['readTime'] = $this->parseCoreTimestamp($options['readTime']);
+        }
+
         $readOptions = array_filter([
             'readConsistency' => $options['readConsistency'],
             'transaction' => $options['transaction'],
@@ -787,6 +800,23 @@ class Operation
         return array_filter([
             'readOptions' => $readOptions,
         ]);
+    }
+
+    /**
+     * Format the timestamp.
+     *
+     * @param Timestamp $time
+     * @return array
+     */
+    private function parseCoreTimestamp($time)
+    {
+        if (!($time instanceof Timestamp)) {
+            throw new \InvalidArgumentException(
+                'Read Time must be an instance of `Google\\Cloud\\Core\\Timestamp`'
+            );
+        }
+
+        return $time->formatForApi();
     }
 
     /**

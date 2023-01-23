@@ -370,7 +370,7 @@ class RunQueryTest extends DatastoreMultipleDbTestCase
         $this->assertEquals($personListEntities[0]['lastName'], $newLastName);
 
         // Person lastName should be the lastName BEFORE update
-        $result = $client->runQuery($query, ['readTime' => $time->formatForApi()]);
+        $result = $client->runQuery($query, ['readTime' => $time]);
         $personListEntities = iterator_to_array($result);
         $this->assertEquals($personListEntities[0]['lastName'], $lastName);
     }

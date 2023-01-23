@@ -59,7 +59,7 @@ class LookupTest extends DatastoreMultipleDbTestCase
         $this->assertEquals($person['lastName'], $newLastName);
 
         // Person lastName should be the lastName BEFORE update
-        $person = $client->lookup($key, ['readTime' => $time->formatForApi()]);
+        $person = $client->lookup($key, ['readTime' => $time]);
         $this->assertEquals($person['lastName'], $lastName);
     }
 
@@ -96,7 +96,7 @@ class LookupTest extends DatastoreMultipleDbTestCase
         $this->assertEquals($person['found'][0]['lastName'], $newLastName);
 
         // Person lastName should be the lastName BEFORE update
-        $person = $client->lookupBatch([$key], ['readTime' => $time->formatForApi()]);
+        $person = $client->lookupBatch([$key], ['readTime' => $time]);
         $this->assertEquals($person['found'][0]['lastName'], $lastName);
     }
 }
