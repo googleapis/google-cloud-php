@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [CloudChannelService.GetCustomer][google.cloud.channel.v1.CloudChannelService.GetCustomer].
+ * Request message for
+ * [CloudChannelService.GetCustomer][google.cloud.channel.v1.CloudChannelService.GetCustomer].
  *
  * Generated from protobuf message <code>google.cloud.channel.v1.GetCustomerRequest</code>
  */

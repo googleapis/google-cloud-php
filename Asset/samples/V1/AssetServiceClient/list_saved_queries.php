@@ -31,8 +31,8 @@ use Google\Cloud\Asset\V1\SavedQuery;
 /**
  * Lists all saved queries in a parent project/folder/organization.
  *
- * @param string $formattedParent The parent project/folder/organization whose savedQueries are to be
- *                                listed. It can only be using project/folder/organization number (such as
+ * @param string $formattedParent The parent project/folder/organization whose savedQueries are to
+ *                                be listed. It can only be using project/folder/organization number (such as
  *                                "folders/12345")", or a project ID (such as "projects/my-project-id"). Please see
  *                                {@see AssetServiceClient::projectName()} for help formatting this field.
  */

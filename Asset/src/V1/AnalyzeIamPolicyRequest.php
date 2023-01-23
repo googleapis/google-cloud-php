@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A request message for [AssetService.AnalyzeIamPolicy][google.cloud.asset.v1.AssetService.AnalyzeIamPolicy].
+ * A request message for
+ * [AssetService.AnalyzeIamPolicy][google.cloud.asset.v1.AssetService.AnalyzeIamPolicy].
  *
  * Generated from protobuf message <code>google.cloud.asset.v1.AnalyzeIamPolicyRequest</code>
  */
@@ -40,7 +41,8 @@ class AnalyzeIamPolicyRequest extends \Google\Protobuf\Internal\Message
      */
     private $saved_analysis_query = '';
     /**
-     * Optional. Amount of time executable has to complete.  See JSON representation of
+     * Optional. Amount of time executable has to complete.  See JSON
+     * representation of
      * [Duration](https://developers.google.com/protocol-buffers/docs/proto3#json).
      * If this field is set with a value less than the RPC deadline, and the
      * execution of your query hasn't finished in the specified
@@ -76,7 +78,8 @@ class AnalyzeIamPolicyRequest extends \Google\Protobuf\Internal\Message
      *           0 or empty string, etc., because we use proto3, which doesn't support field
      *           presence yet.
      *     @type \Google\Protobuf\Duration $execution_timeout
-     *           Optional. Amount of time executable has to complete.  See JSON representation of
+     *           Optional. Amount of time executable has to complete.  See JSON
+     *           representation of
      *           [Duration](https://developers.google.com/protocol-buffers/docs/proto3#json).
      *           If this field is set with a value less than the RPC deadline, and the
      *           execution of your query hasn't finished in the specified
@@ -178,7 +181,8 @@ class AnalyzeIamPolicyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Amount of time executable has to complete.  See JSON representation of
+     * Optional. Amount of time executable has to complete.  See JSON
+     * representation of
      * [Duration](https://developers.google.com/protocol-buffers/docs/proto3#json).
      * If this field is set with a value less than the RPC deadline, and the
      * execution of your query hasn't finished in the specified
@@ -206,7 +210,8 @@ class AnalyzeIamPolicyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Amount of time executable has to complete.  See JSON representation of
+     * Optional. Amount of time executable has to complete.  See JSON
+     * representation of
      * [Duration](https://developers.google.com/protocol-buffers/docs/proto3#json).
      * If this field is set with a value less than the RPC deadline, and the
      * execution of your query hasn't finished in the specified

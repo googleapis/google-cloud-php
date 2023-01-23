@@ -20,7 +20,7 @@ class EventType
      */
     const EVENT_TYPE_UNSPECIFIED = 0;
     /**
-     * Event for start of a session.
+     * Event when the session is assigned to a user.
      *
      * Generated from protobuf enum <code>START = 1;</code>
      */
@@ -37,12 +37,20 @@ class EventType
      * Generated from protobuf enum <code>QUERY = 3;</code>
      */
     const QUERY = 3;
+    /**
+     * Event for creation of a cluster. It is not yet assigned to a user.
+     * This comes before START in the sequence
+     *
+     * Generated from protobuf enum <code>CREATE = 4;</code>
+     */
+    const CREATE = 4;
 
     private static $valueToName = [
         self::EVENT_TYPE_UNSPECIFIED => 'EVENT_TYPE_UNSPECIFIED',
         self::START => 'START',
         self::STOP => 'STOP',
         self::QUERY => 'QUERY',
+        self::CREATE => 'CREATE',
     ];
 
     public static function name($value)

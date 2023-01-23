@@ -26,7 +26,7 @@ class DeletePartitionRequest extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * Optional. The etag associated with the partition if it was previously retrieved.
+     * Optional. The etag associated with the partition.
      *
      * Generated from protobuf field <code>string etag = 2 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @deprecated
@@ -46,7 +46,7 @@ class DeletePartitionRequest extends \Google\Protobuf\Internal\Message
      *           The {partition_value_path} segment consists of an ordered sequence of
      *           partition values separated by "/". All values must be provided.
      *     @type string $etag
-     *           Optional. The etag associated with the partition if it was previously retrieved.
+     *           Optional. The etag associated with the partition.
      * }
      */
     public function __construct($data = NULL) {
@@ -89,7 +89,7 @@ class DeletePartitionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The etag associated with the partition if it was previously retrieved.
+     * Optional. The etag associated with the partition.
      *
      * Generated from protobuf field <code>string etag = 2 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -102,7 +102,7 @@ class DeletePartitionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The etag associated with the partition if it was previously retrieved.
+     * Optional. The etag associated with the partition.
      *
      * Generated from protobuf field <code>string etag = 2 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

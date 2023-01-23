@@ -17,7 +17,7 @@ class CreateEnvironmentRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The resource name of the parent lake:
-     * projects/{project_id}/locations/{location_id}/lakes/{lake_id}
+     * `projects/{project_id}/locations/{location_id}/lakes/{lake_id}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -55,7 +55,7 @@ class CreateEnvironmentRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The resource name of the parent lake:
-     *           projects/{project_id}/locations/{location_id}/lakes/{lake_id}
+     *           `projects/{project_id}/locations/{location_id}/lakes/{lake_id}`.
      *     @type string $environment_id
      *           Required. Environment identifier.
      *           * Must contain only lowercase letters, numbers and hyphens.
@@ -77,7 +77,7 @@ class CreateEnvironmentRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the parent lake:
-     * projects/{project_id}/locations/{location_id}/lakes/{lake_id}
+     * `projects/{project_id}/locations/{location_id}/lakes/{lake_id}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -89,7 +89,7 @@ class CreateEnvironmentRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the parent lake:
-     * projects/{project_id}/locations/{location_id}/lakes/{lake_id}
+     * `projects/{project_id}/locations/{location_id}/lakes/{lake_id}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

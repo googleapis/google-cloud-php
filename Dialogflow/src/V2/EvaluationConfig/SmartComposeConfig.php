@@ -24,10 +24,10 @@ class SmartComposeConfig extends \Google\Protobuf\Internal\Message
      */
     private $allowlist_document = '';
     /**
-     * Required. The model to be evaluated can return multiple results with confidence
-     * score on each query. These results will be sorted by the descending order
-     * of the scores and we only keep the first max_result_count results as the
-     * final results to evaluate.
+     * Required. The model to be evaluated can return multiple results with
+     * confidence score on each query. These results will be sorted by the
+     * descending order of the scores and we only keep the first
+     * max_result_count results as the final results to evaluate.
      *
      * Generated from protobuf field <code>int32 max_result_count = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -44,10 +44,10 @@ class SmartComposeConfig extends \Google\Protobuf\Internal\Message
      *           Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base
      *           ID>/documents/<Document ID>`. Only used for smart compose model.
      *     @type int $max_result_count
-     *           Required. The model to be evaluated can return multiple results with confidence
-     *           score on each query. These results will be sorted by the descending order
-     *           of the scores and we only keep the first max_result_count results as the
-     *           final results to evaluate.
+     *           Required. The model to be evaluated can return multiple results with
+     *           confidence score on each query. These results will be sorted by the
+     *           descending order of the scores and we only keep the first
+     *           max_result_count results as the final results to evaluate.
      * }
      */
     public function __construct($data = NULL) {
@@ -86,10 +86,10 @@ class SmartComposeConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The model to be evaluated can return multiple results with confidence
-     * score on each query. These results will be sorted by the descending order
-     * of the scores and we only keep the first max_result_count results as the
-     * final results to evaluate.
+     * Required. The model to be evaluated can return multiple results with
+     * confidence score on each query. These results will be sorted by the
+     * descending order of the scores and we only keep the first
+     * max_result_count results as the final results to evaluate.
      *
      * Generated from protobuf field <code>int32 max_result_count = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
@@ -100,10 +100,10 @@ class SmartComposeConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The model to be evaluated can return multiple results with confidence
-     * score on each query. These results will be sorted by the descending order
-     * of the scores and we only keep the first max_result_count results as the
-     * final results to evaluate.
+     * Required. The model to be evaluated can return multiple results with
+     * confidence score on each query. These results will be sorted by the
+     * descending order of the scores and we only keep the first
+     * max_result_count results as the final results to evaluate.
      *
      * Generated from protobuf field <code>int32 max_result_count = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var

@@ -20,7 +20,7 @@ class NodeType extends \Google\Protobuf\Internal\Message
      * Resource names are schemeless URIs that follow the conventions in
      * https://cloud.google.com/apis/design/resource_names.
      * For example:
-     * `projects/my-proj/locations/us-west1-a/nodeTypes/standard-72`
+     * `projects/my-proj/locations/us-central1-a/nodeTypes/standard-72`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -81,7 +81,7 @@ class NodeType extends \Google\Protobuf\Internal\Message
      *           Resource names are schemeless URIs that follow the conventions in
      *           https://cloud.google.com/apis/design/resource_names.
      *           For example:
-     *           `projects/my-proj/locations/us-west1-a/nodeTypes/standard-72`
+     *           `projects/my-proj/locations/us-central1-a/nodeTypes/standard-72`
      *     @type string $node_type_id
      *           Output only. The canonical identifier of the node type
      *           (corresponds to the `NodeType`). For example: standard-72.
@@ -110,7 +110,7 @@ class NodeType extends \Google\Protobuf\Internal\Message
      * Resource names are schemeless URIs that follow the conventions in
      * https://cloud.google.com/apis/design/resource_names.
      * For example:
-     * `projects/my-proj/locations/us-west1-a/nodeTypes/standard-72`
+     * `projects/my-proj/locations/us-central1-a/nodeTypes/standard-72`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -125,7 +125,7 @@ class NodeType extends \Google\Protobuf\Internal\Message
      * Resource names are schemeless URIs that follow the conventions in
      * https://cloud.google.com/apis/design/resource_names.
      * For example:
-     * `projects/my-proj/locations/us-west1-a/nodeTypes/standard-72`
+     * `projects/my-proj/locations/us-central1-a/nodeTypes/standard-72`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
