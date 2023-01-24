@@ -397,9 +397,9 @@ class OsLoginServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. A reference to the POSIX account to update. POSIX accounts are identified
-     *                             by the project ID they are associated with. A reference to the POSIX
-     *                             account is in format `users/{user}/projects/{project}`.
+     * @param string $name         Required. A reference to the POSIX account to update. POSIX accounts are
+     *                             identified by the project ID they are associated with. A reference to the
+     *                             POSIX account is in format `users/{user}/projects/{project}`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -445,9 +445,9 @@ class OsLoginServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The fingerprint of the public key to update. Public keys are identified by
-     *                             their SHA-256 fingerprint. The fingerprint of the public key is in format
-     *                             `users/{user}/sshPublicKeys/{fingerprint}`.
+     * @param string $name         Required. The fingerprint of the public key to update. Public keys are
+     *                             identified by their SHA-256 fingerprint. The fingerprint of the public key
+     *                             is in format `users/{user}/sshPublicKeys/{fingerprint}`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -554,9 +554,9 @@ class OsLoginServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The fingerprint of the public key to retrieve. Public keys are identified
-     *                             by their SHA-256 fingerprint. The fingerprint of the public key is in
-     *                             format `users/{user}/sshPublicKeys/{fingerprint}`.
+     * @param string $name         Required. The fingerprint of the public key to retrieve. Public keys are
+     *                             identified by their SHA-256 fingerprint. The fingerprint of the public key
+     *                             is in format `users/{user}/sshPublicKeys/{fingerprint}`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -668,9 +668,9 @@ class OsLoginServiceGapicClient
      * }
      * ```
      *
-     * @param string       $name         Required. The fingerprint of the public key to update. Public keys are identified by
-     *                                   their SHA-256 fingerprint. The fingerprint of the public key is in format
-     *                                   `users/{user}/sshPublicKeys/{fingerprint}`.
+     * @param string       $name         Required. The fingerprint of the public key to update. Public keys are
+     *                                   identified by their SHA-256 fingerprint. The fingerprint of the public key
+     *                                   is in format `users/{user}/sshPublicKeys/{fingerprint}`.
      * @param SshPublicKey $sshPublicKey Required. The SSH public key and expiration time.
      * @param array        $optionalArgs {
      *     Optional.
