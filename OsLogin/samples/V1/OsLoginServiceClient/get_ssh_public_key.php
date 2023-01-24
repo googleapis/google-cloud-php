@@ -30,9 +30,9 @@ use Google\Cloud\OsLogin\V1\OsLoginServiceClient;
 /**
  * Retrieves an SSH public key.
  *
- * @param string $formattedName The fingerprint of the public key to retrieve. Public keys are identified
- *                              by their SHA-256 fingerprint. The fingerprint of the public key is in
- *                              format `users/{user}/sshPublicKeys/{fingerprint}`. Please see
+ * @param string $formattedName The fingerprint of the public key to retrieve. Public keys are
+ *                              identified by their SHA-256 fingerprint. The fingerprint of the public key
+ *                              is in format `users/{user}/sshPublicKeys/{fingerprint}`. Please see
  *                              {@see OsLoginServiceClient::sshPublicKeyName()} for help formatting this field.
  */
 function get_ssh_public_key_sample(string $formattedName): void
