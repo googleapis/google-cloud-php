@@ -16,11 +16,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class VirtualMachine extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The machine type of the virtual machine to create. Must be the short name
-     * of a standard machine type (such as "n1-standard-1") or a custom machine
-     * type (such as "custom-1-4096", where "1" indicates the number of vCPUs and
-     * "4096" indicates the memory in MB). See
-     * [Creating an instance with a custom machine
+     * Required. The machine type of the virtual machine to create. Must be the
+     * short name of a standard machine type (such as "n1-standard-1") or a custom
+     * machine type (such as "custom-1-4096", where "1" indicates the number of
+     * vCPUs and "4096" indicates the memory in MB). See [Creating an instance
+     * with a custom machine
      * type](https://cloud.google.com/compute/docs/instances/creating-instance-with-custom-machine-type#create)
      * for more specifications on creating a custom machine type.
      *
@@ -158,11 +158,11 @@ class VirtualMachine extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $machine_type
-     *           Required. The machine type of the virtual machine to create. Must be the short name
-     *           of a standard machine type (such as "n1-standard-1") or a custom machine
-     *           type (such as "custom-1-4096", where "1" indicates the number of vCPUs and
-     *           "4096" indicates the memory in MB). See
-     *           [Creating an instance with a custom machine
+     *           Required. The machine type of the virtual machine to create. Must be the
+     *           short name of a standard machine type (such as "n1-standard-1") or a custom
+     *           machine type (such as "custom-1-4096", where "1" indicates the number of
+     *           vCPUs and "4096" indicates the memory in MB). See [Creating an instance
+     *           with a custom machine
      *           type](https://cloud.google.com/compute/docs/instances/creating-instance-with-custom-machine-type#create)
      *           for more specifications on creating a custom machine type.
      *     @type bool $preemptible
@@ -239,11 +239,11 @@ class VirtualMachine extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The machine type of the virtual machine to create. Must be the short name
-     * of a standard machine type (such as "n1-standard-1") or a custom machine
-     * type (such as "custom-1-4096", where "1" indicates the number of vCPUs and
-     * "4096" indicates the memory in MB). See
-     * [Creating an instance with a custom machine
+     * Required. The machine type of the virtual machine to create. Must be the
+     * short name of a standard machine type (such as "n1-standard-1") or a custom
+     * machine type (such as "custom-1-4096", where "1" indicates the number of
+     * vCPUs and "4096" indicates the memory in MB). See [Creating an instance
+     * with a custom machine
      * type](https://cloud.google.com/compute/docs/instances/creating-instance-with-custom-machine-type#create)
      * for more specifications on creating a custom machine type.
      *
@@ -256,11 +256,11 @@ class VirtualMachine extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The machine type of the virtual machine to create. Must be the short name
-     * of a standard machine type (such as "n1-standard-1") or a custom machine
-     * type (such as "custom-1-4096", where "1" indicates the number of vCPUs and
-     * "4096" indicates the memory in MB). See
-     * [Creating an instance with a custom machine
+     * Required. The machine type of the virtual machine to create. Must be the
+     * short name of a standard machine type (such as "n1-standard-1") or a custom
+     * machine type (such as "custom-1-4096", where "1" indicates the number of
+     * vCPUs and "4096" indicates the memory in MB). See [Creating an instance
+     * with a custom machine
      * type](https://cloud.google.com/compute/docs/instances/creating-instance-with-custom-machine-type#create)
      * for more specifications on creating a custom machine type.
      *
