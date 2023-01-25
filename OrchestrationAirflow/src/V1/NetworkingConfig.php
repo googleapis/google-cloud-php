@@ -17,9 +17,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class NetworkingConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. Indicates the user requested specifc connection type between Tenant and
-     * Customer projects.
-     * You cannot set networking connection type in public IP environment.
+     * Optional. Indicates the user requested specifc connection type between
+     * Tenant and Customer projects. You cannot set networking connection type in
+     * public IP environment.
      *
      * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.NetworkingConfig.ConnectionType connection_type = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -32,9 +32,9 @@ class NetworkingConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $connection_type
-     *           Optional. Indicates the user requested specifc connection type between Tenant and
-     *           Customer projects.
-     *           You cannot set networking connection type in public IP environment.
+     *           Optional. Indicates the user requested specifc connection type between
+     *           Tenant and Customer projects. You cannot set networking connection type in
+     *           public IP environment.
      * }
      */
     public function __construct($data = NULL) {
@@ -43,9 +43,9 @@ class NetworkingConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Indicates the user requested specifc connection type between Tenant and
-     * Customer projects.
-     * You cannot set networking connection type in public IP environment.
+     * Optional. Indicates the user requested specifc connection type between
+     * Tenant and Customer projects. You cannot set networking connection type in
+     * public IP environment.
      *
      * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.NetworkingConfig.ConnectionType connection_type = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -56,9 +56,9 @@ class NetworkingConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Indicates the user requested specifc connection type between Tenant and
-     * Customer projects.
-     * You cannot set networking connection type in public IP environment.
+     * Optional. Indicates the user requested specifc connection type between
+     * Tenant and Customer projects. You cannot set networking connection type in
+     * public IP environment.
      *
      * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.NetworkingConfig.ConnectionType connection_type = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
