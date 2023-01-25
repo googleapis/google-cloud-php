@@ -315,9 +315,9 @@ class CacheSessionPool implements SessionPoolInterface
         // If we don't have a session, let's wait for one or throw an exception.
         if (!$session) {
             if ($exception) {
-                throw $exception instanceof RuntimeException
+                throw $exception instanceof \RuntimeException
                     ? $exception
-                    : new RuntimeException($exception->getMessage(), $exception->getCode(), $exception);
+                    : new \RuntimeException($exception->getMessage(), $exception->getCode(), $exception);
             }
             if (!$this->config['shouldWaitForSession']) {
                 throw new \RuntimeException('No sessions available.');
