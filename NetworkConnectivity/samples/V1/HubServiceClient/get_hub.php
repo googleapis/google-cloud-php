@@ -28,7 +28,7 @@ use Google\Cloud\NetworkConnectivity\V1\Hub;
 use Google\Cloud\NetworkConnectivity\V1\HubServiceClient;
 
 /**
- * Gets details about a Network Connectivity Center hub.
+ * Gets details about the specified hub.
  *
  * @param string $formattedName The name of the hub resource to get. Please see
  *                              {@see HubServiceClient::hubName()} for help formatting this field.

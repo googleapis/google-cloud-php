@@ -30,8 +30,7 @@ use Google\Cloud\NetworkConnectivity\V1\HubServiceClient;
 use Google\Rpc\Status;
 
 /**
- * Updates the description and/or labels of a Network Connectivity Center
- * hub.
+ * Updates the description and/or labels of the specified hub.
  *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:

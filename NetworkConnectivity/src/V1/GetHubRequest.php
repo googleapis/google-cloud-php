@@ -9,9 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request for
- * [HubService.GetHub][google.cloud.networkconnectivity.v1.HubService.GetHub]
- * method.
+ * Request for [HubService.GetHub][google.cloud.networkconnectivity.v1.HubService.GetHub] method.
  *
  * Generated from protobuf message <code>google.cloud.networkconnectivity.v1.GetHubRequest</code>
  */

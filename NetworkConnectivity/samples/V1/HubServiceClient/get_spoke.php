@@ -28,7 +28,7 @@ use Google\Cloud\NetworkConnectivity\V1\HubServiceClient;
 use Google\Cloud\NetworkConnectivity\V1\Spoke;
 
 /**
- * Gets details about a Network Connectivity Center spoke.
+ * Gets details about the specified spoke.
  *
  * @param string $formattedName The name of the spoke resource. Please see
  *                              {@see HubServiceClient::spokeName()} for help formatting this field.

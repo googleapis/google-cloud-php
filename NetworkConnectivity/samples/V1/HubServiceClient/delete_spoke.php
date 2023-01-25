@@ -29,7 +29,7 @@ use Google\Cloud\NetworkConnectivity\V1\HubServiceClient;
 use Google\Rpc\Status;
 
 /**
- * Deletes a Network Connectivity Center spoke.
+ * Deletes the specified spoke.
  *
  * @param string $formattedName The name of the spoke to delete. Please see
  *                              {@see HubServiceClient::spokeName()} for help formatting this field.

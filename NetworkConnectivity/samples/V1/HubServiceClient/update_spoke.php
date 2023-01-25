@@ -30,7 +30,7 @@ use Google\Cloud\NetworkConnectivity\V1\Spoke;
 use Google\Rpc\Status;
 
 /**
- * Updates the parameters of a Network Connectivity Center spoke.
+ * Updates the parameters of the specified spoke.
  *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:
