@@ -503,7 +503,7 @@ class CacheSessionPool implements SessionPoolInterface
             return $sessions;
         });
 
-        return $this->deleteSessions($sessions);
+        return $this->deleteSessions($sessions, true);
     }
 
     /**
@@ -828,11 +828,15 @@ class CacheSessionPool implements SessionPoolInterface
 
     /**
      * Delete the provided sessions.
+     * Sessions might not delete if waitForDeleteSessions is set to false and
+     * gRPC calls go out of scope.
      *
      * @param array $sessions
+     * @param bool $waitForPromises Whether to explicitly wait on gRPC calls
+     *        to delete sessions. **Defaults to ** `false`.
      * @return bool Returns true if all provided sessions are deleted, false otherwise.
      */
-    private function deleteSessions(array $sessions)
+    private function deleteSessions(array $sessions, bool $waitForPromises = false)
     {
         $this->deleteCalls = [];
         foreach ($sessions as $session) {
@@ -843,13 +847,15 @@ class CacheSessionPool implements SessionPoolInterface
                 ]);
         }
 
-        // try clearing sessions otherwise it could lead to leaking of sessions
-        try {
-            Utils::all($this->deleteCalls)->wait();
-        } catch (\GuzzleHttp\Promise\RejectionException $ex) {
-            return false;
+        if ($waitForPromises) {
+            // try clearing sessions otherwise it could lead to leaking of sessions
+            try {
+                Utils::all($this->deleteCalls)->wait();
+            } catch (\GuzzleHttp\Promise\RejectionException $ex) {
+                return false;
+            }
         }
-        return true;
+        return $waitForPromises;
     }
 
     /**
