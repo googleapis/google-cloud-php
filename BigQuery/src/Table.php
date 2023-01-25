@@ -334,7 +334,17 @@ class Table
      * {@see BigQueryClient::runJob()} or
      * {@see BigQueryClient::startJob()}. A
      * configuration can be built using fluent setters or by providing a full
-     * set of options at once.
+     * set of options at once. This method can be used to create copy, snapshot
+     * and clone of the sourceTable as well as can also be used to restore
+     * snapshots by passing the following options:
+     * $options = [
+     *     'configuration' => [
+     *          'copy' => [
+     *              'operationType' => ('COPY' | 'SNAPSHOT' | 'CLONE' | 'RESTORE')
+     *          ]
+     *      ]
+     * ]
+     *
      *
      * Example:
      * ```
