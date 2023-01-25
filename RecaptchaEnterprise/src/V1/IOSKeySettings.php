@@ -37,7 +37,7 @@ class IOSKeySettings extends \Google\Protobuf\Internal\Message
      *
      *     @type bool $allow_all_bundle_ids
      *           If set to true, allowed_bundle_ids are not enforced.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $allowed_bundle_ids
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $allowed_bundle_ids
      *           iOS bundle ids of apps allowed to use the key.
      *           Example: 'com.companyname.productname.appname'
      * }
@@ -90,7 +90,7 @@ class IOSKeySettings extends \Google\Protobuf\Internal\Message
      * Example: 'com.companyname.productname.appname'
      *
      * Generated from protobuf field <code>repeated string allowed_bundle_ids = 1;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAllowedBundleIds($var)

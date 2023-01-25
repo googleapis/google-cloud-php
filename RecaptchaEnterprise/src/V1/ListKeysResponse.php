@@ -35,7 +35,7 @@ class ListKeysResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\RecaptchaEnterprise\V1\Key[]|\Google\Protobuf\Internal\RepeatedField $keys
+     *     @type array<\Google\Cloud\RecaptchaEnterprise\V1\Key>|\Google\Protobuf\Internal\RepeatedField $keys
      *           Key details.
      *     @type string $next_page_token
      *           Token to retrieve the next page of results. It is set to empty if no keys
@@ -62,7 +62,7 @@ class ListKeysResponse extends \Google\Protobuf\Internal\Message
      * Key details.
      *
      * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.Key keys = 1;</code>
-     * @param \Google\Cloud\RecaptchaEnterprise\V1\Key[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\RecaptchaEnterprise\V1\Key>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setKeys($var)

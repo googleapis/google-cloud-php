@@ -16,25 +16,25 @@ use Google\Protobuf\Internal\GPBUtil;
 class SearchRelatedAccountGroupMembershipsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The name of the project to search related account group memberships from,
-     * in the format "projects/{project}".
+     * Required. The name of the project to search related account group
+     * memberships from. Specify the project name in the following format:
+     * "projects/{project}".
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string project = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    private $project = '';
     /**
-     * Optional. The unique stable hashed user identifier we should search connections to.
-     * The identifier should correspond to a `hashed_account_id` provided in a
-     * previous CreateAssessment or AnnotateAssessment call.
+     * Optional. The unique stable hashed user identifier we should search
+     * connections to. The identifier should correspond to a `hashed_account_id`
+     * provided in a previous `CreateAssessment` or `AnnotateAssessment` call.
      *
      * Generated from protobuf field <code>bytes hashed_account_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $hashed_account_id = '';
     /**
-     * Optional. The maximum number of groups to return. The service may return fewer than
-     * this value.
-     * If unspecified, at most 50 groups will be returned.
-     * The maximum value is 1000; values above 1000 will be coerced to 1000.
+     * Optional. The maximum number of groups to return. The service might return
+     * fewer than this value. If unspecified, at most 50 groups are returned. The
+     * maximum value is 1000; values above 1000 are coerced to 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -57,18 +57,18 @@ class SearchRelatedAccountGroupMembershipsRequest extends \Google\Protobuf\Inter
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string $parent
-     *           Required. The name of the project to search related account group memberships from,
-     *           in the format "projects/{project}".
+     *     @type string $project
+     *           Required. The name of the project to search related account group
+     *           memberships from. Specify the project name in the following format:
+     *           "projects/{project}".
      *     @type string $hashed_account_id
-     *           Optional. The unique stable hashed user identifier we should search connections to.
-     *           The identifier should correspond to a `hashed_account_id` provided in a
-     *           previous CreateAssessment or AnnotateAssessment call.
+     *           Optional. The unique stable hashed user identifier we should search
+     *           connections to. The identifier should correspond to a `hashed_account_id`
+     *           provided in a previous `CreateAssessment` or `AnnotateAssessment` call.
      *     @type int $page_size
-     *           Optional. The maximum number of groups to return. The service may return fewer than
-     *           this value.
-     *           If unspecified, at most 50 groups will be returned.
-     *           The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *           Optional. The maximum number of groups to return. The service might return
+     *           fewer than this value. If unspecified, at most 50 groups are returned. The
+     *           maximum value is 1000; values above 1000 are coerced to 1000.
      *     @type string $page_token
      *           Optional. A page token, received from a previous
      *           `SearchRelatedAccountGroupMemberships` call. Provide this to retrieve the
@@ -84,37 +84,39 @@ class SearchRelatedAccountGroupMembershipsRequest extends \Google\Protobuf\Inter
     }
 
     /**
-     * Required. The name of the project to search related account group memberships from,
-     * in the format "projects/{project}".
+     * Required. The name of the project to search related account group
+     * memberships from. Specify the project name in the following format:
+     * "projects/{project}".
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string project = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
-    public function getParent()
+    public function getProject()
     {
-        return $this->parent;
+        return $this->project;
     }
 
     /**
-     * Required. The name of the project to search related account group memberships from,
-     * in the format "projects/{project}".
+     * Required. The name of the project to search related account group
+     * memberships from. Specify the project name in the following format:
+     * "projects/{project}".
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string project = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
-    public function setParent($var)
+    public function setProject($var)
     {
         GPBUtil::checkString($var, True);
-        $this->parent = $var;
+        $this->project = $var;
 
         return $this;
     }
 
     /**
-     * Optional. The unique stable hashed user identifier we should search connections to.
-     * The identifier should correspond to a `hashed_account_id` provided in a
-     * previous CreateAssessment or AnnotateAssessment call.
+     * Optional. The unique stable hashed user identifier we should search
+     * connections to. The identifier should correspond to a `hashed_account_id`
+     * provided in a previous `CreateAssessment` or `AnnotateAssessment` call.
      *
      * Generated from protobuf field <code>bytes hashed_account_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -125,9 +127,9 @@ class SearchRelatedAccountGroupMembershipsRequest extends \Google\Protobuf\Inter
     }
 
     /**
-     * Optional. The unique stable hashed user identifier we should search connections to.
-     * The identifier should correspond to a `hashed_account_id` provided in a
-     * previous CreateAssessment or AnnotateAssessment call.
+     * Optional. The unique stable hashed user identifier we should search
+     * connections to. The identifier should correspond to a `hashed_account_id`
+     * provided in a previous `CreateAssessment` or `AnnotateAssessment` call.
      *
      * Generated from protobuf field <code>bytes hashed_account_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -142,10 +144,9 @@ class SearchRelatedAccountGroupMembershipsRequest extends \Google\Protobuf\Inter
     }
 
     /**
-     * Optional. The maximum number of groups to return. The service may return fewer than
-     * this value.
-     * If unspecified, at most 50 groups will be returned.
-     * The maximum value is 1000; values above 1000 will be coerced to 1000.
+     * Optional. The maximum number of groups to return. The service might return
+     * fewer than this value. If unspecified, at most 50 groups are returned. The
+     * maximum value is 1000; values above 1000 are coerced to 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -156,10 +157,9 @@ class SearchRelatedAccountGroupMembershipsRequest extends \Google\Protobuf\Inter
     }
 
     /**
-     * Optional. The maximum number of groups to return. The service may return fewer than
-     * this value.
-     * If unspecified, at most 50 groups will be returned.
-     * The maximum value is 1000; values above 1000 will be coerced to 1000.
+     * Optional. The maximum number of groups to return. The service might return
+     * fewer than this value. If unspecified, at most 50 groups are returned. The
+     * maximum value is 1000; values above 1000 are coerced to 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
