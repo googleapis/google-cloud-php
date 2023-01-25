@@ -255,7 +255,7 @@ class ManageTablesTest extends BigQueryTestCase
         $this->assertEquals([$perm], $iam->testPermissions([$perm]));
     }
 
-    public function testSnapshot()
+    public function testCreateAndRestoreSnapshot()
     {
         $destinationTable = self::$dataset->table(uniqid('test_dest_table_'));
         $copyConfig = self::$table->copy(
