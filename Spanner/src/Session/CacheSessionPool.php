@@ -272,7 +272,7 @@ class CacheSessionPool implements SessionPoolInterface
         // Create a session if needed.
         $exception = null;
         if ($toCreate) {
-            list ($createdSessions, $exception) = $this->createSessions(count($toCreate));
+            list($createdSessions, $exception) = $this->createSessions(count($toCreate));
             $hasCreatedSessions = count($createdSessions) > 0;
 
             $session = $this->config['lock']->synchronize(function () use (
