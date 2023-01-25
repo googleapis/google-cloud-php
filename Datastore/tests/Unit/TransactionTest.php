@@ -19,6 +19,7 @@ namespace Google\Cloud\Datastore\Tests\Unit;
 
 use Google\Cloud\Core\Testing\DatastoreOperationRefreshTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
+use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Datastore\Connection\ConnectionInterface;
 use Google\Cloud\Datastore\Entity;
 use Google\Cloud\Datastore\EntityMapper;
@@ -29,7 +30,6 @@ use Google\Cloud\Datastore\ReadOnlyTransaction;
 use Google\Cloud\Datastore\Transaction;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Prophecy\Argument;
-use Google\Protobuf\Timestamp;
 
 /**
  * This test case includes a data provider to run tests on both rw and ro transactions.
@@ -101,7 +101,7 @@ class TransactionTest extends TestCase
 
     public function testLookupWithReadTime()
     {
-        $time = new Timestamp(['seconds' => time()]);
+        $time = new Timestamp(new \DateTime());
         $this->connection->lookup(Argument::allOf(
             Argument::withEntry('transaction', self::TRANSACTION),
             Argument::withEntry('keys', [$this->key->keyObject()]),
@@ -186,7 +186,7 @@ class TransactionTest extends TestCase
      */
     public function testLookupBatchWithReadTime(callable $transaction)
     {
-        $time = new Timestamp(['seconds' => time()]);
+        $time = new Timestamp(new \DateTime());
         $this->connection->lookup(
             Argument::withEntry('readTime', $time)
         )->shouldBeCalled()->willReturn([
@@ -238,7 +238,7 @@ class TransactionTest extends TestCase
 
     public function testRunQueryWithReadTime()
     {
-        $time = new Timestamp(['seconds' => time()]);
+        $time = new Timestamp(new \DateTime());
         $this->connection->runQuery(Argument::allOf(
             Argument::withEntry('partitionId', ['projectId' => self::PROJECT]),
             Argument::withEntry('gqlQuery', ['queryString' => 'SELECT 1=1']),
