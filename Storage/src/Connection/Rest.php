@@ -314,6 +314,15 @@ class Rest implements ConnectionInterface
             ]
         ];
 
+        // Passing the preconditions we want to extract out of arguments
+        // into our query params.
+        $preconditions = RetryTrait::$condIdempotentOps['objects.insert'];
+        foreach ($preconditions as $precondition) {
+            if (isset($args[$precondition])) {
+                $uriParams['query'][$precondition] = $args[$precondition];
+            }
+        }
+
         return new $uploaderClass(
             $this->requestWrapper,
             $args['data'],
@@ -368,11 +377,25 @@ class Rest implements ConnectionInterface
             'chunkSize',
             'contentType',
             'metadata',
-            'uploadProgressCallback'
+            'uploadProgressCallback',
+            'restDelayFunction',
+            'restCalcDelayFunction',
         ];
 
         $args['uploaderOptions'] = array_intersect_key($args, array_flip($uploaderOptionKeys));
         $args = array_diff_key($args, array_flip($uploaderOptionKeys));
+
+        // Passing on custom retry function to $args['uploaderOptions']
+        $retryFunc = $this->getRestRetryFunction(
+            'objects',
+            'insert',
+            $args
+        );
+        $args['uploaderOptions']['restRetryFunction'] = $retryFunc;
+
+        $args['uploaderOptions'] = $this->addRetryHeaderCallbacks(
+            $args['uploaderOptions']
+        );
 
         return $args;
     }
