@@ -22,21 +22,23 @@ class ScheduledSnapshotsConfig extends \Google\Protobuf\Internal\Message
      */
     private $enabled = false;
     /**
-     * Optional. The Cloud Storage location for storing automatically created snapshots.
+     * Optional. The Cloud Storage location for storing automatically created
+     * snapshots.
      *
      * Generated from protobuf field <code>string snapshot_location = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $snapshot_location = '';
     /**
-     * Optional. The cron expression representing the time when snapshots creation mechanism
-     * runs. This field is subject to additional validation around frequency of
-     * execution.
+     * Optional. The cron expression representing the time when snapshots creation
+     * mechanism runs. This field is subject to additional validation around
+     * frequency of execution.
      *
      * Generated from protobuf field <code>string snapshot_creation_schedule = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $snapshot_creation_schedule = '';
     /**
-     * Optional. Time zone that sets the context to interpret snapshot_creation_schedule.
+     * Optional. Time zone that sets the context to interpret
+     * snapshot_creation_schedule.
      *
      * Generated from protobuf field <code>string time_zone = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -51,13 +53,15 @@ class ScheduledSnapshotsConfig extends \Google\Protobuf\Internal\Message
      *     @type bool $enabled
      *           Optional. Whether scheduled snapshots creation is enabled.
      *     @type string $snapshot_location
-     *           Optional. The Cloud Storage location for storing automatically created snapshots.
+     *           Optional. The Cloud Storage location for storing automatically created
+     *           snapshots.
      *     @type string $snapshot_creation_schedule
-     *           Optional. The cron expression representing the time when snapshots creation mechanism
-     *           runs. This field is subject to additional validation around frequency of
-     *           execution.
+     *           Optional. The cron expression representing the time when snapshots creation
+     *           mechanism runs. This field is subject to additional validation around
+     *           frequency of execution.
      *     @type string $time_zone
-     *           Optional. Time zone that sets the context to interpret snapshot_creation_schedule.
+     *           Optional. Time zone that sets the context to interpret
+     *           snapshot_creation_schedule.
      * }
      */
     public function __construct($data = NULL) {
@@ -92,7 +96,8 @@ class ScheduledSnapshotsConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The Cloud Storage location for storing automatically created snapshots.
+     * Optional. The Cloud Storage location for storing automatically created
+     * snapshots.
      *
      * Generated from protobuf field <code>string snapshot_location = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -103,7 +108,8 @@ class ScheduledSnapshotsConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The Cloud Storage location for storing automatically created snapshots.
+     * Optional. The Cloud Storage location for storing automatically created
+     * snapshots.
      *
      * Generated from protobuf field <code>string snapshot_location = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -118,9 +124,9 @@ class ScheduledSnapshotsConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The cron expression representing the time when snapshots creation mechanism
-     * runs. This field is subject to additional validation around frequency of
-     * execution.
+     * Optional. The cron expression representing the time when snapshots creation
+     * mechanism runs. This field is subject to additional validation around
+     * frequency of execution.
      *
      * Generated from protobuf field <code>string snapshot_creation_schedule = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -131,9 +137,9 @@ class ScheduledSnapshotsConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The cron expression representing the time when snapshots creation mechanism
-     * runs. This field is subject to additional validation around frequency of
-     * execution.
+     * Optional. The cron expression representing the time when snapshots creation
+     * mechanism runs. This field is subject to additional validation around
+     * frequency of execution.
      *
      * Generated from protobuf field <code>string snapshot_creation_schedule = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -148,7 +154,8 @@ class ScheduledSnapshotsConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Time zone that sets the context to interpret snapshot_creation_schedule.
+     * Optional. Time zone that sets the context to interpret
+     * snapshot_creation_schedule.
      *
      * Generated from protobuf field <code>string time_zone = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -159,7 +166,8 @@ class ScheduledSnapshotsConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Time zone that sets the context to interpret snapshot_creation_schedule.
+     * Optional. Time zone that sets the context to interpret
+     * snapshot_creation_schedule.
      *
      * Generated from protobuf field <code>string time_zone = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

@@ -61,10 +61,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\Word::getProperty()'
     name: getProperty
     id: getProperty
-    summary: |
-      Additional information detected for the word.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
+    summary: 'Additional information detected for the word.'
     parent: \Google\Cloud\Vision\V1\Word
     type: method
     langs:
@@ -93,10 +90,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\Word::setProperty()'
     name: setProperty
     id: setProperty
-    summary: |
-      Additional information detected for the word.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
+    summary: 'Additional information detected for the word.'
     parent: \Google\Cloud\Vision\V1\Word
     type: method
     langs:
@@ -131,8 +125,6 @@ items:
            |    |
            1----0
         and the vertex order will still be (0, 1, 2, 3).
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.BoundingPoly bounding_box = 2;</code>
     parent: \Google\Cloud\Vision\V1\Word
     type: method
     langs:
@@ -178,8 +170,6 @@ items:
            |    |
            1----0
         and the vertex order will still be (0, 1, 2, 3).
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.BoundingPoly bounding_box = 2;</code>
     parent: \Google\Cloud\Vision\V1\Word
     type: method
     langs:
@@ -201,8 +191,6 @@ items:
       List of symbols in the word.
       
       The order of the symbols follows the natural reading order.
-      
-      Generated from protobuf field <code>repeated .google.cloud.vision.v1.Symbol symbols = 3;</code>
     parent: \Google\Cloud\Vision\V1\Word
     type: method
     langs:
@@ -210,7 +198,7 @@ items:
     syntax:
       returns:
         -
-          var_type: Google\Protobuf\Internal\RepeatedField
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Internal/RepeatedField">Google\Protobuf\Internal\RepeatedField</a>'
   -
     uid: '\Google\Cloud\Vision\V1\Word::setSymbols()'
     name: setSymbols
@@ -219,8 +207,6 @@ items:
       List of symbols in the word.
       
       The order of the symbols follows the natural reading order.
-      
-      Generated from protobuf field <code>repeated .google.cloud.vision.v1.Symbol symbols = 3;</code>
     parent: \Google\Cloud\Vision\V1\Word
     type: method
     langs:
@@ -238,10 +224,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\Word::getConfidence()'
     name: getConfidence
     id: getConfidence
-    summary: |
-      Confidence of the OCR results for the word. Range [0, 1].
-      
-      Generated from protobuf field <code>float confidence = 4;</code>
+    summary: 'Confidence of the OCR results for the word. Range [0, 1].'
     parent: \Google\Cloud\Vision\V1\Word
     type: method
     langs:
@@ -254,10 +237,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\Word::setConfidence()'
     name: setConfidence
     id: setConfidence
-    summary: |
-      Confidence of the OCR results for the word. Range [0, 1].
-      
-      Generated from protobuf field <code>float confidence = 4;</code>
+    summary: 'Confidence of the OCR results for the word. Range [0, 1].'
     parent: \Google\Cloud\Vision\V1\Word
     type: method
     langs:

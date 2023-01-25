@@ -7,10 +7,7 @@ namespace Google\Cloud\Dataproc\V1\InstanceGroupConfig;
 use UnexpectedValueException;
 
 /**
- * Controls the use of
- * [preemptible instances]
- * (https://cloud.google.com/compute/docs/instances/preemptible)
- * within the group.
+ * Controls the use of preemptible instances within the group.
  *
  * Protobuf type <code>google.cloud.dataproc.v1.InstanceGroupConfig.Preemptibility</code>
  */
@@ -32,8 +29,11 @@ class Preemptibility
      */
     const NON_PREEMPTIBLE = 1;
     /**
-     * Instances are preemptible.
-     * This option is allowed only for secondary worker groups.
+     * Instances are [preemptible]
+     * (https://cloud.google.com/compute/docs/instances/preemptible).
+     * This option is allowed only for [secondary worker]
+     * (https://cloud.google.com/dataproc/docs/concepts/compute/secondary-vms)
+     * groups.
      *
      * Generated from protobuf enum <code>PREEMPTIBLE = 2;</code>
      */

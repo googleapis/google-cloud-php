@@ -36,8 +36,10 @@ use Google\Rpc\Status;
  * operation](https://cloud.google.com/dialogflow/es/docs/how/long-running-operations).
  * The returned `Operation` type has the following method-specific fields:
  *
- * - `metadata`: [CreateConversationDatasetOperationMetadata][google.cloud.dialogflow.v2.CreateConversationDatasetOperationMetadata]
- * - `response`: [ConversationDataset][google.cloud.dialogflow.v2.ConversationDataset]
+ * - `metadata`:
+ * [CreateConversationDatasetOperationMetadata][google.cloud.dialogflow.v2.CreateConversationDatasetOperationMetadata]
+ * - `response`:
+ * [ConversationDataset][google.cloud.dialogflow.v2.ConversationDataset]
  *
  * @param string $parent                         The project to create conversation dataset for. Format:
  *                                               `projects/<Project ID>/locations/<Location ID>`

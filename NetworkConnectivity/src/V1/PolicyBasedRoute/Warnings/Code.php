@@ -63,6 +63,4 @@ class Code
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Code::class, \Google\Cloud\NetworkConnectivity\V1\PolicyBasedRoute_Warnings_Code::class);
 

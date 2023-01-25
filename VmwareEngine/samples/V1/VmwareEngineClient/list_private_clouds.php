@@ -35,7 +35,7 @@ use Google\Cloud\VmwareEngine\V1\VmwareEngineClient;
  *                                clusters. Resource names are schemeless URIs that follow the conventions in
  *                                https://cloud.google.com/apis/design/resource_names.
  *                                For example:
- *                                `projects/my-project/locations/us-west1-a`
+ *                                `projects/my-project/locations/us-central1-a`
  *                                Please see {@see VmwareEngineClient::locationName()} for help formatting this field.
  */
 function list_private_clouds_sample(string $formattedParent): void

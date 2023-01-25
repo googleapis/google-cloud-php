@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListAzureClientsResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * A list of [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] resources in the specified Google Cloud
-     * project and region region.
+     * A list of [AzureClient][google.cloud.gkemulticloud.v1.AzureClient]
+     * resources in the specified Google Cloud project and region region.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkemulticloud.v1.AzureClient azure_clients = 1;</code>
      */
@@ -37,8 +37,8 @@ class ListAzureClientsResponse extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<\Google\Cloud\GkeMultiCloud\V1\AzureClient>|\Google\Protobuf\Internal\RepeatedField $azure_clients
-     *           A list of [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] resources in the specified Google Cloud
-     *           project and region region.
+     *           A list of [AzureClient][google.cloud.gkemulticloud.v1.AzureClient]
+     *           resources in the specified Google Cloud project and region region.
      *     @type string $next_page_token
      *           Token to retrieve the next page of results, or empty if there are no more
      *           results in the list.
@@ -50,8 +50,8 @@ class ListAzureClientsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] resources in the specified Google Cloud
-     * project and region region.
+     * A list of [AzureClient][google.cloud.gkemulticloud.v1.AzureClient]
+     * resources in the specified Google Cloud project and region region.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkemulticloud.v1.AzureClient azure_clients = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -62,8 +62,8 @@ class ListAzureClientsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] resources in the specified Google Cloud
-     * project and region region.
+     * A list of [AzureClient][google.cloud.gkemulticloud.v1.AzureClient]
+     * resources in the specified Google Cloud project and region region.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkemulticloud.v1.AzureClient azure_clients = 1;</code>
      * @param array<\Google\Cloud\GkeMultiCloud\V1\AzureClient>|\Google\Protobuf\Internal\RepeatedField $var

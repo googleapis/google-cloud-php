@@ -28,9 +28,12 @@ use Google\Cloud\GkeMultiCloud\V1\AzureClustersClient;
 use Google\Cloud\GkeMultiCloud\V1\AzureNodePool;
 
 /**
- * Describes a specific [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] resource.
+ * Describes a specific
+ * [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] resource.
  *
- * @param string $formattedName The name of the [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] resource to describe.
+ * @param string $formattedName The name of the
+ *                              [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] resource to
+ *                              describe.
  *
  *                              `AzureNodePool` names are formatted as
  *                              `projects/<project-id>/locations/<region>/azureClusters/<cluster-id>/azureNodePools/<node-pool-id>`.

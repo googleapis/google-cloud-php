@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request message for [Intents.UpdateIntent][google.cloud.dialogflow.v2.Intents.UpdateIntent].
+ * The request message for
+ * [Intents.UpdateIntent][google.cloud.dialogflow.v2.Intents.UpdateIntent].
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.UpdateIntentRequest</code>
  */

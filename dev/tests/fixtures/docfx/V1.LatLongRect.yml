@@ -49,10 +49,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\LatLongRect::getMinLatLng()'
     name: getMinLatLng
     id: getMinLatLng
-    summary: |
-      Min lat/long pair.
-      
-      Generated from protobuf field <code>.google.type.LatLng min_lat_lng = 1;</code>
+    summary: 'Min lat/long pair.'
     parent: \Google\Cloud\Vision\V1\LatLongRect
     type: method
     langs:
@@ -81,10 +78,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\LatLongRect::setMinLatLng()'
     name: setMinLatLng
     id: setMinLatLng
-    summary: |
-      Min lat/long pair.
-      
-      Generated from protobuf field <code>.google.type.LatLng min_lat_lng = 1;</code>
+    summary: 'Min lat/long pair.'
     parent: \Google\Cloud\Vision\V1\LatLongRect
     type: method
     langs:
@@ -102,10 +96,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\LatLongRect::getMaxLatLng()'
     name: getMaxLatLng
     id: getMaxLatLng
-    summary: |
-      Max lat/long pair.
-      
-      Generated from protobuf field <code>.google.type.LatLng max_lat_lng = 2;</code>
+    summary: 'Max lat/long pair.'
     parent: \Google\Cloud\Vision\V1\LatLongRect
     type: method
     langs:
@@ -134,10 +125,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\LatLongRect::setMaxLatLng()'
     name: setMaxLatLng
     id: setMaxLatLng
-    summary: |
-      Max lat/long pair.
-      
-      Generated from protobuf field <code>.google.type.LatLng max_lat_lng = 2;</code>
+    summary: 'Max lat/long pair.'
     parent: \Google\Cloud\Vision\V1\LatLongRect
     type: method
     langs:
