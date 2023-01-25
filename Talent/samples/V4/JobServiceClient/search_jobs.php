@@ -29,11 +29,13 @@ use Google\Cloud\Talent\V4\RequestMetadata;
 use Google\Cloud\Talent\V4\SearchJobsResponse;
 
 /**
- * Searches for jobs using the provided [SearchJobsRequest][google.cloud.talent.v4.SearchJobsRequest].
+ * Searches for jobs using the provided
+ * [SearchJobsRequest][google.cloud.talent.v4.SearchJobsRequest].
  *
- * This call constrains the [visibility][google.cloud.talent.v4.Job.visibility] of jobs
- * present in the database, and only returns jobs that the caller has
- * permission to search against.
+ * This call constrains the
+ * [visibility][google.cloud.talent.v4.Job.visibility] of jobs present in the
+ * database, and only returns jobs that the caller has permission to search
+ * against.
  *
  * @param string $formattedParent The resource name of the tenant to search within.
  *

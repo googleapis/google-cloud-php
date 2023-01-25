@@ -31,7 +31,8 @@ class ProcessingOptions extends \Google\Protobuf\Internal\Message
      * * responsibilities
      * HTML tags in these fields may be stripped if sanitiazation isn't
      * disabled.
-     * Defaults to [HtmlSanitization.SIMPLE_FORMATTING_ONLY][google.cloud.talent.v4.HtmlSanitization.SIMPLE_FORMATTING_ONLY].
+     * Defaults to
+     * [HtmlSanitization.SIMPLE_FORMATTING_ONLY][google.cloud.talent.v4.HtmlSanitization.SIMPLE_FORMATTING_ONLY].
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4.HtmlSanitization html_sanitization = 2;</code>
      */
@@ -55,7 +56,8 @@ class ProcessingOptions extends \Google\Protobuf\Internal\Message
      *           * responsibilities
      *           HTML tags in these fields may be stripped if sanitiazation isn't
      *           disabled.
-     *           Defaults to [HtmlSanitization.SIMPLE_FORMATTING_ONLY][google.cloud.talent.v4.HtmlSanitization.SIMPLE_FORMATTING_ONLY].
+     *           Defaults to
+     *           [HtmlSanitization.SIMPLE_FORMATTING_ONLY][google.cloud.talent.v4.HtmlSanitization.SIMPLE_FORMATTING_ONLY].
      * }
      */
     public function __construct($data = NULL) {
@@ -100,7 +102,8 @@ class ProcessingOptions extends \Google\Protobuf\Internal\Message
      * * responsibilities
      * HTML tags in these fields may be stripped if sanitiazation isn't
      * disabled.
-     * Defaults to [HtmlSanitization.SIMPLE_FORMATTING_ONLY][google.cloud.talent.v4.HtmlSanitization.SIMPLE_FORMATTING_ONLY].
+     * Defaults to
+     * [HtmlSanitization.SIMPLE_FORMATTING_ONLY][google.cloud.talent.v4.HtmlSanitization.SIMPLE_FORMATTING_ONLY].
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4.HtmlSanitization html_sanitization = 2;</code>
      * @return int
@@ -119,7 +122,8 @@ class ProcessingOptions extends \Google\Protobuf\Internal\Message
      * * responsibilities
      * HTML tags in these fields may be stripped if sanitiazation isn't
      * disabled.
-     * Defaults to [HtmlSanitization.SIMPLE_FORMATTING_ONLY][google.cloud.talent.v4.HtmlSanitization.SIMPLE_FORMATTING_ONLY].
+     * Defaults to
+     * [HtmlSanitization.SIMPLE_FORMATTING_ONLY][google.cloud.talent.v4.HtmlSanitization.SIMPLE_FORMATTING_ONLY].
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4.HtmlSanitization html_sanitization = 2;</code>
      * @param int $var

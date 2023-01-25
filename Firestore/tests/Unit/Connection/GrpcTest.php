@@ -31,6 +31,7 @@ use Google\Cloud\Firestore\V1\TransactionOptions;
 use Google\Cloud\Firestore\V1\TransactionOptions_ReadWrite;
 use Google\Cloud\Firestore\V1\Value;
 use Google\Cloud\Firestore\V1\Write;
+use Google\Protobuf\Timestamp as ProtobufTimestamp;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Prophecy\Argument;
 
@@ -82,6 +83,47 @@ class GrpcTest extends TestCase
         ];
 
         $expected = [$args['database'], $args['documents'], $this->header()];
+
+        $this->sendAndAssert('batchGetDocuments', $args, $expected);
+    }
+
+    public function testBatchGetDocumentsWithReadTime()
+    {
+        $documents = [
+            sprintf(
+                'projects/%s/databases/%s/documents/%s',
+                self::PROJECT,
+                self::DATABASE,
+                'a/b'
+            ),
+            sprintf(
+                'projects/%s/databases/%s/documents/%s',
+                self::PROJECT,
+                self::DATABASE,
+                'a/c'
+            )
+        ];
+
+        $args = [
+            'database' => sprintf(
+                'projects/%s/databases/%s',
+                self::PROJECT,
+                self::DATABASE
+            ),
+            'documents' => $documents,
+            'readTime' => [
+                'seconds' => (int) 202320232,
+                'nanos' => (int) 0
+            ]
+        ];
+
+        $protobufTimestamp = new ProtobufTimestamp();
+        $protobufTimestamp->setSeconds($args['readTime']['seconds']);
+        $expected = [
+            $args['database'],
+            $args['documents'],
+            $this->header() + ['readTime' => $protobufTimestamp]
+        ];
 
         $this->sendAndAssert('batchGetDocuments', $args, $expected);
     }

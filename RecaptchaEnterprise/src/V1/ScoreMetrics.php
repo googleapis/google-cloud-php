@@ -24,7 +24,6 @@ class ScoreMetrics extends \Google\Protobuf\Internal\Message
     /**
      * Action-based metrics. The map key is the action name which specified by the
      * site owners at time of the "execute" client-side call.
-     * Populated only for SCORE keys.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.recaptchaenterprise.v1.ScoreDistribution> action_metrics = 2;</code>
      */
@@ -41,7 +40,6 @@ class ScoreMetrics extends \Google\Protobuf\Internal\Message
      *     @type array|\Google\Protobuf\Internal\MapField $action_metrics
      *           Action-based metrics. The map key is the action name which specified by the
      *           site owners at time of the "execute" client-side call.
-     *           Populated only for SCORE keys.
      * }
      */
     public function __construct($data = NULL) {
@@ -88,7 +86,6 @@ class ScoreMetrics extends \Google\Protobuf\Internal\Message
     /**
      * Action-based metrics. The map key is the action name which specified by the
      * site owners at time of the "execute" client-side call.
-     * Populated only for SCORE keys.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.recaptchaenterprise.v1.ScoreDistribution> action_metrics = 2;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -101,7 +98,6 @@ class ScoreMetrics extends \Google\Protobuf\Internal\Message
     /**
      * Action-based metrics. The map key is the action name which specified by the
      * site owners at time of the "execute" client-side call.
-     * Populated only for SCORE keys.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.recaptchaenterprise.v1.ScoreDistribution> action_metrics = 2;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var

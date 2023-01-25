@@ -956,7 +956,7 @@ class DatastoreClient
      *           {@see Google\Cloud\Datastore\EntityInterface}. **Defaults to**
      *           {@see Google\Cloud\Datastore\Entity}.
      *     @type string $databaseId ID of the database to which the entities belong.
-     *     @type timestamp $readTime Reads entities as they were at the given timestamp.
+     *     @type Timestamp $readTime Reads entities as they were at the given timestamp.
      * }
      * @return EntityInterface|null
      */
@@ -1020,7 +1020,7 @@ class DatastoreClient
      *     @type bool $sort If set to true, results in each set will be sorted
      *           to match the order given in $keys. **Defaults to** `false`.
      *     @type string $databaseId ID of the database to which the entities belong.
-     *     @type timestamp $readTime Reads entities as they were at the given timestamp.
+     *     @type Timestamp $readTime Reads entities as they were at the given timestamp.
      * }
      * @return array Returns an array with keys [`found`, `missing`, and `deferred`].
      *         Members of `found` will be instance of
@@ -1161,7 +1161,7 @@ class DatastoreClient
      *           {@see Google\Cloud\Datastore\Entity}.
      *     @type string $readConsistency See
      *           [ReadConsistency](https://cloud.google.com/datastore/reference/rest/v1/ReadOptions#ReadConsistency).
-     *     @type timestamp $readTime Reads entities as they were at the given timestamp.
+     *     @type Timestamp $readTime Reads entities as they were at the given timestamp.
      * }
      * @return EntityIterator<EntityInterface>
      */
