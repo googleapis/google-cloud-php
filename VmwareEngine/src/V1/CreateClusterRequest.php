@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [VmwareEngine.CreateCluster][google.cloud.vmwareengine.v1.VmwareEngine.CreateCluster]
+ * Request message for
+ * [VmwareEngine.CreateCluster][google.cloud.vmwareengine.v1.VmwareEngine.CreateCluster]
  *
  * Generated from protobuf message <code>google.cloud.vmwareengine.v1.CreateClusterRequest</code>
  */
@@ -20,7 +21,7 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
      * in. Resource names are schemeless URIs that follow the conventions in
      * https://cloud.google.com/apis/design/resource_names.
      * For example:
-     * `projects/my-project/locations/us-west1-a/privateClouds/my-cloud`
+     * `projects/my-project/locations/us-central1-a/privateClouds/my-cloud`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -47,15 +48,15 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
      */
     private $cluster = null;
     /**
-     * Optional. The request ID must be a valid UUID with the exception that zero UUID is
-     * not supported (00000000-0000-0000-0000-000000000000).
+     * Optional. The request ID must be a valid UUID with the exception that zero
+     * UUID is not supported (00000000-0000-0000-0000-000000000000).
      *
      * Generated from protobuf field <code>string request_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $request_id = '';
     /**
-     * Optional. True if you want the request to be validated and not executed; false
-     * otherwise.
+     * Optional. True if you want the request to be validated and not executed;
+     * false otherwise.
      *
      * Generated from protobuf field <code>bool validate_only = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -72,7 +73,7 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
      *           in. Resource names are schemeless URIs that follow the conventions in
      *           https://cloud.google.com/apis/design/resource_names.
      *           For example:
-     *           `projects/my-project/locations/us-west1-a/privateClouds/my-cloud`
+     *           `projects/my-project/locations/us-central1-a/privateClouds/my-cloud`
      *     @type string $cluster_id
      *           Required. The user-provided identifier of the new `Cluster`.
      *           This identifier must be unique among clusters within the parent and becomes
@@ -87,11 +88,11 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\VmwareEngine\V1\Cluster $cluster
      *           Required. The initial description of the new cluster.
      *     @type string $request_id
-     *           Optional. The request ID must be a valid UUID with the exception that zero UUID is
-     *           not supported (00000000-0000-0000-0000-000000000000).
+     *           Optional. The request ID must be a valid UUID with the exception that zero
+     *           UUID is not supported (00000000-0000-0000-0000-000000000000).
      *     @type bool $validate_only
-     *           Optional. True if you want the request to be validated and not executed; false
-     *           otherwise.
+     *           Optional. True if you want the request to be validated and not executed;
+     *           false otherwise.
      * }
      */
     public function __construct($data = NULL) {
@@ -104,7 +105,7 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
      * in. Resource names are schemeless URIs that follow the conventions in
      * https://cloud.google.com/apis/design/resource_names.
      * For example:
-     * `projects/my-project/locations/us-west1-a/privateClouds/my-cloud`
+     * `projects/my-project/locations/us-central1-a/privateClouds/my-cloud`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -119,7 +120,7 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
      * in. Resource names are schemeless URIs that follow the conventions in
      * https://cloud.google.com/apis/design/resource_names.
      * For example:
-     * `projects/my-project/locations/us-west1-a/privateClouds/my-cloud`
+     * `projects/my-project/locations/us-central1-a/privateClouds/my-cloud`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -214,8 +215,8 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The request ID must be a valid UUID with the exception that zero UUID is
-     * not supported (00000000-0000-0000-0000-000000000000).
+     * Optional. The request ID must be a valid UUID with the exception that zero
+     * UUID is not supported (00000000-0000-0000-0000-000000000000).
      *
      * Generated from protobuf field <code>string request_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -226,8 +227,8 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The request ID must be a valid UUID with the exception that zero UUID is
-     * not supported (00000000-0000-0000-0000-000000000000).
+     * Optional. The request ID must be a valid UUID with the exception that zero
+     * UUID is not supported (00000000-0000-0000-0000-000000000000).
      *
      * Generated from protobuf field <code>string request_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -242,8 +243,8 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. True if you want the request to be validated and not executed; false
-     * otherwise.
+     * Optional. True if you want the request to be validated and not executed;
+     * false otherwise.
      *
      * Generated from protobuf field <code>bool validate_only = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
@@ -254,8 +255,8 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. True if you want the request to be validated and not executed; false
-     * otherwise.
+     * Optional. True if you want the request to be validated and not executed;
+     * false otherwise.
      *
      * Generated from protobuf field <code>bool validate_only = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var

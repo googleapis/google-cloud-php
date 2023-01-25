@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [VmwareEngine.ListSubnets][google.cloud.vmwareengine.v1.VmwareEngine.ListSubnets]
+ * Request message for
+ * [VmwareEngine.ListSubnets][google.cloud.vmwareengine.v1.VmwareEngine.ListSubnets]
  *
  * Generated from protobuf message <code>google.cloud.vmwareengine.v1.ListSubnetsRequest</code>
  */
@@ -21,7 +22,7 @@ class ListSubnetsRequest extends \Google\Protobuf\Internal\Message
      * Resource names are schemeless URIs that follow the conventions in
      * https://cloud.google.com/apis/design/resource_names.
      * For example:
-     * `projects/my-project/locations/us-west1-a/privateClouds/my-cloud`
+     * `projects/my-project/locations/us-central1-a/privateClouds/my-cloud`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -57,7 +58,7 @@ class ListSubnetsRequest extends \Google\Protobuf\Internal\Message
      *           Resource names are schemeless URIs that follow the conventions in
      *           https://cloud.google.com/apis/design/resource_names.
      *           For example:
-     *           `projects/my-project/locations/us-west1-a/privateClouds/my-cloud`
+     *           `projects/my-project/locations/us-central1-a/privateClouds/my-cloud`
      *     @type int $page_size
      *           The maximum number of subnets to return in one page.
      *           The service may return fewer than this value.
@@ -81,7 +82,7 @@ class ListSubnetsRequest extends \Google\Protobuf\Internal\Message
      * Resource names are schemeless URIs that follow the conventions in
      * https://cloud.google.com/apis/design/resource_names.
      * For example:
-     * `projects/my-project/locations/us-west1-a/privateClouds/my-cloud`
+     * `projects/my-project/locations/us-central1-a/privateClouds/my-cloud`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -97,7 +98,7 @@ class ListSubnetsRequest extends \Google\Protobuf\Internal\Message
      * Resource names are schemeless URIs that follow the conventions in
      * https://cloud.google.com/apis/design/resource_names.
      * For example:
-     * `projects/my-project/locations/us-west1-a/privateClouds/my-cloud`
+     * `projects/my-project/locations/us-central1-a/privateClouds/my-cloud`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

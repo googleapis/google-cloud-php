@@ -33,7 +33,8 @@ use Google\Protobuf\FieldMask;
  *
  * [ConversationProfile.CreateTime][] and [ConversationProfile.UpdateTime][]
  * aren't populated in the response. You can retrieve them via
- * [GetConversationProfile][google.cloud.dialogflow.v2.ConversationProfiles.GetConversationProfile] API.
+ * [GetConversationProfile][google.cloud.dialogflow.v2.ConversationProfiles.GetConversationProfile]
+ * API.
  *
  * @param string $conversationProfileDisplayName Human readable name for this profile. Max length 1024 bytes.
  */

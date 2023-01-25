@@ -1,6 +1,7 @@
 {
     "distribution_name": "google/cloud-language",
-    "release_level": "beta",
+    "release_level": "preview",
     "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-language/latest",
-    "library_type": "GAPIC_COMBO"
+    "library_type": "GAPIC_COMBO",
+    "api_shortname": "language"
 }

@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [VmwareEngine.ShowVcenterCredentials][google.cloud.vmwareengine.v1.VmwareEngine.ShowVcenterCredentials]
+ * Request message for
+ * [VmwareEngine.ShowVcenterCredentials][google.cloud.vmwareengine.v1.VmwareEngine.ShowVcenterCredentials]
  *
  * Generated from protobuf message <code>google.cloud.vmwareengine.v1.ShowVcenterCredentialsRequest</code>
  */
@@ -21,7 +22,7 @@ class ShowVcenterCredentialsRequest extends \Google\Protobuf\Internal\Message
      * Resource names are schemeless URIs that follow the conventions in
      * https://cloud.google.com/apis/design/resource_names.
      * For example:
-     * `projects/my-project/locations/us-west1-a/privateClouds/my-cloud`
+     * `projects/my-project/locations/us-central1-a/privateClouds/my-cloud`
      *
      * Generated from protobuf field <code>string private_cloud = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -39,7 +40,7 @@ class ShowVcenterCredentialsRequest extends \Google\Protobuf\Internal\Message
      *           Resource names are schemeless URIs that follow the conventions in
      *           https://cloud.google.com/apis/design/resource_names.
      *           For example:
-     *           `projects/my-project/locations/us-west1-a/privateClouds/my-cloud`
+     *           `projects/my-project/locations/us-central1-a/privateClouds/my-cloud`
      * }
      */
     public function __construct($data = NULL) {
@@ -53,7 +54,7 @@ class ShowVcenterCredentialsRequest extends \Google\Protobuf\Internal\Message
      * Resource names are schemeless URIs that follow the conventions in
      * https://cloud.google.com/apis/design/resource_names.
      * For example:
-     * `projects/my-project/locations/us-west1-a/privateClouds/my-cloud`
+     * `projects/my-project/locations/us-central1-a/privateClouds/my-cloud`
      *
      * Generated from protobuf field <code>string private_cloud = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -69,7 +70,7 @@ class ShowVcenterCredentialsRequest extends \Google\Protobuf\Internal\Message
      * Resource names are schemeless URIs that follow the conventions in
      * https://cloud.google.com/apis/design/resource_names.
      * For example:
-     * `projects/my-project/locations/us-west1-a/privateClouds/my-cloud`
+     * `projects/my-project/locations/us-central1-a/privateClouds/my-cloud`
      *
      * Generated from protobuf field <code>string private_cloud = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

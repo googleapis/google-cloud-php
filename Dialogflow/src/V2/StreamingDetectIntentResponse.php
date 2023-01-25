@@ -15,8 +15,9 @@ use Google\Protobuf\Internal\GPBUtil;
  * 1.  If the `StreamingDetectIntentRequest.input_audio` field was
  *     set, the `recognition_result` field is populated for one
  *     or more messages.
- *     See the [StreamingRecognitionResult][google.cloud.dialogflow.v2.StreamingRecognitionResult] message for details
- *     about the result message sequence.
+ *     See the
+ *     [StreamingRecognitionResult][google.cloud.dialogflow.v2.StreamingRecognitionResult]
+ *     message for details about the result message sequence.
  * 2.  The next message contains `response_id`, `query_result`
  *     and optionally `webhook_status` if a WebHook was called.
  *

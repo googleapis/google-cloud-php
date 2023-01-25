@@ -30,8 +30,9 @@ class Environment extends \Google\Protobuf\Internal\Message
      */
     private $display_name = '';
     /**
-     * Output only. System generated globally unique ID for the environment. This ID will be
-     * different if the environment is deleted and re-created with the same name.
+     * Output only. System generated globally unique ID for the environment. This
+     * ID will be different if the environment is deleted and re-created with the
+     * same name.
      *
      * Generated from protobuf field <code>string uid = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -85,7 +86,8 @@ class Environment extends \Google\Protobuf\Internal\Message
      */
     private $session_status = null;
     /**
-     * Output only. URI Endpoints to access sessions associated with the Environment.
+     * Output only. URI Endpoints to access sessions associated with the
+     * Environment.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.Environment.Endpoints endpoints = 200 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -103,8 +105,9 @@ class Environment extends \Google\Protobuf\Internal\Message
      *     @type string $display_name
      *           Optional. User friendly display name.
      *     @type string $uid
-     *           Output only. System generated globally unique ID for the environment. This ID will be
-     *           different if the environment is deleted and re-created with the same name.
+     *           Output only. System generated globally unique ID for the environment. This
+     *           ID will be different if the environment is deleted and re-created with the
+     *           same name.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. Environment creation time.
      *     @type \Google\Protobuf\Timestamp $update_time
@@ -122,7 +125,8 @@ class Environment extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dataplex\V1\Environment\SessionStatus $session_status
      *           Output only. Status of sessions created for this environment.
      *     @type \Google\Cloud\Dataplex\V1\Environment\Endpoints $endpoints
-     *           Output only. URI Endpoints to access sessions associated with the Environment.
+     *           Output only. URI Endpoints to access sessions associated with the
+     *           Environment.
      * }
      */
     public function __construct($data = NULL) {
@@ -185,8 +189,9 @@ class Environment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. System generated globally unique ID for the environment. This ID will be
-     * different if the environment is deleted and re-created with the same name.
+     * Output only. System generated globally unique ID for the environment. This
+     * ID will be different if the environment is deleted and re-created with the
+     * same name.
      *
      * Generated from protobuf field <code>string uid = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -197,8 +202,9 @@ class Environment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. System generated globally unique ID for the environment. This ID will be
-     * different if the environment is deleted and re-created with the same name.
+     * Output only. System generated globally unique ID for the environment. This
+     * ID will be different if the environment is deleted and re-created with the
+     * same name.
      *
      * Generated from protobuf field <code>string uid = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -471,7 +477,8 @@ class Environment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. URI Endpoints to access sessions associated with the Environment.
+     * Output only. URI Endpoints to access sessions associated with the
+     * Environment.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.Environment.Endpoints endpoints = 200 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\Dataplex\V1\Environment\Endpoints|null
@@ -492,7 +499,8 @@ class Environment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. URI Endpoints to access sessions associated with the Environment.
+     * Output only. URI Endpoints to access sessions associated with the
+     * Environment.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.Environment.Endpoints endpoints = 200 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\Dataplex\V1\Environment\Endpoints $var

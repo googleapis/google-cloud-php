@@ -17,8 +17,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class DialogflowQuerySource extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The name of a Dialogflow virtual agent used for end user side intent
-     * detection and suggestion. Format: `projects/<Project Number/
+     * Required. The name of a Dialogflow virtual agent used for end user side
+     * intent detection and suggestion. Format: `projects/<Project Number/
      * ID>/locations/<Location ID>/agent`. When multiple agents are allowed in
      * the same Dialogflow project.
      *
@@ -33,8 +33,8 @@ class DialogflowQuerySource extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $agent
-     *           Required. The name of a Dialogflow virtual agent used for end user side intent
-     *           detection and suggestion. Format: `projects/<Project Number/
+     *           Required. The name of a Dialogflow virtual agent used for end user side
+     *           intent detection and suggestion. Format: `projects/<Project Number/
      *           ID>/locations/<Location ID>/agent`. When multiple agents are allowed in
      *           the same Dialogflow project.
      * }
@@ -45,8 +45,8 @@ class DialogflowQuerySource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of a Dialogflow virtual agent used for end user side intent
-     * detection and suggestion. Format: `projects/<Project Number/
+     * Required. The name of a Dialogflow virtual agent used for end user side
+     * intent detection and suggestion. Format: `projects/<Project Number/
      * ID>/locations/<Location ID>/agent`. When multiple agents are allowed in
      * the same Dialogflow project.
      *
@@ -59,8 +59,8 @@ class DialogflowQuerySource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of a Dialogflow virtual agent used for end user side intent
-     * detection and suggestion. Format: `projects/<Project Number/
+     * Required. The name of a Dialogflow virtual agent used for end user side
+     * intent detection and suggestion. Format: `projects/<Project Number/
      * ID>/locations/<Location ID>/agent`. When multiple agents are allowed in
      * the same Dialogflow project.
      *

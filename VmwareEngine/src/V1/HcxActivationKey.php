@@ -12,8 +12,11 @@ use Google\Protobuf\Internal\GPBUtil;
  * HCX activation key. A default key is created during
  * private cloud provisioning, but this behavior is subject to change
  * and you should always verify active keys.
- * Use [VmwareEngine.ListHcxActivationKeys][google.cloud.vmwareengine.v1.VmwareEngine.ListHcxActivationKeys] to retrieve existing keys
- * and [VmwareEngine.CreateHcxActivationKey][google.cloud.vmwareengine.v1.VmwareEngine.CreateHcxActivationKey] to create new ones.
+ * Use
+ * [VmwareEngine.ListHcxActivationKeys][google.cloud.vmwareengine.v1.VmwareEngine.ListHcxActivationKeys]
+ * to retrieve existing keys and
+ * [VmwareEngine.CreateHcxActivationKey][google.cloud.vmwareengine.v1.VmwareEngine.CreateHcxActivationKey]
+ * to create new ones.
  *
  * Generated from protobuf message <code>google.cloud.vmwareengine.v1.HcxActivationKey</code>
  */
@@ -24,7 +27,7 @@ class HcxActivationKey extends \Google\Protobuf\Internal\Message
      * Resource names are schemeless URIs that follow the conventions in
      * https://cloud.google.com/apis/design/resource_names.
      * For example:
-     * `projects/my-project/locations/us-west1/privateClouds/my-cloud/hcxActivationKeys/my-key`
+     * `projects/my-project/locations/us-central1/privateClouds/my-cloud/hcxActivationKeys/my-key`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -65,7 +68,7 @@ class HcxActivationKey extends \Google\Protobuf\Internal\Message
      *           Resource names are schemeless URIs that follow the conventions in
      *           https://cloud.google.com/apis/design/resource_names.
      *           For example:
-     *           `projects/my-project/locations/us-west1/privateClouds/my-cloud/hcxActivationKeys/my-key`
+     *           `projects/my-project/locations/us-central1/privateClouds/my-cloud/hcxActivationKeys/my-key`
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. Creation time of HCX activation key.
      *     @type int $state
@@ -86,7 +89,7 @@ class HcxActivationKey extends \Google\Protobuf\Internal\Message
      * Resource names are schemeless URIs that follow the conventions in
      * https://cloud.google.com/apis/design/resource_names.
      * For example:
-     * `projects/my-project/locations/us-west1/privateClouds/my-cloud/hcxActivationKeys/my-key`
+     * `projects/my-project/locations/us-central1/privateClouds/my-cloud/hcxActivationKeys/my-key`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -101,7 +104,7 @@ class HcxActivationKey extends \Google\Protobuf\Internal\Message
      * Resource names are schemeless URIs that follow the conventions in
      * https://cloud.google.com/apis/design/resource_names.
      * For example:
-     * `projects/my-project/locations/us-west1/privateClouds/my-cloud/hcxActivationKeys/my-key`
+     * `projects/my-project/locations/us-central1/privateClouds/my-cloud/hcxActivationKeys/my-key`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var

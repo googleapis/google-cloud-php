@@ -114,6 +114,21 @@
                     "retry_codes_name": "no_retry_codes",
                     "retry_params_name": "no_retry_params"
                 },
+                "AnalyzeOrgPolicies": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
+                "AnalyzeOrgPolicyGovernedAssets": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
+                "AnalyzeOrgPolicyGovernedContainers": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
                 "BatchGetAssetsHistory": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "retry_policy_1_codes",

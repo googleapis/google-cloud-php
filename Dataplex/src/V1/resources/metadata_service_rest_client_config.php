@@ -160,7 +160,19 @@ return [
                     ],
                     [
                         'method' => 'get',
-                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/lakes/*/content/*}:getIamPolicy',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/dataScans/*}:getIamPolicy',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/dataTaxonomies/*}:getIamPolicy',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/dataTaxonomies/*/attributes/*}:getIamPolicy',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/dataAttributeBindings/*}:getIamPolicy',
                     ],
                 ],
                 'placeholders' => [
@@ -198,7 +210,22 @@ return [
                     ],
                     [
                         'method' => 'post',
-                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/lakes/*/content/*}:setIamPolicy',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/dataScans/*}:setIamPolicy',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/dataTaxonomies/*}:setIamPolicy',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/dataTaxonomies/*/attributes/*}:setIamPolicy',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/dataAttributeBindings/*}:setIamPolicy',
                         'body' => '*',
                     ],
                 ],
@@ -237,7 +264,22 @@ return [
                     ],
                     [
                         'method' => 'post',
-                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/lakes/*/content/*}:testIamPermissions',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/dataScans/*}:testIamPermissions',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/dataTaxonomies/*}:testIamPermissions',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/dataTaxonomies/*/attributes/*}:testIamPermissions',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/dataAttributeBindings/*}:testIamPermissions',
                         'body' => '*',
                     ],
                 ],
@@ -298,4 +340,5 @@ return [
             ],
         ],
     ],
+    'numericEnums' => true,
 ];
