@@ -488,9 +488,17 @@ class RestTest extends TestCase
         $condIdempotentOps = $condIdempotentOps->getValue($rest);
         $methodName = sprintf('%s.%s', $resource, $op);
         $preconditionNeeded = array_key_exists($methodName, $condIdempotentOps);
+        $result = $method->invokeArgs($rest, array($methodName, $args));
         if ($preconditionNeeded and $errorCode != 400) {
-            $result = $method->invokeArgs($rest, array($methodName, $args));
             $this->assertEquals($result, $expected);
+        } else {
+            // This case will imply:
+            //     * Precondition needed & errorCode == 400 => No retry
+            //     * Precondition non needed => idempotent / non idempotent op
+            // In both the case, this function's response will never be taken
+            // into consideration for deciding whether to retry or not. Thus
+            // we can just put a dummy assertion here.
+            $this->assertTrue(true);
         }
     }
 
