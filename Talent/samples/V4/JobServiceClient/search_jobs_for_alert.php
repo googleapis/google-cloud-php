@@ -29,16 +29,18 @@ use Google\Cloud\Talent\V4\RequestMetadata;
 use Google\Cloud\Talent\V4\SearchJobsResponse;
 
 /**
- * Searches for jobs using the provided [SearchJobsRequest][google.cloud.talent.v4.SearchJobsRequest].
+ * Searches for jobs using the provided
+ * [SearchJobsRequest][google.cloud.talent.v4.SearchJobsRequest].
  *
  * This API call is intended for the use case of targeting passive job
  * seekers (for example, job seekers who have signed up to receive email
  * alerts about potential job opportunities), it has different algorithmic
  * adjustments that are designed to specifically target passive job seekers.
  *
- * This call constrains the [visibility][google.cloud.talent.v4.Job.visibility] of jobs
- * present in the database, and only returns jobs the caller has
- * permission to search against.
+ * This call constrains the
+ * [visibility][google.cloud.talent.v4.Job.visibility] of jobs present in the
+ * database, and only returns jobs the caller has permission to search
+ * against.
  *
  * @param string $formattedParent The resource name of the tenant to search within.
  *
