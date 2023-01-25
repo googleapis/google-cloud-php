@@ -269,9 +269,10 @@ class Operation
         // Parse only when Read Time is valid
         if (isset($transactionOptions['readOnly']) &&
             is_array($transactionOptions['readOnly']) &&
-            isset($transactionOptions['readOnly']['readTime'])) {
-            $readTime = &$transactionOptions['readOnly']['readTime'];
-            $readTime = $this->parseCoreTimestamp($readTime);
+            isset($transactionOptions['readOnly']['readTime'])
+        ) {
+            $readTime = $transactionOptions['readOnly']['readTime'];
+            $transactionOptions['readOnly']['readTime'] = $this->parseCoreTimestamp($readTime);
         }
         $res = $this->connection->beginTransaction($options + [
             'projectId' => $this->projectId,
@@ -810,7 +811,7 @@ class Operation
      */
     private function parseCoreTimestamp($time)
     {
-        if (!($time instanceof Timestamp)) {
+        if (!$time instanceof Timestamp) {
             throw new \InvalidArgumentException(
                 'Read Time must be an instance of `Google\\Cloud\\Core\\Timestamp`'
             );
