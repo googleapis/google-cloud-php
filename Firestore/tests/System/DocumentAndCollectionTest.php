@@ -47,7 +47,10 @@ class DocumentAndCollectionTest extends FirestoreTestCase
 
     public function testSnapshotWithReadTime()
     {
-        $readTime = new Timestamp(new \DateTimeImmutable());
+        // read snapshot first
+        $snapshot = $this->document->snapshot();
+        // use "now" as last read time
+        $readTime = new Timestamp(new \DateTimeImmutable('now'));
         $snapshotData = $this->document->snapshot([
             'readTime' => $readTime
         ])->data();
