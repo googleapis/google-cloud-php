@@ -30,7 +30,7 @@ use Google\Cloud\NetworkConnectivity\V1\Spoke;
 use Google\Rpc\Status;
 
 /**
- * Creates a spoke in the specified project and location.
+ * Creates a Network Connectivity Center spoke.
  *
  * @param string $formattedParent The parent resource. Please see
  *                                {@see HubServiceClient::locationName()} for help formatting this field.

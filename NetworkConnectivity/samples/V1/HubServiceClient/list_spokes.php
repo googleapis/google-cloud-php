@@ -29,7 +29,8 @@ use Google\Cloud\NetworkConnectivity\V1\HubServiceClient;
 use Google\Cloud\NetworkConnectivity\V1\Spoke;
 
 /**
- * Lists the spokes in the specified project and location.
+ * Lists the Network Connectivity Center spokes in a specified project and
+ * location.
  *
  * @param string $formattedParent The parent resource. Please see
  *                                {@see HubServiceClient::locationName()} for help formatting this field.

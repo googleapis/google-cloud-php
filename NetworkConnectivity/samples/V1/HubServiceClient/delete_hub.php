@@ -29,7 +29,7 @@ use Google\Cloud\NetworkConnectivity\V1\HubServiceClient;
 use Google\Rpc\Status;
 
 /**
- * Deletes the specified hub.
+ * Deletes a Network Connectivity Center hub.
  *
  * @param string $formattedName The name of the hub to delete. Please see
  *                              {@see HubServiceClient::hubName()} for help formatting this field.

@@ -163,6 +163,18 @@ return [
                         'method' => 'get',
                         'uriTemplate' => '/v1/{resource=projects/*/locations/global/policyBasedRoutes/*}:getIamPolicy',
                     ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/serviceConnectionMaps/*}:getIamPolicy',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/serviceConnectionPolicies/*}:getIamPolicy',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/serviceClasses/*}:getIamPolicy',
+                    ],
                 ],
                 'placeholders' => [
                     'resource' => [
@@ -187,6 +199,21 @@ return [
                         'uriTemplate' => '/v1/{resource=projects/*/locations/global/policyBasedRoutes/*}:setIamPolicy',
                         'body' => '*',
                     ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/serviceConnectionMaps/*}:setIamPolicy',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/serviceConnectionPolicies/*}:setIamPolicy',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/serviceClasses/*}:setIamPolicy',
+                        'body' => '*',
+                    ],
                 ],
                 'placeholders' => [
                     'resource' => [
@@ -209,6 +236,21 @@ return [
                     [
                         'method' => 'post',
                         'uriTemplate' => '/v1/{resource=projects/*/locations/global/policyBasedRoutes/*}:testIamPermissions',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/serviceConnectionMaps/*}:testIamPermissions',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/serviceConnectionPolicies/*}:testIamPermissions',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/serviceClasses/*}:testIamPermissions',
                         'body' => '*',
                     ],
                 ],

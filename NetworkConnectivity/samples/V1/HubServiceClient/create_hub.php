@@ -30,7 +30,7 @@ use Google\Cloud\NetworkConnectivity\V1\HubServiceClient;
 use Google\Rpc\Status;
 
 /**
- * Creates a new hub in the specified project.
+ * Creates a new Network Connectivity Center hub in the specified project.
  *
  * @param string $formattedParent The parent resource. Please see
  *                                {@see HubServiceClient::locationName()} for help formatting this field.

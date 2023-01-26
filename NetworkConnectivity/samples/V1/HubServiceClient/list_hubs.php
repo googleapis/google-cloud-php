@@ -29,7 +29,7 @@ use Google\Cloud\NetworkConnectivity\V1\Hub;
 use Google\Cloud\NetworkConnectivity\V1\HubServiceClient;
 
 /**
- * Lists hubs in a given project.
+ * Lists the Network Connectivity Center hubs associated with a given project.
  *
  * @param string $formattedParent The parent resource's name. Please see
  *                                {@see HubServiceClient::locationName()} for help formatting this field.
