@@ -1,5 +1,1444 @@
 # Changelog
 
+## 0.196.0
+
+<details><summary>google/cloud-access-approval 1.0.2</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5760](https://github.com/googleapis/google-cloud-php/issues/5760)) ([d0fafe3](https://github.com/googleapis/google-cloud-php/commit/d0fafe34cd0454164505f033d4186e481a5f0c2f))
+
+</details>
+
+<details><summary>google/access-context-manager 0.3.2</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5760](https://github.com/googleapis/google-cloud-php/issues/5760)) ([d0fafe3](https://github.com/googleapis/google-cloud-php/commit/d0fafe34cd0454164505f033d4186e481a5f0c2f))
+
+</details>
+
+<details><summary>google/cloud-ai-platform 0.11.1</summary>
+
+
+
+</details>
+
+<details><summary>google/analytics-admin 0.8.2</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5760](https://github.com/googleapis/google-cloud-php/issues/5760)) ([d0fafe3](https://github.com/googleapis/google-cloud-php/commit/d0fafe34cd0454164505f033d4186e481a5f0c2f))
+
+</details>
+
+<details><summary>google/analytics-data 0.9.3</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5760](https://github.com/googleapis/google-cloud-php/issues/5760)) ([d0fafe3](https://github.com/googleapis/google-cloud-php/commit/d0fafe34cd0454164505f033d4186e481a5f0c2f))
+
+</details>
+
+<details><summary>google/cloud-api-gateway 1.0.2</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5760](https://github.com/googleapis/google-cloud-php/issues/5760)) ([d0fafe3](https://github.com/googleapis/google-cloud-php/commit/d0fafe34cd0454164505f033d4186e481a5f0c2f))
+
+</details>
+
+<details><summary>google/cloud-api-keys 0.1.3</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5760](https://github.com/googleapis/google-cloud-php/issues/5760)) ([d0fafe3](https://github.com/googleapis/google-cloud-php/commit/d0fafe34cd0454164505f033d4186e481a5f0c2f))
+
+</details>
+
+<details><summary>google/cloud-apigee-connect 1.0.2</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5760](https://github.com/googleapis/google-cloud-php/issues/5760)) ([d0fafe3](https://github.com/googleapis/google-cloud-php/commit/d0fafe34cd0454164505f033d4186e481a5f0c2f))
+
+</details>
+
+<details><summary>google/cloud-apigee-registry 0.2.4</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5760](https://github.com/googleapis/google-cloud-php/issues/5760)) ([d0fafe3](https://github.com/googleapis/google-cloud-php/commit/d0fafe34cd0454164505f033d4186e481a5f0c2f))
+
+</details>
+
+<details><summary>google/cloud-appengine-admin 1.0.2</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5760](https://github.com/googleapis/google-cloud-php/issues/5760)) ([d0fafe3](https://github.com/googleapis/google-cloud-php/commit/d0fafe34cd0454164505f033d4186e481a5f0c2f))
+
+</details>
+
+<details><summary>google/cloud-artifact-registry 0.3.8</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5760](https://github.com/googleapis/google-cloud-php/issues/5760)) ([d0fafe3](https://github.com/googleapis/google-cloud-php/commit/d0fafe34cd0454164505f033d4186e481a5f0c2f))
+
+</details>
+
+<details><summary>google/cloud-asset 1.10.0</summary>
+
+
+
+### Features
+
+* [Asset] introduce Policy Analyzer for Organization Policy ([#5786](https://github.com/googleapis/google-cloud-php/issues/5786)) ([ed4b3cb](https://github.com/googleapis/google-cloud-php/commit/ed4b3cb4e6ed85e22f1fe95e5ae5f88d2af21d0e))
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5760](https://github.com/googleapis/google-cloud-php/issues/5760)) ([d0fafe3](https://github.com/googleapis/google-cloud-php/commit/d0fafe34cd0454164505f033d4186e481a5f0c2f))
+* **deps:** Update dependency google/access-context-manager to ^0.3 ([#5683](https://github.com/googleapis/google-cloud-php/issues/5683)) ([5ace1ac](https://github.com/googleapis/google-cloud-php/commit/5ace1acfeb19bbe6581beb82d4a28adb3cec448a))
+* **deps:** Update dependency google/cloud-osconfig to v1 ([#5684](https://github.com/googleapis/google-cloud-php/issues/5684)) ([6af624e](https://github.com/googleapis/google-cloud-php/commit/6af624e97859256753d0cc9de6c19760d4f2a763))
+
+</details>
+
+<details><summary>google/cloud-assured-workloads 0.7.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-automl 1.4.13</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5760](https://github.com/googleapis/google-cloud-php/issues/5760)) ([d0fafe3](https://github.com/googleapis/google-cloud-php/commit/d0fafe34cd0454164505f033d4186e481a5f0c2f))
+
+</details>
+
+<details><summary>google/cloud-bare-metal-solution 0.2.5</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5760](https://github.com/googleapis/google-cloud-php/issues/5760)) ([d0fafe3](https://github.com/googleapis/google-cloud-php/commit/d0fafe34cd0454164505f033d4186e481a5f0c2f))
+
+</details>
+
+<details><summary>google/cloud-batch 0.3.0</summary>
+
+
+
+### Features
+
+* [Batch] support secret and encrypted environment variables in v1 ([#5712](https://github.com/googleapis/google-cloud-php/issues/5712)) ([27e8454](https://github.com/googleapis/google-cloud-php/commit/27e8454d8a9a0825b776ceeb5698d03fbe11c1c5))
+
+</details>
+
+<details><summary>google/cloud-beyondcorp-appconnections 0.1.3</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5760](https://github.com/googleapis/google-cloud-php/issues/5760)) ([d0fafe3](https://github.com/googleapis/google-cloud-php/commit/d0fafe34cd0454164505f033d4186e481a5f0c2f))
+
+</details>
+
+<details><summary>google/cloud-beyondcorp-appconnectors 0.1.3</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5760](https://github.com/googleapis/google-cloud-php/issues/5760)) ([d0fafe3](https://github.com/googleapis/google-cloud-php/commit/d0fafe34cd0454164505f033d4186e481a5f0c2f))
+
+</details>
+
+<details><summary>google/cloud-beyondcorp-appgateways 0.1.3</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5760](https://github.com/googleapis/google-cloud-php/issues/5760)) ([d0fafe3](https://github.com/googleapis/google-cloud-php/commit/d0fafe34cd0454164505f033d4186e481a5f0c2f))
+
+</details>
+
+<details><summary>google/cloud-beyondcorp-clientconnectorservices 0.1.3</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5760](https://github.com/googleapis/google-cloud-php/issues/5760)) ([d0fafe3](https://github.com/googleapis/google-cloud-php/commit/d0fafe34cd0454164505f033d4186e481a5f0c2f))
+
+</details>
+
+<details><summary>google/cloud-beyondcorp-clientgateways 0.1.3</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5760](https://github.com/googleapis/google-cloud-php/issues/5760)) ([d0fafe3](https://github.com/googleapis/google-cloud-php/commit/d0fafe34cd0454164505f033d4186e481a5f0c2f))
+
+</details>
+
+<details><summary>google/cloud-bigquery 1.24.0</summary>
+
+
+
+### Features
+
+* **BigQuery:** Snapshots / Clones ([#5804](https://github.com/googleapis/google-cloud-php/issues/5804)) ([ab60987](https://github.com/googleapis/google-cloud-php/commit/ab609878edaf80b1a104ccc3171bf7e8e5125873))
+
+</details>
+
+<details><summary>google/cloud-bigquery-analyticshub 0.1.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-bigquery-connection 1.0.2</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5760](https://github.com/googleapis/google-cloud-php/issues/5760)) ([d0fafe3](https://github.com/googleapis/google-cloud-php/commit/d0fafe34cd0454164505f033d4186e481a5f0c2f))
+
+</details>
+
+<details><summary>google/cloud-bigquery-data-exchange 0.2.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-bigquery-datapolicies 0.2.1</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5760](https://github.com/googleapis/google-cloud-php/issues/5760)) ([d0fafe3](https://github.com/googleapis/google-cloud-php/commit/d0fafe34cd0454164505f033d4186e481a5f0c2f))
+
+</details>
+
+<details><summary>google/cloud-bigquerydatatransfer 1.4.0</summary>
+
+
+
+### Features
+
+* [BigQueryDataTransfer] Add location methods ([#5751](https://github.com/googleapis/google-cloud-php/issues/5751)) ([1132ec9](https://github.com/googleapis/google-cloud-php/commit/1132ec910067ca8771444cf04080fea2c7e8e7e8))
+
+</details>
+
+<details><summary>google/cloud-bigquery-migration 0.1.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-bigquery-reservation 1.0.2</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5761](https://github.com/googleapis/google-cloud-php/issues/5761)) ([a88ffcf](https://github.com/googleapis/google-cloud-php/commit/a88ffcfe85171b6f03cc62482447928f19e5a56f))
+
+</details>
+
+<details><summary>google/cloud-bigquery-storage 1.2.9</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-bigtable 1.20.3</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5761](https://github.com/googleapis/google-cloud-php/issues/5761)) ([a88ffcf](https://github.com/googleapis/google-cloud-php/commit/a88ffcfe85171b6f03cc62482447928f19e5a56f))
+* Bigtable typehint for exactMatch ([#5742](https://github.com/googleapis/google-cloud-php/issues/5742)) ([3985c86](https://github.com/googleapis/google-cloud-php/commit/3985c86f82d3dd141cf3b07b728a90b12b9fe355))
+
+</details>
+
+<details><summary>google/cloud-billing 1.5.2</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5761](https://github.com/googleapis/google-cloud-php/issues/5761)) ([a88ffcf](https://github.com/googleapis/google-cloud-php/commit/a88ffcfe85171b6f03cc62482447928f19e5a56f))
+
+</details>
+
+<details><summary>google/cloud-billing-budgets 1.0.2</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5761](https://github.com/googleapis/google-cloud-php/issues/5761)) ([a88ffcf](https://github.com/googleapis/google-cloud-php/commit/a88ffcfe85171b6f03cc62482447928f19e5a56f))
+
+</details>
+
+<details><summary>google/cloud-binary-authorization 0.5.6</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5761](https://github.com/googleapis/google-cloud-php/issues/5761)) ([a88ffcf](https://github.com/googleapis/google-cloud-php/commit/a88ffcfe85171b6f03cc62482447928f19e5a56f))
+
+</details>
+
+<details><summary>google/cloud-build 0.3.7</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-certificate-manager 0.3.3</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5761](https://github.com/googleapis/google-cloud-php/issues/5761)) ([a88ffcf](https://github.com/googleapis/google-cloud-php/commit/a88ffcfe85171b6f03cc62482447928f19e5a56f))
+
+</details>
+
+<details><summary>google/cloud-channel 1.1.0</summary>
+
+
+
+### Features
+
+* [Channel] Add CloudChannelReportsService ([#5121](https://github.com/googleapis/google-cloud-php/issues/5121)) ([82d2efa](https://github.com/googleapis/google-cloud-php/commit/82d2efa221e6096487abcb9acfcc6b4ae7c9197b))
+
+</details>
+
+<details><summary>google/cloud-common-protos 0.3.8</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-compute 1.6.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-contact-center-insights 1.0.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-container 1.10.0</summary>
+
+
+
+### Features
+
+* [Container] add etags for cluster and node pool update operations ([#5713](https://github.com/googleapis/google-cloud-php/issues/5713)) ([e80c436](https://github.com/googleapis/google-cloud-php/commit/e80c43616e95cff7ad9d5eed3fe49f8c6708234f))
+
+</details>
+
+<details><summary>google/cloud-container-analysis 0.2.9</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5761](https://github.com/googleapis/google-cloud-php/issues/5761)) ([a88ffcf](https://github.com/googleapis/google-cloud-php/commit/a88ffcfe85171b6f03cc62482447928f19e5a56f))
+
+</details>
+
+<details><summary>google/cloud-core 1.49.0</summary>
+
+
+
+### Features
+
+* Add support for Monolog 3.x ([#5334](https://github.com/googleapis/google-cloud-php/issues/5334)) ([6ad6bc3](https://github.com/googleapis/google-cloud-php/commit/6ad6bc3249e8ce5d95f8e40021254565fcf8f8a4))
+* **Core:** Add retryFunction in GrpcRequestWrapper::send ([#5770](https://github.com/googleapis/google-cloud-php/issues/5770)) ([b15f5b1](https://github.com/googleapis/google-cloud-php/commit/b15f5b19a77b39f5160c080275bc0b296ee3671b))
+* **Core:** Add retryFunction in Rest/Grpc traits ([#5782](https://github.com/googleapis/google-cloud-php/issues/5782)) ([e1fde13](https://github.com/googleapis/google-cloud-php/commit/e1fde139b978379a739fc5787486dd709eb50208))
+
+</details>
+
+<details><summary>google/cloud-data-catalog 1.3.8</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-data-fusion 0.2.8</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5761](https://github.com/googleapis/google-cloud-php/issues/5761)) ([a88ffcf](https://github.com/googleapis/google-cloud-php/commit/a88ffcfe85171b6f03cc62482447928f19e5a56f))
+
+</details>
+
+<details><summary>google/cloud-datalabeling 0.1.11</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5761](https://github.com/googleapis/google-cloud-php/issues/5761)) ([a88ffcf](https://github.com/googleapis/google-cloud-php/commit/a88ffcfe85171b6f03cc62482447928f19e5a56f))
+
+</details>
+
+<details><summary>google/cloud-dataflow 0.3.7</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5761](https://github.com/googleapis/google-cloud-php/issues/5761)) ([a88ffcf](https://github.com/googleapis/google-cloud-php/commit/a88ffcfe85171b6f03cc62482447928f19e5a56f))
+
+</details>
+
+<details><summary>google/cloud-dataform 0.1.3</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5761](https://github.com/googleapis/google-cloud-php/issues/5761)) ([a88ffcf](https://github.com/googleapis/google-cloud-php/commit/a88ffcfe85171b6f03cc62482447928f19e5a56f))
+
+</details>
+
+<details><summary>google/cloud-dataplex 0.2.0</summary>
+
+
+
+### Features
+
+* [Dataplex] introduce DataScans service ([#5391](https://github.com/googleapis/google-cloud-php/issues/5391)) ([be3bf0c](https://github.com/googleapis/google-cloud-php/commit/be3bf0cba62337a4f1c2aca3cd10c5dfd5d96479))
+
+</details>
+
+<details><summary>google/cloud-dataproc 3.3.0</summary>
+
+
+
+### Features
+
+* [Dataproc] added node groups API protos ([#5698](https://github.com/googleapis/google-cloud-php/issues/5698)) ([4afaf33](https://github.com/googleapis/google-cloud-php/commit/4afaf337b008104d275f88ccbced8b9a6d417707))
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5761](https://github.com/googleapis/google-cloud-php/issues/5761)) ([a88ffcf](https://github.com/googleapis/google-cloud-php/commit/a88ffcfe85171b6f03cc62482447928f19e5a56f))
+
+</details>
+
+<details><summary>google/cloud-dataproc-metastore 0.5.0</summary>
+
+
+
+### Features
+
+* Added QueryMetadata API ([#5721](https://github.com/googleapis/google-cloud-php/issues/5721)) ([7ff22d2](https://github.com/googleapis/google-cloud-php/commit/7ff22d24cd84c6898f7d73583cd3261379d8c150))
+
+</details>
+
+<details><summary>google/cloud-datastore 1.18.0</summary>
+
+
+
+### Features
+
+* **Datastore:** Add snapshot read feature ([#5734](https://github.com/googleapis/google-cloud-php/issues/5734)) ([7e1e62b](https://github.com/googleapis/google-cloud-php/commit/7e1e62b3a381f02556c94ba7d8b3f297ad8fa142))
+
+
+### Bug Fixes
+
+* [Datastore] query limit fails for string limit ([#5826](https://github.com/googleapis/google-cloud-php/issues/5826)) ([610739d](https://github.com/googleapis/google-cloud-php/commit/610739d68a8b42ab1a5dd7bf6549985a62b9c577))
+* [Datastore] use timestamp type ([#5801](https://github.com/googleapis/google-cloud-php/issues/5801)) ([dfed504](https://github.com/googleapis/google-cloud-php/commit/dfed504ffca9119d8117a4942e80230dd392aef5))
+* [Many APIs] expose numericEnums option in rest client config ([#5761](https://github.com/googleapis/google-cloud-php/issues/5761)) ([a88ffcf](https://github.com/googleapis/google-cloud-php/commit/a88ffcfe85171b6f03cc62482447928f19e5a56f))
+* **Datastore:** Migrate to env var PROJECT_ID ([#5757](https://github.com/googleapis/google-cloud-php/issues/5757)) ([560e3b3](https://github.com/googleapis/google-cloud-php/commit/560e3b39d01d5568a8c6cb40c681d41ec52f5d55))
+* **datastore:** Query limit more than 300 ([#5592](https://github.com/googleapis/google-cloud-php/issues/5592)) ([b272644](https://github.com/googleapis/google-cloud-php/commit/b272644cac98e2548c9efc229724a620e7ad0fa0))
+
+</details>
+
+<details><summary>google/cloud-datastore-admin 0.5.5</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5761](https://github.com/googleapis/google-cloud-php/issues/5761)) ([a88ffcf](https://github.com/googleapis/google-cloud-php/commit/a88ffcfe85171b6f03cc62482447928f19e5a56f))
+
+</details>
+
+<details><summary>google/cloud-datastream 1.0.2</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5761](https://github.com/googleapis/google-cloud-php/issues/5761)) ([a88ffcf](https://github.com/googleapis/google-cloud-php/commit/a88ffcfe85171b6f03cc62482447928f19e5a56f))
+
+</details>
+
+<details><summary>google/cloud-debugger 1.4.13</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5761](https://github.com/googleapis/google-cloud-php/issues/5761)) ([a88ffcf](https://github.com/googleapis/google-cloud-php/commit/a88ffcfe85171b6f03cc62482447928f19e5a56f))
+
+</details>
+
+<details><summary>google/cloud-deploy 0.3.3</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5761](https://github.com/googleapis/google-cloud-php/issues/5761)) ([a88ffcf](https://github.com/googleapis/google-cloud-php/commit/a88ffcfe85171b6f03cc62482447928f19e5a56f))
+
+</details>
+
+<details><summary>google/cloud-dialogflow 1.1.0</summary>
+
+
+
+### Features
+
+* [Dialogflow] Added SuggestConversationSummary RPC ([#5788](https://github.com/googleapis/google-cloud-php/issues/5788)) ([4e2bdab](https://github.com/googleapis/google-cloud-php/commit/4e2bdab7b1c43fcf21f8bbb846192b60a9aa7acd))
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5761](https://github.com/googleapis/google-cloud-php/issues/5761)) ([a88ffcf](https://github.com/googleapis/google-cloud-php/commit/a88ffcfe85171b6f03cc62482447928f19e5a56f))
+
+</details>
+
+<details><summary>google/cloud-dlp 1.8.2</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5761](https://github.com/googleapis/google-cloud-php/issues/5761)) ([a88ffcf](https://github.com/googleapis/google-cloud-php/commit/a88ffcfe85171b6f03cc62482447928f19e5a56f))
+
+</details>
+
+<details><summary>google/cloud-dms 1.0.2</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5761](https://github.com/googleapis/google-cloud-php/issues/5761)) ([a88ffcf](https://github.com/googleapis/google-cloud-php/commit/a88ffcfe85171b6f03cc62482447928f19e5a56f))
+
+</details>
+
+<details><summary>google/cloud-document-ai 1.1.0</summary>
+
+
+
+### Features
+
+* [DocumentAi] added sharding_config field in DocumentOutputConfig.GcsOutputConfig in document_io.proto ([#5703](https://github.com/googleapis/google-cloud-php/issues/5703)) ([c8aa644](https://github.com/googleapis/google-cloud-php/commit/c8aa644180dfeb7fede3768f051ce9cf401c0ace))
+* [DocumentAi] exposed GetProcessorType to v1 ([#5792](https://github.com/googleapis/google-cloud-php/issues/5792)) ([1820f6f](https://github.com/googleapis/google-cloud-php/commit/1820f6ffad38ced3046e0d61af15d6bda24640fc))
+
+</details>
+
+<details><summary>google/cloud-domains 0.2.7</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5762](https://github.com/googleapis/google-cloud-php/issues/5762)) ([6b2d972](https://github.com/googleapis/google-cloud-php/commit/6b2d972a4b22d2827ba266b03701878c2ee58921))
+
+</details>
+
+<details><summary>google/cloud-error-reporting 0.19.9</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5762](https://github.com/googleapis/google-cloud-php/issues/5762)) ([6b2d972](https://github.com/googleapis/google-cloud-php/commit/6b2d972a4b22d2827ba266b03701878c2ee58921))
+
+</details>
+
+<details><summary>google/cloud-essential-contacts 0.2.10</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5762](https://github.com/googleapis/google-cloud-php/issues/5762)) ([6b2d972](https://github.com/googleapis/google-cloud-php/commit/6b2d972a4b22d2827ba266b03701878c2ee58921))
+
+</details>
+
+<details><summary>google/cloud-eventarc 1.0.2</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5762](https://github.com/googleapis/google-cloud-php/issues/5762)) ([6b2d972](https://github.com/googleapis/google-cloud-php/commit/6b2d972a4b22d2827ba266b03701878c2ee58921))
+
+</details>
+
+<details><summary>google/cloud-eventarc-publishing 0.3.2</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5762](https://github.com/googleapis/google-cloud-php/issues/5762)) ([6b2d972](https://github.com/googleapis/google-cloud-php/commit/6b2d972a4b22d2827ba266b03701878c2ee58921))
+
+</details>
+
+<details><summary>google/cloud-filestore 1.0.2</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5762](https://github.com/googleapis/google-cloud-php/issues/5762)) ([6b2d972](https://github.com/googleapis/google-cloud-php/commit/6b2d972a4b22d2827ba266b03701878c2ee58921))
+
+</details>
+
+<details><summary>google/cloud-firestore 1.27.2</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5762](https://github.com/googleapis/google-cloud-php/issues/5762)) ([6b2d972](https://github.com/googleapis/google-cloud-php/commit/6b2d972a4b22d2827ba266b03701878c2ee58921))
+* **Firestore:** SnapshotTrait getSnapshot method ([#5807](https://github.com/googleapis/google-cloud-php/issues/5807)) ([cfc8fef](https://github.com/googleapis/google-cloud-php/commit/cfc8fef1dfa5ce58f87d0e007f8e8fb3e63beee7))
+
+</details>
+
+<details><summary>google/cloud-functions 1.0.2</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5762](https://github.com/googleapis/google-cloud-php/issues/5762)) ([6b2d972](https://github.com/googleapis/google-cloud-php/commit/6b2d972a4b22d2827ba266b03701878c2ee58921))
+
+</details>
+
+<details><summary>google/cloud-gsuite-addons 0.1.3</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5762](https://github.com/googleapis/google-cloud-php/issues/5762)) ([6b2d972](https://github.com/googleapis/google-cloud-php/commit/6b2d972a4b22d2827ba266b03701878c2ee58921))
+
+</details>
+
+<details><summary>google/cloud-game-servers 1.0.2</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5762](https://github.com/googleapis/google-cloud-php/issues/5762)) ([6b2d972](https://github.com/googleapis/google-cloud-php/commit/6b2d972a4b22d2827ba266b03701878c2ee58921))
+
+</details>
+
+<details><summary>google/cloud-gke-backup 0.1.4</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5762](https://github.com/googleapis/google-cloud-php/issues/5762)) ([6b2d972](https://github.com/googleapis/google-cloud-php/commit/6b2d972a4b22d2827ba266b03701878c2ee58921))
+
+</details>
+
+<details><summary>google/cloud-gke-connect-gateway 0.1.10</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-gke-hub 0.5.5</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5762](https://github.com/googleapis/google-cloud-php/issues/5762)) ([6b2d972](https://github.com/googleapis/google-cloud-php/commit/6b2d972a4b22d2827ba266b03701878c2ee58921))
+
+</details>
+
+<details><summary>google/cloud-gke-multi-cloud 0.2.0</summary>
+
+
+
+### Features
+
+* [GkeMultiCloud] Support AttachedClusters ([#5724](https://github.com/googleapis/google-cloud-php/issues/5724)) ([2354848](https://github.com/googleapis/google-cloud-php/commit/235484862133f71e4d4f4e50b1ef9307a9dd0279))
+
+</details>
+
+<details><summary>google/grafeas 0.4.3</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5762](https://github.com/googleapis/google-cloud-php/issues/5762)) ([6b2d972](https://github.com/googleapis/google-cloud-php/commit/6b2d972a4b22d2827ba266b03701878c2ee58921))
+
+</details>
+
+<details><summary>google/cloud-iam 0.1.3</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5762](https://github.com/googleapis/google-cloud-php/issues/5762)) ([6b2d972](https://github.com/googleapis/google-cloud-php/commit/6b2d972a4b22d2827ba266b03701878c2ee58921))
+
+</details>
+
+<details><summary>google/cloud-iam-credentials 1.0.2</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5762](https://github.com/googleapis/google-cloud-php/issues/5762)) ([6b2d972](https://github.com/googleapis/google-cloud-php/commit/6b2d972a4b22d2827ba266b03701878c2ee58921))
+
+</details>
+
+<details><summary>google/cloud-iap 1.1.0</summary>
+
+
+
+### Features
+
+* [Iap] add AllowedDomainSettings to the UpdateIapSettingsRequest ([#5723](https://github.com/googleapis/google-cloud-php/issues/5723)) ([3b2e1b5](https://github.com/googleapis/google-cloud-php/commit/3b2e1b5eb4a213777ce753c51ae9a95d804d595f))
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5762](https://github.com/googleapis/google-cloud-php/issues/5762)) ([6b2d972](https://github.com/googleapis/google-cloud-php/commit/6b2d972a4b22d2827ba266b03701878c2ee58921))
+
+</details>
+
+<details><summary>google/cloud-ids 0.1.9</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5762](https://github.com/googleapis/google-cloud-php/issues/5762)) ([6b2d972](https://github.com/googleapis/google-cloud-php/commit/6b2d972a4b22d2827ba266b03701878c2ee58921))
+
+</details>
+
+<details><summary>google/cloud-iot 1.5.8</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5762](https://github.com/googleapis/google-cloud-php/issues/5762)) ([6b2d972](https://github.com/googleapis/google-cloud-php/commit/6b2d972a4b22d2827ba266b03701878c2ee58921))
+
+</details>
+
+<details><summary>google/cloud-kms 1.15.2</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5762](https://github.com/googleapis/google-cloud-php/issues/5762)) ([6b2d972](https://github.com/googleapis/google-cloud-php/commit/6b2d972a4b22d2827ba266b03701878c2ee58921))
+
+</details>
+
+<details><summary>google/cloud-language 0.28.2</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5762](https://github.com/googleapis/google-cloud-php/issues/5762)) ([6b2d972](https://github.com/googleapis/google-cloud-php/commit/6b2d972a4b22d2827ba266b03701878c2ee58921))
+
+</details>
+
+<details><summary>google/cloud-life-sciences 0.3.2</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5763](https://github.com/googleapis/google-cloud-php/issues/5763)) ([914fc46](https://github.com/googleapis/google-cloud-php/commit/914fc461af19e46e9f7fa75c5e19dce70ef2aca9))
+
+</details>
+
+<details><summary>google/cloud-logging 1.25.0</summary>
+
+
+
+### Features
+
+* Add support for Monolog 3.x ([#5334](https://github.com/googleapis/google-cloud-php/issues/5334)) ([6ad6bc3](https://github.com/googleapis/google-cloud-php/commit/6ad6bc3249e8ce5d95f8e40021254565fcf8f8a4))
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5763](https://github.com/googleapis/google-cloud-php/issues/5763)) ([914fc46](https://github.com/googleapis/google-cloud-php/commit/914fc461af19e46e9f7fa75c5e19dce70ef2aca9))
+
+</details>
+
+<details><summary>google/longrunning 0.2.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-managed-identities 1.0.2</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5763](https://github.com/googleapis/google-cloud-php/issues/5763)) ([914fc46](https://github.com/googleapis/google-cloud-php/commit/914fc461af19e46e9f7fa75c5e19dce70ef2aca9))
+
+</details>
+
+<details><summary>google/cloud-media-translation 0.2.9</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5763](https://github.com/googleapis/google-cloud-php/issues/5763)) ([914fc46](https://github.com/googleapis/google-cloud-php/commit/914fc461af19e46e9f7fa75c5e19dce70ef2aca9))
+
+</details>
+
+<details><summary>google/cloud-memcache 1.0.2</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5763](https://github.com/googleapis/google-cloud-php/issues/5763)) ([914fc46](https://github.com/googleapis/google-cloud-php/commit/914fc461af19e46e9f7fa75c5e19dce70ef2aca9))
+
+</details>
+
+<details><summary>google/cloud-monitoring 1.3.0</summary>
+
+
+
+### Features
+
+* [Monitoring] Added Snooze API support ([#5768](https://github.com/googleapis/google-cloud-php/issues/5768)) ([b3db04d](https://github.com/googleapis/google-cloud-php/commit/b3db04d898a3b55de6f157cc0f88bbdb7d7e1c17))
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5763](https://github.com/googleapis/google-cloud-php/issues/5763)) ([914fc46](https://github.com/googleapis/google-cloud-php/commit/914fc461af19e46e9f7fa75c5e19dce70ef2aca9))
+
+</details>
+
+<details><summary>google/cloud-network-connectivity 1.0.2</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5763](https://github.com/googleapis/google-cloud-php/issues/5763)) ([914fc46](https://github.com/googleapis/google-cloud-php/commit/914fc461af19e46e9f7fa75c5e19dce70ef2aca9))
+
+</details>
+
+<details><summary>google/cloud-network-management 1.0.2</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5763](https://github.com/googleapis/google-cloud-php/issues/5763)) ([914fc46](https://github.com/googleapis/google-cloud-php/commit/914fc461af19e46e9f7fa75c5e19dce70ef2aca9))
+
+</details>
+
+<details><summary>google/cloud-network-security 0.3.3</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5763](https://github.com/googleapis/google-cloud-php/issues/5763)) ([914fc46](https://github.com/googleapis/google-cloud-php/commit/914fc461af19e46e9f7fa75c5e19dce70ef2aca9))
+
+</details>
+
+<details><summary>google/cloud-notebooks 0.3.2</summary>
+
+
+
+### Bug Fixes
+
+* [Notebooks] expose numericEnums option in rest client config ([#5752](https://github.com/googleapis/google-cloud-php/issues/5752)) ([c029871](https://github.com/googleapis/google-cloud-php/commit/c029871b066f9db54f335f071aa20d2f954b1549))
+
+</details>
+
+<details><summary>google/cloud-optimization 0.1.6</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5763](https://github.com/googleapis/google-cloud-php/issues/5763)) ([914fc46](https://github.com/googleapis/google-cloud-php/commit/914fc461af19e46e9f7fa75c5e19dce70ef2aca9))
+
+</details>
+
+<details><summary>google/cloud-orchestration-airflow 1.0.2</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5763](https://github.com/googleapis/google-cloud-php/issues/5763)) ([914fc46](https://github.com/googleapis/google-cloud-php/commit/914fc461af19e46e9f7fa75c5e19dce70ef2aca9))
+
+</details>
+
+<details><summary>google/cloud-org-policy 0.3.7</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5763](https://github.com/googleapis/google-cloud-php/issues/5763)) ([914fc46](https://github.com/googleapis/google-cloud-php/commit/914fc461af19e46e9f7fa75c5e19dce70ef2aca9))
+
+</details>
+
+<details><summary>google/cloud-osconfig 1.0.2</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5763](https://github.com/googleapis/google-cloud-php/issues/5763)) ([914fc46](https://github.com/googleapis/google-cloud-php/commit/914fc461af19e46e9f7fa75c5e19dce70ef2aca9))
+
+</details>
+
+<details><summary>google/cloud-oslogin 1.4.2</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5763](https://github.com/googleapis/google-cloud-php/issues/5763)) ([914fc46](https://github.com/googleapis/google-cloud-php/commit/914fc461af19e46e9f7fa75c5e19dce70ef2aca9))
+
+</details>
+
+<details><summary>google/cloud-policy-troubleshooter 1.0.2</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5763](https://github.com/googleapis/google-cloud-php/issues/5763)) ([914fc46](https://github.com/googleapis/google-cloud-php/commit/914fc461af19e46e9f7fa75c5e19dce70ef2aca9))
+
+</details>
+
+<details><summary>google/cloud-private-catalog 0.2.11</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5763](https://github.com/googleapis/google-cloud-php/issues/5763)) ([914fc46](https://github.com/googleapis/google-cloud-php/commit/914fc461af19e46e9f7fa75c5e19dce70ef2aca9))
+
+</details>
+
+<details><summary>google/cloud-profiler 1.0.2</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5763](https://github.com/googleapis/google-cloud-php/issues/5763)) ([914fc46](https://github.com/googleapis/google-cloud-php/commit/914fc461af19e46e9f7fa75c5e19dce70ef2aca9))
+
+</details>
+
+<details><summary>google/cloud-pubsub 1.40.0</summary>
+
+
+
+### Features
+
+* [PubSub] add schema evolution methods and fields ([#5722](https://github.com/googleapis/google-cloud-php/issues/5722)) ([8685df0](https://github.com/googleapis/google-cloud-php/commit/8685df08a47559cb417b869558334e6e3d7507de))
+
+</details>
+
+<details><summary>google/cloud-recaptcha-enterprise 1.2.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-recommendations-ai 0.4.9</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5763](https://github.com/googleapis/google-cloud-php/issues/5763)) ([914fc46](https://github.com/googleapis/google-cloud-php/commit/914fc461af19e46e9f7fa75c5e19dce70ef2aca9))
+
+</details>
+
+<details><summary>google/cloud-recommender 1.7.4</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5763](https://github.com/googleapis/google-cloud-php/issues/5763)) ([914fc46](https://github.com/googleapis/google-cloud-php/commit/914fc461af19e46e9f7fa75c5e19dce70ef2aca9))
+
+</details>
+
+<details><summary>google/cloud-redis 1.6.8</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5763](https://github.com/googleapis/google-cloud-php/issues/5763)) ([914fc46](https://github.com/googleapis/google-cloud-php/commit/914fc461af19e46e9f7fa75c5e19dce70ef2aca9))
+
+</details>
+
+<details><summary>google/cloud-resource-manager 0.3.8</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5764](https://github.com/googleapis/google-cloud-php/issues/5764)) ([a2635e0](https://github.com/googleapis/google-cloud-php/commit/a2635e0c722fb502e0769a1a4041a20f516a0675))
+
+</details>
+
+<details><summary>google/cloud-resource-settings 1.0.2</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5764](https://github.com/googleapis/google-cloud-php/issues/5764)) ([a2635e0](https://github.com/googleapis/google-cloud-php/commit/a2635e0c722fb502e0769a1a4041a20f516a0675))
+
+</details>
+
+<details><summary>google/cloud-retail 1.1.0</summary>
+
+
+
+### Features
+
+* [Retail] support async write mode for WriteUserEvent API ([#5714](https://github.com/googleapis/google-cloud-php/issues/5714)) ([9e4cf9c](https://github.com/googleapis/google-cloud-php/commit/9e4cf9c62bef14083cfa2b973c1f8d66db2d1c8d))
+
+</details>
+
+<details><summary>google/cloud-run 0.3.2</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5764](https://github.com/googleapis/google-cloud-php/issues/5764)) ([a2635e0](https://github.com/googleapis/google-cloud-php/commit/a2635e0c722fb502e0769a1a4041a20f516a0675))
+
+</details>
+
+<details><summary>google/cloud-scheduler 1.7.0</summary>
+
+
+
+### Features
+
+* [Scheduler] add location RPCs / legacy_app_engine_cron option ([#5705](https://github.com/googleapis/google-cloud-php/issues/5705)) ([cc7b7ad](https://github.com/googleapis/google-cloud-php/commit/cc7b7ad251d5da9e739be678f3c5dbdac81e367e))
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5764](https://github.com/googleapis/google-cloud-php/issues/5764)) ([a2635e0](https://github.com/googleapis/google-cloud-php/commit/a2635e0c722fb502e0769a1a4041a20f516a0675))
+
+</details>
+
+<details><summary>google/cloud-secret-manager 1.10.0</summary>
+
+
+
+### Features
+
+* [SecretManager] update public API to include annotation support ([#5720](https://github.com/googleapis/google-cloud-php/issues/5720)) ([712f47a](https://github.com/googleapis/google-cloud-php/commit/712f47a132a7f7965edbd428fa49377981514e3a))
+
+</details>
+
+<details><summary>google/cloud-security-center 1.14.0</summary>
+
+
+
+### Features
+
+* [SecurityCenter] add user_name field to the finding access ([#5706](https://github.com/googleapis/google-cloud-php/issues/5706)) ([01ae6f7](https://github.com/googleapis/google-cloud-php/commit/01ae6f76e1a144e410fbc4d1543a0761a579de9b))
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5764](https://github.com/googleapis/google-cloud-php/issues/5764)) ([a2635e0](https://github.com/googleapis/google-cloud-php/commit/a2635e0c722fb502e0769a1a4041a20f516a0675))
+
+
+### Documentation
+
+* [SecurityCenter] Update documentation for Security Command Center *.assets.list "parent" parameter ([#5785](https://github.com/googleapis/google-cloud-php/issues/5785)) ([390dfa4](https://github.com/googleapis/google-cloud-php/commit/390dfa406d25ee5b3b29de8fae6936485d3258fc))
+
+</details>
+
+<details><summary>google/cloud-security-private-ca 1.0.2</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5764](https://github.com/googleapis/google-cloud-php/issues/5764)) ([a2635e0](https://github.com/googleapis/google-cloud-php/commit/a2635e0c722fb502e0769a1a4041a20f516a0675))
+
+</details>
+
+<details><summary>google/cloud-security-public-ca 0.1.3</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5764](https://github.com/googleapis/google-cloud-php/issues/5764)) ([a2635e0](https://github.com/googleapis/google-cloud-php/commit/a2635e0c722fb502e0769a1a4041a20f516a0675))
+
+</details>
+
+<details><summary>google/cloud-service-control 1.0.2</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5764](https://github.com/googleapis/google-cloud-php/issues/5764)) ([a2635e0](https://github.com/googleapis/google-cloud-php/commit/a2635e0c722fb502e0769a1a4041a20f516a0675))
+
+</details>
+
+<details><summary>google/cloud-service-directory 1.0.2</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5764](https://github.com/googleapis/google-cloud-php/issues/5764)) ([a2635e0](https://github.com/googleapis/google-cloud-php/commit/a2635e0c722fb502e0769a1a4041a20f516a0675))
+
+</details>
+
+<details><summary>google/cloud-service-management 1.0.2</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5764](https://github.com/googleapis/google-cloud-php/issues/5764)) ([a2635e0](https://github.com/googleapis/google-cloud-php/commit/a2635e0c722fb502e0769a1a4041a20f516a0675))
+
+</details>
+
+<details><summary>google/cloud-service-usage 1.0.2</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5764](https://github.com/googleapis/google-cloud-php/issues/5764)) ([a2635e0](https://github.com/googleapis/google-cloud-php/commit/a2635e0c722fb502e0769a1a4041a20f516a0675))
+
+</details>
+
+<details><summary>google/cloud-shell 1.0.2</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5764](https://github.com/googleapis/google-cloud-php/issues/5764)) ([a2635e0](https://github.com/googleapis/google-cloud-php/commit/a2635e0c722fb502e0769a1a4041a20f516a0675))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.55.0</summary>
+
+
+
+### Features
+
+* **Spanner:** FGAC support ([#5642](https://github.com/googleapis/google-cloud-php/issues/5642)) ([0f25677](https://github.com/googleapis/google-cloud-php/commit/0f25677e0654d2633fba5b7936edcc917083a47e))
+
+</details>
+
+<details><summary>google/cloud-speech 1.9.0</summary>
+
+
+
+### Features
+
+* [Speech] Added ABNF Grammars field in Speech Adaptation ([#5759](https://github.com/googleapis/google-cloud-php/issues/5759)) ([badd9d4](https://github.com/googleapis/google-cloud-php/commit/badd9d4b31f90fd30d34c70dd8d1d22b6354bc3f))
+
+</details>
+
+<details><summary>google/cloud-sql-admin 0.2.8</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5764](https://github.com/googleapis/google-cloud-php/issues/5764)) ([a2635e0](https://github.com/googleapis/google-cloud-php/commit/a2635e0c722fb502e0769a1a4041a20f516a0675))
+
+</details>
+
+<details><summary>google/cloud-storage 1.30.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-storage-transfer 1.0.2</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5764](https://github.com/googleapis/google-cloud-php/issues/5764)) ([a2635e0](https://github.com/googleapis/google-cloud-php/commit/a2635e0c722fb502e0769a1a4041a20f516a0675))
+
+</details>
+
+<details><summary>google/cloud-talent 1.0.2</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5764](https://github.com/googleapis/google-cloud-php/issues/5764)) ([a2635e0](https://github.com/googleapis/google-cloud-php/commit/a2635e0c722fb502e0769a1a4041a20f516a0675))
+
+</details>
+
+<details><summary>google/cloud-tasks 1.11.8</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5764](https://github.com/googleapis/google-cloud-php/issues/5764)) ([a2635e0](https://github.com/googleapis/google-cloud-php/commit/a2635e0c722fb502e0769a1a4041a20f516a0675))
+
+</details>
+
+<details><summary>google/cloud-text-to-speech 1.5.1</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5764](https://github.com/googleapis/google-cloud-php/issues/5764)) ([a2635e0](https://github.com/googleapis/google-cloud-php/commit/a2635e0c722fb502e0769a1a4041a20f516a0675))
+
+</details>
+
+<details><summary>google/cloud-tpu 1.0.2</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5764](https://github.com/googleapis/google-cloud-php/issues/5764)) ([a2635e0](https://github.com/googleapis/google-cloud-php/commit/a2635e0c722fb502e0769a1a4041a20f516a0675))
+
+</details>
+
+<details><summary>google/cloud-trace 1.5.0</summary>
+
+
+
+### Features
+
+* [Trace] Add Cloud Trace v2 retry defaults for BatchWriteSpans ([#5809](https://github.com/googleapis/google-cloud-php/issues/5809)) ([94b0805](https://github.com/googleapis/google-cloud-php/commit/94b08051e8b55ed1f5771fe8d8c59d2256ec0aed))
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5764](https://github.com/googleapis/google-cloud-php/issues/5764)) ([a2635e0](https://github.com/googleapis/google-cloud-php/commit/a2635e0c722fb502e0769a1a4041a20f516a0675))
+
+
+### Documentation
+
+* [Trace] Remove html formatting (cleanup) ([#5812](https://github.com/googleapis/google-cloud-php/issues/5812)) ([49f5887](https://github.com/googleapis/google-cloud-php/commit/49f58872f783334cce57214b084e82246f33faf1))
+
+</details>
+
+<details><summary>google/cloud-translate 1.12.11</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5764](https://github.com/googleapis/google-cloud-php/issues/5764)) ([a2635e0](https://github.com/googleapis/google-cloud-php/commit/a2635e0c722fb502e0769a1a4041a20f516a0675))
+
+</details>
+
+<details><summary>google/cloud-videointelligence 1.12.13</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5765](https://github.com/googleapis/google-cloud-php/issues/5765)) ([672fb77](https://github.com/googleapis/google-cloud-php/commit/672fb77e0ce1b4f2caea771984ba7e8a54ba9492))
+
+</details>
+
+<details><summary>google/cloud-video-live-stream 0.2.5</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5765](https://github.com/googleapis/google-cloud-php/issues/5765)) ([672fb77](https://github.com/googleapis/google-cloud-php/commit/672fb77e0ce1b4f2caea771984ba7e8a54ba9492))
+
+</details>
+
+<details><summary>google/cloud-video-stitcher 0.3.3</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5765](https://github.com/googleapis/google-cloud-php/issues/5765)) ([672fb77](https://github.com/googleapis/google-cloud-php/commit/672fb77e0ce1b4f2caea771984ba7e8a54ba9492))
+
+</details>
+
+<details><summary>google/cloud-video-transcoder 0.5.2</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5765](https://github.com/googleapis/google-cloud-php/issues/5765)) ([672fb77](https://github.com/googleapis/google-cloud-php/commit/672fb77e0ce1b4f2caea771984ba7e8a54ba9492))
+
+</details>
+
+<details><summary>google/cloud-vision 1.6.3</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5765](https://github.com/googleapis/google-cloud-php/issues/5765)) ([672fb77](https://github.com/googleapis/google-cloud-php/commit/672fb77e0ce1b4f2caea771984ba7e8a54ba9492))
+
+
+### Documentation
+
+* Address suggestions from docfx review ([#5767](https://github.com/googleapis/google-cloud-php/issues/5767)) ([16f914e](https://github.com/googleapis/google-cloud-php/commit/16f914e90e0678810389fc4a3d50f5e75a95ccad))
+
+</details>
+
+<details><summary>google/cloud-vm-migration 0.2.3</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5765](https://github.com/googleapis/google-cloud-php/issues/5765)) ([672fb77](https://github.com/googleapis/google-cloud-php/commit/672fb77e0ce1b4f2caea771984ba7e8a54ba9492))
+
+</details>
+
+<details><summary>google/cloud-vmware-engine 0.1.1</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5765](https://github.com/googleapis/google-cloud-php/issues/5765)) ([672fb77](https://github.com/googleapis/google-cloud-php/commit/672fb77e0ce1b4f2caea771984ba7e8a54ba9492))
+* [VmwareEngine] expose numericEnums option in rest client config / update location in docstrings to use `us-central1` ([#5775](https://github.com/googleapis/google-cloud-php/issues/5775)) ([53f9566](https://github.com/googleapis/google-cloud-php/commit/53f9566b188da12b605ef34eed928d6490b534dd))
+
+</details>
+
+<details><summary>google/cloud-vpc-access 1.0.2</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5765](https://github.com/googleapis/google-cloud-php/issues/5765)) ([672fb77](https://github.com/googleapis/google-cloud-php/commit/672fb77e0ce1b4f2caea771984ba7e8a54ba9492))
+
+</details>
+
+<details><summary>google/cloud-web-risk 1.2.3</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5765](https://github.com/googleapis/google-cloud-php/issues/5765)) ([672fb77](https://github.com/googleapis/google-cloud-php/commit/672fb77e0ce1b4f2caea771984ba7e8a54ba9492))
+
+</details>
+
+<details><summary>google/cloud-web-security-scanner 0.7.10</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5765](https://github.com/googleapis/google-cloud-php/issues/5765)) ([672fb77](https://github.com/googleapis/google-cloud-php/commit/672fb77e0ce1b4f2caea771984ba7e8a54ba9492))
+
+</details>
+
+<details><summary>google/cloud-workflows 0.2.11</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] expose numericEnums option in rest client config ([#5765](https://github.com/googleapis/google-cloud-php/issues/5765)) ([672fb77](https://github.com/googleapis/google-cloud-php/commit/672fb77e0ce1b4f2caea771984ba7e8a54ba9492))
+
+</details>
+
 ## 0.195.0
 
 <details><summary>google/cloud-access-approval 1.0.1</summary>
