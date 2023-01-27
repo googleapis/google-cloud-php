@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.19.0](https://github.com/googleapis/gax-php/compare/v1.18.2...v1.19.0) (2023-01-27)
+
+
+### Features
+
+* Ensure cache is used in calls to ADC::onGCE ([#441](https://github.com/googleapis/gax-php/issues/441)) ([64a4184](https://github.com/googleapis/gax-php/commit/64a4184ab69d13104d269b15a55d4b8b2515b5a6))
+
 ## [1.18.2](https://github.com/googleapis/gax-php/compare/v1.18.1...v1.18.2) (2023-01-06)
 
 
