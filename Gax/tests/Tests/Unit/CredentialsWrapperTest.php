@@ -33,10 +33,14 @@
 namespace Google\ApiCore\Tests\Unit;
 
 use Google\ApiCore\CredentialsWrapper;
+use Google\ApiCore\ValidationException;
 use Google\Auth\ApplicationDefaultCredentials;
 use Google\Auth\Cache\MemoryCacheItemPool;
 use Google\Auth\Cache\SysVCacheItemPool;
+use Google\Auth\GCECache;
 use Google\Auth\CredentialsLoader;
+use Google\Auth\Credentials\GCECredentials;
+use Google\Auth\Credentials\ServiceAccountCredentials;
 use Google\Auth\FetchAuthTokenCache;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Auth\HttpHandler\HttpHandlerFactory;
@@ -313,5 +317,95 @@ class CredentialsWrapperTest extends TestCase
             [$nullFetcher->reveal(), []],
             [$customFetcher->reveal(), ['authorization' => ['Bearer 123']]],
         ];
+    }
+
+    /**
+     * @runInSeparateProcess
+     */
+    public function testApplicationDefaultCredentialsWithOnGCECacheTrue()
+    {
+        putenv('HOME=' . __DIR__ . '/not_exist_fixtures');
+        putenv(ServiceAccountCredentials::ENV_VAR);  // removes it from the environment
+
+        $mockCacheItem = $this->prophesize('Psr\Cache\CacheItemInterface');
+        $mockCacheItem->isHit()
+            ->willReturn(true);
+        // mock being on GCE
+        $mockCacheItem->get()
+            ->shouldBeCalledTimes(1)
+            ->willReturn(true);
+
+        $mockCache = $this->prophesize('Psr\Cache\CacheItemPoolInterface');
+        $mockCache->getItem(GCECache::GCE_CACHE_KEY)
+            ->shouldBeCalledTimes(1)
+            ->willReturn($mockCacheItem->reveal());
+
+        $wrapper = CredentialsWrapper::build([
+            'authCache' => $mockCache->reveal(),
+        ]);
+        $reflectionClass = new \ReflectionClass($wrapper);
+        $reflectionProperty = $reflectionClass->getProperty('credentialsFetcher');
+        $reflectionProperty->setAccessible(true);
+        $this->assertInstanceOf(GCECredentials::class, $reflectionProperty->getValue($wrapper)->getFetcher());
+    }
+
+    /**
+     * @runInSeparateProcess
+     */
+    public function testApplicationDefaultCredentialsWithOnGCECacheFalse()
+    {
+        putenv('HOME=' . __DIR__ . '/not_exist_fixtures');
+        putenv(ServiceAccountCredentials::ENV_VAR);  // removes it from the environment
+
+        $this->expectException(ValidationException::class);
+        $this->expectExceptionMessage('Could not construct ApplicationDefaultCredentials');
+
+        $mockCacheItem = $this->prophesize('Psr\Cache\CacheItemInterface');
+        $mockCacheItem->isHit()
+            ->willReturn(true);
+        // mock not being on GCE
+        $mockCacheItem->get()
+            ->shouldBeCalledTimes(1)
+            ->willReturn(false);
+
+        $mockCache = $this->prophesize('Psr\Cache\CacheItemPoolInterface');
+        $mockCache->getItem(GCECache::GCE_CACHE_KEY)
+            ->shouldBeCalledTimes(1)
+            ->willReturn($mockCacheItem->reveal());
+
+        $wrapper = CredentialsWrapper::build([
+            'authCache' => $mockCache->reveal(),
+        ]);
+    }
+
+    /**
+     * @runInSeparateProcess
+     */
+    public function testApplicationDefaultCredentialsWithOnGCECacheOptions()
+    {
+        putenv('HOME=' . __DIR__ . '/not_exist_fixtures');
+        putenv(ServiceAccountCredentials::ENV_VAR);  // removes it from the environment
+
+        $mockCacheItem = $this->prophesize('Psr\Cache\CacheItemInterface');
+        $mockCacheItem->isHit()
+            ->willReturn(true);
+        // mock being on GCE
+        $mockCacheItem->get()
+            ->shouldBeCalledTimes(1)
+            ->willReturn(true);
+
+        $mockCache = $this->prophesize('Psr\Cache\CacheItemPoolInterface');
+        $mockCache->getItem('prefix_' . GCECache::GCE_CACHE_KEY)
+            ->shouldBeCalledTimes(1)
+            ->willReturn($mockCacheItem->reveal());
+
+        $wrapper = CredentialsWrapper::build([
+            'authCache' => $mockCache->reveal(),
+            'authCacheOptions' => ['gce_prefix' => 'prefix_'],
+        ]);
+        $reflectionClass = new \ReflectionClass($wrapper);
+        $reflectionProperty = $reflectionClass->getProperty('credentialsFetcher');
+        $reflectionProperty->setAccessible(true);
+        $this->assertInstanceOf(GCECredentials::class, $reflectionProperty->getValue($wrapper)->getFetcher());
     }
 }
