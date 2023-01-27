@@ -122,6 +122,7 @@ class CredentialsWrapper
             'defaultScopes'     => null,
             'useJwtAccessWithScope' => true,
         ];
+
         $keyFile = $args['keyFile'];
         $authHttpHandler = $args['authHttpHandler'] ?: self::buildHttpHandlerFactory();
 
@@ -129,11 +130,14 @@ class CredentialsWrapper
             $loader = self::buildApplicationDefaultCredentials(
                 $args['scopes'],
                 $authHttpHandler,
-                null,
-                null,
+                $args['authCacheOptions'],
+                $args['authCache'],
                 $args['quotaProject'],
                 $args['defaultScopes']
             );
+            if ($loader instanceof FetchAuthTokenCache) {
+                $loader = $loader->getFetcher();
+            }
         } else {
             if (is_string($keyFile)) {
                 if (!file_exists($keyFile)) {
