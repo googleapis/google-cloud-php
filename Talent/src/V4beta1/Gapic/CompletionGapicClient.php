@@ -434,10 +434,12 @@ class CompletionGapicClient
      *           If tenant id is unspecified, the default tenant is used, for
      *           example, "projects/foo".
      *     @type int $scope
-     *           The scope of the completion. The defaults is [CompletionScope.PUBLIC][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionScope.PUBLIC].
+     *           The scope of the completion. The defaults is
+     *           [CompletionScope.PUBLIC][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionScope.PUBLIC].
      *           For allowed values, use constants defined on {@see \Google\Cloud\Talent\V4beta1\CompleteQueryRequest\CompletionScope}
      *     @type int $type
-     *           The completion topic. The default is [CompletionType.COMBINED][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType.COMBINED].
+     *           The completion topic. The default is
+     *           [CompletionType.COMBINED][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType.COMBINED].
      *           For allowed values, use constants defined on {@see \Google\Cloud\Talent\V4beta1\CompleteQueryRequest\CompletionType}
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an

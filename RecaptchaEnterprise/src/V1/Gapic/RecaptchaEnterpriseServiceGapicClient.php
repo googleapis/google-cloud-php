@@ -27,9 +27,7 @@ namespace Google\Cloud\RecaptchaEnterprise\V1\Gapic;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-
 use Google\ApiCore\PathTemplate;
-
 use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
@@ -53,6 +51,8 @@ use Google\Cloud\RecaptchaEnterprise\V1\ListRelatedAccountGroupsRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\ListRelatedAccountGroupsResponse;
 use Google\Cloud\RecaptchaEnterprise\V1\Metrics;
 use Google\Cloud\RecaptchaEnterprise\V1\MigrateKeyRequest;
+use Google\Cloud\RecaptchaEnterprise\V1\RetrieveLegacySecretKeyRequest;
+use Google\Cloud\RecaptchaEnterprise\V1\RetrieveLegacySecretKeyResponse;
 use Google\Cloud\RecaptchaEnterprise\V1\SearchRelatedAccountGroupMembershipsRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\SearchRelatedAccountGroupMembershipsResponse;
 use Google\Cloud\RecaptchaEnterprise\V1\UpdateKeyRequest;
@@ -85,29 +85,19 @@ class RecaptchaEnterpriseServiceGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'recaptchaenterprise.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
     ];
@@ -360,9 +350,6 @@ class RecaptchaEnterpriseServiceGapicClient
      * @param array $options {
      *     Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress
-     *           **Deprecated**. This option will be removed in a future major release. Please
-     *           utilize the `$apiEndpoint` option instead.
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'recaptchaenterprise.googleapis.com:443'.
@@ -392,7 +379,7 @@ class RecaptchaEnterpriseServiceGapicClient
      *           *Advanced usage*: Additionally, it is possible to pass in an already
      *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
      *           that when this object is provided, any settings in $transportConfig, and any
-     *           $serviceAddress setting, will be ignored.
+     *           $apiEndpoint setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
      *           each supported transport type should be passed in a key for that transport. For
@@ -435,27 +422,27 @@ class RecaptchaEnterpriseServiceGapicClient
      *
      * @param string $name         Required. The resource name of the Assessment, in the format
      *                             "projects/{project}/assessments/{assessment}".
-     * @param int    $annotation   Optional. The annotation that will be assigned to the Event. This field can be left
-     *                             empty to provide reasons that apply to an event without concluding whether
-     *                             the event is legitimate or fraudulent.
+     * @param int    $annotation   Optional. The annotation that will be assigned to the Event. This field can
+     *                             be left empty to provide reasons that apply to an event without concluding
+     *                             whether the event is legitimate or fraudulent.
      *                             For allowed values, use constants defined on {@see \Google\Cloud\RecaptchaEnterprise\V1\AnnotateAssessmentRequest\Annotation}
      * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type int[] $reasons
-     *           Optional. Optional reasons for the annotation that will be assigned to the Event.
+     *           Optional. Optional reasons for the annotation that will be assigned to the
+     *           Event.
      *           For allowed values, use constants defined on {@see \Google\Cloud\RecaptchaEnterprise\V1\AnnotateAssessmentRequest\Reason}
      *     @type string $hashedAccountId
-     *           Optional. Optional unique stable hashed user identifier to apply to the assessment.
+     *           Optional. Unique stable hashed user identifier to apply to the assessment.
      *           This is an alternative to setting the hashed_account_id in
      *           CreateAssessment, for example when the account identifier is not yet known
      *           in the initial request. It is recommended that the identifier is hashed
      *           using hmac-sha256 with stable secret.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\RecaptchaEnterprise\V1\AnnotateAssessmentResponse
@@ -516,10 +503,9 @@ class RecaptchaEnterpriseServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\RecaptchaEnterprise\V1\Assessment
@@ -572,10 +558,9 @@ class RecaptchaEnterpriseServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\RecaptchaEnterprise\V1\Key
@@ -623,10 +608,9 @@ class RecaptchaEnterpriseServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @throws ApiException if the remote call fails
@@ -671,10 +655,9 @@ class RecaptchaEnterpriseServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\RecaptchaEnterprise\V1\Key
@@ -722,10 +705,9 @@ class RecaptchaEnterpriseServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\RecaptchaEnterprise\V1\Metrics
@@ -793,10 +775,9 @@ class RecaptchaEnterpriseServiceGapicClient
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -832,7 +813,7 @@ class RecaptchaEnterpriseServiceGapicClient
     }
 
     /**
-     * Get the memberships in a group of related accounts.
+     * Get memberships in a group of related accounts.
      *
      * Sample code:
      * ```
@@ -872,10 +853,9 @@ class RecaptchaEnterpriseServiceGapicClient
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -938,8 +918,8 @@ class RecaptchaEnterpriseServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The name of the project to list related account groups from, in the format
-     *                             "projects/{project}".
+     * @param string $parent       Required. The name of the project to list related account groups from, in
+     *                             the format "projects/{project}".
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -953,10 +933,9 @@ class RecaptchaEnterpriseServiceGapicClient
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -1015,11 +994,19 @@ class RecaptchaEnterpriseServiceGapicClient
      * @param array  $optionalArgs {
      *     Optional.
      *
+     *     @type bool $skipBillingCheck
+     *           Optional. If true, skips the billing check.
+     *           A reCAPTCHA Enterprise key or migrated key behaves differently than a
+     *           reCAPTCHA (non-Enterprise version) key when you reach a quota limit (see
+     *           https://cloud.google.com/recaptcha-enterprise/quotas#quota_limit). To avoid
+     *           any disruption of your usage, we check that a billing account is present.
+     *           If your usage of reCAPTCHA is under the free quota, you can safely skip the
+     *           billing check and proceed with the migration. See
+     *           https://cloud.google.com/recaptcha-enterprise/docs/billing-information.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\RecaptchaEnterprise\V1\Key
@@ -1032,6 +1019,10 @@ class RecaptchaEnterpriseServiceGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['skipBillingCheck'])) {
+            $request->setSkipBillingCheck($optionalArgs['skipBillingCheck']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1047,15 +1038,66 @@ class RecaptchaEnterpriseServiceGapicClient
     }
 
     /**
+     * Returns the secret key related to the specified public key.
+     * You must use the legacy secret key only in a 3rd party integration with
+     * legacy reCAPTCHA.
+     *
+     * Sample code:
+     * ```
+     * $recaptchaEnterpriseServiceClient = new RecaptchaEnterpriseServiceClient();
+     * try {
+     *     $formattedKey = $recaptchaEnterpriseServiceClient->keyName('[PROJECT]', '[KEY]');
+     *     $response = $recaptchaEnterpriseServiceClient->retrieveLegacySecretKey($formattedKey);
+     * } finally {
+     *     $recaptchaEnterpriseServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $key          Required. The public key name linked to the requested secret key in the
+     *                             format "projects/{project}/keys/{key}".
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\RecaptchaEnterprise\V1\RetrieveLegacySecretKeyResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function retrieveLegacySecretKey($key, array $optionalArgs = [])
+    {
+        $request = new RetrieveLegacySecretKeyRequest();
+        $requestParamHeaders = [];
+        $request->setKey($key);
+        $requestParamHeaders['key'] = $key;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'RetrieveLegacySecretKey',
+            RetrieveLegacySecretKeyResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Search group memberships related to a given account.
      *
      * Sample code:
      * ```
      * $recaptchaEnterpriseServiceClient = new RecaptchaEnterpriseServiceClient();
      * try {
-     *     $formattedParent = $recaptchaEnterpriseServiceClient->relatedAccountGroupName('[PROJECT]', '[RELATEDACCOUNTGROUP]');
+     *     $formattedProject = $recaptchaEnterpriseServiceClient->relatedAccountGroupName('[PROJECT]', '[RELATEDACCOUNTGROUP]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $recaptchaEnterpriseServiceClient->searchRelatedAccountGroupMemberships($formattedParent);
+     *     $pagedResponse = $recaptchaEnterpriseServiceClient->searchRelatedAccountGroupMemberships($formattedProject);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1063,7 +1105,7 @@ class RecaptchaEnterpriseServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $recaptchaEnterpriseServiceClient->searchRelatedAccountGroupMemberships($formattedParent);
+     *     $pagedResponse = $recaptchaEnterpriseServiceClient->searchRelatedAccountGroupMemberships($formattedProject);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1072,15 +1114,16 @@ class RecaptchaEnterpriseServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The name of the project to search related account group memberships from,
-     *                             in the format "projects/{project}".
+     * @param string $project      Required. The name of the project to search related account group
+     *                             memberships from. Specify the project name in the following format:
+     *                             "projects/{project}".
      * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type string $hashedAccountId
-     *           Optional. The unique stable hashed user identifier we should search connections to.
-     *           The identifier should correspond to a `hashed_account_id` provided in a
-     *           previous CreateAssessment or AnnotateAssessment call.
+     *           Optional. The unique stable hashed user identifier we should search
+     *           connections to. The identifier should correspond to a `hashed_account_id`
+     *           provided in a previous `CreateAssessment` or `AnnotateAssessment` call.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1091,10 +1134,9 @@ class RecaptchaEnterpriseServiceGapicClient
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -1102,13 +1144,13 @@ class RecaptchaEnterpriseServiceGapicClient
      * @throws ApiException if the remote call fails
      */
     public function searchRelatedAccountGroupMemberships(
-        $parent,
+        $project,
         array $optionalArgs = []
     ) {
         $request = new SearchRelatedAccountGroupMembershipsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        $request->setProject($project);
+        $requestParamHeaders['project'] = $project;
         if (isset($optionalArgs['hashedAccountId'])) {
             $request->setHashedAccountId($optionalArgs['hashedAccountId']);
         }
@@ -1154,13 +1196,12 @@ class RecaptchaEnterpriseServiceGapicClient
      *     Optional.
      *
      *     @type FieldMask $updateMask
-     *           Optional. The mask to control which fields of the key get updated. If the mask is not
-     *           present, all fields will be updated.
+     *           Optional. The mask to control which fields of the key get updated. If the
+     *           mask is not present, all fields will be updated.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\RecaptchaEnterprise\V1\Key
