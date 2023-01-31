@@ -26,4 +26,4 @@ jobs:
           git checkout -    && find . -name ReadOnly.php | xargs git rm && git commit -m "remove ReadOnly"
       - name: "Check for BC breaks"
         run: |
-          ~/.composer/vendor/bin/broave-backward-compatibility-check --from=main-copy --format=github-actions
+          ~/.composer/vendor/bin/roave-backward-compatibility-check --from=main-copy --format=github-actions
