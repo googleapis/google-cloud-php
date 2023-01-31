@@ -19,11 +19,9 @@ jobs:
       - name: "Hack to ignore ReadOnly.php files"
         run: |
           git config user.email "github-actions@example.com" && git config user.name "Github Actions"
-          ## Remove ReadOnly files
+          ## Remove ReadOnly files (these throw a syntax error on 8.1)
           git checkout -b main-copy origin/main && find . -name ReadOnly.php | xargs git rm && git commit -m "remove ReadOnly"
-          ## TODO: remove this line
-          git cherry-pick 501bed6ba8531ae88d6478139cead4c38dcd40a5
-          git checkout -    && find . -name ReadOnly.php | xargs git rm && git commit -m "remove ReadOnly"
+          git checkout - && find . -name ReadOnly.php | xargs git rm && git commit -m "remove ReadOnly"
       - name: "Check for BC breaks"
         run: |
           ~/.composer/vendor/bin/roave-backward-compatibility-check --from=main-copy --format=github-actions
