@@ -128,7 +128,8 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      */
     private $tags;
     /**
-     * Optional. The configuration for controlling how IPs are allocated in the GKE cluster.
+     * Optional. The configuration for controlling how IPs are allocated in the
+     * GKE cluster.
      *
      * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.IPAllocationPolicy ip_allocation_policy = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -230,7 +231,8 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *           This field is supported for Cloud Composer environments in versions
      *           composer-1.*.*-airflow-*.*.*.
      *     @type \Google\Cloud\Orchestration\Airflow\Service\V1\IPAllocationPolicy $ip_allocation_policy
-     *           Optional. The configuration for controlling how IPs are allocated in the GKE cluster.
+     *           Optional. The configuration for controlling how IPs are allocated in the
+     *           GKE cluster.
      *     @type bool $enable_ip_masq_agent
      *           Optional. Deploys 'ip-masq-agent' daemon set in the GKE cluster and defines
      *           nonMasqueradeCIDRs equals to pod IP range so IP masquerading is used for
@@ -579,7 +581,8 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The configuration for controlling how IPs are allocated in the GKE cluster.
+     * Optional. The configuration for controlling how IPs are allocated in the
+     * GKE cluster.
      *
      * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.IPAllocationPolicy ip_allocation_policy = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Orchestration\Airflow\Service\V1\IPAllocationPolicy|null
@@ -600,7 +603,8 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The configuration for controlling how IPs are allocated in the GKE cluster.
+     * Optional. The configuration for controlling how IPs are allocated in the
+     * GKE cluster.
      *
      * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.IPAllocationPolicy ip_allocation_policy = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Orchestration\Airflow\Service\V1\IPAllocationPolicy $var

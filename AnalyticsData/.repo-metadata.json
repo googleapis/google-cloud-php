@@ -1,6 +1,7 @@
 {
     "distribution_name": "google/analytics-data",
-    "release_level": "beta",
+    "release_level": "preview",
     "client_documentation": "https://cloud.google.com/php/docs/reference/analytics-data/latest",
-    "library_type": "GAPIC_AUTO"
+    "library_type": "GAPIC_AUTO",
+    "api_shortname": "analyticsdata"
 }

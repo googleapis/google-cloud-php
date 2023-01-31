@@ -28,6 +28,7 @@ use Google\Cloud\Firestore\V1\StructuredQuery;
 use Google\Cloud\Firestore\V1\TransactionOptions;
 use Google\Cloud\Firestore\V1\TransactionOptions\ReadWrite;
 use Google\Cloud\Firestore\FirestoreClient as ManualFirestoreClient;
+use Google\Protobuf\Timestamp as ProtobufTimestamp;
 
 /**
  * A gRPC connection to Cloud Firestore via GAPIC.
@@ -121,6 +122,12 @@ class Grpc implements ConnectionInterface
      */
     public function batchGetDocuments(array $args)
     {
+        if (isset($args['readTime'])) {
+            $args['readTime'] = $this->serializer->decodeMessage(
+                new ProtobufTimestamp(),
+                $args['readTime']
+            );
+        }
         return $this->send([$this->firestore, 'batchGetDocuments'], [
             $this->pluck('database', $args),
             $this->pluck('documents', $args),
