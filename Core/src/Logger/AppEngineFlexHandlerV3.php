@@ -25,6 +25,7 @@ use Monolog\Logger;
  *
  * If you are using Monolog 1.x, use {@see \Google\Cloud\Core\Logger\AppEngineFlexHandler} instead.
  * If you are using Monolog 2.x, use {@see \Google\Cloud\Core\Logger\AppEngineFlexHandlerV2} instead.
+ * @internal
  */
 class AppEngineFlexHandlerV3 extends StreamHandler
 {
