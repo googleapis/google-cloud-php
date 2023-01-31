@@ -66,9 +66,32 @@ class AssuredWorkloadsServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
+     * Restrict the list of resources allowed in the Workload environment.
+     * The current list of allowed products can be found at
+     * https://cloud.google.com/assured-workloads/docs/supported-products
+     * In addition to assuredworkloads.workload.update permission, the user should
+     * also have orgpolicy.policy.set permission on the folder resource
+     * to use this functionality.
+     * @param \Google\Cloud\AssuredWorkloads\V1beta1\RestrictAllowedResourcesRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function RestrictAllowedResources(\Google\Cloud\AssuredWorkloads\V1beta1\RestrictAllowedResourcesRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.assuredworkloads.v1beta1.AssuredWorkloadsService/RestrictAllowedResources',
+        $argument,
+        ['\Google\Cloud\AssuredWorkloads\V1beta1\RestrictAllowedResourcesResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
      * Deletes the workload. Make sure that workload's direct children are already
      * in a deleted state, otherwise the request will fail with a
      * FAILED_PRECONDITION error.
+     * In addition to assuredworkloads.workload.delete permission, the user should
+     * also have orgpolicy.policy.set permission on the deleted folder to remove
+     * Assured Workloads OrgPolicies.
      * @param \Google\Cloud\AssuredWorkloads\V1beta1\DeleteWorkloadRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -94,6 +117,22 @@ class AssuredWorkloadsServiceGrpcClient extends \Grpc\BaseStub {
         return $this->_simpleRequest('/google.cloud.assuredworkloads.v1beta1.AssuredWorkloadsService/GetWorkload',
         $argument,
         ['\Google\Cloud\AssuredWorkloads\V1beta1\Workload', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Analyze if the source Assured Workloads can be moved to the target Assured
+     * Workload
+     * @param \Google\Cloud\AssuredWorkloads\V1beta1\AnalyzeWorkloadMoveRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function AnalyzeWorkloadMove(\Google\Cloud\AssuredWorkloads\V1beta1\AnalyzeWorkloadMoveRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.assuredworkloads.v1beta1.AssuredWorkloadsService/AnalyzeWorkloadMove',
+        $argument,
+        ['\Google\Cloud\AssuredWorkloads\V1beta1\AnalyzeWorkloadMoveResponse', 'decode'],
         $metadata, $options);
     }
 

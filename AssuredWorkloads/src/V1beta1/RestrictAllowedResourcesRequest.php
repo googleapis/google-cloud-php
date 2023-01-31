@@ -24,13 +24,13 @@ class RestrictAllowedResourcesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $name = '';
+    private $name = '';
     /**
      * Required. The type of restriction for using gcp products in the Workload environment.
      *
      * Generated from protobuf field <code>.google.cloud.assuredworkloads.v1beta1.RestrictAllowedResourcesRequest.RestrictionType restriction_type = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $restriction_type = 0;
+    private $restriction_type = 0;
 
     /**
      * Constructor.
