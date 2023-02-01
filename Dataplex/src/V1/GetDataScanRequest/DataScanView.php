@@ -7,7 +7,7 @@ namespace Google\Cloud\Dataplex\V1\GetDataScanRequest;
 use UnexpectedValueException;
 
 /**
- * DataScan views for getting a partial dataScan.
+ * DataScan view options.
  *
  * Protobuf type <code>google.cloud.dataplex.v1.GetDataScanRequest.DataScanView</code>
  */
@@ -20,7 +20,7 @@ class DataScanView
      */
     const DATA_SCAN_VIEW_UNSPECIFIED = 0;
     /**
-     * Basic view that does not include spec and result.
+     * Basic view that does not include *spec* and *result*.
      *
      * Generated from protobuf enum <code>BASIC = 1;</code>
      */
