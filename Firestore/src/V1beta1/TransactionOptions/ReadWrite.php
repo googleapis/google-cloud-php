@@ -20,7 +20,7 @@ class ReadWrite extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes retry_transaction = 1;</code>
      */
-    private $retry_transaction = '';
+    protected $retry_transaction = '';
 
     /**
      * Constructor.
