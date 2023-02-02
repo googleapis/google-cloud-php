@@ -36,8 +36,8 @@ class DistanceLimit extends \Google\Protobuf\Internal\Message
      */
     private $soft_max_meters = null;
     /**
-     * Cost per kilometer incurred if `soft_max_meters` limit is violated. The
-     * additional cost is 0 if the distance is under the limit, otherwise the
+     * Cost per kilometer incurred if distance is above `soft_max_meters` limit.
+     * The additional cost is 0 if the distance is under the limit, otherwise the
      * formula used to compute the cost is the following:
      * ```
      *   (distance_meters - soft_max_meters) / 1000.0 *
@@ -65,8 +65,8 @@ class DistanceLimit extends \Google\Protobuf\Internal\Message
      *           If defined soft_max_meters must be less than max_meters and must be
      *           nonnegative.
      *     @type float $cost_per_kilometer_above_soft_max
-     *           Cost per kilometer incurred if `soft_max_meters` limit is violated. The
-     *           additional cost is 0 if the distance is under the limit, otherwise the
+     *           Cost per kilometer incurred if distance is above `soft_max_meters` limit.
+     *           The additional cost is 0 if the distance is under the limit, otherwise the
      *           formula used to compute the cost is the following:
      *           ```
      *             (distance_meters - soft_max_meters) / 1000.0 *
@@ -163,8 +163,8 @@ class DistanceLimit extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Cost per kilometer incurred if `soft_max_meters` limit is violated. The
-     * additional cost is 0 if the distance is under the limit, otherwise the
+     * Cost per kilometer incurred if distance is above `soft_max_meters` limit.
+     * The additional cost is 0 if the distance is under the limit, otherwise the
      * formula used to compute the cost is the following:
      * ```
      *   (distance_meters - soft_max_meters) / 1000.0 *
@@ -191,8 +191,8 @@ class DistanceLimit extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Cost per kilometer incurred if `soft_max_meters` limit is violated. The
-     * additional cost is 0 if the distance is under the limit, otherwise the
+     * Cost per kilometer incurred if distance is above `soft_max_meters` limit.
+     * The additional cost is 0 if the distance is under the limit, otherwise the
      * formula used to compute the cost is the following:
      * ```
      *   (distance_meters - soft_max_meters) / 1000.0 *
