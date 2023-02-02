@@ -599,7 +599,7 @@ class AzureClustersGapicClient
 
     /**
      * Creates a new [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster]
-     * resource on a given GCP project and region.
+     * resource on a given Google Cloud Platform project and region.
      *
      * If successful, the response contains a newly created
      * [Operation][google.longrunning.Operation] resource that can be
@@ -974,7 +974,7 @@ class AzureClustersGapicClient
      *                             `projects/<project-id>/locations/<region>/azureClusters/<cluster-id>`.
      *
      *                             See [Resource Names](https://cloud.google.com/apis/design/resource_names)
-     *                             for more details on GCP resource names.
+     *                             for more details on Google Cloud Platform resource names.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1291,7 +1291,7 @@ class AzureClustersGapicClient
      *                             `projects/<project-id>/locations/<region>/azureClusters/<cluster-id>`.
      *
      *                             See [Resource Names](https://cloud.google.com/apis/design/resource_names)
-     *                             for more details on GCP resource names.
+     *                             for more details on Google Cloud Platform resource names.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1472,7 +1472,7 @@ class AzureClustersGapicClient
      *                             Location names are formatted as `projects/<project-id>/locations/<region>`.
      *
      *                             See [Resource Names](https://cloud.google.com/apis/design/resource_names)
-     *                             for more details on GCP resource names.
+     *                             for more details on Google Cloud Platform resource names.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1556,7 +1556,7 @@ class AzureClustersGapicClient
      *                             Location names are formatted as `projects/<project-id>/locations/<region>`.
      *
      *                             See [Resource Names](https://cloud.google.com/apis/design/resource_names)
-     *                             for more details on GCP resource names.
+     *                             for more details on Google Cloud Platform resource names.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1746,6 +1746,9 @@ class AzureClustersGapicClient
      *                                   *   `annotations`.
      *                                   *   `authorization.admin_users`.
      *                                   *   `control_plane.root_volume.size_gib`.
+     *                                   *   `azure_services_authentication`.
+     *                                   *   `azure_services_authentication.tenant_id`.
+     *                                   *   `azure_services_authentication.application_id`.
      *                                   *   `control_plane.proxy_config`.
      *                                   *   `control_plane.proxy_config.resource_group_id`.
      *                                   *   `control_plane.proxy_config.secret_id`.

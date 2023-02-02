@@ -445,7 +445,7 @@ class AwsClustersGapicClient
 
     /**
      * Creates a new [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster]
-     * resource on a given GCP project and region.
+     * resource on a given Google Cloud Platform project and region.
      *
      * If successful, the response contains a newly created
      * [Operation][google.longrunning.Operation] resource that can be
@@ -716,7 +716,7 @@ class AwsClustersGapicClient
      *                             `projects/<project-id>/locations/<region>/awsClusters/<cluster-id>`.
      *
      *                             See [Resource Names](https://cloud.google.com/apis/design/resource_names)
-     *                             for more details on GCP resource names.
+     *                             for more details on Google Cloud Platform resource names.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -974,7 +974,7 @@ class AwsClustersGapicClient
      *                             `projects/<project-id>/locations/<region>/awsClusters/<cluster-id>`.
      *
      *                             See [Resource Names](https://cloud.google.com/apis/design/resource_names)
-     *                             for more details on GCP resource names.
+     *                             for more details on Google Cloud Platform resource names.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1155,7 +1155,7 @@ class AwsClustersGapicClient
      *                             Location names are formatted as `projects/<project-id>/locations/<region>`.
      *
      *                             See [Resource Names](https://cloud.google.com/apis/design/resource_names)
-     *                             for more details on GCP resource names.
+     *                             for more details on Google Cloud Platform resource names.
      * @param array  $optionalArgs {
      *     Optional.
      *
