@@ -28,7 +28,7 @@ class Revision
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-¤
+—
 "google/cloud/run/v2/revision.protogoogle.cloud.run.v2google/api/client.protogoogle/api/field_behavior.protogoogle/api/launch_stage.protogoogle/api/resource.protogoogle/api/routing.proto#google/cloud/run/v2/condition.proto!google/cloud/run/v2/k8s.min.proto)google/cloud/run/v2/vendor_settings.proto#google/longrunning/operations.protogoogle/protobuf/duration.protogoogle/protobuf/timestamp.proto"G
 GetRevisionRequest1
 name (	B#àAúA
@@ -96,8 +96,8 @@ conditions (2.google.cloud.run.v2.ConditionBàA
 parent$projects/*/locations/{location=*}/**ÚAparentð
 DeleteRevision*.google.cloud.run.v2.DeleteRevisionRequest.google.longrunning.Operation"’‚Óä“:*8/v2/{name=projects/*/locations/*/services/*/revisions/*}ŠÓä“.,
 name$projects/*/locations/{location=*}/**ÚAnameÊA
-RevisionRevisionFÊArun.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBb
-com.google.cloud.run.v2BRevisionProtoPZ6google.golang.org/genproto/googleapis/cloud/run/v2;runbproto3'
+RevisionRevisionFÊArun.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBU
+com.google.cloud.run.v2BRevisionProtoPZ)cloud.google.com/go/run/apiv2/runpb;runpbbproto3'
         , true);
 
         static::$is_initialized = true;
