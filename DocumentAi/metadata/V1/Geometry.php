@@ -16,7 +16,7 @@ class Geometry
         }
         $pool->internalAddGeneratedFile(
             '
-ÿ
+ù
 )google/cloud/documentai/v1/geometry.protogoogle.cloud.documentai.v1"
 Vertex	
 x (	
@@ -26,8 +26,8 @@ class Geometry
 y ("
 BoundingPoly4
 vertices (2".google.cloud.documentai.v1.VertexI
-normalized_vertices (2,.google.cloud.documentai.v1.NormalizedVertexBÑ
-com.google.cloud.documentai.v1BGeometryProtoPZDgoogle.golang.org/genproto/googleapis/cloud/documentai/v1;documentaiªGoogle.Cloud.DocumentAI.V1ÊGoogle\\Cloud\\DocumentAI\\V1êGoogle::Cloud::DocumentAI::V1bproto3'
+normalized_vertices (2,.google.cloud.documentai.v1.NormalizedVertexBË
+com.google.cloud.documentai.v1BGeometryProtoPZ>cloud.google.com/go/documentai/apiv1/documentaipb;documentaipbªGoogle.Cloud.DocumentAI.V1ÊGoogle\\Cloud\\DocumentAI\\V1êGoogle::Cloud::DocumentAI::V1bproto3'
         , true);
 
         static::$is_initialized = true;
