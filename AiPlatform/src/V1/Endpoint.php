@@ -96,7 +96,7 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      */
     private $encryption_spec = null;
     /**
-     * The full name of the Google Compute Engine
+     * Optional. The full name of the Google Compute Engine
      * [network](https://cloud.google.com//compute/docs/networks-and-firewalls#networks)
      * to which the Endpoint should be peered.
      * Private services access must already be configured for the network. If left
@@ -110,7 +110,7 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      * Where `{project}` is a project number, as in `12345`, and `{network}` is
      * network name.
      *
-     * Generated from protobuf field <code>string network = 13 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string network = 13 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
     private $network = '';
     /**
@@ -186,7 +186,7 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      *           Endpoint and all sub-resources of this Endpoint will be secured by
      *           this key.
      *     @type string $network
-     *           The full name of the Google Compute Engine
+     *           Optional. The full name of the Google Compute Engine
      *           [network](https://cloud.google.com//compute/docs/networks-and-firewalls#networks)
      *           to which the Endpoint should be peered.
      *           Private services access must already be configured for the network. If left
@@ -548,7 +548,7 @@ class Endpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The full name of the Google Compute Engine
+     * Optional. The full name of the Google Compute Engine
      * [network](https://cloud.google.com//compute/docs/networks-and-firewalls#networks)
      * to which the Endpoint should be peered.
      * Private services access must already be configured for the network. If left
@@ -562,7 +562,7 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      * Where `{project}` is a project number, as in `12345`, and `{network}` is
      * network name.
      *
-     * Generated from protobuf field <code>string network = 13 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string network = 13 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getNetwork()
@@ -571,7 +571,7 @@ class Endpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The full name of the Google Compute Engine
+     * Optional. The full name of the Google Compute Engine
      * [network](https://cloud.google.com//compute/docs/networks-and-firewalls#networks)
      * to which the Endpoint should be peered.
      * Private services access must already be configured for the network. If left
@@ -585,7 +585,7 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      * Where `{project}` is a project number, as in `12345`, and `{network}` is
      * network name.
      *
-     * Generated from protobuf field <code>string network = 13 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string network = 13 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

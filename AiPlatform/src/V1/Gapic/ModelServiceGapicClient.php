@@ -38,8 +38,10 @@ use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\AIPlatform\V1\BatchImportModelEvaluationSlicesRequest;
 use Google\Cloud\AIPlatform\V1\BatchImportModelEvaluationSlicesResponse;
+use Google\Cloud\AIPlatform\V1\CopyModelRequest;
 use Google\Cloud\AIPlatform\V1\DeleteModelRequest;
 use Google\Cloud\AIPlatform\V1\DeleteModelVersionRequest;
+use Google\Cloud\AIPlatform\V1\EncryptionSpec;
 use Google\Cloud\AIPlatform\V1\ExportModelRequest;
 use Google\Cloud\AIPlatform\V1\ExportModelRequest\OutputConfig;
 use Google\Cloud\AIPlatform\V1\GetModelEvaluationRequest;
@@ -534,6 +536,115 @@ class ModelServiceGapicClient
             BatchImportModelEvaluationSlicesResponse::class,
             $optionalArgs,
             $request
+        )->wait();
+    }
+
+    /**
+     * Copies an already existing Vertex AI Model into the specified Location.
+     * The source Model must exist in the same Project.
+     * When copying custom Models, the users themselves are responsible for
+     * [Model.metadata][google.cloud.aiplatform.v1.Model.metadata] content to be
+     * region-agnostic, as well as making sure that any resources (e.g. files) it
+     * depends on remain accessible.
+     *
+     * Sample code:
+     * ```
+     * $modelServiceClient = new ModelServiceClient();
+     * try {
+     *     $formattedParent = $modelServiceClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $formattedSourceModel = $modelServiceClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
+     *     $operationResponse = $modelServiceClient->copyModel($formattedParent, $formattedSourceModel);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $modelServiceClient->copyModel($formattedParent, $formattedSourceModel);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $modelServiceClient->resumeOperation($operationName, 'copyModel');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $modelServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The resource name of the Location into which to copy the Model.
+     *                             Format: `projects/{project}/locations/{location}`
+     * @param string $sourceModel  Required. The resource name of the Model to copy. That Model must be in the
+     *                             same Project. Format:
+     *                             `projects/{project}/locations/{location}/models/{model}`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $modelId
+     *           Optional. Copy source_model into a new Model with this ID. The ID will
+     *           become the final component of the model resource name.
+     *
+     *           This value may be up to 63 characters, and valid characters are
+     *           `[a-z0-9_-]`. The first character cannot be a number or hyphen.
+     *     @type string $parentModel
+     *           Optional. Specify this field to copy source_model into this existing
+     *           Model as a new version. Format:
+     *           `projects/{project}/locations/{location}/models/{model}`
+     *     @type EncryptionSpec $encryptionSpec
+     *           Customer-managed encryption key options. If this is set,
+     *           then the Model copy will be encrypted with the provided encryption key.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function copyModel($parent, $sourceModel, array $optionalArgs = [])
+    {
+        $request = new CopyModelRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setSourceModel($sourceModel);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['modelId'])) {
+            $request->setModelId($optionalArgs['modelId']);
+        }
+
+        if (isset($optionalArgs['parentModel'])) {
+            $request->setParentModel($optionalArgs['parentModel']);
+        }
+
+        if (isset($optionalArgs['encryptionSpec'])) {
+            $request->setEncryptionSpec($optionalArgs['encryptionSpec']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'CopyModel',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
         )->wait();
     }
 

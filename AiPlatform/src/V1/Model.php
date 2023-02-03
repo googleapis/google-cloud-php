@@ -321,6 +321,13 @@ class Model extends \Google\Protobuf\Internal\Message
      */
     private $model_source_info = null;
     /**
+     * Output only. If this Model is a copy of another Model, this contains info
+     * about the original.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Model.OriginalModelInfo original_model_info = 34 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $original_model_info = null;
+    /**
      * Output only. The resource name of the Artifact that was created in
      * MetadataStore when creating the Model. The Artifact resource name pattern
      * is
@@ -537,6 +544,9 @@ class Model extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\AIPlatform\V1\ModelSourceInfo $model_source_info
      *           Output only. Source of a model. It can either be automl training pipeline,
      *           custom training pipeline, BigQuery ML, or existing Vertex AI Model.
+     *     @type \Google\Cloud\AIPlatform\V1\Model\OriginalModelInfo $original_model_info
+     *           Output only. If this Model is a copy of another Model, this contains info
+     *           about the original.
      *     @type string $metadata_artifact
      *           Output only. The resource name of the Artifact that was created in
      *           MetadataStore when creating the Model. The Artifact resource name pattern
@@ -1619,6 +1629,44 @@ class Model extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\ModelSourceInfo::class);
         $this->model_source_info = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. If this Model is a copy of another Model, this contains info
+     * about the original.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Model.OriginalModelInfo original_model_info = 34 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\AIPlatform\V1\Model\OriginalModelInfo|null
+     */
+    public function getOriginalModelInfo()
+    {
+        return $this->original_model_info;
+    }
+
+    public function hasOriginalModelInfo()
+    {
+        return isset($this->original_model_info);
+    }
+
+    public function clearOriginalModelInfo()
+    {
+        unset($this->original_model_info);
+    }
+
+    /**
+     * Output only. If this Model is a copy of another Model, this contains info
+     * about the original.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Model.OriginalModelInfo original_model_info = 34 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\AIPlatform\V1\Model\OriginalModelInfo $var
+     * @return $this
+     */
+    public function setOriginalModelInfo($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\Model\OriginalModelInfo::class);
+        $this->original_model_info = $var;
 
         return $this;
     }

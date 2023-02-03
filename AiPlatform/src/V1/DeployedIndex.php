@@ -96,9 +96,9 @@ class DeployedIndex extends \Google\Protobuf\Internal\Message
      * Available machine types for MEDIUM shard:
      * e2-standard-16 and all machine types available for LARGE shard.
      * Available machine types for LARGE shard:
-     * e2-standard-32, e2-highmem-16, n2d-standard-32.
+     * e2-highmem-16, n2d-standard-32.
      * n1-standard-16 and n1-standard-32 are still available, but we recommend
-     * e2-standard-16 and e2-standard-32 for cost efficiency.
+     * e2-standard-16 and e2-highmem-16 for cost efficiency.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.DedicatedResources dedicated_resources = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -209,9 +209,9 @@ class DeployedIndex extends \Google\Protobuf\Internal\Message
      *           Available machine types for MEDIUM shard:
      *           e2-standard-16 and all machine types available for LARGE shard.
      *           Available machine types for LARGE shard:
-     *           e2-standard-32, e2-highmem-16, n2d-standard-32.
+     *           e2-highmem-16, n2d-standard-32.
      *           n1-standard-16 and n1-standard-32 are still available, but we recommend
-     *           e2-standard-16 and e2-standard-32 for cost efficiency.
+     *           e2-standard-16 and e2-highmem-16 for cost efficiency.
      *     @type bool $enable_access_logging
      *           Optional. If true, private endpoint's access logs are sent to StackDriver
      *           Logging.
@@ -538,9 +538,9 @@ class DeployedIndex extends \Google\Protobuf\Internal\Message
      * Available machine types for MEDIUM shard:
      * e2-standard-16 and all machine types available for LARGE shard.
      * Available machine types for LARGE shard:
-     * e2-standard-32, e2-highmem-16, n2d-standard-32.
+     * e2-highmem-16, n2d-standard-32.
      * n1-standard-16 and n1-standard-32 are still available, but we recommend
-     * e2-standard-16 and e2-standard-32 for cost efficiency.
+     * e2-standard-16 and e2-highmem-16 for cost efficiency.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.DedicatedResources dedicated_resources = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\AIPlatform\V1\DedicatedResources|null
@@ -571,9 +571,9 @@ class DeployedIndex extends \Google\Protobuf\Internal\Message
      * Available machine types for MEDIUM shard:
      * e2-standard-16 and all machine types available for LARGE shard.
      * Available machine types for LARGE shard:
-     * e2-standard-32, e2-highmem-16, n2d-standard-32.
+     * e2-highmem-16, n2d-standard-32.
      * n1-standard-16 and n1-standard-32 are still available, but we recommend
-     * e2-standard-16 and e2-standard-32 for cost efficiency.
+     * e2-standard-16 and e2-highmem-16 for cost efficiency.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.DedicatedResources dedicated_resources = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\AIPlatform\V1\DedicatedResources $var

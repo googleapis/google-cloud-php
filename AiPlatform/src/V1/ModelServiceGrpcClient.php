@@ -183,6 +183,26 @@ class ModelServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
+     * Copies an already existing Vertex AI Model into the specified Location.
+     * The source Model must exist in the same Project.
+     * When copying custom Models, the users themselves are responsible for
+     * [Model.metadata][google.cloud.aiplatform.v1.Model.metadata] content to be
+     * region-agnostic, as well as making sure that any resources (e.g. files) it
+     * depends on remain accessible.
+     * @param \Google\Cloud\AIPlatform\V1\CopyModelRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function CopyModel(\Google\Cloud\AIPlatform\V1\CopyModelRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.aiplatform.v1.ModelService/CopyModel',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
      * Imports an externally generated ModelEvaluation.
      * @param \Google\Cloud\AIPlatform\V1\ImportModelEvaluationRequest $argument input argument
      * @param array $metadata metadata

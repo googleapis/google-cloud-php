@@ -96,6 +96,8 @@ class DeployedModel extends \Google\Protobuf\Internal\Message
      */
     private $disable_container_logging = false;
     /**
+     * If true, online prediction access logs are sent to StackDriver
+     * Logging.
      * These logs are like standard server access logs, containing
      * information like timestamp and latency for each prediction request.
      * Note that Stackdriver logs may incur a cost, especially if your project
@@ -177,6 +179,8 @@ class DeployedModel extends \Google\Protobuf\Internal\Message
      *           pricing](https://cloud.google.com/stackdriver/pricing).
      *           User can disable container logging by setting this flag to true.
      *     @type bool $enable_access_logging
+     *           If true, online prediction access logs are sent to StackDriver
+     *           Logging.
      *           These logs are like standard server access logs, containing
      *           information like timestamp and latency for each prediction request.
      *           Note that Stackdriver logs may incur a cost, especially if your project
@@ -553,6 +557,8 @@ class DeployedModel extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * If true, online prediction access logs are sent to StackDriver
+     * Logging.
      * These logs are like standard server access logs, containing
      * information like timestamp and latency for each prediction request.
      * Note that Stackdriver logs may incur a cost, especially if your project
@@ -568,6 +574,8 @@ class DeployedModel extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * If true, online prediction access logs are sent to StackDriver
+     * Logging.
      * These logs are like standard server access logs, containing
      * information like timestamp and latency for each prediction request.
      * Note that Stackdriver logs may incur a cost, especially if your project

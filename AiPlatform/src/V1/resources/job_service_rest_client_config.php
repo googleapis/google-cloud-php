@@ -51,6 +51,18 @@ return [
                     ],
                 ],
             ],
+            'CancelNasJob' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/nasJobs/*}:cancel',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'CreateBatchPredictionJob' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/batchPredictionJobs',
@@ -103,6 +115,18 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/modelDeploymentMonitoringJobs',
                 'body' => 'model_deployment_monitoring_job',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateNasJob' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/nasJobs',
+                'body' => 'nas_job',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -166,6 +190,17 @@ return [
                     ],
                 ],
             ],
+            'DeleteNasJob' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/nasJobs/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetBatchPredictionJob' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/batchPredictionJobs/*}',
@@ -221,6 +256,28 @@ return [
                     ],
                 ],
             ],
+            'GetNasJob' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/nasJobs/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetNasTrialDetail' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/nasJobs/*/nasTrialDetails/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'ListBatchPredictionJobs' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/batchPredictionJobs',
@@ -268,6 +325,28 @@ return [
             'ListModelDeploymentMonitoringJobs' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/modelDeploymentMonitoringJobs',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListNasJobs' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/nasJobs',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListNasTrialDetails' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/nasJobs/*}/nasTrialDetails',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [

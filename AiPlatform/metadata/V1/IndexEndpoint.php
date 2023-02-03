@@ -17,11 +17,12 @@ class IndexEndpoint
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Api\Resource::initOnce();
         \GPBMetadata\Google\Cloud\Aiplatform\V1\MachineResources::initOnce();
+        \GPBMetadata\Google\Cloud\Aiplatform\V1\ServiceNetworking::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-â
-/google/cloud/aiplatform/v1/index_endpoint.protogoogle.cloud.aiplatform.v1google/api/resource.proto2google/cloud/aiplatform/v1/machine_resources.protogoogle/protobuf/timestamp.proto"»
+§
+/google/cloud/aiplatform/v1/index_endpoint.protogoogle.cloud.aiplatform.v1google/api/resource.proto2google/cloud/aiplatform/v1/machine_resources.proto3google/cloud/aiplatform/v1/service_networking.protogoogle/protobuf/timestamp.proto"Æ
 IndexEndpoint
 name (	B‡A
 display_name (	B‡A
@@ -33,7 +34,8 @@ class IndexEndpoint
 update_time (2.google.protobuf.TimestampB‡A
 network	 (	B‡A-
 enable_private_service_connect
- (B‡A-
+ (B‡Ad
+private_service_connect_config (27.google.cloud.aiplatform.v1.PrivateServiceConnectConfigB‡A-
 LabelsEntry
 key (	
 value (	:8:uÍAr

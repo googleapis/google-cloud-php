@@ -28,6 +28,13 @@ class MetricSpec extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.StudySpec.MetricSpec.GoalType goal = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $goal = 0;
+    /**
+     * Used for safe search. In the case, the metric will be a safety
+     * metric. You must provide a separate metric for objective metric.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.StudySpec.MetricSpec.SafetyMetricConfig safety_config = 3;</code>
+     */
+    private $safety_config = null;
 
     /**
      * Constructor.
@@ -40,6 +47,9 @@ class MetricSpec extends \Google\Protobuf\Internal\Message
      *           unique amongst all MetricSpecs.
      *     @type int $goal
      *           Required. The optimization goal of the metric.
+     *     @type \Google\Cloud\AIPlatform\V1\StudySpec\MetricSpec\SafetyMetricConfig $safety_config
+     *           Used for safe search. In the case, the metric will be a safety
+     *           metric. You must provide a separate metric for objective metric.
      * }
      */
     public function __construct($data = NULL) {
@@ -97,6 +107,44 @@ class MetricSpec extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\AIPlatform\V1\StudySpec\MetricSpec\GoalType::class);
         $this->goal = $var;
+
+        return $this;
+    }
+
+    /**
+     * Used for safe search. In the case, the metric will be a safety
+     * metric. You must provide a separate metric for objective metric.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.StudySpec.MetricSpec.SafetyMetricConfig safety_config = 3;</code>
+     * @return \Google\Cloud\AIPlatform\V1\StudySpec\MetricSpec\SafetyMetricConfig|null
+     */
+    public function getSafetyConfig()
+    {
+        return $this->safety_config;
+    }
+
+    public function hasSafetyConfig()
+    {
+        return isset($this->safety_config);
+    }
+
+    public function clearSafetyConfig()
+    {
+        unset($this->safety_config);
+    }
+
+    /**
+     * Used for safe search. In the case, the metric will be a safety
+     * metric. You must provide a separate metric for objective metric.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.StudySpec.MetricSpec.SafetyMetricConfig safety_config = 3;</code>
+     * @param \Google\Cloud\AIPlatform\V1\StudySpec\MetricSpec\SafetyMetricConfig $var
+     * @return $this
+     */
+    public function setSafetyConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\StudySpec\MetricSpec\SafetyMetricConfig::class);
+        $this->safety_config = $var;
 
         return $this;
     }

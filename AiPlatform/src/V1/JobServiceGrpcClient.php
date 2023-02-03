@@ -284,6 +284,123 @@ class JobServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
+     * Creates a NasJob
+     * @param \Google\Cloud\AIPlatform\V1\CreateNasJobRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function CreateNasJob(\Google\Cloud\AIPlatform\V1\CreateNasJobRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.aiplatform.v1.JobService/CreateNasJob',
+        $argument,
+        ['\Google\Cloud\AIPlatform\V1\NasJob', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Gets a NasJob
+     * @param \Google\Cloud\AIPlatform\V1\GetNasJobRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function GetNasJob(\Google\Cloud\AIPlatform\V1\GetNasJobRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.aiplatform.v1.JobService/GetNasJob',
+        $argument,
+        ['\Google\Cloud\AIPlatform\V1\NasJob', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Lists NasJobs in a Location.
+     * @param \Google\Cloud\AIPlatform\V1\ListNasJobsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function ListNasJobs(\Google\Cloud\AIPlatform\V1\ListNasJobsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.aiplatform.v1.JobService/ListNasJobs',
+        $argument,
+        ['\Google\Cloud\AIPlatform\V1\ListNasJobsResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Deletes a NasJob.
+     * @param \Google\Cloud\AIPlatform\V1\DeleteNasJobRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function DeleteNasJob(\Google\Cloud\AIPlatform\V1\DeleteNasJobRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.aiplatform.v1.JobService/DeleteNasJob',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Cancels a NasJob.
+     * Starts asynchronous cancellation on the NasJob. The server
+     * makes a best effort to cancel the job, but success is not
+     * guaranteed. Clients can use
+     * [JobService.GetNasJob][google.cloud.aiplatform.v1.JobService.GetNasJob] or
+     * other methods to check whether the cancellation succeeded or whether the
+     * job completed despite cancellation. On successful cancellation,
+     * the NasJob is not deleted; instead it becomes a job with
+     * a [NasJob.error][google.cloud.aiplatform.v1.NasJob.error] value with a
+     * [google.rpc.Status.code][google.rpc.Status.code] of 1, corresponding to
+     * `Code.CANCELLED`, and
+     * [NasJob.state][google.cloud.aiplatform.v1.NasJob.state] is set to
+     * `CANCELLED`.
+     * @param \Google\Cloud\AIPlatform\V1\CancelNasJobRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function CancelNasJob(\Google\Cloud\AIPlatform\V1\CancelNasJobRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.aiplatform.v1.JobService/CancelNasJob',
+        $argument,
+        ['\Google\Protobuf\GPBEmpty', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Gets a NasTrialDetail.
+     * @param \Google\Cloud\AIPlatform\V1\GetNasTrialDetailRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function GetNasTrialDetail(\Google\Cloud\AIPlatform\V1\GetNasTrialDetailRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.aiplatform.v1.JobService/GetNasTrialDetail',
+        $argument,
+        ['\Google\Cloud\AIPlatform\V1\NasTrialDetail', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * List top NasTrialDetails of a NasJob.
+     * @param \Google\Cloud\AIPlatform\V1\ListNasTrialDetailsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function ListNasTrialDetails(\Google\Cloud\AIPlatform\V1\ListNasTrialDetailsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.aiplatform.v1.JobService/ListNasTrialDetails',
+        $argument,
+        ['\Google\Cloud\AIPlatform\V1\ListNasTrialDetailsResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
      * Creates a BatchPredictionJob. A BatchPredictionJob once created will
      * right away be attempted to start.
      * @param \Google\Cloud\AIPlatform\V1\CreateBatchPredictionJobRequest $argument input argument

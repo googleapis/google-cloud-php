@@ -68,33 +68,28 @@ class PipelineTaskExecutorDetail extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The detailed info for a custom job executor.
      *
-     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PipelineTaskExecutorDetail.CustomJobDetail custom_job_detail = 2 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PipelineTaskExecutorDetail.CustomJobDetail custom_job_detail = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\AIPlatform\V1\PipelineTaskExecutorDetail\CustomJobDetail|null
-     * @deprecated
      */
     public function getCustomJobDetail()
     {
-        @trigger_error('custom_job_detail is deprecated.', E_USER_DEPRECATED);
         return $this->readOneof(2);
     }
 
     public function hasCustomJobDetail()
     {
-        @trigger_error('custom_job_detail is deprecated.', E_USER_DEPRECATED);
         return $this->hasOneof(2);
     }
 
     /**
      * Output only. The detailed info for a custom job executor.
      *
-     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PipelineTaskExecutorDetail.CustomJobDetail custom_job_detail = 2 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PipelineTaskExecutorDetail.CustomJobDetail custom_job_detail = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\AIPlatform\V1\PipelineTaskExecutorDetail\CustomJobDetail $var
      * @return $this
-     * @deprecated
      */
     public function setCustomJobDetail($var)
     {
-        @trigger_error('custom_job_detail is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\PipelineTaskExecutorDetail\CustomJobDetail::class);
         $this->writeOneof(2, $var);
 
