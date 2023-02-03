@@ -16,7 +16,7 @@ class FindingAddon
         }
         $pool->internalAddGeneratedFile(
             '
-˜
+š
 :google/cloud/websecurityscanner/v1beta/finding_addon.proto&google.cloud.websecurityscanner.v1beta"*
 Form
 
@@ -39,8 +39,8 @@ action_uri (	
 value (	"2
 Xss
 stack_traces (	
-error_message (	B™
-*com.google.cloud.websecurityscanner.v1betaBFindingAddonProtoPZXgoogle.golang.org/genproto/googleapis/cloud/websecurityscanner/v1beta;websecurityscannerª&Google.Cloud.WebSecurityScanner.V1BetaÊ&Google\\Cloud\\WebSecurityScanner\\V1betaê)Google::Cloud::WebSecurityScanner::V1betabproto3'
+error_message (	B›
+*com.google.cloud.websecurityscanner.v1betaBFindingAddonProtoPZZcloud.google.com/go/websecurityscanner/apiv1beta/websecurityscannerpb;websecurityscannerpbª&Google.Cloud.WebSecurityScanner.V1BetaÊ&Google\\Cloud\\WebSecurityScanner\\V1betaê)Google::Cloud::WebSecurityScanner::V1betabproto3'
         , true);
 
         static::$is_initialized = true;
