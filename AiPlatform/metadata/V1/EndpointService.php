@@ -24,7 +24,7 @@ class EndpointService
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-É
+Ã
 1google/cloud/aiplatform/v1/endpoint_service.protogoogle.cloud.aiplatform.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto)google/cloud/aiplatform/v1/endpoint.proto*google/cloud/aiplatform/v1/operation.proto#google/longrunning/operations.proto google/protobuf/field_mask.proto"©
 CreateEndpointRequest9
 parent (	B)àAúA#
@@ -88,8 +88,8 @@ page_token (	BàA2
 DeployModel..google.cloud.aiplatform.v1.DeployModelRequest.google.longrunning.Operation"¦‚Óä“B"=/v1/{endpoint=projects/*/locations/*/endpoints/*}:deployModel:*ÚA%endpoint,deployed_model,traffic_splitÊA3
 DeployModelResponseDeployModelOperationMetadata’
 UndeployModel0.google.cloud.aiplatform.v1.UndeployModelRequest.google.longrunning.Operation"¯‚Óä“D"?/v1/{endpoint=projects/*/locations/*/endpoints/*}:undeployModel:*ÚA(endpoint,deployed_model_id,traffic_splitÊA7
-UndeployModelResponseUndeployModelOperationMetadataMÊAaiplatform.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBØ
-com.google.cloud.aiplatform.v1BEndpointServiceProtoPZDgoogle.golang.org/genproto/googleapis/cloud/aiplatform/v1;aiplatformªGoogle.Cloud.AIPlatform.V1ÊGoogle\\Cloud\\AIPlatform\\V1êGoogle::Cloud::AIPlatform::V1bproto3'
+UndeployModelResponseUndeployModelOperationMetadataMÊAaiplatform.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBÒ
+com.google.cloud.aiplatform.v1BEndpointServiceProtoPZ>cloud.google.com/go/aiplatform/apiv1/aiplatformpb;aiplatformpbªGoogle.Cloud.AIPlatform.V1ÊGoogle\\Cloud\\AIPlatform\\V1êGoogle::Cloud::AIPlatform::V1bproto3'
         , true);
 
         static::$is_initialized = true;
