@@ -19,7 +19,7 @@ class MuteConfig
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-µ
+³
 0google/cloud/securitycenter/v1/mute_config.protogoogle.cloud.securitycenter.v1google/api/resource.protogoogle/protobuf/timestamp.proto"®
 
 MuteConfig
@@ -30,8 +30,8 @@ MuteConfig
 create_time (2.google.protobuf.TimestampBàA4
 update_time (2.google.protobuf.TimestampBàA
 most_recent_editor (	BàA:ÀêA¼
-(securitycenter.googleapis.com/MuteConfig6organizations/{organization}/muteConfigs/{mute_config}*folders/{folder}/muteConfigs/{mute_config},projects/{project}/muteConfigs/{mute_config}Bë
-"com.google.cloud.securitycenter.v1BMuteConfigProtoPZLgoogle.golang.org/genproto/googleapis/cloud/securitycenter/v1;securitycenterªGoogle.Cloud.SecurityCenter.V1ÊGoogle\\Cloud\\SecurityCenter\\V1ê!Google::Cloud::SecurityCenter::V1bproto3'
+(securitycenter.googleapis.com/MuteConfig6organizations/{organization}/muteConfigs/{mute_config}*folders/{folder}/muteConfigs/{mute_config},projects/{project}/muteConfigs/{mute_config}Bé
+"com.google.cloud.securitycenter.v1BMuteConfigProtoPZJcloud.google.com/go/securitycenter/apiv1/securitycenterpb;securitycenterpbªGoogle.Cloud.SecurityCenter.V1ÊGoogle\\Cloud\\SecurityCenter\\V1ê!Google::Cloud::SecurityCenter::V1bproto3'
         , true);
 
         static::$is_initialized = true;
