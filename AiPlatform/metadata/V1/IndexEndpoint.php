@@ -20,7 +20,7 @@ class IndexEndpoint
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-
+‰
 /google/cloud/aiplatform/v1/index_endpoint.protogoogle.cloud.aiplatform.v1google/api/resource.proto2google/cloud/aiplatform/v1/machine_resources.protogoogle/protobuf/timestamp.proto"È
 IndexEndpoint
 name (	BàA
@@ -60,8 +60,8 @@ class IndexEndpoint
 allowed_issuers (	"Y
 IndexPrivateEndpoints
 match_grpc_address (	BàA
-service_attachment (	BàABÖ
-com.google.cloud.aiplatform.v1BIndexEndpointProtoPZDgoogle.golang.org/genproto/googleapis/cloud/aiplatform/v1;aiplatformªGoogle.Cloud.AIPlatform.V1ÊGoogle\\Cloud\\AIPlatform\\V1êGoogle::Cloud::AIPlatform::V1bproto3'
+service_attachment (	BàABÐ
+com.google.cloud.aiplatform.v1BIndexEndpointProtoPZ>cloud.google.com/go/aiplatform/apiv1/aiplatformpb;aiplatformpbªGoogle.Cloud.AIPlatform.V1ÊGoogle\\Cloud\\AIPlatform\\V1êGoogle::Cloud::AIPlatform::V1bproto3'
         , true);
 
         static::$is_initialized = true;

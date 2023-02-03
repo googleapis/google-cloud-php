@@ -27,7 +27,7 @@ class ModelService
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-í:
+ç:
 .google/cloud/aiplatform/v1/model_service.protogoogle.cloud.aiplatform.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto#google/cloud/aiplatform/v1/io.proto&google/cloud/aiplatform/v1/model.proto1google/cloud/aiplatform/v1/model_evaluation.proto7google/cloud/aiplatform/v1/model_evaluation_slice.proto*google/cloud/aiplatform/v1/operation.proto#google/longrunning/operations.proto google/protobuf/field_mask.proto"Ö
 UploadModelRequest9
 parent (	B)àAúA#
@@ -156,8 +156,8 @@ ListModels-.google.cloud.aiplatform.v1.ListModelsRequest..google.cloud.aiplatf
 GetModelEvaluation5.google.cloud.aiplatform.v1.GetModelEvaluationRequest+.google.cloud.aiplatform.v1.ModelEvaluation"G‚Óä“:8/v1/{name=projects/*/locations/*/models/*/evaluations/*}ÚAnameÔ
 ListModelEvaluations7.google.cloud.aiplatform.v1.ListModelEvaluationsRequest8.google.cloud.aiplatform.v1.ListModelEvaluationsResponse"I‚Óä“:8/v1/{parent=projects/*/locations/*/models/*}/evaluationsÚAparentÙ
 GetModelEvaluationSlice:.google.cloud.aiplatform.v1.GetModelEvaluationSliceRequest0.google.cloud.aiplatform.v1.ModelEvaluationSlice"P‚Óä“CA/v1/{name=projects/*/locations/*/models/*/evaluations/*/slices/*}ÚAnameì
-ListModelEvaluationSlices<.google.cloud.aiplatform.v1.ListModelEvaluationSlicesRequest=.google.cloud.aiplatform.v1.ListModelEvaluationSlicesResponse"R‚Óä“CA/v1/{parent=projects/*/locations/*/models/*/evaluations/*}/slicesÚAparentMÊAaiplatform.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBÕ
-com.google.cloud.aiplatform.v1BModelServiceProtoPZDgoogle.golang.org/genproto/googleapis/cloud/aiplatform/v1;aiplatformªGoogle.Cloud.AIPlatform.V1ÊGoogle\\Cloud\\AIPlatform\\V1êGoogle::Cloud::AIPlatform::V1bproto3'
+ListModelEvaluationSlices<.google.cloud.aiplatform.v1.ListModelEvaluationSlicesRequest=.google.cloud.aiplatform.v1.ListModelEvaluationSlicesResponse"R‚Óä“CA/v1/{parent=projects/*/locations/*/models/*/evaluations/*}/slicesÚAparentMÊAaiplatform.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBÏ
+com.google.cloud.aiplatform.v1BModelServiceProtoPZ>cloud.google.com/go/aiplatform/apiv1/aiplatformpb;aiplatformpbªGoogle.Cloud.AIPlatform.V1ÊGoogle\\Cloud\\AIPlatform\\V1êGoogle::Cloud::AIPlatform::V1bproto3'
         , true);
 
         static::$is_initialized = true;
