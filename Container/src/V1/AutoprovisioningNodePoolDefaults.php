@@ -49,8 +49,7 @@ class AutoprovisioningNodePoolDefaults extends \Google\Protobuf\Internal\Message
      * information, read [how to specify min CPU
      * platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform).
      * This field is deprecated, min_cpu_platform should be specified using
-     * https://cloud.google.com/requested-min-cpu-platform label selector on the
-     * pod.
+     * `cloud.google.com/requested-min-cpu-platform` label selector on the pod.
      * To unset the min cpu platform field pass "automatic"
      * as field value.
      *
@@ -123,8 +122,7 @@ class AutoprovisioningNodePoolDefaults extends \Google\Protobuf\Internal\Message
      *           information, read [how to specify min CPU
      *           platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform).
      *           This field is deprecated, min_cpu_platform should be specified using
-     *           https://cloud.google.com/requested-min-cpu-platform label selector on the
-     *           pod.
+     *           `cloud.google.com/requested-min-cpu-platform` label selector on the pod.
      *           To unset the min cpu platform field pass "automatic"
      *           as field value.
      *     @type int $disk_size_gb
@@ -288,8 +286,7 @@ class AutoprovisioningNodePoolDefaults extends \Google\Protobuf\Internal\Message
      * information, read [how to specify min CPU
      * platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform).
      * This field is deprecated, min_cpu_platform should be specified using
-     * https://cloud.google.com/requested-min-cpu-platform label selector on the
-     * pod.
+     * `cloud.google.com/requested-min-cpu-platform` label selector on the pod.
      * To unset the min cpu platform field pass "automatic"
      * as field value.
      *
@@ -312,8 +309,7 @@ class AutoprovisioningNodePoolDefaults extends \Google\Protobuf\Internal\Message
      * information, read [how to specify min CPU
      * platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform).
      * This field is deprecated, min_cpu_platform should be specified using
-     * https://cloud.google.com/requested-min-cpu-platform label selector on the
-     * pod.
+     * `cloud.google.com/requested-min-cpu-platform` label selector on the pod.
      * To unset the min cpu platform field pass "automatic"
      * as field value.
      *

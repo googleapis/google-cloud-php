@@ -68,7 +68,9 @@ class NodePool extends \Google\Protobuf\Internal\Message
      */
     private $self_link = '';
     /**
-     * The version of the Kubernetes of this node.
+     * The version of Kubernetes running on this NodePool's nodes. If unspecified,
+     * it defaults as described
+     * [here](https://cloud.google.com/kubernetes-engine/versioning#specifying_node_version).
      *
      * Generated from protobuf field <code>string version = 101;</code>
      */
@@ -188,7 +190,9 @@ class NodePool extends \Google\Protobuf\Internal\Message
      *     @type string $self_link
      *           [Output only] Server-defined URL for the resource.
      *     @type string $version
-     *           The version of the Kubernetes of this node.
+     *           The version of Kubernetes running on this NodePool's nodes. If unspecified,
+     *           it defaults as described
+     *           [here](https://cloud.google.com/kubernetes-engine/versioning#specifying_node_version).
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $instance_group_urls
      *           [Output only] The resource URLs of the [managed instance
      *           groups](https://cloud.google.com/compute/docs/instance-groups/creating-groups-of-managed-instances)
@@ -430,7 +434,9 @@ class NodePool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The version of the Kubernetes of this node.
+     * The version of Kubernetes running on this NodePool's nodes. If unspecified,
+     * it defaults as described
+     * [here](https://cloud.google.com/kubernetes-engine/versioning#specifying_node_version).
      *
      * Generated from protobuf field <code>string version = 101;</code>
      * @return string
@@ -441,7 +447,9 @@ class NodePool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The version of the Kubernetes of this node.
+     * The version of Kubernetes running on this NodePool's nodes. If unspecified,
+     * it defaults as described
+     * [here](https://cloud.google.com/kubernetes-engine/versioning#specifying_node_version).
      *
      * Generated from protobuf field <code>string version = 101;</code>
      * @param string $var
