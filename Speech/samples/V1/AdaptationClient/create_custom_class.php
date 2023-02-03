@@ -30,7 +30,8 @@ use Google\Cloud\Speech\V1\CustomClass;
 /**
  * Create a custom class.
  *
- * @param string $formattedParent The parent resource where this custom class will be created. Format:
+ * @param string $formattedParent The parent resource where this custom class will be created.
+ *                                Format:
  *
  *                                `projects/{project}/locations/{location}/customClasses`
  *

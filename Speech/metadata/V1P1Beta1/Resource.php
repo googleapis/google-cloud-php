@@ -17,7 +17,7 @@ class Resource
         \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ä	
+Ù	
 ,google/cloud/speech/v1p1beta1/resource.protogoogle.cloud.speech.v1p1beta1"ƒ
 CustomClass
 name (	
@@ -47,8 +47,8 @@ class Resource
 Entry
 search (	
 replace (	
-case_sensitive (Bˆ
-!com.google.cloud.speech.v1p1beta1BSpeechResourceProtoPZCgoogle.golang.org/genproto/googleapis/cloud/speech/v1p1beta1;speechø¢GCSbproto3'
+case_sensitive (B~
+!com.google.cloud.speech.v1p1beta1BSpeechResourceProtoPZ9cloud.google.com/go/speech/apiv1p1beta1/speechpb;speechpbø¢GCSbproto3'
         , true);
 
         static::$is_initialized = true;
