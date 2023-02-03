@@ -32,7 +32,7 @@ class Service
 key (	
 value (	:8:ÍA|
 \'servicedirectory.googleapis.com/ServiceQprojects/{project}/locations/{location}/namespaces/{namespace}/services/{service}Bê
-)com.google.cloud.servicedirectory.v1beta1BServiceProtoPZUgoogle.golang.org/genproto/googleapis/cloud/servicedirectory/v1beta1;servicedirectory¯™%Google.Cloud.ServiceDirectory.V1Beta1 %Google\\Cloud\\ServiceDirectory\\V1beta1Í(Google::Cloud::ServiceDirectory::V1beta1bproto3'
+)com.google.cloud.servicedirectory.v1beta1BServiceProtoPZUcloud.google.com/go/servicedirectory/apiv1beta1/servicedirectorypb;servicedirectorypb¯™%Google.Cloud.ServiceDirectory.V1Beta1 %Google\\Cloud\\ServiceDirectory\\V1beta1Í(Google::Cloud::ServiceDirectory::V1beta1bproto3'
         , true);
 
         static::$is_initialized = true;

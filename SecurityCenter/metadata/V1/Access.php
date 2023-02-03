@@ -16,7 +16,7 @@ class Access
         }
         $pool->internalAddGeneratedFile(
             '
-¯
+­
 +google/cloud/securitycenter/v1/access.protogoogle.cloud.securitycenter.v1"õ
 Access
 principal_email (	
@@ -33,8 +33,8 @@ class Access
 principal_email (	
 principal_subject (	""
 Geolocation
-region_code (	Bç
-"com.google.cloud.securitycenter.v1BAccessProtoPZLgoogle.golang.org/genproto/googleapis/cloud/securitycenter/v1;securitycenterªGoogle.Cloud.SecurityCenter.V1ÊGoogle\\Cloud\\SecurityCenter\\V1ê!Google::Cloud::SecurityCenter::V1bproto3'
+region_code (	Bå
+"com.google.cloud.securitycenter.v1BAccessProtoPZJcloud.google.com/go/securitycenter/apiv1/securitycenterpb;securitycenterpbªGoogle.Cloud.SecurityCenter.V1ÊGoogle\\Cloud\\SecurityCenter\\V1ê!Google::Cloud::SecurityCenter::V1bproto3'
         , true);
 
         static::$is_initialized = true;
