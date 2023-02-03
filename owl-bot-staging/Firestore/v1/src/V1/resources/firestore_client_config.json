@@ -1,0 +1,174 @@
+{
+    "interfaces": {
+        "google.firestore.v1.Firestore": {
+            "retry_codes": {
+                "no_retry_codes": [],
+                "retry_policy_1_codes": [
+                    "RESOURCE_EXHAUSTED",
+                    "UNAVAILABLE"
+                ],
+                "retry_policy_2_codes": [
+                    "RESOURCE_EXHAUSTED",
+                    "UNAVAILABLE",
+                    "INTERNAL",
+                    "DEADLINE_EXCEEDED"
+                ],
+                "retry_policy_3_codes": [
+                    "RESOURCE_EXHAUSTED",
+                    "UNAVAILABLE",
+                    "INTERNAL",
+                    "DEADLINE_EXCEEDED"
+                ],
+                "no_retry_1_codes": [],
+                "retry_policy_4_codes": [
+                    "RESOURCE_EXHAUSTED",
+                    "UNAVAILABLE",
+                    "INTERNAL",
+                    "DEADLINE_EXCEEDED"
+                ],
+                "retry_policy_5_codes": [
+                    "RESOURCE_EXHAUSTED",
+                    "UNAVAILABLE",
+                    "ABORTED"
+                ]
+            },
+            "retry_params": {
+                "no_retry_params": {
+                    "initial_retry_delay_millis": 0,
+                    "retry_delay_multiplier": 0.0,
+                    "max_retry_delay_millis": 0,
+                    "initial_rpc_timeout_millis": 0,
+                    "rpc_timeout_multiplier": 1.0,
+                    "max_rpc_timeout_millis": 0,
+                    "total_timeout_millis": 0
+                },
+                "retry_policy_1_params": {
+                    "initial_retry_delay_millis": 100,
+                    "retry_delay_multiplier": 1.3,
+                    "max_retry_delay_millis": 60000,
+                    "initial_rpc_timeout_millis": 60000,
+                    "rpc_timeout_multiplier": 1.0,
+                    "max_rpc_timeout_millis": 60000,
+                    "total_timeout_millis": 60000
+                },
+                "retry_policy_2_params": {
+                    "initial_retry_delay_millis": 100,
+                    "retry_delay_multiplier": 1.3,
+                    "max_retry_delay_millis": 60000,
+                    "initial_rpc_timeout_millis": 300000,
+                    "rpc_timeout_multiplier": 1.0,
+                    "max_rpc_timeout_millis": 300000,
+                    "total_timeout_millis": 300000
+                },
+                "retry_policy_3_params": {
+                    "initial_retry_delay_millis": 100,
+                    "retry_delay_multiplier": 1.3,
+                    "max_retry_delay_millis": 60000,
+                    "initial_rpc_timeout_millis": 86400000,
+                    "rpc_timeout_multiplier": 1.0,
+                    "max_rpc_timeout_millis": 86400000,
+                    "total_timeout_millis": 86400000
+                },
+                "no_retry_1_params": {
+                    "initial_retry_delay_millis": 0,
+                    "retry_delay_multiplier": 0.0,
+                    "max_retry_delay_millis": 0,
+                    "initial_rpc_timeout_millis": 86400000,
+                    "rpc_timeout_multiplier": 1.0,
+                    "max_rpc_timeout_millis": 86400000,
+                    "total_timeout_millis": 86400000
+                },
+                "retry_policy_4_params": {
+                    "initial_retry_delay_millis": 100,
+                    "retry_delay_multiplier": 1.3,
+                    "max_retry_delay_millis": 60000,
+                    "initial_rpc_timeout_millis": 60000,
+                    "rpc_timeout_multiplier": 1.0,
+                    "max_rpc_timeout_millis": 60000,
+                    "total_timeout_millis": 60000
+                },
+                "retry_policy_5_params": {
+                    "initial_retry_delay_millis": 100,
+                    "retry_delay_multiplier": 1.3,
+                    "max_retry_delay_millis": 60000,
+                    "initial_rpc_timeout_millis": 60000,
+                    "rpc_timeout_multiplier": 1.0,
+                    "max_rpc_timeout_millis": 60000,
+                    "total_timeout_millis": 60000
+                }
+            },
+            "methods": {
+                "BatchGetDocuments": {
+                    "timeout_millis": 300000
+                },
+                "BatchWrite": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_5_codes",
+                    "retry_params_name": "retry_policy_5_params"
+                },
+                "BeginTransaction": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_4_codes",
+                    "retry_params_name": "retry_policy_4_params"
+                },
+                "Commit": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "CreateDocument": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "DeleteDocument": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_4_codes",
+                    "retry_params_name": "retry_policy_4_params"
+                },
+                "GetDocument": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_4_codes",
+                    "retry_params_name": "retry_policy_4_params"
+                },
+                "ListCollectionIds": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_4_codes",
+                    "retry_params_name": "retry_policy_4_params"
+                },
+                "ListDocuments": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_4_codes",
+                    "retry_params_name": "retry_policy_4_params"
+                },
+                "Listen": {
+                    "timeout_millis": 86400000
+                },
+                "PartitionQuery": {
+                    "timeout_millis": 300000,
+                    "retry_codes_name": "retry_policy_2_codes",
+                    "retry_params_name": "retry_policy_2_params"
+                },
+                "Rollback": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_4_codes",
+                    "retry_params_name": "retry_policy_4_params"
+                },
+                "RunAggregationQuery": {
+                    "timeout_millis": 300000
+                },
+                "RunQuery": {
+                    "timeout_millis": 300000
+                },
+                "UpdateDocument": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "Write": {
+                    "timeout_millis": 86400000
+                }
+            }
+        }
+    }
+}
