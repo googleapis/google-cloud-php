@@ -1,6 +1,7 @@
 {
     "distribution_name": "google/cloud-gke-multi-cloud",
-    "release_level": "beta",
+    "release_level": "preview",
     "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-gke-multi-cloud/latest",
-    "library_type": "GAPIC_AUTO"
+    "library_type": "GAPIC_AUTO",
+    "api_shortname": "gkemulticloud"
 }

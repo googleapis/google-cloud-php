@@ -457,8 +457,9 @@ class CompanyServiceGapicClient
      *
      *           Defaults to false.
      *
-     *           If true, at most [page_size][google.cloud.talent.v4.ListCompaniesRequest.page_size] of companies are fetched, among which
-     *           only those with open jobs are returned.
+     *           If true, at most
+     *           [page_size][google.cloud.talent.v4.ListCompaniesRequest.page_size] of
+     *           companies are fetched, among which only those with open jobs are returned.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -506,18 +507,22 @@ class CompanyServiceGapicClient
      * }
      * ```
      *
-     * @param Company $company      Required. The company resource to replace the current resource in the system.
+     * @param Company $company      Required. The company resource to replace the current resource in the
+     *                              system.
      * @param array   $optionalArgs {
      *     Optional.
      *
      *     @type FieldMask $updateMask
      *           Strongly recommended for the best service experience.
      *
-     *           If [update_mask][google.cloud.talent.v4.UpdateCompanyRequest.update_mask] is provided, only the specified fields in
-     *           [company][google.cloud.talent.v4.UpdateCompanyRequest.company] are updated. Otherwise all the fields are updated.
+     *           If [update_mask][google.cloud.talent.v4.UpdateCompanyRequest.update_mask]
+     *           is provided, only the specified fields in
+     *           [company][google.cloud.talent.v4.UpdateCompanyRequest.company] are updated.
+     *           Otherwise all the fields are updated.
      *
      *           A field mask to specify the company fields to be updated. Only
-     *           top level fields of [Company][google.cloud.talent.v4.Company] are supported.
+     *           top level fields of [Company][google.cloud.talent.v4.Company] are
+     *           supported.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on

@@ -163,6 +163,19 @@ class QueryResultPaginationTest extends DatastoreMultipleDbTestCase
     public function testQueryPaginationWithLimit(DatastoreClient $client)
     {
         $testLimit = 310;
+
+        $q = $client->query()->kind(self::$testKind)->limit($testLimit);
+
+        $this->assertQueryPageCount($testLimit, $client, $q);
+    }
+
+    /**
+     * @dataProvider defaultDbClientProvider
+     */
+    public function testQueryPaginationWithStringLimit(DatastoreClient $client)
+    {
+        $testLimit = '310';
+
         $q = $client->query()->kind(self::$testKind)->limit($testLimit);
 
         $this->assertQueryPageCount($testLimit, $client, $q);

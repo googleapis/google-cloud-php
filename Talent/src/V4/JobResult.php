@@ -16,10 +16,12 @@ use Google\Protobuf\Internal\GPBUtil;
 class JobResult extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Here [Job][google.cloud.talent.v4.Job] only contains basic information including [name][google.cloud.talent.v4.Job.name],
-     * [company][google.cloud.talent.v4.Job.company], [language_code][google.cloud.talent.v4.Job.language_code]
-     * and [requisition_id][google.cloud.talent.v4.Job.requisition_id], use getJob method to retrieve
-     * detailed information of the created/updated job.
+     * Here [Job][google.cloud.talent.v4.Job] only contains basic information
+     * including [name][google.cloud.talent.v4.Job.name],
+     * [company][google.cloud.talent.v4.Job.company],
+     * [language_code][google.cloud.talent.v4.Job.language_code] and
+     * [requisition_id][google.cloud.talent.v4.Job.requisition_id], use getJob
+     * method to retrieve detailed information of the created/updated job.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4.Job job = 1;</code>
      */
@@ -39,10 +41,12 @@ class JobResult extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Talent\V4\Job $job
-     *           Here [Job][google.cloud.talent.v4.Job] only contains basic information including [name][google.cloud.talent.v4.Job.name],
-     *           [company][google.cloud.talent.v4.Job.company], [language_code][google.cloud.talent.v4.Job.language_code]
-     *           and [requisition_id][google.cloud.talent.v4.Job.requisition_id], use getJob method to retrieve
-     *           detailed information of the created/updated job.
+     *           Here [Job][google.cloud.talent.v4.Job] only contains basic information
+     *           including [name][google.cloud.talent.v4.Job.name],
+     *           [company][google.cloud.talent.v4.Job.company],
+     *           [language_code][google.cloud.talent.v4.Job.language_code] and
+     *           [requisition_id][google.cloud.talent.v4.Job.requisition_id], use getJob
+     *           method to retrieve detailed information of the created/updated job.
      *     @type \Google\Rpc\Status $status
      *           The status of the job processed. This field is populated if the
      *           processing of the [job][google.cloud.talent.v4.JobResult.job] fails.
@@ -54,10 +58,12 @@ class JobResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Here [Job][google.cloud.talent.v4.Job] only contains basic information including [name][google.cloud.talent.v4.Job.name],
-     * [company][google.cloud.talent.v4.Job.company], [language_code][google.cloud.talent.v4.Job.language_code]
-     * and [requisition_id][google.cloud.talent.v4.Job.requisition_id], use getJob method to retrieve
-     * detailed information of the created/updated job.
+     * Here [Job][google.cloud.talent.v4.Job] only contains basic information
+     * including [name][google.cloud.talent.v4.Job.name],
+     * [company][google.cloud.talent.v4.Job.company],
+     * [language_code][google.cloud.talent.v4.Job.language_code] and
+     * [requisition_id][google.cloud.talent.v4.Job.requisition_id], use getJob
+     * method to retrieve detailed information of the created/updated job.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4.Job job = 1;</code>
      * @return \Google\Cloud\Talent\V4\Job|null
@@ -78,10 +84,12 @@ class JobResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Here [Job][google.cloud.talent.v4.Job] only contains basic information including [name][google.cloud.talent.v4.Job.name],
-     * [company][google.cloud.talent.v4.Job.company], [language_code][google.cloud.talent.v4.Job.language_code]
-     * and [requisition_id][google.cloud.talent.v4.Job.requisition_id], use getJob method to retrieve
-     * detailed information of the created/updated job.
+     * Here [Job][google.cloud.talent.v4.Job] only contains basic information
+     * including [name][google.cloud.talent.v4.Job.name],
+     * [company][google.cloud.talent.v4.Job.company],
+     * [language_code][google.cloud.talent.v4.Job.language_code] and
+     * [requisition_id][google.cloud.talent.v4.Job.requisition_id], use getJob
+     * method to retrieve detailed information of the created/updated job.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4.Job job = 1;</code>
      * @param \Google\Cloud\Talent\V4\Job $var

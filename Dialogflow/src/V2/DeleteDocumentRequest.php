@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [Documents.DeleteDocument][google.cloud.dialogflow.v2.Documents.DeleteDocument].
+ * Request message for
+ * [Documents.DeleteDocument][google.cloud.dialogflow.v2.Documents.DeleteDocument].
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.DeleteDocumentRequest</code>
  */

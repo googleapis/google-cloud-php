@@ -20,7 +20,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * Resource names are schemeless URIs that follow the conventions in
      * https://cloud.google.com/apis/design/resource_names.
      * For example:
-     * `projects/my-project/locations/us-west1-a/privateClouds/my-cloud/clusters/my-cluster`
+     * `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/clusters/my-cluster`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -58,8 +58,8 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     private $uid = '';
     /**
-     * Required. The map of cluster node types in this cluster, where the key is canonical
-     * identifier of the node type (corresponds to the `NodeType`).
+     * Required. The map of cluster node types in this cluster, where the key is
+     * canonical identifier of the node type (corresponds to the `NodeType`).
      *
      * Generated from protobuf field <code>map<string, .google.cloud.vmwareengine.v1.NodeTypeConfig> node_type_configs = 16 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -76,7 +76,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *           Resource names are schemeless URIs that follow the conventions in
      *           https://cloud.google.com/apis/design/resource_names.
      *           For example:
-     *           `projects/my-project/locations/us-west1-a/privateClouds/my-cloud/clusters/my-cluster`
+     *           `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/clusters/my-cluster`
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. Creation time of this resource.
      *     @type \Google\Protobuf\Timestamp $update_time
@@ -90,8 +90,8 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *     @type string $uid
      *           Output only. System-generated unique identifier for the resource.
      *     @type array|\Google\Protobuf\Internal\MapField $node_type_configs
-     *           Required. The map of cluster node types in this cluster, where the key is canonical
-     *           identifier of the node type (corresponds to the `NodeType`).
+     *           Required. The map of cluster node types in this cluster, where the key is
+     *           canonical identifier of the node type (corresponds to the `NodeType`).
      * }
      */
     public function __construct($data = NULL) {
@@ -104,7 +104,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * Resource names are schemeless URIs that follow the conventions in
      * https://cloud.google.com/apis/design/resource_names.
      * For example:
-     * `projects/my-project/locations/us-west1-a/privateClouds/my-cloud/clusters/my-cluster`
+     * `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/clusters/my-cluster`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -119,7 +119,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * Resource names are schemeless URIs that follow the conventions in
      * https://cloud.google.com/apis/design/resource_names.
      * For example:
-     * `projects/my-project/locations/us-west1-a/privateClouds/my-cloud/clusters/my-cluster`
+     * `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/clusters/my-cluster`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -288,8 +288,8 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The map of cluster node types in this cluster, where the key is canonical
-     * identifier of the node type (corresponds to the `NodeType`).
+     * Required. The map of cluster node types in this cluster, where the key is
+     * canonical identifier of the node type (corresponds to the `NodeType`).
      *
      * Generated from protobuf field <code>map<string, .google.cloud.vmwareengine.v1.NodeTypeConfig> node_type_configs = 16 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -300,8 +300,8 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The map of cluster node types in this cluster, where the key is canonical
-     * identifier of the node type (corresponds to the `NodeType`).
+     * Required. The map of cluster node types in this cluster, where the key is
+     * canonical identifier of the node type (corresponds to the `NodeType`).
      *
      * Generated from protobuf field <code>map<string, .google.cloud.vmwareengine.v1.NodeTypeConfig> node_type_configs = 16 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var

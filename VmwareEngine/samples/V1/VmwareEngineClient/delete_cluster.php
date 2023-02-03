@@ -38,7 +38,7 @@ use Google\Rpc\Status;
  *                              Resource names are schemeless URIs that follow the conventions in
  *                              https://cloud.google.com/apis/design/resource_names.
  *                              For example:
- *                              `projects/my-project/locations/us-west1-a/privateClouds/my-cloud/clusters/my-cluster`
+ *                              `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/clusters/my-cluster`
  *                              Please see {@see VmwareEngineClient::clusterName()} for help formatting this field.
  */
 function delete_cluster_sample(string $formattedName): void

@@ -16,16 +16,16 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListOffersRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name of the reseller account from which to list Offers.
-     * Parent uses the format: accounts/{account_id}.
+     * Required. The resource name of the reseller account from which to list
+     * Offers. Parent uses the format: accounts/{account_id}.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $parent = '';
     /**
-     * Optional. Requested page size. Server might return fewer results than requested.
-     * If unspecified, returns at most 500 Offers.
-     * The maximum value is 1000; the server will coerce values above 1000.
+     * Optional. Requested page size. Server might return fewer results than
+     * requested. If unspecified, returns at most 500 Offers. The maximum value is
+     * 1000; the server will coerce values above 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -62,12 +62,12 @@ class ListOffersRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The resource name of the reseller account from which to list Offers.
-     *           Parent uses the format: accounts/{account_id}.
+     *           Required. The resource name of the reseller account from which to list
+     *           Offers. Parent uses the format: accounts/{account_id}.
      *     @type int $page_size
-     *           Optional. Requested page size. Server might return fewer results than requested.
-     *           If unspecified, returns at most 500 Offers.
-     *           The maximum value is 1000; the server will coerce values above 1000.
+     *           Optional. Requested page size. Server might return fewer results than
+     *           requested. If unspecified, returns at most 500 Offers. The maximum value is
+     *           1000; the server will coerce values above 1000.
      *     @type string $page_token
      *           Optional. A token for a page of results other than the first page.
      *     @type string $filter
@@ -88,8 +88,8 @@ class ListOffersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the reseller account from which to list Offers.
-     * Parent uses the format: accounts/{account_id}.
+     * Required. The resource name of the reseller account from which to list
+     * Offers. Parent uses the format: accounts/{account_id}.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -100,8 +100,8 @@ class ListOffersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the reseller account from which to list Offers.
-     * Parent uses the format: accounts/{account_id}.
+     * Required. The resource name of the reseller account from which to list
+     * Offers. Parent uses the format: accounts/{account_id}.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -116,9 +116,9 @@ class ListOffersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Requested page size. Server might return fewer results than requested.
-     * If unspecified, returns at most 500 Offers.
-     * The maximum value is 1000; the server will coerce values above 1000.
+     * Optional. Requested page size. Server might return fewer results than
+     * requested. If unspecified, returns at most 500 Offers. The maximum value is
+     * 1000; the server will coerce values above 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -129,9 +129,9 @@ class ListOffersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Requested page size. Server might return fewer results than requested.
-     * If unspecified, returns at most 500 Offers.
-     * The maximum value is 1000; the server will coerce values above 1000.
+     * Optional. Requested page size. Server might return fewer results than
+     * requested. If unspecified, returns at most 500 Offers. The maximum value is
+     * 1000; the server will coerce values above 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var

@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [VmwareEngine.GetNodeType][google.cloud.vmwareengine.v1.VmwareEngine.GetNodeType]
+ * Request message for
+ * [VmwareEngine.GetNodeType][google.cloud.vmwareengine.v1.VmwareEngine.GetNodeType]
  *
  * Generated from protobuf message <code>google.cloud.vmwareengine.v1.GetNodeTypeRequest</code>
  */
@@ -20,7 +21,7 @@ class GetNodeTypeRequest extends \Google\Protobuf\Internal\Message
      * Resource names are schemeless URIs that follow the conventions in
      * https://cloud.google.com/apis/design/resource_names.
      * For example:
-     * `projects/my-proj/locations/us-west1-a/nodeTypes/standard-72`
+     * `projects/my-proj/locations/us-central1-a/nodeTypes/standard-72`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -37,7 +38,7 @@ class GetNodeTypeRequest extends \Google\Protobuf\Internal\Message
      *           Resource names are schemeless URIs that follow the conventions in
      *           https://cloud.google.com/apis/design/resource_names.
      *           For example:
-     *           `projects/my-proj/locations/us-west1-a/nodeTypes/standard-72`
+     *           `projects/my-proj/locations/us-central1-a/nodeTypes/standard-72`
      * }
      */
     public function __construct($data = NULL) {
@@ -50,7 +51,7 @@ class GetNodeTypeRequest extends \Google\Protobuf\Internal\Message
      * Resource names are schemeless URIs that follow the conventions in
      * https://cloud.google.com/apis/design/resource_names.
      * For example:
-     * `projects/my-proj/locations/us-west1-a/nodeTypes/standard-72`
+     * `projects/my-proj/locations/us-central1-a/nodeTypes/standard-72`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -65,7 +66,7 @@ class GetNodeTypeRequest extends \Google\Protobuf\Internal\Message
      * Resource names are schemeless URIs that follow the conventions in
      * https://cloud.google.com/apis/design/resource_names.
      * For example:
-     * `projects/my-proj/locations/us-west1-a/nodeTypes/standard-72`
+     * `projects/my-proj/locations/us-central1-a/nodeTypes/standard-72`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

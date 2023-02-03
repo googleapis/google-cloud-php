@@ -29,9 +29,9 @@ use Google\Cloud\OsLogin\V1\OsLoginServiceClient;
 /**
  * Deletes a POSIX account.
  *
- * @param string $formattedName A reference to the POSIX account to update. POSIX accounts are identified
- *                              by the project ID they are associated with. A reference to the POSIX
- *                              account is in format `users/{user}/projects/{project}`. Please see
+ * @param string $formattedName A reference to the POSIX account to update. POSIX accounts are
+ *                              identified by the project ID they are associated with. A reference to the
+ *                              POSIX account is in format `users/{user}/projects/{project}`. Please see
  *                              {@see OsLoginServiceClient::posixAccountName()} for help formatting this field.
  */
 function delete_posix_account_sample(string $formattedName): void

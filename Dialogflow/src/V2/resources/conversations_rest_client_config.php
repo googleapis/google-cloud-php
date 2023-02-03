@@ -92,6 +92,25 @@ return [
                     ],
                 ],
             ],
+            'SuggestConversationSummary' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{conversation=projects/*/conversations/*}/suggestions:suggestConversationSummary',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{conversation=projects/*/locations/*/conversations/*}/suggestions:suggestConversationSummary',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'conversation' => [
+                        'getters' => [
+                            'getConversation',
+                        ],
+                    ],
+                ],
+            ],
         ],
         'google.cloud.location.Locations' => [
             'GetLocation' => [

@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The allowed types for [VALUE] in a `[KEY]:[VALUE]` attribute.
+ * The allowed types for `[VALUE]` in a `[KEY]:[VALUE]` attribute.
  *
  * Generated from protobuf message <code>google.devtools.cloudtrace.v2.AttributeValue</code>
  */
