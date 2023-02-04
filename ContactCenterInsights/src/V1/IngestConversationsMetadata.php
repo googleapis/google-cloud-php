@@ -34,12 +34,18 @@ class IngestConversationsMetadata extends \Google\Protobuf\Internal\Message
      */
     private $request = null;
     /**
-     * Output only. Partial errors during ingest operation that might cause the operation
-     * output to be incomplete.
+     * Output only. Partial errors during ingest operation that might cause the
+     * operation output to be incomplete.
      *
      * Generated from protobuf field <code>repeated .google.rpc.Status partial_errors = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $partial_errors;
+    /**
+     * Output only. Statistics for IngestConversations operation.
+     *
+     * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.IngestConversationsMetadata.IngestConversationsStats ingest_conversations_stats = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $ingest_conversations_stats = null;
 
     /**
      * Constructor.
@@ -54,8 +60,10 @@ class IngestConversationsMetadata extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\ContactCenterInsights\V1\IngestConversationsRequest $request
      *           Output only. The original request for ingest.
      *     @type array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $partial_errors
-     *           Output only. Partial errors during ingest operation that might cause the operation
-     *           output to be incomplete.
+     *           Output only. Partial errors during ingest operation that might cause the
+     *           operation output to be incomplete.
+     *     @type \Google\Cloud\ContactCenterInsights\V1\IngestConversationsMetadata\IngestConversationsStats $ingest_conversations_stats
+     *           Output only. Statistics for IngestConversations operation.
      * }
      */
     public function __construct($data = NULL) {
@@ -172,8 +180,8 @@ class IngestConversationsMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Partial errors during ingest operation that might cause the operation
-     * output to be incomplete.
+     * Output only. Partial errors during ingest operation that might cause the
+     * operation output to be incomplete.
      *
      * Generated from protobuf field <code>repeated .google.rpc.Status partial_errors = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -184,8 +192,8 @@ class IngestConversationsMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Partial errors during ingest operation that might cause the operation
-     * output to be incomplete.
+     * Output only. Partial errors during ingest operation that might cause the
+     * operation output to be incomplete.
      *
      * Generated from protobuf field <code>repeated .google.rpc.Status partial_errors = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $var
@@ -195,6 +203,42 @@ class IngestConversationsMetadata extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Rpc\Status::class);
         $this->partial_errors = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Statistics for IngestConversations operation.
+     *
+     * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.IngestConversationsMetadata.IngestConversationsStats ingest_conversations_stats = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\ContactCenterInsights\V1\IngestConversationsMetadata\IngestConversationsStats|null
+     */
+    public function getIngestConversationsStats()
+    {
+        return $this->ingest_conversations_stats;
+    }
+
+    public function hasIngestConversationsStats()
+    {
+        return isset($this->ingest_conversations_stats);
+    }
+
+    public function clearIngestConversationsStats()
+    {
+        unset($this->ingest_conversations_stats);
+    }
+
+    /**
+     * Output only. Statistics for IngestConversations operation.
+     *
+     * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.IngestConversationsMetadata.IngestConversationsStats ingest_conversations_stats = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\ContactCenterInsights\V1\IngestConversationsMetadata\IngestConversationsStats $var
+     * @return $this
+     */
+    public function setIngestConversationsStats($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\ContactCenterInsights\V1\IngestConversationsMetadata\IngestConversationsStats::class);
+        $this->ingest_conversations_stats = $var;
 
         return $this;
     }

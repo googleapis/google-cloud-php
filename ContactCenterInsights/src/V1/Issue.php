@@ -42,8 +42,8 @@ class Issue extends \Google\Protobuf\Internal\Message
      */
     private $update_time = null;
     /**
-     * Output only. Resource names of the sample representative utterances that match to this
-     * issue.
+     * Output only. Resource names of the sample representative utterances that
+     * match to this issue.
      *
      * Generated from protobuf field <code>repeated string sample_utterances = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -66,8 +66,8 @@ class Issue extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. The most recent time that this issue was updated.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $sample_utterances
-     *           Output only. Resource names of the sample representative utterances that match to this
-     *           issue.
+     *           Output only. Resource names of the sample representative utterances that
+     *           match to this issue.
      * }
      */
     public function __construct($data = NULL) {
@@ -204,8 +204,8 @@ class Issue extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Resource names of the sample representative utterances that match to this
-     * issue.
+     * Output only. Resource names of the sample representative utterances that
+     * match to this issue.
      *
      * Generated from protobuf field <code>repeated string sample_utterances = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -216,8 +216,8 @@ class Issue extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Resource names of the sample representative utterances that match to this
-     * issue.
+     * Output only. Resource names of the sample representative utterances that
+     * match to this issue.
      *
      * Generated from protobuf field <code>repeated string sample_utterances = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

@@ -1058,10 +1058,10 @@ class ContactCenterInsightsGapicClient
      * }
      * ```
      *
-     * @param string        $parent        Required. The parent resource of the phrase matcher. Required. The location to create
-     *                                     a phrase matcher for.
-     *                                     Format: `projects/<Project ID>/locations/<Location ID>` or
-     *                                     `projects/<Project Number>/locations/<Location ID>`
+     * @param string        $parent        Required. The parent resource of the phrase matcher. Required. The location
+     *                                     to create a phrase matcher for. Format: `projects/<Project
+     *                                     ID>/locations/<Location ID>` or `projects/<Project
+     *                                     Number>/locations/<Location ID>`
      * @param PhraseMatcher $phraseMatcher Required. The phrase matcher resource to create.
      * @param array         $optionalArgs  {
      *     Optional.

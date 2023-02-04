@@ -30,15 +30,15 @@ class Analysis extends \Google\Protobuf\Internal\Message
      */
     private $request_time = null;
     /**
-     * Output only. The time at which the analysis was created, which occurs when the
-     * long-running operation completes.
+     * Output only. The time at which the analysis was created, which occurs when
+     * the long-running operation completes.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $create_time = null;
     /**
-     * Output only. The result of the analysis, which is populated when the analysis
-     * finishes.
+     * Output only. The result of the analysis, which is populated when the
+     * analysis finishes.
      *
      * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.AnalysisResult analysis_result = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -64,11 +64,11 @@ class Analysis extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $request_time
      *           Output only. The time at which the analysis was requested.
      *     @type \Google\Protobuf\Timestamp $create_time
-     *           Output only. The time at which the analysis was created, which occurs when the
-     *           long-running operation completes.
+     *           Output only. The time at which the analysis was created, which occurs when
+     *           the long-running operation completes.
      *     @type \Google\Cloud\ContactCenterInsights\V1\AnalysisResult $analysis_result
-     *           Output only. The result of the analysis, which is populated when the analysis
-     *           finishes.
+     *           Output only. The result of the analysis, which is populated when the
+     *           analysis finishes.
      *     @type \Google\Cloud\ContactCenterInsights\V1\AnnotatorSelector $annotator_selector
      *           To select the annotators to run and the phrase matchers to use
      *           (if any). If not specified, all annotators will be run.
@@ -146,8 +146,8 @@ class Analysis extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The time at which the analysis was created, which occurs when the
-     * long-running operation completes.
+     * Output only. The time at which the analysis was created, which occurs when
+     * the long-running operation completes.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -168,8 +168,8 @@ class Analysis extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The time at which the analysis was created, which occurs when the
-     * long-running operation completes.
+     * Output only. The time at which the analysis was created, which occurs when
+     * the long-running operation completes.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -184,8 +184,8 @@ class Analysis extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The result of the analysis, which is populated when the analysis
-     * finishes.
+     * Output only. The result of the analysis, which is populated when the
+     * analysis finishes.
      *
      * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.AnalysisResult analysis_result = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\ContactCenterInsights\V1\AnalysisResult|null
@@ -206,8 +206,8 @@ class Analysis extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The result of the analysis, which is populated when the analysis
-     * finishes.
+     * Output only. The result of the analysis, which is populated when the
+     * analysis finishes.
      *
      * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.AnalysisResult analysis_result = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\ContactCenterInsights\V1\AnalysisResult $var

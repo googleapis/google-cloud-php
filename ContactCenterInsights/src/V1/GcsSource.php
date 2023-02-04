@@ -23,8 +23,8 @@ class GcsSource extends \Google\Protobuf\Internal\Message
      */
     private $audio_uri = '';
     /**
-     * Immutable. Cloud Storage URI that points to a file that contains the conversation
-     * transcript.
+     * Immutable. Cloud Storage URI that points to a file that contains the
+     * conversation transcript.
      *
      * Generated from protobuf field <code>string transcript_uri = 2 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
@@ -40,8 +40,8 @@ class GcsSource extends \Google\Protobuf\Internal\Message
      *           Cloud Storage URI that points to a file that contains the conversation
      *           audio.
      *     @type string $transcript_uri
-     *           Immutable. Cloud Storage URI that points to a file that contains the conversation
-     *           transcript.
+     *           Immutable. Cloud Storage URI that points to a file that contains the
+     *           conversation transcript.
      * }
      */
     public function __construct($data = NULL) {
@@ -78,8 +78,8 @@ class GcsSource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. Cloud Storage URI that points to a file that contains the conversation
-     * transcript.
+     * Immutable. Cloud Storage URI that points to a file that contains the
+     * conversation transcript.
      *
      * Generated from protobuf field <code>string transcript_uri = 2 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
@@ -90,8 +90,8 @@ class GcsSource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. Cloud Storage URI that points to a file that contains the conversation
-     * transcript.
+     * Immutable. Cloud Storage URI that points to a file that contains the
+     * conversation transcript.
      *
      * Generated from protobuf field <code>string transcript_uri = 2 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var

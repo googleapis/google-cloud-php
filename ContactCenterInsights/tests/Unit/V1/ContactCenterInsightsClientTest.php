@@ -552,9 +552,11 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $transport->addResponse($incompleteOperation);
         $name = 'name3373707';
         $displayName = 'displayName1615086568';
+        $issueCount = 1779144233;
         $expectedResponse = new IssueModel();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setIssueCount($issueCount);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -1635,9 +1637,11 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         // Mock response
         $name2 = 'name2-1052831874';
         $displayName = 'displayName1615086568';
+        $issueCount = 1779144233;
         $expectedResponse = new IssueModel();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setIssueCount($issueCount);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->issueModelName('[PROJECT]', '[LOCATION]', '[ISSUE_MODEL]');
@@ -2643,9 +2647,11 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         // Mock response
         $name = 'name3373707';
         $displayName = 'displayName1615086568';
+        $issueCount = 1779144233;
         $expectedResponse = new IssueModel();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setIssueCount($issueCount);
         $transport->addResponse($expectedResponse);
         // Mock request
         $issueModel = new IssueModel();

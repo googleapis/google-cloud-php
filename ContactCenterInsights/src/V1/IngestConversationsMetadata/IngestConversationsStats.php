@@ -20,28 +20,28 @@ class IngestConversationsStats extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 processed_object_count = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $processed_object_count = 0;
+    private $processed_object_count = 0;
     /**
      * Output only. The number of objects skipped because another conversation
      * with the same transcript uri had already been ingested.
      *
      * Generated from protobuf field <code>int32 duplicates_skipped_count = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $duplicates_skipped_count = 0;
+    private $duplicates_skipped_count = 0;
     /**
      * Output only. The number of new conversations added during this ingest
      * operation.
      *
      * Generated from protobuf field <code>int32 successful_ingest_count = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $successful_ingest_count = 0;
+    private $successful_ingest_count = 0;
     /**
      * Output only. The number of objects which were unable to be ingested due
      * to errors. The errors are populated in the partial_errors field.
      *
      * Generated from protobuf field <code>int32 failed_ingest_count = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $failed_ingest_count = 0;
+    private $failed_ingest_count = 0;
 
     /**
      * Constructor.
@@ -179,6 +179,4 @@ class IngestConversationsStats extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(IngestConversationsStats::class, \Google\Cloud\ContactCenterInsights\V1\IngestConversationsMetadata_IngestConversationsStats::class);
 
