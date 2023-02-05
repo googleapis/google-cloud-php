@@ -60,8 +60,9 @@ use Google\Cloud\Billing\V1\ProjectBillingInfo;
  * disable billing, you should always call this method with the name of an
  * *open* billing account.
  *
- * @param string $name The resource name of the project associated with the billing information
- *                     that you want to update. For example, `projects/tokyo-rain-123`.
+ * @param string $name The resource name of the project associated with the billing
+ *                     information that you want to update. For example,
+ *                     `projects/tokyo-rain-123`.
  */
 function update_project_billing_info_sample(string $name): void
 {
