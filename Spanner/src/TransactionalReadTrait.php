@@ -55,7 +55,7 @@ trait TransactionalReadTrait
     /**
      * @var int
      */
-    private $state = self::STATE_ACTIVE;
+    private $state = 0; // TransactionalReadInterface::STATE_ACTIVE
 
     /**
      * @var array
