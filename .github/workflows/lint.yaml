@@ -36,24 +36,4 @@ jobs:
     - name: Run Script
       run: |
         composer require --dev phpstan/phpstan:^1.7
-        SUCCEEDED=""
-        FAILED=""
-        for dir in $(find * -type d -name src -not -path '*/vendor/*' -exec dirname {} \;);
-        do
-          vendor/bin/phpstan analyse $dir/src --autoload-file=vendor/autoload.php
-          if [ $? == 0 ]; then
-              SUCCEEDED="${SUCCEEDED}${dir}\n"
-          else
-              FAILED="${FAILED}${dir}\n"
-          fi
-        done
-        echo "--------- Succeeded tests -----------"
-        printf "${SUCCEEDED}"
-        echo "-------------------------------------"
-        echo "--------- Failed tests --------------"
-        if [ -f "${FAILED}" ]; then
-            echo "-------------------------------------"
-            printf "${FAILED}"
-            echo "-------------------------------------"
-            exit 1
-        fi
+        dev/sh/static-analysis

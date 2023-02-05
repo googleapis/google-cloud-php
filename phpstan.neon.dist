@@ -4,7 +4,6 @@ parameters:
     - */vendor/*
     - */samples/*
     - */tests/*
-    - **/ReadOnly.php
     ignoreErrors:
-#    - '#^Class Google\\[A-Za-z1-9\\]+_[A-Za-z1-9]+ not found\.$#'
+    - '#^Class Google\\[A-Za-z1-9\\]+_[A-Za-z1-9]+ not found\.$#'
 
