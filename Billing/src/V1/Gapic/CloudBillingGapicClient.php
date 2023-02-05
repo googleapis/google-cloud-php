@@ -343,8 +343,8 @@ class CloudBillingGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the billing account to retrieve. For example,
-     *                             `billingAccounts/012345-567890-ABCDEF`.
+     * @param string $name         Required. The resource name of the billing account to retrieve. For
+     *                             example, `billingAccounts/012345-567890-ABCDEF`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -598,8 +598,9 @@ class CloudBillingGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the billing account associated with the projects that
-     *                             you want to list. For example, `billingAccounts/012345-567890-ABCDEF`.
+     * @param string $name         Required. The resource name of the billing account associated with the
+     *                             projects that you want to list. For example,
+     *                             `billingAccounts/012345-567890-ABCDEF`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -800,7 +801,8 @@ class CloudBillingGapicClient
      * ```
      *
      * @param string         $name         Required. The name of the billing account resource to be updated.
-     * @param BillingAccount $account      Required. The billing account resource to replace the resource on the server.
+     * @param BillingAccount $account      Required. The billing account resource to replace the resource on the
+     *                                     server.
      * @param array          $optionalArgs {
      *     Optional.
      *
@@ -889,8 +891,9 @@ class CloudBillingGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the project associated with the billing information
-     *                             that you want to update. For example, `projects/tokyo-rain-123`.
+     * @param string $name         Required. The resource name of the project associated with the billing
+     *                             information that you want to update. For example,
+     *                             `projects/tokyo-rain-123`.
      * @param array  $optionalArgs {
      *     Optional.
      *

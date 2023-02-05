@@ -349,7 +349,8 @@ class AdaptationGapicClient
      * }
      * ```
      *
-     * @param string      $parent        Required. The parent resource where this custom class will be created. Format:
+     * @param string      $parent        Required. The parent resource where this custom class will be created.
+     *                                   Format:
      *
      *                                   `projects/{project}/locations/{location}/customClasses`
      *
@@ -410,7 +411,8 @@ class AdaptationGapicClient
      * }
      * ```
      *
-     * @param string    $parent       Required. The parent resource where this phrase set will be created. Format:
+     * @param string    $parent       Required. The parent resource where this phrase set will be created.
+     *                                Format:
      *
      *                                `projects/{project}/locations/{location}/phraseSets`
      *
