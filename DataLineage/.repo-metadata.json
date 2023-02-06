@@ -1,0 +1,7 @@
+{
+    "distribution_name": "google/cloud-datalineage",
+    "release_level": "pre",
+    "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-datalineage/latest",
+    "library_type": "GAPIC_AUTO",
+    "api_shortname": "datalineage"
+}
