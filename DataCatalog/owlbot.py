@@ -34,13 +34,6 @@ php.owlbot_main(src=src, dest=dest)
 
 
 
-# fix namespace casing
-s.replace(
-    "**/*.php",
-    r"(namespace|use) Google\\Cloud\\Datacatalog",
-    r"\1 Google\\Cloud\\DataCatalog",
-)
-
 # document and utilize apiEndpoint instead of serviceAddress
 s.replace(
     "**/Gapic/*GapicClient.php",
