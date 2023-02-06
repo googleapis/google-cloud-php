@@ -50,7 +50,7 @@ class SigningHelper
     {
         static $helper;
         if (!$helper) {
-            $helper = new static;
+            $helper = new self;
         }
 
         return $helper;

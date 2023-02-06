@@ -98,7 +98,7 @@ class StackFrame
             'function' => null
         ];
 
-        return new static(
+        return new self(
             $data['function'],
             SourceLocation::fromJson($data['location'])
         );

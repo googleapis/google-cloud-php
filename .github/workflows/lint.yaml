@@ -31,9 +31,8 @@ jobs:
     - name: Install PHP
       uses: shivammathur/setup-php@v2
       with:
-        php-version: '8.0'
-
-    - name: Run Script
+        php-version: '8.1'
+    - name: Run Static Analysis
       run: |
         composer require --dev phpstan/phpstan:^1.7
         dev/sh/static-analysis

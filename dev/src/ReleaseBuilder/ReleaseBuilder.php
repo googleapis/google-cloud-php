@@ -269,7 +269,7 @@ class ReleaseBuilder extends GoogleCloudCommand
      * @param array $release An associative array, where the key is the
      *        component ID and the value is structured data describing the
      *        release.
-     * @return void
+     * @return string
      */
     private function createReleaseNotes(array $release)
     {

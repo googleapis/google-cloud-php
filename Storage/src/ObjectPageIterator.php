@@ -65,7 +65,7 @@ class ObjectPageIterator implements \Iterator
     /**
      * Add new prefixes to the list.
      *
-     * @return array
+     * @return void
      */
     private function updatePrefixes()
     {

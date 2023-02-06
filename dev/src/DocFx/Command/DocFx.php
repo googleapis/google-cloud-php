@@ -114,7 +114,7 @@ class DocFx extends Command
             $tocItems = array_merge($tocItems, $pageTree->getTocItems());
         }
 
-        $releaseLevel = $this->getReleaseLevel();
+        $releaseLevel = $this->getReleaseLevel($component);
         if (file_exists($overviewFile = sprintf('%s/README.md', $componentPath))) {
             $overview = new OverviewPage(
                 file_get_contents($overviewFile),
@@ -232,7 +232,7 @@ class DocFx extends Command
         }
     }
 
-    private function getReleaseLevel(): string
+    private function getReleaseLevel(string $component): string
     {
         if (empty($this->repoMetadataJson['release_level'])) {
             throw new RuntimeException(sprintf(

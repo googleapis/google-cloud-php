@@ -4,6 +4,14 @@ parameters:
     - */vendor/*
     - */samples/*
     - */tests/*
+    # Ignore Monolog3 for now, as these tests run using Monolog2
+    - Logging/src/LogMessageProcessor/MonologV3MessageProcessor.php
+    # Ignore PHPDocumentor3 and PHPDocumentor4 for now, as these tests run using PHPDocumentor5
+    - Core/src/Testing/Reflection/ReflectionHandler/ReflectionHandlerV3.php
+    - Core/src/Testing/Reflection/ReflectionHandler/ReflectionHandlerV4.php
+    # Ignore PHPArray because it's deprecated
+    - Core/src/PhpArray.php
     ignoreErrors:
     - '#^Class Google\\[A-Za-z1-9\\]+_[A-Za-z1-9]+ not found\.$#'
+    - '#Array has \d duplicate keys with value #'
 

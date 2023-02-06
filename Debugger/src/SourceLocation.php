@@ -86,7 +86,7 @@ class SourceLocation
             'path' => null,
             'line' => null
         ];
-        return new static($data['path'], $data['line']);
+        return new self($data['path'], $data['line']);
     }
 
     /**

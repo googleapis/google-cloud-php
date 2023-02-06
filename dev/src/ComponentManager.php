@@ -101,7 +101,7 @@ class ComponentManager
      */
     public function componentsManifest($componentId = null)
     {
-        $manifest = $this->manifest ?: $this->loadManifest;
+        $manifest = $this->manifest ?: $this->loadManifest();
         $modules = $manifest['modules'];
 
         if ($componentId) {

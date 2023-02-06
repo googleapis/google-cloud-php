@@ -177,6 +177,6 @@ class MessageBuilder
     {
         $data = $this->arrayMergeRecursive($this->message, $data);
 
-        return new static($data);
+        return new self($data);
     }
 }

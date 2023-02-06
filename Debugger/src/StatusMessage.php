@@ -114,7 +114,7 @@ class StatusMessage
             'refersTo' => null,
             'description' => null
         ];
-        return new static($data['isError'], $data['refersTo'], FormatMessage::fromJson($data['description']));
+        return new self($data['isError'], $data['refersTo'], FormatMessage::fromJson($data['description']));
     }
 
     /**

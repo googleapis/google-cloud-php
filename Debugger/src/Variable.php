@@ -138,7 +138,7 @@ class Variable
         if (array_key_exists('status', $data)) {
             $data['status'] = StatusMessage::fromJson($data['status']);
         }
-        return new static($data['name'], $data['type'], $data);
+        return new self($data['name'], $data['type'], $data);
     }
 
     /**

@@ -88,7 +88,7 @@ class FormatMessage
             'format' => null,
             'parameters' => []
         ];
-        return new static($data['format'], $data['parameters']);
+        return new self($data['format'], $data['parameters']);
     }
 
     /**
