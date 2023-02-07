@@ -14,11 +14,14 @@ that project.
 
 To begin, install the preferred dependency manager for PHP, [Composer](https://getcomposer.org/).
 
-Now to install just this component:
+Now install this component:
 
 ```sh
 $ composer require google/cloud-datacatalog-lineage
 ```
+
+> Browse the complete list of [Google Cloud APIs](https://cloud.google.com/php/docs/reference)
+> for PHP
 
 ### Authentication
 
