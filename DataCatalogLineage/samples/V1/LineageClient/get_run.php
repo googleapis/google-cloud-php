@@ -22,35 +22,26 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START datalineage_v1_generated_Lineage_CreateRun_sync]
+// [START datacatalog-lineage_v1_generated_Lineage_GetRun_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\DataCatalog\Lineage\V1\LineageClient;
 use Google\Cloud\DataCatalog\Lineage\V1\Run;
-use Google\Cloud\DataCatalog\Lineage\V1\Run\State;
-use Google\Protobuf\Timestamp;
 
 /**
- * Creates a new run.
+ * Gets the details of the specified run.
  *
- * @param string $formattedParent The name of the process that should own the run. Please see
- *                                {@see LineageClient::processName()} for help formatting this field.
- * @param int    $runState        The state of the run.
+ * @param string $formattedName The name of the run to get. Please see
+ *                              {@see LineageClient::runName()} for help formatting this field.
  */
-function create_run_sample(string $formattedParent, int $runState): void
+function get_run_sample(string $formattedName): void
 {
     // Create a client.
     $lineageClient = new LineageClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
-    $runStartTime = new Timestamp();
-    $run = (new Run())
-        ->setStartTime($runStartTime)
-        ->setState($runState);
-
     // Call the API and handle any network failures.
     try {
         /** @var Run $response */
-        $response = $lineageClient->createRun($formattedParent, $run);
+        $response = $lineageClient->getRun($formattedName);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
@@ -68,9 +59,8 @@ function create_run_sample(string $formattedParent, int $runState): void
  */
 function callSample(): void
 {
-    $formattedParent = LineageClient::processName('[PROJECT]', '[LOCATION]', '[PROCESS]');
-    $runState = State::UNKNOWN;
+    $formattedName = LineageClient::runName('[PROJECT]', '[LOCATION]', '[PROCESS]', '[RUN]');
 
-    create_run_sample($formattedParent, $runState);
+    get_run_sample($formattedName);
 }
-// [END datalineage_v1_generated_Lineage_CreateRun_sync]
+// [END datacatalog-lineage_v1_generated_Lineage_GetRun_sync]

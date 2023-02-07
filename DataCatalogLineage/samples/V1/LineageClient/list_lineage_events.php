@@ -22,21 +22,20 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START datalineage_v1_generated_Lineage_ListProcesses_sync]
+// [START datacatalog-lineage_v1_generated_Lineage_ListLineageEvents_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\DataCatalog\Lineage\V1\LineageClient;
-use Google\Cloud\DataCatalog\Lineage\V1\Process;
+use Google\Cloud\DataCatalog\Lineage\V1\LineageEvent;
 
 /**
- * List processes in the given project and location. List order is descending
- * by insertion time.
+ * Lists lineage events in the given project and location. The list order is
+ * not defined.
  *
- * @param string $formattedParent The name of the project and its location that owns this
- *                                collection of processes. Please see
- *                                {@see LineageClient::locationName()} for help formatting this field.
+ * @param string $formattedParent The name of the run that owns the collection of lineage events to
+ *                                get. Please see {@see LineageClient::runName()} for help formatting this field.
  */
-function list_processes_sample(string $formattedParent): void
+function list_lineage_events_sample(string $formattedParent): void
 {
     // Create a client.
     $lineageClient = new LineageClient();
@@ -44,9 +43,9 @@ function list_processes_sample(string $formattedParent): void
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $lineageClient->listProcesses($formattedParent);
+        $response = $lineageClient->listLineageEvents($formattedParent);
 
-        /** @var Process $element */
+        /** @var LineageEvent $element */
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
         }
@@ -66,8 +65,8 @@ function list_processes_sample(string $formattedParent): void
  */
 function callSample(): void
 {
-    $formattedParent = LineageClient::locationName('[PROJECT]', '[LOCATION]');
+    $formattedParent = LineageClient::runName('[PROJECT]', '[LOCATION]', '[PROCESS]', '[RUN]');
 
-    list_processes_sample($formattedParent);
+    list_lineage_events_sample($formattedParent);
 }
-// [END datalineage_v1_generated_Lineage_ListProcesses_sync]
+// [END datacatalog-lineage_v1_generated_Lineage_ListLineageEvents_sync]

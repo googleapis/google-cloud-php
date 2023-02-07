@@ -22,27 +22,40 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START datalineage_v1_generated_Lineage_GetRun_sync]
+// [START datacatalog-lineage_v1_generated_Lineage_SearchLinks_sync]
 use Google\ApiCore\ApiException;
+use Google\ApiCore\PagedListResponse;
 use Google\Cloud\DataCatalog\Lineage\V1\LineageClient;
-use Google\Cloud\DataCatalog\Lineage\V1\Run;
+use Google\Cloud\DataCatalog\Lineage\V1\Link;
 
 /**
- * Gets the details of the specified run.
+ * Retrieve a list of links connected to a specific asset.
+ * Links represent the data flow between **source** (upstream)
+ * and **target** (downstream) assets in transformation pipelines.
+ * Links are stored in the same project as the Lineage Events that create
+ * them.
  *
- * @param string $formattedName The name of the run to get. Please see
- *                              {@see LineageClient::runName()} for help formatting this field.
+ * You can retrieve links in every project where you have the
+ * `datacatalog-lineage.events.get` permission. The project provided in the URL
+ * is used for Billing and Quota.
+ *
+ * @param string $formattedParent The project and location you want search in. Please see
+ *                                {@see LineageClient::locationName()} for help formatting this field.
  */
-function get_run_sample(string $formattedName): void
+function search_links_sample(string $formattedParent): void
 {
     // Create a client.
     $lineageClient = new LineageClient();
 
     // Call the API and handle any network failures.
     try {
-        /** @var Run $response */
-        $response = $lineageClient->getRun($formattedName);
-        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+        /** @var PagedListResponse $response */
+        $response = $lineageClient->searchLinks($formattedParent);
+
+        /** @var Link $element */
+        foreach ($response as $element) {
+            printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
+        }
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
@@ -59,8 +72,8 @@ function get_run_sample(string $formattedName): void
  */
 function callSample(): void
 {
-    $formattedName = LineageClient::runName('[PROJECT]', '[LOCATION]', '[PROCESS]', '[RUN]');
+    $formattedParent = LineageClient::locationName('[PROJECT]', '[LOCATION]');
 
-    get_run_sample($formattedName);
+    search_links_sample($formattedParent);
 }
-// [END datalineage_v1_generated_Lineage_GetRun_sync]
+// [END datacatalog-lineage_v1_generated_Lineage_SearchLinks_sync]

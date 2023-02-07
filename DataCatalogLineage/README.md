@@ -2,9 +2,9 @@
 
 > Idiomatic PHP client for [Google Cloud Data Catalog Lineage](https://cloud.google.com/data-catalog/docs/concepts/about-data-lineage).
 
-[![Latest Stable Version](https://poser.pugx.org/google/cloud-datalineage/v/stable)](https://packagist.org/packages/google/cloud-datalineage) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-datalineage.svg)](https://packagist.org/packages/google/cloud-datalineage)
+[![Latest Stable Version](https://poser.pugx.org/google/cloud-datacatalog-lineage/v/stable)](https://packagist.org/packages/google/cloud-datacatalog-lineage) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-datacatalog-lineage.svg)](https://packagist.org/packages/google/cloud-datacatalog-lineage)
 
-* [API documentation](https://cloud.google.com/php/docs/reference/cloud-datalineage/latest)
+* [API documentation](https://cloud.google.com/php/docs/reference/cloud-datacatalog-lineage/latest)
 
 **NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googleapis/google-cloud-php). Any
 support requests, bug reports, or development contributions should be directed to
@@ -17,7 +17,7 @@ To begin, install the preferred dependency manager for PHP, [Composer](https://g
 Now to install just this component:
 
 ```sh
-$ composer require google/cloud-datalineage
+$ composer require google/cloud-datacatalog-lineage
 ```
 
 ### Authentication

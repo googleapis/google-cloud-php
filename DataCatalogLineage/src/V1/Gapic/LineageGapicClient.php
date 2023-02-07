@@ -109,7 +109,7 @@ class LineageGapicClient
     const SERVICE_NAME = 'google.cloud.datacatalog.lineage.v1.Lineage';
 
     /** The default address of the service. */
-    const SERVICE_ADDRESS = 'datalineage.googleapis.com';
+    const SERVICE_ADDRESS = 'datacatalog-lineage.googleapis.com';
 
     /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
@@ -364,7 +364,7 @@ class LineageGapicClient
      *
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
-     *           as "<uri>:<port>". Default 'datalineage.googleapis.com:443'.
+     *           as "<uri>:<port>". Default 'datacatalog-lineage.googleapis.com:443'.
      *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
      *           The credentials to be used by the client to authorize API calls. This option
      *           accepts either a path to a credentials file, or a decoded credentials file as a
@@ -430,7 +430,7 @@ class LineageGapicClient
      * method for more information on how to retrieve link name.
      *
      * You can retrieve the LineageProcess information in every project where you
-     * have the `datalineage.events.get` permission. The project provided in the
+     * have the `datacatalog-lineage.events.get` permission. The project provided in the
      * URL is used for Billing and Quota.
      *
      * Sample code:
@@ -1174,7 +1174,7 @@ class LineageGapicClient
      * them.
      *
      * You can retrieve links in every project where you have the
-     * `datalineage.events.get` permission. The project provided in the URL
+     * `datacatalog-lineage.events.get` permission. The project provided in the URL
      * is used for Billing and Quota.
      *
      * Sample code:

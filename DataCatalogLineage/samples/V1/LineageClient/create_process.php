@@ -22,40 +22,31 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START datalineage_v1_generated_Lineage_SearchLinks_sync]
+// [START datacatalog-lineage_v1_generated_Lineage_CreateProcess_sync]
 use Google\ApiCore\ApiException;
-use Google\ApiCore\PagedListResponse;
 use Google\Cloud\DataCatalog\Lineage\V1\LineageClient;
-use Google\Cloud\DataCatalog\Lineage\V1\Link;
+use Google\Cloud\DataCatalog\Lineage\V1\Process;
 
 /**
- * Retrieve a list of links connected to a specific asset.
- * Links represent the data flow between **source** (upstream)
- * and **target** (downstream) assets in transformation pipelines.
- * Links are stored in the same project as the Lineage Events that create
- * them.
+ * Creates a new process.
  *
- * You can retrieve links in every project where you have the
- * `datalineage.events.get` permission. The project provided in the URL
- * is used for Billing and Quota.
- *
- * @param string $formattedParent The project and location you want search in. Please see
+ * @param string $formattedParent The name of the project and its location that should own the
+ *                                process. Please see
  *                                {@see LineageClient::locationName()} for help formatting this field.
  */
-function search_links_sample(string $formattedParent): void
+function create_process_sample(string $formattedParent): void
 {
     // Create a client.
     $lineageClient = new LineageClient();
 
+    // Prepare any non-scalar elements to be passed along with the request.
+    $process = new Process();
+
     // Call the API and handle any network failures.
     try {
-        /** @var PagedListResponse $response */
-        $response = $lineageClient->searchLinks($formattedParent);
-
-        /** @var Link $element */
-        foreach ($response as $element) {
-            printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
-        }
+        /** @var Process $response */
+        $response = $lineageClient->createProcess($formattedParent, $process);
+        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
@@ -74,6 +65,6 @@ function callSample(): void
 {
     $formattedParent = LineageClient::locationName('[PROJECT]', '[LOCATION]');
 
-    search_links_sample($formattedParent);
+    create_process_sample($formattedParent);
 }
-// [END datalineage_v1_generated_Lineage_SearchLinks_sync]
+// [END datacatalog-lineage_v1_generated_Lineage_CreateProcess_sync]

@@ -22,27 +22,25 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START datalineage_v1_generated_Lineage_GetLineageEvent_sync]
+// [START datacatalog-lineage_v1_generated_Lineage_DeleteLineageEvent_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\DataCatalog\Lineage\V1\LineageClient;
-use Google\Cloud\DataCatalog\Lineage\V1\LineageEvent;
 
 /**
- * Gets details of a specified lineage event.
+ * Deletes the lineage event with the specified name.
  *
- * @param string $formattedName The name of the lineage event to get. Please see
+ * @param string $formattedName The name of the lineage event to delete. Please see
  *                              {@see LineageClient::lineageEventName()} for help formatting this field.
  */
-function get_lineage_event_sample(string $formattedName): void
+function delete_lineage_event_sample(string $formattedName): void
 {
     // Create a client.
     $lineageClient = new LineageClient();
 
     // Call the API and handle any network failures.
     try {
-        /** @var LineageEvent $response */
-        $response = $lineageClient->getLineageEvent($formattedName);
-        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+        $lineageClient->deleteLineageEvent($formattedName);
+        printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
@@ -67,6 +65,6 @@ function callSample(): void
         '[LINEAGE_EVENT]'
     );
 
-    get_lineage_event_sample($formattedName);
+    delete_lineage_event_sample($formattedName);
 }
-// [END datalineage_v1_generated_Lineage_GetLineageEvent_sync]
+// [END datacatalog-lineage_v1_generated_Lineage_DeleteLineageEvent_sync]

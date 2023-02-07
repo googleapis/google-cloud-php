@@ -1,5 +1,5 @@
 {
-    "name": "google/cloud-datalineage",
+    "name": "google/cloud-datacatalog-lineage",
     "description": "Google Cloud Data Catalog Lineage Client for PHP",
     "license": "Apache-2.0",
     "minimum-stability": "stable",
@@ -16,10 +16,10 @@
     },
     "extra": {
         "component": {
-            "id": "cloud-datalineage",
-            "path": "DataLineage",
+            "id": "cloud-datacatalog-lineage",
+            "path": "DataCatalogLineage",
             "entry": "src/V1/LineageClient.php",
-            "target": "googleapis/google-cloud-php-datalineage.git"
+            "target": "googleapis/google-cloud-php-datacatalog-lineage.git"
         }
     },
     "require": {

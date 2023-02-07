@@ -22,33 +22,30 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START datalineage_v1_generated_Lineage_ListLineageEvents_sync]
+// [START datacatalog-lineage_v1_generated_Lineage_CreateLineageEvent_sync]
 use Google\ApiCore\ApiException;
-use Google\ApiCore\PagedListResponse;
 use Google\Cloud\DataCatalog\Lineage\V1\LineageClient;
 use Google\Cloud\DataCatalog\Lineage\V1\LineageEvent;
 
 /**
- * Lists lineage events in the given project and location. The list order is
- * not defined.
+ * Creates a new lineage event.
  *
- * @param string $formattedParent The name of the run that owns the collection of lineage events to
- *                                get. Please see {@see LineageClient::runName()} for help formatting this field.
+ * @param string $formattedParent The name of the run that should own the lineage event. Please see
+ *                                {@see LineageClient::runName()} for help formatting this field.
  */
-function list_lineage_events_sample(string $formattedParent): void
+function create_lineage_event_sample(string $formattedParent): void
 {
     // Create a client.
     $lineageClient = new LineageClient();
 
+    // Prepare any non-scalar elements to be passed along with the request.
+    $lineageEvent = new LineageEvent();
+
     // Call the API and handle any network failures.
     try {
-        /** @var PagedListResponse $response */
-        $response = $lineageClient->listLineageEvents($formattedParent);
-
-        /** @var LineageEvent $element */
-        foreach ($response as $element) {
-            printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
-        }
+        /** @var LineageEvent $response */
+        $response = $lineageClient->createLineageEvent($formattedParent, $lineageEvent);
+        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
@@ -67,6 +64,6 @@ function callSample(): void
 {
     $formattedParent = LineageClient::runName('[PROJECT]', '[LOCATION]', '[PROCESS]', '[RUN]');
 
-    list_lineage_events_sample($formattedParent);
+    create_lineage_event_sample($formattedParent);
 }
-// [END datalineage_v1_generated_Lineage_ListLineageEvents_sync]
+// [END datacatalog-lineage_v1_generated_Lineage_CreateLineageEvent_sync]

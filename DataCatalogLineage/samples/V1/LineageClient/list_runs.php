@@ -22,27 +22,33 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START datalineage_v1_generated_Lineage_GetProcess_sync]
+// [START datacatalog-lineage_v1_generated_Lineage_ListRuns_sync]
 use Google\ApiCore\ApiException;
+use Google\ApiCore\PagedListResponse;
 use Google\Cloud\DataCatalog\Lineage\V1\LineageClient;
-use Google\Cloud\DataCatalog\Lineage\V1\Process;
+use Google\Cloud\DataCatalog\Lineage\V1\Run;
 
 /**
- * Gets the details of the specified process.
+ * Lists runs in the given project and location. List order is descending by
+ * `start_time`.
  *
- * @param string $formattedName The name of the process to get. Please see
- *                              {@see LineageClient::processName()} for help formatting this field.
+ * @param string $formattedParent The name of process that owns this collection of runs. Please see
+ *                                {@see LineageClient::processName()} for help formatting this field.
  */
-function get_process_sample(string $formattedName): void
+function list_runs_sample(string $formattedParent): void
 {
     // Create a client.
     $lineageClient = new LineageClient();
 
     // Call the API and handle any network failures.
     try {
-        /** @var Process $response */
-        $response = $lineageClient->getProcess($formattedName);
-        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+        /** @var PagedListResponse $response */
+        $response = $lineageClient->listRuns($formattedParent);
+
+        /** @var Run $element */
+        foreach ($response as $element) {
+            printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
+        }
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
@@ -59,8 +65,8 @@ function get_process_sample(string $formattedName): void
  */
 function callSample(): void
 {
-    $formattedName = LineageClient::processName('[PROJECT]', '[LOCATION]', '[PROCESS]');
+    $formattedParent = LineageClient::processName('[PROJECT]', '[LOCATION]', '[PROCESS]');
 
-    get_process_sample($formattedName);
+    list_runs_sample($formattedParent);
 }
-// [END datalineage_v1_generated_Lineage_GetProcess_sync]
+// [END datacatalog-lineage_v1_generated_Lineage_ListRuns_sync]

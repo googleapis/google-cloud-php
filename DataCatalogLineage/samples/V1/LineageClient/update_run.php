@@ -22,36 +22,34 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START datalineage_v1_generated_Lineage_DeleteProcess_sync]
+// [START datacatalog-lineage_v1_generated_Lineage_UpdateRun_sync]
 use Google\ApiCore\ApiException;
-use Google\ApiCore\OperationResponse;
 use Google\Cloud\DataCatalog\Lineage\V1\LineageClient;
-use Google\Rpc\Status;
+use Google\Cloud\DataCatalog\Lineage\V1\Run;
+use Google\Cloud\DataCatalog\Lineage\V1\Run\State;
+use Google\Protobuf\Timestamp;
 
 /**
- * Deletes the process with the specified name.
+ * Updates a run.
  *
- * @param string $formattedName The name of the process to delete. Please see
- *                              {@see LineageClient::processName()} for help formatting this field.
+ * @param int $runState The state of the run.
  */
-function delete_process_sample(string $formattedName): void
+function update_run_sample(int $runState): void
 {
     // Create a client.
     $lineageClient = new LineageClient();
 
+    // Prepare any non-scalar elements to be passed along with the request.
+    $runStartTime = new Timestamp();
+    $run = (new Run())
+        ->setStartTime($runStartTime)
+        ->setState($runState);
+
     // Call the API and handle any network failures.
     try {
-        /** @var OperationResponse $response */
-        $response = $lineageClient->deleteProcess($formattedName);
-        $response->pollUntilComplete();
-
-        if ($response->operationSucceeded()) {
-            printf('Operation completed successfully.' . PHP_EOL);
-        } else {
-            /** @var Status $error */
-            $error = $response->getError();
-            printf('Operation failed with error data: %s' . PHP_EOL, $error->serializeToJsonString());
-        }
+        /** @var Run $response */
+        $response = $lineageClient->updateRun($run);
+        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
@@ -68,8 +66,8 @@ function delete_process_sample(string $formattedName): void
  */
 function callSample(): void
 {
-    $formattedName = LineageClient::processName('[PROJECT]', '[LOCATION]', '[PROCESS]');
+    $runState = State::UNKNOWN;
 
-    delete_process_sample($formattedName);
+    update_run_sample($runState);
 }
-// [END datalineage_v1_generated_Lineage_DeleteProcess_sync]
+// [END datacatalog-lineage_v1_generated_Lineage_UpdateRun_sync]

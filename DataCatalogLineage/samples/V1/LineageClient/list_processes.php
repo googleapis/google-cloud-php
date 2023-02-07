@@ -22,34 +22,34 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START datalineage_v1_generated_Lineage_UpdateRun_sync]
+// [START datacatalog-lineage_v1_generated_Lineage_ListProcesses_sync]
 use Google\ApiCore\ApiException;
+use Google\ApiCore\PagedListResponse;
 use Google\Cloud\DataCatalog\Lineage\V1\LineageClient;
-use Google\Cloud\DataCatalog\Lineage\V1\Run;
-use Google\Cloud\DataCatalog\Lineage\V1\Run\State;
-use Google\Protobuf\Timestamp;
+use Google\Cloud\DataCatalog\Lineage\V1\Process;
 
 /**
- * Updates a run.
+ * List processes in the given project and location. List order is descending
+ * by insertion time.
  *
- * @param int $runState The state of the run.
+ * @param string $formattedParent The name of the project and its location that owns this
+ *                                collection of processes. Please see
+ *                                {@see LineageClient::locationName()} for help formatting this field.
  */
-function update_run_sample(int $runState): void
+function list_processes_sample(string $formattedParent): void
 {
     // Create a client.
     $lineageClient = new LineageClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
-    $runStartTime = new Timestamp();
-    $run = (new Run())
-        ->setStartTime($runStartTime)
-        ->setState($runState);
-
     // Call the API and handle any network failures.
     try {
-        /** @var Run $response */
-        $response = $lineageClient->updateRun($run);
-        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+        /** @var PagedListResponse $response */
+        $response = $lineageClient->listProcesses($formattedParent);
+
+        /** @var Process $element */
+        foreach ($response as $element) {
+            printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
+        }
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
@@ -66,8 +66,8 @@ function update_run_sample(int $runState): void
  */
 function callSample(): void
 {
-    $runState = State::UNKNOWN;
+    $formattedParent = LineageClient::locationName('[PROJECT]', '[LOCATION]');
 
-    update_run_sample($runState);
+    list_processes_sample($formattedParent);
 }
-// [END datalineage_v1_generated_Lineage_UpdateRun_sync]
+// [END datacatalog-lineage_v1_generated_Lineage_ListProcesses_sync]

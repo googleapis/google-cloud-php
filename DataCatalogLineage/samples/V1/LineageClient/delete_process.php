@@ -22,31 +22,36 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START datalineage_v1_generated_Lineage_CreateProcess_sync]
+// [START datacatalog-lineage_v1_generated_Lineage_DeleteProcess_sync]
 use Google\ApiCore\ApiException;
+use Google\ApiCore\OperationResponse;
 use Google\Cloud\DataCatalog\Lineage\V1\LineageClient;
-use Google\Cloud\DataCatalog\Lineage\V1\Process;
+use Google\Rpc\Status;
 
 /**
- * Creates a new process.
+ * Deletes the process with the specified name.
  *
- * @param string $formattedParent The name of the project and its location that should own the
- *                                process. Please see
- *                                {@see LineageClient::locationName()} for help formatting this field.
+ * @param string $formattedName The name of the process to delete. Please see
+ *                              {@see LineageClient::processName()} for help formatting this field.
  */
-function create_process_sample(string $formattedParent): void
+function delete_process_sample(string $formattedName): void
 {
     // Create a client.
     $lineageClient = new LineageClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
-    $process = new Process();
-
     // Call the API and handle any network failures.
     try {
-        /** @var Process $response */
-        $response = $lineageClient->createProcess($formattedParent, $process);
-        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+        /** @var OperationResponse $response */
+        $response = $lineageClient->deleteProcess($formattedName);
+        $response->pollUntilComplete();
+
+        if ($response->operationSucceeded()) {
+            printf('Operation completed successfully.' . PHP_EOL);
+        } else {
+            /** @var Status $error */
+            $error = $response->getError();
+            printf('Operation failed with error data: %s' . PHP_EOL, $error->serializeToJsonString());
+        }
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
@@ -63,8 +68,8 @@ function create_process_sample(string $formattedParent): void
  */
 function callSample(): void
 {
-    $formattedParent = LineageClient::locationName('[PROJECT]', '[LOCATION]');
+    $formattedName = LineageClient::processName('[PROJECT]', '[LOCATION]', '[PROCESS]');
 
-    create_process_sample($formattedParent);
+    delete_process_sample($formattedName);
 }
-// [END datalineage_v1_generated_Lineage_CreateProcess_sync]
+// [END datacatalog-lineage_v1_generated_Lineage_DeleteProcess_sync]
