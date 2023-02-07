@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2022 Google Inc.
+ * Copyright 2019 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,20 +15,27 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Dev\DocFx\Node;
+namespace Google\Cloud\Dev;
 
 /**
+ * Execute Shell commands and return the results.
+ *
+ * Allows for unit testing of calls to exec.
+ *
  * @internal
  */
-trait VisibilityTrait
+class RunShell
 {
-    public function isPublic(): bool
+    /**
+     * Executing commands in Windows may behave differently.
+     *
+     * @param string $command
+     * @return array [(bool) $succeeded, (string) $shellOutput, (int) $exitCode]
+     */
+    public function execute($command)
     {
-        return 'public' === (string) $this->xmlNode['visibility'];
-    }
+        exec($command, $shellOutput, $exitCode);
 
-    public function isInherited(): bool
-    {
-        return (bool) $this->xmlNode->inherited_from;
+        return [$exitCode == 0, $shellOutput, $exitCode];
     }
 }

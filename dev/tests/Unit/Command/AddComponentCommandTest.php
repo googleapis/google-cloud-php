@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2022 Google Inc.
+ * Copyright 2022 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,20 +15,14 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Dev\DocFx\Node;
+namespace Google\Cloud\Dev\Tests\Unit\Command;
+
+use Google\Cloud\Dev\DocFx\Command\AddComponentCommand;
+use PHPUnit\Framework\TestCase;
 
 /**
- * @internal
+ * @group dev
  */
-trait VisibilityTrait
+class AddComponentCommandTest extends TestCase
 {
-    public function isPublic(): bool
-    {
-        return 'public' === (string) $this->xmlNode['visibility'];
-    }
-
-    public function isInherited(): bool
-    {
-        return (bool) $this->xmlNode->inherited_from;
-    }
 }

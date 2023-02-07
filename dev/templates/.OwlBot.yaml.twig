@@ -1,0 +1,4 @@
+deep-copy-regex:
+    - source: /{{proto_path}}/.*-php/(.*)
+      dest: /owl-bot-staging/{{component}}/$1{{version ? '/$2' : ''}}
+api-name: {{component}}

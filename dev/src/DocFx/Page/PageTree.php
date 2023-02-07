@@ -23,6 +23,7 @@ use SimpleXMLElement;
 
 /**
  * Class to determine the tree for DocFX rendering
+ * @internal
  */
 class PageTree
 {
