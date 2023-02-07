@@ -38,7 +38,7 @@ use Google\Cloud\GkeMultiCloud\V1\AttachedClustersClient;
  *                                Location names are formatted as `projects/<project-id>/locations/<region>`.
  *
  *                                See [Resource Names](https://cloud.google.com/apis/design/resource_names)
- *                                for more details on GCP resource names. Please see
+ *                                for more details on Google Cloud Platform resource names. Please see
  *                                {@see AttachedClustersClient::locationName()} for help formatting this field.
  */
 function list_attached_clusters_sample(string $formattedParent): void

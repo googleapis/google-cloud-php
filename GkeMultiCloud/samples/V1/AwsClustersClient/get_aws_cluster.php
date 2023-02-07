@@ -39,7 +39,7 @@ use Google\Cloud\GkeMultiCloud\V1\AwsClustersClient;
  *                              `projects/<project-id>/locations/<region>/awsClusters/<cluster-id>`.
  *
  *                              See [Resource Names](https://cloud.google.com/apis/design/resource_names)
- *                              for more details on GCP resource names. Please see
+ *                              for more details on Google Cloud Platform resource names. Please see
  *                              {@see AwsClustersClient::awsClusterName()} for help formatting this field.
  */
 function get_aws_cluster_sample(string $formattedName): void
