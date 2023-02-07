@@ -25,10 +25,9 @@ $ composer require google/cloud-datacatalog-lineage
 Please see our [Authentication guide](https://github.com/googleapis/google-cloud-php/blob/main/AUTHENTICATION.md) for more information
 on authenticating your client. Once authenticated, you'll be ready to start making requests.
 
-### Sample
+### Samples
 
-```php
-```
+See the [samples directory](samples/) for a canonical list of samples.
 
 ### Version
 
