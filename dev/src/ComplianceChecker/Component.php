@@ -161,7 +161,7 @@ class Component
      *   - google-analytics-data
      * This is for the reference documentation URLs
      */
-    private function getReferenceDocumentationUid(): string
+    public function getReferenceDocumentationUid(): string
     {
         return str_replace('/', '-', $this->getPackageName());
     }

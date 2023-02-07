@@ -27,6 +27,7 @@ use Symfony\Component\Yaml\Yaml;
 use RuntimeException;
 use Google\Cloud\Dev\DocFx\Page\PageTree;
 use Google\Cloud\Dev\DocFx\Page\OverviewPage;
+use Google\Cloud\Dev\ComplianceChecker\Component;
 
 class DocFx extends Command
 {
@@ -89,13 +90,13 @@ class DocFx extends Command
         $flags = Yaml::DUMP_MULTI_LINE_LITERAL_BLOCK;
 
         $tocItems = [];
-        $packageDescription = $component->getPackageDescription();
+        $packageDescription = $component->getDescription();
         foreach ($component->getNamespaces() as $namespace) {
             $pageTree = new PageTree(
                 $xml,
                 $namespace,
                 $packageDescription,
-                $componentPath
+                $component->getPath()
             );
 
             foreach ($pageTree->getPages() as $page) {
@@ -114,7 +115,7 @@ class DocFx extends Command
         }
 
         $releaseLevel = $component->getReleaseLevel();
-        if (file_exists($overviewFile = sprintf('%s/README.md', $componentPath))) {
+        if (file_exists($overviewFile = sprintf('%s/README.md', $component->getPath()))) {
             $overview = new OverviewPage(
                 file_get_contents($overviewFile),
                 $releaseLevel !== 'stable'
@@ -142,10 +143,10 @@ class DocFx extends Command
             $output->write(sprintf('Writing docs.metadata with version <fg=white>%s</>... ', $metadataVersion));
             $process = new Process([
                 'docuploader', 'create-metadata',
-                '--name', str_replace('google/', '', $component->getDistributionName()),
+                '--name', str_replace('google/', '', $component->getPackageName()),
                 '--version', $metadataVersion,
                 '--language', 'php',
-                '--distribution-name', $component->getDistributionName(),
+                '--distribution-name', $component->getPackageName(),
                 '--product-page', $component->getProductDocumentation(),
                 '--github-repository', $component->getRepoName(),
                 '--issue-tracker', $component->getIssueTracker(),
@@ -185,129 +186,5 @@ class DocFx extends Command
             '--target',
             $outDir
         ]);
-    }
-
-    private function getComponentPath(string $component): string
-    {
-        $rootDir = __DIR__ . '/../../../../';
-
-        $components = scandir($rootDir);
-        foreach ($components as $i => $c) {
-            if (!is_dir($rootDir . $c) || !preg_match('/^[A-Z]/', $c)) {
-                unset($components[$i]);
-            }
-        }
-        if (!in_array($component, $components)) {
-            throw new \Exception($component ? 'Invalid component provided: ' . $component
-                : 'You are not in a component directory. Run this command from a valid component'
-                  . ' directory or provide a valid component using the "component" option.');
-        }
-
-        $componentPath = realpath(sprintf(__DIR__ . '/../../../../%s', $component));
-
-        if (!is_dir($componentPath)) {
-            throw new RuntimeException(sprintf('component "%s" not found', $component));
-        }
-
-        return $componentPath;
-    }
-
-    private function validateComponentFiles(string $componentPath, string $component)
-    {
-        $composerPath = $componentPath . '/composer.json';
-        if (!file_exists($composerPath)) {
-            throw new RuntimeException(sprintf('composer.json not found for component "%s"', $component));
-        }
-        if (!$this->composerJson = json_decode(file_get_contents($composerPath), true)) {
-            throw new RuntimeException(sprintf('Invalid composer.json for component "%s"', $component));
-        }
-
-        $repoMetadataPath = $componentPath . '/.repo-metadata.json';
-        if (!file_exists($repoMetadataPath)) {
-            throw new RuntimeException(sprintf('repo metadata not found for component "%s"', $component));
-        }
-        if (!$this->repoMetadataJson = json_decode(file_get_contents($repoMetadataPath), true)) {
-            throw new RuntimeException(sprintf('Invalid .repo-metadata.json for component "%s"', $component));
-        }
-    }
-
-    private function getReleaseLevel(): string
-    {
-        if (empty($this->repoMetadataJson['release_level'])) {
-            throw new RuntimeException(sprintf(
-                'repo metadata does not contain "release_level" for component "%s"',
-                $component
-            ));
-        }
-
-        return $this->repoMetadataJson['release_level'];
-    }
-
-    private function getProductDocumentation(): string
-    {
-        return $this->repoMetadataJson['product_documentation'] ?? '';
-    }
-
-    private function getDistributionName(): string
-    {
-        if (empty($this->composerJson['name'])) {
-            throw new RuntimeException('composer.json does not contain "name"');
-        }
-        return $this->composerJson['name'];
-    }
-
-    /**
-     * Formats distribution name like
-     *   - google-cloud-policy-troubleshooter
-     *   - google-cloud-vision
-     *   - google-grafeas
-     *   - google-analytics-data
-     */
-    private function getComponentUid(): string
-    {
-        return str_replace('/', '-', $this->getDistributionName());
-    }
-
-    private function getPackageDescription(): string
-    {
-        if (empty($this->composerJson['description'])) {
-            throw new RuntimeException('composer.json does not contain "description"');
-        }
-        return $this->composerJson['description'];
-    }
-
-    private function getNamespaces(): array
-    {
-        if (empty($this->composerJson['autoload']['psr-4'])) {
-            throw new RuntimeException('composer does not contain autoload.psr-4');
-        }
-
-        $namespaces = [];
-        foreach ($this->composerJson['autoload']['psr-4'] as $namespace => $dir) {
-            if (0 === strpos($dir, 'src')) {
-                $namespaces[] = rtrim($namespace, '\\');
-            }
-        }
-
-        if (empty($namespaces)) {
-            throw new RuntimeException('composer autoload.psr-4 does not contain a namespace');
-        }
-
-        return $namespaces;
-    }
-
-    private function getRepo(): string
-    {
-        if (empty($this->composerJson['extra']['component']['target'])) {
-            throw new RuntimeException('composer does not contain extra.component.target');
-        }
-
-        // Strip trailing ".git"
-        return preg_replace('/\.git$/', '', $this->composerJson['extra']['component']['target']);
-    }
-
-    private function getIssueTracker(): string
-    {
-        return sprintf('https://github.com/%s/issues', $this->getRepo());
     }
 }
