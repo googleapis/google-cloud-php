@@ -32,9 +32,9 @@ use Google\Cloud\Run\V2\ServicesClient;
  * Lists Services.
  *
  * @param string $formattedParent The location and project to list resources on.
- *                                Location must be a valid GCP region, and cannot be the "-" wildcard.
- *                                Format: projects/{project}/locations/{location}, where {project} can be
- *                                project id or number. Please see
+ *                                Location must be a valid Google Cloud region, and cannot be the "-"
+ *                                wildcard. Format: projects/{project}/locations/{location}, where {project}
+ *                                can be project id or number. Please see
  *                                {@see ServicesClient::locationName()} for help formatting this field.
  */
 function list_services_sample(string $formattedParent): void
