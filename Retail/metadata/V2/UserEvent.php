@@ -21,7 +21,7 @@ class UserEvent
         \GPBMetadata\Google\Protobuf\Wrappers::initOnce();
         $pool->internalAddGeneratedFile(
             '
-þ
+ô
 \'google/cloud/retail/v2/user_event.protogoogle.cloud.retail.v2#google/cloud/retail/v2/common.proto$google/cloud/retail/v2/product.protogoogle/protobuf/timestamp.protogoogle/protobuf/wrappers.proto"‡
 	UserEvent
 
@@ -66,8 +66,8 @@ attributes (21.google.cloud.retail.v2.UserEvent.AttributesEntry
 revenue (BàA
 tax (
 cost (
-currency_code (	BàABÃ
-com.google.cloud.retail.v2BUserEventProtoPZ<google.golang.org/genproto/googleapis/cloud/retail/v2;retail¢RETAILªGoogle.Cloud.Retail.V2ÊGoogle\\Cloud\\Retail\\V2êGoogle::Cloud::Retail::V2bproto3'
+currency_code (	BàAB¹
+com.google.cloud.retail.v2BUserEventProtoPZ2cloud.google.com/go/retail/apiv2/retailpb;retailpb¢RETAILªGoogle.Cloud.Retail.V2ÊGoogle\\Cloud\\Retail\\V2êGoogle::Cloud::Retail::V2bproto3'
         , true);
 
         static::$is_initialized = true;

@@ -18,7 +18,7 @@ class ExternalSystem
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ô
+Ò
 4google/cloud/securitycenter/v1/external_system.protogoogle.cloud.securitycenter.v1google/protobuf/timestamp.proto"à
 ExternalSystem
 name (	
@@ -26,8 +26,8 @@ class ExternalSystem
 external_uid (	
 status (	?
 external_system_update_time (2.google.protobuf.Timestamp:ÅêAÁ
-,securitycenter.googleapis.com/ExternalSystemaorganizations/{organization}/sources/{source}/findings/{finding}/externalSystems/{externalsystem}Ufolders/{folder}/sources/{source}/findings/{finding}/externalSystems/{externalsystem}Wprojects/{project}/sources/{source}/findings/{finding}/externalSystems/{externalsystem}Bï
-"com.google.cloud.securitycenter.v1BExternalSystemProtoPZLgoogle.golang.org/genproto/googleapis/cloud/securitycenter/v1;securitycenterªGoogle.Cloud.SecurityCenter.V1ÊGoogle\\Cloud\\SecurityCenter\\V1ê!Google::Cloud::SecurityCenter::V1bproto3'
+,securitycenter.googleapis.com/ExternalSystemaorganizations/{organization}/sources/{source}/findings/{finding}/externalSystems/{externalsystem}Ufolders/{folder}/sources/{source}/findings/{finding}/externalSystems/{externalsystem}Wprojects/{project}/sources/{source}/findings/{finding}/externalSystems/{externalsystem}Bí
+"com.google.cloud.securitycenter.v1BExternalSystemProtoPZJcloud.google.com/go/securitycenter/apiv1/securitycenterpb;securitycenterpbªGoogle.Cloud.SecurityCenter.V1ÊGoogle\\Cloud\\SecurityCenter\\V1ê!Google::Cloud::SecurityCenter::V1bproto3'
         , true);
 
         static::$is_initialized = true;
