@@ -121,8 +121,6 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      * to identify valid sources or targets for network firewalls. Each tag within
      * the list must comply with [RFC1035](https://www.ietf.org/rfc/rfc1035.txt).
      * Cannot be updated.
-     * This field is supported for Cloud Composer environments in versions
-     * composer-1.*.*-airflow-*.*.*.
      *
      * Generated from protobuf field <code>repeated string tags = 8;</code>
      */
@@ -228,8 +226,6 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *           to identify valid sources or targets for network firewalls. Each tag within
      *           the list must comply with [RFC1035](https://www.ietf.org/rfc/rfc1035.txt).
      *           Cannot be updated.
-     *           This field is supported for Cloud Composer environments in versions
-     *           composer-1.*.*-airflow-*.*.*.
      *     @type \Google\Cloud\Orchestration\Airflow\Service\V1\IPAllocationPolicy $ip_allocation_policy
      *           Optional. The configuration for controlling how IPs are allocated in the
      *           GKE cluster.
@@ -549,8 +545,6 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      * to identify valid sources or targets for network firewalls. Each tag within
      * the list must comply with [RFC1035](https://www.ietf.org/rfc/rfc1035.txt).
      * Cannot be updated.
-     * This field is supported for Cloud Composer environments in versions
-     * composer-1.*.*-airflow-*.*.*.
      *
      * Generated from protobuf field <code>repeated string tags = 8;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -565,8 +559,6 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      * to identify valid sources or targets for network firewalls. Each tag within
      * the list must comply with [RFC1035](https://www.ietf.org/rfc/rfc1035.txt).
      * Cannot be updated.
-     * This field is supported for Cloud Composer environments in versions
-     * composer-1.*.*-airflow-*.*.*.
      *
      * Generated from protobuf field <code>repeated string tags = 8;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
