@@ -32,7 +32,7 @@ class LookupService
 service (2).google.cloud.servicedirectory.v1.Service2¸
 LookupServiceÑ
 ResolveService7.google.cloud.servicedirectory.v1.ResolveServiceRequest8.google.cloud.servicedirectory.v1.ResolveServiceResponse"L‚Óä“F"A/v1/{name=projects/*/locations/*/namespaces/*/services/*}:resolve:*SÊAservicedirectory.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBý
-$com.google.cloud.servicedirectory.v1BLookupServiceProtoPZPgoogle.golang.org/genproto/googleapis/cloud/servicedirectory/v1;servicedirectoryøª Google.Cloud.ServiceDirectory.V1Ê Google\\Cloud\\ServiceDirectory\\V1ê#Google::Cloud::ServiceDirectory::V1bproto3'
+$com.google.cloud.servicedirectory.v1BLookupServiceProtoPZPcloud.google.com/go/servicedirectory/apiv1/servicedirectorypb;servicedirectorypbøª Google.Cloud.ServiceDirectory.V1Ê Google\\Cloud\\ServiceDirectory\\V1ê#Google::Cloud::ServiceDirectory::V1bproto3'
         , true);
 
         static::$is_initialized = true;

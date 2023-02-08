@@ -27,6 +27,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\VmwareEngine\V1\NetworkConfig;
 use Google\Cloud\VmwareEngine\V1\PrivateCloud;
+use Google\Cloud\VmwareEngine\V1\PrivateCloud\ManagementCluster;
 use Google\Cloud\VmwareEngine\V1\VmwareEngineClient;
 use Google\Rpc\Status;
 
@@ -43,7 +44,7 @@ use Google\Rpc\Status;
  *                                                        private cloud in. Resource names are schemeless URIs that follow the
  *                                                        conventions in https://cloud.google.com/apis/design/resource_names.
  *                                                        For example:
- *                                                        `projects/my-project/locations/us-west1-a`
+ *                                                        `projects/my-project/locations/us-central1-a`
  *                                                        Please see {@see VmwareEngineClient::locationName()} for help formatting this field.
  * @param string $privateCloudId                          The user-provided identifier of the private cloud to be created.
  *                                                        This identifier must be unique among each `PrivateCloud` within the parent
@@ -57,11 +58,21 @@ use Google\Rpc\Status;
  *                                                        * Complies with [RFC 1034](https://datatracker.ietf.org/doc/html/rfc1034)
  *                                                        (section 3.5)
  * @param string $privateCloudNetworkConfigManagementCidr Management CIDR used by VMware management appliances.
+ * @param string $privateCloudManagementClusterClusterId  The user-provided identifier of the new `Cluster`.
+ *                                                        The identifier must meet the following requirements:
+ *
+ *                                                        * Only contains 1-63 alphanumeric characters and hyphens
+ *                                                        * Begins with an alphabetical character
+ *                                                        * Ends with a non-hyphen character
+ *                                                        * Not formatted as a UUID
+ *                                                        * Complies with [RFC
+ *                                                        1034](https://datatracker.ietf.org/doc/html/rfc1034) (section 3.5)
  */
 function create_private_cloud_sample(
     string $formattedParent,
     string $privateCloudId,
-    string $privateCloudNetworkConfigManagementCidr
+    string $privateCloudNetworkConfigManagementCidr,
+    string $privateCloudManagementClusterClusterId
 ): void {
     // Create a client.
     $vmwareEngineClient = new VmwareEngineClient();
@@ -69,8 +80,13 @@ function create_private_cloud_sample(
     // Prepare any non-scalar elements to be passed along with the request.
     $privateCloudNetworkConfig = (new NetworkConfig())
         ->setManagementCidr($privateCloudNetworkConfigManagementCidr);
+    $privateCloudManagementClusterNodeTypeConfigs = [];
+    $privateCloudManagementCluster = (new ManagementCluster())
+        ->setClusterId($privateCloudManagementClusterClusterId)
+        ->setNodeTypeConfigs($privateCloudManagementClusterNodeTypeConfigs);
     $privateCloud = (new PrivateCloud())
-        ->setNetworkConfig($privateCloudNetworkConfig);
+        ->setNetworkConfig($privateCloudNetworkConfig)
+        ->setManagementCluster($privateCloudManagementCluster);
 
     // Call the API and handle any network failures.
     try {
@@ -110,11 +126,13 @@ function callSample(): void
     $formattedParent = VmwareEngineClient::locationName('[PROJECT]', '[LOCATION]');
     $privateCloudId = '[PRIVATE_CLOUD_ID]';
     $privateCloudNetworkConfigManagementCidr = '[MANAGEMENT_CIDR]';
+    $privateCloudManagementClusterClusterId = '[CLUSTER_ID]';
 
     create_private_cloud_sample(
         $formattedParent,
         $privateCloudId,
-        $privateCloudNetworkConfigManagementCidr
+        $privateCloudNetworkConfigManagementCidr,
+        $privateCloudManagementClusterClusterId
     );
 }
 // [END vmwareengine_v1_generated_VmwareEngine_CreatePrivateCloud_sync]

@@ -18,7 +18,7 @@ class ProcessorType
         \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ä
+Þ
 /google/cloud/documentai/v1/processor_type.protogoogle.cloud.documentai.v1google/api/resource.proto"“
 ProcessorType
 name (	
@@ -30,8 +30,8 @@ class ProcessorType
 sample_document_uris	 (	#
 LocationInfo
 location_id (	:uêAr
-\'documentai.googleapis.com/ProcessorTypeGprojects/{project}/locations/{location}/processorTypes/{processor_type}BÛ
-com.google.cloud.documentai.v1BDocumentAiProcessorTypePZDgoogle.golang.org/genproto/googleapis/cloud/documentai/v1;documentaiªGoogle.Cloud.DocumentAI.V1ÊGoogle\\Cloud\\DocumentAI\\V1êGoogle::Cloud::DocumentAI::V1bproto3'
+\'documentai.googleapis.com/ProcessorTypeGprojects/{project}/locations/{location}/processorTypes/{processor_type}BÕ
+com.google.cloud.documentai.v1BDocumentAiProcessorTypePZ>cloud.google.com/go/documentai/apiv1/documentaipb;documentaipbªGoogle.Cloud.DocumentAI.V1ÊGoogle\\Cloud\\DocumentAI\\V1êGoogle::Cloud::DocumentAI::V1bproto3'
         , true);
 
         static::$is_initialized = true;

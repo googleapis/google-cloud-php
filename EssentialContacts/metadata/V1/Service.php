@@ -24,7 +24,7 @@ class Service
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ä"
+Å"
 /google/cloud/essentialcontacts/v1/service.proto!google.cloud.essentialcontacts.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto-google/cloud/essentialcontacts/v1/enums.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"—
 Contact
 name (	
@@ -76,8 +76,8 @@ page_token (	B‡A"p
 GetContact4.google.cloud.essentialcontacts.v1.GetContactRequest*.google.cloud.essentialcontacts.v1.Contact"{Ç”‰ìn /v1/{name=projects/*/contacts/*}Z!/v1/{name=folders/*/contacts/*}Z\'%/v1/{name=organizations/*/contacts/*}⁄Aname›
 DeleteContact7.google.cloud.essentialcontacts.v1.DeleteContactRequest.google.protobuf.Empty"{Ç”‰ìn* /v1/{name=projects/*/contacts/*}Z!*/v1/{name=folders/*/contacts/*}Z\'*%/v1/{name=organizations/*/contacts/*}⁄Anameò
 ComputeContacts9.google.cloud.essentialcontacts.v1.ComputeContactsRequest:.google.cloud.essentialcontacts.v1.ComputeContactsResponse"çÇ”‰ìÜ(/v1/{parent=projects/*}/contacts:computeZ)\'/v1/{parent=folders/*}/contacts:computeZ/-/v1/{parent=organizations/*}/contacts:computeõ
-SendTestMessage9.google.cloud.essentialcontacts.v1.SendTestMessageRequest.google.protobuf.Empty"¥Ç”‰ì≠"2/v1/{resource=projects/*}/contacts:sendTestMessage:*Z6"1/v1/{resource=folders/*}/contacts:sendTestMessage:*Z<"7/v1/{resource=organizations/*}/contacts:sendTestMessage:*T A essentialcontacts.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBÏ
-%com.google.cloud.essentialcontacts.v1PZRgoogle.golang.org/genproto/googleapis/cloud/essentialcontacts/v1;essentialcontacts™!Google.Cloud.EssentialContacts.V1 !Google\\Cloud\\EssentialContacts\\V1Í$Google::Cloud::EssentialContacts::V1bproto3'
+SendTestMessage9.google.cloud.essentialcontacts.v1.SendTestMessageRequest.google.protobuf.Empty"¥Ç”‰ì≠"2/v1/{resource=projects/*}/contacts:sendTestMessage:*Z6"1/v1/{resource=folders/*}/contacts:sendTestMessage:*Z<"7/v1/{resource=organizations/*}/contacts:sendTestMessage:*T A essentialcontacts.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBÌ
+%com.google.cloud.essentialcontacts.v1PZScloud.google.com/go/essentialcontacts/apiv1/essentialcontactspb;essentialcontactspb™!Google.Cloud.EssentialContacts.V1 !Google\\Cloud\\EssentialContacts\\V1Í$Google::Cloud::EssentialContacts::V1bproto3'
         , true);
 
         static::$is_initialized = true;

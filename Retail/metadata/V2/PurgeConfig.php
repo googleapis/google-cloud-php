@@ -18,7 +18,7 @@ class PurgeConfig
         \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ï
+‚
 )google/cloud/retail/v2/purge_config.protogoogle.cloud.retail.v2google/api/resource.proto"
 PurgeMetadata"s
 PurgeUserEventsRequest5
@@ -27,8 +27,8 @@ class PurgeConfig
 filter (	B‡A
 force ("6
 PurgeUserEventsResponse
-purged_events_count (B≈
-com.google.cloud.retail.v2BPurgeConfigProtoPZ<google.golang.org/genproto/googleapis/cloud/retail/v2;retail¢RETAIL™Google.Cloud.Retail.V2 Google\\Cloud\\Retail\\V2ÍGoogle::Cloud::Retail::V2bproto3'
+purged_events_count (Bª
+com.google.cloud.retail.v2BPurgeConfigProtoPZ2cloud.google.com/go/retail/apiv2/retailpb;retailpb¢RETAIL™Google.Cloud.Retail.V2 Google\\Cloud\\Retail\\V2ÍGoogle::Cloud::Retail::V2bproto3'
         , true);
 
         static::$is_initialized = true;

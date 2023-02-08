@@ -17,7 +17,7 @@ class Schema
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ç
+à
 (google/cloud/datacatalog/v1/schema.protogoogle.cloud.datacatalog.v1"D
 Schema:
 columns (2).google.cloud.datacatalog.v1.ColumnSchema"ß
@@ -27,8 +27,8 @@ class Schema
 description (	B‡A
 mode (	B‡AB
 
-subcolumns (2).google.cloud.datacatalog.v1.ColumnSchemaB‡ABÀ
-com.google.cloud.datacatalog.v1PZFgoogle.golang.org/genproto/googleapis/cloud/datacatalog/v1;datacatalog¯™Google.Cloud.DataCatalog.V1 Google\\Cloud\\DataCatalog\\V1ÍGoogle::Cloud::DataCatalog::V1bproto3'
+subcolumns (2).google.cloud.datacatalog.v1.ColumnSchemaB‡AB∆
+com.google.cloud.datacatalog.v1PZAcloud.google.com/go/datacatalog/apiv1/datacatalogpb;datacatalogpb¯™Google.Cloud.DataCatalog.V1 Google\\Cloud\\DataCatalog\\V1ÍGoogle::Cloud::DataCatalog::V1bproto3'
         , true);
 
         static::$is_initialized = true;

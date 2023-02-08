@@ -46,6 +46,7 @@ use Google\Cloud\VmwareEngine\V1\NetworkPolicy;
 use Google\Cloud\VmwareEngine\V1\NodeType;
 use Google\Cloud\VmwareEngine\V1\NodeTypeConfig;
 use Google\Cloud\VmwareEngine\V1\PrivateCloud;
+use Google\Cloud\VmwareEngine\V1\PrivateCloud\ManagementCluster;
 use Google\Cloud\VmwareEngine\V1\Subnet;
 use Google\Cloud\VmwareEngine\V1\VmwareEngineClient;
 use Google\Cloud\VmwareEngine\V1\VmwareEngineNetwork;
@@ -546,6 +547,17 @@ class VmwareEngineClientTest extends GeneratedTest
         $networkConfigManagementCidr = 'networkConfigManagementCidr2092091783';
         $privateCloudNetworkConfig->setManagementCidr($networkConfigManagementCidr);
         $privateCloud->setNetworkConfig($privateCloudNetworkConfig);
+        $privateCloudManagementCluster = new ManagementCluster();
+        $managementClusterClusterId = 'managementClusterClusterId311493182';
+        $privateCloudManagementCluster->setClusterId($managementClusterClusterId);
+        $nodeTypeConfigsValue = new NodeTypeConfig();
+        $valueNodeCount = 1174748740;
+        $nodeTypeConfigsValue->setNodeCount($valueNodeCount);
+        $managementClusterNodeTypeConfigs = [
+            'nodeTypeConfigsKey' => $nodeTypeConfigsValue,
+        ];
+        $privateCloudManagementCluster->setNodeTypeConfigs($managementClusterNodeTypeConfigs);
+        $privateCloud->setManagementCluster($privateCloudManagementCluster);
         $response = $gapicClient->createPrivateCloud($formattedParent, $privateCloudId, $privateCloud);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -620,6 +632,17 @@ class VmwareEngineClientTest extends GeneratedTest
         $networkConfigManagementCidr = 'networkConfigManagementCidr2092091783';
         $privateCloudNetworkConfig->setManagementCidr($networkConfigManagementCidr);
         $privateCloud->setNetworkConfig($privateCloudNetworkConfig);
+        $privateCloudManagementCluster = new ManagementCluster();
+        $managementClusterClusterId = 'managementClusterClusterId311493182';
+        $privateCloudManagementCluster->setClusterId($managementClusterClusterId);
+        $nodeTypeConfigsValue = new NodeTypeConfig();
+        $valueNodeCount = 1174748740;
+        $nodeTypeConfigsValue->setNodeCount($valueNodeCount);
+        $managementClusterNodeTypeConfigs = [
+            'nodeTypeConfigsKey' => $nodeTypeConfigsValue,
+        ];
+        $privateCloudManagementCluster->setNodeTypeConfigs($managementClusterNodeTypeConfigs);
+        $privateCloud->setManagementCluster($privateCloudManagementCluster);
         $response = $gapicClient->createPrivateCloud($formattedParent, $privateCloudId, $privateCloud);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2941,6 +2964,17 @@ class VmwareEngineClientTest extends GeneratedTest
         $networkConfigManagementCidr = 'networkConfigManagementCidr2092091783';
         $privateCloudNetworkConfig->setManagementCidr($networkConfigManagementCidr);
         $privateCloud->setNetworkConfig($privateCloudNetworkConfig);
+        $privateCloudManagementCluster = new ManagementCluster();
+        $managementClusterClusterId = 'managementClusterClusterId311493182';
+        $privateCloudManagementCluster->setClusterId($managementClusterClusterId);
+        $nodeTypeConfigsValue = new NodeTypeConfig();
+        $valueNodeCount = 1174748740;
+        $nodeTypeConfigsValue->setNodeCount($valueNodeCount);
+        $managementClusterNodeTypeConfigs = [
+            'nodeTypeConfigsKey' => $nodeTypeConfigsValue,
+        ];
+        $privateCloudManagementCluster->setNodeTypeConfigs($managementClusterNodeTypeConfigs);
+        $privateCloud->setManagementCluster($privateCloudManagementCluster);
         $updateMask = new FieldMask();
         $response = $gapicClient->updatePrivateCloud($privateCloud, $updateMask);
         $this->assertFalse($response->isDone());
@@ -3012,6 +3046,17 @@ class VmwareEngineClientTest extends GeneratedTest
         $networkConfigManagementCidr = 'networkConfigManagementCidr2092091783';
         $privateCloudNetworkConfig->setManagementCidr($networkConfigManagementCidr);
         $privateCloud->setNetworkConfig($privateCloudNetworkConfig);
+        $privateCloudManagementCluster = new ManagementCluster();
+        $managementClusterClusterId = 'managementClusterClusterId311493182';
+        $privateCloudManagementCluster->setClusterId($managementClusterClusterId);
+        $nodeTypeConfigsValue = new NodeTypeConfig();
+        $valueNodeCount = 1174748740;
+        $nodeTypeConfigsValue->setNodeCount($valueNodeCount);
+        $managementClusterNodeTypeConfigs = [
+            'nodeTypeConfigsKey' => $nodeTypeConfigsValue,
+        ];
+        $privateCloudManagementCluster->setNodeTypeConfigs($managementClusterNodeTypeConfigs);
+        $privateCloud->setManagementCluster($privateCloudManagementCluster);
         $updateMask = new FieldMask();
         $response = $gapicClient->updatePrivateCloud($privateCloud, $updateMask);
         $this->assertFalse($response->isDone());

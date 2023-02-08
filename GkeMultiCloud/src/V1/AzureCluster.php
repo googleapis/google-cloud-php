@@ -20,7 +20,7 @@ class AzureCluster extends \Google\Protobuf\Internal\Message
      * Cluster names are formatted as
      * `projects/<project-number>/locations/<region>/azureClusters/<cluster-id>`.
      * See [Resource Names](https://cloud.google.com/apis/design/resource_names)
-     * for more details on GCP resource names.
+     * for more details on Google Cloud Platform resource names.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -51,18 +51,18 @@ class AzureCluster extends \Google\Protobuf\Internal\Message
      */
     private $resource_group_id = '';
     /**
-     * Required. Name of the
+     * Optional. Name of the
      * [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] that contains
      * authentication configuration for how the Anthos Multi-Cloud API connects to
      * Azure APIs.
-     * The `AzureClient` resource must reside on the same GCP project and region
-     * as the `AzureCluster`.
+     * The `AzureClient` resource must reside on the same Google Cloud Platform
+     * project and region as the `AzureCluster`.
      * `AzureClient` names are formatted as
      * `projects/<project-number>/locations/<region>/azureClients/<client-id>`.
      * See [Resource Names](https://cloud.google.com/apis/design/resource_names)
      * for more details on Google Cloud resource names.
      *
-     * Generated from protobuf field <code>string azure_client = 16 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string azure_client = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $azure_client = '';
     /**
@@ -83,6 +83,12 @@ class AzureCluster extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AzureAuthorization authorization = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $authorization = null;
+    /**
+     * Optional. Authentication configuration for management of Azure resources.
+     *
+     * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AzureServicesAuthentication azure_services_authentication = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $azure_services_authentication = null;
     /**
      * Output only. The current state of the cluster.
      *
@@ -195,7 +201,7 @@ class AzureCluster extends \Google\Protobuf\Internal\Message
      *           Cluster names are formatted as
      *           `projects/<project-number>/locations/<region>/azureClusters/<cluster-id>`.
      *           See [Resource Names](https://cloud.google.com/apis/design/resource_names)
-     *           for more details on GCP resource names.
+     *           for more details on Google Cloud Platform resource names.
      *     @type string $description
      *           Optional. A human readable description of this cluster.
      *           Cannot be longer than 255 UTF-8 encoded bytes.
@@ -210,12 +216,12 @@ class AzureCluster extends \Google\Protobuf\Internal\Message
      *           deployed. For example:
      *           `/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>`
      *     @type string $azure_client
-     *           Required. Name of the
+     *           Optional. Name of the
      *           [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] that contains
      *           authentication configuration for how the Anthos Multi-Cloud API connects to
      *           Azure APIs.
-     *           The `AzureClient` resource must reside on the same GCP project and region
-     *           as the `AzureCluster`.
+     *           The `AzureClient` resource must reside on the same Google Cloud Platform
+     *           project and region as the `AzureCluster`.
      *           `AzureClient` names are formatted as
      *           `projects/<project-number>/locations/<region>/azureClients/<client-id>`.
      *           See [Resource Names](https://cloud.google.com/apis/design/resource_names)
@@ -226,6 +232,8 @@ class AzureCluster extends \Google\Protobuf\Internal\Message
      *           Required. Configuration related to the cluster control plane.
      *     @type \Google\Cloud\GkeMultiCloud\V1\AzureAuthorization $authorization
      *           Required. Configuration related to the cluster RBAC settings.
+     *     @type \Google\Cloud\GkeMultiCloud\V1\AzureServicesAuthentication $azure_services_authentication
+     *           Optional. Authentication configuration for management of Azure resources.
      *     @type int $state
      *           Output only. The current state of the cluster.
      *     @type string $endpoint
@@ -278,7 +286,7 @@ class AzureCluster extends \Google\Protobuf\Internal\Message
      * Cluster names are formatted as
      * `projects/<project-number>/locations/<region>/azureClusters/<cluster-id>`.
      * See [Resource Names](https://cloud.google.com/apis/design/resource_names)
-     * for more details on GCP resource names.
+     * for more details on Google Cloud Platform resource names.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -293,7 +301,7 @@ class AzureCluster extends \Google\Protobuf\Internal\Message
      * Cluster names are formatted as
      * `projects/<project-number>/locations/<region>/azureClusters/<cluster-id>`.
      * See [Resource Names](https://cloud.google.com/apis/design/resource_names)
-     * for more details on GCP resource names.
+     * for more details on Google Cloud Platform resource names.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
@@ -400,18 +408,18 @@ class AzureCluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Name of the
+     * Optional. Name of the
      * [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] that contains
      * authentication configuration for how the Anthos Multi-Cloud API connects to
      * Azure APIs.
-     * The `AzureClient` resource must reside on the same GCP project and region
-     * as the `AzureCluster`.
+     * The `AzureClient` resource must reside on the same Google Cloud Platform
+     * project and region as the `AzureCluster`.
      * `AzureClient` names are formatted as
      * `projects/<project-number>/locations/<region>/azureClients/<client-id>`.
      * See [Resource Names](https://cloud.google.com/apis/design/resource_names)
      * for more details on Google Cloud resource names.
      *
-     * Generated from protobuf field <code>string azure_client = 16 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string azure_client = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getAzureClient()
@@ -420,18 +428,18 @@ class AzureCluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Name of the
+     * Optional. Name of the
      * [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] that contains
      * authentication configuration for how the Anthos Multi-Cloud API connects to
      * Azure APIs.
-     * The `AzureClient` resource must reside on the same GCP project and region
-     * as the `AzureCluster`.
+     * The `AzureClient` resource must reside on the same Google Cloud Platform
+     * project and region as the `AzureCluster`.
      * `AzureClient` names are formatted as
      * `projects/<project-number>/locations/<region>/azureClients/<client-id>`.
      * See [Resource Names](https://cloud.google.com/apis/design/resource_names)
      * for more details on Google Cloud resource names.
      *
-     * Generated from protobuf field <code>string azure_client = 16 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string azure_client = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -547,6 +555,42 @@ class AzureCluster extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\GkeMultiCloud\V1\AzureAuthorization::class);
         $this->authorization = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Authentication configuration for management of Azure resources.
+     *
+     * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AzureServicesAuthentication azure_services_authentication = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\GkeMultiCloud\V1\AzureServicesAuthentication|null
+     */
+    public function getAzureServicesAuthentication()
+    {
+        return $this->azure_services_authentication;
+    }
+
+    public function hasAzureServicesAuthentication()
+    {
+        return isset($this->azure_services_authentication);
+    }
+
+    public function clearAzureServicesAuthentication()
+    {
+        unset($this->azure_services_authentication);
+    }
+
+    /**
+     * Optional. Authentication configuration for management of Azure resources.
+     *
+     * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AzureServicesAuthentication azure_services_authentication = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\GkeMultiCloud\V1\AzureServicesAuthentication $var
+     * @return $this
+     */
+    public function setAzureServicesAuthentication($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\GkeMultiCloud\V1\AzureServicesAuthentication::class);
+        $this->azure_services_authentication = $var;
 
         return $this;
     }

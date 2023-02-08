@@ -20,7 +20,7 @@ class AwsCluster extends \Google\Protobuf\Internal\Message
      * Cluster names are formatted as
      * `projects/<project-number>/locations/<region>/awsClusters/<cluster-id>`.
      * See [Resource Names](https://cloud.google.com/apis/design/resource_names)
-     * for more details on GCP resource names.
+     * for more details on Google Cloud Platform resource names.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -166,7 +166,7 @@ class AwsCluster extends \Google\Protobuf\Internal\Message
      *           Cluster names are formatted as
      *           `projects/<project-number>/locations/<region>/awsClusters/<cluster-id>`.
      *           See [Resource Names](https://cloud.google.com/apis/design/resource_names)
-     *           for more details on GCP resource names.
+     *           for more details on Google Cloud Platform resource names.
      *     @type string $description
      *           Optional. A human readable description of this cluster.
      *           Cannot be longer than 255 UTF-8 encoded bytes.
@@ -232,7 +232,7 @@ class AwsCluster extends \Google\Protobuf\Internal\Message
      * Cluster names are formatted as
      * `projects/<project-number>/locations/<region>/awsClusters/<cluster-id>`.
      * See [Resource Names](https://cloud.google.com/apis/design/resource_names)
-     * for more details on GCP resource names.
+     * for more details on Google Cloud Platform resource names.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -247,7 +247,7 @@ class AwsCluster extends \Google\Protobuf\Internal\Message
      * Cluster names are formatted as
      * `projects/<project-number>/locations/<region>/awsClusters/<cluster-id>`.
      * See [Resource Names](https://cloud.google.com/apis/design/resource_names)
-     * for more details on GCP resource names.
+     * for more details on Google Cloud Platform resource names.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var

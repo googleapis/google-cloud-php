@@ -44,9 +44,6 @@ use Google\Cloud\ErrorReporting\V1beta1\ServiceContext;
  * on Cloud Logging and doesn't analyze logs stored
  * in regional log buckets or logs routed to other Google Cloud projects.
  *
- * For more information, see
- * [Using Error Reporting with regionalized
- * logs](/error-reporting/docs/regionalization).
  *
  * @param string $formattedProjectName The resource name of the Google Cloud Platform project. Written
  *                                     as `projects/{projectId}`, where `{projectId}` is the

@@ -68,6 +68,12 @@ class CutoverJob extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string state_message = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $state_message = '';
+    /**
+     * Output only. The cutover steps list representing its progress.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.vmmigration.v1.CutoverStep steps = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $steps;
     protected $target_vm_details;
 
     /**
@@ -97,6 +103,8 @@ class CutoverJob extends \Google\Protobuf\Internal\Message
      *     @type string $state_message
      *           Output only. A message providing possible extra details about the current
      *           state.
+     *     @type array<\Google\Cloud\VMMigration\V1\CutoverStep>|\Google\Protobuf\Internal\RepeatedField $steps
+     *           Output only. The cutover steps list representing its progress.
      * }
      */
     public function __construct($data = NULL) {
@@ -385,6 +393,32 @@ class CutoverJob extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->state_message = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The cutover steps list representing its progress.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.vmmigration.v1.CutoverStep steps = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getSteps()
+    {
+        return $this->steps;
+    }
+
+    /**
+     * Output only. The cutover steps list representing its progress.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.vmmigration.v1.CutoverStep steps = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array<\Google\Cloud\VMMigration\V1\CutoverStep>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setSteps($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\VMMigration\V1\CutoverStep::class);
+        $this->steps = $arr;
 
         return $this;
     }

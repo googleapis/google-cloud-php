@@ -1,8 +1,9 @@
 {
     "distribution_name": "google/cloud-iam",
-    "release_level": "beta",
+    "release_level": "preview",
     "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-iam/latest",
     "library_type": "GAPIC_AUTO",
     "product_documentation": "https://cloud.google.com/iam/docs",
-    "issue_tracker": "https://github.com/googleapis/google-cloud-php/issues"
+    "issue_tracker": "https://github.com/googleapis/google-cloud-php/issues",
+    "api_shortname": "iam"
 }

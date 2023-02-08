@@ -30,6 +30,7 @@ use Google\ApiCore\ApiException;
 /**
  * Lookup for a single Audience.
  * Audiences created before 2020 may not be supported.
+ * Default audiences will not show filter definitions.
  *
  * @param string $formattedName The name of the Audience to get.
  *                              Example format: properties/1234/audiences/5678

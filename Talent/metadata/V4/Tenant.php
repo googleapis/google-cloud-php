@@ -18,13 +18,13 @@ class Tenant
         \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
             '
-…
+ø
 #google/cloud/talent/v4/tenant.protogoogle.cloud.talent.v4google/api/resource.proto"v
 Tenant
 name (	
 external_id (	B‡A:DÍAA
-jobs.googleapis.com/Tenant#projects/{project}/tenants/{tenant}Bo
-com.google.cloud.talent.v4BTenantProtoPZ<google.golang.org/genproto/googleapis/cloud/talent/v4;talent¢CTSbproto3'
+jobs.googleapis.com/Tenant#projects/{project}/tenants/{tenant}Be
+com.google.cloud.talent.v4BTenantProtoPZ2cloud.google.com/go/talent/apiv4/talentpb;talentpb¢CTSbproto3'
         , true);
 
         static::$is_initialized = true;

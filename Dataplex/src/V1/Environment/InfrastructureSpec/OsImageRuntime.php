@@ -38,10 +38,10 @@ class OsImageRuntime extends \Google\Protobuf\Internal\Message
      */
     private $python_packages;
     /**
-     * Optional. Spark properties to provide configuration for use in sessions created
-     * for this environment. The properties to set on daemon config files.
-     * Property keys are specified in `prefix:property` format.
-     * The prefix must be "spark".
+     * Optional. Spark properties to provide configuration for use in sessions
+     * created for this environment. The properties to set on daemon config
+     * files. Property keys are specified in `prefix:property` format. The
+     * prefix must be "spark".
      *
      * Generated from protobuf field <code>map<string, string> properties = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -55,19 +55,19 @@ class OsImageRuntime extends \Google\Protobuf\Internal\Message
      *
      *     @type string $image_version
      *           Required. Dataplex Image version.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $java_libraries
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $java_libraries
      *           Optional. List of Java jars to be included in the runtime environment.
      *           Valid input includes Cloud Storage URIs to Jar binaries.
      *           For example, gs://bucket-name/my/path/to/file.jar
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $python_packages
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $python_packages
      *           Optional. A list of python packages to be installed.
      *           Valid formats include Cloud Storage URI to a PIP installable library.
      *           For example, gs://bucket-name/my/path/to/lib.tar.gz
      *     @type array|\Google\Protobuf\Internal\MapField $properties
-     *           Optional. Spark properties to provide configuration for use in sessions created
-     *           for this environment. The properties to set on daemon config files.
-     *           Property keys are specified in `prefix:property` format.
-     *           The prefix must be "spark".
+     *           Optional. Spark properties to provide configuration for use in sessions
+     *           created for this environment. The properties to set on daemon config
+     *           files. Property keys are specified in `prefix:property` format. The
+     *           prefix must be "spark".
      * }
      */
     public function __construct($data = NULL) {
@@ -120,7 +120,7 @@ class OsImageRuntime extends \Google\Protobuf\Internal\Message
      * For example, gs://bucket-name/my/path/to/file.jar
      *
      * Generated from protobuf field <code>repeated string java_libraries = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setJavaLibraries($var)
@@ -150,7 +150,7 @@ class OsImageRuntime extends \Google\Protobuf\Internal\Message
      * For example, gs://bucket-name/my/path/to/lib.tar.gz
      *
      * Generated from protobuf field <code>repeated string python_packages = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPythonPackages($var)
@@ -162,10 +162,10 @@ class OsImageRuntime extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Spark properties to provide configuration for use in sessions created
-     * for this environment. The properties to set on daemon config files.
-     * Property keys are specified in `prefix:property` format.
-     * The prefix must be "spark".
+     * Optional. Spark properties to provide configuration for use in sessions
+     * created for this environment. The properties to set on daemon config
+     * files. Property keys are specified in `prefix:property` format. The
+     * prefix must be "spark".
      *
      * Generated from protobuf field <code>map<string, string> properties = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -176,10 +176,10 @@ class OsImageRuntime extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Spark properties to provide configuration for use in sessions created
-     * for this environment. The properties to set on daemon config files.
-     * Property keys are specified in `prefix:property` format.
-     * The prefix must be "spark".
+     * Optional. Spark properties to provide configuration for use in sessions
+     * created for this environment. The properties to set on daemon config
+     * files. Property keys are specified in `prefix:property` format. The
+     * prefix must be "spark".
      *
      * Generated from protobuf field <code>map<string, string> properties = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var

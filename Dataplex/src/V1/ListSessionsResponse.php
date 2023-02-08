@@ -35,7 +35,7 @@ class ListSessionsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Dataplex\V1\Session[]|\Google\Protobuf\Internal\RepeatedField $sessions
+     *     @type array<\Google\Cloud\Dataplex\V1\Session>|\Google\Protobuf\Internal\RepeatedField $sessions
      *           Sessions under a given environment.
      *     @type string $next_page_token
      *           Token to retrieve the next page of results, or empty if there are no more
@@ -62,7 +62,7 @@ class ListSessionsResponse extends \Google\Protobuf\Internal\Message
      * Sessions under a given environment.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.Session sessions = 1;</code>
-     * @param \Google\Cloud\Dataplex\V1\Session[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dataplex\V1\Session>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSessions($var)

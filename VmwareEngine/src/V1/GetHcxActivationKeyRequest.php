@@ -20,7 +20,7 @@ class GetHcxActivationKeyRequest extends \Google\Protobuf\Internal\Message
      * Resource names are schemeless URIs that follow the conventions in
      * https://cloud.google.com/apis/design/resource_names.
      * For example:
-     * `projects/my-project/locations/us-west1/privateClouds/my-cloud/hcxActivationKeys/my-key`
+     * `projects/my-project/locations/us-central1/privateClouds/my-cloud/hcxActivationKeys/my-key`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -37,7 +37,7 @@ class GetHcxActivationKeyRequest extends \Google\Protobuf\Internal\Message
      *           Resource names are schemeless URIs that follow the conventions in
      *           https://cloud.google.com/apis/design/resource_names.
      *           For example:
-     *           `projects/my-project/locations/us-west1/privateClouds/my-cloud/hcxActivationKeys/my-key`
+     *           `projects/my-project/locations/us-central1/privateClouds/my-cloud/hcxActivationKeys/my-key`
      * }
      */
     public function __construct($data = NULL) {
@@ -50,7 +50,7 @@ class GetHcxActivationKeyRequest extends \Google\Protobuf\Internal\Message
      * Resource names are schemeless URIs that follow the conventions in
      * https://cloud.google.com/apis/design/resource_names.
      * For example:
-     * `projects/my-project/locations/us-west1/privateClouds/my-cloud/hcxActivationKeys/my-key`
+     * `projects/my-project/locations/us-central1/privateClouds/my-cloud/hcxActivationKeys/my-key`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -65,7 +65,7 @@ class GetHcxActivationKeyRequest extends \Google\Protobuf\Internal\Message
      * Resource names are schemeless URIs that follow the conventions in
      * https://cloud.google.com/apis/design/resource_names.
      * For example:
-     * `projects/my-project/locations/us-west1/privateClouds/my-cloud/hcxActivationKeys/my-key`
+     * `projects/my-project/locations/us-central1/privateClouds/my-cloud/hcxActivationKeys/my-key`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

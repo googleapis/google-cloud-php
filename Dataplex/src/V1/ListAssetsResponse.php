@@ -35,7 +35,7 @@ class ListAssetsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Dataplex\V1\Asset[]|\Google\Protobuf\Internal\RepeatedField $assets
+     *     @type array<\Google\Cloud\Dataplex\V1\Asset>|\Google\Protobuf\Internal\RepeatedField $assets
      *           Asset under the given parent zone.
      *     @type string $next_page_token
      *           Token to retrieve the next page of results, or empty if there are no more
@@ -62,7 +62,7 @@ class ListAssetsResponse extends \Google\Protobuf\Internal\Message
      * Asset under the given parent zone.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.Asset assets = 1;</code>
-     * @param \Google\Cloud\Dataplex\V1\Asset[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dataplex\V1\Asset>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAssets($var)

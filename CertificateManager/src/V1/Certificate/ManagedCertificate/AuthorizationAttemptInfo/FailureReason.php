@@ -7,11 +7,15 @@ namespace Google\Cloud\CertificateManager\V1\Certificate\ManagedCertificate\Auth
 use UnexpectedValueException;
 
 /**
+ * Reason for failure of the authorization attempt for the domain.
+ *
  * Protobuf type <code>google.cloud.certificatemanager.v1.Certificate.ManagedCertificate.AuthorizationAttemptInfo.FailureReason</code>
  */
 class FailureReason
 {
     /**
+     * FailureReason is unspecified.
+     *
      * Generated from protobuf enum <code>FAILURE_REASON_UNSPECIFIED = 0;</code>
      */
     const FAILURE_REASON_UNSPECIFIED = 0;

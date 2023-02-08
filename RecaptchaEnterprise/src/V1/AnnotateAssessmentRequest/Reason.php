@@ -20,29 +20,58 @@ class Reason
      */
     const REASON_UNSPECIFIED = 0;
     /**
-     * Indicates a chargeback was issued for the transaction associated with the
-     * assessment, with no other details. When possible, specify the type by
-     * using CHARGEBACK_FRAUD or CHARGEBACK_DISPUTE instead.
+     * Indicates that the transaction had a chargeback issued with no other
+     * details. When possible, specify the type by using CHARGEBACK_FRAUD or
+     * CHARGEBACK_DISPUTE instead.
      *
      * Generated from protobuf enum <code>CHARGEBACK = 1;</code>
      */
     const CHARGEBACK = 1;
     /**
-     * Indicates a chargeback related to an alleged unauthorized transaction
-     * from the perspective of the cardholder (for example, the card number was
-     * stolen).
+     * Indicates that the transaction had a chargeback issued related to an
+     * alleged unauthorized transaction from the cardholder's perspective (for
+     * example, the card number was stolen).
      *
      * Generated from protobuf enum <code>CHARGEBACK_FRAUD = 8;</code>
      */
     const CHARGEBACK_FRAUD = 8;
     /**
-     * Indicates a chargeback related to the cardholder having provided their
-     * card but allegedly not being satisfied with the purchase
-     * (for example, misrepresentation, attempted cancellation).
+     * Indicates that the transaction had a chargeback issued related to the
+     * cardholder having provided their card details but allegedly not being
+     * satisfied with the purchase (for example, misrepresentation, attempted
+     * cancellation).
      *
      * Generated from protobuf enum <code>CHARGEBACK_DISPUTE = 9;</code>
      */
     const CHARGEBACK_DISPUTE = 9;
+    /**
+     * Indicates that the completed payment transaction was refunded by the
+     * seller.
+     *
+     * Generated from protobuf enum <code>REFUND = 10;</code>
+     */
+    const REFUND = 10;
+    /**
+     * Indicates that the completed payment transaction was determined to be
+     * fraudulent by the seller, and was cancelled and refunded as a result.
+     *
+     * Generated from protobuf enum <code>REFUND_FRAUD = 11;</code>
+     */
+    const REFUND_FRAUD = 11;
+    /**
+     * Indicates that the payment transaction was accepted, and the user was
+     * charged.
+     *
+     * Generated from protobuf enum <code>TRANSACTION_ACCEPTED = 12;</code>
+     */
+    const TRANSACTION_ACCEPTED = 12;
+    /**
+     * Indicates that the payment transaction was declined, for example due to
+     * invalid card details.
+     *
+     * Generated from protobuf enum <code>TRANSACTION_DECLINED = 13;</code>
+     */
+    const TRANSACTION_DECLINED = 13;
     /**
      * Indicates the transaction associated with the assessment is suspected of
      * being fraudulent based on the payment method, billing details, shipping
@@ -84,18 +113,30 @@ class Reason
      * Generated from protobuf enum <code>INCORRECT_PASSWORD = 6;</code>
      */
     const INCORRECT_PASSWORD = 6;
+    /**
+     * Indicates that the user sent unwanted and abusive messages to other users
+     * of the platform, such as spam, scams, phishing, or social engineering.
+     *
+     * Generated from protobuf enum <code>SOCIAL_SPAM = 14;</code>
+     */
+    const SOCIAL_SPAM = 14;
 
     private static $valueToName = [
         self::REASON_UNSPECIFIED => 'REASON_UNSPECIFIED',
         self::CHARGEBACK => 'CHARGEBACK',
         self::CHARGEBACK_FRAUD => 'CHARGEBACK_FRAUD',
         self::CHARGEBACK_DISPUTE => 'CHARGEBACK_DISPUTE',
+        self::REFUND => 'REFUND',
+        self::REFUND_FRAUD => 'REFUND_FRAUD',
+        self::TRANSACTION_ACCEPTED => 'TRANSACTION_ACCEPTED',
+        self::TRANSACTION_DECLINED => 'TRANSACTION_DECLINED',
         self::PAYMENT_HEURISTICS => 'PAYMENT_HEURISTICS',
         self::INITIATED_TWO_FACTOR => 'INITIATED_TWO_FACTOR',
         self::PASSED_TWO_FACTOR => 'PASSED_TWO_FACTOR',
         self::FAILED_TWO_FACTOR => 'FAILED_TWO_FACTOR',
         self::CORRECT_PASSWORD => 'CORRECT_PASSWORD',
         self::INCORRECT_PASSWORD => 'INCORRECT_PASSWORD',
+        self::SOCIAL_SPAM => 'SOCIAL_SPAM',
     ];
 
     public static function name($value)

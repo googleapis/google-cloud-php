@@ -91,6 +91,13 @@ class RevisionReason
      * Generated from protobuf enum <code>HEALTH_CHECK_SKIPPED = 11;</code>
      */
     const HEALTH_CHECK_SKIPPED = 11;
+    /**
+     * A revision with min_instance_count > 0 was created and is waiting for
+     * enough instances to begin a traffic migration.
+     *
+     * Generated from protobuf enum <code>MIN_INSTANCES_WARMING = 12;</code>
+     */
+    const MIN_INSTANCES_WARMING = 12;
 
     private static $valueToName = [
         self::REVISION_REASON_UNDEFINED => 'REVISION_REASON_UNDEFINED',
@@ -105,6 +112,7 @@ class RevisionReason
         self::ACTIVE_REVISION_LIMIT_REACHED => 'ACTIVE_REVISION_LIMIT_REACHED',
         self::NO_DEPLOYMENT => 'NO_DEPLOYMENT',
         self::HEALTH_CHECK_SKIPPED => 'HEALTH_CHECK_SKIPPED',
+        self::MIN_INSTANCES_WARMING => 'MIN_INSTANCES_WARMING',
     ];
 
     public static function name($value)

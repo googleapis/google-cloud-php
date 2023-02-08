@@ -118,7 +118,7 @@ class DocFx extends Command
         if (file_exists($overviewFile = sprintf('%s/README.md', $componentPath))) {
             $overview = new OverviewPage(
                 file_get_contents($overviewFile),
-                $releaseLevel === 'beta'
+                $releaseLevel !== 'stable'
             );
             $outFile = sprintf('%s/%s', $outDir, $overview->getFilename());
             file_put_contents($outFile, $overview->getContents());
@@ -130,7 +130,7 @@ class DocFx extends Command
         $componentToc = array_filter([
             'uid' => $this->getComponentUid(),
             'name' => $this->getDistributionName(),
-            'status' => $releaseLevel === 'beta' ? 'beta' : '',
+            'status' => $releaseLevel !== 'stable' ? 'beta' : '',
             'items' => $tocItems,
         ]);
         $tocYaml = Yaml::dump([$componentToc], $inline, $indent, $flags);
@@ -182,7 +182,7 @@ class DocFx extends Command
             '-d',
             sprintf('%s/src', $componentPath),
             '--template',
-            realpath(__DIR__ . '/../../../data/templates/xml'),
+            'xml',
             '--target',
             $outDir
         ]);
@@ -199,7 +199,7 @@ class DocFx extends Command
             }
         }
         if (!in_array($component, $components)) {
-            throw new \Exception($component ? 'Invalid component provided'
+            throw new \Exception($component ? 'Invalid component provided: ' . $component
                 : 'You are not in a component directory. Run this command from a valid component'
                   . ' directory or provide a valid component using the "component" option.');
         }

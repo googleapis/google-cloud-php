@@ -166,6 +166,19 @@ class IPAllocationPolicy extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.container.v1.IPv6AccessType ipv6_access_type = 17;</code>
      */
     private $ipv6_access_type = 0;
+    /**
+     * Output only. [Output only] The subnet's IPv6 CIDR block used by nodes and
+     * pods.
+     *
+     * Generated from protobuf field <code>string subnet_ipv6_cidr_block = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $subnet_ipv6_cidr_block = '';
+    /**
+     * Output only. [Output only] The services IPv6 CIDR block for the cluster.
+     *
+     * Generated from protobuf field <code>string services_ipv6_cidr_block = 23 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $services_ipv6_cidr_block = '';
 
     /**
      * Constructor.
@@ -261,6 +274,11 @@ class IPAllocationPolicy extends \Google\Protobuf\Internal\Message
      *           The IP stack type of the cluster
      *     @type int $ipv6_access_type
      *           The ipv6 access type (internal or external) when create_subnetwork is true
+     *     @type string $subnet_ipv6_cidr_block
+     *           Output only. [Output only] The subnet's IPv6 CIDR block used by nodes and
+     *           pods.
+     *     @type string $services_ipv6_cidr_block
+     *           Output only. [Output only] The services IPv6 CIDR block for the cluster.
      * }
      */
     public function __construct($data = NULL) {
@@ -782,6 +800,60 @@ class IPAllocationPolicy extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Container\V1\IPv6AccessType::class);
         $this->ipv6_access_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. [Output only] The subnet's IPv6 CIDR block used by nodes and
+     * pods.
+     *
+     * Generated from protobuf field <code>string subnet_ipv6_cidr_block = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getSubnetIpv6CidrBlock()
+    {
+        return $this->subnet_ipv6_cidr_block;
+    }
+
+    /**
+     * Output only. [Output only] The subnet's IPv6 CIDR block used by nodes and
+     * pods.
+     *
+     * Generated from protobuf field <code>string subnet_ipv6_cidr_block = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSubnetIpv6CidrBlock($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->subnet_ipv6_cidr_block = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. [Output only] The services IPv6 CIDR block for the cluster.
+     *
+     * Generated from protobuf field <code>string services_ipv6_cidr_block = 23 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getServicesIpv6CidrBlock()
+    {
+        return $this->services_ipv6_cidr_block;
+    }
+
+    /**
+     * Output only. [Output only] The services IPv6 CIDR block for the cluster.
+     *
+     * Generated from protobuf field <code>string services_ipv6_cidr_block = 23 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setServicesIpv6CidrBlock($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->services_ipv6_cidr_block = $var;
 
         return $this;
     }

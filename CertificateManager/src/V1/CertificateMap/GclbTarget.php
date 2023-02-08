@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Describes a Target Proxy which uses this Certificate Map.
+ * Describes a Target Proxy that uses this Certificate Map.
  *
  * Generated from protobuf message <code>google.cloud.certificatemanager.v1.CertificateMap.GclbTarget</code>
  */

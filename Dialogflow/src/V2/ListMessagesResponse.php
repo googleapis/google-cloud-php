@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The response message for [Conversations.ListMessages][google.cloud.dialogflow.v2.Conversations.ListMessages].
+ * The response message for
+ * [Conversations.ListMessages][google.cloud.dialogflow.v2.Conversations.ListMessages].
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.ListMessagesResponse</code>
  */

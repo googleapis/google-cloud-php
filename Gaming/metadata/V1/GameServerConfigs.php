@@ -20,7 +20,7 @@ class GameServerConfigs
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-é
+Ñ
 0google/cloud/gaming/v1/game_server_configs.protogoogle.cloud.gaming.v1google/api/resource.proto#google/cloud/gaming/v1/common.protogoogle/protobuf/timestamp.proto"¡
 ListGameServerConfigsRequestD
 parent (	B4‡A˙A.,gameservices.googleapis.com/GameServerConfig
@@ -63,8 +63,8 @@ fleet_spec (	
 LabelsEntry
 key (	
 value (	:8:èÍAã
-,gameservices.googleapis.com/GameServerConfig[projects/{project}/locations/{location}/gameServerDeployments/{deployment}/configs/{config}B\\
-com.google.cloud.gaming.v1PZ<google.golang.org/genproto/googleapis/cloud/gaming/v1;gamingbproto3'
+,gameservices.googleapis.com/GameServerConfig[projects/{project}/locations/{location}/gameServerDeployments/{deployment}/configs/{config}BR
+com.google.cloud.gaming.v1PZ2cloud.google.com/go/gaming/apiv1/gamingpb;gamingpbbproto3'
         , true);
 
         static::$is_initialized = true;

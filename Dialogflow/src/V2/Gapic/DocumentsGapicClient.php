@@ -59,7 +59,8 @@ use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
 
 /**
- * Service Description: Service for managing knowledge [Documents][google.cloud.dialogflow.v2.Document].
+ * Service Description: Service for managing knowledge
+ * [Documents][google.cloud.dialogflow.v2.Document].
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
@@ -487,7 +488,8 @@ class DocumentsGapicClient
      * operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation).
      * The returned `Operation` type has the following method-specific fields:
      *
-     * - `metadata`: [KnowledgeOperationMetadata][google.cloud.dialogflow.v2.KnowledgeOperationMetadata]
+     * - `metadata`:
+     * [KnowledgeOperationMetadata][google.cloud.dialogflow.v2.KnowledgeOperationMetadata]
      * - `response`: [Document][google.cloud.dialogflow.v2.Document]
      *
      * Sample code:
@@ -563,7 +565,8 @@ class DocumentsGapicClient
      * operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation).
      * The returned `Operation` type has the following method-specific fields:
      *
-     * - `metadata`: [KnowledgeOperationMetadata][google.cloud.dialogflow.v2.KnowledgeOperationMetadata]
+     * - `metadata`:
+     * [KnowledgeOperationMetadata][google.cloud.dialogflow.v2.KnowledgeOperationMetadata]
      * - `response`: An [Empty
      * message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#empty)
      *
@@ -636,7 +639,8 @@ class DocumentsGapicClient
      * operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation).
      * The returned `Operation` type has the following method-specific fields:
      *
-     * - `metadata`: [KnowledgeOperationMetadata][google.cloud.dialogflow.v2.KnowledgeOperationMetadata]
+     * - `metadata`:
+     * [KnowledgeOperationMetadata][google.cloud.dialogflow.v2.KnowledgeOperationMetadata]
      * - `response`: [Document][google.cloud.dialogflow.v2.Document]
      *
      * Sample code:
@@ -772,8 +776,10 @@ class DocumentsGapicClient
      * operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation).
      * The returned `Operation` type has the following method-specific fields:
      *
-     * - `metadata`: [KnowledgeOperationMetadata][google.cloud.dialogflow.v2.KnowledgeOperationMetadata]
-     * - `response`: [ImportDocumentsResponse][google.cloud.dialogflow.v2.ImportDocumentsResponse]
+     * - `metadata`:
+     * [KnowledgeOperationMetadata][google.cloud.dialogflow.v2.KnowledgeOperationMetadata]
+     * - `response`:
+     * [ImportDocumentsResponse][google.cloud.dialogflow.v2.ImportDocumentsResponse]
      *
      * Sample code:
      * ```
@@ -965,7 +971,8 @@ class DocumentsGapicClient
      * operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation).
      * The returned `Operation` type has the following method-specific fields:
      *
-     * - `metadata`: [KnowledgeOperationMetadata][google.cloud.dialogflow.v2.KnowledgeOperationMetadata]
+     * - `metadata`:
+     * [KnowledgeOperationMetadata][google.cloud.dialogflow.v2.KnowledgeOperationMetadata]
      * - `response`: [Document][google.cloud.dialogflow.v2.Document]
      *
      * Note: The `projects.agent.knowledgeBases.documents` resource is deprecated;
@@ -1014,8 +1021,8 @@ class DocumentsGapicClient
      *     Optional.
      *
      *     @type string $contentUri
-     *           Optional. The path of gcs source file for reloading document content. For now,
-     *           only gcs uri is supported.
+     *           Optional. The path of gcs source file for reloading document content. For
+     *           now, only gcs uri is supported.
      *
      *           For documents stored in Google Cloud Storage, these URIs must have
      *           the form `gs://<bucket-name>/<object-name>`.
@@ -1023,8 +1030,8 @@ class DocumentsGapicClient
      *           Optional. Whether to import custom metadata from Google Cloud Storage.
      *           Only valid when the document source is Google Cloud Storage URI.
      *     @type bool $smartMessagingPartialUpdate
-     *           Optional. When enabled, the reload request is to apply partial update to the smart
-     *           messaging allowlist.
+     *           Optional. When enabled, the reload request is to apply partial update to
+     *           the smart messaging allowlist.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1065,7 +1072,8 @@ class DocumentsGapicClient
      * operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation).
      * The returned `Operation` type has the following method-specific fields:
      *
-     * - `metadata`: [KnowledgeOperationMetadata][google.cloud.dialogflow.v2.KnowledgeOperationMetadata]
+     * - `metadata`:
+     * [KnowledgeOperationMetadata][google.cloud.dialogflow.v2.KnowledgeOperationMetadata]
      * - `response`: [Document][google.cloud.dialogflow.v2.Document]
      *
      * Sample code:

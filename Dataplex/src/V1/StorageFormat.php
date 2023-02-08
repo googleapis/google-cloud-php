@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class StorageFormat extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The data format associated with the stored data, which represents
-     * content type values. The value is inferred from mime type.
+     * Output only. The data format associated with the stored data, which
+     * represents content type values. The value is inferred from mime type.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.StorageFormat.Format format = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -36,6 +36,9 @@ class StorageFormat extends \Google\Protobuf\Internal\Message
      * - application/x-avro
      * - application/x-orc
      * - application/x-tfrecord
+     * - application/x-parquet+iceberg
+     * - application/x-avro+iceberg
+     * - application/x-orc+iceberg
      * - application/json
      * - application/{subtypes}
      * - text/csv
@@ -56,8 +59,8 @@ class StorageFormat extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $format
-     *           Output only. The data format associated with the stored data, which represents
-     *           content type values. The value is inferred from mime type.
+     *           Output only. The data format associated with the stored data, which
+     *           represents content type values. The value is inferred from mime type.
      *     @type int $compression_format
      *           Optional. The compression type associated with the stored data.
      *           If unspecified, the data is uncompressed.
@@ -68,6 +71,9 @@ class StorageFormat extends \Google\Protobuf\Internal\Message
      *           - application/x-avro
      *           - application/x-orc
      *           - application/x-tfrecord
+     *           - application/x-parquet+iceberg
+     *           - application/x-avro+iceberg
+     *           - application/x-orc+iceberg
      *           - application/json
      *           - application/{subtypes}
      *           - text/csv
@@ -79,6 +85,8 @@ class StorageFormat extends \Google\Protobuf\Internal\Message
      *           Optional. Additional information about CSV formatted data.
      *     @type \Google\Cloud\Dataplex\V1\StorageFormat\JsonOptions $json
      *           Optional. Additional information about CSV formatted data.
+     *     @type \Google\Cloud\Dataplex\V1\StorageFormat\IcebergOptions $iceberg
+     *           Optional. Additional information about iceberg tables.
      * }
      */
     public function __construct($data = NULL) {
@@ -87,8 +95,8 @@ class StorageFormat extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The data format associated with the stored data, which represents
-     * content type values. The value is inferred from mime type.
+     * Output only. The data format associated with the stored data, which
+     * represents content type values. The value is inferred from mime type.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.StorageFormat.Format format = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
@@ -99,8 +107,8 @@ class StorageFormat extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The data format associated with the stored data, which represents
-     * content type values. The value is inferred from mime type.
+     * Output only. The data format associated with the stored data, which
+     * represents content type values. The value is inferred from mime type.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.StorageFormat.Format format = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
@@ -149,6 +157,9 @@ class StorageFormat extends \Google\Protobuf\Internal\Message
      * - application/x-avro
      * - application/x-orc
      * - application/x-tfrecord
+     * - application/x-parquet+iceberg
+     * - application/x-avro+iceberg
+     * - application/x-orc+iceberg
      * - application/json
      * - application/{subtypes}
      * - text/csv
@@ -172,6 +183,9 @@ class StorageFormat extends \Google\Protobuf\Internal\Message
      * - application/x-avro
      * - application/x-orc
      * - application/x-tfrecord
+     * - application/x-parquet+iceberg
+     * - application/x-avro+iceberg
+     * - application/x-orc+iceberg
      * - application/json
      * - application/{subtypes}
      * - text/csv
@@ -250,6 +264,37 @@ class StorageFormat extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dataplex\V1\StorageFormat\JsonOptions::class);
         $this->writeOneof(11, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. Additional information about iceberg tables.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.StorageFormat.IcebergOptions iceberg = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Dataplex\V1\StorageFormat\IcebergOptions|null
+     */
+    public function getIceberg()
+    {
+        return $this->readOneof(12);
+    }
+
+    public function hasIceberg()
+    {
+        return $this->hasOneof(12);
+    }
+
+    /**
+     * Optional. Additional information about iceberg tables.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.StorageFormat.IcebergOptions iceberg = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dataplex\V1\StorageFormat\IcebergOptions $var
+     * @return $this
+     */
+    public function setIceberg($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataplex\V1\StorageFormat\IcebergOptions::class);
+        $this->writeOneof(12, $var);
 
         return $this;
     }

@@ -33,6 +33,8 @@ class FetchInventoryResponse extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\VMMigration\V1\VmwareVmsDetails $vmware_vms
      *           The description of the VMs in a Source of type Vmware.
+     *     @type \Google\Cloud\VMMigration\V1\AwsVmsDetails $aws_vms
+     *           The description of the VMs in a Source of type AWS.
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. The timestamp when the source was last queried (if the result
      *           is from the cache).
@@ -70,6 +72,37 @@ class FetchInventoryResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\VMMigration\V1\VmwareVmsDetails::class);
         $this->writeOneof(1, $var);
+
+        return $this;
+    }
+
+    /**
+     * The description of the VMs in a Source of type AWS.
+     *
+     * Generated from protobuf field <code>.google.cloud.vmmigration.v1.AwsVmsDetails aws_vms = 3;</code>
+     * @return \Google\Cloud\VMMigration\V1\AwsVmsDetails|null
+     */
+    public function getAwsVms()
+    {
+        return $this->readOneof(3);
+    }
+
+    public function hasAwsVms()
+    {
+        return $this->hasOneof(3);
+    }
+
+    /**
+     * The description of the VMs in a Source of type AWS.
+     *
+     * Generated from protobuf field <code>.google.cloud.vmmigration.v1.AwsVmsDetails aws_vms = 3;</code>
+     * @param \Google\Cloud\VMMigration\V1\AwsVmsDetails $var
+     * @return $this
+     */
+    public function setAwsVms($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\VMMigration\V1\AwsVmsDetails::class);
+        $this->writeOneof(3, $var);
 
         return $this;
     }

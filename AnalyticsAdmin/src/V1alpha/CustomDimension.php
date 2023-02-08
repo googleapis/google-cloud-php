@@ -35,8 +35,8 @@ class CustomDimension extends \Google\Protobuf\Internal\Message
      */
     private $parameter_name = '';
     /**
-     * Required. Display name for this custom dimension as shown in the Analytics UI.
-     * Max length of 82 characters, alphanumeric plus space and underscore
+     * Required. Display name for this custom dimension as shown in the Analytics
+     * UI. Max length of 82 characters, alphanumeric plus space and underscore
      * starting with a letter. Legacy system-generated display names may contain
      * square brackets, but updates to this field will never permit square
      * brackets.
@@ -45,7 +45,8 @@ class CustomDimension extends \Google\Protobuf\Internal\Message
      */
     private $display_name = '';
     /**
-     * Optional. Description for this custom dimension. Max length of 150 characters.
+     * Optional. Description for this custom dimension. Max length of 150
+     * characters.
      *
      * Generated from protobuf field <code>string description = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -57,8 +58,8 @@ class CustomDimension extends \Google\Protobuf\Internal\Message
      */
     private $scope = 0;
     /**
-     * Optional. If set to true, sets this dimension as NPA and excludes it from ads
-     * personalization.
+     * Optional. If set to true, sets this dimension as NPA and excludes it from
+     * ads personalization.
      * This is currently only supported by user-scoped custom dimensions.
      *
      * Generated from protobuf field <code>bool disallow_ads_personalization = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -83,18 +84,19 @@ class CustomDimension extends \Google\Protobuf\Internal\Message
      *           letter. Max length of 24 characters for user-scoped dimensions, 40
      *           characters for event-scoped dimensions.
      *     @type string $display_name
-     *           Required. Display name for this custom dimension as shown in the Analytics UI.
-     *           Max length of 82 characters, alphanumeric plus space and underscore
+     *           Required. Display name for this custom dimension as shown in the Analytics
+     *           UI. Max length of 82 characters, alphanumeric plus space and underscore
      *           starting with a letter. Legacy system-generated display names may contain
      *           square brackets, but updates to this field will never permit square
      *           brackets.
      *     @type string $description
-     *           Optional. Description for this custom dimension. Max length of 150 characters.
+     *           Optional. Description for this custom dimension. Max length of 150
+     *           characters.
      *     @type int $scope
      *           Required. Immutable. The scope of this dimension.
      *     @type bool $disallow_ads_personalization
-     *           Optional. If set to true, sets this dimension as NPA and excludes it from ads
-     *           personalization.
+     *           Optional. If set to true, sets this dimension as NPA and excludes it from
+     *           ads personalization.
      *           This is currently only supported by user-scoped custom dimensions.
      * }
      */
@@ -170,8 +172,8 @@ class CustomDimension extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Display name for this custom dimension as shown in the Analytics UI.
-     * Max length of 82 characters, alphanumeric plus space and underscore
+     * Required. Display name for this custom dimension as shown in the Analytics
+     * UI. Max length of 82 characters, alphanumeric plus space and underscore
      * starting with a letter. Legacy system-generated display names may contain
      * square brackets, but updates to this field will never permit square
      * brackets.
@@ -185,8 +187,8 @@ class CustomDimension extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Display name for this custom dimension as shown in the Analytics UI.
-     * Max length of 82 characters, alphanumeric plus space and underscore
+     * Required. Display name for this custom dimension as shown in the Analytics
+     * UI. Max length of 82 characters, alphanumeric plus space and underscore
      * starting with a letter. Legacy system-generated display names may contain
      * square brackets, but updates to this field will never permit square
      * brackets.
@@ -204,7 +206,8 @@ class CustomDimension extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Description for this custom dimension. Max length of 150 characters.
+     * Optional. Description for this custom dimension. Max length of 150
+     * characters.
      *
      * Generated from protobuf field <code>string description = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -215,7 +218,8 @@ class CustomDimension extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Description for this custom dimension. Max length of 150 characters.
+     * Optional. Description for this custom dimension. Max length of 150
+     * characters.
      *
      * Generated from protobuf field <code>string description = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -256,8 +260,8 @@ class CustomDimension extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If set to true, sets this dimension as NPA and excludes it from ads
-     * personalization.
+     * Optional. If set to true, sets this dimension as NPA and excludes it from
+     * ads personalization.
      * This is currently only supported by user-scoped custom dimensions.
      *
      * Generated from protobuf field <code>bool disallow_ads_personalization = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -269,8 +273,8 @@ class CustomDimension extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If set to true, sets this dimension as NPA and excludes it from ads
-     * personalization.
+     * Optional. If set to true, sets this dimension as NPA and excludes it from
+     * ads personalization.
      * This is currently only supported by user-scoped custom dimensions.
      *
      * Generated from protobuf field <code>bool disallow_ads_personalization = 6 [(.google.api.field_behavior) = OPTIONAL];</code>

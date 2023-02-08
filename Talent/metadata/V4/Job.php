@@ -20,7 +20,7 @@ class Job
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-‰
+ÿ
  google/cloud/talent/v4/job.protogoogle.cloud.talent.v4google/api/resource.proto#google/cloud/talent/v4/common.protogoogle/protobuf/timestamp.proto"õ
 Job
 name (	4
@@ -71,8 +71,8 @@ visibility (2".google.cloud.talent.v4.VisibilityB2
 CustomAttributesEntry
 key (	6
 value (2\'.google.cloud.talent.v4.CustomAttribute:8:LêAI
-jobs.googleapis.com/Job.projects/{project}/tenants/{tenant}/jobs/{job}Bl
-com.google.cloud.talent.v4BJobProtoPZ<google.golang.org/genproto/googleapis/cloud/talent/v4;talent¢CTSbproto3'
+jobs.googleapis.com/Job.projects/{project}/tenants/{tenant}/jobs/{job}Bb
+com.google.cloud.talent.v4BJobProtoPZ2cloud.google.com/go/talent/apiv4/talentpb;talentpb¢CTSbproto3'
         , true);
 
         static::$is_initialized = true;

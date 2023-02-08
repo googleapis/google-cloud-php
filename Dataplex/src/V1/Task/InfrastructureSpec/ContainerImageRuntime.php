@@ -16,9 +16,15 @@ use Google\Protobuf\Internal\GPBUtil;
 class ContainerImageRuntime extends \Google\Protobuf\Internal\Message
 {
     /**
+     * Optional. Container image to use.
+     *
+     * Generated from protobuf field <code>string image = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $image = '';
+    /**
      * Optional. A list of Java JARS to add to the classpath.
      * Valid input includes Cloud Storage URIs to Jar binaries.
-     * For example, `gs://bucket-name/my/path/to/file.jar`.
+     * For example, gs://bucket-name/my/path/to/file.jar
      *
      * Generated from protobuf field <code>repeated string java_jars = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -26,18 +32,16 @@ class ContainerImageRuntime extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A list of python packages to be installed.
      * Valid formats include Cloud Storage URI to a PIP installable library.
-     * For example, `gs://bucket-name/my/path/to/lib.tar.gz`.
+     * For example, gs://bucket-name/my/path/to/lib.tar.gz
      *
      * Generated from protobuf field <code>repeated string python_packages = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $python_packages;
     /**
-     * Optional. Override to common configuration of open source components installed on
-     * the Dataproc cluster.
-     * The properties to set on daemon config files.
-     * Property keys are specified in `prefix:property` format, for example
-     * `core:hadoop.tmp.dir`.
-     * For more information, see [Cluster
+     * Optional. Override to common configuration of open source components
+     * installed on the Dataproc cluster. The properties to set on daemon
+     * config files. Property keys are specified in `prefix:property` format,
+     * for example `core:hadoop.tmp.dir`. For more information, see [Cluster
      * properties](https://cloud.google.com/dataproc/docs/concepts/cluster-properties).
      *
      * Generated from protobuf field <code>map<string, string> properties = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -50,21 +54,21 @@ class ContainerImageRuntime extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $java_jars
+     *     @type string $image
+     *           Optional. Container image to use.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $java_jars
      *           Optional. A list of Java JARS to add to the classpath.
      *           Valid input includes Cloud Storage URIs to Jar binaries.
-     *           For example, `gs://bucket-name/my/path/to/file.jar`.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $python_packages
+     *           For example, gs://bucket-name/my/path/to/file.jar
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $python_packages
      *           Optional. A list of python packages to be installed.
      *           Valid formats include Cloud Storage URI to a PIP installable library.
-     *           For example, `gs://bucket-name/my/path/to/lib.tar.gz`.
+     *           For example, gs://bucket-name/my/path/to/lib.tar.gz
      *     @type array|\Google\Protobuf\Internal\MapField $properties
-     *           Optional. Override to common configuration of open source components installed on
-     *           the Dataproc cluster.
-     *           The properties to set on daemon config files.
-     *           Property keys are specified in `prefix:property` format, for example
-     *           `core:hadoop.tmp.dir`.
-     *           For more information, see [Cluster
+     *           Optional. Override to common configuration of open source components
+     *           installed on the Dataproc cluster. The properties to set on daemon
+     *           config files. Property keys are specified in `prefix:property` format,
+     *           for example `core:hadoop.tmp.dir`. For more information, see [Cluster
      *           properties](https://cloud.google.com/dataproc/docs/concepts/cluster-properties).
      * }
      */
@@ -74,9 +78,35 @@ class ContainerImageRuntime extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. Container image to use.
+     *
+     * Generated from protobuf field <code>string image = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * Optional. Container image to use.
+     *
+     * Generated from protobuf field <code>string image = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setImage($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->image = $var;
+
+        return $this;
+    }
+
+    /**
      * Optional. A list of Java JARS to add to the classpath.
      * Valid input includes Cloud Storage URIs to Jar binaries.
-     * For example, `gs://bucket-name/my/path/to/file.jar`.
+     * For example, gs://bucket-name/my/path/to/file.jar
      *
      * Generated from protobuf field <code>repeated string java_jars = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -89,10 +119,10 @@ class ContainerImageRuntime extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A list of Java JARS to add to the classpath.
      * Valid input includes Cloud Storage URIs to Jar binaries.
-     * For example, `gs://bucket-name/my/path/to/file.jar`.
+     * For example, gs://bucket-name/my/path/to/file.jar
      *
      * Generated from protobuf field <code>repeated string java_jars = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setJavaJars($var)
@@ -106,7 +136,7 @@ class ContainerImageRuntime extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A list of python packages to be installed.
      * Valid formats include Cloud Storage URI to a PIP installable library.
-     * For example, `gs://bucket-name/my/path/to/lib.tar.gz`.
+     * For example, gs://bucket-name/my/path/to/lib.tar.gz
      *
      * Generated from protobuf field <code>repeated string python_packages = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -119,10 +149,10 @@ class ContainerImageRuntime extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A list of python packages to be installed.
      * Valid formats include Cloud Storage URI to a PIP installable library.
-     * For example, `gs://bucket-name/my/path/to/lib.tar.gz`.
+     * For example, gs://bucket-name/my/path/to/lib.tar.gz
      *
      * Generated from protobuf field <code>repeated string python_packages = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPythonPackages($var)
@@ -134,12 +164,10 @@ class ContainerImageRuntime extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Override to common configuration of open source components installed on
-     * the Dataproc cluster.
-     * The properties to set on daemon config files.
-     * Property keys are specified in `prefix:property` format, for example
-     * `core:hadoop.tmp.dir`.
-     * For more information, see [Cluster
+     * Optional. Override to common configuration of open source components
+     * installed on the Dataproc cluster. The properties to set on daemon
+     * config files. Property keys are specified in `prefix:property` format,
+     * for example `core:hadoop.tmp.dir`. For more information, see [Cluster
      * properties](https://cloud.google.com/dataproc/docs/concepts/cluster-properties).
      *
      * Generated from protobuf field <code>map<string, string> properties = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -151,12 +179,10 @@ class ContainerImageRuntime extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Override to common configuration of open source components installed on
-     * the Dataproc cluster.
-     * The properties to set on daemon config files.
-     * Property keys are specified in `prefix:property` format, for example
-     * `core:hadoop.tmp.dir`.
-     * For more information, see [Cluster
+     * Optional. Override to common configuration of open source components
+     * installed on the Dataproc cluster. The properties to set on daemon
+     * config files. Property keys are specified in `prefix:property` format,
+     * for example `core:hadoop.tmp.dir`. For more information, see [Cluster
      * properties](https://cloud.google.com/dataproc/docs/concepts/cluster-properties).
      *
      * Generated from protobuf field <code>map<string, string> properties = 4 [(.google.api.field_behavior) = OPTIONAL];</code>

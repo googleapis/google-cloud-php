@@ -22,7 +22,7 @@ class NetworkSecurity
         \GPBMetadata\Google\Longrunning\Operations::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ã\'
+Â\'
 ;google/cloud/networksecurity/v1beta1/network_security.proto$google.cloud.networksecurity.v1beta1google/api/client.proto?google/cloud/networksecurity/v1beta1/authorization_policy.proto<google/cloud/networksecurity/v1beta1/client_tls_policy.proto<google/cloud/networksecurity/v1beta1/server_tls_policy.proto#google/longrunning/operations.proto2Þ"
 NetworkSecurityý
 ListAuthorizationPoliciesF.google.cloud.networksecurity.v1beta1.ListAuthorizationPoliciesRequestG.google.cloud.networksecurity.v1beta1.ListAuthorizationPoliciesResponse"O‚Óä“@>/v1beta1/{parent=projects/*/locations/*}/authorizationPoliciesÚAparentç
@@ -48,8 +48,8 @@ class NetworkSecurity
 UpdateClientTlsPolicyB.google.cloud.networksecurity.v1beta1.UpdateClientTlsPolicyRequest.google.longrunning.Operation"Ó‚Óä“a2L/v1beta1/{client_tls_policy.name=projects/*/locations/*/clientTlsPolicies/*}:client_tls_policyÚAclient_tls_policy,update_maskÊAI
 ClientTlsPolicy6google.cloud.networksecurity.v1beta1.OperationMetadata˜
 DeleteClientTlsPolicyB.google.cloud.networksecurity.v1beta1.DeleteClientTlsPolicyRequest.google.longrunning.Operation"›‚Óä“<*:/v1beta1/{name=projects/*/locations/*/clientTlsPolicies/*}ÚAnameÊAO
-google.protobuf.Empty6google.cloud.networksecurity.v1beta1.OperationMetadataRÊAnetworksecurity.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBù
-(com.google.cloud.networksecurity.v1beta1PZSgoogle.golang.org/genproto/googleapis/cloud/networksecurity/v1beta1;networksecurityª$Google.Cloud.NetworkSecurity.V1Beta1Ê$Google\\Cloud\\NetworkSecurity\\V1beta1ê\'Google::Cloud::NetworkSecurity::V1beta1bproto3'
+google.protobuf.Empty6google.cloud.networksecurity.v1beta1.OperationMetadataRÊAnetworksecurity.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBø
+(com.google.cloud.networksecurity.v1beta1PZRcloud.google.com/go/networksecurity/apiv1beta1/networksecuritypb;networksecuritypbª$Google.Cloud.NetworkSecurity.V1Beta1Ê$Google\\Cloud\\NetworkSecurity\\V1beta1ê\'Google::Cloud::NetworkSecurity::V1beta1bproto3'
         , true);
 
         static::$is_initialized = true;
