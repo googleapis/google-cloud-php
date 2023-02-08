@@ -21,7 +21,7 @@ class Customers
         \GPBMetadata\Google\Type\PostalAddress::initOnce();
         $pool->internalAddGeneratedFile(
             '
-—
+Ž
 \'google/cloud/channel/v1/customers.protogoogle.cloud.channel.v1google/api/resource.proto$google/cloud/channel/v1/common.protogoogle/protobuf/timestamp.proto google/type/postal_address.proto"Ñ
 Customer
 name (	BàA
@@ -45,8 +45,8 @@ first_name (	
 display_name (	BàA
 email (	
 title (	BàA
-phone (	Bo
-com.google.cloud.channel.v1BCustomersProtoPZ>google.golang.org/genproto/googleapis/cloud/channel/v1;channelbproto3'
+phone (	Bf
+com.google.cloud.channel.v1BCustomersProtoPZ5cloud.google.com/go/channel/apiv1/channelpb;channelpbbproto3'
         , true);
 
         static::$is_initialized = true;
