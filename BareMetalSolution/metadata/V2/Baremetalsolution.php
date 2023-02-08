@@ -26,7 +26,7 @@ class Baremetalsolution
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ü(
+Ý(
 9google/cloud/baremetalsolution/v2/baremetalsolution.proto!google.cloud.baremetalsolution.v2google/api/client.protogoogle/api/field_behavior.proto0google/cloud/baremetalsolution/v2/instance.proto+google/cloud/baremetalsolution/v2/lun.proto/google/cloud/baremetalsolution/v2/network.proto1google/cloud/baremetalsolution/v2/nfs_share.proto.google/cloud/baremetalsolution/v2/volume.proto#google/longrunning/operations.protogoogle/protobuf/timestamp.proto"€
 OperationMetadata4
 create_time (2.google.protobuf.TimestampBàA1
@@ -67,8 +67,8 @@ GetNetwork4.google.cloud.baremetalsolution.v2.GetNetworkRequest*.google.cloud.
 GetNfsShare5.google.cloud.baremetalsolution.v2.GetNfsShareRequest+.google.cloud.baremetalsolution.v2.NfsShare"<‚Óä“/-/v2/{name=projects/*/locations/*/nfsShares/*}ÚAnameÂ
 ListNfsShares7.google.cloud.baremetalsolution.v2.ListNfsSharesRequest8.google.cloud.baremetalsolution.v2.ListNfsSharesResponse">‚Óä“/-/v2/{parent=projects/*/locations/*}/nfsSharesÚAparentî
 UpdateNfsShare8.google.cloud.baremetalsolution.v2.UpdateNfsShareRequest.google.longrunning.Operation"‚‚Óä“D27/v2/{nfs_share.name=projects/*/locations/*/nfsShares/*}:	nfs_shareÚAnfs_share,update_maskÊA
-NfsShareOperationMetadataTÊA baremetalsolution.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB„
-%com.google.cloud.baremetalsolution.v2BBareMetalSolutionProtoPZRgoogle.golang.org/genproto/googleapis/cloud/baremetalsolution/v2;baremetalsolutionª!Google.Cloud.BareMetalSolution.V2Ê!Google\\Cloud\\BareMetalSolution\\V2ê$Google::Cloud::BareMetalSolution::V2bproto3'
+NfsShareOperationMetadataTÊA baremetalsolution.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB…
+%com.google.cloud.baremetalsolution.v2BBareMetalSolutionProtoPZScloud.google.com/go/baremetalsolution/apiv2/baremetalsolutionpb;baremetalsolutionpbª!Google.Cloud.BareMetalSolution.V2Ê!Google\\Cloud\\BareMetalSolution\\V2ê$Google::Cloud::BareMetalSolution::V2bproto3'
         , true);
 
         static::$is_initialized = true;
