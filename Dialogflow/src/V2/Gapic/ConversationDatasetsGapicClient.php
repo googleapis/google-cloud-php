@@ -358,8 +358,10 @@ class ConversationDatasetsGapicClient
      * operation](https://cloud.google.com/dialogflow/es/docs/how/long-running-operations).
      * The returned `Operation` type has the following method-specific fields:
      *
-     * - `metadata`: [CreateConversationDatasetOperationMetadata][google.cloud.dialogflow.v2.CreateConversationDatasetOperationMetadata]
-     * - `response`: [ConversationDataset][google.cloud.dialogflow.v2.ConversationDataset]
+     * - `metadata`:
+     * [CreateConversationDatasetOperationMetadata][google.cloud.dialogflow.v2.CreateConversationDatasetOperationMetadata]
+     * - `response`:
+     * [ConversationDataset][google.cloud.dialogflow.v2.ConversationDataset]
      *
      * Sample code:
      * ```
@@ -433,7 +435,8 @@ class ConversationDatasetsGapicClient
      * operation](https://cloud.google.com/dialogflow/es/docs/how/long-running-operations).
      * The returned `Operation` type has the following method-specific fields:
      *
-     * - `metadata`: [DeleteConversationDatasetOperationMetadata][google.cloud.dialogflow.v2.DeleteConversationDatasetOperationMetadata]
+     * - `metadata`:
+     * [DeleteConversationDatasetOperationMetadata][google.cloud.dialogflow.v2.DeleteConversationDatasetOperationMetadata]
      * - `response`: An [Empty
      * message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#empty)
      *
@@ -548,8 +551,10 @@ class ConversationDatasetsGapicClient
      * operation](https://cloud.google.com/dialogflow/es/docs/how/long-running-operations).
      * The returned `Operation` type has the following method-specific fields:
      *
-     * - `metadata`: [ImportConversationDataOperationMetadata][google.cloud.dialogflow.v2.ImportConversationDataOperationMetadata]
-     * - `response`: [ImportConversationDataOperationResponse][google.cloud.dialogflow.v2.ImportConversationDataOperationResponse]
+     * - `metadata`:
+     * [ImportConversationDataOperationMetadata][google.cloud.dialogflow.v2.ImportConversationDataOperationMetadata]
+     * - `response`:
+     * [ImportConversationDataOperationResponse][google.cloud.dialogflow.v2.ImportConversationDataOperationResponse]
      *
      * Sample code:
      * ```
@@ -644,8 +649,8 @@ class ConversationDatasetsGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The project and location name to list all conversation datasets for.
-     *                             Format: `projects/<Project ID>/locations/<Location ID>`
+     * @param string $parent       Required. The project and location name to list all conversation datasets
+     *                             for. Format: `projects/<Project ID>/locations/<Location ID>`
      * @param array  $optionalArgs {
      *     Optional.
      *

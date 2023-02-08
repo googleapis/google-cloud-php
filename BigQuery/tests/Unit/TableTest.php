@@ -830,6 +830,51 @@ class TableTest extends TestCase
     {
         $this->assertInstanceOf(Iam::class, $this->getTable($this->connection)->iam());
     }
+
+    public function testCloneMetadata()
+    {
+        $table = $this->getTable($this->connection);
+        $expected = [
+            'cloneDefinition' => [
+                'baseTableReference' => [
+                    'projectId' => 'test_project',
+                    'datasetId' => 'test_dataset',
+                    'tableId' => 'test_table'
+                ],
+                'cloneTime' => '2023-01-11T03:42:11.054Z'
+            ]
+        ];
+        $this->connection->getTable($table->identity())->willReturn($expected);
+        $result = $table->reload();
+
+        $this->assertEquals(
+            $expected['cloneDefinition'],
+            $result['cloneDefinition']
+        );
+    }
+
+    public function testSnapshotMetadata()
+    {
+        $table = $this->getTable($this->connection);
+        $expected = [
+            'snapshotDefinition' => [
+                'baseTableReference' => [
+                    'projectId' => 'test_project',
+                    'datasetId' => 'test_dataset',
+                    'tableId' => 'test_table'
+                ],
+                'snapshotTime' => '2023-01-11T03:42:11.054Z'
+            ]
+        ];
+        $this->connection->getTable($table->identity())->willReturn($expected);
+
+        $result = $table->reload();
+
+        $this->assertEquals(
+            $expected['snapshotDefinition'],
+            $result['snapshotDefinition']
+        );
+    }
 }
 
 //@codingStandardsIgnoreStart

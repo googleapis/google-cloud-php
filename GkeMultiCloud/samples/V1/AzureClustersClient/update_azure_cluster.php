@@ -48,19 +48,6 @@ use Google\Rpc\Status;
  * @param string $azureClusterResourceGroupId                           The ARM ID of the resource group where the cluster resources are
  *                                                                      deployed. For example:
  *                                                                      `/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>`
- * @param string $azureClusterAzureClient                               Name of the
- *                                                                      [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] that contains
- *                                                                      authentication configuration for how the Anthos Multi-Cloud API connects to
- *                                                                      Azure APIs.
- *
- *                                                                      The `AzureClient` resource must reside on the same GCP project and region
- *                                                                      as the `AzureCluster`.
- *
- *                                                                      `AzureClient` names are formatted as
- *                                                                      `projects/<project-number>/locations/<region>/azureClients/<client-id>`.
- *
- *                                                                      See [Resource Names](https://cloud.google.com/apis/design/resource_names)
- *                                                                      for more details on Google Cloud resource names.
  * @param string $azureClusterNetworkingVirtualNetworkId                The Azure Resource Manager (ARM) ID of the VNet associated with
  *                                                                      your cluster.
  *
@@ -104,7 +91,6 @@ use Google\Rpc\Status;
 function update_azure_cluster_sample(
     string $azureClusterAzureRegion,
     string $azureClusterResourceGroupId,
-    string $azureClusterAzureClient,
     string $azureClusterNetworkingVirtualNetworkId,
     string $azureClusterNetworkingPodAddressCidrBlocksElement,
     string $azureClusterNetworkingServiceAddressCidrBlocksElement,
@@ -142,7 +128,6 @@ function update_azure_cluster_sample(
     $azureCluster = (new AzureCluster())
         ->setAzureRegion($azureClusterAzureRegion)
         ->setResourceGroupId($azureClusterResourceGroupId)
-        ->setAzureClient($azureClusterAzureClient)
         ->setNetworking($azureClusterNetworking)
         ->setControlPlane($azureClusterControlPlane)
         ->setAuthorization($azureClusterAuthorization)
@@ -182,7 +167,6 @@ function callSample(): void
 {
     $azureClusterAzureRegion = '[AZURE_REGION]';
     $azureClusterResourceGroupId = '[RESOURCE_GROUP_ID]';
-    $azureClusterAzureClient = '[AZURE_CLIENT]';
     $azureClusterNetworkingVirtualNetworkId = '[VIRTUAL_NETWORK_ID]';
     $azureClusterNetworkingPodAddressCidrBlocksElement = '[POD_ADDRESS_CIDR_BLOCKS]';
     $azureClusterNetworkingServiceAddressCidrBlocksElement = '[SERVICE_ADDRESS_CIDR_BLOCKS]';
@@ -194,7 +178,6 @@ function callSample(): void
     update_azure_cluster_sample(
         $azureClusterAzureRegion,
         $azureClusterResourceGroupId,
-        $azureClusterAzureClient,
         $azureClusterNetworkingVirtualNetworkId,
         $azureClusterNetworkingPodAddressCidrBlocksElement,
         $azureClusterNetworkingServiceAddressCidrBlocksElement,

@@ -30,6 +30,12 @@ use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Asset\V1\AnalyzeIamPolicyLongrunningResponse;
 use Google\Cloud\Asset\V1\AnalyzeIamPolicyResponse;
 use Google\Cloud\Asset\V1\AnalyzeMoveResponse;
+use Google\Cloud\Asset\V1\AnalyzeOrgPoliciesResponse;
+use Google\Cloud\Asset\V1\AnalyzeOrgPoliciesResponse\OrgPolicyResult;
+use Google\Cloud\Asset\V1\AnalyzeOrgPolicyGovernedAssetsResponse;
+use Google\Cloud\Asset\V1\AnalyzeOrgPolicyGovernedAssetsResponse\GovernedAsset;
+use Google\Cloud\Asset\V1\AnalyzeOrgPolicyGovernedContainersResponse;
+use Google\Cloud\Asset\V1\AnalyzeOrgPolicyGovernedContainersResponse\GovernedContainer;
 use Google\Cloud\Asset\V1\Asset;
 use Google\Cloud\Asset\V1\AssetServiceClient;
 use Google\Cloud\Asset\V1\BatchGetAssetsHistoryResponse;
@@ -327,6 +333,222 @@ class AssetServiceClientTest extends GeneratedTest
         $destinationParent = 'destinationParent-1362053637';
         try {
             $gapicClient->analyzeMove($resource, $destinationParent);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function analyzeOrgPoliciesTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $orgPolicyResultsElement = new OrgPolicyResult();
+        $orgPolicyResults = [
+            $orgPolicyResultsElement,
+        ];
+        $expectedResponse = new AnalyzeOrgPoliciesResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setOrgPolicyResults($orgPolicyResults);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $scope = 'scope109264468';
+        $constraint = 'constraint-190376483';
+        $response = $gapicClient->analyzeOrgPolicies($scope, $constraint);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getOrgPolicyResults()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.asset.v1.AssetService/AnalyzeOrgPolicies', $actualFuncCall);
+        $actualValue = $actualRequestObject->getScope();
+        $this->assertProtobufEquals($scope, $actualValue);
+        $actualValue = $actualRequestObject->getConstraint();
+        $this->assertProtobufEquals($constraint, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function analyzeOrgPoliciesExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $scope = 'scope109264468';
+        $constraint = 'constraint-190376483';
+        try {
+            $gapicClient->analyzeOrgPolicies($scope, $constraint);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function analyzeOrgPolicyGovernedAssetsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $governedAssetsElement = new GovernedAsset();
+        $governedAssets = [
+            $governedAssetsElement,
+        ];
+        $expectedResponse = new AnalyzeOrgPolicyGovernedAssetsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setGovernedAssets($governedAssets);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $scope = 'scope109264468';
+        $constraint = 'constraint-190376483';
+        $response = $gapicClient->analyzeOrgPolicyGovernedAssets($scope, $constraint);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getGovernedAssets()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.asset.v1.AssetService/AnalyzeOrgPolicyGovernedAssets', $actualFuncCall);
+        $actualValue = $actualRequestObject->getScope();
+        $this->assertProtobufEquals($scope, $actualValue);
+        $actualValue = $actualRequestObject->getConstraint();
+        $this->assertProtobufEquals($constraint, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function analyzeOrgPolicyGovernedAssetsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $scope = 'scope109264468';
+        $constraint = 'constraint-190376483';
+        try {
+            $gapicClient->analyzeOrgPolicyGovernedAssets($scope, $constraint);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function analyzeOrgPolicyGovernedContainersTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $governedContainersElement = new GovernedContainer();
+        $governedContainers = [
+            $governedContainersElement,
+        ];
+        $expectedResponse = new AnalyzeOrgPolicyGovernedContainersResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setGovernedContainers($governedContainers);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $scope = 'scope109264468';
+        $constraint = 'constraint-190376483';
+        $response = $gapicClient->analyzeOrgPolicyGovernedContainers($scope, $constraint);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getGovernedContainers()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.asset.v1.AssetService/AnalyzeOrgPolicyGovernedContainers', $actualFuncCall);
+        $actualValue = $actualRequestObject->getScope();
+        $this->assertProtobufEquals($scope, $actualValue);
+        $actualValue = $actualRequestObject->getConstraint();
+        $this->assertProtobufEquals($constraint, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function analyzeOrgPolicyGovernedContainersExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $scope = 'scope109264468';
+        $constraint = 'constraint-190376483';
+        try {
+            $gapicClient->analyzeOrgPolicyGovernedContainers($scope, $constraint);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

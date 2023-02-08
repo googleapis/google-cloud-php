@@ -68,7 +68,9 @@ class NodePool extends \Google\Protobuf\Internal\Message
      */
     private $self_link = '';
     /**
-     * The version of the Kubernetes of this node.
+     * The version of Kubernetes running on this NodePool's nodes. If unspecified,
+     * it defaults as described
+     * [here](https://cloud.google.com/kubernetes-engine/versioning#specifying_node_version).
      *
      * Generated from protobuf field <code>string version = 101;</code>
      */
@@ -143,8 +145,8 @@ class NodePool extends \Google\Protobuf\Internal\Message
      */
     private $placement_policy = null;
     /**
-     * Output only. [Output only] Update info contains relevant information during a node
-     * pool update.
+     * Output only. [Output only] Update info contains relevant information during
+     * a node pool update.
      *
      * Generated from protobuf field <code>.google.container.v1.NodePool.UpdateInfo update_info = 109 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -188,7 +190,9 @@ class NodePool extends \Google\Protobuf\Internal\Message
      *     @type string $self_link
      *           [Output only] Server-defined URL for the resource.
      *     @type string $version
-     *           The version of the Kubernetes of this node.
+     *           The version of Kubernetes running on this NodePool's nodes. If unspecified,
+     *           it defaults as described
+     *           [here](https://cloud.google.com/kubernetes-engine/versioning#specifying_node_version).
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $instance_group_urls
      *           [Output only] The resource URLs of the [managed instance
      *           groups](https://cloud.google.com/compute/docs/instance-groups/creating-groups-of-managed-instances)
@@ -218,8 +222,8 @@ class NodePool extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Container\V1\NodePool\PlacementPolicy $placement_policy
      *           Specifies the node placement policy.
      *     @type \Google\Cloud\Container\V1\NodePool\UpdateInfo $update_info
-     *           Output only. [Output only] Update info contains relevant information during a node
-     *           pool update.
+     *           Output only. [Output only] Update info contains relevant information during
+     *           a node pool update.
      *     @type string $etag
      *           This checksum is computed by the server based on the value of node pool
      *           fields, and may be sent on update requests to ensure the client has an
@@ -430,7 +434,9 @@ class NodePool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The version of the Kubernetes of this node.
+     * The version of Kubernetes running on this NodePool's nodes. If unspecified,
+     * it defaults as described
+     * [here](https://cloud.google.com/kubernetes-engine/versioning#specifying_node_version).
      *
      * Generated from protobuf field <code>string version = 101;</code>
      * @return string
@@ -441,7 +447,9 @@ class NodePool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The version of the Kubernetes of this node.
+     * The version of Kubernetes running on this NodePool's nodes. If unspecified,
+     * it defaults as described
+     * [here](https://cloud.google.com/kubernetes-engine/versioning#specifying_node_version).
      *
      * Generated from protobuf field <code>string version = 101;</code>
      * @param string $var
@@ -786,8 +794,8 @@ class NodePool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. [Output only] Update info contains relevant information during a node
-     * pool update.
+     * Output only. [Output only] Update info contains relevant information during
+     * a node pool update.
      *
      * Generated from protobuf field <code>.google.container.v1.NodePool.UpdateInfo update_info = 109 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\Container\V1\NodePool\UpdateInfo|null
@@ -808,8 +816,8 @@ class NodePool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. [Output only] Update info contains relevant information during a node
-     * pool update.
+     * Output only. [Output only] Update info contains relevant information during
+     * a node pool update.
      *
      * Generated from protobuf field <code>.google.container.v1.NodePool.UpdateInfo update_info = 109 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\Container\V1\NodePool\UpdateInfo $var

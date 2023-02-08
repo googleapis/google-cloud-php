@@ -32,8 +32,8 @@ use Google\Cloud\Dialogflow\V2\ConversationDatasetsClient;
  * Returns the list of all conversation datasets in the specified
  * project and location.
  *
- * @param string $formattedParent The project and location name to list all conversation datasets for.
- *                                Format: `projects/<Project ID>/locations/<Location ID>`
+ * @param string $formattedParent The project and location name to list all conversation datasets
+ *                                for. Format: `projects/<Project ID>/locations/<Location ID>`
  *                                Please see {@see ConversationDatasetsClient::locationName()} for help formatting this field.
  */
 function list_conversation_datasets_sample(string $formattedParent): void

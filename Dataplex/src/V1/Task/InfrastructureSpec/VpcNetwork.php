@@ -30,11 +30,11 @@ class VpcNetwork extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $network
-     *           Optional. The Cloud VPC network in which the job is run. By default, the Cloud
-     *           VPC network named Default within the project is used.
+     *           Optional. The Cloud VPC network in which the job is run. By default,
+     *           the Cloud VPC network named Default within the project is used.
      *     @type string $sub_network
      *           Optional. The Cloud VPC sub-network in which the job is run.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $network_tags
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $network_tags
      *           Optional. List of network tags to apply to the job.
      * }
      */
@@ -44,8 +44,8 @@ class VpcNetwork extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The Cloud VPC network in which the job is run. By default, the Cloud
-     * VPC network named Default within the project is used.
+     * Optional. The Cloud VPC network in which the job is run. By default,
+     * the Cloud VPC network named Default within the project is used.
      *
      * Generated from protobuf field <code>string network = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -61,8 +61,8 @@ class VpcNetwork extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The Cloud VPC network in which the job is run. By default, the Cloud
-     * VPC network named Default within the project is used.
+     * Optional. The Cloud VPC network in which the job is run. By default,
+     * the Cloud VPC network named Default within the project is used.
      *
      * Generated from protobuf field <code>string network = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -122,7 +122,7 @@ class VpcNetwork extends \Google\Protobuf\Internal\Message
      * Optional. List of network tags to apply to the job.
      *
      * Generated from protobuf field <code>repeated string network_tags = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setNetworkTags($var)

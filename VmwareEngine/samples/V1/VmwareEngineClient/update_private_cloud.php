@@ -27,6 +27,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\VmwareEngine\V1\NetworkConfig;
 use Google\Cloud\VmwareEngine\V1\PrivateCloud;
+use Google\Cloud\VmwareEngine\V1\PrivateCloud\ManagementCluster;
 use Google\Cloud\VmwareEngine\V1\VmwareEngineClient;
 use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
@@ -42,17 +43,33 @@ use Google\Rpc\Status;
  * processing fully completes.
  *
  * @param string $privateCloudNetworkConfigManagementCidr Management CIDR used by VMware management appliances.
+ * @param string $privateCloudManagementClusterClusterId  The user-provided identifier of the new `Cluster`.
+ *                                                        The identifier must meet the following requirements:
+ *
+ *                                                        * Only contains 1-63 alphanumeric characters and hyphens
+ *                                                        * Begins with an alphabetical character
+ *                                                        * Ends with a non-hyphen character
+ *                                                        * Not formatted as a UUID
+ *                                                        * Complies with [RFC
+ *                                                        1034](https://datatracker.ietf.org/doc/html/rfc1034) (section 3.5)
  */
-function update_private_cloud_sample(string $privateCloudNetworkConfigManagementCidr): void
-{
+function update_private_cloud_sample(
+    string $privateCloudNetworkConfigManagementCidr,
+    string $privateCloudManagementClusterClusterId
+): void {
     // Create a client.
     $vmwareEngineClient = new VmwareEngineClient();
 
     // Prepare any non-scalar elements to be passed along with the request.
     $privateCloudNetworkConfig = (new NetworkConfig())
         ->setManagementCidr($privateCloudNetworkConfigManagementCidr);
+    $privateCloudManagementClusterNodeTypeConfigs = [];
+    $privateCloudManagementCluster = (new ManagementCluster())
+        ->setClusterId($privateCloudManagementClusterClusterId)
+        ->setNodeTypeConfigs($privateCloudManagementClusterNodeTypeConfigs);
     $privateCloud = (new PrivateCloud())
-        ->setNetworkConfig($privateCloudNetworkConfig);
+        ->setNetworkConfig($privateCloudNetworkConfig)
+        ->setManagementCluster($privateCloudManagementCluster);
     $updateMask = new FieldMask();
 
     // Call the API and handle any network failures.
@@ -87,7 +104,11 @@ function update_private_cloud_sample(string $privateCloudNetworkConfigManagement
 function callSample(): void
 {
     $privateCloudNetworkConfigManagementCidr = '[MANAGEMENT_CIDR]';
+    $privateCloudManagementClusterClusterId = '[CLUSTER_ID]';
 
-    update_private_cloud_sample($privateCloudNetworkConfigManagementCidr);
+    update_private_cloud_sample(
+        $privateCloudNetworkConfigManagementCidr,
+        $privateCloudManagementClusterClusterId
+    );
 }
 // [END vmwareengine_v1_generated_VmwareEngine_UpdatePrivateCloud_sync]

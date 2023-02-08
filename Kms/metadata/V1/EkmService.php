@@ -22,7 +22,7 @@ class EkmService
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-â
+Õ
 %google/cloud/kms/v1/ekm_service.protogoogle.cloud.kms.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"³
 ListEkmConnectionsRequest9
 parent (	B)àAúA#
@@ -75,8 +75,8 @@ EkmServiceº
 ListEkmConnections..google.cloud.kms.v1.ListEkmConnectionsRequest/.google.cloud.kms.v1.ListEkmConnectionsResponse"C‚Óä“42/v1/{parent=projects/*/locations/*}/ekmConnectionsÚAparent§
 GetEkmConnection,.google.cloud.kms.v1.GetEkmConnectionRequest".google.cloud.kms.v1.EkmConnection"A‚Óä“42/v1/{name=projects/*/locations/*/ekmConnections/*}ÚAnameà
 CreateEkmConnection/.google.cloud.kms.v1.CreateEkmConnectionRequest".google.cloud.kms.v1.EkmConnection"t‚Óä“D"2/v1/{parent=projects/*/locations/*}/ekmConnections:ekm_connectionÚA\'parent,ekm_connection_id,ekm_connectionâ
-UpdateEkmConnection/.google.cloud.kms.v1.UpdateEkmConnectionRequest".google.cloud.kms.v1.EkmConnection"v‚Óä“S2A/v1/{ekm_connection.name=projects/*/locations/*/ekmConnections/*}:ekm_connectionÚAekm_connection,update_masktÊAcloudkms.googleapis.comÒAWhttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/cloudkmsB’
-com.google.cloud.kms.v1BEkmServiceProtoPZ6google.golang.org/genproto/googleapis/cloud/kms/v1;kmsøªGoogle.Cloud.Kms.V1ÊGoogle\\Cloud\\Kms\\V1êA|
+UpdateEkmConnection/.google.cloud.kms.v1.UpdateEkmConnectionRequest".google.cloud.kms.v1.EkmConnection"v‚Óä“S2A/v1/{ekm_connection.name=projects/*/locations/*/ekmConnections/*}:ekm_connectionÚAekm_connection,update_masktÊAcloudkms.googleapis.comÒAWhttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/cloudkmsB…
+com.google.cloud.kms.v1BEkmServiceProtoPZ)cloud.google.com/go/kms/apiv1/kmspb;kmspbøªGoogle.Cloud.Kms.V1ÊGoogle\\Cloud\\Kms\\V1êA|
 \'servicedirectory.googleapis.com/ServiceQprojects/{project}/locations/{location}/namespaces/{namespace}/services/{service}bproto3'
         , true);
 

@@ -50,10 +50,16 @@ class ChangeHistoryResource extends \Google\Protobuf\Internal\Message
      *           A snapshot of a CustomMetric resource in change history.
      *     @type \Google\Analytics\Admin\V1alpha\DataRetentionSettings $data_retention_settings
      *           A snapshot of a data retention settings resource in change history.
+     *     @type \Google\Analytics\Admin\V1alpha\SearchAds360Link $search_ads_360_link
+     *           A snapshot of a SearchAds360Link resource in change history.
      *     @type \Google\Analytics\Admin\V1alpha\DataStream $data_stream
      *           A snapshot of a DataStream resource in change history.
      *     @type \Google\Analytics\Admin\V1alpha\AttributionSettings $attribution_settings
      *           A snapshot of AttributionSettings resource in change history.
+     *     @type \Google\Analytics\Admin\V1alpha\ExpandedDataSet $expanded_data_set
+     *           A snapshot of an ExpandedDataSet resource in change history.
+     *     @type \Google\Analytics\Admin\V1alpha\BigQueryLink $bigquery_link
+     *           A snapshot of a BigQuery link resource in change history.
      * }
      */
     public function __construct($data = NULL) {
@@ -438,6 +444,37 @@ class ChangeHistoryResource extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * A snapshot of a SearchAds360Link resource in change history.
+     *
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.SearchAds360Link search_ads_360_link = 16;</code>
+     * @return \Google\Analytics\Admin\V1alpha\SearchAds360Link|null
+     */
+    public function getSearchAds360Link()
+    {
+        return $this->readOneof(16);
+    }
+
+    public function hasSearchAds360Link()
+    {
+        return $this->hasOneof(16);
+    }
+
+    /**
+     * A snapshot of a SearchAds360Link resource in change history.
+     *
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.SearchAds360Link search_ads_360_link = 16;</code>
+     * @param \Google\Analytics\Admin\V1alpha\SearchAds360Link $var
+     * @return $this
+     */
+    public function setSearchAds360Link($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Analytics\Admin\V1alpha\SearchAds360Link::class);
+        $this->writeOneof(16, $var);
+
+        return $this;
+    }
+
+    /**
      * A snapshot of a DataStream resource in change history.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.DataStream data_stream = 18;</code>
@@ -495,6 +532,68 @@ class ChangeHistoryResource extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Analytics\Admin\V1alpha\AttributionSettings::class);
         $this->writeOneof(20, $var);
+
+        return $this;
+    }
+
+    /**
+     * A snapshot of an ExpandedDataSet resource in change history.
+     *
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.ExpandedDataSet expanded_data_set = 21;</code>
+     * @return \Google\Analytics\Admin\V1alpha\ExpandedDataSet|null
+     */
+    public function getExpandedDataSet()
+    {
+        return $this->readOneof(21);
+    }
+
+    public function hasExpandedDataSet()
+    {
+        return $this->hasOneof(21);
+    }
+
+    /**
+     * A snapshot of an ExpandedDataSet resource in change history.
+     *
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.ExpandedDataSet expanded_data_set = 21;</code>
+     * @param \Google\Analytics\Admin\V1alpha\ExpandedDataSet $var
+     * @return $this
+     */
+    public function setExpandedDataSet($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Analytics\Admin\V1alpha\ExpandedDataSet::class);
+        $this->writeOneof(21, $var);
+
+        return $this;
+    }
+
+    /**
+     * A snapshot of a BigQuery link resource in change history.
+     *
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.BigQueryLink bigquery_link = 23;</code>
+     * @return \Google\Analytics\Admin\V1alpha\BigQueryLink|null
+     */
+    public function getBigqueryLink()
+    {
+        return $this->readOneof(23);
+    }
+
+    public function hasBigqueryLink()
+    {
+        return $this->hasOneof(23);
+    }
+
+    /**
+     * A snapshot of a BigQuery link resource in change history.
+     *
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.BigQueryLink bigquery_link = 23;</code>
+     * @param \Google\Analytics\Admin\V1alpha\BigQueryLink $var
+     * @return $this
+     */
+    public function setBigqueryLink($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Analytics\Admin\V1alpha\BigQueryLink::class);
+        $this->writeOneof(23, $var);
 
         return $this;
     }

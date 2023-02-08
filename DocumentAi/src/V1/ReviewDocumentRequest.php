@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class ReviewDocumentRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name of the HumanReviewConfig that the document will be
-     * reviewed with.
+     * Required. The resource name of the HumanReviewConfig that the document will
+     * be reviewed with.
      *
      * Generated from protobuf field <code>string human_review_config = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -51,8 +51,8 @@ class ReviewDocumentRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\DocumentAI\V1\Document $inline_document
      *           An inline document proto.
      *     @type string $human_review_config
-     *           Required. The resource name of the HumanReviewConfig that the document will be
-     *           reviewed with.
+     *           Required. The resource name of the HumanReviewConfig that the document will
+     *           be reviewed with.
      *     @type bool $enable_schema_validation
      *           Whether the validation should be performed on the ad-hoc review request.
      *     @type int $priority
@@ -98,8 +98,8 @@ class ReviewDocumentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the HumanReviewConfig that the document will be
-     * reviewed with.
+     * Required. The resource name of the HumanReviewConfig that the document will
+     * be reviewed with.
      *
      * Generated from protobuf field <code>string human_review_config = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -110,8 +110,8 @@ class ReviewDocumentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the HumanReviewConfig that the document will be
-     * reviewed with.
+     * Required. The resource name of the HumanReviewConfig that the document will
+     * be reviewed with.
      *
      * Generated from protobuf field <code>string human_review_config = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

@@ -60,7 +60,7 @@ class WebKeySettings extends \Google\Protobuf\Internal\Message
      *
      *     @type bool $allow_all_domains
      *           If set to true, it means allowed_domains will not be enforced.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $allowed_domains
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $allowed_domains
      *           Domains or subdomains of websites allowed to use the key. All subdomains
      *           of an allowed domain are automatically allowed. A valid domain requires a
      *           host and must not include any path, port, query or fragment.
@@ -128,7 +128,7 @@ class WebKeySettings extends \Google\Protobuf\Internal\Message
      * Examples: 'example.com' or 'subdomain.example.com'
      *
      * Generated from protobuf field <code>repeated string allowed_domains = 1;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAllowedDomains($var)

@@ -23,9 +23,9 @@ class ListProductsRequest extends \Google\Protobuf\Internal\Message
      */
     private $account = '';
     /**
-     * Optional. Requested page size. Server might return fewer results than requested.
-     * If unspecified, returns at most 100 Products.
-     * The maximum value is 1000; the server will coerce values above 1000.
+     * Optional. Requested page size. Server might return fewer results than
+     * requested. If unspecified, returns at most 100 Products. The maximum value
+     * is 1000; the server will coerce values above 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -55,9 +55,9 @@ class ListProductsRequest extends \Google\Protobuf\Internal\Message
      *           Required. The resource name of the reseller account.
      *           Format: accounts/{account_id}.
      *     @type int $page_size
-     *           Optional. Requested page size. Server might return fewer results than requested.
-     *           If unspecified, returns at most 100 Products.
-     *           The maximum value is 1000; the server will coerce values above 1000.
+     *           Optional. Requested page size. Server might return fewer results than
+     *           requested. If unspecified, returns at most 100 Products. The maximum value
+     *           is 1000; the server will coerce values above 1000.
      *     @type string $page_token
      *           Optional. A token for a page of results other than the first page.
      *     @type string $language_code
@@ -100,9 +100,9 @@ class ListProductsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Requested page size. Server might return fewer results than requested.
-     * If unspecified, returns at most 100 Products.
-     * The maximum value is 1000; the server will coerce values above 1000.
+     * Optional. Requested page size. Server might return fewer results than
+     * requested. If unspecified, returns at most 100 Products. The maximum value
+     * is 1000; the server will coerce values above 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -113,9 +113,9 @@ class ListProductsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Requested page size. Server might return fewer results than requested.
-     * If unspecified, returns at most 100 Products.
-     * The maximum value is 1000; the server will coerce values above 1000.
+     * Optional. Requested page size. Server might return fewer results than
+     * requested. If unspecified, returns at most 100 Products. The maximum value
+     * is 1000; the server will coerce values above 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var

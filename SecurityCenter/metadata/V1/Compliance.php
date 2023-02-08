@@ -16,14 +16,14 @@ class Compliance
         }
         $pool->internalAddGeneratedFile(
             '
-…
+ƒ
 /google/cloud/securitycenter/v1/compliance.protogoogle.cloud.securitycenter.v1"<
 
 Compliance
 standard (	
 version (	
-ids (	Bë
-"com.google.cloud.securitycenter.v1BComplianceProtoPZLgoogle.golang.org/genproto/googleapis/cloud/securitycenter/v1;securitycenterªGoogle.Cloud.SecurityCenter.V1ÊGoogle\\Cloud\\SecurityCenter\\V1ê!Google::Cloud::SecurityCenter::V1bproto3'
+ids (	Bé
+"com.google.cloud.securitycenter.v1BComplianceProtoPZJcloud.google.com/go/securitycenter/apiv1/securitycenterpb;securitycenterpbªGoogle.Cloud.SecurityCenter.V1ÊGoogle\\Cloud\\SecurityCenter\\V1ê!Google::Cloud::SecurityCenter::V1bproto3'
         , true);
 
         static::$is_initialized = true;

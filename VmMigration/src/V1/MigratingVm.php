@@ -129,6 +129,7 @@ class MigratingVm extends \Google\Protobuf\Internal\Message
      */
     private $recent_cutover_jobs;
     protected $target_vm_defaults;
+    protected $source_vm_details;
 
     /**
      * Constructor.
@@ -138,6 +139,8 @@ class MigratingVm extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\VMMigration\V1\ComputeEngineTargetDefaults $compute_engine_target_defaults
      *           Details of the target VM in Compute Engine.
+     *     @type \Google\Cloud\VMMigration\V1\AwsSourceVmDetails $aws_source_vm_details
+     *           Output only. Details of the VM from an AWS source.
      *     @type string $name
      *           Output only. The identifier of the MigratingVm.
      *     @type string $source_vm_id
@@ -220,6 +223,37 @@ class MigratingVm extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\VMMigration\V1\ComputeEngineTargetDefaults::class);
         $this->writeOneof(26, $var);
+
+        return $this;
+    }
+
+    /**
+     * Output only. Details of the VM from an AWS source.
+     *
+     * Generated from protobuf field <code>.google.cloud.vmmigration.v1.AwsSourceVmDetails aws_source_vm_details = 29 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\VMMigration\V1\AwsSourceVmDetails|null
+     */
+    public function getAwsSourceVmDetails()
+    {
+        return $this->readOneof(29);
+    }
+
+    public function hasAwsSourceVmDetails()
+    {
+        return $this->hasOneof(29);
+    }
+
+    /**
+     * Output only. Details of the VM from an AWS source.
+     *
+     * Generated from protobuf field <code>.google.cloud.vmmigration.v1.AwsSourceVmDetails aws_source_vm_details = 29 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\VMMigration\V1\AwsSourceVmDetails $var
+     * @return $this
+     */
+    public function setAwsSourceVmDetails($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\VMMigration\V1\AwsSourceVmDetails::class);
+        $this->writeOneof(29, $var);
 
         return $this;
     }
@@ -748,6 +782,14 @@ class MigratingVm extends \Google\Protobuf\Internal\Message
     public function getTargetVmDefaults()
     {
         return $this->whichOneof("target_vm_defaults");
+    }
+
+    /**
+     * @return string
+     */
+    public function getSourceVmDetails()
+    {
+        return $this->whichOneof("source_vm_details");
     }
 
 }

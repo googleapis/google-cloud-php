@@ -41,8 +41,10 @@ use Google\Rpc\Status;
  * operation](https://cloud.google.com/dialogflow/es/docs/how/long-running-operations).
  * The returned `Operation` type has the following method-specific fields:
  *
- * - `metadata`: [SetSuggestionFeatureConfigOperationMetadata][google.cloud.dialogflow.v2.SetSuggestionFeatureConfigOperationMetadata]
- * - `response`: [ConversationProfile][google.cloud.dialogflow.v2.ConversationProfile]
+ * - `metadata`:
+ * [SetSuggestionFeatureConfigOperationMetadata][google.cloud.dialogflow.v2.SetSuggestionFeatureConfigOperationMetadata]
+ * - `response`:
+ * [ConversationProfile][google.cloud.dialogflow.v2.ConversationProfile]
  *
  * If a long running operation to add or update suggestion feature
  * config for the same conversation profile, participant role and suggestion

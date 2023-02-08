@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class FirewallPolicyRule extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The Action to perform when the client connection triggers the rule. Can currently be either "allow" or "deny()" where valid values for status are 403, 404, and 502.
+     * The Action to perform when the client connection triggers the rule. Valid actions are "allow", "deny" and "goto_next".
      *
      * Generated from protobuf field <code>optional string action = 187661878;</code>
      */
@@ -102,7 +102,7 @@ class FirewallPolicyRule extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $action
-     *           The Action to perform when the client connection triggers the rule. Can currently be either "allow" or "deny()" where valid values for status are 403, 404, and 502.
+     *           The Action to perform when the client connection triggers the rule. Valid actions are "allow", "deny" and "goto_next".
      *     @type string $description
      *           An optional description for this resource.
      *     @type string $direction
@@ -136,7 +136,7 @@ class FirewallPolicyRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Action to perform when the client connection triggers the rule. Can currently be either "allow" or "deny()" where valid values for status are 403, 404, and 502.
+     * The Action to perform when the client connection triggers the rule. Valid actions are "allow", "deny" and "goto_next".
      *
      * Generated from protobuf field <code>optional string action = 187661878;</code>
      * @return string
@@ -157,7 +157,7 @@ class FirewallPolicyRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Action to perform when the client connection triggers the rule. Can currently be either "allow" or "deny()" where valid values for status are 403, 404, and 502.
+     * The Action to perform when the client connection triggers the rule. Valid actions are "allow", "deny" and "goto_next".
      *
      * Generated from protobuf field <code>optional string action = 187661878;</code>
      * @param string $var

@@ -11,9 +11,9 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * OIDC discovery information of the target cluster.
  * Kubernetes Service Account (KSA) tokens are JWT tokens signed by the cluster
- * API server. This fields indicates how GCP services
+ * API server. This fields indicates how Google Cloud Platform services
  * validate KSA tokens in order to allow system workloads (such as GKE Connect
- * and telemetry agents) to authenticate back to GCP.
+ * and telemetry agents) to authenticate back to Google Cloud Platform.
  * Both clusters with public and private issuer URLs are supported.
  * Clusters with public issuers only need to specify the `issuer_url` field
  * while clusters with private issuers need to provide both

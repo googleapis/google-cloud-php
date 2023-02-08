@@ -35,7 +35,8 @@ use Google\Rpc\Status;
  * operation](https://cloud.google.com/dialogflow/es/docs/how/long-running-operations).
  * The returned `Operation` type has the following method-specific fields:
  *
- * - `metadata`: [DeleteConversationDatasetOperationMetadata][google.cloud.dialogflow.v2.DeleteConversationDatasetOperationMetadata]
+ * - `metadata`:
+ * [DeleteConversationDatasetOperationMetadata][google.cloud.dialogflow.v2.DeleteConversationDatasetOperationMetadata]
  * - `response`: An [Empty
  * message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#empty)
  *

@@ -327,6 +327,17 @@ return [
                     ],
                 ],
             ],
+            'GetReplicationCycle' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/sources/*/migratingVms/*/replicationCycles/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetSource' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/sources/*}',
@@ -419,6 +430,20 @@ return [
             'ListMigratingVms' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*/sources/*}/migratingVms',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'page_token',
+                ],
+            ],
+            'ListReplicationCycles' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/sources/*/migratingVms/*}/replicationCycles',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [

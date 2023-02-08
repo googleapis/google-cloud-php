@@ -27,7 +27,7 @@ class Service
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Í]
+ˇ]
 &google/cloud/dataplex/v1/service.protogoogle.cloud.dataplex.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto&google/cloud/dataplex/v1/analyze.proto(google/cloud/dataplex/v1/resources.proto$google/cloud/dataplex/v1/tasks.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"≥
 CreateLakeRequest9
 parent (	B)‡A˙A#
@@ -209,13 +209,14 @@ page_token (	B‡A
 next_page_token (	"R
 GetEnvironmentRequest9
 name (	B+‡A˙A%
-#dataplex.googleapis.com/Environment"É
+#dataplex.googleapis.com/Environment"ò
 ListSessionsRequest;
 parent (	B+‡A˙A%
 #dataplex.googleapis.com/Environment
 	page_size (B‡A
 
-page_token (	B‡A"d
+page_token (	B‡A
+filter (	B‡A"d
 ListSessionsResponse3
 sessions (2!.google.cloud.dataplex.v1.Session
 next_page_token (	2Ç1

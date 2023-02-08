@@ -21,6 +21,7 @@ use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\Testing\DatastoreOperationRefreshTrait;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
+use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Datastore\Blob;
 use Google\Cloud\Datastore\Connection\ConnectionInterface;
 use Google\Cloud\Datastore\Connection\Grpc;
@@ -550,6 +551,53 @@ class DatastoreClientTest extends TestCase
         $this->assertInstanceOf(Key::class, $res['deferred'][0]);
     }
 
+    public function testLookupBatchWithReadTime()
+    {
+        $key = $this->client->key('Person', 'John');
+        $time = new Timestamp(new \DateTime());
+
+        $this->connection->lookup(
+            Argument::withEntry('readTime', $time)
+        )->shouldBeCalled()->willReturn([
+            'found' => [
+                [
+                    'entity' => $this->entityArray($key)
+                ]
+            ]
+        ]);
+
+        $this->refreshOperation($this->client, $this->connection->reveal(), [
+            'projectId' => self::PROJECT
+        ]);
+
+        $res = $this->client->lookupBatch([$key], ['readTime' => $time]);
+        $this->assertInstanceOf(Entity::class, $res['found'][0]);
+    }
+
+    public function testLookupWithReadTime()
+    {
+        $key = $this->client->key('Person', 'John');
+        $time = new Timestamp(new \DateTime());
+
+        $this->connection->lookup(Argument::allOf(
+            Argument::withEntry('keys', [$key->keyObject()]),
+            Argument::withEntry('readTime', $time)
+        ))->shouldBeCalled()->willReturn([
+            'found' => [
+                [
+                    'entity' => $this->entityArray($key)
+                ]
+            ]
+        ]);
+
+        $this->refreshOperation($this->client, $this->connection->reveal(), [
+            'projectId' => self::PROJECT
+        ]);
+
+        $res = $this->client->lookup($key, ['readTime' => $time]);
+        $this->assertInstanceOf(Entity::class, $res);
+    }
+
     public function testQuery()
     {
         $query = ['foo' => 'bar'];
@@ -592,6 +640,37 @@ class DatastoreClientTest extends TestCase
         $query->queryObject()->willReturn(['queryString' => 'SELECT 1=1']);
 
         $res = iterator_to_array($this->client->runQuery($query->reveal()));
+        $this->assertContainsOnlyInstancesOf(Entity::class, $res);
+    }
+
+    public function testRunQueryWithReadTime()
+    {
+        $key = $this->client->key('Person', 'John');
+        $time = new Timestamp(new \DateTime());
+
+        $this->connection->runQuery(Argument::allOf(
+            Argument::withEntry('partitionId', ['projectId' => self::PROJECT]),
+            Argument::withEntry('gqlQuery', ['queryString' => 'SELECT 1=1']),
+            Argument::withEntry('readTime', $time)
+        ))->shouldBeCalled()->willReturn([
+            'batch' => [
+                'entityResults' => [
+                    [
+                        'entity' => $this->entityArray($key)
+                    ]
+                ]
+            ]
+        ]);
+
+        $this->refreshOperation($this->client, $this->connection->reveal(), [
+            'projectId' => self::PROJECT
+        ]);
+
+        $query = $this->prophesize(QueryInterface::class);
+        $query->queryKey()->willReturn('gqlQuery');
+        $query->queryObject()->willReturn(['queryString' => 'SELECT 1=1']);
+
+        $res = iterator_to_array($this->client->runQuery($query->reveal(), ['readTime' => $time]));
         $this->assertContainsOnlyInstancesOf(Entity::class, $res);
     }
 

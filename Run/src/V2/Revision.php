@@ -24,8 +24,9 @@ class Revision extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * Output only. Server assigned unique identifier for the Revision. The value is a UUID4
-     * string and guaranteed to remain unchanged until the resource is deleted.
+     * Output only. Server assigned unique identifier for the Revision. The value
+     * is a UUID4 string and guaranteed to remain unchanged until the resource is
+     * deleted.
      *
      * Generated from protobuf field <code>string uid = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -44,9 +45,6 @@ class Revision extends \Google\Protobuf\Internal\Message
      * environment, state, etc. For more information, visit
      * https://cloud.google.com/resource-manager/docs/creating-managing-labels or
      * https://cloud.google.com/run/docs/configuring/labels
-     * Cloud Run will populate some labels with 'run.googleapis.com' or
-     * 'serving.knative.dev' namespaces. Those labels are read-only, and user
-     * changes will not be preserved.
      *
      * Generated from protobuf field <code>map<string, string> labels = 4;</code>
      */
@@ -160,24 +158,38 @@ class Revision extends \Google\Protobuf\Internal\Message
      */
     private $encryption_key = '';
     /**
-     * Output only. Indicates whether the resource's reconciliation is still in progress.
-     * See comments in `Service.reconciling` for additional information on
-     * reconciliation process in Cloud Run.
+     * The action to take if the encryption key is revoked.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.EncryptionKeyRevocationAction encryption_key_revocation_action = 23;</code>
+     */
+    private $encryption_key_revocation_action = 0;
+    /**
+     * If encryption_key_revocation_action is SHUTDOWN, the duration before
+     * shutting down all instances. The minimum increment is 1 hour.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration encryption_key_shutdown_duration = 24;</code>
+     */
+    private $encryption_key_shutdown_duration = null;
+    /**
+     * Output only. Indicates whether the resource's reconciliation is still in
+     * progress. See comments in `Service.reconciling` for additional information
+     * on reconciliation process in Cloud Run.
      *
      * Generated from protobuf field <code>bool reconciling = 30 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $reconciling = false;
     /**
-     * Output only. The Condition of this Revision, containing its readiness status, and
-     * detailed error information in case it did not reach a serving state.
+     * Output only. The Condition of this Revision, containing its readiness
+     * status, and detailed error information in case it did not reach a serving
+     * state.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.Condition conditions = 31 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $conditions;
     /**
-     * Output only. The generation of this Revision currently serving traffic. See comments in
-     * `reconciling` for additional information on reconciliation process in Cloud
-     * Run.
+     * Output only. The generation of this Revision currently serving traffic. See
+     * comments in `reconciling` for additional information on reconciliation
+     * process in Cloud Run.
      *
      * Generated from protobuf field <code>int64 observed_generation = 32 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -205,8 +217,9 @@ class Revision extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Output only. The unique name of this Revision.
      *     @type string $uid
-     *           Output only. Server assigned unique identifier for the Revision. The value is a UUID4
-     *           string and guaranteed to remain unchanged until the resource is deleted.
+     *           Output only. Server assigned unique identifier for the Revision. The value
+     *           is a UUID4 string and guaranteed to remain unchanged until the resource is
+     *           deleted.
      *     @type int|string $generation
      *           Output only. A number that monotonically increases every time the user
      *           modifies the desired state.
@@ -217,9 +230,6 @@ class Revision extends \Google\Protobuf\Internal\Message
      *           environment, state, etc. For more information, visit
      *           https://cloud.google.com/resource-manager/docs/creating-managing-labels or
      *           https://cloud.google.com/run/docs/configuring/labels
-     *           Cloud Run will populate some labels with 'run.googleapis.com' or
-     *           'serving.knative.dev' namespaces. Those labels are read-only, and user
-     *           changes will not be preserved.
      *     @type array|\Google\Protobuf\Internal\MapField $annotations
      *           KRM-style annotations for the resource.
      *     @type \Google\Protobuf\Timestamp $create_time
@@ -264,17 +274,23 @@ class Revision extends \Google\Protobuf\Internal\Message
      *           A reference to a customer managed encryption key (CMEK) to use to encrypt
      *           this container image. For more information, go to
      *           https://cloud.google.com/run/docs/securing/using-cmek
+     *     @type int $encryption_key_revocation_action
+     *           The action to take if the encryption key is revoked.
+     *     @type \Google\Protobuf\Duration $encryption_key_shutdown_duration
+     *           If encryption_key_revocation_action is SHUTDOWN, the duration before
+     *           shutting down all instances. The minimum increment is 1 hour.
      *     @type bool $reconciling
-     *           Output only. Indicates whether the resource's reconciliation is still in progress.
-     *           See comments in `Service.reconciling` for additional information on
-     *           reconciliation process in Cloud Run.
+     *           Output only. Indicates whether the resource's reconciliation is still in
+     *           progress. See comments in `Service.reconciling` for additional information
+     *           on reconciliation process in Cloud Run.
      *     @type array<\Google\Cloud\Run\V2\Condition>|\Google\Protobuf\Internal\RepeatedField $conditions
-     *           Output only. The Condition of this Revision, containing its readiness status, and
-     *           detailed error information in case it did not reach a serving state.
+     *           Output only. The Condition of this Revision, containing its readiness
+     *           status, and detailed error information in case it did not reach a serving
+     *           state.
      *     @type int|string $observed_generation
-     *           Output only. The generation of this Revision currently serving traffic. See comments in
-     *           `reconciling` for additional information on reconciliation process in Cloud
-     *           Run.
+     *           Output only. The generation of this Revision currently serving traffic. See
+     *           comments in `reconciling` for additional information on reconciliation
+     *           process in Cloud Run.
      *     @type string $log_uri
      *           Output only. The Google Console URI to obtain logs for the Revision.
      *     @type string $etag
@@ -314,8 +330,9 @@ class Revision extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Server assigned unique identifier for the Revision. The value is a UUID4
-     * string and guaranteed to remain unchanged until the resource is deleted.
+     * Output only. Server assigned unique identifier for the Revision. The value
+     * is a UUID4 string and guaranteed to remain unchanged until the resource is
+     * deleted.
      *
      * Generated from protobuf field <code>string uid = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -326,8 +343,9 @@ class Revision extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Server assigned unique identifier for the Revision. The value is a UUID4
-     * string and guaranteed to remain unchanged until the resource is deleted.
+     * Output only. Server assigned unique identifier for the Revision. The value
+     * is a UUID4 string and guaranteed to remain unchanged until the resource is
+     * deleted.
      *
      * Generated from protobuf field <code>string uid = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -376,9 +394,6 @@ class Revision extends \Google\Protobuf\Internal\Message
      * environment, state, etc. For more information, visit
      * https://cloud.google.com/resource-manager/docs/creating-managing-labels or
      * https://cloud.google.com/run/docs/configuring/labels
-     * Cloud Run will populate some labels with 'run.googleapis.com' or
-     * 'serving.knative.dev' namespaces. Those labels are read-only, and user
-     * changes will not be preserved.
      *
      * Generated from protobuf field <code>map<string, string> labels = 4;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -395,9 +410,6 @@ class Revision extends \Google\Protobuf\Internal\Message
      * environment, state, etc. For more information, visit
      * https://cloud.google.com/resource-manager/docs/creating-managing-labels or
      * https://cloud.google.com/run/docs/configuring/labels
-     * Cloud Run will populate some labels with 'run.googleapis.com' or
-     * 'serving.knative.dev' namespaces. Those labels are read-only, and user
-     * changes will not be preserved.
      *
      * Generated from protobuf field <code>map<string, string> labels = 4;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
@@ -922,9 +934,73 @@ class Revision extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Indicates whether the resource's reconciliation is still in progress.
-     * See comments in `Service.reconciling` for additional information on
-     * reconciliation process in Cloud Run.
+     * The action to take if the encryption key is revoked.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.EncryptionKeyRevocationAction encryption_key_revocation_action = 23;</code>
+     * @return int
+     */
+    public function getEncryptionKeyRevocationAction()
+    {
+        return $this->encryption_key_revocation_action;
+    }
+
+    /**
+     * The action to take if the encryption key is revoked.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.EncryptionKeyRevocationAction encryption_key_revocation_action = 23;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setEncryptionKeyRevocationAction($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Run\V2\EncryptionKeyRevocationAction::class);
+        $this->encryption_key_revocation_action = $var;
+
+        return $this;
+    }
+
+    /**
+     * If encryption_key_revocation_action is SHUTDOWN, the duration before
+     * shutting down all instances. The minimum increment is 1 hour.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration encryption_key_shutdown_duration = 24;</code>
+     * @return \Google\Protobuf\Duration|null
+     */
+    public function getEncryptionKeyShutdownDuration()
+    {
+        return $this->encryption_key_shutdown_duration;
+    }
+
+    public function hasEncryptionKeyShutdownDuration()
+    {
+        return isset($this->encryption_key_shutdown_duration);
+    }
+
+    public function clearEncryptionKeyShutdownDuration()
+    {
+        unset($this->encryption_key_shutdown_duration);
+    }
+
+    /**
+     * If encryption_key_revocation_action is SHUTDOWN, the duration before
+     * shutting down all instances. The minimum increment is 1 hour.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration encryption_key_shutdown_duration = 24;</code>
+     * @param \Google\Protobuf\Duration $var
+     * @return $this
+     */
+    public function setEncryptionKeyShutdownDuration($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
+        $this->encryption_key_shutdown_duration = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Indicates whether the resource's reconciliation is still in
+     * progress. See comments in `Service.reconciling` for additional information
+     * on reconciliation process in Cloud Run.
      *
      * Generated from protobuf field <code>bool reconciling = 30 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return bool
@@ -935,9 +1011,9 @@ class Revision extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Indicates whether the resource's reconciliation is still in progress.
-     * See comments in `Service.reconciling` for additional information on
-     * reconciliation process in Cloud Run.
+     * Output only. Indicates whether the resource's reconciliation is still in
+     * progress. See comments in `Service.reconciling` for additional information
+     * on reconciliation process in Cloud Run.
      *
      * Generated from protobuf field <code>bool reconciling = 30 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param bool $var
@@ -952,8 +1028,9 @@ class Revision extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The Condition of this Revision, containing its readiness status, and
-     * detailed error information in case it did not reach a serving state.
+     * Output only. The Condition of this Revision, containing its readiness
+     * status, and detailed error information in case it did not reach a serving
+     * state.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.Condition conditions = 31 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -964,8 +1041,9 @@ class Revision extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The Condition of this Revision, containing its readiness status, and
-     * detailed error information in case it did not reach a serving state.
+     * Output only. The Condition of this Revision, containing its readiness
+     * status, and detailed error information in case it did not reach a serving
+     * state.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.Condition conditions = 31 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param array<\Google\Cloud\Run\V2\Condition>|\Google\Protobuf\Internal\RepeatedField $var
@@ -980,9 +1058,9 @@ class Revision extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The generation of this Revision currently serving traffic. See comments in
-     * `reconciling` for additional information on reconciliation process in Cloud
-     * Run.
+     * Output only. The generation of this Revision currently serving traffic. See
+     * comments in `reconciling` for additional information on reconciliation
+     * process in Cloud Run.
      *
      * Generated from protobuf field <code>int64 observed_generation = 32 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int|string
@@ -993,9 +1071,9 @@ class Revision extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The generation of this Revision currently serving traffic. See comments in
-     * `reconciling` for additional information on reconciliation process in Cloud
-     * Run.
+     * Output only. The generation of this Revision currently serving traffic. See
+     * comments in `reconciling` for additional information on reconciliation
+     * process in Cloud Run.
      *
      * Generated from protobuf field <code>int64 observed_generation = 32 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int|string $var

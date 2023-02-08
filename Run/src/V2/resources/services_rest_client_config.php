@@ -134,6 +134,18 @@ return [
                     ],
                 ],
             ],
+            'WaitOperation' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{name=projects/*/locations/*/operations/*}:wait',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
         ],
     ],
     'numericEnums' => true,

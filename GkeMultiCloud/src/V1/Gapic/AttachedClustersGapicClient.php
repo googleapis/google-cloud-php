@@ -405,7 +405,7 @@ class AttachedClustersGapicClient
     /**
      * Creates a new
      * [AttachedCluster][google.cloud.gkemulticloud.v1.AttachedCluster] resource
-     * on a given GCP project and region.
+     * on a given Google Cloud Platform project and region.
      *
      * If successful, the response contains a newly created
      * [Operation][google.longrunning.Operation] resource that can be
@@ -562,7 +562,7 @@ class AttachedClustersGapicClient
      *                             `projects/<project-id>/locations/<region>/attachedClusters/<cluster-id>`.
      *
      *                             See [Resource Names](https://cloud.google.com/apis/design/resource_names)
-     *                             for more details on GCP resource names.
+     *                             for more details on Google Cloud Platform resource names.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -659,7 +659,7 @@ class AttachedClustersGapicClient
      *
      *                                  See [Resource Names](https://cloud.google.com/apis/design/resource_names)
      *                                  for more details on Google Cloud resource names.
-     * @param string $attachedClusterId Required. A client provided ID the resource. Must be unique within the
+     * @param string $attachedClusterId Required. A client provided ID of the resource. Must be unique within the
      *                                  parent resource.
      *
      *                                  The provided ID will be part of the
@@ -672,7 +672,7 @@ class AttachedClustersGapicClient
      *                                  When generating an install manifest for importing an existing Membership
      *                                  resource, the attached_cluster_id field must be the Membership id.
      *
-     *                                  Membership names are formatted as `resource name formatted as
+     *                                  Membership names are formatted as
      *                                  `projects/<project-id>/locations/<region>/memberships/<membership-id>`.
      * @param string $platformVersion   Required. The platform version for the cluster (e.g. `1.19.0-gke.1000`).
      *
@@ -741,7 +741,7 @@ class AttachedClustersGapicClient
      *                             `projects/<project-id>/locations/<region>/attachedClusters/<cluster-id>`.
      *
      *                             See [Resource Names](https://cloud.google.com/apis/design/resource_names)
-     *                             for more details on GCP resource names.
+     *                             for more details on Google Cloud Platform resource names.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -980,7 +980,7 @@ class AttachedClustersGapicClient
      *                             Location names are formatted as `projects/<project-id>/locations/<region>`.
      *
      *                             See [Resource Names](https://cloud.google.com/apis/design/resource_names)
-     *                             for more details on GCP resource names.
+     *                             for more details on Google Cloud Platform resource names.
      * @param array  $optionalArgs {
      *     Optional.
      *

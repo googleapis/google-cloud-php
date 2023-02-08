@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request message for [Versions.UpdateVersion][google.cloud.dialogflow.v2.Versions.UpdateVersion].
+ * The request message for
+ * [Versions.UpdateVersion][google.cloud.dialogflow.v2.Versions.UpdateVersion].
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.UpdateVersionRequest</code>
  */

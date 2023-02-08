@@ -1,6 +1,7 @@
 {
     "distribution_name": "google/cloud-private-catalog",
-    "release_level": "beta",
+    "release_level": "preview",
     "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-private-catalog/latest",
-    "library_type": "GAPIC_AUTO"
+    "library_type": "GAPIC_AUTO",
+    "api_shortname": "cloudprivatecatalog"
 }

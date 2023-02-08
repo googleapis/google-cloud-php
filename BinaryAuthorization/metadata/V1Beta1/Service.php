@@ -22,7 +22,7 @@ class Service
         \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
         $pool->internalAddGeneratedFile(
             '
-°
+³
 6google/cloud/binaryauthorization/v1beta1/service.proto(google.cloud.binaryauthorization.v1beta1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto8google/cloud/binaryauthorization/v1beta1/resources.protogoogle/protobuf/empty.proto"S
 GetPolicyRequest?
 name (	B1àAúA+
@@ -63,8 +63,8 @@ page_token (	"w
 ListAttestors>.google.cloud.binaryauthorization.v1beta1.ListAttestorsRequest?.google.cloud.binaryauthorization.v1beta1.ListAttestorsResponse"7‚Óä“(&/v1beta1/{parent=projects/*}/attestorsÚAparent 
 DeleteAttestor?.google.cloud.binaryauthorization.v1beta1.DeleteAttestorRequest.google.protobuf.Empty"5‚Óä“(*&/v1beta1/{name=projects/*/attestors/*}ÚAnameVÊA"binaryauthorization.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platform2¨
 SystemPolicyV1Beta1¸
-GetSystemPolicy@.google.cloud.binaryauthorization.v1beta1.GetSystemPolicyRequest0.google.cloud.binaryauthorization.v1beta1.Policy"1‚Óä“$"/v1beta1/{name=locations/*/policy}ÚAnameVÊA"binaryauthorization.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBµ
-,com.google.cloud.binaryauthorization.v1beta1BBinaryAuthorizationServiceProtoPZ[google.golang.org/genproto/googleapis/cloud/binaryauthorization/v1beta1;binaryauthorizationøª(Google.Cloud.BinaryAuthorization.V1Beta1Ê(Google\\Cloud\\BinaryAuthorization\\V1beta1ê+Google::Cloud::BinaryAuthorization::V1beta1bproto3'
+GetSystemPolicy@.google.cloud.binaryauthorization.v1beta1.GetSystemPolicyRequest0.google.cloud.binaryauthorization.v1beta1.Policy"1‚Óä“$"/v1beta1/{name=locations/*/policy}ÚAnameVÊA"binaryauthorization.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB¸
+,com.google.cloud.binaryauthorization.v1beta1BBinaryAuthorizationServiceProtoPZ^cloud.google.com/go/binaryauthorization/apiv1beta1/binaryauthorizationpb;binaryauthorizationpbøª(Google.Cloud.BinaryAuthorization.V1Beta1Ê(Google\\Cloud\\BinaryAuthorization\\V1beta1ê+Google::Cloud::BinaryAuthorization::V1beta1bproto3'
         , true);
 
         static::$is_initialized = true;

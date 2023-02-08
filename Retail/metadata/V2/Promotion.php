@@ -16,11 +16,11 @@ class Promotion
         }
         $pool->internalAddGeneratedFile(
             '
-±
+§
 &google/cloud/retail/v2/promotion.protogoogle.cloud.retail.v2"!
 	Promotion
-promotion_id (	BÃ
-com.google.cloud.retail.v2BPromotionProtoPZ<google.golang.org/genproto/googleapis/cloud/retail/v2;retail¢RETAILªGoogle.Cloud.Retail.V2ÊGoogle\\Cloud\\Retail\\V2êGoogle::Cloud::Retail::V2bproto3'
+promotion_id (	B¹
+com.google.cloud.retail.v2BPromotionProtoPZ2cloud.google.com/go/retail/apiv2/retailpb;retailpb¢RETAILªGoogle.Cloud.Retail.V2ÊGoogle\\Cloud\\Retail\\V2êGoogle::Cloud::Retail::V2bproto3'
         , true);
 
         static::$is_initialized = true;

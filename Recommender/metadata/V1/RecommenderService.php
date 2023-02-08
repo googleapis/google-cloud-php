@@ -25,7 +25,7 @@ class RecommenderService
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-¬?
+§?
 5google/cloud/recommender/v1/recommender_service.protogoogle.cloud.recommender.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto)google/cloud/recommender/v1/insight.proto5google/cloud/recommender/v1/insight_type_config.proto0google/cloud/recommender/v1/recommendation.proto4google/cloud/recommender/v1/recommender_config.proto google/protobuf/field_mask.proto"›
 ListInsightsRequest>
 parent (	B.àAúA(
@@ -112,8 +112,8 @@ GetInsight..google.cloud.recommender.v1.GetInsightRequest$.google.cloud.recomm
 GetRecommenderConfig8.google.cloud.recommender.v1.GetRecommenderConfigRequest..google.cloud.recommender.v1.RecommenderConfig"†‚Óä“y7/v1/{name=projects/*/locations/*/recommenders/*/config}Z></v1/{name=organizations/*/locations/*/recommenders/*/config}ÚAnameø
 UpdateRecommenderConfig;.google.cloud.recommender.v1.UpdateRecommenderConfigRequest..google.cloud.recommender.v1.RecommenderConfig"ï‚Óä“Ç2J/v1/{recommender_config.name=projects/*/locations/*/recommenders/*/config}:recommender_configZe2O/v1/{recommender_config.name=organizations/*/locations/*/recommenders/*/config}:recommender_configÚArecommender_config,update_mask‰
 GetInsightTypeConfig8.google.cloud.recommender.v1.GetInsightTypeConfigRequest..google.cloud.recommender.v1.InsightTypeConfig"†‚Óä“y7/v1/{name=projects/*/locations/*/insightTypes/*/config}Z></v1/{name=organizations/*/locations/*/insightTypes/*/config}ÚAnameý
-UpdateInsightTypeConfig;.google.cloud.recommender.v1.UpdateInsightTypeConfigRequest..google.cloud.recommender.v1.InsightTypeConfig"ô‚Óä“Ë2K/v1/{insight_type_config.name=projects/*/locations/*/insightTypes/*/config}:insight_type_configZg2P/v1/{insight_type_config.name=organizations/*/locations/*/insightTypes/*/config}:insight_type_configÚAinsight_type_config,update_maskNÊArecommender.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB¢
-com.google.cloud.recommender.v1BRecommenderProtoPZFgoogle.golang.org/genproto/googleapis/cloud/recommender/v1;recommender¢CRECªGoogle.Cloud.Recommender.V1bproto3'
+UpdateInsightTypeConfig;.google.cloud.recommender.v1.UpdateInsightTypeConfigRequest..google.cloud.recommender.v1.InsightTypeConfig"ô‚Óä“Ë2K/v1/{insight_type_config.name=projects/*/locations/*/insightTypes/*/config}:insight_type_configZg2P/v1/{insight_type_config.name=organizations/*/locations/*/insightTypes/*/config}:insight_type_configÚAinsight_type_config,update_maskNÊArecommender.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB
+com.google.cloud.recommender.v1BRecommenderProtoPZAcloud.google.com/go/recommender/apiv1/recommenderpb;recommenderpb¢CRECªGoogle.Cloud.Recommender.V1bproto3'
         , true);
 
         static::$is_initialized = true;

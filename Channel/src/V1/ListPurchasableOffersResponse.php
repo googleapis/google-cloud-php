@@ -34,7 +34,7 @@ class ListPurchasableOffersResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Channel\V1\PurchasableOffer[]|\Google\Protobuf\Internal\RepeatedField $purchasable_offers
+     *     @type array<\Google\Cloud\Channel\V1\PurchasableOffer>|\Google\Protobuf\Internal\RepeatedField $purchasable_offers
      *           The list of Offers requested.
      *     @type string $next_page_token
      *           A token to retrieve the next page of results.
@@ -60,7 +60,7 @@ class ListPurchasableOffersResponse extends \Google\Protobuf\Internal\Message
      * The list of Offers requested.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.PurchasableOffer purchasable_offers = 1;</code>
-     * @param \Google\Cloud\Channel\V1\PurchasableOffer[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Channel\V1\PurchasableOffer>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPurchasableOffers($var)

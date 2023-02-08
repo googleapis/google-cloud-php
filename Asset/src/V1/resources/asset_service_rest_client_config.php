@@ -39,6 +39,39 @@ return [
                     ],
                 ],
             ],
+            'AnalyzeOrgPolicies' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{scope=*/*}:analyzeOrgPolicies',
+                'placeholders' => [
+                    'scope' => [
+                        'getters' => [
+                            'getScope',
+                        ],
+                    ],
+                ],
+            ],
+            'AnalyzeOrgPolicyGovernedAssets' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{scope=*/*}:analyzeOrgPolicyGovernedAssets',
+                'placeholders' => [
+                    'scope' => [
+                        'getters' => [
+                            'getScope',
+                        ],
+                    ],
+                ],
+            ],
+            'AnalyzeOrgPolicyGovernedContainers' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{scope=*/*}:analyzeOrgPolicyGovernedContainers',
+                'placeholders' => [
+                    'scope' => [
+                        'getters' => [
+                            'getScope',
+                        ],
+                    ],
+                ],
+            ],
             'BatchGetAssetsHistory' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=*/*}:batchGetAssetsHistory',

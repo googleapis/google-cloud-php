@@ -33,6 +33,12 @@ class InstanceStatus extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int64 task_pack = 3;</code>
      */
     private $task_pack = 0;
+    /**
+     * The VM boot disk.
+     *
+     * Generated from protobuf field <code>.google.cloud.batch.v1.AllocationPolicy.Disk boot_disk = 4;</code>
+     */
+    private $boot_disk = null;
 
     /**
      * Constructor.
@@ -46,6 +52,8 @@ class InstanceStatus extends \Google\Protobuf\Internal\Message
      *           The VM instance provisioning model.
      *     @type int|string $task_pack
      *           The max number of tasks can be assigned to this instance type.
+     *     @type \Google\Cloud\Batch\V1\AllocationPolicy\Disk $boot_disk
+     *           The VM boot disk.
      * }
      */
     public function __construct($data = NULL) {
@@ -127,6 +135,42 @@ class InstanceStatus extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt64($var);
         $this->task_pack = $var;
+
+        return $this;
+    }
+
+    /**
+     * The VM boot disk.
+     *
+     * Generated from protobuf field <code>.google.cloud.batch.v1.AllocationPolicy.Disk boot_disk = 4;</code>
+     * @return \Google\Cloud\Batch\V1\AllocationPolicy\Disk|null
+     */
+    public function getBootDisk()
+    {
+        return $this->boot_disk;
+    }
+
+    public function hasBootDisk()
+    {
+        return isset($this->boot_disk);
+    }
+
+    public function clearBootDisk()
+    {
+        unset($this->boot_disk);
+    }
+
+    /**
+     * The VM boot disk.
+     *
+     * Generated from protobuf field <code>.google.cloud.batch.v1.AllocationPolicy.Disk boot_disk = 4;</code>
+     * @param \Google\Cloud\Batch\V1\AllocationPolicy\Disk $var
+     * @return $this
+     */
+    public function setBootDisk($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Batch\V1\AllocationPolicy\Disk::class);
+        $this->boot_disk = $var;
 
         return $this;
     }

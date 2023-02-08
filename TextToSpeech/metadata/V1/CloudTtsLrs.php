@@ -22,7 +22,7 @@ class CloudTtsLrs
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ƒ
+¿
 
 0google/cloud/texttospeech/v1/cloud_tts_lrs.protogoogle.cloud.texttospeech.v1google/api/client.protogoogle/api/field_behavior.proto,google/cloud/texttospeech/v1/cloud_tts.proto#google/longrunning/operations.protogoogle/protobuf/timestamp.proto"è
 SynthesizeLongAudioRequest
@@ -39,8 +39,8 @@ start_time (2.google.protobuf.Timestamp4
 progress_percentage (2Ó
 TextToSpeechLongAudioSynthesize˘
 SynthesizeLongAudio8.google.cloud.texttospeech.v1.SynthesizeLongAudioRequest.google.longrunning.Operation"àÇ”‰ìE"@/v1/{parent=projects/*/locations/*/voices/*}:SynthesizeLongAudio:* A:
-SynthesizeLongAudioResponseSynthesizeLongAudioMetadataO Atexttospeech.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBˆ
- com.google.cloud.texttospeech.v1B#TextToSpeechLongAudioSynthesisProtoPZHgoogle.golang.org/genproto/googleapis/cloud/texttospeech/v1;texttospeech¯™Google.Cloud.TextToSpeech.V1 Google\\Cloud\\TextToSpeech\\V1ÍGoogle::Cloud::TextToSpeech::V1bproto3'
+SynthesizeLongAudioResponseSynthesizeLongAudioMetadataO Atexttospeech.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBÚ
+ com.google.cloud.texttospeech.v1B#TextToSpeechLongAudioSynthesisProtoPZDcloud.google.com/go/texttospeech/apiv1/texttospeechpb;texttospeechpb¯™Google.Cloud.TextToSpeech.V1 Google\\Cloud\\TextToSpeech\\V1ÍGoogle::Cloud::TextToSpeech::V1bproto3'
         , true);
 
         static::$is_initialized = true;

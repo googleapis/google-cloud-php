@@ -36,17 +36,18 @@ class ConversionEvent extends \Google\Protobuf\Internal\Message
      */
     private $create_time = null;
     /**
-     * Output only. If set, this event can currently be deleted via DeleteConversionEvent.
+     * Output only. If set, this event can currently be deleted via
+     * DeleteConversionEvent.
      *
      * Generated from protobuf field <code>bool deletable = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $deletable = false;
     /**
-     * Output only. If set to true, this conversion event refers to a custom event.  If set to
-     * false, this conversion event refers to a default event in GA. Default
-     * events typically have special meaning in GA. Default events are usually
-     * created for you by the GA system, but in some cases can be created by
-     * property admins. Custom events count towards the maximum number of
+     * Output only. If set to true, this conversion event refers to a custom
+     * event.  If set to false, this conversion event refers to a default event in
+     * GA. Default events typically have special meaning in GA. Default events are
+     * usually created for you by the GA system, but in some cases can be created
+     * by property admins. Custom events count towards the maximum number of
      * custom conversion events that may be created per property.
      *
      * Generated from protobuf field <code>bool custom = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -68,13 +69,14 @@ class ConversionEvent extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. Time when this conversion event was created in the property.
      *     @type bool $deletable
-     *           Output only. If set, this event can currently be deleted via DeleteConversionEvent.
+     *           Output only. If set, this event can currently be deleted via
+     *           DeleteConversionEvent.
      *     @type bool $custom
-     *           Output only. If set to true, this conversion event refers to a custom event.  If set to
-     *           false, this conversion event refers to a default event in GA. Default
-     *           events typically have special meaning in GA. Default events are usually
-     *           created for you by the GA system, but in some cases can be created by
-     *           property admins. Custom events count towards the maximum number of
+     *           Output only. If set to true, this conversion event refers to a custom
+     *           event.  If set to false, this conversion event refers to a default event in
+     *           GA. Default events typically have special meaning in GA. Default events are
+     *           usually created for you by the GA system, but in some cases can be created
+     *           by property admins. Custom events count towards the maximum number of
      *           custom conversion events that may be created per property.
      * }
      */
@@ -176,7 +178,8 @@ class ConversionEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. If set, this event can currently be deleted via DeleteConversionEvent.
+     * Output only. If set, this event can currently be deleted via
+     * DeleteConversionEvent.
      *
      * Generated from protobuf field <code>bool deletable = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return bool
@@ -187,7 +190,8 @@ class ConversionEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. If set, this event can currently be deleted via DeleteConversionEvent.
+     * Output only. If set, this event can currently be deleted via
+     * DeleteConversionEvent.
      *
      * Generated from protobuf field <code>bool deletable = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param bool $var
@@ -202,11 +206,11 @@ class ConversionEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. If set to true, this conversion event refers to a custom event.  If set to
-     * false, this conversion event refers to a default event in GA. Default
-     * events typically have special meaning in GA. Default events are usually
-     * created for you by the GA system, but in some cases can be created by
-     * property admins. Custom events count towards the maximum number of
+     * Output only. If set to true, this conversion event refers to a custom
+     * event.  If set to false, this conversion event refers to a default event in
+     * GA. Default events typically have special meaning in GA. Default events are
+     * usually created for you by the GA system, but in some cases can be created
+     * by property admins. Custom events count towards the maximum number of
      * custom conversion events that may be created per property.
      *
      * Generated from protobuf field <code>bool custom = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -218,11 +222,11 @@ class ConversionEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. If set to true, this conversion event refers to a custom event.  If set to
-     * false, this conversion event refers to a default event in GA. Default
-     * events typically have special meaning in GA. Default events are usually
-     * created for you by the GA system, but in some cases can be created by
-     * property admins. Custom events count towards the maximum number of
+     * Output only. If set to true, this conversion event refers to a custom
+     * event.  If set to false, this conversion event refers to a default event in
+     * GA. Default events typically have special meaning in GA. Default events are
+     * usually created for you by the GA system, but in some cases can be created
+     * by property admins. Custom events count towards the maximum number of
      * custom conversion events that may be created per property.
      *
      * Generated from protobuf field <code>bool custom = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>

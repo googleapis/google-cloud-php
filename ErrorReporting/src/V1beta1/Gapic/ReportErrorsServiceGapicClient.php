@@ -264,9 +264,6 @@ class ReportErrorsServiceGapicClient
      * on Cloud Logging and doesn't analyze logs stored
      * in regional log buckets or logs routed to other Google Cloud projects.
      *
-     * For more information, see
-     * [Using Error Reporting with regionalized
-     * logs](https://cloud.google.com/error-reporting/docs/regionalization).
      *
      * Sample code:
      * ```

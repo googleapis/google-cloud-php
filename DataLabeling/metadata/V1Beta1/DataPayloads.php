@@ -17,7 +17,7 @@ class DataPayloads
         \GPBMetadata\Google\Protobuf\Duration::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Õ
+Ñ
 5google/cloud/datalabeling/v1beta1/data_payloads.proto!google.cloud.datalabeling.v1beta1"a
 ImagePayload
 	mime_type (	
@@ -37,8 +37,8 @@ signed_uri (	"#
 
 frame_rate (
 
-signed_uri (	Bç
-%com.google.cloud.datalabeling.v1beta1PZMgoogle.golang.org/genproto/googleapis/cloud/datalabeling/v1beta1;datalabelingª!Google.Cloud.DataLabeling.V1Beta1Ê!Google\\Cloud\\DataLabeling\\V1beta1ê$Google::Cloud::DataLabeling::V1beta1bproto3'
+signed_uri (	Bã
+%com.google.cloud.datalabeling.v1beta1PZIcloud.google.com/go/datalabeling/apiv1beta1/datalabelingpb;datalabelingpbª!Google.Cloud.DataLabeling.V1Beta1Ê!Google\\Cloud\\DataLabeling\\V1beta1ê$Google::Cloud::DataLabeling::V1beta1bproto3'
         , true);
 
         static::$is_initialized = true;

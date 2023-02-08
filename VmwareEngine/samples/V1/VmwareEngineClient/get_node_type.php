@@ -34,7 +34,7 @@ use Google\Cloud\VmwareEngine\V1\VmwareEngineClient;
  *                              Resource names are schemeless URIs that follow the conventions in
  *                              https://cloud.google.com/apis/design/resource_names.
  *                              For example:
- *                              `projects/my-proj/locations/us-west1-a/nodeTypes/standard-72`
+ *                              `projects/my-proj/locations/us-central1-a/nodeTypes/standard-72`
  *                              Please see {@see VmwareEngineClient::nodeTypeName()} for help formatting this field.
  */
 function get_node_type_sample(string $formattedName): void
