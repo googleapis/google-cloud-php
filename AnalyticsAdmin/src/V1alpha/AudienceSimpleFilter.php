@@ -23,7 +23,8 @@ class AudienceSimpleFilter extends \Google\Protobuf\Internal\Message
      */
     private $scope = 0;
     /**
-     * Required. Immutable. A logical expression of Audience dimension, metric, or event filters.
+     * Required. Immutable. A logical expression of Audience dimension, metric, or
+     * event filters.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.AudienceFilterExpression filter_expression = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
@@ -38,7 +39,8 @@ class AudienceSimpleFilter extends \Google\Protobuf\Internal\Message
      *     @type int $scope
      *           Required. Immutable. Specifies the scope for this filter.
      *     @type \Google\Analytics\Admin\V1alpha\AudienceFilterExpression $filter_expression
-     *           Required. Immutable. A logical expression of Audience dimension, metric, or event filters.
+     *           Required. Immutable. A logical expression of Audience dimension, metric, or
+     *           event filters.
      * }
      */
     public function __construct($data = NULL) {
@@ -73,7 +75,8 @@ class AudienceSimpleFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Immutable. A logical expression of Audience dimension, metric, or event filters.
+     * Required. Immutable. A logical expression of Audience dimension, metric, or
+     * event filters.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.AudienceFilterExpression filter_expression = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return \Google\Analytics\Admin\V1alpha\AudienceFilterExpression|null
@@ -94,7 +97,8 @@ class AudienceSimpleFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Immutable. A logical expression of Audience dimension, metric, or event filters.
+     * Required. Immutable. A logical expression of Audience dimension, metric, or
+     * event filters.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.AudienceFilterExpression filter_expression = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param \Google\Analytics\Admin\V1alpha\AudienceFilterExpression $var

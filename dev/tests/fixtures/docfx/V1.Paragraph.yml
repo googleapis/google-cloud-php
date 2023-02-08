@@ -61,10 +61,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\Paragraph::getProperty()'
     name: getProperty
     id: getProperty
-    summary: |
-      Additional information detected for the paragraph.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
+    summary: 'Additional information detected for the paragraph.'
     parent: \Google\Cloud\Vision\V1\Paragraph
     type: method
     langs:
@@ -93,10 +90,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\Paragraph::setProperty()'
     name: setProperty
     id: setProperty
-    summary: |
-      Additional information detected for the paragraph.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
+    summary: 'Additional information detected for the paragraph.'
     parent: \Google\Cloud\Vision\V1\Paragraph
     type: method
     langs:
@@ -131,8 +125,6 @@ items:
            |    |
            1----0
         and the vertex order will still be (0, 1, 2, 3).
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.BoundingPoly bounding_box = 2;</code>
     parent: \Google\Cloud\Vision\V1\Paragraph
     type: method
     langs:
@@ -178,8 +170,6 @@ items:
            |    |
            1----0
         and the vertex order will still be (0, 1, 2, 3).
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.BoundingPoly bounding_box = 2;</code>
     parent: \Google\Cloud\Vision\V1\Paragraph
     type: method
     langs:
@@ -197,10 +187,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\Paragraph::getWords()'
     name: getWords
     id: getWords
-    summary: |
-      List of all words in this paragraph.
-      
-      Generated from protobuf field <code>repeated .google.cloud.vision.v1.Word words = 3;</code>
+    summary: 'List of all words in this paragraph.'
     parent: \Google\Cloud\Vision\V1\Paragraph
     type: method
     langs:
@@ -208,15 +195,12 @@ items:
     syntax:
       returns:
         -
-          var_type: Google\Protobuf\Internal\RepeatedField
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Internal/RepeatedField">Google\Protobuf\Internal\RepeatedField</a>'
   -
     uid: '\Google\Cloud\Vision\V1\Paragraph::setWords()'
     name: setWords
     id: setWords
-    summary: |
-      List of all words in this paragraph.
-      
-      Generated from protobuf field <code>repeated .google.cloud.vision.v1.Word words = 3;</code>
+    summary: 'List of all words in this paragraph.'
     parent: \Google\Cloud\Vision\V1\Paragraph
     type: method
     langs:
@@ -234,10 +218,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\Paragraph::getConfidence()'
     name: getConfidence
     id: getConfidence
-    summary: |
-      Confidence of the OCR results for the paragraph. Range [0, 1].
-      
-      Generated from protobuf field <code>float confidence = 4;</code>
+    summary: 'Confidence of the OCR results for the paragraph. Range [0, 1].'
     parent: \Google\Cloud\Vision\V1\Paragraph
     type: method
     langs:
@@ -250,10 +231,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\Paragraph::setConfidence()'
     name: setConfidence
     id: setConfidence
-    summary: |
-      Confidence of the OCR results for the paragraph. Range [0, 1].
-      
-      Generated from protobuf field <code>float confidence = 4;</code>
+    summary: 'Confidence of the OCR results for the paragraph. Range [0, 1].'
     parent: \Google\Cloud\Vision\V1\Paragraph
     type: method
     langs:

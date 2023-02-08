@@ -111,6 +111,9 @@ class GrpcRequestWrapper
      *           request. **Defaults to** `60`.
      *     @type int $retries Number of retries for a failed request.
      *           **Defaults to** `3`.
+     *     @type callable $grpcRetryFunction Sets the conditions for whether or
+     *           not a request should attempt to retry. Function signature should
+     *           match: `function (\Exception $ex) : bool`.
      *     @type array $grpcOptions gRPC specific configuration options.
      * }
      * @return array
@@ -118,13 +121,15 @@ class GrpcRequestWrapper
     public function send(callable $request, array $args, array $options = [])
     {
         $retries = isset($options['retries']) ? $options['retries'] : $this->retries;
+        $retryFunction = isset($options['grpcRetryFunction'])
+            ? $options['grpcRetryFunction']
+            : function (\Exception $ex) {
+                $statusCode = $ex->getCode();
+                return in_array($statusCode, $this->grpcRetryCodes);
+            };
         $grpcOptions = isset($options['grpcOptions']) ? $options['grpcOptions'] : $this->grpcOptions;
         $timeout = isset($options['requestTimeout']) ? $options['requestTimeout'] : $this->requestTimeout;
-        $backoff = new ExponentialBackoff($retries, function (\Exception $ex) {
-            $statusCode = $ex->getCode();
-
-            return in_array($statusCode, $this->grpcRetryCodes);
-        });
+        $backoff = new ExponentialBackoff($retries, $retryFunction);
 
         if (!isset($grpcOptions['retrySettings'])) {
             $retrySettings = [

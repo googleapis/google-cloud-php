@@ -61,8 +61,11 @@ class LoadDataAndQueryTest extends BigQueryTestCase
                 'NextVacation' => self::$client->date(new \DateTime('2020-10-11')),
                 'FavoriteTime' => new \DateTime('1920-01-01 15:15:12')
             ],
-            'FavoriteNumbers' => [new Numeric('.123'), new Numeric('.123')],
-            'BiggerNumbers' => [new BigNumeric('.999999999999999999'), new BigNumeric('343343434343433434343.2')],
+            'FavoriteNumbers' => [new Numeric('0.123'), new Numeric('0.123')],
+            'BiggerNumbers' => [
+                new BigNumeric('0.999999999999999999'),
+                new BigNumeric('343343434343433434343.2')
+            ],
             'Location' => new Geography('POINT(12 34)'),
         ];
         $this->geographyPattern = '/POINT\\s*\\(\\s*12\\s+34\\s*\\)/';

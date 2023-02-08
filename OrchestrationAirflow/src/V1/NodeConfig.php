@@ -30,6 +30,8 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      * both fields. If only one field (`location` or `nodeConfig.machineType`) is
      * specified, the location information from the specified field will be
      * propagated to the unspecified field.
+     * This field is supported for Cloud Composer environments in versions
+     * composer-1.*.*-airflow-*.*.*.
      *
      * Generated from protobuf field <code>string location = 1;</code>
      */
@@ -53,6 +55,8 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      * type](https://cloud.google.com/compute/docs/machine-types#sharedcore).
      * If this field is unspecified, the `machineTypeId` defaults
      * to "n1-standard-1".
+     * This field is supported for Cloud Composer environments in versions
+     * composer-1.*.*-airflow-*.*.*.
      *
      * Generated from protobuf field <code>string machine_type = 2;</code>
      */
@@ -86,8 +90,10 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      */
     private $subnetwork = '';
     /**
-     * Optional. The disk size in GB used for node VMs. Minimum size is 20GB.
+     * Optional. The disk size in GB used for node VMs. Minimum size is 30GB.
      * If unspecified, defaults to 100GB. Cannot be updated.
+     * This field is supported for Cloud Composer environments in versions
+     * composer-1.*.*-airflow-*.*.*.
      *
      * Generated from protobuf field <code>int32 disk_size_gb = 5;</code>
      */
@@ -96,6 +102,8 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      * Optional. The set of Google API scopes to be made available on all
      * node VMs. If `oauth_scopes` is empty, defaults to
      * ["https://www.googleapis.com/auth/cloud-platform"]. Cannot be updated.
+     * This field is supported for Cloud Composer environments in versions
+     * composer-1.*.*-airflow-*.*.*.
      *
      * Generated from protobuf field <code>repeated string oauth_scopes = 6;</code>
      */
@@ -118,11 +126,22 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      */
     private $tags;
     /**
-     * Optional. The configuration for controlling how IPs are allocated in the GKE cluster.
+     * Optional. The configuration for controlling how IPs are allocated in the
+     * GKE cluster.
      *
      * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.IPAllocationPolicy ip_allocation_policy = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $ip_allocation_policy = null;
+    /**
+     * Optional. Deploys 'ip-masq-agent' daemon set in the GKE cluster and defines
+     * nonMasqueradeCIDRs equals to pod IP range so IP masquerading is used for
+     * all destination addresses, except between pods traffic.
+     * See:
+     * https://cloud.google.com/kubernetes-engine/docs/how-to/ip-masquerade-agent
+     *
+     * Generated from protobuf field <code>bool enable_ip_masq_agent = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $enable_ip_masq_agent = false;
 
     /**
      * Constructor.
@@ -144,6 +163,8 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *           both fields. If only one field (`location` or `nodeConfig.machineType`) is
      *           specified, the location information from the specified field will be
      *           propagated to the unspecified field.
+     *           This field is supported for Cloud Composer environments in versions
+     *           composer-1.*.*-airflow-*.*.*.
      *     @type string $machine_type
      *           Optional. The Compute Engine
      *           [machine type](https://cloud.google.com/compute/docs/machine-types) used for cluster instances,
@@ -163,6 +184,8 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *           type](https://cloud.google.com/compute/docs/machine-types#sharedcore).
      *           If this field is unspecified, the `machineTypeId` defaults
      *           to "n1-standard-1".
+     *           This field is supported for Cloud Composer environments in versions
+     *           composer-1.*.*-airflow-*.*.*.
      *     @type string $network
      *           Optional. The Compute Engine network to be used for machine
      *           communications, specified as a
@@ -184,12 +207,16 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *           and the subnetwork must belong to the enclosing environment's project and
      *           location.
      *     @type int $disk_size_gb
-     *           Optional. The disk size in GB used for node VMs. Minimum size is 20GB.
+     *           Optional. The disk size in GB used for node VMs. Minimum size is 30GB.
      *           If unspecified, defaults to 100GB. Cannot be updated.
+     *           This field is supported for Cloud Composer environments in versions
+     *           composer-1.*.*-airflow-*.*.*.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $oauth_scopes
      *           Optional. The set of Google API scopes to be made available on all
      *           node VMs. If `oauth_scopes` is empty, defaults to
      *           ["https://www.googleapis.com/auth/cloud-platform"]. Cannot be updated.
+     *           This field is supported for Cloud Composer environments in versions
+     *           composer-1.*.*-airflow-*.*.*.
      *     @type string $service_account
      *           Optional. The Google Cloud Platform Service Account to be used by the node
      *           VMs. If a service account is not specified, the "default" Compute Engine
@@ -200,7 +227,14 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *           the list must comply with [RFC1035](https://www.ietf.org/rfc/rfc1035.txt).
      *           Cannot be updated.
      *     @type \Google\Cloud\Orchestration\Airflow\Service\V1\IPAllocationPolicy $ip_allocation_policy
-     *           Optional. The configuration for controlling how IPs are allocated in the GKE cluster.
+     *           Optional. The configuration for controlling how IPs are allocated in the
+     *           GKE cluster.
+     *     @type bool $enable_ip_masq_agent
+     *           Optional. Deploys 'ip-masq-agent' daemon set in the GKE cluster and defines
+     *           nonMasqueradeCIDRs equals to pod IP range so IP masquerading is used for
+     *           all destination addresses, except between pods traffic.
+     *           See:
+     *           https://cloud.google.com/kubernetes-engine/docs/how-to/ip-masquerade-agent
      * }
      */
     public function __construct($data = NULL) {
@@ -222,6 +256,8 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      * both fields. If only one field (`location` or `nodeConfig.machineType`) is
      * specified, the location information from the specified field will be
      * propagated to the unspecified field.
+     * This field is supported for Cloud Composer environments in versions
+     * composer-1.*.*-airflow-*.*.*.
      *
      * Generated from protobuf field <code>string location = 1;</code>
      * @return string
@@ -245,6 +281,8 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      * both fields. If only one field (`location` or `nodeConfig.machineType`) is
      * specified, the location information from the specified field will be
      * propagated to the unspecified field.
+     * This field is supported for Cloud Composer environments in versions
+     * composer-1.*.*-airflow-*.*.*.
      *
      * Generated from protobuf field <code>string location = 1;</code>
      * @param string $var
@@ -277,6 +315,8 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      * type](https://cloud.google.com/compute/docs/machine-types#sharedcore).
      * If this field is unspecified, the `machineTypeId` defaults
      * to "n1-standard-1".
+     * This field is supported for Cloud Composer environments in versions
+     * composer-1.*.*-airflow-*.*.*.
      *
      * Generated from protobuf field <code>string machine_type = 2;</code>
      * @return string
@@ -305,6 +345,8 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      * type](https://cloud.google.com/compute/docs/machine-types#sharedcore).
      * If this field is unspecified, the `machineTypeId` defaults
      * to "n1-standard-1".
+     * This field is supported for Cloud Composer environments in versions
+     * composer-1.*.*-airflow-*.*.*.
      *
      * Generated from protobuf field <code>string machine_type = 2;</code>
      * @param string $var
@@ -403,8 +445,10 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The disk size in GB used for node VMs. Minimum size is 20GB.
+     * Optional. The disk size in GB used for node VMs. Minimum size is 30GB.
      * If unspecified, defaults to 100GB. Cannot be updated.
+     * This field is supported for Cloud Composer environments in versions
+     * composer-1.*.*-airflow-*.*.*.
      *
      * Generated from protobuf field <code>int32 disk_size_gb = 5;</code>
      * @return int
@@ -415,8 +459,10 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The disk size in GB used for node VMs. Minimum size is 20GB.
+     * Optional. The disk size in GB used for node VMs. Minimum size is 30GB.
      * If unspecified, defaults to 100GB. Cannot be updated.
+     * This field is supported for Cloud Composer environments in versions
+     * composer-1.*.*-airflow-*.*.*.
      *
      * Generated from protobuf field <code>int32 disk_size_gb = 5;</code>
      * @param int $var
@@ -434,6 +480,8 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      * Optional. The set of Google API scopes to be made available on all
      * node VMs. If `oauth_scopes` is empty, defaults to
      * ["https://www.googleapis.com/auth/cloud-platform"]. Cannot be updated.
+     * This field is supported for Cloud Composer environments in versions
+     * composer-1.*.*-airflow-*.*.*.
      *
      * Generated from protobuf field <code>repeated string oauth_scopes = 6;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -447,6 +495,8 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      * Optional. The set of Google API scopes to be made available on all
      * node VMs. If `oauth_scopes` is empty, defaults to
      * ["https://www.googleapis.com/auth/cloud-platform"]. Cannot be updated.
+     * This field is supported for Cloud Composer environments in versions
+     * composer-1.*.*-airflow-*.*.*.
      *
      * Generated from protobuf field <code>repeated string oauth_scopes = 6;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -523,7 +573,8 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The configuration for controlling how IPs are allocated in the GKE cluster.
+     * Optional. The configuration for controlling how IPs are allocated in the
+     * GKE cluster.
      *
      * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.IPAllocationPolicy ip_allocation_policy = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Orchestration\Airflow\Service\V1\IPAllocationPolicy|null
@@ -544,7 +595,8 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The configuration for controlling how IPs are allocated in the GKE cluster.
+     * Optional. The configuration for controlling how IPs are allocated in the
+     * GKE cluster.
      *
      * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.IPAllocationPolicy ip_allocation_policy = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Orchestration\Airflow\Service\V1\IPAllocationPolicy $var
@@ -554,6 +606,40 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Orchestration\Airflow\Service\V1\IPAllocationPolicy::class);
         $this->ip_allocation_policy = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Deploys 'ip-masq-agent' daemon set in the GKE cluster and defines
+     * nonMasqueradeCIDRs equals to pod IP range so IP masquerading is used for
+     * all destination addresses, except between pods traffic.
+     * See:
+     * https://cloud.google.com/kubernetes-engine/docs/how-to/ip-masquerade-agent
+     *
+     * Generated from protobuf field <code>bool enable_ip_masq_agent = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getEnableIpMasqAgent()
+    {
+        return $this->enable_ip_masq_agent;
+    }
+
+    /**
+     * Optional. Deploys 'ip-masq-agent' daemon set in the GKE cluster and defines
+     * nonMasqueradeCIDRs equals to pod IP range so IP masquerading is used for
+     * all destination addresses, except between pods traffic.
+     * See:
+     * https://cloud.google.com/kubernetes-engine/docs/how-to/ip-masquerade-agent
+     *
+     * Generated from protobuf field <code>bool enable_ip_masq_agent = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnableIpMasqAgent($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_ip_masq_agent = $var;
 
         return $this;
     }

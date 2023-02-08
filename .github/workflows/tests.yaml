@@ -10,7 +10,7 @@ jobs:
     strategy:
       matrix:
         platform: [ubuntu-latest, windows-latest]
-        php: [ "7.1", "7.2", "7.3", "7.4", "8.0", "8.1" ]
+        php: [ "7.1", "7.2", "7.3", "7.4", "8.0", "8.1", "8.2" ]
         phpunit-filename: [phpunit]
         include:
           - platform: ubuntu-latest
@@ -27,7 +27,7 @@ jobs:
       uses: shivammathur/setup-php@verbose
       with:
         php-version: ${{ matrix.php }}
-        extensions: grpc
+        extensions: grpc-1.49.0
     - name: Install Dependencies
       uses: nick-invision/retry@v2
       with:
@@ -61,7 +61,7 @@ jobs:
       uses: shivammathur/setup-php@verbose
       with:
         php-version: '8.0'
-        extensions: grpc
+        extensions: grpc-1.49.0
     - name: Run Package Test Suites
       run: bash .github/run-package-tests.sh
 
@@ -73,7 +73,7 @@ jobs:
     - name: Setup PHP
       uses: shivammathur/setup-php@v2
       with:
-        php-version: '7.4'
+        php-version: '8.0'
     - name: Install Dependencies
       uses: nick-invision/retry@v2
       with:
@@ -86,6 +86,8 @@ jobs:
   docfx:
     name: "Run DocFX tests"
     runs-on: ubuntu-latest
+    env:
+      PHPDOC_ENV: prod
     steps:
     - uses: actions/checkout@v3
     - name: Setup Python
@@ -97,35 +99,21 @@ jobs:
       uses: shivammathur/setup-php@verbose
       with:
         php-version: "8.0"
+    - name: Extract phpDocumentor
+      id: extract
+      uses: shrink/actions-docker-extract@v2
+      with:
+        image: "phpdoc/phpdoc:202301112131087e6028"
+        path: "/opt/phpdoc/."
+    - name: Symlink phpDocumentor
+      run: ln -s $(pwd)/${{ steps.extract.outputs.destination }}/bin/phpdoc /usr/local/bin/phpdoc
     - name: Install Dependencies
       uses: nick-invision/retry@v2
       with:
         timeout_minutes: 10
         max_attempts: 3
         command: composer --no-interaction --no-ansi --no-progress update
-    - name: Install phpDocumentor
-      run: |
-        wget -O /usr/local/bin/phpdoc "https://github.com/phpDocumentor/phpDocumentor/releases/download/v3.3.1/phpDocumentor.phar" \
-          && chmod +x /usr/local/bin/phpdoc
     - name: Run DocFX Unit Test Suite
       run: vendor/bin/phpunit -c dev/phpunit-docfx.xml.dist
     - name: Run Docs Generator (Dry Run)
-      run: bash .kokoro/docs/publish.sh
-
-  docs:
-    runs-on: ubuntu-latest
-    name: Generate Legacy Documentation (Dry Run)
-    steps:
-    - uses: actions/checkout@v3
-    - name: Setup PHP
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: '7.4'
-    - name: Install Dependencies
-      uses: nick-invision/retry@v2
-      with:
-        timeout_minutes: 10
-        max_attempts: 3
-        command: composer --no-interaction --no-ansi --no-progress update
-    - name: Run Docs Generator
-      run: php -d 'memory_limit=-1' dev/google-cloud docs
+      run: .kokoro/docs/publish.sh

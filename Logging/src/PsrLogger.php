@@ -23,8 +23,6 @@ use Google\Cloud\Core\Batch\ClosureSerializerInterface;
 use Google\Cloud\Core\Report\MetadataProviderInterface;
 use Google\Cloud\Core\Report\MetadataProviderUtils;
 use Google\Cloud\Core\Timestamp;
-use Monolog\Formatter\NormalizerFormatter;
-use Monolog\Processor\PsrLogMessageProcessor;
 use Psr\Log\InvalidArgumentException;
 use Psr\Log\LoggerInterface;
 
@@ -90,6 +88,11 @@ class PsrLogger implements LoggerInterface, \Serializable
     private $logName;
 
     /**
+     * @var LogMessageProcessorInterface
+     */
+    private $logMessageProcessor;
+
+    /**
      * @param Logger $logger The logger used to write entries.
      * @param string $messageKey The key in the `jsonPayload` used to contain
      *        the logged message. **Defaults to** `message`.
@@ -138,6 +141,7 @@ class PsrLogger implements LoggerInterface, \Serializable
     ) {
         $this->logger = $logger;
         $this->logName = $logger->name();
+        $this->logMessageProcessor = LogMessageProcessorFactory::build();
         $this->messageKey = $messageKey ?: 'message';
         $this->metadataProvider = isset($options['metadataProvider'])
             ? $options['metadataProvider']
@@ -383,12 +387,7 @@ class PsrLogger implements LoggerInterface, \Serializable
             unset($context['stackdriverOptions']);
         }
 
-        $formatter = new NormalizerFormatter();
-        $processor = new PsrLogMessageProcessor();
-        $processedData = $processor([
-            'message' => (string) $message,
-            'context' => $formatter->format($context)
-        ]);
+        $processedData = $this->logMessageProcessor->processLogMessage($message, $context);
         $jsonPayload = [$this->messageKey => $processedData['message']];
 
         // Adding labels for log request correlation.

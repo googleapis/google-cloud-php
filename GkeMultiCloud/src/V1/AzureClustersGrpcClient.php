@@ -34,8 +34,8 @@ class AzureClustersGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Creates a new [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] resource on a given Google Cloud project
-     * and region.
+     * Creates a new [AzureClient][google.cloud.gkemulticloud.v1.AzureClient]
+     * resource on a given Google Cloud project and region.
      *
      * `AzureClient` resources hold client authentication
      * information needed by the Anthos Multicloud API to manage Azure resources
@@ -58,7 +58,8 @@ class AzureClustersGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Describes a specific [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] resource.
+     * Describes a specific
+     * [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] resource.
      * @param \Google\Cloud\GkeMultiCloud\V1\GetAzureClientRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -73,8 +74,8 @@ class AzureClustersGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Lists all [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] resources on a given Google Cloud project and
-     * region.
+     * Lists all [AzureClient][google.cloud.gkemulticloud.v1.AzureClient]
+     * resources on a given Google Cloud project and region.
      * @param \Google\Cloud\GkeMultiCloud\V1\ListAzureClientsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -89,7 +90,8 @@ class AzureClustersGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Deletes a specific [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] resource.
+     * Deletes a specific [AzureClient][google.cloud.gkemulticloud.v1.AzureClient]
+     * resource.
      *
      * If the client is used by one or more clusters, deletion will
      * fail and a `FAILED_PRECONDITION` error will be returned.
@@ -111,7 +113,8 @@ class AzureClustersGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Creates a new [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] resource on a given GCP project and region.
+     * Creates a new [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster]
+     * resource on a given Google Cloud Platform project and region.
      *
      * If successful, the response contains a newly created
      * [Operation][google.longrunning.Operation] resource that can be
@@ -145,7 +148,8 @@ class AzureClustersGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Describes a specific [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] resource.
+     * Describes a specific
+     * [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] resource.
      * @param \Google\Cloud\GkeMultiCloud\V1\GetAzureClusterRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -160,8 +164,8 @@ class AzureClustersGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Lists all [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] resources on a given Google Cloud project and
-     * region.
+     * Lists all [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster]
+     * resources on a given Google Cloud project and region.
      * @param \Google\Cloud\GkeMultiCloud\V1\ListAzureClustersRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -176,10 +180,11 @@ class AzureClustersGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Deletes a specific [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] resource.
+     * Deletes a specific
+     * [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] resource.
      *
-     * Fails if the cluster has one or more associated [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool]
-     * resources.
+     * Fails if the cluster has one or more associated
+     * [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] resources.
      *
      * If successful, the response contains a newly created
      * [Operation][google.longrunning.Operation] resource that can be
@@ -214,7 +219,9 @@ class AzureClustersGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Creates a new [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool], attached to a given [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster].
+     * Creates a new [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool],
+     * attached to a given
+     * [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster].
      *
      * If successful, the response contains a newly created
      * [Operation][google.longrunning.Operation] resource that can be
@@ -248,7 +255,8 @@ class AzureClustersGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Describes a specific [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] resource.
+     * Describes a specific
+     * [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] resource.
      * @param \Google\Cloud\GkeMultiCloud\V1\GetAzureNodePoolRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -263,7 +271,9 @@ class AzureClustersGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Lists all [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] resources on a given [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster].
+     * Lists all [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool]
+     * resources on a given
+     * [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster].
      * @param \Google\Cloud\GkeMultiCloud\V1\ListAzureNodePoolsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -278,7 +288,8 @@ class AzureClustersGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Deletes a specific [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] resource.
+     * Deletes a specific
+     * [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] resource.
      *
      * If successful, the response contains a newly created
      * [Operation][google.longrunning.Operation] resource that can be

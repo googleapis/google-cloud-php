@@ -16,8 +16,8 @@ class Access
         }
         $pool->internalAddGeneratedFile(
             '
-œ
-+google/cloud/securitycenter/v1/access.protogoogle.cloud.securitycenter.v1"â
+­
++google/cloud/securitycenter/v1/access.protogoogle.cloud.securitycenter.v1"õ
 Access
 principal_email (	
 	caller_ip (	B
@@ -27,13 +27,14 @@ class Access
 method_name (	
 principal_subject (	 
 service_account_key_name (	e
-service_account_delegation_info	 (2<.google.cloud.securitycenter.v1.ServiceAccountDelegationInfo"R
+service_account_delegation_info	 (2<.google.cloud.securitycenter.v1.ServiceAccountDelegationInfo
+	user_name (	"R
 ServiceAccountDelegationInfo
 principal_email (	
 principal_subject (	""
 Geolocation
-region_code (	Bç
-"com.google.cloud.securitycenter.v1BAccessProtoPZLgoogle.golang.org/genproto/googleapis/cloud/securitycenter/v1;securitycenterªGoogle.Cloud.SecurityCenter.V1ÊGoogle\\Cloud\\SecurityCenter\\V1ê!Google::Cloud::SecurityCenter::V1bproto3'
+region_code (	Bå
+"com.google.cloud.securitycenter.v1BAccessProtoPZJcloud.google.com/go/securitycenter/apiv1/securitycenterpb;securitycenterpbªGoogle.Cloud.SecurityCenter.V1ÊGoogle\\Cloud\\SecurityCenter\\V1ê!Google::Cloud::SecurityCenter::V1bproto3'
         , true);
 
         static::$is_initialized = true;

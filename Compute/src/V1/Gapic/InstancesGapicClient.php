@@ -268,9 +268,6 @@ class InstancesGapicClient
      * @param array $options {
      *     Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress
-     *           **Deprecated**. This option will be removed in a future major release. Please
-     *           utilize the `$apiEndpoint` option instead.
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'compute.googleapis.com:443'.
@@ -299,7 +296,7 @@ class InstancesGapicClient
      *           `rest`. *Advanced usage*: Additionally, it is possible to pass in an already
      *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
      *           that when this object is provided, any settings in $transportConfig, and any
-     *           $serviceAddress setting, will be ignored.
+     *           $apiEndpoint setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
      *           each supported transport type should be passed in a key for that transport. For
@@ -3073,6 +3070,8 @@ class InstancesGapicClient
      * @param array  $optionalArgs {
      *     Optional.
      *
+     *     @type bool $discardLocalSsd
+     *           If true, discard the contents of any attached localSSD partitions. Default value is false.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
@@ -3095,6 +3094,10 @@ class InstancesGapicClient
         $requestParamHeaders['instance'] = $instance;
         $requestParamHeaders['project'] = $project;
         $requestParamHeaders['zone'] = $zone;
+        if (isset($optionalArgs['discardLocalSsd'])) {
+            $request->setDiscardLocalSsd($optionalArgs['discardLocalSsd']);
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -3149,6 +3152,8 @@ class InstancesGapicClient
      * @param array  $optionalArgs {
      *     Optional.
      *
+     *     @type bool $discardLocalSsd
+     *           If true, discard the contents of any attached localSSD partitions. Default value is false.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
@@ -3171,6 +3176,10 @@ class InstancesGapicClient
         $requestParamHeaders['instance'] = $instance;
         $requestParamHeaders['project'] = $project;
         $requestParamHeaders['zone'] = $zone;
+        if (isset($optionalArgs['discardLocalSsd'])) {
+            $request->setDiscardLocalSsd($optionalArgs['discardLocalSsd']);
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }

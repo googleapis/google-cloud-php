@@ -27,7 +27,6 @@ namespace Google\Cloud\Bigtable\V2\Gapic;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\Call;
 use Google\ApiCore\CredentialsWrapper;
-
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
@@ -53,7 +52,6 @@ use Google\Cloud\Bigtable\V2\ReadRowsResponse;
 use Google\Cloud\Bigtable\V2\RowFilter;
 use Google\Cloud\Bigtable\V2\RowSet;
 use Google\Cloud\Bigtable\V2\SampleRowKeysRequest;
-
 use Google\Cloud\Bigtable\V2\SampleRowKeysResponse;
 
 /**
@@ -66,7 +64,7 @@ use Google\Cloud\Bigtable\V2\SampleRowKeysResponse;
  * $bigtableClient = new Google\Cloud\Bigtable\V2\BigtableClient();
  * try {
  *     $formattedTableName = $bigtableClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
- *     $rowKey = '';
+ *     $rowKey = '...';
  *     $response = $bigtableClient->checkAndMutateRow($formattedTableName, $rowKey);
  * } finally {
  *     $bigtableClient->close();
@@ -82,29 +80,19 @@ class BigtableGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.bigtable.v2.Bigtable';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'bigtable.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/bigtable.data',
         'https://www.googleapis.com/auth/bigtable.data.readonly',
@@ -253,9 +241,6 @@ class BigtableGapicClient
      * @param array $options {
      *     Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress
-     *           **Deprecated**. This option will be removed in a future major release. Please
-     *           utilize the `$apiEndpoint` option instead.
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'bigtable.googleapis.com:443'.
@@ -285,7 +270,7 @@ class BigtableGapicClient
      *           *Advanced usage*: Additionally, it is possible to pass in an already
      *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
      *           that when this object is provided, any settings in $transportConfig, and any
-     *           $serviceAddress setting, will be ignored.
+     *           $apiEndpoint setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
      *           each supported transport type should be passed in a key for that transport. For
@@ -318,7 +303,7 @@ class BigtableGapicClient
      * $bigtableClient = new Google\Cloud\Bigtable\V2\BigtableClient();
      * try {
      *     $formattedTableName = $bigtableClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
-     *     $rowKey = '';
+     *     $rowKey = '...';
      *     $response = $bigtableClient->checkAndMutateRow($formattedTableName, $rowKey);
      * } finally {
      *     $bigtableClient->close();
@@ -374,7 +359,6 @@ class BigtableGapicClient
             $requestParamHeaders['table_name'] = $tableNameMatches['table_name'];
         }
 
-        
         if (isset($optionalArgs['appProfileId'])) {
             $request->setAppProfileId($optionalArgs['appProfileId']);
             $requestParamHeaders['app_profile_id'] = $optionalArgs['app_profile_id'];
@@ -406,7 +390,7 @@ class BigtableGapicClient
      * $bigtableClient = new Google\Cloud\Bigtable\V2\BigtableClient();
      * try {
      *     $formattedTableName = $bigtableClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
-     *     $rowKey = '';
+     *     $rowKey = '...';
      *     $mutations = [];
      *     $response = $bigtableClient->mutateRow($formattedTableName, $rowKey, $mutations);
      * } finally {
@@ -449,7 +433,6 @@ class BigtableGapicClient
             $requestParamHeaders['table_name'] = $tableNameMatches['table_name'];
         }
 
-        
         if (isset($optionalArgs['appProfileId'])) {
             $request->setAppProfileId($optionalArgs['appProfileId']);
             $requestParamHeaders['app_profile_id'] = $optionalArgs['app_profile_id'];
@@ -512,7 +495,6 @@ class BigtableGapicClient
             $requestParamHeaders['table_name'] = $tableNameMatches['table_name'];
         }
 
-        
         if (isset($optionalArgs['appProfileId'])) {
             $request->setAppProfileId($optionalArgs['appProfileId']);
             $requestParamHeaders['app_profile_id'] = $optionalArgs['app_profile_id'];
@@ -566,7 +548,6 @@ class BigtableGapicClient
             $requestParamHeaders['name'] = $nameMatches['name'];
         }
 
-        
         if (isset($optionalArgs['appProfileId'])) {
             $request->setAppProfileId($optionalArgs['appProfileId']);
             $requestParamHeaders['app_profile_id'] = $optionalArgs['app_profile_id'];
@@ -589,7 +570,7 @@ class BigtableGapicClient
      * $bigtableClient = new Google\Cloud\Bigtable\V2\BigtableClient();
      * try {
      *     $formattedTableName = $bigtableClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
-     *     $rowKey = '';
+     *     $rowKey = '...';
      *     $rules = [];
      *     $response = $bigtableClient->readModifyWriteRow($formattedTableName, $rowKey, $rules);
      * } finally {
@@ -633,7 +614,6 @@ class BigtableGapicClient
             $requestParamHeaders['table_name'] = $tableNameMatches['table_name'];
         }
 
-        
         if (isset($optionalArgs['appProfileId'])) {
             $request->setAppProfileId($optionalArgs['appProfileId']);
             $requestParamHeaders['app_profile_id'] = $optionalArgs['app_profile_id'];
@@ -705,7 +685,6 @@ class BigtableGapicClient
             $requestParamHeaders['table_name'] = $tableNameMatches['table_name'];
         }
 
-        
         if (isset($optionalArgs['appProfileId'])) {
             $request->setAppProfileId($optionalArgs['appProfileId']);
             $requestParamHeaders['app_profile_id'] = $optionalArgs['app_profile_id'];
@@ -780,7 +759,6 @@ class BigtableGapicClient
             $requestParamHeaders['table_name'] = $tableNameMatches['table_name'];
         }
 
-        
         if (isset($optionalArgs['appProfileId'])) {
             $request->setAppProfileId($optionalArgs['appProfileId']);
             $requestParamHeaders['app_profile_id'] = $optionalArgs['app_profile_id'];

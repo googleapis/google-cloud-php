@@ -48,6 +48,12 @@ class Key extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.TestingOptions testing_options = 9;</code>
      */
     private $testing_options = null;
+    /**
+     * Settings for WAF
+     *
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.WafSettings waf_settings = 10;</code>
+     */
+    private $waf_settings = null;
     protected $platform_settings;
 
     /**
@@ -74,6 +80,8 @@ class Key extends \Google\Protobuf\Internal\Message
      *           The timestamp corresponding to the creation of this Key.
      *     @type \Google\Cloud\RecaptchaEnterprise\V1\TestingOptions $testing_options
      *           Options for user acceptance testing.
+     *     @type \Google\Cloud\RecaptchaEnterprise\V1\WafSettings $waf_settings
+     *           Settings for WAF
      * }
      */
     public function __construct($data = NULL) {
@@ -324,6 +332,42 @@ class Key extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\RecaptchaEnterprise\V1\TestingOptions::class);
         $this->testing_options = $var;
+
+        return $this;
+    }
+
+    /**
+     * Settings for WAF
+     *
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.WafSettings waf_settings = 10;</code>
+     * @return \Google\Cloud\RecaptchaEnterprise\V1\WafSettings|null
+     */
+    public function getWafSettings()
+    {
+        return $this->waf_settings;
+    }
+
+    public function hasWafSettings()
+    {
+        return isset($this->waf_settings);
+    }
+
+    public function clearWafSettings()
+    {
+        unset($this->waf_settings);
+    }
+
+    /**
+     * Settings for WAF
+     *
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.WafSettings waf_settings = 10;</code>
+     * @param \Google\Cloud\RecaptchaEnterprise\V1\WafSettings $var
+     * @return $this
+     */
+    public function setWafSettings($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\RecaptchaEnterprise\V1\WafSettings::class);
+        $this->waf_settings = $var;
 
         return $this;
     }

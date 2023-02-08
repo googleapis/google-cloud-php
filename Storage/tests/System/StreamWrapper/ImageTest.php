@@ -24,23 +24,19 @@ namespace Google\Cloud\Storage\Tests\System\StreamWrapper;
  */
 class ImageTest extends StreamWrapperTestCase
 {
-    const TEST_IMAGE_WITH_EXIF = 'https://storage.googleapis.com/cloud-php-testdata/fujifilm-dx10.jpg';
-    const TEST_IMAGE = 'https://storage.googleapis.com/cloud-php-testdata/screenshot.png';
+    const TEST_IMAGE_WITH_EXIF = __DIR__ . '/../data/fujifilm-dx10.jpg';
+    const TEST_IMAGE = __DIR__ . '/../data/screenshot.png';
 
     public static function set_up_before_class()
     {
         parent::set_up_before_class();
 
-        // must get contents because we can't pass an fopen stream from the https stream wrapper
-        // because it's not seekable
-        $contents = file_get_contents(self::TEST_IMAGE_WITH_EXIF);
         self::$bucket->upload(
-            $contents,
+            fopen(self::TEST_IMAGE_WITH_EXIF, 'r'),
             ['name' => 'exif.jpg']
         );
-        $contents = file_get_contents(self::TEST_IMAGE);
         self::$bucket->upload(
-            $contents,
+            fopen(self::TEST_IMAGE, 'r'),
             ['name' => 'plain.jpg']
         );
     }

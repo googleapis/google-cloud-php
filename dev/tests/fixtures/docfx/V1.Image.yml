@@ -54,8 +54,6 @@ items:
       representation, whereas JSON representations use base64.
       Currently, this field only works for BatchAnnotateImages requests. It does
       not work for AsyncBatchAnnotateImages requests.
-      
-      Generated from protobuf field <code>bytes content = 1;</code>
     parent: \Google\Cloud\Vision\V1\Image
     type: method
     langs:
@@ -75,8 +73,6 @@ items:
       representation, whereas JSON representations use base64.
       Currently, this field only works for BatchAnnotateImages requests. It does
       not work for AsyncBatchAnnotateImages requests.
-      
-      Generated from protobuf field <code>bytes content = 1;</code>
     parent: \Google\Cloud\Vision\V1\Image
     type: method
     langs:
@@ -98,8 +94,6 @@ items:
       Google Cloud Storage image location, or publicly-accessible image
       URL. If both `content` and `source` are provided for an image, `content`
       takes precedence and is used to perform the image annotation request.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.ImageSource source = 2;</code>
     parent: \Google\Cloud\Vision\V1\Image
     type: method
     langs:
@@ -132,8 +126,6 @@ items:
       Google Cloud Storage image location, or publicly-accessible image
       URL. If both `content` and `source` are provided for an image, `content`
       takes precedence and is used to perform the image annotation request.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.ImageSource source = 2;</code>
     parent: \Google\Cloud\Vision\V1\Image
     type: method
     langs:

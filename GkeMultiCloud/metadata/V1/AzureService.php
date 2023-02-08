@@ -24,7 +24,7 @@ class AzureService
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ê8
+Ç8
 1google/cloud/gkemulticloud/v1/azure_service.protogoogle.cloud.gkemulticloud.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto3google/cloud/gkemulticloud/v1/azure_resources.proto#google/longrunning/operations.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"Ý
 CreateAzureClusterRequestA
 parent (	B1àAúA+)gkemulticloud.googleapis.com/AzureClusterG
@@ -132,8 +132,8 @@ page_token (	"v
 ListAzureNodePools8.google.cloud.gkemulticloud.v1.ListAzureNodePoolsRequest9.google.cloud.gkemulticloud.v1.ListAzureNodePoolsResponse"S‚Óä“DB/v1/{parent=projects/*/locations/*/azureClusters/*}/azureNodePoolsÚAparentï
 DeleteAzureNodePool9.google.cloud.gkemulticloud.v1.DeleteAzureNodePoolRequest.google.longrunning.Operation"~‚Óä“D*B/v1/{name=projects/*/locations/*/azureClusters/*/azureNodePools/*}ÚAnameÊA*
 google.protobuf.EmptyOperationMetadataÈ
-GetAzureServerConfig:.google.cloud.gkemulticloud.v1.GetAzureServerConfigRequest0.google.cloud.gkemulticloud.v1.AzureServerConfig"B‚Óä“53/v1/{name=projects/*/locations/*/azureServerConfig}ÚAnamePÊAgkemulticloud.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBç
-!com.google.cloud.gkemulticloud.v1BAzureServiceProtoPZJgoogle.golang.org/genproto/googleapis/cloud/gkemulticloud/v1;gkemulticloudªGoogle.Cloud.GkeMultiCloud.V1ÊGoogle\\Cloud\\GkeMultiCloud\\V1ê Google::Cloud::GkeMultiCloud::V1bproto3'
+GetAzureServerConfig:.google.cloud.gkemulticloud.v1.GetAzureServerConfigRequest0.google.cloud.gkemulticloud.v1.AzureServerConfig"B‚Óä“53/v1/{name=projects/*/locations/*/azureServerConfig}ÚAnamePÊAgkemulticloud.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBä
+!com.google.cloud.gkemulticloud.v1BAzureServiceProtoPZGcloud.google.com/go/gkemulticloud/apiv1/gkemulticloudpb;gkemulticloudpbªGoogle.Cloud.GkeMultiCloud.V1ÊGoogle\\Cloud\\GkeMultiCloud\\V1ê Google::Cloud::GkeMultiCloud::V1bproto3'
         , true);
 
         static::$is_initialized = true;

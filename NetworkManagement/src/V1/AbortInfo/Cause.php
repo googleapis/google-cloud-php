@@ -165,6 +165,4 @@ class Cause
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Cause::class, \Google\Cloud\NetworkManagement\V1\AbortInfo_Cause::class);
 

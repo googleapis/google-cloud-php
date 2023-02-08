@@ -23,15 +23,12 @@
 namespace Google\Cloud\DataLabeling\Tests\Unit\V1beta1;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\DataLabeling\V1beta1\AnnotatedDataset;
 use Google\Cloud\DataLabeling\V1beta1\AnnotationSpecSet;
-
 use Google\Cloud\DataLabeling\V1beta1\DataItem;
 use Google\Cloud\DataLabeling\V1beta1\DataLabelingServiceClient;
 use Google\Cloud\DataLabeling\V1beta1\Dataset;
@@ -69,25 +66,19 @@ use stdClass;
  */
 class DataLabelingServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return DataLabelingServiceClient
-     */
+    /** @return DataLabelingServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -96,9 +87,7 @@ class DataLabelingServiceClientTest extends GeneratedTest
         return new DataLabelingServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createAnnotationSpecSetTest()
     {
         $transport = $this->createTransport();
@@ -132,9 +121,7 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createAnnotationSpecSetExceptionTest()
     {
         $transport = $this->createTransport();
@@ -168,9 +155,7 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createDatasetTest()
     {
         $transport = $this->createTransport();
@@ -206,9 +191,7 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createDatasetExceptionTest()
     {
         $transport = $this->createTransport();
@@ -242,9 +225,7 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createEvaluationJobTest()
     {
         $transport = $this->createTransport();
@@ -284,9 +265,7 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createEvaluationJobExceptionTest()
     {
         $transport = $this->createTransport();
@@ -320,14 +299,12 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createInstructionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -393,14 +370,12 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createInstructionExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -451,9 +426,7 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteAnnotatedDatasetTest()
     {
         $transport = $this->createTransport();
@@ -477,9 +450,7 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteAnnotatedDatasetExceptionTest()
     {
         $transport = $this->createTransport();
@@ -512,9 +483,7 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteAnnotationSpecSetTest()
     {
         $transport = $this->createTransport();
@@ -538,9 +507,7 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteAnnotationSpecSetExceptionTest()
     {
         $transport = $this->createTransport();
@@ -573,9 +540,7 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteDatasetTest()
     {
         $transport = $this->createTransport();
@@ -599,9 +564,7 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteDatasetExceptionTest()
     {
         $transport = $this->createTransport();
@@ -634,9 +597,7 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteEvaluationJobTest()
     {
         $transport = $this->createTransport();
@@ -660,9 +621,7 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteEvaluationJobExceptionTest()
     {
         $transport = $this->createTransport();
@@ -695,9 +654,7 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteInstructionTest()
     {
         $transport = $this->createTransport();
@@ -721,9 +678,7 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteInstructionExceptionTest()
     {
         $transport = $this->createTransport();
@@ -756,14 +711,12 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function exportDataTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -832,14 +785,12 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function exportDataExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -891,9 +842,7 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getAnnotatedDatasetTest()
     {
         $transport = $this->createTransport();
@@ -928,9 +877,7 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getAnnotatedDatasetExceptionTest()
     {
         $transport = $this->createTransport();
@@ -963,9 +910,7 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getAnnotationSpecSetTest()
     {
         $transport = $this->createTransport();
@@ -996,9 +941,7 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getAnnotationSpecSetExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1031,9 +974,7 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getDataItemTest()
     {
         $transport = $this->createTransport();
@@ -1060,9 +1001,7 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getDataItemExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1095,9 +1034,7 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getDatasetTest()
     {
         $transport = $this->createTransport();
@@ -1130,9 +1067,7 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getDatasetExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1165,9 +1100,7 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getEvaluationTest()
     {
         $transport = $this->createTransport();
@@ -1196,9 +1129,7 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getEvaluationExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1231,9 +1162,7 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getEvaluationJobTest()
     {
         $transport = $this->createTransport();
@@ -1270,9 +1199,7 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getEvaluationJobExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1305,9 +1232,7 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getExampleTest()
     {
         $transport = $this->createTransport();
@@ -1334,9 +1259,7 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getExampleExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1369,9 +1292,7 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getInstructionTest()
     {
         $transport = $this->createTransport();
@@ -1402,9 +1323,7 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getInstructionExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1437,14 +1356,12 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function importDataTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1510,14 +1427,12 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function importDataExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1568,14 +1483,12 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function labelImageTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1652,14 +1565,12 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function labelImageExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1715,14 +1626,12 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function labelTextTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1799,14 +1708,12 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function labelTextExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1862,14 +1769,12 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function labelVideoTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1946,14 +1851,12 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function labelVideoExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -2009,9 +1912,7 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listAnnotatedDatasetsTest()
     {
         $transport = $this->createTransport();
@@ -2046,9 +1947,7 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listAnnotatedDatasetsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2081,9 +1980,7 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listAnnotationSpecSetsTest()
     {
         $transport = $this->createTransport();
@@ -2118,9 +2015,7 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listAnnotationSpecSetsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2153,9 +2048,7 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listDataItemsTest()
     {
         $transport = $this->createTransport();
@@ -2190,9 +2083,7 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listDataItemsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2225,9 +2116,7 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listDatasetsTest()
     {
         $transport = $this->createTransport();
@@ -2262,9 +2151,7 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listDatasetsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2297,9 +2184,7 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listEvaluationJobsTest()
     {
         $transport = $this->createTransport();
@@ -2334,9 +2219,7 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listEvaluationJobsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2369,9 +2252,7 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listExamplesTest()
     {
         $transport = $this->createTransport();
@@ -2406,9 +2287,7 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listExamplesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2441,9 +2320,7 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listInstructionsTest()
     {
         $transport = $this->createTransport();
@@ -2478,9 +2355,7 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listInstructionsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2513,9 +2388,7 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function pauseEvaluationJobTest()
     {
         $transport = $this->createTransport();
@@ -2539,9 +2412,7 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function pauseEvaluationJobExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2574,9 +2445,7 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function resumeEvaluationJobTest()
     {
         $transport = $this->createTransport();
@@ -2600,9 +2469,7 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function resumeEvaluationJobExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2635,9 +2502,7 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function searchEvaluationsTest()
     {
         $transport = $this->createTransport();
@@ -2672,9 +2537,7 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function searchEvaluationsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2707,9 +2570,7 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function searchExampleComparisonsTest()
     {
         $transport = $this->createTransport();
@@ -2744,9 +2605,7 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function searchExampleComparisonsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2779,9 +2638,7 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateEvaluationJobTest()
     {
         $transport = $this->createTransport();
@@ -2818,9 +2675,7 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateEvaluationJobExceptionTest()
     {
         $transport = $this->createTransport();

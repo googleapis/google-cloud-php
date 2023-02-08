@@ -7,11 +7,15 @@ namespace Google\Cloud\CertificateManager\V1\Certificate\ManagedCertificate\Prov
 use UnexpectedValueException;
 
 /**
+ * Reason for provisioning failures.
+ *
  * Protobuf type <code>google.cloud.certificatemanager.v1.Certificate.ManagedCertificate.ProvisioningIssue.Reason</code>
  */
 class Reason
 {
     /**
+     * Reason is unspecified.
+     *
      * Generated from protobuf enum <code>REASON_UNSPECIFIED = 0;</code>
      */
     const REASON_UNSPECIFIED = 0;

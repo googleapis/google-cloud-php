@@ -141,7 +141,7 @@ class SecurityCenterGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Gets a big query export.
+     * Gets a BigQuery export.
      * @param \Google\Cloud\SecurityCenter\V1\GetBigQueryExportRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -534,7 +534,7 @@ class SecurityCenterGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Creates a big query export.
+     * Creates a BigQuery export.
      * @param \Google\Cloud\SecurityCenter\V1\CreateBigQueryExportRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -549,7 +549,7 @@ class SecurityCenterGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Deletes an existing big query export.
+     * Deletes an existing BigQuery export.
      * @param \Google\Cloud\SecurityCenter\V1\DeleteBigQueryExportRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options

@@ -198,9 +198,6 @@ class InterconnectsGapicClient
      * @param array $options {
      *     Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress
-     *           **Deprecated**. This option will be removed in a future major release. Please
-     *           utilize the `$apiEndpoint` option instead.
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'compute.googleapis.com:443'.
@@ -229,7 +226,7 @@ class InterconnectsGapicClient
      *           `rest`. *Advanced usage*: Additionally, it is possible to pass in an already
      *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
      *           that when this object is provided, any settings in $transportConfig, and any
-     *           $serviceAddress setting, will be ignored.
+     *           $apiEndpoint setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
      *           each supported transport type should be passed in a key for that transport. For
@@ -254,7 +251,7 @@ class InterconnectsGapicClient
     }
 
     /**
-     * Deletes the specified interconnect.
+     * Deletes the specified Interconnect.
      *
      * Sample code:
      * ```
@@ -326,7 +323,7 @@ class InterconnectsGapicClient
     }
 
     /**
-     * Returns the specified interconnect. Get a list of available interconnects by making a list() request.
+     * Returns the specified Interconnect. Get a list of available Interconnects by making a list() request.
      *
      * Sample code:
      * ```
@@ -369,7 +366,7 @@ class InterconnectsGapicClient
     }
 
     /**
-     * Returns the interconnectDiagnostics for the specified interconnect.
+     * Returns the interconnectDiagnostics for the specified Interconnect.
      *
      * Sample code:
      * ```
@@ -412,7 +409,7 @@ class InterconnectsGapicClient
     }
 
     /**
-     * Creates a Interconnect in the specified project using the data included in the request.
+     * Creates an Interconnect in the specified project using the data included in the request.
      *
      * Sample code:
      * ```
@@ -483,7 +480,7 @@ class InterconnectsGapicClient
     }
 
     /**
-     * Retrieves the list of interconnect available to the specified project.
+     * Retrieves the list of Interconnects available to the specified project.
      *
      * Sample code:
      * ```
@@ -567,7 +564,7 @@ class InterconnectsGapicClient
     }
 
     /**
-     * Updates the specified interconnect with the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
+     * Updates the specified Interconnect with the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
      *
      * Sample code:
      * ```

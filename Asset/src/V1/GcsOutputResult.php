@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class GcsOutputResult extends \Google\Protobuf\Internal\Message
 {
     /**
-     * List of uris of the Cloud Storage objects. Example:
+     * List of URIs of the Cloud Storage objects. Example:
      * "gs://bucket_name/object_name".
      *
      * Generated from protobuf field <code>repeated string uris = 1;</code>
@@ -30,7 +30,7 @@ class GcsOutputResult extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $uris
-     *           List of uris of the Cloud Storage objects. Example:
+     *           List of URIs of the Cloud Storage objects. Example:
      *           "gs://bucket_name/object_name".
      * }
      */
@@ -40,7 +40,7 @@ class GcsOutputResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * List of uris of the Cloud Storage objects. Example:
+     * List of URIs of the Cloud Storage objects. Example:
      * "gs://bucket_name/object_name".
      *
      * Generated from protobuf field <code>repeated string uris = 1;</code>
@@ -52,7 +52,7 @@ class GcsOutputResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * List of uris of the Cloud Storage objects. Example:
+     * List of URIs of the Cloud Storage objects. Example:
      * "gs://bucket_name/object_name".
      *
      * Generated from protobuf field <code>repeated string uris = 1;</code>

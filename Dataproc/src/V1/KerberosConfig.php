@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class KerberosConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. Flag to indicate whether to Kerberize the cluster (default: false). Set
-     * this field to true to enable Kerberos on a cluster.
+     * Optional. Flag to indicate whether to Kerberize the cluster (default:
+     * false). Set this field to true to enable Kerberos on a cluster.
      *
      * Generated from protobuf field <code>bool enable_kerberos = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -135,8 +135,8 @@ class KerberosConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $enable_kerberos
-     *           Optional. Flag to indicate whether to Kerberize the cluster (default: false). Set
-     *           this field to true to enable Kerberos on a cluster.
+     *           Optional. Flag to indicate whether to Kerberize the cluster (default:
+     *           false). Set this field to true to enable Kerberos on a cluster.
      *     @type string $root_principal_password_uri
      *           Optional. The Cloud Storage URI of a KMS encrypted file containing the root
      *           principal password.
@@ -194,8 +194,8 @@ class KerberosConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Flag to indicate whether to Kerberize the cluster (default: false). Set
-     * this field to true to enable Kerberos on a cluster.
+     * Optional. Flag to indicate whether to Kerberize the cluster (default:
+     * false). Set this field to true to enable Kerberos on a cluster.
      *
      * Generated from protobuf field <code>bool enable_kerberos = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
@@ -206,8 +206,8 @@ class KerberosConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Flag to indicate whether to Kerberize the cluster (default: false). Set
-     * this field to true to enable Kerberos on a cluster.
+     * Optional. Flag to indicate whether to Kerberize the cluster (default:
+     * false). Set this field to true to enable Kerberos on a cluster.
      *
      * Generated from protobuf field <code>bool enable_kerberos = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var

@@ -47,10 +47,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\TextAnnotation\TextProperty::getDetectedLanguages()'
     name: getDetectedLanguages
     id: getDetectedLanguages
-    summary: |
-      A list of detected languages together with confidence.
-      
-      Generated from protobuf field <code>repeated .google.cloud.vision.v1.TextAnnotation.DetectedLanguage detected_languages = 1;</code>
+    summary: 'A list of detected languages together with confidence.'
     parent: \Google\Cloud\Vision\V1\TextAnnotation\TextProperty
     type: method
     langs:
@@ -58,15 +55,12 @@ items:
     syntax:
       returns:
         -
-          var_type: Google\Protobuf\Internal\RepeatedField
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Internal/RepeatedField">Google\Protobuf\Internal\RepeatedField</a>'
   -
     uid: '\Google\Cloud\Vision\V1\TextAnnotation\TextProperty::setDetectedLanguages()'
     name: setDetectedLanguages
     id: setDetectedLanguages
-    summary: |
-      A list of detected languages together with confidence.
-      
-      Generated from protobuf field <code>repeated .google.cloud.vision.v1.TextAnnotation.DetectedLanguage detected_languages = 1;</code>
+    summary: 'A list of detected languages together with confidence.'
     parent: \Google\Cloud\Vision\V1\TextAnnotation\TextProperty
     type: method
     langs:
@@ -84,10 +78,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\TextAnnotation\TextProperty::getDetectedBreak()'
     name: getDetectedBreak
     id: getDetectedBreak
-    summary: |
-      Detected start or end of a text segment.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.TextAnnotation.DetectedBreak detected_break = 2;</code>
+    summary: 'Detected start or end of a text segment.'
     parent: \Google\Cloud\Vision\V1\TextAnnotation\TextProperty
     type: method
     langs:
@@ -116,10 +107,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\TextAnnotation\TextProperty::setDetectedBreak()'
     name: setDetectedBreak
     id: setDetectedBreak
-    summary: |
-      Detected start or end of a text segment.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.TextAnnotation.DetectedBreak detected_break = 2;</code>
+    summary: 'Detected start or end of a text segment.'
     parent: \Google\Cloud\Vision\V1\TextAnnotation\TextProperty
     type: method
     langs:

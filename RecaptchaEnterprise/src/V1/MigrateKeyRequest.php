@@ -22,6 +22,19 @@ class MigrateKeyRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
+    /**
+     * Optional. If true, skips the billing check.
+     * A reCAPTCHA Enterprise key or migrated key behaves differently than a
+     * reCAPTCHA (non-Enterprise version) key when you reach a quota limit (see
+     * https://cloud.google.com/recaptcha-enterprise/quotas#quota_limit). To avoid
+     * any disruption of your usage, we check that a billing account is present.
+     * If your usage of reCAPTCHA is under the free quota, you can safely skip the
+     * billing check and proceed with the migration. See
+     * https://cloud.google.com/recaptcha-enterprise/docs/billing-information.
+     *
+     * Generated from protobuf field <code>bool skip_billing_check = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $skip_billing_check = false;
 
     /**
      * Constructor.
@@ -32,6 +45,15 @@ class MigrateKeyRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. The name of the key to be migrated, in the format
      *           "projects/{project}/keys/{key}".
+     *     @type bool $skip_billing_check
+     *           Optional. If true, skips the billing check.
+     *           A reCAPTCHA Enterprise key or migrated key behaves differently than a
+     *           reCAPTCHA (non-Enterprise version) key when you reach a quota limit (see
+     *           https://cloud.google.com/recaptcha-enterprise/quotas#quota_limit). To avoid
+     *           any disruption of your usage, we check that a billing account is present.
+     *           If your usage of reCAPTCHA is under the free quota, you can safely skip the
+     *           billing check and proceed with the migration. See
+     *           https://cloud.google.com/recaptcha-enterprise/docs/billing-information.
      * }
      */
     public function __construct($data = NULL) {
@@ -63,6 +85,46 @@ class MigrateKeyRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If true, skips the billing check.
+     * A reCAPTCHA Enterprise key or migrated key behaves differently than a
+     * reCAPTCHA (non-Enterprise version) key when you reach a quota limit (see
+     * https://cloud.google.com/recaptcha-enterprise/quotas#quota_limit). To avoid
+     * any disruption of your usage, we check that a billing account is present.
+     * If your usage of reCAPTCHA is under the free quota, you can safely skip the
+     * billing check and proceed with the migration. See
+     * https://cloud.google.com/recaptcha-enterprise/docs/billing-information.
+     *
+     * Generated from protobuf field <code>bool skip_billing_check = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getSkipBillingCheck()
+    {
+        return $this->skip_billing_check;
+    }
+
+    /**
+     * Optional. If true, skips the billing check.
+     * A reCAPTCHA Enterprise key or migrated key behaves differently than a
+     * reCAPTCHA (non-Enterprise version) key when you reach a quota limit (see
+     * https://cloud.google.com/recaptcha-enterprise/quotas#quota_limit). To avoid
+     * any disruption of your usage, we check that a billing account is present.
+     * If your usage of reCAPTCHA is under the free quota, you can safely skip the
+     * billing check and proceed with the migration. See
+     * https://cloud.google.com/recaptcha-enterprise/docs/billing-information.
+     *
+     * Generated from protobuf field <code>bool skip_billing_check = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSkipBillingCheck($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->skip_billing_check = $var;
 
         return $this;
     }

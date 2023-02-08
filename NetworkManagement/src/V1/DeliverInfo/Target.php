@@ -80,6 +80,4 @@ class Target
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Target::class, \Google\Cloud\NetworkManagement\V1\DeliverInfo_Target::class);
 

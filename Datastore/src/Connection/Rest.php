@@ -23,6 +23,7 @@ use Google\Cloud\Core\RequestWrapper;
 use Google\Cloud\Core\RestTrait;
 use Google\Cloud\Core\UriTrait;
 use Google\Cloud\Datastore\DatastoreClient;
+use Google\Cloud\Core\Timestamp;
 
 /**
  * Implementation of the

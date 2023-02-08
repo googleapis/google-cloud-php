@@ -35,7 +35,7 @@ class ListZonesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Dataplex\V1\Zone[]|\Google\Protobuf\Internal\RepeatedField $zones
+     *     @type array<\Google\Cloud\Dataplex\V1\Zone>|\Google\Protobuf\Internal\RepeatedField $zones
      *           Zones under the given parent lake.
      *     @type string $next_page_token
      *           Token to retrieve the next page of results, or empty if there are no more
@@ -62,7 +62,7 @@ class ListZonesResponse extends \Google\Protobuf\Internal\Message
      * Zones under the given parent lake.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.Zone zones = 1;</code>
-     * @param \Google\Cloud\Dataplex\V1\Zone[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dataplex\V1\Zone>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setZones($var)

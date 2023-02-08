@@ -16,10 +16,12 @@ use Google\Protobuf\Internal\GPBUtil;
 class SetFindingStateRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The relative resource name of the finding. See:
-     * https://cloud.google.com/apis/design/resource_names#relative_resource_name
-     * Example:
-     * "organizations/{organization_id}/sources/{source_id}/findings/{finding_id}".
+     * Required. The [relative resource
+     * name](https://cloud.google.com/apis/design/resource_names#relative_resource_name)
+     * of the finding. Example:
+     * "organizations/{organization_id}/sources/{source_id}/findings/{finding_id}",
+     * "folders/{folder_id}/sources/{source_id}/findings/{finding_id}",
+     * "projects/{project_id}/sources/{source_id}/findings/{finding_id}".
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -44,10 +46,12 @@ class SetFindingStateRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The relative resource name of the finding. See:
-     *           https://cloud.google.com/apis/design/resource_names#relative_resource_name
-     *           Example:
-     *           "organizations/{organization_id}/sources/{source_id}/findings/{finding_id}".
+     *           Required. The [relative resource
+     *           name](https://cloud.google.com/apis/design/resource_names#relative_resource_name)
+     *           of the finding. Example:
+     *           "organizations/{organization_id}/sources/{source_id}/findings/{finding_id}",
+     *           "folders/{folder_id}/sources/{source_id}/findings/{finding_id}",
+     *           "projects/{project_id}/sources/{source_id}/findings/{finding_id}".
      *     @type int $state
      *           Required. The desired State of the finding.
      *     @type \Google\Protobuf\Timestamp $start_time
@@ -60,10 +64,12 @@ class SetFindingStateRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The relative resource name of the finding. See:
-     * https://cloud.google.com/apis/design/resource_names#relative_resource_name
-     * Example:
-     * "organizations/{organization_id}/sources/{source_id}/findings/{finding_id}".
+     * Required. The [relative resource
+     * name](https://cloud.google.com/apis/design/resource_names#relative_resource_name)
+     * of the finding. Example:
+     * "organizations/{organization_id}/sources/{source_id}/findings/{finding_id}",
+     * "folders/{folder_id}/sources/{source_id}/findings/{finding_id}",
+     * "projects/{project_id}/sources/{source_id}/findings/{finding_id}".
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -74,10 +80,12 @@ class SetFindingStateRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The relative resource name of the finding. See:
-     * https://cloud.google.com/apis/design/resource_names#relative_resource_name
-     * Example:
-     * "organizations/{organization_id}/sources/{source_id}/findings/{finding_id}".
+     * Required. The [relative resource
+     * name](https://cloud.google.com/apis/design/resource_names#relative_resource_name)
+     * of the finding. Example:
+     * "organizations/{organization_id}/sources/{source_id}/findings/{finding_id}",
+     * "folders/{folder_id}/sources/{source_id}/findings/{finding_id}",
+     * "projects/{project_id}/sources/{source_id}/findings/{finding_id}".
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

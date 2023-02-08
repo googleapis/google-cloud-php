@@ -27,16 +27,17 @@ trait DocblockTrait
         if (empty($this->xmlNode->docblock)) {
             return '';
         }
-        $docblockNode = $this->xmlNode->docblock;
 
         $content = $this->getDescription();
-        if ($longDescription = $this->getLongDescription()) {
+        $longDescription = $this->getLongDescription();
+        if ($longDescription = $this->stripProtobufGeneratedField($longDescription)) {
             if ($content) {
                 $content .= "\n\n";
             }
             $content .= $longDescription;
         }
 
+        $content = html_entity_decode($content);
         $content = $this->replaceSeeTag($content);
         $content = $this->replaceProtoRef($content);
         $content = $this->stripSnippetTag($content);
@@ -73,6 +74,12 @@ trait DocblockTrait
 
     private function stripSnippetTag(string $content): string
     {
-        return preg_replace('/\/\/\[snippet=.*\]/', '', $content);
+        return preg_replace('/\/\/\[snippet=.*\]\n/', '', $content);
+    }
+
+    private function stripProtobufGeneratedField(string $content): string
+    {
+        $regex = '/Generated from protobuf field <code>.*<\/code>\Z/m';
+        return rtrim(preg_replace($regex, '', $content));
     }
 }

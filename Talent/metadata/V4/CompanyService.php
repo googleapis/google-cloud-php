@@ -24,7 +24,7 @@ class CompanyService
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-µ
+«
 ,google/cloud/talent/v4/company_service.protogoogle.cloud.talent.v4google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto#google/cloud/talent/v4/common.proto$google/cloud/talent/v4/company.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"
 CreateCompanyRequest2
 parent (	B"àAúA
@@ -56,8 +56,8 @@ page_token (	
 GetCompany).google.cloud.talent.v4.GetCompanyRequest.google.cloud.talent.v4.Company":‚Óä“-+/v4/{name=projects/*/tenants/*/companies/*}ÚAnameº
 UpdateCompany,.google.cloud.talent.v4.UpdateCompanyRequest.google.cloud.talent.v4.Company"Z‚Óä“>23/v4/{company.name=projects/*/tenants/*/companies/*}:companyÚAcompany,update_mask‘
 DeleteCompany,.google.cloud.talent.v4.DeleteCompanyRequest.google.protobuf.Empty":‚Óä“-*+/v4/{name=projects/*/tenants/*/companies/*}ÚAnameª
-ListCompanies,.google.cloud.talent.v4.ListCompaniesRequest-.google.cloud.talent.v4.ListCompaniesResponse"<‚Óä“-+/v4/{parent=projects/*/tenants/*}/companiesÚAparentlÊAjobs.googleapis.comÒAShttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/jobsBw
-com.google.cloud.talent.v4BCompanyServiceProtoPZ<google.golang.org/genproto/googleapis/cloud/talent/v4;talent¢CTSbproto3'
+ListCompanies,.google.cloud.talent.v4.ListCompaniesRequest-.google.cloud.talent.v4.ListCompaniesResponse"<‚Óä“-+/v4/{parent=projects/*/tenants/*}/companiesÚAparentlÊAjobs.googleapis.comÒAShttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/jobsBm
+com.google.cloud.talent.v4BCompanyServiceProtoPZ2cloud.google.com/go/talent/apiv4/talentpb;talentpb¢CTSbproto3'
         , true);
 
         static::$is_initialized = true;

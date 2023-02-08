@@ -42,6 +42,12 @@ class DocFx extends Command
             ->addOption('out', '', InputOption::VALUE_REQUIRED, 'Path where to store the generated output.', 'out')
             ->addOption('metadata-version', '', InputOption::VALUE_REQUIRED, 'version to write to docs.metadata using docuploader')
             ->addOption('staging-bucket', '', InputOption::VALUE_REQUIRED, 'Upload to the specified staging bucket using docuploader.')
+            ->addOption(
+                'component-path',
+                '',
+                InputOption::VALUE_OPTIONAL,
+                'Specify the path of the desired component. Please note, this option is only intended for testing purposes.
+            ')
         ;
     }
 
@@ -52,22 +58,15 @@ class DocFx extends Command
         }
 
         $component = $input->getOption('component') ?: basename(getcwd());
-        $componentPath = $this->checkComponent($component);
+        $componentPath = $input->getOption('component-path') ?: $this->getComponentPath($component);
+        $this->validateComponentFiles($componentPath, $component);
         $output->writeln(sprintf('Generating documentation for <options=bold;fg=white>%s</>', $component));
         $xml = $input->getOption('xml');
         $outDir = $input->getOption('out');
         if (empty($xml)) {
             $output->write('Running phpdoc to generate structure.xml... ');
             // Run "phpdoc"
-            $process = new Process([
-                'phpdoc',
-                '-d',
-                sprintf('%s/src', $componentPath),
-                '--template',
-                'xml',
-                '--target',
-                $outDir
-            ]);
+            $process = self::getPhpDocCommand($componentPath, $outDir);
             $process->mustRun();
             $output->writeln('Done.');
             $xml = $outDir . '/structure.xml';
@@ -93,7 +92,12 @@ class DocFx extends Command
         $tocItems = [];
         $packageDescription = $this->getPackageDescription();
         foreach ($this->getNamespaces() as $namespace) {
-            $pageTree = new PageTree($xml, $namespace, $packageDescription);
+            $pageTree = new PageTree(
+                $xml,
+                $namespace,
+                $packageDescription,
+                $componentPath
+            );
 
             foreach ($pageTree->getPages() as $page) {
                 $docFxArray = ['items' => $page->getItems()];
@@ -114,7 +118,7 @@ class DocFx extends Command
         if (file_exists($overviewFile = sprintf('%s/README.md', $componentPath))) {
             $overview = new OverviewPage(
                 file_get_contents($overviewFile),
-                $releaseLevel === 'beta'
+                $releaseLevel !== 'stable'
             );
             $outFile = sprintf('%s/%s', $outDir, $overview->getFilename());
             file_put_contents($outFile, $overview->getContents());
@@ -126,7 +130,7 @@ class DocFx extends Command
         $componentToc = array_filter([
             'uid' => $this->getComponentUid(),
             'name' => $this->getDistributionName(),
-            'status' => $releaseLevel === 'beta' ? 'beta' : '',
+            'status' => $releaseLevel !== 'stable' ? 'beta' : '',
             'items' => $tocItems,
         ]);
         $tocYaml = Yaml::dump([$componentToc], $inline, $indent, $flags);
@@ -171,7 +175,20 @@ class DocFx extends Command
         }
     }
 
-    private function checkComponent(string $component): string
+    public static function getPhpDocCommand(string $componentPath, string $outDir): Process
+    {
+        return new Process([
+            'phpdoc',
+            '-d',
+            sprintf('%s/src', $componentPath),
+            '--template',
+            'xml',
+            '--target',
+            $outDir
+        ]);
+    }
+
+    private function getComponentPath(string $component): string
     {
         $rootDir = __DIR__ . '/../../../../';
 
@@ -182,7 +199,7 @@ class DocFx extends Command
             }
         }
         if (!in_array($component, $components)) {
-            throw new \Exception($component ? 'Invalid component provided'
+            throw new \Exception($component ? 'Invalid component provided: ' . $component
                 : 'You are not in a component directory. Run this command from a valid component'
                   . ' directory or provide a valid component using the "component" option.');
         }
@@ -193,6 +210,11 @@ class DocFx extends Command
             throw new RuntimeException(sprintf('component "%s" not found', $component));
         }
 
+        return $componentPath;
+    }
+
+    private function validateComponentFiles(string $componentPath, string $component)
+    {
         $composerPath = $componentPath . '/composer.json';
         if (!file_exists($composerPath)) {
             throw new RuntimeException(sprintf('composer.json not found for component "%s"', $component));
@@ -208,8 +230,6 @@ class DocFx extends Command
         if (!$this->repoMetadataJson = json_decode(file_get_contents($repoMetadataPath), true)) {
             throw new RuntimeException(sprintf('Invalid .repo-metadata.json for component "%s"', $component));
         }
-
-        return $componentPath;
     }
 
     private function getReleaseLevel(): string

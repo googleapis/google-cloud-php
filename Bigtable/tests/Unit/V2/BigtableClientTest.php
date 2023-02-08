@@ -23,11 +23,9 @@
 namespace Google\Cloud\Bigtable\Tests\Unit\V2;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\ServerStream;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Bigtable\V2\BigtableClient;
 use Google\Cloud\Bigtable\V2\CheckAndMutateRowResponse;
@@ -47,25 +45,19 @@ use stdClass;
  */
 class BigtableClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return BigtableClient
-     */
+    /** @return BigtableClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -74,9 +66,7 @@ class BigtableClientTest extends GeneratedTest
         return new BigtableClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function checkAndMutateRowTest()
     {
         $transport = $this->createTransport();
@@ -106,9 +96,7 @@ class BigtableClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function checkAndMutateRowExceptionTest()
     {
         $transport = $this->createTransport();
@@ -142,9 +130,7 @@ class BigtableClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function mutateRowTest()
     {
         $transport = $this->createTransport();
@@ -175,9 +161,7 @@ class BigtableClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function mutateRowExceptionTest()
     {
         $transport = $this->createTransport();
@@ -212,9 +196,7 @@ class BigtableClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function mutateRowsTest()
     {
         $transport = $this->createTransport();
@@ -252,9 +234,7 @@ class BigtableClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function mutateRowsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -290,9 +270,7 @@ class BigtableClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function pingAndWarmTest()
     {
         $transport = $this->createTransport();
@@ -317,9 +295,7 @@ class BigtableClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function pingAndWarmExceptionTest()
     {
         $transport = $this->createTransport();
@@ -352,9 +328,7 @@ class BigtableClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function readModifyWriteRowTest()
     {
         $transport = $this->createTransport();
@@ -385,9 +359,7 @@ class BigtableClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function readModifyWriteRowExceptionTest()
     {
         $transport = $this->createTransport();
@@ -422,9 +394,7 @@ class BigtableClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function readRowsTest()
     {
         $transport = $this->createTransport();
@@ -465,9 +435,7 @@ class BigtableClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function readRowsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -502,9 +470,7 @@ class BigtableClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function sampleRowKeysTest()
     {
         $transport = $this->createTransport();
@@ -551,9 +517,7 @@ class BigtableClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function sampleRowKeysExceptionTest()
     {
         $transport = $this->createTransport();

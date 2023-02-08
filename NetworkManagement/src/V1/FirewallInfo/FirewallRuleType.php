@@ -72,6 +72,4 @@ class FirewallRuleType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(FirewallRuleType::class, \Google\Cloud\NetworkManagement\V1\FirewallInfo_FirewallRuleType::class);
 

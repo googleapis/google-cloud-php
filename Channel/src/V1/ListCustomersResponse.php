@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Response message for [CloudChannelService.ListCustomers][google.cloud.channel.v1.CloudChannelService.ListCustomers].
+ * Response message for
+ * [CloudChannelService.ListCustomers][google.cloud.channel.v1.CloudChannelService.ListCustomers].
  *
  * Generated from protobuf message <code>google.cloud.channel.v1.ListCustomersResponse</code>
  */
@@ -23,7 +24,9 @@ class ListCustomersResponse extends \Google\Protobuf\Internal\Message
     private $customers;
     /**
      * A token to retrieve the next page of results.
-     * Pass to [ListCustomersRequest.page_token][google.cloud.channel.v1.ListCustomersRequest.page_token] to obtain that page.
+     * Pass to
+     * [ListCustomersRequest.page_token][google.cloud.channel.v1.ListCustomersRequest.page_token]
+     * to obtain that page.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
@@ -35,11 +38,13 @@ class ListCustomersResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Channel\V1\Customer[]|\Google\Protobuf\Internal\RepeatedField $customers
+     *     @type array<\Google\Cloud\Channel\V1\Customer>|\Google\Protobuf\Internal\RepeatedField $customers
      *           The customers belonging to a reseller or distributor.
      *     @type string $next_page_token
      *           A token to retrieve the next page of results.
-     *           Pass to [ListCustomersRequest.page_token][google.cloud.channel.v1.ListCustomersRequest.page_token] to obtain that page.
+     *           Pass to
+     *           [ListCustomersRequest.page_token][google.cloud.channel.v1.ListCustomersRequest.page_token]
+     *           to obtain that page.
      * }
      */
     public function __construct($data = NULL) {
@@ -62,7 +67,7 @@ class ListCustomersResponse extends \Google\Protobuf\Internal\Message
      * The customers belonging to a reseller or distributor.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.Customer customers = 1;</code>
-     * @param \Google\Cloud\Channel\V1\Customer[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Channel\V1\Customer>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setCustomers($var)
@@ -75,7 +80,9 @@ class ListCustomersResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * A token to retrieve the next page of results.
-     * Pass to [ListCustomersRequest.page_token][google.cloud.channel.v1.ListCustomersRequest.page_token] to obtain that page.
+     * Pass to
+     * [ListCustomersRequest.page_token][google.cloud.channel.v1.ListCustomersRequest.page_token]
+     * to obtain that page.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @return string
@@ -87,7 +94,9 @@ class ListCustomersResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * A token to retrieve the next page of results.
-     * Pass to [ListCustomersRequest.page_token][google.cloud.channel.v1.ListCustomersRequest.page_token] to obtain that page.
+     * Pass to
+     * [ListCustomersRequest.page_token][google.cloud.channel.v1.ListCustomersRequest.page_token]
+     * to obtain that page.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @param string $var

@@ -23,11 +23,9 @@
 namespace Grafeas\Tests\Unit\V1;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
 use Grafeas\V1\BatchCreateNotesResponse;
@@ -47,25 +45,19 @@ use stdClass;
  */
 class GrafeasClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return GrafeasClient
-     */
+    /** @return GrafeasClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -74,9 +66,7 @@ class GrafeasClientTest extends GeneratedTest
         return new GrafeasClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function batchCreateNotesTest()
     {
         $transport = $this->createTransport();
@@ -107,9 +97,7 @@ class GrafeasClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function batchCreateNotesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -146,9 +134,7 @@ class GrafeasClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function batchCreateOccurrencesTest()
     {
         $transport = $this->createTransport();
@@ -176,9 +162,7 @@ class GrafeasClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function batchCreateOccurrencesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -212,9 +196,7 @@ class GrafeasClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createNoteTest()
     {
         $transport = $this->createTransport();
@@ -251,9 +233,7 @@ class GrafeasClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createNoteExceptionTest()
     {
         $transport = $this->createTransport();
@@ -288,9 +268,7 @@ class GrafeasClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createOccurrenceTest()
     {
         $transport = $this->createTransport();
@@ -326,9 +304,7 @@ class GrafeasClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createOccurrenceExceptionTest()
     {
         $transport = $this->createTransport();
@@ -362,9 +338,7 @@ class GrafeasClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteNoteTest()
     {
         $transport = $this->createTransport();
@@ -388,9 +362,7 @@ class GrafeasClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteNoteExceptionTest()
     {
         $transport = $this->createTransport();
@@ -423,9 +395,7 @@ class GrafeasClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteOccurrenceTest()
     {
         $transport = $this->createTransport();
@@ -449,9 +419,7 @@ class GrafeasClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteOccurrenceExceptionTest()
     {
         $transport = $this->createTransport();
@@ -484,9 +452,7 @@ class GrafeasClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getNoteTest()
     {
         $transport = $this->createTransport();
@@ -517,9 +483,7 @@ class GrafeasClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getNoteExceptionTest()
     {
         $transport = $this->createTransport();
@@ -552,9 +516,7 @@ class GrafeasClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getOccurrenceTest()
     {
         $transport = $this->createTransport();
@@ -587,9 +549,7 @@ class GrafeasClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getOccurrenceExceptionTest()
     {
         $transport = $this->createTransport();
@@ -622,9 +582,7 @@ class GrafeasClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getOccurrenceNoteTest()
     {
         $transport = $this->createTransport();
@@ -655,9 +613,7 @@ class GrafeasClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getOccurrenceNoteExceptionTest()
     {
         $transport = $this->createTransport();
@@ -690,9 +646,7 @@ class GrafeasClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listNoteOccurrencesTest()
     {
         $transport = $this->createTransport();
@@ -727,9 +681,7 @@ class GrafeasClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listNoteOccurrencesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -762,9 +714,7 @@ class GrafeasClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listNotesTest()
     {
         $transport = $this->createTransport();
@@ -799,9 +749,7 @@ class GrafeasClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listNotesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -834,9 +782,7 @@ class GrafeasClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listOccurrencesTest()
     {
         $transport = $this->createTransport();
@@ -871,9 +817,7 @@ class GrafeasClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listOccurrencesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -906,9 +850,7 @@ class GrafeasClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateNoteTest()
     {
         $transport = $this->createTransport();
@@ -942,9 +884,7 @@ class GrafeasClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateNoteExceptionTest()
     {
         $transport = $this->createTransport();
@@ -978,9 +918,7 @@ class GrafeasClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateOccurrenceTest()
     {
         $transport = $this->createTransport();
@@ -1016,9 +954,7 @@ class GrafeasClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateOccurrenceExceptionTest()
     {
         $transport = $this->createTransport();

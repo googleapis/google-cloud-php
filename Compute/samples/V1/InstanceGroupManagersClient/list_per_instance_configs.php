@@ -26,7 +26,6 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\Compute\V1\InstanceGroupManagersClient;
-use Google\Cloud\Compute\V1\PerInstanceConfig;
 
 /**
  * Lists all of the per-instance configurations defined for the managed instance group. The orderBy query parameter is not supported.
@@ -52,7 +51,6 @@ function list_per_instance_configs_sample(
             $zone
         );
 
-        /** @var PerInstanceConfig $element */
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
         }

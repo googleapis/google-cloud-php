@@ -192,8 +192,8 @@ class Subscription extends \Google\Protobuf\Internal\Message
      */
     private $topic_message_retention_duration = null;
     /**
-     * Output only. An output-only field indicating whether or not the subscription can receive
-     * messages.
+     * Output only. An output-only field indicating whether or not the
+     * subscription can receive messages.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.Subscription.State state = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -318,8 +318,8 @@ class Subscription extends \Google\Protobuf\Internal\Message
      *           the `message_retention_duration` field in `Topic`. This field is set only
      *           in responses from the server; it is ignored if it is set in any requests.
      *     @type int $state
-     *           Output only. An output-only field indicating whether or not the subscription can receive
-     *           messages.
+     *           Output only. An output-only field indicating whether or not the
+     *           subscription can receive messages.
      * }
      */
     public function __construct($data = NULL) {
@@ -974,8 +974,8 @@ class Subscription extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. An output-only field indicating whether or not the subscription can receive
-     * messages.
+     * Output only. An output-only field indicating whether or not the
+     * subscription can receive messages.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.Subscription.State state = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
@@ -986,8 +986,8 @@ class Subscription extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. An output-only field indicating whether or not the subscription can receive
-     * messages.
+     * Output only. An output-only field indicating whether or not the
+     * subscription can receive messages.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.Subscription.State state = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var

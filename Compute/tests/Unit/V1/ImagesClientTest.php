@@ -75,7 +75,7 @@ class ImagesClientTest extends GeneratedTest
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new GlobalOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -135,7 +135,7 @@ class ImagesClientTest extends GeneratedTest
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new GlobalOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -189,7 +189,7 @@ class ImagesClientTest extends GeneratedTest
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new GlobalOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -252,7 +252,7 @@ class ImagesClientTest extends GeneratedTest
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new GlobalOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -579,7 +579,7 @@ class ImagesClientTest extends GeneratedTest
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new GlobalOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -639,7 +639,7 @@ class ImagesClientTest extends GeneratedTest
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new GlobalOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -767,7 +767,7 @@ class ImagesClientTest extends GeneratedTest
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new GlobalOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -830,7 +830,7 @@ class ImagesClientTest extends GeneratedTest
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new GlobalOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -957,7 +957,7 @@ class ImagesClientTest extends GeneratedTest
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new GlobalOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1020,7 +1020,7 @@ class ImagesClientTest extends GeneratedTest
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new GlobalOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);

@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request message for [Versions.ListVersions][google.cloud.dialogflow.v2.Versions.ListVersions].
+ * The request message for
+ * [Versions.ListVersions][google.cloud.dialogflow.v2.Versions.ListVersions].
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.ListVersionsRequest</code>
  */
@@ -25,8 +26,8 @@ class ListVersionsRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
-     * Optional. The maximum number of items to return in a single page. By default 100 and
-     * at most 1000.
+     * Optional. The maximum number of items to return in a single page. By
+     * default 100 and at most 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -50,8 +51,8 @@ class ListVersionsRequest extends \Google\Protobuf\Internal\Message
      *           - `projects/<Project ID>/agent`
      *           - `projects/<Project ID>/locations/<Location ID>/agent`
      *     @type int $page_size
-     *           Optional. The maximum number of items to return in a single page. By default 100 and
-     *           at most 1000.
+     *           Optional. The maximum number of items to return in a single page. By
+     *           default 100 and at most 1000.
      *     @type string $page_token
      *           Optional. The next_page_token value returned from a previous list request.
      * }
@@ -94,8 +95,8 @@ class ListVersionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The maximum number of items to return in a single page. By default 100 and
-     * at most 1000.
+     * Optional. The maximum number of items to return in a single page. By
+     * default 100 and at most 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -106,8 +107,8 @@ class ListVersionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The maximum number of items to return in a single page. By default 100 and
-     * at most 1000.
+     * Optional. The maximum number of items to return in a single page. By
+     * default 100 and at most 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var

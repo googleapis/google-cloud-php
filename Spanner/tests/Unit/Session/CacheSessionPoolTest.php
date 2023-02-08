@@ -988,6 +988,33 @@ class CacheSessionPoolTest extends TestCase
         $this->assertEquals($this->time + 3000, $queue[0]['expiration']);
         $this->assertEquals($this->time + 3600, $queue[1]['expiration']);
     }
+
+    public function testSessionPoolDatabaseRole()
+    {
+        $initialData = $this->cacheData([]);
+        $config = ['minSessions' => 1, 'databaseRole' => 'Reader'];
+        $cache = $this->getCacheItemPool($initialData);
+        $pool = new CacheSessionPoolStub($cache, $config, $this->time);
+        $database = $this->prophesize(DatabaseStub::class);
+        $database->identity()
+        ->willReturn([
+            'projectId' => self::PROJECT_ID,
+            'database' => self::DATABASE_NAME,
+            'instance' => self::INSTANCE_NAME
+        ]);
+        $database->name()
+            ->willReturn(self::DATABASE_NAME);
+        $connection = $this->prophesize(Grpc::class);
+        $connection->batchCreateSessions(['database' => self::DATABASE_NAME,
+            'sessionTemplate' => ['labels' => [], 'creator_role' => 'Reader'], 'sessionCount' => 1])
+            ->shouldBeCalled()
+            ->willReturn(['session' => array(['name' => 'session', 'expirtation' => $this->time])]);
+        $database->connection()
+            ->willReturn($connection->reveal());
+        $pool->setDatabase($database->reveal());
+
+        $pool->warmup();
+    }
 }
 
 //@codingStandardsIgnoreStart

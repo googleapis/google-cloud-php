@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Datastore\Tests\System;
 
+use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Datastore\DatastoreClient;
 
 /**
@@ -76,6 +77,65 @@ class RunTransactionTest extends DatastoreMultipleDbTestCase
         $transaction3->rollback();
 
         $this->assertEquals($newLastName, $result['lastName']);
+    }
+
+    /**
+     * @dataProvider defaultDbClientProvider
+     */
+    public function testTransactionWithReadTime(DatastoreClient $client)
+    {
+        $this->skipEmulatorTests();
+        $kind = 'NewPerson';
+        $lastName = 'Geller';
+        $newLastName = 'Bing';
+        $ancKey = $client->key($kind, rand(1, 999999));
+        $key = $client->key($kind, time());
+        $key->ancestorKey($ancKey);
+        $data = ['lastName' => $lastName];
+        $ancPerson = $client->entity($ancKey, $data);
+        $person = $client->entity($key, $data);
+        $client->insert($ancPerson);
+        $client->upsert($person);
+        self::$localDeletionQueue->add($ancKey);
+        self::$localDeletionQueue->add($key);
+
+        sleep(2);
+
+        $time = new Timestamp(new \DateTime());
+
+        sleep(2);
+
+        $transaction = $client->transaction();
+        $person = $transaction->lookup($key);
+        $person['lastName'] = $newLastName;
+        $transaction->update($person);
+        $transaction->commit();
+
+        sleep(2);
+
+        $query = $client->query()
+            ->kind($kind)
+            ->filter('__key__', '=', $key)
+            ->hasAncestor($ancKey);
+        $result = $client->runQuery($query);
+        $personListEntities = iterator_to_array($result);
+        // Person lastName should be the lastName AFTER update
+        $this->assertEquals($personListEntities[0]['lastName'], $newLastName);
+
+        $transaction2 = $client->readOnlyTransaction(
+            ['transactionOptions' => ['readTime' => $time]]
+        );
+        // runQuery function: Person lastName should be the lastName BEFORE update
+        $persons = $transaction2->runQuery($query);
+        $personListEntities = iterator_to_array($persons);
+        $this->assertEquals($personListEntities[0]['lastName'], $lastName);
+
+        // lookUp function: Person lastName should be the lastName BEFORE update
+        $person = $transaction2->lookup($key);
+        $this->assertEquals($person['lastName'], $lastName);
+
+        $person = $transaction2->lookupBatch([$key]);
+        $this->assertEquals($person['found'][0]['lastName'], $lastName);
     }
 
     /**

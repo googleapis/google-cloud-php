@@ -36,13 +36,14 @@ class AssetServiceGrpcClient extends \Grpc\BaseStub {
      * Exports assets with time and resource types to a given Cloud Storage
      * location/BigQuery table. For Cloud Storage location destinations, the
      * output format is newline-delimited JSON. Each line represents a
-     * [google.cloud.asset.v1.Asset][google.cloud.asset.v1.Asset] in the JSON format; for BigQuery table
-     * destinations, the output table stores the fields in asset Protobuf as
-     * columns. This API implements the [google.longrunning.Operation][google.longrunning.Operation] API,
-     * which allows you to keep track of the export. We recommend intervals of at
-     * least 2 seconds with exponential retry to poll the export operation result.
-     * For regular-size resource parent, the export operation usually finishes
-     * within 5 minutes.
+     * [google.cloud.asset.v1.Asset][google.cloud.asset.v1.Asset] in the JSON
+     * format; for BigQuery table destinations, the output table stores the fields
+     * in asset Protobuf as columns. This API implements the
+     * [google.longrunning.Operation][google.longrunning.Operation] API, which
+     * allows you to keep track of the export. We recommend intervals of at least
+     * 2 seconds with exponential retry to poll the export operation result. For
+     * regular-size resource parent, the export operation usually finishes within
+     * 5 minutes.
      * @param \Google\Cloud\Asset\V1\ExportAssetsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -170,8 +171,8 @@ class AssetServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Searches all Cloud resources within the specified scope, such as a project,
-     * folder, or organization. The caller must be granted the
+     * Searches all Google Cloud resources within the specified scope, such as a
+     * project, folder, or organization. The caller must be granted the
      * `cloudasset.assets.searchAllResources` permission on the desired scope,
      * otherwise the request will be rejected.
      * @param \Google\Cloud\Asset\V1\SearchAllResourcesRequest $argument input argument
@@ -226,11 +227,12 @@ class AssetServiceGrpcClient extends \Grpc\BaseStub {
      * accesses on which resources, and writes the analysis results to a Google
      * Cloud Storage or a BigQuery destination. For Cloud Storage destination, the
      * output format is the JSON format that represents a
-     * [AnalyzeIamPolicyResponse][google.cloud.asset.v1.AnalyzeIamPolicyResponse]. This method implements the
-     * [google.longrunning.Operation][google.longrunning.Operation], which allows you to track the operation
-     * status. We recommend intervals of at least 2 seconds with exponential
-     * backoff retry to poll the operation result. The metadata contains the
-     * metadata for the long-running operation.
+     * [AnalyzeIamPolicyResponse][google.cloud.asset.v1.AnalyzeIamPolicyResponse].
+     * This method implements the
+     * [google.longrunning.Operation][google.longrunning.Operation], which allows
+     * you to track the operation status. We recommend intervals of at least 2
+     * seconds with exponential backoff retry to poll the operation result. The
+     * metadata contains the metadata for the long-running operation.
      * @param \Google\Cloud\Asset\V1\AnalyzeIamPolicyLongrunningRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -378,6 +380,70 @@ class AssetServiceGrpcClient extends \Grpc\BaseStub {
         return $this->_simpleRequest('/google.cloud.asset.v1.AssetService/BatchGetEffectiveIamPolicies',
         $argument,
         ['\Google\Cloud\Asset\V1\BatchGetEffectiveIamPoliciesResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Analyzes organization policies under a scope.
+     * @param \Google\Cloud\Asset\V1\AnalyzeOrgPoliciesRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function AnalyzeOrgPolicies(\Google\Cloud\Asset\V1\AnalyzeOrgPoliciesRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.asset.v1.AssetService/AnalyzeOrgPolicies',
+        $argument,
+        ['\Google\Cloud\Asset\V1\AnalyzeOrgPoliciesResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Analyzes organization policies governed containers (projects, folders or
+     * organization) under a scope.
+     * @param \Google\Cloud\Asset\V1\AnalyzeOrgPolicyGovernedContainersRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function AnalyzeOrgPolicyGovernedContainers(\Google\Cloud\Asset\V1\AnalyzeOrgPolicyGovernedContainersRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.asset.v1.AssetService/AnalyzeOrgPolicyGovernedContainers',
+        $argument,
+        ['\Google\Cloud\Asset\V1\AnalyzeOrgPolicyGovernedContainersResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Analyzes organization policies governed assets (Google Cloud resources or
+     * policies) under a scope. This RPC supports custom constraints and the
+     * following 10 canned constraints:
+     *
+     * * storage.uniformBucketLevelAccess
+     * * iam.disableServiceAccountKeyCreation
+     * * iam.allowedPolicyMemberDomains
+     * * compute.vmExternalIpAccess
+     * * appengine.enforceServiceAccountActAsCheck
+     * * gcp.resourceLocations
+     * * compute.trustedImageProjects
+     * * compute.skipDefaultNetworkCreation
+     * * compute.requireOsLogin
+     * * compute.disableNestedVirtualization
+     *
+     * This RPC only returns either resources of types supported by [searchable
+     * asset
+     * types](https://cloud.google.com/asset-inventory/docs/supported-asset-types#searchable_asset_types),
+     * or IAM policies.
+     * @param \Google\Cloud\Asset\V1\AnalyzeOrgPolicyGovernedAssetsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function AnalyzeOrgPolicyGovernedAssets(\Google\Cloud\Asset\V1\AnalyzeOrgPolicyGovernedAssetsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.asset.v1.AssetService/AnalyzeOrgPolicyGovernedAssets',
+        $argument,
+        ['\Google\Cloud\Asset\V1\AnalyzeOrgPolicyGovernedAssetsResponse', 'decode'],
         $metadata, $options);
     }
 

@@ -50,7 +50,8 @@ class SavedQuery extends \Google\Protobuf\Internal\Message
      */
     private $last_update_time = null;
     /**
-     * Output only. The account's email address who has updated this saved query most recently.
+     * Output only. The account's email address who has updated this saved query
+     * most recently.
      *
      * Generated from protobuf field <code>string last_updater = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -91,7 +92,8 @@ class SavedQuery extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $last_update_time
      *           Output only. The last update time of this saved query.
      *     @type string $last_updater
-     *           Output only. The account's email address who has updated this saved query most recently.
+     *           Output only. The account's email address who has updated this saved query
+     *           most recently.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Labels applied on the resource.
      *           This value should not contain more than 10 entries. The key and value of
@@ -264,7 +266,8 @@ class SavedQuery extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The account's email address who has updated this saved query most recently.
+     * Output only. The account's email address who has updated this saved query
+     * most recently.
      *
      * Generated from protobuf field <code>string last_updater = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -275,7 +278,8 @@ class SavedQuery extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The account's email address who has updated this saved query most recently.
+     * Output only. The account's email address who has updated this saved query
+     * most recently.
      *
      * Generated from protobuf field <code>string last_updater = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var

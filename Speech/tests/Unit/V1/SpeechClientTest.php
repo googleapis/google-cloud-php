@@ -24,14 +24,11 @@ namespace Google\Cloud\Speech\Tests\Unit\V1;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\BidiStream;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
-
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Speech\V1\LongRunningRecognizeResponse;
-
 use Google\Cloud\Speech\V1\RecognitionAudio;
 use Google\Cloud\Speech\V1\RecognitionConfig;
 use Google\Cloud\Speech\V1\RecognizeResponse;
@@ -51,25 +48,19 @@ use stdClass;
  */
 class SpeechClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return SpeechClient
-     */
+    /** @return SpeechClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -78,14 +69,12 @@ class SpeechClientTest extends GeneratedTest
         return new SpeechClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function longRunningRecognizeTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -101,7 +90,9 @@ class SpeechClientTest extends GeneratedTest
         $incompleteOperation->setName('operations/longRunningRecognizeTest');
         $incompleteOperation->setDone(false);
         $transport->addResponse($incompleteOperation);
+        $requestId = 37109963;
         $expectedResponse = new LongRunningRecognizeResponse();
+        $expectedResponse->setRequestId($requestId);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -147,14 +138,12 @@ class SpeechClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function longRunningRecognizeExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -207,9 +196,7 @@ class SpeechClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function recognizeTest()
     {
         $transport = $this->createTransport();
@@ -218,7 +205,9 @@ class SpeechClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
+        $requestId = 37109963;
         $expectedResponse = new RecognizeResponse();
+        $expectedResponse->setRequestId($requestId);
         $transport->addResponse($expectedResponse);
         // Mock request
         $config = new RecognitionConfig();
@@ -239,9 +228,7 @@ class SpeechClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function recognizeExceptionTest()
     {
         $transport = $this->createTransport();
@@ -277,9 +264,7 @@ class SpeechClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function streamingRecognizeTest()
     {
         $transport = $this->createTransport();
@@ -288,11 +273,17 @@ class SpeechClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
+        $requestId = 37109963;
         $expectedResponse = new StreamingRecognizeResponse();
+        $expectedResponse->setRequestId($requestId);
         $transport->addResponse($expectedResponse);
+        $requestId2 = 1302939070;
         $expectedResponse2 = new StreamingRecognizeResponse();
+        $expectedResponse2->setRequestId($requestId2);
         $transport->addResponse($expectedResponse2);
+        $requestId3 = 1302939071;
         $expectedResponse3 = new StreamingRecognizeResponse();
+        $expectedResponse3->setRequestId($requestId3);
         $transport->addResponse($expectedResponse3);
         // Mock request
         $request = new StreamingRecognizeRequest();
@@ -334,9 +325,7 @@ class SpeechClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function streamingRecognizeExceptionTest()
     {
         $transport = $this->createTransport();

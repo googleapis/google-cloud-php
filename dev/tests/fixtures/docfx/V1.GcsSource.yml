@@ -42,8 +42,6 @@ items:
     summary: |
       Google Cloud Storage URI for the input file. This must only be a
       Google Cloud Storage object. Wildcards are not currently supported.
-      
-      Generated from protobuf field <code>string uri = 1;</code>
     parent: \Google\Cloud\Vision\V1\GcsSource
     type: method
     langs:
@@ -59,8 +57,6 @@ items:
     summary: |
       Google Cloud Storage URI for the input file. This must only be a
       Google Cloud Storage object. Wildcards are not currently supported.
-      
-      Generated from protobuf field <code>string uri = 1;</code>
     parent: \Google\Cloud\Vision\V1\GcsSource
     type: method
     langs:

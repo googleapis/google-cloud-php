@@ -17,13 +17,15 @@ use Google\Protobuf\Internal\GPBUtil;
 class CustomerManagedEncryption extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name of the Cloud KMS CryptoKey used to encrypt secret
-     * payloads.
-     * For secrets using the [UserManaged][google.cloud.secretmanager.v1.Replication.UserManaged] replication
-     * policy type, Cloud KMS CryptoKeys must reside in the same location as the
-     * [replica location][Secret.UserManaged.Replica.location].
-     * For secrets using the [Automatic][google.cloud.secretmanager.v1.Replication.Automatic] replication policy
-     * type, Cloud KMS CryptoKeys must reside in `global`.
+     * Required. The resource name of the Cloud KMS CryptoKey used to encrypt
+     * secret payloads.
+     * For secrets using the
+     * [UserManaged][google.cloud.secretmanager.v1.Replication.UserManaged]
+     * replication policy type, Cloud KMS CryptoKeys must reside in the same
+     * location as the [replica location][Secret.UserManaged.Replica.location].
+     * For secrets using the
+     * [Automatic][google.cloud.secretmanager.v1.Replication.Automatic]
+     * replication policy type, Cloud KMS CryptoKeys must reside in `global`.
      * The expected format is `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;`.
      *
      * Generated from protobuf field <code>string kms_key_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -37,13 +39,15 @@ class CustomerManagedEncryption extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $kms_key_name
-     *           Required. The resource name of the Cloud KMS CryptoKey used to encrypt secret
-     *           payloads.
-     *           For secrets using the [UserManaged][google.cloud.secretmanager.v1.Replication.UserManaged] replication
-     *           policy type, Cloud KMS CryptoKeys must reside in the same location as the
-     *           [replica location][Secret.UserManaged.Replica.location].
-     *           For secrets using the [Automatic][google.cloud.secretmanager.v1.Replication.Automatic] replication policy
-     *           type, Cloud KMS CryptoKeys must reside in `global`.
+     *           Required. The resource name of the Cloud KMS CryptoKey used to encrypt
+     *           secret payloads.
+     *           For secrets using the
+     *           [UserManaged][google.cloud.secretmanager.v1.Replication.UserManaged]
+     *           replication policy type, Cloud KMS CryptoKeys must reside in the same
+     *           location as the [replica location][Secret.UserManaged.Replica.location].
+     *           For secrets using the
+     *           [Automatic][google.cloud.secretmanager.v1.Replication.Automatic]
+     *           replication policy type, Cloud KMS CryptoKeys must reside in `global`.
      *           The expected format is `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;`.
      * }
      */
@@ -53,13 +57,15 @@ class CustomerManagedEncryption extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the Cloud KMS CryptoKey used to encrypt secret
-     * payloads.
-     * For secrets using the [UserManaged][google.cloud.secretmanager.v1.Replication.UserManaged] replication
-     * policy type, Cloud KMS CryptoKeys must reside in the same location as the
-     * [replica location][Secret.UserManaged.Replica.location].
-     * For secrets using the [Automatic][google.cloud.secretmanager.v1.Replication.Automatic] replication policy
-     * type, Cloud KMS CryptoKeys must reside in `global`.
+     * Required. The resource name of the Cloud KMS CryptoKey used to encrypt
+     * secret payloads.
+     * For secrets using the
+     * [UserManaged][google.cloud.secretmanager.v1.Replication.UserManaged]
+     * replication policy type, Cloud KMS CryptoKeys must reside in the same
+     * location as the [replica location][Secret.UserManaged.Replica.location].
+     * For secrets using the
+     * [Automatic][google.cloud.secretmanager.v1.Replication.Automatic]
+     * replication policy type, Cloud KMS CryptoKeys must reside in `global`.
      * The expected format is `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;`.
      *
      * Generated from protobuf field <code>string kms_key_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -71,13 +77,15 @@ class CustomerManagedEncryption extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the Cloud KMS CryptoKey used to encrypt secret
-     * payloads.
-     * For secrets using the [UserManaged][google.cloud.secretmanager.v1.Replication.UserManaged] replication
-     * policy type, Cloud KMS CryptoKeys must reside in the same location as the
-     * [replica location][Secret.UserManaged.Replica.location].
-     * For secrets using the [Automatic][google.cloud.secretmanager.v1.Replication.Automatic] replication policy
-     * type, Cloud KMS CryptoKeys must reside in `global`.
+     * Required. The resource name of the Cloud KMS CryptoKey used to encrypt
+     * secret payloads.
+     * For secrets using the
+     * [UserManaged][google.cloud.secretmanager.v1.Replication.UserManaged]
+     * replication policy type, Cloud KMS CryptoKeys must reside in the same
+     * location as the [replica location][Secret.UserManaged.Replica.location].
+     * For secrets using the
+     * [Automatic][google.cloud.secretmanager.v1.Replication.Automatic]
+     * replication policy type, Cloud KMS CryptoKeys must reside in `global`.
      * The expected format is `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;`.
      *
      * Generated from protobuf field <code>string kms_key_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>

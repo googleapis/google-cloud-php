@@ -16,7 +16,7 @@ class Histogram
         }
         $pool->internalAddGeneratedFile(
             '
-›
+‘
 &google/cloud/talent/v4/histogram.protogoogle.cloud.talent.v4")
 HistogramQuery
 histogram_query (	"±
@@ -25,8 +25,8 @@ class Histogram
 	histogram (2;.google.cloud.talent.v4.HistogramQueryResult.HistogramEntry0
 HistogramEntry
 key (	
-value (:8Br
-com.google.cloud.talent.v4BHistogramProtoPZ<google.golang.org/genproto/googleapis/cloud/talent/v4;talent¢CTSbproto3'
+value (:8Bh
+com.google.cloud.talent.v4BHistogramProtoPZ2cloud.google.com/go/talent/apiv4/talentpb;talentpb¢CTSbproto3'
         , true);
 
         static::$is_initialized = true;
