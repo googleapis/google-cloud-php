@@ -35,8 +35,8 @@ use Google\Cloud\OrgPolicy\V2\Policy;
  * Returns a `google.rpc.Status` with `google.rpc.Code.ALREADY_EXISTS` if the
  * policy already exists on the given Cloud resource.
  *
- * @param string $formattedParent The Cloud resource that will parent the new Policy. Must be in one of the
- *                                following forms:
+ * @param string $formattedParent The Cloud resource that will parent the new Policy. Must be in
+ *                                one of the following forms:
  *                                * `projects/{project_number}`
  *                                * `projects/{project_id}`
  *                                * `folders/{folder_id}`

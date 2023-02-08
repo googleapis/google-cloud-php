@@ -17,8 +17,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreatePolicyRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The Cloud resource that will parent the new Policy. Must be in one of the
-     * following forms:
+     * Required. The Cloud resource that will parent the new Policy. Must be in
+     * one of the following forms:
      * * `projects/{project_number}`
      * * `projects/{project_id}`
      * * `folders/{folder_id}`
@@ -41,8 +41,8 @@ class CreatePolicyRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The Cloud resource that will parent the new Policy. Must be in one of the
-     *           following forms:
+     *           Required. The Cloud resource that will parent the new Policy. Must be in
+     *           one of the following forms:
      *           * `projects/{project_number}`
      *           * `projects/{project_id}`
      *           * `folders/{folder_id}`
@@ -57,8 +57,8 @@ class CreatePolicyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The Cloud resource that will parent the new Policy. Must be in one of the
-     * following forms:
+     * Required. The Cloud resource that will parent the new Policy. Must be in
+     * one of the following forms:
      * * `projects/{project_number}`
      * * `projects/{project_id}`
      * * `folders/{folder_id}`
@@ -73,8 +73,8 @@ class CreatePolicyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The Cloud resource that will parent the new Policy. Must be in one of the
-     * following forms:
+     * Required. The Cloud resource that will parent the new Policy. Must be in
+     * one of the following forms:
      * * `projects/{project_number}`
      * * `projects/{project_id}`
      * * `folders/{folder_id}`

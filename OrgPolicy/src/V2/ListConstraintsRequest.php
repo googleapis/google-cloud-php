@@ -17,8 +17,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListConstraintsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The Cloud resource that parents the constraint. Must be in one of the
-     * following forms:
+     * Required. The Cloud resource that parents the constraint. Must be in one of
+     * the following forms:
      * * `projects/{project_number}`
      * * `projects/{project_id}`
      * * `folders/{folder_id}`
@@ -50,8 +50,8 @@ class ListConstraintsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The Cloud resource that parents the constraint. Must be in one of the
-     *           following forms:
+     *           Required. The Cloud resource that parents the constraint. Must be in one of
+     *           the following forms:
      *           * `projects/{project_number}`
      *           * `projects/{project_id}`
      *           * `folders/{folder_id}`
@@ -71,8 +71,8 @@ class ListConstraintsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The Cloud resource that parents the constraint. Must be in one of the
-     * following forms:
+     * Required. The Cloud resource that parents the constraint. Must be in one of
+     * the following forms:
      * * `projects/{project_number}`
      * * `projects/{project_id}`
      * * `folders/{folder_id}`
@@ -87,8 +87,8 @@ class ListConstraintsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The Cloud resource that parents the constraint. Must be in one of the
-     * following forms:
+     * Required. The Cloud resource that parents the constraint. Must be in one of
+     * the following forms:
      * * `projects/{project_number}`
      * * `projects/{project_id}`
      * * `folders/{folder_id}`
