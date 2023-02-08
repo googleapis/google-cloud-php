@@ -44,8 +44,6 @@ items:
     summary: |
       The Google Cloud Storage location for a csv file which preserves a list
       of ImportProductSetRequests in each line.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.ImportProductSetsGcsSource gcs_source = 1;</code>
     parent: \Google\Cloud\Vision\V1\ImportProductSetsInputConfig
     type: method
     langs:
@@ -69,8 +67,6 @@ items:
     summary: |
       The Google Cloud Storage location for a csv file which preserves a list
       of ImportProductSetRequests in each line.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.ImportProductSetsGcsSource gcs_source = 1;</code>
     parent: \Google\Cloud\Vision\V1\ImportProductSetsInputConfig
     type: method
     langs:

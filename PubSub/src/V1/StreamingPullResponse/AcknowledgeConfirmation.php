@@ -19,20 +19,20 @@ class AcknowledgeConfirmation extends \Google\Protobuf\Internal\Message
     /**
      * Successfully processed acknowledgement IDs.
      *
-     * Generated from protobuf field <code>repeated string ack_ids = 1 [ctype = CORD];</code>
+     * Generated from protobuf field <code>repeated string ack_ids = 1;</code>
      */
     private $ack_ids;
     /**
      * List of acknowledgement IDs that were malformed or whose acknowledgement
      * deadline has expired.
      *
-     * Generated from protobuf field <code>repeated string invalid_ack_ids = 2 [ctype = CORD];</code>
+     * Generated from protobuf field <code>repeated string invalid_ack_ids = 2;</code>
      */
     private $invalid_ack_ids;
     /**
      * List of acknowledgement IDs that were out of order.
      *
-     * Generated from protobuf field <code>repeated string unordered_ack_ids = 3 [ctype = CORD];</code>
+     * Generated from protobuf field <code>repeated string unordered_ack_ids = 3;</code>
      */
     private $unordered_ack_ids;
 
@@ -59,7 +59,7 @@ class AcknowledgeConfirmation extends \Google\Protobuf\Internal\Message
     /**
      * Successfully processed acknowledgement IDs.
      *
-     * Generated from protobuf field <code>repeated string ack_ids = 1 [ctype = CORD];</code>
+     * Generated from protobuf field <code>repeated string ack_ids = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getAckIds()
@@ -70,7 +70,7 @@ class AcknowledgeConfirmation extends \Google\Protobuf\Internal\Message
     /**
      * Successfully processed acknowledgement IDs.
      *
-     * Generated from protobuf field <code>repeated string ack_ids = 1 [ctype = CORD];</code>
+     * Generated from protobuf field <code>repeated string ack_ids = 1;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -86,7 +86,7 @@ class AcknowledgeConfirmation extends \Google\Protobuf\Internal\Message
      * List of acknowledgement IDs that were malformed or whose acknowledgement
      * deadline has expired.
      *
-     * Generated from protobuf field <code>repeated string invalid_ack_ids = 2 [ctype = CORD];</code>
+     * Generated from protobuf field <code>repeated string invalid_ack_ids = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getInvalidAckIds()
@@ -98,7 +98,7 @@ class AcknowledgeConfirmation extends \Google\Protobuf\Internal\Message
      * List of acknowledgement IDs that were malformed or whose acknowledgement
      * deadline has expired.
      *
-     * Generated from protobuf field <code>repeated string invalid_ack_ids = 2 [ctype = CORD];</code>
+     * Generated from protobuf field <code>repeated string invalid_ack_ids = 2;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -113,7 +113,7 @@ class AcknowledgeConfirmation extends \Google\Protobuf\Internal\Message
     /**
      * List of acknowledgement IDs that were out of order.
      *
-     * Generated from protobuf field <code>repeated string unordered_ack_ids = 3 [ctype = CORD];</code>
+     * Generated from protobuf field <code>repeated string unordered_ack_ids = 3;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getUnorderedAckIds()
@@ -124,7 +124,7 @@ class AcknowledgeConfirmation extends \Google\Protobuf\Internal\Message
     /**
      * List of acknowledgement IDs that were out of order.
      *
-     * Generated from protobuf field <code>repeated string unordered_ack_ids = 3 [ctype = CORD];</code>
+     * Generated from protobuf field <code>repeated string unordered_ack_ids = 3;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

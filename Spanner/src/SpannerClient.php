@@ -93,7 +93,7 @@ class SpannerClient
     use LROTrait;
     use ValidateTrait;
 
-    const VERSION = '1.54.2';
+    const VERSION = '1.55.0';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/spanner.data';
     const ADMIN_SCOPE = 'https://www.googleapis.com/auth/spanner.admin';
@@ -593,6 +593,7 @@ class SpannerClient
      *
      *     @type SessionPoolInterface $sessionPool A pool used to manage
      *           sessions.
+     *     @type string $databaseRole The user created database role which creates the session.
      * }
      * @return Database
      */

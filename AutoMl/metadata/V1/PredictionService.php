@@ -24,7 +24,7 @@ class PredictionService
         \GPBMetadata\Google\Longrunning\Operations::initOnce();
         $pool->internalAddGeneratedFile(
             '
-‰
+ÿ
 /google/cloud/automl/v1/prediction_service.protogoogle.cloud.automl.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto/google/cloud/automl/v1/annotation_payload.proto\'google/cloud/automl/v1/data_items.protogoogle/cloud/automl/v1/io.proto#google/longrunning/operations.proto"ô
 PredictRequest1
 name (	B#àAúA
@@ -58,8 +58,8 @@ class PredictionService
 PredictionService¯
 Predict&.google.cloud.automl.v1.PredictRequest\'.google.cloud.automl.v1.PredictResponse"S‚Óä“7"2/v1/{name=projects/*/locations/*/models/*}:predict:*ÚAname,payload,paramsò
 BatchPredict+.google.cloud.automl.v1.BatchPredictRequest.google.longrunning.Operation"•‚Óä“<"7/v1/{name=projects/*/locations/*/models/*}:batchPredict:*ÚA&name,input_config,output_config,paramsÊA\'
-BatchPredictResultOperationMetadataIÊAautoml.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBÂ
-com.google.cloud.automl.v1BPredictionServiceProtoPZ<google.golang.org/genproto/googleapis/cloud/automl/v1;automlªGoogle.Cloud.AutoML.V1ÊGoogle\\Cloud\\AutoMl\\V1êGoogle::Cloud::AutoML::V1bproto3'
+BatchPredictResultOperationMetadataIÊAautoml.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB¸
+com.google.cloud.automl.v1BPredictionServiceProtoPZ2cloud.google.com/go/automl/apiv1/automlpb;automlpbªGoogle.Cloud.AutoML.V1ÊGoogle\\Cloud\\AutoMl\\V1êGoogle::Cloud::AutoML::V1bproto3'
         , true);
 
         static::$is_initialized = true;

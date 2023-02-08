@@ -210,7 +210,6 @@ class CacheSessionPool implements SessionPoolInterface
      *           labels.
      *     @type string $databaseRole The user created database role which creates the session.
      * }
-     * }
      * @throws \InvalidArgumentException
      */
     public function __construct(CacheItemPoolInterface $cacheItemPool, array $config = [])

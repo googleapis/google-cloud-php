@@ -29,7 +29,8 @@ class Tenant extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * Required. Client side tenant identifier, used to uniquely identify the tenant.
+     * Required. Client side tenant identifier, used to uniquely identify the
+     * tenant.
      * The maximum number of allowed characters is 255.
      *
      * Generated from protobuf field <code>string external_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -49,7 +50,8 @@ class Tenant extends \Google\Protobuf\Internal\Message
      *           The format is "projects/{project_id}/tenants/{tenant_id}", for example,
      *           "projects/foo/tenants/bar".
      *     @type string $external_id
-     *           Required. Client side tenant identifier, used to uniquely identify the tenant.
+     *           Required. Client side tenant identifier, used to uniquely identify the
+     *           tenant.
      *           The maximum number of allowed characters is 255.
      * }
      */
@@ -93,7 +95,8 @@ class Tenant extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Client side tenant identifier, used to uniquely identify the tenant.
+     * Required. Client side tenant identifier, used to uniquely identify the
+     * tenant.
      * The maximum number of allowed characters is 255.
      *
      * Generated from protobuf field <code>string external_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -105,7 +108,8 @@ class Tenant extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Client side tenant identifier, used to uniquely identify the tenant.
+     * Required. Client side tenant identifier, used to uniquely identify the
+     * tenant.
      * The maximum number of allowed characters is 255.
      *
      * Generated from protobuf field <code>string external_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>

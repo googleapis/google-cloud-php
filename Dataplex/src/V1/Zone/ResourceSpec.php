@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class ResourceSpec extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Immutable. The location type of the resources that are allowed to be attached to the
-     * assets within this zone.
+     * Required. Immutable. The location type of the resources that are allowed
+     * to be attached to the assets within this zone.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.Zone.ResourceSpec.LocationType location_type = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
@@ -30,8 +30,8 @@ class ResourceSpec extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $location_type
-     *           Required. Immutable. The location type of the resources that are allowed to be attached to the
-     *           assets within this zone.
+     *           Required. Immutable. The location type of the resources that are allowed
+     *           to be attached to the assets within this zone.
      * }
      */
     public function __construct($data = NULL) {
@@ -40,8 +40,8 @@ class ResourceSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Immutable. The location type of the resources that are allowed to be attached to the
-     * assets within this zone.
+     * Required. Immutable. The location type of the resources that are allowed
+     * to be attached to the assets within this zone.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.Zone.ResourceSpec.LocationType location_type = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return int
@@ -52,8 +52,8 @@ class ResourceSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Immutable. The location type of the resources that are allowed to be attached to the
-     * assets within this zone.
+     * Required. Immutable. The location type of the resources that are allowed
+     * to be attached to the assets within this zone.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.Zone.ResourceSpec.LocationType location_type = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param int $var

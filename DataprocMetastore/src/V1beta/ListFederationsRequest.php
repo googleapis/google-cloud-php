@@ -16,17 +16,18 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListFederationsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The relative resource name of the location of metastore federations
-     * to list, in the following form:
+     * Required. The relative resource name of the location of metastore
+     * federations to list, in the following form:
      * `projects/{project_number}/locations/{location_id}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
-     * Optional. The maximum number of federations to return. The response may contain less
-     * than the maximum number. If unspecified, no more than 500 services are
-     * returned. The maximum value is 1000; values above 1000 are changed to 1000.
+     * Optional. The maximum number of federations to return. The response may
+     * contain less than the maximum number. If unspecified, no more than 500
+     * services are returned. The maximum value is 1000; values above 1000 are
+     * changed to 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -64,13 +65,14 @@ class ListFederationsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The relative resource name of the location of metastore federations
-     *           to list, in the following form:
+     *           Required. The relative resource name of the location of metastore
+     *           federations to list, in the following form:
      *           `projects/{project_number}/locations/{location_id}`.
      *     @type int $page_size
-     *           Optional. The maximum number of federations to return. The response may contain less
-     *           than the maximum number. If unspecified, no more than 500 services are
-     *           returned. The maximum value is 1000; values above 1000 are changed to 1000.
+     *           Optional. The maximum number of federations to return. The response may
+     *           contain less than the maximum number. If unspecified, no more than 500
+     *           services are returned. The maximum value is 1000; values above 1000 are
+     *           changed to 1000.
      *     @type string $page_token
      *           Optional. A page token, received from a previous ListFederationServices
      *           call. Provide this token to retrieve the subsequent page.
@@ -92,8 +94,8 @@ class ListFederationsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The relative resource name of the location of metastore federations
-     * to list, in the following form:
+     * Required. The relative resource name of the location of metastore
+     * federations to list, in the following form:
      * `projects/{project_number}/locations/{location_id}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -105,8 +107,8 @@ class ListFederationsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The relative resource name of the location of metastore federations
-     * to list, in the following form:
+     * Required. The relative resource name of the location of metastore
+     * federations to list, in the following form:
      * `projects/{project_number}/locations/{location_id}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -122,9 +124,10 @@ class ListFederationsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The maximum number of federations to return. The response may contain less
-     * than the maximum number. If unspecified, no more than 500 services are
-     * returned. The maximum value is 1000; values above 1000 are changed to 1000.
+     * Optional. The maximum number of federations to return. The response may
+     * contain less than the maximum number. If unspecified, no more than 500
+     * services are returned. The maximum value is 1000; values above 1000 are
+     * changed to 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -135,9 +138,10 @@ class ListFederationsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The maximum number of federations to return. The response may contain less
-     * than the maximum number. If unspecified, no more than 500 services are
-     * returned. The maximum value is 1000; values above 1000 are changed to 1000.
+     * Optional. The maximum number of federations to return. The response may
+     * contain less than the maximum number. If unspecified, no more than 500
+     * services are returned. The maximum value is 1000; values above 1000 are
+     * changed to 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var

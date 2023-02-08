@@ -17,9 +17,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListPoliciesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The target Cloud resource that parents the set of constraints and policies
-     * that will be returned from this call. Must be in one of the following
-     * forms:
+     * Required. The target Cloud resource that parents the set of constraints and
+     * policies that will be returned from this call. Must be in one of the
+     * following forms:
      * * `projects/{project_number}`
      * * `projects/{project_id}`
      * * `folders/{folder_id}`
@@ -51,9 +51,9 @@ class ListPoliciesRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The target Cloud resource that parents the set of constraints and policies
-     *           that will be returned from this call. Must be in one of the following
-     *           forms:
+     *           Required. The target Cloud resource that parents the set of constraints and
+     *           policies that will be returned from this call. Must be in one of the
+     *           following forms:
      *           * `projects/{project_number}`
      *           * `projects/{project_id}`
      *           * `folders/{folder_id}`
@@ -73,9 +73,9 @@ class ListPoliciesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The target Cloud resource that parents the set of constraints and policies
-     * that will be returned from this call. Must be in one of the following
-     * forms:
+     * Required. The target Cloud resource that parents the set of constraints and
+     * policies that will be returned from this call. Must be in one of the
+     * following forms:
      * * `projects/{project_number}`
      * * `projects/{project_id}`
      * * `folders/{folder_id}`
@@ -90,9 +90,9 @@ class ListPoliciesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The target Cloud resource that parents the set of constraints and policies
-     * that will be returned from this call. Must be in one of the following
-     * forms:
+     * Required. The target Cloud resource that parents the set of constraints and
+     * policies that will be returned from this call. Must be in one of the
+     * following forms:
      * * `projects/{project_number}`
      * * `projects/{project_id}`
      * * `folders/{folder_id}`

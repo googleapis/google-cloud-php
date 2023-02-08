@@ -31,9 +31,9 @@ use Google\Cloud\OsLogin\V1\OsLoginServiceClient;
  * Updates an SSH public key and returns the profile information. This method
  * supports patch semantics.
  *
- * @param string $formattedName The fingerprint of the public key to update. Public keys are identified by
- *                              their SHA-256 fingerprint. The fingerprint of the public key is in format
- *                              `users/{user}/sshPublicKeys/{fingerprint}`. Please see
+ * @param string $formattedName The fingerprint of the public key to update. Public keys are
+ *                              identified by their SHA-256 fingerprint. The fingerprint of the public key
+ *                              is in format `users/{user}/sshPublicKeys/{fingerprint}`. Please see
  *                              {@see OsLoginServiceClient::sshPublicKeyName()} for help formatting this field.
  */
 function update_ssh_public_key_sample(string $formattedName): void

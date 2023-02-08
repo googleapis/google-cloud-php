@@ -23,13 +23,10 @@
 namespace Google\Cloud\Spanner\Tests\Unit\V1;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
-
 use Google\ApiCore\ServerStream;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-
 use Google\Cloud\Spanner\V1\BatchCreateSessionsResponse;
 use Google\Cloud\Spanner\V1\CommitResponse;
 use Google\Cloud\Spanner\V1\ExecuteBatchDmlResponse;
@@ -54,25 +51,19 @@ use stdClass;
  */
 class SpannerClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return SpannerClient
-     */
+    /** @return SpannerClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -81,9 +72,7 @@ class SpannerClientTest extends GeneratedTest
         return new SpannerClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function batchCreateSessionsTest()
     {
         $transport = $this->createTransport();
@@ -111,9 +100,7 @@ class SpannerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function batchCreateSessionsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -147,9 +134,7 @@ class SpannerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function beginTransactionTest()
     {
         $transport = $this->createTransport();
@@ -179,9 +164,7 @@ class SpannerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function beginTransactionExceptionTest()
     {
         $transport = $this->createTransport();
@@ -215,9 +198,7 @@ class SpannerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function commitTest()
     {
         $transport = $this->createTransport();
@@ -243,9 +224,7 @@ class SpannerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function commitExceptionTest()
     {
         $transport = $this->createTransport();
@@ -279,9 +258,7 @@ class SpannerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createSessionTest()
     {
         $transport = $this->createTransport();
@@ -310,9 +287,7 @@ class SpannerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createSessionExceptionTest()
     {
         $transport = $this->createTransport();
@@ -345,9 +320,7 @@ class SpannerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteSessionTest()
     {
         $transport = $this->createTransport();
@@ -371,9 +344,7 @@ class SpannerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteSessionExceptionTest()
     {
         $transport = $this->createTransport();
@@ -406,9 +377,7 @@ class SpannerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function executeBatchDmlTest()
     {
         $transport = $this->createTransport();
@@ -442,9 +411,7 @@ class SpannerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function executeBatchDmlExceptionTest()
     {
         $transport = $this->createTransport();
@@ -480,9 +447,7 @@ class SpannerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function executeSqlTest()
     {
         $transport = $this->createTransport();
@@ -510,9 +475,7 @@ class SpannerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function executeSqlExceptionTest()
     {
         $transport = $this->createTransport();
@@ -546,9 +509,7 @@ class SpannerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function executeStreamingSqlTest()
     {
         $transport = $this->createTransport();
@@ -598,9 +559,7 @@ class SpannerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function executeStreamingSqlExceptionTest()
     {
         $transport = $this->createTransport();
@@ -636,9 +595,7 @@ class SpannerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getSessionTest()
     {
         $transport = $this->createTransport();
@@ -667,9 +624,7 @@ class SpannerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getSessionExceptionTest()
     {
         $transport = $this->createTransport();
@@ -702,9 +657,7 @@ class SpannerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listSessionsTest()
     {
         $transport = $this->createTransport();
@@ -739,9 +692,7 @@ class SpannerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listSessionsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -774,9 +725,7 @@ class SpannerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function partitionQueryTest()
     {
         $transport = $this->createTransport();
@@ -804,9 +753,7 @@ class SpannerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function partitionQueryExceptionTest()
     {
         $transport = $this->createTransport();
@@ -840,9 +787,7 @@ class SpannerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function partitionReadTest()
     {
         $transport = $this->createTransport();
@@ -873,9 +818,7 @@ class SpannerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function partitionReadExceptionTest()
     {
         $transport = $this->createTransport();
@@ -910,9 +853,7 @@ class SpannerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function readTest()
     {
         $transport = $this->createTransport();
@@ -946,9 +887,7 @@ class SpannerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function readExceptionTest()
     {
         $transport = $this->createTransport();
@@ -984,9 +923,7 @@ class SpannerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function rollbackTest()
     {
         $transport = $this->createTransport();
@@ -1013,9 +950,7 @@ class SpannerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function rollbackExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1049,9 +984,7 @@ class SpannerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function streamingReadTest()
     {
         $transport = $this->createTransport();
@@ -1107,9 +1040,7 @@ class SpannerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function streamingReadExceptionTest()
     {
         $transport = $this->createTransport();

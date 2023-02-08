@@ -255,6 +255,79 @@ class ManageTablesTest extends BigQueryTestCase
         $this->assertEquals([$perm], $iam->testPermissions([$perm]));
     }
 
+    public function testCreateAndRestoreSnapshot()
+    {
+        $destinationTable = self::$dataset->table(uniqid('test_dest_table_'));
+        $copyConfig = self::$table->copy(
+            $destinationTable,
+            ['configuration' => ['copy' => ['operationType' => 'SNAPSHOT']]],
+        );
+        $this->runJob($copyConfig);
+        $snapshotDefinition = $destinationTable->reload()['snapshotDefinition'];
+
+        // Assert for proper base table reference
+        $this->assertEquals(
+            $snapshotDefinition['baseTableReference'],
+            self::$table->info()['tableReference']
+        );
+
+        // Assert for proper RFC3339 extended format timestamp
+        $isRfc3339_extended = \DateTime::createFromFormat(
+            \DateTime::RFC3339_EXTENDED,
+            $snapshotDefinition['snapshotTime']
+        ) === false ? false : true;
+        $this->assertTrue($isRfc3339_extended);
+
+        // Test snapshot restore operation
+        $restoredTable = self::$dataset->table(uniqid('restored_table_'));
+        $copyConfig = $destinationTable->copy(
+            $restoredTable,
+            ['configuration' => ['copy' => ['operationType' => 'RESTORE']]],
+        );
+        $this->runJob($copyConfig);
+    }
+
+    public function testCreateClone()
+    {
+        $destinationTable = self::$dataset->table(uniqid('test_dest_table_'));
+        $copyConfig = self::$table->copy(
+            $destinationTable,
+            ['configuration' => ['copy' => ['operationType' => 'CLONE']]],
+        );
+        $this->runJob($copyConfig);
+        $cloneDefinition = $destinationTable->reload()['cloneDefinition'];
+
+        // Assert for proper base table reference
+        $this->assertEquals(
+            $cloneDefinition['baseTableReference'],
+            self::$table->info()['tableReference']
+        );
+
+        // Assert for proper RFC3339 extended format timestamp
+        $isRfc3339_extended = \DateTime::createFromFormat(
+            \DateTime::RFC3339_EXTENDED,
+            $cloneDefinition['cloneTime']
+        ) === false ? false : true;
+        $this->assertTrue($isRfc3339_extended);
+
+        return $destinationTable;
+    }
+
+    /**
+     * @depends testCreateClone
+     */
+    public function testUpdateClone($table)
+    {
+        $row = ['Name' => 'Yash', 'Age' => 22];
+        self::$table->insertRow($row);
+        $insertResponse = $table->insertRow($row);
+
+        $expectedRowCount = 1;
+        $actualRowCount = count(iterator_to_array($table->rows()));
+        $this->assertTrue($insertResponse->isSuccessful());
+        $this->assertEquals($expectedRowCount, $actualRowCount);
+    }
+
     private function runJob($jobConfig, $client = null)
     {
         if (!isset($client)) {

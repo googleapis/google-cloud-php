@@ -93,6 +93,69 @@ class ContentServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
+     * Gets the access control policy for a contentitem resource. A `NOT_FOUND`
+     * error is returned if the resource does not exist. An empty policy is
+     * returned if the resource exists but does not have a policy set on it.
+     *
+     * Caller must have Google IAM `dataplex.content.getIamPolicy` permission
+     * on the resource.
+     * @param \Google\Cloud\Iam\V1\GetIamPolicyRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function GetIamPolicy(\Google\Cloud\Iam\V1\GetIamPolicyRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.dataplex.v1.ContentService/GetIamPolicy',
+        $argument,
+        ['\Google\Cloud\Iam\V1\Policy', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Sets the access control policy on the specified contentitem resource.
+     * Replaces any existing policy.
+     *
+     * Caller must have Google IAM `dataplex.content.setIamPolicy` permission
+     * on the resource.
+     * @param \Google\Cloud\Iam\V1\SetIamPolicyRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function SetIamPolicy(\Google\Cloud\Iam\V1\SetIamPolicyRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.dataplex.v1.ContentService/SetIamPolicy',
+        $argument,
+        ['\Google\Cloud\Iam\V1\Policy', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Returns the caller's permissions on a resource.
+     * If the resource does not exist, an empty set of
+     * permissions is returned (a `NOT_FOUND` error is not returned).
+     *
+     * A caller is not required to have Google IAM permission to make this
+     * request.
+     *
+     * Note: This operation is designed to be used for building permission-aware
+     * UIs and command-line tools, not for authorization checking. This operation
+     * may "fail open" without warning.
+     * @param \Google\Cloud\Iam\V1\TestIamPermissionsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function TestIamPermissions(\Google\Cloud\Iam\V1\TestIamPermissionsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.dataplex.v1.ContentService/TestIamPermissions',
+        $argument,
+        ['\Google\Cloud\Iam\V1\TestIamPermissionsResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
      * List content.
      * @param \Google\Cloud\Dataplex\V1\ListContentRequest $argument input argument
      * @param array $metadata metadata

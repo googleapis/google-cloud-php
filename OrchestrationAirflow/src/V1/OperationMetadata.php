@@ -47,8 +47,8 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
      */
     private $create_time = null;
     /**
-     * Output only. The time when the operation terminated, regardless of its success.
-     * This field is unset if the operation is still ongoing.
+     * Output only. The time when the operation terminated, regardless of its
+     * success. This field is unset if the operation is still ongoing.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 6;</code>
      */
@@ -72,8 +72,8 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. The time the operation was submitted to the server.
      *     @type \Google\Protobuf\Timestamp $end_time
-     *           Output only. The time when the operation terminated, regardless of its success.
-     *           This field is unset if the operation is still ongoing.
+     *           Output only. The time when the operation terminated, regardless of its
+     *           success. This field is unset if the operation is still ongoing.
      * }
      */
     public function __construct($data = NULL) {
@@ -224,8 +224,8 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The time when the operation terminated, regardless of its success.
-     * This field is unset if the operation is still ongoing.
+     * Output only. The time when the operation terminated, regardless of its
+     * success. This field is unset if the operation is still ongoing.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 6;</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -246,8 +246,8 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The time when the operation terminated, regardless of its success.
-     * This field is unset if the operation is still ongoing.
+     * Output only. The time when the operation terminated, regardless of its
+     * success. This field is unset if the operation is still ongoing.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 6;</code>
      * @param \Google\Protobuf\Timestamp $var

@@ -69,36 +69,31 @@ class SpannerTestCase extends SystemTestCase
             $db->drop();
         });
 
-        $db->updateDdl(
-            'CREATE TABLE ' . self::TEST_TABLE_NAME . ' (
-                id INT64 NOT NULL,
-                name STRING(MAX) NOT NULL,
-                birthday DATE NOT NULL
-            ) PRIMARY KEY (id)'
-        )->pollUntilComplete();
-
-        $db->updateDdl(
-            'CREATE UNIQUE INDEX ' . self::TEST_INDEX_NAME . '
-            ON ' . self::TEST_TABLE_NAME . ' (name)'
+        $db->updateDdlBatch(
+            [
+                'CREATE TABLE ' . self::TEST_TABLE_NAME . ' (
+                  id INT64 NOT NULL,
+                  name STRING(MAX) NOT NULL,
+                  birthday DATE NOT NULL
+                ) PRIMARY KEY (id)',
+                'CREATE UNIQUE INDEX ' . self::TEST_INDEX_NAME . '
+                ON ' . self::TEST_TABLE_NAME . ' (name)',
+            ]
         )->pollUntilComplete();
 
         self::$database = $db;
         self::$database2 = self::getDatabaseInstance(self::$dbName);
 
         if ($db->info()['databaseDialect'] == DatabaseDialect::GOOGLE_STANDARD_SQL) {
-            $db->updateDdl(
-                'CREATE ROLE ' . self::DATABASE_ROLE
-            )->pollUntilComplete();
-            $db->updateDdl(
-                'CREATE ROLE ' . self::RESTRICTIVE_DATABASE_ROLE
-            )->pollUntilComplete();
-
-            $db->updateDdl(
-                'GRANT SELECT ON TABLE ' . self::TEST_TABLE_NAME . ' TO ROLE ' . self::DATABASE_ROLE
-            )->pollUntilComplete();
-            $db->updateDdl(
-                'GRANT SELECT(id, name), INSERT(id, name), UPDATE(id, name) ON TABLE '
-                . self::TEST_TABLE_NAME . ' TO ROLE ' . self::RESTRICTIVE_DATABASE_ROLE
+            $db->updateDdlBatch(
+                [
+                    'CREATE ROLE ' . self::DATABASE_ROLE,
+                    'CREATE ROLE ' . self::RESTRICTIVE_DATABASE_ROLE,
+                    'GRANT SELECT ON TABLE ' . self::TEST_TABLE_NAME .
+                    ' TO ROLE ' . self::DATABASE_ROLE,
+                    'GRANT SELECT(id, name), INSERT(id, name), UPDATE(id, name) ON TABLE '
+                    . self::TEST_TABLE_NAME . ' TO ROLE ' . self::RESTRICTIVE_DATABASE_ROLE,
+                ]
             )->pollUntilComplete();
 
             self::$databaseWithReaderDatabaseRole = self::getDatabaseFromInstance(

@@ -35,7 +35,8 @@ use Google\Cloud\Talent\V4beta1\TenantServiceClient;
  *                                 The format is "projects/{project_id}", for example,
  *                                 "projects/foo". Please see
  *                                 {@see TenantServiceClient::projectName()} for help formatting this field.
- * @param string $tenantExternalId Client side tenant identifier, used to uniquely identify the tenant.
+ * @param string $tenantExternalId Client side tenant identifier, used to uniquely identify the
+ *                                 tenant.
  *
  *                                 The maximum number of allowed characters is 255.
  */

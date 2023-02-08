@@ -23,7 +23,7 @@ class CloudSpeechAdaptation
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ã
+¹
 ;google/cloud/speech/v1p1beta1/cloud_speech_adaptation.protogoogle.cloud.speech.v1p1beta1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto,google/cloud/speech/v1p1beta1/resource.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"°
 CreatePhraseSetRequest7
 parent (	B\'àAúA!speech.googleapis.com/PhraseSet
@@ -81,8 +81,8 @@ phrase_setÚAphrase_set,update_mask¦
 GetCustomClass4.google.cloud.speech.v1p1beta1.GetCustomClassRequest*.google.cloud.speech.v1p1beta1.CustomClass"G‚Óä“:8/v1p1beta1/{name=projects/*/locations/*/customClasses/*}ÚAnameÑ
 ListCustomClasses7.google.cloud.speech.v1p1beta1.ListCustomClassesRequest8.google.cloud.speech.v1p1beta1.ListCustomClassesResponse"I‚Óä“:8/v1p1beta1/{parent=projects/*/locations/*}/customClassesÚAparentð
 UpdateCustomClass7.google.cloud.speech.v1p1beta1.UpdateCustomClassRequest*.google.cloud.speech.v1p1beta1.CustomClass"v‚Óä“U2E/v1p1beta1/{custom_class.name=projects/*/locations/*/customClasses/*}:custom_classÚAcustom_class,update_mask­
-DeleteCustomClass7.google.cloud.speech.v1p1beta1.DeleteCustomClassRequest.google.protobuf.Empty"G‚Óä“:*8/v1p1beta1/{name=projects/*/locations/*/customClasses/*}ÚAnameIÊAspeech.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBŠ
-!com.google.cloud.speech.v1p1beta1BSpeechAdaptationProtoPZCgoogle.golang.org/genproto/googleapis/cloud/speech/v1p1beta1;speechø¢GCSbproto3'
+DeleteCustomClass7.google.cloud.speech.v1p1beta1.DeleteCustomClassRequest.google.protobuf.Empty"G‚Óä“:*8/v1p1beta1/{name=projects/*/locations/*/customClasses/*}ÚAnameIÊAspeech.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB€
+!com.google.cloud.speech.v1p1beta1BSpeechAdaptationProtoPZ9cloud.google.com/go/speech/apiv1p1beta1/speechpb;speechpbø¢GCSbproto3'
         , true);
 
         static::$is_initialized = true;

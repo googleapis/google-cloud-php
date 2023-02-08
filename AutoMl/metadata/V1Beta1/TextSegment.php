@@ -16,14 +16,14 @@ class TextSegment
         }
         $pool->internalAddGeneratedFile(
             '
-Ÿ
+œ
 .google/cloud/automl/v1beta1/text_segment.protogoogle.cloud.automl.v1beta1"H
 TextSegment
 content (	
 start_offset (
 
-end_offset (B∑
-com.google.cloud.automl.v1beta1BTextSegmentProtoPZAgoogle.golang.org/genproto/googleapis/cloud/automl/v1beta1;automl Google\\Cloud\\AutoMl\\V1beta1ÍGoogle::Cloud::AutoML::V1beta1bproto3'
+end_offset (B≠
+com.google.cloud.automl.v1beta1BTextSegmentProtoPZ7cloud.google.com/go/automl/apiv1beta1/automlpb;automlpb Google\\Cloud\\AutoMl\\V1beta1ÍGoogle::Cloud::AutoML::V1beta1bproto3'
         , true);
 
         static::$is_initialized = true;

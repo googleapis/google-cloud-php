@@ -37,7 +37,7 @@ use Google\Cloud\Retail\V2\ServingConfigServiceClient;
  * number of control allowed for that type of control.
  *
  * @param string $formattedServingConfig The source ServingConfig resource name . Format:
- *                                       projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/servingConfigs/{serving_config_id}
+ *                                       `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/servingConfigs/{serving_config_id}`
  *                                       Please see {@see ServingConfigServiceClient::servingConfigName()} for help formatting this field.
  * @param string $controlId              The id of the control to apply. Assumed to be in the same catalog
  *                                       as the serving config - if id is not found a NOT_FOUND error is returned.

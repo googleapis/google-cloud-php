@@ -99,6 +99,4 @@ class CidrBlock extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(CidrBlock::class, \Google\Cloud\Orchestration\Airflow\Service\V1\MasterAuthorizedNetworksConfig_CidrBlock::class);
 

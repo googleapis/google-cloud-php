@@ -35,7 +35,8 @@ use Google\Rpc\Status;
  * operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation).
  * The returned `Operation` type has the following method-specific fields:
  *
- * - `metadata`: [KnowledgeOperationMetadata][google.cloud.dialogflow.v2.KnowledgeOperationMetadata]
+ * - `metadata`:
+ * [KnowledgeOperationMetadata][google.cloud.dialogflow.v2.KnowledgeOperationMetadata]
  * - `response`: An [Empty
  * message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#empty)
  *

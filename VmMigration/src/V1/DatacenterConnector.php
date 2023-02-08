@@ -9,9 +9,10 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * DatacenterConnector message describes a connector between the Source and GCP,
- * which is installed on a vmware datacenter (an OVA vm installed by the user)
- * to connect the Datacenter to GCP and support vm migration data transfer.
+ * DatacenterConnector message describes a connector between the Source and
+ * Google Cloud, which is installed on a vmware datacenter (an OVA vm installed
+ * by the user) to connect the Datacenter to Google Cloud and support vm
+ * migration data transfer.
  *
  * Generated from protobuf message <code>google.cloud.vmmigration.v1.DatacenterConnector</code>
  */
@@ -60,7 +61,7 @@ class DatacenterConnector extends \Google\Protobuf\Internal\Message
     private $version = '';
     /**
      * Output only. The communication channel between the datacenter connector and
-     * GCP.
+     * Google Cloud.
      *
      * Generated from protobuf field <code>string bucket = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -139,7 +140,7 @@ class DatacenterConnector extends \Google\Protobuf\Internal\Message
      *           connector during the registration process and can not be modified.
      *     @type string $bucket
      *           Output only. The communication channel between the datacenter connector and
-     *           GCP.
+     *           Google Cloud.
      *     @type int $state
      *           Output only. State of the DatacenterConnector, as determined by the health
      *           checks.
@@ -355,7 +356,7 @@ class DatacenterConnector extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The communication channel between the datacenter connector and
-     * GCP.
+     * Google Cloud.
      *
      * Generated from protobuf field <code>string bucket = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -367,7 +368,7 @@ class DatacenterConnector extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The communication channel between the datacenter connector and
-     * GCP.
+     * Google Cloud.
      *
      * Generated from protobuf field <code>string bucket = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var

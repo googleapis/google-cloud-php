@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [Documents.ImportDocuments][google.cloud.dialogflow.v2.Documents.ImportDocuments].
+ * Request message for
+ * [Documents.ImportDocuments][google.cloud.dialogflow.v2.Documents.ImportDocuments].
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.ImportDocumentsRequest</code>
  */

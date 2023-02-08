@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [VmwareEngine.ResetVcenterCredentials][google.cloud.vmwareengine.v1.VmwareEngine.ResetVcenterCredentials]
+ * Request message for
+ * [VmwareEngine.ResetVcenterCredentials][google.cloud.vmwareengine.v1.VmwareEngine.ResetVcenterCredentials]
  *
  * Generated from protobuf message <code>google.cloud.vmwareengine.v1.ResetVcenterCredentialsRequest</code>
  */
@@ -21,7 +22,7 @@ class ResetVcenterCredentialsRequest extends \Google\Protobuf\Internal\Message
      * Resource names are schemeless URIs that follow the conventions in
      * https://cloud.google.com/apis/design/resource_names.
      * For example:
-     * `projects/my-project/locations/us-west1-a/privateClouds/my-cloud`
+     * `projects/my-project/locations/us-central1-a/privateClouds/my-cloud`
      *
      * Generated from protobuf field <code>string private_cloud = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -56,7 +57,7 @@ class ResetVcenterCredentialsRequest extends \Google\Protobuf\Internal\Message
      *           Resource names are schemeless URIs that follow the conventions in
      *           https://cloud.google.com/apis/design/resource_names.
      *           For example:
-     *           `projects/my-project/locations/us-west1-a/privateClouds/my-cloud`
+     *           `projects/my-project/locations/us-central1-a/privateClouds/my-cloud`
      *     @type string $request_id
      *           Optional. A request ID to identify requests. Specify a unique request ID
      *           so that if you must retry your request, the server will know to ignore
@@ -83,7 +84,7 @@ class ResetVcenterCredentialsRequest extends \Google\Protobuf\Internal\Message
      * Resource names are schemeless URIs that follow the conventions in
      * https://cloud.google.com/apis/design/resource_names.
      * For example:
-     * `projects/my-project/locations/us-west1-a/privateClouds/my-cloud`
+     * `projects/my-project/locations/us-central1-a/privateClouds/my-cloud`
      *
      * Generated from protobuf field <code>string private_cloud = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -99,7 +100,7 @@ class ResetVcenterCredentialsRequest extends \Google\Protobuf\Internal\Message
      * Resource names are schemeless URIs that follow the conventions in
      * https://cloud.google.com/apis/design/resource_names.
      * For example:
-     * `projects/my-project/locations/us-west1-a/privateClouds/my-cloud`
+     * `projects/my-project/locations/us-central1-a/privateClouds/my-cloud`
      *
      * Generated from protobuf field <code>string private_cloud = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

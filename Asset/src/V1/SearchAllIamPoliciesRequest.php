@@ -16,9 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class SearchAllIamPoliciesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. A scope can be a project, a folder, or an organization. The search is
-     * limited to the IAM policies within the `scope`. The caller must be granted
-     * the
+     * Required. A scope can be a project, a folder, or an organization. The
+     * search is limited to the IAM policies within the `scope`. The caller must
+     * be granted the
      * [`cloudasset.assets.searchAllIamPolicies`](https://cloud.google.com/asset-inventory/docs/access-control#required_permissions)
      * permission on the desired scope.
      * The allowed values are:
@@ -35,8 +35,8 @@ class SearchAllIamPoliciesRequest extends \Google\Protobuf\Internal\Message
      * query](https://cloud.google.com/asset-inventory/docs/searching-iam-policies#how_to_construct_a_query)
      * for more information. If not specified or empty, it will search all the
      * IAM policies within the specified `scope`. Note that the query string is
-     * compared against each Cloud IAM policy binding, including its principals,
-     * roles, and Cloud IAM conditions. The returned Cloud IAM policies will only
+     * compared against each IAM policy binding, including its principals,
+     * roles, and IAM conditions. The returned IAM policies will only
      * contain the bindings that match your query. To learn more about the IAM
      * policy structure, see the [IAM policy
      * documentation](https://cloud.google.com/iam/help/allow-policies/structure).
@@ -76,26 +76,28 @@ class SearchAllIamPoliciesRequest extends \Google\Protobuf\Internal\Message
      */
     private $query = '';
     /**
-     * Optional. The page size for search result pagination. Page size is capped at 500 even
-     * if a larger value is given. If set to zero, server will pick an appropriate
-     * default. Returned results may be fewer than requested. When this happens,
-     * there could be more results as long as `next_page_token` is returned.
+     * Optional. The page size for search result pagination. Page size is capped
+     * at 500 even if a larger value is given. If set to zero, server will pick an
+     * appropriate default. Returned results may be fewer than requested. When
+     * this happens, there could be more results as long as `next_page_token` is
+     * returned.
      *
      * Generated from protobuf field <code>int32 page_size = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_size = 0;
     /**
-     * Optional. If present, retrieve the next batch of results from the preceding call to
-     * this method. `page_token` must be the value of `next_page_token` from the
-     * previous response. The values of all other method parameters must be
-     * identical to those in the previous call.
+     * Optional. If present, retrieve the next batch of results from the preceding
+     * call to this method. `page_token` must be the value of `next_page_token`
+     * from the previous response. The values of all other method parameters must
+     * be identical to those in the previous call.
      *
      * Generated from protobuf field <code>string page_token = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_token = '';
     /**
-     * Optional. A list of asset types that the IAM policies are attached to. If empty, it
-     * will search the IAM policies that are attached to all the [searchable asset
+     * Optional. A list of asset types that the IAM policies are attached to. If
+     * empty, it will search the IAM policies that are attached to all the
+     * [searchable asset
      * types](https://cloud.google.com/asset-inventory/docs/supported-asset-types#searchable_asset_types).
      * Regular expressions are also supported. For example:
      * * "compute.googleapis.com.*" snapshots IAM policies attached to asset type
@@ -112,9 +114,9 @@ class SearchAllIamPoliciesRequest extends \Google\Protobuf\Internal\Message
      */
     private $asset_types;
     /**
-     * Optional. A comma-separated list of fields specifying the sorting order of the
-     * results. The default order is ascending. Add " DESC" after the field name
-     * to indicate descending order. Redundant space characters are ignored.
+     * Optional. A comma-separated list of fields specifying the sorting order of
+     * the results. The default order is ascending. Add " DESC" after the field
+     * name to indicate descending order. Redundant space characters are ignored.
      * Example: "assetType DESC, resource".
      * Only singular primitive fields in the response are sortable:
      *   * resource
@@ -134,9 +136,9 @@ class SearchAllIamPoliciesRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $scope
-     *           Required. A scope can be a project, a folder, or an organization. The search is
-     *           limited to the IAM policies within the `scope`. The caller must be granted
-     *           the
+     *           Required. A scope can be a project, a folder, or an organization. The
+     *           search is limited to the IAM policies within the `scope`. The caller must
+     *           be granted the
      *           [`cloudasset.assets.searchAllIamPolicies`](https://cloud.google.com/asset-inventory/docs/access-control#required_permissions)
      *           permission on the desired scope.
      *           The allowed values are:
@@ -149,8 +151,8 @@ class SearchAllIamPoliciesRequest extends \Google\Protobuf\Internal\Message
      *           query](https://cloud.google.com/asset-inventory/docs/searching-iam-policies#how_to_construct_a_query)
      *           for more information. If not specified or empty, it will search all the
      *           IAM policies within the specified `scope`. Note that the query string is
-     *           compared against each Cloud IAM policy binding, including its principals,
-     *           roles, and Cloud IAM conditions. The returned Cloud IAM policies will only
+     *           compared against each IAM policy binding, including its principals,
+     *           roles, and IAM conditions. The returned IAM policies will only
      *           contain the bindings that match your query. To learn more about the IAM
      *           policy structure, see the [IAM policy
      *           documentation](https://cloud.google.com/iam/help/allow-policies/structure).
@@ -186,18 +188,20 @@ class SearchAllIamPoliciesRequest extends \Google\Protobuf\Internal\Message
      *           * `memberTypes:user` to find IAM policy bindings that contain the
      *             principal type "user".
      *     @type int $page_size
-     *           Optional. The page size for search result pagination. Page size is capped at 500 even
-     *           if a larger value is given. If set to zero, server will pick an appropriate
-     *           default. Returned results may be fewer than requested. When this happens,
-     *           there could be more results as long as `next_page_token` is returned.
+     *           Optional. The page size for search result pagination. Page size is capped
+     *           at 500 even if a larger value is given. If set to zero, server will pick an
+     *           appropriate default. Returned results may be fewer than requested. When
+     *           this happens, there could be more results as long as `next_page_token` is
+     *           returned.
      *     @type string $page_token
-     *           Optional. If present, retrieve the next batch of results from the preceding call to
-     *           this method. `page_token` must be the value of `next_page_token` from the
-     *           previous response. The values of all other method parameters must be
-     *           identical to those in the previous call.
+     *           Optional. If present, retrieve the next batch of results from the preceding
+     *           call to this method. `page_token` must be the value of `next_page_token`
+     *           from the previous response. The values of all other method parameters must
+     *           be identical to those in the previous call.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $asset_types
-     *           Optional. A list of asset types that the IAM policies are attached to. If empty, it
-     *           will search the IAM policies that are attached to all the [searchable asset
+     *           Optional. A list of asset types that the IAM policies are attached to. If
+     *           empty, it will search the IAM policies that are attached to all the
+     *           [searchable asset
      *           types](https://cloud.google.com/asset-inventory/docs/supported-asset-types#searchable_asset_types).
      *           Regular expressions are also supported. For example:
      *           * "compute.googleapis.com.*" snapshots IAM policies attached to asset type
@@ -210,9 +214,9 @@ class SearchAllIamPoliciesRequest extends \Google\Protobuf\Internal\Message
      *           regular expression syntax. If the regular expression does not match any
      *           supported asset type, an INVALID_ARGUMENT error will be returned.
      *     @type string $order_by
-     *           Optional. A comma-separated list of fields specifying the sorting order of the
-     *           results. The default order is ascending. Add " DESC" after the field name
-     *           to indicate descending order. Redundant space characters are ignored.
+     *           Optional. A comma-separated list of fields specifying the sorting order of
+     *           the results. The default order is ascending. Add " DESC" after the field
+     *           name to indicate descending order. Redundant space characters are ignored.
      *           Example: "assetType DESC, resource".
      *           Only singular primitive fields in the response are sortable:
      *             * resource
@@ -228,9 +232,9 @@ class SearchAllIamPoliciesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. A scope can be a project, a folder, or an organization. The search is
-     * limited to the IAM policies within the `scope`. The caller must be granted
-     * the
+     * Required. A scope can be a project, a folder, or an organization. The
+     * search is limited to the IAM policies within the `scope`. The caller must
+     * be granted the
      * [`cloudasset.assets.searchAllIamPolicies`](https://cloud.google.com/asset-inventory/docs/access-control#required_permissions)
      * permission on the desired scope.
      * The allowed values are:
@@ -248,9 +252,9 @@ class SearchAllIamPoliciesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. A scope can be a project, a folder, or an organization. The search is
-     * limited to the IAM policies within the `scope`. The caller must be granted
-     * the
+     * Required. A scope can be a project, a folder, or an organization. The
+     * search is limited to the IAM policies within the `scope`. The caller must
+     * be granted the
      * [`cloudasset.assets.searchAllIamPolicies`](https://cloud.google.com/asset-inventory/docs/access-control#required_permissions)
      * permission on the desired scope.
      * The allowed values are:
@@ -276,8 +280,8 @@ class SearchAllIamPoliciesRequest extends \Google\Protobuf\Internal\Message
      * query](https://cloud.google.com/asset-inventory/docs/searching-iam-policies#how_to_construct_a_query)
      * for more information. If not specified or empty, it will search all the
      * IAM policies within the specified `scope`. Note that the query string is
-     * compared against each Cloud IAM policy binding, including its principals,
-     * roles, and Cloud IAM conditions. The returned Cloud IAM policies will only
+     * compared against each IAM policy binding, including its principals,
+     * roles, and IAM conditions. The returned IAM policies will only
      * contain the bindings that match your query. To learn more about the IAM
      * policy structure, see the [IAM policy
      * documentation](https://cloud.google.com/iam/help/allow-policies/structure).
@@ -326,8 +330,8 @@ class SearchAllIamPoliciesRequest extends \Google\Protobuf\Internal\Message
      * query](https://cloud.google.com/asset-inventory/docs/searching-iam-policies#how_to_construct_a_query)
      * for more information. If not specified or empty, it will search all the
      * IAM policies within the specified `scope`. Note that the query string is
-     * compared against each Cloud IAM policy binding, including its principals,
-     * roles, and Cloud IAM conditions. The returned Cloud IAM policies will only
+     * compared against each IAM policy binding, including its principals,
+     * roles, and IAM conditions. The returned IAM policies will only
      * contain the bindings that match your query. To learn more about the IAM
      * policy structure, see the [IAM policy
      * documentation](https://cloud.google.com/iam/help/allow-policies/structure).
@@ -376,10 +380,11 @@ class SearchAllIamPoliciesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The page size for search result pagination. Page size is capped at 500 even
-     * if a larger value is given. If set to zero, server will pick an appropriate
-     * default. Returned results may be fewer than requested. When this happens,
-     * there could be more results as long as `next_page_token` is returned.
+     * Optional. The page size for search result pagination. Page size is capped
+     * at 500 even if a larger value is given. If set to zero, server will pick an
+     * appropriate default. Returned results may be fewer than requested. When
+     * this happens, there could be more results as long as `next_page_token` is
+     * returned.
      *
      * Generated from protobuf field <code>int32 page_size = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -390,10 +395,11 @@ class SearchAllIamPoliciesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The page size for search result pagination. Page size is capped at 500 even
-     * if a larger value is given. If set to zero, server will pick an appropriate
-     * default. Returned results may be fewer than requested. When this happens,
-     * there could be more results as long as `next_page_token` is returned.
+     * Optional. The page size for search result pagination. Page size is capped
+     * at 500 even if a larger value is given. If set to zero, server will pick an
+     * appropriate default. Returned results may be fewer than requested. When
+     * this happens, there could be more results as long as `next_page_token` is
+     * returned.
      *
      * Generated from protobuf field <code>int32 page_size = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
@@ -408,10 +414,10 @@ class SearchAllIamPoliciesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If present, retrieve the next batch of results from the preceding call to
-     * this method. `page_token` must be the value of `next_page_token` from the
-     * previous response. The values of all other method parameters must be
-     * identical to those in the previous call.
+     * Optional. If present, retrieve the next batch of results from the preceding
+     * call to this method. `page_token` must be the value of `next_page_token`
+     * from the previous response. The values of all other method parameters must
+     * be identical to those in the previous call.
      *
      * Generated from protobuf field <code>string page_token = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -422,10 +428,10 @@ class SearchAllIamPoliciesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If present, retrieve the next batch of results from the preceding call to
-     * this method. `page_token` must be the value of `next_page_token` from the
-     * previous response. The values of all other method parameters must be
-     * identical to those in the previous call.
+     * Optional. If present, retrieve the next batch of results from the preceding
+     * call to this method. `page_token` must be the value of `next_page_token`
+     * from the previous response. The values of all other method parameters must
+     * be identical to those in the previous call.
      *
      * Generated from protobuf field <code>string page_token = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -440,8 +446,9 @@ class SearchAllIamPoliciesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A list of asset types that the IAM policies are attached to. If empty, it
-     * will search the IAM policies that are attached to all the [searchable asset
+     * Optional. A list of asset types that the IAM policies are attached to. If
+     * empty, it will search the IAM policies that are attached to all the
+     * [searchable asset
      * types](https://cloud.google.com/asset-inventory/docs/supported-asset-types#searchable_asset_types).
      * Regular expressions are also supported. For example:
      * * "compute.googleapis.com.*" snapshots IAM policies attached to asset type
@@ -463,8 +470,9 @@ class SearchAllIamPoliciesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A list of asset types that the IAM policies are attached to. If empty, it
-     * will search the IAM policies that are attached to all the [searchable asset
+     * Optional. A list of asset types that the IAM policies are attached to. If
+     * empty, it will search the IAM policies that are attached to all the
+     * [searchable asset
      * types](https://cloud.google.com/asset-inventory/docs/supported-asset-types#searchable_asset_types).
      * Regular expressions are also supported. For example:
      * * "compute.googleapis.com.*" snapshots IAM policies attached to asset type
@@ -490,9 +498,9 @@ class SearchAllIamPoliciesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A comma-separated list of fields specifying the sorting order of the
-     * results. The default order is ascending. Add " DESC" after the field name
-     * to indicate descending order. Redundant space characters are ignored.
+     * Optional. A comma-separated list of fields specifying the sorting order of
+     * the results. The default order is ascending. Add " DESC" after the field
+     * name to indicate descending order. Redundant space characters are ignored.
      * Example: "assetType DESC, resource".
      * Only singular primitive fields in the response are sortable:
      *   * resource
@@ -510,9 +518,9 @@ class SearchAllIamPoliciesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A comma-separated list of fields specifying the sorting order of the
-     * results. The default order is ascending. Add " DESC" after the field name
-     * to indicate descending order. Redundant space characters are ignored.
+     * Optional. A comma-separated list of fields specifying the sorting order of
+     * the results. The default order is ascending. Add " DESC" after the field
+     * name to indicate descending order. Redundant space characters are ignored.
      * Example: "assetType DESC, resource".
      * Only singular primitive fields in the response are sortable:
      *   * resource

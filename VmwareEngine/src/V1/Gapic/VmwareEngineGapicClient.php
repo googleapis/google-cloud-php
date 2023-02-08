@@ -644,7 +644,7 @@ class VmwareEngineGapicClient
      *                              in. Resource names are schemeless URIs that follow the conventions in
      *                              https://cloud.google.com/apis/design/resource_names.
      *                              For example:
-     *                              `projects/my-project/locations/us-west1-a/privateClouds/my-cloud`
+     *                              `projects/my-project/locations/us-central1-a/privateClouds/my-cloud`
      * @param string  $clusterId    Required. The user-provided identifier of the new `Cluster`.
      *                              This identifier must be unique among clusters within the parent and becomes
      *                              the final token in the name URI.
@@ -661,11 +661,11 @@ class VmwareEngineGapicClient
      *     Optional.
      *
      *     @type string $requestId
-     *           Optional. The request ID must be a valid UUID with the exception that zero UUID is
-     *           not supported (00000000-0000-0000-0000-000000000000).
+     *           Optional. The request ID must be a valid UUID with the exception that zero
+     *           UUID is not supported (00000000-0000-0000-0000-000000000000).
      *     @type bool $validateOnly
-     *           Optional. True if you want the request to be validated and not executed; false
-     *           otherwise.
+     *           Optional. True if you want the request to be validated and not executed;
+     *           false otherwise.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -998,7 +998,7 @@ class VmwareEngineGapicClient
      *                                     private cloud in. Resource names are schemeless URIs that follow the
      *                                     conventions in https://cloud.google.com/apis/design/resource_names.
      *                                     For example:
-     *                                     `projects/my-project/locations/us-west1-a`
+     *                                     `projects/my-project/locations/us-central1-a`
      * @param string       $privateCloudId Required. The user-provided identifier of the private cloud to be created.
      *                                     This identifier must be unique among each `PrivateCloud` within the parent
      *                                     and becomes the final token in the name URI.
@@ -1015,11 +1015,11 @@ class VmwareEngineGapicClient
      *     Optional.
      *
      *     @type string $requestId
-     *           Optional. The request ID must be a valid UUID with the exception that zero UUID is
-     *           not supported (00000000-0000-0000-0000-000000000000).
+     *           Optional. The request ID must be a valid UUID with the exception that zero
+     *           UUID is not supported (00000000-0000-0000-0000-000000000000).
      *     @type bool $validateOnly
-     *           Optional. True if you want the request to be validated and not executed; false
-     *           otherwise.
+     *           Optional. True if you want the request to be validated and not executed;
+     *           false otherwise.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1119,7 +1119,7 @@ class VmwareEngineGapicClient
      *
      *                                                   * For networks of type LEGACY, adheres to the format:
      *                                                   `{region-id}-default`. Replace `{region-id}` with the region where you want
-     *                                                   to create the VMware Engine network. For example, "us-west1-default".
+     *                                                   to create the VMware Engine network. For example, "us-central1-default".
      *                                                   * Only contains 1-63 alphanumeric characters and hyphens
      *                                                   * Begins with an alphabetical character
      *                                                   * Ends with a non-hyphen character
@@ -1229,13 +1229,13 @@ class VmwareEngineGapicClient
      *                             Resource names are schemeless URIs that follow the conventions in
      *                             https://cloud.google.com/apis/design/resource_names.
      *                             For example:
-     *                             `projects/my-project/locations/us-west1-a/privateClouds/my-cloud/clusters/my-cluster`
+     *                             `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/clusters/my-cluster`
      * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type string $requestId
-     *           Optional. The request ID must be a valid UUID with the exception that zero UUID is
-     *           not supported (00000000-0000-0000-0000-000000000000).
+     *           Optional. The request ID must be a valid UUID with the exception that zero
+     *           UUID is not supported (00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1423,27 +1423,28 @@ class VmwareEngineGapicClient
      *                             Resource names are schemeless URIs that follow the conventions in
      *                             https://cloud.google.com/apis/design/resource_names.
      *                             For example:
-     *                             `projects/my-project/locations/us-west1-a/privateClouds/my-cloud`
+     *                             `projects/my-project/locations/us-central1-a/privateClouds/my-cloud`
      * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type string $requestId
-     *           Optional. The request ID must be a valid UUID with the exception that zero UUID is
-     *           not supported (00000000-0000-0000-0000-000000000000).
+     *           Optional. The request ID must be a valid UUID with the exception that zero
+     *           UUID is not supported (00000000-0000-0000-0000-000000000000).
      *     @type bool $force
-     *           Optional. If set to true, cascade delete is enabled and all children of this private
-     *           cloud resource are also deleted. When this flag is set to false, the
-     *           private cloud will not be deleted if there are any children other than the
-     *           management cluster. The management cluster is always deleted.
+     *           Optional. If set to true, cascade delete is enabled and all children of
+     *           this private cloud resource are also deleted. When this flag is set to
+     *           false, the private cloud will not be deleted if there are any children
+     *           other than the management cluster. The management cluster is always
+     *           deleted.
      *     @type int $delayHours
      *           Optional. Time delay of the deletion specified in hours. The default value
      *           is `3`. Specifying a non-zero value for this field changes the value of
      *           `PrivateCloud.state` to `DELETED` and sets `expire_time` to the planned
      *           deletion time. Deletion can be cancelled before `expire_time` elapses using
-     *           [VmwareEngine.UndeletePrivateCloud][google.cloud.vmwareengine.v1.VmwareEngine.UndeletePrivateCloud]. Specifying a value of `0` for
-     *           this field instead begins the deletion process and ceases billing
-     *           immediately. During the final deletion process, the value of
-     *           `PrivateCloud.state` becomes `PURGING`.
+     *           [VmwareEngine.UndeletePrivateCloud][google.cloud.vmwareengine.v1.VmwareEngine.UndeletePrivateCloud].
+     *           Specifying a value of `0` for this field instead begins the deletion
+     *           process and ceases billing immediately. During the final deletion process,
+     *           the value of `PrivateCloud.state` becomes `PURGING`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1550,10 +1551,10 @@ class VmwareEngineGapicClient
      *           The request ID must be a valid UUID with the exception that zero UUID is
      *           not supported (00000000-0000-0000-0000-000000000000).
      *     @type string $etag
-     *           Optional. Checksum used to ensure that the user-provided value is up to date before
-     *           the server processes the request. The server compares provided checksum
-     *           with the current checksum of the resource. If the user-provided value is
-     *           out of date, this request returns an `ABORTED` error.
+     *           Optional. Checksum used to ensure that the user-provided value is up to
+     *           date before the server processes the request. The server compares provided
+     *           checksum with the current checksum of the resource. If the user-provided
+     *           value is out of date, this request returns an `ABORTED` error.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1610,7 +1611,7 @@ class VmwareEngineGapicClient
      *                             Resource names are schemeless URIs that follow the conventions in
      *                             https://cloud.google.com/apis/design/resource_names.
      *                             For example:
-     *                             `projects/my-project/locations/us-west1-a/privateClouds/my-cloud/clusters/my-cluster`
+     *                             `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/clusters/my-cluster`
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1662,7 +1663,7 @@ class VmwareEngineGapicClient
      *                             Resource names are schemeless URIs that follow the conventions in
      *                             https://cloud.google.com/apis/design/resource_names.
      *                             For example:
-     *                             `projects/my-project/locations/us-west1/privateClouds/my-cloud/hcxActivationKeys/my-key`
+     *                             `projects/my-project/locations/us-central1/privateClouds/my-cloud/hcxActivationKeys/my-key`
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1766,7 +1767,7 @@ class VmwareEngineGapicClient
      *                             Resource names are schemeless URIs that follow the conventions in
      *                             https://cloud.google.com/apis/design/resource_names.
      *                             For example:
-     *                             `projects/my-proj/locations/us-west1-a/nodeTypes/standard-72`
+     *                             `projects/my-proj/locations/us-central1-a/nodeTypes/standard-72`
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1818,7 +1819,7 @@ class VmwareEngineGapicClient
      *                             Resource names are schemeless URIs that follow the conventions in
      *                             https://cloud.google.com/apis/design/resource_names.
      *                             For example:
-     *                             `projects/my-project/locations/us-west1-a/privateClouds/my-cloud`
+     *                             `projects/my-project/locations/us-central1-a/privateClouds/my-cloud`
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1937,7 +1938,7 @@ class VmwareEngineGapicClient
      *                             Resource names are schemeless URIs that follow the conventions in
      *                             https://cloud.google.com/apis/design/resource_names.
      *                             For example:
-     *                             `projects/my-project/locations/us-west1-a/privateClouds/my-cloud`
+     *                             `projects/my-project/locations/us-central1-a/privateClouds/my-cloud`
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -2249,7 +2250,7 @@ class VmwareEngineGapicClient
      *                             Resource names are schemeless URIs that follow the conventions in
      *                             https://cloud.google.com/apis/design/resource_names.
      *                             For example:
-     *                             `projects/my-project/locations/us-west1-a`
+     *                             `projects/my-project/locations/us-central1-a`
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -2360,7 +2361,7 @@ class VmwareEngineGapicClient
      *                             clusters. Resource names are schemeless URIs that follow the conventions in
      *                             https://cloud.google.com/apis/design/resource_names.
      *                             For example:
-     *                             `projects/my-project/locations/us-west1-a`
+     *                             `projects/my-project/locations/us-central1-a`
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -2483,7 +2484,7 @@ class VmwareEngineGapicClient
      *                             Resource names are schemeless URIs that follow the conventions in
      *                             https://cloud.google.com/apis/design/resource_names.
      *                             For example:
-     *                             `projects/my-project/locations/us-west1-a/privateClouds/my-cloud`
+     *                             `projects/my-project/locations/us-central1-a/privateClouds/my-cloud`
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -2698,7 +2699,7 @@ class VmwareEngineGapicClient
      *                             Resource names are schemeless URIs that follow the conventions in
      *                             https://cloud.google.com/apis/design/resource_names.
      *                             For example:
-     *                             `projects/my-project/locations/us-west1-a/privateClouds/my-cloud`
+     *                             `projects/my-project/locations/us-central1-a/privateClouds/my-cloud`
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -2795,7 +2796,7 @@ class VmwareEngineGapicClient
      *                             Resource names are schemeless URIs that follow the conventions in
      *                             https://cloud.google.com/apis/design/resource_names.
      *                             For example:
-     *                             `projects/my-project/locations/us-west1-a/privateClouds/my-cloud`
+     *                             `projects/my-project/locations/us-central1-a/privateClouds/my-cloud`
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -2869,7 +2870,7 @@ class VmwareEngineGapicClient
      *                             Resource names are schemeless URIs that follow the conventions in
      *                             https://cloud.google.com/apis/design/resource_names.
      *                             For example:
-     *                             `projects/my-project/locations/us-west1-a/privateClouds/my-cloud`
+     *                             `projects/my-project/locations/us-central1-a/privateClouds/my-cloud`
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -2922,7 +2923,7 @@ class VmwareEngineGapicClient
      *                             Resource names are schemeless URIs that follow the conventions in
      *                             https://cloud.google.com/apis/design/resource_names.
      *                             For example:
-     *                             `projects/my-project/locations/us-west1-a/privateClouds/my-cloud`
+     *                             `projects/my-project/locations/us-central1-a/privateClouds/my-cloud`
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -3004,13 +3005,13 @@ class VmwareEngineGapicClient
      *                             Resource names are schemeless URIs that follow the conventions in
      *                             https://cloud.google.com/apis/design/resource_names.
      *                             For example:
-     *                             `projects/my-project/locations/us-west1-a/privateClouds/my-cloud`
+     *                             `projects/my-project/locations/us-central1-a/privateClouds/my-cloud`
      * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type string $requestId
-     *           Optional. The request ID must be a valid UUID with the exception that zero UUID is
-     *           not supported (00000000-0000-0000-0000-000000000000).
+     *           Optional. The request ID must be a valid UUID with the exception that zero
+     *           UUID is not supported (00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -3105,8 +3106,8 @@ class VmwareEngineGapicClient
      *           Optional. The request ID must be a valid UUID with the exception that
      *           zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      *     @type bool $validateOnly
-     *           Optional. True if you want the request to be validated and not executed; false
-     *           otherwise.
+     *           Optional. True if you want the request to be validated and not executed;
+     *           false otherwise.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -3319,8 +3320,8 @@ class VmwareEngineGapicClient
      *     Optional.
      *
      *     @type string $requestId
-     *           Optional. The request ID must be a valid UUID with the exception that zero UUID is
-     *           not supported (00000000-0000-0000-0000-000000000000).
+     *           Optional. The request ID must be a valid UUID with the exception that zero
+     *           UUID is not supported (00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on

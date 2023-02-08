@@ -20,7 +20,7 @@ class AwsCluster extends \Google\Protobuf\Internal\Message
      * Cluster names are formatted as
      * `projects/<project-number>/locations/<region>/awsClusters/<cluster-id>`.
      * See [Resource Names](https://cloud.google.com/apis/design/resource_names)
-     * for more details on GCP resource names.
+     * for more details on Google Cloud Platform resource names.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -131,9 +131,9 @@ class AwsCluster extends \Google\Protobuf\Internal\Message
      */
     private $cluster_ca_certificate = '';
     /**
-     * Optional. Fleet configuration.
+     * Required. Fleet configuration.
      *
-     * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.Fleet fleet = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.Fleet fleet = 18 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $fleet = null;
     /**
@@ -142,6 +142,18 @@ class AwsCluster extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.LoggingConfig logging_config = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $logging_config = null;
+    /**
+     * Output only. A set of errors found in the cluster.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.gkemulticloud.v1.AwsClusterError errors = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $errors;
+    /**
+     * Optional. Monitoring configuration for this cluster.
+     *
+     * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.MonitoringConfig monitoring_config = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $monitoring_config = null;
 
     /**
      * Constructor.
@@ -154,7 +166,7 @@ class AwsCluster extends \Google\Protobuf\Internal\Message
      *           Cluster names are formatted as
      *           `projects/<project-number>/locations/<region>/awsClusters/<cluster-id>`.
      *           See [Resource Names](https://cloud.google.com/apis/design/resource_names)
-     *           for more details on GCP resource names.
+     *           for more details on Google Cloud Platform resource names.
      *     @type string $description
      *           Optional. A human readable description of this cluster.
      *           Cannot be longer than 255 UTF-8 encoded bytes.
@@ -201,9 +213,13 @@ class AwsCluster extends \Google\Protobuf\Internal\Message
      *     @type string $cluster_ca_certificate
      *           Output only. PEM encoded x509 certificate of the cluster root of trust.
      *     @type \Google\Cloud\GkeMultiCloud\V1\Fleet $fleet
-     *           Optional. Fleet configuration.
+     *           Required. Fleet configuration.
      *     @type \Google\Cloud\GkeMultiCloud\V1\LoggingConfig $logging_config
      *           Optional. Logging configuration for this cluster.
+     *     @type array<\Google\Cloud\GkeMultiCloud\V1\AwsClusterError>|\Google\Protobuf\Internal\RepeatedField $errors
+     *           Output only. A set of errors found in the cluster.
+     *     @type \Google\Cloud\GkeMultiCloud\V1\MonitoringConfig $monitoring_config
+     *           Optional. Monitoring configuration for this cluster.
      * }
      */
     public function __construct($data = NULL) {
@@ -216,7 +232,7 @@ class AwsCluster extends \Google\Protobuf\Internal\Message
      * Cluster names are formatted as
      * `projects/<project-number>/locations/<region>/awsClusters/<cluster-id>`.
      * See [Resource Names](https://cloud.google.com/apis/design/resource_names)
-     * for more details on GCP resource names.
+     * for more details on Google Cloud Platform resource names.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -231,7 +247,7 @@ class AwsCluster extends \Google\Protobuf\Internal\Message
      * Cluster names are formatted as
      * `projects/<project-number>/locations/<region>/awsClusters/<cluster-id>`.
      * See [Resource Names](https://cloud.google.com/apis/design/resource_names)
-     * for more details on GCP resource names.
+     * for more details on Google Cloud Platform resource names.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
@@ -726,9 +742,9 @@ class AwsCluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Fleet configuration.
+     * Required. Fleet configuration.
      *
-     * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.Fleet fleet = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.Fleet fleet = 18 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\GkeMultiCloud\V1\Fleet|null
      */
     public function getFleet()
@@ -747,9 +763,9 @@ class AwsCluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Fleet configuration.
+     * Required. Fleet configuration.
      *
-     * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.Fleet fleet = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.Fleet fleet = 18 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\GkeMultiCloud\V1\Fleet $var
      * @return $this
      */
@@ -793,6 +809,68 @@ class AwsCluster extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\GkeMultiCloud\V1\LoggingConfig::class);
         $this->logging_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. A set of errors found in the cluster.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.gkemulticloud.v1.AwsClusterError errors = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getErrors()
+    {
+        return $this->errors;
+    }
+
+    /**
+     * Output only. A set of errors found in the cluster.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.gkemulticloud.v1.AwsClusterError errors = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array<\Google\Cloud\GkeMultiCloud\V1\AwsClusterError>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setErrors($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\GkeMultiCloud\V1\AwsClusterError::class);
+        $this->errors = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Monitoring configuration for this cluster.
+     *
+     * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.MonitoringConfig monitoring_config = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\GkeMultiCloud\V1\MonitoringConfig|null
+     */
+    public function getMonitoringConfig()
+    {
+        return $this->monitoring_config;
+    }
+
+    public function hasMonitoringConfig()
+    {
+        return isset($this->monitoring_config);
+    }
+
+    public function clearMonitoringConfig()
+    {
+        unset($this->monitoring_config);
+    }
+
+    /**
+     * Optional. Monitoring configuration for this cluster.
+     *
+     * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.MonitoringConfig monitoring_config = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\GkeMultiCloud\V1\MonitoringConfig $var
+     * @return $this
+     */
+    public function setMonitoringConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\GkeMultiCloud\V1\MonitoringConfig::class);
+        $this->monitoring_config = $var;
 
         return $this;
     }

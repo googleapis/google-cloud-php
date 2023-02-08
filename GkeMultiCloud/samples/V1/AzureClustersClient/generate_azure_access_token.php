@@ -31,7 +31,9 @@ use Google\Cloud\GkeMultiCloud\V1\GenerateAzureAccessTokenResponse;
  * Generates a short-lived access token to authenticate to a given
  * [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] resource.
  *
- * @param string $formattedAzureCluster The name of the [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] resource to authenticate to.
+ * @param string $formattedAzureCluster The name of the
+ *                                      [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] resource to
+ *                                      authenticate to.
  *
  *                                      `AzureCluster` names are formatted as
  *                                      `projects/<project-id>/locations/<region>/AzureClusters/<cluster-id>`.

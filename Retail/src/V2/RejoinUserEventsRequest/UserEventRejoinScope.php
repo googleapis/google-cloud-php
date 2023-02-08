@@ -9,11 +9,11 @@ use UnexpectedValueException;
 /**
  * The scope of user events to be rejoined with the latest product catalog.
  * If the rejoining aims at reducing number of unjoined events, set
- * UserEventRejoinScope to UNJOINED_EVENTS.
+ * `UserEventRejoinScope` to `UNJOINED_EVENTS`.
  * If the rejoining aims at correcting product catalog information in joined
- * events, set UserEventRejoinScope to JOINED_EVENTS.
- * If all events needs to be rejoined, set UserEventRejoinScope to
- * USER_EVENT_REJOIN_SCOPE_UNSPECIFIED.
+ * events, set `UserEventRejoinScope` to `JOINED_EVENTS`.
+ * If all events needs to be rejoined, set `UserEventRejoinScope` to
+ * `USER_EVENT_REJOIN_SCOPE_UNSPECIFIED`.
  *
  * Protobuf type <code>google.cloud.retail.v2.RejoinUserEventsRequest.UserEventRejoinScope</code>
  */

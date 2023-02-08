@@ -16,13 +16,16 @@ use Google\Protobuf\Internal\GPBUtil;
 class PolicyInfo extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The full resource name the [policy][google.cloud.asset.v1.BatchGetEffectiveIamPoliciesResponse.EffectiveIamPolicy.PolicyInfo.policy] is directly attached to.
+     * The full resource name the
+     * [policy][google.cloud.asset.v1.BatchGetEffectiveIamPoliciesResponse.EffectiveIamPolicy.PolicyInfo.policy]
+     * is directly attached to.
      *
      * Generated from protobuf field <code>string attached_resource = 1;</code>
      */
     private $attached_resource = '';
     /**
-     * The IAM policy that's directly attached to the [attached_resource][google.cloud.asset.v1.BatchGetEffectiveIamPoliciesResponse.EffectiveIamPolicy.PolicyInfo.attached_resource].
+     * The IAM policy that's directly attached to the
+     * [attached_resource][google.cloud.asset.v1.BatchGetEffectiveIamPoliciesResponse.EffectiveIamPolicy.PolicyInfo.attached_resource].
      *
      * Generated from protobuf field <code>.google.iam.v1.Policy policy = 2;</code>
      */
@@ -35,9 +38,12 @@ class PolicyInfo extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $attached_resource
-     *           The full resource name the [policy][google.cloud.asset.v1.BatchGetEffectiveIamPoliciesResponse.EffectiveIamPolicy.PolicyInfo.policy] is directly attached to.
+     *           The full resource name the
+     *           [policy][google.cloud.asset.v1.BatchGetEffectiveIamPoliciesResponse.EffectiveIamPolicy.PolicyInfo.policy]
+     *           is directly attached to.
      *     @type \Google\Cloud\Iam\V1\Policy $policy
-     *           The IAM policy that's directly attached to the [attached_resource][google.cloud.asset.v1.BatchGetEffectiveIamPoliciesResponse.EffectiveIamPolicy.PolicyInfo.attached_resource].
+     *           The IAM policy that's directly attached to the
+     *           [attached_resource][google.cloud.asset.v1.BatchGetEffectiveIamPoliciesResponse.EffectiveIamPolicy.PolicyInfo.attached_resource].
      * }
      */
     public function __construct($data = NULL) {
@@ -46,7 +52,9 @@ class PolicyInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The full resource name the [policy][google.cloud.asset.v1.BatchGetEffectiveIamPoliciesResponse.EffectiveIamPolicy.PolicyInfo.policy] is directly attached to.
+     * The full resource name the
+     * [policy][google.cloud.asset.v1.BatchGetEffectiveIamPoliciesResponse.EffectiveIamPolicy.PolicyInfo.policy]
+     * is directly attached to.
      *
      * Generated from protobuf field <code>string attached_resource = 1;</code>
      * @return string
@@ -57,7 +65,9 @@ class PolicyInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The full resource name the [policy][google.cloud.asset.v1.BatchGetEffectiveIamPoliciesResponse.EffectiveIamPolicy.PolicyInfo.policy] is directly attached to.
+     * The full resource name the
+     * [policy][google.cloud.asset.v1.BatchGetEffectiveIamPoliciesResponse.EffectiveIamPolicy.PolicyInfo.policy]
+     * is directly attached to.
      *
      * Generated from protobuf field <code>string attached_resource = 1;</code>
      * @param string $var
@@ -72,7 +82,8 @@ class PolicyInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The IAM policy that's directly attached to the [attached_resource][google.cloud.asset.v1.BatchGetEffectiveIamPoliciesResponse.EffectiveIamPolicy.PolicyInfo.attached_resource].
+     * The IAM policy that's directly attached to the
+     * [attached_resource][google.cloud.asset.v1.BatchGetEffectiveIamPoliciesResponse.EffectiveIamPolicy.PolicyInfo.attached_resource].
      *
      * Generated from protobuf field <code>.google.iam.v1.Policy policy = 2;</code>
      * @return \Google\Cloud\Iam\V1\Policy|null
@@ -93,7 +104,8 @@ class PolicyInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The IAM policy that's directly attached to the [attached_resource][google.cloud.asset.v1.BatchGetEffectiveIamPoliciesResponse.EffectiveIamPolicy.PolicyInfo.attached_resource].
+     * The IAM policy that's directly attached to the
+     * [attached_resource][google.cloud.asset.v1.BatchGetEffectiveIamPoliciesResponse.EffectiveIamPolicy.PolicyInfo.attached_resource].
      *
      * Generated from protobuf field <code>.google.iam.v1.Policy policy = 2;</code>
      * @param \Google\Cloud\Iam\V1\Policy $var

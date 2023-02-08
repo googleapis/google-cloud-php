@@ -985,6 +985,72 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function getProcessorTypeTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $type = 'type3575610';
+        $category = 'category50511102';
+        $allowCreation = false;
+        $expectedResponse = new ProcessorType();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setType($type);
+        $expectedResponse->setCategory($category);
+        $expectedResponse->setAllowCreation($allowCreation);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->processorTypeName('[PROJECT]', '[LOCATION]', '[PROCESSOR_TYPE]');
+        $response = $gapicClient->getProcessorType($formattedName);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.documentai.v1.DocumentProcessorService/GetProcessorType', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getProcessorTypeExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->processorTypeName('[PROJECT]', '[LOCATION]', '[PROCESSOR_TYPE]');
+        try {
+            $gapicClient->getProcessorType($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function getProcessorVersionTest()
     {
         $transport = $this->createTransport();

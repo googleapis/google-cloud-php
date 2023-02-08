@@ -30,7 +30,8 @@ use Google\Cloud\Talent\V4beta1\TenantServiceClient;
 /**
  * Updates specified tenant.
  *
- * @param string $tenantExternalId Client side tenant identifier, used to uniquely identify the tenant.
+ * @param string $tenantExternalId Client side tenant identifier, used to uniquely identify the
+ *                                 tenant.
  *
  *                                 The maximum number of allowed characters is 255.
  */

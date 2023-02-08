@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Response message for [CloudChannelService.ListTransferableOffers][google.cloud.channel.v1.CloudChannelService.ListTransferableOffers].
+ * Response message for
+ * [CloudChannelService.ListTransferableOffers][google.cloud.channel.v1.CloudChannelService.ListTransferableOffers].
  *
  * Generated from protobuf message <code>google.cloud.channel.v1.ListTransferableOffersResponse</code>
  */
@@ -24,8 +25,9 @@ class ListTransferableOffersResponse extends \Google\Protobuf\Internal\Message
     private $transferable_offers;
     /**
      * A token to retrieve the next page of results.
-     * Pass to [ListTransferableOffersRequest.page_token][google.cloud.channel.v1.ListTransferableOffersRequest.page_token] to obtain
-     * that page.
+     * Pass to
+     * [ListTransferableOffersRequest.page_token][google.cloud.channel.v1.ListTransferableOffersRequest.page_token]
+     * to obtain that page.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
@@ -37,13 +39,14 @@ class ListTransferableOffersResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Channel\V1\TransferableOffer[]|\Google\Protobuf\Internal\RepeatedField $transferable_offers
+     *     @type array<\Google\Cloud\Channel\V1\TransferableOffer>|\Google\Protobuf\Internal\RepeatedField $transferable_offers
      *           Information about Offers for a customer that can be used for
      *           transfer.
      *     @type string $next_page_token
      *           A token to retrieve the next page of results.
-     *           Pass to [ListTransferableOffersRequest.page_token][google.cloud.channel.v1.ListTransferableOffersRequest.page_token] to obtain
-     *           that page.
+     *           Pass to
+     *           [ListTransferableOffersRequest.page_token][google.cloud.channel.v1.ListTransferableOffersRequest.page_token]
+     *           to obtain that page.
      * }
      */
     public function __construct($data = NULL) {
@@ -68,7 +71,7 @@ class ListTransferableOffersResponse extends \Google\Protobuf\Internal\Message
      * transfer.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.TransferableOffer transferable_offers = 1;</code>
-     * @param \Google\Cloud\Channel\V1\TransferableOffer[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Channel\V1\TransferableOffer>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTransferableOffers($var)
@@ -81,8 +84,9 @@ class ListTransferableOffersResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * A token to retrieve the next page of results.
-     * Pass to [ListTransferableOffersRequest.page_token][google.cloud.channel.v1.ListTransferableOffersRequest.page_token] to obtain
-     * that page.
+     * Pass to
+     * [ListTransferableOffersRequest.page_token][google.cloud.channel.v1.ListTransferableOffersRequest.page_token]
+     * to obtain that page.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @return string
@@ -94,8 +98,9 @@ class ListTransferableOffersResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * A token to retrieve the next page of results.
-     * Pass to [ListTransferableOffersRequest.page_token][google.cloud.channel.v1.ListTransferableOffersRequest.page_token] to obtain
-     * that page.
+     * Pass to
+     * [ListTransferableOffersRequest.page_token][google.cloud.channel.v1.ListTransferableOffersRequest.page_token]
+     * to obtain that page.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @param string $var

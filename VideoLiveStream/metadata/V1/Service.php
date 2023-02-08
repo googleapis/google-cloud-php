@@ -25,7 +25,7 @@ class Service
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Å3
+¿3
 .google/cloud/video/livestream/v1/service.proto google.cloud.video.livestream.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto0google/cloud/video/livestream/v1/resources.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"¿
 CreateChannelRequest9
 parent (	B)àAúA#!livestream.googleapis.com/Channel?
@@ -159,8 +159,8 @@ ListInputs3.google.cloud.video.livestream.v1.ListInputsRequest4.google.cloud.v
 
 ListEvents3.google.cloud.video.livestream.v1.ListEventsRequest4.google.cloud.video.livestream.v1.ListEventsResponse"F‚Óä“75/v1/{parent=projects/*/locations/*/channels/*}/eventsÚAparent¬
 GetEvent1.google.cloud.video.livestream.v1.GetEventRequest\'.google.cloud.video.livestream.v1.Event"D‚Óä“75/v1/{name=projects/*/locations/*/channels/*/events/*}ÚAname¡
-DeleteEvent4.google.cloud.video.livestream.v1.DeleteEventRequest.google.protobuf.Empty"D‚Óä“7*5/v1/{name=projects/*/locations/*/channels/*/events/*}ÚAnameMÊAlivestream.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBï
-$com.google.cloud.video.livestream.v1BServiceProtoPZJgoogle.golang.org/genproto/googleapis/cloud/video/livestream/v1;livestreamª Google.Cloud.Video.LiveStream.V1Ê Google\\Cloud\\Video\\LiveStream\\V1ê$Google::Cloud::Video::LiveStream::V1bproto3'
+DeleteEvent4.google.cloud.video.livestream.v1.DeleteEventRequest.google.protobuf.Empty"D‚Óä“7*5/v1/{name=projects/*/locations/*/channels/*/events/*}ÚAnameMÊAlivestream.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBé
+$com.google.cloud.video.livestream.v1BServiceProtoPZDcloud.google.com/go/video/livestream/apiv1/livestreampb;livestreampbª Google.Cloud.Video.LiveStream.V1Ê Google\\Cloud\\Video\\LiveStream\\V1ê$Google::Cloud::Video::LiveStream::V1bproto3'
         , true);
 
         static::$is_initialized = true;

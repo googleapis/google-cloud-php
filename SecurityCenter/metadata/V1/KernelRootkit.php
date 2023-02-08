@@ -16,7 +16,7 @@ class KernelRootkit
         }
         $pool->internalAddGeneratedFile(
             '
-¨
+¦
 3google/cloud/securitycenter/v1/kernel_rootkit.protogoogle.cloud.securitycenter.v1"×
 KernelRootkit
 name (	$
@@ -27,8 +27,8 @@ class KernelRootkit
 unexpected_kernel_code_pages (&
 unexpected_system_call_handler ($
 unexpected_interrupt_handler ((
- unexpected_processes_in_runqueue	 (Bî
-"com.google.cloud.securitycenter.v1BKernelRootkitProtoPZLgoogle.golang.org/genproto/googleapis/cloud/securitycenter/v1;securitycenterªGoogle.Cloud.SecurityCenter.V1ÊGoogle\\Cloud\\SecurityCenter\\V1ê!Google::Cloud::SecurityCenter::V1bproto3'
+ unexpected_processes_in_runqueue	 (Bì
+"com.google.cloud.securitycenter.v1BKernelRootkitProtoPZJcloud.google.com/go/securitycenter/apiv1/securitycenterpb;securitycenterpbªGoogle.Cloud.SecurityCenter.V1ÊGoogle\\Cloud\\SecurityCenter\\V1ê!Google::Cloud::SecurityCenter::V1bproto3'
         , true);
 
         static::$is_initialized = true;

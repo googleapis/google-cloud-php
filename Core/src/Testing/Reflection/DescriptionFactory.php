@@ -60,6 +60,8 @@ use function trim;
  * If a body consists of multiple lines then this factory will also remove any superfluous whitespace at the beginning
  * of each line while maintaining any indentation that is used. This will prevent formatting parsers from tripping
  * over unexpected spaces as can be observed with tag descriptions.
+ *
+ * @internal
  */
 class DescriptionFactory extends BaseDescriptionFactory
 {

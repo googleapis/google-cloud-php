@@ -53,10 +53,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\ProductSearchResults\Result::getProduct()'
     name: getProduct
     id: getProduct
-    summary: |
-      The Product.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.Product product = 1;</code>
+    summary: 'The Product.'
     parent: \Google\Cloud\Vision\V1\ProductSearchResults\Result
     type: method
     langs:
@@ -85,10 +82,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\ProductSearchResults\Result::setProduct()'
     name: setProduct
     id: setProduct
-    summary: |
-      The Product.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.Product product = 1;</code>
+    summary: 'The Product.'
     parent: \Google\Cloud\Vision\V1\ProductSearchResults\Result
     type: method
     langs:
@@ -109,8 +103,6 @@ items:
     summary: |
       A confidence level on the match, ranging from 0 (no confidence) to
       1 (full confidence).
-      
-      Generated from protobuf field <code>float score = 2;</code>
     parent: \Google\Cloud\Vision\V1\ProductSearchResults\Result
     type: method
     langs:
@@ -126,8 +118,6 @@ items:
     summary: |
       A confidence level on the match, ranging from 0 (no confidence) to
       1 (full confidence).
-      
-      Generated from protobuf field <code>float score = 2;</code>
     parent: \Google\Cloud\Vision\V1\ProductSearchResults\Result
     type: method
     langs:
@@ -148,8 +138,6 @@ items:
     summary: |
       The resource name of the image from the product that is the closest match
       to the query.
-      
-      Generated from protobuf field <code>string image = 3;</code>
     parent: \Google\Cloud\Vision\V1\ProductSearchResults\Result
     type: method
     langs:
@@ -165,8 +153,6 @@ items:
     summary: |
       The resource name of the image from the product that is the closest match
       to the query.
-      
-      Generated from protobuf field <code>string image = 3;</code>
     parent: \Google\Cloud\Vision\V1\ProductSearchResults\Result
     type: method
     langs:

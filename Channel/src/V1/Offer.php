@@ -10,8 +10,8 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Represents an offer made to resellers for purchase.
- * An offer is associated with a [Sku][google.cloud.channel.v1.Sku], has a plan for payment, a price, and
- * defines the constraints for buying.
+ * An offer is associated with a [Sku][google.cloud.channel.v1.Sku], has a plan
+ * for payment, a price, and defines the constraints for buying.
  *
  * Generated from protobuf message <code>google.cloud.channel.v1.Offer</code>
  */
@@ -72,6 +72,12 @@ class Offer extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.ParameterDefinition parameter_definitions = 9;</code>
      */
     private $parameter_definitions;
+    /**
+     * The deal code of the offer to get a special promotion or discount.
+     *
+     * Generated from protobuf field <code>string deal_code = 12;</code>
+     */
+    private $deal_code = '';
 
     /**
      * Constructor.
@@ -90,14 +96,16 @@ class Offer extends \Google\Protobuf\Internal\Message
      *           Describes the payment plan for the Offer.
      *     @type \Google\Cloud\Channel\V1\Constraints $constraints
      *           Constraints on transacting the Offer.
-     *     @type \Google\Cloud\Channel\V1\PriceByResource[]|\Google\Protobuf\Internal\RepeatedField $price_by_resources
+     *     @type array<\Google\Cloud\Channel\V1\PriceByResource>|\Google\Protobuf\Internal\RepeatedField $price_by_resources
      *           Price for each monetizable resource type.
      *     @type \Google\Protobuf\Timestamp $start_time
      *           Start of the Offer validity time.
      *     @type \Google\Protobuf\Timestamp $end_time
      *           Output only. End of the Offer validity time.
-     *     @type \Google\Cloud\Channel\V1\ParameterDefinition[]|\Google\Protobuf\Internal\RepeatedField $parameter_definitions
+     *     @type array<\Google\Cloud\Channel\V1\ParameterDefinition>|\Google\Protobuf\Internal\RepeatedField $parameter_definitions
      *           Parameters required to use current Offer to purchase.
+     *     @type string $deal_code
+     *           The deal code of the offer to get a special promotion or discount.
      * }
      */
     public function __construct($data = NULL) {
@@ -292,7 +300,7 @@ class Offer extends \Google\Protobuf\Internal\Message
      * Price for each monetizable resource type.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.PriceByResource price_by_resources = 6;</code>
-     * @param \Google\Cloud\Channel\V1\PriceByResource[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Channel\V1\PriceByResource>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPriceByResources($var)
@@ -390,13 +398,39 @@ class Offer extends \Google\Protobuf\Internal\Message
      * Parameters required to use current Offer to purchase.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.ParameterDefinition parameter_definitions = 9;</code>
-     * @param \Google\Cloud\Channel\V1\ParameterDefinition[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Channel\V1\ParameterDefinition>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setParameterDefinitions($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Channel\V1\ParameterDefinition::class);
         $this->parameter_definitions = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The deal code of the offer to get a special promotion or discount.
+     *
+     * Generated from protobuf field <code>string deal_code = 12;</code>
+     * @return string
+     */
+    public function getDealCode()
+    {
+        return $this->deal_code;
+    }
+
+    /**
+     * The deal code of the offer to get a special promotion or discount.
+     *
+     * Generated from protobuf field <code>string deal_code = 12;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDealCode($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->deal_code = $var;
 
         return $this;
     }

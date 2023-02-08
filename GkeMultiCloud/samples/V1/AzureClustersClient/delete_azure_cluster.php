@@ -29,22 +29,24 @@ use Google\Cloud\GkeMultiCloud\V1\AzureClustersClient;
 use Google\Rpc\Status;
 
 /**
- * Deletes a specific [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] resource.
+ * Deletes a specific
+ * [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] resource.
  *
- * Fails if the cluster has one or more associated [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool]
- * resources.
+ * Fails if the cluster has one or more associated
+ * [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] resources.
  *
  * If successful, the response contains a newly created
  * [Operation][google.longrunning.Operation] resource that can be
  * described to track the status of the operation.
  *
- * @param string $formattedName The resource name the [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] to delete.
+ * @param string $formattedName The resource name the
+ *                              [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] to delete.
  *
  *                              `AzureCluster` names are formatted as
  *                              `projects/<project-id>/locations/<region>/azureClusters/<cluster-id>`.
  *
  *                              See [Resource Names](https://cloud.google.com/apis/design/resource_names)
- *                              for more details on GCP resource names. Please see
+ *                              for more details on Google Cloud Platform resource names. Please see
  *                              {@see AzureClustersClient::azureClusterName()} for help formatting this field.
  */
 function delete_azure_cluster_sample(string $formattedName): void
