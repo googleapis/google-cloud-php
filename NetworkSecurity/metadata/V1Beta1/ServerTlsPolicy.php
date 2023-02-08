@@ -21,7 +21,7 @@ class ServerTlsPolicy
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-É
+È
 <google/cloud/networksecurity/v1beta1/server_tls_policy.proto$google.cloud.networksecurity.v1beta1google/api/resource.proto.google/cloud/networksecurity/v1beta1/tls.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"Î
 ServerTlsPolicy
 name (	BàA
@@ -61,8 +61,8 @@ page_token (	"Œ
 server_tls_policy (25.google.cloud.networksecurity.v1beta1.ServerTlsPolicyBàA"d
 DeleteServerTlsPolicyRequestD
 name (	B6àAúA0
-.networksecurity.googleapis.com/ServerTlsPolicyB
-(com.google.cloud.networksecurity.v1beta1BServerTlsPolicyProtoPZSgoogle.golang.org/genproto/googleapis/cloud/networksecurity/v1beta1;networksecurityª$Google.Cloud.NetworkSecurity.V1Beta1Ê$Google\\Cloud\\NetworkSecurity\\V1beta1ê\'Google::Cloud::NetworkSecurity::V1beta1bproto3'
+.networksecurity.googleapis.com/ServerTlsPolicyBŽ
+(com.google.cloud.networksecurity.v1beta1BServerTlsPolicyProtoPZRcloud.google.com/go/networksecurity/apiv1beta1/networksecuritypb;networksecuritypbª$Google.Cloud.NetworkSecurity.V1Beta1Ê$Google\\Cloud\\NetworkSecurity\\V1beta1ê\'Google::Cloud::NetworkSecurity::V1beta1bproto3'
         , true);
 
         static::$is_initialized = true;

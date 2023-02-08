@@ -23,7 +23,7 @@ class Reachability
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-§
+•
 4google/cloud/networkmanagement/v1/reachability.proto!google.cloud.networkmanagement.v1google/api/client.protogoogle/api/field_behavior.proto9google/cloud/networkmanagement/v1/connectivity_test.proto#google/longrunning/operations.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"|
 ListConnectivityTestsRequest
 parent (	B‡A
@@ -67,8 +67,8 @@ page_token (	
 RerunConnectivityTest?.google.cloud.networkmanagement.v1.RerunConnectivityTestRequest.google.longrunning.Operation"ïÇ”‰ìE"@/v1/{name=projects/*/locations/global/connectivityTests/*}:rerun:* AG
 2google.cloud.networkmanagement.v1.ConnectivityTestOperationMetadataÒ
 DeleteConnectivityTest@.google.cloud.networkmanagement.v1.DeleteConnectivityTestRequest.google.longrunning.Operation"vÇ”‰ì<*:/v1/{name=projects/*/locations/global/connectivityTests/*}⁄Aname A*
-google.protobuf.EmptyOperationMetadataT A networkmanagement.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBÜ
-%com.google.cloud.networkmanagement.v1BReachabilityServiceProtoPZRgoogle.golang.org/genproto/googleapis/cloud/networkmanagement/v1;networkmanagement™!Google.Cloud.NetworkManagement.V1 !Google\\Cloud\\NetworkManagement\\V1Í$Google::Cloud::NetworkManagement::V1bproto3'
+google.protobuf.EmptyOperationMetadataT A networkmanagement.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBá
+%com.google.cloud.networkmanagement.v1BReachabilityServiceProtoPZScloud.google.com/go/networkmanagement/apiv1/networkmanagementpb;networkmanagementpb™!Google.Cloud.NetworkManagement.V1 !Google\\Cloud\\NetworkManagement\\V1Í$Google::Cloud::NetworkManagement::V1bproto3'
         , true);
 
         static::$is_initialized = true;

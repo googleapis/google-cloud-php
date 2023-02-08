@@ -20,7 +20,7 @@ class RestorePlan
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ý
+ö
 ,google/cloud/gkebackup/v1/restore_plan.protogoogle.cloud.gkebackup.v1google/api/resource.proto\'google/cloud/gkebackup/v1/restore.protogoogle/protobuf/timestamp.proto"ó
 RestorePlan
 name (	BàA
@@ -39,8 +39,8 @@ class RestorePlan
 LabelsEntry
 key (	
 value (	:8:nêAk
-$gkebackup.googleapis.com/RestorePlanCprojects/{project}/locations/{location}/restorePlans/{restore_plan}BÎ
-com.google.cloud.gkebackup.v1BRestorePlanProtoPZBgoogle.golang.org/genproto/googleapis/cloud/gkebackup/v1;gkebackupªGoogle.Cloud.GkeBackup.V1ÊGoogle\\Cloud\\GkeBackup\\V1êGoogle::Cloud::GkeBackup::V1bproto3'
+$gkebackup.googleapis.com/RestorePlanCprojects/{project}/locations/{location}/restorePlans/{restore_plan}BÇ
+com.google.cloud.gkebackup.v1BRestorePlanProtoPZ;cloud.google.com/go/gkebackup/apiv1/gkebackuppb;gkebackuppbªGoogle.Cloud.GkeBackup.V1ÊGoogle\\Cloud\\GkeBackup\\V1êGoogle::Cloud::GkeBackup::V1bproto3'
         , true);
 
         static::$is_initialized = true;
