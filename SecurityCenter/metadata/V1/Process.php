@@ -17,7 +17,7 @@ class Process
         \GPBMetadata\Google\Cloud\Securitycenter\V1\File::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ë
+é
 ,google/cloud/securitycenter/v1/process.protogoogle.cloud.securitycenter.v1"õ
 Process
 name (	4
@@ -34,8 +34,8 @@ class Process
 parent_pid ("0
 EnvironmentVariable
 name (	
-val (	Bè
-"com.google.cloud.securitycenter.v1BProcessProtoPZLgoogle.golang.org/genproto/googleapis/cloud/securitycenter/v1;securitycenterªGoogle.Cloud.SecurityCenter.V1ÊGoogle\\Cloud\\SecurityCenter\\V1ê!Google::Cloud::SecurityCenter::V1bproto3'
+val (	Bæ
+"com.google.cloud.securitycenter.v1BProcessProtoPZJcloud.google.com/go/securitycenter/apiv1/securitycenterpb;securitycenterpbªGoogle.Cloud.SecurityCenter.V1ÊGoogle\\Cloud\\SecurityCenter\\V1ê!Google::Cloud::SecurityCenter::V1bproto3'
         , true);
 
         static::$is_initialized = true;

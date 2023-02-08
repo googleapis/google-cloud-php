@@ -19,7 +19,7 @@ class Company
         \GPBMetadata\Google\Cloud\Talent\V4\Common::initOnce();
         $pool->internalAddGeneratedFile(
             '
-√
+π
 $google/cloud/talent/v4/company.protogoogle.cloud.talent.v4google/api/resource.proto#google/cloud/talent/v4/common.proto"»
 Company
 name (	
@@ -38,8 +38,8 @@ $google/cloud/talent/v4/company.protogoogle.cloud.talent.v4google/api/resour
 	suspended (B‡AN
 DerivedInfo?
 headquarters_location (2 .google.cloud.talent.v4.Location:YÍAV
-jobs.googleapis.com/Company7projects/{project}/tenants/{tenant}/companies/{company}Bp
-com.google.cloud.talent.v4BCompanyProtoPZ<google.golang.org/genproto/googleapis/cloud/talent/v4;talent¢CTSbproto3'
+jobs.googleapis.com/Company7projects/{project}/tenants/{tenant}/companies/{company}Bf
+com.google.cloud.talent.v4BCompanyProtoPZ2cloud.google.com/go/talent/apiv4/talentpb;talentpb¢CTSbproto3'
         , true);
 
         static::$is_initialized = true;

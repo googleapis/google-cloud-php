@@ -33,9 +33,9 @@ use Google\ApiCore\ApiException;
  * @param string $propertyDisplayName Human-readable display name for this property.
  *
  *                                    The max allowed display name length is 100 UTF-16 code units.
- * @param string $propertyTimeZone    Reporting Time Zone, used as the day boundary for reports, regardless of
- *                                    where the data originates. If the time zone honors DST, Analytics will
- *                                    automatically adjust for the changes.
+ * @param string $propertyTimeZone    Reporting Time Zone, used as the day boundary for reports,
+ *                                    regardless of where the data originates. If the time zone honors DST,
+ *                                    Analytics will automatically adjust for the changes.
  *
  *                                    NOTE: Changing the time zone only affects data going forward, and is not
  *                                    applied retroactively.

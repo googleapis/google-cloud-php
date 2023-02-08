@@ -263,7 +263,8 @@ class Vehicle extends \Google\Protobuf\Internal\Message
     /**
      * Deprecated: No longer used.
      * Indices in the `break_rule` field in the source
-     * [ShipmentModel][]. They correspond to break rules enforced on the vehicle.
+     * [ShipmentModel][google.cloud.optimization.v1.ShipmentModel]. They
+     * correspond to break rules enforced on the vehicle.
      * As of 2018/03, at most one rule index per vehicle can be specified.
      *
      * Generated from protobuf field <code>repeated int32 break_rule_indices = 29 [deprecated = true];</code>
@@ -271,21 +272,27 @@ class Vehicle extends \Google\Protobuf\Internal\Message
      */
     private $break_rule_indices;
     /**
-     * Deprecated: Use [Vehicle.load_limits][] instead.
+     * Deprecated: Use
+     * [Vehicle.load_limits][google.cloud.optimization.v1.Vehicle.load_limits]
+     * instead.
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.CapacityQuantity capacities = 13 [deprecated = true];</code>
      * @deprecated
      */
     private $capacities;
     /**
-     * Deprecated: Use [Vehicle.LoadLimit.start_load_interval][] instead.
+     * Deprecated: Use
+     * [Vehicle.LoadLimit.start_load_interval][google.cloud.optimization.v1.Vehicle.LoadLimit.start_load_interval]
+     * instead.
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.CapacityQuantityInterval start_load_intervals = 14 [deprecated = true];</code>
      * @deprecated
      */
     private $start_load_intervals;
     /**
-     * Deprecated: Use [Vehicle.LoadLimit.end_load_interval][] instead.
+     * Deprecated: Use
+     * [Vehicle.LoadLimit.end_load_interval][google.cloud.optimization.v1.Vehicle.LoadLimit.end_load_interval]
+     * instead.
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.CapacityQuantityInterval end_load_intervals = 15 [deprecated = true];</code>
      * @deprecated
@@ -448,14 +455,21 @@ class Vehicle extends \Google\Protobuf\Internal\Message
      *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $break_rule_indices
      *           Deprecated: No longer used.
      *           Indices in the `break_rule` field in the source
-     *           [ShipmentModel][]. They correspond to break rules enforced on the vehicle.
+     *           [ShipmentModel][google.cloud.optimization.v1.ShipmentModel]. They
+     *           correspond to break rules enforced on the vehicle.
      *           As of 2018/03, at most one rule index per vehicle can be specified.
      *     @type array<\Google\Cloud\Optimization\V1\CapacityQuantity>|\Google\Protobuf\Internal\RepeatedField $capacities
-     *           Deprecated: Use [Vehicle.load_limits][] instead.
+     *           Deprecated: Use
+     *           [Vehicle.load_limits][google.cloud.optimization.v1.Vehicle.load_limits]
+     *           instead.
      *     @type array<\Google\Cloud\Optimization\V1\CapacityQuantityInterval>|\Google\Protobuf\Internal\RepeatedField $start_load_intervals
-     *           Deprecated: Use [Vehicle.LoadLimit.start_load_interval][] instead.
+     *           Deprecated: Use
+     *           [Vehicle.LoadLimit.start_load_interval][google.cloud.optimization.v1.Vehicle.LoadLimit.start_load_interval]
+     *           instead.
      *     @type array<\Google\Cloud\Optimization\V1\CapacityQuantityInterval>|\Google\Protobuf\Internal\RepeatedField $end_load_intervals
-     *           Deprecated: Use [Vehicle.LoadLimit.end_load_interval][] instead.
+     *           Deprecated: Use
+     *           [Vehicle.LoadLimit.end_load_interval][google.cloud.optimization.v1.Vehicle.LoadLimit.end_load_interval]
+     *           instead.
      * }
      */
     public function __construct($data = NULL) {
@@ -1378,7 +1392,8 @@ class Vehicle extends \Google\Protobuf\Internal\Message
     /**
      * Deprecated: No longer used.
      * Indices in the `break_rule` field in the source
-     * [ShipmentModel][]. They correspond to break rules enforced on the vehicle.
+     * [ShipmentModel][google.cloud.optimization.v1.ShipmentModel]. They
+     * correspond to break rules enforced on the vehicle.
      * As of 2018/03, at most one rule index per vehicle can be specified.
      *
      * Generated from protobuf field <code>repeated int32 break_rule_indices = 29 [deprecated = true];</code>
@@ -1394,7 +1409,8 @@ class Vehicle extends \Google\Protobuf\Internal\Message
     /**
      * Deprecated: No longer used.
      * Indices in the `break_rule` field in the source
-     * [ShipmentModel][]. They correspond to break rules enforced on the vehicle.
+     * [ShipmentModel][google.cloud.optimization.v1.ShipmentModel]. They
+     * correspond to break rules enforced on the vehicle.
      * As of 2018/03, at most one rule index per vehicle can be specified.
      *
      * Generated from protobuf field <code>repeated int32 break_rule_indices = 29 [deprecated = true];</code>
@@ -1412,7 +1428,9 @@ class Vehicle extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated: Use [Vehicle.load_limits][] instead.
+     * Deprecated: Use
+     * [Vehicle.load_limits][google.cloud.optimization.v1.Vehicle.load_limits]
+     * instead.
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.CapacityQuantity capacities = 13 [deprecated = true];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -1425,7 +1443,9 @@ class Vehicle extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated: Use [Vehicle.load_limits][] instead.
+     * Deprecated: Use
+     * [Vehicle.load_limits][google.cloud.optimization.v1.Vehicle.load_limits]
+     * instead.
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.CapacityQuantity capacities = 13 [deprecated = true];</code>
      * @param array<\Google\Cloud\Optimization\V1\CapacityQuantity>|\Google\Protobuf\Internal\RepeatedField $var
@@ -1442,7 +1462,9 @@ class Vehicle extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated: Use [Vehicle.LoadLimit.start_load_interval][] instead.
+     * Deprecated: Use
+     * [Vehicle.LoadLimit.start_load_interval][google.cloud.optimization.v1.Vehicle.LoadLimit.start_load_interval]
+     * instead.
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.CapacityQuantityInterval start_load_intervals = 14 [deprecated = true];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -1455,7 +1477,9 @@ class Vehicle extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated: Use [Vehicle.LoadLimit.start_load_interval][] instead.
+     * Deprecated: Use
+     * [Vehicle.LoadLimit.start_load_interval][google.cloud.optimization.v1.Vehicle.LoadLimit.start_load_interval]
+     * instead.
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.CapacityQuantityInterval start_load_intervals = 14 [deprecated = true];</code>
      * @param array<\Google\Cloud\Optimization\V1\CapacityQuantityInterval>|\Google\Protobuf\Internal\RepeatedField $var
@@ -1472,7 +1496,9 @@ class Vehicle extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated: Use [Vehicle.LoadLimit.end_load_interval][] instead.
+     * Deprecated: Use
+     * [Vehicle.LoadLimit.end_load_interval][google.cloud.optimization.v1.Vehicle.LoadLimit.end_load_interval]
+     * instead.
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.CapacityQuantityInterval end_load_intervals = 15 [deprecated = true];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -1485,7 +1511,9 @@ class Vehicle extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated: Use [Vehicle.LoadLimit.end_load_interval][] instead.
+     * Deprecated: Use
+     * [Vehicle.LoadLimit.end_load_interval][google.cloud.optimization.v1.Vehicle.LoadLimit.end_load_interval]
+     * instead.
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.CapacityQuantityInterval end_load_intervals = 15 [deprecated = true];</code>
      * @param array<\Google\Cloud\Optimization\V1\CapacityQuantityInterval>|\Google\Protobuf\Internal\RepeatedField $var
