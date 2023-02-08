@@ -35,8 +35,8 @@ use Google\ApiCore\ApiException;
  *
  * @param string $formattedProperty The property for which to acknowledge user data collection. Please see
  *                                  {@see AnalyticsAdminServiceClient::propertyName()} for help formatting this field.
- * @param string $acknowledgement   An acknowledgement that the caller of this method understands the terms
- *                                  of user data collection.
+ * @param string $acknowledgement   An acknowledgement that the caller of this method understands the
+ *                                  terms of user data collection.
  *
  *                                  This field must contain the exact value:
  *                                  "I acknowledge that I have the necessary privacy disclosures and rights

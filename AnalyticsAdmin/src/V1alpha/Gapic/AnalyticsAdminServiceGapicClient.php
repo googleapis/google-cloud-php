@@ -50,6 +50,7 @@ use Google\Analytics\Admin\V1alpha\BatchGetUserLinksRequest;
 use Google\Analytics\Admin\V1alpha\BatchGetUserLinksResponse;
 use Google\Analytics\Admin\V1alpha\BatchUpdateUserLinksRequest;
 use Google\Analytics\Admin\V1alpha\BatchUpdateUserLinksResponse;
+use Google\Analytics\Admin\V1alpha\BigQueryLink;
 use Google\Analytics\Admin\V1alpha\CancelDisplayVideo360AdvertiserLinkProposalRequest;
 use Google\Analytics\Admin\V1alpha\ConversionEvent;
 use Google\Analytics\Admin\V1alpha\CreateAudienceRequest;
@@ -63,6 +64,7 @@ use Google\Analytics\Admin\V1alpha\CreateFirebaseLinkRequest;
 use Google\Analytics\Admin\V1alpha\CreateGoogleAdsLinkRequest;
 use Google\Analytics\Admin\V1alpha\CreateMeasurementProtocolSecretRequest;
 use Google\Analytics\Admin\V1alpha\CreatePropertyRequest;
+use Google\Analytics\Admin\V1alpha\CreateSearchAds360LinkRequest;
 use Google\Analytics\Admin\V1alpha\CreateUserLinkRequest;
 use Google\Analytics\Admin\V1alpha\CustomDimension;
 use Google\Analytics\Admin\V1alpha\CustomMetric;
@@ -78,13 +80,17 @@ use Google\Analytics\Admin\V1alpha\DeleteFirebaseLinkRequest;
 use Google\Analytics\Admin\V1alpha\DeleteGoogleAdsLinkRequest;
 use Google\Analytics\Admin\V1alpha\DeleteMeasurementProtocolSecretRequest;
 use Google\Analytics\Admin\V1alpha\DeletePropertyRequest;
+use Google\Analytics\Admin\V1alpha\DeleteSearchAds360LinkRequest;
 use Google\Analytics\Admin\V1alpha\DeleteUserLinkRequest;
 use Google\Analytics\Admin\V1alpha\DisplayVideo360AdvertiserLink;
 use Google\Analytics\Admin\V1alpha\DisplayVideo360AdvertiserLinkProposal;
+use Google\Analytics\Admin\V1alpha\FetchAutomatedGa4ConfigurationOptOutRequest;
+use Google\Analytics\Admin\V1alpha\FetchAutomatedGa4ConfigurationOptOutResponse;
 use Google\Analytics\Admin\V1alpha\FirebaseLink;
 use Google\Analytics\Admin\V1alpha\GetAccountRequest;
 use Google\Analytics\Admin\V1alpha\GetAttributionSettingsRequest;
 use Google\Analytics\Admin\V1alpha\GetAudienceRequest;
+use Google\Analytics\Admin\V1alpha\GetBigQueryLinkRequest;
 use Google\Analytics\Admin\V1alpha\GetConversionEventRequest;
 use Google\Analytics\Admin\V1alpha\GetCustomDimensionRequest;
 use Google\Analytics\Admin\V1alpha\GetCustomMetricRequest;
@@ -97,6 +103,7 @@ use Google\Analytics\Admin\V1alpha\GetGlobalSiteTagRequest;
 use Google\Analytics\Admin\V1alpha\GetGoogleSignalsSettingsRequest;
 use Google\Analytics\Admin\V1alpha\GetMeasurementProtocolSecretRequest;
 use Google\Analytics\Admin\V1alpha\GetPropertyRequest;
+use Google\Analytics\Admin\V1alpha\GetSearchAds360LinkRequest;
 use Google\Analytics\Admin\V1alpha\GetUserLinkRequest;
 use Google\Analytics\Admin\V1alpha\GlobalSiteTag;
 use Google\Analytics\Admin\V1alpha\GoogleAdsLink;
@@ -107,6 +114,8 @@ use Google\Analytics\Admin\V1alpha\ListAccountsRequest;
 use Google\Analytics\Admin\V1alpha\ListAccountsResponse;
 use Google\Analytics\Admin\V1alpha\ListAudiencesRequest;
 use Google\Analytics\Admin\V1alpha\ListAudiencesResponse;
+use Google\Analytics\Admin\V1alpha\ListBigQueryLinksRequest;
+use Google\Analytics\Admin\V1alpha\ListBigQueryLinksResponse;
 use Google\Analytics\Admin\V1alpha\ListConversionEventsRequest;
 use Google\Analytics\Admin\V1alpha\ListConversionEventsResponse;
 use Google\Analytics\Admin\V1alpha\ListCustomDimensionsRequest;
@@ -127,6 +136,8 @@ use Google\Analytics\Admin\V1alpha\ListMeasurementProtocolSecretsRequest;
 use Google\Analytics\Admin\V1alpha\ListMeasurementProtocolSecretsResponse;
 use Google\Analytics\Admin\V1alpha\ListPropertiesRequest;
 use Google\Analytics\Admin\V1alpha\ListPropertiesResponse;
+use Google\Analytics\Admin\V1alpha\ListSearchAds360LinksRequest;
+use Google\Analytics\Admin\V1alpha\ListSearchAds360LinksResponse;
 use Google\Analytics\Admin\V1alpha\ListUserLinksRequest;
 use Google\Analytics\Admin\V1alpha\ListUserLinksResponse;
 use Google\Analytics\Admin\V1alpha\MeasurementProtocolSecret;
@@ -135,8 +146,11 @@ use Google\Analytics\Admin\V1alpha\ProvisionAccountTicketRequest;
 use Google\Analytics\Admin\V1alpha\ProvisionAccountTicketResponse;
 use Google\Analytics\Admin\V1alpha\RunAccessReportRequest;
 use Google\Analytics\Admin\V1alpha\RunAccessReportResponse;
+use Google\Analytics\Admin\V1alpha\SearchAds360Link;
 use Google\Analytics\Admin\V1alpha\SearchChangeHistoryEventsRequest;
 use Google\Analytics\Admin\V1alpha\SearchChangeHistoryEventsResponse;
+use Google\Analytics\Admin\V1alpha\SetAutomatedGa4ConfigurationOptOutRequest;
+use Google\Analytics\Admin\V1alpha\SetAutomatedGa4ConfigurationOptOutResponse;
 use Google\Analytics\Admin\V1alpha\UpdateAccountRequest;
 use Google\Analytics\Admin\V1alpha\UpdateAttributionSettingsRequest;
 use Google\Analytics\Admin\V1alpha\UpdateAudienceRequest;
@@ -149,6 +163,7 @@ use Google\Analytics\Admin\V1alpha\UpdateGoogleAdsLinkRequest;
 use Google\Analytics\Admin\V1alpha\UpdateGoogleSignalsSettingsRequest;
 use Google\Analytics\Admin\V1alpha\UpdateMeasurementProtocolSecretRequest;
 use Google\Analytics\Admin\V1alpha\UpdatePropertyRequest;
+use Google\Analytics\Admin\V1alpha\UpdateSearchAds360LinkRequest;
 use Google\Analytics\Admin\V1alpha\UpdateUserLinkRequest;
 use Google\Analytics\Admin\V1alpha\UserLink;
 use Google\ApiCore\ApiException;
@@ -220,6 +235,8 @@ class AnalyticsAdminServiceGapicClient
 
     private static $audienceNameTemplate;
 
+    private static $bigQueryLinkNameTemplate;
+
     private static $conversionEventNameTemplate;
 
     private static $customDimensionNameTemplate;
@@ -249,6 +266,8 @@ class AnalyticsAdminServiceGapicClient
     private static $propertyNameTemplate;
 
     private static $propertyUserLinkNameTemplate;
+
+    private static $searchAds360LinkNameTemplate;
 
     private static $userLinkNameTemplate;
 
@@ -307,6 +326,15 @@ class AnalyticsAdminServiceGapicClient
         }
 
         return self::$audienceNameTemplate;
+    }
+
+    private static function getBigQueryLinkNameTemplate()
+    {
+        if (self::$bigQueryLinkNameTemplate == null) {
+            self::$bigQueryLinkNameTemplate = new PathTemplate('properties/{property}/bigQueryLinks/{bigquery_link}');
+        }
+
+        return self::$bigQueryLinkNameTemplate;
     }
 
     private static function getConversionEventNameTemplate()
@@ -444,6 +472,15 @@ class AnalyticsAdminServiceGapicClient
         return self::$propertyUserLinkNameTemplate;
     }
 
+    private static function getSearchAds360LinkNameTemplate()
+    {
+        if (self::$searchAds360LinkNameTemplate == null) {
+            self::$searchAds360LinkNameTemplate = new PathTemplate('properties/{property}/searchAds360Links/{search_ads_360_link}');
+        }
+
+        return self::$searchAds360LinkNameTemplate;
+    }
+
     private static function getUserLinkNameTemplate()
     {
         if (self::$userLinkNameTemplate == null) {
@@ -461,6 +498,7 @@ class AnalyticsAdminServiceGapicClient
                 'accountUserLink' => self::getAccountUserLinkNameTemplate(),
                 'attributionSettings' => self::getAttributionSettingsNameTemplate(),
                 'audience' => self::getAudienceNameTemplate(),
+                'bigQueryLink' => self::getBigQueryLinkNameTemplate(),
                 'conversionEvent' => self::getConversionEventNameTemplate(),
                 'customDimension' => self::getCustomDimensionNameTemplate(),
                 'customMetric' => self::getCustomMetricNameTemplate(),
@@ -476,6 +514,7 @@ class AnalyticsAdminServiceGapicClient
                 'measurementProtocolSecret' => self::getMeasurementProtocolSecretNameTemplate(),
                 'property' => self::getPropertyNameTemplate(),
                 'propertyUserLink' => self::getPropertyUserLinkNameTemplate(),
+                'searchAds360Link' => self::getSearchAds360LinkNameTemplate(),
                 'userLink' => self::getUserLinkNameTemplate(),
             ];
         }
@@ -552,6 +591,25 @@ class AnalyticsAdminServiceGapicClient
         return self::getAudienceNameTemplate()->render([
             'property' => $property,
             'audience' => $audience,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * big_query_link resource.
+     *
+     * @param string $property
+     * @param string $bigqueryLink
+     *
+     * @return string The formatted big_query_link resource.
+     *
+     * @experimental
+     */
+    public static function bigQueryLinkName($property, $bigqueryLink)
+    {
+        return self::getBigQueryLinkNameTemplate()->render([
+            'property' => $property,
+            'bigquery_link' => $bigqueryLink,
         ]);
     }
 
@@ -835,6 +893,25 @@ class AnalyticsAdminServiceGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * search_ads360_link resource.
+     *
+     * @param string $property
+     * @param string $searchAds360Link
+     *
+     * @return string The formatted search_ads360_link resource.
+     *
+     * @experimental
+     */
+    public static function searchAds360LinkName($property, $searchAds360Link)
+    {
+        return self::getSearchAds360LinkNameTemplate()->render([
+            'property' => $property,
+            'search_ads_360_link' => $searchAds360Link,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a user_link
      * resource.
      *
@@ -861,6 +938,7 @@ class AnalyticsAdminServiceGapicClient
      * - accountUserLink: accounts/{account}/userLinks/{user_link}
      * - attributionSettings: properties/{property}/attributionSettings
      * - audience: properties/{property}/audiences/{audience}
+     * - bigQueryLink: properties/{property}/bigQueryLinks/{bigquery_link}
      * - conversionEvent: properties/{property}/conversionEvents/{conversion_event}
      * - customDimension: properties/{property}/customDimensions/{custom_dimension}
      * - customMetric: properties/{property}/customMetrics/{custom_metric}
@@ -876,6 +954,7 @@ class AnalyticsAdminServiceGapicClient
      * - measurementProtocolSecret: properties/{property}/dataStreams/{data_stream}/measurementProtocolSecrets/{measurement_protocol_secret}
      * - property: properties/{property}
      * - propertyUserLink: properties/{property}/userLinks/{user_link}
+     * - searchAds360Link: properties/{property}/searchAds360Links/{search_ads_360_link}
      * - userLink: accounts/{account}/userLinks/{user_link}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
@@ -996,8 +1075,8 @@ class AnalyticsAdminServiceGapicClient
      * ```
      *
      * @param string $property        Required. The property for which to acknowledge user data collection.
-     * @param string $acknowledgement Required. An acknowledgement that the caller of this method understands the terms
-     *                                of user data collection.
+     * @param string $acknowledgement Required. An acknowledgement that the caller of this method understands the
+     *                                terms of user data collection.
      *
      *                                This field must contain the exact value:
      *                                "I acknowledge that I have the necessary privacy disclosures and rights
@@ -1290,8 +1369,8 @@ class AnalyticsAdminServiceGapicClient
      * }
      * ```
      *
-     * @param string                  $parent       Required. The account or property that all user links in the request are for.
-     *                                              This field is required. The parent field in the CreateUserLinkRequest
+     * @param string                  $parent       Required. The account or property that all user links in the request are
+     *                                              for. This field is required. The parent field in the CreateUserLinkRequest
      *                                              messages must either be empty or match this field.
      *                                              Example format: accounts/1234
      * @param CreateUserLinkRequest[] $requests     Required. The requests specifying the user links to create.
@@ -1300,9 +1379,9 @@ class AnalyticsAdminServiceGapicClient
      *     Optional.
      *
      *     @type bool $notifyNewUsers
-     *           Optional. If set, then email the new users notifying them that they've been granted
-     *           permissions to the resource. Regardless of whether this is set or not,
-     *           notify_new_user field inside each individual request is ignored.
+     *           Optional. If set, then email the new users notifying them that they've been
+     *           granted permissions to the resource. Regardless of whether this is set or
+     *           not, notify_new_user field inside each individual request is ignored.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1582,8 +1661,8 @@ class AnalyticsAdminServiceGapicClient
      * ```
      *
      * @param ConversionEvent $conversionEvent Required. The conversion event to create.
-     * @param string          $parent          Required. The resource name of the parent property where this conversion event will
-     *                                         be created. Format: properties/123
+     * @param string          $parent          Required. The resource name of the parent property where this conversion
+     *                                         event will be created. Format: properties/123
      * @param array           $optionalArgs    {
      *     Optional.
      *
@@ -2010,6 +2089,50 @@ class AnalyticsAdminServiceGapicClient
     }
 
     /**
+     * Creates a SearchAds360Link.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $formattedParent = $analyticsAdminServiceClient->propertyName('[PROPERTY]');
+     *     $searchAds360Link = new SearchAds360Link();
+     *     $response = $analyticsAdminServiceClient->createSearchAds360Link($formattedParent, $searchAds360Link);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string           $parent           Required. Example format: properties/1234
+     * @param SearchAds360Link $searchAds360Link Required. The SearchAds360Link to create.
+     * @param array            $optionalArgs     {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Analytics\Admin\V1alpha\SearchAds360Link
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function createSearchAds360Link($parent, $searchAds360Link, array $optionalArgs = [])
+    {
+        $request = new CreateSearchAds360LinkRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setSearchAds360Link($searchAds360Link);
+        $requestParamHeaders['parent'] = $parent;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('CreateSearchAds360Link', SearchAds360Link::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Creates a user link on an account or property.
      *
      * If the user with the specified email already has permissions on the
@@ -2034,8 +2157,8 @@ class AnalyticsAdminServiceGapicClient
      *     Optional.
      *
      *     @type bool $notifyNewUser
-     *           Optional. If set, then email the new user notifying them that they've been granted
-     *           permissions to the resource.
+     *           Optional. If set, then email the new user notifying them that they've been
+     *           granted permissions to the resource.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2408,7 +2531,7 @@ class AnalyticsAdminServiceGapicClient
      * will be permanently purged.
      * https://support.google.com/analytics/answer/6154772
      *
-     * Returns an error if the target is not found, or is not an GA4 Property.
+     * Returns an error if the target is not found, or is not a GA4 Property.
      *
      * Sample code:
      * ```
@@ -2451,6 +2574,46 @@ class AnalyticsAdminServiceGapicClient
     }
 
     /**
+     * Deletes a SearchAds360Link on a property.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $formattedName = $analyticsAdminServiceClient->searchAds360LinkName('[PROPERTY]', '[SEARCH_ADS_360_LINK]');
+     *     $analyticsAdminServiceClient->deleteSearchAds360Link($formattedName);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the SearchAds360Link to delete.
+     *                             Example format: properties/1234/SearchAds360Links/5678
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function deleteSearchAds360Link($name, array $optionalArgs = [])
+    {
+        $request = new DeleteSearchAds360LinkRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('DeleteSearchAds360Link', GPBEmpty::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Deletes a user link on an account or property.
      *
      * Sample code:
@@ -2487,6 +2650,48 @@ class AnalyticsAdminServiceGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteUserLink', GPBEmpty::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Fetches the opt out status for the automated GA4 setup process for a UA
+     * property.
+     * Note: this has no effect on GA4 property.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $property = 'property';
+     *     $response = $analyticsAdminServiceClient->fetchAutomatedGa4ConfigurationOptOut($property);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $property     Required. The UA property to get the opt out status. Note this request uses
+     *                             the internal property ID, not the tracking ID of the form UA-XXXXXX-YY.
+     *                             Format: properties/{internalWebPropertyId}
+     *                             Example: properties/1234
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Analytics\Admin\V1alpha\FetchAutomatedGa4ConfigurationOptOutResponse
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function fetchAutomatedGa4ConfigurationOptOut($property, array $optionalArgs = [])
+    {
+        $request = new FetchAutomatedGa4ConfigurationOptOutRequest();
+        $request->setProperty($property);
+        return $this->startCall('FetchAutomatedGa4ConfigurationOptOut', FetchAutomatedGa4ConfigurationOptOutResponse::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -2577,6 +2782,7 @@ class AnalyticsAdminServiceGapicClient
     /**
      * Lookup for a single Audience.
      * Audiences created before 2020 may not be supported.
+     * Default audiences will not show filter definitions.
      *
      * Sample code:
      * ```
@@ -2615,6 +2821,49 @@ class AnalyticsAdminServiceGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetAudience', Audience::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Lookup for a single BigQuery Link.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $formattedName = $analyticsAdminServiceClient->bigQueryLinkName('[PROPERTY]', '[BIGQUERY_LINK]');
+     *     $response = $analyticsAdminServiceClient->getBigQueryLink($formattedName);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the BigQuery link to lookup.
+     *                             Format: properties/{property_id}/bigQueryLinks/{bigquery_link_id}
+     *                             Example: properties/123/bigQueryLinks/456
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Analytics\Admin\V1alpha\BigQueryLink
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function getBigQueryLink($name, array $optionalArgs = [])
+    {
+        $request = new GetBigQueryLinkRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetBigQueryLink', BigQueryLink::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -3132,6 +3381,48 @@ class AnalyticsAdminServiceGapicClient
     }
 
     /**
+     * Look up a single SearchAds360Link
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $formattedName = $analyticsAdminServiceClient->searchAds360LinkName('[PROPERTY]', '[SEARCH_ADS_360_LINK]');
+     *     $response = $analyticsAdminServiceClient->getSearchAds360Link($formattedName);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the SearchAds360Link to get.
+     *                             Example format: properties/1234/SearchAds360Link/5678
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Analytics\Admin\V1alpha\SearchAds360Link
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function getSearchAds360Link($name, array $optionalArgs = [])
+    {
+        $request = new GetSearchAds360LinkRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetSearchAds360Link', SearchAds360Link::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Gets information about a user's link to an account or property.
      *
      * Sample code:
@@ -3313,6 +3604,7 @@ class AnalyticsAdminServiceGapicClient
     /**
      * Lists Audiences on a property.
      * Audiences created before 2020 may not be supported.
+     * Default audiences will not show filter definitions.
      *
      * Sample code:
      * ```
@@ -3379,6 +3671,78 @@ class AnalyticsAdminServiceGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->getPagedListResponse('ListAudiences', $optionalArgs, ListAudiencesResponse::class, $request);
+    }
+
+    /**
+     * Lists BigQuery Links on a property.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $formattedParent = $analyticsAdminServiceClient->propertyName('[PROPERTY]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $analyticsAdminServiceClient->listBigQueryLinks($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $analyticsAdminServiceClient->listBigQueryLinks($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The name of the property to list BigQuery links under.
+     *                             Format: properties/{property_id}
+     *                             Example: properties/1234
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function listBigQueryLinks($parent, array $optionalArgs = [])
+    {
+        $request = new ListBigQueryLinksRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->getPagedListResponse('ListBigQueryLinks', $optionalArgs, ListBigQueryLinksResponse::class, $request);
     }
 
     /**
@@ -4114,6 +4478,76 @@ class AnalyticsAdminServiceGapicClient
     }
 
     /**
+     * Lists all SearchAds360Links on a property.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $formattedParent = $analyticsAdminServiceClient->propertyName('[PROPERTY]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $analyticsAdminServiceClient->listSearchAds360Links($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $analyticsAdminServiceClient->listSearchAds360Links($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. Example format: properties/1234
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function listSearchAds360Links($parent, array $optionalArgs = [])
+    {
+        $request = new ListSearchAds360LinksRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->getPagedListResponse('ListSearchAds360Links', $optionalArgs, ListSearchAds360LinksResponse::class, $request);
+    }
+
+    /**
      * Lists all user links on an account or property.
      *
      * Sample code:
@@ -4411,7 +4845,8 @@ class AnalyticsAdminServiceGapicClient
      * }
      * ```
      *
-     * @param string $account      Required. The account resource for which to return change history resources.
+     * @param string $account      Required. The account resource for which to return change history
+     *                             resources.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -4419,15 +4854,16 @@ class AnalyticsAdminServiceGapicClient
      *           Optional. Resource name for a child property. If set, only return changes
      *           made to this property or its child resources.
      *     @type int[] $resourceType
-     *           Optional. If set, only return changes if they are for a resource that matches at
-     *           least one of these types.
+     *           Optional. If set, only return changes if they are for a resource that
+     *           matches at least one of these types.
      *           For allowed values, use constants defined on {@see \Google\Analytics\Admin\V1alpha\ChangeHistoryResourceType}
      *     @type int[] $action
-     *           Optional. If set, only return changes that match one or more of these types of
-     *           actions.
+     *           Optional. If set, only return changes that match one or more of these types
+     *           of actions.
      *           For allowed values, use constants defined on {@see \Google\Analytics\Admin\V1alpha\ActionType}
      *     @type string[] $actorEmail
-     *           Optional. If set, only return changes if they are made by a user in this list.
+     *           Optional. If set, only return changes if they are made by a user in this
+     *           list.
      *     @type Timestamp $earliestChangeTime
      *           Optional. If set, only return changes made after this time (inclusive).
      *     @type Timestamp $latestChangeTime
@@ -4497,6 +4933,54 @@ class AnalyticsAdminServiceGapicClient
     }
 
     /**
+     * Sets the opt out status for the automated GA4 setup process for a UA
+     * property.
+     * Note: this has no effect on GA4 property.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $property = 'property';
+     *     $response = $analyticsAdminServiceClient->setAutomatedGa4ConfigurationOptOut($property);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $property     Required. The UA property to set the opt out status. Note this request uses
+     *                             the internal property ID, not the tracking ID of the form UA-XXXXXX-YY.
+     *                             Format: properties/{internalWebPropertyId}
+     *                             Example: properties/1234
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type bool $optOut
+     *           The status to set.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Analytics\Admin\V1alpha\SetAutomatedGa4ConfigurationOptOutResponse
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function setAutomatedGa4ConfigurationOptOut($property, array $optionalArgs = [])
+    {
+        $request = new SetAutomatedGa4ConfigurationOptOutRequest();
+        $request->setProperty($property);
+        if (isset($optionalArgs['optOut'])) {
+            $request->setOptOut($optionalArgs['optOut']);
+        }
+
+        return $this->startCall('SetAutomatedGa4ConfigurationOptOut', SetAutomatedGa4ConfigurationOptOutResponse::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Updates an account.
      *
      * Sample code:
@@ -4513,9 +4997,10 @@ class AnalyticsAdminServiceGapicClient
      *
      * @param Account   $account      Required. The account to update.
      *                                The account's `name` field is used to identify the account.
-     * @param FieldMask $updateMask   Required. The list of fields to be updated. Field names must be in snake case
-     *                                (e.g., "field_to_update"). Omitted fields will not be updated. To replace
-     *                                the entire entity, use one path with the string "*" to match all fields.
+     * @param FieldMask $updateMask   Required. The list of fields to be updated. Field names must be in snake
+     *                                case (e.g., "field_to_update"). Omitted fields will not be updated. To
+     *                                replace the entire entity, use one path with the string "*" to match all
+     *                                fields.
      * @param array     $optionalArgs {
      *     Optional.
      *
@@ -4560,9 +5045,10 @@ class AnalyticsAdminServiceGapicClient
      *
      * @param AttributionSettings $attributionSettings Required. The attribution settings to update.
      *                                                 The `name` field is used to identify the settings to be updated.
-     * @param FieldMask           $updateMask          Required. The list of fields to be updated. Field names must be in snake case
-     *                                                 (e.g., "field_to_update"). Omitted fields will not be updated. To replace
-     *                                                 the entire entity, use one path with the string "*" to match all fields.
+     * @param FieldMask           $updateMask          Required. The list of fields to be updated. Field names must be in snake
+     *                                                 case (e.g., "field_to_update"). Omitted fields will not be updated. To
+     *                                                 replace the entire entity, use one path with the string "*" to match all
+     *                                                 fields.
      * @param array               $optionalArgs        {
      *     Optional.
      *
@@ -4607,9 +5093,10 @@ class AnalyticsAdminServiceGapicClient
      *
      * @param Audience  $audience     Required. The audience to update.
      *                                The audience's `name` field is used to identify the audience to be updated.
-     * @param FieldMask $updateMask   Required. The list of fields to be updated. Field names must be in snake case
-     *                                (e.g., "field_to_update"). Omitted fields will not be updated. To replace
-     *                                the entire entity, use one path with the string "*" to match all fields.
+     * @param FieldMask $updateMask   Required. The list of fields to be updated. Field names must be in snake
+     *                                case (e.g., "field_to_update"). Omitted fields will not be updated. To
+     *                                replace the entire entity, use one path with the string "*" to match all
+     *                                fields.
      * @param array     $optionalArgs {
      *     Optional.
      *
@@ -4651,9 +5138,9 @@ class AnalyticsAdminServiceGapicClient
      * }
      * ```
      *
-     * @param FieldMask $updateMask   Required. The list of fields to be updated. Omitted fields will not be updated.
-     *                                To replace the entire entity, use one path with the string "*" to match
-     *                                all fields.
+     * @param FieldMask $updateMask   Required. The list of fields to be updated. Omitted fields will not be
+     *                                updated. To replace the entire entity, use one path with the string "*" to
+     *                                match all fields.
      * @param array     $optionalArgs {
      *     Optional.
      *
@@ -4699,9 +5186,9 @@ class AnalyticsAdminServiceGapicClient
      * }
      * ```
      *
-     * @param FieldMask $updateMask   Required. The list of fields to be updated. Omitted fields will not be updated.
-     *                                To replace the entire entity, use one path with the string "*" to match
-     *                                all fields.
+     * @param FieldMask $updateMask   Required. The list of fields to be updated. Omitted fields will not be
+     *                                updated. To replace the entire entity, use one path with the string "*" to
+     *                                match all fields.
      * @param array     $optionalArgs {
      *     Optional.
      *
@@ -4750,9 +5237,10 @@ class AnalyticsAdminServiceGapicClient
      *
      * @param DataRetentionSettings $dataRetentionSettings Required. The settings to update.
      *                                                     The `name` field is used to identify the settings to be updated.
-     * @param FieldMask             $updateMask            Required. The list of fields to be updated. Field names must be in snake case
-     *                                                     (e.g., "field_to_update"). Omitted fields will not be updated. To replace
-     *                                                     the entire entity, use one path with the string "*" to match all fields.
+     * @param FieldMask             $updateMask            Required. The list of fields to be updated. Field names must be in snake
+     *                                                     case (e.g., "field_to_update"). Omitted fields will not be updated. To
+     *                                                     replace the entire entity, use one path with the string "*" to match all
+     *                                                     fields.
      * @param array                 $optionalArgs          {
      *     Optional.
      *
@@ -4794,9 +5282,9 @@ class AnalyticsAdminServiceGapicClient
      * }
      * ```
      *
-     * @param FieldMask $updateMask   Required. The list of fields to be updated. Omitted fields will not be updated.
-     *                                To replace the entire entity, use one path with the string "*" to match
-     *                                all fields.
+     * @param FieldMask $updateMask   Required. The list of fields to be updated. Omitted fields will not be
+     *                                updated. To replace the entire entity, use one path with the string "*" to
+     *                                match all fields.
      * @param array     $optionalArgs {
      *     Optional.
      *
@@ -4842,9 +5330,9 @@ class AnalyticsAdminServiceGapicClient
      * }
      * ```
      *
-     * @param FieldMask $updateMask   Required. The list of fields to be updated. Omitted fields will not be updated.
-     *                                To replace the entire entity, use one path with the string "*" to match
-     *                                all fields.
+     * @param FieldMask $updateMask   Required. The list of fields to be updated. Omitted fields will not be
+     *                                updated. To replace the entire entity, use one path with the string "*" to
+     *                                match all fields.
      * @param array     $optionalArgs {
      *     Optional.
      *
@@ -4890,9 +5378,10 @@ class AnalyticsAdminServiceGapicClient
      * }
      * ```
      *
-     * @param FieldMask $updateMask   Required. The list of fields to be updated. Field names must be in snake case
-     *                                (e.g., "field_to_update"). Omitted fields will not be updated. To replace
-     *                                the entire entity, use one path with the string "*" to match all fields.
+     * @param FieldMask $updateMask   Required. The list of fields to be updated. Field names must be in snake
+     *                                case (e.g., "field_to_update"). Omitted fields will not be updated. To
+     *                                replace the entire entity, use one path with the string "*" to match all
+     *                                fields.
      * @param array     $optionalArgs {
      *     Optional.
      *
@@ -4941,9 +5430,10 @@ class AnalyticsAdminServiceGapicClient
      *
      * @param GoogleSignalsSettings $googleSignalsSettings Required. The settings to update.
      *                                                     The `name` field is used to identify the settings to be updated.
-     * @param FieldMask             $updateMask            Required. The list of fields to be updated. Field names must be in snake case
-     *                                                     (e.g., "field_to_update"). Omitted fields will not be updated. To replace
-     *                                                     the entire entity, use one path with the string "*" to match all fields.
+     * @param FieldMask             $updateMask            Required. The list of fields to be updated. Field names must be in snake
+     *                                                     case (e.g., "field_to_update"). Omitted fields will not be updated. To
+     *                                                     replace the entire entity, use one path with the string "*" to match all
+     *                                                     fields.
      * @param array                 $optionalArgs          {
      *     Optional.
      *
@@ -5036,9 +5526,10 @@ class AnalyticsAdminServiceGapicClient
      * @param Property  $property     Required. The property to update.
      *                                The property's `name` field is used to identify the property to be
      *                                updated.
-     * @param FieldMask $updateMask   Required. The list of fields to be updated. Field names must be in snake case
-     *                                (e.g., "field_to_update"). Omitted fields will not be updated. To replace
-     *                                the entire entity, use one path with the string "*" to match all fields.
+     * @param FieldMask $updateMask   Required. The list of fields to be updated. Field names must be in snake
+     *                                case (e.g., "field_to_update"). Omitted fields will not be updated. To
+     *                                replace the entire entity, use one path with the string "*" to match all
+     *                                fields.
      * @param array     $optionalArgs {
      *     Optional.
      *
@@ -5064,6 +5555,54 @@ class AnalyticsAdminServiceGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('UpdateProperty', Property::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Updates a SearchAds360Link on a property.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $updateMask = new FieldMask();
+     *     $response = $analyticsAdminServiceClient->updateSearchAds360Link($updateMask);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param FieldMask $updateMask   Required. The list of fields to be updated. Omitted fields will not be
+     *                                updated. To replace the entire entity, use one path with the string "*" to
+     *                                match all fields.
+     * @param array     $optionalArgs {
+     *     Optional.
+     *
+     *     @type SearchAds360Link $searchAds360Link
+     *           The SearchAds360Link to update
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Analytics\Admin\V1alpha\SearchAds360Link
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function updateSearchAds360Link($updateMask, array $optionalArgs = [])
+    {
+        $request = new UpdateSearchAds360LinkRequest();
+        $requestParamHeaders = [];
+        $request->setUpdateMask($updateMask);
+        if (isset($optionalArgs['searchAds360Link'])) {
+            $request->setSearchAds360Link($optionalArgs['searchAds360Link']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('UpdateSearchAds360Link', SearchAds360Link::class, $optionalArgs, $request)->wait();
     }
 
     /**

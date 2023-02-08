@@ -293,6 +293,18 @@ return [
                 'uriTemplate' => '/v1alpha/properties',
                 'body' => 'property',
             ],
+            'CreateSearchAds360Link' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1alpha/{parent=properties/*}/searchAds360Links',
+                'body' => 'search_ads_360_link',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateUserLink' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1alpha/{parent=accounts/*}/userLinks',
@@ -411,6 +423,17 @@ return [
                     ],
                 ],
             ],
+            'DeleteSearchAds360Link' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1alpha/{name=properties/*/searchAds360Links/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteUserLink' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1alpha/{name=accounts/*/userLinks/*}',
@@ -427,6 +450,11 @@ return [
                         ],
                     ],
                 ],
+            ],
+            'FetchAutomatedGa4ConfigurationOptOut' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1alpha/properties:fetchAutomatedGa4ConfigurationOptOut',
+                'body' => '*',
             ],
             'GetAccount' => [
                 'method' => 'get',
@@ -453,6 +481,17 @@ return [
             'GetAudience' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1alpha/{name=properties/*/audiences/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetBigQueryLink' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{name=properties/*/bigQueryLinks/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -593,6 +632,17 @@ return [
                     ],
                 ],
             ],
+            'GetSearchAds360Link' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{name=properties/*/searchAds360Links/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetUserLink' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1alpha/{name=accounts/*/userLinks/*}',
@@ -621,6 +671,17 @@ return [
             'ListAudiences' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1alpha/{parent=properties/*}/audiences',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListBigQueryLinks' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{parent=properties/*}/bigQueryLinks',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -735,6 +796,17 @@ return [
                     'filter',
                 ],
             ],
+            'ListSearchAds360Links' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{parent=properties/*}/searchAds360Links',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListUserLinks' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1alpha/{parent=accounts/*}/userLinks',
@@ -780,6 +852,11 @@ return [
                         ],
                     ],
                 ],
+            ],
+            'SetAutomatedGa4ConfigurationOptOut' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1alpha/properties:setAutomatedGa4ConfigurationOptOut',
+                'body' => '*',
             ],
             'UpdateAccount' => [
                 'method' => 'patch',
@@ -962,6 +1039,22 @@ return [
                     'property.name' => [
                         'getters' => [
                             'getProperty',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
+                ],
+            ],
+            'UpdateSearchAds360Link' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1alpha/{search_ads_360_link.name=properties/*/searchAds360Links/*}',
+                'body' => 'search_ads_360_link',
+                'placeholders' => [
+                    'search_ads_360_link.name' => [
+                        'getters' => [
+                            'getSearchAds360Link',
                             'getName',
                         ],
                     ],

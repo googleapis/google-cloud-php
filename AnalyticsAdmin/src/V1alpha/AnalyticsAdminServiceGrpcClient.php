@@ -197,7 +197,7 @@ class AnalyticsAdminServiceGrpcClient extends \Grpc\BaseStub {
      * will be permanently purged.
      * https://support.google.com/analytics/answer/6154772
      *
-     * Returns an error if the target is not found, or is not an GA4 Property.
+     * Returns an error if the target is not found, or is not a GA4 Property.
      * @param \Google\Analytics\Admin\V1alpha\DeletePropertyRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -1167,6 +1167,7 @@ class AnalyticsAdminServiceGrpcClient extends \Grpc\BaseStub {
     /**
      * Lookup for a single Audience.
      * Audiences created before 2020 may not be supported.
+     * Default audiences will not show filter definitions.
      * @param \Google\Analytics\Admin\V1alpha\GetAudienceRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -1183,6 +1184,7 @@ class AnalyticsAdminServiceGrpcClient extends \Grpc\BaseStub {
     /**
      * Lists Audiences on a property.
      * Audiences created before 2020 may not be supported.
+     * Default audiences will not show filter definitions.
      * @param \Google\Analytics\Admin\V1alpha\ListAudiencesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -1242,6 +1244,81 @@ class AnalyticsAdminServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
+     * Look up a single SearchAds360Link
+     * @param \Google\Analytics\Admin\V1alpha\GetSearchAds360LinkRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function GetSearchAds360Link(\Google\Analytics\Admin\V1alpha\GetSearchAds360LinkRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/GetSearchAds360Link',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\SearchAds360Link', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Lists all SearchAds360Links on a property.
+     * @param \Google\Analytics\Admin\V1alpha\ListSearchAds360LinksRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function ListSearchAds360Links(\Google\Analytics\Admin\V1alpha\ListSearchAds360LinksRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/ListSearchAds360Links',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\ListSearchAds360LinksResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Creates a SearchAds360Link.
+     * @param \Google\Analytics\Admin\V1alpha\CreateSearchAds360LinkRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function CreateSearchAds360Link(\Google\Analytics\Admin\V1alpha\CreateSearchAds360LinkRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateSearchAds360Link',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\SearchAds360Link', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Deletes a SearchAds360Link on a property.
+     * @param \Google\Analytics\Admin\V1alpha\DeleteSearchAds360LinkRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function DeleteSearchAds360Link(\Google\Analytics\Admin\V1alpha\DeleteSearchAds360LinkRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteSearchAds360Link',
+        $argument,
+        ['\Google\Protobuf\GPBEmpty', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Updates a SearchAds360Link on a property.
+     * @param \Google\Analytics\Admin\V1alpha\UpdateSearchAds360LinkRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function UpdateSearchAds360Link(\Google\Analytics\Admin\V1alpha\UpdateSearchAds360LinkRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateSearchAds360Link',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\SearchAds360Link', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
      * Lookup for a AttributionSettings singleton.
      * @param \Google\Analytics\Admin\V1alpha\GetAttributionSettingsRequest $argument input argument
      * @param array $metadata metadata
@@ -1295,6 +1372,70 @@ class AnalyticsAdminServiceGrpcClient extends \Grpc\BaseStub {
         return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/RunAccessReport',
         $argument,
         ['\Google\Analytics\Admin\V1alpha\RunAccessReportResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Sets the opt out status for the automated GA4 setup process for a UA
+     * property.
+     * Note: this has no effect on GA4 property.
+     * @param \Google\Analytics\Admin\V1alpha\SetAutomatedGa4ConfigurationOptOutRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function SetAutomatedGa4ConfigurationOptOut(\Google\Analytics\Admin\V1alpha\SetAutomatedGa4ConfigurationOptOutRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/SetAutomatedGa4ConfigurationOptOut',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\SetAutomatedGa4ConfigurationOptOutResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Fetches the opt out status for the automated GA4 setup process for a UA
+     * property.
+     * Note: this has no effect on GA4 property.
+     * @param \Google\Analytics\Admin\V1alpha\FetchAutomatedGa4ConfigurationOptOutRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function FetchAutomatedGa4ConfigurationOptOut(\Google\Analytics\Admin\V1alpha\FetchAutomatedGa4ConfigurationOptOutRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/FetchAutomatedGa4ConfigurationOptOut',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\FetchAutomatedGa4ConfigurationOptOutResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Lookup for a single BigQuery Link.
+     * @param \Google\Analytics\Admin\V1alpha\GetBigQueryLinkRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function GetBigQueryLink(\Google\Analytics\Admin\V1alpha\GetBigQueryLinkRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/GetBigQueryLink',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\BigQueryLink', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Lists BigQuery Links on a property.
+     * @param \Google\Analytics\Admin\V1alpha\ListBigQueryLinksRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function ListBigQueryLinks(\Google\Analytics\Admin\V1alpha\ListBigQueryLinksRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/ListBigQueryLinks',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\ListBigQueryLinksResponse', 'decode'],
         $metadata, $options);
     }
 
