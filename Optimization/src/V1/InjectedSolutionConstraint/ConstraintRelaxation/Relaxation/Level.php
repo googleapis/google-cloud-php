@@ -8,7 +8,7 @@ use UnexpectedValueException;
 
 /**
  * Expresses the different constraint relaxation levels, which are
- * applied for a visit and those that follow when it satifies the
+ * applied for a visit and those that follow when it satisfies the
  * threshold conditions.
  * The enumeration below is in order of increasing relaxation.
  *
@@ -19,7 +19,7 @@ class Level
     /**
      * Implicit default relaxation level: no constraints are relaxed,
      * i.e., all visits are fully constrained.
-     * This value must not be explicly used in `level`.
+     * This value must not be explicitly used in `level`.
      *
      * Generated from protobuf enum <code>LEVEL_UNSPECIFIED = 0;</code>
      */

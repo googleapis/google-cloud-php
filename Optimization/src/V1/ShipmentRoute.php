@@ -202,9 +202,10 @@ class ShipmentRoute extends \Google\Protobuf\Internal\Message
      */
     private $route_total_cost = 0.0;
     /**
-     * Deprecated: Use [ShipmentRoute.Transition.loads][] instead.
-     * Vehicle loads upon arrival at its end location, for each
-     * type specified in
+     * Deprecated: Use
+     * [Transition.vehicle_loads][google.cloud.optimization.v1.ShipmentRoute.Transition.vehicle_loads]
+     * instead. Vehicle loads upon arrival at its end location, for each type
+     * specified in
      * [Vehicle.capacities][google.cloud.optimization.v1.Vehicle.capacities],
      * `start_load_intervals`, `end_load_intervals` or demands. Exception: we omit
      * loads for quantity types unconstrained by intervals and that don't have any
@@ -215,8 +216,9 @@ class ShipmentRoute extends \Google\Protobuf\Internal\Message
      */
     private $end_loads;
     /**
-     * Deprecated: Use [ShipmentRoute.Transition][] instead.
-     * Ordered list of travel steps for the route.
+     * Deprecated: Use
+     * [ShipmentRoute.transitions][google.cloud.optimization.v1.ShipmentRoute.transitions]
+     * instead. Ordered list of travel steps for the route.
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.ShipmentRoute.TravelStep travel_steps = 14 [deprecated = true];</code>
      * @deprecated
@@ -226,7 +228,9 @@ class ShipmentRoute extends \Google\Protobuf\Internal\Message
      * Deprecated: No longer used.
      * This field will only be populated at the
      * [ShipmentRoute.Visit][google.cloud.optimization.v1.ShipmentRoute.Visit]
-     * level. Extra detour time due to the shipments visited on the route.
+     * level.
+     * This field is the extra detour time due to the shipments visited on the
+     * route.
      * It is equal to `vehicle_end_time` - `vehicle_start_time` - travel duration
      * from the vehicle's start_location to its `end_location`.
      *
@@ -235,8 +239,7 @@ class ShipmentRoute extends \Google\Protobuf\Internal\Message
      */
     protected $vehicle_detour = null;
     /**
-     * Deprecated: Use [ShipmentRoute.Transition.delay_duration][] instead.
-     * Delay occurring before the vehicle end. See
+     * Deprecated: Delay occurring before the vehicle end. See
      * [TransitionAttributes.delay][google.cloud.optimization.v1.TransitionAttributes.delay].
      *
      * Generated from protobuf field <code>.google.cloud.optimization.v1.ShipmentRoute.Delay delay_before_vehicle_end = 16 [deprecated = true];</code>
@@ -312,26 +315,29 @@ class ShipmentRoute extends \Google\Protobuf\Internal\Message
      *     @type float $route_total_cost
      *           Total cost of the route. The sum of all costs in the cost map.
      *     @type array<\Google\Cloud\Optimization\V1\CapacityQuantity>|\Google\Protobuf\Internal\RepeatedField $end_loads
-     *           Deprecated: Use [ShipmentRoute.Transition.loads][] instead.
-     *           Vehicle loads upon arrival at its end location, for each
-     *           type specified in
+     *           Deprecated: Use
+     *           [Transition.vehicle_loads][google.cloud.optimization.v1.ShipmentRoute.Transition.vehicle_loads]
+     *           instead. Vehicle loads upon arrival at its end location, for each type
+     *           specified in
      *           [Vehicle.capacities][google.cloud.optimization.v1.Vehicle.capacities],
      *           `start_load_intervals`, `end_load_intervals` or demands. Exception: we omit
      *           loads for quantity types unconstrained by intervals and that don't have any
      *           non-zero demand on the route.
      *     @type array<\Google\Cloud\Optimization\V1\ShipmentRoute\TravelStep>|\Google\Protobuf\Internal\RepeatedField $travel_steps
-     *           Deprecated: Use [ShipmentRoute.Transition][] instead.
-     *           Ordered list of travel steps for the route.
+     *           Deprecated: Use
+     *           [ShipmentRoute.transitions][google.cloud.optimization.v1.ShipmentRoute.transitions]
+     *           instead. Ordered list of travel steps for the route.
      *     @type \Google\Protobuf\Duration $vehicle_detour
      *           Deprecated: No longer used.
      *           This field will only be populated at the
      *           [ShipmentRoute.Visit][google.cloud.optimization.v1.ShipmentRoute.Visit]
-     *           level. Extra detour time due to the shipments visited on the route.
+     *           level.
+     *           This field is the extra detour time due to the shipments visited on the
+     *           route.
      *           It is equal to `vehicle_end_time` - `vehicle_start_time` - travel duration
      *           from the vehicle's start_location to its `end_location`.
      *     @type \Google\Cloud\Optimization\V1\ShipmentRoute\Delay $delay_before_vehicle_end
-     *           Deprecated: Use [ShipmentRoute.Transition.delay_duration][] instead.
-     *           Delay occurring before the vehicle end. See
+     *           Deprecated: Delay occurring before the vehicle end. See
      *           [TransitionAttributes.delay][google.cloud.optimization.v1.TransitionAttributes.delay].
      * }
      */
@@ -767,9 +773,10 @@ class ShipmentRoute extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated: Use [ShipmentRoute.Transition.loads][] instead.
-     * Vehicle loads upon arrival at its end location, for each
-     * type specified in
+     * Deprecated: Use
+     * [Transition.vehicle_loads][google.cloud.optimization.v1.ShipmentRoute.Transition.vehicle_loads]
+     * instead. Vehicle loads upon arrival at its end location, for each type
+     * specified in
      * [Vehicle.capacities][google.cloud.optimization.v1.Vehicle.capacities],
      * `start_load_intervals`, `end_load_intervals` or demands. Exception: we omit
      * loads for quantity types unconstrained by intervals and that don't have any
@@ -786,9 +793,10 @@ class ShipmentRoute extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated: Use [ShipmentRoute.Transition.loads][] instead.
-     * Vehicle loads upon arrival at its end location, for each
-     * type specified in
+     * Deprecated: Use
+     * [Transition.vehicle_loads][google.cloud.optimization.v1.ShipmentRoute.Transition.vehicle_loads]
+     * instead. Vehicle loads upon arrival at its end location, for each type
+     * specified in
      * [Vehicle.capacities][google.cloud.optimization.v1.Vehicle.capacities],
      * `start_load_intervals`, `end_load_intervals` or demands. Exception: we omit
      * loads for quantity types unconstrained by intervals and that don't have any
@@ -809,8 +817,9 @@ class ShipmentRoute extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated: Use [ShipmentRoute.Transition][] instead.
-     * Ordered list of travel steps for the route.
+     * Deprecated: Use
+     * [ShipmentRoute.transitions][google.cloud.optimization.v1.ShipmentRoute.transitions]
+     * instead. Ordered list of travel steps for the route.
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.ShipmentRoute.TravelStep travel_steps = 14 [deprecated = true];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -823,8 +832,9 @@ class ShipmentRoute extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated: Use [ShipmentRoute.Transition][] instead.
-     * Ordered list of travel steps for the route.
+     * Deprecated: Use
+     * [ShipmentRoute.transitions][google.cloud.optimization.v1.ShipmentRoute.transitions]
+     * instead. Ordered list of travel steps for the route.
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.ShipmentRoute.TravelStep travel_steps = 14 [deprecated = true];</code>
      * @param array<\Google\Cloud\Optimization\V1\ShipmentRoute\TravelStep>|\Google\Protobuf\Internal\RepeatedField $var
@@ -844,7 +854,9 @@ class ShipmentRoute extends \Google\Protobuf\Internal\Message
      * Deprecated: No longer used.
      * This field will only be populated at the
      * [ShipmentRoute.Visit][google.cloud.optimization.v1.ShipmentRoute.Visit]
-     * level. Extra detour time due to the shipments visited on the route.
+     * level.
+     * This field is the extra detour time due to the shipments visited on the
+     * route.
      * It is equal to `vehicle_end_time` - `vehicle_start_time` - travel duration
      * from the vehicle's start_location to its `end_location`.
      *
@@ -874,7 +886,9 @@ class ShipmentRoute extends \Google\Protobuf\Internal\Message
      * Deprecated: No longer used.
      * This field will only be populated at the
      * [ShipmentRoute.Visit][google.cloud.optimization.v1.ShipmentRoute.Visit]
-     * level. Extra detour time due to the shipments visited on the route.
+     * level.
+     * This field is the extra detour time due to the shipments visited on the
+     * route.
      * It is equal to `vehicle_end_time` - `vehicle_start_time` - travel duration
      * from the vehicle's start_location to its `end_location`.
      *
@@ -893,8 +907,7 @@ class ShipmentRoute extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated: Use [ShipmentRoute.Transition.delay_duration][] instead.
-     * Delay occurring before the vehicle end. See
+     * Deprecated: Delay occurring before the vehicle end. See
      * [TransitionAttributes.delay][google.cloud.optimization.v1.TransitionAttributes.delay].
      *
      * Generated from protobuf field <code>.google.cloud.optimization.v1.ShipmentRoute.Delay delay_before_vehicle_end = 16 [deprecated = true];</code>
@@ -920,8 +933,7 @@ class ShipmentRoute extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated: Use [ShipmentRoute.Transition.delay_duration][] instead.
-     * Delay occurring before the vehicle end. See
+     * Deprecated: Delay occurring before the vehicle end. See
      * [TransitionAttributes.delay][google.cloud.optimization.v1.TransitionAttributes.delay].
      *
      * Generated from protobuf field <code>.google.cloud.optimization.v1.ShipmentRoute.Delay delay_before_vehicle_end = 16 [deprecated = true];</code>
