@@ -286,8 +286,7 @@ class SchemaServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->schemaName('[PROJECT]', '[SCHEMA]');
-        $revisionId = 'revisionId513861631';
-        $response = $gapicClient->deleteSchemaRevision($formattedName, $revisionId);
+        $response = $gapicClient->deleteSchemaRevision($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -296,8 +295,6 @@ class SchemaServiceClientTest extends GeneratedTest
         $this->assertSame('/google.pubsub.v1.SchemaService/DeleteSchemaRevision', $actualFuncCall);
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
-        $actualValue = $actualRequestObject->getRevisionId();
-        $this->assertProtobufEquals($revisionId, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -321,9 +318,8 @@ class SchemaServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->schemaName('[PROJECT]', '[SCHEMA]');
-        $revisionId = 'revisionId513861631';
         try {
-            $gapicClient->deleteSchemaRevision($formattedName, $revisionId);
+            $gapicClient->deleteSchemaRevision($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

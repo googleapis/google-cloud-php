@@ -438,8 +438,7 @@ class SchemaServiceGapicClient
      * $schemaServiceClient = new SchemaServiceClient();
      * try {
      *     $formattedName = $schemaServiceClient->schemaName('[PROJECT]', '[SCHEMA]');
-     *     $revisionId = 'revision_id';
-     *     $response = $schemaServiceClient->deleteSchemaRevision($formattedName, $revisionId);
+     *     $response = $schemaServiceClient->deleteSchemaRevision($formattedName);
      * } finally {
      *     $schemaServiceClient->close();
      * }
@@ -448,14 +447,14 @@ class SchemaServiceGapicClient
      * @param string $name         Required. The name of the schema revision to be deleted, with a revision ID
      *                             explicitly included.
      *
-     *                             Example: projects/123/schemas/my-schema&#64;c7cfa2a8
-     * @param string $revisionId   Required. The revision ID to roll back to.
-     *                             It must be a revision of the same schema.
-     *
-     *                             Example: c7cfa2a8
+     *                             Example: `projects/123/schemas/my-schema&#64;c7cfa2a8`
      * @param array  $optionalArgs {
      *     Optional.
      *
+     *     @type string $revisionId
+     *           Optional. This field is deprecated and should not be used for specifying
+     *           the revision ID. The revision ID should be specified via the `name`
+     *           parameter.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -466,13 +465,16 @@ class SchemaServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteSchemaRevision($name, $revisionId, array $optionalArgs = [])
+    public function deleteSchemaRevision($name, array $optionalArgs = [])
     {
         $request = new DeleteSchemaRevisionRequest();
         $requestParamHeaders = [];
         $request->setName($name);
-        $request->setRevisionId($revisionId);
         $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['revisionId'])) {
+            $request->setRevisionId($optionalArgs['revisionId']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteSchemaRevision', Schema::class, $optionalArgs, $request)->wait();
