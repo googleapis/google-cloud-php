@@ -184,6 +184,13 @@ class GqlQuery implements QueryInterface
         return "gqlQuery";
     }
 
+    public function aggregation()
+    {
+        $aggregationQuery = new AggregationQuery($this);
+
+        return $aggregationQuery;
+    }
+
     /**
      * Indicate that this type does not support automatic pagination.
      *

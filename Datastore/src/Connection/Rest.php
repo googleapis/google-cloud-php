@@ -111,4 +111,25 @@ class Rest implements ConnectionInterface
     {
         return $this->send('projects', 'runQuery', $args);
     }
+
+    /**
+     * @param array $args
+     */
+    public function runAggregationQuery(array $args)
+    {
+        if (isset($args['aggregationQuery']['aggregations'])) {
+            foreach ($args['aggregationQuery']['aggregations'] as &$aggregation) {
+                array_walk(
+                    $aggregation,
+                    function (&$item) {
+                        if (is_array($item) && count($item) === 0) {
+                            // if empty, force request to encode as {} rather than [].
+                            $item = (object) [];
+                        }
+                    }
+                );
+            }
+        }
+        return $this->send('projects', 'runAggregationQuery', $args);
+    }
 }

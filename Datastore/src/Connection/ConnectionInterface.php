@@ -52,4 +52,9 @@ interface ConnectionInterface
      * @param array $args
      */
     public function runQuery(array $args);
+
+    /**
+     * @param array $args
+     */
+    public function runAggregationQuery(array $args);
 }

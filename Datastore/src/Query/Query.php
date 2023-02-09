@@ -480,6 +480,14 @@ class Query implements QueryInterface
         return "query";
     }
 
+    public function aggregation(Aggregation $aggregation)
+    {
+        $aggregationQuery = new AggregationQuery($this);
+        $aggregationQuery->addAggregation($aggregation);
+
+        return $aggregationQuery;
+    }
+
     /**
      * @access private
      */
