@@ -122,7 +122,9 @@ class VisitRequest extends \Google\Protobuf\Internal\Message
      */
     private $label = '';
     /**
-     * Deprecated: Use [VisitRequest.load_demands][] instead.
+     * Deprecated: Use
+     * [VisitRequest.load_demands][google.cloud.optimization.v1.Shipment.VisitRequest.load_demands]
+     * instead.
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.CapacityQuantity demands = 9 [deprecated = true];</code>
      * @deprecated
@@ -195,7 +197,9 @@ class VisitRequest extends \Google\Protobuf\Internal\Message
      *           response as `visit_label` in the corresponding
      *           [ShipmentRoute.Visit][google.cloud.optimization.v1.ShipmentRoute.Visit].
      *     @type array<\Google\Cloud\Optimization\V1\CapacityQuantity>|\Google\Protobuf\Internal\RepeatedField $demands
-     *           Deprecated: Use [VisitRequest.load_demands][] instead.
+     *           Deprecated: Use
+     *           [VisitRequest.load_demands][google.cloud.optimization.v1.Shipment.VisitRequest.load_demands]
+     *           instead.
      * }
      */
     public function __construct($data = NULL) {
@@ -614,7 +618,9 @@ class VisitRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated: Use [VisitRequest.load_demands][] instead.
+     * Deprecated: Use
+     * [VisitRequest.load_demands][google.cloud.optimization.v1.Shipment.VisitRequest.load_demands]
+     * instead.
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.CapacityQuantity demands = 9 [deprecated = true];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -627,7 +633,9 @@ class VisitRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated: Use [VisitRequest.load_demands][] instead.
+     * Deprecated: Use
+     * [VisitRequest.load_demands][google.cloud.optimization.v1.Shipment.VisitRequest.load_demands]
+     * instead.
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.CapacityQuantity demands = 9 [deprecated = true];</code>
      * @param array<\Google\Cloud\Optimization\V1\CapacityQuantity>|\Google\Protobuf\Internal\RepeatedField $var

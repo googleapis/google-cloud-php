@@ -27,7 +27,7 @@ class VideoStitcherService
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ð<
+È<
 ;google/cloud/video/stitcher/v1/video_stitcher_service.protogoogle.cloud.video.stitcher.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto3google/cloud/video/stitcher/v1/ad_tag_details.proto-google/cloud/video/stitcher/v1/cdn_keys.proto-google/cloud/video/stitcher/v1/sessions.proto+google/cloud/video/stitcher/v1/slates.proto3google/cloud/video/stitcher/v1/stitch_details.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"©
 CreateCdnKeyRequest;
 parent (	B+àAúA%#videostitcher.googleapis.com/CdnKey<
@@ -145,8 +145,8 @@ ListSlates1.google.cloud.video.stitcher.v1.ListSlatesRequest2.google.cloud.vid
 UpdateSlate2.google.cloud.video.stitcher.v1.UpdateSlateRequest%.google.cloud.video.stitcher.v1.Slate"S‚Óä“920/v1/{slate.name=projects/*/locations/*/slates/*}:slateÚAslate,update_mask”
 DeleteSlate2.google.cloud.video.stitcher.v1.DeleteSlateRequest.google.protobuf.Empty"9‚Óä“,**/v1/{name=projects/*/locations/*/slates/*}ÚAnameØ
 CreateLiveSession8.google.cloud.video.stitcher.v1.CreateLiveSessionRequest+.google.cloud.video.stitcher.v1.LiveSession"\\‚Óä“@"0/v1/{parent=projects/*/locations/*}/liveSessions:live_sessionÚAparent,live_sessionµ
-GetLiveSession5.google.cloud.video.stitcher.v1.GetLiveSessionRequest+.google.cloud.video.stitcher.v1.LiveSession"?‚Óä“20/v1/{name=projects/*/locations/*/liveSessions/*}ÚAnamePÊAvideostitcher.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB‰
-"com.google.cloud.video.stitcher.v1BVideoStitcherServiceProtoPZFgoogle.golang.org/genproto/googleapis/cloud/video/stitcher/v1;stitcherbproto3'
+GetLiveSession5.google.cloud.video.stitcher.v1.GetLiveSessionRequest+.google.cloud.video.stitcher.v1.LiveSession"?‚Óä“20/v1/{name=projects/*/locations/*/liveSessions/*}ÚAnamePÊAvideostitcher.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB
+"com.google.cloud.video.stitcher.v1BVideoStitcherServiceProtoPZ>cloud.google.com/go/video/stitcher/apiv1/stitcherpb;stitcherpbbproto3'
         , true);
 
         static::$is_initialized = true;

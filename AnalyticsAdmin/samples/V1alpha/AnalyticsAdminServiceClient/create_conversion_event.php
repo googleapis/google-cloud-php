@@ -30,8 +30,8 @@ use Google\ApiCore\ApiException;
 /**
  * Creates a conversion event with the specified attributes.
  *
- * @param string $formattedParent The resource name of the parent property where this conversion event will
- *                                be created. Format: properties/123
+ * @param string $formattedParent The resource name of the parent property where this conversion
+ *                                event will be created. Format: properties/123
  *                                Please see {@see AnalyticsAdminServiceClient::propertyName()} for help formatting this field.
  */
 function create_conversion_event_sample(string $formattedParent): void

@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Runtime operation information for [IndexService.CreateIndex][google.cloud.aiplatform.v1.IndexService.CreateIndex].
+ * Runtime operation information for
+ * [IndexService.CreateIndex][google.cloud.aiplatform.v1.IndexService.CreateIndex].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.CreateIndexOperationMetadata</code>
  */

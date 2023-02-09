@@ -20,14 +20,16 @@ use Google\Protobuf\Internal\GPBUtil;
 class Container extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Name of the container specified as a DNS_LABEL.
+     * Name of the container specified as a DNS_LABEL (RFC 1123).
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
     private $name = '';
     /**
-     * Required. URL of the Container image in Google Container Registry or Google Artifact
-     * Registry. More info: https://kubernetes.io/docs/concepts/containers/images
+     * Required. Name of the container image in Dockerhub, Google Artifact
+     * Registry, or Google Container Registry. If the host is not provided,
+     * Dockerhub is assumed. More info:
+     * https://kubernetes.io/docs/concepts/containers/images
      *
      * Generated from protobuf field <code>string image = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -126,10 +128,12 @@ class Container extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Name of the container specified as a DNS_LABEL.
+     *           Name of the container specified as a DNS_LABEL (RFC 1123).
      *     @type string $image
-     *           Required. URL of the Container image in Google Container Registry or Google Artifact
-     *           Registry. More info: https://kubernetes.io/docs/concepts/containers/images
+     *           Required. Name of the container image in Dockerhub, Google Artifact
+     *           Registry, or Google Container Registry. If the host is not provided,
+     *           Dockerhub is assumed. More info:
+     *           https://kubernetes.io/docs/concepts/containers/images
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $command
      *           Entrypoint array. Not executed within a shell.
      *           The docker image's ENTRYPOINT is used if this is not provided.
@@ -188,7 +192,7 @@ class Container extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the container specified as a DNS_LABEL.
+     * Name of the container specified as a DNS_LABEL (RFC 1123).
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -199,7 +203,7 @@ class Container extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the container specified as a DNS_LABEL.
+     * Name of the container specified as a DNS_LABEL (RFC 1123).
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
@@ -214,8 +218,10 @@ class Container extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. URL of the Container image in Google Container Registry or Google Artifact
-     * Registry. More info: https://kubernetes.io/docs/concepts/containers/images
+     * Required. Name of the container image in Dockerhub, Google Artifact
+     * Registry, or Google Container Registry. If the host is not provided,
+     * Dockerhub is assumed. More info:
+     * https://kubernetes.io/docs/concepts/containers/images
      *
      * Generated from protobuf field <code>string image = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -226,8 +232,10 @@ class Container extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. URL of the Container image in Google Container Registry or Google Artifact
-     * Registry. More info: https://kubernetes.io/docs/concepts/containers/images
+     * Required. Name of the container image in Dockerhub, Google Artifact
+     * Registry, or Google Container Registry. If the host is not provided,
+     * Dockerhub is assumed. More info:
+     * https://kubernetes.io/docs/concepts/containers/images
      *
      * Generated from protobuf field <code>string image = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

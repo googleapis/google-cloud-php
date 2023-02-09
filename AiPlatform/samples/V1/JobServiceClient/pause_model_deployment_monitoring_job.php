@@ -29,7 +29,8 @@ use Google\Cloud\AIPlatform\V1\JobServiceClient;
 /**
  * Pauses a ModelDeploymentMonitoringJob. If the job is running, the server
  * makes a best effort to cancel the job. Will mark
- * [ModelDeploymentMonitoringJob.state][google.cloud.aiplatform.v1.ModelDeploymentMonitoringJob.state] to 'PAUSED'.
+ * [ModelDeploymentMonitoringJob.state][google.cloud.aiplatform.v1.ModelDeploymentMonitoringJob.state]
+ * to 'PAUSED'.
  *
  * @param string $formattedName The resource name of the ModelDeploymentMonitoringJob to pause.
  *                              Format:

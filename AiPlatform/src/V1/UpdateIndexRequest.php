@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [IndexService.UpdateIndex][google.cloud.aiplatform.v1.IndexService.UpdateIndex].
+ * Request message for
+ * [IndexService.UpdateIndex][google.cloud.aiplatform.v1.IndexService.UpdateIndex].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.UpdateIndexRequest</code>
  */
@@ -23,7 +24,8 @@ class UpdateIndexRequest extends \Google\Protobuf\Internal\Message
     private $index = null;
     /**
      * The update mask applies to the resource.
-     * For the `FieldMask` definition, see [google.protobuf.FieldMask][google.protobuf.FieldMask].
+     * For the `FieldMask` definition, see
+     * [google.protobuf.FieldMask][google.protobuf.FieldMask].
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
@@ -39,7 +41,8 @@ class UpdateIndexRequest extends \Google\Protobuf\Internal\Message
      *           Required. The Index which updates the resource on the server.
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           The update mask applies to the resource.
-     *           For the `FieldMask` definition, see [google.protobuf.FieldMask][google.protobuf.FieldMask].
+     *           For the `FieldMask` definition, see
+     *           [google.protobuf.FieldMask][google.protobuf.FieldMask].
      * }
      */
     public function __construct($data = NULL) {
@@ -85,7 +88,8 @@ class UpdateIndexRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The update mask applies to the resource.
-     * For the `FieldMask` definition, see [google.protobuf.FieldMask][google.protobuf.FieldMask].
+     * For the `FieldMask` definition, see
+     * [google.protobuf.FieldMask][google.protobuf.FieldMask].
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      * @return \Google\Protobuf\FieldMask|null
@@ -107,7 +111,8 @@ class UpdateIndexRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The update mask applies to the resource.
-     * For the `FieldMask` definition, see [google.protobuf.FieldMask][google.protobuf.FieldMask].
+     * For the `FieldMask` definition, see
+     * [google.protobuf.FieldMask][google.protobuf.FieldMask].
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      * @param \Google\Protobuf\FieldMask $var

@@ -49,16 +49,17 @@ class DataItem extends \Google\Protobuf\Internal\Message
      */
     private $labels;
     /**
-     * Required. The data that the DataItem represents (for example, an image or a text
-     * snippet). The schema of the payload is stored in the parent Dataset's
-     * [metadata schema's][google.cloud.aiplatform.v1.Dataset.metadata_schema_uri] dataItemSchemaUri field.
+     * Required. The data that the DataItem represents (for example, an image or a
+     * text snippet). The schema of the payload is stored in the parent Dataset's
+     * [metadata schema's][google.cloud.aiplatform.v1.Dataset.metadata_schema_uri]
+     * dataItemSchemaUri field.
      *
      * Generated from protobuf field <code>.google.protobuf.Value payload = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $payload = null;
     /**
-     * Optional. Used to perform consistent read-modify-write updates. If not set, a blind
-     * "overwrite" update happens.
+     * Optional. Used to perform consistent read-modify-write updates. If not set,
+     * a blind "overwrite" update happens.
      *
      * Generated from protobuf field <code>string etag = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -87,12 +88,13 @@ class DataItem extends \Google\Protobuf\Internal\Message
      *           System reserved label keys are prefixed with "aiplatform.googleapis.com/"
      *           and are immutable.
      *     @type \Google\Protobuf\Value $payload
-     *           Required. The data that the DataItem represents (for example, an image or a text
-     *           snippet). The schema of the payload is stored in the parent Dataset's
-     *           [metadata schema's][google.cloud.aiplatform.v1.Dataset.metadata_schema_uri] dataItemSchemaUri field.
+     *           Required. The data that the DataItem represents (for example, an image or a
+     *           text snippet). The schema of the payload is stored in the parent Dataset's
+     *           [metadata schema's][google.cloud.aiplatform.v1.Dataset.metadata_schema_uri]
+     *           dataItemSchemaUri field.
      *     @type string $etag
-     *           Optional. Used to perform consistent read-modify-write updates. If not set, a blind
-     *           "overwrite" update happens.
+     *           Optional. Used to perform consistent read-modify-write updates. If not set,
+     *           a blind "overwrite" update happens.
      * }
      */
     public function __construct($data = NULL) {
@@ -241,9 +243,10 @@ class DataItem extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The data that the DataItem represents (for example, an image or a text
-     * snippet). The schema of the payload is stored in the parent Dataset's
-     * [metadata schema's][google.cloud.aiplatform.v1.Dataset.metadata_schema_uri] dataItemSchemaUri field.
+     * Required. The data that the DataItem represents (for example, an image or a
+     * text snippet). The schema of the payload is stored in the parent Dataset's
+     * [metadata schema's][google.cloud.aiplatform.v1.Dataset.metadata_schema_uri]
+     * dataItemSchemaUri field.
      *
      * Generated from protobuf field <code>.google.protobuf.Value payload = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Value|null
@@ -264,9 +267,10 @@ class DataItem extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The data that the DataItem represents (for example, an image or a text
-     * snippet). The schema of the payload is stored in the parent Dataset's
-     * [metadata schema's][google.cloud.aiplatform.v1.Dataset.metadata_schema_uri] dataItemSchemaUri field.
+     * Required. The data that the DataItem represents (for example, an image or a
+     * text snippet). The schema of the payload is stored in the parent Dataset's
+     * [metadata schema's][google.cloud.aiplatform.v1.Dataset.metadata_schema_uri]
+     * dataItemSchemaUri field.
      *
      * Generated from protobuf field <code>.google.protobuf.Value payload = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Protobuf\Value $var
@@ -281,8 +285,8 @@ class DataItem extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Used to perform consistent read-modify-write updates. If not set, a blind
-     * "overwrite" update happens.
+     * Optional. Used to perform consistent read-modify-write updates. If not set,
+     * a blind "overwrite" update happens.
      *
      * Generated from protobuf field <code>string etag = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -293,8 +297,8 @@ class DataItem extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Used to perform consistent read-modify-write updates. If not set, a blind
-     * "overwrite" update happens.
+     * Optional. Used to perform consistent read-modify-write updates. If not set,
+     * a blind "overwrite" update happens.
      *
      * Generated from protobuf field <code>string etag = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

@@ -23,7 +23,8 @@ class TensorboardTensor extends \Google\Protobuf\Internal\Message
      */
     private $value = '';
     /**
-     * Optional. Version number of TensorProto used to serialize [value][google.cloud.aiplatform.v1.TensorboardTensor.value].
+     * Optional. Version number of TensorProto used to serialize
+     * [value][google.cloud.aiplatform.v1.TensorboardTensor.value].
      *
      * Generated from protobuf field <code>int32 version_number = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -39,7 +40,8 @@ class TensorboardTensor extends \Google\Protobuf\Internal\Message
      *           Required. Serialized form of
      *           https://github.com/tensorflow/tensorflow/blob/master/tensorflow/core/framework/tensor.proto
      *     @type int $version_number
-     *           Optional. Version number of TensorProto used to serialize [value][google.cloud.aiplatform.v1.TensorboardTensor.value].
+     *           Optional. Version number of TensorProto used to serialize
+     *           [value][google.cloud.aiplatform.v1.TensorboardTensor.value].
      * }
      */
     public function __construct($data = NULL) {
@@ -76,7 +78,8 @@ class TensorboardTensor extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Version number of TensorProto used to serialize [value][google.cloud.aiplatform.v1.TensorboardTensor.value].
+     * Optional. Version number of TensorProto used to serialize
+     * [value][google.cloud.aiplatform.v1.TensorboardTensor.value].
      *
      * Generated from protobuf field <code>int32 version_number = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -87,7 +90,8 @@ class TensorboardTensor extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Version number of TensorProto used to serialize [value][google.cloud.aiplatform.v1.TensorboardTensor.value].
+     * Optional. Version number of TensorProto used to serialize
+     * [value][google.cloud.aiplatform.v1.TensorboardTensor.value].
      *
      * Generated from protobuf field <code>int32 version_number = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var

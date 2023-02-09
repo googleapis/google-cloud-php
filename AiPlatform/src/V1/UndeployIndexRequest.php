@@ -9,22 +9,24 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [IndexEndpointService.UndeployIndex][google.cloud.aiplatform.v1.IndexEndpointService.UndeployIndex].
+ * Request message for
+ * [IndexEndpointService.UndeployIndex][google.cloud.aiplatform.v1.IndexEndpointService.UndeployIndex].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.UndeployIndexRequest</code>
  */
 class UndeployIndexRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The name of the IndexEndpoint resource from which to undeploy an Index.
-     * Format:
+     * Required. The name of the IndexEndpoint resource from which to undeploy an
+     * Index. Format:
      * `projects/{project}/locations/{location}/indexEndpoints/{index_endpoint}`
      *
      * Generated from protobuf field <code>string index_endpoint = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $index_endpoint = '';
     /**
-     * Required. The ID of the DeployedIndex to be undeployed from the IndexEndpoint.
+     * Required. The ID of the DeployedIndex to be undeployed from the
+     * IndexEndpoint.
      *
      * Generated from protobuf field <code>string deployed_index_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -37,11 +39,12 @@ class UndeployIndexRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $index_endpoint
-     *           Required. The name of the IndexEndpoint resource from which to undeploy an Index.
-     *           Format:
+     *           Required. The name of the IndexEndpoint resource from which to undeploy an
+     *           Index. Format:
      *           `projects/{project}/locations/{location}/indexEndpoints/{index_endpoint}`
      *     @type string $deployed_index_id
-     *           Required. The ID of the DeployedIndex to be undeployed from the IndexEndpoint.
+     *           Required. The ID of the DeployedIndex to be undeployed from the
+     *           IndexEndpoint.
      * }
      */
     public function __construct($data = NULL) {
@@ -50,8 +53,8 @@ class UndeployIndexRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the IndexEndpoint resource from which to undeploy an Index.
-     * Format:
+     * Required. The name of the IndexEndpoint resource from which to undeploy an
+     * Index. Format:
      * `projects/{project}/locations/{location}/indexEndpoints/{index_endpoint}`
      *
      * Generated from protobuf field <code>string index_endpoint = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -63,8 +66,8 @@ class UndeployIndexRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the IndexEndpoint resource from which to undeploy an Index.
-     * Format:
+     * Required. The name of the IndexEndpoint resource from which to undeploy an
+     * Index. Format:
      * `projects/{project}/locations/{location}/indexEndpoints/{index_endpoint}`
      *
      * Generated from protobuf field <code>string index_endpoint = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -80,7 +83,8 @@ class UndeployIndexRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The ID of the DeployedIndex to be undeployed from the IndexEndpoint.
+     * Required. The ID of the DeployedIndex to be undeployed from the
+     * IndexEndpoint.
      *
      * Generated from protobuf field <code>string deployed_index_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -91,7 +95,8 @@ class UndeployIndexRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The ID of the DeployedIndex to be undeployed from the IndexEndpoint.
+     * Required. The ID of the DeployedIndex to be undeployed from the
+     * IndexEndpoint.
      *
      * Generated from protobuf field <code>string deployed_index_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

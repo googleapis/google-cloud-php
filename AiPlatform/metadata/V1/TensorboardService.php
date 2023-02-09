@@ -28,7 +28,7 @@ class TensorboardService
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ær
+Îx
 4google/cloud/aiplatform/v1/tensorboard_service.protogoogle.cloud.aiplatform.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto*google/cloud/aiplatform/v1/operation.proto,google/cloud/aiplatform/v1/tensorboard.proto1google/cloud/aiplatform/v1/tensorboard_data.proto7google/cloud/aiplatform/v1/tensorboard_experiment.proto0google/cloud/aiplatform/v1/tensorboard_run.proto8google/cloud/aiplatform/v1/tensorboard_time_series.proto#google/longrunning/operations.proto google/protobuf/field_mask.proto"œ
 CreateTensorboardRequest=
 parent (	B-àAúA\'
@@ -36,7 +36,21 @@ class TensorboardService
 tensorboard (2\'.google.cloud.aiplatform.v1.TensorboardBàA"T
 GetTensorboardRequest;
 name (	B-àAúA\'
-%aiplatform.googleapis.com/Tensorboard"Ð
+%aiplatform.googleapis.com/Tensorboard"a
+ReadTensorboardUsageRequestB
+tensorboard (	B-àAúA\'
+%aiplatform.googleapis.com/Tensorboard"Ã
+ReadTensorboardUsageResponsej
+monthly_usage_data (2N.google.cloud.aiplatform.v1.ReadTensorboardUsageResponse.MonthlyUsageDataEntry8
+PerUserUsageData
+username (	
+
+view_count (w
+PerMonthUsageDatab
+user_usage_data (2I.google.cloud.aiplatform.v1.ReadTensorboardUsageResponse.PerUserUsageDataƒ
+MonthlyUsageDataEntry
+key (	Y
+value (2J.google.cloud.aiplatform.v1.ReadTensorboardUsageResponse.PerMonthUsageData:8"Ð
 ListTensorboardsRequest=
 parent (	B-àAúA\'%aiplatform.googleapis.com/Tensorboard
 filter (	
@@ -185,11 +199,12 @@ page_token (	
 "CreateTensorboardOperationMetadataN
 generic_metadata (24.google.cloud.aiplatform.v1.GenericOperationMetadata"t
 "UpdateTensorboardOperationMetadataN
-generic_metadata (24.google.cloud.aiplatform.v1.GenericOperationMetadata2Å;
+generic_metadata (24.google.cloud.aiplatform.v1.GenericOperationMetadata2ª=
 TensorboardServiceù
 CreateTensorboard4.google.cloud.aiplatform.v1.CreateTensorboardRequest.google.longrunning.Operation"Ž‚Óä“?"0/v1/{parent=projects/*/locations/*}/tensorboards:tensorboardÚAparent,tensorboardÊA1
 Tensorboard"CreateTensorboardOperationMetadata­
-GetTensorboard1.google.cloud.aiplatform.v1.GetTensorboardRequest\'.google.cloud.aiplatform.v1.Tensorboard"?‚Óä“20/v1/{name=projects/*/locations/*/tensorboards/*}ÚAnameŠ
+GetTensorboard1.google.cloud.aiplatform.v1.GetTensorboardRequest\'.google.cloud.aiplatform.v1.Tensorboard"?‚Óä“20/v1/{name=projects/*/locations/*/tensorboards/*}ÚAnameâ
+ReadTensorboardUsage7.google.cloud.aiplatform.v1.ReadTensorboardUsageRequest8.google.cloud.aiplatform.v1.ReadTensorboardUsageResponse"W‚Óä“CA/v1/{tensorboard=projects/*/locations/*/tensorboards/*}:readUsageÚAtensorboardŠ
 UpdateTensorboard4.google.cloud.aiplatform.v1.UpdateTensorboardRequest.google.longrunning.Operation"Ÿ‚Óä“K2</v1/{tensorboard.name=projects/*/locations/*/tensorboards/*}:tensorboardÚAtensorboard,update_maskÊA1
 Tensorboard"UpdateTensorboardOperationMetadataÀ
 ListTensorboards3.google.cloud.aiplatform.v1.ListTensorboardsRequest4.google.cloud.aiplatform.v1.ListTensorboardsResponse"A‚Óä“20/v1/{parent=projects/*/locations/*}/tensorboardsÚAparentÜ
@@ -220,8 +235,8 @@ page_token (	
 ReadTensorboardBlobData:.google.cloud.aiplatform.v1.ReadTensorboardBlobDataRequest;.google.cloud.aiplatform.v1.ReadTensorboardBlobDataResponse"|‚Óä“hf/v1/{time_series=projects/*/locations/*/tensorboards/*/experiments/*/runs/*/timeSeries/*}:readBlobDataÚAtime_series0¼
 WriteTensorboardExperimentDataA.google.cloud.aiplatform.v1.WriteTensorboardExperimentDataRequestB.google.cloud.aiplatform.v1.WriteTensorboardExperimentDataResponse"’‚Óä“["V/v1/{tensorboard_experiment=projects/*/locations/*/tensorboards/*/experiments/*}:write:*ÚA.tensorboard_experiment,write_run_data_requests™
 WriteTensorboardRunData:.google.cloud.aiplatform.v1.WriteTensorboardRunDataRequest;.google.cloud.aiplatform.v1.WriteTensorboardRunDataResponse"„‚Óä“["V/v1/{tensorboard_run=projects/*/locations/*/tensorboards/*/experiments/*/runs/*}:write:*ÚA tensorboard_run,time_series_dataÕ
-ExportTensorboardTimeSeriesDataB.google.cloud.aiplatform.v1.ExportTensorboardTimeSeriesDataRequestC.google.cloud.aiplatform.v1.ExportTensorboardTimeSeriesDataResponse"¨‚Óä“‡"/v1/{tensorboard_time_series=projects/*/locations/*/tensorboards/*/experiments/*/runs/*/timeSeries/*}:exportTensorboardTimeSeries:*ÚAtensorboard_time_series†ÊAaiplatform.googleapis.comÒAghttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/cloud-platform.read-onlyBÛ
-com.google.cloud.aiplatform.v1BTensorboardServiceProtoPZDgoogle.golang.org/genproto/googleapis/cloud/aiplatform/v1;aiplatformªGoogle.Cloud.AIPlatform.V1ÊGoogle\\Cloud\\AIPlatform\\V1êGoogle::Cloud::AIPlatform::V1bproto3'
+ExportTensorboardTimeSeriesDataB.google.cloud.aiplatform.v1.ExportTensorboardTimeSeriesDataRequestC.google.cloud.aiplatform.v1.ExportTensorboardTimeSeriesDataResponse"¨‚Óä“‡"/v1/{tensorboard_time_series=projects/*/locations/*/tensorboards/*/experiments/*/runs/*/timeSeries/*}:exportTensorboardTimeSeries:*ÚAtensorboard_time_series†ÊAaiplatform.googleapis.comÒAghttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/cloud-platform.read-onlyBÕ
+com.google.cloud.aiplatform.v1BTensorboardServiceProtoPZ>cloud.google.com/go/aiplatform/apiv1/aiplatformpb;aiplatformpbªGoogle.Cloud.AIPlatform.V1ÊGoogle\\Cloud\\AIPlatform\\V1êGoogle::Cloud::AIPlatform::V1bproto3'
         , true);
 
         static::$is_initialized = true;

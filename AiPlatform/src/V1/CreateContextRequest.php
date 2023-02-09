@@ -9,16 +9,16 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [MetadataService.CreateContext][google.cloud.aiplatform.v1.MetadataService.CreateContext].
+ * Request message for
+ * [MetadataService.CreateContext][google.cloud.aiplatform.v1.MetadataService.CreateContext].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.CreateContextRequest</code>
  */
 class CreateContextRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name of the MetadataStore where the Context should be
-     * created.
-     * Format:
+     * Required. The resource name of the MetadataStore where the Context should
+     * be created. Format:
      * `projects/{project}/locations/{location}/metadataStores/{metadatastore}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -50,9 +50,8 @@ class CreateContextRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The resource name of the MetadataStore where the Context should be
-     *           created.
-     *           Format:
+     *           Required. The resource name of the MetadataStore where the Context should
+     *           be created. Format:
      *           `projects/{project}/locations/{location}/metadataStores/{metadatastore}`
      *     @type \Google\Cloud\AIPlatform\V1\Context $context
      *           Required. The Context to create.
@@ -72,9 +71,8 @@ class CreateContextRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the MetadataStore where the Context should be
-     * created.
-     * Format:
+     * Required. The resource name of the MetadataStore where the Context should
+     * be created. Format:
      * `projects/{project}/locations/{location}/metadataStores/{metadatastore}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -86,9 +84,8 @@ class CreateContextRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the MetadataStore where the Context should be
-     * created.
-     * Format:
+     * Required. The resource name of the MetadataStore where the Context should
+     * be created. Format:
      * `projects/{project}/locations/{location}/metadataStores/{metadatastore}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>

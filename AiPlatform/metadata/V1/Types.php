@@ -16,7 +16,7 @@ class Types
         }
         $pool->internalAddGeneratedFile(
             '
-–
+
 &google/cloud/aiplatform/v1/types.protogoogle.cloud.aiplatform.v1"
 	BoolArray
 values ("
@@ -26,9 +26,9 @@ class Types
 Int64Array
 values ("
 StringArray
-values (	BÎ
+values (	BÈ
 com.google.cloud.aiplatform.v1B
-TypesProtoPZDgoogle.golang.org/genproto/googleapis/cloud/aiplatform/v1;aiplatformªGoogle.Cloud.AIPlatform.V1ÊGoogle\\Cloud\\AIPlatform\\V1êGoogle::Cloud::AIPlatform::V1bproto3'
+TypesProtoPZ>cloud.google.com/go/aiplatform/apiv1/aiplatformpb;aiplatformpbªGoogle.Cloud.AIPlatform.V1ÊGoogle\\Cloud\\AIPlatform\\V1êGoogle::Cloud::AIPlatform::V1bproto3'
         , true);
 
         static::$is_initialized = true;

@@ -34,7 +34,8 @@ use Google\Cloud\OrgPolicy\V2\Policy;
  * `etag` value can be used with `UpdatePolicy()` to update a
  * `Policy` during read-modify-write.
  *
- * @param string $formattedName Resource name of the policy. See `Policy` for naming requirements. Please see
+ * @param string $formattedName Resource name of the policy. See `Policy` for naming
+ *                              requirements. Please see
  *                              {@see OrgPolicyClient::policyName()} for help formatting this field.
  */
 function get_policy_sample(string $formattedName): void

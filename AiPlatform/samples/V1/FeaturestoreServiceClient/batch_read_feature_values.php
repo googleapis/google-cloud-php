@@ -41,13 +41,14 @@ use Google\Rpc\Status;
  * more EntityTypes. Point-in-time correctness is guaranteed for Feature
  * values of each read instance as of each instance's read timestamp.
  *
- * @param string $formattedFeaturestore                             The resource name of the Featurestore from which to query Feature values.
- *                                                                  Format:
+ * @param string $formattedFeaturestore                             The resource name of the Featurestore from which to query Feature
+ *                                                                  values. Format:
  *                                                                  `projects/{project}/locations/{location}/featurestores/{featurestore}`
  *                                                                  Please see {@see FeaturestoreServiceClient::featurestoreName()} for help formatting this field.
- * @param string $entityTypeSpecsEntityTypeId                       ID of the EntityType to select Features. The EntityType id is the
- *                                                                  [entity_type_id][google.cloud.aiplatform.v1.CreateEntityTypeRequest.entity_type_id] specified
- *                                                                  during EntityType creation.
+ * @param string $entityTypeSpecsEntityTypeId                       ID of the EntityType to select Features. The EntityType id is
+ *                                                                  the
+ *                                                                  [entity_type_id][google.cloud.aiplatform.v1.CreateEntityTypeRequest.entity_type_id]
+ *                                                                  specified during EntityType creation.
  * @param string $entityTypeSpecsFeatureSelectorIdMatcherIdsElement The following are accepted as `ids`:
  *
  *                                                                  * A single-element list containing only `*`, which selects all Features

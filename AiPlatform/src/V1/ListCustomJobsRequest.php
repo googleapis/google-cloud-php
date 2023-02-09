@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [JobService.ListCustomJobs][google.cloud.aiplatform.v1.JobService.ListCustomJobs].
+ * Request message for
+ * [JobService.ListCustomJobs][google.cloud.aiplatform.v1.JobService.ListCustomJobs].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.ListCustomJobsRequest</code>
  */
@@ -52,8 +53,10 @@ class ListCustomJobsRequest extends \Google\Protobuf\Internal\Message
     /**
      * The standard list page token.
      * Typically obtained via
-     * [ListCustomJobsResponse.next_page_token][google.cloud.aiplatform.v1.ListCustomJobsResponse.next_page_token] of the previous
-     * [JobService.ListCustomJobs][google.cloud.aiplatform.v1.JobService.ListCustomJobs] call.
+     * [ListCustomJobsResponse.next_page_token][google.cloud.aiplatform.v1.ListCustomJobsResponse.next_page_token]
+     * of the previous
+     * [JobService.ListCustomJobs][google.cloud.aiplatform.v1.JobService.ListCustomJobs]
+     * call.
      *
      * Generated from protobuf field <code>string page_token = 4;</code>
      */
@@ -96,8 +99,10 @@ class ListCustomJobsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $page_token
      *           The standard list page token.
      *           Typically obtained via
-     *           [ListCustomJobsResponse.next_page_token][google.cloud.aiplatform.v1.ListCustomJobsResponse.next_page_token] of the previous
-     *           [JobService.ListCustomJobs][google.cloud.aiplatform.v1.JobService.ListCustomJobs] call.
+     *           [ListCustomJobsResponse.next_page_token][google.cloud.aiplatform.v1.ListCustomJobsResponse.next_page_token]
+     *           of the previous
+     *           [JobService.ListCustomJobs][google.cloud.aiplatform.v1.JobService.ListCustomJobs]
+     *           call.
      *     @type \Google\Protobuf\FieldMask $read_mask
      *           Mask specifying which fields to read.
      * }
@@ -220,8 +225,10 @@ class ListCustomJobsRequest extends \Google\Protobuf\Internal\Message
     /**
      * The standard list page token.
      * Typically obtained via
-     * [ListCustomJobsResponse.next_page_token][google.cloud.aiplatform.v1.ListCustomJobsResponse.next_page_token] of the previous
-     * [JobService.ListCustomJobs][google.cloud.aiplatform.v1.JobService.ListCustomJobs] call.
+     * [ListCustomJobsResponse.next_page_token][google.cloud.aiplatform.v1.ListCustomJobsResponse.next_page_token]
+     * of the previous
+     * [JobService.ListCustomJobs][google.cloud.aiplatform.v1.JobService.ListCustomJobs]
+     * call.
      *
      * Generated from protobuf field <code>string page_token = 4;</code>
      * @return string
@@ -234,8 +241,10 @@ class ListCustomJobsRequest extends \Google\Protobuf\Internal\Message
     /**
      * The standard list page token.
      * Typically obtained via
-     * [ListCustomJobsResponse.next_page_token][google.cloud.aiplatform.v1.ListCustomJobsResponse.next_page_token] of the previous
-     * [JobService.ListCustomJobs][google.cloud.aiplatform.v1.JobService.ListCustomJobs] call.
+     * [ListCustomJobsResponse.next_page_token][google.cloud.aiplatform.v1.ListCustomJobsResponse.next_page_token]
+     * of the previous
+     * [JobService.ListCustomJobs][google.cloud.aiplatform.v1.JobService.ListCustomJobs]
+     * call.
      *
      * Generated from protobuf field <code>string page_token = 4;</code>
      * @param string $var

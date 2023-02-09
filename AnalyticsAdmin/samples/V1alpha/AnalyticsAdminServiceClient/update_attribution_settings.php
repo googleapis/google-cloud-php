@@ -34,12 +34,12 @@ use Google\Protobuf\FieldMask;
 /**
  * Updates attribution settings on a property.
  *
- * @param int $attributionSettingsAcquisitionConversionEventLookbackWindow The lookback window configuration for acquisition conversion events.
- *                                                                         The default window size is 30 days.
- * @param int $attributionSettingsOtherConversionEventLookbackWindow       The lookback window for all other, non-acquisition conversion events.
- *                                                                         The default window size is 90 days.
- * @param int $attributionSettingsReportingAttributionModel                The reporting attribution model used to calculate conversion credit in this
- *                                                                         property's reports.
+ * @param int $attributionSettingsAcquisitionConversionEventLookbackWindow The lookback window configuration for acquisition conversion
+ *                                                                         events. The default window size is 30 days.
+ * @param int $attributionSettingsOtherConversionEventLookbackWindow       The lookback window for all other, non-acquisition conversion
+ *                                                                         events. The default window size is 90 days.
+ * @param int $attributionSettingsReportingAttributionModel                The reporting attribution model used to calculate conversion
+ *                                                                         credit in this property's reports.
  *
  *                                                                         Changing the attribution model will apply to both historical and future
  *                                                                         data. These changes will be reflected in reports with conversion and

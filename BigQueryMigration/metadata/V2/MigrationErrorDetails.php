@@ -18,7 +18,7 @@ class MigrationErrorDetails
         \GPBMetadata\Google\Rpc\ErrorDetails::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ê
+ﬂ
 @google/cloud/bigquery/migration/v2/migration_error_details.proto"google.cloud.bigquery.migration.v2google/rpc/error_details.proto"≤
 ResourceErrorDetail4
 resource_info (2.google.rpc.ResourceInfoB‡AK
@@ -30,8 +30,8 @@ class MigrationErrorDetails
 error_info (2.google.rpc.ErrorInfoB‡A"7
 ErrorLocation
 line (B‡A
-column (B‡AB›
-&com.google.cloud.bigquery.migration.v2BMigrationErrorDetailsProtoPZKgoogle.golang.org/genproto/googleapis/cloud/bigquery/migration/v2;migration™"Google.Cloud.BigQuery.Migration.V2 "Google\\Cloud\\BigQuery\\Migration\\V2bproto3'
+column (B‡AB÷
+&com.google.cloud.bigquery.migration.v2BMigrationErrorDetailsProtoPZDcloud.google.com/go/bigquery/migration/apiv2/migrationpb;migrationpb™"Google.Cloud.BigQuery.Migration.V2 "Google\\Cloud\\BigQuery\\Migration\\V2bproto3'
         , true);
 
         static::$is_initialized = true;

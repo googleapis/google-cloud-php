@@ -17,13 +17,13 @@ class TargetNotificationPayload
         \GPBMetadata\Google\Cloud\Deploy\V1\LogEnums::initOnce();
         $pool->internalAddGeneratedFile(
             '
-À
+¶
 8google/cloud/deploy/v1/target_notification_payload.protogoogle.cloud.deploy.v1"f
 TargetNotificationEvent
 message (	
 target (	*
-type (2.google.cloud.deploy.v1.TypeB|
-com.google.cloud.deploy.v1BTargetNotificationPayloadProtoPZ<google.golang.org/genproto/googleapis/cloud/deploy/v1;deploybproto3'
+type (2.google.cloud.deploy.v1.TypeBr
+com.google.cloud.deploy.v1BTargetNotificationPayloadProtoPZ2cloud.google.com/go/deploy/apiv1/deploypb;deploypbbproto3'
         , true);
 
         static::$is_initialized = true;

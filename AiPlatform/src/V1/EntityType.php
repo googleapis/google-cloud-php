@@ -48,7 +48,8 @@ class EntityType extends \Google\Protobuf\Internal\Message
      */
     private $update_time = null;
     /**
-     * Optional. The labels with user-defined metadata to organize your EntityTypes.
+     * Optional. The labels with user-defined metadata to organize your
+     * EntityTypes.
      * Label keys and values can be no longer than 64 characters
      * (Unicode codepoints), can only contain lowercase letters, numeric
      * characters, underscores and dashes. International characters are allowed.
@@ -62,16 +63,17 @@ class EntityType extends \Google\Protobuf\Internal\Message
      */
     private $labels;
     /**
-     * Optional. Used to perform a consistent read-modify-write updates. If not set, a blind
-     * "overwrite" update happens.
+     * Optional. Used to perform a consistent read-modify-write updates. If not
+     * set, a blind "overwrite" update happens.
      *
      * Generated from protobuf field <code>string etag = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $etag = '';
     /**
-     * Optional. The default monitoring configuration for all Features with value type
-     * ([Feature.ValueType][google.cloud.aiplatform.v1.Feature.ValueType]) BOOL, STRING, DOUBLE or INT64 under this
-     * EntityType.
+     * Optional. The default monitoring configuration for all Features with value
+     * type
+     * ([Feature.ValueType][google.cloud.aiplatform.v1.Feature.ValueType]) BOOL,
+     * STRING, DOUBLE or INT64 under this EntityType.
      * If this is populated with
      * [FeaturestoreMonitoringConfig.monitoring_interval] specified, snapshot
      * analysis monitoring is enabled. Otherwise, snapshot analysis monitoring is
@@ -102,7 +104,8 @@ class EntityType extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. Timestamp when this EntityType was most recently updated.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
-     *           Optional. The labels with user-defined metadata to organize your EntityTypes.
+     *           Optional. The labels with user-defined metadata to organize your
+     *           EntityTypes.
      *           Label keys and values can be no longer than 64 characters
      *           (Unicode codepoints), can only contain lowercase letters, numeric
      *           characters, underscores and dashes. International characters are allowed.
@@ -112,12 +115,13 @@ class EntityType extends \Google\Protobuf\Internal\Message
      *           System reserved label keys are prefixed with "aiplatform.googleapis.com/"
      *           and are immutable.
      *     @type string $etag
-     *           Optional. Used to perform a consistent read-modify-write updates. If not set, a blind
-     *           "overwrite" update happens.
+     *           Optional. Used to perform a consistent read-modify-write updates. If not
+     *           set, a blind "overwrite" update happens.
      *     @type \Google\Cloud\AIPlatform\V1\FeaturestoreMonitoringConfig $monitoring_config
-     *           Optional. The default monitoring configuration for all Features with value type
-     *           ([Feature.ValueType][google.cloud.aiplatform.v1.Feature.ValueType]) BOOL, STRING, DOUBLE or INT64 under this
-     *           EntityType.
+     *           Optional. The default monitoring configuration for all Features with value
+     *           type
+     *           ([Feature.ValueType][google.cloud.aiplatform.v1.Feature.ValueType]) BOOL,
+     *           STRING, DOUBLE or INT64 under this EntityType.
      *           If this is populated with
      *           [FeaturestoreMonitoringConfig.monitoring_interval] specified, snapshot
      *           analysis monitoring is enabled. Otherwise, snapshot analysis monitoring is
@@ -266,7 +270,8 @@ class EntityType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The labels with user-defined metadata to organize your EntityTypes.
+     * Optional. The labels with user-defined metadata to organize your
+     * EntityTypes.
      * Label keys and values can be no longer than 64 characters
      * (Unicode codepoints), can only contain lowercase letters, numeric
      * characters, underscores and dashes. International characters are allowed.
@@ -285,7 +290,8 @@ class EntityType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The labels with user-defined metadata to organize your EntityTypes.
+     * Optional. The labels with user-defined metadata to organize your
+     * EntityTypes.
      * Label keys and values can be no longer than 64 characters
      * (Unicode codepoints), can only contain lowercase letters, numeric
      * characters, underscores and dashes. International characters are allowed.
@@ -308,8 +314,8 @@ class EntityType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Used to perform a consistent read-modify-write updates. If not set, a blind
-     * "overwrite" update happens.
+     * Optional. Used to perform a consistent read-modify-write updates. If not
+     * set, a blind "overwrite" update happens.
      *
      * Generated from protobuf field <code>string etag = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -320,8 +326,8 @@ class EntityType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Used to perform a consistent read-modify-write updates. If not set, a blind
-     * "overwrite" update happens.
+     * Optional. Used to perform a consistent read-modify-write updates. If not
+     * set, a blind "overwrite" update happens.
      *
      * Generated from protobuf field <code>string etag = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -336,9 +342,10 @@ class EntityType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The default monitoring configuration for all Features with value type
-     * ([Feature.ValueType][google.cloud.aiplatform.v1.Feature.ValueType]) BOOL, STRING, DOUBLE or INT64 under this
-     * EntityType.
+     * Optional. The default monitoring configuration for all Features with value
+     * type
+     * ([Feature.ValueType][google.cloud.aiplatform.v1.Feature.ValueType]) BOOL,
+     * STRING, DOUBLE or INT64 under this EntityType.
      * If this is populated with
      * [FeaturestoreMonitoringConfig.monitoring_interval] specified, snapshot
      * analysis monitoring is enabled. Otherwise, snapshot analysis monitoring is
@@ -363,9 +370,10 @@ class EntityType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The default monitoring configuration for all Features with value type
-     * ([Feature.ValueType][google.cloud.aiplatform.v1.Feature.ValueType]) BOOL, STRING, DOUBLE or INT64 under this
-     * EntityType.
+     * Optional. The default monitoring configuration for all Features with value
+     * type
+     * ([Feature.ValueType][google.cloud.aiplatform.v1.Feature.ValueType]) BOOL,
+     * STRING, DOUBLE or INT64 under this EntityType.
      * If this is populated with
      * [FeaturestoreMonitoringConfig.monitoring_interval] specified, snapshot
      * analysis monitoring is enabled. Otherwise, snapshot analysis monitoring is

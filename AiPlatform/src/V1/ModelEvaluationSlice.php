@@ -29,17 +29,19 @@ class ModelEvaluationSlice extends \Google\Protobuf\Internal\Message
      */
     private $slice = null;
     /**
-     * Output only. Points to a YAML file stored on Google Cloud Storage describing the
-     * [metrics][google.cloud.aiplatform.v1.ModelEvaluationSlice.metrics] of this ModelEvaluationSlice. The
-     * schema is defined as an OpenAPI 3.0.2 [Schema
+     * Output only. Points to a YAML file stored on Google Cloud Storage
+     * describing the
+     * [metrics][google.cloud.aiplatform.v1.ModelEvaluationSlice.metrics] of this
+     * ModelEvaluationSlice. The schema is defined as an OpenAPI 3.0.2 [Schema
      * Object](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.2.md#schemaObject).
      *
      * Generated from protobuf field <code>string metrics_schema_uri = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $metrics_schema_uri = '';
     /**
-     * Output only. Sliced evaluation metrics of the Model. The schema of the metrics is stored
-     * in [metrics_schema_uri][google.cloud.aiplatform.v1.ModelEvaluationSlice.metrics_schema_uri]
+     * Output only. Sliced evaluation metrics of the Model. The schema of the
+     * metrics is stored in
+     * [metrics_schema_uri][google.cloud.aiplatform.v1.ModelEvaluationSlice.metrics_schema_uri]
      *
      * Generated from protobuf field <code>.google.protobuf.Value metrics = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -62,13 +64,15 @@ class ModelEvaluationSlice extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\AIPlatform\V1\ModelEvaluationSlice\Slice $slice
      *           Output only. The slice of the test data that is used to evaluate the Model.
      *     @type string $metrics_schema_uri
-     *           Output only. Points to a YAML file stored on Google Cloud Storage describing the
-     *           [metrics][google.cloud.aiplatform.v1.ModelEvaluationSlice.metrics] of this ModelEvaluationSlice. The
-     *           schema is defined as an OpenAPI 3.0.2 [Schema
+     *           Output only. Points to a YAML file stored on Google Cloud Storage
+     *           describing the
+     *           [metrics][google.cloud.aiplatform.v1.ModelEvaluationSlice.metrics] of this
+     *           ModelEvaluationSlice. The schema is defined as an OpenAPI 3.0.2 [Schema
      *           Object](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.2.md#schemaObject).
      *     @type \Google\Protobuf\Value $metrics
-     *           Output only. Sliced evaluation metrics of the Model. The schema of the metrics is stored
-     *           in [metrics_schema_uri][google.cloud.aiplatform.v1.ModelEvaluationSlice.metrics_schema_uri]
+     *           Output only. Sliced evaluation metrics of the Model. The schema of the
+     *           metrics is stored in
+     *           [metrics_schema_uri][google.cloud.aiplatform.v1.ModelEvaluationSlice.metrics_schema_uri]
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. Timestamp when this ModelEvaluationSlice was created.
      * }
@@ -141,9 +145,10 @@ class ModelEvaluationSlice extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Points to a YAML file stored on Google Cloud Storage describing the
-     * [metrics][google.cloud.aiplatform.v1.ModelEvaluationSlice.metrics] of this ModelEvaluationSlice. The
-     * schema is defined as an OpenAPI 3.0.2 [Schema
+     * Output only. Points to a YAML file stored on Google Cloud Storage
+     * describing the
+     * [metrics][google.cloud.aiplatform.v1.ModelEvaluationSlice.metrics] of this
+     * ModelEvaluationSlice. The schema is defined as an OpenAPI 3.0.2 [Schema
      * Object](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.2.md#schemaObject).
      *
      * Generated from protobuf field <code>string metrics_schema_uri = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -155,9 +160,10 @@ class ModelEvaluationSlice extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Points to a YAML file stored on Google Cloud Storage describing the
-     * [metrics][google.cloud.aiplatform.v1.ModelEvaluationSlice.metrics] of this ModelEvaluationSlice. The
-     * schema is defined as an OpenAPI 3.0.2 [Schema
+     * Output only. Points to a YAML file stored on Google Cloud Storage
+     * describing the
+     * [metrics][google.cloud.aiplatform.v1.ModelEvaluationSlice.metrics] of this
+     * ModelEvaluationSlice. The schema is defined as an OpenAPI 3.0.2 [Schema
      * Object](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.2.md#schemaObject).
      *
      * Generated from protobuf field <code>string metrics_schema_uri = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -173,8 +179,9 @@ class ModelEvaluationSlice extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Sliced evaluation metrics of the Model. The schema of the metrics is stored
-     * in [metrics_schema_uri][google.cloud.aiplatform.v1.ModelEvaluationSlice.metrics_schema_uri]
+     * Output only. Sliced evaluation metrics of the Model. The schema of the
+     * metrics is stored in
+     * [metrics_schema_uri][google.cloud.aiplatform.v1.ModelEvaluationSlice.metrics_schema_uri]
      *
      * Generated from protobuf field <code>.google.protobuf.Value metrics = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Value|null
@@ -195,8 +202,9 @@ class ModelEvaluationSlice extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Sliced evaluation metrics of the Model. The schema of the metrics is stored
-     * in [metrics_schema_uri][google.cloud.aiplatform.v1.ModelEvaluationSlice.metrics_schema_uri]
+     * Output only. Sliced evaluation metrics of the Model. The schema of the
+     * metrics is stored in
+     * [metrics_schema_uri][google.cloud.aiplatform.v1.ModelEvaluationSlice.metrics_schema_uri]
      *
      * Generated from protobuf field <code>.google.protobuf.Value metrics = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Value $var

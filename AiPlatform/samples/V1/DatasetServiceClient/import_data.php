@@ -37,9 +37,9 @@ use Google\Rpc\Status;
  *                                             Format:
  *                                             `projects/{project}/locations/{location}/datasets/{dataset}`
  *                                             Please see {@see DatasetServiceClient::datasetName()} for help formatting this field.
- * @param string $importConfigsImportSchemaUri Points to a YAML file stored on Google Cloud Storage describing the import
- *                                             format. Validation will be done against the schema. The schema is defined
- *                                             as an [OpenAPI 3.0.2 Schema
+ * @param string $importConfigsImportSchemaUri Points to a YAML file stored on Google Cloud Storage describing
+ *                                             the import format. Validation will be done against the schema. The schema
+ *                                             is defined as an [OpenAPI 3.0.2 Schema
  *                                             Object](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.2.md#schemaObject).
  */
 function import_data_sample(string $formattedName, string $importConfigsImportSchemaUri): void

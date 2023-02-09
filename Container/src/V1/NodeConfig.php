@@ -95,7 +95,9 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
     private $metadata;
     /**
      * The image type to use for this node. Note that for a given image type,
-     * the latest version of it will be used.
+     * the latest version of it will be used. Please see
+     * https://cloud.google.com/kubernetes-engine/docs/concepts/node-images for
+     * available image types.
      *
      * Generated from protobuf field <code>string image_type = 5;</code>
      */
@@ -368,7 +370,9 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *           The total size of all keys and values must be less than 512 KB.
      *     @type string $image_type
      *           The image type to use for this node. Note that for a given image type,
-     *           the latest version of it will be used.
+     *           the latest version of it will be used. Please see
+     *           https://cloud.google.com/kubernetes-engine/docs/concepts/node-images for
+     *           available image types.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           The map of Kubernetes labels (key/value pairs) to be applied to each node.
      *           These will added in addition to any default label(s) that
@@ -693,7 +697,9 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * The image type to use for this node. Note that for a given image type,
-     * the latest version of it will be used.
+     * the latest version of it will be used. Please see
+     * https://cloud.google.com/kubernetes-engine/docs/concepts/node-images for
+     * available image types.
      *
      * Generated from protobuf field <code>string image_type = 5;</code>
      * @return string
@@ -705,7 +711,9 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * The image type to use for this node. Note that for a given image type,
-     * the latest version of it will be used.
+     * the latest version of it will be used. Please see
+     * https://cloud.google.com/kubernetes-engine/docs/concepts/node-images for
+     * available image types.
      *
      * Generated from protobuf field <code>string image_type = 5;</code>
      * @param string $var

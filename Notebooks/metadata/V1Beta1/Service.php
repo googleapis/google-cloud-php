@@ -23,7 +23,7 @@ class Service
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-è6
+à6
 ,google/cloud/notebooks/v1beta1/service.protogoogle.cloud.notebooks.v1beta1google/api/client.protogoogle/api/field_behavior.proto0google/cloud/notebooks/v1beta1/environment.proto-google/cloud/notebooks/v1beta1/instance.proto#google/longrunning/operations.protogoogle/protobuf/timestamp.proto"Ô
 OperationMetadata/
 create_time (2.google.protobuf.Timestamp,
@@ -143,8 +143,8 @@ page_token (	"ã
 CreateEnvironment8.google.cloud.notebooks.v1beta1.CreateEnvironmentRequest.google.longrunning.Operation"mÇ”‰ìD"5/v1beta1/{parent=projects/*/locations/*}/environments:environment A 
 EnvironmentOperationMetadataÿ
 DeleteEnvironment8.google.cloud.notebooks.v1beta1.DeleteEnvironmentRequest.google.longrunning.Operation"jÇ”‰ì7*5/v1beta1/{name=projects/*/locations/*/environments/*} A*
-google.protobuf.EmptyOperationMetadataL Anotebooks.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBÂ
-"com.google.cloud.notebooks.v1beta1BNotebooksProtoPZGgoogle.golang.org/genproto/googleapis/cloud/notebooks/v1beta1;notebooks™Google.Cloud.Notebooks.V1Beta1 Google\\Cloud\\Notebooks\\V1beta1Í!Google::Cloud::Notebooks::V1beta1bproto3'
+google.protobuf.EmptyOperationMetadataL Anotebooks.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBﬁ
+"com.google.cloud.notebooks.v1beta1BNotebooksProtoPZ@cloud.google.com/go/notebooks/apiv1beta1/notebookspb;notebookspb™Google.Cloud.Notebooks.V1Beta1 Google\\Cloud\\Notebooks\\V1beta1Í!Google::Cloud::Notebooks::V1beta1bproto3'
         , true);
 
         static::$is_initialized = true;

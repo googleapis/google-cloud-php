@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [FeaturestoreService.SearchFeatures][google.cloud.aiplatform.v1.FeaturestoreService.SearchFeatures].
+ * Request message for
+ * [FeaturestoreService.SearchFeatures][google.cloud.aiplatform.v1.FeaturestoreService.SearchFeatures].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.SearchFeaturesRequest</code>
  */
@@ -87,11 +88,11 @@ class SearchFeaturesRequest extends \Google\Protobuf\Internal\Message
     private $page_size = 0;
     /**
      * A page token, received from a previous
-     * [FeaturestoreService.SearchFeatures][google.cloud.aiplatform.v1.FeaturestoreService.SearchFeatures] call.
-     * Provide this to retrieve the subsequent page.
+     * [FeaturestoreService.SearchFeatures][google.cloud.aiplatform.v1.FeaturestoreService.SearchFeatures]
+     * call. Provide this to retrieve the subsequent page.
      * When paginating, all other parameters provided to
-     * [FeaturestoreService.SearchFeatures][google.cloud.aiplatform.v1.FeaturestoreService.SearchFeatures], except `page_size`, must
-     * match the call that provided the page token.
+     * [FeaturestoreService.SearchFeatures][google.cloud.aiplatform.v1.FeaturestoreService.SearchFeatures],
+     * except `page_size`, must match the call that provided the page token.
      *
      * Generated from protobuf field <code>string page_token = 5;</code>
      */
@@ -163,11 +164,11 @@ class SearchFeaturesRequest extends \Google\Protobuf\Internal\Message
      *           100.
      *     @type string $page_token
      *           A page token, received from a previous
-     *           [FeaturestoreService.SearchFeatures][google.cloud.aiplatform.v1.FeaturestoreService.SearchFeatures] call.
-     *           Provide this to retrieve the subsequent page.
+     *           [FeaturestoreService.SearchFeatures][google.cloud.aiplatform.v1.FeaturestoreService.SearchFeatures]
+     *           call. Provide this to retrieve the subsequent page.
      *           When paginating, all other parameters provided to
-     *           [FeaturestoreService.SearchFeatures][google.cloud.aiplatform.v1.FeaturestoreService.SearchFeatures], except `page_size`, must
-     *           match the call that provided the page token.
+     *           [FeaturestoreService.SearchFeatures][google.cloud.aiplatform.v1.FeaturestoreService.SearchFeatures],
+     *           except `page_size`, must match the call that provided the page token.
      * }
      */
     public function __construct($data = NULL) {
@@ -359,11 +360,11 @@ class SearchFeaturesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * A page token, received from a previous
-     * [FeaturestoreService.SearchFeatures][google.cloud.aiplatform.v1.FeaturestoreService.SearchFeatures] call.
-     * Provide this to retrieve the subsequent page.
+     * [FeaturestoreService.SearchFeatures][google.cloud.aiplatform.v1.FeaturestoreService.SearchFeatures]
+     * call. Provide this to retrieve the subsequent page.
      * When paginating, all other parameters provided to
-     * [FeaturestoreService.SearchFeatures][google.cloud.aiplatform.v1.FeaturestoreService.SearchFeatures], except `page_size`, must
-     * match the call that provided the page token.
+     * [FeaturestoreService.SearchFeatures][google.cloud.aiplatform.v1.FeaturestoreService.SearchFeatures],
+     * except `page_size`, must match the call that provided the page token.
      *
      * Generated from protobuf field <code>string page_token = 5;</code>
      * @return string
@@ -375,11 +376,11 @@ class SearchFeaturesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * A page token, received from a previous
-     * [FeaturestoreService.SearchFeatures][google.cloud.aiplatform.v1.FeaturestoreService.SearchFeatures] call.
-     * Provide this to retrieve the subsequent page.
+     * [FeaturestoreService.SearchFeatures][google.cloud.aiplatform.v1.FeaturestoreService.SearchFeatures]
+     * call. Provide this to retrieve the subsequent page.
      * When paginating, all other parameters provided to
-     * [FeaturestoreService.SearchFeatures][google.cloud.aiplatform.v1.FeaturestoreService.SearchFeatures], except `page_size`, must
-     * match the call that provided the page token.
+     * [FeaturestoreService.SearchFeatures][google.cloud.aiplatform.v1.FeaturestoreService.SearchFeatures],
+     * except `page_size`, must match the call that provided the page token.
      *
      * Generated from protobuf field <code>string page_token = 5;</code>
      * @param string $var

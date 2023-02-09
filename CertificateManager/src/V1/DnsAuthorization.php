@@ -49,7 +49,7 @@ class DnsAuthorization extends \Google\Protobuf\Internal\Message
      */
     private $description = '';
     /**
-     * Required. Immutable. A domain which is being authorized. A DnsAuthorization
+     * Required. Immutable. A domain that is being authorized. A DnsAuthorization
      * resource covers a single domain and its wildcard, e.g. authorization for
      * `example.com` can be used to issue certificates for `example.com` and
      * `*.example.com`.
@@ -84,7 +84,7 @@ class DnsAuthorization extends \Google\Protobuf\Internal\Message
      *     @type string $description
      *           One or more paragraphs of text description of a DnsAuthorization.
      *     @type string $domain
-     *           Required. Immutable. A domain which is being authorized. A DnsAuthorization
+     *           Required. Immutable. A domain that is being authorized. A DnsAuthorization
      *           resource covers a single domain and its wildcard, e.g. authorization for
      *           `example.com` can be used to issue certificates for `example.com` and
      *           `*.example.com`.
@@ -253,7 +253,7 @@ class DnsAuthorization extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Immutable. A domain which is being authorized. A DnsAuthorization
+     * Required. Immutable. A domain that is being authorized. A DnsAuthorization
      * resource covers a single domain and its wildcard, e.g. authorization for
      * `example.com` can be used to issue certificates for `example.com` and
      * `*.example.com`.
@@ -267,7 +267,7 @@ class DnsAuthorization extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Immutable. A domain which is being authorized. A DnsAuthorization
+     * Required. Immutable. A domain that is being authorized. A DnsAuthorization
      * resource covers a single domain and its wildcard, e.g. authorization for
      * `example.com` can be used to issue certificates for `example.com` and
      * `*.example.com`.

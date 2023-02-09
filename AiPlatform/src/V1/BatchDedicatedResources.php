@@ -23,16 +23,16 @@ class BatchDedicatedResources extends \Google\Protobuf\Internal\Message
      */
     private $machine_spec = null;
     /**
-     * Immutable. The number of machine replicas used at the start of the batch operation.
-     * If not set, Vertex AI decides starting number, not greater than
+     * Immutable. The number of machine replicas used at the start of the batch
+     * operation. If not set, Vertex AI decides starting number, not greater than
      * [max_replica_count][google.cloud.aiplatform.v1.BatchDedicatedResources.max_replica_count]
      *
      * Generated from protobuf field <code>int32 starting_replica_count = 2 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
     private $starting_replica_count = 0;
     /**
-     * Immutable. The maximum number of machine replicas the batch operation may be scaled
-     * to. The default value is 10.
+     * Immutable. The maximum number of machine replicas the batch operation may
+     * be scaled to. The default value is 10.
      *
      * Generated from protobuf field <code>int32 max_replica_count = 3 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
@@ -47,12 +47,12 @@ class BatchDedicatedResources extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\AIPlatform\V1\MachineSpec $machine_spec
      *           Required. Immutable. The specification of a single machine.
      *     @type int $starting_replica_count
-     *           Immutable. The number of machine replicas used at the start of the batch operation.
-     *           If not set, Vertex AI decides starting number, not greater than
+     *           Immutable. The number of machine replicas used at the start of the batch
+     *           operation. If not set, Vertex AI decides starting number, not greater than
      *           [max_replica_count][google.cloud.aiplatform.v1.BatchDedicatedResources.max_replica_count]
      *     @type int $max_replica_count
-     *           Immutable. The maximum number of machine replicas the batch operation may be scaled
-     *           to. The default value is 10.
+     *           Immutable. The maximum number of machine replicas the batch operation may
+     *           be scaled to. The default value is 10.
      * }
      */
     public function __construct($data = NULL) {
@@ -97,8 +97,8 @@ class BatchDedicatedResources extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. The number of machine replicas used at the start of the batch operation.
-     * If not set, Vertex AI decides starting number, not greater than
+     * Immutable. The number of machine replicas used at the start of the batch
+     * operation. If not set, Vertex AI decides starting number, not greater than
      * [max_replica_count][google.cloud.aiplatform.v1.BatchDedicatedResources.max_replica_count]
      *
      * Generated from protobuf field <code>int32 starting_replica_count = 2 [(.google.api.field_behavior) = IMMUTABLE];</code>
@@ -110,8 +110,8 @@ class BatchDedicatedResources extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. The number of machine replicas used at the start of the batch operation.
-     * If not set, Vertex AI decides starting number, not greater than
+     * Immutable. The number of machine replicas used at the start of the batch
+     * operation. If not set, Vertex AI decides starting number, not greater than
      * [max_replica_count][google.cloud.aiplatform.v1.BatchDedicatedResources.max_replica_count]
      *
      * Generated from protobuf field <code>int32 starting_replica_count = 2 [(.google.api.field_behavior) = IMMUTABLE];</code>
@@ -127,8 +127,8 @@ class BatchDedicatedResources extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. The maximum number of machine replicas the batch operation may be scaled
-     * to. The default value is 10.
+     * Immutable. The maximum number of machine replicas the batch operation may
+     * be scaled to. The default value is 10.
      *
      * Generated from protobuf field <code>int32 max_replica_count = 3 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return int
@@ -139,8 +139,8 @@ class BatchDedicatedResources extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. The maximum number of machine replicas the batch operation may be scaled
-     * to. The default value is 10.
+     * Immutable. The maximum number of machine replicas the batch operation may
+     * be scaled to. The default value is 10.
      *
      * Generated from protobuf field <code>int32 max_replica_count = 3 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @param int $var

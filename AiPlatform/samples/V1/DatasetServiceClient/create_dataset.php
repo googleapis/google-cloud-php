@@ -39,11 +39,10 @@ use Google\Rpc\Status;
  * @param string $datasetDisplayName       The user-defined name of the Dataset.
  *                                         The name can be up to 128 characters long and can consist of any UTF-8
  *                                         characters.
- * @param string $datasetMetadataSchemaUri Points to a YAML file stored on Google Cloud Storage describing additional
- *                                         information about the Dataset.
- *                                         The schema is defined as an OpenAPI 3.0.2 Schema Object.
- *                                         The schema files that can be used here are found in
- *                                         gs://google-cloud-aiplatform/schema/dataset/metadata/.
+ * @param string $datasetMetadataSchemaUri Points to a YAML file stored on Google Cloud Storage describing
+ *                                         additional information about the Dataset. The schema is defined as an
+ *                                         OpenAPI 3.0.2 Schema Object. The schema files that can be used here are
+ *                                         found in gs://google-cloud-aiplatform/schema/dataset/metadata/.
  */
 function create_dataset_sample(
     string $formattedParent,

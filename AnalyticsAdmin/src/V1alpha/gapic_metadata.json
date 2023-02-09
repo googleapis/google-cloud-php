@@ -120,6 +120,11 @@
                                 "createProperty"
                             ]
                         },
+                        "CreateSearchAds360Link": {
+                            "methods": [
+                                "createSearchAds360Link"
+                            ]
+                        },
                         "CreateUserLink": {
                             "methods": [
                                 "createUserLink"
@@ -170,9 +175,19 @@
                                 "deleteProperty"
                             ]
                         },
+                        "DeleteSearchAds360Link": {
+                            "methods": [
+                                "deleteSearchAds360Link"
+                            ]
+                        },
                         "DeleteUserLink": {
                             "methods": [
                                 "deleteUserLink"
+                            ]
+                        },
+                        "FetchAutomatedGa4ConfigurationOptOut": {
+                            "methods": [
+                                "fetchAutomatedGa4ConfigurationOptOut"
                             ]
                         },
                         "GetAccount": {
@@ -188,6 +203,11 @@
                         "GetAudience": {
                             "methods": [
                                 "getAudience"
+                            ]
+                        },
+                        "GetBigQueryLink": {
+                            "methods": [
+                                "getBigQueryLink"
                             ]
                         },
                         "GetConversionEvent": {
@@ -250,6 +270,11 @@
                                 "getProperty"
                             ]
                         },
+                        "GetSearchAds360Link": {
+                            "methods": [
+                                "getSearchAds360Link"
+                            ]
+                        },
                         "GetUserLink": {
                             "methods": [
                                 "getUserLink"
@@ -268,6 +293,11 @@
                         "ListAudiences": {
                             "methods": [
                                 "listAudiences"
+                            ]
+                        },
+                        "ListBigQueryLinks": {
+                            "methods": [
+                                "listBigQueryLinks"
                             ]
                         },
                         "ListConversionEvents": {
@@ -320,6 +350,11 @@
                                 "listProperties"
                             ]
                         },
+                        "ListSearchAds360Links": {
+                            "methods": [
+                                "listSearchAds360Links"
+                            ]
+                        },
                         "ListUserLinks": {
                             "methods": [
                                 "listUserLinks"
@@ -338,6 +373,11 @@
                         "SearchChangeHistoryEvents": {
                             "methods": [
                                 "searchChangeHistoryEvents"
+                            ]
+                        },
+                        "SetAutomatedGa4ConfigurationOptOut": {
+                            "methods": [
+                                "setAutomatedGa4ConfigurationOptOut"
                             ]
                         },
                         "UpdateAccount": {
@@ -398,6 +438,11 @@
                         "UpdateProperty": {
                             "methods": [
                                 "updateProperty"
+                            ]
+                        },
+                        "UpdateSearchAds360Link": {
+                            "methods": [
+                                "updateSearchAds360Link"
                             ]
                         },
                         "UpdateUserLink": {

@@ -31,9 +31,8 @@ use Google\Cloud\AIPlatform\V1\MetadataServiceClient;
  * Retrieves lineage of an Artifact represented through Artifacts and
  * Executions connected by Event edges and returned as a LineageSubgraph.
  *
- * @param string $formattedArtifact The resource name of the Artifact whose Lineage needs to be retrieved as a
- *                                  LineageSubgraph.
- *                                  Format:
+ * @param string $formattedArtifact The resource name of the Artifact whose Lineage needs to be
+ *                                  retrieved as a LineageSubgraph. Format:
  *                                  `projects/{project}/locations/{location}/metadataStores/{metadatastore}/artifacts/{artifact}`
  *
  *                                  The request may error with FAILED_PRECONDITION if the number of Artifacts,

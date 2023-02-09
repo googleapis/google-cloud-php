@@ -26,7 +26,7 @@ class Cloudtasks
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-í(
+á(
 +google/cloud/tasks/v2beta3/cloudtasks.protogoogle.cloud.tasks.v2beta3google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto&google/cloud/tasks/v2beta3/queue.proto%google/cloud/tasks/v2beta3/task.protogoogle/iam/v1/iam_policy.protogoogle/iam/v1/policy.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"∑
 ListQueuesRequest7
 parent (	B\'‡A˙A!cloudtasks.googleapis.com/Queue
@@ -106,8 +106,8 @@ PauseQueue-.google.cloud.tasks.v2beta3.PauseQueueRequest!.google.cloud.tasks.v
 CreateTask-.google.cloud.tasks.v2beta3.CreateTaskRequest .google.cloud.tasks.v2beta3.Task"PÇ”‰ì<"7/v2beta3/{parent=projects/*/locations/*/queues/*}/tasks:*⁄Aparent,taskõ
 
 DeleteTask-.google.cloud.tasks.v2beta3.DeleteTaskRequest.google.protobuf.Empty"FÇ”‰ì9*7/v2beta3/{name=projects/*/locations/*/queues/*/tasks/*}⁄Aname¶
-RunTask*.google.cloud.tasks.v2beta3.RunTaskRequest .google.cloud.tasks.v2beta3.Task"MÇ”‰ì@";/v2beta3/{name=projects/*/locations/*/queues/*/tasks/*}:run:*⁄AnameM Acloudtasks.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformB|
-com.google.cloud.tasks.v2beta3BCloudTasksProtoPZ?google.golang.org/genproto/googleapis/cloud/tasks/v2beta3;tasks¢TASKSbproto3'
+RunTask*.google.cloud.tasks.v2beta3.RunTaskRequest .google.cloud.tasks.v2beta3.Task"MÇ”‰ì@";/v2beta3/{name=projects/*/locations/*/queues/*/tasks/*}:run:*⁄AnameM Acloudtasks.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBq
+com.google.cloud.tasks.v2beta3BCloudTasksProtoPZ4cloud.google.com/go/tasks/apiv2beta3/taskspb;taskspb¢TASKSbproto3'
         , true);
 
         static::$is_initialized = true;

@@ -30,13 +30,17 @@ use Google\Cloud\AIPlatform\V1\PipelineServiceClient;
  * Cancels a TrainingPipeline.
  * Starts asynchronous cancellation on the TrainingPipeline. The server
  * makes a best effort to cancel the pipeline, but success is not
- * guaranteed. Clients can use [PipelineService.GetTrainingPipeline][google.cloud.aiplatform.v1.PipelineService.GetTrainingPipeline] or
- * other methods to check whether the cancellation succeeded or whether the
+ * guaranteed. Clients can use
+ * [PipelineService.GetTrainingPipeline][google.cloud.aiplatform.v1.PipelineService.GetTrainingPipeline]
+ * or other methods to check whether the cancellation succeeded or whether the
  * pipeline completed despite cancellation. On successful cancellation,
  * the TrainingPipeline is not deleted; instead it becomes a pipeline with
- * a [TrainingPipeline.error][google.cloud.aiplatform.v1.TrainingPipeline.error] value with a [google.rpc.Status.code][google.rpc.Status.code] of 1,
- * corresponding to `Code.CANCELLED`, and [TrainingPipeline.state][google.cloud.aiplatform.v1.TrainingPipeline.state] is set to
- * `CANCELLED`.
+ * a
+ * [TrainingPipeline.error][google.cloud.aiplatform.v1.TrainingPipeline.error]
+ * value with a [google.rpc.Status.code][google.rpc.Status.code] of 1,
+ * corresponding to `Code.CANCELLED`, and
+ * [TrainingPipeline.state][google.cloud.aiplatform.v1.TrainingPipeline.state]
+ * is set to `CANCELLED`.
  *
  * @param string $formattedName The name of the TrainingPipeline to cancel.
  *                              Format:

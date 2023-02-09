@@ -17,7 +17,7 @@ class Text
         \GPBMetadata\Google\Cloud\Automl\V1\Classification::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ê
+à
 !google/cloud/automl/v1/text.protogoogle.cloud.automl.v1"l
 !TextClassificationDatasetMetadataG
 classification_type (2*.google.cloud.automl.v1.ClassificationType"j
@@ -27,8 +27,8 @@ class Text
 TextExtractionModelMetadata"5
 TextSentimentDatasetMetadata
 sentiment_max ("
-TextSentimentModelMetadataBµ
-com.google.cloud.automl.v1B	TextProtoPZ<google.golang.org/genproto/googleapis/cloud/automl/v1;automlªGoogle.Cloud.AutoML.V1ÊGoogle\\Cloud\\AutoMl\\V1êGoogle::Cloud::AutoML::V1bproto3'
+TextSentimentModelMetadataB«
+com.google.cloud.automl.v1B	TextProtoPZ2cloud.google.com/go/automl/apiv1/automlpb;automlpbªGoogle.Cloud.AutoML.V1ÊGoogle\\Cloud\\AutoMl\\V1êGoogle::Cloud::AutoML::V1bproto3'
         , true);
 
         static::$is_initialized = true;
