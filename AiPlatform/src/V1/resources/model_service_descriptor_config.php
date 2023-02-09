@@ -3,6 +3,16 @@
 return [
     'interfaces' => [
         'google.cloud.aiplatform.v1.ModelService' => [
+            'CopyModel' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\AIPlatform\V1\CopyModelResponse',
+                    'metadataReturnType' => '\Google\Cloud\AIPlatform\V1\CopyModelOperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+            ],
             'DeleteModel' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Protobuf\GPBEmpty',

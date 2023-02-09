@@ -23,8 +23,9 @@ class Annotation extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * Required. Google Cloud Storage URI points to a YAML file describing [payload][google.cloud.aiplatform.v1.Annotation.payload]. The
-     * schema is defined as an [OpenAPI 3.0.2 Schema
+     * Required. Google Cloud Storage URI points to a YAML file describing
+     * [payload][google.cloud.aiplatform.v1.Annotation.payload]. The schema is
+     * defined as an [OpenAPI 3.0.2 Schema
      * Object](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.2.md#schemaObject).
      * The schema files that can be used here are found in
      * gs://google-cloud-aiplatform/schema/dataset/annotation/, note that the
@@ -54,8 +55,8 @@ class Annotation extends \Google\Protobuf\Internal\Message
      */
     private $update_time = null;
     /**
-     * Optional. Used to perform consistent read-modify-write updates. If not set, a blind
-     * "overwrite" update happens.
+     * Optional. Used to perform consistent read-modify-write updates. If not set,
+     * a blind "overwrite" update happens.
      *
      * Generated from protobuf field <code>string etag = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -67,7 +68,8 @@ class Annotation extends \Google\Protobuf\Internal\Message
      */
     private $annotation_source = null;
     /**
-     * Optional. The labels with user-defined metadata to organize your Annotations.
+     * Optional. The labels with user-defined metadata to organize your
+     * Annotations.
      * Label keys and values can be no longer than 64 characters
      * (Unicode codepoints), can only contain lowercase letters, numeric
      * characters, underscores and dashes. International characters are allowed.
@@ -80,7 +82,8 @@ class Annotation extends \Google\Protobuf\Internal\Message
      *   optional, name of the UI's annotation set this Annotation belongs to.
      *   If not set, the Annotation is not visible in the UI.
      * * "aiplatform.googleapis.com/payload_schema":
-     *   output only, its value is the [payload_schema's][google.cloud.aiplatform.v1.Annotation.payload_schema_uri]
+     *   output only, its value is the
+     *   [payload_schema's][google.cloud.aiplatform.v1.Annotation.payload_schema_uri]
      *   title.
      *
      * Generated from protobuf field <code>map<string, string> labels = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -96,8 +99,9 @@ class Annotation extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Output only. Resource name of the Annotation.
      *     @type string $payload_schema_uri
-     *           Required. Google Cloud Storage URI points to a YAML file describing [payload][google.cloud.aiplatform.v1.Annotation.payload]. The
-     *           schema is defined as an [OpenAPI 3.0.2 Schema
+     *           Required. Google Cloud Storage URI points to a YAML file describing
+     *           [payload][google.cloud.aiplatform.v1.Annotation.payload]. The schema is
+     *           defined as an [OpenAPI 3.0.2 Schema
      *           Object](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.2.md#schemaObject).
      *           The schema files that can be used here are found in
      *           gs://google-cloud-aiplatform/schema/dataset/annotation/, note that the
@@ -111,12 +115,13 @@ class Annotation extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. Timestamp when this Annotation was last updated.
      *     @type string $etag
-     *           Optional. Used to perform consistent read-modify-write updates. If not set, a blind
-     *           "overwrite" update happens.
+     *           Optional. Used to perform consistent read-modify-write updates. If not set,
+     *           a blind "overwrite" update happens.
      *     @type \Google\Cloud\AIPlatform\V1\UserActionReference $annotation_source
      *           Output only. The source of the Annotation.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
-     *           Optional. The labels with user-defined metadata to organize your Annotations.
+     *           Optional. The labels with user-defined metadata to organize your
+     *           Annotations.
      *           Label keys and values can be no longer than 64 characters
      *           (Unicode codepoints), can only contain lowercase letters, numeric
      *           characters, underscores and dashes. International characters are allowed.
@@ -129,7 +134,8 @@ class Annotation extends \Google\Protobuf\Internal\Message
      *             optional, name of the UI's annotation set this Annotation belongs to.
      *             If not set, the Annotation is not visible in the UI.
      *           * "aiplatform.googleapis.com/payload_schema":
-     *             output only, its value is the [payload_schema's][google.cloud.aiplatform.v1.Annotation.payload_schema_uri]
+     *             output only, its value is the
+     *             [payload_schema's][google.cloud.aiplatform.v1.Annotation.payload_schema_uri]
      *             title.
      * }
      */
@@ -165,8 +171,9 @@ class Annotation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Google Cloud Storage URI points to a YAML file describing [payload][google.cloud.aiplatform.v1.Annotation.payload]. The
-     * schema is defined as an [OpenAPI 3.0.2 Schema
+     * Required. Google Cloud Storage URI points to a YAML file describing
+     * [payload][google.cloud.aiplatform.v1.Annotation.payload]. The schema is
+     * defined as an [OpenAPI 3.0.2 Schema
      * Object](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.2.md#schemaObject).
      * The schema files that can be used here are found in
      * gs://google-cloud-aiplatform/schema/dataset/annotation/, note that the
@@ -182,8 +189,9 @@ class Annotation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Google Cloud Storage URI points to a YAML file describing [payload][google.cloud.aiplatform.v1.Annotation.payload]. The
-     * schema is defined as an [OpenAPI 3.0.2 Schema
+     * Required. Google Cloud Storage URI points to a YAML file describing
+     * [payload][google.cloud.aiplatform.v1.Annotation.payload]. The schema is
+     * defined as an [OpenAPI 3.0.2 Schema
      * Object](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.2.md#schemaObject).
      * The schema files that can be used here are found in
      * gs://google-cloud-aiplatform/schema/dataset/annotation/, note that the
@@ -313,8 +321,8 @@ class Annotation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Used to perform consistent read-modify-write updates. If not set, a blind
-     * "overwrite" update happens.
+     * Optional. Used to perform consistent read-modify-write updates. If not set,
+     * a blind "overwrite" update happens.
      *
      * Generated from protobuf field <code>string etag = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -325,8 +333,8 @@ class Annotation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Used to perform consistent read-modify-write updates. If not set, a blind
-     * "overwrite" update happens.
+     * Optional. Used to perform consistent read-modify-write updates. If not set,
+     * a blind "overwrite" update happens.
      *
      * Generated from protobuf field <code>string etag = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -377,7 +385,8 @@ class Annotation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The labels with user-defined metadata to organize your Annotations.
+     * Optional. The labels with user-defined metadata to organize your
+     * Annotations.
      * Label keys and values can be no longer than 64 characters
      * (Unicode codepoints), can only contain lowercase letters, numeric
      * characters, underscores and dashes. International characters are allowed.
@@ -390,7 +399,8 @@ class Annotation extends \Google\Protobuf\Internal\Message
      *   optional, name of the UI's annotation set this Annotation belongs to.
      *   If not set, the Annotation is not visible in the UI.
      * * "aiplatform.googleapis.com/payload_schema":
-     *   output only, its value is the [payload_schema's][google.cloud.aiplatform.v1.Annotation.payload_schema_uri]
+     *   output only, its value is the
+     *   [payload_schema's][google.cloud.aiplatform.v1.Annotation.payload_schema_uri]
      *   title.
      *
      * Generated from protobuf field <code>map<string, string> labels = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -402,7 +412,8 @@ class Annotation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The labels with user-defined metadata to organize your Annotations.
+     * Optional. The labels with user-defined metadata to organize your
+     * Annotations.
      * Label keys and values can be no longer than 64 characters
      * (Unicode codepoints), can only contain lowercase letters, numeric
      * characters, underscores and dashes. International characters are allowed.
@@ -415,7 +426,8 @@ class Annotation extends \Google\Protobuf\Internal\Message
      *   optional, name of the UI's annotation set this Annotation belongs to.
      *   If not set, the Annotation is not visible in the UI.
      * * "aiplatform.googleapis.com/payload_schema":
-     *   output only, its value is the [payload_schema's][google.cloud.aiplatform.v1.Annotation.payload_schema_uri]
+     *   output only, its value is the
+     *   [payload_schema's][google.cloud.aiplatform.v1.Annotation.payload_schema_uri]
      *   title.
      *
      * Generated from protobuf field <code>map<string, string> labels = 6 [(.google.api.field_behavior) = OPTIONAL];</code>

@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [DatasetService.UpdateDataset][google.cloud.aiplatform.v1.DatasetService.UpdateDataset].
+ * Request message for
+ * [DatasetService.UpdateDataset][google.cloud.aiplatform.v1.DatasetService.UpdateDataset].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.UpdateDatasetRequest</code>
  */
@@ -23,8 +24,8 @@ class UpdateDatasetRequest extends \Google\Protobuf\Internal\Message
     private $dataset = null;
     /**
      * Required. The update mask applies to the resource.
-     * For the `FieldMask` definition, see [google.protobuf.FieldMask][google.protobuf.FieldMask].
-     * Updatable fields:
+     * For the `FieldMask` definition, see
+     * [google.protobuf.FieldMask][google.protobuf.FieldMask]. Updatable fields:
      *   * `display_name`
      *   * `description`
      *   * `labels`
@@ -43,8 +44,8 @@ class UpdateDatasetRequest extends \Google\Protobuf\Internal\Message
      *           Required. The Dataset which replaces the resource on the server.
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           Required. The update mask applies to the resource.
-     *           For the `FieldMask` definition, see [google.protobuf.FieldMask][google.protobuf.FieldMask].
-     *           Updatable fields:
+     *           For the `FieldMask` definition, see
+     *           [google.protobuf.FieldMask][google.protobuf.FieldMask]. Updatable fields:
      *             * `display_name`
      *             * `description`
      *             * `labels`
@@ -93,8 +94,8 @@ class UpdateDatasetRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The update mask applies to the resource.
-     * For the `FieldMask` definition, see [google.protobuf.FieldMask][google.protobuf.FieldMask].
-     * Updatable fields:
+     * For the `FieldMask` definition, see
+     * [google.protobuf.FieldMask][google.protobuf.FieldMask]. Updatable fields:
      *   * `display_name`
      *   * `description`
      *   * `labels`
@@ -119,8 +120,8 @@ class UpdateDatasetRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The update mask applies to the resource.
-     * For the `FieldMask` definition, see [google.protobuf.FieldMask][google.protobuf.FieldMask].
-     * Updatable fields:
+     * For the `FieldMask` definition, see
+     * [google.protobuf.FieldMask][google.protobuf.FieldMask]. Updatable fields:
      *   * `display_name`
      *   * `description`
      *   * `labels`

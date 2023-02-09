@@ -31,8 +31,8 @@ use Google\Cloud\OrgPolicy\V2\OrgPolicyClient;
 /**
  * Lists `Constraints` that could be applied on the specified resource.
  *
- * @param string $formattedParent The Cloud resource that parents the constraint. Must be in one of the
- *                                following forms:
+ * @param string $formattedParent The Cloud resource that parents the constraint. Must be in one of
+ *                                the following forms:
  *                                * `projects/{project_number}`
  *                                * `projects/{project_id}`
  *                                * `folders/{folder_id}`

@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [MetadataService.GetArtifact][google.cloud.aiplatform.v1.MetadataService.GetArtifact].
+ * Request message for
+ * [MetadataService.GetArtifact][google.cloud.aiplatform.v1.MetadataService.GetArtifact].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.GetArtifactRequest</code>
  */

@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [IndexService.DeleteIndex][google.cloud.aiplatform.v1.IndexService.DeleteIndex].
+ * Request message for
+ * [IndexService.DeleteIndex][google.cloud.aiplatform.v1.IndexService.DeleteIndex].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.DeleteIndexRequest</code>
  */

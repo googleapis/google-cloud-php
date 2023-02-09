@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [ModelService.UploadModel][google.cloud.aiplatform.v1.ModelService.UploadModel].
+ * Request message for
+ * [ModelService.UploadModel][google.cloud.aiplatform.v1.ModelService.UploadModel].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.UploadModelRequest</code>
  */
@@ -23,8 +24,8 @@ class UploadModelRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
-     * Optional. The resource name of the model into which to upload the version. Only
-     * specify this field when uploading a new version.
+     * Optional. The resource name of the model into which to upload the version.
+     * Only specify this field when uploading a new version.
      *
      * Generated from protobuf field <code>string parent_model = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -67,8 +68,8 @@ class UploadModelRequest extends \Google\Protobuf\Internal\Message
      *           Required. The resource name of the Location into which to upload the Model.
      *           Format: `projects/{project}/locations/{location}`
      *     @type string $parent_model
-     *           Optional. The resource name of the model into which to upload the version. Only
-     *           specify this field when uploading a new version.
+     *           Optional. The resource name of the model into which to upload the version.
+     *           Only specify this field when uploading a new version.
      *     @type string $model_id
      *           Optional. The ID to use for the uploaded Model, which will become the final
      *           component of the model resource name.
@@ -120,8 +121,8 @@ class UploadModelRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The resource name of the model into which to upload the version. Only
-     * specify this field when uploading a new version.
+     * Optional. The resource name of the model into which to upload the version.
+     * Only specify this field when uploading a new version.
      *
      * Generated from protobuf field <code>string parent_model = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -132,8 +133,8 @@ class UploadModelRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The resource name of the model into which to upload the version. Only
-     * specify this field when uploading a new version.
+     * Optional. The resource name of the model into which to upload the version.
+     * Only specify this field when uploading a new version.
      *
      * Generated from protobuf field <code>string parent_model = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

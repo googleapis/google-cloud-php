@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Response message for [FeaturestoreService.SearchFeatures][google.cloud.aiplatform.v1.FeaturestoreService.SearchFeatures].
+ * Response message for
+ * [FeaturestoreService.SearchFeatures][google.cloud.aiplatform.v1.FeaturestoreService.SearchFeatures].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.SearchFeaturesResponse</code>
  */
@@ -28,9 +29,10 @@ class SearchFeaturesResponse extends \Google\Protobuf\Internal\Message
      */
     private $features;
     /**
-     * A token, which can be sent as [SearchFeaturesRequest.page_token][google.cloud.aiplatform.v1.SearchFeaturesRequest.page_token] to
-     * retrieve the next page.
-     * If this field is omitted, there are no subsequent pages.
+     * A token, which can be sent as
+     * [SearchFeaturesRequest.page_token][google.cloud.aiplatform.v1.SearchFeaturesRequest.page_token]
+     * to retrieve the next page. If this field is omitted, there are no
+     * subsequent pages.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
@@ -51,9 +53,10 @@ class SearchFeaturesResponse extends \Google\Protobuf\Internal\Message
      *            * `create_time`
      *            * `update_time`
      *     @type string $next_page_token
-     *           A token, which can be sent as [SearchFeaturesRequest.page_token][google.cloud.aiplatform.v1.SearchFeaturesRequest.page_token] to
-     *           retrieve the next page.
-     *           If this field is omitted, there are no subsequent pages.
+     *           A token, which can be sent as
+     *           [SearchFeaturesRequest.page_token][google.cloud.aiplatform.v1.SearchFeaturesRequest.page_token]
+     *           to retrieve the next page. If this field is omitted, there are no
+     *           subsequent pages.
      * }
      */
     public function __construct($data = NULL) {
@@ -100,9 +103,10 @@ class SearchFeaturesResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A token, which can be sent as [SearchFeaturesRequest.page_token][google.cloud.aiplatform.v1.SearchFeaturesRequest.page_token] to
-     * retrieve the next page.
-     * If this field is omitted, there are no subsequent pages.
+     * A token, which can be sent as
+     * [SearchFeaturesRequest.page_token][google.cloud.aiplatform.v1.SearchFeaturesRequest.page_token]
+     * to retrieve the next page. If this field is omitted, there are no
+     * subsequent pages.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @return string
@@ -113,9 +117,10 @@ class SearchFeaturesResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A token, which can be sent as [SearchFeaturesRequest.page_token][google.cloud.aiplatform.v1.SearchFeaturesRequest.page_token] to
-     * retrieve the next page.
-     * If this field is omitted, there are no subsequent pages.
+     * A token, which can be sent as
+     * [SearchFeaturesRequest.page_token][google.cloud.aiplatform.v1.SearchFeaturesRequest.page_token]
+     * to retrieve the next page. If this field is omitted, there are no
+     * subsequent pages.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @param string $var

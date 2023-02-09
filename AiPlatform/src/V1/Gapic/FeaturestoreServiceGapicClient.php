@@ -526,13 +526,14 @@ class FeaturestoreServiceGapicClient
      * }
      * ```
      *
-     * @param string                 $parent       Required. The resource name of the EntityType to create the batch of Features under.
-     *                                             Format:
+     * @param string                 $parent       Required. The resource name of the EntityType to create the batch of
+     *                                             Features under. Format:
      *                                             `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}`
-     * @param CreateFeatureRequest[] $requests     Required. The request message specifying the Features to create. All Features must be
-     *                                             created under the same parent EntityType. The `parent` field in each child
-     *                                             request message can be omitted. If `parent` is set in a child request, then
-     *                                             the value must match the `parent` value in this request message.
+     * @param CreateFeatureRequest[] $requests     Required. The request message specifying the Features to create. All
+     *                                             Features must be created under the same parent EntityType. The `parent`
+     *                                             field in each child request message can be omitted. If `parent` is set in a
+     *                                             child request, then the value must match the `parent` value in this request
+     *                                             message.
      * @param array                  $optionalArgs {
      *     Optional.
      *
@@ -616,12 +617,12 @@ class FeaturestoreServiceGapicClient
      * }
      * ```
      *
-     * @param string                  $featurestore    Required. The resource name of the Featurestore from which to query Feature values.
-     *                                                 Format:
+     * @param string                  $featurestore    Required. The resource name of the Featurestore from which to query Feature
+     *                                                 values. Format:
      *                                                 `projects/{project}/locations/{location}/featurestores/{featurestore}`
      * @param FeatureValueDestination $destination     Required. Specifies output location and format.
-     * @param EntityTypeSpec[]        $entityTypeSpecs Required. Specifies EntityType grouping Features to read values of and settings.
-     *                                                 Each EntityType referenced in
+     * @param EntityTypeSpec[]        $entityTypeSpecs Required. Specifies EntityType grouping Features to read values of and
+     *                                                 settings. Each EntityType referenced in
      *                                                 [BatchReadFeatureValuesRequest.entity_type_specs] must have a column
      *                                                 specifying entity IDs in the EntityType in
      *                                                 [BatchReadFeatureValuesRequest.request][] .
@@ -664,8 +665,8 @@ class FeaturestoreServiceGapicClient
      *           automatically inferred. For CSV source, the pass-through values will be
      *           passed as opaque bytes.
      *     @type Timestamp $startTime
-     *           Optional. Excludes Feature values with feature generation timestamp before this
-     *           timestamp. If not set, retrieve oldest values kept in Feature Store.
+     *           Optional. Excludes Feature values with feature generation timestamp before
+     *           this timestamp. If not set, retrieve oldest values kept in Feature Store.
      *           Timestamp, if present, must not have higher than millisecond precision.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
@@ -764,8 +765,8 @@ class FeaturestoreServiceGapicClient
      * @param string $parent       Required. The resource name of the Featurestore to create EntityTypes.
      *                             Format:
      *                             `projects/{project}/locations/{location}/featurestores/{featurestore}`
-     * @param string $entityTypeId Required. The ID to use for the EntityType, which will become the final component of
-     *                             the EntityType's resource name.
+     * @param string $entityTypeId Required. The ID to use for the EntityType, which will become the final
+     *                             component of the EntityType's resource name.
      *
      *                             This value may be up to 60 characters, and valid characters are
      *                             `[a-z0-9_]`. The first character cannot be a number.
@@ -859,8 +860,8 @@ class FeaturestoreServiceGapicClient
      *                              Format:
      *                              `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}`
      * @param Feature $feature      Required. The Feature to create.
-     * @param string  $featureId    Required. The ID to use for the Feature, which will become the final component of
-     *                              the Feature's resource name.
+     * @param string  $featureId    Required. The ID to use for the Feature, which will become the final
+     *                              component of the Feature's resource name.
      *
      *                              This value may be up to 128 characters, and valid characters are
      *                              `[a-z0-9_]`. The first character cannot be a number.
@@ -950,8 +951,8 @@ class FeaturestoreServiceGapicClient
      *                                     Format:
      *                                     `projects/{project}/locations/{location}'`
      * @param Featurestore $featurestore   Required. The Featurestore to create.
-     * @param string       $featurestoreId Required. The ID to use for this Featurestore, which will become the final component
-     *                                     of the Featurestore's resource name.
+     * @param string       $featurestoreId Required. The ID to use for this Featurestore, which will become the final
+     *                                     component of the Featurestore's resource name.
      *
      *                                     This value may be up to 60 characters, and valid characters are
      *                                     `[a-z0-9_]`. The first character cannot be a number.
@@ -1273,8 +1274,8 @@ class FeaturestoreServiceGapicClient
      * }
      * ```
      *
-     * @param string                  $entityType      Required. The resource name of the EntityType from which to export Feature values.
-     *                                                 Format:
+     * @param string                  $entityType      Required. The resource name of the EntityType from which to export Feature
+     *                                                 values. Format:
      *                                                 `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}`
      * @param FeatureValueDestination $destination     Required. Specifies destination location and format.
      * @param FeatureSelector         $featureSelector Required. Selects Features to export values of.
@@ -1544,12 +1545,12 @@ class FeaturestoreServiceGapicClient
      * }
      * ```
      *
-     * @param string        $entityType   Required. The resource name of the EntityType grouping the Features for which values
-     *                                    are being imported. Format:
+     * @param string        $entityType   Required. The resource name of the EntityType grouping the Features for
+     *                                    which values are being imported. Format:
      *                                    `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entityType}`
-     * @param FeatureSpec[] $featureSpecs Required. Specifications defining which Feature values to import from the entity. The
-     *                                    request fails if no feature_specs are provided, and having multiple
-     *                                    feature_specs for one Feature is not allowed.
+     * @param FeatureSpec[] $featureSpecs Required. Specifications defining which Feature values to import from the
+     *                                    entity. The request fails if no feature_specs are provided, and having
+     *                                    multiple feature_specs for one Feature is not allowed.
      * @param array         $optionalArgs {
      *     Optional.
      *
@@ -1847,10 +1848,12 @@ class FeaturestoreServiceGapicClient
      *     @type FieldMask $readMask
      *           Mask specifying which fields to read.
      *     @type int $latestStatsCount
-     *           If set, return the most recent [ListFeaturesRequest.latest_stats_count][google.cloud.aiplatform.v1.ListFeaturesRequest.latest_stats_count]
+     *           If set, return the most recent
+     *           [ListFeaturesRequest.latest_stats_count][google.cloud.aiplatform.v1.ListFeaturesRequest.latest_stats_count]
      *           of stats for each Feature in response. Valid value is [0, 10]. If number of
-     *           stats exists < [ListFeaturesRequest.latest_stats_count][google.cloud.aiplatform.v1.ListFeaturesRequest.latest_stats_count], return all
-     *           existing stats.
+     *           stats exists <
+     *           [ListFeaturesRequest.latest_stats_count][google.cloud.aiplatform.v1.ListFeaturesRequest.latest_stats_count],
+     *           return all existing stats.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2183,9 +2186,8 @@ class FeaturestoreServiceGapicClient
      * }
      * ```
      *
-     * @param EntityType $entityType   Required. The EntityType's `name` field is used to identify the EntityType to be
-     *                                 updated.
-     *                                 Format:
+     * @param EntityType $entityType   Required. The EntityType's `name` field is used to identify the EntityType
+     *                                 to be updated. Format:
      *                                 `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}`
      * @param array      $optionalArgs {
      *     Optional.
@@ -2210,6 +2212,7 @@ class FeaturestoreServiceGapicClient
      *           * `monitoring_config.import_features_analysis.anomaly_detection_baseline`
      *           * `monitoring_config.numerical_threshold_config.value`
      *           * `monitoring_config.categorical_threshold_config.value`
+     *           * `offline_storage_ttl_days` (available in Preview)
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2352,9 +2355,8 @@ class FeaturestoreServiceGapicClient
      * }
      * ```
      *
-     * @param Featurestore $featurestore Required. The Featurestore's `name` field is used to identify the Featurestore to be
-     *                                   updated.
-     *                                   Format:
+     * @param Featurestore $featurestore Required. The Featurestore's `name` field is used to identify the
+     *                                   Featurestore to be updated. Format:
      *                                   `projects/{project}/locations/{location}/featurestores/{featurestore}`
      * @param array        $optionalArgs {
      *     Optional.
@@ -2373,6 +2375,7 @@ class FeaturestoreServiceGapicClient
      *           * `labels`
      *           * `online_serving_config.fixed_node_count`
      *           * `online_serving_config.scaling`
+     *           * `online_storage_ttl_days` (available in Preview)
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on

@@ -35,8 +35,8 @@ use Google\Protobuf\FieldMask;
  *
  * @param string $audienceDisplayName             The display name of the Audience.
  * @param string $audienceDescription             The description of the Audience.
- * @param int    $audienceMembershipDurationDays  Immutable. The duration a user should stay in an Audience. It cannot be set to more
- *                                                than 540 days.
+ * @param int    $audienceMembershipDurationDays  Immutable. The duration a user should stay in an Audience. It
+ *                                                cannot be set to more than 540 days.
  * @param int    $audienceFilterClausesClauseType Specifies whether this is an include or exclude filter clause.
  */
 function update_audience_sample(

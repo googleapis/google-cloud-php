@@ -24,7 +24,7 @@ class Service
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ïp
+èp
 0google/cloud/security/privateca/v1/service.proto"google.cloud.security.privateca.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto2google/cloud/security/privateca/v1/resources.proto#google/longrunning/operations.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"Ÿ
 CreateCertificateRequest7
 parent (	B\'àAúA!
@@ -267,8 +267,8 @@ request_id (	BàA"€
 GetCertificateTemplateA.google.cloud.security.privateca.v1.GetCertificateTemplateRequest7.google.cloud.security.privateca.v1.CertificateTemplate"G‚Óä“:8/v1/{name=projects/*/locations/*/certificateTemplates/*}ÚAnameð
 ListCertificateTemplatesC.google.cloud.security.privateca.v1.ListCertificateTemplatesRequestD.google.cloud.security.privateca.v1.ListCertificateTemplatesResponse"I‚Óä“:8/v1/{parent=projects/*/locations/*}/certificateTemplatesÚAparent¼
 UpdateCertificateTemplateD.google.cloud.security.privateca.v1.UpdateCertificateTemplateRequest.google.longrunning.Operation"¹‚Óä“e2M/v1/{certificate_template.name=projects/*/locations/*/certificateTemplates/*}:certificate_templateÚA certificate_template,update_maskÊA(
-CertificateTemplateOperationMetadataLÊAprivateca.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBý
-&com.google.cloud.security.privateca.v1BPrivateCaProtoPZKgoogle.golang.org/genproto/googleapis/cloud/security/privateca/v1;privatecaøª"Google.Cloud.Security.PrivateCA.V1Ê"Google\\Cloud\\Security\\PrivateCA\\V1ê&Google::Cloud::Security::PrivateCA::V1bproto3'
+CertificateTemplateOperationMetadataLÊAprivateca.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBö
+&com.google.cloud.security.privateca.v1BPrivateCaProtoPZDcloud.google.com/go/security/privateca/apiv1/privatecapb;privatecapbøª"Google.Cloud.Security.PrivateCA.V1Ê"Google\\Cloud\\Security\\PrivateCA\\V1ê&Google::Cloud::Security::PrivateCA::V1bproto3'
         , true);
 
         static::$is_initialized = true;

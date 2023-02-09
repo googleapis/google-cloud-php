@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [FeaturestoreService.ListFeatures][google.cloud.aiplatform.v1.FeaturestoreService.ListFeatures].
+ * Request message for
+ * [FeaturestoreService.ListFeatures][google.cloud.aiplatform.v1.FeaturestoreService.ListFeatures].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.ListFeaturesRequest</code>
  */
@@ -56,11 +57,11 @@ class ListFeaturesRequest extends \Google\Protobuf\Internal\Message
     private $page_size = 0;
     /**
      * A page token, received from a previous
-     * [FeaturestoreService.ListFeatures][google.cloud.aiplatform.v1.FeaturestoreService.ListFeatures] call.
-     * Provide this to retrieve the subsequent page.
+     * [FeaturestoreService.ListFeatures][google.cloud.aiplatform.v1.FeaturestoreService.ListFeatures]
+     * call. Provide this to retrieve the subsequent page.
      * When paginating, all other parameters provided to
-     * [FeaturestoreService.ListFeatures][google.cloud.aiplatform.v1.FeaturestoreService.ListFeatures] must
-     * match the call that provided the page token.
+     * [FeaturestoreService.ListFeatures][google.cloud.aiplatform.v1.FeaturestoreService.ListFeatures]
+     * must match the call that provided the page token.
      *
      * Generated from protobuf field <code>string page_token = 4;</code>
      */
@@ -84,10 +85,12 @@ class ListFeaturesRequest extends \Google\Protobuf\Internal\Message
      */
     private $read_mask = null;
     /**
-     * If set, return the most recent [ListFeaturesRequest.latest_stats_count][google.cloud.aiplatform.v1.ListFeaturesRequest.latest_stats_count]
+     * If set, return the most recent
+     * [ListFeaturesRequest.latest_stats_count][google.cloud.aiplatform.v1.ListFeaturesRequest.latest_stats_count]
      * of stats for each Feature in response. Valid value is [0, 10]. If number of
-     * stats exists < [ListFeaturesRequest.latest_stats_count][google.cloud.aiplatform.v1.ListFeaturesRequest.latest_stats_count], return all
-     * existing stats.
+     * stats exists <
+     * [ListFeaturesRequest.latest_stats_count][google.cloud.aiplatform.v1.ListFeaturesRequest.latest_stats_count],
+     * return all existing stats.
      *
      * Generated from protobuf field <code>int32 latest_stats_count = 7;</code>
      */
@@ -128,11 +131,11 @@ class ListFeaturesRequest extends \Google\Protobuf\Internal\Message
      *           1000.
      *     @type string $page_token
      *           A page token, received from a previous
-     *           [FeaturestoreService.ListFeatures][google.cloud.aiplatform.v1.FeaturestoreService.ListFeatures] call.
-     *           Provide this to retrieve the subsequent page.
+     *           [FeaturestoreService.ListFeatures][google.cloud.aiplatform.v1.FeaturestoreService.ListFeatures]
+     *           call. Provide this to retrieve the subsequent page.
      *           When paginating, all other parameters provided to
-     *           [FeaturestoreService.ListFeatures][google.cloud.aiplatform.v1.FeaturestoreService.ListFeatures] must
-     *           match the call that provided the page token.
+     *           [FeaturestoreService.ListFeatures][google.cloud.aiplatform.v1.FeaturestoreService.ListFeatures]
+     *           must match the call that provided the page token.
      *     @type string $order_by
      *           A comma-separated list of fields to order by, sorted in ascending order.
      *           Use "desc" after a field name for descending.
@@ -144,10 +147,12 @@ class ListFeaturesRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\FieldMask $read_mask
      *           Mask specifying which fields to read.
      *     @type int $latest_stats_count
-     *           If set, return the most recent [ListFeaturesRequest.latest_stats_count][google.cloud.aiplatform.v1.ListFeaturesRequest.latest_stats_count]
+     *           If set, return the most recent
+     *           [ListFeaturesRequest.latest_stats_count][google.cloud.aiplatform.v1.ListFeaturesRequest.latest_stats_count]
      *           of stats for each Feature in response. Valid value is [0, 10]. If number of
-     *           stats exists < [ListFeaturesRequest.latest_stats_count][google.cloud.aiplatform.v1.ListFeaturesRequest.latest_stats_count], return all
-     *           existing stats.
+     *           stats exists <
+     *           [ListFeaturesRequest.latest_stats_count][google.cloud.aiplatform.v1.ListFeaturesRequest.latest_stats_count],
+     *           return all existing stats.
      * }
      */
     public function __construct($data = NULL) {
@@ -277,11 +282,11 @@ class ListFeaturesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * A page token, received from a previous
-     * [FeaturestoreService.ListFeatures][google.cloud.aiplatform.v1.FeaturestoreService.ListFeatures] call.
-     * Provide this to retrieve the subsequent page.
+     * [FeaturestoreService.ListFeatures][google.cloud.aiplatform.v1.FeaturestoreService.ListFeatures]
+     * call. Provide this to retrieve the subsequent page.
      * When paginating, all other parameters provided to
-     * [FeaturestoreService.ListFeatures][google.cloud.aiplatform.v1.FeaturestoreService.ListFeatures] must
-     * match the call that provided the page token.
+     * [FeaturestoreService.ListFeatures][google.cloud.aiplatform.v1.FeaturestoreService.ListFeatures]
+     * must match the call that provided the page token.
      *
      * Generated from protobuf field <code>string page_token = 4;</code>
      * @return string
@@ -293,11 +298,11 @@ class ListFeaturesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * A page token, received from a previous
-     * [FeaturestoreService.ListFeatures][google.cloud.aiplatform.v1.FeaturestoreService.ListFeatures] call.
-     * Provide this to retrieve the subsequent page.
+     * [FeaturestoreService.ListFeatures][google.cloud.aiplatform.v1.FeaturestoreService.ListFeatures]
+     * call. Provide this to retrieve the subsequent page.
      * When paginating, all other parameters provided to
-     * [FeaturestoreService.ListFeatures][google.cloud.aiplatform.v1.FeaturestoreService.ListFeatures] must
-     * match the call that provided the page token.
+     * [FeaturestoreService.ListFeatures][google.cloud.aiplatform.v1.FeaturestoreService.ListFeatures]
+     * must match the call that provided the page token.
      *
      * Generated from protobuf field <code>string page_token = 4;</code>
      * @param string $var
@@ -386,10 +391,12 @@ class ListFeaturesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If set, return the most recent [ListFeaturesRequest.latest_stats_count][google.cloud.aiplatform.v1.ListFeaturesRequest.latest_stats_count]
+     * If set, return the most recent
+     * [ListFeaturesRequest.latest_stats_count][google.cloud.aiplatform.v1.ListFeaturesRequest.latest_stats_count]
      * of stats for each Feature in response. Valid value is [0, 10]. If number of
-     * stats exists < [ListFeaturesRequest.latest_stats_count][google.cloud.aiplatform.v1.ListFeaturesRequest.latest_stats_count], return all
-     * existing stats.
+     * stats exists <
+     * [ListFeaturesRequest.latest_stats_count][google.cloud.aiplatform.v1.ListFeaturesRequest.latest_stats_count],
+     * return all existing stats.
      *
      * Generated from protobuf field <code>int32 latest_stats_count = 7;</code>
      * @return int
@@ -400,10 +407,12 @@ class ListFeaturesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If set, return the most recent [ListFeaturesRequest.latest_stats_count][google.cloud.aiplatform.v1.ListFeaturesRequest.latest_stats_count]
+     * If set, return the most recent
+     * [ListFeaturesRequest.latest_stats_count][google.cloud.aiplatform.v1.ListFeaturesRequest.latest_stats_count]
      * of stats for each Feature in response. Valid value is [0, 10]. If number of
-     * stats exists < [ListFeaturesRequest.latest_stats_count][google.cloud.aiplatform.v1.ListFeaturesRequest.latest_stats_count], return all
-     * existing stats.
+     * stats exists <
+     * [ListFeaturesRequest.latest_stats_count][google.cloud.aiplatform.v1.ListFeaturesRequest.latest_stats_count],
+     * return all existing stats.
      *
      * Generated from protobuf field <code>int32 latest_stats_count = 7;</code>
      * @param int $var

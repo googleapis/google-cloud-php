@@ -25,22 +25,22 @@ class AttributionSettings extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * Required. The lookback window configuration for acquisition conversion events.
-     * The default window size is 30 days.
+     * Required. The lookback window configuration for acquisition conversion
+     * events. The default window size is 30 days.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.AttributionSettings.AcquisitionConversionEventLookbackWindow acquisition_conversion_event_lookback_window = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $acquisition_conversion_event_lookback_window = 0;
     /**
-     * Required. The lookback window for all other, non-acquisition conversion events.
-     * The default window size is 90 days.
+     * Required. The lookback window for all other, non-acquisition conversion
+     * events. The default window size is 90 days.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.AttributionSettings.OtherConversionEventLookbackWindow other_conversion_event_lookback_window = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $other_conversion_event_lookback_window = 0;
     /**
-     * Required. The reporting attribution model used to calculate conversion credit in this
-     * property's reports.
+     * Required. The reporting attribution model used to calculate conversion
+     * credit in this property's reports.
      * Changing the attribution model will apply to both historical and future
      * data. These changes will be reflected in reports with conversion and
      * revenue data. User and session data will be unaffected.
@@ -60,14 +60,14 @@ class AttributionSettings extends \Google\Protobuf\Internal\Message
      *           Format: properties/{property_id}/attributionSettings
      *           Example: "properties/1000/attributionSettings"
      *     @type int $acquisition_conversion_event_lookback_window
-     *           Required. The lookback window configuration for acquisition conversion events.
-     *           The default window size is 30 days.
+     *           Required. The lookback window configuration for acquisition conversion
+     *           events. The default window size is 30 days.
      *     @type int $other_conversion_event_lookback_window
-     *           Required. The lookback window for all other, non-acquisition conversion events.
-     *           The default window size is 90 days.
+     *           Required. The lookback window for all other, non-acquisition conversion
+     *           events. The default window size is 90 days.
      *     @type int $reporting_attribution_model
-     *           Required. The reporting attribution model used to calculate conversion credit in this
-     *           property's reports.
+     *           Required. The reporting attribution model used to calculate conversion
+     *           credit in this property's reports.
      *           Changing the attribution model will apply to both historical and future
      *           data. These changes will be reflected in reports with conversion and
      *           revenue data. User and session data will be unaffected.
@@ -109,8 +109,8 @@ class AttributionSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The lookback window configuration for acquisition conversion events.
-     * The default window size is 30 days.
+     * Required. The lookback window configuration for acquisition conversion
+     * events. The default window size is 30 days.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.AttributionSettings.AcquisitionConversionEventLookbackWindow acquisition_conversion_event_lookback_window = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
@@ -121,8 +121,8 @@ class AttributionSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The lookback window configuration for acquisition conversion events.
-     * The default window size is 30 days.
+     * Required. The lookback window configuration for acquisition conversion
+     * events. The default window size is 30 days.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.AttributionSettings.AcquisitionConversionEventLookbackWindow acquisition_conversion_event_lookback_window = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var
@@ -137,8 +137,8 @@ class AttributionSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The lookback window for all other, non-acquisition conversion events.
-     * The default window size is 90 days.
+     * Required. The lookback window for all other, non-acquisition conversion
+     * events. The default window size is 90 days.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.AttributionSettings.OtherConversionEventLookbackWindow other_conversion_event_lookback_window = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
@@ -149,8 +149,8 @@ class AttributionSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The lookback window for all other, non-acquisition conversion events.
-     * The default window size is 90 days.
+     * Required. The lookback window for all other, non-acquisition conversion
+     * events. The default window size is 90 days.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.AttributionSettings.OtherConversionEventLookbackWindow other_conversion_event_lookback_window = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var
@@ -165,8 +165,8 @@ class AttributionSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The reporting attribution model used to calculate conversion credit in this
-     * property's reports.
+     * Required. The reporting attribution model used to calculate conversion
+     * credit in this property's reports.
      * Changing the attribution model will apply to both historical and future
      * data. These changes will be reflected in reports with conversion and
      * revenue data. User and session data will be unaffected.
@@ -180,8 +180,8 @@ class AttributionSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The reporting attribution model used to calculate conversion credit in this
-     * property's reports.
+     * Required. The reporting attribution model used to calculate conversion
+     * credit in this property's reports.
      * Changing the attribution model will apply to both historical and future
      * data. These changes will be reflected in reports with conversion and
      * revenue data. User and session data will be unaffected.

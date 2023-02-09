@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Response message for [ModelService.ListModelEvaluations][google.cloud.aiplatform.v1.ModelService.ListModelEvaluations].
+ * Response message for
+ * [ModelService.ListModelEvaluations][google.cloud.aiplatform.v1.ModelService.ListModelEvaluations].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.ListModelEvaluationsResponse</code>
  */
@@ -23,7 +24,9 @@ class ListModelEvaluationsResponse extends \Google\Protobuf\Internal\Message
     private $model_evaluations;
     /**
      * A token to retrieve next page of results.
-     * Pass to [ListModelEvaluationsRequest.page_token][google.cloud.aiplatform.v1.ListModelEvaluationsRequest.page_token] to obtain that page.
+     * Pass to
+     * [ListModelEvaluationsRequest.page_token][google.cloud.aiplatform.v1.ListModelEvaluationsRequest.page_token]
+     * to obtain that page.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
@@ -39,7 +42,9 @@ class ListModelEvaluationsResponse extends \Google\Protobuf\Internal\Message
      *           List of ModelEvaluations in the requested page.
      *     @type string $next_page_token
      *           A token to retrieve next page of results.
-     *           Pass to [ListModelEvaluationsRequest.page_token][google.cloud.aiplatform.v1.ListModelEvaluationsRequest.page_token] to obtain that page.
+     *           Pass to
+     *           [ListModelEvaluationsRequest.page_token][google.cloud.aiplatform.v1.ListModelEvaluationsRequest.page_token]
+     *           to obtain that page.
      * }
      */
     public function __construct($data = NULL) {
@@ -75,7 +80,9 @@ class ListModelEvaluationsResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * A token to retrieve next page of results.
-     * Pass to [ListModelEvaluationsRequest.page_token][google.cloud.aiplatform.v1.ListModelEvaluationsRequest.page_token] to obtain that page.
+     * Pass to
+     * [ListModelEvaluationsRequest.page_token][google.cloud.aiplatform.v1.ListModelEvaluationsRequest.page_token]
+     * to obtain that page.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @return string
@@ -87,7 +94,9 @@ class ListModelEvaluationsResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * A token to retrieve next page of results.
-     * Pass to [ListModelEvaluationsRequest.page_token][google.cloud.aiplatform.v1.ListModelEvaluationsRequest.page_token] to obtain that page.
+     * Pass to
+     * [ListModelEvaluationsRequest.page_token][google.cloud.aiplatform.v1.ListModelEvaluationsRequest.page_token]
+     * to obtain that page.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @param string $var

@@ -564,9 +564,8 @@ class MetadataServiceGapicClient
      * }
      * ```
      *
-     * @param string $context      Required. The resource name of the Context that the Artifacts and Executions
-     *                             belong to.
-     *                             Format:
+     * @param string $context      Required. The resource name of the Context that the Artifacts and
+     *                             Executions belong to. Format:
      *                             `projects/{project}/locations/{location}/metadataStores/{metadatastore}/contexts/{context}`
      * @param array  $optionalArgs {
      *     Optional.
@@ -824,9 +823,8 @@ class MetadataServiceGapicClient
      * }
      * ```
      *
-     * @param string  $parent       Required. The resource name of the MetadataStore where the Context should be
-     *                              created.
-     *                              Format:
+     * @param string  $parent       Required. The resource name of the MetadataStore where the Context should
+     *                              be created. Format:
      *                              `projects/{project}/locations/{location}/metadataStores/{metadatastore}`
      * @param Context $context      Required. The Context to create.
      * @param array   $optionalArgs {
@@ -960,9 +958,8 @@ class MetadataServiceGapicClient
      * }
      * ```
      *
-     * @param string         $parent         Required. The resource name of the MetadataStore where the MetadataSchema should
-     *                                       be created.
-     *                                       Format:
+     * @param string         $parent         Required. The resource name of the MetadataStore where the MetadataSchema
+     *                                       should be created. Format:
      *                                       `projects/{project}/locations/{location}/metadataStores/{metadatastore}`
      * @param MetadataSchema $metadataSchema Required. The MetadataSchema to create.
      * @param array          $optionalArgs   {
@@ -2502,9 +2499,8 @@ class MetadataServiceGapicClient
      * }
      * ```
      *
-     * @param string $artifact     Required. The resource name of the Artifact whose Lineage needs to be retrieved as a
-     *                             LineageSubgraph.
-     *                             Format:
+     * @param string $artifact     Required. The resource name of the Artifact whose Lineage needs to be
+     *                             retrieved as a LineageSubgraph. Format:
      *                             `projects/{project}/locations/{location}/metadataStores/{metadatastore}/artifacts/{artifact}`
      *
      *                             The request may error with FAILED_PRECONDITION if the number of Artifacts,
@@ -2656,9 +2652,8 @@ class MetadataServiceGapicClient
      * }
      * ```
      *
-     * @param string $execution    Required. The resource name of the Execution whose input and output Artifacts should
-     *                             be retrieved as a LineageSubgraph.
-     *                             Format:
+     * @param string $execution    Required. The resource name of the Execution whose input and output
+     *                             Artifacts should be retrieved as a LineageSubgraph. Format:
      *                             `projects/{project}/locations/{location}/metadataStores/{metadatastore}/executions/{execution}`
      * @param array  $optionalArgs {
      *     Optional.
@@ -2769,9 +2764,8 @@ class MetadataServiceGapicClient
      * ```
      *
      * @param Artifact $artifact     Required. The Artifact containing updates.
-     *                               The Artifact's [Artifact.name][google.cloud.aiplatform.v1.Artifact.name] field is used to identify the Artifact to
-     *                               be updated.
-     *                               Format:
+     *                               The Artifact's [Artifact.name][google.cloud.aiplatform.v1.Artifact.name]
+     *                               field is used to identify the Artifact to be updated. Format:
      *                               `projects/{project}/locations/{location}/metadataStores/{metadatastore}/artifacts/{artifact}`
      * @param array    $optionalArgs {
      *     Optional.
@@ -2780,7 +2774,8 @@ class MetadataServiceGapicClient
      *           Optional. A FieldMask indicating which fields should be updated.
      *           Functionality of this field is not yet supported.
      *     @type bool $allowMissing
-     *           If set to true, and the [Artifact][google.cloud.aiplatform.v1.Artifact] is not found, a new [Artifact][google.cloud.aiplatform.v1.Artifact] is
+     *           If set to true, and the [Artifact][google.cloud.aiplatform.v1.Artifact] is
+     *           not found, a new [Artifact][google.cloud.aiplatform.v1.Artifact] is
      *           created.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
@@ -2835,9 +2830,8 @@ class MetadataServiceGapicClient
      * ```
      *
      * @param Context $context      Required. The Context containing updates.
-     *                              The Context's [Context.name][google.cloud.aiplatform.v1.Context.name] field is used to identify the Context to be
-     *                              updated.
-     *                              Format:
+     *                              The Context's [Context.name][google.cloud.aiplatform.v1.Context.name] field
+     *                              is used to identify the Context to be updated. Format:
      *                              `projects/{project}/locations/{location}/metadataStores/{metadatastore}/contexts/{context}`
      * @param array   $optionalArgs {
      *     Optional.
@@ -2846,8 +2840,8 @@ class MetadataServiceGapicClient
      *           Optional. A FieldMask indicating which fields should be updated.
      *           Functionality of this field is not yet supported.
      *     @type bool $allowMissing
-     *           If set to true, and the [Context][google.cloud.aiplatform.v1.Context] is not found, a new [Context][google.cloud.aiplatform.v1.Context] is
-     *           created.
+     *           If set to true, and the [Context][google.cloud.aiplatform.v1.Context] is
+     *           not found, a new [Context][google.cloud.aiplatform.v1.Context] is created.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2901,9 +2895,8 @@ class MetadataServiceGapicClient
      * ```
      *
      * @param Execution $execution    Required. The Execution containing updates.
-     *                                The Execution's [Execution.name][google.cloud.aiplatform.v1.Execution.name] field is used to identify the Execution
-     *                                to be updated.
-     *                                Format:
+     *                                The Execution's [Execution.name][google.cloud.aiplatform.v1.Execution.name]
+     *                                field is used to identify the Execution to be updated. Format:
      *                                `projects/{project}/locations/{location}/metadataStores/{metadatastore}/executions/{execution}`
      * @param array     $optionalArgs {
      *     Optional.
@@ -2912,8 +2905,9 @@ class MetadataServiceGapicClient
      *           Optional. A FieldMask indicating which fields should be updated.
      *           Functionality of this field is not yet supported.
      *     @type bool $allowMissing
-     *           If set to true, and the [Execution][google.cloud.aiplatform.v1.Execution] is not found, a new [Execution][google.cloud.aiplatform.v1.Execution]
-     *           is created.
+     *           If set to true, and the [Execution][google.cloud.aiplatform.v1.Execution]
+     *           is not found, a new [Execution][google.cloud.aiplatform.v1.Execution] is
+     *           created.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on

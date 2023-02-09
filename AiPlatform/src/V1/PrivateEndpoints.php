@@ -38,8 +38,8 @@ class PrivateEndpoints extends \Google\Protobuf\Internal\Message
      */
     private $health_http_uri = '';
     /**
-     * Output only. The name of the service attachment resource. Populated if private service
-     * connect is enabled.
+     * Output only. The name of the service attachment resource. Populated if
+     * private service connect is enabled.
      *
      * Generated from protobuf field <code>string service_attachment = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -58,8 +58,8 @@ class PrivateEndpoints extends \Google\Protobuf\Internal\Message
      *     @type string $health_http_uri
      *           Output only. Http(s) path to send health check requests.
      *     @type string $service_attachment
-     *           Output only. The name of the service attachment resource. Populated if private service
-     *           connect is enabled.
+     *           Output only. The name of the service attachment resource. Populated if
+     *           private service connect is enabled.
      * }
      */
     public function __construct($data = NULL) {
@@ -146,8 +146,8 @@ class PrivateEndpoints extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The name of the service attachment resource. Populated if private service
-     * connect is enabled.
+     * Output only. The name of the service attachment resource. Populated if
+     * private service connect is enabled.
      *
      * Generated from protobuf field <code>string service_attachment = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -158,8 +158,8 @@ class PrivateEndpoints extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The name of the service attachment resource. Populated if private service
-     * connect is enabled.
+     * Output only. The name of the service attachment resource. Populated if
+     * private service connect is enabled.
      *
      * Generated from protobuf field <code>string service_attachment = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var

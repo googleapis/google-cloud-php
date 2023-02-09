@@ -17,21 +17,20 @@ use Google\Protobuf\Internal\GPBUtil;
 class UpdateModelDeploymentMonitoringJobRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The model monitoring configuration which replaces the resource on the
-     * server.
+     * Required. The model monitoring configuration which replaces the resource on
+     * the server.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ModelDeploymentMonitoringJob model_deployment_monitoring_job = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $model_deployment_monitoring_job = null;
     /**
-     * Required. The update mask is used to specify the fields to be overwritten in the
-     * ModelDeploymentMonitoringJob resource by the update.
-     * The fields specified in the update_mask are relative to the resource, not
-     * the full request. A field will be overwritten if it is in the mask. If the
-     * user does not provide a mask then only the non-empty fields present in the
-     * request will be overwritten. Set the update_mask to `*` to override all
-     * fields.
-     * For the objective config, the user can either provide the update mask for
+     * Required. The update mask is used to specify the fields to be overwritten
+     * in the ModelDeploymentMonitoringJob resource by the update. The fields
+     * specified in the update_mask are relative to the resource, not the full
+     * request. A field will be overwritten if it is in the mask. If the user does
+     * not provide a mask then only the non-empty fields present in the request
+     * will be overwritten. Set the update_mask to `*` to override all fields. For
+     * the objective config, the user can either provide the update mask for
      * model_deployment_monitoring_objective_configs or any combination of its
      * nested fields, such as:
      * model_deployment_monitoring_objective_configs.objective_config.training_dataset.
@@ -61,17 +60,16 @@ class UpdateModelDeploymentMonitoringJobRequest extends \Google\Protobuf\Interna
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\AIPlatform\V1\ModelDeploymentMonitoringJob $model_deployment_monitoring_job
-     *           Required. The model monitoring configuration which replaces the resource on the
-     *           server.
+     *           Required. The model monitoring configuration which replaces the resource on
+     *           the server.
      *     @type \Google\Protobuf\FieldMask $update_mask
-     *           Required. The update mask is used to specify the fields to be overwritten in the
-     *           ModelDeploymentMonitoringJob resource by the update.
-     *           The fields specified in the update_mask are relative to the resource, not
-     *           the full request. A field will be overwritten if it is in the mask. If the
-     *           user does not provide a mask then only the non-empty fields present in the
-     *           request will be overwritten. Set the update_mask to `*` to override all
-     *           fields.
-     *           For the objective config, the user can either provide the update mask for
+     *           Required. The update mask is used to specify the fields to be overwritten
+     *           in the ModelDeploymentMonitoringJob resource by the update. The fields
+     *           specified in the update_mask are relative to the resource, not the full
+     *           request. A field will be overwritten if it is in the mask. If the user does
+     *           not provide a mask then only the non-empty fields present in the request
+     *           will be overwritten. Set the update_mask to `*` to override all fields. For
+     *           the objective config, the user can either provide the update mask for
      *           model_deployment_monitoring_objective_configs or any combination of its
      *           nested fields, such as:
      *           model_deployment_monitoring_objective_configs.objective_config.training_dataset.
@@ -97,8 +95,8 @@ class UpdateModelDeploymentMonitoringJobRequest extends \Google\Protobuf\Interna
     }
 
     /**
-     * Required. The model monitoring configuration which replaces the resource on the
-     * server.
+     * Required. The model monitoring configuration which replaces the resource on
+     * the server.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ModelDeploymentMonitoringJob model_deployment_monitoring_job = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\AIPlatform\V1\ModelDeploymentMonitoringJob|null
@@ -119,8 +117,8 @@ class UpdateModelDeploymentMonitoringJobRequest extends \Google\Protobuf\Interna
     }
 
     /**
-     * Required. The model monitoring configuration which replaces the resource on the
-     * server.
+     * Required. The model monitoring configuration which replaces the resource on
+     * the server.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ModelDeploymentMonitoringJob model_deployment_monitoring_job = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\AIPlatform\V1\ModelDeploymentMonitoringJob $var
@@ -135,14 +133,13 @@ class UpdateModelDeploymentMonitoringJobRequest extends \Google\Protobuf\Interna
     }
 
     /**
-     * Required. The update mask is used to specify the fields to be overwritten in the
-     * ModelDeploymentMonitoringJob resource by the update.
-     * The fields specified in the update_mask are relative to the resource, not
-     * the full request. A field will be overwritten if it is in the mask. If the
-     * user does not provide a mask then only the non-empty fields present in the
-     * request will be overwritten. Set the update_mask to `*` to override all
-     * fields.
-     * For the objective config, the user can either provide the update mask for
+     * Required. The update mask is used to specify the fields to be overwritten
+     * in the ModelDeploymentMonitoringJob resource by the update. The fields
+     * specified in the update_mask are relative to the resource, not the full
+     * request. A field will be overwritten if it is in the mask. If the user does
+     * not provide a mask then only the non-empty fields present in the request
+     * will be overwritten. Set the update_mask to `*` to override all fields. For
+     * the objective config, the user can either provide the update mask for
      * model_deployment_monitoring_objective_configs or any combination of its
      * nested fields, such as:
      * model_deployment_monitoring_objective_configs.objective_config.training_dataset.
@@ -180,14 +177,13 @@ class UpdateModelDeploymentMonitoringJobRequest extends \Google\Protobuf\Interna
     }
 
     /**
-     * Required. The update mask is used to specify the fields to be overwritten in the
-     * ModelDeploymentMonitoringJob resource by the update.
-     * The fields specified in the update_mask are relative to the resource, not
-     * the full request. A field will be overwritten if it is in the mask. If the
-     * user does not provide a mask then only the non-empty fields present in the
-     * request will be overwritten. Set the update_mask to `*` to override all
-     * fields.
-     * For the objective config, the user can either provide the update mask for
+     * Required. The update mask is used to specify the fields to be overwritten
+     * in the ModelDeploymentMonitoringJob resource by the update. The fields
+     * specified in the update_mask are relative to the resource, not the full
+     * request. A field will be overwritten if it is in the mask. If the user does
+     * not provide a mask then only the non-empty fields present in the request
+     * will be overwritten. Set the update_mask to `*` to override all fields. For
+     * the objective config, the user can either provide the update mask for
      * model_deployment_monitoring_objective_configs or any combination of its
      * nested fields, such as:
      * model_deployment_monitoring_objective_configs.objective_config.training_dataset.

@@ -18,7 +18,8 @@ class NearestNeighborSearchOperationMetadata extends \Google\Protobuf\Internal\M
     /**
      * The validation stats of the content (per file) to be inserted or
      * updated on the Matching Engine Index resource. Populated if
-     * contentsDeltaUri is provided as part of [Index.metadata][google.cloud.aiplatform.v1.Index.metadata]. Please note
+     * contentsDeltaUri is provided as part of
+     * [Index.metadata][google.cloud.aiplatform.v1.Index.metadata]. Please note
      * that, currently for those files that are broken or has unsupported file
      * format, we will not have the stats for those files.
      *
@@ -41,7 +42,8 @@ class NearestNeighborSearchOperationMetadata extends \Google\Protobuf\Internal\M
      *     @type array<\Google\Cloud\AIPlatform\V1\NearestNeighborSearchOperationMetadata\ContentValidationStats>|\Google\Protobuf\Internal\RepeatedField $content_validation_stats
      *           The validation stats of the content (per file) to be inserted or
      *           updated on the Matching Engine Index resource. Populated if
-     *           contentsDeltaUri is provided as part of [Index.metadata][google.cloud.aiplatform.v1.Index.metadata]. Please note
+     *           contentsDeltaUri is provided as part of
+     *           [Index.metadata][google.cloud.aiplatform.v1.Index.metadata]. Please note
      *           that, currently for those files that are broken or has unsupported file
      *           format, we will not have the stats for those files.
      *     @type int|string $data_bytes_count
@@ -56,7 +58,8 @@ class NearestNeighborSearchOperationMetadata extends \Google\Protobuf\Internal\M
     /**
      * The validation stats of the content (per file) to be inserted or
      * updated on the Matching Engine Index resource. Populated if
-     * contentsDeltaUri is provided as part of [Index.metadata][google.cloud.aiplatform.v1.Index.metadata]. Please note
+     * contentsDeltaUri is provided as part of
+     * [Index.metadata][google.cloud.aiplatform.v1.Index.metadata]. Please note
      * that, currently for those files that are broken or has unsupported file
      * format, we will not have the stats for those files.
      *
@@ -71,7 +74,8 @@ class NearestNeighborSearchOperationMetadata extends \Google\Protobuf\Internal\M
     /**
      * The validation stats of the content (per file) to be inserted or
      * updated on the Matching Engine Index resource. Populated if
-     * contentsDeltaUri is provided as part of [Index.metadata][google.cloud.aiplatform.v1.Index.metadata]. Please note
+     * contentsDeltaUri is provided as part of
+     * [Index.metadata][google.cloud.aiplatform.v1.Index.metadata]. Please note
      * that, currently for those files that are broken or has unsupported file
      * format, we will not have the stats for those files.
      *

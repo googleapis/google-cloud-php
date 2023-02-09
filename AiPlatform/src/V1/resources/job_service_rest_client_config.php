@@ -51,6 +51,18 @@ return [
                     ],
                 ],
             ],
+            'CancelNasJob' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/nasJobs/*}:cancel',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'CreateBatchPredictionJob' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/batchPredictionJobs',
@@ -103,6 +115,18 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/modelDeploymentMonitoringJobs',
                 'body' => 'model_deployment_monitoring_job',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateNasJob' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/nasJobs',
+                'body' => 'nas_job',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -166,6 +190,17 @@ return [
                     ],
                 ],
             ],
+            'DeleteNasJob' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/nasJobs/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetBatchPredictionJob' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/batchPredictionJobs/*}',
@@ -221,6 +256,28 @@ return [
                     ],
                 ],
             ],
+            'GetNasJob' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/nasJobs/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetNasTrialDetail' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/nasJobs/*/nasTrialDetails/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'ListBatchPredictionJobs' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/batchPredictionJobs',
@@ -268,6 +325,28 @@ return [
             'ListModelDeploymentMonitoringJobs' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/modelDeploymentMonitoringJobs',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListNasJobs' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/nasJobs',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListNasTrialDetails' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/nasJobs/*}/nasTrialDetails',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -368,8 +447,16 @@ return [
         'google.iam.v1.IAMPolicy' => [
             'GetIamPolicy' => [
                 'method' => 'post',
-                'uriTemplate' => '/ui/{resource=projects/*/locations/*/featurestores/*}:getIamPolicy',
+                'uriTemplate' => '/v1/{resource=projects/*/locations/*/featurestores/*}:getIamPolicy',
                 'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/featurestores/*/entityTypes/*}:getIamPolicy',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/ui/{resource=projects/*/locations/*/featurestores/*}:getIamPolicy',
+                    ],
                     [
                         'method' => 'post',
                         'uriTemplate' => '/ui/{resource=projects/*/locations/*/featurestores/*/entityTypes/*}:getIamPolicy',
@@ -385,9 +472,19 @@ return [
             ],
             'SetIamPolicy' => [
                 'method' => 'post',
-                'uriTemplate' => '/ui/{resource=projects/*/locations/*/featurestores/*}:setIamPolicy',
+                'uriTemplate' => '/v1/{resource=projects/*/locations/*/featurestores/*}:setIamPolicy',
                 'body' => '*',
                 'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/featurestores/*/entityTypes/*}:setIamPolicy',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/ui/{resource=projects/*/locations/*/featurestores/*}:setIamPolicy',
+                        'body' => '*',
+                    ],
                     [
                         'method' => 'post',
                         'uriTemplate' => '/ui/{resource=projects/*/locations/*/featurestores/*/entityTypes/*}:setIamPolicy',
@@ -404,8 +501,16 @@ return [
             ],
             'TestIamPermissions' => [
                 'method' => 'post',
-                'uriTemplate' => '/ui/{resource=projects/*/locations/*/featurestores/*}:testIamPermissions',
+                'uriTemplate' => '/v1/{resource=projects/*/locations/*/featurestores/*}:testIamPermissions',
                 'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/featurestores/*/entityTypes/*}:testIamPermissions',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/ui/{resource=projects/*/locations/*/featurestores/*}:testIamPermissions',
+                    ],
                     [
                         'method' => 'post',
                         'uriTemplate' => '/ui/{resource=projects/*/locations/*/featurestores/*/entityTypes/*}:testIamPermissions',

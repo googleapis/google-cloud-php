@@ -608,8 +608,8 @@ class IndexEndpointServiceGapicClient
      * }
      * ```
      *
-     * @param string        $indexEndpoint Required. The name of the IndexEndpoint resource into which to deploy an Index.
-     *                                     Format:
+     * @param string        $indexEndpoint Required. The name of the IndexEndpoint resource into which to deploy an
+     *                                     Index. Format:
      *                                     `projects/{project}/locations/{location}/indexEndpoints/{index_endpoint}`
      * @param DeployedIndex $deployedIndex Required. The DeployedIndex to be created within the IndexEndpoint.
      * @param array         $optionalArgs  {
@@ -725,14 +725,14 @@ class IndexEndpointServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the Location from which to list the IndexEndpoints.
-     *                             Format: `projects/{project}/locations/{location}`
+     * @param string $parent       Required. The resource name of the Location from which to list the
+     *                             IndexEndpoints. Format: `projects/{project}/locations/{location}`
      * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type string $filter
-     *           Optional. An expression for filtering the results of the request. For field names
-     *           both snake_case and camelCase are supported.
+     *           Optional. An expression for filtering the results of the request. For field
+     *           names both snake_case and camelCase are supported.
      *
      *           * `index_endpoint` supports = and !=. `index_endpoint` represents the
      *           IndexEndpoint ID, ie. the last segment of the IndexEndpoint's
@@ -846,8 +846,8 @@ class IndexEndpointServiceGapicClient
      * }
      * ```
      *
-     * @param string        $indexEndpoint Required. The name of the IndexEndpoint resource into which to deploy an Index.
-     *                                     Format:
+     * @param string        $indexEndpoint Required. The name of the IndexEndpoint resource into which to deploy an
+     *                                     Index. Format:
      *                                     `projects/{project}/locations/{location}/indexEndpoints/{index_endpoint}`
      * @param DeployedIndex $deployedIndex Required. The DeployedIndex to be updated within the IndexEndpoint.
      *                                     Currently, the updatable fields are [DeployedIndex][automatic_resources]
@@ -930,10 +930,11 @@ class IndexEndpointServiceGapicClient
      * }
      * ```
      *
-     * @param string $indexEndpoint   Required. The name of the IndexEndpoint resource from which to undeploy an Index.
-     *                                Format:
+     * @param string $indexEndpoint   Required. The name of the IndexEndpoint resource from which to undeploy an
+     *                                Index. Format:
      *                                `projects/{project}/locations/{location}/indexEndpoints/{index_endpoint}`
-     * @param string $deployedIndexId Required. The ID of the DeployedIndex to be undeployed from the IndexEndpoint.
+     * @param string $deployedIndexId Required. The ID of the DeployedIndex to be undeployed from the
+     *                                IndexEndpoint.
      * @param array  $optionalArgs    {
      *     Optional.
      *
@@ -987,7 +988,8 @@ class IndexEndpointServiceGapicClient
      * ```
      *
      * @param IndexEndpoint $indexEndpoint Required. The IndexEndpoint which replaces the resource on the server.
-     * @param FieldMask     $updateMask    Required. The update mask applies to the resource. See [google.protobuf.FieldMask][google.protobuf.FieldMask].
+     * @param FieldMask     $updateMask    Required. The update mask applies to the resource. See
+     *                                     [google.protobuf.FieldMask][google.protobuf.FieldMask].
      * @param array         $optionalArgs  {
      *     Optional.
      *

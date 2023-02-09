@@ -29,8 +29,8 @@ use Google\Cloud\AIPlatform\V1\TensorboardServiceClient;
 
 /**
  * Reads a TensorboardTimeSeries' data. By default, if the number of data
- * points stored is less than 1000, all data will be returned. Otherwise, 1000
- * data points will be randomly selected from this time series and returned.
+ * points stored is less than 1000, all data is returned. Otherwise, 1000
+ * data points is randomly selected from this time series and returned.
  * This value can be changed by changing max_data_points, which can't be
  * greater than 10k.
  *

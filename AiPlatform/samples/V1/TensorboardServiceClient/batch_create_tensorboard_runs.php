@@ -38,14 +38,14 @@ use Google\Cloud\AIPlatform\V1\TensorboardServiceClient;
  *                                                  The parent field in the CreateTensorboardRunRequest messages must match
  *                                                  this field. Please see
  *                                                  {@see TensorboardServiceClient::tensorboardExperimentName()} for help formatting this field.
- * @param string $formattedRequestsParent           The resource name of the TensorboardExperiment to create the TensorboardRun
- *                                                  in. Format:
+ * @param string $formattedRequestsParent           The resource name of the TensorboardExperiment to create the
+ *                                                  TensorboardRun in. Format:
  *                                                  `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}`
  *                                                  Please see {@see TensorboardServiceClient::tensorboardRunName()} for help formatting this field.
  * @param string $requestsTensorboardRunDisplayName User provided name of this TensorboardRun.
  *                                                  This value must be unique among all TensorboardRuns
  *                                                  belonging to the same parent TensorboardExperiment.
- * @param string $requestsTensorboardRunId          The ID to use for the Tensorboard run, which will become the final
+ * @param string $requestsTensorboardRunId          The ID to use for the Tensorboard run, which becomes the final
  *                                                  component of the Tensorboard run's resource name.
  *
  *                                                  This value should be 1-128 characters, and valid characters

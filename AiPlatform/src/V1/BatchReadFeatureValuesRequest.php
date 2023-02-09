@@ -9,15 +9,16 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [FeaturestoreService.BatchReadFeatureValues][google.cloud.aiplatform.v1.FeaturestoreService.BatchReadFeatureValues].
+ * Request message for
+ * [FeaturestoreService.BatchReadFeatureValues][google.cloud.aiplatform.v1.FeaturestoreService.BatchReadFeatureValues].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.BatchReadFeatureValuesRequest</code>
  */
 class BatchReadFeatureValuesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name of the Featurestore from which to query Feature values.
-     * Format:
+     * Required. The resource name of the Featurestore from which to query Feature
+     * values. Format:
      * `projects/{project}/locations/{location}/featurestores/{featurestore}`
      *
      * Generated from protobuf field <code>string featurestore = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -41,8 +42,8 @@ class BatchReadFeatureValuesRequest extends \Google\Protobuf\Internal\Message
      */
     private $pass_through_fields;
     /**
-     * Required. Specifies EntityType grouping Features to read values of and settings.
-     * Each EntityType referenced in
+     * Required. Specifies EntityType grouping Features to read values of and
+     * settings. Each EntityType referenced in
      * [BatchReadFeatureValuesRequest.entity_type_specs] must have a column
      * specifying entity IDs in the EntityType in
      * [BatchReadFeatureValuesRequest.request][] .
@@ -51,8 +52,8 @@ class BatchReadFeatureValuesRequest extends \Google\Protobuf\Internal\Message
      */
     private $entity_type_specs;
     /**
-     * Optional. Excludes Feature values with feature generation timestamp before this
-     * timestamp. If not set, retrieve oldest values kept in Feature Store.
+     * Optional. Excludes Feature values with feature generation timestamp before
+     * this timestamp. If not set, retrieve oldest values kept in Feature Store.
      * Timestamp, if present, must not have higher than millisecond precision.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -87,8 +88,8 @@ class BatchReadFeatureValuesRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\AIPlatform\V1\BigQuerySource $bigquery_read_instances
      *           Similar to csv_read_instances, but from BigQuery source.
      *     @type string $featurestore
-     *           Required. The resource name of the Featurestore from which to query Feature values.
-     *           Format:
+     *           Required. The resource name of the Featurestore from which to query Feature
+     *           values. Format:
      *           `projects/{project}/locations/{location}/featurestores/{featurestore}`
      *     @type \Google\Cloud\AIPlatform\V1\FeatureValueDestination $destination
      *           Required. Specifies output location and format.
@@ -100,14 +101,14 @@ class BatchReadFeatureValuesRequest extends \Google\Protobuf\Internal\Message
      *           automatically inferred. For CSV source, the pass-through values will be
      *           passed as opaque bytes.
      *     @type array<\Google\Cloud\AIPlatform\V1\BatchReadFeatureValuesRequest\EntityTypeSpec>|\Google\Protobuf\Internal\RepeatedField $entity_type_specs
-     *           Required. Specifies EntityType grouping Features to read values of and settings.
-     *           Each EntityType referenced in
+     *           Required. Specifies EntityType grouping Features to read values of and
+     *           settings. Each EntityType referenced in
      *           [BatchReadFeatureValuesRequest.entity_type_specs] must have a column
      *           specifying entity IDs in the EntityType in
      *           [BatchReadFeatureValuesRequest.request][] .
      *     @type \Google\Protobuf\Timestamp $start_time
-     *           Optional. Excludes Feature values with feature generation timestamp before this
-     *           timestamp. If not set, retrieve oldest values kept in Feature Store.
+     *           Optional. Excludes Feature values with feature generation timestamp before
+     *           this timestamp. If not set, retrieve oldest values kept in Feature Store.
      *           Timestamp, if present, must not have higher than millisecond precision.
      * }
      */
@@ -211,8 +212,8 @@ class BatchReadFeatureValuesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the Featurestore from which to query Feature values.
-     * Format:
+     * Required. The resource name of the Featurestore from which to query Feature
+     * values. Format:
      * `projects/{project}/locations/{location}/featurestores/{featurestore}`
      *
      * Generated from protobuf field <code>string featurestore = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -224,8 +225,8 @@ class BatchReadFeatureValuesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the Featurestore from which to query Feature values.
-     * Format:
+     * Required. The resource name of the Featurestore from which to query Feature
+     * values. Format:
      * `projects/{project}/locations/{location}/featurestores/{featurestore}`
      *
      * Generated from protobuf field <code>string featurestore = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -313,8 +314,8 @@ class BatchReadFeatureValuesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Specifies EntityType grouping Features to read values of and settings.
-     * Each EntityType referenced in
+     * Required. Specifies EntityType grouping Features to read values of and
+     * settings. Each EntityType referenced in
      * [BatchReadFeatureValuesRequest.entity_type_specs] must have a column
      * specifying entity IDs in the EntityType in
      * [BatchReadFeatureValuesRequest.request][] .
@@ -328,8 +329,8 @@ class BatchReadFeatureValuesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Specifies EntityType grouping Features to read values of and settings.
-     * Each EntityType referenced in
+     * Required. Specifies EntityType grouping Features to read values of and
+     * settings. Each EntityType referenced in
      * [BatchReadFeatureValuesRequest.entity_type_specs] must have a column
      * specifying entity IDs in the EntityType in
      * [BatchReadFeatureValuesRequest.request][] .
@@ -347,8 +348,8 @@ class BatchReadFeatureValuesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Excludes Feature values with feature generation timestamp before this
-     * timestamp. If not set, retrieve oldest values kept in Feature Store.
+     * Optional. Excludes Feature values with feature generation timestamp before
+     * this timestamp. If not set, retrieve oldest values kept in Feature Store.
      * Timestamp, if present, must not have higher than millisecond precision.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -370,8 +371,8 @@ class BatchReadFeatureValuesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Excludes Feature values with feature generation timestamp before this
-     * timestamp. If not set, retrieve oldest values kept in Feature Store.
+     * Optional. Excludes Feature values with feature generation timestamp before
+     * this timestamp. If not set, retrieve oldest values kept in Feature Store.
      * Timestamp, if present, must not have higher than millisecond precision.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 11 [(.google.api.field_behavior) = OPTIONAL];</code>

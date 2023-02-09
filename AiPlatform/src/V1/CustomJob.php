@@ -99,7 +99,8 @@ class CustomJob extends \Google\Protobuf\Internal\Message
      * Output only. URIs for accessing [interactive
      * shells](https://cloud.google.com/vertex-ai/docs/training/monitor-debug-interactive-shell)
      * (one URI for each training node). Only available if
-     * [job_spec.enable_web_access][google.cloud.aiplatform.v1.CustomJobSpec.enable_web_access] is `true`.
+     * [job_spec.enable_web_access][google.cloud.aiplatform.v1.CustomJobSpec.enable_web_access]
+     * is `true`.
      * The keys are names of each node in the training job; for example,
      * `workerpool0-0` for the primary node, `workerpool1-0` for the first node in
      * the second worker pool, and `workerpool1-1` for the second node in the
@@ -153,7 +154,8 @@ class CustomJob extends \Google\Protobuf\Internal\Message
      *           Output only. URIs for accessing [interactive
      *           shells](https://cloud.google.com/vertex-ai/docs/training/monitor-debug-interactive-shell)
      *           (one URI for each training node). Only available if
-     *           [job_spec.enable_web_access][google.cloud.aiplatform.v1.CustomJobSpec.enable_web_access] is `true`.
+     *           [job_spec.enable_web_access][google.cloud.aiplatform.v1.CustomJobSpec.enable_web_access]
+     *           is `true`.
      *           The keys are names of each node in the training job; for example,
      *           `workerpool0-0` for the primary node, `workerpool1-0` for the first node in
      *           the second worker pool, and `workerpool1-1` for the second node in the
@@ -548,7 +550,8 @@ class CustomJob extends \Google\Protobuf\Internal\Message
      * Output only. URIs for accessing [interactive
      * shells](https://cloud.google.com/vertex-ai/docs/training/monitor-debug-interactive-shell)
      * (one URI for each training node). Only available if
-     * [job_spec.enable_web_access][google.cloud.aiplatform.v1.CustomJobSpec.enable_web_access] is `true`.
+     * [job_spec.enable_web_access][google.cloud.aiplatform.v1.CustomJobSpec.enable_web_access]
+     * is `true`.
      * The keys are names of each node in the training job; for example,
      * `workerpool0-0` for the primary node, `workerpool1-0` for the first node in
      * the second worker pool, and `workerpool1-1` for the second node in the
@@ -567,7 +570,8 @@ class CustomJob extends \Google\Protobuf\Internal\Message
      * Output only. URIs for accessing [interactive
      * shells](https://cloud.google.com/vertex-ai/docs/training/monitor-debug-interactive-shell)
      * (one URI for each training node). Only available if
-     * [job_spec.enable_web_access][google.cloud.aiplatform.v1.CustomJobSpec.enable_web_access] is `true`.
+     * [job_spec.enable_web_access][google.cloud.aiplatform.v1.CustomJobSpec.enable_web_access]
+     * is `true`.
      * The keys are names of each node in the training job; for example,
      * `workerpool0-0` for the primary node, `workerpool1-0` for the first node in
      * the second worker pool, and `workerpool1-1` for the second node in the

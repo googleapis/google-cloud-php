@@ -104,12 +104,14 @@ class AzureClustersClientTest extends GeneratedTest
         $name = 'name3373707';
         $tenantId = 'tenantId-1852780336';
         $applicationId = 'applicationId-1287148950';
+        $reconciling = false;
         $pemCertificate = 'pemCertificate1234463984';
         $uid = 'uid115792';
         $expectedResponse = new AzureClient();
         $expectedResponse->setName($name);
         $expectedResponse->setTenantId($tenantId);
         $expectedResponse->setApplicationId($applicationId);
+        $expectedResponse->setReconciling($reconciling);
         $expectedResponse->setPemCertificate($pemCertificate);
         $expectedResponse->setUid($uid);
         $anyResponse = new Any();
@@ -279,8 +281,6 @@ class AzureClustersClientTest extends GeneratedTest
         $azureCluster->setAzureRegion($azureClusterAzureRegion);
         $azureClusterResourceGroupId = 'azureClusterResourceGroupId-1683734495';
         $azureCluster->setResourceGroupId($azureClusterResourceGroupId);
-        $azureClusterAzureClient = 'azureClusterAzureClient-1459418673';
-        $azureCluster->setAzureClient($azureClusterAzureClient);
         $azureClusterNetworking = new AzureClusterNetworking();
         $networkingVirtualNetworkId = 'networkingVirtualNetworkId-516550606';
         $azureClusterNetworking->setVirtualNetworkId($networkingVirtualNetworkId);
@@ -379,8 +379,6 @@ class AzureClustersClientTest extends GeneratedTest
         $azureCluster->setAzureRegion($azureClusterAzureRegion);
         $azureClusterResourceGroupId = 'azureClusterResourceGroupId-1683734495';
         $azureCluster->setResourceGroupId($azureClusterResourceGroupId);
-        $azureClusterAzureClient = 'azureClusterAzureClient-1459418673';
-        $azureCluster->setAzureClient($azureClusterAzureClient);
         $azureClusterNetworking = new AzureClusterNetworking();
         $networkingVirtualNetworkId = 'networkingVirtualNetworkId-516550606';
         $azureClusterNetworking->setVirtualNetworkId($networkingVirtualNetworkId);
@@ -1030,12 +1028,14 @@ class AzureClustersClientTest extends GeneratedTest
         $name2 = 'name2-1052831874';
         $tenantId = 'tenantId-1852780336';
         $applicationId = 'applicationId-1287148950';
+        $reconciling = false;
         $pemCertificate = 'pemCertificate1234463984';
         $uid = 'uid115792';
         $expectedResponse = new AzureClient();
         $expectedResponse->setName($name2);
         $expectedResponse->setTenantId($tenantId);
         $expectedResponse->setApplicationId($applicationId);
+        $expectedResponse->setReconciling($reconciling);
         $expectedResponse->setPemCertificate($pemCertificate);
         $expectedResponse->setUid($uid);
         $transport->addResponse($expectedResponse);
@@ -1555,8 +1555,6 @@ class AzureClustersClientTest extends GeneratedTest
         $azureCluster->setAzureRegion($azureClusterAzureRegion);
         $azureClusterResourceGroupId = 'azureClusterResourceGroupId-1683734495';
         $azureCluster->setResourceGroupId($azureClusterResourceGroupId);
-        $azureClusterAzureClient = 'azureClusterAzureClient-1459418673';
-        $azureCluster->setAzureClient($azureClusterAzureClient);
         $azureClusterNetworking = new AzureClusterNetworking();
         $networkingVirtualNetworkId = 'networkingVirtualNetworkId-516550606';
         $azureClusterNetworking->setVirtualNetworkId($networkingVirtualNetworkId);
@@ -1652,8 +1650,6 @@ class AzureClustersClientTest extends GeneratedTest
         $azureCluster->setAzureRegion($azureClusterAzureRegion);
         $azureClusterResourceGroupId = 'azureClusterResourceGroupId-1683734495';
         $azureCluster->setResourceGroupId($azureClusterResourceGroupId);
-        $azureClusterAzureClient = 'azureClusterAzureClient-1459418673';
-        $azureCluster->setAzureClient($azureClusterAzureClient);
         $azureClusterNetworking = new AzureClusterNetworking();
         $networkingVirtualNetworkId = 'networkingVirtualNetworkId-516550606';
         $azureClusterNetworking->setVirtualNetworkId($networkingVirtualNetworkId);

@@ -9,8 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The [input metadata][google.cloud.aiplatform.v1.ExplanationMetadata.InputMetadata] entries to be
- * overridden.
+ * The [input
+ * metadata][google.cloud.aiplatform.v1.ExplanationMetadata.InputMetadata]
+ * entries to be overridden.
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.ExplanationMetadataOverride.InputMetadataOverride</code>
  */

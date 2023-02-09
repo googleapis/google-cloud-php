@@ -35,8 +35,8 @@ use Google\Rpc\Status;
  * it.
  * Only non-empty Indexes can be deployed.
  *
- * @param string $formattedIndexEndpoint      The name of the IndexEndpoint resource into which to deploy an Index.
- *                                            Format:
+ * @param string $formattedIndexEndpoint      The name of the IndexEndpoint resource into which to deploy an
+ *                                            Index. Format:
  *                                            `projects/{project}/locations/{location}/indexEndpoints/{index_endpoint}`
  *                                            Please see {@see IndexEndpointServiceClient::indexEndpointName()} for help formatting this field.
  * @param string $deployedIndexId             The user specified ID of the DeployedIndex.

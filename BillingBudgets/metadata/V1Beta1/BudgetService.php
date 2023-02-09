@@ -23,7 +23,7 @@ class BudgetService
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-í
+ä
 9google/cloud/billing/budgets/v1beta1/budget_service.proto$google.cloud.billing.budgets.v1beta1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto7google/cloud/billing/budgets/v1beta1/budget_model.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"–
 CreateBudgetRequest<
 parent (	B,àAúA&$billingbudgets.googleapis.com/BudgetA
@@ -50,8 +50,8 @@ $billingbudgets.googleapis.com/Budget2÷
 UpdateBudget9.google.cloud.billing.budgets.v1beta1.UpdateBudgetRequest,.google.cloud.billing.budgets.v1beta1.Budget"=‚Óä“722/v1beta1/{budget.name=billingAccounts/*/budgets/*}:*¦
 	GetBudget6.google.cloud.billing.budgets.v1beta1.GetBudgetRequest,.google.cloud.billing.budgets.v1beta1.Budget"3‚Óä“-+/v1beta1/{name=billingAccounts/*/budgets/*}·
 ListBudgets8.google.cloud.billing.budgets.v1beta1.ListBudgetsRequest9.google.cloud.billing.budgets.v1beta1.ListBudgetsResponse"3‚Óä“-+/v1beta1/{parent=billingAccounts/*}/budgets–
-DeleteBudget9.google.cloud.billing.budgets.v1beta1.DeleteBudgetRequest.google.protobuf.Empty"3‚Óä“-*+/v1beta1/{name=billingAccounts/*/budgets/*}ÊAbillingbudgets.googleapis.comÒA\\https://www.googleapis.com/auth/cloud-billing,https://www.googleapis.com/auth/cloud-platformBy
-(com.google.cloud.billing.budgets.v1beta1PZKgoogle.golang.org/genproto/googleapis/cloud/billing/budgets/v1beta1;budgetsbproto3'
+DeleteBudget9.google.cloud.billing.budgets.v1beta1.DeleteBudgetRequest.google.protobuf.Empty"3‚Óä“-*+/v1beta1/{name=billingAccounts/*/budgets/*}ÊAbillingbudgets.googleapis.comÒA\\https://www.googleapis.com/auth/cloud-billing,https://www.googleapis.com/auth/cloud-platformBp
+(com.google.cloud.billing.budgets.v1beta1PZBcloud.google.com/go/billing/budgets/apiv1beta1/budgetspb;budgetspbbproto3'
         , true);
 
         static::$is_initialized = true;

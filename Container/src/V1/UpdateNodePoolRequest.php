@@ -65,7 +65,9 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
      */
     private $node_version = '';
     /**
-     * Required. The desired image type for the node pool.
+     * Required. The desired image type for the node pool. Please see
+     * https://cloud.google.com/kubernetes-engine/docs/concepts/node-images for
+     * available image types.
      *
      * Generated from protobuf field <code>string image_type = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -227,7 +229,9 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
      *           - "1.X.Y-gke.N": picks an explicit Kubernetes version
      *           - "-": picks the Kubernetes master version
      *     @type string $image_type
-     *           Required. The desired image type for the node pool.
+     *           Required. The desired image type for the node pool. Please see
+     *           https://cloud.google.com/kubernetes-engine/docs/concepts/node-images for
+     *           available image types.
      *     @type string $name
      *           The name (project, location, cluster, node pool) of the node pool to
      *           update. Specified in the format
@@ -464,7 +468,9 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The desired image type for the node pool.
+     * Required. The desired image type for the node pool. Please see
+     * https://cloud.google.com/kubernetes-engine/docs/concepts/node-images for
+     * available image types.
      *
      * Generated from protobuf field <code>string image_type = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -475,7 +481,9 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The desired image type for the node pool.
+     * Required. The desired image type for the node pool. Please see
+     * https://cloud.google.com/kubernetes-engine/docs/concepts/node-images for
+     * available image types.
      *
      * Generated from protobuf field <code>string image_type = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

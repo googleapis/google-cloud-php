@@ -30,13 +30,17 @@ use Google\Cloud\AIPlatform\V1\JobServiceClient;
  * Cancels a HyperparameterTuningJob.
  * Starts asynchronous cancellation on the HyperparameterTuningJob. The server
  * makes a best effort to cancel the job, but success is not
- * guaranteed. Clients can use [JobService.GetHyperparameterTuningJob][google.cloud.aiplatform.v1.JobService.GetHyperparameterTuningJob] or
- * other methods to check whether the cancellation succeeded or whether the
+ * guaranteed. Clients can use
+ * [JobService.GetHyperparameterTuningJob][google.cloud.aiplatform.v1.JobService.GetHyperparameterTuningJob]
+ * or other methods to check whether the cancellation succeeded or whether the
  * job completed despite cancellation. On successful cancellation,
  * the HyperparameterTuningJob is not deleted; instead it becomes a job with
- * a [HyperparameterTuningJob.error][google.cloud.aiplatform.v1.HyperparameterTuningJob.error] value with a [google.rpc.Status.code][google.rpc.Status.code]
- * of 1, corresponding to `Code.CANCELLED`, and
- * [HyperparameterTuningJob.state][google.cloud.aiplatform.v1.HyperparameterTuningJob.state] is set to `CANCELLED`.
+ * a
+ * [HyperparameterTuningJob.error][google.cloud.aiplatform.v1.HyperparameterTuningJob.error]
+ * value with a [google.rpc.Status.code][google.rpc.Status.code] of 1,
+ * corresponding to `Code.CANCELLED`, and
+ * [HyperparameterTuningJob.state][google.cloud.aiplatform.v1.HyperparameterTuningJob.state]
+ * is set to `CANCELLED`.
  *
  * @param string $formattedName The name of the HyperparameterTuningJob to cancel.
  *                              Format:

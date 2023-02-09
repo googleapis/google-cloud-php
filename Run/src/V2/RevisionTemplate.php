@@ -25,12 +25,20 @@ class RevisionTemplate extends \Google\Protobuf\Internal\Message
     private $revision = '';
     /**
      * KRM-style labels for the resource.
+     * <p>Cloud Run API v2 does not support labels with `run.googleapis.com`,
+     * `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev`
+     * namespaces, and they will be rejected. All system labels in v1 now have a
+     * corresponding field in v2 RevisionTemplate.
      *
      * Generated from protobuf field <code>map<string, string> labels = 2;</code>
      */
     private $labels;
     /**
      * KRM-style annotations for the resource.
+     * <p>Cloud Run API v2 does not support annotations with `run.googleapis.com`,
+     * `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev`
+     * namespaces, and they will be rejected. All system annotations in v1 now
+     * have a corresponding field in v2 RevisionTemplate.
      *
      * Generated from protobuf field <code>map<string, string> annotations = 3;</code>
      */
@@ -108,8 +116,16 @@ class RevisionTemplate extends \Google\Protobuf\Internal\Message
      *           automatically generated based on the Service name.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           KRM-style labels for the resource.
+     *           <p>Cloud Run API v2 does not support labels with `run.googleapis.com`,
+     *           `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev`
+     *           namespaces, and they will be rejected. All system labels in v1 now have a
+     *           corresponding field in v2 RevisionTemplate.
      *     @type array|\Google\Protobuf\Internal\MapField $annotations
      *           KRM-style annotations for the resource.
+     *           <p>Cloud Run API v2 does not support annotations with `run.googleapis.com`,
+     *           `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev`
+     *           namespaces, and they will be rejected. All system annotations in v1 now
+     *           have a corresponding field in v2 RevisionTemplate.
      *     @type \Google\Cloud\Run\V2\RevisionScaling $scaling
      *           Scaling settings for this Revision.
      *     @type \Google\Cloud\Run\V2\VpcAccess $vpc_access
@@ -172,6 +188,10 @@ class RevisionTemplate extends \Google\Protobuf\Internal\Message
 
     /**
      * KRM-style labels for the resource.
+     * <p>Cloud Run API v2 does not support labels with `run.googleapis.com`,
+     * `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev`
+     * namespaces, and they will be rejected. All system labels in v1 now have a
+     * corresponding field in v2 RevisionTemplate.
      *
      * Generated from protobuf field <code>map<string, string> labels = 2;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -183,6 +203,10 @@ class RevisionTemplate extends \Google\Protobuf\Internal\Message
 
     /**
      * KRM-style labels for the resource.
+     * <p>Cloud Run API v2 does not support labels with `run.googleapis.com`,
+     * `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev`
+     * namespaces, and they will be rejected. All system labels in v1 now have a
+     * corresponding field in v2 RevisionTemplate.
      *
      * Generated from protobuf field <code>map<string, string> labels = 2;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
@@ -198,6 +222,10 @@ class RevisionTemplate extends \Google\Protobuf\Internal\Message
 
     /**
      * KRM-style annotations for the resource.
+     * <p>Cloud Run API v2 does not support annotations with `run.googleapis.com`,
+     * `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev`
+     * namespaces, and they will be rejected. All system annotations in v1 now
+     * have a corresponding field in v2 RevisionTemplate.
      *
      * Generated from protobuf field <code>map<string, string> annotations = 3;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -209,6 +237,10 @@ class RevisionTemplate extends \Google\Protobuf\Internal\Message
 
     /**
      * KRM-style annotations for the resource.
+     * <p>Cloud Run API v2 does not support annotations with `run.googleapis.com`,
+     * `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev`
+     * namespaces, and they will be rejected. All system annotations in v1 now
+     * have a corresponding field in v2 RevisionTemplate.
      *
      * Generated from protobuf field <code>map<string, string> annotations = 3;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var

@@ -17,12 +17,12 @@ class Temporal
         \GPBMetadata\Google\Protobuf\Duration::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ú
+Ë
 *google/cloud/automl/v1beta1/temporal.protogoogle.cloud.automl.v1beta1"w
 TimeSegment4
 start_time_offset (2.google.protobuf.Duration2
-end_time_offset (2.google.protobuf.DurationB•
-com.google.cloud.automl.v1beta1PZAgoogle.golang.org/genproto/googleapis/cloud/automl/v1beta1;automl Google\\Cloud\\AutoMl\\V1beta1ÍGoogle::Cloud::AutoML::V1beta1bproto3'
+end_time_offset (2.google.protobuf.DurationBõ
+com.google.cloud.automl.v1beta1PZ7cloud.google.com/go/automl/apiv1beta1/automlpb;automlpb Google\\Cloud\\AutoMl\\V1beta1ÍGoogle::Cloud::AutoML::V1beta1bproto3'
         , true);
 
         static::$is_initialized = true;

@@ -23,7 +23,7 @@ class Oslogin
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-…
+ü
 %google/cloud/oslogin/v1/oslogin.protogoogle.cloud.oslogin.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto(google/cloud/oslogin/common/common.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"˜
 LoginProfile
 name (	BàAA
@@ -69,8 +69,8 @@ project_id (	"k
 GetLoginProfile/.google.cloud.oslogin.v1.GetLoginProfileRequest%.google.cloud.oslogin.v1.LoginProfile".‚Óä“!/v1/{name=users/*}/loginProfileÚAname 
 GetSshPublicKey/.google.cloud.oslogin.v1.GetSshPublicKeyRequest).google.cloud.oslogin.common.SshPublicKey"1‚Óä“$"/v1/{name=users/*/sshPublicKeys/*}ÚAnameù
 ImportSshPublicKey2.google.cloud.oslogin.v1.ImportSshPublicKeyRequest3.google.cloud.oslogin.v1.ImportSshPublicKeyResponse"z‚Óä“9"\'/v1/{parent=users/*}:importSshPublicKey:ssh_public_keyÚAparent,ssh_public_keyÚA parent,ssh_public_key,project_idç
-UpdateSshPublicKey2.google.cloud.oslogin.v1.UpdateSshPublicKeyRequest).google.cloud.oslogin.common.SshPublicKey"r‚Óä“42"/v1/{name=users/*/sshPublicKeys/*}:ssh_public_keyÚAname,ssh_public_keyÚAname,ssh_public_key,update_maskÝÊAoslogin.googleapis.comÒAÀhttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/cloud-platform.read-only,https://www.googleapis.com/auth/compute,https://www.googleapis.com/auth/compute.readonlyB¾
-com.google.cloud.oslogin.v1BOsLoginProtoPZ>google.golang.org/genproto/googleapis/cloud/oslogin/v1;osloginªGoogle.Cloud.OsLogin.V1ÊGoogle\\Cloud\\OsLogin\\V1êGoogle::Cloud::OsLogin::V1bproto3'
+UpdateSshPublicKey2.google.cloud.oslogin.v1.UpdateSshPublicKeyRequest).google.cloud.oslogin.common.SshPublicKey"r‚Óä“42"/v1/{name=users/*/sshPublicKeys/*}:ssh_public_keyÚAname,ssh_public_keyÚAname,ssh_public_key,update_maskÝÊAoslogin.googleapis.comÒAÀhttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/cloud-platform.read-only,https://www.googleapis.com/auth/compute,https://www.googleapis.com/auth/compute.readonlyBµ
+com.google.cloud.oslogin.v1BOsLoginProtoPZ5cloud.google.com/go/oslogin/apiv1/osloginpb;osloginpbªGoogle.Cloud.OsLogin.V1ÊGoogle\\Cloud\\OsLogin\\V1êGoogle::Cloud::OsLogin::V1bproto3'
         , true);
 
         static::$is_initialized = true;

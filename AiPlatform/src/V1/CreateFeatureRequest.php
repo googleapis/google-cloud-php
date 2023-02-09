@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [FeaturestoreService.CreateFeature][google.cloud.aiplatform.v1.FeaturestoreService.CreateFeature].
+ * Request message for
+ * [FeaturestoreService.CreateFeature][google.cloud.aiplatform.v1.FeaturestoreService.CreateFeature].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.CreateFeatureRequest</code>
  */
@@ -30,8 +31,8 @@ class CreateFeatureRequest extends \Google\Protobuf\Internal\Message
      */
     private $feature = null;
     /**
-     * Required. The ID to use for the Feature, which will become the final component of
-     * the Feature's resource name.
+     * Required. The ID to use for the Feature, which will become the final
+     * component of the Feature's resource name.
      * This value may be up to 128 characters, and valid characters are
      * `[a-z0-9_]`. The first character cannot be a number.
      * The value must be unique within an EntityType.
@@ -53,8 +54,8 @@ class CreateFeatureRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\AIPlatform\V1\Feature $feature
      *           Required. The Feature to create.
      *     @type string $feature_id
-     *           Required. The ID to use for the Feature, which will become the final component of
-     *           the Feature's resource name.
+     *           Required. The ID to use for the Feature, which will become the final
+     *           component of the Feature's resource name.
      *           This value may be up to 128 characters, and valid characters are
      *           `[a-z0-9_]`. The first character cannot be a number.
      *           The value must be unique within an EntityType.
@@ -132,8 +133,8 @@ class CreateFeatureRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The ID to use for the Feature, which will become the final component of
-     * the Feature's resource name.
+     * Required. The ID to use for the Feature, which will become the final
+     * component of the Feature's resource name.
      * This value may be up to 128 characters, and valid characters are
      * `[a-z0-9_]`. The first character cannot be a number.
      * The value must be unique within an EntityType.
@@ -147,8 +148,8 @@ class CreateFeatureRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The ID to use for the Feature, which will become the final component of
-     * the Feature's resource name.
+     * Required. The ID to use for the Feature, which will become the final
+     * component of the Feature's resource name.
      * This value may be up to 128 characters, and valid characters are
      * `[a-z0-9_]`. The first character cannot be a number.
      * The value must be unique within an EntityType.

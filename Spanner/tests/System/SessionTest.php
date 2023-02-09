@@ -92,6 +92,21 @@ class SessionTest extends SpannerTestCase
         $this->assertFalse($inUse[0]->exists());
     }
 
+    public function testSessionPoolShouldFailWhenIncorrectDatabase()
+    {
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage('Database not found');
+
+        $db = self::getDatabaseWithSessionPool(
+            'non-existent-db',
+            ['maxCyclesToWaitForSession' => 1]
+        );
+        $db->runTransaction(function ($t) {
+            $t->select("SELECT 1");
+            $t->commit();
+        });
+    }
+
     private function assertPoolCounts(CacheItemPoolInterface $cache, $key, $queue, $inUse, $toCreate)
     {
         $item = $cache->getItem($key)->get();

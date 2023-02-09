@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [ModelService.ListModelEvaluations][google.cloud.aiplatform.v1.ModelService.ListModelEvaluations].
+ * Request message for
+ * [ModelService.ListModelEvaluations][google.cloud.aiplatform.v1.ModelService.ListModelEvaluations].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.ListModelEvaluationsRequest</code>
  */
@@ -37,8 +38,10 @@ class ListModelEvaluationsRequest extends \Google\Protobuf\Internal\Message
     /**
      * The standard list page token.
      * Typically obtained via
-     * [ListModelEvaluationsResponse.next_page_token][google.cloud.aiplatform.v1.ListModelEvaluationsResponse.next_page_token] of the previous
-     * [ModelService.ListModelEvaluations][google.cloud.aiplatform.v1.ModelService.ListModelEvaluations] call.
+     * [ListModelEvaluationsResponse.next_page_token][google.cloud.aiplatform.v1.ListModelEvaluationsResponse.next_page_token]
+     * of the previous
+     * [ModelService.ListModelEvaluations][google.cloud.aiplatform.v1.ModelService.ListModelEvaluations]
+     * call.
      *
      * Generated from protobuf field <code>string page_token = 4;</code>
      */
@@ -66,8 +69,10 @@ class ListModelEvaluationsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $page_token
      *           The standard list page token.
      *           Typically obtained via
-     *           [ListModelEvaluationsResponse.next_page_token][google.cloud.aiplatform.v1.ListModelEvaluationsResponse.next_page_token] of the previous
-     *           [ModelService.ListModelEvaluations][google.cloud.aiplatform.v1.ModelService.ListModelEvaluations] call.
+     *           [ListModelEvaluationsResponse.next_page_token][google.cloud.aiplatform.v1.ListModelEvaluationsResponse.next_page_token]
+     *           of the previous
+     *           [ModelService.ListModelEvaluations][google.cloud.aiplatform.v1.ModelService.ListModelEvaluations]
+     *           call.
      *     @type \Google\Protobuf\FieldMask $read_mask
      *           Mask specifying which fields to read.
      * }
@@ -160,8 +165,10 @@ class ListModelEvaluationsRequest extends \Google\Protobuf\Internal\Message
     /**
      * The standard list page token.
      * Typically obtained via
-     * [ListModelEvaluationsResponse.next_page_token][google.cloud.aiplatform.v1.ListModelEvaluationsResponse.next_page_token] of the previous
-     * [ModelService.ListModelEvaluations][google.cloud.aiplatform.v1.ModelService.ListModelEvaluations] call.
+     * [ListModelEvaluationsResponse.next_page_token][google.cloud.aiplatform.v1.ListModelEvaluationsResponse.next_page_token]
+     * of the previous
+     * [ModelService.ListModelEvaluations][google.cloud.aiplatform.v1.ModelService.ListModelEvaluations]
+     * call.
      *
      * Generated from protobuf field <code>string page_token = 4;</code>
      * @return string
@@ -174,8 +181,10 @@ class ListModelEvaluationsRequest extends \Google\Protobuf\Internal\Message
     /**
      * The standard list page token.
      * Typically obtained via
-     * [ListModelEvaluationsResponse.next_page_token][google.cloud.aiplatform.v1.ListModelEvaluationsResponse.next_page_token] of the previous
-     * [ModelService.ListModelEvaluations][google.cloud.aiplatform.v1.ModelService.ListModelEvaluations] call.
+     * [ListModelEvaluationsResponse.next_page_token][google.cloud.aiplatform.v1.ListModelEvaluationsResponse.next_page_token]
+     * of the previous
+     * [ModelService.ListModelEvaluations][google.cloud.aiplatform.v1.ModelService.ListModelEvaluations]
+     * call.
      *
      * Generated from protobuf field <code>string page_token = 4;</code>
      * @param string $var

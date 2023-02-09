@@ -33,7 +33,8 @@ use Google\Rpc\Status;
 /**
  * Exports a trained, exportable Model to a location specified by the
  * user. A Model is considered to be exportable if it has at least one
- * [supported export format][google.cloud.aiplatform.v1.Model.supported_export_formats].
+ * [supported export
+ * format][google.cloud.aiplatform.v1.Model.supported_export_formats].
  *
  * @param string $formattedName The resource name of the Model to export.
  *                              The resource name may contain version id or version alias to specify the

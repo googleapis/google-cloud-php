@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [PredictionService.RawPredict][google.cloud.aiplatform.v1.PredictionService.RawPredict].
+ * Request message for
+ * [PredictionService.RawPredict][google.cloud.aiplatform.v1.PredictionService.RawPredict].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.RawPredictRequest</code>
  */
@@ -25,15 +26,17 @@ class RawPredictRequest extends \Google\Protobuf\Internal\Message
     private $endpoint = '';
     /**
      * The prediction input. Supports HTTP headers and arbitrary data payload.
-     * A [DeployedModel][google.cloud.aiplatform.v1.DeployedModel] may have an upper limit on the number of instances it
-     * supports per request. When this limit it is exceeded for an AutoML model,
-     * the [RawPredict][google.cloud.aiplatform.v1.PredictionService.RawPredict] method returns an error.
-     * When this limit is exceeded for a custom-trained model, the behavior varies
-     * depending on the model.
+     * A [DeployedModel][google.cloud.aiplatform.v1.DeployedModel] may have an
+     * upper limit on the number of instances it supports per request. When this
+     * limit it is exceeded for an AutoML model, the
+     * [RawPredict][google.cloud.aiplatform.v1.PredictionService.RawPredict]
+     * method returns an error. When this limit is exceeded for a custom-trained
+     * model, the behavior varies depending on the model.
      * You can specify the schema for each instance in the
      * [predict_schemata.instance_schema_uri][google.cloud.aiplatform.v1.PredictSchemata.instance_schema_uri]
-     * field when you create a [Model][google.cloud.aiplatform.v1.Model]. This schema applies when you deploy the
-     * `Model` as a `DeployedModel` to an [Endpoint][google.cloud.aiplatform.v1.Endpoint] and use the `RawPredict`
+     * field when you create a [Model][google.cloud.aiplatform.v1.Model]. This
+     * schema applies when you deploy the `Model` as a `DeployedModel` to an
+     * [Endpoint][google.cloud.aiplatform.v1.Endpoint] and use the `RawPredict`
      * method.
      *
      * Generated from protobuf field <code>.google.api.HttpBody http_body = 2;</code>
@@ -52,15 +55,17 @@ class RawPredictRequest extends \Google\Protobuf\Internal\Message
      *           `projects/{project}/locations/{location}/endpoints/{endpoint}`
      *     @type \Google\Api\HttpBody $http_body
      *           The prediction input. Supports HTTP headers and arbitrary data payload.
-     *           A [DeployedModel][google.cloud.aiplatform.v1.DeployedModel] may have an upper limit on the number of instances it
-     *           supports per request. When this limit it is exceeded for an AutoML model,
-     *           the [RawPredict][google.cloud.aiplatform.v1.PredictionService.RawPredict] method returns an error.
-     *           When this limit is exceeded for a custom-trained model, the behavior varies
-     *           depending on the model.
+     *           A [DeployedModel][google.cloud.aiplatform.v1.DeployedModel] may have an
+     *           upper limit on the number of instances it supports per request. When this
+     *           limit it is exceeded for an AutoML model, the
+     *           [RawPredict][google.cloud.aiplatform.v1.PredictionService.RawPredict]
+     *           method returns an error. When this limit is exceeded for a custom-trained
+     *           model, the behavior varies depending on the model.
      *           You can specify the schema for each instance in the
      *           [predict_schemata.instance_schema_uri][google.cloud.aiplatform.v1.PredictSchemata.instance_schema_uri]
-     *           field when you create a [Model][google.cloud.aiplatform.v1.Model]. This schema applies when you deploy the
-     *           `Model` as a `DeployedModel` to an [Endpoint][google.cloud.aiplatform.v1.Endpoint] and use the `RawPredict`
+     *           field when you create a [Model][google.cloud.aiplatform.v1.Model]. This
+     *           schema applies when you deploy the `Model` as a `DeployedModel` to an
+     *           [Endpoint][google.cloud.aiplatform.v1.Endpoint] and use the `RawPredict`
      *           method.
      * }
      */
@@ -101,15 +106,17 @@ class RawPredictRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The prediction input. Supports HTTP headers and arbitrary data payload.
-     * A [DeployedModel][google.cloud.aiplatform.v1.DeployedModel] may have an upper limit on the number of instances it
-     * supports per request. When this limit it is exceeded for an AutoML model,
-     * the [RawPredict][google.cloud.aiplatform.v1.PredictionService.RawPredict] method returns an error.
-     * When this limit is exceeded for a custom-trained model, the behavior varies
-     * depending on the model.
+     * A [DeployedModel][google.cloud.aiplatform.v1.DeployedModel] may have an
+     * upper limit on the number of instances it supports per request. When this
+     * limit it is exceeded for an AutoML model, the
+     * [RawPredict][google.cloud.aiplatform.v1.PredictionService.RawPredict]
+     * method returns an error. When this limit is exceeded for a custom-trained
+     * model, the behavior varies depending on the model.
      * You can specify the schema for each instance in the
      * [predict_schemata.instance_schema_uri][google.cloud.aiplatform.v1.PredictSchemata.instance_schema_uri]
-     * field when you create a [Model][google.cloud.aiplatform.v1.Model]. This schema applies when you deploy the
-     * `Model` as a `DeployedModel` to an [Endpoint][google.cloud.aiplatform.v1.Endpoint] and use the `RawPredict`
+     * field when you create a [Model][google.cloud.aiplatform.v1.Model]. This
+     * schema applies when you deploy the `Model` as a `DeployedModel` to an
+     * [Endpoint][google.cloud.aiplatform.v1.Endpoint] and use the `RawPredict`
      * method.
      *
      * Generated from protobuf field <code>.google.api.HttpBody http_body = 2;</code>
@@ -132,15 +139,17 @@ class RawPredictRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The prediction input. Supports HTTP headers and arbitrary data payload.
-     * A [DeployedModel][google.cloud.aiplatform.v1.DeployedModel] may have an upper limit on the number of instances it
-     * supports per request. When this limit it is exceeded for an AutoML model,
-     * the [RawPredict][google.cloud.aiplatform.v1.PredictionService.RawPredict] method returns an error.
-     * When this limit is exceeded for a custom-trained model, the behavior varies
-     * depending on the model.
+     * A [DeployedModel][google.cloud.aiplatform.v1.DeployedModel] may have an
+     * upper limit on the number of instances it supports per request. When this
+     * limit it is exceeded for an AutoML model, the
+     * [RawPredict][google.cloud.aiplatform.v1.PredictionService.RawPredict]
+     * method returns an error. When this limit is exceeded for a custom-trained
+     * model, the behavior varies depending on the model.
      * You can specify the schema for each instance in the
      * [predict_schemata.instance_schema_uri][google.cloud.aiplatform.v1.PredictSchemata.instance_schema_uri]
-     * field when you create a [Model][google.cloud.aiplatform.v1.Model]. This schema applies when you deploy the
-     * `Model` as a `DeployedModel` to an [Endpoint][google.cloud.aiplatform.v1.Endpoint] and use the `RawPredict`
+     * field when you create a [Model][google.cloud.aiplatform.v1.Model]. This
+     * schema applies when you deploy the `Model` as a `DeployedModel` to an
+     * [Endpoint][google.cloud.aiplatform.v1.Endpoint] and use the `RawPredict`
      * method.
      *
      * Generated from protobuf field <code>.google.api.HttpBody http_body = 2;</code>

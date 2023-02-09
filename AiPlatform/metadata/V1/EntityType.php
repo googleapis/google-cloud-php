@@ -20,7 +20,7 @@ class EntityType
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-¸
+²
 ,google/cloud/aiplatform/v1/entity_type.protogoogle.cloud.aiplatform.v1google/api/resource.proto8google/cloud/aiplatform/v1/featurestore_monitoring.protogoogle/protobuf/timestamp.proto"—
 
 EntityType
@@ -34,8 +34,8 @@ EntityType
 LabelsEntry
 key (	
 value (	:8:ŠêA†
-$aiplatform.googleapis.com/EntityType^projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}BÓ
-com.google.cloud.aiplatform.v1BEntityTypeProtoPZDgoogle.golang.org/genproto/googleapis/cloud/aiplatform/v1;aiplatformªGoogle.Cloud.AIPlatform.V1ÊGoogle\\Cloud\\AIPlatform\\V1êGoogle::Cloud::AIPlatform::V1bproto3'
+$aiplatform.googleapis.com/EntityType^projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}BÍ
+com.google.cloud.aiplatform.v1BEntityTypeProtoPZ>cloud.google.com/go/aiplatform/apiv1/aiplatformpb;aiplatformpbªGoogle.Cloud.AIPlatform.V1ÊGoogle\\Cloud\\AIPlatform\\V1êGoogle::Cloud::AIPlatform::V1bproto3'
         , true);
 
         static::$is_initialized = true;

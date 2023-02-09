@@ -35,8 +35,8 @@ use Google\ApiCore\ApiException;
  * This method is transactional. If any UserLink cannot be created, none of
  * the UserLinks will be created.
  *
- * @param string $formattedParent         The account or property that all user links in the request are for.
- *                                        This field is required. The parent field in the CreateUserLinkRequest
+ * @param string $formattedParent         The account or property that all user links in the request are
+ *                                        for. This field is required. The parent field in the CreateUserLinkRequest
  *                                        messages must either be empty or match this field.
  *                                        Example format: accounts/1234
  *                                        Please see {@see AnalyticsAdminServiceClient::accountName()} for help formatting this field.

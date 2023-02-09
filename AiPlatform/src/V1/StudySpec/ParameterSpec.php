@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class ParameterSpec extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The ID of the parameter. Must not contain whitespaces and must be unique
-     * amongst all ParameterSpecs.
+     * Required. The ID of the parameter. Must not contain whitespaces and must
+     * be unique amongst all ParameterSpecs.
      *
      * Generated from protobuf field <code>string parameter_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -55,8 +55,8 @@ class ParameterSpec extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\AIPlatform\V1\StudySpec\ParameterSpec\DiscreteValueSpec $discrete_value_spec
      *           The value spec for a 'DISCRETE' parameter.
      *     @type string $parameter_id
-     *           Required. The ID of the parameter. Must not contain whitespaces and must be unique
-     *           amongst all ParameterSpecs.
+     *           Required. The ID of the parameter. Must not contain whitespaces and must
+     *           be unique amongst all ParameterSpecs.
      *     @type int $scale_type
      *           How the parameter should be scaled.
      *           Leave unset for `CATEGORICAL` parameters.
@@ -197,8 +197,8 @@ class ParameterSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The ID of the parameter. Must not contain whitespaces and must be unique
-     * amongst all ParameterSpecs.
+     * Required. The ID of the parameter. Must not contain whitespaces and must
+     * be unique amongst all ParameterSpecs.
      *
      * Generated from protobuf field <code>string parameter_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -209,8 +209,8 @@ class ParameterSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The ID of the parameter. Must not contain whitespaces and must be unique
-     * amongst all ParameterSpecs.
+     * Required. The ID of the parameter. Must not contain whitespaces and must
+     * be unique amongst all ParameterSpecs.
      *
      * Generated from protobuf field <code>string parameter_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

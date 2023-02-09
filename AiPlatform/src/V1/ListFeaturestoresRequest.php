@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [FeaturestoreService.ListFeaturestores][google.cloud.aiplatform.v1.FeaturestoreService.ListFeaturestores].
+ * Request message for
+ * [FeaturestoreService.ListFeaturestores][google.cloud.aiplatform.v1.FeaturestoreService.ListFeaturestores].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.ListFeaturestoresRequest</code>
  */
@@ -55,11 +56,11 @@ class ListFeaturestoresRequest extends \Google\Protobuf\Internal\Message
     private $page_size = 0;
     /**
      * A page token, received from a previous
-     * [FeaturestoreService.ListFeaturestores][google.cloud.aiplatform.v1.FeaturestoreService.ListFeaturestores] call.
-     * Provide this to retrieve the subsequent page.
+     * [FeaturestoreService.ListFeaturestores][google.cloud.aiplatform.v1.FeaturestoreService.ListFeaturestores]
+     * call. Provide this to retrieve the subsequent page.
      * When paginating, all other parameters provided to
-     * [FeaturestoreService.ListFeaturestores][google.cloud.aiplatform.v1.FeaturestoreService.ListFeaturestores] must
-     * match the call that provided the page token.
+     * [FeaturestoreService.ListFeaturestores][google.cloud.aiplatform.v1.FeaturestoreService.ListFeaturestores]
+     * must match the call that provided the page token.
      *
      * Generated from protobuf field <code>string page_token = 4;</code>
      */
@@ -116,11 +117,11 @@ class ListFeaturestoresRequest extends \Google\Protobuf\Internal\Message
      *           coerced to 100.
      *     @type string $page_token
      *           A page token, received from a previous
-     *           [FeaturestoreService.ListFeaturestores][google.cloud.aiplatform.v1.FeaturestoreService.ListFeaturestores] call.
-     *           Provide this to retrieve the subsequent page.
+     *           [FeaturestoreService.ListFeaturestores][google.cloud.aiplatform.v1.FeaturestoreService.ListFeaturestores]
+     *           call. Provide this to retrieve the subsequent page.
      *           When paginating, all other parameters provided to
-     *           [FeaturestoreService.ListFeaturestores][google.cloud.aiplatform.v1.FeaturestoreService.ListFeaturestores] must
-     *           match the call that provided the page token.
+     *           [FeaturestoreService.ListFeaturestores][google.cloud.aiplatform.v1.FeaturestoreService.ListFeaturestores]
+     *           must match the call that provided the page token.
      *     @type string $order_by
      *           A comma-separated list of fields to order by, sorted in ascending order.
      *           Use "desc" after a field name for descending.
@@ -257,11 +258,11 @@ class ListFeaturestoresRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * A page token, received from a previous
-     * [FeaturestoreService.ListFeaturestores][google.cloud.aiplatform.v1.FeaturestoreService.ListFeaturestores] call.
-     * Provide this to retrieve the subsequent page.
+     * [FeaturestoreService.ListFeaturestores][google.cloud.aiplatform.v1.FeaturestoreService.ListFeaturestores]
+     * call. Provide this to retrieve the subsequent page.
      * When paginating, all other parameters provided to
-     * [FeaturestoreService.ListFeaturestores][google.cloud.aiplatform.v1.FeaturestoreService.ListFeaturestores] must
-     * match the call that provided the page token.
+     * [FeaturestoreService.ListFeaturestores][google.cloud.aiplatform.v1.FeaturestoreService.ListFeaturestores]
+     * must match the call that provided the page token.
      *
      * Generated from protobuf field <code>string page_token = 4;</code>
      * @return string
@@ -273,11 +274,11 @@ class ListFeaturestoresRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * A page token, received from a previous
-     * [FeaturestoreService.ListFeaturestores][google.cloud.aiplatform.v1.FeaturestoreService.ListFeaturestores] call.
-     * Provide this to retrieve the subsequent page.
+     * [FeaturestoreService.ListFeaturestores][google.cloud.aiplatform.v1.FeaturestoreService.ListFeaturestores]
+     * call. Provide this to retrieve the subsequent page.
      * When paginating, all other parameters provided to
-     * [FeaturestoreService.ListFeaturestores][google.cloud.aiplatform.v1.FeaturestoreService.ListFeaturestores] must
-     * match the call that provided the page token.
+     * [FeaturestoreService.ListFeaturestores][google.cloud.aiplatform.v1.FeaturestoreService.ListFeaturestores]
+     * must match the call that provided the page token.
      *
      * Generated from protobuf field <code>string page_token = 4;</code>
      * @param string $var

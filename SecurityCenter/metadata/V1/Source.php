@@ -17,15 +17,15 @@ class Source
         \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
             '
-≤
+∞
 +google/cloud/securitycenter/v1/source.protogoogle.cloud.securitycenter.v1"˝
 Source
 name (	
 display_name (	
 description (	
 canonical_name (	:°ÍAù
-$securitycenter.googleapis.com/Source-organizations/{organization}/sources/{source}!folders/{folder}/sources/{source}#projects/{project}/sources/{source}B⁄
-"com.google.cloud.securitycenter.v1PZLgoogle.golang.org/genproto/googleapis/cloud/securitycenter/v1;securitycenter™Google.Cloud.SecurityCenter.V1 Google\\Cloud\\SecurityCenter\\V1Í!Google::Cloud::SecurityCenter::V1bproto3'
+$securitycenter.googleapis.com/Source-organizations/{organization}/sources/{source}!folders/{folder}/sources/{source}#projects/{project}/sources/{source}Bÿ
+"com.google.cloud.securitycenter.v1PZJcloud.google.com/go/securitycenter/apiv1/securitycenterpb;securitycenterpb™Google.Cloud.SecurityCenter.V1 Google\\Cloud\\SecurityCenter\\V1Í!Google::Cloud::SecurityCenter::V1bproto3'
         , true);
 
         static::$is_initialized = true;
