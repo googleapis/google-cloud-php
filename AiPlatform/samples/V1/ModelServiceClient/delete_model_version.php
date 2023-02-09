@@ -33,10 +33,11 @@ use Google\Rpc\Status;
  *
  * Model version can only be deleted if there are no [DeployedModels][]
  * created from it. Deleting the only version in the Model is not allowed. Use
- * [DeleteModel][google.cloud.aiplatform.v1.ModelService.DeleteModel] for deleting the Model instead.
+ * [DeleteModel][google.cloud.aiplatform.v1.ModelService.DeleteModel] for
+ * deleting the Model instead.
  *
- * @param string $formattedName The name of the model version to be deleted, with a version ID explicitly
- *                              included.
+ * @param string $formattedName The name of the model version to be deleted, with a version ID
+ *                              explicitly included.
  *
  *                              Example: `projects/{project}/locations/{location}/models/{model}&#64;1234`
  *                              Please see {@see ModelServiceClient::modelName()} for help formatting this field.

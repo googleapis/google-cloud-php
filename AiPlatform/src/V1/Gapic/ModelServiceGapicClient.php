@@ -38,8 +38,10 @@ use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\AIPlatform\V1\BatchImportModelEvaluationSlicesRequest;
 use Google\Cloud\AIPlatform\V1\BatchImportModelEvaluationSlicesResponse;
+use Google\Cloud\AIPlatform\V1\CopyModelRequest;
 use Google\Cloud\AIPlatform\V1\DeleteModelRequest;
 use Google\Cloud\AIPlatform\V1\DeleteModelVersionRequest;
+use Google\Cloud\AIPlatform\V1\EncryptionSpec;
 use Google\Cloud\AIPlatform\V1\ExportModelRequest;
 use Google\Cloud\AIPlatform\V1\ExportModelRequest\OutputConfig;
 use Google\Cloud\AIPlatform\V1\GetModelEvaluationRequest;
@@ -538,11 +540,123 @@ class ModelServiceGapicClient
     }
 
     /**
+     * Copies an already existing Vertex AI Model into the specified Location.
+     * The source Model must exist in the same Project.
+     * When copying custom Models, the users themselves are responsible for
+     * [Model.metadata][google.cloud.aiplatform.v1.Model.metadata] content to be
+     * region-agnostic, as well as making sure that any resources (e.g. files) it
+     * depends on remain accessible.
+     *
+     * Sample code:
+     * ```
+     * $modelServiceClient = new ModelServiceClient();
+     * try {
+     *     $formattedParent = $modelServiceClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $formattedSourceModel = $modelServiceClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
+     *     $operationResponse = $modelServiceClient->copyModel($formattedParent, $formattedSourceModel);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $modelServiceClient->copyModel($formattedParent, $formattedSourceModel);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $modelServiceClient->resumeOperation($operationName, 'copyModel');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $modelServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The resource name of the Location into which to copy the Model.
+     *                             Format: `projects/{project}/locations/{location}`
+     * @param string $sourceModel  Required. The resource name of the Model to copy. That Model must be in the
+     *                             same Project. Format:
+     *                             `projects/{project}/locations/{location}/models/{model}`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $modelId
+     *           Optional. Copy source_model into a new Model with this ID. The ID will
+     *           become the final component of the model resource name.
+     *
+     *           This value may be up to 63 characters, and valid characters are
+     *           `[a-z0-9_-]`. The first character cannot be a number or hyphen.
+     *     @type string $parentModel
+     *           Optional. Specify this field to copy source_model into this existing
+     *           Model as a new version. Format:
+     *           `projects/{project}/locations/{location}/models/{model}`
+     *     @type EncryptionSpec $encryptionSpec
+     *           Customer-managed encryption key options. If this is set,
+     *           then the Model copy will be encrypted with the provided encryption key.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function copyModel($parent, $sourceModel, array $optionalArgs = [])
+    {
+        $request = new CopyModelRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setSourceModel($sourceModel);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['modelId'])) {
+            $request->setModelId($optionalArgs['modelId']);
+        }
+
+        if (isset($optionalArgs['parentModel'])) {
+            $request->setParentModel($optionalArgs['parentModel']);
+        }
+
+        if (isset($optionalArgs['encryptionSpec'])) {
+            $request->setEncryptionSpec($optionalArgs['encryptionSpec']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'CopyModel',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
      * Deletes a Model.
      *
-     * A model cannot be deleted if any [Endpoint][google.cloud.aiplatform.v1.Endpoint] resource has a
-     * [DeployedModel][google.cloud.aiplatform.v1.DeployedModel] based on the model in its
-     * [deployed_models][google.cloud.aiplatform.v1.Endpoint.deployed_models] field.
+     * A model cannot be deleted if any
+     * [Endpoint][google.cloud.aiplatform.v1.Endpoint] resource has a
+     * [DeployedModel][google.cloud.aiplatform.v1.DeployedModel] based on the
+     * model in its
+     * [deployed_models][google.cloud.aiplatform.v1.Endpoint.deployed_models]
+     * field.
      *
      * Sample code:
      * ```
@@ -618,7 +732,8 @@ class ModelServiceGapicClient
      *
      * Model version can only be deleted if there are no [DeployedModels][]
      * created from it. Deleting the only version in the Model is not allowed. Use
-     * [DeleteModel][google.cloud.aiplatform.v1.ModelService.DeleteModel] for deleting the Model instead.
+     * [DeleteModel][google.cloud.aiplatform.v1.ModelService.DeleteModel] for
+     * deleting the Model instead.
      *
      * Sample code:
      * ```
@@ -654,8 +769,8 @@ class ModelServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The name of the model version to be deleted, with a version ID explicitly
-     *                             included.
+     * @param string $name         Required. The name of the model version to be deleted, with a version ID
+     *                             explicitly included.
      *
      *                             Example: `projects/{project}/locations/{location}/models/{model}&#64;1234`
      * @param array  $optionalArgs {
@@ -694,7 +809,8 @@ class ModelServiceGapicClient
     /**
      * Exports a trained, exportable Model to a location specified by the
      * user. A Model is considered to be exportable if it has at least one
-     * [supported export format][google.cloud.aiplatform.v1.Model.supported_export_formats].
+     * [supported export
+     * format][google.cloud.aiplatform.v1.Model.supported_export_formats].
      *
      * Sample code:
      * ```
@@ -1011,8 +1127,8 @@ class ModelServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the ModelEvaluation to list the ModelEvaluationSlices
-     *                             from. Format:
+     * @param string $parent       Required. The resource name of the ModelEvaluation to list the
+     *                             ModelEvaluationSlices from. Format:
      *                             `projects/{project}/locations/{location}/models/{model}/evaluations/{evaluation}`
      * @param array  $optionalArgs {
      *     Optional.
@@ -1221,6 +1337,15 @@ class ModelServiceGapicClient
      *           * `labels.myKey="myValue"`
      *     @type FieldMask $readMask
      *           Mask specifying which fields to read.
+     *     @type string $orderBy
+     *           A comma-separated list of fields to order by, sorted in ascending order.
+     *           Use "desc" after a field name for descending.
+     *           Supported fields:
+     *
+     *           * `create_time`
+     *           * `update_time`
+     *
+     *           Example: `update_time asc, create_time desc`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1251,6 +1376,10 @@ class ModelServiceGapicClient
 
         if (isset($optionalArgs['readMask'])) {
             $request->setReadMask($optionalArgs['readMask']);
+        }
+
+        if (isset($optionalArgs['orderBy'])) {
+            $request->setOrderBy($optionalArgs['orderBy']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
@@ -1303,7 +1432,8 @@ class ModelServiceGapicClient
      *           both snake_case and camelCase are supported.
      *
      *           * `model` supports = and !=. `model` represents the Model ID,
-     *           i.e. the last segment of the Model's [resource name][google.cloud.aiplatform.v1.Model.name].
+     *           i.e. the last segment of the Model's [resource
+     *           name][google.cloud.aiplatform.v1.Model.name].
      *           * `display_name` supports = and !=
      *           * `labels` supports general map functions that is:
      *           * `labels.key=value` - key:value equality
@@ -1488,7 +1618,8 @@ class ModelServiceGapicClient
      *                                6. One request cannot update both the model and the version fields. You
      *                                must update them separately.
      * @param FieldMask $updateMask   Required. The update mask applies to the resource.
-     *                                For the `FieldMask` definition, see [google.protobuf.FieldMask][google.protobuf.FieldMask].
+     *                                For the `FieldMask` definition, see
+     *                                [google.protobuf.FieldMask][google.protobuf.FieldMask].
      * @param array     $optionalArgs {
      *     Optional.
      *
@@ -1570,8 +1701,8 @@ class ModelServiceGapicClient
      *     Optional.
      *
      *     @type string $parentModel
-     *           Optional. The resource name of the model into which to upload the version. Only
-     *           specify this field when uploading a new version.
+     *           Optional. The resource name of the model into which to upload the version.
+     *           Only specify this field when uploading a new version.
      *     @type string $modelId
      *           Optional. The ID to use for the uploaded Model, which will become the final
      *           component of the model resource name.

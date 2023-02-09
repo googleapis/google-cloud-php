@@ -10,7 +10,8 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Response header with metadata for the requested
- * [ReadFeatureValuesRequest.entity_type][google.cloud.aiplatform.v1.ReadFeatureValuesRequest.entity_type] and Features.
+ * [ReadFeatureValuesRequest.entity_type][google.cloud.aiplatform.v1.ReadFeatureValuesRequest.entity_type]
+ * and Features.
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.ReadFeatureValuesResponse.Header</code>
  */
@@ -18,7 +19,8 @@ class Header extends \Google\Protobuf\Internal\Message
 {
     /**
      * The resource name of the EntityType from the
-     * [ReadFeatureValuesRequest][google.cloud.aiplatform.v1.ReadFeatureValuesRequest]. Value format:
+     * [ReadFeatureValuesRequest][google.cloud.aiplatform.v1.ReadFeatureValuesRequest].
+     * Value format:
      * `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entityType}`.
      *
      * Generated from protobuf field <code>string entity_type = 1 [(.google.api.resource_reference) = {</code>
@@ -40,7 +42,8 @@ class Header extends \Google\Protobuf\Internal\Message
      *
      *     @type string $entity_type
      *           The resource name of the EntityType from the
-     *           [ReadFeatureValuesRequest][google.cloud.aiplatform.v1.ReadFeatureValuesRequest]. Value format:
+     *           [ReadFeatureValuesRequest][google.cloud.aiplatform.v1.ReadFeatureValuesRequest].
+     *           Value format:
      *           `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entityType}`.
      *     @type array<\Google\Cloud\AIPlatform\V1\ReadFeatureValuesResponse\FeatureDescriptor>|\Google\Protobuf\Internal\RepeatedField $feature_descriptors
      *           List of Feature metadata corresponding to each piece of
@@ -54,7 +57,8 @@ class Header extends \Google\Protobuf\Internal\Message
 
     /**
      * The resource name of the EntityType from the
-     * [ReadFeatureValuesRequest][google.cloud.aiplatform.v1.ReadFeatureValuesRequest]. Value format:
+     * [ReadFeatureValuesRequest][google.cloud.aiplatform.v1.ReadFeatureValuesRequest].
+     * Value format:
      * `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entityType}`.
      *
      * Generated from protobuf field <code>string entity_type = 1 [(.google.api.resource_reference) = {</code>
@@ -67,7 +71,8 @@ class Header extends \Google\Protobuf\Internal\Message
 
     /**
      * The resource name of the EntityType from the
-     * [ReadFeatureValuesRequest][google.cloud.aiplatform.v1.ReadFeatureValuesRequest]. Value format:
+     * [ReadFeatureValuesRequest][google.cloud.aiplatform.v1.ReadFeatureValuesRequest].
+     * Value format:
      * `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entityType}`.
      *
      * Generated from protobuf field <code>string entity_type = 1 [(.google.api.resource_reference) = {</code>

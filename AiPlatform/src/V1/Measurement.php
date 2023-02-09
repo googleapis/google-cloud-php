@@ -18,21 +18,22 @@ use Google\Protobuf\Internal\GPBUtil;
 class Measurement extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. Time that the Trial has been running at the point of this Measurement.
+     * Output only. Time that the Trial has been running at the point of this
+     * Measurement.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration elapsed_duration = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $elapsed_duration = null;
     /**
-     * Output only. The number of steps the machine learning model has been trained for.
-     * Must be non-negative.
+     * Output only. The number of steps the machine learning model has been
+     * trained for. Must be non-negative.
      *
      * Generated from protobuf field <code>int64 step_count = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $step_count = 0;
     /**
-     * Output only. A list of metrics got by evaluating the objective functions using suggested
-     * Parameter values.
+     * Output only. A list of metrics got by evaluating the objective functions
+     * using suggested Parameter values.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Measurement.Metric metrics = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -45,13 +46,14 @@ class Measurement extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Protobuf\Duration $elapsed_duration
-     *           Output only. Time that the Trial has been running at the point of this Measurement.
+     *           Output only. Time that the Trial has been running at the point of this
+     *           Measurement.
      *     @type int|string $step_count
-     *           Output only. The number of steps the machine learning model has been trained for.
-     *           Must be non-negative.
+     *           Output only. The number of steps the machine learning model has been
+     *           trained for. Must be non-negative.
      *     @type array<\Google\Cloud\AIPlatform\V1\Measurement\Metric>|\Google\Protobuf\Internal\RepeatedField $metrics
-     *           Output only. A list of metrics got by evaluating the objective functions using suggested
-     *           Parameter values.
+     *           Output only. A list of metrics got by evaluating the objective functions
+     *           using suggested Parameter values.
      * }
      */
     public function __construct($data = NULL) {
@@ -60,7 +62,8 @@ class Measurement extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Time that the Trial has been running at the point of this Measurement.
+     * Output only. Time that the Trial has been running at the point of this
+     * Measurement.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration elapsed_duration = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Duration|null
@@ -81,7 +84,8 @@ class Measurement extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Time that the Trial has been running at the point of this Measurement.
+     * Output only. Time that the Trial has been running at the point of this
+     * Measurement.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration elapsed_duration = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Duration $var
@@ -96,8 +100,8 @@ class Measurement extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The number of steps the machine learning model has been trained for.
-     * Must be non-negative.
+     * Output only. The number of steps the machine learning model has been
+     * trained for. Must be non-negative.
      *
      * Generated from protobuf field <code>int64 step_count = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int|string
@@ -108,8 +112,8 @@ class Measurement extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The number of steps the machine learning model has been trained for.
-     * Must be non-negative.
+     * Output only. The number of steps the machine learning model has been
+     * trained for. Must be non-negative.
      *
      * Generated from protobuf field <code>int64 step_count = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int|string $var
@@ -124,8 +128,8 @@ class Measurement extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. A list of metrics got by evaluating the objective functions using suggested
-     * Parameter values.
+     * Output only. A list of metrics got by evaluating the objective functions
+     * using suggested Parameter values.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Measurement.Metric metrics = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -136,8 +140,8 @@ class Measurement extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. A list of metrics got by evaluating the objective functions using suggested
-     * Parameter values.
+     * Output only. A list of metrics got by evaluating the objective functions
+     * using suggested Parameter values.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Measurement.Metric metrics = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param array<\Google\Cloud\AIPlatform\V1\Measurement\Metric>|\Google\Protobuf\Internal\RepeatedField $var

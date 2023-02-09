@@ -73,7 +73,8 @@ class TensorboardExperiment extends \Google\Protobuf\Internal\Message
      */
     private $etag = '';
     /**
-     * Immutable. Source of the TensorboardExperiment. Example: a custom training job.
+     * Immutable. Source of the TensorboardExperiment. Example: a custom training
+     * job.
      *
      * Generated from protobuf field <code>string source = 8 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
@@ -114,7 +115,8 @@ class TensorboardExperiment extends \Google\Protobuf\Internal\Message
      *           Used to perform consistent read-modify-write updates. If not set, a blind
      *           "overwrite" update happens.
      *     @type string $source
-     *           Immutable. Source of the TensorboardExperiment. Example: a custom training job.
+     *           Immutable. Source of the TensorboardExperiment. Example: a custom training
+     *           job.
      * }
      */
     public function __construct($data = NULL) {
@@ -353,7 +355,8 @@ class TensorboardExperiment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. Source of the TensorboardExperiment. Example: a custom training job.
+     * Immutable. Source of the TensorboardExperiment. Example: a custom training
+     * job.
      *
      * Generated from protobuf field <code>string source = 8 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
@@ -364,7 +367,8 @@ class TensorboardExperiment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. Source of the TensorboardExperiment. Example: a custom training job.
+     * Immutable. Source of the TensorboardExperiment. Example: a custom training
+     * job.
      *
      * Generated from protobuf field <code>string source = 8 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var

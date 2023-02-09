@@ -63,6 +63,21 @@ class TensorboardServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
+     * Returns a list of monthly active users for a given TensorBoard instance.
+     * @param \Google\Cloud\AIPlatform\V1\ReadTensorboardUsageRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function ReadTensorboardUsage(\Google\Cloud\AIPlatform\V1\ReadTensorboardUsageRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.aiplatform.v1.TensorboardService/ReadTensorboardUsage',
+        $argument,
+        ['\Google\Cloud\AIPlatform\V1\ReadTensorboardUsageResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
      * Updates a Tensorboard.
      * @param \Google\Cloud\AIPlatform\V1\UpdateTensorboardRequest $argument input argument
      * @param array $metadata metadata
@@ -365,8 +380,8 @@ class TensorboardServiceGrpcClient extends \Grpc\BaseStub {
     /**
      * Reads multiple TensorboardTimeSeries' data. The data point number limit is
      * 1000 for scalars, 100 for tensors and blob references. If the number of
-     * data points stored is less than the limit, all data will be returned.
-     * Otherwise, that limit number of data points will be randomly selected from
+     * data points stored is less than the limit, all data is returned.
+     * Otherwise, the number limit of data points is randomly selected from
      * this time series and returned.
      * @param \Google\Cloud\AIPlatform\V1\BatchReadTensorboardTimeSeriesDataRequest $argument input argument
      * @param array $metadata metadata
@@ -383,8 +398,8 @@ class TensorboardServiceGrpcClient extends \Grpc\BaseStub {
 
     /**
      * Reads a TensorboardTimeSeries' data. By default, if the number of data
-     * points stored is less than 1000, all data will be returned. Otherwise, 1000
-     * data points will be randomly selected from this time series and returned.
+     * points stored is less than 1000, all data is returned. Otherwise, 1000
+     * data points is randomly selected from this time series and returned.
      * This value can be changed by changing max_data_points, which can't be
      * greater than 10k.
      * @param \Google\Cloud\AIPlatform\V1\ReadTensorboardTimeSeriesDataRequest $argument input argument
@@ -420,8 +435,7 @@ class TensorboardServiceGrpcClient extends \Grpc\BaseStub {
 
     /**
      * Write time series data points of multiple TensorboardTimeSeries in multiple
-     * TensorboardRun's. If any data fail to be ingested, an error will be
-     * returned.
+     * TensorboardRun's. If any data fail to be ingested, an error is returned.
      * @param \Google\Cloud\AIPlatform\V1\WriteTensorboardExperimentDataRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -437,8 +451,7 @@ class TensorboardServiceGrpcClient extends \Grpc\BaseStub {
 
     /**
      * Write time series data points into multiple TensorboardTimeSeries under
-     * a TensorboardRun. If any data fail to be ingested, an error will be
-     * returned.
+     * a TensorboardRun. If any data fail to be ingested, an error is returned.
      * @param \Google\Cloud\AIPlatform\V1\WriteTensorboardRunDataRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options

@@ -32,11 +32,13 @@ use Google\Cloud\AIPlatform\V1\PredictionServiceClient;
  *
  * The response includes the following HTTP headers:
  *
- * * `X-Vertex-AI-Endpoint-Id`: ID of the [Endpoint][google.cloud.aiplatform.v1.Endpoint] that served this
+ * * `X-Vertex-AI-Endpoint-Id`: ID of the
+ * [Endpoint][google.cloud.aiplatform.v1.Endpoint] that served this
  * prediction.
  *
- * * `X-Vertex-AI-Deployed-Model-Id`: ID of the Endpoint's [DeployedModel][google.cloud.aiplatform.v1.DeployedModel]
- * that served this prediction.
+ * * `X-Vertex-AI-Deployed-Model-Id`: ID of the Endpoint's
+ * [DeployedModel][google.cloud.aiplatform.v1.DeployedModel] that served this
+ * prediction.
  *
  * @param string $formattedEndpoint The name of the Endpoint requested to serve the prediction.
  *                                  Format:

@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [ModelService.ListModelVersions][google.cloud.aiplatform.v1.ModelService.ListModelVersions].
+ * Request message for
+ * [ModelService.ListModelVersions][google.cloud.aiplatform.v1.ModelService.ListModelVersions].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.ListModelVersionsRequest</code>
  */
@@ -30,8 +31,8 @@ class ListModelVersionsRequest extends \Google\Protobuf\Internal\Message
     /**
      * The standard list page token.
      * Typically obtained via
-     * [ListModelVersionsResponse.next_page_token][google.cloud.aiplatform.v1.ListModelVersionsResponse.next_page_token] of the previous
-     * [ModelService.ListModelversions][] call.
+     * [ListModelVersionsResponse.next_page_token][google.cloud.aiplatform.v1.ListModelVersionsResponse.next_page_token]
+     * of the previous [ModelService.ListModelversions][] call.
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
@@ -55,6 +56,17 @@ class ListModelVersionsRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.FieldMask read_mask = 5;</code>
      */
     private $read_mask = null;
+    /**
+     * A comma-separated list of fields to order by, sorted in ascending order.
+     * Use "desc" after a field name for descending.
+     * Supported fields:
+     *   * `create_time`
+     *   * `update_time`
+     * Example: `update_time asc, create_time desc`.
+     *
+     * Generated from protobuf field <code>string order_by = 6;</code>
+     */
+    private $order_by = '';
 
     /**
      * Constructor.
@@ -69,8 +81,8 @@ class ListModelVersionsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $page_token
      *           The standard list page token.
      *           Typically obtained via
-     *           [ListModelVersionsResponse.next_page_token][google.cloud.aiplatform.v1.ListModelVersionsResponse.next_page_token] of the previous
-     *           [ModelService.ListModelversions][] call.
+     *           [ListModelVersionsResponse.next_page_token][google.cloud.aiplatform.v1.ListModelVersionsResponse.next_page_token]
+     *           of the previous [ModelService.ListModelversions][] call.
      *     @type string $filter
      *           An expression for filtering the results of the request. For field names
      *           both snake_case and camelCase are supported.
@@ -82,6 +94,13 @@ class ListModelVersionsRequest extends \Google\Protobuf\Internal\Message
      *             * `labels.myKey="myValue"`
      *     @type \Google\Protobuf\FieldMask $read_mask
      *           Mask specifying which fields to read.
+     *     @type string $order_by
+     *           A comma-separated list of fields to order by, sorted in ascending order.
+     *           Use "desc" after a field name for descending.
+     *           Supported fields:
+     *             * `create_time`
+     *             * `update_time`
+     *           Example: `update_time asc, create_time desc`.
      * }
      */
     public function __construct($data = NULL) {
@@ -144,8 +163,8 @@ class ListModelVersionsRequest extends \Google\Protobuf\Internal\Message
     /**
      * The standard list page token.
      * Typically obtained via
-     * [ListModelVersionsResponse.next_page_token][google.cloud.aiplatform.v1.ListModelVersionsResponse.next_page_token] of the previous
-     * [ModelService.ListModelversions][] call.
+     * [ListModelVersionsResponse.next_page_token][google.cloud.aiplatform.v1.ListModelVersionsResponse.next_page_token]
+     * of the previous [ModelService.ListModelversions][] call.
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      * @return string
@@ -158,8 +177,8 @@ class ListModelVersionsRequest extends \Google\Protobuf\Internal\Message
     /**
      * The standard list page token.
      * Typically obtained via
-     * [ListModelVersionsResponse.next_page_token][google.cloud.aiplatform.v1.ListModelVersionsResponse.next_page_token] of the previous
-     * [ModelService.ListModelversions][] call.
+     * [ListModelVersionsResponse.next_page_token][google.cloud.aiplatform.v1.ListModelVersionsResponse.next_page_token]
+     * of the previous [ModelService.ListModelversions][] call.
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      * @param string $var
@@ -245,6 +264,42 @@ class ListModelVersionsRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\FieldMask::class);
         $this->read_mask = $var;
+
+        return $this;
+    }
+
+    /**
+     * A comma-separated list of fields to order by, sorted in ascending order.
+     * Use "desc" after a field name for descending.
+     * Supported fields:
+     *   * `create_time`
+     *   * `update_time`
+     * Example: `update_time asc, create_time desc`.
+     *
+     * Generated from protobuf field <code>string order_by = 6;</code>
+     * @return string
+     */
+    public function getOrderBy()
+    {
+        return $this->order_by;
+    }
+
+    /**
+     * A comma-separated list of fields to order by, sorted in ascending order.
+     * Use "desc" after a field name for descending.
+     * Supported fields:
+     *   * `create_time`
+     *   * `update_time`
+     * Example: `update_time asc, create_time desc`.
+     *
+     * Generated from protobuf field <code>string order_by = 6;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setOrderBy($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->order_by = $var;
 
         return $this;
     }

@@ -16,9 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class ResourcesConsumed extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The number of replica hours used. Note that many replicas may run in
-     * parallel, and additionally any given work may be queued for some time.
-     * Therefore this value is not strictly related to wall time.
+     * Output only. The number of replica hours used. Note that many replicas may
+     * run in parallel, and additionally any given work may be queued for some
+     * time. Therefore this value is not strictly related to wall time.
      *
      * Generated from protobuf field <code>double replica_hours = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -31,9 +31,9 @@ class ResourcesConsumed extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type float $replica_hours
-     *           Output only. The number of replica hours used. Note that many replicas may run in
-     *           parallel, and additionally any given work may be queued for some time.
-     *           Therefore this value is not strictly related to wall time.
+     *           Output only. The number of replica hours used. Note that many replicas may
+     *           run in parallel, and additionally any given work may be queued for some
+     *           time. Therefore this value is not strictly related to wall time.
      * }
      */
     public function __construct($data = NULL) {
@@ -42,9 +42,9 @@ class ResourcesConsumed extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The number of replica hours used. Note that many replicas may run in
-     * parallel, and additionally any given work may be queued for some time.
-     * Therefore this value is not strictly related to wall time.
+     * Output only. The number of replica hours used. Note that many replicas may
+     * run in parallel, and additionally any given work may be queued for some
+     * time. Therefore this value is not strictly related to wall time.
      *
      * Generated from protobuf field <code>double replica_hours = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return float
@@ -55,9 +55,9 @@ class ResourcesConsumed extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The number of replica hours used. Note that many replicas may run in
-     * parallel, and additionally any given work may be queued for some time.
-     * Therefore this value is not strictly related to wall time.
+     * Output only. The number of replica hours used. Note that many replicas may
+     * run in parallel, and additionally any given work may be queued for some
+     * time. Therefore this value is not strictly related to wall time.
      *
      * Generated from protobuf field <code>double replica_hours = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param float $var

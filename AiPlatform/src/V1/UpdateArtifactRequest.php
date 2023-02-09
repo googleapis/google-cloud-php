@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [MetadataService.UpdateArtifact][google.cloud.aiplatform.v1.MetadataService.UpdateArtifact].
+ * Request message for
+ * [MetadataService.UpdateArtifact][google.cloud.aiplatform.v1.MetadataService.UpdateArtifact].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.UpdateArtifactRequest</code>
  */
@@ -17,9 +18,8 @@ class UpdateArtifactRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The Artifact containing updates.
-     * The Artifact's [Artifact.name][google.cloud.aiplatform.v1.Artifact.name] field is used to identify the Artifact to
-     * be updated.
-     * Format:
+     * The Artifact's [Artifact.name][google.cloud.aiplatform.v1.Artifact.name]
+     * field is used to identify the Artifact to be updated. Format:
      * `projects/{project}/locations/{location}/metadataStores/{metadatastore}/artifacts/{artifact}`
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Artifact artifact = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -33,7 +33,8 @@ class UpdateArtifactRequest extends \Google\Protobuf\Internal\Message
      */
     private $update_mask = null;
     /**
-     * If set to true, and the [Artifact][google.cloud.aiplatform.v1.Artifact] is not found, a new [Artifact][google.cloud.aiplatform.v1.Artifact] is
+     * If set to true, and the [Artifact][google.cloud.aiplatform.v1.Artifact] is
+     * not found, a new [Artifact][google.cloud.aiplatform.v1.Artifact] is
      * created.
      *
      * Generated from protobuf field <code>bool allow_missing = 3;</code>
@@ -48,15 +49,15 @@ class UpdateArtifactRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\AIPlatform\V1\Artifact $artifact
      *           Required. The Artifact containing updates.
-     *           The Artifact's [Artifact.name][google.cloud.aiplatform.v1.Artifact.name] field is used to identify the Artifact to
-     *           be updated.
-     *           Format:
+     *           The Artifact's [Artifact.name][google.cloud.aiplatform.v1.Artifact.name]
+     *           field is used to identify the Artifact to be updated. Format:
      *           `projects/{project}/locations/{location}/metadataStores/{metadatastore}/artifacts/{artifact}`
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           Optional. A FieldMask indicating which fields should be updated.
      *           Functionality of this field is not yet supported.
      *     @type bool $allow_missing
-     *           If set to true, and the [Artifact][google.cloud.aiplatform.v1.Artifact] is not found, a new [Artifact][google.cloud.aiplatform.v1.Artifact] is
+     *           If set to true, and the [Artifact][google.cloud.aiplatform.v1.Artifact] is
+     *           not found, a new [Artifact][google.cloud.aiplatform.v1.Artifact] is
      *           created.
      * }
      */
@@ -67,9 +68,8 @@ class UpdateArtifactRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The Artifact containing updates.
-     * The Artifact's [Artifact.name][google.cloud.aiplatform.v1.Artifact.name] field is used to identify the Artifact to
-     * be updated.
-     * Format:
+     * The Artifact's [Artifact.name][google.cloud.aiplatform.v1.Artifact.name]
+     * field is used to identify the Artifact to be updated. Format:
      * `projects/{project}/locations/{location}/metadataStores/{metadatastore}/artifacts/{artifact}`
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Artifact artifact = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -92,9 +92,8 @@ class UpdateArtifactRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The Artifact containing updates.
-     * The Artifact's [Artifact.name][google.cloud.aiplatform.v1.Artifact.name] field is used to identify the Artifact to
-     * be updated.
-     * Format:
+     * The Artifact's [Artifact.name][google.cloud.aiplatform.v1.Artifact.name]
+     * field is used to identify the Artifact to be updated. Format:
      * `projects/{project}/locations/{location}/metadataStores/{metadatastore}/artifacts/{artifact}`
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Artifact artifact = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -148,7 +147,8 @@ class UpdateArtifactRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If set to true, and the [Artifact][google.cloud.aiplatform.v1.Artifact] is not found, a new [Artifact][google.cloud.aiplatform.v1.Artifact] is
+     * If set to true, and the [Artifact][google.cloud.aiplatform.v1.Artifact] is
+     * not found, a new [Artifact][google.cloud.aiplatform.v1.Artifact] is
      * created.
      *
      * Generated from protobuf field <code>bool allow_missing = 3;</code>
@@ -160,7 +160,8 @@ class UpdateArtifactRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If set to true, and the [Artifact][google.cloud.aiplatform.v1.Artifact] is not found, a new [Artifact][google.cloud.aiplatform.v1.Artifact] is
+     * If set to true, and the [Artifact][google.cloud.aiplatform.v1.Artifact] is
+     * not found, a new [Artifact][google.cloud.aiplatform.v1.Artifact] is
      * created.
      *
      * Generated from protobuf field <code>bool allow_missing = 3;</code>

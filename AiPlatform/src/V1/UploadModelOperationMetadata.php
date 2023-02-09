@@ -9,7 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Details of [ModelService.UploadModel][google.cloud.aiplatform.v1.ModelService.UploadModel] operation.
+ * Details of
+ * [ModelService.UploadModel][google.cloud.aiplatform.v1.ModelService.UploadModel]
+ * operation.
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.UploadModelOperationMetadata</code>
  */

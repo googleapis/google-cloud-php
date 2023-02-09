@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [TensorboardService.ListTensorboards][google.cloud.aiplatform.v1.TensorboardService.ListTensorboards].
+ * Request message for
+ * [TensorboardService.ListTensorboards][google.cloud.aiplatform.v1.TensorboardService.ListTensorboards].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.ListTensorboardsRequest</code>
  */
@@ -31,8 +32,8 @@ class ListTensorboardsRequest extends \Google\Protobuf\Internal\Message
     private $filter = '';
     /**
      * The maximum number of Tensorboards to return. The service may return
-     * fewer than this value. If unspecified, at most 100 Tensorboards will be
-     * returned. The maximum value is 100; values above 100 will be coerced to
+     * fewer than this value. If unspecified, at most 100 Tensorboards are
+     * returned. The maximum value is 100; values above 100 are coerced to
      * 100.
      *
      * Generated from protobuf field <code>int32 page_size = 3;</code>
@@ -40,11 +41,11 @@ class ListTensorboardsRequest extends \Google\Protobuf\Internal\Message
     private $page_size = 0;
     /**
      * A page token, received from a previous
-     * [TensorboardService.ListTensorboards][google.cloud.aiplatform.v1.TensorboardService.ListTensorboards] call.
-     * Provide this to retrieve the subsequent page.
+     * [TensorboardService.ListTensorboards][google.cloud.aiplatform.v1.TensorboardService.ListTensorboards]
+     * call. Provide this to retrieve the subsequent page.
      * When paginating, all other parameters provided to
-     * [TensorboardService.ListTensorboards][google.cloud.aiplatform.v1.TensorboardService.ListTensorboards] must
-     * match the call that provided the page token.
+     * [TensorboardService.ListTensorboards][google.cloud.aiplatform.v1.TensorboardService.ListTensorboards]
+     * must match the call that provided the page token.
      *
      * Generated from protobuf field <code>string page_token = 4;</code>
      */
@@ -76,16 +77,16 @@ class ListTensorboardsRequest extends \Google\Protobuf\Internal\Message
      *           Lists the Tensorboards that match the filter expression.
      *     @type int $page_size
      *           The maximum number of Tensorboards to return. The service may return
-     *           fewer than this value. If unspecified, at most 100 Tensorboards will be
-     *           returned. The maximum value is 100; values above 100 will be coerced to
+     *           fewer than this value. If unspecified, at most 100 Tensorboards are
+     *           returned. The maximum value is 100; values above 100 are coerced to
      *           100.
      *     @type string $page_token
      *           A page token, received from a previous
-     *           [TensorboardService.ListTensorboards][google.cloud.aiplatform.v1.TensorboardService.ListTensorboards] call.
-     *           Provide this to retrieve the subsequent page.
+     *           [TensorboardService.ListTensorboards][google.cloud.aiplatform.v1.TensorboardService.ListTensorboards]
+     *           call. Provide this to retrieve the subsequent page.
      *           When paginating, all other parameters provided to
-     *           [TensorboardService.ListTensorboards][google.cloud.aiplatform.v1.TensorboardService.ListTensorboards] must
-     *           match the call that provided the page token.
+     *           [TensorboardService.ListTensorboards][google.cloud.aiplatform.v1.TensorboardService.ListTensorboards]
+     *           must match the call that provided the page token.
      *     @type string $order_by
      *           Field to use to sort the list.
      *     @type \Google\Protobuf\FieldMask $read_mask
@@ -155,8 +156,8 @@ class ListTensorboardsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The maximum number of Tensorboards to return. The service may return
-     * fewer than this value. If unspecified, at most 100 Tensorboards will be
-     * returned. The maximum value is 100; values above 100 will be coerced to
+     * fewer than this value. If unspecified, at most 100 Tensorboards are
+     * returned. The maximum value is 100; values above 100 are coerced to
      * 100.
      *
      * Generated from protobuf field <code>int32 page_size = 3;</code>
@@ -169,8 +170,8 @@ class ListTensorboardsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The maximum number of Tensorboards to return. The service may return
-     * fewer than this value. If unspecified, at most 100 Tensorboards will be
-     * returned. The maximum value is 100; values above 100 will be coerced to
+     * fewer than this value. If unspecified, at most 100 Tensorboards are
+     * returned. The maximum value is 100; values above 100 are coerced to
      * 100.
      *
      * Generated from protobuf field <code>int32 page_size = 3;</code>
@@ -187,11 +188,11 @@ class ListTensorboardsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * A page token, received from a previous
-     * [TensorboardService.ListTensorboards][google.cloud.aiplatform.v1.TensorboardService.ListTensorboards] call.
-     * Provide this to retrieve the subsequent page.
+     * [TensorboardService.ListTensorboards][google.cloud.aiplatform.v1.TensorboardService.ListTensorboards]
+     * call. Provide this to retrieve the subsequent page.
      * When paginating, all other parameters provided to
-     * [TensorboardService.ListTensorboards][google.cloud.aiplatform.v1.TensorboardService.ListTensorboards] must
-     * match the call that provided the page token.
+     * [TensorboardService.ListTensorboards][google.cloud.aiplatform.v1.TensorboardService.ListTensorboards]
+     * must match the call that provided the page token.
      *
      * Generated from protobuf field <code>string page_token = 4;</code>
      * @return string
@@ -203,11 +204,11 @@ class ListTensorboardsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * A page token, received from a previous
-     * [TensorboardService.ListTensorboards][google.cloud.aiplatform.v1.TensorboardService.ListTensorboards] call.
-     * Provide this to retrieve the subsequent page.
+     * [TensorboardService.ListTensorboards][google.cloud.aiplatform.v1.TensorboardService.ListTensorboards]
+     * call. Provide this to retrieve the subsequent page.
      * When paginating, all other parameters provided to
-     * [TensorboardService.ListTensorboards][google.cloud.aiplatform.v1.TensorboardService.ListTensorboards] must
-     * match the call that provided the page token.
+     * [TensorboardService.ListTensorboards][google.cloud.aiplatform.v1.TensorboardService.ListTensorboards]
+     * must match the call that provided the page token.
      *
      * Generated from protobuf field <code>string page_token = 4;</code>
      * @param string $var

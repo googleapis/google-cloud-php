@@ -30,12 +30,15 @@ use Google\Cloud\AIPlatform\V1\JobServiceClient;
  * Cancels a CustomJob.
  * Starts asynchronous cancellation on the CustomJob. The server
  * makes a best effort to cancel the job, but success is not
- * guaranteed. Clients can use [JobService.GetCustomJob][google.cloud.aiplatform.v1.JobService.GetCustomJob] or
- * other methods to check whether the cancellation succeeded or whether the
+ * guaranteed. Clients can use
+ * [JobService.GetCustomJob][google.cloud.aiplatform.v1.JobService.GetCustomJob]
+ * or other methods to check whether the cancellation succeeded or whether the
  * job completed despite cancellation. On successful cancellation,
  * the CustomJob is not deleted; instead it becomes a job with
- * a [CustomJob.error][google.cloud.aiplatform.v1.CustomJob.error] value with a [google.rpc.Status.code][google.rpc.Status.code] of 1,
- * corresponding to `Code.CANCELLED`, and [CustomJob.state][google.cloud.aiplatform.v1.CustomJob.state] is set to
+ * a [CustomJob.error][google.cloud.aiplatform.v1.CustomJob.error] value with
+ * a [google.rpc.Status.code][google.rpc.Status.code] of 1, corresponding to
+ * `Code.CANCELLED`, and
+ * [CustomJob.state][google.cloud.aiplatform.v1.CustomJob.state] is set to
  * `CANCELLED`.
  *
  * @param string $formattedName The name of the CustomJob to cancel.

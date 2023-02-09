@@ -22,9 +22,9 @@ class WriteFeatureValuesPayload extends \Google\Protobuf\Internal\Message
      */
     private $entity_id = '';
     /**
-     * Required. Feature values to be written, mapping from Feature ID to value. Up to
-     * 100,000 `feature_values` entries may be written across all payloads.  The
-     * feature generation time, aligned by days, must be no older than five
+     * Required. Feature values to be written, mapping from Feature ID to value.
+     * Up to 100,000 `feature_values` entries may be written across all payloads.
+     * The feature generation time, aligned by days, must be no older than five
      * years (1825 days) and no later than one year (366 days) in the future.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.aiplatform.v1.FeatureValue> feature_values = 2 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -40,9 +40,9 @@ class WriteFeatureValuesPayload extends \Google\Protobuf\Internal\Message
      *     @type string $entity_id
      *           Required. The ID of the entity.
      *     @type array|\Google\Protobuf\Internal\MapField $feature_values
-     *           Required. Feature values to be written, mapping from Feature ID to value. Up to
-     *           100,000 `feature_values` entries may be written across all payloads.  The
-     *           feature generation time, aligned by days, must be no older than five
+     *           Required. Feature values to be written, mapping from Feature ID to value.
+     *           Up to 100,000 `feature_values` entries may be written across all payloads.
+     *           The feature generation time, aligned by days, must be no older than five
      *           years (1825 days) and no later than one year (366 days) in the future.
      * }
      */
@@ -78,9 +78,9 @@ class WriteFeatureValuesPayload extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Feature values to be written, mapping from Feature ID to value. Up to
-     * 100,000 `feature_values` entries may be written across all payloads.  The
-     * feature generation time, aligned by days, must be no older than five
+     * Required. Feature values to be written, mapping from Feature ID to value.
+     * Up to 100,000 `feature_values` entries may be written across all payloads.
+     * The feature generation time, aligned by days, must be no older than five
      * years (1825 days) and no later than one year (366 days) in the future.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.aiplatform.v1.FeatureValue> feature_values = 2 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -92,9 +92,9 @@ class WriteFeatureValuesPayload extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Feature values to be written, mapping from Feature ID to value. Up to
-     * 100,000 `feature_values` entries may be written across all payloads.  The
-     * feature generation time, aligned by days, must be no older than five
+     * Required. Feature values to be written, mapping from Feature ID to value.
+     * Up to 100,000 `feature_values` entries may be written across all payloads.
+     * The feature generation time, aligned by days, must be no older than five
      * years (1825 days) and no later than one year (366 days) in the future.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.aiplatform.v1.FeatureValue> feature_values = 2 [(.google.api.field_behavior) = REQUIRED];</code>

@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Response message for [EndpointService.DeployModel][google.cloud.aiplatform.v1.EndpointService.DeployModel].
+ * Response message for
+ * [EndpointService.DeployModel][google.cloud.aiplatform.v1.EndpointService.DeployModel].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.DeployModelResponse</code>
  */

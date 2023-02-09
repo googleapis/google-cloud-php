@@ -32,8 +32,8 @@ use Google\Cloud\AIPlatform\V1\TimeSeriesDataPoint;
  * Exports a TensorboardTimeSeries' data. Data is returned in paginated
  * responses.
  *
- * @param string $formattedTensorboardTimeSeries The resource name of the TensorboardTimeSeries to export data from.
- *                                               Format:
+ * @param string $formattedTensorboardTimeSeries The resource name of the TensorboardTimeSeries to export data
+ *                                               from. Format:
  *                                               `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}/runs/{run}/timeSeries/{time_series}`
  *                                               Please see {@see TensorboardServiceClient::tensorboardTimeSeriesName()} for help formatting this field.
  */

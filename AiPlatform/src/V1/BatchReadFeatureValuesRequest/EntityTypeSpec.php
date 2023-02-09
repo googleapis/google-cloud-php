@@ -17,15 +17,17 @@ use Google\Protobuf\Internal\GPBUtil;
 class EntityTypeSpec extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. ID of the EntityType to select Features. The EntityType id is the
-     * [entity_type_id][google.cloud.aiplatform.v1.CreateEntityTypeRequest.entity_type_id] specified
-     * during EntityType creation.
+     * Required. ID of the EntityType to select Features. The EntityType id is
+     * the
+     * [entity_type_id][google.cloud.aiplatform.v1.CreateEntityTypeRequest.entity_type_id]
+     * specified during EntityType creation.
      *
      * Generated from protobuf field <code>string entity_type_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $entity_type_id = '';
     /**
-     * Required. Selectors choosing which Feature values to read from the EntityType.
+     * Required. Selectors choosing which Feature values to read from the
+     * EntityType.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FeatureSelector feature_selector = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -44,11 +46,13 @@ class EntityTypeSpec extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $entity_type_id
-     *           Required. ID of the EntityType to select Features. The EntityType id is the
-     *           [entity_type_id][google.cloud.aiplatform.v1.CreateEntityTypeRequest.entity_type_id] specified
-     *           during EntityType creation.
+     *           Required. ID of the EntityType to select Features. The EntityType id is
+     *           the
+     *           [entity_type_id][google.cloud.aiplatform.v1.CreateEntityTypeRequest.entity_type_id]
+     *           specified during EntityType creation.
      *     @type \Google\Cloud\AIPlatform\V1\FeatureSelector $feature_selector
-     *           Required. Selectors choosing which Feature values to read from the EntityType.
+     *           Required. Selectors choosing which Feature values to read from the
+     *           EntityType.
      *     @type array<\Google\Cloud\AIPlatform\V1\DestinationFeatureSetting>|\Google\Protobuf\Internal\RepeatedField $settings
      *           Per-Feature settings for the batch read.
      * }
@@ -59,9 +63,10 @@ class EntityTypeSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. ID of the EntityType to select Features. The EntityType id is the
-     * [entity_type_id][google.cloud.aiplatform.v1.CreateEntityTypeRequest.entity_type_id] specified
-     * during EntityType creation.
+     * Required. ID of the EntityType to select Features. The EntityType id is
+     * the
+     * [entity_type_id][google.cloud.aiplatform.v1.CreateEntityTypeRequest.entity_type_id]
+     * specified during EntityType creation.
      *
      * Generated from protobuf field <code>string entity_type_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -72,9 +77,10 @@ class EntityTypeSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. ID of the EntityType to select Features. The EntityType id is the
-     * [entity_type_id][google.cloud.aiplatform.v1.CreateEntityTypeRequest.entity_type_id] specified
-     * during EntityType creation.
+     * Required. ID of the EntityType to select Features. The EntityType id is
+     * the
+     * [entity_type_id][google.cloud.aiplatform.v1.CreateEntityTypeRequest.entity_type_id]
+     * specified during EntityType creation.
      *
      * Generated from protobuf field <code>string entity_type_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -89,7 +95,8 @@ class EntityTypeSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Selectors choosing which Feature values to read from the EntityType.
+     * Required. Selectors choosing which Feature values to read from the
+     * EntityType.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FeatureSelector feature_selector = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\AIPlatform\V1\FeatureSelector|null
@@ -110,7 +117,8 @@ class EntityTypeSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Selectors choosing which Feature values to read from the EntityType.
+     * Required. Selectors choosing which Feature values to read from the
+     * EntityType.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FeatureSelector feature_selector = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\AIPlatform\V1\FeatureSelector $var

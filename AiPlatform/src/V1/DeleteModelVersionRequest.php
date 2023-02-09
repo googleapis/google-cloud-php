@@ -9,15 +9,16 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [ModelService.DeleteModelVersion][google.cloud.aiplatform.v1.ModelService.DeleteModelVersion].
+ * Request message for
+ * [ModelService.DeleteModelVersion][google.cloud.aiplatform.v1.ModelService.DeleteModelVersion].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.DeleteModelVersionRequest</code>
  */
 class DeleteModelVersionRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The name of the model version to be deleted, with a version ID explicitly
-     * included.
+     * Required. The name of the model version to be deleted, with a version ID
+     * explicitly included.
      * Example: `projects/{project}/locations/{location}/models/{model}&#64;1234`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -31,8 +32,8 @@ class DeleteModelVersionRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The name of the model version to be deleted, with a version ID explicitly
-     *           included.
+     *           Required. The name of the model version to be deleted, with a version ID
+     *           explicitly included.
      *           Example: `projects/{project}/locations/{location}/models/{model}&#64;1234`
      * }
      */
@@ -42,8 +43,8 @@ class DeleteModelVersionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the model version to be deleted, with a version ID explicitly
-     * included.
+     * Required. The name of the model version to be deleted, with a version ID
+     * explicitly included.
      * Example: `projects/{project}/locations/{location}/models/{model}&#64;1234`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -55,8 +56,8 @@ class DeleteModelVersionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the model version to be deleted, with a version ID explicitly
-     * included.
+     * Required. The name of the model version to be deleted, with a version ID
+     * explicitly included.
      * Example: `projects/{project}/locations/{location}/models/{model}&#64;1234`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>

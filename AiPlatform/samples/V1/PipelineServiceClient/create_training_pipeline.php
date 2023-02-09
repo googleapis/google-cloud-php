@@ -32,14 +32,14 @@ use Google\Protobuf\Value;
  * Creates a TrainingPipeline. A created TrainingPipeline right away will be
  * attempted to be run.
  *
- * @param string $formattedParent                        The resource name of the Location to create the TrainingPipeline in.
- *                                                       Format: `projects/{project}/locations/{location}`
+ * @param string $formattedParent                        The resource name of the Location to create the TrainingPipeline
+ *                                                       in. Format: `projects/{project}/locations/{location}`
  *                                                       Please see {@see PipelineServiceClient::locationName()} for help formatting this field.
  * @param string $trainingPipelineDisplayName            The user-defined name of this TrainingPipeline.
- * @param string $trainingPipelineTrainingTaskDefinition A Google Cloud Storage path to the YAML file that defines the training task
- *                                                       which is responsible for producing the model artifact, and may also include
- *                                                       additional auxiliary work.
- *                                                       The definition files that can be used here are found in
+ * @param string $trainingPipelineTrainingTaskDefinition A Google Cloud Storage path to the YAML file that defines the
+ *                                                       training task which is responsible for producing the model artifact, and
+ *                                                       may also include additional auxiliary work. The definition files that can
+ *                                                       be used here are found in
  *                                                       gs://google-cloud-aiplatform/schema/trainingjob/definition/.
  *                                                       Note: The URI given on output will be immutable and probably different,
  *                                                       including the URI scheme, than the one given on input. The output URI will

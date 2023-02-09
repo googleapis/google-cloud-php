@@ -30,12 +30,12 @@ use Google\Cloud\AIPlatform\V1\TensorboardServiceClient;
 /**
  * Creates a TensorboardExperiment.
  *
- * @param string $formattedParent         The resource name of the Tensorboard to create the TensorboardExperiment
- *                                        in. Format:
+ * @param string $formattedParent         The resource name of the Tensorboard to create the
+ *                                        TensorboardExperiment in. Format:
  *                                        `projects/{project}/locations/{location}/tensorboards/{tensorboard}`
  *                                        Please see {@see TensorboardServiceClient::tensorboardExperimentName()} for help formatting this field.
- * @param string $tensorboardExperimentId The ID to use for the Tensorboard experiment, which will become the final
- *                                        component of the Tensorboard experiment's resource name.
+ * @param string $tensorboardExperimentId The ID to use for the Tensorboard experiment, which becomes the
+ *                                        final component of the Tensorboard experiment's resource name.
  *
  *                                        This value should be 1-128 characters, and valid characters
  *                                        are /[a-z][0-9]-/.

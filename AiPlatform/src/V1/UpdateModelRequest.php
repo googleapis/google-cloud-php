@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [ModelService.UpdateModel][google.cloud.aiplatform.v1.ModelService.UpdateModel].
+ * Request message for
+ * [ModelService.UpdateModel][google.cloud.aiplatform.v1.ModelService.UpdateModel].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.UpdateModelRequest</code>
  */
@@ -40,7 +41,8 @@ class UpdateModelRequest extends \Google\Protobuf\Internal\Message
     private $model = null;
     /**
      * Required. The update mask applies to the resource.
-     * For the `FieldMask` definition, see [google.protobuf.FieldMask][google.protobuf.FieldMask].
+     * For the `FieldMask` definition, see
+     * [google.protobuf.FieldMask][google.protobuf.FieldMask].
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -73,7 +75,8 @@ class UpdateModelRequest extends \Google\Protobuf\Internal\Message
      *           must update them separately.
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           Required. The update mask applies to the resource.
-     *           For the `FieldMask` definition, see [google.protobuf.FieldMask][google.protobuf.FieldMask].
+     *           For the `FieldMask` definition, see
+     *           [google.protobuf.FieldMask][google.protobuf.FieldMask].
      * }
      */
     public function __construct($data = NULL) {
@@ -153,7 +156,8 @@ class UpdateModelRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The update mask applies to the resource.
-     * For the `FieldMask` definition, see [google.protobuf.FieldMask][google.protobuf.FieldMask].
+     * For the `FieldMask` definition, see
+     * [google.protobuf.FieldMask][google.protobuf.FieldMask].
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\FieldMask|null
@@ -175,7 +179,8 @@ class UpdateModelRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The update mask applies to the resource.
-     * For the `FieldMask` definition, see [google.protobuf.FieldMask][google.protobuf.FieldMask].
+     * For the `FieldMask` definition, see
+     * [google.protobuf.FieldMask][google.protobuf.FieldMask].
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Protobuf\FieldMask $var

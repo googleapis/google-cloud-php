@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Response message for [DatasetService.ImportData][google.cloud.aiplatform.v1.DatasetService.ImportData].
+ * Response message for
+ * [DatasetService.ImportData][google.cloud.aiplatform.v1.DatasetService.ImportData].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.ImportDataResponse</code>
  */

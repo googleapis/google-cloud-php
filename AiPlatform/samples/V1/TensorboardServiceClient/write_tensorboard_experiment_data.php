@@ -33,8 +33,7 @@ use Google\Cloud\AIPlatform\V1\WriteTensorboardRunDataRequest;
 
 /**
  * Write time series data points of multiple TensorboardTimeSeries in multiple
- * TensorboardRun's. If any data fail to be ingested, an error will be
- * returned.
+ * TensorboardRun's. If any data fail to be ingested, an error is returned.
  *
  * @param string $formattedTensorboardExperiment                            The resource name of the TensorboardExperiment to write data to.
  *                                                                          Format:
@@ -44,10 +43,10 @@ use Google\Cloud\AIPlatform\V1\WriteTensorboardRunDataRequest;
  *                                                                          Format:
  *                                                                          `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}/runs/{run}`
  *                                                                          Please see {@see TensorboardServiceClient::tensorboardRunName()} for help formatting this field.
- * @param string $writeRunDataRequestsTimeSeriesDataTensorboardTimeSeriesId The ID of the TensorboardTimeSeries, which will become the final component
- *                                                                          of the TensorboardTimeSeries' resource name
- * @param int    $writeRunDataRequestsTimeSeriesDataValueType               Immutable. The value type of this time series. All the values in this time series data
- *                                                                          must match this value type.
+ * @param string $writeRunDataRequestsTimeSeriesDataTensorboardTimeSeriesId The ID of the TensorboardTimeSeries, which will become the final
+ *                                                                          component of the TensorboardTimeSeries' resource name
+ * @param int    $writeRunDataRequestsTimeSeriesDataValueType               Immutable. The value type of this time series. All the values in
+ *                                                                          this time series data must match this value type.
  */
 function write_tensorboard_experiment_data_sample(
     string $formattedTensorboardExperiment,
