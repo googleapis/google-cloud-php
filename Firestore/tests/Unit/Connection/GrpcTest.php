@@ -27,7 +27,7 @@ use Google\Cloud\Firestore\V1\Document;
 use Google\Cloud\Firestore\V1\DocumentMask;
 use Google\Cloud\Firestore\V1\Precondition;
 use Google\Cloud\Firestore\V1\StructuredQuery;
-use Google\Cloud\Firestore\V1\StructuredQuery_CollectionSelector;
+use Google\Cloud\Firestore\V1\StructuredQuery\CollectionSelector;
 use Google\Cloud\Firestore\V1\TransactionOptions;
 use Google\Cloud\Firestore\V1\TransactionOptions_ReadWrite;
 use Google\Cloud\Firestore\V1\Value;
@@ -320,7 +320,7 @@ class GrpcTest extends TestCase
             'structuredQuery' => ['from' => [['collectionId' => 'parent']]]
         ];
 
-        $from = new StructuredQuery_CollectionSelector;
+        $from = new CollectionSelector();
         $from->setCollectionId('parent');
         $q = new StructuredQuery;
         $q->setFrom([$from]);
@@ -328,6 +328,35 @@ class GrpcTest extends TestCase
         $expected = [
             $args['parent'],
             ['structuredQuery' => $q] + $this->header()
+        ];
+
+        $this->sendAndAssert('runQuery', $args, $expected);
+    }
+
+    public function testRunQueryWithReadTime()
+    {
+        $args = [
+            'parent' => 'parent!',
+            'structuredQuery' => ['from' => [['collectionId' => 'parent']]],
+            'readTime' => [
+                'seconds' => (int) 123456789,
+                'nanos' => (int) 0
+            ]
+        ];
+
+        $from = new CollectionSelector();
+        $from->setCollectionId('parent');
+        $q = new StructuredQuery;
+        $q->setFrom([$from]);
+
+        $protobufTimestamp = new ProtobufTimestamp();
+        $protobufTimestamp->setSeconds($args['readTime']['seconds']);
+        $expected = [
+            $args['parent'],
+            [
+                'structuredQuery' => $q,
+                'readTime' => $protobufTimestamp
+            ] + $this->header()
         ];
 
         $this->sendAndAssert('runQuery', $args, $expected);

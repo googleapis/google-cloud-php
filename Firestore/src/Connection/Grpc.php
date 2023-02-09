@@ -254,6 +254,12 @@ class Grpc implements ConnectionInterface
             new StructuredQuery,
             $this->pluck('structuredQuery', $args)
         );
+        if (isset($args['readTime'])) {
+            $args['readTime'] = $this->serializer->decodeMessage(
+                new ProtobufTimestamp(),
+                $args['readTime']
+            );
+        }
 
         return $this->send([$this->firestore, 'runQuery'], [
             $this->pluck('parent', $args),
