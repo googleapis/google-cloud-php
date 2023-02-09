@@ -210,13 +210,13 @@ class DocumentAndCollectionTest extends FirestoreTestCase
             'readTime' => $readTime
         ])->current();
 
-
         $this->assertEquals($childName, $collection->id());
     }
 
     public function testRootCollectionsWithReadTime()
     {
         $collection = self::$client->collection(uniqid(self::COLLECTION_NAME));
+        self::$localDeletionQueue->add($collection);
         $readTime = new Timestamp(new \DateTimeImmutable());
         $expectedCount = count(iterator_to_array(self::$client->collections()));
 
@@ -230,5 +230,20 @@ class DocumentAndCollectionTest extends FirestoreTestCase
             $expectedCount,
             count(iterator_to_array($collections))
         );
+    }
+
+    public function testListDocumentsWithReadTime()
+    {
+        $collection = self::$client->collection(uniqid(self::COLLECTION_NAME));
+        self::$localDeletionQueue->add($collection);
+        $collection->add(['a' => 'b']);
+        // Creating a current timestamp and then adding a document
+        $readTime = new Timestamp(new \DateTimeImmutable());
+        $collection->add(['c' => 'd']);
+
+        // Reading at $readTime to get documents at that time
+        $list = $collection->listDocuments(['readTime' => $readTime]);
+        $this->assertCount(1, iterator_to_array($list));
+        $this->assertContainsOnlyInstancesOf(DocumentReference::class, $list);
     }
 }

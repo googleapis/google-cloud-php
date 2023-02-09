@@ -217,6 +217,12 @@ class Grpc implements ConnectionInterface
             : [];
 
         $args['mask'] = $this->documentMask($mask);
+        if (isset($args['readTime'])) {
+            $args['readTime'] = $this->serializer->decodeMessage(
+                new ProtobufTimestamp(),
+                $args['readTime']
+            );
+        }
 
         return $this->send([$this->firestore, 'listDocuments'], [
             $this->pluck('parent', $args),

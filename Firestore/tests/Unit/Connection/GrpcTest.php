@@ -274,6 +274,33 @@ class GrpcTest extends TestCase
         $this->sendAndAssert('listDocuments', $args, $expected);
     }
 
+    public function testListDocumentsWithReadTime()
+    {
+        $args = [
+            'parent' => sprintf('projects/%s/databases/%s/documents', self::PROJECT, self::DATABASE),
+            'collectionId' => 'coll1',
+            'mask' => [],
+            'readTime' => [
+                'seconds' => (int) 123456789,
+                'nanos' => (int) 0
+            ]
+        ];
+
+        $protobufTimestamp = new ProtobufTimestamp();
+        $protobufTimestamp->setSeconds($args['readTime']['seconds']);
+        $expected = [
+            $args['parent'],
+            $args['collectionId'],
+            [
+                'showMissing' => true,
+                'mask' => new DocumentMask(['field_paths' => []]),
+                'readTime' => $protobufTimestamp
+            ] + $this->header()
+        ];
+
+        $this->sendAndAssert('listDocuments', $args, $expected);
+    }
+
     public function testRollback()
     {
         $args = [
