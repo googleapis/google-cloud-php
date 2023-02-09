@@ -32,9 +32,6 @@ _tracked_paths.add(src)
 
 php.owlbot_main(src=src, dest=dest)
 
-
-
-
 # V1 is GA, so remove @experimental tags
 s.replace(
     'src/V1/**/*Client.php',
@@ -47,6 +44,7 @@ s.replace(
     'src/V1/Gapic/SecurityCenterGapicClient.php',
     r'Finding_State',
     r'Finding\\State')
+
 # Change the wording for the deprecation warning.
 s.replace(
     'src/*/*_*.php',
@@ -62,12 +60,6 @@ s.replace(
     r"""Generated from protobuf field \1
      */
     private $""")
-
-# prevent proto messages from being marked final
-s.replace(
-    "src/**/V*/**/*.php",
-    r"final class",
-    r"class")
 
 # Replace "Unwrapped" with "Value" for method names.
 s.replace(

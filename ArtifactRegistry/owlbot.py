@@ -28,9 +28,6 @@ dest = Path().resolve()
 
 php.owlbot_main(src=src, dest=dest)
 
-
-
-
 # Change the wording for the deprecation warning.
 s.replace(
     'src/*/*_*.php',
@@ -46,12 +43,6 @@ s.replace(
     r"""Generated from protobuf field \1
      */
     private $""")
-
-# prevent proto messages from being marked final
-s.replace(
-    "src/**/V*/**/*.php",
-    r"final class",
-    r"class")
 
 # Replace "Unwrapped" with "Value" for method names.
 s.replace(

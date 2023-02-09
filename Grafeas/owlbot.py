@@ -58,12 +58,6 @@ s.replace(
      */
     private $""")
 
-# prevent proto messages from being marked final
-s.replace(
-    "src/**/V*/**/*.php",
-    r"final class",
-    r"class")
-
 ### [END] protoc backwards compatibility fixes
 
 # fix relative cloud.google.com links

@@ -61,12 +61,6 @@ s.replace(
         }"""
 )
 
-# Change the wording for the deprecation warning.
-s.replace(
-    'src/*/*_*.php',
-    r'will be removed in the next major release',
-    'will be removed in a future release')
-
 # fix test group
 s.replace(
     'tests/**/V1/*Test.php',
@@ -82,12 +76,6 @@ s.replace(
     r"""Generated from protobuf field \1
      */
     private $""")
-
-# prevent proto messages from being marked final
-s.replace(
-    "src/**/V*/**/*.php",
-    r"final class",
-    r"class")
 
 # Replace "Unwrapped" with "Value" for method names.
 s.replace(

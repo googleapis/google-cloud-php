@@ -48,13 +48,6 @@ s.replace(
     + "\n",
     '')
 
-
-# Change the wording for the deprecation warning.
-s.replace(
-    'src/*/*_*.php',
-    r'will be removed in the next major release',
-    'will be removed in a future release')
-
 ### [START] protoc backwards compatibility fixes
 
 # roll back to private properties.
@@ -64,12 +57,6 @@ s.replace(
     r"""Generated from protobuf field \1
      */
     private $""")
-
-# prevent proto messages from being marked final
-s.replace(
-    "src/**/V*/**/*.php",
-    r"final class",
-    r"class")
 
 # Replace "Unwrapped" with "Value" for method names.
 s.replace(

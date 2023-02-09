@@ -32,9 +32,6 @@ _tracked_paths.add(src)
 
 php.owlbot_main(src=src, dest=dest)
 
-
-
-
 # Use new namespace in the doc sample. See
 # https://github.com/googleapis/gapic-generator/issues/2141
 s.replace(
@@ -119,12 +116,6 @@ s.replace(
     r"""Generated from protobuf field \1
      */
     private $""")
-
-# prevent proto messages from being marked final
-s.replace(
-    "src/**/V*/**/*.php",
-    r"final class",
-    r"class")
 
 # Replace "Unwrapped" with "Value" for method names.
 s.replace(
