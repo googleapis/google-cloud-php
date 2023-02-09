@@ -19,6 +19,7 @@ namespace Google\Cloud\Datastore\Tests\System;
 
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Datastore\DatastoreClient;
+use Google\Cloud\Datastore\Query\Aggregation;
 
 /**
  * @group datastore
@@ -373,6 +374,174 @@ class RunQueryTest extends DatastoreMultipleDbTestCase
         $result = $client->runQuery($query, ['readTime' => $time]);
         $personListEntities = iterator_to_array($result);
         $this->assertEquals($personListEntities[0]['lastName'], $lastName);
+    }
+
+    /**
+     * @dataProvider defaultDbClientProvider
+     */
+    public function testAggregationQueryShouldFailForIncorrectAlias(DatastoreClient $client)
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('alias does not exist');
+        $aggregationQuery = $client->query()
+            ->kind(self::$kind)
+            ->filter('lastName', '=', 'Smith')
+            ->aggregation(Aggregation::count());
+
+        $results = $client->runAggregationQuery($aggregationQuery);
+
+        $results->get('total');
+    }
+
+    /**
+     * @dataProvider defaultDbClientProvider
+     */
+    public function testAggregationQueryWithFilter(DatastoreClient $client)
+    {
+        $aggregationQuery = $client->query()
+            ->kind(self::$kind)
+            ->filter('lastName', '=', 'Smith')
+            ->aggregation(Aggregation::count()->alias('total'));
+
+        $results = $client->runAggregationQuery($aggregationQuery);
+
+        $this->assertEquals(3, $results->get('total'));
+    }
+
+    /**
+     * @dataProvider defaultDbClientProvider
+     */
+    public function testAggregationOverQueryWithFilter(DatastoreClient $client)
+    {
+        $query = $client->query()
+            ->kind(self::$kind)
+            ->filter('lastName', '=', 'Smith');
+        $aggregationQuery = $client->aggregationQuery()
+            ->over($query)
+            ->addAggregation(Aggregation::count());
+
+        $results = $client->runAggregationQuery($aggregationQuery);
+
+        $this->assertEquals(3, $results->get('property_1'));
+    }
+
+    /**
+     * @dataProvider defaultDbClientProvider
+     */
+    public function testAggregationGqlQueryWithFilter(DatastoreClient $client)
+    {
+        $aggregationQuery = $client->gqlQuery("SELECT count(*) as total From Person WHERE lastName = 'Smith'", [
+            'allowLiterals' => true
+        ])
+        ->aggregation();
+
+        $results = $client->runAggregationQuery($aggregationQuery);
+
+        $this->assertEquals(3, $results->get('total'));
+    }
+
+    /**
+     * @dataProvider defaultDbClientProvider
+     */
+    public function testAggregationOverGqlQueryWithFilter(DatastoreClient $client)
+    {
+        $query = $client->gqlQuery("SELECT count(*) as total From Person WHERE lastName = 'Smith'", [
+            'allowLiterals' => true
+        ]);
+        $aggregationQuery = $client->aggregationQuery()
+            ->over($query);
+
+        $results = $client->runAggregationQuery($aggregationQuery);
+
+        $this->assertEquals(3, $results->get('total'));
+    }
+
+    /**
+     * @dataProvider defaultDbClientProvider
+     */
+    public function testAggregationQueryWithLimit(DatastoreClient $client)
+    {
+        $query = $client->query()
+            ->kind(self::$kind)
+            ->filter('lastName', '=', 'Smith');
+        $aggregationQuery = $client->aggregationQuery()
+            ->over($query)
+            ->addAggregation(Aggregation::count()->limit(2)->alias('total_upto_2'));
+
+        $results = $client->runAggregationQuery($aggregationQuery);
+
+        $this->assertEquals(2, $results->get('total_upto_2'));
+    }
+
+    /**
+     * @dataProvider defaultDbClientProvider
+     */
+    public function testAggregationGqlQueryWithLimit(DatastoreClient $client)
+    {
+        $queryString = sprintf(
+            "AGGREGATE
+                COUNT_UP_TO(2) AS total_upto_2
+            OVER (
+                SELECT * From Person WHERE lastName = 'Smith'
+            )",
+        );
+        $query = $client->gqlQuery(
+            $queryString,
+            ['allowLiterals' => true]
+        );
+        $aggregationQuery = $client->aggregationQuery()
+            ->over($query);
+
+        $results = $client->runAggregationQuery($aggregationQuery);
+
+        $this->assertEquals(2, $results->get('total_upto_2'));
+    }
+
+    /**
+     * @dataProvider defaultDbClientProvider
+     */
+    public function testAggregationQueryWithMultipleAggregations(DatastoreClient $client)
+    {
+        $query = $client->query()
+            ->kind(self::$kind)
+            ->filter('lastName', '=', 'Smith');
+        $aggregationQuery = $client->aggregationQuery()
+            ->over($query)
+            ->addAggregation(Aggregation::count()->alias('total_count'))
+            ->addAggregation(Aggregation::count()->limit(2)->alias('total_upto_2'));
+
+        $results = $client->runAggregationQuery($aggregationQuery);
+
+        $this->assertEquals(3, $results->get('total_count'));
+        $this->assertEquals(2, $results->get('total_upto_2'));
+    }
+
+    /**
+     * @dataProvider defaultDbClientProvider
+     */
+    public function testAggregationGqlQueryWithMultipleAggregations(DatastoreClient $client)
+    {
+        $queryString = sprintf(
+            "AGGREGATE
+                COUNT(*) AS total_count,
+                COUNT_UP_TO(1) AS count_up_to_1,
+                COUNT_UP_TO(2) AS count_up_to_2
+            OVER (
+                SELECT * From Person WHERE lastName = 'Smith'
+            )",
+        );
+        $query = $client->gqlQuery(
+            $queryString,
+            ['allowLiterals' => true]
+        );
+        $aggregationQuery = $client->aggregationQuery()
+            ->over($query);
+
+        $results = $client->runAggregationQuery($aggregationQuery);
+
+        $this->assertEquals(3, $results->get('total_count'));
+        $this->assertEquals(2, $results->get('count_up_to_2'));
+        $this->assertEquals(1, $results->get('count_up_to_1'));
     }
 
     private function runQueryAndSortResults($client, $query)

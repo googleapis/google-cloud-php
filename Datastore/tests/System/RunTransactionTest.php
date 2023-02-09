@@ -19,6 +19,7 @@ namespace Google\Cloud\Datastore\Tests\System;
 
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Datastore\DatastoreClient;
+use Google\Cloud\Datastore\Query\Aggregation;
 
 /**
  * @group datastore
@@ -63,17 +64,29 @@ class RunTransactionTest extends DatastoreMultipleDbTestCase
         $transaction2 = $client->transaction();
         $query = $client->query()
             ->kind($kind)
-            ->hasAncestor($key1);
+            ->hasAncestor($key1)
+            ->filter('lastName', '=', 'Smith');
         $results = iterator_to_array($transaction2->runQuery($query));
+
+        $this->assertAggregationQueryResult($transaction2, $query, 2);
+
         $results[1]['lastName'] = $newLastName;
         $transaction2->update($results[1]);
         $transaction2->commit();
 
         $this->assertCount(2, $results);
 
+        // read transaction with aggregation query
+        $transaction3 = $client->readOnlyTransaction();
+        $query = $client->query()
+        ->kind($kind)
+        ->hasAncestor($key1)
+        ->filter('lastName', '=', 'Smith');
+        $this->assertAggregationQueryResult($transaction3, $query, 1);
+
         // transaction with lookup
-        $transaction3 = $client->transaction();
-        $result = $transaction3->lookup($key2);
+        $transaction4 = $client->transaction();
+        $result = $transaction4->lookup($key2);
         $transaction3->rollback();
 
         $this->assertEquals($newLastName, $result['lastName']);
@@ -195,5 +208,12 @@ class RunTransactionTest extends DatastoreMultipleDbTestCase
         $results = iterator_to_array($client->runQuery($query));
 
         $this->assertCount($expectedCount, $results);
+    }
+
+    private function assertAggregationQueryResult($transaction, $query, $expectedAggregationCount)
+    {
+        $aggregationQuery = $query->aggregation(Aggregation::count()->alias('total'));
+        $results = $transaction->runAggregationQuery($aggregationQuery);
+        $this->assertEquals($expectedAggregationCount, $results->get('total'));
     }
 }
