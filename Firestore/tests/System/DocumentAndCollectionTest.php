@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2017 Google Inc.
  *
@@ -194,6 +195,40 @@ class DocumentAndCollectionTest extends FirestoreTestCase
         $this->assertContainsOnlyInstancesOf(
             CollectionReference::class,
             iterator_to_array($client->collections())
+        );
+    }
+
+    public function testCollectionsWithReadTime()
+    {
+        $childName = uniqid(self::COLLECTION_NAME);
+        $child = $this->document->collection($childName);
+        self::$localDeletionQueue->add($child);
+        $doc = $child->add(['name' => 'John']);
+
+        $readTime = new Timestamp(new \DateTimeImmutable());
+        $collection = $this->document->collections([
+            'readTime' => $readTime
+        ])->current();
+
+
+        $this->assertEquals($childName, $collection->id());
+    }
+
+    public function testRootCollectionsWithReadTime()
+    {
+        $collection = self::$client->collection(uniqid(self::COLLECTION_NAME));
+        $readTime = new Timestamp(new \DateTimeImmutable());
+        $expectedCount = count(iterator_to_array(self::$client->collections()));
+
+        // Creating a random document
+        $document = $collection->newDocument();
+        $document->create(['firstName' => 'Yash']);
+
+        // Asserting we still get the collections at readTime instead of current
+        $collections = self::$client->collections(['readTime' => $readTime]);
+        $this->assertEquals(
+            $expectedCount,
+            count(iterator_to_array($collections))
         );
     }
 }

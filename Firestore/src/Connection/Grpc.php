@@ -195,6 +195,12 @@ class Grpc implements ConnectionInterface
      */
     public function listCollectionIds(array $args)
     {
+        if (isset($args['readTime'])) {
+            $args['readTime'] = $this->serializer->decodeMessage(
+                new ProtobufTimestamp(),
+                $args['readTime']
+            );
+        }
         return $this->send([$this->firestore, 'listCollectionIds'], [
             $this->pluck('parent', $args),
             $this->addRequestHeaders($args)

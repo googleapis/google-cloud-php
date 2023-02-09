@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2017 Google Inc.
  *
@@ -226,6 +227,29 @@ class GrpcTest extends TestCase
         ];
 
         $expected = [$args['parent'], $this->header()];
+
+        $this->sendAndAssert('listCollectionIds', $args, $expected);
+    }
+
+    public function testListCollectionIdsWithReadTime()
+    {
+        $args = [
+            'parent' => sprintf(
+                'projects/%s/databases/%s/documents',
+                self::PROJECT,
+                self::DATABASE
+            ),
+            'readTime' => [
+                'seconds' => (int) 123456789,
+                'nanos' => (int) 0
+            ]
+        ];
+        $protobufTimestamp = new ProtobufTimestamp();
+        $protobufTimestamp->setSeconds($args['readTime']['seconds']);
+        $expected = [
+            $args['parent'],
+            $this->header() + ['readTime' => $protobufTimestamp]
+        ];
 
         $this->sendAndAssert('listCollectionIds', $args, $expected);
     }
