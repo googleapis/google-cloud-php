@@ -47,14 +47,6 @@ s.replace(
     + "\n",
     '')
 
-# fix namespace casing
-s.replace(
-    "**/*.php",
-    r"(namespace|use) Google\\Cloud\\Recommendationengine",
-    r"\1 Google\\Cloud\\RecommendationEngine",
-)
-
-
 ### [START] protoc backwards compatibility fixes
 
 # roll back to private properties.
