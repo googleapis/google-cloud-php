@@ -36,6 +36,8 @@ use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Bigtable\V2\CheckAndMutateRowRequest;
 use Google\Cloud\Bigtable\V2\CheckAndMutateRowResponse;
+use Google\Cloud\Bigtable\V2\GenerateInitialChangeStreamPartitionsRequest;
+use Google\Cloud\Bigtable\V2\GenerateInitialChangeStreamPartitionsResponse;
 use Google\Cloud\Bigtable\V2\MutateRowRequest;
 use Google\Cloud\Bigtable\V2\MutateRowResponse;
 use Google\Cloud\Bigtable\V2\MutateRowsRequest;
@@ -44,6 +46,8 @@ use Google\Cloud\Bigtable\V2\MutateRowsResponse;
 use Google\Cloud\Bigtable\V2\Mutation;
 use Google\Cloud\Bigtable\V2\PingAndWarmRequest;
 use Google\Cloud\Bigtable\V2\PingAndWarmResponse;
+use Google\Cloud\Bigtable\V2\ReadChangeStreamRequest;
+use Google\Cloud\Bigtable\V2\ReadChangeStreamResponse;
 use Google\Cloud\Bigtable\V2\ReadModifyWriteRowRequest;
 use Google\Cloud\Bigtable\V2\ReadModifyWriteRowResponse;
 use Google\Cloud\Bigtable\V2\ReadModifyWriteRule;
@@ -53,6 +57,10 @@ use Google\Cloud\Bigtable\V2\RowFilter;
 use Google\Cloud\Bigtable\V2\RowSet;
 use Google\Cloud\Bigtable\V2\SampleRowKeysRequest;
 use Google\Cloud\Bigtable\V2\SampleRowKeysResponse;
+use Google\Cloud\Bigtable\V2\StreamContinuationTokens;
+use Google\Cloud\Bigtable\V2\StreamPartition;
+use Google\Protobuf\Duration;
+use Google\Protobuf\Timestamp;
 
 /**
  * Service Description: Service for reading from and writing to existing Bigtable tables.
@@ -310,11 +318,11 @@ class BigtableGapicClient
      * }
      * ```
      *
-     * @param string $tableName    Required. The unique name of the table to which the conditional mutation should be
-     *                             applied.
-     *                             Values are of the form
+     * @param string $tableName    Required. The unique name of the table to which the conditional mutation
+     *                             should be applied. Values are of the form
      *                             `projects/<project>/instances/<instance>/tables/<table>`.
-     * @param string $rowKey       Required. The key of the row to which the conditional mutation should be applied.
+     * @param string $rowKey       Required. The key of the row to which the conditional mutation should be
+     *                             applied.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -382,6 +390,61 @@ class BigtableGapicClient
     }
 
     /**
+     * NOTE: This API is intended to be used by Apache Beam BigtableIO.
+     * Returns the current list of partitions that make up the table's
+     * change stream. The union of partitions will cover the entire keyspace.
+     * Partitions can be read with `ReadChangeStream`.
+     *
+     * Sample code:
+     * ```
+     * $bigtableClient = new Google\Cloud\Bigtable\V2\BigtableClient();
+     * try {
+     *     $formattedTableName = $bigtableClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
+     *     // Read all responses until the stream is complete
+     *     $stream = $bigtableClient->generateInitialChangeStreamPartitions($formattedTableName);
+     *     foreach ($stream->readAll() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $bigtableClient->close();
+     * }
+     * ```
+     *
+     * @param string $tableName    Required. The unique name of the table from which to get change stream
+     *                             partitions. Values are of the form
+     *                             `projects/<project>/instances/<instance>/tables/<table>`.
+     *                             Change streaming must be enabled on the table.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $appProfileId
+     *           This value specifies routing for replication. If not specified, the
+     *           "default" application profile will be used.
+     *           Single cluster routing must be configured on the profile.
+     *     @type int $timeoutMillis
+     *           Timeout to use for this call.
+     * }
+     *
+     * @return \Google\ApiCore\ServerStream
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function generateInitialChangeStreamPartitions($tableName, array $optionalArgs = [])
+    {
+        $request = new GenerateInitialChangeStreamPartitionsRequest();
+        $requestParamHeaders = [];
+        $request->setTableName($tableName);
+        $requestParamHeaders['table_name'] = $tableName;
+        if (isset($optionalArgs['appProfileId'])) {
+            $request->setAppProfileId($optionalArgs['appProfileId']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GenerateInitialChangeStreamPartitions', GenerateInitialChangeStreamPartitionsResponse::class, $optionalArgs, $request, Call::SERVER_STREAMING_CALL);
+    }
+
+    /**
      * Mutates a row atomically. Cells already present in the row are left
      * unchanged unless explicitly changed by `mutation`.
      *
@@ -398,13 +461,13 @@ class BigtableGapicClient
      * }
      * ```
      *
-     * @param string     $tableName    Required. The unique name of the table to which the mutation should be applied.
-     *                                 Values are of the form
+     * @param string     $tableName    Required. The unique name of the table to which the mutation should be
+     *                                 applied. Values are of the form
      *                                 `projects/<project>/instances/<instance>/tables/<table>`.
      * @param string     $rowKey       Required. The key of the row to which the mutation should be applied.
-     * @param Mutation[] $mutations    Required. Changes to be atomically applied to the specified row. Entries are applied
-     *                                 in order, meaning that earlier mutations can be masked by later ones.
-     *                                 Must contain at least one entry and at most 100000.
+     * @param Mutation[] $mutations    Required. Changes to be atomically applied to the specified row. Entries
+     *                                 are applied in order, meaning that earlier mutations can be masked by later
+     *                                 ones. Must contain at least one entry and at most 100000.
      * @param array      $optionalArgs {
      *     Optional.
      *
@@ -464,7 +527,8 @@ class BigtableGapicClient
      * }
      * ```
      *
-     * @param string  $tableName    Required. The unique name of the table to which the mutations should be applied.
+     * @param string  $tableName    Required. The unique name of the table to which the mutations should be
+     *                              applied.
      * @param Entry[] $entries      Required. The row keys and corresponding mutations to be applied in bulk.
      *                              Each entry is applied as an atomic mutation, but the entries may be
      *                              applied in arbitrary order (even between entries for the same row).
@@ -520,8 +584,9 @@ class BigtableGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The unique name of the instance to check permissions for as well as
-     *                             respond. Values are of the form `projects/<project>/instances/<instance>`.
+     * @param string $name         Required. The unique name of the instance to check permissions for as well
+     *                             as respond. Values are of the form
+     *                             `projects/<project>/instances/<instance>`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -559,6 +624,106 @@ class BigtableGapicClient
     }
 
     /**
+     * NOTE: This API is intended to be used by Apache Beam BigtableIO.
+     * Reads changes from a table's change stream. Changes will
+     * reflect both user-initiated mutations and mutations that are caused by
+     * garbage collection.
+     *
+     * Sample code:
+     * ```
+     * $bigtableClient = new Google\Cloud\Bigtable\V2\BigtableClient();
+     * try {
+     *     $formattedTableName = $bigtableClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
+     *     // Read all responses until the stream is complete
+     *     $stream = $bigtableClient->readChangeStream($formattedTableName);
+     *     foreach ($stream->readAll() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $bigtableClient->close();
+     * }
+     * ```
+     *
+     * @param string $tableName    Required. The unique name of the table from which to read a change stream.
+     *                             Values are of the form
+     *                             `projects/<project>/instances/<instance>/tables/<table>`.
+     *                             Change streaming must be enabled on the table.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $appProfileId
+     *           This value specifies routing for replication. If not specified, the
+     *           "default" application profile will be used.
+     *           Single cluster routing must be configured on the profile.
+     *     @type StreamPartition $partition
+     *           The partition to read changes from.
+     *     @type Timestamp $startTime
+     *           Start reading the stream at the specified timestamp. This timestamp must
+     *           be within the change stream retention period, less than or equal to the
+     *           current time, and after change stream creation, whichever is greater.
+     *           This value is inclusive and will be truncated to microsecond granularity.
+     *     @type StreamContinuationTokens $continuationTokens
+     *           Tokens that describe how to resume reading a stream where reading
+     *           previously left off. If specified, changes will be read starting at the
+     *           the position. Tokens are delivered on the stream as part of `Heartbeat`
+     *           and `CloseStream` messages.
+     *
+     *           If a single token is provided, the token’s partition must exactly match
+     *           the request’s partition. If multiple tokens are provided, as in the case
+     *           of a partition merge, the union of the token partitions must exactly
+     *           cover the request’s partition. Otherwise, INVALID_ARGUMENT will be
+     *           returned.
+     *     @type Timestamp $endTime
+     *           If specified, OK will be returned when the stream advances beyond
+     *           this time. Otherwise, changes will be continuously delivered on the stream.
+     *           This value is inclusive and will be truncated to microsecond granularity.
+     *     @type Duration $heartbeatDuration
+     *           If specified, the duration between `Heartbeat` messages on the stream.
+     *           Otherwise, defaults to 5 seconds.
+     *     @type int $timeoutMillis
+     *           Timeout to use for this call.
+     * }
+     *
+     * @return \Google\ApiCore\ServerStream
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function readChangeStream($tableName, array $optionalArgs = [])
+    {
+        $request = new ReadChangeStreamRequest();
+        $requestParamHeaders = [];
+        $request->setTableName($tableName);
+        $requestParamHeaders['table_name'] = $tableName;
+        if (isset($optionalArgs['appProfileId'])) {
+            $request->setAppProfileId($optionalArgs['appProfileId']);
+        }
+
+        if (isset($optionalArgs['partition'])) {
+            $request->setPartition($optionalArgs['partition']);
+        }
+
+        if (isset($optionalArgs['startTime'])) {
+            $request->setStartTime($optionalArgs['startTime']);
+        }
+
+        if (isset($optionalArgs['continuationTokens'])) {
+            $request->setContinuationTokens($optionalArgs['continuationTokens']);
+        }
+
+        if (isset($optionalArgs['endTime'])) {
+            $request->setEndTime($optionalArgs['endTime']);
+        }
+
+        if (isset($optionalArgs['heartbeatDuration'])) {
+            $request->setHeartbeatDuration($optionalArgs['heartbeatDuration']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('ReadChangeStream', ReadChangeStreamResponse::class, $optionalArgs, $request, Call::SERVER_STREAMING_CALL);
+    }
+
+    /**
      * Modifies a row atomically on the server. The method reads the latest
      * existing timestamp and value from the specified columns and writes a new
      * entry based on pre-defined read/modify/write rules. The new value for the
@@ -578,14 +743,14 @@ class BigtableGapicClient
      * }
      * ```
      *
-     * @param string                $tableName    Required. The unique name of the table to which the read/modify/write rules should be
-     *                                            applied.
-     *                                            Values are of the form
+     * @param string                $tableName    Required. The unique name of the table to which the read/modify/write rules
+     *                                            should be applied. Values are of the form
      *                                            `projects/<project>/instances/<instance>/tables/<table>`.
-     * @param string                $rowKey       Required. The key of the row to which the read/modify/write rules should be applied.
-     * @param ReadModifyWriteRule[] $rules        Required. Rules specifying how the specified row's contents are to be transformed
-     *                                            into writes. Entries are applied in order, meaning that earlier rules will
-     *                                            affect the results of later ones.
+     * @param string                $rowKey       Required. The key of the row to which the read/modify/write rules should be
+     *                                            applied.
+     * @param ReadModifyWriteRule[] $rules        Required. Rules specifying how the specified row's contents are to be
+     *                                            transformed into writes. Entries are applied in order, meaning that earlier
+     *                                            rules will affect the results of later ones.
      * @param array                 $optionalArgs {
      *     Optional.
      *

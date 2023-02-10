@@ -19,6 +19,8 @@ class ResourceSettings extends \Google\Protobuf\Internal\Message
      * Resource identifier.
      * For a project this represents project_id. If the project is already
      * taken, the workload creation will fail.
+     * For KeyRing, this represents the keyring_id.
+     * For a folder, don't set this value as folder_id is assigned by Google.
      *
      * Generated from protobuf field <code>string resource_id = 1;</code>
      */
@@ -50,6 +52,8 @@ class ResourceSettings extends \Google\Protobuf\Internal\Message
      *           Resource identifier.
      *           For a project this represents project_id. If the project is already
      *           taken, the workload creation will fail.
+     *           For KeyRing, this represents the keyring_id.
+     *           For a folder, don't set this value as folder_id is assigned by Google.
      *     @type int $resource_type
      *           Indicates the type of resource. This field should be specified to
      *           correspond the id to the right project type (CONSUMER_PROJECT or
@@ -69,6 +73,8 @@ class ResourceSettings extends \Google\Protobuf\Internal\Message
      * Resource identifier.
      * For a project this represents project_id. If the project is already
      * taken, the workload creation will fail.
+     * For KeyRing, this represents the keyring_id.
+     * For a folder, don't set this value as folder_id is assigned by Google.
      *
      * Generated from protobuf field <code>string resource_id = 1;</code>
      * @return string
@@ -82,6 +88,8 @@ class ResourceSettings extends \Google\Protobuf\Internal\Message
      * Resource identifier.
      * For a project this represents project_id. If the project is already
      * taken, the workload creation will fail.
+     * For KeyRing, this represents the keyring_id.
+     * For a folder, don't set this value as folder_id is assigned by Google.
      *
      * Generated from protobuf field <code>string resource_id = 1;</code>
      * @param string $var
