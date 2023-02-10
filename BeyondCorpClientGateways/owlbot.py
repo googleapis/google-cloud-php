@@ -38,7 +38,6 @@ php.owlbot_main(
     ]
 )
 
-
 # remove class_alias code
 s.replace(
     "src/V*/**/*.php",
