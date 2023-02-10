@@ -3,7 +3,7 @@ on:
     push:
         tags:
             - "*"
-
+    workflow_dispatch:
 jobs:
     docs:
         name: "Split and Release Components"
