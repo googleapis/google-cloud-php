@@ -16,7 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class MutateRowsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The unique name of the table to which the mutations should be applied.
+     * Required. The unique name of the table to which the mutations should be
+     * applied.
      *
      * Generated from protobuf field <code>string table_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -46,7 +47,8 @@ class MutateRowsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $table_name
-     *           Required. The unique name of the table to which the mutations should be applied.
+     *           Required. The unique name of the table to which the mutations should be
+     *           applied.
      *     @type string $app_profile_id
      *           This value specifies routing for replication. If not specified, the
      *           "default" application profile will be used.
@@ -64,7 +66,8 @@ class MutateRowsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The unique name of the table to which the mutations should be applied.
+     * Required. The unique name of the table to which the mutations should be
+     * applied.
      *
      * Generated from protobuf field <code>string table_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -75,7 +78,8 @@ class MutateRowsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The unique name of the table to which the mutations should be applied.
+     * Required. The unique name of the table to which the mutations should be
+     * applied.
      *
      * Generated from protobuf field <code>string table_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

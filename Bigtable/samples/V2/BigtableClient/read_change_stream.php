@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2022 Google LLC
+ * Copyright 2023 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,31 +22,38 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START bigtable_v2_generated_Bigtable_CheckAndMutateRow_sync]
+// [START bigtable_v2_generated_Bigtable_ReadChangeStream_sync]
 use Google\ApiCore\ApiException;
+use Google\ApiCore\ServerStream;
 use Google\Cloud\Bigtable\V2\BigtableClient;
-use Google\Cloud\Bigtable\V2\CheckAndMutateRowResponse;
+use Google\Cloud\Bigtable\V2\ReadChangeStreamResponse;
 
 /**
- * Mutates a row atomically based on the output of a predicate Reader filter.
+ * NOTE: This API is intended to be used by Apache Beam BigtableIO.
+ * Reads changes from a table's change stream. Changes will
+ * reflect both user-initiated mutations and mutations that are caused by
+ * garbage collection.
  *
- * @param string $formattedTableName The unique name of the table to which the conditional mutation
- *                                   should be applied. Values are of the form
- *                                   `projects/<project>/instances/<instance>/tables/<table>`. Please see
+ * @param string $formattedTableName The unique name of the table from which to read a change stream.
+ *                                   Values are of the form
+ *                                   `projects/<project>/instances/<instance>/tables/<table>`.
+ *                                   Change streaming must be enabled on the table. Please see
  *                                   {@see BigtableClient::tableName()} for help formatting this field.
- * @param string $rowKey             The key of the row to which the conditional mutation should be
- *                                   applied.
  */
-function check_and_mutate_row_sample(string $formattedTableName, string $rowKey): void
+function read_change_stream_sample(string $formattedTableName): void
 {
     // Create a client.
     $bigtableClient = new BigtableClient();
 
     // Call the API and handle any network failures.
     try {
-        /** @var CheckAndMutateRowResponse $response */
-        $response = $bigtableClient->checkAndMutateRow($formattedTableName, $rowKey);
-        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+        /** @var ServerStream $stream */
+        $stream = $bigtableClient->readChangeStream($formattedTableName);
+
+        /** @var ReadChangeStreamResponse $element */
+        foreach ($stream->readAll() as $element) {
+            printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
+        }
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
@@ -64,8 +71,7 @@ function check_and_mutate_row_sample(string $formattedTableName, string $rowKey)
 function callSample(): void
 {
     $formattedTableName = BigtableClient::tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
-    $rowKey = '...';
 
-    check_and_mutate_row_sample($formattedTableName, $rowKey);
+    read_change_stream_sample($formattedTableName);
 }
-// [END bigtable_v2_generated_Bigtable_CheckAndMutateRow_sync]
+// [END bigtable_v2_generated_Bigtable_ReadChangeStream_sync]

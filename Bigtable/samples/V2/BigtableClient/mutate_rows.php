@@ -35,7 +35,8 @@ use Google\Cloud\Bigtable\V2\Mutation;
  * atomically as in MutateRow, but the entire batch is not executed
  * atomically.
  *
- * @param string $formattedTableName The unique name of the table to which the mutations should be applied. Please see
+ * @param string $formattedTableName The unique name of the table to which the mutations should be
+ *                                   applied. Please see
  *                                   {@see BigtableClient::tableName()} for help formatting this field.
  */
 function mutate_rows_sample(string $formattedTableName): void
