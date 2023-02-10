@@ -152,4 +152,40 @@ class BigtableGrpcClient extends \Grpc\BaseStub {
         $metadata, $options);
     }
 
+    /**
+     * NOTE: This API is intended to be used by Apache Beam BigtableIO.
+     * Returns the current list of partitions that make up the table's
+     * change stream. The union of partitions will cover the entire keyspace.
+     * Partitions can be read with `ReadChangeStream`.
+     * @param \Google\Cloud\Bigtable\V2\GenerateInitialChangeStreamPartitionsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\ServerStreamingCall
+     */
+    public function GenerateInitialChangeStreamPartitions(\Google\Cloud\Bigtable\V2\GenerateInitialChangeStreamPartitionsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_serverStreamRequest('/google.bigtable.v2.Bigtable/GenerateInitialChangeStreamPartitions',
+        $argument,
+        ['\Google\Cloud\Bigtable\V2\GenerateInitialChangeStreamPartitionsResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * NOTE: This API is intended to be used by Apache Beam BigtableIO.
+     * Reads changes from a table's change stream. Changes will
+     * reflect both user-initiated mutations and mutations that are caused by
+     * garbage collection.
+     * @param \Google\Cloud\Bigtable\V2\ReadChangeStreamRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\ServerStreamingCall
+     */
+    public function ReadChangeStream(\Google\Cloud\Bigtable\V2\ReadChangeStreamRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_serverStreamRequest('/google.bigtable.v2.Bigtable/ReadChangeStream',
+        $argument,
+        ['\Google\Cloud\Bigtable\V2\ReadChangeStreamResponse', 'decode'],
+        $metadata, $options);
+    }
+
 }

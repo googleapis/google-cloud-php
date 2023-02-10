@@ -3,7 +3,17 @@
 return [
     'interfaces' => [
         'google.bigtable.v2.Bigtable' => [
+            'GenerateInitialChangeStreamPartitions' => [
+                'grpcStreaming' => [
+                    'grpcStreamingType' => 'ServerStreaming',
+                ],
+            ],
             'MutateRows' => [
+                'grpcStreaming' => [
+                    'grpcStreamingType' => 'ServerStreaming',
+                ],
+            ],
+            'ReadChangeStream' => [
                 'grpcStreaming' => [
                     'grpcStreamingType' => 'ServerStreaming',
                 ],
