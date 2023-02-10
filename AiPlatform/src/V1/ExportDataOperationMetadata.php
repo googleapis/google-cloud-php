@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Runtime operation information for [DatasetService.ExportData][google.cloud.aiplatform.v1.DatasetService.ExportData].
+ * Runtime operation information for
+ * [DatasetService.ExportData][google.cloud.aiplatform.v1.DatasetService.ExportData].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.ExportDataOperationMetadata</code>
  */

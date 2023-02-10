@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Response message for [TensorboardService.ListTensorboardExperiments][google.cloud.aiplatform.v1.TensorboardService.ListTensorboardExperiments].
+ * Response message for
+ * [TensorboardService.ListTensorboardExperiments][google.cloud.aiplatform.v1.TensorboardService.ListTensorboardExperiments].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.ListTensorboardExperimentsResponse</code>
  */
@@ -23,8 +24,9 @@ class ListTensorboardExperimentsResponse extends \Google\Protobuf\Internal\Messa
     private $tensorboard_experiments;
     /**
      * A token, which can be sent as
-     * [ListTensorboardExperimentsRequest.page_token][google.cloud.aiplatform.v1.ListTensorboardExperimentsRequest.page_token] to retrieve the next page.
-     * If this field is omitted, there are no subsequent pages.
+     * [ListTensorboardExperimentsRequest.page_token][google.cloud.aiplatform.v1.ListTensorboardExperimentsRequest.page_token]
+     * to retrieve the next page. If this field is omitted, there are no
+     * subsequent pages.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
@@ -40,8 +42,9 @@ class ListTensorboardExperimentsResponse extends \Google\Protobuf\Internal\Messa
      *           The TensorboardExperiments mathching the request.
      *     @type string $next_page_token
      *           A token, which can be sent as
-     *           [ListTensorboardExperimentsRequest.page_token][google.cloud.aiplatform.v1.ListTensorboardExperimentsRequest.page_token] to retrieve the next page.
-     *           If this field is omitted, there are no subsequent pages.
+     *           [ListTensorboardExperimentsRequest.page_token][google.cloud.aiplatform.v1.ListTensorboardExperimentsRequest.page_token]
+     *           to retrieve the next page. If this field is omitted, there are no
+     *           subsequent pages.
      * }
      */
     public function __construct($data = NULL) {
@@ -77,8 +80,9 @@ class ListTensorboardExperimentsResponse extends \Google\Protobuf\Internal\Messa
 
     /**
      * A token, which can be sent as
-     * [ListTensorboardExperimentsRequest.page_token][google.cloud.aiplatform.v1.ListTensorboardExperimentsRequest.page_token] to retrieve the next page.
-     * If this field is omitted, there are no subsequent pages.
+     * [ListTensorboardExperimentsRequest.page_token][google.cloud.aiplatform.v1.ListTensorboardExperimentsRequest.page_token]
+     * to retrieve the next page. If this field is omitted, there are no
+     * subsequent pages.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @return string
@@ -90,8 +94,9 @@ class ListTensorboardExperimentsResponse extends \Google\Protobuf\Internal\Messa
 
     /**
      * A token, which can be sent as
-     * [ListTensorboardExperimentsRequest.page_token][google.cloud.aiplatform.v1.ListTensorboardExperimentsRequest.page_token] to retrieve the next page.
-     * If this field is omitted, there are no subsequent pages.
+     * [ListTensorboardExperimentsRequest.page_token][google.cloud.aiplatform.v1.ListTensorboardExperimentsRequest.page_token]
+     * to retrieve the next page. If this field is omitted, there are no
+     * subsequent pages.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @param string $var

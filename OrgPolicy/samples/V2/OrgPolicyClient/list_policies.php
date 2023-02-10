@@ -31,9 +31,9 @@ use Google\Cloud\OrgPolicy\V2\Policy;
 /**
  * Retrieves all of the `Policies` that exist on a particular resource.
  *
- * @param string $formattedParent The target Cloud resource that parents the set of constraints and policies
- *                                that will be returned from this call. Must be in one of the following
- *                                forms:
+ * @param string $formattedParent The target Cloud resource that parents the set of constraints and
+ *                                policies that will be returned from this call. Must be in one of the
+ *                                following forms:
  *                                * `projects/{project_number}`
  *                                * `projects/{project_id}`
  *                                * `folders/{folder_id}`

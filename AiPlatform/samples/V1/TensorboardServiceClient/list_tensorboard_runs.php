@@ -31,8 +31,8 @@ use Google\Cloud\AIPlatform\V1\TensorboardServiceClient;
 /**
  * Lists TensorboardRuns in a Location.
  *
- * @param string $formattedParent The resource name of the TensorboardExperiment to list TensorboardRuns.
- *                                Format:
+ * @param string $formattedParent The resource name of the TensorboardExperiment to list
+ *                                TensorboardRuns. Format:
  *                                `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}`
  *                                Please see {@see TensorboardServiceClient::tensorboardExperimentName()} for help formatting this field.
  */

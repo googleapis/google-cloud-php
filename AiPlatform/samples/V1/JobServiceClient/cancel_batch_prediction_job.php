@@ -31,12 +31,14 @@ use Google\Cloud\AIPlatform\V1\JobServiceClient;
  *
  * Starts asynchronous cancellation on the BatchPredictionJob. The server
  * makes the best effort to cancel the job, but success is not
- * guaranteed. Clients can use [JobService.GetBatchPredictionJob][google.cloud.aiplatform.v1.JobService.GetBatchPredictionJob] or
- * other methods to check whether the cancellation succeeded or whether the
+ * guaranteed. Clients can use
+ * [JobService.GetBatchPredictionJob][google.cloud.aiplatform.v1.JobService.GetBatchPredictionJob]
+ * or other methods to check whether the cancellation succeeded or whether the
  * job completed despite cancellation. On a successful cancellation,
  * the BatchPredictionJob is not deleted;instead its
- * [BatchPredictionJob.state][google.cloud.aiplatform.v1.BatchPredictionJob.state] is set to `CANCELLED`. Any files already
- * outputted by the job are not deleted.
+ * [BatchPredictionJob.state][google.cloud.aiplatform.v1.BatchPredictionJob.state]
+ * is set to `CANCELLED`. Any files already outputted by the job are not
+ * deleted.
  *
  * @param string $formattedName The name of the BatchPredictionJob to cancel.
  *                              Format:

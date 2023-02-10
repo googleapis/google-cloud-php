@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Trace;
 
-use Google\Cloud\Trace\V2\Span_Link_Type;
+use Google\Cloud\Trace\V2\Span\Link\Type;
 
 /**
  * This plain PHP class represents a Link resource. A pointer from the current
@@ -40,9 +40,9 @@ class Link
 {
     use AttributeTrait;
 
-    const TYPE_UNSPECIFIED = Span_Link_Type::TYPE_UNSPECIFIED;
-    const TYPE_CHILD_LINKED_SPAN = Span_Link_Type::CHILD_LINKED_SPAN;
-    const TYPE_PARENT_LINKED_SPAN = Span_Link_Type::PARENT_LINKED_SPAN;
+    const TYPE_UNSPECIFIED = Type::TYPE_UNSPECIFIED;
+    const TYPE_CHILD_LINKED_SPAN = Type::CHILD_LINKED_SPAN;
+    const TYPE_PARENT_LINKED_SPAN = Type::PARENT_LINKED_SPAN;
 
     /**
      * @var string The [TRACE_ID] for a trace within a project.

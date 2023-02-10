@@ -18,12 +18,20 @@ class ExecutionTemplate extends \Google\Protobuf\Internal\Message
 {
     /**
      * KRM-style labels for the resource.
+     * <p>Cloud Run API v2 does not support labels with `run.googleapis.com`,
+     * `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev`
+     * namespaces, and they will be rejected. All system labels in v1 now have a
+     * corresponding field in v2 ExecutionTemplate.
      *
      * Generated from protobuf field <code>map<string, string> labels = 1;</code>
      */
     private $labels;
     /**
      * KRM-style annotations for the resource.
+     * <p>Cloud Run API v2 does not support annotations with `run.googleapis.com`,
+     * `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev`
+     * namespaces, and they will be rejected. All system annotations in v1 now
+     * have a corresponding field in v2 ExecutionTemplate.
      *
      * Generated from protobuf field <code>map<string, string> annotations = 2;</code>
      */
@@ -51,7 +59,8 @@ class ExecutionTemplate extends \Google\Protobuf\Internal\Message
      */
     private $task_count = 0;
     /**
-     * Required. Describes the task(s) that will be created when executing an execution.
+     * Required. Describes the task(s) that will be created when executing an
+     * execution.
      *
      * Generated from protobuf field <code>.google.cloud.run.v2.TaskTemplate template = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -65,8 +74,16 @@ class ExecutionTemplate extends \Google\Protobuf\Internal\Message
      *
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           KRM-style labels for the resource.
+     *           <p>Cloud Run API v2 does not support labels with `run.googleapis.com`,
+     *           `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev`
+     *           namespaces, and they will be rejected. All system labels in v1 now have a
+     *           corresponding field in v2 ExecutionTemplate.
      *     @type array|\Google\Protobuf\Internal\MapField $annotations
      *           KRM-style annotations for the resource.
+     *           <p>Cloud Run API v2 does not support annotations with `run.googleapis.com`,
+     *           `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev`
+     *           namespaces, and they will be rejected. All system annotations in v1 now
+     *           have a corresponding field in v2 ExecutionTemplate.
      *     @type int $parallelism
      *           Specifies the maximum desired number of tasks the execution should run at
      *           given time. Must be <= task_count.
@@ -82,7 +99,8 @@ class ExecutionTemplate extends \Google\Protobuf\Internal\Message
      *           More info:
      *           https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/
      *     @type \Google\Cloud\Run\V2\TaskTemplate $template
-     *           Required. Describes the task(s) that will be created when executing an execution.
+     *           Required. Describes the task(s) that will be created when executing an
+     *           execution.
      * }
      */
     public function __construct($data = NULL) {
@@ -92,6 +110,10 @@ class ExecutionTemplate extends \Google\Protobuf\Internal\Message
 
     /**
      * KRM-style labels for the resource.
+     * <p>Cloud Run API v2 does not support labels with `run.googleapis.com`,
+     * `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev`
+     * namespaces, and they will be rejected. All system labels in v1 now have a
+     * corresponding field in v2 ExecutionTemplate.
      *
      * Generated from protobuf field <code>map<string, string> labels = 1;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -103,6 +125,10 @@ class ExecutionTemplate extends \Google\Protobuf\Internal\Message
 
     /**
      * KRM-style labels for the resource.
+     * <p>Cloud Run API v2 does not support labels with `run.googleapis.com`,
+     * `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev`
+     * namespaces, and they will be rejected. All system labels in v1 now have a
+     * corresponding field in v2 ExecutionTemplate.
      *
      * Generated from protobuf field <code>map<string, string> labels = 1;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
@@ -118,6 +144,10 @@ class ExecutionTemplate extends \Google\Protobuf\Internal\Message
 
     /**
      * KRM-style annotations for the resource.
+     * <p>Cloud Run API v2 does not support annotations with `run.googleapis.com`,
+     * `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev`
+     * namespaces, and they will be rejected. All system annotations in v1 now
+     * have a corresponding field in v2 ExecutionTemplate.
      *
      * Generated from protobuf field <code>map<string, string> annotations = 2;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -129,6 +159,10 @@ class ExecutionTemplate extends \Google\Protobuf\Internal\Message
 
     /**
      * KRM-style annotations for the resource.
+     * <p>Cloud Run API v2 does not support annotations with `run.googleapis.com`,
+     * `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev`
+     * namespaces, and they will be rejected. All system annotations in v1 now
+     * have a corresponding field in v2 ExecutionTemplate.
      *
      * Generated from protobuf field <code>map<string, string> annotations = 2;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
@@ -215,7 +249,8 @@ class ExecutionTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Describes the task(s) that will be created when executing an execution.
+     * Required. Describes the task(s) that will be created when executing an
+     * execution.
      *
      * Generated from protobuf field <code>.google.cloud.run.v2.TaskTemplate template = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Run\V2\TaskTemplate|null
@@ -236,7 +271,8 @@ class ExecutionTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Describes the task(s) that will be created when executing an execution.
+     * Required. Describes the task(s) that will be created when executing an
+     * execution.
      *
      * Generated from protobuf field <code>.google.cloud.run.v2.TaskTemplate template = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Run\V2\TaskTemplate $var

@@ -169,7 +169,9 @@ class Shipment extends \Google\Protobuf\Internal\Message
      */
     private $ignore = false;
     /**
-     * Deprecated: Use [Shipment.load_demands][] instead.
+     * Deprecated: Use
+     * [Shipment.load_demands][google.cloud.optimization.v1.Shipment.load_demands]
+     * instead.
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.CapacityQuantity demands = 3 [deprecated = true];</code>
      * @deprecated
@@ -280,7 +282,9 @@ class Shipment extends \Google\Protobuf\Internal\Message
      *           related pickup/delivery visits from the performing route.
      *           `precedence_rules` that reference ignored shipments will also be ignored.
      *     @type array<\Google\Cloud\Optimization\V1\CapacityQuantity>|\Google\Protobuf\Internal\RepeatedField $demands
-     *           Deprecated: Use [Shipment.load_demands][] instead.
+     *           Deprecated: Use
+     *           [Shipment.load_demands][google.cloud.optimization.v1.Shipment.load_demands]
+     *           instead.
      * }
      */
     public function __construct($data = NULL) {
@@ -809,7 +813,9 @@ class Shipment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated: Use [Shipment.load_demands][] instead.
+     * Deprecated: Use
+     * [Shipment.load_demands][google.cloud.optimization.v1.Shipment.load_demands]
+     * instead.
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.CapacityQuantity demands = 3 [deprecated = true];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -822,7 +828,9 @@ class Shipment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated: Use [Shipment.load_demands][] instead.
+     * Deprecated: Use
+     * [Shipment.load_demands][google.cloud.optimization.v1.Shipment.load_demands]
+     * instead.
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.CapacityQuantity demands = 3 [deprecated = true];</code>
      * @param array<\Google\Cloud\Optimization\V1\CapacityQuantity>|\Google\Protobuf\Internal\RepeatedField $var

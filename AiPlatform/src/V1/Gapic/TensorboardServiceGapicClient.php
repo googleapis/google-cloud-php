@@ -68,6 +68,8 @@ use Google\Cloud\AIPlatform\V1\ReadTensorboardBlobDataRequest;
 use Google\Cloud\AIPlatform\V1\ReadTensorboardBlobDataResponse;
 use Google\Cloud\AIPlatform\V1\ReadTensorboardTimeSeriesDataRequest;
 use Google\Cloud\AIPlatform\V1\ReadTensorboardTimeSeriesDataResponse;
+use Google\Cloud\AIPlatform\V1\ReadTensorboardUsageRequest;
+use Google\Cloud\AIPlatform\V1\ReadTensorboardUsageResponse;
 use Google\Cloud\AIPlatform\V1\Tensorboard;
 use Google\Cloud\AIPlatform\V1\TensorboardExperiment;
 use Google\Cloud\AIPlatform\V1\TensorboardRun;
@@ -595,8 +597,8 @@ class TensorboardServiceGapicClient
      *                                                           The TensorboardRuns referenced by the parent fields in the
      *                                                           CreateTensorboardTimeSeriesRequest messages must be sub resources of this
      *                                                           TensorboardExperiment.
-     * @param CreateTensorboardTimeSeriesRequest[] $requests     Required. The request message specifying the TensorboardTimeSeries to create.
-     *                                                           A maximum of 1000 TensorboardTimeSeries can be created in a batch.
+     * @param CreateTensorboardTimeSeriesRequest[] $requests     Required. The request message specifying the TensorboardTimeSeries to
+     *                                                           create. A maximum of 1000 TensorboardTimeSeries can be created in a batch.
      * @param array                                $optionalArgs {
      *     Optional.
      *
@@ -637,8 +639,8 @@ class TensorboardServiceGapicClient
     /**
      * Reads multiple TensorboardTimeSeries' data. The data point number limit is
      * 1000 for scalars, 100 for tensors and blob references. If the number of
-     * data points stored is less than the limit, all data will be returned.
-     * Otherwise, that limit number of data points will be randomly selected from
+     * data points stored is less than the limit, all data is returned.
+     * Otherwise, the number limit of data points is randomly selected from
      * this time series and returned.
      *
      * Sample code:
@@ -655,12 +657,14 @@ class TensorboardServiceGapicClient
      * }
      * ```
      *
-     * @param string   $tensorboard  Required. The resource name of the Tensorboard containing TensorboardTimeSeries to
-     *                               read data from. Format:
+     * @param string   $tensorboard  Required. The resource name of the Tensorboard containing
+     *                               TensorboardTimeSeries to read data from. Format:
      *                               `projects/{project}/locations/{location}/tensorboards/{tensorboard}`.
-     *                               The TensorboardTimeSeries referenced by [time_series][google.cloud.aiplatform.v1.BatchReadTensorboardTimeSeriesDataRequest.time_series] must be sub
-     *                               resources of this Tensorboard.
-     * @param string[] $timeSeries   Required. The resource names of the TensorboardTimeSeries to read data from. Format:
+     *                               The TensorboardTimeSeries referenced by
+     *                               [time_series][google.cloud.aiplatform.v1.BatchReadTensorboardTimeSeriesDataRequest.time_series]
+     *                               must be sub resources of this Tensorboard.
+     * @param string[] $timeSeries   Required. The resource names of the TensorboardTimeSeries to read data
+     *                               from. Format:
      *                               `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}/runs/{run}/timeSeries/{time_series}`
      * @param array    $optionalArgs {
      *     Optional.
@@ -794,11 +798,11 @@ class TensorboardServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent                  Required. The resource name of the Tensorboard to create the TensorboardExperiment
-     *                                        in. Format:
+     * @param string $parent                  Required. The resource name of the Tensorboard to create the
+     *                                        TensorboardExperiment in. Format:
      *                                        `projects/{project}/locations/{location}/tensorboards/{tensorboard}`
-     * @param string $tensorboardExperimentId Required. The ID to use for the Tensorboard experiment, which will become the final
-     *                                        component of the Tensorboard experiment's resource name.
+     * @param string $tensorboardExperimentId Required. The ID to use for the Tensorboard experiment, which becomes the
+     *                                        final component of the Tensorboard experiment's resource name.
      *
      *                                        This value should be 1-128 characters, and valid characters
      *                                        are /[a-z][0-9]-/.
@@ -863,11 +867,11 @@ class TensorboardServiceGapicClient
      * }
      * ```
      *
-     * @param string         $parent           Required. The resource name of the TensorboardExperiment to create the TensorboardRun
-     *                                         in. Format:
+     * @param string         $parent           Required. The resource name of the TensorboardExperiment to create the
+     *                                         TensorboardRun in. Format:
      *                                         `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}`
      * @param TensorboardRun $tensorboardRun   Required. The TensorboardRun to create.
-     * @param string         $tensorboardRunId Required. The ID to use for the Tensorboard run, which will become the final
+     * @param string         $tensorboardRunId Required. The ID to use for the Tensorboard run, which becomes the final
      *                                         component of the Tensorboard run's resource name.
      *
      *                                         This value should be 1-128 characters, and valid characters
@@ -935,10 +939,10 @@ class TensorboardServiceGapicClient
      *     Optional.
      *
      *     @type string $tensorboardTimeSeriesId
-     *           Optional. The user specified unique ID to use for the TensorboardTimeSeries, which
-     *           will become the final component of the TensorboardTimeSeries's resource
-     *           name.
-     *           This value should match "[a-z0-9][a-z0-9-]{0, 127}"
+     *           Optional. The user specified unique ID to use for the
+     *           TensorboardTimeSeries, which becomes the final component of the
+     *           TensorboardTimeSeries's resource name. This value should match
+     *           "[a-z0-9][a-z0-9-]{0, 127}"
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1298,8 +1302,8 @@ class TensorboardServiceGapicClient
      * }
      * ```
      *
-     * @param string $tensorboardTimeSeries Required. The resource name of the TensorboardTimeSeries to export data from.
-     *                                      Format:
+     * @param string $tensorboardTimeSeries Required. The resource name of the TensorboardTimeSeries to export data
+     *                                      from. Format:
      *                                      `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}/runs/{run}/timeSeries/{time_series}`
      * @param array  $optionalArgs          {
      *     Optional.
@@ -1317,7 +1321,7 @@ class TensorboardServiceGapicClient
      *           been generated by a previous call to the API.
      *     @type string $orderBy
      *           Field to use to sort the TensorboardTimeSeries' data.
-     *           By default, TensorboardTimeSeries' data will be returned in a pseudo random
+     *           By default, TensorboardTimeSeries' data is returned in a pseudo random
      *           order.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
@@ -1595,8 +1599,8 @@ class TensorboardServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the Tensorboard to list TensorboardExperiments.
-     *                             Format:
+     * @param string $parent       Required. The resource name of the Tensorboard to list
+     *                             TensorboardExperiments. Format:
      *                             `projects/{project}/locations/{location}/tensorboards/{tensorboard}`
      * @param array  $optionalArgs {
      *     Optional.
@@ -1694,8 +1698,8 @@ class TensorboardServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the TensorboardExperiment to list TensorboardRuns.
-     *                             Format:
+     * @param string $parent       Required. The resource name of the TensorboardExperiment to list
+     *                             TensorboardRuns. Format:
      *                             `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}`
      * @param array  $optionalArgs {
      *     Optional.
@@ -1791,8 +1795,8 @@ class TensorboardServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the TensorboardRun to list TensorboardTimeSeries.
-     *                             Format:
+     * @param string $parent       Required. The resource name of the TensorboardRun to list
+     *                             TensorboardTimeSeries. Format:
      *                             `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}/runs/{run}`
      * @param array  $optionalArgs {
      *     Optional.
@@ -2025,8 +2029,8 @@ class TensorboardServiceGapicClient
 
     /**
      * Reads a TensorboardTimeSeries' data. By default, if the number of data
-     * points stored is less than 1000, all data will be returned. Otherwise, 1000
-     * data points will be randomly selected from this time series and returned.
+     * points stored is less than 1000, all data is returned. Otherwise, 1000
+     * data points is randomly selected from this time series and returned.
      * This value can be changed by changing max_data_points, which can't be
      * greater than 10k.
      *
@@ -2097,6 +2101,56 @@ class TensorboardServiceGapicClient
     }
 
     /**
+     * Returns a list of monthly active users for a given TensorBoard instance.
+     *
+     * Sample code:
+     * ```
+     * $tensorboardServiceClient = new TensorboardServiceClient();
+     * try {
+     *     $formattedTensorboard = $tensorboardServiceClient->tensorboardName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]');
+     *     $response = $tensorboardServiceClient->readTensorboardUsage($formattedTensorboard);
+     * } finally {
+     *     $tensorboardServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $tensorboard  Required. The name of the Tensorboard resource.
+     *                             Format:
+     *                             `projects/{project}/locations/{location}/tensorboards/{tensorboard}`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\AIPlatform\V1\ReadTensorboardUsageResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function readTensorboardUsage($tensorboard, array $optionalArgs = [])
+    {
+        $request = new ReadTensorboardUsageRequest();
+        $requestParamHeaders = [];
+        $request->setTensorboard($tensorboard);
+        $requestParamHeaders['tensorboard'] = $tensorboard;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'ReadTensorboardUsage',
+            ReadTensorboardUsageResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Updates a Tensorboard.
      *
      * Sample code:
@@ -2139,8 +2193,8 @@ class TensorboardServiceGapicClient
      * @param FieldMask   $updateMask   Required. Field mask is used to specify the fields to be overwritten in the
      *                                  Tensorboard resource by the update.
      *                                  The fields specified in the update_mask are relative to the resource, not
-     *                                  the full request. A field will be overwritten if it is in the mask. If the
-     *                                  user does not provide a mask then all fields will be overwritten if new
+     *                                  the full request. A field is overwritten if it's in the mask. If the
+     *                                  user does not provide a mask then all fields are overwritten if new
      *                                  values are specified.
      * @param Tensorboard $tensorboard  Required. The Tensorboard's `name` field is used to identify the
      *                                  Tensorboard to be updated. Format:
@@ -2200,8 +2254,8 @@ class TensorboardServiceGapicClient
      * @param FieldMask             $updateMask            Required. Field mask is used to specify the fields to be overwritten in the
      *                                                     TensorboardExperiment resource by the update.
      *                                                     The fields specified in the update_mask are relative to the resource, not
-     *                                                     the full request. A field will be overwritten if it is in the mask. If the
-     *                                                     user does not provide a mask then all fields will be overwritten if new
+     *                                                     the full request. A field is overwritten if it's in the mask. If the
+     *                                                     user does not provide a mask then all fields are overwritten if new
      *                                                     values are specified.
      * @param TensorboardExperiment $tensorboardExperiment Required. The TensorboardExperiment's `name` field is used to identify the
      *                                                     TensorboardExperiment to be updated. Format:
@@ -2263,11 +2317,11 @@ class TensorboardServiceGapicClient
      * @param FieldMask      $updateMask     Required. Field mask is used to specify the fields to be overwritten in the
      *                                       TensorboardRun resource by the update.
      *                                       The fields specified in the update_mask are relative to the resource, not
-     *                                       the full request. A field will be overwritten if it is in the mask. If the
-     *                                       user does not provide a mask then all fields will be overwritten if new
+     *                                       the full request. A field is overwritten if it's in the mask. If the
+     *                                       user does not provide a mask then all fields are overwritten if new
      *                                       values are specified.
-     * @param TensorboardRun $tensorboardRun Required. The TensorboardRun's `name` field is used to identify the TensorboardRun to
-     *                                       be updated. Format:
+     * @param TensorboardRun $tensorboardRun Required. The TensorboardRun's `name` field is used to identify the
+     *                                       TensorboardRun to be updated. Format:
      *                                       `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}/runs/{run}`
      * @param array          $optionalArgs   {
      *     Optional.
@@ -2326,8 +2380,8 @@ class TensorboardServiceGapicClient
      * @param FieldMask             $updateMask            Required. Field mask is used to specify the fields to be overwritten in the
      *                                                     TensorboardTimeSeries resource by the update.
      *                                                     The fields specified in the update_mask are relative to the resource, not
-     *                                                     the full request. A field will be overwritten if it is in the mask. If the
-     *                                                     user does not provide a mask then all fields will be overwritten if new
+     *                                                     the full request. A field is overwritten if it's in the mask. If the
+     *                                                     user does not provide a mask then all fields are overwritten if new
      *                                                     values are specified.
      * @param TensorboardTimeSeries $tensorboardTimeSeries Required. The TensorboardTimeSeries' `name` field is used to identify the
      *                                                     TensorboardTimeSeries to be updated.
@@ -2374,8 +2428,7 @@ class TensorboardServiceGapicClient
 
     /**
      * Write time series data points of multiple TensorboardTimeSeries in multiple
-     * TensorboardRun's. If any data fail to be ingested, an error will be
-     * returned.
+     * TensorboardRun's. If any data fail to be ingested, an error is returned.
      *
      * Sample code:
      * ```
@@ -2432,8 +2485,7 @@ class TensorboardServiceGapicClient
 
     /**
      * Write time series data points into multiple TensorboardTimeSeries under
-     * a TensorboardRun. If any data fail to be ingested, an error will be
-     * returned.
+     * a TensorboardRun. If any data fail to be ingested, an error is returned.
      *
      * Sample code:
      * ```

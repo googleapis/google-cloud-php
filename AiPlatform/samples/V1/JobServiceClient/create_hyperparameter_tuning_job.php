@@ -36,17 +36,18 @@ use Google\Cloud\AIPlatform\V1\WorkerPoolSpec;
 /**
  * Creates a HyperparameterTuningJob
  *
- * @param string $formattedParent                                       The resource name of the Location to create the HyperparameterTuningJob in.
- *                                                                      Format: `projects/{project}/locations/{location}`
+ * @param string $formattedParent                                       The resource name of the Location to create the
+ *                                                                      HyperparameterTuningJob in. Format:
+ *                                                                      `projects/{project}/locations/{location}`
  *                                                                      Please see {@see JobServiceClient::locationName()} for help formatting this field.
  * @param string $hyperparameterTuningJobDisplayName                    The display name of the HyperparameterTuningJob.
  *                                                                      The name can be up to 128 characters long and can consist of any UTF-8
  *                                                                      characters.
- * @param string $hyperparameterTuningJobStudySpecMetricsMetricId       The ID of the metric. Must not contain whitespaces and must be unique
- *                                                                      amongst all MetricSpecs.
+ * @param string $hyperparameterTuningJobStudySpecMetricsMetricId       The ID of the metric. Must not contain whitespaces and must be
+ *                                                                      unique amongst all MetricSpecs.
  * @param int    $hyperparameterTuningJobStudySpecMetricsGoal           The optimization goal of the metric.
- * @param string $hyperparameterTuningJobStudySpecParametersParameterId The ID of the parameter. Must not contain whitespaces and must be unique
- *                                                                      amongst all ParameterSpecs.
+ * @param string $hyperparameterTuningJobStudySpecParametersParameterId The ID of the parameter. Must not contain whitespaces and must
+ *                                                                      be unique amongst all ParameterSpecs.
  * @param int    $hyperparameterTuningJobMaxTrialCount                  The desired total number of Trials.
  * @param int    $hyperparameterTuningJobParallelTrialCount             The desired number of Trials to run in parallel.
  */

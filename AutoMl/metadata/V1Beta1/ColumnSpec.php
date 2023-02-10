@@ -19,7 +19,7 @@ class ColumnSpec
         \GPBMetadata\Google\Cloud\Automl\V1Beta1\DataTypes::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ˆ
+Ï
 -google/cloud/automl/v1beta1/column_spec.protogoogle.cloud.automl.v1beta1,google/cloud/automl/v1beta1/data_stats.proto,google/cloud/automl/v1beta1/data_types.proto"õ
 
 ColumnSpec
@@ -33,8 +33,8 @@ data_stats (2&.google.cloud.automl.v1beta1.DataStatsX
 CorrelatedColumn
 column_spec_id (	H
 correlation_stats (2-.google.cloud.automl.v1beta1.CorrelationStats:îÍAê
- automl.googleapis.com/ColumnSpeclprojects/{project}/locations/{location}/datasets/{dataset}/tableSpecs/{table_spec}/columnSpecs/{column_spec}B•
-com.google.cloud.automl.v1beta1PZAgoogle.golang.org/genproto/googleapis/cloud/automl/v1beta1;automl Google\\Cloud\\AutoMl\\V1beta1ÍGoogle::Cloud::AutoML::V1beta1bproto3'
+ automl.googleapis.com/ColumnSpeclprojects/{project}/locations/{location}/datasets/{dataset}/tableSpecs/{table_spec}/columnSpecs/{column_spec}Bõ
+com.google.cloud.automl.v1beta1PZ7cloud.google.com/go/automl/apiv1beta1/automlpb;automlpb Google\\Cloud\\AutoMl\\V1beta1ÍGoogle::Cloud::AutoML::V1beta1bproto3'
         , true);
 
         static::$is_initialized = true;

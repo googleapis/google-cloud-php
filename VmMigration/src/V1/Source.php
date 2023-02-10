@@ -56,6 +56,8 @@ class Source extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\VMMigration\V1\VmwareSourceDetails $vmware
      *           Vmware type source details.
+     *     @type \Google\Cloud\VMMigration\V1\AwsSourceDetails $aws
+     *           AWS type source details.
      *     @type string $name
      *           Output only. The Source name.
      *     @type \Google\Protobuf\Timestamp $create_time
@@ -100,6 +102,37 @@ class Source extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\VMMigration\V1\VmwareSourceDetails::class);
         $this->writeOneof(10, $var);
+
+        return $this;
+    }
+
+    /**
+     * AWS type source details.
+     *
+     * Generated from protobuf field <code>.google.cloud.vmmigration.v1.AwsSourceDetails aws = 12;</code>
+     * @return \Google\Cloud\VMMigration\V1\AwsSourceDetails|null
+     */
+    public function getAws()
+    {
+        return $this->readOneof(12);
+    }
+
+    public function hasAws()
+    {
+        return $this->hasOneof(12);
+    }
+
+    /**
+     * AWS type source details.
+     *
+     * Generated from protobuf field <code>.google.cloud.vmmigration.v1.AwsSourceDetails aws = 12;</code>
+     * @param \Google\Cloud\VMMigration\V1\AwsSourceDetails $var
+     * @return $this
+     */
+    public function setAws($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\VMMigration\V1\AwsSourceDetails::class);
+        $this->writeOneof(12, $var);
 
         return $this;
     }

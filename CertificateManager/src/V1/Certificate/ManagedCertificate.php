@@ -33,7 +33,7 @@ class ManagedCertificate extends \Google\Protobuf\Internal\Message
      */
     private $dns_authorizations;
     /**
-     * The resource name for a
+     * Immutable. The resource name for a
      * [CertificateIssuanceConfig][google.cloud.certificatemanager.v1.CertificateIssuanceConfig]
      * used to configure private PKI certificates in the format
      * `projects/&#42;&#47;locations/&#42;&#47;certificateIssuanceConfigs/&#42;`.
@@ -79,7 +79,7 @@ class ManagedCertificate extends \Google\Protobuf\Internal\Message
      *           Immutable. Authorizations that will be used for performing domain
      *           authorization.
      *     @type string $issuance_config
-     *           The resource name for a
+     *           Immutable. The resource name for a
      *           [CertificateIssuanceConfig][google.cloud.certificatemanager.v1.CertificateIssuanceConfig]
      *           used to configure private PKI certificates in the format
      *           `projects/&#42;&#47;locations/&#42;&#47;certificateIssuanceConfigs/&#42;`.
@@ -160,7 +160,7 @@ class ManagedCertificate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name for a
+     * Immutable. The resource name for a
      * [CertificateIssuanceConfig][google.cloud.certificatemanager.v1.CertificateIssuanceConfig]
      * used to configure private PKI certificates in the format
      * `projects/&#42;&#47;locations/&#42;&#47;certificateIssuanceConfigs/&#42;`.
@@ -177,7 +177,7 @@ class ManagedCertificate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name for a
+     * Immutable. The resource name for a
      * [CertificateIssuanceConfig][google.cloud.certificatemanager.v1.CertificateIssuanceConfig]
      * used to configure private PKI certificates in the format
      * `projects/&#42;&#47;locations/&#42;&#47;certificateIssuanceConfigs/&#42;`.

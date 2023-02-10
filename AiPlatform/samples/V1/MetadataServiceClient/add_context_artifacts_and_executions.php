@@ -32,9 +32,8 @@ use Google\Cloud\AIPlatform\V1\MetadataServiceClient;
  * Artifacts or Executions have already been added to a Context, they are
  * simply skipped.
  *
- * @param string $formattedContext The resource name of the Context that the Artifacts and Executions
- *                                 belong to.
- *                                 Format:
+ * @param string $formattedContext The resource name of the Context that the Artifacts and
+ *                                 Executions belong to. Format:
  *                                 `projects/{project}/locations/{location}/metadataStores/{metadatastore}/contexts/{context}`
  *                                 Please see {@see MetadataServiceClient::contextName()} for help formatting this field.
  */

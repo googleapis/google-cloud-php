@@ -31,8 +31,9 @@ use Google\Cloud\Bigtable\V2\PingAndWarmResponse;
  * Warm up associated instance metadata for this connection.
  * This call is not required but may be useful for connection keep-alive.
  *
- * @param string $formattedName The unique name of the instance to check permissions for as well as
- *                              respond. Values are of the form `projects/<project>/instances/<instance>`. Please see
+ * @param string $formattedName The unique name of the instance to check permissions for as well
+ *                              as respond. Values are of the form
+ *                              `projects/<project>/instances/<instance>`. Please see
  *                              {@see BigtableClient::instanceName()} for help formatting this field.
  */
 function ping_and_warm_sample(string $formattedName): void

@@ -39,7 +39,7 @@ use Google\Cloud\GkeMultiCloud\V1\GenerateAttachedClusterInstallManifestResponse
  *                                  See [Resource Names](https://cloud.google.com/apis/design/resource_names)
  *                                  for more details on Google Cloud resource names. Please see
  *                                  {@see AttachedClustersClient::locationName()} for help formatting this field.
- * @param string $attachedClusterId A client provided ID the resource. Must be unique within the
+ * @param string $attachedClusterId A client provided ID of the resource. Must be unique within the
  *                                  parent resource.
  *
  *                                  The provided ID will be part of the
@@ -52,7 +52,7 @@ use Google\Cloud\GkeMultiCloud\V1\GenerateAttachedClusterInstallManifestResponse
  *                                  When generating an install manifest for importing an existing Membership
  *                                  resource, the attached_cluster_id field must be the Membership id.
  *
- *                                  Membership names are formatted as `resource name formatted as
+ *                                  Membership names are formatted as
  *                                  `projects/<project-id>/locations/<region>/memberships/<membership-id>`.
  * @param string $platformVersion   The platform version for the cluster (e.g. `1.19.0-gke.1000`).
  *

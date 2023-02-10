@@ -8,7 +8,8 @@ use UnexpectedValueException;
 
 /**
  * Type of the image visualization. Only applicable to
- * [Integrated Gradients attribution][google.cloud.aiplatform.v1.ExplanationParameters.integrated_gradients_attribution].
+ * [Integrated Gradients
+ * attribution][google.cloud.aiplatform.v1.ExplanationParameters.integrated_gradients_attribution].
  *
  * Protobuf type <code>google.cloud.aiplatform.v1.ExplanationMetadata.InputMetadata.Visualization.Type</code>
  */

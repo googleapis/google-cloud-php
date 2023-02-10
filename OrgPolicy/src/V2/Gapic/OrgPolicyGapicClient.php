@@ -43,6 +43,7 @@ use Google\Cloud\OrgPolicy\V2\ListPoliciesRequest;
 use Google\Cloud\OrgPolicy\V2\ListPoliciesResponse;
 use Google\Cloud\OrgPolicy\V2\Policy;
 use Google\Cloud\OrgPolicy\V2\UpdatePolicyRequest;
+use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 
 /**
@@ -462,8 +463,8 @@ class OrgPolicyGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The Cloud resource that will parent the new Policy. Must be in one of the
-     *                             following forms:
+     * @param string $parent       Required. The Cloud resource that will parent the new Policy. Must be in
+     *                             one of the following forms:
      *                             * `projects/{project_number}`
      *                             * `projects/{project_id}`
      *                             * `folders/{folder_id}`
@@ -597,7 +598,8 @@ class OrgPolicyGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of the policy. See `Policy` for naming requirements.
+     * @param string $name         Required. Resource name of the policy. See `Policy` for naming
+     *                             requirements.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -648,8 +650,8 @@ class OrgPolicyGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The Cloud resource that parents the constraint. Must be in one of the
-     *                             following forms:
+     * @param string $parent       Required. The Cloud resource that parents the constraint. Must be in one of
+     *                             the following forms:
      *                             * `projects/{project_number}`
      *                             * `projects/{project_id}`
      *                             * `folders/{folder_id}`
@@ -721,9 +723,9 @@ class OrgPolicyGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The target Cloud resource that parents the set of constraints and policies
-     *                             that will be returned from this call. Must be in one of the following
-     *                             forms:
+     * @param string $parent       Required. The target Cloud resource that parents the set of constraints and
+     *                             policies that will be returned from this call. Must be in one of the
+     *                             following forms:
      *                             * `projects/{project_number}`
      *                             * `projects/{project_id}`
      *                             * `folders/{folder_id}`
@@ -795,6 +797,10 @@ class OrgPolicyGapicClient
      * @param array  $optionalArgs {
      *     Optional.
      *
+     *     @type FieldMask $updateMask
+     *           Field mask used to specify the fields to be overwritten in the policy
+     *           by the set. The fields specified in the update_mask are relative to the
+     *           policy, not the full request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -811,6 +817,10 @@ class OrgPolicyGapicClient
         $requestParamHeaders = [];
         $request->setPolicy($policy);
         $requestParamHeaders['policy.name'] = $policy->getName();
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('UpdatePolicy', Policy::class, $optionalArgs, $request)->wait();

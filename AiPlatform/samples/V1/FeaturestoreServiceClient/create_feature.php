@@ -38,8 +38,8 @@ use Google\Rpc\Status;
  *                                 `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}`
  *                                 Please see {@see FeaturestoreServiceClient::entityTypeName()} for help formatting this field.
  * @param int    $featureValueType Immutable. Type of Feature value.
- * @param string $featureId        The ID to use for the Feature, which will become the final component of
- *                                 the Feature's resource name.
+ * @param string $featureId        The ID to use for the Feature, which will become the final
+ *                                 component of the Feature's resource name.
  *
  *                                 This value may be up to 128 characters, and valid characters are
  *                                 `[a-z0-9_]`. The first character cannot be a number.

@@ -191,6 +191,24 @@ class CacheSessionPoolTest extends TestCase
         $this->assertTrue($exceptionThrown);
     }
 
+    public function testAcquireIfCreateSessionCallFails()
+    {
+        $exceptionThrown = false;
+        $exceptionMessage = null;
+        $pool = new CacheSessionPoolStub($this->getCacheItemPool());
+        $pool->setDatabase($this->getDatabase(true));
+
+        try {
+            $pool->acquire();
+        } catch (\Exception $ex) {
+            $exceptionThrown = true;
+            $exceptionMessage = $ex->getMessage();
+        }
+
+        $this->assertTrue($exceptionThrown);
+        $this->assertSame($exceptionMessage, 'error');
+    }
+
     public function testRelease()
     {
         $cacheData = [

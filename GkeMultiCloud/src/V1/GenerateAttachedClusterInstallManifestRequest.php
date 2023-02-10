@@ -28,7 +28,7 @@ class GenerateAttachedClusterInstallManifestRequest extends \Google\Protobuf\Int
      */
     private $parent = '';
     /**
-     * Required. A client provided ID the resource. Must be unique within the
+     * Required. A client provided ID of the resource. Must be unique within the
      * parent resource.
      * The provided ID will be part of the
      * [AttachedCluster][google.cloud.gkemulticloud.v1.AttachedCluster] resource
@@ -37,7 +37,7 @@ class GenerateAttachedClusterInstallManifestRequest extends \Google\Protobuf\Int
      * Valid characters are `/[a-z][0-9]-/`. Cannot be longer than 63 characters.
      * When generating an install manifest for importing an existing Membership
      * resource, the attached_cluster_id field must be the Membership id.
-     * Membership names are formatted as `resource name formatted as
+     * Membership names are formatted as
      * `projects/<project-id>/locations/<region>/memberships/<membership-id>`.
      *
      * Generated from protobuf field <code>string attached_cluster_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -67,7 +67,7 @@ class GenerateAttachedClusterInstallManifestRequest extends \Google\Protobuf\Int
      *           See [Resource Names](https://cloud.google.com/apis/design/resource_names)
      *           for more details on Google Cloud resource names.
      *     @type string $attached_cluster_id
-     *           Required. A client provided ID the resource. Must be unique within the
+     *           Required. A client provided ID of the resource. Must be unique within the
      *           parent resource.
      *           The provided ID will be part of the
      *           [AttachedCluster][google.cloud.gkemulticloud.v1.AttachedCluster] resource
@@ -76,7 +76,7 @@ class GenerateAttachedClusterInstallManifestRequest extends \Google\Protobuf\Int
      *           Valid characters are `/[a-z][0-9]-/`. Cannot be longer than 63 characters.
      *           When generating an install manifest for importing an existing Membership
      *           resource, the attached_cluster_id field must be the Membership id.
-     *           Membership names are formatted as `resource name formatted as
+     *           Membership names are formatted as
      *           `projects/<project-id>/locations/<region>/memberships/<membership-id>`.
      *     @type string $platform_version
      *           Required. The platform version for the cluster (e.g. `1.19.0-gke.1000`).
@@ -127,7 +127,7 @@ class GenerateAttachedClusterInstallManifestRequest extends \Google\Protobuf\Int
     }
 
     /**
-     * Required. A client provided ID the resource. Must be unique within the
+     * Required. A client provided ID of the resource. Must be unique within the
      * parent resource.
      * The provided ID will be part of the
      * [AttachedCluster][google.cloud.gkemulticloud.v1.AttachedCluster] resource
@@ -136,7 +136,7 @@ class GenerateAttachedClusterInstallManifestRequest extends \Google\Protobuf\Int
      * Valid characters are `/[a-z][0-9]-/`. Cannot be longer than 63 characters.
      * When generating an install manifest for importing an existing Membership
      * resource, the attached_cluster_id field must be the Membership id.
-     * Membership names are formatted as `resource name formatted as
+     * Membership names are formatted as
      * `projects/<project-id>/locations/<region>/memberships/<membership-id>`.
      *
      * Generated from protobuf field <code>string attached_cluster_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -148,7 +148,7 @@ class GenerateAttachedClusterInstallManifestRequest extends \Google\Protobuf\Int
     }
 
     /**
-     * Required. A client provided ID the resource. Must be unique within the
+     * Required. A client provided ID of the resource. Must be unique within the
      * parent resource.
      * The provided ID will be part of the
      * [AttachedCluster][google.cloud.gkemulticloud.v1.AttachedCluster] resource
@@ -157,7 +157,7 @@ class GenerateAttachedClusterInstallManifestRequest extends \Google\Protobuf\Int
      * Valid characters are `/[a-z][0-9]-/`. Cannot be longer than 63 characters.
      * When generating an install manifest for importing an existing Membership
      * resource, the attached_cluster_id field must be the Membership id.
-     * Membership names are formatted as `resource name formatted as
+     * Membership names are formatted as
      * `projects/<project-id>/locations/<region>/memberships/<membership-id>`.
      *
      * Generated from protobuf field <code>string attached_cluster_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>

@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Response message for [DatasetService.SearchDataItems][google.cloud.aiplatform.v1.DatasetService.SearchDataItems].
+ * Response message for
+ * [DatasetService.SearchDataItems][google.cloud.aiplatform.v1.DatasetService.SearchDataItems].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.SearchDataItemsResponse</code>
  */
@@ -23,7 +24,9 @@ class SearchDataItemsResponse extends \Google\Protobuf\Internal\Message
     private $data_item_views;
     /**
      * A token to retrieve next page of results.
-     * Pass to [SearchDataItemsRequest.page_token][google.cloud.aiplatform.v1.SearchDataItemsRequest.page_token] to obtain that page.
+     * Pass to
+     * [SearchDataItemsRequest.page_token][google.cloud.aiplatform.v1.SearchDataItemsRequest.page_token]
+     * to obtain that page.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
@@ -39,7 +42,9 @@ class SearchDataItemsResponse extends \Google\Protobuf\Internal\Message
      *           The DataItemViews read.
      *     @type string $next_page_token
      *           A token to retrieve next page of results.
-     *           Pass to [SearchDataItemsRequest.page_token][google.cloud.aiplatform.v1.SearchDataItemsRequest.page_token] to obtain that page.
+     *           Pass to
+     *           [SearchDataItemsRequest.page_token][google.cloud.aiplatform.v1.SearchDataItemsRequest.page_token]
+     *           to obtain that page.
      * }
      */
     public function __construct($data = NULL) {
@@ -75,7 +80,9 @@ class SearchDataItemsResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * A token to retrieve next page of results.
-     * Pass to [SearchDataItemsRequest.page_token][google.cloud.aiplatform.v1.SearchDataItemsRequest.page_token] to obtain that page.
+     * Pass to
+     * [SearchDataItemsRequest.page_token][google.cloud.aiplatform.v1.SearchDataItemsRequest.page_token]
+     * to obtain that page.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @return string
@@ -87,7 +94,9 @@ class SearchDataItemsResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * A token to retrieve next page of results.
-     * Pass to [SearchDataItemsRequest.page_token][google.cloud.aiplatform.v1.SearchDataItemsRequest.page_token] to obtain that page.
+     * Pass to
+     * [SearchDataItemsRequest.page_token][google.cloud.aiplatform.v1.SearchDataItemsRequest.page_token]
+     * to obtain that page.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @param string $var

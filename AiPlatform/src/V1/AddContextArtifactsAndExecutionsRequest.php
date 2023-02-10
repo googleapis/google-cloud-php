@@ -9,16 +9,16 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [MetadataService.AddContextArtifactsAndExecutions][google.cloud.aiplatform.v1.MetadataService.AddContextArtifactsAndExecutions].
+ * Request message for
+ * [MetadataService.AddContextArtifactsAndExecutions][google.cloud.aiplatform.v1.MetadataService.AddContextArtifactsAndExecutions].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.AddContextArtifactsAndExecutionsRequest</code>
  */
 class AddContextArtifactsAndExecutionsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name of the Context that the Artifacts and Executions
-     * belong to.
-     * Format:
+     * Required. The resource name of the Context that the Artifacts and
+     * Executions belong to. Format:
      * `projects/{project}/locations/{location}/metadataStores/{metadatastore}/contexts/{context}`
      *
      * Generated from protobuf field <code>string context = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -49,9 +49,8 @@ class AddContextArtifactsAndExecutionsRequest extends \Google\Protobuf\Internal\
      *     Optional. Data for populating the Message object.
      *
      *     @type string $context
-     *           Required. The resource name of the Context that the Artifacts and Executions
-     *           belong to.
-     *           Format:
+     *           Required. The resource name of the Context that the Artifacts and
+     *           Executions belong to. Format:
      *           `projects/{project}/locations/{location}/metadataStores/{metadatastore}/contexts/{context}`
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $artifacts
      *           The resource names of the Artifacts to attribute to the Context.
@@ -70,9 +69,8 @@ class AddContextArtifactsAndExecutionsRequest extends \Google\Protobuf\Internal\
     }
 
     /**
-     * Required. The resource name of the Context that the Artifacts and Executions
-     * belong to.
-     * Format:
+     * Required. The resource name of the Context that the Artifacts and
+     * Executions belong to. Format:
      * `projects/{project}/locations/{location}/metadataStores/{metadatastore}/contexts/{context}`
      *
      * Generated from protobuf field <code>string context = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -84,9 +82,8 @@ class AddContextArtifactsAndExecutionsRequest extends \Google\Protobuf\Internal\
     }
 
     /**
-     * Required. The resource name of the Context that the Artifacts and Executions
-     * belong to.
-     * Format:
+     * Required. The resource name of the Context that the Artifacts and
+     * Executions belong to. Format:
      * `projects/{project}/locations/{location}/metadataStores/{metadatastore}/contexts/{context}`
      *
      * Generated from protobuf field <code>string context = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>

@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class OrderByAnnotation extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Saved query of the Annotation. Only Annotations belong to this saved
-     * query will be considered for ordering.
+     * Required. Saved query of the Annotation. Only Annotations belong to this
+     * saved query will be considered for ordering.
      *
      * Generated from protobuf field <code>string saved_query = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -38,8 +38,8 @@ class OrderByAnnotation extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $saved_query
-     *           Required. Saved query of the Annotation. Only Annotations belong to this saved
-     *           query will be considered for ordering.
+     *           Required. Saved query of the Annotation. Only Annotations belong to this
+     *           saved query will be considered for ordering.
      *     @type string $order_by
      *           A comma-separated list of annotation fields to order by, sorted in
      *           ascending order. Use "desc" after a field name for descending. Must also
@@ -52,8 +52,8 @@ class OrderByAnnotation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Saved query of the Annotation. Only Annotations belong to this saved
-     * query will be considered for ordering.
+     * Required. Saved query of the Annotation. Only Annotations belong to this
+     * saved query will be considered for ordering.
      *
      * Generated from protobuf field <code>string saved_query = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -64,8 +64,8 @@ class OrderByAnnotation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Saved query of the Annotation. Only Annotations belong to this saved
-     * query will be considered for ordering.
+     * Required. Saved query of the Annotation. Only Annotations belong to this
+     * saved query will be considered for ordering.
      *
      * Generated from protobuf field <code>string saved_query = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

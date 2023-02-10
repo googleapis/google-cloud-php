@@ -18,7 +18,7 @@ class Translation
         \GPBMetadata\Google\Cloud\Automl\V1Beta1\DataItems::initOnce();
         $pool->internalAddGeneratedFile(
             '
-∏
+Æ
 -google/cloud/automl/v1beta1/translation.protogoogle.cloud.automl.v1beta1,google/cloud/automl/v1beta1/data_items.proto"b
 TranslationDatasetMetadata!
 source_language_code (	B‡A!
@@ -33,8 +33,8 @@ base_model (	
 source_language_code (	
 target_language_code (	"]
 TranslationAnnotationD
-translated_content (2(.google.cloud.automl.v1beta1.TextSnippetB∑
-com.google.cloud.automl.v1beta1BTranslationProtoPZAgoogle.golang.org/genproto/googleapis/cloud/automl/v1beta1;automl Google\\Cloud\\AutoMl\\V1beta1ÍGoogle::Cloud::AutoML::V1beta1bproto3'
+translated_content (2(.google.cloud.automl.v1beta1.TextSnippetB≠
+com.google.cloud.automl.v1beta1BTranslationProtoPZ7cloud.google.com/go/automl/apiv1beta1/automlpb;automlpb Google\\Cloud\\AutoMl\\V1beta1ÍGoogle::Cloud::AutoML::V1beta1bproto3'
         , true);
 
         static::$is_initialized = true;

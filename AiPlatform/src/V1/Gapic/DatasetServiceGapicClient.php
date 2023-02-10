@@ -886,8 +886,8 @@ class DatasetServiceGapicClient
      * @param string             $name          Required. The name of the Dataset resource.
      *                                          Format:
      *                                          `projects/{project}/locations/{location}/datasets/{dataset}`
-     * @param ImportDataConfig[] $importConfigs Required. The desired input locations. The contents of all input locations will be
-     *                                          imported in one batch.
+     * @param ImportDataConfig[] $importConfigs Required. The desired input locations. The contents of all input locations
+     *                                          will be imported in one batch.
      * @param array              $optionalArgs  {
      *     Optional.
      *
@@ -1403,7 +1403,8 @@ class DatasetServiceGapicClient
      *           Must specify `saved_query_id=` - saved query id that annotations should
      *           belong to.
      *     @type FieldMask $fieldMask
-     *           Mask specifying which fields of [DataItemView][google.cloud.aiplatform.v1.DataItemView] to read.
+     *           Mask specifying which fields of
+     *           [DataItemView][google.cloud.aiplatform.v1.DataItemView] to read.
      *     @type int $annotationsLimit
      *           If set, only up to this many of Annotations will be returned per
      *           DataItemView. The maximum value is 1000. If not set, the maximum value will
@@ -1515,8 +1516,8 @@ class DatasetServiceGapicClient
      *
      * @param Dataset   $dataset      Required. The Dataset which replaces the resource on the server.
      * @param FieldMask $updateMask   Required. The update mask applies to the resource.
-     *                                For the `FieldMask` definition, see [google.protobuf.FieldMask][google.protobuf.FieldMask].
-     *                                Updatable fields:
+     *                                For the `FieldMask` definition, see
+     *                                [google.protobuf.FieldMask][google.protobuf.FieldMask]. Updatable fields:
      *
      *                                * `display_name`
      *                                * `description`

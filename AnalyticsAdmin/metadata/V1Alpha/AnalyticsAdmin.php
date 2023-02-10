@@ -26,7 +26,7 @@ class AnalyticsAdmin
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-•É
+√û
 4google/analytics/admin/v1alpha/analytics_admin.protogoogle.analytics.admin.v1alpha-google/analytics/admin/v1alpha/audience.proto.google/analytics/admin/v1alpha/resources.protogoogle/api/annotations.protogoogle/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"§
 RunAccessReportRequest
 entity (	C
@@ -296,7 +296,27 @@ Canalyticsadmin.googleapis.com/DisplayVideo360AdvertiserLinkProposal"†
 !display_video_360_advertiser_link (2=.google.analytics.admin.v1alpha.DisplayVideo360AdvertiserLink"è
 2CancelDisplayVideo360AdvertiserLinkProposalRequestY
 name (	BK‡A˙AE
-Canalyticsadmin.googleapis.com/DisplayVideo360AdvertiserLinkProposal"µ
+Canalyticsadmin.googleapis.com/DisplayVideo360AdvertiserLinkProposal"b
+GetSearchAds360LinkRequestD
+name (	B6‡A˙A0
+.analyticsadmin.googleapis.com/SearchAds360Link"ç
+ListSearchAds360LinksRequestF
+parent (	B6‡A˙A0.analyticsadmin.googleapis.com/SearchAds360Link
+	page_size (
+
+page_token (	"à
+ListSearchAds360LinksResponseN
+search_ads_360_links (20.google.analytics.admin.v1alpha.SearchAds360Link
+next_page_token (	"ª
+CreateSearchAds360LinkRequestF
+parent (	B6‡A˙A0.analyticsadmin.googleapis.com/SearchAds360LinkR
+search_ads_360_link (20.google.analytics.admin.v1alpha.SearchAds360LinkB‡A"e
+DeleteSearchAds360LinkRequestD
+name (	B6‡A˙A0
+.analyticsadmin.googleapis.com/SearchAds360Link"§
+UpdateSearchAds360LinkRequestM
+search_ads_360_link (20.google.analytics.admin.v1alpha.SearchAds360Link4
+update_mask (2.google.protobuf.FieldMaskB‡A"µ
 CreateCustomDimensionRequestE
 parent (	B5‡A˙A/-analyticsadmin.googleapis.com/CustomDimensionN
 custom_dimension (2/.google.analytics.admin.v1alpha.CustomDimensionB‡A"ü
@@ -387,7 +407,26 @@ page_token (	"m
 1analyticsadmin.googleapis.com/AttributionSettings"∞
  UpdateAttributionSettingsRequestV
 attribution_settings (23.google.analytics.admin.v1alpha.AttributionSettingsB‡A4
-update_mask (2.google.protobuf.FieldMaskB‡A2åç
+update_mask (2.google.protobuf.FieldMaskB‡A"S
+)SetAutomatedGa4ConfigurationOptOutRequest
+property (	B‡A
+opt_out (",
+*SetAutomatedGa4ConfigurationOptOutResponse"D
++FetchAutomatedGa4ConfigurationOptOutRequest
+property (	B‡A"?
+,FetchAutomatedGa4ConfigurationOptOutResponse
+opt_out ("Z
+GetBigQueryLinkRequest@
+name (	B2‡A˙A,
+*analyticsadmin.googleapis.com/BigQueryLink"Ö
+ListBigQueryLinksRequestB
+parent (	B2‡A˙A,*analyticsadmin.googleapis.com/BigQueryLink
+	page_size (
+
+page_token (	"z
+ListBigQueryLinksResponseD
+bigquery_links (2,.google.analytics.admin.v1alpha.BigQueryLink
+next_page_token (	2ıú
 AnalyticsAdminServiceì
 
 GetAccount1.google.analytics.admin.v1alpha.GetAccountRequest\'.google.analytics.admin.v1alpha.Account")Ç”‰ì/v1alpha/{name=accounts/*}⁄Anameî
@@ -465,10 +504,19 @@ GetAccount1.google.analytics.admin.v1alpha.GetAccountRequest\'.google.analytic
 ListAudiences4.google.analytics.admin.v1alpha.ListAudiencesRequest5.google.analytics.admin.v1alpha.ListAudiencesResponse"9Ç”‰ì*(/v1alpha/{parent=properties/*}/audiences⁄Aparentø
 CreateAudience5.google.analytics.admin.v1alpha.CreateAudienceRequest(.google.analytics.admin.v1alpha.Audience"LÇ”‰ì4"(/v1alpha/{parent=properties/*}/audiences:audience⁄Aparent,audienceÕ
 UpdateAudience5.google.analytics.admin.v1alpha.UpdateAudienceRequest(.google.analytics.admin.v1alpha.Audience"ZÇ”‰ì=21/v1alpha/{audience.name=properties/*/audiences/*}:audience⁄Aaudience,update_maskû
-ArchiveAudience6.google.analytics.admin.v1alpha.ArchiveAudienceRequest.google.protobuf.Empty";Ç”‰ì5"0/v1alpha/{name=properties/*/audiences/*}:archive:*Õ
+ArchiveAudience6.google.analytics.admin.v1alpha.ArchiveAudienceRequest.google.protobuf.Empty";Ç”‰ì5"0/v1alpha/{name=properties/*/audiences/*}:archive:*ƒ
+GetSearchAds360Link:.google.analytics.admin.v1alpha.GetSearchAds360LinkRequest0.google.analytics.admin.v1alpha.SearchAds360Link"?Ç”‰ì20/v1alpha/{name=properties/*/searchAds360Links/*}⁄Aname◊
+ListSearchAds360Links<.google.analytics.admin.v1alpha.ListSearchAds360LinksRequest=.google.analytics.admin.v1alpha.ListSearchAds360LinksResponse"AÇ”‰ì20/v1alpha/{parent=properties/*}/searchAds360Links⁄Aparentı
+CreateSearchAds360Link=.google.analytics.admin.v1alpha.CreateSearchAds360LinkRequest0.google.analytics.admin.v1alpha.SearchAds360Link"jÇ”‰ìG"0/v1alpha/{parent=properties/*}/searchAds360Links:search_ads_360_link⁄Aparent,search_ads_360_link∞
+DeleteSearchAds360Link=.google.analytics.admin.v1alpha.DeleteSearchAds360LinkRequest.google.protobuf.Empty"?Ç”‰ì2*0/v1alpha/{name=properties/*/searchAds360Links/*}⁄Anameè
+UpdateSearchAds360Link=.google.analytics.admin.v1alpha.UpdateSearchAds360LinkRequest0.google.analytics.admin.v1alpha.SearchAds360Link"ÉÇ”‰ì[2D/v1alpha/{search_ads_360_link.name=properties/*/searchAds360Links/*}:search_ads_360_link⁄Asearch_ads_360_link,update_maskÕ
 GetAttributionSettings=.google.analytics.admin.v1alpha.GetAttributionSettingsRequest3.google.analytics.admin.v1alpha.AttributionSettings"?Ç”‰ì20/v1alpha/{name=properties/*/attributionSettings}⁄Anameõ
 UpdateAttributionSettings@.google.analytics.admin.v1alpha.UpdateAttributionSettingsRequest3.google.analytics.admin.v1alpha.AttributionSettings"ÜÇ”‰ì]2E/v1alpha/{attribution_settings.name=properties/*/attributionSettings}:attribution_settings⁄A attribution_settings,update_maskΩ
-RunAccessReport6.google.analytics.admin.v1alpha.RunAccessReportRequest7.google.analytics.admin.v1alpha.RunAccessReportResponse"9Ç”‰ì3"./v1alpha/{entity=properties/*}:runAccessReport:*¸ Aanalyticsadmin.googleapis.com“Aÿhttps://www.googleapis.com/auth/analytics.edit,https://www.googleapis.com/auth/analytics.manage.users,https://www.googleapis.com/auth/analytics.manage.users.readonly,https://www.googleapis.com/auth/analytics.readonlyBÄ
+RunAccessReport6.google.analytics.admin.v1alpha.RunAccessReportRequest7.google.analytics.admin.v1alpha.RunAccessReportResponse"9Ç”‰ì3"./v1alpha/{entity=properties/*}:runAccessReport:*˛
+"SetAutomatedGa4ConfigurationOptOutI.google.analytics.admin.v1alpha.SetAutomatedGa4ConfigurationOptOutRequestJ.google.analytics.admin.v1alpha.SetAutomatedGa4ConfigurationOptOutResponse"AÇ”‰ì;"6/v1alpha/properties:setAutomatedGa4ConfigurationOptOut:*Ü
+$FetchAutomatedGa4ConfigurationOptOutK.google.analytics.admin.v1alpha.FetchAutomatedGa4ConfigurationOptOutRequestL.google.analytics.admin.v1alpha.FetchAutomatedGa4ConfigurationOptOutResponse"CÇ”‰ì="8/v1alpha/properties:fetchAutomatedGa4ConfigurationOptOut:*¥
+GetBigQueryLink6.google.analytics.admin.v1alpha.GetBigQueryLinkRequest,.google.analytics.admin.v1alpha.BigQueryLink";Ç”‰ì.,/v1alpha/{name=properties/*/bigQueryLinks/*}⁄Aname«
+ListBigQueryLinks8.google.analytics.admin.v1alpha.ListBigQueryLinksRequest9.google.analytics.admin.v1alpha.ListBigQueryLinksResponse"=Ç”‰ì.,/v1alpha/{parent=properties/*}/bigQueryLinks⁄Aparent¸ Aanalyticsadmin.googleapis.com“Aÿhttps://www.googleapis.com/auth/analytics.edit,https://www.googleapis.com/auth/analytics.manage.users,https://www.googleapis.com/auth/analytics.manage.users.readonly,https://www.googleapis.com/auth/analytics.readonlyBÄ
 "com.google.analytics.admin.v1alphaBAnalyticsAdminProtoPZCgoogle.golang.org/genproto/googleapis/analytics/admin/v1alpha;adminbproto3'
         , true);
 

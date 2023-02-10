@@ -9,15 +9,16 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [PipelineService.ListTrainingPipelines][google.cloud.aiplatform.v1.PipelineService.ListTrainingPipelines].
+ * Request message for
+ * [PipelineService.ListTrainingPipelines][google.cloud.aiplatform.v1.PipelineService.ListTrainingPipelines].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.ListTrainingPipelinesRequest</code>
  */
 class ListTrainingPipelinesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name of the Location to list the TrainingPipelines from.
-     * Format: `projects/{project}/locations/{location}`
+     * Required. The resource name of the Location to list the TrainingPipelines
+     * from. Format: `projects/{project}/locations/{location}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -52,8 +53,10 @@ class ListTrainingPipelinesRequest extends \Google\Protobuf\Internal\Message
     /**
      * The standard list page token.
      * Typically obtained via
-     * [ListTrainingPipelinesResponse.next_page_token][google.cloud.aiplatform.v1.ListTrainingPipelinesResponse.next_page_token] of the previous
-     * [PipelineService.ListTrainingPipelines][google.cloud.aiplatform.v1.PipelineService.ListTrainingPipelines] call.
+     * [ListTrainingPipelinesResponse.next_page_token][google.cloud.aiplatform.v1.ListTrainingPipelinesResponse.next_page_token]
+     * of the previous
+     * [PipelineService.ListTrainingPipelines][google.cloud.aiplatform.v1.PipelineService.ListTrainingPipelines]
+     * call.
      *
      * Generated from protobuf field <code>string page_token = 4;</code>
      */
@@ -72,8 +75,8 @@ class ListTrainingPipelinesRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The resource name of the Location to list the TrainingPipelines from.
-     *           Format: `projects/{project}/locations/{location}`
+     *           Required. The resource name of the Location to list the TrainingPipelines
+     *           from. Format: `projects/{project}/locations/{location}`
      *     @type string $filter
      *           The standard list filter.
      *           Supported fields:
@@ -96,8 +99,10 @@ class ListTrainingPipelinesRequest extends \Google\Protobuf\Internal\Message
      *     @type string $page_token
      *           The standard list page token.
      *           Typically obtained via
-     *           [ListTrainingPipelinesResponse.next_page_token][google.cloud.aiplatform.v1.ListTrainingPipelinesResponse.next_page_token] of the previous
-     *           [PipelineService.ListTrainingPipelines][google.cloud.aiplatform.v1.PipelineService.ListTrainingPipelines] call.
+     *           [ListTrainingPipelinesResponse.next_page_token][google.cloud.aiplatform.v1.ListTrainingPipelinesResponse.next_page_token]
+     *           of the previous
+     *           [PipelineService.ListTrainingPipelines][google.cloud.aiplatform.v1.PipelineService.ListTrainingPipelines]
+     *           call.
      *     @type \Google\Protobuf\FieldMask $read_mask
      *           Mask specifying which fields to read.
      * }
@@ -108,8 +113,8 @@ class ListTrainingPipelinesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the Location to list the TrainingPipelines from.
-     * Format: `projects/{project}/locations/{location}`
+     * Required. The resource name of the Location to list the TrainingPipelines
+     * from. Format: `projects/{project}/locations/{location}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -120,8 +125,8 @@ class ListTrainingPipelinesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the Location to list the TrainingPipelines from.
-     * Format: `projects/{project}/locations/{location}`
+     * Required. The resource name of the Location to list the TrainingPipelines
+     * from. Format: `projects/{project}/locations/{location}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -220,8 +225,10 @@ class ListTrainingPipelinesRequest extends \Google\Protobuf\Internal\Message
     /**
      * The standard list page token.
      * Typically obtained via
-     * [ListTrainingPipelinesResponse.next_page_token][google.cloud.aiplatform.v1.ListTrainingPipelinesResponse.next_page_token] of the previous
-     * [PipelineService.ListTrainingPipelines][google.cloud.aiplatform.v1.PipelineService.ListTrainingPipelines] call.
+     * [ListTrainingPipelinesResponse.next_page_token][google.cloud.aiplatform.v1.ListTrainingPipelinesResponse.next_page_token]
+     * of the previous
+     * [PipelineService.ListTrainingPipelines][google.cloud.aiplatform.v1.PipelineService.ListTrainingPipelines]
+     * call.
      *
      * Generated from protobuf field <code>string page_token = 4;</code>
      * @return string
@@ -234,8 +241,10 @@ class ListTrainingPipelinesRequest extends \Google\Protobuf\Internal\Message
     /**
      * The standard list page token.
      * Typically obtained via
-     * [ListTrainingPipelinesResponse.next_page_token][google.cloud.aiplatform.v1.ListTrainingPipelinesResponse.next_page_token] of the previous
-     * [PipelineService.ListTrainingPipelines][google.cloud.aiplatform.v1.PipelineService.ListTrainingPipelines] call.
+     * [ListTrainingPipelinesResponse.next_page_token][google.cloud.aiplatform.v1.ListTrainingPipelinesResponse.next_page_token]
+     * of the previous
+     * [PipelineService.ListTrainingPipelines][google.cloud.aiplatform.v1.PipelineService.ListTrainingPipelines]
+     * call.
      *
      * Generated from protobuf field <code>string page_token = 4;</code>
      * @param string $var

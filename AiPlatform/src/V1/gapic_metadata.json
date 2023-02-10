@@ -519,6 +519,11 @@
                                 "cancelHyperparameterTuningJob"
                             ]
                         },
+                        "CancelNasJob": {
+                            "methods": [
+                                "cancelNasJob"
+                            ]
+                        },
                         "CreateBatchPredictionJob": {
                             "methods": [
                                 "createBatchPredictionJob"
@@ -542,6 +547,11 @@
                         "CreateModelDeploymentMonitoringJob": {
                             "methods": [
                                 "createModelDeploymentMonitoringJob"
+                            ]
+                        },
+                        "CreateNasJob": {
+                            "methods": [
+                                "createNasJob"
                             ]
                         },
                         "DeleteBatchPredictionJob": {
@@ -569,6 +579,11 @@
                                 "deleteModelDeploymentMonitoringJob"
                             ]
                         },
+                        "DeleteNasJob": {
+                            "methods": [
+                                "deleteNasJob"
+                            ]
+                        },
                         "GetBatchPredictionJob": {
                             "methods": [
                                 "getBatchPredictionJob"
@@ -594,6 +609,16 @@
                                 "getModelDeploymentMonitoringJob"
                             ]
                         },
+                        "GetNasJob": {
+                            "methods": [
+                                "getNasJob"
+                            ]
+                        },
+                        "GetNasTrialDetail": {
+                            "methods": [
+                                "getNasTrialDetail"
+                            ]
+                        },
                         "ListBatchPredictionJobs": {
                             "methods": [
                                 "listBatchPredictionJobs"
@@ -617,6 +642,16 @@
                         "ListModelDeploymentMonitoringJobs": {
                             "methods": [
                                 "listModelDeploymentMonitoringJobs"
+                            ]
+                        },
+                        "ListNasJobs": {
+                            "methods": [
+                                "listNasJobs"
+                            ]
+                        },
+                        "ListNasTrialDetails": {
+                            "methods": [
+                                "listNasTrialDetails"
                             ]
                         },
                         "PauseModelDeploymentMonitoringJob": {
@@ -914,6 +949,11 @@
                         "BatchImportModelEvaluationSlices": {
                             "methods": [
                                 "batchImportModelEvaluationSlices"
+                            ]
+                        },
+                        "CopyModel": {
+                            "methods": [
+                                "copyModel"
                             ]
                         },
                         "DeleteModel": {
@@ -1320,6 +1360,11 @@
                         "ReadTensorboardTimeSeriesData": {
                             "methods": [
                                 "readTensorboardTimeSeriesData"
+                            ]
+                        },
+                        "ReadTensorboardUsage": {
+                            "methods": [
+                                "readTensorboardUsage"
                             ]
                         },
                         "UpdateTensorboard": {

@@ -126,7 +126,7 @@ GetService8.google.cloud.servicedirectory.v1beta1.GetServiceRequest..google.cl
 GetIamPolicy".google.iam.v1.GetIamPolicyRequest.google.iam.v1.Policy"¦‚Óä“Ÿ"D/v1beta1/{resource=projects/*/locations/*/namespaces/*}:getIamPolicy:*ZT"O/v1beta1/{resource=projects/*/locations/*/namespaces/*/services/*}:getIamPolicy:*ò
 SetIamPolicy".google.iam.v1.SetIamPolicyRequest.google.iam.v1.Policy"¦‚Óä“Ÿ"D/v1beta1/{resource=projects/*/locations/*/namespaces/*}:setIamPolicy:*ZT"O/v1beta1/{resource=projects/*/locations/*/namespaces/*/services/*}:setIamPolicy:*ž
 TestIamPermissions(.google.iam.v1.TestIamPermissionsRequest).google.iam.v1.TestIamPermissionsResponse"²‚Óä“«"J/v1beta1/{resource=projects/*/locations/*/namespaces/*}:testIamPermissions:*ZZ"U/v1beta1/{resource=projects/*/locations/*/namespaces/*/services/*}:testIamPermissions:*SÊAservicedirectory.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBœ
-)com.google.cloud.servicedirectory.v1beta1BRegistrationServiceProtoPZUgoogle.golang.org/genproto/googleapis/cloud/servicedirectory/v1beta1;servicedirectoryøª%Google.Cloud.ServiceDirectory.V1Beta1Ê%Google\\Cloud\\ServiceDirectory\\V1beta1ê(Google::Cloud::ServiceDirectory::V1beta1bproto3'
+)com.google.cloud.servicedirectory.v1beta1BRegistrationServiceProtoPZUcloud.google.com/go/servicedirectory/apiv1beta1/servicedirectorypb;servicedirectorypbøª%Google.Cloud.ServiceDirectory.V1Beta1Ê%Google\\Cloud\\ServiceDirectory\\V1beta1ê(Google::Cloud::ServiceDirectory::V1beta1bproto3'
         , true);
 
         static::$is_initialized = true;

@@ -22,7 +22,7 @@ class OsconfigService
         \GPBMetadata\Google\Api\Annotations::initOnce();
         $pool->internalAddGeneratedFile(
             '
-î
+å
 /google/cloud/osconfig/v1/osconfig_service.protogoogle.cloud.osconfig.v1google/api/resource.proto0google/cloud/osconfig/v1/patch_deployments.proto)google/cloud/osconfig/v1/patch_jobs.protogoogle/protobuf/empty.protogoogle/api/annotations.proto2¨
 OsConfigServiceù
 ExecutePatchJob0.google.cloud.osconfig.v1.ExecutePatchJobRequest".google.cloud.osconfig.v1.PatchJob"4Ç”‰ì.")/v1/{parent=projects/*}/patchJobs:execute:*ë
@@ -36,8 +36,8 @@ class OsconfigService
 DeletePatchDeployment6.google.cloud.osconfig.v1.DeletePatchDeploymentRequest.google.protobuf.Empty"7Ç”‰ì**(/v1/{name=projects/*/patchDeployments/*}⁄AnameÓ
 UpdatePatchDeployment6.google.cloud.osconfig.v1.UpdatePatchDeploymentRequest).google.cloud.osconfig.v1.PatchDeployment"rÇ”‰ìM29/v1/{patch_deployment.name=projects/*/patchDeployments/*}:patch_deployment⁄Apatch_deployment,update_mask∫
 PausePatchDeployment5.google.cloud.osconfig.v1.PausePatchDeploymentRequest).google.cloud.osconfig.v1.PatchDeployment"@Ç”‰ì3"./v1/{name=projects/*/patchDeployments/*}:pause:*⁄AnameΩ
-ResumePatchDeployment6.google.cloud.osconfig.v1.ResumePatchDeploymentRequest).google.cloud.osconfig.v1.PatchDeployment"AÇ”‰ì4"//v1/{name=projects/*/patchDeployments/*}:resume:*⁄AnameK Aosconfig.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformB‹
-com.google.cloud.osconfig.v1BOsConfigProtoZ@google.golang.org/genproto/googleapis/cloud/osconfig/v1;osconfig™Google.Cloud.OsConfig.V1 Google\\Cloud\\OsConfig\\V1ÍGoogle::Cloud::OsConfig::V1ÍAï
+ResumePatchDeployment6.google.cloud.osconfig.v1.ResumePatchDeploymentRequest).google.cloud.osconfig.v1.PatchDeployment"AÇ”‰ì4"//v1/{name=projects/*/patchDeployments/*}:resume:*⁄AnameK Aosconfig.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformB‘
+com.google.cloud.osconfig.v1BOsConfigProtoZ8cloud.google.com/go/osconfig/apiv1/osconfigpb;osconfigpb™Google.Cloud.OsConfig.V1 Google\\Cloud\\OsConfig\\V1ÍGoogle::Cloud::OsConfig::V1ÍAï
 compute.googleapis.com/Instance4projects/{project}/zones/{zone}/instances/{instance}<projects/{project}/locations/{location}/instances/{instance}bproto3'
         , true);
 

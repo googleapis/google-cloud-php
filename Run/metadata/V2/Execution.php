@@ -25,7 +25,7 @@ class Execution
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-€
+û
 #google/cloud/run/v2/execution.protogoogle.cloud.run.v2google/api/client.protogoogle/api/field_behavior.protogoogle/api/launch_stage.protogoogle/api/resource.proto#google/cloud/run/v2/condition.proto\'google/cloud/run/v2/task_template.proto#google/longrunning/operations.protogoogle/protobuf/timestamp.proto"I
 GetExecutionRequest2
 name (	B$‡A˙A
@@ -44,7 +44,7 @@ executions (2.google.cloud.run.v2.Execution
 name (	B$‡A˙A
 run.googleapis.com/Execution
 validate_only (
-etag (	"å	
+etag (	"‹	
 	Execution
 name (	B‡A
 uid (	B‡A
@@ -73,7 +73,10 @@ conditions (2.google.cloud.run.v2.ConditionB‡A
 observed_generation (B‡A
 running_count (B‡A
 succeeded_count (B‡A
-failed_count (B‡A
+failed_count (B‡A
+cancelled_count (B‡A
+retried_count (B‡A
+log_uri (	B‡A
 etagc (	B‡A-
 LabelsEntry
 key (	
@@ -87,8 +90,8 @@ Executionsû
 GetExecution(.google.cloud.run.v2.GetExecutionRequest.google.cloud.run.v2.Execution"DÇ”‰ì75/v2/{name=projects/*/locations/*/jobs/*/executions/*}⁄Aname±
 ListExecutions*.google.cloud.run.v2.ListExecutionsRequest+.google.cloud.run.v2.ListExecutionsResponse"FÇ”‰ì75/v2/{parent=projects/*/locations/*/jobs/*}/executions⁄Aparentº
 DeleteExecution+.google.cloud.run.v2.DeleteExecutionRequest.google.longrunning.Operation"]Ç”‰ì7*5/v2/{name=projects/*/locations/*/jobs/*/executions/*}⁄Aname A
-	Execution	ExecutionF Arun.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBc
-com.google.cloud.run.v2BExecutionProtoPZ6google.golang.org/genproto/googleapis/cloud/run/v2;runbproto3'
+	Execution	ExecutionF Arun.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBV
+com.google.cloud.run.v2BExecutionProtoPZ)cloud.google.com/go/run/apiv2/runpb;runpbbproto3'
         , true);
 
         static::$is_initialized = true;

@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [IndexService.GetIndex][google.cloud.aiplatform.v1.IndexService.GetIndex]
+ * Request message for
+ * [IndexService.GetIndex][google.cloud.aiplatform.v1.IndexService.GetIndex]
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.GetIndexRequest</code>
  */

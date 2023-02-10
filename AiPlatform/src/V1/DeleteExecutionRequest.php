@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [MetadataService.DeleteExecution][google.cloud.aiplatform.v1.MetadataService.DeleteExecution].
+ * Request message for
+ * [MetadataService.DeleteExecution][google.cloud.aiplatform.v1.MetadataService.DeleteExecution].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.DeleteExecutionRequest</code>
  */

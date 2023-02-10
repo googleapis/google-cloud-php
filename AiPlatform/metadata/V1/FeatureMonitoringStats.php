@@ -17,7 +17,7 @@ class FeatureMonitoringStats
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-³
+­
 9google/cloud/aiplatform/v1/feature_monitoring_stats.protogoogle.cloud.aiplatform.v1"ï
 FeatureStatsAnomaly
 score (
@@ -27,8 +27,8 @@ class FeatureMonitoringStats
 anomaly_detection_threshold	 (.
 
 start_time (2.google.protobuf.Timestamp,
-end_time (2.google.protobuf.TimestampBß
-com.google.cloud.aiplatform.v1BFeatureMonitoringStatsProtoPZDgoogle.golang.org/genproto/googleapis/cloud/aiplatform/v1;aiplatformªGoogle.Cloud.AIPlatform.V1ÊGoogle\\Cloud\\AIPlatform\\V1êGoogle::Cloud::AIPlatform::V1bproto3'
+end_time (2.google.protobuf.TimestampBÙ
+com.google.cloud.aiplatform.v1BFeatureMonitoringStatsProtoPZ>cloud.google.com/go/aiplatform/apiv1/aiplatformpb;aiplatformpbªGoogle.Cloud.AIPlatform.V1ÊGoogle\\Cloud\\AIPlatform\\V1êGoogle::Cloud::AIPlatform::V1bproto3'
         , true);
 
         static::$is_initialized = true;

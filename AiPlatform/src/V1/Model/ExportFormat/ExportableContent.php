@@ -22,7 +22,8 @@ class ExportableContent
     /**
      * Model artifact and any of its supported files. Will be exported to the
      * location specified by the `artifactDestination` field of the
-     * [ExportModelRequest.output_config][google.cloud.aiplatform.v1.ExportModelRequest.output_config] object.
+     * [ExportModelRequest.output_config][google.cloud.aiplatform.v1.ExportModelRequest.output_config]
+     * object.
      *
      * Generated from protobuf enum <code>ARTIFACT = 1;</code>
      */
@@ -30,7 +31,9 @@ class ExportableContent
     /**
      * The container image that is to be used when deploying this Model. Will
      * be exported to the location specified by the `imageDestination` field
-     * of the [ExportModelRequest.output_config][google.cloud.aiplatform.v1.ExportModelRequest.output_config] object.
+     * of the
+     * [ExportModelRequest.output_config][google.cloud.aiplatform.v1.ExportModelRequest.output_config]
+     * object.
      *
      * Generated from protobuf enum <code>IMAGE = 2;</code>
      */

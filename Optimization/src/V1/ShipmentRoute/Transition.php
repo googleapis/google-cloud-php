@@ -110,7 +110,9 @@ class Transition extends \Google\Protobuf\Internal\Message
      */
     private $vehicle_loads;
     /**
-     * Deprecated: Use [Transition.vehicle_loads][] instead.
+     * Deprecated: Use
+     * [Transition.vehicle_loads][google.cloud.optimization.v1.ShipmentRoute.Transition.vehicle_loads]
+     * instead.
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.CapacityQuantity loads = 10 [deprecated = true];</code>
      * @deprecated
@@ -175,7 +177,9 @@ class Transition extends \Google\Protobuf\Internal\Message
      *           either added or subtracted to get the next transition's loads, depending
      *           on whether the visit was a pickup or a delivery.
      *     @type array<\Google\Cloud\Optimization\V1\CapacityQuantity>|\Google\Protobuf\Internal\RepeatedField $loads
-     *           Deprecated: Use [Transition.vehicle_loads][] instead.
+     *           Deprecated: Use
+     *           [Transition.vehicle_loads][google.cloud.optimization.v1.ShipmentRoute.Transition.vehicle_loads]
+     *           instead.
      * }
      */
     public function __construct($data = NULL) {
@@ -576,7 +580,9 @@ class Transition extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated: Use [Transition.vehicle_loads][] instead.
+     * Deprecated: Use
+     * [Transition.vehicle_loads][google.cloud.optimization.v1.ShipmentRoute.Transition.vehicle_loads]
+     * instead.
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.CapacityQuantity loads = 10 [deprecated = true];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -589,7 +595,9 @@ class Transition extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated: Use [Transition.vehicle_loads][] instead.
+     * Deprecated: Use
+     * [Transition.vehicle_loads][google.cloud.optimization.v1.ShipmentRoute.Transition.vehicle_loads]
+     * instead.
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.CapacityQuantity loads = 10 [deprecated = true];</code>
      * @param array<\Google\Cloud\Optimization\V1\CapacityQuantity>|\Google\Protobuf\Internal\RepeatedField $var
