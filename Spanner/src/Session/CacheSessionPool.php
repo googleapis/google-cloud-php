@@ -835,7 +835,7 @@ class CacheSessionPool implements SessionPoolInterface
      *        to delete sessions. **Defaults to ** `false`.
      * @return bool Returns true if all provided sessions are deleted, false otherwise.
      */
-    private function deleteSessions(array $sessions, bool $waitForPromises = false)
+    private function deleteSessions(array $sessions, $waitForPromises = false)
     {
         $this->deleteCalls = [];
         foreach ($sessions as $session) {
