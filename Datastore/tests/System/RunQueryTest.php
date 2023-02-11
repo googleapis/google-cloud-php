@@ -381,6 +381,7 @@ class RunQueryTest extends DatastoreMultipleDbTestCase
      */
     public function testAggregationQueryShouldFailForIncorrectAlias(DatastoreClient $client)
     {
+        $this->skipEmulatorTests();
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage('alias does not exist');
         $aggregationQuery = $client->query()
@@ -398,6 +399,7 @@ class RunQueryTest extends DatastoreMultipleDbTestCase
      */
     public function testAggregationQueryWithFilter(DatastoreClient $client)
     {
+        $this->skipEmulatorTests();
         $aggregationQuery = $client->query()
             ->kind(self::$kind)
             ->filter('lastName', '=', 'Smith')
@@ -413,6 +415,7 @@ class RunQueryTest extends DatastoreMultipleDbTestCase
      */
     public function testAggregationOverQueryWithFilter(DatastoreClient $client)
     {
+        $this->skipEmulatorTests();
         $query = $client->query()
             ->kind(self::$kind)
             ->filter('lastName', '=', 'Smith');
@@ -430,6 +433,7 @@ class RunQueryTest extends DatastoreMultipleDbTestCase
      */
     public function testAggregationGqlQueryWithFilter(DatastoreClient $client)
     {
+        $this->skipEmulatorTests();
         $aggregationQuery = $client->gqlQuery("SELECT count(*) as total From Person WHERE lastName = 'Smith'", [
             'allowLiterals' => true
         ])
@@ -445,6 +449,7 @@ class RunQueryTest extends DatastoreMultipleDbTestCase
      */
     public function testAggregationOverGqlQueryWithFilter(DatastoreClient $client)
     {
+        $this->skipEmulatorTests();
         $query = $client->gqlQuery("SELECT count(*) as total From Person WHERE lastName = 'Smith'", [
             'allowLiterals' => true
         ]);
@@ -461,6 +466,7 @@ class RunQueryTest extends DatastoreMultipleDbTestCase
      */
     public function testAggregationQueryWithLimit(DatastoreClient $client)
     {
+        $this->skipEmulatorTests();
         $query = $client->query()
             ->kind(self::$kind)
             ->filter('lastName', '=', 'Smith');
@@ -478,6 +484,7 @@ class RunQueryTest extends DatastoreMultipleDbTestCase
      */
     public function testAggregationGqlQueryWithLimit(DatastoreClient $client)
     {
+        $this->skipEmulatorTests();
         $queryString = sprintf(
             "AGGREGATE
                 COUNT_UP_TO(2) AS total_upto_2
@@ -502,6 +509,7 @@ class RunQueryTest extends DatastoreMultipleDbTestCase
      */
     public function testAggregationQueryWithMultipleAggregations(DatastoreClient $client)
     {
+        $this->skipEmulatorTests();
         $query = $client->query()
             ->kind(self::$kind)
             ->filter('lastName', '=', 'Smith');
@@ -521,6 +529,7 @@ class RunQueryTest extends DatastoreMultipleDbTestCase
      */
     public function testAggregationGqlQueryWithMultipleAggregations(DatastoreClient $client)
     {
+        $this->skipEmulatorTests();
         $queryString = sprintf(
             "AGGREGATE
                 COUNT(*) AS total_count,

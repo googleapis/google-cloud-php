@@ -46,7 +46,7 @@ class DatastoreClientTest extends SnippetTestCase
     use AssertIsType;
     use DatastoreOperationRefreshTrait;
 
-    public const PROJECT = 'example-project';
+    const PROJECT = 'example-project';
 
     private $connection;
     private $operation;

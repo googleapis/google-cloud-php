@@ -104,6 +104,7 @@ class DatastoreMultipleDbTest extends DatastoreMultipleDbTestCase
      */
     public function testAggregationQueryMultipleDbClients(DatastoreClient $client)
     {
+        $this->skipEmulatorTests();
         $aggregationQuery = $client->query()
             ->kind(self::$kind)
             ->order('knownDances')
