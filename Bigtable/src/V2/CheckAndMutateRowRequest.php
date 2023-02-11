@@ -16,9 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class CheckAndMutateRowRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The unique name of the table to which the conditional mutation should be
-     * applied.
-     * Values are of the form
+     * Required. The unique name of the table to which the conditional mutation
+     * should be applied. Values are of the form
      * `projects/<project>/instances/<instance>/tables/<table>`.
      *
      * Generated from protobuf field <code>string table_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -32,7 +31,8 @@ class CheckAndMutateRowRequest extends \Google\Protobuf\Internal\Message
      */
     private $app_profile_id = '';
     /**
-     * Required. The key of the row to which the conditional mutation should be applied.
+     * Required. The key of the row to which the conditional mutation should be
+     * applied.
      *
      * Generated from protobuf field <code>bytes row_key = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -74,15 +74,15 @@ class CheckAndMutateRowRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $table_name
-     *           Required. The unique name of the table to which the conditional mutation should be
-     *           applied.
-     *           Values are of the form
+     *           Required. The unique name of the table to which the conditional mutation
+     *           should be applied. Values are of the form
      *           `projects/<project>/instances/<instance>/tables/<table>`.
      *     @type string $app_profile_id
      *           This value specifies routing for replication. If not specified, the
      *           "default" application profile will be used.
      *     @type string $row_key
-     *           Required. The key of the row to which the conditional mutation should be applied.
+     *           Required. The key of the row to which the conditional mutation should be
+     *           applied.
      *     @type \Google\Cloud\Bigtable\V2\RowFilter $predicate_filter
      *           The filter to be applied to the contents of the specified row. Depending
      *           on whether or not any results are yielded, either `true_mutations` or
@@ -108,9 +108,8 @@ class CheckAndMutateRowRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The unique name of the table to which the conditional mutation should be
-     * applied.
-     * Values are of the form
+     * Required. The unique name of the table to which the conditional mutation
+     * should be applied. Values are of the form
      * `projects/<project>/instances/<instance>/tables/<table>`.
      *
      * Generated from protobuf field <code>string table_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -122,9 +121,8 @@ class CheckAndMutateRowRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The unique name of the table to which the conditional mutation should be
-     * applied.
-     * Values are of the form
+     * Required. The unique name of the table to which the conditional mutation
+     * should be applied. Values are of the form
      * `projects/<project>/instances/<instance>/tables/<table>`.
      *
      * Generated from protobuf field <code>string table_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -168,7 +166,8 @@ class CheckAndMutateRowRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The key of the row to which the conditional mutation should be applied.
+     * Required. The key of the row to which the conditional mutation should be
+     * applied.
      *
      * Generated from protobuf field <code>bytes row_key = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -179,7 +178,8 @@ class CheckAndMutateRowRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The key of the row to which the conditional mutation should be applied.
+     * Required. The key of the row to which the conditional mutation should be
+     * applied.
      *
      * Generated from protobuf field <code>bytes row_key = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

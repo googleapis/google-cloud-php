@@ -15,6 +15,18 @@ return [
                     ],
                 ],
             ],
+            'GenerateInitialChangeStreamPartitions' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{table_name=projects/*/instances/*/tables/*}:generateInitialChangeStreamPartitions',
+                'body' => '*',
+                'placeholders' => [
+                    'table_name' => [
+                        'getters' => [
+                            'getTableName',
+                        ],
+                    ],
+                ],
+            ],
             'MutateRow' => [
                 'method' => 'post',
                 'uriTemplate' => '/v2/{table_name=projects/*/instances/*/tables/*}:mutateRow',
@@ -47,6 +59,18 @@ return [
                     'name' => [
                         'getters' => [
                             'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ReadChangeStream' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{table_name=projects/*/instances/*/tables/*}:readChangeStream',
+                'body' => '*',
+                'placeholders' => [
+                    'table_name' => [
+                        'getters' => [
+                            'getTableName',
                         ],
                     ],
                 ],

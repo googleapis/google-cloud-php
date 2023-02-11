@@ -34,7 +34,7 @@ class ListWorkloadsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\AssuredWorkloads\V1beta1\Workload[]|\Google\Protobuf\Internal\RepeatedField $workloads
+     *     @type array<\Google\Cloud\AssuredWorkloads\V1beta1\Workload>|\Google\Protobuf\Internal\RepeatedField $workloads
      *           List of Workloads under a given parent.
      *     @type string $next_page_token
      *           The next page token. Return empty if reached the last page.
@@ -60,7 +60,7 @@ class ListWorkloadsResponse extends \Google\Protobuf\Internal\Message
      * List of Workloads under a given parent.
      *
      * Generated from protobuf field <code>repeated .google.cloud.assuredworkloads.v1beta1.Workload workloads = 1;</code>
-     * @param \Google\Cloud\AssuredWorkloads\V1beta1\Workload[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AssuredWorkloads\V1beta1\Workload>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setWorkloads($var)

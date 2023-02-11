@@ -17,7 +17,7 @@ class UpdateWorkloadRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The workload to update.
-     * The workload’s `name` field is used to identify the workload to be updated.
+     * The workload's `name` field is used to identify the workload to be updated.
      * Format:
      * organizations/{org_id}/locations/{location_id}/workloads/{workload_id}
      *
@@ -39,7 +39,7 @@ class UpdateWorkloadRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\AssuredWorkloads\V1beta1\Workload $workload
      *           Required. The workload to update.
-     *           The workload’s `name` field is used to identify the workload to be updated.
+     *           The workload's `name` field is used to identify the workload to be updated.
      *           Format:
      *           organizations/{org_id}/locations/{location_id}/workloads/{workload_id}
      *     @type \Google\Protobuf\FieldMask $update_mask
@@ -53,7 +53,7 @@ class UpdateWorkloadRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The workload to update.
-     * The workload’s `name` field is used to identify the workload to be updated.
+     * The workload's `name` field is used to identify the workload to be updated.
      * Format:
      * organizations/{org_id}/locations/{location_id}/workloads/{workload_id}
      *
@@ -77,7 +77,7 @@ class UpdateWorkloadRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The workload to update.
-     * The workload’s `name` field is used to identify the workload to be updated.
+     * The workload's `name` field is used to identify the workload to be updated.
      * Format:
      * organizations/{org_id}/locations/{location_id}/workloads/{workload_id}
      *
