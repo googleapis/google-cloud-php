@@ -1,12 +1,27 @@
 name: Backwards Compatibility Check
 on: [pull_request]
+permissions:
+  pull-requests: write
 jobs:
   # More info at https://github.com/Roave/BackwardCompatibilityCheck.
   backwards-compatibility-check:
     runs-on: ubuntu-latest
-    # Disable this check by applying the 'breaking change allowed' label to the PR.
-    if: "!contains(github.event.pull_request.labels.*.name, 'breaking change allowed')"
     steps:
+      # Disable this check by applying the 'breaking change allowed' label to the PR.
+      - name: "Check labels"
+        run: |
+          labels="$(gh api repos/$OWNER/$REPO_NAME/pulls/$PULL_REQUEST_NUMBER --jq '.labels.[].name')"
+          if echo "$labels" | grep -c 'breaking change allowed'
+          then
+            echo "Skipping BC compatibility checker"
+            exit 0
+          fi
+        shell: bash
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          OWNER: ${{ github.repository_owner }}
+          REPO_NAME: ${{ github.event.repository.name }}
+          PULL_REQUEST_NUMBER: ${{ github.event.pull_request.number }}
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
