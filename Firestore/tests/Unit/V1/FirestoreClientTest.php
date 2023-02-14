@@ -614,8 +614,7 @@ class FirestoreClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $parent = 'parent-995424086';
-        $collectionId = 'collectionId-821242276';
-        $response = $gapicClient->listDocuments($parent, $collectionId);
+        $response = $gapicClient->listDocuments($parent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -627,8 +626,6 @@ class FirestoreClientTest extends GeneratedTest
         $this->assertSame('/google.firestore.v1.Firestore/ListDocuments', $actualFuncCall);
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($parent, $actualValue);
-        $actualValue = $actualRequestObject->getCollectionId();
-        $this->assertProtobufEquals($collectionId, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -652,9 +649,8 @@ class FirestoreClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $parent = 'parent-995424086';
-        $collectionId = 'collectionId-821242276';
         try {
-            $gapicClient->listDocuments($parent, $collectionId);
+            $gapicClient->listDocuments($parent);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
