@@ -7,8 +7,8 @@ namespace Google\Cloud\Security\PrivateCA\V1\CaPool;
 use UnexpectedValueException;
 
 /**
- * The tier of a [CaPool][google.cloud.security.privateca.v1.CaPool], indicating its supported functionality and/or
- * billing SKU.
+ * The tier of a [CaPool][google.cloud.security.privateca.v1.CaPool],
+ * indicating its supported functionality and/or billing SKU.
  *
  * Protobuf type <code>google.cloud.security.privateca.v1.CaPool.Tier</code>
  */

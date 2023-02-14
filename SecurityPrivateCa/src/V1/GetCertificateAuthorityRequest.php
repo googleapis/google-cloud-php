@@ -9,15 +9,18 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [CertificateAuthorityService.GetCertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthorityService.GetCertificateAuthority].
+ * Request message for
+ * [CertificateAuthorityService.GetCertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthorityService.GetCertificateAuthority].
  *
  * Generated from protobuf message <code>google.cloud.security.privateca.v1.GetCertificateAuthorityRequest</code>
  */
 class GetCertificateAuthorityRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The [name][google.cloud.security.privateca.v1.CertificateAuthority.name] of the [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority] to
-     * get.
+     * Required. The
+     * [name][google.cloud.security.privateca.v1.CertificateAuthority.name] of the
+     * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+     * to get.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -30,8 +33,10 @@ class GetCertificateAuthorityRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The [name][google.cloud.security.privateca.v1.CertificateAuthority.name] of the [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority] to
-     *           get.
+     *           Required. The
+     *           [name][google.cloud.security.privateca.v1.CertificateAuthority.name] of the
+     *           [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+     *           to get.
      * }
      */
     public function __construct($data = NULL) {
@@ -40,8 +45,10 @@ class GetCertificateAuthorityRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The [name][google.cloud.security.privateca.v1.CertificateAuthority.name] of the [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority] to
-     * get.
+     * Required. The
+     * [name][google.cloud.security.privateca.v1.CertificateAuthority.name] of the
+     * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+     * to get.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -52,8 +59,10 @@ class GetCertificateAuthorityRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The [name][google.cloud.security.privateca.v1.CertificateAuthority.name] of the [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority] to
-     * get.
+     * Required. The
+     * [name][google.cloud.security.privateca.v1.CertificateAuthority.name] of the
+     * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+     * to get.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

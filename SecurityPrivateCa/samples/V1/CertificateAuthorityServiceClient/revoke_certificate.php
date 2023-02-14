@@ -31,11 +31,13 @@ use Google\Cloud\Security\PrivateCA\V1\RevocationReason;
 /**
  * Revoke a [Certificate][google.cloud.security.privateca.v1.Certificate].
  *
- * @param string $formattedName The resource name for this [Certificate][google.cloud.security.privateca.v1.Certificate] in the
- *                              format
+ * @param string $formattedName The resource name for this
+ *                              [Certificate][google.cloud.security.privateca.v1.Certificate] in the format
  *                              `projects/&#42;/locations/&#42;/caPools/&#42;/certificates/*`. Please see
  *                              {@see CertificateAuthorityServiceClient::certificateName()} for help formatting this field.
- * @param int    $reason        The [RevocationReason][google.cloud.security.privateca.v1.RevocationReason] for revoking this certificate.
+ * @param int    $reason        The
+ *                              [RevocationReason][google.cloud.security.privateca.v1.RevocationReason] for
+ *                              revoking this certificate.
  */
 function revoke_certificate_sample(string $formattedName, int $reason): void
 {
