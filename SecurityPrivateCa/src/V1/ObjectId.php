@@ -9,16 +9,17 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * An [ObjectId][google.cloud.security.privateca.v1.ObjectId] specifies an object identifier (OID). These provide context
- * and describe types in ASN.1 messages.
+ * An [ObjectId][google.cloud.security.privateca.v1.ObjectId] specifies an
+ * object identifier (OID). These provide context and describe types in ASN.1
+ * messages.
  *
  * Generated from protobuf message <code>google.cloud.security.privateca.v1.ObjectId</code>
  */
 class ObjectId extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The parts of an OID path. The most significant parts of the path come
-     * first.
+     * Required. The parts of an OID path. The most significant parts of the path
+     * come first.
      *
      * Generated from protobuf field <code>repeated int32 object_id_path = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -31,8 +32,8 @@ class ObjectId extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $object_id_path
-     *           Required. The parts of an OID path. The most significant parts of the path come
-     *           first.
+     *           Required. The parts of an OID path. The most significant parts of the path
+     *           come first.
      * }
      */
     public function __construct($data = NULL) {
@@ -41,8 +42,8 @@ class ObjectId extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parts of an OID path. The most significant parts of the path come
-     * first.
+     * Required. The parts of an OID path. The most significant parts of the path
+     * come first.
      *
      * Generated from protobuf field <code>repeated int32 object_id_path = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -53,8 +54,8 @@ class ObjectId extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parts of an OID path. The most significant parts of the path come
-     * first.
+     * Required. The parts of an OID path. The most significant parts of the path
+     * come first.
      *
      * Generated from protobuf field <code>repeated int32 object_id_path = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var

@@ -28,10 +28,13 @@ use Google\Cloud\Security\PrivateCA\V1\CertificateAuthorityServiceClient;
 use Google\Cloud\Security\PrivateCA\V1\CertificateTemplate;
 
 /**
- * Returns a [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate].
+ * Returns a
+ * [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate].
  *
- * @param string $formattedName The [name][google.cloud.security.privateca.v1.CertificateTemplate.name] of the [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate] to
- *                              get. Please see
+ * @param string $formattedName The
+ *                              [name][google.cloud.security.privateca.v1.CertificateTemplate.name] of the
+ *                              [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate]
+ *                              to get. Please see
  *                              {@see CertificateAuthorityServiceClient::certificateTemplateName()} for help formatting this field.
  */
 function get_certificate_template_sample(string $formattedName): void

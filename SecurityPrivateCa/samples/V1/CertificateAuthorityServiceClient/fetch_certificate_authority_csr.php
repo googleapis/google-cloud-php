@@ -28,16 +28,21 @@ use Google\Cloud\Security\PrivateCA\V1\CertificateAuthorityServiceClient;
 use Google\Cloud\Security\PrivateCA\V1\FetchCertificateAuthorityCsrResponse;
 
 /**
- * Fetch a certificate signing request (CSR) from a [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+ * Fetch a certificate signing request (CSR) from a
+ * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
  * that is in state
  * [AWAITING_USER_ACTIVATION][google.cloud.security.privateca.v1.CertificateAuthority.State.AWAITING_USER_ACTIVATION]
- * and is of type [SUBORDINATE][google.cloud.security.privateca.v1.CertificateAuthority.Type.SUBORDINATE]. The
- * CSR must then be signed by the desired parent Certificate Authority, which
- * could be another [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority] resource, or could be an on-prem
- * certificate authority. See also [ActivateCertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthorityService.ActivateCertificateAuthority].
+ * and is of type
+ * [SUBORDINATE][google.cloud.security.privateca.v1.CertificateAuthority.Type.SUBORDINATE].
+ * The CSR must then be signed by the desired parent Certificate Authority,
+ * which could be another
+ * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+ * resource, or could be an on-prem certificate authority. See also
+ * [ActivateCertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthorityService.ActivateCertificateAuthority].
  *
- * @param string $formattedName The resource name for this [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority] in the
- *                              format `projects/&#42;/locations/&#42;/caPools/&#42;/certificateAuthorities/*`. Please see
+ * @param string $formattedName The resource name for this
+ *                              [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+ *                              in the format `projects/&#42;/locations/&#42;/caPools/&#42;/certificateAuthorities/*`. Please see
  *                              {@see CertificateAuthorityServiceClient::certificateAuthorityName()} for help formatting this field.
  */
 function fetch_certificate_authority_csr_sample(string $formattedName): void

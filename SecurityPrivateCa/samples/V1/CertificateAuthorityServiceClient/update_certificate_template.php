@@ -31,7 +31,8 @@ use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
 /**
- * Update a [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate].
+ * Update a
+ * [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate].
  *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:

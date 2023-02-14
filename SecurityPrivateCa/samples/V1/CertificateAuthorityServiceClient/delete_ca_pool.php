@@ -31,8 +31,9 @@ use Google\Rpc\Status;
 /**
  * Delete a [CaPool][google.cloud.security.privateca.v1.CaPool].
  *
- * @param string $formattedName The resource name for this [CaPool][google.cloud.security.privateca.v1.CaPool] in the
- *                              format `projects/&#42;/locations/&#42;/caPools/*`. Please see
+ * @param string $formattedName The resource name for this
+ *                              [CaPool][google.cloud.security.privateca.v1.CaPool] in the format
+ *                              `projects/&#42;/locations/&#42;/caPools/*`. Please see
  *                              {@see CertificateAuthorityServiceClient::caPoolName()} for help formatting this field.
  */
 function delete_ca_pool_sample(string $formattedName): void

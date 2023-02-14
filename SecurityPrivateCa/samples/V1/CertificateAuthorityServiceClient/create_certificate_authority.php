@@ -37,15 +37,21 @@ use Google\Protobuf\Duration;
 use Google\Rpc\Status;
 
 /**
- * Create a new [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority] in a given Project and Location.
+ * Create a new
+ * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+ * in a given Project and Location.
  *
- * @param string $formattedParent          The resource name of the [CaPool][google.cloud.security.privateca.v1.CaPool] associated with the
- *                                         [CertificateAuthorities][google.cloud.security.privateca.v1.CertificateAuthority], in the format
- *                                         `projects/&#42;/locations/&#42;/caPools/*`. Please see
+ * @param string $formattedParent          The resource name of the
+ *                                         [CaPool][google.cloud.security.privateca.v1.CaPool] associated with the
+ *                                         [CertificateAuthorities][google.cloud.security.privateca.v1.CertificateAuthority],
+ *                                         in the format `projects/&#42;/locations/&#42;/caPools/*`. Please see
  *                                         {@see CertificateAuthorityServiceClient::caPoolName()} for help formatting this field.
  * @param string $certificateAuthorityId   It must be unique within a location and match the regular
  *                                         expression `[a-zA-Z0-9_-]{1,63}`
- * @param int    $certificateAuthorityType Immutable. The [Type][google.cloud.security.privateca.v1.CertificateAuthority.Type] of this [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority].
+ * @param int    $certificateAuthorityType Immutable. The
+ *                                         [Type][google.cloud.security.privateca.v1.CertificateAuthority.Type] of
+ *                                         this
+ *                                         [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority].
  */
 function create_certificate_authority_sample(
     string $formattedParent,

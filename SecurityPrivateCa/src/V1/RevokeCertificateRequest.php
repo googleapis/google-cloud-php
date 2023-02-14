@@ -17,26 +17,28 @@ use Google\Protobuf\Internal\GPBUtil;
 class RevokeCertificateRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name for this [Certificate][google.cloud.security.privateca.v1.Certificate] in the
-     * format
+     * Required. The resource name for this
+     * [Certificate][google.cloud.security.privateca.v1.Certificate] in the format
      * `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;&#47;certificates/&#42;`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
     /**
-     * Required. The [RevocationReason][google.cloud.security.privateca.v1.RevocationReason] for revoking this certificate.
+     * Required. The
+     * [RevocationReason][google.cloud.security.privateca.v1.RevocationReason] for
+     * revoking this certificate.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.RevocationReason reason = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $reason = 0;
     /**
-     * Optional. An ID to identify requests. Specify a unique request ID so that if you must
-     * retry your request, the server will know to ignore the request if it has
-     * already been completed. The server will guarantee that for at least 60
-     * minutes since the first request.
-     * For example, consider a situation where you make an initial request and t
-     * he request times out. If you make the request again with the same request
+     * Optional. An ID to identify requests. Specify a unique request ID so that
+     * if you must retry your request, the server will know to ignore the request
+     * if it has already been completed. The server will guarantee that for at
+     * least 60 minutes since the first request.
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same request
      * ID, the server can check if original operation with the same request ID
      * was received, and if so, will ignore the second request. This prevents
      * clients from accidentally creating duplicate commitments.
@@ -54,18 +56,20 @@ class RevokeCertificateRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The resource name for this [Certificate][google.cloud.security.privateca.v1.Certificate] in the
-     *           format
+     *           Required. The resource name for this
+     *           [Certificate][google.cloud.security.privateca.v1.Certificate] in the format
      *           `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;&#47;certificates/&#42;`.
      *     @type int $reason
-     *           Required. The [RevocationReason][google.cloud.security.privateca.v1.RevocationReason] for revoking this certificate.
+     *           Required. The
+     *           [RevocationReason][google.cloud.security.privateca.v1.RevocationReason] for
+     *           revoking this certificate.
      *     @type string $request_id
-     *           Optional. An ID to identify requests. Specify a unique request ID so that if you must
-     *           retry your request, the server will know to ignore the request if it has
-     *           already been completed. The server will guarantee that for at least 60
-     *           minutes since the first request.
-     *           For example, consider a situation where you make an initial request and t
-     *           he request times out. If you make the request again with the same request
+     *           Optional. An ID to identify requests. Specify a unique request ID so that
+     *           if you must retry your request, the server will know to ignore the request
+     *           if it has already been completed. The server will guarantee that for at
+     *           least 60 minutes since the first request.
+     *           For example, consider a situation where you make an initial request and
+     *           the request times out. If you make the request again with the same request
      *           ID, the server can check if original operation with the same request ID
      *           was received, and if so, will ignore the second request. This prevents
      *           clients from accidentally creating duplicate commitments.
@@ -79,8 +83,8 @@ class RevokeCertificateRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name for this [Certificate][google.cloud.security.privateca.v1.Certificate] in the
-     * format
+     * Required. The resource name for this
+     * [Certificate][google.cloud.security.privateca.v1.Certificate] in the format
      * `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;&#47;certificates/&#42;`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -92,8 +96,8 @@ class RevokeCertificateRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name for this [Certificate][google.cloud.security.privateca.v1.Certificate] in the
-     * format
+     * Required. The resource name for this
+     * [Certificate][google.cloud.security.privateca.v1.Certificate] in the format
      * `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;&#47;certificates/&#42;`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -109,7 +113,9 @@ class RevokeCertificateRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The [RevocationReason][google.cloud.security.privateca.v1.RevocationReason] for revoking this certificate.
+     * Required. The
+     * [RevocationReason][google.cloud.security.privateca.v1.RevocationReason] for
+     * revoking this certificate.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.RevocationReason reason = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
@@ -120,7 +126,9 @@ class RevokeCertificateRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The [RevocationReason][google.cloud.security.privateca.v1.RevocationReason] for revoking this certificate.
+     * Required. The
+     * [RevocationReason][google.cloud.security.privateca.v1.RevocationReason] for
+     * revoking this certificate.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.RevocationReason reason = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var
@@ -135,12 +143,12 @@ class RevokeCertificateRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. An ID to identify requests. Specify a unique request ID so that if you must
-     * retry your request, the server will know to ignore the request if it has
-     * already been completed. The server will guarantee that for at least 60
-     * minutes since the first request.
-     * For example, consider a situation where you make an initial request and t
-     * he request times out. If you make the request again with the same request
+     * Optional. An ID to identify requests. Specify a unique request ID so that
+     * if you must retry your request, the server will know to ignore the request
+     * if it has already been completed. The server will guarantee that for at
+     * least 60 minutes since the first request.
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same request
      * ID, the server can check if original operation with the same request ID
      * was received, and if so, will ignore the second request. This prevents
      * clients from accidentally creating duplicate commitments.
@@ -156,12 +164,12 @@ class RevokeCertificateRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. An ID to identify requests. Specify a unique request ID so that if you must
-     * retry your request, the server will know to ignore the request if it has
-     * already been completed. The server will guarantee that for at least 60
-     * minutes since the first request.
-     * For example, consider a situation where you make an initial request and t
-     * he request times out. If you make the request again with the same request
+     * Optional. An ID to identify requests. Specify a unique request ID so that
+     * if you must retry your request, the server will know to ignore the request
+     * if it has already been completed. The server will guarantee that for at
+     * least 60 minutes since the first request.
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same request
      * ID, the server can check if original operation with the same request ID
      * was received, and if so, will ignore the second request. This prevents
      * clients from accidentally creating duplicate commitments.
