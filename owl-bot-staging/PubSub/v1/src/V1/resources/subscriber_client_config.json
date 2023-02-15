@@ -1,0 +1,157 @@
+{
+    "interfaces": {
+        "google.pubsub.v1.Subscriber": {
+            "retry_codes": {
+                "no_retry_codes": [],
+                "retry_policy_4_codes": [
+                    "DEADLINE_EXCEEDED",
+                    "RESOURCE_EXHAUSTED",
+                    "ABORTED",
+                    "INTERNAL",
+                    "UNAVAILABLE"
+                ],
+                "retry_policy_5_codes": [
+                    "UNKNOWN",
+                    "ABORTED",
+                    "UNAVAILABLE"
+                ],
+                "retry_policy_6_codes": [
+                    "UNAVAILABLE"
+                ]
+            },
+            "retry_params": {
+                "no_retry_params": {
+                    "initial_retry_delay_millis": 0,
+                    "retry_delay_multiplier": 0.0,
+                    "max_retry_delay_millis": 0,
+                    "initial_rpc_timeout_millis": 0,
+                    "rpc_timeout_multiplier": 1.0,
+                    "max_rpc_timeout_millis": 0,
+                    "total_timeout_millis": 0
+                },
+                "retry_policy_4_params": {
+                    "initial_retry_delay_millis": 100,
+                    "retry_delay_multiplier": 1.3,
+                    "max_retry_delay_millis": 60000,
+                    "initial_rpc_timeout_millis": 900000,
+                    "rpc_timeout_multiplier": 1.0,
+                    "max_rpc_timeout_millis": 900000,
+                    "total_timeout_millis": 900000
+                },
+                "retry_policy_5_params": {
+                    "initial_retry_delay_millis": 100,
+                    "retry_delay_multiplier": 1.3,
+                    "max_retry_delay_millis": 60000,
+                    "initial_rpc_timeout_millis": 60000,
+                    "rpc_timeout_multiplier": 1.0,
+                    "max_rpc_timeout_millis": 60000,
+                    "total_timeout_millis": 60000
+                },
+                "retry_policy_6_params": {
+                    "initial_retry_delay_millis": 100,
+                    "retry_delay_multiplier": 1.3,
+                    "max_retry_delay_millis": 60000,
+                    "initial_rpc_timeout_millis": 60000,
+                    "rpc_timeout_multiplier": 1.0,
+                    "max_rpc_timeout_millis": 60000,
+                    "total_timeout_millis": 60000
+                }
+            },
+            "methods": {
+                "Acknowledge": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_6_codes",
+                    "retry_params_name": "retry_policy_6_params"
+                },
+                "CreateSnapshot": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_6_codes",
+                    "retry_params_name": "retry_policy_6_params"
+                },
+                "CreateSubscription": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_5_codes",
+                    "retry_params_name": "retry_policy_5_params"
+                },
+                "DeleteSnapshot": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_6_codes",
+                    "retry_params_name": "retry_policy_6_params"
+                },
+                "DeleteSubscription": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_6_codes",
+                    "retry_params_name": "retry_policy_6_params"
+                },
+                "GetSnapshot": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_5_codes",
+                    "retry_params_name": "retry_policy_5_params"
+                },
+                "GetSubscription": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_5_codes",
+                    "retry_params_name": "retry_policy_5_params"
+                },
+                "ListSnapshots": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_5_codes",
+                    "retry_params_name": "retry_policy_5_params"
+                },
+                "ListSubscriptions": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_5_codes",
+                    "retry_params_name": "retry_policy_5_params"
+                },
+                "ModifyAckDeadline": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_6_codes",
+                    "retry_params_name": "retry_policy_6_params"
+                },
+                "ModifyPushConfig": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_6_codes",
+                    "retry_params_name": "retry_policy_6_params"
+                },
+                "Pull": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_5_codes",
+                    "retry_params_name": "retry_policy_5_params"
+                },
+                "Seek": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_5_codes",
+                    "retry_params_name": "retry_policy_5_params"
+                },
+                "StreamingPull": {
+                    "timeout_millis": 900000
+                },
+                "UpdateSnapshot": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_6_codes",
+                    "retry_params_name": "retry_policy_6_params"
+                },
+                "UpdateSubscription": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_6_codes",
+                    "retry_params_name": "retry_policy_6_params"
+                },
+                "GetIamPolicy": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_5_codes",
+                    "retry_params_name": "retry_policy_5_params"
+                },
+                "SetIamPolicy": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_6_codes",
+                    "retry_params_name": "retry_policy_6_params"
+                },
+                "TestIamPermissions": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_6_codes",
+                    "retry_params_name": "retry_policy_6_params"
+                }
+            }
+        }
+    }
+}
