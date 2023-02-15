@@ -9,7 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A subscription resource.
+ * A subscription resource. If none of `push_config` or `bigquery_config` is
+ * set, then the subscriber will pull and ack messages using API methods. At
+ * most one of these fields may be set.
  *
  * Generated from protobuf message <code>google.pubsub.v1.Subscription</code>
  */
@@ -36,18 +38,14 @@ class Subscription extends \Google\Protobuf\Internal\Message
     private $topic = '';
     /**
      * If push delivery is used with this subscription, this field is
-     * used to configure it. Either `pushConfig` or `bigQueryConfig` can be set,
-     * but not both. If both are empty, then the subscriber will pull and ack
-     * messages using API methods.
+     * used to configure it.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.PushConfig push_config = 4;</code>
      */
     private $push_config = null;
     /**
      * If delivery to BigQuery is used with this subscription, this field is
-     * used to configure it. Either `pushConfig` or `bigQueryConfig` can be set,
-     * but not both. If both are empty, then the subscriber will pull and ack
-     * messages using API methods.
+     * used to configure it.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.BigQueryConfig bigquery_config = 18;</code>
      */
@@ -218,14 +216,10 @@ class Subscription extends \Google\Protobuf\Internal\Message
      *           field will be `_deleted-topic_` if the topic has been deleted.
      *     @type \Google\Cloud\PubSub\V1\PushConfig $push_config
      *           If push delivery is used with this subscription, this field is
-     *           used to configure it. Either `pushConfig` or `bigQueryConfig` can be set,
-     *           but not both. If both are empty, then the subscriber will pull and ack
-     *           messages using API methods.
+     *           used to configure it.
      *     @type \Google\Cloud\PubSub\V1\BigQueryConfig $bigquery_config
      *           If delivery to BigQuery is used with this subscription, this field is
-     *           used to configure it. Either `pushConfig` or `bigQueryConfig` can be set,
-     *           but not both. If both are empty, then the subscriber will pull and ack
-     *           messages using API methods.
+     *           used to configure it.
      *     @type int $ack_deadline_seconds
      *           The approximate amount of time (on a best-effort basis) Pub/Sub waits for
      *           the subscriber to acknowledge receipt before resending the message. In the
@@ -395,9 +389,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
 
     /**
      * If push delivery is used with this subscription, this field is
-     * used to configure it. Either `pushConfig` or `bigQueryConfig` can be set,
-     * but not both. If both are empty, then the subscriber will pull and ack
-     * messages using API methods.
+     * used to configure it.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.PushConfig push_config = 4;</code>
      * @return \Google\Cloud\PubSub\V1\PushConfig|null
@@ -419,9 +411,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
 
     /**
      * If push delivery is used with this subscription, this field is
-     * used to configure it. Either `pushConfig` or `bigQueryConfig` can be set,
-     * but not both. If both are empty, then the subscriber will pull and ack
-     * messages using API methods.
+     * used to configure it.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.PushConfig push_config = 4;</code>
      * @param \Google\Cloud\PubSub\V1\PushConfig $var
@@ -437,9 +427,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
 
     /**
      * If delivery to BigQuery is used with this subscription, this field is
-     * used to configure it. Either `pushConfig` or `bigQueryConfig` can be set,
-     * but not both. If both are empty, then the subscriber will pull and ack
-     * messages using API methods.
+     * used to configure it.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.BigQueryConfig bigquery_config = 18;</code>
      * @return \Google\Cloud\PubSub\V1\BigQueryConfig|null
@@ -461,9 +449,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
 
     /**
      * If delivery to BigQuery is used with this subscription, this field is
-     * used to configure it. Either `pushConfig` or `bigQueryConfig` can be set,
-     * but not both. If both are empty, then the subscriber will pull and ack
-     * messages using API methods.
+     * used to configure it.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.BigQueryConfig bigquery_config = 18;</code>
      * @param \Google\Cloud\PubSub\V1\BigQueryConfig $var
