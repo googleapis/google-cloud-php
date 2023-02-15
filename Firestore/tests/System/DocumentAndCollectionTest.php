@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Copyright 2017 Google Inc.
  *
@@ -203,7 +202,9 @@ class DocumentAndCollectionTest extends FirestoreTestCase
         $childName = uniqid(self::COLLECTION_NAME);
         $child = $this->document->collection($childName);
         self::$localDeletionQueue->add($child);
-        $doc = $child->add(['name' => 'John']);
+        $child->add(['name' => 'John']);
+        // without sleep, emulator system test fails intermittently
+        sleep(1);
 
         $readTime = new Timestamp(new \DateTimeImmutable());
         $collection = $this->document->collections([
@@ -217,6 +218,9 @@ class DocumentAndCollectionTest extends FirestoreTestCase
     {
         $collection = self::$client->collection(uniqid(self::COLLECTION_NAME));
         self::$localDeletionQueue->add($collection);
+        // without sleep, emulator system test fails intermittently
+        sleep(1);
+
         $readTime = new Timestamp(new \DateTimeImmutable());
         $expectedCount = count(iterator_to_array(self::$client->collections()));
 
@@ -237,6 +241,9 @@ class DocumentAndCollectionTest extends FirestoreTestCase
         $collection = self::$client->collection(uniqid(self::COLLECTION_NAME));
         self::$localDeletionQueue->add($collection);
         $collection->add(['a' => 'b']);
+        // without sleep, emulator system test fails intermittently
+        sleep(1);
+
         // Creating a current timestamp and then adding a document
         $readTime = new Timestamp(new \DateTimeImmutable());
         $collection->add(['c' => 'd']);
