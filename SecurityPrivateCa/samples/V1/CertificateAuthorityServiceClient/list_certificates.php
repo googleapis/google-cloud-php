@@ -32,8 +32,8 @@ use Google\Cloud\Security\PrivateCA\V1\CertificateAuthorityServiceClient;
  * Lists [Certificates][google.cloud.security.privateca.v1.Certificate].
  *
  * @param string $formattedParent The resource name of the location associated with the
- *                                [Certificates][google.cloud.security.privateca.v1.Certificate], in the format
- *                                `projects/&#42;/locations/&#42;/caPools/*`. Please see
+ *                                [Certificates][google.cloud.security.privateca.v1.Certificate], in the
+ *                                format `projects/&#42;/locations/&#42;/caPools/*`. Please see
  *                                {@see CertificateAuthorityServiceClient::caPoolName()} for help formatting this field.
  */
 function list_certificates_sample(string $formattedParent): void

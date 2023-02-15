@@ -30,7 +30,8 @@ use Google\Protobuf\Duration;
 use Google\Protobuf\FieldMask;
 
 /**
- * Update a [Certificate][google.cloud.security.privateca.v1.Certificate]. Currently, the only field you can update is the
+ * Update a [Certificate][google.cloud.security.privateca.v1.Certificate].
+ * Currently, the only field you can update is the
  * [labels][google.cloud.security.privateca.v1.Certificate.labels] field.
  *
  * This sample has been automatically generated and should be regarded as a code

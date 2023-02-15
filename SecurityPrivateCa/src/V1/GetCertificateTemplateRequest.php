@@ -17,8 +17,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class GetCertificateTemplateRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The [name][google.cloud.security.privateca.v1.CertificateTemplate.name] of the [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate] to
-     * get.
+     * Required. The
+     * [name][google.cloud.security.privateca.v1.CertificateTemplate.name] of the
+     * [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate]
+     * to get.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -31,8 +33,10 @@ class GetCertificateTemplateRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The [name][google.cloud.security.privateca.v1.CertificateTemplate.name] of the [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate] to
-     *           get.
+     *           Required. The
+     *           [name][google.cloud.security.privateca.v1.CertificateTemplate.name] of the
+     *           [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate]
+     *           to get.
      * }
      */
     public function __construct($data = NULL) {
@@ -41,8 +45,10 @@ class GetCertificateTemplateRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The [name][google.cloud.security.privateca.v1.CertificateTemplate.name] of the [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate] to
-     * get.
+     * Required. The
+     * [name][google.cloud.security.privateca.v1.CertificateTemplate.name] of the
+     * [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate]
+     * to get.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -53,8 +59,10 @@ class GetCertificateTemplateRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The [name][google.cloud.security.privateca.v1.CertificateTemplate.name] of the [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate] to
-     * get.
+     * Required. The
+     * [name][google.cloud.security.privateca.v1.CertificateTemplate.name] of the
+     * [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate]
+     * to get.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

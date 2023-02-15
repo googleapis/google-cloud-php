@@ -28,12 +28,15 @@ use Google\Cloud\Security\PrivateCA\V1\CertificateAuthorityServiceClient;
 use Google\Cloud\Security\PrivateCA\V1\FetchCaCertsResponse;
 
 /**
- * FetchCaCerts returns the current trust anchor for the [CaPool][google.cloud.security.privateca.v1.CaPool]. This will
- * include CA certificate chains for all ACTIVE [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+ * FetchCaCerts returns the current trust anchor for the
+ * [CaPool][google.cloud.security.privateca.v1.CaPool]. This will include CA
+ * certificate chains for all ACTIVE
+ * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
  * resources in the [CaPool][google.cloud.security.privateca.v1.CaPool].
  *
- * @param string $formattedCaPool The resource name for the [CaPool][google.cloud.security.privateca.v1.CaPool] in the
- *                                format `projects/&#42;/locations/&#42;/caPools/*`. Please see
+ * @param string $formattedCaPool The resource name for the
+ *                                [CaPool][google.cloud.security.privateca.v1.CaPool] in the format
+ *                                `projects/&#42;/locations/&#42;/caPools/*`. Please see
  *                                {@see CertificateAuthorityServiceClient::caPoolName()} for help formatting this field.
  */
 function fetch_ca_certs_sample(string $formattedCaPool): void
