@@ -31,7 +31,9 @@ class RunQueryResponse extends \Google\Protobuf\Internal\Message
     /**
      * The identifier of the transaction that was started as part of this
      * RunQuery request.
-     * Set only when [ReadOptions.begin_transaction][] was set in
+     * Set only when
+     * [ReadOptions.new_transaction][google.datastore.v1.ReadOptions.new_transaction]
+     * was set in
      * [RunQueryRequest.read_options][google.datastore.v1.RunQueryRequest.read_options].
      *
      * Generated from protobuf field <code>bytes transaction = 5;</code>
@@ -51,7 +53,9 @@ class RunQueryResponse extends \Google\Protobuf\Internal\Message
      *     @type string $transaction
      *           The identifier of the transaction that was started as part of this
      *           RunQuery request.
-     *           Set only when [ReadOptions.begin_transaction][] was set in
+     *           Set only when
+     *           [ReadOptions.new_transaction][google.datastore.v1.ReadOptions.new_transaction]
+     *           was set in
      *           [RunQueryRequest.read_options][google.datastore.v1.RunQueryRequest.read_options].
      * }
      */
@@ -135,7 +139,9 @@ class RunQueryResponse extends \Google\Protobuf\Internal\Message
     /**
      * The identifier of the transaction that was started as part of this
      * RunQuery request.
-     * Set only when [ReadOptions.begin_transaction][] was set in
+     * Set only when
+     * [ReadOptions.new_transaction][google.datastore.v1.ReadOptions.new_transaction]
+     * was set in
      * [RunQueryRequest.read_options][google.datastore.v1.RunQueryRequest.read_options].
      *
      * Generated from protobuf field <code>bytes transaction = 5;</code>
@@ -149,7 +155,9 @@ class RunQueryResponse extends \Google\Protobuf\Internal\Message
     /**
      * The identifier of the transaction that was started as part of this
      * RunQuery request.
-     * Set only when [ReadOptions.begin_transaction][] was set in
+     * Set only when
+     * [ReadOptions.new_transaction][google.datastore.v1.ReadOptions.new_transaction]
+     * was set in
      * [RunQueryRequest.read_options][google.datastore.v1.RunQueryRequest.read_options].
      *
      * Generated from protobuf field <code>bytes transaction = 5;</code>

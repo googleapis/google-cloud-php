@@ -42,7 +42,9 @@ class LookupResponse extends \Google\Protobuf\Internal\Message
     /**
      * The identifier of the transaction that was started as part of this Lookup
      * request.
-     * Set only when [ReadOptions.begin_transaction][] was set in
+     * Set only when
+     * [ReadOptions.new_transaction][google.datastore.v1.ReadOptions.new_transaction]
+     * was set in
      * [LookupRequest.read_options][google.datastore.v1.LookupRequest.read_options].
      *
      * Generated from protobuf field <code>bytes transaction = 5;</code>
@@ -76,7 +78,9 @@ class LookupResponse extends \Google\Protobuf\Internal\Message
      *     @type string $transaction
      *           The identifier of the transaction that was started as part of this Lookup
      *           request.
-     *           Set only when [ReadOptions.begin_transaction][] was set in
+     *           Set only when
+     *           [ReadOptions.new_transaction][google.datastore.v1.ReadOptions.new_transaction]
+     *           was set in
      *           [LookupRequest.read_options][google.datastore.v1.LookupRequest.read_options].
      *     @type \Google\Protobuf\Timestamp $read_time
      *           The time at which these entities were read or found missing.
@@ -180,7 +184,9 @@ class LookupResponse extends \Google\Protobuf\Internal\Message
     /**
      * The identifier of the transaction that was started as part of this Lookup
      * request.
-     * Set only when [ReadOptions.begin_transaction][] was set in
+     * Set only when
+     * [ReadOptions.new_transaction][google.datastore.v1.ReadOptions.new_transaction]
+     * was set in
      * [LookupRequest.read_options][google.datastore.v1.LookupRequest.read_options].
      *
      * Generated from protobuf field <code>bytes transaction = 5;</code>
@@ -194,7 +200,9 @@ class LookupResponse extends \Google\Protobuf\Internal\Message
     /**
      * The identifier of the transaction that was started as part of this Lookup
      * request.
-     * Set only when [ReadOptions.begin_transaction][] was set in
+     * Set only when
+     * [ReadOptions.new_transaction][google.datastore.v1.ReadOptions.new_transaction]
+     * was set in
      * [LookupRequest.read_options][google.datastore.v1.LookupRequest.read_options].
      *
      * Generated from protobuf field <code>bytes transaction = 5;</code>
