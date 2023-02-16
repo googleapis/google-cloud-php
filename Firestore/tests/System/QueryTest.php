@@ -202,7 +202,7 @@ class QueryTest extends FirestoreTestCase
     {
         $randomVal = base64_encode(random_bytes(10));
         $this->insertDoc(['foo' => $randomVal]);
-        // without sleep, emulator system test fails intermittently
+        // without sleep, emulator system test may fail intermittently
         sleep(1);
 
         // Creating a current timestamp and then inserting another document

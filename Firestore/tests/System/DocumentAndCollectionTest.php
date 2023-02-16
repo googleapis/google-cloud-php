@@ -203,7 +203,7 @@ class DocumentAndCollectionTest extends FirestoreTestCase
         $child = $this->document->collection($childName);
         self::$localDeletionQueue->add($child);
         $child->add(['name' => 'John']);
-        // without sleep, emulator system test fails intermittently
+        // without sleep, emulator system test may fail intermittently
         sleep(1);
 
         $readTime = new Timestamp(new \DateTimeImmutable());
@@ -216,9 +216,13 @@ class DocumentAndCollectionTest extends FirestoreTestCase
 
     public function testRootCollectionsWithReadTime()
     {
+        // ListCollectionIds request doesn't support read_time in options
+        // in emulator, thus skipping the tests for now.
+        $this->skipEmulatorTests();
+
         $collection = self::$client->collection(uniqid(self::COLLECTION_NAME));
         self::$localDeletionQueue->add($collection);
-        // without sleep, emulator system test fails intermittently
+        // without sleep, emulator system test may fail intermittently
         sleep(1);
 
         $readTime = new Timestamp(new \DateTimeImmutable());
@@ -241,7 +245,7 @@ class DocumentAndCollectionTest extends FirestoreTestCase
         $collection = self::$client->collection(uniqid(self::COLLECTION_NAME));
         self::$localDeletionQueue->add($collection);
         $collection->add(['a' => 'b']);
-        // without sleep, emulator system test fails intermittently
+        // without sleep, emulator system test may fail intermittently
         sleep(1);
 
         // Creating a current timestamp and then adding a document
