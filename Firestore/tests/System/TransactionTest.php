@@ -17,6 +17,9 @@
 
 namespace Google\Cloud\Firestore\Tests\System;
 
+use Google\Cloud\Firestore\Aggregate;
+use Google\Cloud\Core\Timestamp;
+
 /**
  * @group firestore
  * @group firestore-transaction
@@ -120,6 +123,48 @@ class TransactionTest extends FirestoreTestCase
             $s = $t->snapshot($this->document);
             $this->assertTrue($s->exists());
             $this->assertEquals('bar', $s['foo']);
+        });
+    }
+
+    public function testAggregateQuery()
+    {
+        $this->document->create([
+            'foos' => ['foobar'],
+        ]);
+        self::$collection->add([
+            'foos' => ['foo', 'bar'],
+        ]);
+        self::$collection->add([
+            'foos' => ['foo'],
+        ]);
+
+        $aggregateQuery = self::$collection->where('foos', '!=', [])->addAggregation(
+            Aggregate::count()->alias('count')
+        );
+        $aggregateQuery = $aggregateQuery->addAggregation(
+            Aggregate::count()->alias('count_upto_2')->limit(2)
+        );
+        $aggregateQuery = $aggregateQuery->addAggregation(
+            Aggregate::count()->alias('count_upto_1')->limit(1)
+        );
+
+        // without sleep, test fails intermittently
+        sleep(1);
+        $readTime = new Timestamp(new \DateTimeImmutable('now'));
+
+        self::$client->runTransaction(function ($t) use ($aggregateQuery, $readTime) {
+            $snapshot = $t->runAggregateQuery($aggregateQuery, [
+                'readTime' => $readTime
+            ]);
+
+            $this->assertEquals(3, $snapshot->get('count'));
+            $this->assertEquals(2, $snapshot->get('count_upto_2'));
+            $this->assertEquals(1, $snapshot->get('count_upto_1'));
+
+            $this->assertEquals(
+                $readTime->get()->getTimestamp(),
+                $snapshot->getReadTime()->get()->getTimestamp()
+            );
         });
     }
 
