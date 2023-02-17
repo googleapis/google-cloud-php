@@ -23,20 +23,20 @@ class UsageSnapshot extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 milli_dcu = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $milli_dcu = 0;
+    private $milli_dcu = 0;
     /**
      * Optional. Shuffle Storage in gigabytes (GB). (see [Dataproc Serverless
      * pricing] (https://cloud.google.com/dataproc-serverless/pricing))
      *
      * Generated from protobuf field <code>int64 shuffle_storage_gb = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $shuffle_storage_gb = 0;
+    private $shuffle_storage_gb = 0;
     /**
      * Optional. The timestamp of the usage snapshot.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp snapshot_time = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $snapshot_time = null;
+    private $snapshot_time = null;
 
     /**
      * Constructor.
