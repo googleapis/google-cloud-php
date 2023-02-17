@@ -112,6 +112,33 @@ class Transaction
     }
 
     /**
+     * Get an Aggregate Query Snapshot.
+     *
+     * Example:
+     * ```
+     * $snapshot = $transaction->runAggregateQuery($aggregateQuery);
+     * ```
+     *
+     * @param AggregateQuery $aggregateQuery The aggregate query to retrieve.
+     * @param array $options {
+     *     Configuration Options
+     *
+     *     @type Timestamp $readTime Reads entities as they were at the given timestamp.
+     * }
+     * @return AggregateQuerySnapshot
+     * @throws \InvalidArgumentException if an invalid `$options.readTime` is specified.
+     */
+    public function runAggregateQuery(AggregateQuery $aggregateQuery, array $options = [])
+    {
+        return $this->getAggregateSnapshot(
+            $this->connection,
+            $this->database,
+            $aggregateQuery,
+            ['transaction' => $this->transaction] + $options
+        );
+    }
+
+    /**
      * Get a list of documents by their path.
      *
      * The number of results generated will be equal to the number of documents

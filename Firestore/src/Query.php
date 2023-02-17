@@ -167,6 +167,52 @@ class Query
     }
 
     /**
+     * Gets the count of all documents matching the provided query filters.
+     *
+     * Example:
+     * ```
+     * $count = $query->count();
+     * ```
+     *
+     * @return int
+     */
+    public function count()
+    {
+        $aggregateQuery = $this->addAggregation(Aggregate::count()->alias('count'));
+
+        $aggregationResult = $aggregateQuery->getSnapshot();
+        return $aggregationResult->get('count');
+    }
+
+    /**
+     * Returns an aggregate query provided an aggregation with existing query filters.
+     *
+     * Example:
+     * ```
+     * use Google\Cloud\Firestore\Aggregate;
+     *
+     * $aggregation = Aggregate::count()->alias('count_upto_1')->limit(1);
+     * $aggregateQuery = $query->addAggregation($aggregation);
+     * $aggregateQuerySnapshot = $aggregateQuery->getSnapshot();
+     * $countUpto1 = $aggregateQuerySnapshot->get('count_upto_1');
+     * ```
+     *
+     * @param Aggregate $aggregate Aggregate properties to be applied over query.
+     * @return AggregateQuery
+     */
+    public function addAggregation($aggregate)
+    {
+        $aggregateQuery = new AggregateQuery(
+            $this->connection,
+            $this->parentName,
+            $this,
+            $aggregate
+        );
+
+        return $aggregateQuery;
+    }
+
+    /**
      * Get all documents matching the provided query filters.
      *
      * Example:
@@ -194,7 +240,7 @@ class Query
             ? FirestoreClient::MAX_RETRIES
             : $maxRetries;
 
-        $query = $this->finalQueryPrepare($this->query);
+        $query = $this->finalQueryPrepare();
         $rows = (new ExponentialBackoff($maxRetries))->execute(function () use ($query, $options) {
 
             $generator = $this->connection->runQuery($this->arrayFilterRemoveNull([
@@ -895,11 +941,14 @@ class Query
      * Some optimizations cannot be performed ahead of time and must be done
      * at execution.
      *
-     * @param array $query The incoming query
+     * @internal Only supposed to be used internally.
+     *
+     * @access private
      * @return array The final query data
      */
-    private function finalQueryPrepare(array $query)
+    public function finalQueryPrepare()
     {
+        $query = $this->query;
         if ($this->limitToLast) {
             if (!isset($query['orderBy']) || !$query['orderBy']) {
                 throw new \RuntimeException(

@@ -24,6 +24,7 @@ use Google\Cloud\Firestore\V1\Write;
 use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\Cloud\Firestore\V1\DocumentMask;
 use Google\Cloud\Firestore\V1\FirestoreClient;
+use Google\Cloud\Firestore\V1\StructuredAggregationQuery;
 use Google\Cloud\Firestore\V1\StructuredQuery;
 use Google\Cloud\Firestore\V1\TransactionOptions;
 use Google\Cloud\Firestore\V1\TransactionOptions\ReadWrite;
@@ -244,6 +245,28 @@ class Grpc implements ConnectionInterface
         );
 
         return $this->send([$this->firestore, 'runQuery'], [
+            $this->pluck('parent', $args),
+            $this->addRequestHeaders($args)
+        ]);
+    }
+
+    /**
+     * @param array $args
+     */
+    public function runAggregationQuery(array $args)
+    {
+        if (isset($args['readTime'])) {
+            $args['readTime'] = $this->serializer->decodeMessage(
+                new ProtobufTimestamp(),
+                $args['readTime']
+            );
+        }
+        $args['structuredAggregationQuery'] = $this->serializer->decodeMessage(
+            new StructuredAggregationQuery,
+            $this->pluck('structuredAggregationQuery', $args)
+        );
+
+        return $this->send([$this->firestore, 'runAggregationQuery'], [
             $this->pluck('parent', $args),
             $this->addRequestHeaders($args)
         ]);

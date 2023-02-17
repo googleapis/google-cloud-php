@@ -94,6 +94,45 @@ trait SnapshotTrait
     }
 
     /**
+     * Execute a service request to retrieve an aggregation query snapshot.
+     *
+     * @param ConnectionInterface $connection A Connection to Cloud Firestore.
+     * @param string $database The database path.
+     * @param AggregateQuery $aggregateQuery The parent document.
+     * @param array $options {
+     *     Configuration Options
+     *
+     *     @type Timestamp $readTime Reads entities as they were at the given timestamp.
+     *     @type string $transaction The transaction ID to fetch the snapshot.
+     * }
+     * @return AggregateQuerySnapshot
+     * @throws \InvalidArgumentException if an invalid `$options.readTime` is specified.
+     */
+    private function getAggregateSnapshot(
+        ConnectionInterface $connection,
+        $database,
+        AggregateQuery $aggregateQuery,
+        array $options = []
+    ) {
+        if (isset($options['readTime'])) {
+            if (!($options['readTime'] instanceof Timestamp)) {
+                throw new \InvalidArgumentException(sprintf(
+                    '`$options.readTime` must be an instance of %s',
+                    Timestamp::class
+                ));
+            }
+
+            $options['readTime'] = $options['readTime']->formatForApi();
+        }
+        $snapshot = $connection->runAggregationQuery([
+            'parent' => $database,
+            'structuredAggregationQuery' => $aggregateQuery->finalQueryPrepare(),
+        ] + $options)->current();
+
+        return new AggregateQuerySnapshot($snapshot);
+    }
+
+    /**
      * Send a service request for a snapshot, and return the raw data
      *
      * @param ConnectionInterface $connection A Connection to Cloud Firestore
@@ -297,7 +336,7 @@ trait SnapshotTrait
                 continue;
             }
 
-            list ($dt, $nanos) = $this->parseTimeString($data[$timestampField]);
+            list($dt, $nanos) = $this->parseTimeString($data[$timestampField]);
 
             $data[$timestampField] = new Timestamp($dt, $nanos);
         }
