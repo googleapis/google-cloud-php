@@ -21,6 +21,8 @@ use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
+use Google\Cloud\Firestore\AggregateQuery;
+use Google\Cloud\Firestore\AggregateQuerySnapshot;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\DocumentSnapshot;
@@ -110,6 +112,23 @@ class TransactionTest extends SnippetTestCase
         $snippet->addLocal('document', $this->document->reveal());
         $res = $snippet->invoke('snapshot');
         $this->assertInstanceOf(DocumentSnapshot::class, $res->returnVal());
+    }
+
+    public function testRunAggregateQuery()
+    {
+        $this->connection->runAggregationQuery(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn(new \ArrayIterator([]));
+        $q = $this->prophesize(AggregateQuery::class);
+        $q->finalQueryPrepare()->willReturn([]);
+
+        $this->transaction->setConnection($this->connection->reveal());
+
+        $snippet = $this->snippetFromMethod(Transaction::class, 'runAggregateQuery');
+        $snippet->addLocal('transaction', $this->transaction);
+        $snippet->addLocal('aggregateQuery', $q->reveal());
+        $res = $snippet->invoke('snapshot');
+        $this->assertInstanceOf(AggregateQuerySnapshot::class, $res->returnVal());
     }
 
     public function testRunQuery()
