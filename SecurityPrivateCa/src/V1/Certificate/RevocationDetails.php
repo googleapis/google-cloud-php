@@ -9,20 +9,25 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Describes fields that are relavent to the revocation of a [Certificate][google.cloud.security.privateca.v1.Certificate].
+ * Describes fields that are relavent to the revocation of a
+ * [Certificate][google.cloud.security.privateca.v1.Certificate].
  *
  * Generated from protobuf message <code>google.cloud.security.privateca.v1.Certificate.RevocationDetails</code>
  */
 class RevocationDetails extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Indicates why a [Certificate][google.cloud.security.privateca.v1.Certificate] was revoked.
+     * Indicates why a
+     * [Certificate][google.cloud.security.privateca.v1.Certificate] was
+     * revoked.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.RevocationReason revocation_state = 1;</code>
      */
     private $revocation_state = 0;
     /**
-     * The time at which this [Certificate][google.cloud.security.privateca.v1.Certificate] was revoked.
+     * The time at which this
+     * [Certificate][google.cloud.security.privateca.v1.Certificate] was
+     * revoked.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp revocation_time = 2;</code>
      */
@@ -35,9 +40,13 @@ class RevocationDetails extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $revocation_state
-     *           Indicates why a [Certificate][google.cloud.security.privateca.v1.Certificate] was revoked.
+     *           Indicates why a
+     *           [Certificate][google.cloud.security.privateca.v1.Certificate] was
+     *           revoked.
      *     @type \Google\Protobuf\Timestamp $revocation_time
-     *           The time at which this [Certificate][google.cloud.security.privateca.v1.Certificate] was revoked.
+     *           The time at which this
+     *           [Certificate][google.cloud.security.privateca.v1.Certificate] was
+     *           revoked.
      * }
      */
     public function __construct($data = NULL) {
@@ -46,7 +55,9 @@ class RevocationDetails extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Indicates why a [Certificate][google.cloud.security.privateca.v1.Certificate] was revoked.
+     * Indicates why a
+     * [Certificate][google.cloud.security.privateca.v1.Certificate] was
+     * revoked.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.RevocationReason revocation_state = 1;</code>
      * @return int
@@ -57,7 +68,9 @@ class RevocationDetails extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Indicates why a [Certificate][google.cloud.security.privateca.v1.Certificate] was revoked.
+     * Indicates why a
+     * [Certificate][google.cloud.security.privateca.v1.Certificate] was
+     * revoked.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.RevocationReason revocation_state = 1;</code>
      * @param int $var
@@ -72,7 +85,9 @@ class RevocationDetails extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The time at which this [Certificate][google.cloud.security.privateca.v1.Certificate] was revoked.
+     * The time at which this
+     * [Certificate][google.cloud.security.privateca.v1.Certificate] was
+     * revoked.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp revocation_time = 2;</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -93,7 +108,9 @@ class RevocationDetails extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The time at which this [Certificate][google.cloud.security.privateca.v1.Certificate] was revoked.
+     * The time at which this
+     * [Certificate][google.cloud.security.privateca.v1.Certificate] was
+     * revoked.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp revocation_time = 2;</code>
      * @param \Google\Protobuf\Timestamp $var

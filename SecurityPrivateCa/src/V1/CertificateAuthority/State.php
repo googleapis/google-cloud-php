@@ -7,7 +7,9 @@ namespace Google\Cloud\Security\PrivateCA\V1\CertificateAuthority;
 use UnexpectedValueException;
 
 /**
- * The state of a [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority], indicating if it can be used.
+ * The state of a
+ * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority],
+ * indicating if it can be used.
  *
  * Protobuf type <code>google.cloud.security.privateca.v1.CertificateAuthority.State</code>
  */
@@ -21,32 +23,40 @@ class State
     const STATE_UNSPECIFIED = 0;
     /**
      * Certificates can be issued from this CA. CRLs will be generated for this
-     * CA. The CA will be part of the [CaPool][google.cloud.security.privateca.v1.CaPool]'s trust anchor, and will be
-     * used to issue certificates from the [CaPool][google.cloud.security.privateca.v1.CaPool].
+     * CA. The CA will be part of the
+     * [CaPool][google.cloud.security.privateca.v1.CaPool]'s trust anchor, and
+     * will be used to issue certificates from the
+     * [CaPool][google.cloud.security.privateca.v1.CaPool].
      *
      * Generated from protobuf enum <code>ENABLED = 1;</code>
      */
     const ENABLED = 1;
     /**
      * Certificates cannot be issued from this CA. CRLs will still be generated.
-     * The CA will be part of the [CaPool][google.cloud.security.privateca.v1.CaPool]'s trust anchor, but will not be
-     * used to issue certificates from the [CaPool][google.cloud.security.privateca.v1.CaPool].
+     * The CA will be part of the
+     * [CaPool][google.cloud.security.privateca.v1.CaPool]'s trust anchor, but
+     * will not be used to issue certificates from the
+     * [CaPool][google.cloud.security.privateca.v1.CaPool].
      *
      * Generated from protobuf enum <code>DISABLED = 2;</code>
      */
     const DISABLED = 2;
     /**
      * Certificates can be issued from this CA. CRLs will be generated for this
-     * CA. The CA will be part of the [CaPool][google.cloud.security.privateca.v1.CaPool]'s trust anchor, but will not
-     * be used to issue certificates from the [CaPool][google.cloud.security.privateca.v1.CaPool].
+     * CA. The CA will be part of the
+     * [CaPool][google.cloud.security.privateca.v1.CaPool]'s trust anchor, but
+     * will not be used to issue certificates from the
+     * [CaPool][google.cloud.security.privateca.v1.CaPool].
      *
      * Generated from protobuf enum <code>STAGED = 3;</code>
      */
     const STAGED = 3;
     /**
      * Certificates cannot be issued from this CA. CRLs will not be generated.
-     * The CA will not be part of the [CaPool][google.cloud.security.privateca.v1.CaPool]'s trust anchor, and will not be
-     * used to issue certificates from the [CaPool][google.cloud.security.privateca.v1.CaPool].
+     * The CA will not be part of the
+     * [CaPool][google.cloud.security.privateca.v1.CaPool]'s trust anchor, and
+     * will not be used to issue certificates from the
+     * [CaPool][google.cloud.security.privateca.v1.CaPool].
      *
      * Generated from protobuf enum <code>AWAITING_USER_ACTIVATION = 4;</code>
      */
@@ -54,10 +64,13 @@ class State
     /**
      * Certificates cannot be issued from this CA. CRLs will not be generated.
      * The CA may still be recovered by calling
-     * [CertificateAuthorityService.UndeleteCertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthorityService.UndeleteCertificateAuthority] before
+     * [CertificateAuthorityService.UndeleteCertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthorityService.UndeleteCertificateAuthority]
+     * before
      * [expire_time][google.cloud.security.privateca.v1.CertificateAuthority.expire_time].
-     * The CA will not be part of the [CaPool][google.cloud.security.privateca.v1.CaPool]'s trust anchor, and will not be
-     * used to issue certificates from the [CaPool][google.cloud.security.privateca.v1.CaPool].
+     * The CA will not be part of the
+     * [CaPool][google.cloud.security.privateca.v1.CaPool]'s trust anchor, and
+     * will not be used to issue certificates from the
+     * [CaPool][google.cloud.security.privateca.v1.CaPool].
      *
      * Generated from protobuf enum <code>DELETED = 5;</code>
      */

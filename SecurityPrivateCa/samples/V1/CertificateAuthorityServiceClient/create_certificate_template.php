@@ -30,11 +30,13 @@ use Google\Cloud\Security\PrivateCA\V1\CertificateTemplate;
 use Google\Rpc\Status;
 
 /**
- * Create a new [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate] in a given Project and Location.
+ * Create a new
+ * [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate]
+ * in a given Project and Location.
  *
  * @param string $formattedParent       The resource name of the location associated with the
- *                                      [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate], in the format
- *                                      `projects/&#42;/locations/*`. Please see
+ *                                      [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate],
+ *                                      in the format `projects/&#42;/locations/*`. Please see
  *                                      {@see CertificateAuthorityServiceClient::locationName()} for help formatting this field.
  * @param string $certificateTemplateId It must be unique within a location and match the regular
  *                                      expression `[a-zA-Z0-9_-]{1,63}`

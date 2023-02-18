@@ -30,8 +30,10 @@ use Google\Cloud\Dataproc\V1\BatchControllerClient;
  * Deletes the batch workload resource. If the batch is not in terminal state,
  * the delete fails and the response returns `FAILED_PRECONDITION`.
  *
- * @param string $formattedName The name of the batch resource to delete. Please see
- *                              {@see BatchControllerClient::batchName()} for help formatting this field.
+ * @param string $formattedName The fully qualified name of the batch to retrieve
+ *                              in the format
+ *                              "projects/PROJECT_ID/locations/DATAPROC_REGION/batches/BATCH_ID"
+ *                              Please see {@see BatchControllerClient::batchName()} for help formatting this field.
  */
 function delete_batch_sample(string $formattedName): void
 {

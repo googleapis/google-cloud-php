@@ -29,11 +29,13 @@ use Google\Cloud\Security\PrivateCA\V1\CertificateAuthority;
 use Google\Cloud\Security\PrivateCA\V1\CertificateAuthorityServiceClient;
 
 /**
- * Lists [CertificateAuthorities][google.cloud.security.privateca.v1.CertificateAuthority].
+ * Lists
+ * [CertificateAuthorities][google.cloud.security.privateca.v1.CertificateAuthority].
  *
- * @param string $formattedParent The resource name of the [CaPool][google.cloud.security.privateca.v1.CaPool] associated with the
- *                                [CertificateAuthorities][google.cloud.security.privateca.v1.CertificateAuthority], in the format
- *                                `projects/&#42;/locations/&#42;/caPools/*`. Please see
+ * @param string $formattedParent The resource name of the
+ *                                [CaPool][google.cloud.security.privateca.v1.CaPool] associated with the
+ *                                [CertificateAuthorities][google.cloud.security.privateca.v1.CertificateAuthority],
+ *                                in the format `projects/&#42;/locations/&#42;/caPools/*`. Please see
  *                                {@see CertificateAuthorityServiceClient::caPoolName()} for help formatting this field.
  */
 function list_certificate_authorities_sample(string $formattedParent): void

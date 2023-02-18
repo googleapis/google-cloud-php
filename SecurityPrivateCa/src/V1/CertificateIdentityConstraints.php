@@ -9,7 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Describes constraints on a [Certificate][google.cloud.security.privateca.v1.Certificate]'s [Subject][google.cloud.security.privateca.v1.Subject] and
+ * Describes constraints on a
+ * [Certificate][google.cloud.security.privateca.v1.Certificate]'s
+ * [Subject][google.cloud.security.privateca.v1.Subject] and
  * [SubjectAltNames][google.cloud.security.privateca.v1.SubjectAltNames].
  *
  * Generated from protobuf message <code>google.cloud.security.privateca.v1.CertificateIdentityConstraints</code>
@@ -17,26 +19,31 @@ use Google\Protobuf\Internal\GPBUtil;
 class CertificateIdentityConstraints extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. A CEL expression that may be used to validate the resolved X.509 Subject
-     * and/or Subject Alternative Name before a certificate is signed.
-     * To see the full allowed syntax and some examples, see
+     * Optional. A CEL expression that may be used to validate the resolved X.509
+     * Subject and/or Subject Alternative Name before a certificate is signed. To
+     * see the full allowed syntax and some examples, see
      * https://cloud.google.com/certificate-authority-service/docs/using-cel
      *
      * Generated from protobuf field <code>.google.type.Expr cel_expression = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $cel_expression = null;
     /**
-     * Required. If this is true, the [Subject][google.cloud.security.privateca.v1.Subject] field may be copied from a certificate
-     * request into the signed certificate. Otherwise, the requested [Subject][google.cloud.security.privateca.v1.Subject]
-     * will be discarded.
+     * Required. If this is true, the
+     * [Subject][google.cloud.security.privateca.v1.Subject] field may be copied
+     * from a certificate request into the signed certificate. Otherwise, the
+     * requested [Subject][google.cloud.security.privateca.v1.Subject] will be
+     * discarded.
      *
      * Generated from protobuf field <code>optional bool allow_subject_passthrough = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $allow_subject_passthrough = null;
     /**
-     * Required. If this is true, the [SubjectAltNames][google.cloud.security.privateca.v1.SubjectAltNames] extension may be copied from a
-     * certificate request into the signed certificate. Otherwise, the requested
-     * [SubjectAltNames][google.cloud.security.privateca.v1.SubjectAltNames] will be discarded.
+     * Required. If this is true, the
+     * [SubjectAltNames][google.cloud.security.privateca.v1.SubjectAltNames]
+     * extension may be copied from a certificate request into the signed
+     * certificate. Otherwise, the requested
+     * [SubjectAltNames][google.cloud.security.privateca.v1.SubjectAltNames] will
+     * be discarded.
      *
      * Generated from protobuf field <code>optional bool allow_subject_alt_names_passthrough = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -49,18 +56,23 @@ class CertificateIdentityConstraints extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Type\Expr $cel_expression
-     *           Optional. A CEL expression that may be used to validate the resolved X.509 Subject
-     *           and/or Subject Alternative Name before a certificate is signed.
-     *           To see the full allowed syntax and some examples, see
+     *           Optional. A CEL expression that may be used to validate the resolved X.509
+     *           Subject and/or Subject Alternative Name before a certificate is signed. To
+     *           see the full allowed syntax and some examples, see
      *           https://cloud.google.com/certificate-authority-service/docs/using-cel
      *     @type bool $allow_subject_passthrough
-     *           Required. If this is true, the [Subject][google.cloud.security.privateca.v1.Subject] field may be copied from a certificate
-     *           request into the signed certificate. Otherwise, the requested [Subject][google.cloud.security.privateca.v1.Subject]
-     *           will be discarded.
+     *           Required. If this is true, the
+     *           [Subject][google.cloud.security.privateca.v1.Subject] field may be copied
+     *           from a certificate request into the signed certificate. Otherwise, the
+     *           requested [Subject][google.cloud.security.privateca.v1.Subject] will be
+     *           discarded.
      *     @type bool $allow_subject_alt_names_passthrough
-     *           Required. If this is true, the [SubjectAltNames][google.cloud.security.privateca.v1.SubjectAltNames] extension may be copied from a
-     *           certificate request into the signed certificate. Otherwise, the requested
-     *           [SubjectAltNames][google.cloud.security.privateca.v1.SubjectAltNames] will be discarded.
+     *           Required. If this is true, the
+     *           [SubjectAltNames][google.cloud.security.privateca.v1.SubjectAltNames]
+     *           extension may be copied from a certificate request into the signed
+     *           certificate. Otherwise, the requested
+     *           [SubjectAltNames][google.cloud.security.privateca.v1.SubjectAltNames] will
+     *           be discarded.
      * }
      */
     public function __construct($data = NULL) {
@@ -69,9 +81,9 @@ class CertificateIdentityConstraints extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A CEL expression that may be used to validate the resolved X.509 Subject
-     * and/or Subject Alternative Name before a certificate is signed.
-     * To see the full allowed syntax and some examples, see
+     * Optional. A CEL expression that may be used to validate the resolved X.509
+     * Subject and/or Subject Alternative Name before a certificate is signed. To
+     * see the full allowed syntax and some examples, see
      * https://cloud.google.com/certificate-authority-service/docs/using-cel
      *
      * Generated from protobuf field <code>.google.type.Expr cel_expression = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -93,9 +105,9 @@ class CertificateIdentityConstraints extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A CEL expression that may be used to validate the resolved X.509 Subject
-     * and/or Subject Alternative Name before a certificate is signed.
-     * To see the full allowed syntax and some examples, see
+     * Optional. A CEL expression that may be used to validate the resolved X.509
+     * Subject and/or Subject Alternative Name before a certificate is signed. To
+     * see the full allowed syntax and some examples, see
      * https://cloud.google.com/certificate-authority-service/docs/using-cel
      *
      * Generated from protobuf field <code>.google.type.Expr cel_expression = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -111,9 +123,11 @@ class CertificateIdentityConstraints extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. If this is true, the [Subject][google.cloud.security.privateca.v1.Subject] field may be copied from a certificate
-     * request into the signed certificate. Otherwise, the requested [Subject][google.cloud.security.privateca.v1.Subject]
-     * will be discarded.
+     * Required. If this is true, the
+     * [Subject][google.cloud.security.privateca.v1.Subject] field may be copied
+     * from a certificate request into the signed certificate. Otherwise, the
+     * requested [Subject][google.cloud.security.privateca.v1.Subject] will be
+     * discarded.
      *
      * Generated from protobuf field <code>optional bool allow_subject_passthrough = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return bool
@@ -134,9 +148,11 @@ class CertificateIdentityConstraints extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. If this is true, the [Subject][google.cloud.security.privateca.v1.Subject] field may be copied from a certificate
-     * request into the signed certificate. Otherwise, the requested [Subject][google.cloud.security.privateca.v1.Subject]
-     * will be discarded.
+     * Required. If this is true, the
+     * [Subject][google.cloud.security.privateca.v1.Subject] field may be copied
+     * from a certificate request into the signed certificate. Otherwise, the
+     * requested [Subject][google.cloud.security.privateca.v1.Subject] will be
+     * discarded.
      *
      * Generated from protobuf field <code>optional bool allow_subject_passthrough = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param bool $var
@@ -151,9 +167,12 @@ class CertificateIdentityConstraints extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. If this is true, the [SubjectAltNames][google.cloud.security.privateca.v1.SubjectAltNames] extension may be copied from a
-     * certificate request into the signed certificate. Otherwise, the requested
-     * [SubjectAltNames][google.cloud.security.privateca.v1.SubjectAltNames] will be discarded.
+     * Required. If this is true, the
+     * [SubjectAltNames][google.cloud.security.privateca.v1.SubjectAltNames]
+     * extension may be copied from a certificate request into the signed
+     * certificate. Otherwise, the requested
+     * [SubjectAltNames][google.cloud.security.privateca.v1.SubjectAltNames] will
+     * be discarded.
      *
      * Generated from protobuf field <code>optional bool allow_subject_alt_names_passthrough = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return bool
@@ -174,9 +193,12 @@ class CertificateIdentityConstraints extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. If this is true, the [SubjectAltNames][google.cloud.security.privateca.v1.SubjectAltNames] extension may be copied from a
-     * certificate request into the signed certificate. Otherwise, the requested
-     * [SubjectAltNames][google.cloud.security.privateca.v1.SubjectAltNames] will be discarded.
+     * Required. If this is true, the
+     * [SubjectAltNames][google.cloud.security.privateca.v1.SubjectAltNames]
+     * extension may be copied from a certificate request into the signed
+     * certificate. Otherwise, the requested
+     * [SubjectAltNames][google.cloud.security.privateca.v1.SubjectAltNames] will
+     * be discarded.
      *
      * Generated from protobuf field <code>optional bool allow_subject_alt_names_passthrough = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param bool $var

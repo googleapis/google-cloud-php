@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A [PublicKey][google.cloud.security.privateca.v1.PublicKey] describes a public key.
+ * A [PublicKey][google.cloud.security.privateca.v1.PublicKey] describes a
+ * public key.
  *
  * Generated from protobuf message <code>google.cloud.security.privateca.v1.PublicKey</code>
  */
