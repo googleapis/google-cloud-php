@@ -63,6 +63,12 @@ class ClusterOperationMetadata extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string warnings = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $warnings;
+    /**
+     * Output only. Child operation ids
+     *
+     * Generated from protobuf field <code>repeated string child_operation_ids = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $child_operation_ids;
 
     /**
      * Constructor.
@@ -86,6 +92,8 @@ class ClusterOperationMetadata extends \Google\Protobuf\Internal\Message
      *           Output only. Labels associated with the operation
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $warnings
      *           Output only. Errors encountered during operation execution.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $child_operation_ids
+     *           Output only. Child operation ids
      * }
      */
     public function __construct($data = NULL) {
@@ -307,6 +315,32 @@ class ClusterOperationMetadata extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->warnings = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Child operation ids
+     *
+     * Generated from protobuf field <code>repeated string child_operation_ids = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getChildOperationIds()
+    {
+        return $this->child_operation_ids;
+    }
+
+    /**
+     * Output only. Child operation ids
+     *
+     * Generated from protobuf field <code>repeated string child_operation_ids = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setChildOperationIds($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->child_operation_ids = $arr;
 
         return $this;
     }
