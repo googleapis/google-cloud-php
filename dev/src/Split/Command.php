@@ -203,7 +203,7 @@ class Command extends GoogleCloudCommand
         $output->writeln('');
         $localVersion = current($this->componentManager->componentsVersion($component['id']));
         $isAlreadyTagged = $github->doesTagExist($component['target'], $localVersion);
-        $defaultBranch = $github->getDefaultBranch($component['target']);
+        $defaultBranch = $github->getDefaultBranch($component['target']) ?: 'main';
 
         // If the repo is empty, it's new and we don't want to force-push.
         $isTargetEmpty = $github->isTargetEmpty($component['target']);
