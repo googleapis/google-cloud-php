@@ -10,39 +10,50 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * A [CaPool][google.cloud.security.privateca.v1.CaPool] represents a group of
- * [CertificateAuthorities][google.cloud.security.privateca.v1.CertificateAuthority] that form a trust anchor. A
- * [CaPool][google.cloud.security.privateca.v1.CaPool] can be used to manage issuance policies for one or more
- * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority] resources and to rotate CA certificates in and out
- * of the trust anchor.
+ * [CertificateAuthorities][google.cloud.security.privateca.v1.CertificateAuthority]
+ * that form a trust anchor. A
+ * [CaPool][google.cloud.security.privateca.v1.CaPool] can be used to manage
+ * issuance policies for one or more
+ * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+ * resources and to rotate CA certificates in and out of the trust anchor.
  *
  * Generated from protobuf message <code>google.cloud.security.privateca.v1.CaPool</code>
  */
 class CaPool extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The resource name for this [CaPool][google.cloud.security.privateca.v1.CaPool] in the
-     * format `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;`.
+     * Output only. The resource name for this
+     * [CaPool][google.cloud.security.privateca.v1.CaPool] in the format
+     * `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $name = '';
     /**
-     * Required. Immutable. The [Tier][google.cloud.security.privateca.v1.CaPool.Tier] of this [CaPool][google.cloud.security.privateca.v1.CaPool].
+     * Required. Immutable. The
+     * [Tier][google.cloud.security.privateca.v1.CaPool.Tier] of this
+     * [CaPool][google.cloud.security.privateca.v1.CaPool].
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.CaPool.Tier tier = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
     private $tier = 0;
     /**
-     * Optional. The [IssuancePolicy][google.cloud.security.privateca.v1.CaPool.IssuancePolicy] to control how [Certificates][google.cloud.security.privateca.v1.Certificate]
-     * will be issued from this [CaPool][google.cloud.security.privateca.v1.CaPool].
+     * Optional. The
+     * [IssuancePolicy][google.cloud.security.privateca.v1.CaPool.IssuancePolicy]
+     * to control how
+     * [Certificates][google.cloud.security.privateca.v1.Certificate] will be
+     * issued from this [CaPool][google.cloud.security.privateca.v1.CaPool].
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.CaPool.IssuancePolicy issuance_policy = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $issuance_policy = null;
     /**
-     * Optional. The [PublishingOptions][google.cloud.security.privateca.v1.CaPool.PublishingOptions] to follow when issuing
-     * [Certificates][google.cloud.security.privateca.v1.Certificate] from any [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority] in this
-     * [CaPool][google.cloud.security.privateca.v1.CaPool].
+     * Optional. The
+     * [PublishingOptions][google.cloud.security.privateca.v1.CaPool.PublishingOptions]
+     * to follow when issuing
+     * [Certificates][google.cloud.security.privateca.v1.Certificate] from any
+     * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+     * in this [CaPool][google.cloud.security.privateca.v1.CaPool].
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.CaPool.PublishingOptions publishing_options = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -61,17 +72,26 @@ class CaPool extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Output only. The resource name for this [CaPool][google.cloud.security.privateca.v1.CaPool] in the
-     *           format `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;`.
+     *           Output only. The resource name for this
+     *           [CaPool][google.cloud.security.privateca.v1.CaPool] in the format
+     *           `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;`.
      *     @type int $tier
-     *           Required. Immutable. The [Tier][google.cloud.security.privateca.v1.CaPool.Tier] of this [CaPool][google.cloud.security.privateca.v1.CaPool].
-     *     @type \Google\Cloud\Security\PrivateCA\V1\CaPool\IssuancePolicy $issuance_policy
-     *           Optional. The [IssuancePolicy][google.cloud.security.privateca.v1.CaPool.IssuancePolicy] to control how [Certificates][google.cloud.security.privateca.v1.Certificate]
-     *           will be issued from this [CaPool][google.cloud.security.privateca.v1.CaPool].
-     *     @type \Google\Cloud\Security\PrivateCA\V1\CaPool\PublishingOptions $publishing_options
-     *           Optional. The [PublishingOptions][google.cloud.security.privateca.v1.CaPool.PublishingOptions] to follow when issuing
-     *           [Certificates][google.cloud.security.privateca.v1.Certificate] from any [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority] in this
+     *           Required. Immutable. The
+     *           [Tier][google.cloud.security.privateca.v1.CaPool.Tier] of this
      *           [CaPool][google.cloud.security.privateca.v1.CaPool].
+     *     @type \Google\Cloud\Security\PrivateCA\V1\CaPool\IssuancePolicy $issuance_policy
+     *           Optional. The
+     *           [IssuancePolicy][google.cloud.security.privateca.v1.CaPool.IssuancePolicy]
+     *           to control how
+     *           [Certificates][google.cloud.security.privateca.v1.Certificate] will be
+     *           issued from this [CaPool][google.cloud.security.privateca.v1.CaPool].
+     *     @type \Google\Cloud\Security\PrivateCA\V1\CaPool\PublishingOptions $publishing_options
+     *           Optional. The
+     *           [PublishingOptions][google.cloud.security.privateca.v1.CaPool.PublishingOptions]
+     *           to follow when issuing
+     *           [Certificates][google.cloud.security.privateca.v1.Certificate] from any
+     *           [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+     *           in this [CaPool][google.cloud.security.privateca.v1.CaPool].
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Optional. Labels with user-defined metadata.
      * }
@@ -82,8 +102,9 @@ class CaPool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The resource name for this [CaPool][google.cloud.security.privateca.v1.CaPool] in the
-     * format `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;`.
+     * Output only. The resource name for this
+     * [CaPool][google.cloud.security.privateca.v1.CaPool] in the format
+     * `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -94,8 +115,9 @@ class CaPool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The resource name for this [CaPool][google.cloud.security.privateca.v1.CaPool] in the
-     * format `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;`.
+     * Output only. The resource name for this
+     * [CaPool][google.cloud.security.privateca.v1.CaPool] in the format
+     * `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -110,7 +132,9 @@ class CaPool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Immutable. The [Tier][google.cloud.security.privateca.v1.CaPool.Tier] of this [CaPool][google.cloud.security.privateca.v1.CaPool].
+     * Required. Immutable. The
+     * [Tier][google.cloud.security.privateca.v1.CaPool.Tier] of this
+     * [CaPool][google.cloud.security.privateca.v1.CaPool].
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.CaPool.Tier tier = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return int
@@ -121,7 +145,9 @@ class CaPool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Immutable. The [Tier][google.cloud.security.privateca.v1.CaPool.Tier] of this [CaPool][google.cloud.security.privateca.v1.CaPool].
+     * Required. Immutable. The
+     * [Tier][google.cloud.security.privateca.v1.CaPool.Tier] of this
+     * [CaPool][google.cloud.security.privateca.v1.CaPool].
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.CaPool.Tier tier = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param int $var
@@ -136,8 +162,11 @@ class CaPool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The [IssuancePolicy][google.cloud.security.privateca.v1.CaPool.IssuancePolicy] to control how [Certificates][google.cloud.security.privateca.v1.Certificate]
-     * will be issued from this [CaPool][google.cloud.security.privateca.v1.CaPool].
+     * Optional. The
+     * [IssuancePolicy][google.cloud.security.privateca.v1.CaPool.IssuancePolicy]
+     * to control how
+     * [Certificates][google.cloud.security.privateca.v1.Certificate] will be
+     * issued from this [CaPool][google.cloud.security.privateca.v1.CaPool].
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.CaPool.IssuancePolicy issuance_policy = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Security\PrivateCA\V1\CaPool\IssuancePolicy|null
@@ -158,8 +187,11 @@ class CaPool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The [IssuancePolicy][google.cloud.security.privateca.v1.CaPool.IssuancePolicy] to control how [Certificates][google.cloud.security.privateca.v1.Certificate]
-     * will be issued from this [CaPool][google.cloud.security.privateca.v1.CaPool].
+     * Optional. The
+     * [IssuancePolicy][google.cloud.security.privateca.v1.CaPool.IssuancePolicy]
+     * to control how
+     * [Certificates][google.cloud.security.privateca.v1.Certificate] will be
+     * issued from this [CaPool][google.cloud.security.privateca.v1.CaPool].
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.CaPool.IssuancePolicy issuance_policy = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Security\PrivateCA\V1\CaPool\IssuancePolicy $var
@@ -174,9 +206,12 @@ class CaPool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The [PublishingOptions][google.cloud.security.privateca.v1.CaPool.PublishingOptions] to follow when issuing
-     * [Certificates][google.cloud.security.privateca.v1.Certificate] from any [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority] in this
-     * [CaPool][google.cloud.security.privateca.v1.CaPool].
+     * Optional. The
+     * [PublishingOptions][google.cloud.security.privateca.v1.CaPool.PublishingOptions]
+     * to follow when issuing
+     * [Certificates][google.cloud.security.privateca.v1.Certificate] from any
+     * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+     * in this [CaPool][google.cloud.security.privateca.v1.CaPool].
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.CaPool.PublishingOptions publishing_options = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Security\PrivateCA\V1\CaPool\PublishingOptions|null
@@ -197,9 +232,12 @@ class CaPool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The [PublishingOptions][google.cloud.security.privateca.v1.CaPool.PublishingOptions] to follow when issuing
-     * [Certificates][google.cloud.security.privateca.v1.Certificate] from any [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority] in this
-     * [CaPool][google.cloud.security.privateca.v1.CaPool].
+     * Optional. The
+     * [PublishingOptions][google.cloud.security.privateca.v1.CaPool.PublishingOptions]
+     * to follow when issuing
+     * [Certificates][google.cloud.security.privateca.v1.Certificate] from any
+     * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+     * in this [CaPool][google.cloud.security.privateca.v1.CaPool].
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.CaPool.PublishingOptions publishing_options = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Security\PrivateCA\V1\CaPool\PublishingOptions $var

@@ -29,10 +29,12 @@ use Google\Cloud\Security\PrivateCA\V1\CertificateAuthorityServiceClient;
 use Google\Rpc\Status;
 
 /**
- * DeleteCertificateTemplate deletes a [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate].
+ * DeleteCertificateTemplate deletes a
+ * [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate].
  *
- * @param string $formattedName The resource name for this [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate] in the format
- *                              `projects/&#42;/locations/&#42;/certificateTemplates/*`. Please see
+ * @param string $formattedName The resource name for this
+ *                              [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate]
+ *                              in the format `projects/&#42;/locations/&#42;/certificateTemplates/*`. Please see
  *                              {@see CertificateAuthorityServiceClient::certificateTemplateName()} for help formatting this field.
  */
 function delete_certificate_template_sample(string $formattedName): void

@@ -642,7 +642,7 @@ class PubSubClient
      *     for definition. The array representation allows for validation of
      *     messages using ad-hoc schema; these do not have to exist in the
      *     current project in order to be used for validation.
-     * @param string $message The message to validate.
+     * @param string $message The base64 encoded message to validate.
      * @param string $encoding Either `JSON` or `BINARY`.
      * @param array $options [optional] Configuration options
      * @return void

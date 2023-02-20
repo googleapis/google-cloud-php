@@ -29,11 +29,12 @@ use Google\Cloud\Security\PrivateCA\V1\CertificateAuthorityServiceClient;
 use Google\Cloud\Security\PrivateCA\V1\CertificateTemplate;
 
 /**
- * Lists [CertificateTemplates][google.cloud.security.privateca.v1.CertificateTemplate].
+ * Lists
+ * [CertificateTemplates][google.cloud.security.privateca.v1.CertificateTemplate].
  *
  * @param string $formattedParent The resource name of the location associated with the
- *                                [CertificateTemplates][google.cloud.security.privateca.v1.CertificateTemplate], in the format
- *                                `projects/&#42;/locations/*`. Please see
+ *                                [CertificateTemplates][google.cloud.security.privateca.v1.CertificateTemplate],
+ *                                in the format `projects/&#42;/locations/*`. Please see
  *                                {@see CertificateAuthorityServiceClient::locationName()} for help formatting this field.
  */
 function list_certificate_templates_sample(string $formattedParent): void

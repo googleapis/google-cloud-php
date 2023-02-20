@@ -30,7 +30,8 @@ use Google\Cloud\Security\PrivateCA\V1\CertificateAuthorityServiceClient;
 /**
  * Returns a [CaPool][google.cloud.security.privateca.v1.CaPool].
  *
- * @param string $formattedName The [name][google.cloud.security.privateca.v1.CaPool.name] of the [CaPool][google.cloud.security.privateca.v1.CaPool] to get. Please see
+ * @param string $formattedName The [name][google.cloud.security.privateca.v1.CaPool.name] of the
+ *                              [CaPool][google.cloud.security.privateca.v1.CaPool] to get. Please see
  *                              {@see CertificateAuthorityServiceClient::caPoolName()} for help formatting this field.
  */
 function get_ca_pool_sample(string $formattedName): void

@@ -82,6 +82,25 @@ return [
                     ],
                 ],
             ],
+            'BatchCreateAccessBindings' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1alpha/{parent=accounts/*}/accessBindings:batchCreate',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1alpha/{parent=properties/*}/accessBindings:batchCreate',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'BatchCreateUserLinks' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1alpha/{parent=accounts/*}/userLinks:batchCreate',
@@ -90,6 +109,25 @@ return [
                     [
                         'method' => 'post',
                         'uriTemplate' => '/v1alpha/{parent=properties/*}/userLinks:batchCreate',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchDeleteAccessBindings' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1alpha/{parent=accounts/*}/accessBindings:batchDelete',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1alpha/{parent=properties/*}/accessBindings:batchDelete',
                         'body' => '*',
                     ],
                 ],
@@ -120,6 +158,23 @@ return [
                     ],
                 ],
             ],
+            'BatchGetAccessBindings' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{parent=accounts/*}/accessBindings:batchGet',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1alpha/{parent=properties/*}/accessBindings:batchGet',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'BatchGetUserLinks' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1alpha/{parent=accounts/*}/userLinks:batchGet',
@@ -127,6 +182,25 @@ return [
                     [
                         'method' => 'get',
                         'uriTemplate' => '/v1alpha/{parent=properties/*}/userLinks:batchGet',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchUpdateAccessBindings' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1alpha/{parent=accounts/*}/accessBindings:batchUpdate',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1alpha/{parent=properties/*}/accessBindings:batchUpdate',
+                        'body' => '*',
                     ],
                 ],
                 'placeholders' => [
@@ -164,6 +238,25 @@ return [
                     'name' => [
                         'getters' => [
                             'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateAccessBinding' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1alpha/{parent=accounts/*}/accessBindings',
+                'body' => 'access_binding',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1alpha/{parent=properties/*}/accessBindings',
+                        'body' => 'access_binding',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
                         ],
                     ],
                 ],
@@ -252,6 +345,18 @@ return [
                     ],
                 ],
             ],
+            'CreateExpandedDataSet' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1alpha/{parent=properties/*}/expandedDataSets',
+                'body' => 'expanded_data_set',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateFirebaseLink' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1alpha/{parent=properties/*}/firebaseLinks',
@@ -324,6 +429,23 @@ return [
                     ],
                 ],
             ],
+            'DeleteAccessBinding' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1alpha/{name=accounts/*/accessBindings/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v1alpha/{name=properties/*/accessBindings/*}',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteAccount' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1alpha/{name=accounts/*}',
@@ -371,6 +493,17 @@ return [
             'DeleteDisplayVideo360AdvertiserLinkProposal' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1alpha/{name=properties/*/displayVideo360AdvertiserLinkProposals/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteExpandedDataSet' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1alpha/{name=properties/*/expandedDataSets/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -455,6 +588,23 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v1alpha/properties:fetchAutomatedGa4ConfigurationOptOut',
                 'body' => '*',
+            ],
+            'GetAccessBinding' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{name=accounts/*/accessBindings/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1alpha/{name=properties/*/accessBindings/*}',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
             ],
             'GetAccount' => [
                 'method' => 'get',
@@ -588,6 +738,17 @@ return [
                     ],
                 ],
             ],
+            'GetExpandedDataSet' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{name=properties/*/expandedDataSets/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetGlobalSiteTag' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1alpha/{name=properties/*/dataStreams/*/globalSiteTag}',
@@ -656,6 +817,23 @@ return [
                     'name' => [
                         'getters' => [
                             'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListAccessBindings' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{parent=accounts/*}/accessBindings',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1alpha/{parent=properties/*}/accessBindings',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
                         ],
                     ],
                 ],
@@ -748,6 +926,17 @@ return [
             'ListDisplayVideo360AdvertiserLinks' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1alpha/{parent=properties/*}/displayVideo360AdvertiserLinks',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListExpandedDataSets' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{parent=properties/*}/expandedDataSets',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -857,6 +1046,26 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v1alpha/properties:setAutomatedGa4ConfigurationOptOut',
                 'body' => '*',
+            ],
+            'UpdateAccessBinding' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1alpha/{access_binding.name=accounts/*/accessBindings/*}',
+                'body' => 'access_binding',
+                'additionalBindings' => [
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v1alpha/{access_binding.name=properties/*/accessBindings/*}',
+                        'body' => 'access_binding',
+                    ],
+                ],
+                'placeholders' => [
+                    'access_binding.name' => [
+                        'getters' => [
+                            'getAccessBinding',
+                            'getName',
+                        ],
+                    ],
+                ],
             ],
             'UpdateAccount' => [
                 'method' => 'patch',
@@ -978,6 +1187,22 @@ return [
                     'display_video_360_advertiser_link.name' => [
                         'getters' => [
                             'getDisplayVideo360AdvertiserLink',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
+                ],
+            ],
+            'UpdateExpandedDataSet' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1alpha/{expanded_data_set.name=properties/*/expandedDataSets/*}',
+                'body' => 'expanded_data_set',
+                'placeholders' => [
+                    'expanded_data_set.name' => [
+                        'getters' => [
+                            'getExpandedDataSet',
                             'getName',
                         ],
                     ],

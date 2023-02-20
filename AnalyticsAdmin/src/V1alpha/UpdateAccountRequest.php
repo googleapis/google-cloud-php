@@ -24,8 +24,8 @@ class UpdateAccountRequest extends \Google\Protobuf\Internal\Message
     private $account = null;
     /**
      * Required. The list of fields to be updated. Field names must be in snake
-     * case (e.g., "field_to_update"). Omitted fields will not be updated. To
-     * replace the entire entity, use one path with the string "*" to match all
+     * case (for example, "field_to_update"). Omitted fields will not be updated.
+     * To replace the entire entity, use one path with the string "*" to match all
      * fields.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -43,8 +43,8 @@ class UpdateAccountRequest extends \Google\Protobuf\Internal\Message
      *           The account's `name` field is used to identify the account.
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           Required. The list of fields to be updated. Field names must be in snake
-     *           case (e.g., "field_to_update"). Omitted fields will not be updated. To
-     *           replace the entire entity, use one path with the string "*" to match all
+     *           case (for example, "field_to_update"). Omitted fields will not be updated.
+     *           To replace the entire entity, use one path with the string "*" to match all
      *           fields.
      * }
      */
@@ -93,8 +93,8 @@ class UpdateAccountRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The list of fields to be updated. Field names must be in snake
-     * case (e.g., "field_to_update"). Omitted fields will not be updated. To
-     * replace the entire entity, use one path with the string "*" to match all
+     * case (for example, "field_to_update"). Omitted fields will not be updated.
+     * To replace the entire entity, use one path with the string "*" to match all
      * fields.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -117,8 +117,8 @@ class UpdateAccountRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The list of fields to be updated. Field names must be in snake
-     * case (e.g., "field_to_update"). Omitted fields will not be updated. To
-     * replace the entire entity, use one path with the string "*" to match all
+     * case (for example, "field_to_update"). Omitted fields will not be updated.
+     * To replace the entire entity, use one path with the string "*" to match all
      * fields.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
