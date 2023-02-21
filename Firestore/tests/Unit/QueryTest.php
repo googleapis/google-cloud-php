@@ -166,8 +166,7 @@ class QueryTest extends TestCase
                         ]
                     ]
                 ]
-            ]
-        ));
+            ]));
 
         $this->query->___setProperty('connection', $this->connection->reveal());
 
@@ -188,8 +187,7 @@ class QueryTest extends TestCase
                         ]
                     ]
                 ]
-            ]
-        ));
+            ]));
 
         $this->query->___setProperty('connection', $this->connection->reveal());
 

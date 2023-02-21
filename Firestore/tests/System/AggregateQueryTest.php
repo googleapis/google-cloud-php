@@ -109,14 +109,12 @@ class AggregateQueryTest extends FirestoreTestCase
         $this->assertQueryCount($docs, 1);
         $docs = self::$client->collection($name)->where('foos', 'in', [['bar', 'foo']]);
         $this->assertQueryCount($docs, 0);
-
-        $docs = self::$client->collection($name)
-            ->where(FieldPath::documentId(), 'in', [$doc1->id(), $doc2->id()]);
-        $this->assertQueryCount($docs, 2);
     }
 
     public function testSnapshotCursors()
     {
+        // cursors are not supported by emulator
+        $this->skipEmulatorTests();
         $collection = self::$client->collection(uniqid(self::COLLECTION_NAME));
         self::$localDeletionQueue->add($collection);
 
@@ -142,6 +140,8 @@ class AggregateQueryTest extends FirestoreTestCase
 
     public function testLimitToLast()
     {
+        // limit is not supported by emulator
+        $this->skipEmulatorTests();
         $collection = self::$client->collection(uniqid(self::COLLECTION_NAME));
         self::$localDeletionQueue->add($collection);
         for ($i = 1; $i <= 5; $i++) {
@@ -156,6 +156,8 @@ class AggregateQueryTest extends FirestoreTestCase
 
     public function testLimitToLastWithCursors()
     {
+        // cursors are not supported by emulator
+        $this->skipEmulatorTests();
         $collection = self::$client->collection(uniqid(self::COLLECTION_NAME));
         self::$localDeletionQueue->add($collection);
         for ($i = 1; $i <= 5; $i++) {

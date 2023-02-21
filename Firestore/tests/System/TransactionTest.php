@@ -141,6 +141,42 @@ class TransactionTest extends FirestoreTestCase
         $aggregateQuery = self::$collection->where('foos', '!=', [])->addAggregation(
             Aggregate::count()->alias('count')
         );
+
+        // without sleep, test fails intermittently
+        sleep(1);
+        $readTime = new Timestamp(new \DateTimeImmutable('now'));
+
+        self::$client->runTransaction(function ($t) use ($aggregateQuery, $readTime) {
+            $snapshot = $t->runAggregateQuery($aggregateQuery, [
+                'readTime' => $readTime
+            ]);
+
+            $this->assertEquals(3, $snapshot->get('count'));
+
+            $this->assertEquals(
+                $readTime->get()->getTimestamp(),
+                $snapshot->getReadTime()->get()->getTimestamp()
+            );
+        });
+    }
+
+    public function testAggregateQueryWithMultipleAggregation()
+    {
+        // multiplleAggregation with limits is not supported by emulator
+        $this->skipEmulatorTests();
+        $this->document->create([
+            'bars' => ['foobar'],
+        ]);
+        self::$collection->add([
+            'bars' => ['foo', 'bar'],
+        ]);
+        self::$collection->add([
+            'bars' => ['foo'],
+        ]);
+
+        $aggregateQuery = self::$collection->where('bars', '!=', [])->addAggregation(
+            Aggregate::count()->alias('count')
+        );
         $aggregateQuery = $aggregateQuery->addAggregation(
             Aggregate::count()->alias('count_upto_2')->limit(2)
         );
