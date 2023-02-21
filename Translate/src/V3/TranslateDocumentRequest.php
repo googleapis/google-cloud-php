@@ -29,7 +29,7 @@ class TranslateDocumentRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
-     * Optional. The BCP-47 language code of the input document if known, for
+     * Optional. The ISO-639 language code of the input document if known, for
      * example, "en-US" or "sr-Latn". Supported language codes are listed in
      * Language Support. If the source language isn't specified, the API attempts
      * to identify the source language automatically and returns the source
@@ -40,7 +40,7 @@ class TranslateDocumentRequest extends \Google\Protobuf\Internal\Message
      */
     private $source_language_code = '';
     /**
-     * Required. The BCP-47 language code to use for translation of the input
+     * Required. The ISO-639 language code to use for translation of the input
      * document, set to one of the language codes listed in Language Support.
      *
      * Generated from protobuf field <code>string target_language_code = 3 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -95,6 +95,31 @@ class TranslateDocumentRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>map<string, string> labels = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $labels;
+    /**
+     * Optional. This flag is to support user customized attribution.
+     * If not provided, the default is `Machine Translated by Google`.
+     * Customized attribution should follow rules in
+     * https://cloud.google.com/translate/attribution#attribution_and_logos
+     *
+     * Generated from protobuf field <code>string customized_attribution = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $customized_attribution = '';
+    /**
+     * Optional. If true, the page limit of online native pdf translation is 300
+     * and only native pdf pages will be translated.
+     *
+     * Generated from protobuf field <code>bool is_translate_native_pdf_only = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $is_translate_native_pdf_only = false;
+    /**
+     * Optional. If true, use the text removal to remove the shadow text on
+     * background image for native pdf translation.
+     * Shadow removal feature can only be enabled when
+     * is_translate_native_pdf_only is false
+     *
+     * Generated from protobuf field <code>bool enable_shadow_removal_native_pdf = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $enable_shadow_removal_native_pdf = false;
 
     /**
      * Constructor.
@@ -112,14 +137,14 @@ class TranslateDocumentRequest extends \Google\Protobuf\Internal\Message
      *           Models and glossaries must be within the same region (have the same
      *           location-id), otherwise an INVALID_ARGUMENT (400) error is returned.
      *     @type string $source_language_code
-     *           Optional. The BCP-47 language code of the input document if known, for
+     *           Optional. The ISO-639 language code of the input document if known, for
      *           example, "en-US" or "sr-Latn". Supported language codes are listed in
      *           Language Support. If the source language isn't specified, the API attempts
      *           to identify the source language automatically and returns the source
      *           language within the response. Source language must be specified if the
      *           request contains a glossary or a custom model.
      *     @type string $target_language_code
-     *           Required. The BCP-47 language code to use for translation of the input
+     *           Required. The ISO-639 language code to use for translation of the input
      *           document, set to one of the language codes listed in Language Support.
      *     @type \Google\Cloud\Translate\V3\DocumentInputConfig $document_input_config
      *           Required. Input configurations.
@@ -150,6 +175,19 @@ class TranslateDocumentRequest extends \Google\Protobuf\Internal\Message
      *           are optional. Label keys must start with a letter.
      *           See https://cloud.google.com/translate/docs/advanced/labels for more
      *           information.
+     *     @type string $customized_attribution
+     *           Optional. This flag is to support user customized attribution.
+     *           If not provided, the default is `Machine Translated by Google`.
+     *           Customized attribution should follow rules in
+     *           https://cloud.google.com/translate/attribution#attribution_and_logos
+     *     @type bool $is_translate_native_pdf_only
+     *           Optional. If true, the page limit of online native pdf translation is 300
+     *           and only native pdf pages will be translated.
+     *     @type bool $enable_shadow_removal_native_pdf
+     *           Optional. If true, use the text removal to remove the shadow text on
+     *           background image for native pdf translation.
+     *           Shadow removal feature can only be enabled when
+     *           is_translate_native_pdf_only is false
      * }
      */
     public function __construct($data = NULL) {
@@ -198,7 +236,7 @@ class TranslateDocumentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The BCP-47 language code of the input document if known, for
+     * Optional. The ISO-639 language code of the input document if known, for
      * example, "en-US" or "sr-Latn". Supported language codes are listed in
      * Language Support. If the source language isn't specified, the API attempts
      * to identify the source language automatically and returns the source
@@ -214,7 +252,7 @@ class TranslateDocumentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The BCP-47 language code of the input document if known, for
+     * Optional. The ISO-639 language code of the input document if known, for
      * example, "en-US" or "sr-Latn". Supported language codes are listed in
      * Language Support. If the source language isn't specified, the API attempts
      * to identify the source language automatically and returns the source
@@ -234,7 +272,7 @@ class TranslateDocumentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The BCP-47 language code to use for translation of the input
+     * Required. The ISO-639 language code to use for translation of the input
      * document, set to one of the language codes listed in Language Support.
      *
      * Generated from protobuf field <code>string target_language_code = 3 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -246,7 +284,7 @@ class TranslateDocumentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The BCP-47 language code to use for translation of the input
+     * Required. The ISO-639 language code to use for translation of the input
      * document, set to one of the language codes listed in Language Support.
      *
      * Generated from protobuf field <code>string target_language_code = 3 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -455,6 +493,98 @@ class TranslateDocumentRequest extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
         $this->labels = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. This flag is to support user customized attribution.
+     * If not provided, the default is `Machine Translated by Google`.
+     * Customized attribution should follow rules in
+     * https://cloud.google.com/translate/attribution#attribution_and_logos
+     *
+     * Generated from protobuf field <code>string customized_attribution = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getCustomizedAttribution()
+    {
+        return $this->customized_attribution;
+    }
+
+    /**
+     * Optional. This flag is to support user customized attribution.
+     * If not provided, the default is `Machine Translated by Google`.
+     * Customized attribution should follow rules in
+     * https://cloud.google.com/translate/attribution#attribution_and_logos
+     *
+     * Generated from protobuf field <code>string customized_attribution = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setCustomizedAttribution($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->customized_attribution = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If true, the page limit of online native pdf translation is 300
+     * and only native pdf pages will be translated.
+     *
+     * Generated from protobuf field <code>bool is_translate_native_pdf_only = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getIsTranslateNativePdfOnly()
+    {
+        return $this->is_translate_native_pdf_only;
+    }
+
+    /**
+     * Optional. If true, the page limit of online native pdf translation is 300
+     * and only native pdf pages will be translated.
+     *
+     * Generated from protobuf field <code>bool is_translate_native_pdf_only = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setIsTranslateNativePdfOnly($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->is_translate_native_pdf_only = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If true, use the text removal to remove the shadow text on
+     * background image for native pdf translation.
+     * Shadow removal feature can only be enabled when
+     * is_translate_native_pdf_only is false
+     *
+     * Generated from protobuf field <code>bool enable_shadow_removal_native_pdf = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getEnableShadowRemovalNativePdf()
+    {
+        return $this->enable_shadow_removal_native_pdf;
+    }
+
+    /**
+     * Optional. If true, use the text removal to remove the shadow text on
+     * background image for native pdf translation.
+     * Shadow removal feature can only be enabled when
+     * is_translate_native_pdf_only is false
+     *
+     * Generated from protobuf field <code>bool enable_shadow_removal_native_pdf = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnableShadowRemovalNativePdf($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_shadow_removal_native_pdf = $var;
 
         return $this;
     }
