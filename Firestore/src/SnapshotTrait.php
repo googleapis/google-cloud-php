@@ -17,7 +17,6 @@
 
 namespace Google\Cloud\Firestore;
 
-use Google\ApiCore\ValidationException;
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Timestamp;
@@ -91,45 +90,6 @@ trait SnapshotTrait
         $document = $this->transformSnapshotTimestamps($document);
 
         return new DocumentSnapshot($reference, $valueMapper, $document, $fields, $exists);
-    }
-
-    /**
-     * Execute a service request to retrieve an aggregation query snapshot.
-     *
-     * @param ConnectionInterface $connection A Connection to Cloud Firestore.
-     * @param string $database The database path.
-     * @param AggregateQuery $aggregateQuery The parent document.
-     * @param array $options {
-     *     Configuration Options
-     *
-     *     @type Timestamp $readTime Reads entities as they were at the given timestamp.
-     *     @type string $transaction The transaction ID to fetch the snapshot.
-     * }
-     * @return AggregateQuerySnapshot
-     * @throws \InvalidArgumentException if an invalid `$options.readTime` is specified.
-     */
-    private function getAggregateSnapshot(
-        ConnectionInterface $connection,
-        $database,
-        AggregateQuery $aggregateQuery,
-        array $options = []
-    ) {
-        if (isset($options['readTime'])) {
-            if (!($options['readTime'] instanceof Timestamp)) {
-                throw new \InvalidArgumentException(sprintf(
-                    '`$options.readTime` must be an instance of %s',
-                    Timestamp::class
-                ));
-            }
-
-            $options['readTime'] = $options['readTime']->formatForApi();
-        }
-        $snapshot = $connection->runAggregationQuery([
-            'parent' => $database,
-            'structuredAggregationQuery' => $aggregateQuery->finalQueryPrepare(),
-        ] + $options)->current();
-
-        return new AggregateQuerySnapshot($snapshot);
     }
 
     /**

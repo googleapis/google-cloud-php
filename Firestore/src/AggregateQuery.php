@@ -34,8 +34,6 @@ use Google\Cloud\Firestore\Connection\ConnectionInterface;
  */
 class AggregateQuery
 {
-    const TYPE_COUNT = 'count';
-
     /**
      * @var ConnectionInterface
      */

@@ -174,13 +174,18 @@ class Query
      * $count = $query->count();
      * ```
      *
+     * @param array $options [optional] {
+     *     Configuration options is an array.
+     *
+     *     @type Timestamp $readTime Reads entities as they were at the given timestamp.
+     * }
      * @return int
      */
-    public function count()
+    public function count(array $options = [])
     {
         $aggregateQuery = $this->addAggregation(Aggregate::count()->alias('count'));
 
-        $aggregationResult = $aggregateQuery->getSnapshot();
+        $aggregationResult = $aggregateQuery->getSnapshot($options);
         return $aggregationResult->get('count');
     }
 

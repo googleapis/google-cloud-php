@@ -32,11 +32,10 @@ use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 class AggregateQueryTest extends TestCase
 {
     const QUERY_PARENT = 'projects/example_project/databases/(default)/';
-    const COLLECTION = 'foo';
 
     private $queryObj = [
         'from' => [
-            ['collectionId' => self::COLLECTION]
+            ['collectionId' => 'foo']
         ]
     ];
 

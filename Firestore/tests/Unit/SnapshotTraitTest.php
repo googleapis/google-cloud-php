@@ -20,7 +20,6 @@ namespace Google\Cloud\Firestore\Tests\Unit;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
-use Google\Cloud\Firestore\AggregateQuery;
 use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\DocumentSnapshot;
 use Google\Cloud\Firestore\SnapshotTrait;
@@ -170,84 +169,6 @@ class SnapshotTraitTest extends TestCase
         $this->impl->call('getSnapshot', [
             $this->connection->reveal(),
             self::NAME
-        ]);
-    }
-
-    public function testGetAggregateSnapshot()
-    {
-        $aggregateQuery = $this->prophesize(AggregateQuery::class);
-        $aggregateQuery->finalQueryPrepare()->willReturn([]);
-        $dbName = sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE);
-        $this->connection->runAggregationQuery([
-            'parent' => $dbName,
-            'structuredAggregationQuery' => []
-        ])->shouldBeCalled()->willReturn(new \ArrayIterator([
-            [
-                'result' => [
-                    'aggregateFields' => [
-                        'count' => ['integerValue' => 1]
-                    ]
-                ]
-            ]
-        ]));
-
-        $aggregateQuerySnapshot = $this->impl->call('getAggregateSnapshot', [
-            $this->connection->reveal(),
-            $dbName,
-            $aggregateQuery->reveal()
-        ]);
-
-        $this->assertEquals(1, $aggregateQuerySnapshot->get('count'));
-    }
-
-    public function testGetAggregateSnapshotReadTime()
-    {
-        $timestamp = [
-            'seconds' => 100,
-            'nanos' => 501
-        ];
-
-        $aggregateQuery = $this->prophesize(AggregateQuery::class);
-        $aggregateQuery->finalQueryPrepare()->willReturn([]);
-        $dbName = sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE);
-        $this->connection->runAggregationQuery(
-            Argument::withEntry('readTime', $timestamp)
-        )->shouldBeCalled()->willReturn(new \ArrayIterator([
-            [
-                'result' => [
-                    'aggregateFields' => [
-                        'count' => ['integerValue' => 1]
-                    ]
-                ]
-            ]
-        ]));
-
-        $aggregateQuerySnapshot = $this->impl->call('getAggregateSnapshot', [
-            $this->connection->reveal(),
-            $dbName,
-            $aggregateQuery->reveal(),
-            [
-                'readTime' => new Timestamp(
-                    \DateTimeImmutable::createFromFormat('U', (string) $timestamp['seconds']),
-                    $timestamp['nanos']
-                )
-            ]
-        ]);
-
-        $this->assertEquals(1, $aggregateQuerySnapshot->get('count'));
-    }
-
-    public function testGetAggregateSnapshotReadTimeInvalidReadTime()
-    {
-        $this->expectException('InvalidArgumentException');
-        $aggregateQuery = $this->prophesize(AggregateQuery::class);
-        $aggregateQuery->finalQueryPrepare()->willReturn([]);
-
-        $this->impl->call('getAggregateSnapshot', [
-            $this->connection->reveal(),
-            'foobar',
-            $aggregateQuery->reveal(),
-            ['readTime' => 'invalid_timestamp']
         ]);
     }
 }

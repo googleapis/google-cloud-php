@@ -18,6 +18,7 @@
 namespace Google\Cloud\Firestore;
 
 use Google\Cloud\Core\DebugInfoTrait;
+use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 
 /**
@@ -130,12 +131,19 @@ class Transaction
      */
     public function runAggregateQuery(AggregateQuery $aggregateQuery, array $options = [])
     {
-        return $this->getAggregateSnapshot(
-            $this->connection,
-            $this->database,
-            $aggregateQuery,
-            ['transaction' => $this->transaction] + $options
-        );
+        if (isset($options['readTime'])) {
+            if (!($options['readTime'] instanceof Timestamp)) {
+                throw new \InvalidArgumentException(sprintf(
+                    '`$options.readTime` must be an instance of %s',
+                    Timestamp::class
+                ));
+            }
+
+            $options['readTime'] = $options['readTime']->formatForApi();
+        }
+        return $aggregateQuery->getSnapshot([
+            'transaction' => $this->transaction
+        ] + $options);
     }
 
     /**
