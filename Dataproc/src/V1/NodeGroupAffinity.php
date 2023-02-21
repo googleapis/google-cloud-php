@@ -23,8 +23,8 @@ class NodeGroupAffinity extends \Google\Protobuf\Internal\Message
      * resource](https://cloud.google.com/compute/docs/reference/rest/v1/nodeGroups)
      * that the cluster will be created on.
      * A full URL, partial URI, or node group name are valid. Examples:
-     * * `https://www.googleapis.com/compute/v1/projects/[project_id]/zones/[zone]/nodeGroups/node-group-1`
-     * * `projects/[project_id]/zones/[zone]/nodeGroups/node-group-1`
+     * * `https://www.googleapis.com/compute/v1/projects/[project_id]/zones/us-central1-a/nodeGroups/node-group-1`
+     * * `projects/[project_id]/zones/us-central1-a/nodeGroups/node-group-1`
      * * `node-group-1`
      *
      * Generated from protobuf field <code>string node_group_uri = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -43,8 +43,8 @@ class NodeGroupAffinity extends \Google\Protobuf\Internal\Message
      *           resource](https://cloud.google.com/compute/docs/reference/rest/v1/nodeGroups)
      *           that the cluster will be created on.
      *           A full URL, partial URI, or node group name are valid. Examples:
-     *           * `https://www.googleapis.com/compute/v1/projects/[project_id]/zones/[zone]/nodeGroups/node-group-1`
-     *           * `projects/[project_id]/zones/[zone]/nodeGroups/node-group-1`
+     *           * `https://www.googleapis.com/compute/v1/projects/[project_id]/zones/us-central1-a/nodeGroups/node-group-1`
+     *           * `projects/[project_id]/zones/us-central1-a/nodeGroups/node-group-1`
      *           * `node-group-1`
      * }
      */
@@ -59,8 +59,8 @@ class NodeGroupAffinity extends \Google\Protobuf\Internal\Message
      * resource](https://cloud.google.com/compute/docs/reference/rest/v1/nodeGroups)
      * that the cluster will be created on.
      * A full URL, partial URI, or node group name are valid. Examples:
-     * * `https://www.googleapis.com/compute/v1/projects/[project_id]/zones/[zone]/nodeGroups/node-group-1`
-     * * `projects/[project_id]/zones/[zone]/nodeGroups/node-group-1`
+     * * `https://www.googleapis.com/compute/v1/projects/[project_id]/zones/us-central1-a/nodeGroups/node-group-1`
+     * * `projects/[project_id]/zones/us-central1-a/nodeGroups/node-group-1`
      * * `node-group-1`
      *
      * Generated from protobuf field <code>string node_group_uri = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -77,8 +77,8 @@ class NodeGroupAffinity extends \Google\Protobuf\Internal\Message
      * resource](https://cloud.google.com/compute/docs/reference/rest/v1/nodeGroups)
      * that the cluster will be created on.
      * A full URL, partial URI, or node group name are valid. Examples:
-     * * `https://www.googleapis.com/compute/v1/projects/[project_id]/zones/[zone]/nodeGroups/node-group-1`
-     * * `projects/[project_id]/zones/[zone]/nodeGroups/node-group-1`
+     * * `https://www.googleapis.com/compute/v1/projects/[project_id]/zones/us-central1-a/nodeGroups/node-group-1`
+     * * `projects/[project_id]/zones/us-central1-a/nodeGroups/node-group-1`
      * * `node-group-1`
      *
      * Generated from protobuf field <code>string node_group_uri = 1 [(.google.api.field_behavior) = REQUIRED];</code>

@@ -38,8 +38,6 @@ class DiskConfig extends \Google\Protobuf\Internal\Message
      * If one or more SSDs are attached, this runtime bulk
      * data is spread across them, and the boot disk contains only basic
      * config and installed binaries.
-     * Note: Local SSD options may vary by machine type and number of vCPUs
-     * selected.
      *
      * Generated from protobuf field <code>int32 num_local_ssds = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -76,8 +74,6 @@ class DiskConfig extends \Google\Protobuf\Internal\Message
      *           If one or more SSDs are attached, this runtime bulk
      *           data is spread across them, and the boot disk contains only basic
      *           config and installed binaries.
-     *           Note: Local SSD options may vary by machine type and number of vCPUs
-     *           selected.
      *     @type string $local_ssd_interface
      *           Optional. Interface type of local SSDs (default is "scsi").
      *           Valid values: "scsi" (Small Computer System Interface),
@@ -158,8 +154,6 @@ class DiskConfig extends \Google\Protobuf\Internal\Message
      * If one or more SSDs are attached, this runtime bulk
      * data is spread across them, and the boot disk contains only basic
      * config and installed binaries.
-     * Note: Local SSD options may vary by machine type and number of vCPUs
-     * selected.
      *
      * Generated from protobuf field <code>int32 num_local_ssds = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -176,8 +170,6 @@ class DiskConfig extends \Google\Protobuf\Internal\Message
      * If one or more SSDs are attached, this runtime bulk
      * data is spread across them, and the boot disk contains only basic
      * config and installed binaries.
-     * Note: Local SSD options may vary by machine type and number of vCPUs
-     * selected.
      *
      * Generated from protobuf field <code>int32 num_local_ssds = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var

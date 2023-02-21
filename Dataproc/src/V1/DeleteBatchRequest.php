@@ -16,9 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class DeleteBatchRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The fully qualified name of the batch to retrieve
-     * in the format
-     * "projects/PROJECT_ID/locations/DATAPROC_REGION/batches/BATCH_ID"
+     * Required. The name of the batch resource to delete.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -31,9 +29,7 @@ class DeleteBatchRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The fully qualified name of the batch to retrieve
-     *           in the format
-     *           "projects/PROJECT_ID/locations/DATAPROC_REGION/batches/BATCH_ID"
+     *           Required. The name of the batch resource to delete.
      * }
      */
     public function __construct($data = NULL) {
@@ -42,9 +38,7 @@ class DeleteBatchRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The fully qualified name of the batch to retrieve
-     * in the format
-     * "projects/PROJECT_ID/locations/DATAPROC_REGION/batches/BATCH_ID"
+     * Required. The name of the batch resource to delete.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -55,9 +49,7 @@ class DeleteBatchRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The fully qualified name of the batch to retrieve
-     * in the format
-     * "projects/PROJECT_ID/locations/DATAPROC_REGION/batches/BATCH_ID"
+     * Required. The name of the batch resource to delete.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

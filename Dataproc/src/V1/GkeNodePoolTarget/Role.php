@@ -7,11 +7,10 @@ namespace Google\Cloud\Dataproc\V1\GkeNodePoolTarget;
 use UnexpectedValueException;
 
 /**
- * `Role` specifies the tasks that will run on the node pool. Roles can be
- * specific to workloads. Exactly one
- * [GkeNodePoolTarget][google.cloud.dataproc.v1.GkeNodePoolTarget] within the
- * virtual cluster must have the `DEFAULT` role, which is used to run all
- * workloads that are not associated with a node pool.
+ * `Role` specifies whose tasks will run on the NodePool. The roles can be
+ * specific to workloads. Exactly one GkeNodePoolTarget within the
+ * VirtualCluster must have 'default' role, which is used to run all workloads
+ * that are not associated with a NodePool.
  *
  * Protobuf type <code>google.cloud.dataproc.v1.GkeNodePoolTarget.Role</code>
  */
@@ -24,30 +23,26 @@ class Role
      */
     const ROLE_UNSPECIFIED = 0;
     /**
-     * At least one node pool must have the `DEFAULT` role.
-     * Work assigned to a role that is not associated with a node pool
-     * is assigned to the node pool with the `DEFAULT` role. For example,
-     * work assigned to the `CONTROLLER` role will be assigned to the node pool
-     * with the `DEFAULT` role if no node pool has the `CONTROLLER` role.
+     * Any roles that are not directly assigned to a NodePool run on the
+     * `default` role's NodePool.
      *
      * Generated from protobuf enum <code>DEFAULT = 1;</code>
      */
     const PBDEFAULT = 1;
     /**
-     * Run work associated with the Dataproc control plane (for example,
-     * controllers and webhooks). Very low resource requirements.
+     * Run controllers and webhooks.
      *
      * Generated from protobuf enum <code>CONTROLLER = 2;</code>
      */
     const CONTROLLER = 2;
     /**
-     * Run work associated with a Spark driver of a job.
+     * Run spark driver.
      *
      * Generated from protobuf enum <code>SPARK_DRIVER = 3;</code>
      */
     const SPARK_DRIVER = 3;
     /**
-     * Run work associated with a Spark executor of a job.
+     * Run spark executors.
      *
      * Generated from protobuf enum <code>SPARK_EXECUTOR = 4;</code>
      */

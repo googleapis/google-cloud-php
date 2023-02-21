@@ -141,8 +141,6 @@ class Job extends \Google\Protobuf\Internal\Message
      *           Optional. Job is a SparkSql job.
      *     @type \Google\Cloud\Dataproc\V1\PrestoJob $presto_job
      *           Optional. Job is a Presto job.
-     *     @type \Google\Cloud\Dataproc\V1\TrinoJob $trino_job
-     *           Optional. Job is a Trino job.
      *     @type \Google\Cloud\Dataproc\V1\JobStatus $status
      *           Output only. The job status. Additional application-specific
      *           status information may be contained in the <code>type_job</code>
@@ -512,37 +510,6 @@ class Job extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dataproc\V1\PrestoJob::class);
         $this->writeOneof(23, $var);
-
-        return $this;
-    }
-
-    /**
-     * Optional. Job is a Trino job.
-     *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.TrinoJob trino_job = 28 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Cloud\Dataproc\V1\TrinoJob|null
-     */
-    public function getTrinoJob()
-    {
-        return $this->readOneof(28);
-    }
-
-    public function hasTrinoJob()
-    {
-        return $this->hasOneof(28);
-    }
-
-    /**
-     * Optional. Job is a Trino job.
-     *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.TrinoJob trino_job = 28 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param \Google\Cloud\Dataproc\V1\TrinoJob $var
-     * @return $this
-     */
-    public function setTrinoJob($var)
-    {
-        GPBUtil::checkMessage($var, \Google\Cloud\Dataproc\V1\TrinoJob::class);
-        $this->writeOneof(28, $var);
 
         return $this;
     }
