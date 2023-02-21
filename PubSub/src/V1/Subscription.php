@@ -116,7 +116,8 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * successfully consuming messages from the subscription or is issuing
      * operations on the subscription. If `expiration_policy` is not set, a
      * *default policy* with `ttl` of 31 days will be used. The minimum allowed
-     * value for `expiration_policy.ttl` is 1 day.
+     * value for `expiration_policy.ttl` is 1 day. If `expiration_policy` is set,
+     * but `expiration_policy.ttl` is not set, the subscription never expires.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.ExpirationPolicy expiration_policy = 11;</code>
      */
@@ -266,7 +267,8 @@ class Subscription extends \Google\Protobuf\Internal\Message
      *           successfully consuming messages from the subscription or is issuing
      *           operations on the subscription. If `expiration_policy` is not set, a
      *           *default policy* with `ttl` of 31 days will be used. The minimum allowed
-     *           value for `expiration_policy.ttl` is 1 day.
+     *           value for `expiration_policy.ttl` is 1 day. If `expiration_policy` is set,
+     *           but `expiration_policy.ttl` is not set, the subscription never expires.
      *     @type string $filter
      *           An expression written in the Pub/Sub [filter
      *           language](https://cloud.google.com/pubsub/docs/filtering). If non-empty,
@@ -669,7 +671,8 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * successfully consuming messages from the subscription or is issuing
      * operations on the subscription. If `expiration_policy` is not set, a
      * *default policy* with `ttl` of 31 days will be used. The minimum allowed
-     * value for `expiration_policy.ttl` is 1 day.
+     * value for `expiration_policy.ttl` is 1 day. If `expiration_policy` is set,
+     * but `expiration_policy.ttl` is not set, the subscription never expires.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.ExpirationPolicy expiration_policy = 11;</code>
      * @return \Google\Cloud\PubSub\V1\ExpirationPolicy|null
@@ -695,7 +698,8 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * successfully consuming messages from the subscription or is issuing
      * operations on the subscription. If `expiration_policy` is not set, a
      * *default policy* with `ttl` of 31 days will be used. The minimum allowed
-     * value for `expiration_policy.ttl` is 1 day.
+     * value for `expiration_policy.ttl` is 1 day. If `expiration_policy` is set,
+     * but `expiration_policy.ttl` is not set, the subscription never expires.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.ExpirationPolicy expiration_policy = 11;</code>
      * @param \Google\Cloud\PubSub\V1\ExpirationPolicy $var
