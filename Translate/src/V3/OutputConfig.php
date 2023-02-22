@@ -53,7 +53,7 @@ class OutputConfig extends \Google\Protobuf\Internal\Message
      *           Since index.csv will be keeping updated during the process, please make
      *           sure there is no custom retention policy applied on the output bucket
      *           that may avoid file updating.
-     *           (https://cloud.google.com/storage/docs/bucket-lock?hl=en#retention-policy)
+     *           (https://cloud.google.com/storage/docs/bucket-lock#retention-policy)
      *           The format of translations_file (for target language code 'trg') is:
      *           `gs://translation_test/a_b_c_'trg'_translations.[extension]`
      *           If the input file extension is tsv, the output has the following
@@ -120,7 +120,7 @@ class OutputConfig extends \Google\Protobuf\Internal\Message
      * Since index.csv will be keeping updated during the process, please make
      * sure there is no custom retention policy applied on the output bucket
      * that may avoid file updating.
-     * (https://cloud.google.com/storage/docs/bucket-lock?hl=en#retention-policy)
+     * (https://cloud.google.com/storage/docs/bucket-lock#retention-policy)
      * The format of translations_file (for target language code 'trg') is:
      * `gs://translation_test/a_b_c_'trg'_translations.[extension]`
      * If the input file extension is tsv, the output has the following
@@ -194,7 +194,7 @@ class OutputConfig extends \Google\Protobuf\Internal\Message
      * Since index.csv will be keeping updated during the process, please make
      * sure there is no custom retention policy applied on the output bucket
      * that may avoid file updating.
-     * (https://cloud.google.com/storage/docs/bucket-lock?hl=en#retention-policy)
+     * (https://cloud.google.com/storage/docs/bucket-lock#retention-policy)
      * The format of translations_file (for target language code 'trg') is:
      * `gs://translation_test/a_b_c_'trg'_translations.[extension]`
      * If the input file extension is tsv, the output has the following
