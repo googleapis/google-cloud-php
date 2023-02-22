@@ -16,10 +16,17 @@ jobs:
           php-version: "8.1"
       - name: "Install dependencies"
         run: composer global require "roave/backward-compatibility-check:^8.2"
-      - id: latest
+      - if: github.actor == 'release-please'
+        id: latest-release
         uses: pozetroninc/github-action-get-latest-release@master
         with:
           repository: ${{ github.repository }}
-      - name: "Check for BC breaks"
+      - if: github.actor == 'release-please'
+        name: "Check for BC breaks (Release)"
         run: |
-          ~/.composer/vendor/bin/roave-backward-compatibility-check --from={{ steps.latest.outputs.release }} --format=github-actions
+          ~/.composer/vendor/bin/roave-backward-compatibility-check --from=${{ steps.latest-release.outputs.release }} \
+              --to=main --format=github-actions
+      - if: github.actor != 'release-please'
+        name: "Check for BC breaks"
+        run: |
+          ~/.composer/vendor/bin/roave-backward-compatibility-check --from=main --format=github-actions
