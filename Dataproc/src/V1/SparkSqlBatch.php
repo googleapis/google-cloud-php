@@ -10,14 +10,16 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * A configuration for running
- * [Apache Spark SQL](http://spark.apache.org/sql/) queries as a batch workload.
+ * [Apache Spark SQL](https://spark.apache.org/sql/) queries as a batch
+ * workload.
  *
  * Generated from protobuf message <code>google.cloud.dataproc.v1.SparkSqlBatch</code>
  */
 class SparkSqlBatch extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The HCFS URI of the script that contains Spark SQL queries to execute.
+     * Required. The HCFS URI of the script that contains Spark SQL queries to
+     * execute.
      *
      * Generated from protobuf field <code>string query_file_uri = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -43,7 +45,8 @@ class SparkSqlBatch extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $query_file_uri
-     *           Required. The HCFS URI of the script that contains Spark SQL queries to execute.
+     *           Required. The HCFS URI of the script that contains Spark SQL queries to
+     *           execute.
      *     @type array|\Google\Protobuf\Internal\MapField $query_variables
      *           Optional. Mapping of query variable names to values (equivalent to the
      *           Spark SQL command: `SET name="value";`).
@@ -57,7 +60,8 @@ class SparkSqlBatch extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The HCFS URI of the script that contains Spark SQL queries to execute.
+     * Required. The HCFS URI of the script that contains Spark SQL queries to
+     * execute.
      *
      * Generated from protobuf field <code>string query_file_uri = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -68,7 +72,8 @@ class SparkSqlBatch extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The HCFS URI of the script that contains Spark SQL queries to execute.
+     * Required. The HCFS URI of the script that contains Spark SQL queries to
+     * execute.
      *
      * Generated from protobuf field <code>string query_file_uri = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

@@ -21,10 +21,10 @@ class AcceleratorConfig extends \Google\Protobuf\Internal\Message
      * Full URL, partial URI, or short name of the accelerator type resource to
      * expose to this instance. See
      * [Compute Engine
-     * AcceleratorTypes](https://cloud.google.com/compute/docs/reference/beta/acceleratorTypes).
+     * AcceleratorTypes](https://cloud.google.com/compute/docs/reference/v1/acceleratorTypes).
      * Examples:
-     * * `https://www.googleapis.com/compute/beta/projects/[project_id]/zones/us-east1-a/acceleratorTypes/nvidia-tesla-k80`
-     * * `projects/[project_id]/zones/us-east1-a/acceleratorTypes/nvidia-tesla-k80`
+     * * `https://www.googleapis.com/compute/v1/projects/[project_id]/zones/[zone]/acceleratorTypes/nvidia-tesla-k80`
+     * * `projects/[project_id]/zones/[zone]/acceleratorTypes/nvidia-tesla-k80`
      * * `nvidia-tesla-k80`
      * **Auto Zone Exception**: If you are using the Dataproc
      * [Auto Zone
@@ -52,10 +52,10 @@ class AcceleratorConfig extends \Google\Protobuf\Internal\Message
      *           Full URL, partial URI, or short name of the accelerator type resource to
      *           expose to this instance. See
      *           [Compute Engine
-     *           AcceleratorTypes](https://cloud.google.com/compute/docs/reference/beta/acceleratorTypes).
+     *           AcceleratorTypes](https://cloud.google.com/compute/docs/reference/v1/acceleratorTypes).
      *           Examples:
-     *           * `https://www.googleapis.com/compute/beta/projects/[project_id]/zones/us-east1-a/acceleratorTypes/nvidia-tesla-k80`
-     *           * `projects/[project_id]/zones/us-east1-a/acceleratorTypes/nvidia-tesla-k80`
+     *           * `https://www.googleapis.com/compute/v1/projects/[project_id]/zones/[zone]/acceleratorTypes/nvidia-tesla-k80`
+     *           * `projects/[project_id]/zones/[zone]/acceleratorTypes/nvidia-tesla-k80`
      *           * `nvidia-tesla-k80`
      *           **Auto Zone Exception**: If you are using the Dataproc
      *           [Auto Zone
@@ -75,10 +75,10 @@ class AcceleratorConfig extends \Google\Protobuf\Internal\Message
      * Full URL, partial URI, or short name of the accelerator type resource to
      * expose to this instance. See
      * [Compute Engine
-     * AcceleratorTypes](https://cloud.google.com/compute/docs/reference/beta/acceleratorTypes).
+     * AcceleratorTypes](https://cloud.google.com/compute/docs/reference/v1/acceleratorTypes).
      * Examples:
-     * * `https://www.googleapis.com/compute/beta/projects/[project_id]/zones/us-east1-a/acceleratorTypes/nvidia-tesla-k80`
-     * * `projects/[project_id]/zones/us-east1-a/acceleratorTypes/nvidia-tesla-k80`
+     * * `https://www.googleapis.com/compute/v1/projects/[project_id]/zones/[zone]/acceleratorTypes/nvidia-tesla-k80`
+     * * `projects/[project_id]/zones/[zone]/acceleratorTypes/nvidia-tesla-k80`
      * * `nvidia-tesla-k80`
      * **Auto Zone Exception**: If you are using the Dataproc
      * [Auto Zone
@@ -98,10 +98,10 @@ class AcceleratorConfig extends \Google\Protobuf\Internal\Message
      * Full URL, partial URI, or short name of the accelerator type resource to
      * expose to this instance. See
      * [Compute Engine
-     * AcceleratorTypes](https://cloud.google.com/compute/docs/reference/beta/acceleratorTypes).
+     * AcceleratorTypes](https://cloud.google.com/compute/docs/reference/v1/acceleratorTypes).
      * Examples:
-     * * `https://www.googleapis.com/compute/beta/projects/[project_id]/zones/us-east1-a/acceleratorTypes/nvidia-tesla-k80`
-     * * `projects/[project_id]/zones/us-east1-a/acceleratorTypes/nvidia-tesla-k80`
+     * * `https://www.googleapis.com/compute/v1/projects/[project_id]/zones/[zone]/acceleratorTypes/nvidia-tesla-k80`
+     * * `projects/[project_id]/zones/[zone]/acceleratorTypes/nvidia-tesla-k80`
      * * `nvidia-tesla-k80`
      * **Auto Zone Exception**: If you are using the Dataproc
      * [Auto Zone
