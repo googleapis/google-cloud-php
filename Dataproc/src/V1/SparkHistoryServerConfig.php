@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class SparkHistoryServerConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. Resource name of an existing Dataproc Cluster to act as a Spark History
-     * Server for the workload.
+     * Optional. Resource name of an existing Dataproc Cluster to act as a Spark
+     * History Server for the workload.
      * Example:
      * * `projects/[project_id]/regions/[region]/clusters/[cluster_name]`
      *
@@ -32,8 +32,8 @@ class SparkHistoryServerConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $dataproc_cluster
-     *           Optional. Resource name of an existing Dataproc Cluster to act as a Spark History
-     *           Server for the workload.
+     *           Optional. Resource name of an existing Dataproc Cluster to act as a Spark
+     *           History Server for the workload.
      *           Example:
      *           * `projects/[project_id]/regions/[region]/clusters/[cluster_name]`
      * }
@@ -44,8 +44,8 @@ class SparkHistoryServerConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Resource name of an existing Dataproc Cluster to act as a Spark History
-     * Server for the workload.
+     * Optional. Resource name of an existing Dataproc Cluster to act as a Spark
+     * History Server for the workload.
      * Example:
      * * `projects/[project_id]/regions/[region]/clusters/[cluster_name]`
      *
@@ -58,8 +58,8 @@ class SparkHistoryServerConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Resource name of an existing Dataproc Cluster to act as a Spark History
-     * Server for the workload.
+     * Optional. Resource name of an existing Dataproc Cluster to act as a Spark
+     * History Server for the workload.
      * Example:
      * * `projects/[project_id]/regions/[region]/clusters/[cluster_name]`
      *

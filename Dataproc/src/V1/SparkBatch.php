@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A configuration for running an [Apache Spark](http://spark.apache.org/)
+ * A configuration for running an [Apache Spark](https://spark.apache.org/)
  * batch workload.
  *
  * Generated from protobuf message <code>google.cloud.dataproc.v1.SparkBatch</code>
@@ -57,8 +57,8 @@ class SparkBatch extends \Google\Protobuf\Internal\Message
      *     @type string $main_jar_file_uri
      *           Optional. The HCFS URI of the jar file that contains the main class.
      *     @type string $main_class
-     *           Optional. The name of the driver main class. The jar file that contains the class
-     *           must be in the classpath or specified in `jar_file_uris`.
+     *           Optional. The name of the driver main class. The jar file that contains
+     *           the class must be in the classpath or specified in `jar_file_uris`.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $args
      *           Optional. The arguments to pass to the driver. Do not include arguments
      *           that can be set as batch properties, such as `--conf`, since a collision
@@ -112,8 +112,8 @@ class SparkBatch extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The name of the driver main class. The jar file that contains the class
-     * must be in the classpath or specified in `jar_file_uris`.
+     * Optional. The name of the driver main class. The jar file that contains
+     * the class must be in the classpath or specified in `jar_file_uris`.
      *
      * Generated from protobuf field <code>string main_class = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -129,8 +129,8 @@ class SparkBatch extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The name of the driver main class. The jar file that contains the class
-     * must be in the classpath or specified in `jar_file_uris`.
+     * Optional. The name of the driver main class. The jar file that contains
+     * the class must be in the classpath or specified in `jar_file_uris`.
      *
      * Generated from protobuf field <code>string main_class = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
