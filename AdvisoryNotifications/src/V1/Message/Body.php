@@ -20,7 +20,7 @@ class Body extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.advisorynotifications.v1.Text text = 1;</code>
      */
-    private $text = null;
+    protected $text = null;
 
     /**
      * Constructor.
