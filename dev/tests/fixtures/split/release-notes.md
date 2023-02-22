@@ -1,4 +1,4 @@
-<details><summary>google/cloud-automl 1.3.1</summary>
+<details><summary>google/cloud-automl: 1.3.1</summary>
 
 
 
@@ -8,7 +8,7 @@
 
 </details>
 
-<details><summary>google/cloud-bigquery 1.20.0</summary>
+<details><summary>google/cloud-bigquery: 1.20.0</summary>
 
 
 
@@ -18,7 +18,7 @@
 
 </details>
 
-<details><summary>google/cloud-bigquery-connection 0.3.1</summary>
+<details><summary>google/cloud-bigquery-connection: 0.3.1</summary>
 
 
 
@@ -28,7 +28,7 @@
 
 </details>
 
-<details><summary>google/cloud-bigquerydatatransfer 1.2.1</summary>
+<details><summary>google/cloud-bigquerydatatransfer: 1.2.1</summary>
 
 
 
@@ -38,7 +38,7 @@
 
 </details>
 
-<details><summary>google/cloud-bigquery-reservation 0.2.1</summary>
+<details><summary>google/cloud-bigquery-reservation: 0.2.1</summary>
 
 
 
