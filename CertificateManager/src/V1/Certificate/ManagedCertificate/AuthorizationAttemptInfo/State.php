@@ -7,11 +7,15 @@ namespace Google\Cloud\CertificateManager\V1\Certificate\ManagedCertificate\Auth
 use UnexpectedValueException;
 
 /**
+ * State of the domain for managed certificate issuance.
+ *
  * Protobuf type <code>google.cloud.certificatemanager.v1.Certificate.ManagedCertificate.AuthorizationAttemptInfo.State</code>
  */
 class State
 {
     /**
+     * State is unspecified.
+     *
      * Generated from protobuf enum <code>STATE_UNSPECIFIED = 0;</code>
      */
     const STATE_UNSPECIFIED = 0;

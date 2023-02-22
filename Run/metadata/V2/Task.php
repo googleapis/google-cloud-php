@@ -26,7 +26,7 @@ class Task
         \GPBMetadata\Google\Rpc\Status::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ê
+ô
 google/cloud/run/v2/task.protogoogle.cloud.run.v2google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto#google/cloud/run/v2/condition.proto!google/cloud/run/v2/k8s.min.proto)google/cloud/run/v2/vendor_settings.protogoogle/protobuf/duration.protogoogle/protobuf/timestamp.protogoogle/rpc/status.proto"?
 GetTaskRequest-
 name (	B‡A˙A
@@ -39,7 +39,7 @@ page_token (	
 show_deleted ("V
 ListTasksResponse(
 tasks (2.google.cloud.run.v2.Task
-next_page_token (	"√
+next_page_token (	"Ÿ
 Task
 name (	B‡A
 uid (	B‡A
@@ -76,7 +76,8 @@ conditions (2.google.cloud.run.v2.ConditionB‡A
 encryption_key (	B)‡A˙A#
 !cloudkms.googleapis.com/CryptoKey7
 
-vpc_access (2.google.cloud.run.v2.VpcAccessB‡A
+vpc_access (2.google.cloud.run.v2.VpcAccessB‡A
+log_uri  (	B‡A
 etagc (	B‡A-
 LabelsEntry
 key (	
@@ -90,8 +91,8 @@ vpc_access (2.google.cloud.run.v2.VpcAccessB‡A
 	exit_code (B‡A2ñ
 Tasksó
 GetTask#.google.cloud.run.v2.GetTaskRequest.google.cloud.run.v2.Task"LÇ”‰ì?=/v2/{name=projects/*/locations/*/jobs/*/executions/*/tasks/*}⁄Aname™
-	ListTasks%.google.cloud.run.v2.ListTasksRequest&.google.cloud.run.v2.ListTasksResponse"NÇ”‰ì?=/v2/{parent=projects/*/locations/*/jobs/*/executions/*}/tasks⁄AparentF Arun.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformB^
-com.google.cloud.run.v2B	TaskProtoPZ6google.golang.org/genproto/googleapis/cloud/run/v2;runbproto3'
+	ListTasks%.google.cloud.run.v2.ListTasksRequest&.google.cloud.run.v2.ListTasksResponse"NÇ”‰ì?=/v2/{parent=projects/*/locations/*/jobs/*/executions/*}/tasks⁄AparentF Arun.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBQ
+com.google.cloud.run.v2B	TaskProtoPZ)cloud.google.com/go/run/apiv2/runpb;runpbbproto3'
         , true);
 
         static::$is_initialized = true;

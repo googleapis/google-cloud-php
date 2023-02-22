@@ -23,7 +23,7 @@ class PipelineJob extends \Google\Protobuf\Internal\Message
     private $name = '';
     /**
      * The display name of the Pipeline.
-     * The name can be up to 128 characters long and can be consist of any UTF-8
+     * The name can be up to 128 characters long and can consist of any UTF-8
      * characters.
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
@@ -123,8 +123,8 @@ class PipelineJob extends \Google\Protobuf\Internal\Message
      * Where {project} is a project number, as in `12345`, and {network} is a
      * network name.
      * Private services access must already be configured for the network.
-     * Pipeline job will apply the network configuration to the GCP resources
-     * being launched, if applied, such as Vertex AI
+     * Pipeline job will apply the network configuration to the Google Cloud
+     * resources being launched, if applied, such as Vertex AI
      * Training or Dataflow job. If left unspecified, the workload is not peered
      * with any network.
      *
@@ -132,15 +132,17 @@ class PipelineJob extends \Google\Protobuf\Internal\Message
      */
     private $network = '';
     /**
-     * A template uri from where the [PipelineJob.pipeline_spec][google.cloud.aiplatform.v1.PipelineJob.pipeline_spec], if empty, will
-     * be downloaded.
+     * A template uri from where the
+     * [PipelineJob.pipeline_spec][google.cloud.aiplatform.v1.PipelineJob.pipeline_spec],
+     * if empty, will be downloaded.
      *
      * Generated from protobuf field <code>string template_uri = 19;</code>
      */
     private $template_uri = '';
     /**
      * Output only. Pipeline template metadata. Will fill up fields if
-     * [PipelineJob.template_uri][google.cloud.aiplatform.v1.PipelineJob.template_uri] is from supported template registry.
+     * [PipelineJob.template_uri][google.cloud.aiplatform.v1.PipelineJob.template_uri]
+     * is from supported template registry.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PipelineTemplateMetadata template_metadata = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -156,7 +158,7 @@ class PipelineJob extends \Google\Protobuf\Internal\Message
      *           Output only. The resource name of the PipelineJob.
      *     @type string $display_name
      *           The display name of the Pipeline.
-     *           The name can be up to 128 characters long and can be consist of any UTF-8
+     *           The name can be up to 128 characters long and can consist of any UTF-8
      *           characters.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. Pipeline creation time.
@@ -204,16 +206,18 @@ class PipelineJob extends \Google\Protobuf\Internal\Message
      *           Where {project} is a project number, as in `12345`, and {network} is a
      *           network name.
      *           Private services access must already be configured for the network.
-     *           Pipeline job will apply the network configuration to the GCP resources
-     *           being launched, if applied, such as Vertex AI
+     *           Pipeline job will apply the network configuration to the Google Cloud
+     *           resources being launched, if applied, such as Vertex AI
      *           Training or Dataflow job. If left unspecified, the workload is not peered
      *           with any network.
      *     @type string $template_uri
-     *           A template uri from where the [PipelineJob.pipeline_spec][google.cloud.aiplatform.v1.PipelineJob.pipeline_spec], if empty, will
-     *           be downloaded.
+     *           A template uri from where the
+     *           [PipelineJob.pipeline_spec][google.cloud.aiplatform.v1.PipelineJob.pipeline_spec],
+     *           if empty, will be downloaded.
      *     @type \Google\Cloud\AIPlatform\V1\PipelineTemplateMetadata $template_metadata
      *           Output only. Pipeline template metadata. Will fill up fields if
-     *           [PipelineJob.template_uri][google.cloud.aiplatform.v1.PipelineJob.template_uri] is from supported template registry.
+     *           [PipelineJob.template_uri][google.cloud.aiplatform.v1.PipelineJob.template_uri]
+     *           is from supported template registry.
      * }
      */
     public function __construct($data = NULL) {
@@ -249,7 +253,7 @@ class PipelineJob extends \Google\Protobuf\Internal\Message
 
     /**
      * The display name of the Pipeline.
-     * The name can be up to 128 characters long and can be consist of any UTF-8
+     * The name can be up to 128 characters long and can consist of any UTF-8
      * characters.
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
@@ -262,7 +266,7 @@ class PipelineJob extends \Google\Protobuf\Internal\Message
 
     /**
      * The display name of the Pipeline.
-     * The name can be up to 128 characters long and can be consist of any UTF-8
+     * The name can be up to 128 characters long and can consist of any UTF-8
      * characters.
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
@@ -713,8 +717,8 @@ class PipelineJob extends \Google\Protobuf\Internal\Message
      * Where {project} is a project number, as in `12345`, and {network} is a
      * network name.
      * Private services access must already be configured for the network.
-     * Pipeline job will apply the network configuration to the GCP resources
-     * being launched, if applied, such as Vertex AI
+     * Pipeline job will apply the network configuration to the Google Cloud
+     * resources being launched, if applied, such as Vertex AI
      * Training or Dataflow job. If left unspecified, the workload is not peered
      * with any network.
      *
@@ -736,8 +740,8 @@ class PipelineJob extends \Google\Protobuf\Internal\Message
      * Where {project} is a project number, as in `12345`, and {network} is a
      * network name.
      * Private services access must already be configured for the network.
-     * Pipeline job will apply the network configuration to the GCP resources
-     * being launched, if applied, such as Vertex AI
+     * Pipeline job will apply the network configuration to the Google Cloud
+     * resources being launched, if applied, such as Vertex AI
      * Training or Dataflow job. If left unspecified, the workload is not peered
      * with any network.
      *
@@ -754,8 +758,9 @@ class PipelineJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A template uri from where the [PipelineJob.pipeline_spec][google.cloud.aiplatform.v1.PipelineJob.pipeline_spec], if empty, will
-     * be downloaded.
+     * A template uri from where the
+     * [PipelineJob.pipeline_spec][google.cloud.aiplatform.v1.PipelineJob.pipeline_spec],
+     * if empty, will be downloaded.
      *
      * Generated from protobuf field <code>string template_uri = 19;</code>
      * @return string
@@ -766,8 +771,9 @@ class PipelineJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A template uri from where the [PipelineJob.pipeline_spec][google.cloud.aiplatform.v1.PipelineJob.pipeline_spec], if empty, will
-     * be downloaded.
+     * A template uri from where the
+     * [PipelineJob.pipeline_spec][google.cloud.aiplatform.v1.PipelineJob.pipeline_spec],
+     * if empty, will be downloaded.
      *
      * Generated from protobuf field <code>string template_uri = 19;</code>
      * @param string $var
@@ -783,7 +789,8 @@ class PipelineJob extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. Pipeline template metadata. Will fill up fields if
-     * [PipelineJob.template_uri][google.cloud.aiplatform.v1.PipelineJob.template_uri] is from supported template registry.
+     * [PipelineJob.template_uri][google.cloud.aiplatform.v1.PipelineJob.template_uri]
+     * is from supported template registry.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PipelineTemplateMetadata template_metadata = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\AIPlatform\V1\PipelineTemplateMetadata|null
@@ -805,7 +812,8 @@ class PipelineJob extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. Pipeline template metadata. Will fill up fields if
-     * [PipelineJob.template_uri][google.cloud.aiplatform.v1.PipelineJob.template_uri] is from supported template registry.
+     * [PipelineJob.template_uri][google.cloud.aiplatform.v1.PipelineJob.template_uri]
+     * is from supported template registry.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PipelineTemplateMetadata template_metadata = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\AIPlatform\V1\PipelineTemplateMetadata $var

@@ -9,18 +9,19 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList] corresponds to a signed X.509 certificate
- * Revocation List (CRL). A CRL contains the serial numbers of certificates that
- * should no longer be trusted.
+ * A
+ * [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList]
+ * corresponds to a signed X.509 certificate Revocation List (CRL). A CRL
+ * contains the serial numbers of certificates that should no longer be trusted.
  *
  * Generated from protobuf message <code>google.cloud.security.privateca.v1.CertificateRevocationList</code>
  */
 class CertificateRevocationList extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The resource name for this [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList] in
-     * the format
-     * `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;certificateAuthorities/&#42;&#47;
+     * Output only. The resource name for this
+     * [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList]
+     * in the format `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;certificateAuthorities/&#42;&#47;
      *    certificateRevocationLists/&#42;`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -51,27 +52,35 @@ class CertificateRevocationList extends \Google\Protobuf\Internal\Message
      */
     private $access_url = '';
     /**
-     * Output only. The [State][google.cloud.security.privateca.v1.CertificateRevocationList.State] for this [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList].
+     * Output only. The
+     * [State][google.cloud.security.privateca.v1.CertificateRevocationList.State]
+     * for this
+     * [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList].
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.CertificateRevocationList.State state = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $state = 0;
     /**
-     * Output only. The time at which this [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList] was created.
+     * Output only. The time at which this
+     * [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList]
+     * was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $create_time = null;
     /**
-     * Output only. The time at which this [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList] was updated.
+     * Output only. The time at which this
+     * [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList]
+     * was updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $update_time = null;
     /**
-     * Output only. The revision ID of this [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList]. A new revision is
-     * committed whenever a new CRL is published. The format is an 8-character
-     * hexadecimal string.
+     * Output only. The revision ID of this
+     * [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList].
+     * A new revision is committed whenever a new CRL is published. The format is
+     * an 8-character hexadecimal string.
      *
      * Generated from protobuf field <code>string revision_id = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -90,9 +99,9 @@ class CertificateRevocationList extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Output only. The resource name for this [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList] in
-     *           the format
-     *           `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;certificateAuthorities/&#42;&#47;
+     *           Output only. The resource name for this
+     *           [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList]
+     *           in the format `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;certificateAuthorities/&#42;&#47;
      *              certificateRevocationLists/&#42;`.
      *     @type int|string $sequence_number
      *           Output only. The CRL sequence number that appears in pem_crl.
@@ -103,15 +112,23 @@ class CertificateRevocationList extends \Google\Protobuf\Internal\Message
      *     @type string $access_url
      *           Output only. The location where 'pem_crl' can be accessed.
      *     @type int $state
-     *           Output only. The [State][google.cloud.security.privateca.v1.CertificateRevocationList.State] for this [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList].
+     *           Output only. The
+     *           [State][google.cloud.security.privateca.v1.CertificateRevocationList.State]
+     *           for this
+     *           [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList].
      *     @type \Google\Protobuf\Timestamp $create_time
-     *           Output only. The time at which this [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList] was created.
+     *           Output only. The time at which this
+     *           [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList]
+     *           was created.
      *     @type \Google\Protobuf\Timestamp $update_time
-     *           Output only. The time at which this [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList] was updated.
+     *           Output only. The time at which this
+     *           [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList]
+     *           was updated.
      *     @type string $revision_id
-     *           Output only. The revision ID of this [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList]. A new revision is
-     *           committed whenever a new CRL is published. The format is an 8-character
-     *           hexadecimal string.
+     *           Output only. The revision ID of this
+     *           [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList].
+     *           A new revision is committed whenever a new CRL is published. The format is
+     *           an 8-character hexadecimal string.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Optional. Labels with user-defined metadata.
      * }
@@ -122,9 +139,9 @@ class CertificateRevocationList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The resource name for this [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList] in
-     * the format
-     * `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;certificateAuthorities/&#42;&#47;
+     * Output only. The resource name for this
+     * [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList]
+     * in the format `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;certificateAuthorities/&#42;&#47;
      *    certificateRevocationLists/&#42;`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -136,9 +153,9 @@ class CertificateRevocationList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The resource name for this [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList] in
-     * the format
-     * `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;certificateAuthorities/&#42;&#47;
+     * Output only. The resource name for this
+     * [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList]
+     * in the format `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;certificateAuthorities/&#42;&#47;
      *    certificateRevocationLists/&#42;`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -258,7 +275,10 @@ class CertificateRevocationList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The [State][google.cloud.security.privateca.v1.CertificateRevocationList.State] for this [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList].
+     * Output only. The
+     * [State][google.cloud.security.privateca.v1.CertificateRevocationList.State]
+     * for this
+     * [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList].
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.CertificateRevocationList.State state = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
@@ -269,7 +289,10 @@ class CertificateRevocationList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The [State][google.cloud.security.privateca.v1.CertificateRevocationList.State] for this [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList].
+     * Output only. The
+     * [State][google.cloud.security.privateca.v1.CertificateRevocationList.State]
+     * for this
+     * [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList].
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.CertificateRevocationList.State state = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
@@ -284,7 +307,9 @@ class CertificateRevocationList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The time at which this [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList] was created.
+     * Output only. The time at which this
+     * [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList]
+     * was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -305,7 +330,9 @@ class CertificateRevocationList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The time at which this [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList] was created.
+     * Output only. The time at which this
+     * [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList]
+     * was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -320,7 +347,9 @@ class CertificateRevocationList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The time at which this [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList] was updated.
+     * Output only. The time at which this
+     * [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList]
+     * was updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -341,7 +370,9 @@ class CertificateRevocationList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The time at which this [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList] was updated.
+     * Output only. The time at which this
+     * [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList]
+     * was updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -356,9 +387,10 @@ class CertificateRevocationList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The revision ID of this [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList]. A new revision is
-     * committed whenever a new CRL is published. The format is an 8-character
-     * hexadecimal string.
+     * Output only. The revision ID of this
+     * [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList].
+     * A new revision is committed whenever a new CRL is published. The format is
+     * an 8-character hexadecimal string.
      *
      * Generated from protobuf field <code>string revision_id = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -369,9 +401,10 @@ class CertificateRevocationList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The revision ID of this [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList]. A new revision is
-     * committed whenever a new CRL is published. The format is an 8-character
-     * hexadecimal string.
+     * Output only. The revision ID of this
+     * [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList].
+     * A new revision is committed whenever a new CRL is published. The format is
+     * an 8-character hexadecimal string.
      *
      * Generated from protobuf field <code>string revision_id = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var

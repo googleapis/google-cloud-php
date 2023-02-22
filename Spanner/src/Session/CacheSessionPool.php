@@ -104,6 +104,23 @@ use Psr\Cache\CacheItemPoolInterface;
  *     ]
  * ]);
  * ```
+ *
+ * Database role configured on the pool will be applied to each session created by the pool.
+ * ```
+ * use Google\Cloud\Spanner\SpannerClient;
+ * use Google\Cloud\Spanner\Session\CacheSessionPool;
+ * use Symfony\Component\Cache\Adapter\FilesystemAdapter;
+ *
+ * $spanner = new SpannerClient();
+ * $cache = new FilesystemAdapter();
+ * $sessionPool = new CacheSessionPool($cache, [
+ *     'databaseRole' => 'Reader'
+ * ]);
+ *
+ * $database = $spanner->connect('my-instance', 'my-database', [
+ *     'sessionPool' => $sessionPool
+ * ]);
+ * ```
  */
 class CacheSessionPool implements SessionPoolInterface
 {
@@ -191,6 +208,7 @@ class CacheSessionPool implements SessionPoolInterface
      *           labels can be associated with a given session. See
      *           https://goo.gl/xmQnxf for more information on and examples of
      *           labels.
+     *     @type string $databaseRole The user created database role which creates the session.
      * }
      * @throws \InvalidArgumentException
      */
@@ -252,8 +270,9 @@ class CacheSessionPool implements SessionPoolInterface
         });
 
         // Create a session if needed.
+        $exception = null;
         if ($toCreate) {
-            $createdSessions = $this->createSessions(count($toCreate))[0];
+            list($createdSessions, $exception) = $this->createSessions(count($toCreate));
             $hasCreatedSessions = count($createdSessions) > 0;
 
             $session = $this->config['lock']->synchronize(function () use (
@@ -296,10 +315,16 @@ class CacheSessionPool implements SessionPoolInterface
         // If we don't have a session, let's wait for one or throw an exception.
         if (!$session) {
             if (!$this->config['shouldWaitForSession']) {
-                throw new \RuntimeException('No sessions available.');
+                if ($exception) {
+                    throw $exception instanceof \RuntimeException
+                        ? $exception
+                        : new \RuntimeException($exception->getMessage(), $exception->getCode(), $exception);
+                } else {
+                    throw new \RuntimeException('No sessions available.');
+                }
             }
 
-            $session = $this->waitForNextAvailableSession();
+            $session = $this->waitForNextAvailableSession($exception);
         }
 
         if ($this->deleteQueue) {
@@ -660,7 +685,8 @@ class CacheSessionPool implements SessionPoolInterface
                 $res = $this->database->connection()->batchCreateSessions([
                     'database' => $this->database->name(),
                     'sessionTemplate' => [
-                        'labels' => isset($this->config['labels']) ? $this->config['labels'] : []
+                        'labels' => isset($this->config['labels']) ? $this->config['labels'] : [],
+                        'creator_role' => isset($this->config['databaseRole']) ? $this->config['databaseRole'] : null
                     ],
                     'sessionCount' => $count - $created
                 ]);
@@ -727,15 +753,16 @@ class CacheSessionPool implements SessionPoolInterface
     /**
      * Blocks until a session becomes available.
      *
+     * @param \RuntimeException $exception
      * @return array
      * @throws \RuntimeException
      */
-    private function waitForNextAvailableSession()
+    private function waitForNextAvailableSession($exception = null)
     {
         $elapsedCycles = 0;
 
         while (true) {
-            $session = $this->config['lock']->synchronize(function () use ($elapsedCycles) {
+            $session = $this->config['lock']->synchronize(function () use ($elapsedCycles, $exception) {
                 $item = $this->cacheItemPool->getItem($this->cacheKey);
                 $data = $item->get();
                 $session = $this->getSession($data);
@@ -748,9 +775,17 @@ class CacheSessionPool implements SessionPoolInterface
                 if ($this->config['maxCyclesToWaitForSession'] <= $elapsedCycles) {
                     $this->save($item->set($data));
 
-                    throw new \RuntimeException(
-                        'A session did not become available in the allotted number of attempts.'
-                    );
+                    if ($exception) {
+                        throw new \RuntimeException(
+                            $exception->getMessage(),
+                            $exception->getCode(),
+                            $exception
+                        );
+                    } else {
+                        throw new \RuntimeException(
+                            'A session did not become available in the allotted number of attempts.'
+                        );
+                    }
                 }
             });
 

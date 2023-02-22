@@ -24,7 +24,7 @@ class DataLabelingJob extends \Google\Protobuf\Internal\Message
     private $name = '';
     /**
      * Required. The user-defined name of the DataLabelingJob.
-     * The name can be up to 128 characters long and can be consist of any UTF-8
+     * The name can be up to 128 characters long and can consist of any UTF-8
      * characters.
      * Display name of a DataLabelingJob.
      *
@@ -32,9 +32,8 @@ class DataLabelingJob extends \Google\Protobuf\Internal\Message
      */
     private $display_name = '';
     /**
-     * Required. Dataset resource names. Right now we only support labeling from a single
-     * Dataset.
-     * Format:
+     * Required. Dataset resource names. Right now we only support labeling from a
+     * single Dataset. Format:
      * `projects/{project}/locations/{location}/datasets/{dataset}`
      *
      * Generated from protobuf field <code>repeated string datasets = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -59,17 +58,17 @@ class DataLabelingJob extends \Google\Protobuf\Internal\Message
      */
     private $labeler_count = 0;
     /**
-     * Required. The Google Cloud Storage location of the instruction pdf. This pdf is
-     * shared with labelers, and provides detailed description on how to label
-     * DataItems in Datasets.
+     * Required. The Google Cloud Storage location of the instruction pdf. This
+     * pdf is shared with labelers, and provides detailed description on how to
+     * label DataItems in Datasets.
      *
      * Generated from protobuf field <code>string instruction_uri = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $instruction_uri = '';
     /**
-     * Required. Points to a YAML file stored on Google Cloud Storage describing the
-     * config for a specific type of DataLabelingJob.
-     * The schema files that can be used here are found in the
+     * Required. Points to a YAML file stored on Google Cloud Storage describing
+     * the config for a specific type of DataLabelingJob. The schema files that
+     * can be used here are found in the
      * https://storage.googleapis.com/google-cloud-aiplatform bucket in the
      * /schema/datalabelingjob/inputs/ folder.
      *
@@ -89,15 +88,15 @@ class DataLabelingJob extends \Google\Protobuf\Internal\Message
      */
     private $state = 0;
     /**
-     * Output only. Current labeling job progress percentage scaled in interval [0, 100],
-     * indicating the percentage of DataItems that has been finished.
+     * Output only. Current labeling job progress percentage scaled in interval
+     * [0, 100], indicating the percentage of DataItems that has been finished.
      *
      * Generated from protobuf field <code>int32 labeling_progress = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $labeling_progress = 0;
     /**
-     * Output only. Estimated cost(in US dollars) that the DataLabelingJob has incurred to
-     * date.
+     * Output only. Estimated cost(in US dollars) that the DataLabelingJob has
+     * incurred to date.
      *
      * Generated from protobuf field <code>.google.type.Money current_spend = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -115,8 +114,8 @@ class DataLabelingJob extends \Google\Protobuf\Internal\Message
      */
     private $update_time = null;
     /**
-     * Output only. DataLabelingJob errors. It is only populated when job's state is
-     * `JOB_STATE_FAILED` or `JOB_STATE_CANCELLED`.
+     * Output only. DataLabelingJob errors. It is only populated when job's state
+     * is `JOB_STATE_FAILED` or `JOB_STATE_CANCELLED`.
      *
      * Generated from protobuf field <code>.google.rpc.Status error = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -130,7 +129,8 @@ class DataLabelingJob extends \Google\Protobuf\Internal\Message
      * System reserved label keys are prefixed with "aiplatform.googleapis.com/"
      * and are immutable. Following system labels exist for each DataLabelingJob:
      * * "aiplatform.googleapis.com/schema": output only, its value is the
-     *   [inputs_schema][google.cloud.aiplatform.v1.DataLabelingJob.inputs_schema_uri]'s title.
+     *   [inputs_schema][google.cloud.aiplatform.v1.DataLabelingJob.inputs_schema_uri]'s
+     *   title.
      *
      * Generated from protobuf field <code>map<string, string> labels = 11;</code>
      */
@@ -169,13 +169,12 @@ class DataLabelingJob extends \Google\Protobuf\Internal\Message
      *           Output only. Resource name of the DataLabelingJob.
      *     @type string $display_name
      *           Required. The user-defined name of the DataLabelingJob.
-     *           The name can be up to 128 characters long and can be consist of any UTF-8
+     *           The name can be up to 128 characters long and can consist of any UTF-8
      *           characters.
      *           Display name of a DataLabelingJob.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $datasets
-     *           Required. Dataset resource names. Right now we only support labeling from a single
-     *           Dataset.
-     *           Format:
+     *           Required. Dataset resource names. Right now we only support labeling from a
+     *           single Dataset. Format:
      *           `projects/{project}/locations/{location}/datasets/{dataset}`
      *     @type array|\Google\Protobuf\Internal\MapField $annotation_labels
      *           Labels to assign to annotations generated by this DataLabelingJob.
@@ -188,13 +187,13 @@ class DataLabelingJob extends \Google\Protobuf\Internal\Message
      *     @type int $labeler_count
      *           Required. Number of labelers to work on each DataItem.
      *     @type string $instruction_uri
-     *           Required. The Google Cloud Storage location of the instruction pdf. This pdf is
-     *           shared with labelers, and provides detailed description on how to label
-     *           DataItems in Datasets.
+     *           Required. The Google Cloud Storage location of the instruction pdf. This
+     *           pdf is shared with labelers, and provides detailed description on how to
+     *           label DataItems in Datasets.
      *     @type string $inputs_schema_uri
-     *           Required. Points to a YAML file stored on Google Cloud Storage describing the
-     *           config for a specific type of DataLabelingJob.
-     *           The schema files that can be used here are found in the
+     *           Required. Points to a YAML file stored on Google Cloud Storage describing
+     *           the config for a specific type of DataLabelingJob. The schema files that
+     *           can be used here are found in the
      *           https://storage.googleapis.com/google-cloud-aiplatform bucket in the
      *           /schema/datalabelingjob/inputs/ folder.
      *     @type \Google\Protobuf\Value $inputs
@@ -202,18 +201,18 @@ class DataLabelingJob extends \Google\Protobuf\Internal\Message
      *     @type int $state
      *           Output only. The detailed state of the job.
      *     @type int $labeling_progress
-     *           Output only. Current labeling job progress percentage scaled in interval [0, 100],
-     *           indicating the percentage of DataItems that has been finished.
+     *           Output only. Current labeling job progress percentage scaled in interval
+     *           [0, 100], indicating the percentage of DataItems that has been finished.
      *     @type \Google\Type\Money $current_spend
-     *           Output only. Estimated cost(in US dollars) that the DataLabelingJob has incurred to
-     *           date.
+     *           Output only. Estimated cost(in US dollars) that the DataLabelingJob has
+     *           incurred to date.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. Timestamp when this DataLabelingJob was created.
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. Timestamp when this DataLabelingJob was updated most recently.
      *     @type \Google\Rpc\Status $error
-     *           Output only. DataLabelingJob errors. It is only populated when job's state is
-     *           `JOB_STATE_FAILED` or `JOB_STATE_CANCELLED`.
+     *           Output only. DataLabelingJob errors. It is only populated when job's state
+     *           is `JOB_STATE_FAILED` or `JOB_STATE_CANCELLED`.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           The labels with user-defined metadata to organize your DataLabelingJobs.
      *           Label keys and values can be no longer than 64 characters
@@ -223,7 +222,8 @@ class DataLabelingJob extends \Google\Protobuf\Internal\Message
      *           System reserved label keys are prefixed with "aiplatform.googleapis.com/"
      *           and are immutable. Following system labels exist for each DataLabelingJob:
      *           * "aiplatform.googleapis.com/schema": output only, its value is the
-     *             [inputs_schema][google.cloud.aiplatform.v1.DataLabelingJob.inputs_schema_uri]'s title.
+     *             [inputs_schema][google.cloud.aiplatform.v1.DataLabelingJob.inputs_schema_uri]'s
+     *             title.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $specialist_pools
      *           The SpecialistPools' resource names associated with this job.
      *     @type \Google\Cloud\AIPlatform\V1\EncryptionSpec $encryption_spec
@@ -270,7 +270,7 @@ class DataLabelingJob extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The user-defined name of the DataLabelingJob.
-     * The name can be up to 128 characters long and can be consist of any UTF-8
+     * The name can be up to 128 characters long and can consist of any UTF-8
      * characters.
      * Display name of a DataLabelingJob.
      *
@@ -284,7 +284,7 @@ class DataLabelingJob extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The user-defined name of the DataLabelingJob.
-     * The name can be up to 128 characters long and can be consist of any UTF-8
+     * The name can be up to 128 characters long and can consist of any UTF-8
      * characters.
      * Display name of a DataLabelingJob.
      *
@@ -301,9 +301,8 @@ class DataLabelingJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Dataset resource names. Right now we only support labeling from a single
-     * Dataset.
-     * Format:
+     * Required. Dataset resource names. Right now we only support labeling from a
+     * single Dataset. Format:
      * `projects/{project}/locations/{location}/datasets/{dataset}`
      *
      * Generated from protobuf field <code>repeated string datasets = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -315,9 +314,8 @@ class DataLabelingJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Dataset resource names. Right now we only support labeling from a single
-     * Dataset.
-     * Format:
+     * Required. Dataset resource names. Right now we only support labeling from a
+     * single Dataset. Format:
      * `projects/{project}/locations/{location}/datasets/{dataset}`
      *
      * Generated from protobuf field <code>repeated string datasets = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -397,9 +395,9 @@ class DataLabelingJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The Google Cloud Storage location of the instruction pdf. This pdf is
-     * shared with labelers, and provides detailed description on how to label
-     * DataItems in Datasets.
+     * Required. The Google Cloud Storage location of the instruction pdf. This
+     * pdf is shared with labelers, and provides detailed description on how to
+     * label DataItems in Datasets.
      *
      * Generated from protobuf field <code>string instruction_uri = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -410,9 +408,9 @@ class DataLabelingJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The Google Cloud Storage location of the instruction pdf. This pdf is
-     * shared with labelers, and provides detailed description on how to label
-     * DataItems in Datasets.
+     * Required. The Google Cloud Storage location of the instruction pdf. This
+     * pdf is shared with labelers, and provides detailed description on how to
+     * label DataItems in Datasets.
      *
      * Generated from protobuf field <code>string instruction_uri = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -427,9 +425,9 @@ class DataLabelingJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Points to a YAML file stored on Google Cloud Storage describing the
-     * config for a specific type of DataLabelingJob.
-     * The schema files that can be used here are found in the
+     * Required. Points to a YAML file stored on Google Cloud Storage describing
+     * the config for a specific type of DataLabelingJob. The schema files that
+     * can be used here are found in the
      * https://storage.googleapis.com/google-cloud-aiplatform bucket in the
      * /schema/datalabelingjob/inputs/ folder.
      *
@@ -442,9 +440,9 @@ class DataLabelingJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Points to a YAML file stored on Google Cloud Storage describing the
-     * config for a specific type of DataLabelingJob.
-     * The schema files that can be used here are found in the
+     * Required. Points to a YAML file stored on Google Cloud Storage describing
+     * the config for a specific type of DataLabelingJob. The schema files that
+     * can be used here are found in the
      * https://storage.googleapis.com/google-cloud-aiplatform bucket in the
      * /schema/datalabelingjob/inputs/ folder.
      *
@@ -523,8 +521,8 @@ class DataLabelingJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Current labeling job progress percentage scaled in interval [0, 100],
-     * indicating the percentage of DataItems that has been finished.
+     * Output only. Current labeling job progress percentage scaled in interval
+     * [0, 100], indicating the percentage of DataItems that has been finished.
      *
      * Generated from protobuf field <code>int32 labeling_progress = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
@@ -535,8 +533,8 @@ class DataLabelingJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Current labeling job progress percentage scaled in interval [0, 100],
-     * indicating the percentage of DataItems that has been finished.
+     * Output only. Current labeling job progress percentage scaled in interval
+     * [0, 100], indicating the percentage of DataItems that has been finished.
      *
      * Generated from protobuf field <code>int32 labeling_progress = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
@@ -551,8 +549,8 @@ class DataLabelingJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Estimated cost(in US dollars) that the DataLabelingJob has incurred to
-     * date.
+     * Output only. Estimated cost(in US dollars) that the DataLabelingJob has
+     * incurred to date.
      *
      * Generated from protobuf field <code>.google.type.Money current_spend = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Type\Money|null
@@ -573,8 +571,8 @@ class DataLabelingJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Estimated cost(in US dollars) that the DataLabelingJob has incurred to
-     * date.
+     * Output only. Estimated cost(in US dollars) that the DataLabelingJob has
+     * incurred to date.
      *
      * Generated from protobuf field <code>.google.type.Money current_spend = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Type\Money $var
@@ -661,8 +659,8 @@ class DataLabelingJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. DataLabelingJob errors. It is only populated when job's state is
-     * `JOB_STATE_FAILED` or `JOB_STATE_CANCELLED`.
+     * Output only. DataLabelingJob errors. It is only populated when job's state
+     * is `JOB_STATE_FAILED` or `JOB_STATE_CANCELLED`.
      *
      * Generated from protobuf field <code>.google.rpc.Status error = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Rpc\Status|null
@@ -683,8 +681,8 @@ class DataLabelingJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. DataLabelingJob errors. It is only populated when job's state is
-     * `JOB_STATE_FAILED` or `JOB_STATE_CANCELLED`.
+     * Output only. DataLabelingJob errors. It is only populated when job's state
+     * is `JOB_STATE_FAILED` or `JOB_STATE_CANCELLED`.
      *
      * Generated from protobuf field <code>.google.rpc.Status error = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Rpc\Status $var
@@ -707,7 +705,8 @@ class DataLabelingJob extends \Google\Protobuf\Internal\Message
      * System reserved label keys are prefixed with "aiplatform.googleapis.com/"
      * and are immutable. Following system labels exist for each DataLabelingJob:
      * * "aiplatform.googleapis.com/schema": output only, its value is the
-     *   [inputs_schema][google.cloud.aiplatform.v1.DataLabelingJob.inputs_schema_uri]'s title.
+     *   [inputs_schema][google.cloud.aiplatform.v1.DataLabelingJob.inputs_schema_uri]'s
+     *   title.
      *
      * Generated from protobuf field <code>map<string, string> labels = 11;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -726,7 +725,8 @@ class DataLabelingJob extends \Google\Protobuf\Internal\Message
      * System reserved label keys are prefixed with "aiplatform.googleapis.com/"
      * and are immutable. Following system labels exist for each DataLabelingJob:
      * * "aiplatform.googleapis.com/schema": output only, its value is the
-     *   [inputs_schema][google.cloud.aiplatform.v1.DataLabelingJob.inputs_schema_uri]'s title.
+     *   [inputs_schema][google.cloud.aiplatform.v1.DataLabelingJob.inputs_schema_uri]'s
+     *   title.
      *
      * Generated from protobuf field <code>map<string, string> labels = 11;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var

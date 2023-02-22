@@ -1,0 +1,34 @@
+name: Backwards Compatibility Check
+on: [pull_request]
+jobs:
+  # More info at https://github.com/Roave/BackwardCompatibilityCheck.
+  backwards-compatibility-check:
+    runs-on: ubuntu-latest
+    # Disable this check by applying the 'breaking change allowed' label to the PR.
+    if: "!contains(github.event.pull_request.labels.*.name, 'breaking change allowed')"
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: "Install PHP"
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.1"
+      - name: "Install dependencies"
+        run: composer global require "roave/backward-compatibility-check:^8.2"
+      - name: "Check for BC breaks"
+        if: github.actor != 'app/release-please'
+        run: |
+          ~/.composer/vendor/bin/roave-backward-compatibility-check --from=origin/main --format=github-actions
+      - name: Get Latest Release
+        if: github.actor == 'app/release-please'
+        id: latest-release
+        uses: pozetroninc/github-action-get-latest-release@master
+        with:
+          repository: ${{ github.repository }}
+      - name: "Check for BC breaks (Next Release)"
+        if: github.actor == 'app/release-please'
+        run: |
+          ~/.composer/vendor/bin/roave-backward-compatibility-check \
+              --from=${{ steps.latest-release.outputs.release }} \
+              --to=origin/main --format=github-actions

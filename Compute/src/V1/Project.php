@@ -89,6 +89,13 @@ class Project extends \Google\Protobuf\Internal\Message
      */
     private $usage_export_location = null;
     /**
+     * [Output Only] Default internal DNS setting used by VMs running in this project.
+     * Check the VmDnsSetting enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string vm_dns_setting = 58856370;</code>
+     */
+    private $vm_dns_setting = null;
+    /**
      * [Output Only] The role this project has in a shared VPC configuration. Currently, only projects with the host role, which is specified by the value HOST, are differentiated.
      * Check the XpnProjectStatus enum for the list of possible values.
      *
@@ -127,6 +134,9 @@ class Project extends \Google\Protobuf\Internal\Message
      *           [Output Only] Server-defined URL for the resource.
      *     @type \Google\Cloud\Compute\V1\UsageExportLocation $usage_export_location
      *           The naming prefix for daily usage reports and the Google Cloud Storage bucket where they are stored.
+     *     @type string $vm_dns_setting
+     *           [Output Only] Default internal DNS setting used by VMs running in this project.
+     *           Check the VmDnsSetting enum for the list of possible values.
      *     @type string $xpn_project_status
      *           [Output Only] The role this project has in a shared VPC configuration. Currently, only projects with the host role, which is specified by the value HOST, are differentiated.
      *           Check the XpnProjectStatus enum for the list of possible values.
@@ -547,6 +557,44 @@ class Project extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\UsageExportLocation::class);
         $this->usage_export_location = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Output Only] Default internal DNS setting used by VMs running in this project.
+     * Check the VmDnsSetting enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string vm_dns_setting = 58856370;</code>
+     * @return string
+     */
+    public function getVmDnsSetting()
+    {
+        return isset($this->vm_dns_setting) ? $this->vm_dns_setting : '';
+    }
+
+    public function hasVmDnsSetting()
+    {
+        return isset($this->vm_dns_setting);
+    }
+
+    public function clearVmDnsSetting()
+    {
+        unset($this->vm_dns_setting);
+    }
+
+    /**
+     * [Output Only] Default internal DNS setting used by VMs running in this project.
+     * Check the VmDnsSetting enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string vm_dns_setting = 58856370;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setVmDnsSetting($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->vm_dns_setting = $var;
 
         return $this;
     }

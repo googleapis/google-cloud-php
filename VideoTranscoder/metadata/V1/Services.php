@@ -22,7 +22,7 @@ class Services
         \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ü
+ö
 /google/cloud/video/transcoder/v1/services.proto google.cloud.video.transcoder.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto0google/cloud/video/transcoder/v1/resources.protogoogle/protobuf/empty.proto"†
 CreateJobRequest9
 parent (	B)àAúA#
@@ -80,8 +80,8 @@ parent,job¬
 CreateJobTemplate:.google.cloud.video.transcoder.v1.CreateJobTemplateRequest-.google.cloud.video.transcoder.v1.JobTemplate"l‚Óä“@"0/v1/{parent=projects/*/locations/*}/jobTemplates:job_templateÚA#parent,job_template,job_template_idÌ
 ListJobTemplates9.google.cloud.video.transcoder.v1.ListJobTemplatesRequest:.google.cloud.video.transcoder.v1.ListJobTemplatesResponse"A‚Óä“20/v1/{parent=projects/*/locations/*}/jobTemplatesÚAparent¹
 GetJobTemplate7.google.cloud.video.transcoder.v1.GetJobTemplateRequest-.google.cloud.video.transcoder.v1.JobTemplate"?‚Óä“20/v1/{name=projects/*/locations/*/jobTemplates/*}ÚAname¨
-DeleteJobTemplate:.google.cloud.video.transcoder.v1.DeleteJobTemplateRequest.google.protobuf.Empty"?‚Óä“2*0/v1/{name=projects/*/locations/*/jobTemplates/*}ÚAnameMÊAtranscoder.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBð
-$com.google.cloud.video.transcoder.v1BServicesProtoPZJgoogle.golang.org/genproto/googleapis/cloud/video/transcoder/v1;transcoderª Google.Cloud.Video.Transcoder.V1Ê Google\\Cloud\\Video\\Transcoder\\V1ê$Google::Cloud::Video::Transcoder::V1bproto3'
+DeleteJobTemplate:.google.cloud.video.transcoder.v1.DeleteJobTemplateRequest.google.protobuf.Empty"?‚Óä“2*0/v1/{name=projects/*/locations/*/jobTemplates/*}ÚAnameMÊAtranscoder.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBê
+$com.google.cloud.video.transcoder.v1BServicesProtoPZDcloud.google.com/go/video/transcoder/apiv1/transcoderpb;transcoderpbª Google.Cloud.Video.Transcoder.V1Ê Google\\Cloud\\Video\\Transcoder\\V1ê$Google::Cloud::Video::Transcoder::V1bproto3'
         , true);
 
         static::$is_initialized = true;

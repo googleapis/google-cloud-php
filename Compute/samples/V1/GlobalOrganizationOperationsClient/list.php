@@ -26,7 +26,6 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\Compute\V1\GlobalOrganizationOperationsClient;
-use Google\Cloud\Compute\V1\Operation;
 
 /**
  * Retrieves a list of Operation resources contained within the specified organization.
@@ -47,7 +46,6 @@ function list_sample(): void
         /** @var PagedListResponse $response */
         $response = $globalOrganizationOperationsClient->list();
 
-        /** @var Operation $element */
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
         }

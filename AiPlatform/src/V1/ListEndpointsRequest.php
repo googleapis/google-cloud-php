@@ -9,24 +9,26 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [EndpointService.ListEndpoints][google.cloud.aiplatform.v1.EndpointService.ListEndpoints].
+ * Request message for
+ * [EndpointService.ListEndpoints][google.cloud.aiplatform.v1.EndpointService.ListEndpoints].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.ListEndpointsRequest</code>
  */
 class ListEndpointsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name of the Location from which to list the Endpoints.
-     * Format: `projects/{project}/locations/{location}`
+     * Required. The resource name of the Location from which to list the
+     * Endpoints. Format: `projects/{project}/locations/{location}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
-     * Optional. An expression for filtering the results of the request. For field names
-     * both snake_case and camelCase are supported.
+     * Optional. An expression for filtering the results of the request. For field
+     * names both snake_case and camelCase are supported.
      *   * `endpoint` supports = and !=. `endpoint` represents the Endpoint ID,
-     *     i.e. the last segment of the Endpoint's [resource name][google.cloud.aiplatform.v1.Endpoint.name].
+     *     i.e. the last segment of the Endpoint's [resource
+     *     name][google.cloud.aiplatform.v1.Endpoint.name].
      *   * `display_name` supports = and, !=
      *   * `labels` supports general map functions that is:
      *     * `labels.key=value` - key:value equality
@@ -49,8 +51,10 @@ class ListEndpointsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The standard list page token.
      * Typically obtained via
-     * [ListEndpointsResponse.next_page_token][google.cloud.aiplatform.v1.ListEndpointsResponse.next_page_token] of the previous
-     * [EndpointService.ListEndpoints][google.cloud.aiplatform.v1.EndpointService.ListEndpoints] call.
+     * [ListEndpointsResponse.next_page_token][google.cloud.aiplatform.v1.ListEndpointsResponse.next_page_token]
+     * of the previous
+     * [EndpointService.ListEndpoints][google.cloud.aiplatform.v1.EndpointService.ListEndpoints]
+     * call.
      *
      * Generated from protobuf field <code>string page_token = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -81,13 +85,14 @@ class ListEndpointsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The resource name of the Location from which to list the Endpoints.
-     *           Format: `projects/{project}/locations/{location}`
+     *           Required. The resource name of the Location from which to list the
+     *           Endpoints. Format: `projects/{project}/locations/{location}`
      *     @type string $filter
-     *           Optional. An expression for filtering the results of the request. For field names
-     *           both snake_case and camelCase are supported.
+     *           Optional. An expression for filtering the results of the request. For field
+     *           names both snake_case and camelCase are supported.
      *             * `endpoint` supports = and !=. `endpoint` represents the Endpoint ID,
-     *               i.e. the last segment of the Endpoint's [resource name][google.cloud.aiplatform.v1.Endpoint.name].
+     *               i.e. the last segment of the Endpoint's [resource
+     *               name][google.cloud.aiplatform.v1.Endpoint.name].
      *             * `display_name` supports = and, !=
      *             * `labels` supports general map functions that is:
      *               * `labels.key=value` - key:value equality
@@ -102,8 +107,10 @@ class ListEndpointsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $page_token
      *           Optional. The standard list page token.
      *           Typically obtained via
-     *           [ListEndpointsResponse.next_page_token][google.cloud.aiplatform.v1.ListEndpointsResponse.next_page_token] of the previous
-     *           [EndpointService.ListEndpoints][google.cloud.aiplatform.v1.EndpointService.ListEndpoints] call.
+     *           [ListEndpointsResponse.next_page_token][google.cloud.aiplatform.v1.ListEndpointsResponse.next_page_token]
+     *           of the previous
+     *           [EndpointService.ListEndpoints][google.cloud.aiplatform.v1.EndpointService.ListEndpoints]
+     *           call.
      *     @type \Google\Protobuf\FieldMask $read_mask
      *           Optional. Mask specifying which fields to read.
      *     @type string $order_by
@@ -122,8 +129,8 @@ class ListEndpointsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the Location from which to list the Endpoints.
-     * Format: `projects/{project}/locations/{location}`
+     * Required. The resource name of the Location from which to list the
+     * Endpoints. Format: `projects/{project}/locations/{location}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -134,8 +141,8 @@ class ListEndpointsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the Location from which to list the Endpoints.
-     * Format: `projects/{project}/locations/{location}`
+     * Required. The resource name of the Location from which to list the
+     * Endpoints. Format: `projects/{project}/locations/{location}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -150,10 +157,11 @@ class ListEndpointsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. An expression for filtering the results of the request. For field names
-     * both snake_case and camelCase are supported.
+     * Optional. An expression for filtering the results of the request. For field
+     * names both snake_case and camelCase are supported.
      *   * `endpoint` supports = and !=. `endpoint` represents the Endpoint ID,
-     *     i.e. the last segment of the Endpoint's [resource name][google.cloud.aiplatform.v1.Endpoint.name].
+     *     i.e. the last segment of the Endpoint's [resource
+     *     name][google.cloud.aiplatform.v1.Endpoint.name].
      *   * `display_name` supports = and, !=
      *   * `labels` supports general map functions that is:
      *     * `labels.key=value` - key:value equality
@@ -173,10 +181,11 @@ class ListEndpointsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. An expression for filtering the results of the request. For field names
-     * both snake_case and camelCase are supported.
+     * Optional. An expression for filtering the results of the request. For field
+     * names both snake_case and camelCase are supported.
      *   * `endpoint` supports = and !=. `endpoint` represents the Endpoint ID,
-     *     i.e. the last segment of the Endpoint's [resource name][google.cloud.aiplatform.v1.Endpoint.name].
+     *     i.e. the last segment of the Endpoint's [resource
+     *     name][google.cloud.aiplatform.v1.Endpoint.name].
      *   * `display_name` supports = and, !=
      *   * `labels` supports general map functions that is:
      *     * `labels.key=value` - key:value equality
@@ -228,8 +237,10 @@ class ListEndpointsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The standard list page token.
      * Typically obtained via
-     * [ListEndpointsResponse.next_page_token][google.cloud.aiplatform.v1.ListEndpointsResponse.next_page_token] of the previous
-     * [EndpointService.ListEndpoints][google.cloud.aiplatform.v1.EndpointService.ListEndpoints] call.
+     * [ListEndpointsResponse.next_page_token][google.cloud.aiplatform.v1.ListEndpointsResponse.next_page_token]
+     * of the previous
+     * [EndpointService.ListEndpoints][google.cloud.aiplatform.v1.EndpointService.ListEndpoints]
+     * call.
      *
      * Generated from protobuf field <code>string page_token = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -242,8 +253,10 @@ class ListEndpointsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The standard list page token.
      * Typically obtained via
-     * [ListEndpointsResponse.next_page_token][google.cloud.aiplatform.v1.ListEndpointsResponse.next_page_token] of the previous
-     * [EndpointService.ListEndpoints][google.cloud.aiplatform.v1.EndpointService.ListEndpoints] call.
+     * [ListEndpointsResponse.next_page_token][google.cloud.aiplatform.v1.ListEndpointsResponse.next_page_token]
+     * of the previous
+     * [EndpointService.ListEndpoints][google.cloud.aiplatform.v1.EndpointService.ListEndpoints]
+     * call.
      *
      * Generated from protobuf field <code>string page_token = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

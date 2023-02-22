@@ -26,7 +26,6 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\Compute\V1\TargetTcpProxiesClient;
-use Google\Cloud\Compute\V1\TargetTcpProxy;
 
 /**
  * Retrieves the list of TargetTcpProxy resources available to the specified project.
@@ -43,7 +42,6 @@ function list_sample(string $project): void
         /** @var PagedListResponse $response */
         $response = $targetTcpProxiesClient->list($project);
 
-        /** @var TargetTcpProxy $element */
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
         }

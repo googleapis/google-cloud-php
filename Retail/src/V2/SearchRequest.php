@@ -21,7 +21,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      * `projects/&#42;&#47;locations/global/catalogs/default_catalog/servingConfigs/default_serving_config`
      * or the name of the legacy placement resource, such as
      * `projects/&#42;&#47;locations/global/catalogs/default_catalog/placements/default_search`.
-     * This field is used to identify the serving configuration name and the set
+     * This field is used to identify the serving config name and the set
      * of models that will be used to make the search.
      *
      * Generated from protobuf field <code>string placement = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -252,7 +252,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      * the same as
      * [UserEvent.page_categories][google.cloud.retail.v2.UserEvent.page_categories];
      * To represent full path of category, use '>' sign to separate different
-     * hierarchies. If '>' is part of the category name, please replace it with
+     * hierarchies. If '>' is part of the category name, replace it with
      * other character(s).
      * Category pages include special pages such as sales or promotions. For
      * instance, a special sale page may have the category hierarchy:
@@ -321,7 +321,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *           `projects/&#42;&#47;locations/global/catalogs/default_catalog/servingConfigs/default_serving_config`
      *           or the name of the legacy placement resource, such as
      *           `projects/&#42;&#47;locations/global/catalogs/default_catalog/placements/default_search`.
-     *           This field is used to identify the serving configuration name and the set
+     *           This field is used to identify the serving config name and the set
      *           of models that will be used to make the search.
      *     @type string $branch
      *           The branch resource name, such as
@@ -487,7 +487,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *           the same as
      *           [UserEvent.page_categories][google.cloud.retail.v2.UserEvent.page_categories];
      *           To represent full path of category, use '>' sign to separate different
-     *           hierarchies. If '>' is part of the category name, please replace it with
+     *           hierarchies. If '>' is part of the category name, replace it with
      *           other character(s).
      *           Category pages include special pages such as sales or promotions. For
      *           instance, a special sale page may have the category hierarchy:
@@ -536,7 +536,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      * `projects/&#42;&#47;locations/global/catalogs/default_catalog/servingConfigs/default_serving_config`
      * or the name of the legacy placement resource, such as
      * `projects/&#42;&#47;locations/global/catalogs/default_catalog/placements/default_search`.
-     * This field is used to identify the serving configuration name and the set
+     * This field is used to identify the serving config name and the set
      * of models that will be used to make the search.
      *
      * Generated from protobuf field <code>string placement = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -552,7 +552,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      * `projects/&#42;&#47;locations/global/catalogs/default_catalog/servingConfigs/default_serving_config`
      * or the name of the legacy placement resource, such as
      * `projects/&#42;&#47;locations/global/catalogs/default_catalog/placements/default_search`.
-     * This field is used to identify the serving configuration name and the set
+     * This field is used to identify the serving config name and the set
      * of models that will be used to make the search.
      *
      * Generated from protobuf field <code>string placement = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -1265,7 +1265,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      * the same as
      * [UserEvent.page_categories][google.cloud.retail.v2.UserEvent.page_categories];
      * To represent full path of category, use '>' sign to separate different
-     * hierarchies. If '>' is part of the category name, please replace it with
+     * hierarchies. If '>' is part of the category name, replace it with
      * other character(s).
      * Category pages include special pages such as sales or promotions. For
      * instance, a special sale page may have the category hierarchy:
@@ -1285,7 +1285,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      * the same as
      * [UserEvent.page_categories][google.cloud.retail.v2.UserEvent.page_categories];
      * To represent full path of category, use '>' sign to separate different
-     * hierarchies. If '>' is part of the category name, please replace it with
+     * hierarchies. If '>' is part of the category name, replace it with
      * other character(s).
      * Category pages include special pages such as sales or promotions. For
      * instance, a special sale page may have the category hierarchy:

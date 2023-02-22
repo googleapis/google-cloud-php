@@ -23,13 +23,10 @@
 namespace Google\Cloud\Dialogflow\Tests\Unit\V2;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\BidiStream;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
-
 use Google\Cloud\Dialogflow\V2\AnalyzeContentResponse;
 use Google\Cloud\Dialogflow\V2\ListParticipantsResponse;
 use Google\Cloud\Dialogflow\V2\Participant;
@@ -52,25 +49,19 @@ use stdClass;
  */
 class ParticipantsClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return ParticipantsClient
-     */
+    /** @return ParticipantsClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -79,9 +70,7 @@ class ParticipantsClientTest extends GeneratedTest
         return new ParticipantsClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function analyzeContentTest()
     {
         $transport = $this->createTransport();
@@ -108,9 +97,7 @@ class ParticipantsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function analyzeContentExceptionTest()
     {
         $transport = $this->createTransport();
@@ -143,9 +130,7 @@ class ParticipantsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createParticipantTest()
     {
         $transport = $this->createTransport();
@@ -179,9 +164,7 @@ class ParticipantsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createParticipantExceptionTest()
     {
         $transport = $this->createTransport();
@@ -215,9 +198,7 @@ class ParticipantsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getParticipantTest()
     {
         $transport = $this->createTransport();
@@ -248,9 +229,7 @@ class ParticipantsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getParticipantExceptionTest()
     {
         $transport = $this->createTransport();
@@ -283,9 +262,7 @@ class ParticipantsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listParticipantsTest()
     {
         $transport = $this->createTransport();
@@ -320,9 +297,7 @@ class ParticipantsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listParticipantsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -355,9 +330,7 @@ class ParticipantsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function streamingAnalyzeContentTest()
     {
         $transport = $this->createTransport();
@@ -424,9 +397,7 @@ class ParticipantsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function streamingAnalyzeContentExceptionTest()
     {
         $transport = $this->createTransport();
@@ -459,9 +430,7 @@ class ParticipantsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function suggestArticlesTest()
     {
         $transport = $this->createTransport();
@@ -490,9 +459,7 @@ class ParticipantsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function suggestArticlesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -525,9 +492,7 @@ class ParticipantsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function suggestFaqAnswersTest()
     {
         $transport = $this->createTransport();
@@ -556,9 +521,7 @@ class ParticipantsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function suggestFaqAnswersExceptionTest()
     {
         $transport = $this->createTransport();
@@ -591,9 +554,7 @@ class ParticipantsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function suggestSmartRepliesTest()
     {
         $transport = $this->createTransport();
@@ -622,9 +583,7 @@ class ParticipantsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function suggestSmartRepliesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -657,9 +616,7 @@ class ParticipantsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateParticipantTest()
     {
         $transport = $this->createTransport();
@@ -693,9 +650,7 @@ class ParticipantsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateParticipantExceptionTest()
     {
         $transport = $this->createTransport();
@@ -729,9 +684,7 @@ class ParticipantsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getLocationTest()
     {
         $transport = $this->createTransport();
@@ -758,9 +711,7 @@ class ParticipantsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getLocationExceptionTest()
     {
         $transport = $this->createTransport();
@@ -791,9 +742,7 @@ class ParticipantsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listLocationsTest()
     {
         $transport = $this->createTransport();
@@ -824,9 +773,7 @@ class ParticipantsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listLocationsExceptionTest()
     {
         $transport = $this->createTransport();

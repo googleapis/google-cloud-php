@@ -26,10 +26,10 @@
 
 namespace Google\Analytics\Admin\V1alpha\Gapic;
 
+use Google\Analytics\Admin\V1alpha\AccessBinding;
 use Google\Analytics\Admin\V1alpha\AccessDateRange;
 use Google\Analytics\Admin\V1alpha\AccessDimension;
 use Google\Analytics\Admin\V1alpha\AccessFilterExpression;
-
 use Google\Analytics\Admin\V1alpha\AccessMetric;
 use Google\Analytics\Admin\V1alpha\AccessOrderBy;
 use Google\Analytics\Admin\V1alpha\Account;
@@ -44,15 +44,24 @@ use Google\Analytics\Admin\V1alpha\AttributionSettings;
 use Google\Analytics\Admin\V1alpha\Audience;
 use Google\Analytics\Admin\V1alpha\AuditUserLinksRequest;
 use Google\Analytics\Admin\V1alpha\AuditUserLinksResponse;
+use Google\Analytics\Admin\V1alpha\BatchCreateAccessBindingsRequest;
+use Google\Analytics\Admin\V1alpha\BatchCreateAccessBindingsResponse;
 use Google\Analytics\Admin\V1alpha\BatchCreateUserLinksRequest;
 use Google\Analytics\Admin\V1alpha\BatchCreateUserLinksResponse;
+use Google\Analytics\Admin\V1alpha\BatchDeleteAccessBindingsRequest;
 use Google\Analytics\Admin\V1alpha\BatchDeleteUserLinksRequest;
+use Google\Analytics\Admin\V1alpha\BatchGetAccessBindingsRequest;
+use Google\Analytics\Admin\V1alpha\BatchGetAccessBindingsResponse;
 use Google\Analytics\Admin\V1alpha\BatchGetUserLinksRequest;
 use Google\Analytics\Admin\V1alpha\BatchGetUserLinksResponse;
+use Google\Analytics\Admin\V1alpha\BatchUpdateAccessBindingsRequest;
+use Google\Analytics\Admin\V1alpha\BatchUpdateAccessBindingsResponse;
 use Google\Analytics\Admin\V1alpha\BatchUpdateUserLinksRequest;
 use Google\Analytics\Admin\V1alpha\BatchUpdateUserLinksResponse;
+use Google\Analytics\Admin\V1alpha\BigQueryLink;
 use Google\Analytics\Admin\V1alpha\CancelDisplayVideo360AdvertiserLinkProposalRequest;
 use Google\Analytics\Admin\V1alpha\ConversionEvent;
+use Google\Analytics\Admin\V1alpha\CreateAccessBindingRequest;
 use Google\Analytics\Admin\V1alpha\CreateAudienceRequest;
 use Google\Analytics\Admin\V1alpha\CreateConversionEventRequest;
 use Google\Analytics\Admin\V1alpha\CreateCustomDimensionRequest;
@@ -60,32 +69,42 @@ use Google\Analytics\Admin\V1alpha\CreateCustomMetricRequest;
 use Google\Analytics\Admin\V1alpha\CreateDataStreamRequest;
 use Google\Analytics\Admin\V1alpha\CreateDisplayVideo360AdvertiserLinkProposalRequest;
 use Google\Analytics\Admin\V1alpha\CreateDisplayVideo360AdvertiserLinkRequest;
+use Google\Analytics\Admin\V1alpha\CreateExpandedDataSetRequest;
 use Google\Analytics\Admin\V1alpha\CreateFirebaseLinkRequest;
 use Google\Analytics\Admin\V1alpha\CreateGoogleAdsLinkRequest;
 use Google\Analytics\Admin\V1alpha\CreateMeasurementProtocolSecretRequest;
 use Google\Analytics\Admin\V1alpha\CreatePropertyRequest;
+use Google\Analytics\Admin\V1alpha\CreateSearchAds360LinkRequest;
 use Google\Analytics\Admin\V1alpha\CreateUserLinkRequest;
 use Google\Analytics\Admin\V1alpha\CustomDimension;
 use Google\Analytics\Admin\V1alpha\CustomMetric;
 use Google\Analytics\Admin\V1alpha\DataRetentionSettings;
 use Google\Analytics\Admin\V1alpha\DataSharingSettings;
 use Google\Analytics\Admin\V1alpha\DataStream;
+use Google\Analytics\Admin\V1alpha\DeleteAccessBindingRequest;
 use Google\Analytics\Admin\V1alpha\DeleteAccountRequest;
 use Google\Analytics\Admin\V1alpha\DeleteConversionEventRequest;
 use Google\Analytics\Admin\V1alpha\DeleteDataStreamRequest;
 use Google\Analytics\Admin\V1alpha\DeleteDisplayVideo360AdvertiserLinkProposalRequest;
 use Google\Analytics\Admin\V1alpha\DeleteDisplayVideo360AdvertiserLinkRequest;
+use Google\Analytics\Admin\V1alpha\DeleteExpandedDataSetRequest;
 use Google\Analytics\Admin\V1alpha\DeleteFirebaseLinkRequest;
 use Google\Analytics\Admin\V1alpha\DeleteGoogleAdsLinkRequest;
 use Google\Analytics\Admin\V1alpha\DeleteMeasurementProtocolSecretRequest;
 use Google\Analytics\Admin\V1alpha\DeletePropertyRequest;
+use Google\Analytics\Admin\V1alpha\DeleteSearchAds360LinkRequest;
 use Google\Analytics\Admin\V1alpha\DeleteUserLinkRequest;
 use Google\Analytics\Admin\V1alpha\DisplayVideo360AdvertiserLink;
 use Google\Analytics\Admin\V1alpha\DisplayVideo360AdvertiserLinkProposal;
+use Google\Analytics\Admin\V1alpha\ExpandedDataSet;
+use Google\Analytics\Admin\V1alpha\FetchAutomatedGa4ConfigurationOptOutRequest;
+use Google\Analytics\Admin\V1alpha\FetchAutomatedGa4ConfigurationOptOutResponse;
 use Google\Analytics\Admin\V1alpha\FirebaseLink;
+use Google\Analytics\Admin\V1alpha\GetAccessBindingRequest;
 use Google\Analytics\Admin\V1alpha\GetAccountRequest;
 use Google\Analytics\Admin\V1alpha\GetAttributionSettingsRequest;
 use Google\Analytics\Admin\V1alpha\GetAudienceRequest;
+use Google\Analytics\Admin\V1alpha\GetBigQueryLinkRequest;
 use Google\Analytics\Admin\V1alpha\GetConversionEventRequest;
 use Google\Analytics\Admin\V1alpha\GetCustomDimensionRequest;
 use Google\Analytics\Admin\V1alpha\GetCustomMetricRequest;
@@ -94,21 +113,26 @@ use Google\Analytics\Admin\V1alpha\GetDataSharingSettingsRequest;
 use Google\Analytics\Admin\V1alpha\GetDataStreamRequest;
 use Google\Analytics\Admin\V1alpha\GetDisplayVideo360AdvertiserLinkProposalRequest;
 use Google\Analytics\Admin\V1alpha\GetDisplayVideo360AdvertiserLinkRequest;
+use Google\Analytics\Admin\V1alpha\GetExpandedDataSetRequest;
 use Google\Analytics\Admin\V1alpha\GetGlobalSiteTagRequest;
 use Google\Analytics\Admin\V1alpha\GetGoogleSignalsSettingsRequest;
 use Google\Analytics\Admin\V1alpha\GetMeasurementProtocolSecretRequest;
 use Google\Analytics\Admin\V1alpha\GetPropertyRequest;
+use Google\Analytics\Admin\V1alpha\GetSearchAds360LinkRequest;
 use Google\Analytics\Admin\V1alpha\GetUserLinkRequest;
 use Google\Analytics\Admin\V1alpha\GlobalSiteTag;
 use Google\Analytics\Admin\V1alpha\GoogleAdsLink;
-
 use Google\Analytics\Admin\V1alpha\GoogleSignalsSettings;
-use Google\Analytics\Admin\V1alpha\ListAccountsRequest;
-use Google\Analytics\Admin\V1alpha\ListAccountsResponse;
+use Google\Analytics\Admin\V1alpha\ListAccessBindingsRequest;
+use Google\Analytics\Admin\V1alpha\ListAccessBindingsResponse;
 use Google\Analytics\Admin\V1alpha\ListAccountSummariesRequest;
 use Google\Analytics\Admin\V1alpha\ListAccountSummariesResponse;
+use Google\Analytics\Admin\V1alpha\ListAccountsRequest;
+use Google\Analytics\Admin\V1alpha\ListAccountsResponse;
 use Google\Analytics\Admin\V1alpha\ListAudiencesRequest;
 use Google\Analytics\Admin\V1alpha\ListAudiencesResponse;
+use Google\Analytics\Admin\V1alpha\ListBigQueryLinksRequest;
+use Google\Analytics\Admin\V1alpha\ListBigQueryLinksResponse;
 use Google\Analytics\Admin\V1alpha\ListConversionEventsRequest;
 use Google\Analytics\Admin\V1alpha\ListConversionEventsResponse;
 use Google\Analytics\Admin\V1alpha\ListCustomDimensionsRequest;
@@ -121,6 +145,8 @@ use Google\Analytics\Admin\V1alpha\ListDisplayVideo360AdvertiserLinkProposalsReq
 use Google\Analytics\Admin\V1alpha\ListDisplayVideo360AdvertiserLinkProposalsResponse;
 use Google\Analytics\Admin\V1alpha\ListDisplayVideo360AdvertiserLinksRequest;
 use Google\Analytics\Admin\V1alpha\ListDisplayVideo360AdvertiserLinksResponse;
+use Google\Analytics\Admin\V1alpha\ListExpandedDataSetsRequest;
+use Google\Analytics\Admin\V1alpha\ListExpandedDataSetsResponse;
 use Google\Analytics\Admin\V1alpha\ListFirebaseLinksRequest;
 use Google\Analytics\Admin\V1alpha\ListFirebaseLinksResponse;
 use Google\Analytics\Admin\V1alpha\ListGoogleAdsLinksRequest;
@@ -129,6 +155,8 @@ use Google\Analytics\Admin\V1alpha\ListMeasurementProtocolSecretsRequest;
 use Google\Analytics\Admin\V1alpha\ListMeasurementProtocolSecretsResponse;
 use Google\Analytics\Admin\V1alpha\ListPropertiesRequest;
 use Google\Analytics\Admin\V1alpha\ListPropertiesResponse;
+use Google\Analytics\Admin\V1alpha\ListSearchAds360LinksRequest;
+use Google\Analytics\Admin\V1alpha\ListSearchAds360LinksResponse;
 use Google\Analytics\Admin\V1alpha\ListUserLinksRequest;
 use Google\Analytics\Admin\V1alpha\ListUserLinksResponse;
 use Google\Analytics\Admin\V1alpha\MeasurementProtocolSecret;
@@ -137,8 +165,12 @@ use Google\Analytics\Admin\V1alpha\ProvisionAccountTicketRequest;
 use Google\Analytics\Admin\V1alpha\ProvisionAccountTicketResponse;
 use Google\Analytics\Admin\V1alpha\RunAccessReportRequest;
 use Google\Analytics\Admin\V1alpha\RunAccessReportResponse;
+use Google\Analytics\Admin\V1alpha\SearchAds360Link;
 use Google\Analytics\Admin\V1alpha\SearchChangeHistoryEventsRequest;
 use Google\Analytics\Admin\V1alpha\SearchChangeHistoryEventsResponse;
+use Google\Analytics\Admin\V1alpha\SetAutomatedGa4ConfigurationOptOutRequest;
+use Google\Analytics\Admin\V1alpha\SetAutomatedGa4ConfigurationOptOutResponse;
+use Google\Analytics\Admin\V1alpha\UpdateAccessBindingRequest;
 use Google\Analytics\Admin\V1alpha\UpdateAccountRequest;
 use Google\Analytics\Admin\V1alpha\UpdateAttributionSettingsRequest;
 use Google\Analytics\Admin\V1alpha\UpdateAudienceRequest;
@@ -147,10 +179,12 @@ use Google\Analytics\Admin\V1alpha\UpdateCustomMetricRequest;
 use Google\Analytics\Admin\V1alpha\UpdateDataRetentionSettingsRequest;
 use Google\Analytics\Admin\V1alpha\UpdateDataStreamRequest;
 use Google\Analytics\Admin\V1alpha\UpdateDisplayVideo360AdvertiserLinkRequest;
+use Google\Analytics\Admin\V1alpha\UpdateExpandedDataSetRequest;
 use Google\Analytics\Admin\V1alpha\UpdateGoogleAdsLinkRequest;
 use Google\Analytics\Admin\V1alpha\UpdateGoogleSignalsSettingsRequest;
 use Google\Analytics\Admin\V1alpha\UpdateMeasurementProtocolSecretRequest;
 use Google\Analytics\Admin\V1alpha\UpdatePropertyRequest;
+use Google\Analytics\Admin\V1alpha\UpdateSearchAds360LinkRequest;
 use Google\Analytics\Admin\V1alpha\UpdateUserLinkRequest;
 use Google\Analytics\Admin\V1alpha\UserLink;
 use Google\ApiCore\ApiException;
@@ -194,29 +228,19 @@ class AnalyticsAdminServiceGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.analytics.admin.v1alpha.AnalyticsAdminService';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'analyticsadmin.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/analytics.edit',
         'https://www.googleapis.com/auth/analytics.manage.users',
@@ -224,13 +248,19 @@ class AnalyticsAdminServiceGapicClient
         'https://www.googleapis.com/auth/analytics.readonly',
     ];
 
+    private static $accessBindingNameTemplate;
+
     private static $accountNameTemplate;
+
+    private static $accountAccessBindingNameTemplate;
 
     private static $accountUserLinkNameTemplate;
 
     private static $attributionSettingsNameTemplate;
 
     private static $audienceNameTemplate;
+
+    private static $bigQueryLinkNameTemplate;
 
     private static $conversionEventNameTemplate;
 
@@ -248,6 +278,8 @@ class AnalyticsAdminServiceGapicClient
 
     private static $displayVideo360AdvertiserLinkProposalNameTemplate;
 
+    private static $expandedDataSetNameTemplate;
+
     private static $firebaseLinkNameTemplate;
 
     private static $globalSiteTagNameTemplate;
@@ -260,7 +292,11 @@ class AnalyticsAdminServiceGapicClient
 
     private static $propertyNameTemplate;
 
+    private static $propertyAccessBindingNameTemplate;
+
     private static $propertyUserLinkNameTemplate;
+
+    private static $searchAds360LinkNameTemplate;
 
     private static $userLinkNameTemplate;
 
@@ -285,6 +321,15 @@ class AnalyticsAdminServiceGapicClient
         ];
     }
 
+    private static function getAccessBindingNameTemplate()
+    {
+        if (self::$accessBindingNameTemplate == null) {
+            self::$accessBindingNameTemplate = new PathTemplate('accounts/{account}/accessBindings/{access_binding}');
+        }
+
+        return self::$accessBindingNameTemplate;
+    }
+
     private static function getAccountNameTemplate()
     {
         if (self::$accountNameTemplate == null) {
@@ -292,6 +337,15 @@ class AnalyticsAdminServiceGapicClient
         }
 
         return self::$accountNameTemplate;
+    }
+
+    private static function getAccountAccessBindingNameTemplate()
+    {
+        if (self::$accountAccessBindingNameTemplate == null) {
+            self::$accountAccessBindingNameTemplate = new PathTemplate('accounts/{account}/accessBindings/{access_binding}');
+        }
+
+        return self::$accountAccessBindingNameTemplate;
     }
 
     private static function getAccountUserLinkNameTemplate()
@@ -319,6 +373,15 @@ class AnalyticsAdminServiceGapicClient
         }
 
         return self::$audienceNameTemplate;
+    }
+
+    private static function getBigQueryLinkNameTemplate()
+    {
+        if (self::$bigQueryLinkNameTemplate == null) {
+            self::$bigQueryLinkNameTemplate = new PathTemplate('properties/{property}/bigQueryLinks/{bigquery_link}');
+        }
+
+        return self::$bigQueryLinkNameTemplate;
     }
 
     private static function getConversionEventNameTemplate()
@@ -393,6 +456,15 @@ class AnalyticsAdminServiceGapicClient
         return self::$displayVideo360AdvertiserLinkProposalNameTemplate;
     }
 
+    private static function getExpandedDataSetNameTemplate()
+    {
+        if (self::$expandedDataSetNameTemplate == null) {
+            self::$expandedDataSetNameTemplate = new PathTemplate('properties/{property}/expandedDataSets/{expanded_data_set}');
+        }
+
+        return self::$expandedDataSetNameTemplate;
+    }
+
     private static function getFirebaseLinkNameTemplate()
     {
         if (self::$firebaseLinkNameTemplate == null) {
@@ -447,6 +519,15 @@ class AnalyticsAdminServiceGapicClient
         return self::$propertyNameTemplate;
     }
 
+    private static function getPropertyAccessBindingNameTemplate()
+    {
+        if (self::$propertyAccessBindingNameTemplate == null) {
+            self::$propertyAccessBindingNameTemplate = new PathTemplate('properties/{property}/accessBindings/{access_binding}');
+        }
+
+        return self::$propertyAccessBindingNameTemplate;
+    }
+
     private static function getPropertyUserLinkNameTemplate()
     {
         if (self::$propertyUserLinkNameTemplate == null) {
@@ -454,6 +535,15 @@ class AnalyticsAdminServiceGapicClient
         }
 
         return self::$propertyUserLinkNameTemplate;
+    }
+
+    private static function getSearchAds360LinkNameTemplate()
+    {
+        if (self::$searchAds360LinkNameTemplate == null) {
+            self::$searchAds360LinkNameTemplate = new PathTemplate('properties/{property}/searchAds360Links/{search_ads_360_link}');
+        }
+
+        return self::$searchAds360LinkNameTemplate;
     }
 
     private static function getUserLinkNameTemplate()
@@ -469,10 +559,13 @@ class AnalyticsAdminServiceGapicClient
     {
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
+                'accessBinding' => self::getAccessBindingNameTemplate(),
                 'account' => self::getAccountNameTemplate(),
+                'accountAccessBinding' => self::getAccountAccessBindingNameTemplate(),
                 'accountUserLink' => self::getAccountUserLinkNameTemplate(),
                 'attributionSettings' => self::getAttributionSettingsNameTemplate(),
                 'audience' => self::getAudienceNameTemplate(),
+                'bigQueryLink' => self::getBigQueryLinkNameTemplate(),
                 'conversionEvent' => self::getConversionEventNameTemplate(),
                 'customDimension' => self::getCustomDimensionNameTemplate(),
                 'customMetric' => self::getCustomMetricNameTemplate(),
@@ -481,18 +574,40 @@ class AnalyticsAdminServiceGapicClient
                 'dataStream' => self::getDataStreamNameTemplate(),
                 'displayVideo360AdvertiserLink' => self::getDisplayVideo360AdvertiserLinkNameTemplate(),
                 'displayVideo360AdvertiserLinkProposal' => self::getDisplayVideo360AdvertiserLinkProposalNameTemplate(),
+                'expandedDataSet' => self::getExpandedDataSetNameTemplate(),
                 'firebaseLink' => self::getFirebaseLinkNameTemplate(),
                 'globalSiteTag' => self::getGlobalSiteTagNameTemplate(),
                 'googleAdsLink' => self::getGoogleAdsLinkNameTemplate(),
                 'googleSignalsSettings' => self::getGoogleSignalsSettingsNameTemplate(),
                 'measurementProtocolSecret' => self::getMeasurementProtocolSecretNameTemplate(),
                 'property' => self::getPropertyNameTemplate(),
+                'propertyAccessBinding' => self::getPropertyAccessBindingNameTemplate(),
                 'propertyUserLink' => self::getPropertyUserLinkNameTemplate(),
+                'searchAds360Link' => self::getSearchAds360LinkNameTemplate(),
                 'userLink' => self::getUserLinkNameTemplate(),
             ];
         }
 
         return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * access_binding resource.
+     *
+     * @param string $account
+     * @param string $accessBinding
+     *
+     * @return string The formatted access_binding resource.
+     *
+     * @experimental
+     */
+    public static function accessBindingName($account, $accessBinding)
+    {
+        return self::getAccessBindingNameTemplate()->render([
+            'account' => $account,
+            'access_binding' => $accessBinding,
+        ]);
     }
 
     /**
@@ -509,6 +624,25 @@ class AnalyticsAdminServiceGapicClient
     {
         return self::getAccountNameTemplate()->render([
             'account' => $account,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * account_access_binding resource.
+     *
+     * @param string $account
+     * @param string $accessBinding
+     *
+     * @return string The formatted account_access_binding resource.
+     *
+     * @experimental
+     */
+    public static function accountAccessBindingName($account, $accessBinding)
+    {
+        return self::getAccountAccessBindingNameTemplate()->render([
+            'account' => $account,
+            'access_binding' => $accessBinding,
         ]);
     }
 
@@ -564,6 +698,25 @@ class AnalyticsAdminServiceGapicClient
         return self::getAudienceNameTemplate()->render([
             'property' => $property,
             'audience' => $audience,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * big_query_link resource.
+     *
+     * @param string $property
+     * @param string $bigqueryLink
+     *
+     * @return string The formatted big_query_link resource.
+     *
+     * @experimental
+     */
+    public static function bigQueryLinkName($property, $bigqueryLink)
+    {
+        return self::getBigQueryLinkNameTemplate()->render([
+            'property' => $property,
+            'bigquery_link' => $bigqueryLink,
         ]);
     }
 
@@ -717,6 +870,25 @@ class AnalyticsAdminServiceGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * expanded_data_set resource.
+     *
+     * @param string $property
+     * @param string $expandedDataSet
+     *
+     * @return string The formatted expanded_data_set resource.
+     *
+     * @experimental
+     */
+    public static function expandedDataSetName($property, $expandedDataSet)
+    {
+        return self::getExpandedDataSetNameTemplate()->render([
+            'property' => $property,
+            'expanded_data_set' => $expandedDataSet,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * firebase_link resource.
      *
      * @param string $property
@@ -829,6 +1001,25 @@ class AnalyticsAdminServiceGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * property_access_binding resource.
+     *
+     * @param string $property
+     * @param string $accessBinding
+     *
+     * @return string The formatted property_access_binding resource.
+     *
+     * @experimental
+     */
+    public static function propertyAccessBindingName($property, $accessBinding)
+    {
+        return self::getPropertyAccessBindingNameTemplate()->render([
+            'property' => $property,
+            'access_binding' => $accessBinding,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * property_user_link resource.
      *
      * @param string $property
@@ -843,6 +1034,25 @@ class AnalyticsAdminServiceGapicClient
         return self::getPropertyUserLinkNameTemplate()->render([
             'property' => $property,
             'user_link' => $userLink,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * search_ads360_link resource.
+     *
+     * @param string $property
+     * @param string $searchAds360Link
+     *
+     * @return string The formatted search_ads360_link resource.
+     *
+     * @experimental
+     */
+    public static function searchAds360LinkName($property, $searchAds360Link)
+    {
+        return self::getSearchAds360LinkNameTemplate()->render([
+            'property' => $property,
+            'search_ads_360_link' => $searchAds360Link,
         ]);
     }
 
@@ -869,10 +1079,13 @@ class AnalyticsAdminServiceGapicClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - accessBinding: accounts/{account}/accessBindings/{access_binding}
      * - account: accounts/{account}
+     * - accountAccessBinding: accounts/{account}/accessBindings/{access_binding}
      * - accountUserLink: accounts/{account}/userLinks/{user_link}
      * - attributionSettings: properties/{property}/attributionSettings
      * - audience: properties/{property}/audiences/{audience}
+     * - bigQueryLink: properties/{property}/bigQueryLinks/{bigquery_link}
      * - conversionEvent: properties/{property}/conversionEvents/{conversion_event}
      * - customDimension: properties/{property}/customDimensions/{custom_dimension}
      * - customMetric: properties/{property}/customMetrics/{custom_metric}
@@ -881,13 +1094,16 @@ class AnalyticsAdminServiceGapicClient
      * - dataStream: properties/{property}/dataStreams/{data_stream}
      * - displayVideo360AdvertiserLink: properties/{property}/displayVideo360AdvertiserLinks/{display_video_360_advertiser_link}
      * - displayVideo360AdvertiserLinkProposal: properties/{property}/displayVideo360AdvertiserLinkProposals/{display_video_360_advertiser_link_proposal}
+     * - expandedDataSet: properties/{property}/expandedDataSets/{expanded_data_set}
      * - firebaseLink: properties/{property}/firebaseLinks/{firebase_link}
      * - globalSiteTag: properties/{property}/dataStreams/{data_stream}/globalSiteTag
      * - googleAdsLink: properties/{property}/googleAdsLinks/{google_ads_link}
      * - googleSignalsSettings: properties/{property}/googleSignalsSettings
      * - measurementProtocolSecret: properties/{property}/dataStreams/{data_stream}/measurementProtocolSecrets/{measurement_protocol_secret}
      * - property: properties/{property}
+     * - propertyAccessBinding: properties/{property}/accessBindings/{access_binding}
      * - propertyUserLink: properties/{property}/userLinks/{user_link}
+     * - searchAds360Link: properties/{property}/searchAds360Links/{search_ads_360_link}
      * - userLink: accounts/{account}/userLinks/{user_link}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
@@ -933,9 +1149,6 @@ class AnalyticsAdminServiceGapicClient
      * @param array $options {
      *     Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress
-     *           **Deprecated**. This option will be removed in a future major release. Please
-     *           utilize the `$apiEndpoint` option instead.
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'analyticsadmin.googleapis.com:443'.
@@ -965,7 +1178,7 @@ class AnalyticsAdminServiceGapicClient
      *           *Advanced usage*: Additionally, it is possible to pass in an already
      *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
      *           that when this object is provided, any settings in $transportConfig, and any
-     *           $serviceAddress setting, will be ignored.
+     *           $apiEndpoint setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
      *           each supported transport type should be passed in a key for that transport. For
@@ -996,7 +1209,8 @@ class AnalyticsAdminServiceGapicClient
      * Acknowledges the terms of user data collection for the specified property.
      *
      * This acknowledgement must be completed (either in the Google Analytics UI
-     * or via this API) before MeasurementProtocolSecret resources may be created.
+     * or through this API) before MeasurementProtocolSecret resources may be
+     * created.
      *
      * Sample code:
      * ```
@@ -1011,8 +1225,8 @@ class AnalyticsAdminServiceGapicClient
      * ```
      *
      * @param string $property        Required. The property for which to acknowledge user data collection.
-     * @param string $acknowledgement Required. An acknowledgement that the caller of this method understands the terms
-     *                                of user data collection.
+     * @param string $acknowledgement Required. An acknowledgement that the caller of this method understands the
+     *                                terms of user data collection.
      *
      *                                This field must contain the exact value:
      *                                "I acknowledge that I have the necessary privacy disclosures and rights
@@ -1288,6 +1502,59 @@ class AnalyticsAdminServiceGapicClient
     }
 
     /**
+     * Creates information about multiple access bindings to an account or
+     * property.
+     *
+     * This method is transactional. If any AccessBinding cannot be created, none
+     * of the AccessBindings will be created.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $formattedParent = $analyticsAdminServiceClient->accountName('[ACCOUNT]');
+     *     $requests = [];
+     *     $response = $analyticsAdminServiceClient->batchCreateAccessBindings($formattedParent, $requests);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string                       $parent       Required. The account or property that owns the access bindings. The parent
+     *                                                   field in the CreateAccessBindingRequest messages must either be empty or
+     *                                                   match this field. Formats:
+     *                                                   - accounts/{account}
+     *                                                   - properties/{property}
+     * @param CreateAccessBindingRequest[] $requests     Required. The requests specifying the access bindings to create.
+     *                                                   A maximum of 1000 access bindings can be created in a batch.
+     * @param array                        $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Analytics\Admin\V1alpha\BatchCreateAccessBindingsResponse
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function batchCreateAccessBindings($parent, $requests, array $optionalArgs = [])
+    {
+        $request = new BatchCreateAccessBindingsRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setRequests($requests);
+        $requestParamHeaders['parent'] = $parent;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('BatchCreateAccessBindings', BatchCreateAccessBindingsResponse::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Creates information about multiple users' links to an account or property.
      *
      * This method is transactional. If any UserLink cannot be created, none of
@@ -1305,8 +1572,8 @@ class AnalyticsAdminServiceGapicClient
      * }
      * ```
      *
-     * @param string                  $parent       Required. The account or property that all user links in the request are for.
-     *                                              This field is required. The parent field in the CreateUserLinkRequest
+     * @param string                  $parent       Required. The account or property that all user links in the request are
+     *                                              for. This field is required. The parent field in the CreateUserLinkRequest
      *                                              messages must either be empty or match this field.
      *                                              Example format: accounts/1234
      * @param CreateUserLinkRequest[] $requests     Required. The requests specifying the user links to create.
@@ -1315,9 +1582,9 @@ class AnalyticsAdminServiceGapicClient
      *     Optional.
      *
      *     @type bool $notifyNewUsers
-     *           Optional. If set, then email the new users notifying them that they've been granted
-     *           permissions to the resource. Regardless of whether this is set or not,
-     *           notify_new_user field inside each individual request is ignored.
+     *           Optional. If set, then email the new users notifying them that they've been
+     *           granted permissions to the resource. Regardless of whether this is set or
+     *           not, notify_new_user field inside each individual request is ignored.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1344,6 +1611,53 @@ class AnalyticsAdminServiceGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('BatchCreateUserLinks', BatchCreateUserLinksResponse::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Deletes information about multiple users' links to an account or property.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $formattedParent = $analyticsAdminServiceClient->accountName('[ACCOUNT]');
+     *     $requests = [];
+     *     $analyticsAdminServiceClient->batchDeleteAccessBindings($formattedParent, $requests);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string                       $parent       Required. The account or property that owns the access bindings. The parent
+     *                                                   field in the DeleteAccessBindingRequest messages must either be empty or
+     *                                                   match this field. Formats:
+     *                                                   - accounts/{account}
+     *                                                   - properties/{property}
+     * @param DeleteAccessBindingRequest[] $requests     Required. The requests specifying the access bindings to delete.
+     *                                                   A maximum of 1000 access bindings can be deleted in a batch.
+     * @param array                        $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function batchDeleteAccessBindings($parent, $requests, array $optionalArgs = [])
+    {
+        $request = new BatchDeleteAccessBindingsRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setRequests($requests);
+        $requestParamHeaders['parent'] = $parent;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('BatchDeleteAccessBindings', GPBEmpty::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -1390,6 +1704,60 @@ class AnalyticsAdminServiceGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('BatchDeleteUserLinks', GPBEmpty::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Gets information about multiple access bindings to an account or property.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $formattedParent = $analyticsAdminServiceClient->accountName('[ACCOUNT]');
+     *     $formattedNames = [
+     *         $analyticsAdminServiceClient->accessBindingName('[ACCOUNT]', '[ACCESS_BINDING]'),
+     *     ];
+     *     $response = $analyticsAdminServiceClient->batchGetAccessBindings($formattedParent, $formattedNames);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string   $parent       Required. The account or property that owns the access bindings. The parent
+     *                               of all provided values for the 'names' field must match this field.
+     *                               Formats:
+     *                               - accounts/{account}
+     *                               - properties/{property}
+     * @param string[] $names        Required. The names of the access bindings to retrieve.
+     *                               A maximum of 1000 access bindings can be retrieved in a batch.
+     *                               Formats:
+     *                               - accounts/{account}/accessBindings/{accessBinding}
+     *                               - properties/{property}/accessBindings/{accessBinding}
+     * @param array    $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Analytics\Admin\V1alpha\BatchGetAccessBindingsResponse
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function batchGetAccessBindings($parent, $names, array $optionalArgs = [])
+    {
+        $request = new BatchGetAccessBindingsRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setNames($names);
+        $requestParamHeaders['parent'] = $parent;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('BatchGetAccessBindings', BatchGetAccessBindingsResponse::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -1441,6 +1809,56 @@ class AnalyticsAdminServiceGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('BatchGetUserLinks', BatchGetUserLinksResponse::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Updates information about multiple access bindings to an account or
+     * property.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $formattedParent = $analyticsAdminServiceClient->accountName('[ACCOUNT]');
+     *     $requests = [];
+     *     $response = $analyticsAdminServiceClient->batchUpdateAccessBindings($formattedParent, $requests);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string                       $parent       Required. The account or property that owns the access bindings. The parent
+     *                                                   field in the UpdateAccessBindingRequest messages must either be empty or
+     *                                                   match this field. Formats:
+     *                                                   - accounts/{account}
+     *                                                   - properties/{property}
+     * @param UpdateAccessBindingRequest[] $requests     Required. The requests specifying the access bindings to update.
+     *                                                   A maximum of 1000 access bindings can be updated in a batch.
+     * @param array                        $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Analytics\Admin\V1alpha\BatchUpdateAccessBindingsResponse
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function batchUpdateAccessBindings($parent, $requests, array $optionalArgs = [])
+    {
+        $request = new BatchUpdateAccessBindingsRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setRequests($requests);
+        $requestParamHeaders['parent'] = $parent;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('BatchUpdateAccessBindings', BatchUpdateAccessBindingsResponse::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -1538,6 +1956,52 @@ class AnalyticsAdminServiceGapicClient
     }
 
     /**
+     * Creates an access binding on an account or property.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $formattedParent = $analyticsAdminServiceClient->accountName('[ACCOUNT]');
+     *     $accessBinding = new AccessBinding();
+     *     $response = $analyticsAdminServiceClient->createAccessBinding($formattedParent, $accessBinding);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string        $parent        Required. Formats:
+     *                                     - accounts/{account}
+     *                                     - properties/{property}
+     * @param AccessBinding $accessBinding Required. The access binding to create.
+     * @param array         $optionalArgs  {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Analytics\Admin\V1alpha\AccessBinding
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function createAccessBinding($parent, $accessBinding, array $optionalArgs = [])
+    {
+        $request = new CreateAccessBindingRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setAccessBinding($accessBinding);
+        $requestParamHeaders['parent'] = $parent;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('CreateAccessBinding', AccessBinding::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Creates an Audience.
      *
      * Sample code:
@@ -1597,8 +2061,8 @@ class AnalyticsAdminServiceGapicClient
      * ```
      *
      * @param ConversionEvent $conversionEvent Required. The conversion event to create.
-     * @param string          $parent          Required. The resource name of the parent property where this conversion event will
-     *                                         be created. Format: properties/123
+     * @param string          $parent          Required. The resource name of the parent property where this conversion
+     *                                         event will be created. Format: properties/123
      * @param array           $optionalArgs    {
      *     Optional.
      *
@@ -1851,6 +2315,50 @@ class AnalyticsAdminServiceGapicClient
     }
 
     /**
+     * Creates a ExpandedDataSet.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $formattedParent = $analyticsAdminServiceClient->propertyName('[PROPERTY]');
+     *     $expandedDataSet = new ExpandedDataSet();
+     *     $response = $analyticsAdminServiceClient->createExpandedDataSet($formattedParent, $expandedDataSet);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string          $parent          Required. Example format: properties/1234
+     * @param ExpandedDataSet $expandedDataSet Required. The ExpandedDataSet to create.
+     * @param array           $optionalArgs    {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Analytics\Admin\V1alpha\ExpandedDataSet
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function createExpandedDataSet($parent, $expandedDataSet, array $optionalArgs = [])
+    {
+        $request = new CreateExpandedDataSetRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setExpandedDataSet($expandedDataSet);
+        $requestParamHeaders['parent'] = $parent;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('CreateExpandedDataSet', ExpandedDataSet::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Creates a FirebaseLink.
      *
      * Properties can have at most one FirebaseLink.
@@ -2025,6 +2533,50 @@ class AnalyticsAdminServiceGapicClient
     }
 
     /**
+     * Creates a SearchAds360Link.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $formattedParent = $analyticsAdminServiceClient->propertyName('[PROPERTY]');
+     *     $searchAds360Link = new SearchAds360Link();
+     *     $response = $analyticsAdminServiceClient->createSearchAds360Link($formattedParent, $searchAds360Link);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string           $parent           Required. Example format: properties/1234
+     * @param SearchAds360Link $searchAds360Link Required. The SearchAds360Link to create.
+     * @param array            $optionalArgs     {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Analytics\Admin\V1alpha\SearchAds360Link
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function createSearchAds360Link($parent, $searchAds360Link, array $optionalArgs = [])
+    {
+        $request = new CreateSearchAds360LinkRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setSearchAds360Link($searchAds360Link);
+        $requestParamHeaders['parent'] = $parent;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('CreateSearchAds360Link', SearchAds360Link::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Creates a user link on an account or property.
      *
      * If the user with the specified email already has permissions on the
@@ -2049,8 +2601,8 @@ class AnalyticsAdminServiceGapicClient
      *     Optional.
      *
      *     @type bool $notifyNewUser
-     *           Optional. If set, then email the new user notifying them that they've been granted
-     *           permissions to the resource.
+     *           Optional. If set, then email the new user notifying them that they've been
+     *           granted permissions to the resource.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2077,6 +2629,47 @@ class AnalyticsAdminServiceGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CreateUserLink', UserLink::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Deletes an access binding on an account or property.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $formattedName = $analyticsAdminServiceClient->accessBindingName('[ACCOUNT]', '[ACCESS_BINDING]');
+     *     $analyticsAdminServiceClient->deleteAccessBinding($formattedName);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Formats:
+     *                             - accounts/{account}/accessBindings/{accessBinding}
+     *                             - properties/{property}/accessBindings/{accessBinding}
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function deleteAccessBinding($name, array $optionalArgs = [])
+    {
+        $request = new DeleteAccessBindingRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('DeleteAccessBinding', GPBEmpty::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -2293,6 +2886,45 @@ class AnalyticsAdminServiceGapicClient
     }
 
     /**
+     * Deletes a ExpandedDataSet on a property.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $formattedName = $analyticsAdminServiceClient->expandedDataSetName('[PROPERTY]', '[EXPANDED_DATA_SET]');
+     *     $analyticsAdminServiceClient->deleteExpandedDataSet($formattedName);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Example format: properties/1234/expandedDataSets/5678
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function deleteExpandedDataSet($name, array $optionalArgs = [])
+    {
+        $request = new DeleteExpandedDataSetRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('DeleteExpandedDataSet', GPBEmpty::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Deletes a FirebaseLink on a property
      *
      * Sample code:
@@ -2423,7 +3055,7 @@ class AnalyticsAdminServiceGapicClient
      * will be permanently purged.
      * https://support.google.com/analytics/answer/6154772
      *
-     * Returns an error if the target is not found, or is not an GA4 Property.
+     * Returns an error if the target is not found, or is not a GA4 Property.
      *
      * Sample code:
      * ```
@@ -2466,6 +3098,46 @@ class AnalyticsAdminServiceGapicClient
     }
 
     /**
+     * Deletes a SearchAds360Link on a property.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $formattedName = $analyticsAdminServiceClient->searchAds360LinkName('[PROPERTY]', '[SEARCH_ADS_360_LINK]');
+     *     $analyticsAdminServiceClient->deleteSearchAds360Link($formattedName);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the SearchAds360Link to delete.
+     *                             Example format: properties/1234/SearchAds360Links/5678
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function deleteSearchAds360Link($name, array $optionalArgs = [])
+    {
+        $request = new DeleteSearchAds360LinkRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('DeleteSearchAds360Link', GPBEmpty::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Deletes a user link on an account or property.
      *
      * Sample code:
@@ -2502,6 +3174,92 @@ class AnalyticsAdminServiceGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteUserLink', GPBEmpty::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Fetches the opt out status for the automated GA4 setup process for a UA
+     * property.
+     * Note: this has no effect on GA4 property.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $property = 'property';
+     *     $response = $analyticsAdminServiceClient->fetchAutomatedGa4ConfigurationOptOut($property);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $property     Required. The UA property to get the opt out status. Note this request uses
+     *                             the internal property ID, not the tracking ID of the form UA-XXXXXX-YY.
+     *                             Format: properties/{internalWebPropertyId}
+     *                             Example: properties/1234
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Analytics\Admin\V1alpha\FetchAutomatedGa4ConfigurationOptOutResponse
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function fetchAutomatedGa4ConfigurationOptOut($property, array $optionalArgs = [])
+    {
+        $request = new FetchAutomatedGa4ConfigurationOptOutRequest();
+        $request->setProperty($property);
+        return $this->startCall('FetchAutomatedGa4ConfigurationOptOut', FetchAutomatedGa4ConfigurationOptOutResponse::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Gets information about an access binding.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $formattedName = $analyticsAdminServiceClient->accessBindingName('[ACCOUNT]', '[ACCESS_BINDING]');
+     *     $response = $analyticsAdminServiceClient->getAccessBinding($formattedName);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the access binding to retrieve.
+     *                             Formats:
+     *                             - accounts/{account}/accessBindings/{accessBinding}
+     *                             - properties/{property}/accessBindings/{accessBinding}
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Analytics\Admin\V1alpha\AccessBinding
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function getAccessBinding($name, array $optionalArgs = [])
+    {
+        $request = new GetAccessBindingRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetAccessBinding', AccessBinding::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -2592,6 +3350,7 @@ class AnalyticsAdminServiceGapicClient
     /**
      * Lookup for a single Audience.
      * Audiences created before 2020 may not be supported.
+     * Default audiences will not show filter definitions.
      *
      * Sample code:
      * ```
@@ -2630,6 +3389,49 @@ class AnalyticsAdminServiceGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetAudience', Audience::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Lookup for a single BigQuery Link.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $formattedName = $analyticsAdminServiceClient->bigQueryLinkName('[PROPERTY]', '[BIGQUERY_LINK]');
+     *     $response = $analyticsAdminServiceClient->getBigQueryLink($formattedName);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the BigQuery link to lookup.
+     *                             Format: properties/{property_id}/bigQueryLinks/{bigquery_link_id}
+     *                             Example: properties/123/bigQueryLinks/456
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Analytics\Admin\V1alpha\BigQueryLink
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function getBigQueryLink($name, array $optionalArgs = [])
+    {
+        $request = new GetBigQueryLinkRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetBigQueryLink', BigQueryLink::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -2974,6 +3776,48 @@ class AnalyticsAdminServiceGapicClient
     }
 
     /**
+     * Lookup for a single ExpandedDataSet.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $formattedName = $analyticsAdminServiceClient->expandedDataSetName('[PROPERTY]', '[EXPANDED_DATA_SET]');
+     *     $response = $analyticsAdminServiceClient->getExpandedDataSet($formattedName);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the Audience to get.
+     *                             Example format: properties/1234/expandedDataSets/5678
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Analytics\Admin\V1alpha\ExpandedDataSet
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function getExpandedDataSet($name, array $optionalArgs = [])
+    {
+        $request = new GetExpandedDataSetRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetExpandedDataSet', ExpandedDataSet::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Returns the Site Tag for the specified web stream.
      * Site Tags are immutable singletons.
      *
@@ -3147,6 +3991,48 @@ class AnalyticsAdminServiceGapicClient
     }
 
     /**
+     * Look up a single SearchAds360Link
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $formattedName = $analyticsAdminServiceClient->searchAds360LinkName('[PROPERTY]', '[SEARCH_ADS_360_LINK]');
+     *     $response = $analyticsAdminServiceClient->getSearchAds360Link($formattedName);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the SearchAds360Link to get.
+     *                             Example format: properties/1234/SearchAds360Link/5678
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Analytics\Admin\V1alpha\SearchAds360Link
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function getSearchAds360Link($name, array $optionalArgs = [])
+    {
+        $request = new GetSearchAds360LinkRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetSearchAds360Link', SearchAds360Link::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Gets information about a user's link to an account or property.
      *
      * Sample code:
@@ -3185,6 +4071,78 @@ class AnalyticsAdminServiceGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetUserLink', UserLink::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Lists all access bindings on an account or property.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $formattedParent = $analyticsAdminServiceClient->accountName('[ACCOUNT]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $analyticsAdminServiceClient->listAccessBindings($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $analyticsAdminServiceClient->listAccessBindings($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. Formats:
+     *                             - accounts/{account}
+     *                             - properties/{property}
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function listAccessBindings($parent, array $optionalArgs = [])
+    {
+        $request = new ListAccessBindingsRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->getPagedListResponse('ListAccessBindings', $optionalArgs, ListAccessBindingsResponse::class, $request);
     }
 
     /**
@@ -3328,6 +4286,7 @@ class AnalyticsAdminServiceGapicClient
     /**
      * Lists Audiences on a property.
      * Audiences created before 2020 may not be supported.
+     * Default audiences will not show filter definitions.
      *
      * Sample code:
      * ```
@@ -3394,6 +4353,78 @@ class AnalyticsAdminServiceGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->getPagedListResponse('ListAudiences', $optionalArgs, ListAudiencesResponse::class, $request);
+    }
+
+    /**
+     * Lists BigQuery Links on a property.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $formattedParent = $analyticsAdminServiceClient->propertyName('[PROPERTY]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $analyticsAdminServiceClient->listBigQueryLinks($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $analyticsAdminServiceClient->listBigQueryLinks($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The name of the property to list BigQuery links under.
+     *                             Format: properties/{property_id}
+     *                             Example: properties/1234
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function listBigQueryLinks($parent, array $optionalArgs = [])
+    {
+        $request = new ListBigQueryLinksRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->getPagedListResponse('ListBigQueryLinks', $optionalArgs, ListBigQueryLinksResponse::class, $request);
     }
 
     /**
@@ -3820,6 +4851,76 @@ class AnalyticsAdminServiceGapicClient
     }
 
     /**
+     * Lists ExpandedDataSets on a property.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $formattedParent = $analyticsAdminServiceClient->propertyName('[PROPERTY]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $analyticsAdminServiceClient->listExpandedDataSets($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $analyticsAdminServiceClient->listExpandedDataSets($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. Example format: properties/1234
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function listExpandedDataSets($parent, array $optionalArgs = [])
+    {
+        $request = new ListExpandedDataSetsRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->getPagedListResponse('ListExpandedDataSets', $optionalArgs, ListExpandedDataSetsResponse::class, $request);
+    }
+
+    /**
      * Lists FirebaseLinks on a property.
      * Properties can have at most one FirebaseLink.
      *
@@ -4129,6 +5230,76 @@ class AnalyticsAdminServiceGapicClient
     }
 
     /**
+     * Lists all SearchAds360Links on a property.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $formattedParent = $analyticsAdminServiceClient->propertyName('[PROPERTY]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $analyticsAdminServiceClient->listSearchAds360Links($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $analyticsAdminServiceClient->listSearchAds360Links($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. Example format: properties/1234
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function listSearchAds360Links($parent, array $optionalArgs = [])
+    {
+        $request = new ListSearchAds360LinksRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->getPagedListResponse('ListSearchAds360Links', $optionalArgs, ListSearchAds360LinksResponse::class, $request);
+    }
+
+    /**
      * Lists all user links on an account or property.
      *
      * Sample code:
@@ -4218,7 +5389,7 @@ class AnalyticsAdminServiceGapicClient
      *           The account to create.
      *     @type string $redirectUri
      *           Redirect URI where the user will be sent after accepting Terms of Service.
-     *           Must be configured in Developers Console as a Redirect URI
+     *           Must be configured in Developers Console as a Redirect URI.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -4290,7 +5461,7 @@ class AnalyticsAdminServiceGapicClient
      *           included in the response rows for both date ranges. Requests are allowed up
      *           to 2 date ranges.
      *     @type AccessFilterExpression $dimensionFilter
-     *           Dimension filters allow you to restrict report response to specific
+     *           Dimension filters let you restrict report response to specific
      *           dimension values which match the filter. For example, filtering on access
      *           records of a single user. To learn more, see [Fundamentals of Dimension
      *           Filters](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#dimension_filters)
@@ -4426,7 +5597,8 @@ class AnalyticsAdminServiceGapicClient
      * }
      * ```
      *
-     * @param string $account      Required. The account resource for which to return change history resources.
+     * @param string $account      Required. The account resource for which to return change history
+     *                             resources.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -4434,15 +5606,16 @@ class AnalyticsAdminServiceGapicClient
      *           Optional. Resource name for a child property. If set, only return changes
      *           made to this property or its child resources.
      *     @type int[] $resourceType
-     *           Optional. If set, only return changes if they are for a resource that matches at
-     *           least one of these types.
+     *           Optional. If set, only return changes if they are for a resource that
+     *           matches at least one of these types.
      *           For allowed values, use constants defined on {@see \Google\Analytics\Admin\V1alpha\ChangeHistoryResourceType}
      *     @type int[] $action
-     *           Optional. If set, only return changes that match one or more of these types of
-     *           actions.
+     *           Optional. If set, only return changes that match one or more of these types
+     *           of actions.
      *           For allowed values, use constants defined on {@see \Google\Analytics\Admin\V1alpha\ActionType}
      *     @type string[] $actorEmail
-     *           Optional. If set, only return changes if they are made by a user in this list.
+     *           Optional. If set, only return changes if they are made by a user in this
+     *           list.
      *     @type Timestamp $earliestChangeTime
      *           Optional. If set, only return changes made after this time (inclusive).
      *     @type Timestamp $latestChangeTime
@@ -4512,6 +5685,95 @@ class AnalyticsAdminServiceGapicClient
     }
 
     /**
+     * Sets the opt out status for the automated GA4 setup process for a UA
+     * property.
+     * Note: this has no effect on GA4 property.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $property = 'property';
+     *     $response = $analyticsAdminServiceClient->setAutomatedGa4ConfigurationOptOut($property);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $property     Required. The UA property to set the opt out status. Note this request uses
+     *                             the internal property ID, not the tracking ID of the form UA-XXXXXX-YY.
+     *                             Format: properties/{internalWebPropertyId}
+     *                             Example: properties/1234
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type bool $optOut
+     *           The status to set.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Analytics\Admin\V1alpha\SetAutomatedGa4ConfigurationOptOutResponse
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function setAutomatedGa4ConfigurationOptOut($property, array $optionalArgs = [])
+    {
+        $request = new SetAutomatedGa4ConfigurationOptOutRequest();
+        $request->setProperty($property);
+        if (isset($optionalArgs['optOut'])) {
+            $request->setOptOut($optionalArgs['optOut']);
+        }
+
+        return $this->startCall('SetAutomatedGa4ConfigurationOptOut', SetAutomatedGa4ConfigurationOptOutResponse::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Updates an access binding on an account or property.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $accessBinding = new AccessBinding();
+     *     $response = $analyticsAdminServiceClient->updateAccessBinding($accessBinding);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param AccessBinding $accessBinding Required. The access binding to update.
+     * @param array         $optionalArgs  {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Analytics\Admin\V1alpha\AccessBinding
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function updateAccessBinding($accessBinding, array $optionalArgs = [])
+    {
+        $request = new UpdateAccessBindingRequest();
+        $requestParamHeaders = [];
+        $request->setAccessBinding($accessBinding);
+        $requestParamHeaders['access_binding.name'] = $accessBinding->getName();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('UpdateAccessBinding', AccessBinding::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Updates an account.
      *
      * Sample code:
@@ -4528,9 +5790,10 @@ class AnalyticsAdminServiceGapicClient
      *
      * @param Account   $account      Required. The account to update.
      *                                The account's `name` field is used to identify the account.
-     * @param FieldMask $updateMask   Required. The list of fields to be updated. Field names must be in snake case
-     *                                (e.g., "field_to_update"). Omitted fields will not be updated. To replace
-     *                                the entire entity, use one path with the string "*" to match all fields.
+     * @param FieldMask $updateMask   Required. The list of fields to be updated. Field names must be in snake
+     *                                case (for example, "field_to_update"). Omitted fields will not be updated.
+     *                                To replace the entire entity, use one path with the string "*" to match all
+     *                                fields.
      * @param array     $optionalArgs {
      *     Optional.
      *
@@ -4575,9 +5838,10 @@ class AnalyticsAdminServiceGapicClient
      *
      * @param AttributionSettings $attributionSettings Required. The attribution settings to update.
      *                                                 The `name` field is used to identify the settings to be updated.
-     * @param FieldMask           $updateMask          Required. The list of fields to be updated. Field names must be in snake case
-     *                                                 (e.g., "field_to_update"). Omitted fields will not be updated. To replace
-     *                                                 the entire entity, use one path with the string "*" to match all fields.
+     * @param FieldMask           $updateMask          Required. The list of fields to be updated. Field names must be in snake
+     *                                                 case (e.g., "field_to_update"). Omitted fields will not be updated. To
+     *                                                 replace the entire entity, use one path with the string "*" to match all
+     *                                                 fields.
      * @param array               $optionalArgs        {
      *     Optional.
      *
@@ -4622,9 +5886,10 @@ class AnalyticsAdminServiceGapicClient
      *
      * @param Audience  $audience     Required. The audience to update.
      *                                The audience's `name` field is used to identify the audience to be updated.
-     * @param FieldMask $updateMask   Required. The list of fields to be updated. Field names must be in snake case
-     *                                (e.g., "field_to_update"). Omitted fields will not be updated. To replace
-     *                                the entire entity, use one path with the string "*" to match all fields.
+     * @param FieldMask $updateMask   Required. The list of fields to be updated. Field names must be in snake
+     *                                case (e.g., "field_to_update"). Omitted fields will not be updated. To
+     *                                replace the entire entity, use one path with the string "*" to match all
+     *                                fields.
      * @param array     $optionalArgs {
      *     Optional.
      *
@@ -4666,9 +5931,9 @@ class AnalyticsAdminServiceGapicClient
      * }
      * ```
      *
-     * @param FieldMask $updateMask   Required. The list of fields to be updated. Omitted fields will not be updated.
-     *                                To replace the entire entity, use one path with the string "*" to match
-     *                                all fields.
+     * @param FieldMask $updateMask   Required. The list of fields to be updated. Omitted fields will not be
+     *                                updated. To replace the entire entity, use one path with the string "*" to
+     *                                match all fields.
      * @param array     $optionalArgs {
      *     Optional.
      *
@@ -4714,9 +5979,9 @@ class AnalyticsAdminServiceGapicClient
      * }
      * ```
      *
-     * @param FieldMask $updateMask   Required. The list of fields to be updated. Omitted fields will not be updated.
-     *                                To replace the entire entity, use one path with the string "*" to match
-     *                                all fields.
+     * @param FieldMask $updateMask   Required. The list of fields to be updated. Omitted fields will not be
+     *                                updated. To replace the entire entity, use one path with the string "*" to
+     *                                match all fields.
      * @param array     $optionalArgs {
      *     Optional.
      *
@@ -4765,9 +6030,10 @@ class AnalyticsAdminServiceGapicClient
      *
      * @param DataRetentionSettings $dataRetentionSettings Required. The settings to update.
      *                                                     The `name` field is used to identify the settings to be updated.
-     * @param FieldMask             $updateMask            Required. The list of fields to be updated. Field names must be in snake case
-     *                                                     (e.g., "field_to_update"). Omitted fields will not be updated. To replace
-     *                                                     the entire entity, use one path with the string "*" to match all fields.
+     * @param FieldMask             $updateMask            Required. The list of fields to be updated. Field names must be in snake
+     *                                                     case (e.g., "field_to_update"). Omitted fields will not be updated. To
+     *                                                     replace the entire entity, use one path with the string "*" to match all
+     *                                                     fields.
      * @param array                 $optionalArgs          {
      *     Optional.
      *
@@ -4809,9 +6075,9 @@ class AnalyticsAdminServiceGapicClient
      * }
      * ```
      *
-     * @param FieldMask $updateMask   Required. The list of fields to be updated. Omitted fields will not be updated.
-     *                                To replace the entire entity, use one path with the string "*" to match
-     *                                all fields.
+     * @param FieldMask $updateMask   Required. The list of fields to be updated. Omitted fields will not be
+     *                                updated. To replace the entire entity, use one path with the string "*" to
+     *                                match all fields.
      * @param array     $optionalArgs {
      *     Optional.
      *
@@ -4857,9 +6123,9 @@ class AnalyticsAdminServiceGapicClient
      * }
      * ```
      *
-     * @param FieldMask $updateMask   Required. The list of fields to be updated. Omitted fields will not be updated.
-     *                                To replace the entire entity, use one path with the string "*" to match
-     *                                all fields.
+     * @param FieldMask $updateMask   Required. The list of fields to be updated. Omitted fields will not be
+     *                                updated. To replace the entire entity, use one path with the string "*" to
+     *                                match all fields.
      * @param array     $optionalArgs {
      *     Optional.
      *
@@ -4892,6 +6158,55 @@ class AnalyticsAdminServiceGapicClient
     }
 
     /**
+     * Updates a ExpandedDataSet on a property.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $expandedDataSet = new ExpandedDataSet();
+     *     $updateMask = new FieldMask();
+     *     $response = $analyticsAdminServiceClient->updateExpandedDataSet($expandedDataSet, $updateMask);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param ExpandedDataSet $expandedDataSet Required. The ExpandedDataSet to update.
+     *                                         The resource's `name` field is used to identify the ExpandedDataSet to be
+     *                                         updated.
+     * @param FieldMask       $updateMask      Required. The list of fields to be updated. Field names must be in snake
+     *                                         case (e.g., "field_to_update"). Omitted fields will not be updated. To
+     *                                         replace the entire entity, use one path with the string "*" to match all
+     *                                         fields.
+     * @param array           $optionalArgs    {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Analytics\Admin\V1alpha\ExpandedDataSet
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function updateExpandedDataSet($expandedDataSet, $updateMask, array $optionalArgs = [])
+    {
+        $request = new UpdateExpandedDataSetRequest();
+        $requestParamHeaders = [];
+        $request->setExpandedDataSet($expandedDataSet);
+        $request->setUpdateMask($updateMask);
+        $requestParamHeaders['expanded_data_set.name'] = $expandedDataSet->getName();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('UpdateExpandedDataSet', ExpandedDataSet::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Updates a GoogleAdsLink on a property
      *
      * Sample code:
@@ -4905,9 +6220,10 @@ class AnalyticsAdminServiceGapicClient
      * }
      * ```
      *
-     * @param FieldMask $updateMask   Required. The list of fields to be updated. Field names must be in snake case
-     *                                (e.g., "field_to_update"). Omitted fields will not be updated. To replace
-     *                                the entire entity, use one path with the string "*" to match all fields.
+     * @param FieldMask $updateMask   Required. The list of fields to be updated. Field names must be in snake
+     *                                case (e.g., "field_to_update"). Omitted fields will not be updated. To
+     *                                replace the entire entity, use one path with the string "*" to match all
+     *                                fields.
      * @param array     $optionalArgs {
      *     Optional.
      *
@@ -4956,9 +6272,10 @@ class AnalyticsAdminServiceGapicClient
      *
      * @param GoogleSignalsSettings $googleSignalsSettings Required. The settings to update.
      *                                                     The `name` field is used to identify the settings to be updated.
-     * @param FieldMask             $updateMask            Required. The list of fields to be updated. Field names must be in snake case
-     *                                                     (e.g., "field_to_update"). Omitted fields will not be updated. To replace
-     *                                                     the entire entity, use one path with the string "*" to match all fields.
+     * @param FieldMask             $updateMask            Required. The list of fields to be updated. Field names must be in snake
+     *                                                     case (e.g., "field_to_update"). Omitted fields will not be updated. To
+     *                                                     replace the entire entity, use one path with the string "*" to match all
+     *                                                     fields.
      * @param array                 $optionalArgs          {
      *     Optional.
      *
@@ -5051,9 +6368,10 @@ class AnalyticsAdminServiceGapicClient
      * @param Property  $property     Required. The property to update.
      *                                The property's `name` field is used to identify the property to be
      *                                updated.
-     * @param FieldMask $updateMask   Required. The list of fields to be updated. Field names must be in snake case
-     *                                (e.g., "field_to_update"). Omitted fields will not be updated. To replace
-     *                                the entire entity, use one path with the string "*" to match all fields.
+     * @param FieldMask $updateMask   Required. The list of fields to be updated. Field names must be in snake
+     *                                case (e.g., "field_to_update"). Omitted fields will not be updated. To
+     *                                replace the entire entity, use one path with the string "*" to match all
+     *                                fields.
      * @param array     $optionalArgs {
      *     Optional.
      *
@@ -5079,6 +6397,54 @@ class AnalyticsAdminServiceGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('UpdateProperty', Property::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Updates a SearchAds360Link on a property.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $updateMask = new FieldMask();
+     *     $response = $analyticsAdminServiceClient->updateSearchAds360Link($updateMask);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param FieldMask $updateMask   Required. The list of fields to be updated. Omitted fields will not be
+     *                                updated. To replace the entire entity, use one path with the string "*" to
+     *                                match all fields.
+     * @param array     $optionalArgs {
+     *     Optional.
+     *
+     *     @type SearchAds360Link $searchAds360Link
+     *           The SearchAds360Link to update
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Analytics\Admin\V1alpha\SearchAds360Link
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function updateSearchAds360Link($updateMask, array $optionalArgs = [])
+    {
+        $request = new UpdateSearchAds360LinkRequest();
+        $requestParamHeaders = [];
+        $request->setUpdateMask($updateMask);
+        if (isset($optionalArgs['searchAds360Link'])) {
+            $request->setSearchAds360Link($optionalArgs['searchAds360Link']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('UpdateSearchAds360Link', SearchAds360Link::class, $optionalArgs, $request)->wait();
     }
 
     /**

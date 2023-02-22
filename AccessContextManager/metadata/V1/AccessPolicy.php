@@ -18,12 +18,13 @@ class AccessPolicy
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-∏
-;google/identity/accesscontextmanager/v1/access_policy.proto\'google.identity.accesscontextmanager.v1google/protobuf/timestamp.proto"Ç
+»
+;google/identity/accesscontextmanager/v1/access_policy.proto\'google.identity.accesscontextmanager.v1google/protobuf/timestamp.proto"í
 AccessPolicy
 name (	
 parent (	
-title (	/
+title (	
+scopes (	/
 create_time (2.google.protobuf.Timestamp/
 update_time (2.google.protobuf.Timestamp
 etag (	:UÍAR

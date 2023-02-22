@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Runtime operation information for [DatasetService.CreateDataset][google.cloud.aiplatform.v1.DatasetService.CreateDataset].
+ * Runtime operation information for
+ * [DatasetService.CreateDataset][google.cloud.aiplatform.v1.DatasetService.CreateDataset].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.CreateDatasetOperationMetadata</code>
  */

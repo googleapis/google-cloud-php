@@ -63,6 +63,16 @@ return [
                     'totalPollTimeoutMillis' => '300000',
                 ],
             ],
+            'EvaluateProcessorVersion' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\DocumentAI\V1\EvaluateProcessorVersionResponse',
+                    'metadataReturnType' => '\Google\Cloud\DocumentAI\V1\EvaluateProcessorVersionMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+            ],
             'ReviewDocument' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\DocumentAI\V1\ReviewDocumentResponse',
@@ -83,6 +93,16 @@ return [
                     'totalPollTimeoutMillis' => '300000',
                 ],
             ],
+            'TrainProcessorVersion' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\DocumentAI\V1\TrainProcessorVersionResponse',
+                    'metadataReturnType' => '\Google\Cloud\DocumentAI\V1\TrainProcessorVersionMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+            ],
             'UndeployProcessorVersion' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\DocumentAI\V1\UndeployProcessorVersionResponse',
@@ -91,6 +111,16 @@ return [
                     'pollDelayMultiplier' => '1.5',
                     'maxPollDelayMillis' => '5000',
                     'totalPollTimeoutMillis' => '300000',
+                ],
+            ],
+            'ListEvaluations' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getEvaluations',
                 ],
             ],
             'ListProcessorTypes' => [

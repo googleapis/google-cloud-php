@@ -16,12 +16,12 @@ class ReleaseRenderPayload
         }
         $pool->internalAddGeneratedFile(
             '
-†
+ü
 3google/cloud/deploy/v1/release_render_payload.protogoogle.cloud.deploy.v1"6
 ReleaseRenderEvent
 message (	
-release (	Bw
-com.google.cloud.deploy.v1BReleaseRenderPayloadProtoPZ<google.golang.org/genproto/googleapis/cloud/deploy/v1;deploybproto3'
+release (	Bm
+com.google.cloud.deploy.v1BReleaseRenderPayloadProtoPZ2cloud.google.com/go/deploy/apiv1/deploypb;deploypbbproto3'
         , true);
 
         static::$is_initialized = true;

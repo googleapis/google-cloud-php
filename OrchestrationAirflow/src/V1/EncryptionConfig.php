@@ -10,16 +10,17 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * The encryption options for the Cloud Composer environment
- * and its dependencies.
+ * and its dependencies.Supported for Cloud Composer environments in versions
+ * composer-1.*.*-airflow-*.*.*.
  *
  * Generated from protobuf message <code>google.cloud.orchestration.airflow.service.v1.EncryptionConfig</code>
  */
 class EncryptionConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. Customer-managed Encryption Key available through Google's Key Management
-     * Service. Cannot be updated.
-     * If not specified, Google-managed key will be used.
+     * Optional. Customer-managed Encryption Key available through Google's Key
+     * Management Service. Cannot be updated. If not specified, Google-managed key
+     * will be used.
      *
      * Generated from protobuf field <code>string kms_key_name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -32,9 +33,9 @@ class EncryptionConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $kms_key_name
-     *           Optional. Customer-managed Encryption Key available through Google's Key Management
-     *           Service. Cannot be updated.
-     *           If not specified, Google-managed key will be used.
+     *           Optional. Customer-managed Encryption Key available through Google's Key
+     *           Management Service. Cannot be updated. If not specified, Google-managed key
+     *           will be used.
      * }
      */
     public function __construct($data = NULL) {
@@ -43,9 +44,9 @@ class EncryptionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Customer-managed Encryption Key available through Google's Key Management
-     * Service. Cannot be updated.
-     * If not specified, Google-managed key will be used.
+     * Optional. Customer-managed Encryption Key available through Google's Key
+     * Management Service. Cannot be updated. If not specified, Google-managed key
+     * will be used.
      *
      * Generated from protobuf field <code>string kms_key_name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -56,9 +57,9 @@ class EncryptionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Customer-managed Encryption Key available through Google's Key Management
-     * Service. Cannot be updated.
-     * If not specified, Google-managed key will be used.
+     * Optional. Customer-managed Encryption Key available through Google's Key
+     * Management Service. Cannot be updated. If not specified, Google-managed key
+     * will be used.
      *
      * Generated from protobuf field <code>string kms_key_name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

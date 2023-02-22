@@ -4,7 +4,7 @@
 if [ "$#" -eq 1 ]; then
     STAGING_BUCKET=$1
 elif [ "$#" -ne 0 ]; then
-    echo "usage: build-docs.sh [STAGING_BUCKET]"
+    echo "usage: publish.sh [STAGING_BUCKET]"
     exit 1;
 fi
 

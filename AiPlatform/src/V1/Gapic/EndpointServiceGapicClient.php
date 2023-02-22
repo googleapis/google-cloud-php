@@ -27,22 +27,19 @@ namespace Google\Cloud\AIPlatform\V1\Gapic;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\Call;
 use Google\ApiCore\CredentialsWrapper;
-
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\LongRunning\OperationsClient;
-
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
-
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\AIPlatform\V1\CreateEndpointRequest;
 use Google\Cloud\AIPlatform\V1\DeleteEndpointRequest;
-use Google\Cloud\AIPlatform\V1\DeployedModel;
 use Google\Cloud\AIPlatform\V1\DeployModelRequest;
+use Google\Cloud\AIPlatform\V1\DeployedModel;
 use Google\Cloud\AIPlatform\V1\Endpoint;
 use Google\Cloud\AIPlatform\V1\GetEndpointRequest;
 use Google\Cloud\AIPlatform\V1\ListEndpointsRequest;
@@ -113,29 +110,19 @@ class EndpointServiceGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.aiplatform.v1.EndpointService';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'aiplatform.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
     ];
@@ -434,9 +421,6 @@ class EndpointServiceGapicClient
      * @param array $options {
      *     Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress
-     *           **Deprecated**. This option will be removed in a future major release. Please
-     *           utilize the `$apiEndpoint` option instead.
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'aiplatform.googleapis.com:443'.
@@ -466,7 +450,7 @@ class EndpointServiceGapicClient
      *           *Advanced usage*: Additionally, it is possible to pass in an already
      *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
      *           that when this object is provided, any settings in $transportConfig, and any
-     *           $serviceAddress setting, will be ignored.
+     *           $apiEndpoint setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
      *           each supported transport type should be passed in a key for that transport. For
@@ -699,8 +683,9 @@ class EndpointServiceGapicClient
      *                                     Format:
      *                                     `projects/{project}/locations/{location}/endpoints/{endpoint}`
      * @param DeployedModel $deployedModel Required. The DeployedModel to be created within the Endpoint. Note that
-     *                                     [Endpoint.traffic_split][google.cloud.aiplatform.v1.Endpoint.traffic_split] must be updated for the DeployedModel to start
-     *                                     receiving traffic, either as part of this call, or via
+     *                                     [Endpoint.traffic_split][google.cloud.aiplatform.v1.Endpoint.traffic_split]
+     *                                     must be updated for the DeployedModel to start receiving traffic, either as
+     *                                     part of this call, or via
      *                                     [EndpointService.UpdateEndpoint][google.cloud.aiplatform.v1.EndpointService.UpdateEndpoint].
      * @param array         $optionalArgs  {
      *     Optional.
@@ -710,13 +695,15 @@ class EndpointServiceGapicClient
      *           traffic that should be forwarded to that DeployedModel.
      *
      *           If this field is non-empty, then the Endpoint's
-     *           [traffic_split][google.cloud.aiplatform.v1.Endpoint.traffic_split] will be overwritten with it.
-     *           To refer to the ID of the just being deployed Model, a "0" should be used,
-     *           and the actual ID of the new DeployedModel will be filled in its place by
-     *           this method. The traffic percentage values must add up to 100.
+     *           [traffic_split][google.cloud.aiplatform.v1.Endpoint.traffic_split] will be
+     *           overwritten with it. To refer to the ID of the just being deployed Model, a
+     *           "0" should be used, and the actual ID of the new DeployedModel will be
+     *           filled in its place by this method. The traffic percentage values must add
+     *           up to 100.
      *
      *           If this field is empty, then the Endpoint's
-     *           [traffic_split][google.cloud.aiplatform.v1.Endpoint.traffic_split] is not updated.
+     *           [traffic_split][google.cloud.aiplatform.v1.Endpoint.traffic_split] is not
+     *           updated.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -831,17 +818,18 @@ class EndpointServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the Location from which to list the Endpoints.
-     *                             Format: `projects/{project}/locations/{location}`
+     * @param string $parent       Required. The resource name of the Location from which to list the
+     *                             Endpoints. Format: `projects/{project}/locations/{location}`
      * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type string $filter
-     *           Optional. An expression for filtering the results of the request. For field names
-     *           both snake_case and camelCase are supported.
+     *           Optional. An expression for filtering the results of the request. For field
+     *           names both snake_case and camelCase are supported.
      *
      *           * `endpoint` supports = and !=. `endpoint` represents the Endpoint ID,
-     *           i.e. the last segment of the Endpoint's [resource name][google.cloud.aiplatform.v1.Endpoint.name].
+     *           i.e. the last segment of the Endpoint's [resource
+     *           name][google.cloud.aiplatform.v1.Endpoint.name].
      *           * `display_name` supports = and, !=
      *           * `labels` supports general map functions that is:
      *           * `labels.key=value` - key:value equality
@@ -972,12 +960,12 @@ class EndpointServiceGapicClient
      *
      *     @type array $trafficSplit
      *           If this field is provided, then the Endpoint's
-     *           [traffic_split][google.cloud.aiplatform.v1.Endpoint.traffic_split] will be overwritten with it. If
-     *           last DeployedModel is being undeployed from the Endpoint, the
-     *           [Endpoint.traffic_split] will always end up empty when this call returns.
-     *           A DeployedModel will be successfully undeployed only if it doesn't have
-     *           any traffic assigned to it when this method executes, or if this field
-     *           unassigns any traffic to it.
+     *           [traffic_split][google.cloud.aiplatform.v1.Endpoint.traffic_split] will be
+     *           overwritten with it. If last DeployedModel is being undeployed from the
+     *           Endpoint, the [Endpoint.traffic_split] will always end up empty when this
+     *           call returns. A DeployedModel will be successfully undeployed only if it
+     *           doesn't have any traffic assigned to it when this method executes, or if
+     *           this field unassigns any traffic to it.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1032,7 +1020,8 @@ class EndpointServiceGapicClient
      * ```
      *
      * @param Endpoint  $endpoint     Required. The Endpoint which replaces the resource on the server.
-     * @param FieldMask $updateMask   Required. The update mask applies to the resource. See [google.protobuf.FieldMask][google.protobuf.FieldMask].
+     * @param FieldMask $updateMask   Required. The update mask applies to the resource. See
+     *                                [google.protobuf.FieldMask][google.protobuf.FieldMask].
      * @param array     $optionalArgs {
      *     Optional.
      *

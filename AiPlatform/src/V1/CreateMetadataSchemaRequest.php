@@ -9,16 +9,16 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [MetadataService.CreateMetadataSchema][google.cloud.aiplatform.v1.MetadataService.CreateMetadataSchema].
+ * Request message for
+ * [MetadataService.CreateMetadataSchema][google.cloud.aiplatform.v1.MetadataService.CreateMetadataSchema].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.CreateMetadataSchemaRequest</code>
  */
 class CreateMetadataSchemaRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name of the MetadataStore where the MetadataSchema should
-     * be created.
-     * Format:
+     * Required. The resource name of the MetadataStore where the MetadataSchema
+     * should be created. Format:
      * `projects/{project}/locations/{location}/metadataStores/{metadatastore}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -51,9 +51,8 @@ class CreateMetadataSchemaRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The resource name of the MetadataStore where the MetadataSchema should
-     *           be created.
-     *           Format:
+     *           Required. The resource name of the MetadataStore where the MetadataSchema
+     *           should be created. Format:
      *           `projects/{project}/locations/{location}/metadataStores/{metadatastore}`
      *     @type \Google\Cloud\AIPlatform\V1\MetadataSchema $metadata_schema
      *           Required. The MetadataSchema to create.
@@ -74,9 +73,8 @@ class CreateMetadataSchemaRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the MetadataStore where the MetadataSchema should
-     * be created.
-     * Format:
+     * Required. The resource name of the MetadataStore where the MetadataSchema
+     * should be created. Format:
      * `projects/{project}/locations/{location}/metadataStores/{metadatastore}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -88,9 +86,8 @@ class CreateMetadataSchemaRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the MetadataStore where the MetadataSchema should
-     * be created.
-     * Format:
+     * Required. The resource name of the MetadataStore where the MetadataSchema
+     * should be created. Format:
      * `projects/{project}/locations/{location}/metadataStores/{metadatastore}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>

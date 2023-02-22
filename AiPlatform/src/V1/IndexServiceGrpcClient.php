@@ -95,7 +95,8 @@ class IndexServiceGrpcClient extends \Grpc\BaseStub {
     /**
      * Deletes an Index.
      * An Index can only be deleted when all its
-     * [DeployedIndexes][google.cloud.aiplatform.v1.Index.deployed_indexes] had been undeployed.
+     * [DeployedIndexes][google.cloud.aiplatform.v1.Index.deployed_indexes] had
+     * been undeployed.
      * @param \Google\Cloud\AIPlatform\V1\DeleteIndexRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options

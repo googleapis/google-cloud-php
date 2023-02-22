@@ -9,17 +9,19 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Configures the output of [BatchPredictionJob][google.cloud.aiplatform.v1.BatchPredictionJob].
- * See [Model.supported_output_storage_formats][google.cloud.aiplatform.v1.Model.supported_output_storage_formats] for supported output
- * formats, and how predictions are expressed via any of them.
+ * Configures the output of
+ * [BatchPredictionJob][google.cloud.aiplatform.v1.BatchPredictionJob]. See
+ * [Model.supported_output_storage_formats][google.cloud.aiplatform.v1.Model.supported_output_storage_formats]
+ * for supported output formats, and how predictions are expressed via any of
+ * them.
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.BatchPredictionJob.OutputConfig</code>
  */
 class OutputConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The format in which Vertex AI gives the predictions, must be one of the
-     * [Model's][google.cloud.aiplatform.v1.BatchPredictionJob.model]
+     * Required. The format in which Vertex AI gives the predictions, must be
+     * one of the [Model's][google.cloud.aiplatform.v1.BatchPredictionJob.model]
      * [supported_output_storage_formats][google.cloud.aiplatform.v1.Model.supported_output_storage_formats].
      *
      * Generated from protobuf field <code>string predictions_format = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -41,11 +43,13 @@ class OutputConfig extends \Google\Protobuf\Internal\Message
      *           Inside of it files `predictions_0001.<extension>`,
      *           `predictions_0002.<extension>`, ..., `predictions_N.<extension>`
      *           are created where `<extension>` depends on chosen
-     *           [predictions_format][google.cloud.aiplatform.v1.BatchPredictionJob.OutputConfig.predictions_format], and N may equal 0001 and depends on the total
-     *           number of successfully predicted instances.
-     *           If the Model has both [instance][google.cloud.aiplatform.v1.PredictSchemata.instance_schema_uri]
-     *           and [prediction][google.cloud.aiplatform.v1.PredictSchemata.parameters_schema_uri] schemata
-     *           defined then each such file contains predictions as per the
+     *           [predictions_format][google.cloud.aiplatform.v1.BatchPredictionJob.OutputConfig.predictions_format],
+     *           and N may equal 0001 and depends on the total number of successfully
+     *           predicted instances. If the Model has both
+     *           [instance][google.cloud.aiplatform.v1.PredictSchemata.instance_schema_uri]
+     *           and
+     *           [prediction][google.cloud.aiplatform.v1.PredictSchemata.parameters_schema_uri]
+     *           schemata defined then each such file contains predictions as per the
      *           [predictions_format][google.cloud.aiplatform.v1.BatchPredictionJob.OutputConfig.predictions_format].
      *           If prediction for any instance failed (partially or completely), then
      *           an additional `errors_0001.<extension>`, `errors_0002.<extension>`,...,
@@ -63,19 +67,21 @@ class OutputConfig extends \Google\Protobuf\Internal\Message
      *           become underscores), and timestamp is in
      *           YYYY_MM_DDThh_mm_ss_sssZ "based on ISO-8601" format. In the dataset
      *           two tables will be created, `predictions`, and `errors`.
-     *           If the Model has both [instance][google.cloud.aiplatform.v1.PredictSchemata.instance_schema_uri]
-     *           and [prediction][google.cloud.aiplatform.v1.PredictSchemata.parameters_schema_uri] schemata
-     *           defined then the tables have columns as follows: The `predictions`
-     *           table contains instances for which the prediction succeeded, it
-     *           has columns as per a concatenation of the Model's instance and
-     *           prediction schemata. The `errors` table contains rows for which the
-     *           prediction has failed, it has instance columns, as per the
+     *           If the Model has both
+     *           [instance][google.cloud.aiplatform.v1.PredictSchemata.instance_schema_uri]
+     *           and
+     *           [prediction][google.cloud.aiplatform.v1.PredictSchemata.parameters_schema_uri]
+     *           schemata defined then the tables have columns as follows: The
+     *           `predictions` table contains instances for which the prediction
+     *           succeeded, it has columns as per a concatenation of the Model's
+     *           instance and prediction schemata. The `errors` table contains rows for
+     *           which the prediction has failed, it has instance columns, as per the
      *           instance schema, followed by a single "errors" column, which as values
      *           has [google.rpc.Status][google.rpc.Status]
      *           represented as a STRUCT, and containing only `code` and `message`.
      *     @type string $predictions_format
-     *           Required. The format in which Vertex AI gives the predictions, must be one of the
-     *           [Model's][google.cloud.aiplatform.v1.BatchPredictionJob.model]
+     *           Required. The format in which Vertex AI gives the predictions, must be
+     *           one of the [Model's][google.cloud.aiplatform.v1.BatchPredictionJob.model]
      *           [supported_output_storage_formats][google.cloud.aiplatform.v1.Model.supported_output_storage_formats].
      * }
      */
@@ -92,11 +98,13 @@ class OutputConfig extends \Google\Protobuf\Internal\Message
      * Inside of it files `predictions_0001.<extension>`,
      * `predictions_0002.<extension>`, ..., `predictions_N.<extension>`
      * are created where `<extension>` depends on chosen
-     * [predictions_format][google.cloud.aiplatform.v1.BatchPredictionJob.OutputConfig.predictions_format], and N may equal 0001 and depends on the total
-     * number of successfully predicted instances.
-     * If the Model has both [instance][google.cloud.aiplatform.v1.PredictSchemata.instance_schema_uri]
-     * and [prediction][google.cloud.aiplatform.v1.PredictSchemata.parameters_schema_uri] schemata
-     * defined then each such file contains predictions as per the
+     * [predictions_format][google.cloud.aiplatform.v1.BatchPredictionJob.OutputConfig.predictions_format],
+     * and N may equal 0001 and depends on the total number of successfully
+     * predicted instances. If the Model has both
+     * [instance][google.cloud.aiplatform.v1.PredictSchemata.instance_schema_uri]
+     * and
+     * [prediction][google.cloud.aiplatform.v1.PredictSchemata.parameters_schema_uri]
+     * schemata defined then each such file contains predictions as per the
      * [predictions_format][google.cloud.aiplatform.v1.BatchPredictionJob.OutputConfig.predictions_format].
      * If prediction for any instance failed (partially or completely), then
      * an additional `errors_0001.<extension>`, `errors_0002.<extension>`,...,
@@ -127,11 +135,13 @@ class OutputConfig extends \Google\Protobuf\Internal\Message
      * Inside of it files `predictions_0001.<extension>`,
      * `predictions_0002.<extension>`, ..., `predictions_N.<extension>`
      * are created where `<extension>` depends on chosen
-     * [predictions_format][google.cloud.aiplatform.v1.BatchPredictionJob.OutputConfig.predictions_format], and N may equal 0001 and depends on the total
-     * number of successfully predicted instances.
-     * If the Model has both [instance][google.cloud.aiplatform.v1.PredictSchemata.instance_schema_uri]
-     * and [prediction][google.cloud.aiplatform.v1.PredictSchemata.parameters_schema_uri] schemata
-     * defined then each such file contains predictions as per the
+     * [predictions_format][google.cloud.aiplatform.v1.BatchPredictionJob.OutputConfig.predictions_format],
+     * and N may equal 0001 and depends on the total number of successfully
+     * predicted instances. If the Model has both
+     * [instance][google.cloud.aiplatform.v1.PredictSchemata.instance_schema_uri]
+     * and
+     * [prediction][google.cloud.aiplatform.v1.PredictSchemata.parameters_schema_uri]
+     * schemata defined then each such file contains predictions as per the
      * [predictions_format][google.cloud.aiplatform.v1.BatchPredictionJob.OutputConfig.predictions_format].
      * If prediction for any instance failed (partially or completely), then
      * an additional `errors_0001.<extension>`, `errors_0002.<extension>`,...,
@@ -162,13 +172,15 @@ class OutputConfig extends \Google\Protobuf\Internal\Message
      * become underscores), and timestamp is in
      * YYYY_MM_DDThh_mm_ss_sssZ "based on ISO-8601" format. In the dataset
      * two tables will be created, `predictions`, and `errors`.
-     * If the Model has both [instance][google.cloud.aiplatform.v1.PredictSchemata.instance_schema_uri]
-     * and [prediction][google.cloud.aiplatform.v1.PredictSchemata.parameters_schema_uri] schemata
-     * defined then the tables have columns as follows: The `predictions`
-     * table contains instances for which the prediction succeeded, it
-     * has columns as per a concatenation of the Model's instance and
-     * prediction schemata. The `errors` table contains rows for which the
-     * prediction has failed, it has instance columns, as per the
+     * If the Model has both
+     * [instance][google.cloud.aiplatform.v1.PredictSchemata.instance_schema_uri]
+     * and
+     * [prediction][google.cloud.aiplatform.v1.PredictSchemata.parameters_schema_uri]
+     * schemata defined then the tables have columns as follows: The
+     * `predictions` table contains instances for which the prediction
+     * succeeded, it has columns as per a concatenation of the Model's
+     * instance and prediction schemata. The `errors` table contains rows for
+     * which the prediction has failed, it has instance columns, as per the
      * instance schema, followed by a single "errors" column, which as values
      * has [google.rpc.Status][google.rpc.Status]
      * represented as a STRUCT, and containing only `code` and `message`.
@@ -195,13 +207,15 @@ class OutputConfig extends \Google\Protobuf\Internal\Message
      * become underscores), and timestamp is in
      * YYYY_MM_DDThh_mm_ss_sssZ "based on ISO-8601" format. In the dataset
      * two tables will be created, `predictions`, and `errors`.
-     * If the Model has both [instance][google.cloud.aiplatform.v1.PredictSchemata.instance_schema_uri]
-     * and [prediction][google.cloud.aiplatform.v1.PredictSchemata.parameters_schema_uri] schemata
-     * defined then the tables have columns as follows: The `predictions`
-     * table contains instances for which the prediction succeeded, it
-     * has columns as per a concatenation of the Model's instance and
-     * prediction schemata. The `errors` table contains rows for which the
-     * prediction has failed, it has instance columns, as per the
+     * If the Model has both
+     * [instance][google.cloud.aiplatform.v1.PredictSchemata.instance_schema_uri]
+     * and
+     * [prediction][google.cloud.aiplatform.v1.PredictSchemata.parameters_schema_uri]
+     * schemata defined then the tables have columns as follows: The
+     * `predictions` table contains instances for which the prediction
+     * succeeded, it has columns as per a concatenation of the Model's
+     * instance and prediction schemata. The `errors` table contains rows for
+     * which the prediction has failed, it has instance columns, as per the
      * instance schema, followed by a single "errors" column, which as values
      * has [google.rpc.Status][google.rpc.Status]
      * represented as a STRUCT, and containing only `code` and `message`.
@@ -219,8 +233,8 @@ class OutputConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The format in which Vertex AI gives the predictions, must be one of the
-     * [Model's][google.cloud.aiplatform.v1.BatchPredictionJob.model]
+     * Required. The format in which Vertex AI gives the predictions, must be
+     * one of the [Model's][google.cloud.aiplatform.v1.BatchPredictionJob.model]
      * [supported_output_storage_formats][google.cloud.aiplatform.v1.Model.supported_output_storage_formats].
      *
      * Generated from protobuf field <code>string predictions_format = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -232,8 +246,8 @@ class OutputConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The format in which Vertex AI gives the predictions, must be one of the
-     * [Model's][google.cloud.aiplatform.v1.BatchPredictionJob.model]
+     * Required. The format in which Vertex AI gives the predictions, must be
+     * one of the [Model's][google.cloud.aiplatform.v1.BatchPredictionJob.model]
      * [supported_output_storage_formats][google.cloud.aiplatform.v1.Model.supported_output_storage_formats].
      *
      * Generated from protobuf field <code>string predictions_format = 1 [(.google.api.field_behavior) = REQUIRED];</code>

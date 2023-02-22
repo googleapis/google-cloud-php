@@ -19,6 +19,7 @@ namespace Google\Cloud\Datastore\Tests\Unit;
 
 use Google\Cloud\Core\Testing\DatastoreOperationRefreshTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
+use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Datastore\Connection\ConnectionInterface;
 use Google\Cloud\Datastore\Entity;
 use Google\Cloud\Datastore\EntityMapper;
@@ -98,6 +99,30 @@ class TransactionTest extends TestCase
         $this->assertEquals($this->key->keyObject(), $res->key()->keyObject());
     }
 
+    public function testLookupWithReadTime()
+    {
+        $time = new Timestamp(new \DateTime());
+        $this->connection->lookup(Argument::allOf(
+            Argument::withEntry('transaction', self::TRANSACTION),
+            Argument::withEntry('keys', [$this->key->keyObject()]),
+            Argument::withEntry('readTime', $time)
+        ))->shouldBeCalled()->willReturn([
+            'found' => [
+                [
+                    'entity' => $this->entityArray($this->key)
+                ]
+            ]
+        ]);
+
+        $transaction = $this->readOnly;
+        $this->refreshOperation($transaction, $this->connection->reveal(), [
+            'projectId' => self::PROJECT
+        ]);
+
+        $res = $transaction->lookup($this->key, ['readTime' => $time]);
+        $this->assertInstanceOf(Entity::class, $res);
+    }
+
     /**
      * @dataProvider transactionProvider
      */
@@ -159,6 +184,30 @@ class TransactionTest extends TestCase
     /**
      * @dataProvider transactionProvider
      */
+    public function testLookupBatchWithReadTime(callable $transaction)
+    {
+        $time = new Timestamp(new \DateTime());
+        $this->connection->lookup(
+            Argument::withEntry('readTime', $time)
+        )->shouldBeCalled()->willReturn([
+            'found' => [
+                [
+                    'entity' => $this->entityArray($this->key)
+                ]
+            ]
+        ]);
+
+        $transaction = $transaction();
+        $this->refreshOperation($transaction, $this->connection->reveal(), [
+            'projectId' => self::PROJECT
+        ]);
+
+        $res = $transaction->lookupBatch([$this->key], ['readTime' => $time]);
+    }
+
+    /**
+     * @dataProvider transactionProvider
+     */
     public function testRunQuery(callable $transaction)
     {
         $this->connection->runQuery(Argument::allOf(
@@ -184,6 +233,36 @@ class TransactionTest extends TestCase
         $query->queryObject()->willReturn(['queryString' => 'SELECT 1=1']);
 
         $res = iterator_to_array($transaction->runQuery($query->reveal()));
+        $this->assertContainsOnlyInstancesOf(Entity::class, $res);
+    }
+
+    public function testRunQueryWithReadTime()
+    {
+        $time = new Timestamp(new \DateTime());
+        $this->connection->runQuery(Argument::allOf(
+            Argument::withEntry('partitionId', ['projectId' => self::PROJECT]),
+            Argument::withEntry('gqlQuery', ['queryString' => 'SELECT 1=1']),
+            Argument::withEntry('readTime', $time)
+        ))->shouldBeCalled()->willReturn([
+            'batch' => [
+                'entityResults' => [
+                    [
+                        'entity' => $this->entityArray($this->key)
+                    ]
+                ]
+            ]
+        ]);
+
+        $transaction = $this->readOnly;
+        $this->refreshOperation($transaction, $this->connection->reveal(), [
+            'projectId' => self::PROJECT
+        ]);
+
+        $query = $this->prophesize(QueryInterface::class);
+        $query->queryKey()->willReturn('gqlQuery');
+        $query->queryObject()->willReturn(['queryString' => 'SELECT 1=1']);
+
+        $res = iterator_to_array($transaction->runQuery($query->reveal(), ['readTime' => $time]));
         $this->assertContainsOnlyInstancesOf(Entity::class, $res);
     }
 

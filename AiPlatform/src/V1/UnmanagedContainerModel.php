@@ -30,8 +30,8 @@ class UnmanagedContainerModel extends \Google\Protobuf\Internal\Message
      */
     private $predict_schemata = null;
     /**
-     * Input only. The specification of the container that is to be used when deploying
-     * this Model.
+     * Input only. The specification of the container that is to be used when
+     * deploying this Model.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ModelContainerSpec container_spec = 3 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      */
@@ -49,8 +49,8 @@ class UnmanagedContainerModel extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\AIPlatform\V1\PredictSchemata $predict_schemata
      *           Contains the schemata used in Model's predictions and explanations
      *     @type \Google\Cloud\AIPlatform\V1\ModelContainerSpec $container_spec
-     *           Input only. The specification of the container that is to be used when deploying
-     *           this Model.
+     *           Input only. The specification of the container that is to be used when
+     *           deploying this Model.
      * }
      */
     public function __construct($data = NULL) {
@@ -123,8 +123,8 @@ class UnmanagedContainerModel extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Input only. The specification of the container that is to be used when deploying
-     * this Model.
+     * Input only. The specification of the container that is to be used when
+     * deploying this Model.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ModelContainerSpec container_spec = 3 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      * @return \Google\Cloud\AIPlatform\V1\ModelContainerSpec|null
@@ -145,8 +145,8 @@ class UnmanagedContainerModel extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Input only. The specification of the container that is to be used when deploying
-     * this Model.
+     * Input only. The specification of the container that is to be used when
+     * deploying this Model.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ModelContainerSpec container_spec = 3 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      * @param \Google\Cloud\AIPlatform\V1\ModelContainerSpec $var

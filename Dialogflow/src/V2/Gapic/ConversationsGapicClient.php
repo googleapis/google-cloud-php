@@ -27,7 +27,6 @@ namespace Google\Cloud\Dialogflow\V2\Gapic;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\Call;
 use Google\ApiCore\CredentialsWrapper;
-
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
@@ -35,6 +34,7 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\Dialogflow\V2\AssistQueryParameters;
 use Google\Cloud\Dialogflow\V2\CompleteConversationRequest;
 use Google\Cloud\Dialogflow\V2\Conversation;
 use Google\Cloud\Dialogflow\V2\CreateConversationRequest;
@@ -43,13 +43,16 @@ use Google\Cloud\Dialogflow\V2\ListConversationsRequest;
 use Google\Cloud\Dialogflow\V2\ListConversationsResponse;
 use Google\Cloud\Dialogflow\V2\ListMessagesRequest;
 use Google\Cloud\Dialogflow\V2\ListMessagesResponse;
+use Google\Cloud\Dialogflow\V2\SuggestConversationSummaryRequest;
+use Google\Cloud\Dialogflow\V2\SuggestConversationSummaryResponse;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\ListLocationsResponse;
 use Google\Cloud\Location\Location;
 
 /**
- * Service Description: Service for managing [Conversations][google.cloud.dialogflow.v2.Conversation].
+ * Service Description: Service for managing
+ * [Conversations][google.cloud.dialogflow.v2.Conversation].
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
@@ -73,29 +76,19 @@ class ConversationsGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.dialogflow.v2.Conversations';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'dialogflow.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
         'https://www.googleapis.com/auth/dialogflow',
@@ -107,13 +100,19 @@ class ConversationsGapicClient
 
     private static $locationNameTemplate;
 
+    private static $messageNameTemplate;
+
     private static $projectNameTemplate;
 
     private static $projectConversationNameTemplate;
 
+    private static $projectConversationMessageNameTemplate;
+
     private static $projectConversationProfileNameTemplate;
 
     private static $projectLocationConversationNameTemplate;
+
+    private static $projectLocationConversationMessageNameTemplate;
 
     private static $projectLocationConversationProfileNameTemplate;
 
@@ -165,6 +164,15 @@ class ConversationsGapicClient
         return self::$locationNameTemplate;
     }
 
+    private static function getMessageNameTemplate()
+    {
+        if (self::$messageNameTemplate == null) {
+            self::$messageNameTemplate = new PathTemplate('projects/{project}/conversations/{conversation}/messages/{message}');
+        }
+
+        return self::$messageNameTemplate;
+    }
+
     private static function getProjectNameTemplate()
     {
         if (self::$projectNameTemplate == null) {
@@ -181,6 +189,15 @@ class ConversationsGapicClient
         }
 
         return self::$projectConversationNameTemplate;
+    }
+
+    private static function getProjectConversationMessageNameTemplate()
+    {
+        if (self::$projectConversationMessageNameTemplate == null) {
+            self::$projectConversationMessageNameTemplate = new PathTemplate('projects/{project}/conversations/{conversation}/messages/{message}');
+        }
+
+        return self::$projectConversationMessageNameTemplate;
     }
 
     private static function getProjectConversationProfileNameTemplate()
@@ -201,6 +218,15 @@ class ConversationsGapicClient
         return self::$projectLocationConversationNameTemplate;
     }
 
+    private static function getProjectLocationConversationMessageNameTemplate()
+    {
+        if (self::$projectLocationConversationMessageNameTemplate == null) {
+            self::$projectLocationConversationMessageNameTemplate = new PathTemplate('projects/{project}/locations/{location}/conversations/{conversation}/messages/{message}');
+        }
+
+        return self::$projectLocationConversationMessageNameTemplate;
+    }
+
     private static function getProjectLocationConversationProfileNameTemplate()
     {
         if (self::$projectLocationConversationProfileNameTemplate == null) {
@@ -217,10 +243,13 @@ class ConversationsGapicClient
                 'conversation' => self::getConversationNameTemplate(),
                 'conversationProfile' => self::getConversationProfileNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
+                'message' => self::getMessageNameTemplate(),
                 'project' => self::getProjectNameTemplate(),
                 'projectConversation' => self::getProjectConversationNameTemplate(),
+                'projectConversationMessage' => self::getProjectConversationMessageNameTemplate(),
                 'projectConversationProfile' => self::getProjectConversationProfileNameTemplate(),
                 'projectLocationConversation' => self::getProjectLocationConversationNameTemplate(),
+                'projectLocationConversationMessage' => self::getProjectLocationConversationMessageNameTemplate(),
                 'projectLocationConversationProfile' => self::getProjectLocationConversationProfileNameTemplate(),
             ];
         }
@@ -280,6 +309,25 @@ class ConversationsGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a message
+     * resource.
+     *
+     * @param string $project
+     * @param string $conversation
+     * @param string $message
+     *
+     * @return string The formatted message resource.
+     */
+    public static function messageName($project, $conversation, $message)
+    {
+        return self::getMessageNameTemplate()->render([
+            'project' => $project,
+            'conversation' => $conversation,
+            'message' => $message,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a project
      * resource.
      *
@@ -308,6 +356,25 @@ class ConversationsGapicClient
         return self::getProjectConversationNameTemplate()->render([
             'project' => $project,
             'conversation' => $conversation,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_conversation_message resource.
+     *
+     * @param string $project
+     * @param string $conversation
+     * @param string $message
+     *
+     * @return string The formatted project_conversation_message resource.
+     */
+    public static function projectConversationMessageName($project, $conversation, $message)
+    {
+        return self::getProjectConversationMessageNameTemplate()->render([
+            'project' => $project,
+            'conversation' => $conversation,
+            'message' => $message,
         ]);
     }
 
@@ -349,6 +416,27 @@ class ConversationsGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * project_location_conversation_message resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $conversation
+     * @param string $message
+     *
+     * @return string The formatted project_location_conversation_message resource.
+     */
+    public static function projectLocationConversationMessageName($project, $location, $conversation, $message)
+    {
+        return self::getProjectLocationConversationMessageNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'conversation' => $conversation,
+            'message' => $message,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * project_location_conversation_profile resource.
      *
      * @param string $project
@@ -373,10 +461,13 @@ class ConversationsGapicClient
      * - conversation: projects/{project}/conversations/{conversation}
      * - conversationProfile: projects/{project}/conversationProfiles/{conversation_profile}
      * - location: projects/{project}/locations/{location}
+     * - message: projects/{project}/conversations/{conversation}/messages/{message}
      * - project: projects/{project}
      * - projectConversation: projects/{project}/conversations/{conversation}
+     * - projectConversationMessage: projects/{project}/conversations/{conversation}/messages/{message}
      * - projectConversationProfile: projects/{project}/conversationProfiles/{conversation_profile}
      * - projectLocationConversation: projects/{project}/locations/{location}/conversations/{conversation}
+     * - projectLocationConversationMessage: projects/{project}/locations/{location}/conversations/{conversation}/messages/{message}
      * - projectLocationConversationProfile: projects/{project}/locations/{location}/conversationProfiles/{conversation_profile}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
@@ -420,9 +511,6 @@ class ConversationsGapicClient
      * @param array $options {
      *     Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress
-     *           **Deprecated**. This option will be removed in a future major release. Please
-     *           utilize the `$apiEndpoint` option instead.
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'dialogflow.googleapis.com:443'.
@@ -452,7 +540,7 @@ class ConversationsGapicClient
      *           *Advanced usage*: Additionally, it is possible to pass in an already
      *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
      *           that when this object is provided, any settings in $transportConfig, and any
-     *           $serviceAddress setting, will be ignored.
+     *           $apiEndpoint setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
      *           each supported transport type should be passed in a key for that transport. For
@@ -533,11 +621,14 @@ class ConversationsGapicClient
      * For Assist Stage, there's no dialogflow agent responding to user queries.
      * But we will provide suggestions which are generated from conversation.
      *
-     * If [Conversation.conversation_profile][google.cloud.dialogflow.v2.Conversation.conversation_profile] is configured for a dialogflow
-     * agent, conversation will start from `Automated Agent Stage`, otherwise, it
-     * will start from `Assist Stage`. And during `Automated Agent Stage`, once an
-     * [Intent][google.cloud.dialogflow.v2.Intent] with [Intent.live_agent_handoff][google.cloud.dialogflow.v2.Intent.live_agent_handoff] is triggered, conversation
-     * will transfer to Assist Stage.
+     * If
+     * [Conversation.conversation_profile][google.cloud.dialogflow.v2.Conversation.conversation_profile]
+     * is configured for a dialogflow agent, conversation will start from
+     * `Automated Agent Stage`, otherwise, it will start from `Assist Stage`. And
+     * during `Automated Agent Stage`, once an
+     * [Intent][google.cloud.dialogflow.v2.Intent] with
+     * [Intent.live_agent_handoff][google.cloud.dialogflow.v2.Intent.live_agent_handoff]
+     * is triggered, conversation will transfer to Assist Stage.
      *
      * Sample code:
      * ```
@@ -558,8 +649,8 @@ class ConversationsGapicClient
      *     Optional.
      *
      *     @type string $conversationId
-     *           Optional. Identifier of the conversation. Generally it's auto generated by Google.
-     *           Only set it if you cannot wait for the response to return a
+     *           Optional. Identifier of the conversation. Generally it's auto generated by
+     *           Google. Only set it if you cannot wait for the response to return a
      *           auto-generated one to you.
      *
      *           The conversation ID must be compliant with the regression fomula
@@ -811,6 +902,74 @@ class ConversationsGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->getPagedListResponse('ListMessages', $optionalArgs, ListMessagesResponse::class, $request);
+    }
+
+    /**
+     * Suggests summary for a conversation based on specific historical messages.
+     * The range of the messages to be used for summary can be specified in the
+     * request.
+     *
+     * Sample code:
+     * ```
+     * $conversationsClient = new ConversationsClient();
+     * try {
+     *     $formattedConversation = $conversationsClient->conversationName('[PROJECT]', '[CONVERSATION]');
+     *     $response = $conversationsClient->suggestConversationSummary($formattedConversation);
+     * } finally {
+     *     $conversationsClient->close();
+     * }
+     * ```
+     *
+     * @param string $conversation Required. The conversation to fetch suggestion for.
+     *                             Format: `projects/<Project ID>/locations/<Location
+     *                             ID>/conversations/<Conversation ID>`.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $latestMessage
+     *           The name of the latest conversation message used as context for
+     *           compiling suggestion. If empty, the latest message of the conversation will
+     *           be used.
+     *
+     *           Format: `projects/<Project ID>/locations/<Location
+     *           ID>/conversations/<Conversation ID>/messages/<Message ID>`.
+     *     @type int $contextSize
+     *           Max number of messages prior to and including
+     *           [latest_message] to use as context when compiling the
+     *           suggestion. By default 500 and at most 1000.
+     *     @type AssistQueryParameters $assistQueryParams
+     *           Parameters for a human assist query.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Dialogflow\V2\SuggestConversationSummaryResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function suggestConversationSummary($conversation, array $optionalArgs = [])
+    {
+        $request = new SuggestConversationSummaryRequest();
+        $requestParamHeaders = [];
+        $request->setConversation($conversation);
+        $requestParamHeaders['conversation'] = $conversation;
+        if (isset($optionalArgs['latestMessage'])) {
+            $request->setLatestMessage($optionalArgs['latestMessage']);
+        }
+
+        if (isset($optionalArgs['contextSize'])) {
+            $request->setContextSize($optionalArgs['contextSize']);
+        }
+
+        if (isset($optionalArgs['assistQueryParams'])) {
+            $request->setAssistQueryParams($optionalArgs['assistQueryParams']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('SuggestConversationSummary', SuggestConversationSummaryResponse::class, $optionalArgs, $request)->wait();
     }
 
     /**

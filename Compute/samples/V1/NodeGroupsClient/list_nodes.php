@@ -25,7 +25,6 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_NodeGroups_ListNodes_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Compute\V1\NodeGroupNode;
 use Google\Cloud\Compute\V1\NodeGroupsClient;
 
 /**
@@ -45,7 +44,6 @@ function list_nodes_sample(string $nodeGroup, string $project, string $zone): vo
         /** @var PagedListResponse $response */
         $response = $nodeGroupsClient->listNodes($nodeGroup, $project, $zone);
 
-        /** @var NodeGroupNode $element */
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
         }

@@ -10,7 +10,7 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Tensorboard is a physical database that stores users' training metrics.
- * A default Tensorboard is provided in each region of a GCP project.
+ * A default Tensorboard is provided in each region of a Google Cloud project.
  * If needed users can also create extra Tensorboards in their projects.
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.Tensorboard</code>
@@ -46,8 +46,8 @@ class Tensorboard extends \Google\Protobuf\Internal\Message
      */
     private $encryption_spec = null;
     /**
-     * Output only. Consumer project Cloud Storage path prefix used to store blob data, which
-     * can either be a bucket or directory. Does not end with a '/'.
+     * Output only. Consumer project Cloud Storage path prefix used to store blob
+     * data, which can either be a bucket or directory. Does not end with a '/'.
      *
      * Generated from protobuf field <code>string blob_storage_path_prefix = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -111,8 +111,8 @@ class Tensorboard extends \Google\Protobuf\Internal\Message
      *           Tensorboard and all sub-resources of this Tensorboard will be secured by
      *           this key.
      *     @type string $blob_storage_path_prefix
-     *           Output only. Consumer project Cloud Storage path prefix used to store blob data, which
-     *           can either be a bucket or directory. Does not end with a '/'.
+     *           Output only. Consumer project Cloud Storage path prefix used to store blob
+     *           data, which can either be a bucket or directory. Does not end with a '/'.
      *     @type int $run_count
      *           Output only. The number of Runs stored in this Tensorboard.
      *     @type \Google\Protobuf\Timestamp $create_time
@@ -262,8 +262,8 @@ class Tensorboard extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Consumer project Cloud Storage path prefix used to store blob data, which
-     * can either be a bucket or directory. Does not end with a '/'.
+     * Output only. Consumer project Cloud Storage path prefix used to store blob
+     * data, which can either be a bucket or directory. Does not end with a '/'.
      *
      * Generated from protobuf field <code>string blob_storage_path_prefix = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -274,8 +274,8 @@ class Tensorboard extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Consumer project Cloud Storage path prefix used to store blob data, which
-     * can either be a bucket or directory. Does not end with a '/'.
+     * Output only. Consumer project Cloud Storage path prefix used to store blob
+     * data, which can either be a bucket or directory. Does not end with a '/'.
      *
      * Generated from protobuf field <code>string blob_storage_path_prefix = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var

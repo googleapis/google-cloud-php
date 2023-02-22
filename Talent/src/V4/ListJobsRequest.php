@@ -53,8 +53,10 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
     /**
      * The maximum number of jobs to be returned per page of results.
-     * If [job_view][google.cloud.talent.v4.ListJobsRequest.job_view] is set to [JobView.JOB_VIEW_ID_ONLY][google.cloud.talent.v4.JobView.JOB_VIEW_ID_ONLY], the maximum allowed
-     * page size is 1000. Otherwise, the maximum allowed page size is 100.
+     * If [job_view][google.cloud.talent.v4.ListJobsRequest.job_view] is set to
+     * [JobView.JOB_VIEW_ID_ONLY][google.cloud.talent.v4.JobView.JOB_VIEW_ID_ONLY],
+     * the maximum allowed page size is 1000. Otherwise, the maximum allowed page
+     * size is 100.
      * Default is 100 if empty or a number < 1 is specified.
      *
      * Generated from protobuf field <code>int32 page_size = 4;</code>
@@ -62,8 +64,9 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
     private $page_size = 0;
     /**
      * The desired job attributes returned for jobs in the
-     * search response. Defaults to [JobView.JOB_VIEW_FULL][google.cloud.talent.v4.JobView.JOB_VIEW_FULL] if no value is
-     * specified.
+     * search response. Defaults to
+     * [JobView.JOB_VIEW_FULL][google.cloud.talent.v4.JobView.JOB_VIEW_FULL] if no
+     * value is specified.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4.JobView job_view = 5;</code>
      */
@@ -101,13 +104,16 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
      *           The starting point of a query result.
      *     @type int $page_size
      *           The maximum number of jobs to be returned per page of results.
-     *           If [job_view][google.cloud.talent.v4.ListJobsRequest.job_view] is set to [JobView.JOB_VIEW_ID_ONLY][google.cloud.talent.v4.JobView.JOB_VIEW_ID_ONLY], the maximum allowed
-     *           page size is 1000. Otherwise, the maximum allowed page size is 100.
+     *           If [job_view][google.cloud.talent.v4.ListJobsRequest.job_view] is set to
+     *           [JobView.JOB_VIEW_ID_ONLY][google.cloud.talent.v4.JobView.JOB_VIEW_ID_ONLY],
+     *           the maximum allowed page size is 1000. Otherwise, the maximum allowed page
+     *           size is 100.
      *           Default is 100 if empty or a number < 1 is specified.
      *     @type int $job_view
      *           The desired job attributes returned for jobs in the
-     *           search response. Defaults to [JobView.JOB_VIEW_FULL][google.cloud.talent.v4.JobView.JOB_VIEW_FULL] if no value is
-     *           specified.
+     *           search response. Defaults to
+     *           [JobView.JOB_VIEW_FULL][google.cloud.talent.v4.JobView.JOB_VIEW_FULL] if no
+     *           value is specified.
      * }
      */
     public function __construct($data = NULL) {
@@ -231,8 +237,10 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The maximum number of jobs to be returned per page of results.
-     * If [job_view][google.cloud.talent.v4.ListJobsRequest.job_view] is set to [JobView.JOB_VIEW_ID_ONLY][google.cloud.talent.v4.JobView.JOB_VIEW_ID_ONLY], the maximum allowed
-     * page size is 1000. Otherwise, the maximum allowed page size is 100.
+     * If [job_view][google.cloud.talent.v4.ListJobsRequest.job_view] is set to
+     * [JobView.JOB_VIEW_ID_ONLY][google.cloud.talent.v4.JobView.JOB_VIEW_ID_ONLY],
+     * the maximum allowed page size is 1000. Otherwise, the maximum allowed page
+     * size is 100.
      * Default is 100 if empty or a number < 1 is specified.
      *
      * Generated from protobuf field <code>int32 page_size = 4;</code>
@@ -245,8 +253,10 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The maximum number of jobs to be returned per page of results.
-     * If [job_view][google.cloud.talent.v4.ListJobsRequest.job_view] is set to [JobView.JOB_VIEW_ID_ONLY][google.cloud.talent.v4.JobView.JOB_VIEW_ID_ONLY], the maximum allowed
-     * page size is 1000. Otherwise, the maximum allowed page size is 100.
+     * If [job_view][google.cloud.talent.v4.ListJobsRequest.job_view] is set to
+     * [JobView.JOB_VIEW_ID_ONLY][google.cloud.talent.v4.JobView.JOB_VIEW_ID_ONLY],
+     * the maximum allowed page size is 1000. Otherwise, the maximum allowed page
+     * size is 100.
      * Default is 100 if empty or a number < 1 is specified.
      *
      * Generated from protobuf field <code>int32 page_size = 4;</code>
@@ -263,8 +273,9 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The desired job attributes returned for jobs in the
-     * search response. Defaults to [JobView.JOB_VIEW_FULL][google.cloud.talent.v4.JobView.JOB_VIEW_FULL] if no value is
-     * specified.
+     * search response. Defaults to
+     * [JobView.JOB_VIEW_FULL][google.cloud.talent.v4.JobView.JOB_VIEW_FULL] if no
+     * value is specified.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4.JobView job_view = 5;</code>
      * @return int
@@ -276,8 +287,9 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The desired job attributes returned for jobs in the
-     * search response. Defaults to [JobView.JOB_VIEW_FULL][google.cloud.talent.v4.JobView.JOB_VIEW_FULL] if no value is
-     * specified.
+     * search response. Defaults to
+     * [JobView.JOB_VIEW_FULL][google.cloud.talent.v4.JobView.JOB_VIEW_FULL] if no
+     * value is specified.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4.JobView job_view = 5;</code>
      * @param int $var

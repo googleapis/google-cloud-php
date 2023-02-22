@@ -16,8 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class PingAndWarmRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The unique name of the instance to check permissions for as well as
-     * respond. Values are of the form `projects/<project>/instances/<instance>`.
+     * Required. The unique name of the instance to check permissions for as well
+     * as respond. Values are of the form
+     * `projects/<project>/instances/<instance>`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -37,8 +38,9 @@ class PingAndWarmRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The unique name of the instance to check permissions for as well as
-     *           respond. Values are of the form `projects/<project>/instances/<instance>`.
+     *           Required. The unique name of the instance to check permissions for as well
+     *           as respond. Values are of the form
+     *           `projects/<project>/instances/<instance>`.
      *     @type string $app_profile_id
      *           This value specifies routing for replication. If not specified, the
      *           "default" application profile will be used.
@@ -50,8 +52,9 @@ class PingAndWarmRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The unique name of the instance to check permissions for as well as
-     * respond. Values are of the form `projects/<project>/instances/<instance>`.
+     * Required. The unique name of the instance to check permissions for as well
+     * as respond. Values are of the form
+     * `projects/<project>/instances/<instance>`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -62,8 +65,9 @@ class PingAndWarmRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The unique name of the instance to check permissions for as well as
-     * respond. Values are of the form `projects/<project>/instances/<instance>`.
+     * Required. The unique name of the instance to check permissions for as well
+     * as respond. Values are of the form
+     * `projects/<project>/instances/<instance>`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

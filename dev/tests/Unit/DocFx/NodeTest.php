@@ -36,8 +36,8 @@ class NodeTest extends TestCase
 
         $params = $method->getParameters();
 
-        // Assert 5 parameters have been parsed
-        $this->assertCount(6, $params);
+        // Assert the parameters have been parsed
+        $this->assertCount(8, $params);
 
         // Assert parent option parameter
         $this->assertEquals('data', $params[1]->getName());
@@ -54,6 +54,22 @@ class NodeTest extends TestCase
             'This field gives the total number of pages in the file.',
             $params[4]->getDescription()
         );
+
+        // Assert nested parameter with whitespace
+        $this->assertEquals('↳ imageContext', $params[6]->getName());
+        $this->assertEquals('ImageContext', $params[6]->getType());
+        $this->assertEquals(
+            'Additional context that may accompany the image.',
+            $params[6]->getDescription()
+        );
+
+        // Assert nested parameter with special characters
+        $this->assertEquals('↳ exampleString', $params[7]->getName());
+        $this->assertEquals('string', $params[7]->getType());
+        $this->assertEquals(
+            'Ensure special chars are decoded, such as alice@example.com.',
+            $params[7]->getDescription()
+        );
     }
 
     public function testProtoRefInParameters()
@@ -62,9 +78,6 @@ class NodeTest extends TestCase
         $method = new MethodNode(new SimpleXMLElement($nestedParamsXml));
 
         $params = $method->getParameters();
-
-        // Assert 5 parameters have been parsed
-        $this->assertCount(6, $params);
 
         // Assert proto ref
         $this->assertStringContainsString(

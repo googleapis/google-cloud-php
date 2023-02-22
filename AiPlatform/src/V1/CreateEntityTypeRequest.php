@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [FeaturestoreService.CreateEntityType][google.cloud.aiplatform.v1.FeaturestoreService.CreateEntityType].
+ * Request message for
+ * [FeaturestoreService.CreateEntityType][google.cloud.aiplatform.v1.FeaturestoreService.CreateEntityType].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.CreateEntityTypeRequest</code>
  */
@@ -30,8 +31,8 @@ class CreateEntityTypeRequest extends \Google\Protobuf\Internal\Message
      */
     private $entity_type = null;
     /**
-     * Required. The ID to use for the EntityType, which will become the final component of
-     * the EntityType's resource name.
+     * Required. The ID to use for the EntityType, which will become the final
+     * component of the EntityType's resource name.
      * This value may be up to 60 characters, and valid characters are
      * `[a-z0-9_]`. The first character cannot be a number.
      * The value must be unique within a featurestore.
@@ -53,8 +54,8 @@ class CreateEntityTypeRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\AIPlatform\V1\EntityType $entity_type
      *           The EntityType to create.
      *     @type string $entity_type_id
-     *           Required. The ID to use for the EntityType, which will become the final component of
-     *           the EntityType's resource name.
+     *           Required. The ID to use for the EntityType, which will become the final
+     *           component of the EntityType's resource name.
      *           This value may be up to 60 characters, and valid characters are
      *           `[a-z0-9_]`. The first character cannot be a number.
      *           The value must be unique within a featurestore.
@@ -132,8 +133,8 @@ class CreateEntityTypeRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The ID to use for the EntityType, which will become the final component of
-     * the EntityType's resource name.
+     * Required. The ID to use for the EntityType, which will become the final
+     * component of the EntityType's resource name.
      * This value may be up to 60 characters, and valid characters are
      * `[a-z0-9_]`. The first character cannot be a number.
      * The value must be unique within a featurestore.
@@ -147,8 +148,8 @@ class CreateEntityTypeRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The ID to use for the EntityType, which will become the final component of
-     * the EntityType's resource name.
+     * Required. The ID to use for the EntityType, which will become the final
+     * component of the EntityType's resource name.
      * This value may be up to 60 characters, and valid characters are
      * `[a-z0-9_]`. The first character cannot be a number.
      * The value must be unique within a featurestore.

@@ -23,14 +23,11 @@
 namespace Google\Cloud\Translate\Tests\Unit\V3;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
-
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Translate\V3\BatchDocumentOutputConfig;
-
 use Google\Cloud\Translate\V3\BatchTranslateDocumentResponse;
 use Google\Cloud\Translate\V3\BatchTranslateResponse;
 use Google\Cloud\Translate\V3\DeleteGlossaryResponse;
@@ -56,25 +53,19 @@ use stdClass;
  */
 class TranslationServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return TranslationServiceClient
-     */
+    /** @return TranslationServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -83,14 +74,12 @@ class TranslationServiceClientTest extends GeneratedTest
         return new TranslationServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function batchTranslateDocumentTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -175,14 +164,12 @@ class TranslationServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function batchTranslateDocumentExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -236,14 +223,12 @@ class TranslationServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function batchTranslateTextTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -318,14 +303,12 @@ class TranslationServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function batchTranslateTextExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -379,14 +362,12 @@ class TranslationServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createGlossaryTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -404,9 +385,11 @@ class TranslationServiceClientTest extends GeneratedTest
         $transport->addResponse($incompleteOperation);
         $name = 'name3373707';
         $entryCount = 811131134;
+        $displayName = 'displayName1615086568';
         $expectedResponse = new Glossary();
         $expectedResponse->setName($name);
         $expectedResponse->setEntryCount($entryCount);
+        $expectedResponse->setDisplayName($displayName);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -452,14 +435,12 @@ class TranslationServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createGlossaryExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -512,14 +493,12 @@ class TranslationServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteGlossaryTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -578,14 +557,12 @@ class TranslationServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteGlossaryExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -635,9 +612,7 @@ class TranslationServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function detectLanguageTest()
     {
         $transport = $this->createTransport();
@@ -662,9 +637,7 @@ class TranslationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function detectLanguageExceptionTest()
     {
         $transport = $this->createTransport();
@@ -697,9 +670,7 @@ class TranslationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getGlossaryTest()
     {
         $transport = $this->createTransport();
@@ -710,9 +681,11 @@ class TranslationServiceClientTest extends GeneratedTest
         // Mock response
         $name2 = 'name2-1052831874';
         $entryCount = 811131134;
+        $displayName = 'displayName1615086568';
         $expectedResponse = new Glossary();
         $expectedResponse->setName($name2);
         $expectedResponse->setEntryCount($entryCount);
+        $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->glossaryName('[PROJECT]', '[LOCATION]', '[GLOSSARY]');
@@ -728,9 +701,7 @@ class TranslationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getGlossaryExceptionTest()
     {
         $transport = $this->createTransport();
@@ -763,9 +734,7 @@ class TranslationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getSupportedLanguagesTest()
     {
         $transport = $this->createTransport();
@@ -790,9 +759,7 @@ class TranslationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getSupportedLanguagesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -825,9 +792,7 @@ class TranslationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listGlossariesTest()
     {
         $transport = $this->createTransport();
@@ -862,9 +827,7 @@ class TranslationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listGlossariesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -897,9 +860,7 @@ class TranslationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function translateDocumentTest()
     {
         $transport = $this->createTransport();
@@ -932,9 +893,7 @@ class TranslationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function translateDocumentExceptionTest()
     {
         $transport = $this->createTransport();
@@ -969,9 +928,7 @@ class TranslationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function translateTextTest()
     {
         $transport = $this->createTransport();
@@ -1002,9 +959,7 @@ class TranslationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function translateTextExceptionTest()
     {
         $transport = $this->createTransport();

@@ -16,8 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class DisplayVideo360AdvertiserLink extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The resource name for this DisplayVideo360AdvertiserLink resource.
-     * Format: properties/{propertyId}/displayVideo360AdvertiserLinks/{linkId}
+     * Output only. The resource name for this DisplayVideo360AdvertiserLink
+     * resource. Format:
+     * properties/{propertyId}/displayVideo360AdvertiserLinks/{linkId}
      * Note: linkId is not the Display & Video 360 Advertiser ID
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -43,20 +44,20 @@ class DisplayVideo360AdvertiserLink extends \Google\Protobuf\Internal\Message
      */
     private $ads_personalization_enabled = null;
     /**
-     * Immutable. Enables the import of campaign data from Display & Video 360 into the GA4
-     * property. After link creation, this can only be updated from the Display &
-     * Video 360 product.
-     * If this field is not set on create, it will be defaulted to true.
+     * Immutable. Enables the import of campaign data from Display & Video 360
+     * into the GA4 property. After link creation, this can only be updated from
+     * the Display & Video 360 product. If this field is not set on create, it
+     * will be defaulted to true.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue campaign_data_sharing_enabled = 5 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
     private $campaign_data_sharing_enabled = null;
     /**
-     * Immutable. Enables the import of cost data from Display & Video 360 into the GA4
-     * property. This can only be enabled if campaign_data_sharing_enabled is
-     * enabled. After link creation, this can only be updated from the Display &
-     * Video 360 product.
-     * If this field is not set on create, it will be defaulted to true.
+     * Immutable. Enables the import of cost data from Display & Video 360 into
+     * the GA4 property. This can only be enabled if campaign_data_sharing_enabled
+     * is enabled. After link creation, this can only be updated from the Display
+     * & Video 360 product. If this field is not set on create, it will be
+     * defaulted to true.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue cost_data_sharing_enabled = 6 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
@@ -69,8 +70,9 @@ class DisplayVideo360AdvertiserLink extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Output only. The resource name for this DisplayVideo360AdvertiserLink resource.
-     *           Format: properties/{propertyId}/displayVideo360AdvertiserLinks/{linkId}
+     *           Output only. The resource name for this DisplayVideo360AdvertiserLink
+     *           resource. Format:
+     *           properties/{propertyId}/displayVideo360AdvertiserLinks/{linkId}
      *           Note: linkId is not the Display & Video 360 Advertiser ID
      *     @type string $advertiser_id
      *           Immutable. The Display & Video 360 Advertiser's advertiser ID.
@@ -80,16 +82,16 @@ class DisplayVideo360AdvertiserLink extends \Google\Protobuf\Internal\Message
      *           Enables personalized advertising features with this integration.
      *           If this field is not set on create/update, it will be defaulted to true.
      *     @type \Google\Protobuf\BoolValue $campaign_data_sharing_enabled
-     *           Immutable. Enables the import of campaign data from Display & Video 360 into the GA4
-     *           property. After link creation, this can only be updated from the Display &
-     *           Video 360 product.
-     *           If this field is not set on create, it will be defaulted to true.
+     *           Immutable. Enables the import of campaign data from Display & Video 360
+     *           into the GA4 property. After link creation, this can only be updated from
+     *           the Display & Video 360 product. If this field is not set on create, it
+     *           will be defaulted to true.
      *     @type \Google\Protobuf\BoolValue $cost_data_sharing_enabled
-     *           Immutable. Enables the import of cost data from Display & Video 360 into the GA4
-     *           property. This can only be enabled if campaign_data_sharing_enabled is
-     *           enabled. After link creation, this can only be updated from the Display &
-     *           Video 360 product.
-     *           If this field is not set on create, it will be defaulted to true.
+     *           Immutable. Enables the import of cost data from Display & Video 360 into
+     *           the GA4 property. This can only be enabled if campaign_data_sharing_enabled
+     *           is enabled. After link creation, this can only be updated from the Display
+     *           & Video 360 product. If this field is not set on create, it will be
+     *           defaulted to true.
      * }
      */
     public function __construct($data = NULL) {
@@ -98,8 +100,9 @@ class DisplayVideo360AdvertiserLink extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The resource name for this DisplayVideo360AdvertiserLink resource.
-     * Format: properties/{propertyId}/displayVideo360AdvertiserLinks/{linkId}
+     * Output only. The resource name for this DisplayVideo360AdvertiserLink
+     * resource. Format:
+     * properties/{propertyId}/displayVideo360AdvertiserLinks/{linkId}
      * Note: linkId is not the Display & Video 360 Advertiser ID
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -111,8 +114,9 @@ class DisplayVideo360AdvertiserLink extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The resource name for this DisplayVideo360AdvertiserLink resource.
-     * Format: properties/{propertyId}/displayVideo360AdvertiserLinks/{linkId}
+     * Output only. The resource name for this DisplayVideo360AdvertiserLink
+     * resource. Format:
+     * properties/{propertyId}/displayVideo360AdvertiserLinks/{linkId}
      * Note: linkId is not the Display & Video 360 Advertiser ID
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -247,10 +251,10 @@ class DisplayVideo360AdvertiserLink extends \Google\Protobuf\Internal\Message
         return $this;}
 
     /**
-     * Immutable. Enables the import of campaign data from Display & Video 360 into the GA4
-     * property. After link creation, this can only be updated from the Display &
-     * Video 360 product.
-     * If this field is not set on create, it will be defaulted to true.
+     * Immutable. Enables the import of campaign data from Display & Video 360
+     * into the GA4 property. After link creation, this can only be updated from
+     * the Display & Video 360 product. If this field is not set on create, it
+     * will be defaulted to true.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue campaign_data_sharing_enabled = 5 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return \Google\Protobuf\BoolValue|null
@@ -273,10 +277,10 @@ class DisplayVideo360AdvertiserLink extends \Google\Protobuf\Internal\Message
     /**
      * Returns the unboxed value from <code>getCampaignDataSharingEnabled()</code>
 
-     * Immutable. Enables the import of campaign data from Display & Video 360 into the GA4
-     * property. After link creation, this can only be updated from the Display &
-     * Video 360 product.
-     * If this field is not set on create, it will be defaulted to true.
+     * Immutable. Enables the import of campaign data from Display & Video 360
+     * into the GA4 property. After link creation, this can only be updated from
+     * the Display & Video 360 product. If this field is not set on create, it
+     * will be defaulted to true.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue campaign_data_sharing_enabled = 5 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return bool|null
@@ -287,10 +291,10 @@ class DisplayVideo360AdvertiserLink extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. Enables the import of campaign data from Display & Video 360 into the GA4
-     * property. After link creation, this can only be updated from the Display &
-     * Video 360 product.
-     * If this field is not set on create, it will be defaulted to true.
+     * Immutable. Enables the import of campaign data from Display & Video 360
+     * into the GA4 property. After link creation, this can only be updated from
+     * the Display & Video 360 product. If this field is not set on create, it
+     * will be defaulted to true.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue campaign_data_sharing_enabled = 5 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @param \Google\Protobuf\BoolValue $var
@@ -307,10 +311,10 @@ class DisplayVideo360AdvertiserLink extends \Google\Protobuf\Internal\Message
     /**
      * Sets the field by wrapping a primitive type in a Google\Protobuf\BoolValue object.
 
-     * Immutable. Enables the import of campaign data from Display & Video 360 into the GA4
-     * property. After link creation, this can only be updated from the Display &
-     * Video 360 product.
-     * If this field is not set on create, it will be defaulted to true.
+     * Immutable. Enables the import of campaign data from Display & Video 360
+     * into the GA4 property. After link creation, this can only be updated from
+     * the Display & Video 360 product. If this field is not set on create, it
+     * will be defaulted to true.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue campaign_data_sharing_enabled = 5 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @param bool|null $var
@@ -322,11 +326,11 @@ class DisplayVideo360AdvertiserLink extends \Google\Protobuf\Internal\Message
         return $this;}
 
     /**
-     * Immutable. Enables the import of cost data from Display & Video 360 into the GA4
-     * property. This can only be enabled if campaign_data_sharing_enabled is
-     * enabled. After link creation, this can only be updated from the Display &
-     * Video 360 product.
-     * If this field is not set on create, it will be defaulted to true.
+     * Immutable. Enables the import of cost data from Display & Video 360 into
+     * the GA4 property. This can only be enabled if campaign_data_sharing_enabled
+     * is enabled. After link creation, this can only be updated from the Display
+     * & Video 360 product. If this field is not set on create, it will be
+     * defaulted to true.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue cost_data_sharing_enabled = 6 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return \Google\Protobuf\BoolValue|null
@@ -349,11 +353,11 @@ class DisplayVideo360AdvertiserLink extends \Google\Protobuf\Internal\Message
     /**
      * Returns the unboxed value from <code>getCostDataSharingEnabled()</code>
 
-     * Immutable. Enables the import of cost data from Display & Video 360 into the GA4
-     * property. This can only be enabled if campaign_data_sharing_enabled is
-     * enabled. After link creation, this can only be updated from the Display &
-     * Video 360 product.
-     * If this field is not set on create, it will be defaulted to true.
+     * Immutable. Enables the import of cost data from Display & Video 360 into
+     * the GA4 property. This can only be enabled if campaign_data_sharing_enabled
+     * is enabled. After link creation, this can only be updated from the Display
+     * & Video 360 product. If this field is not set on create, it will be
+     * defaulted to true.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue cost_data_sharing_enabled = 6 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return bool|null
@@ -364,11 +368,11 @@ class DisplayVideo360AdvertiserLink extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. Enables the import of cost data from Display & Video 360 into the GA4
-     * property. This can only be enabled if campaign_data_sharing_enabled is
-     * enabled. After link creation, this can only be updated from the Display &
-     * Video 360 product.
-     * If this field is not set on create, it will be defaulted to true.
+     * Immutable. Enables the import of cost data from Display & Video 360 into
+     * the GA4 property. This can only be enabled if campaign_data_sharing_enabled
+     * is enabled. After link creation, this can only be updated from the Display
+     * & Video 360 product. If this field is not set on create, it will be
+     * defaulted to true.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue cost_data_sharing_enabled = 6 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @param \Google\Protobuf\BoolValue $var
@@ -385,11 +389,11 @@ class DisplayVideo360AdvertiserLink extends \Google\Protobuf\Internal\Message
     /**
      * Sets the field by wrapping a primitive type in a Google\Protobuf\BoolValue object.
 
-     * Immutable. Enables the import of cost data from Display & Video 360 into the GA4
-     * property. This can only be enabled if campaign_data_sharing_enabled is
-     * enabled. After link creation, this can only be updated from the Display &
-     * Video 360 product.
-     * If this field is not set on create, it will be defaulted to true.
+     * Immutable. Enables the import of cost data from Display & Video 360 into
+     * the GA4 property. This can only be enabled if campaign_data_sharing_enabled
+     * is enabled. After link creation, this can only be updated from the Display
+     * & Video 360 product. If this field is not set on create, it will be
+     * defaulted to true.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue cost_data_sharing_enabled = 6 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @param bool|null $var

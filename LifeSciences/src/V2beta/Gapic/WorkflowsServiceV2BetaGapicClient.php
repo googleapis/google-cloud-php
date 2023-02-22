@@ -172,9 +172,6 @@ class WorkflowsServiceV2BetaGapicClient
      * @param array $options {
      *     Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress
-     *           **Deprecated**. This option will be removed in a future major release. Please
-     *           utilize the `$apiEndpoint` option instead.
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'lifesciences.googleapis.com:443'.
@@ -204,7 +201,7 @@ class WorkflowsServiceV2BetaGapicClient
      *           *Advanced usage*: Additionally, it is possible to pass in an already
      *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
      *           that when this object is provided, any settings in $transportConfig, and any
-     *           $serviceAddress setting, will be ignored.
+     *           $apiEndpoint setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
      *           each supported transport type should be passed in a key for that transport. For
@@ -235,11 +232,11 @@ class WorkflowsServiceV2BetaGapicClient
     /**
      * Runs a pipeline.  The returned Operation's [metadata]
      * [google.longrunning.Operation.metadata] field will contain a
-     * [google.cloud.lifesciences.v2beta.Metadata][google.cloud.lifesciences.v2beta.Metadata] object describing the status
-     * of the pipeline execution. The
+     * [google.cloud.lifesciences.v2beta.Metadata][google.cloud.lifesciences.v2beta.Metadata]
+     * object describing the status of the pipeline execution. The
      * [response][google.longrunning.Operation.response] field will contain a
-     * [google.cloud.lifesciences.v2beta.RunPipelineResponse][google.cloud.lifesciences.v2beta.RunPipelineResponse] object if the
-     * pipeline completes successfully.
+     * [google.cloud.lifesciences.v2beta.RunPipelineResponse][google.cloud.lifesciences.v2beta.RunPipelineResponse]
+     * object if the pipeline completes successfully.
      *
      * **Note:** Before you can use this method, the *Life Sciences Service Agent*
      * must have access to your project. This is done automatically when the

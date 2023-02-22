@@ -79,7 +79,7 @@ class ProjectsClientTest extends GeneratedTest
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new GlobalOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -136,7 +136,7 @@ class ProjectsClientTest extends GeneratedTest
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new GlobalOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -189,7 +189,7 @@ class ProjectsClientTest extends GeneratedTest
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new GlobalOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -249,7 +249,7 @@ class ProjectsClientTest extends GeneratedTest
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new GlobalOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -303,7 +303,7 @@ class ProjectsClientTest extends GeneratedTest
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new GlobalOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -360,7 +360,7 @@ class ProjectsClientTest extends GeneratedTest
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new GlobalOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -413,7 +413,7 @@ class ProjectsClientTest extends GeneratedTest
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new GlobalOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -473,7 +473,7 @@ class ProjectsClientTest extends GeneratedTest
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new GlobalOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -539,6 +539,7 @@ class ProjectsClientTest extends GeneratedTest
         $kind = 'kind3292052';
         $name = 'name3373707';
         $selfLink = 'selfLink-1691268851';
+        $vmDnsSetting = 'vmDnsSetting1132598194';
         $xpnProjectStatus = 'xpnProjectStatus-308451647';
         $expectedResponse = new Project();
         $expectedResponse->setCreationTimestamp($creationTimestamp);
@@ -549,6 +550,7 @@ class ProjectsClientTest extends GeneratedTest
         $expectedResponse->setKind($kind);
         $expectedResponse->setName($name);
         $expectedResponse->setSelfLink($selfLink);
+        $expectedResponse->setVmDnsSetting($vmDnsSetting);
         $expectedResponse->setXpnProjectStatus($xpnProjectStatus);
         $transport->addResponse($expectedResponse);
         // Mock request
@@ -615,6 +617,7 @@ class ProjectsClientTest extends GeneratedTest
         $kind = 'kind3292052';
         $name = 'name3373707';
         $selfLink = 'selfLink-1691268851';
+        $vmDnsSetting = 'vmDnsSetting1132598194';
         $xpnProjectStatus = 'xpnProjectStatus-308451647';
         $expectedResponse = new Project();
         $expectedResponse->setCreationTimestamp($creationTimestamp);
@@ -625,6 +628,7 @@ class ProjectsClientTest extends GeneratedTest
         $expectedResponse->setKind($kind);
         $expectedResponse->setName($name);
         $expectedResponse->setSelfLink($selfLink);
+        $expectedResponse->setVmDnsSetting($vmDnsSetting);
         $expectedResponse->setXpnProjectStatus($xpnProjectStatus);
         $transport->addResponse($expectedResponse);
         // Mock request
@@ -827,7 +831,7 @@ class ProjectsClientTest extends GeneratedTest
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new GlobalOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -887,7 +891,7 @@ class ProjectsClientTest extends GeneratedTest
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new GlobalOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -941,7 +945,7 @@ class ProjectsClientTest extends GeneratedTest
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new GlobalOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1001,7 +1005,7 @@ class ProjectsClientTest extends GeneratedTest
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new GlobalOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1055,7 +1059,7 @@ class ProjectsClientTest extends GeneratedTest
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new GlobalOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1115,7 +1119,7 @@ class ProjectsClientTest extends GeneratedTest
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new GlobalOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1169,7 +1173,7 @@ class ProjectsClientTest extends GeneratedTest
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new GlobalOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1229,7 +1233,7 @@ class ProjectsClientTest extends GeneratedTest
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new GlobalOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1283,7 +1287,7 @@ class ProjectsClientTest extends GeneratedTest
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new GlobalOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1343,7 +1347,7 @@ class ProjectsClientTest extends GeneratedTest
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new GlobalOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);

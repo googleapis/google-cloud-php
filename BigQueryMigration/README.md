@@ -4,7 +4,7 @@
 
 [![Latest Stable Version](https://poser.pugx.org/google/cloud-bigquery-migration/v/stable)](https://packagist.org/packages/google/cloud-bigquery-migration) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-bigquery-migration.svg)](https://packagist.org/packages/google/cloud-bigquery-migration)
 
-* [API documentation](http://googleapis.github.io/google-cloud-php/#/docs/cloud-bigquery-migration/latest/bigquerymigration/readme)
+* [API documentation](https://cloud.google.com/php/docs/reference/cloud-bigquery-migration/latest)
 
 **NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googleapis/google-cloud-php). Any
 support requests, bug reports, or development contributions should be directed to

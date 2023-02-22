@@ -336,11 +336,16 @@ class TranslateClient
         foreach ($response['data']['detections'] as $key => $detection) {
             $detection = $detection[0];
 
-            $detections[] = array_filter([
-                'languageCode' => $detection['language'],
-                'input' => $strings[$key],
-                'confidence' => isset($detection['confidence']) ? $detection['confidence'] : null
-            ]);
+            $detections[] = array_filter(
+                [
+                    'languageCode' => $detection['language'],
+                    'input' => $strings[$key],
+                    'confidence' => isset($detection['confidence']) ? $detection['confidence'] : null
+                ],
+                function ($value) {
+                    return !is_null($value);
+                }
+            );
         }
 
         return $detections;

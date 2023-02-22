@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Datastore\Tests\System;
 
+use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Datastore\DatastoreClient;
 
 /**
@@ -329,6 +330,49 @@ class RunQueryTest extends DatastoreMultipleDbTestCase
 
         $this->assertEquals(self::$data[2], $results[0]->get());
         $this->assertCount(1, $results);
+    }
+
+    /**
+     * @dataProvider defaultDbClientProvider
+     */
+    public function testRunQueryWithReadTime(DatastoreClient $client)
+    {
+        $this->skipEmulatorTests();
+        $kind = 'NewPerson';
+        $lastName = 'Geller';
+        $newLastName = 'Bing';
+        $key = $client->key($kind, time());
+        $person = $client->entity($key, [
+            'lastName' => $lastName
+        ]);
+        $client->insert($person);
+        self::$localDeletionQueue->add($key);
+
+        sleep(2);
+
+        $time = new Timestamp(new \DateTime());
+
+        sleep(2);
+
+        $person = $client->lookup($key);
+        $person['lastName'] = $newLastName;
+        $client->update($person);
+
+        sleep(2);
+
+        $query = $client->query()
+            ->kind($kind)
+            ->filter('__key__', '=', $key);
+        $result = $client->runQuery($query);
+        $personListEntities = iterator_to_array($result);
+
+        // Person lastName should be the lastName AFTER update
+        $this->assertEquals($personListEntities[0]['lastName'], $newLastName);
+
+        // Person lastName should be the lastName BEFORE update
+        $result = $client->runQuery($query, ['readTime' => $time]);
+        $personListEntities = iterator_to_array($result);
+        $this->assertEquals($personListEntities[0]['lastName'], $lastName);
     }
 
     private function runQueryAndSortResults($client, $query)

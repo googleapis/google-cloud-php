@@ -20,7 +20,7 @@ class GameServerDeploymentsService
         \GPBMetadata\Google\Longrunning\Operations::initOnce();
         $pool->internalAddGeneratedFile(
             '
-›
+‘
 <google/cloud/gaming/v1/game_server_deployments_service.protogoogle.cloud.gaming.v1google/api/client.proto4google/cloud/gaming/v1/game_server_deployments.proto#google/longrunning/operations.proto2è
 GameServerDeploymentsServiceÜ
 ListGameServerDeployments8.google.cloud.gaming.v1.ListGameServerDeploymentsRequest9.google.cloud.gaming.v1.ListGameServerDeploymentsResponse"J‚Óä“;9/v1/{parent=projects/*/locations/*}/gameServerDeploymentsÚAparentÉ
@@ -35,8 +35,8 @@ class GameServerDeploymentsService
 !UpdateGameServerDeploymentRollout@.google.cloud.gaming.v1.UpdateGameServerDeploymentRolloutRequest.google.longrunning.Operation"œ‚Óä“T2I/v1/{rollout.name=projects/*/locations/*/gameServerDeployments/*}/rollout:rolloutÚArollout,update_maskÊA)
 GameServerDeploymentOperationMetadata
 "PreviewGameServerDeploymentRolloutA.google.cloud.gaming.v1.PreviewGameServerDeploymentRolloutRequestB.google.cloud.gaming.v1.PreviewGameServerDeploymentRolloutResponse"b‚Óä“\\2Q/v1/{rollout.name=projects/*/locations/*/gameServerDeployments/*}/rollout:preview:rolloutÜ
-FetchDeploymentState3.google.cloud.gaming.v1.FetchDeploymentStateRequest4.google.cloud.gaming.v1.FetchDeploymentStateResponse"Y‚Óä“S"N/v1/{name=projects/*/locations/*/gameServerDeployments/*}:fetchDeploymentState:*OÊAgameservices.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB\\
-com.google.cloud.gaming.v1PZ<google.golang.org/genproto/googleapis/cloud/gaming/v1;gamingbproto3'
+FetchDeploymentState3.google.cloud.gaming.v1.FetchDeploymentStateRequest4.google.cloud.gaming.v1.FetchDeploymentStateResponse"Y‚Óä“S"N/v1/{name=projects/*/locations/*/gameServerDeployments/*}:fetchDeploymentState:*OÊAgameservices.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBR
+com.google.cloud.gaming.v1PZ2cloud.google.com/go/gaming/apiv1/gamingpb;gamingpbbproto3'
         , true);
 
         static::$is_initialized = true;

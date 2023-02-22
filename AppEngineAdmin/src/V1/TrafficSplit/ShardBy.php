@@ -70,6 +70,4 @@ class ShardBy
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ShardBy::class, \Google\Cloud\AppEngine\V1\TrafficSplit_ShardBy::class);
 

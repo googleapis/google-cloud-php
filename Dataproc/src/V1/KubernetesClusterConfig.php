@@ -16,16 +16,17 @@ use Google\Protobuf\Internal\GPBUtil;
 class KubernetesClusterConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. A namespace within the Kubernetes cluster to deploy into. If this namespace
-     * does not exist, it is created. If it exists, Dataproc
-     * verifies that another Dataproc VirtualCluster is not installed
-     * into it. If not specified, the name of the Dataproc Cluster is used.
+     * Optional. A namespace within the Kubernetes cluster to deploy into. If this
+     * namespace does not exist, it is created. If it exists, Dataproc verifies
+     * that another Dataproc VirtualCluster is not installed into it. If not
+     * specified, the name of the Dataproc Cluster is used.
      *
      * Generated from protobuf field <code>string kubernetes_namespace = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $kubernetes_namespace = '';
     /**
-     * Optional. The software configuration for this Dataproc cluster running on Kubernetes.
+     * Optional. The software configuration for this Dataproc cluster running on
+     * Kubernetes.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.KubernetesSoftwareConfig kubernetes_software_config = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -39,14 +40,15 @@ class KubernetesClusterConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $kubernetes_namespace
-     *           Optional. A namespace within the Kubernetes cluster to deploy into. If this namespace
-     *           does not exist, it is created. If it exists, Dataproc
-     *           verifies that another Dataproc VirtualCluster is not installed
-     *           into it. If not specified, the name of the Dataproc Cluster is used.
+     *           Optional. A namespace within the Kubernetes cluster to deploy into. If this
+     *           namespace does not exist, it is created. If it exists, Dataproc verifies
+     *           that another Dataproc VirtualCluster is not installed into it. If not
+     *           specified, the name of the Dataproc Cluster is used.
      *     @type \Google\Cloud\Dataproc\V1\GkeClusterConfig $gke_cluster_config
      *           Required. The configuration for running the Dataproc cluster on GKE.
      *     @type \Google\Cloud\Dataproc\V1\KubernetesSoftwareConfig $kubernetes_software_config
-     *           Optional. The software configuration for this Dataproc cluster running on Kubernetes.
+     *           Optional. The software configuration for this Dataproc cluster running on
+     *           Kubernetes.
      * }
      */
     public function __construct($data = NULL) {
@@ -55,10 +57,10 @@ class KubernetesClusterConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A namespace within the Kubernetes cluster to deploy into. If this namespace
-     * does not exist, it is created. If it exists, Dataproc
-     * verifies that another Dataproc VirtualCluster is not installed
-     * into it. If not specified, the name of the Dataproc Cluster is used.
+     * Optional. A namespace within the Kubernetes cluster to deploy into. If this
+     * namespace does not exist, it is created. If it exists, Dataproc verifies
+     * that another Dataproc VirtualCluster is not installed into it. If not
+     * specified, the name of the Dataproc Cluster is used.
      *
      * Generated from protobuf field <code>string kubernetes_namespace = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -69,10 +71,10 @@ class KubernetesClusterConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A namespace within the Kubernetes cluster to deploy into. If this namespace
-     * does not exist, it is created. If it exists, Dataproc
-     * verifies that another Dataproc VirtualCluster is not installed
-     * into it. If not specified, the name of the Dataproc Cluster is used.
+     * Optional. A namespace within the Kubernetes cluster to deploy into. If this
+     * namespace does not exist, it is created. If it exists, Dataproc verifies
+     * that another Dataproc VirtualCluster is not installed into it. If not
+     * specified, the name of the Dataproc Cluster is used.
      *
      * Generated from protobuf field <code>string kubernetes_namespace = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -118,7 +120,8 @@ class KubernetesClusterConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The software configuration for this Dataproc cluster running on Kubernetes.
+     * Optional. The software configuration for this Dataproc cluster running on
+     * Kubernetes.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.KubernetesSoftwareConfig kubernetes_software_config = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Dataproc\V1\KubernetesSoftwareConfig|null
@@ -139,7 +142,8 @@ class KubernetesClusterConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The software configuration for this Dataproc cluster running on Kubernetes.
+     * Optional. The software configuration for this Dataproc cluster running on
+     * Kubernetes.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.KubernetesSoftwareConfig kubernetes_software_config = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Dataproc\V1\KubernetesSoftwareConfig $var

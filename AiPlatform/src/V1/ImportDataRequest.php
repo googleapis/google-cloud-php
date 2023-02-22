@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [DatasetService.ImportData][google.cloud.aiplatform.v1.DatasetService.ImportData].
+ * Request message for
+ * [DatasetService.ImportData][google.cloud.aiplatform.v1.DatasetService.ImportData].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.ImportDataRequest</code>
  */
@@ -24,8 +25,8 @@ class ImportDataRequest extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * Required. The desired input locations. The contents of all input locations will be
-     * imported in one batch.
+     * Required. The desired input locations. The contents of all input locations
+     * will be imported in one batch.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.ImportDataConfig import_configs = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -42,8 +43,8 @@ class ImportDataRequest extends \Google\Protobuf\Internal\Message
      *           Format:
      *           `projects/{project}/locations/{location}/datasets/{dataset}`
      *     @type array<\Google\Cloud\AIPlatform\V1\ImportDataConfig>|\Google\Protobuf\Internal\RepeatedField $import_configs
-     *           Required. The desired input locations. The contents of all input locations will be
-     *           imported in one batch.
+     *           Required. The desired input locations. The contents of all input locations
+     *           will be imported in one batch.
      * }
      */
     public function __construct($data = NULL) {
@@ -82,8 +83,8 @@ class ImportDataRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The desired input locations. The contents of all input locations will be
-     * imported in one batch.
+     * Required. The desired input locations. The contents of all input locations
+     * will be imported in one batch.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.ImportDataConfig import_configs = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -94,8 +95,8 @@ class ImportDataRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The desired input locations. The contents of all input locations will be
-     * imported in one batch.
+     * Required. The desired input locations. The contents of all input locations
+     * will be imported in one batch.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.ImportDataConfig import_configs = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param array<\Google\Cloud\AIPlatform\V1\ImportDataConfig>|\Google\Protobuf\Internal\RepeatedField $var

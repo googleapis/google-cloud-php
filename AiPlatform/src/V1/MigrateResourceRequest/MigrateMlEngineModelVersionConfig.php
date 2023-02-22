@@ -16,9 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class MigrateMlEngineModelVersionConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The ml.googleapis.com endpoint that this model version should be migrated
-     * from.
-     * Example values:
+     * Required. The ml.googleapis.com endpoint that this model version should
+     * be migrated from. Example values:
      * * ml.googleapis.com
      * * us-centrall-ml.googleapis.com
      * * europe-west4-ml.googleapis.com
@@ -49,9 +48,8 @@ class MigrateMlEngineModelVersionConfig extends \Google\Protobuf\Internal\Messag
      *     Optional. Data for populating the Message object.
      *
      *     @type string $endpoint
-     *           Required. The ml.googleapis.com endpoint that this model version should be migrated
-     *           from.
-     *           Example values:
+     *           Required. The ml.googleapis.com endpoint that this model version should
+     *           be migrated from. Example values:
      *           * ml.googleapis.com
      *           * us-centrall-ml.googleapis.com
      *           * europe-west4-ml.googleapis.com
@@ -70,9 +68,8 @@ class MigrateMlEngineModelVersionConfig extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * Required. The ml.googleapis.com endpoint that this model version should be migrated
-     * from.
-     * Example values:
+     * Required. The ml.googleapis.com endpoint that this model version should
+     * be migrated from. Example values:
      * * ml.googleapis.com
      * * us-centrall-ml.googleapis.com
      * * europe-west4-ml.googleapis.com
@@ -87,9 +84,8 @@ class MigrateMlEngineModelVersionConfig extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * Required. The ml.googleapis.com endpoint that this model version should be migrated
-     * from.
-     * Example values:
+     * Required. The ml.googleapis.com endpoint that this model version should
+     * be migrated from. Example values:
      * * ml.googleapis.com
      * * us-centrall-ml.googleapis.com
      * * europe-west4-ml.googleapis.com

@@ -35,7 +35,7 @@ class ListRelatedAccountGroupMembershipsResponse extends \Google\Protobuf\Intern
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\RecaptchaEnterprise\V1\RelatedAccountGroupMembership[]|\Google\Protobuf\Internal\RepeatedField $related_account_group_memberships
+     *     @type array<\Google\Cloud\RecaptchaEnterprise\V1\RelatedAccountGroupMembership>|\Google\Protobuf\Internal\RepeatedField $related_account_group_memberships
      *           The memberships listed by the query.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -62,7 +62,7 @@ class ListRelatedAccountGroupMembershipsResponse extends \Google\Protobuf\Intern
      * The memberships listed by the query.
      *
      * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.RelatedAccountGroupMembership related_account_group_memberships = 1;</code>
-     * @param \Google\Cloud\RecaptchaEnterprise\V1\RelatedAccountGroupMembership[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\RecaptchaEnterprise\V1\RelatedAccountGroupMembership>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setRelatedAccountGroupMemberships($var)

@@ -41,7 +41,9 @@ use Google\Cloud\Container\V1\Operation;
  *                            - "1.X.Y": picks the highest valid gke.N patch in the 1.X.Y version
  *                            - "1.X.Y-gke.N": picks an explicit Kubernetes version
  *                            - "-": picks the Kubernetes master version
- * @param string $imageType   The desired image type for the node pool.
+ * @param string $imageType   The desired image type for the node pool. Please see
+ *                            https://cloud.google.com/kubernetes-engine/docs/concepts/node-images for
+ *                            available image types.
  */
 function update_node_pool_sample(string $nodeVersion, string $imageType): void
 {

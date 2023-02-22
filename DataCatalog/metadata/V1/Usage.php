@@ -18,7 +18,7 @@ class Usage
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-â
+Ý
 \'google/cloud/datacatalog/v1/usage.protogoogle.cloud.datacatalog.v1google/protobuf/timestamp.proto"‘
 
 UsageStats
@@ -31,8 +31,8 @@ UsageStats
 usage_within_time_range (2B.google.cloud.datacatalog.v1.UsageSignal.UsageWithinTimeRangeEntryBàAd
 UsageWithinTimeRangeEntry
 key (	6
-value (2\'.google.cloud.datacatalog.v1.UsageStats:8BË
-com.google.cloud.datacatalog.v1PZFgoogle.golang.org/genproto/googleapis/cloud/datacatalog/v1;datacatalogøªGoogle.Cloud.DataCatalog.V1ÊGoogle\\Cloud\\DataCatalog\\V1êGoogle::Cloud::DataCatalog::V1bproto3'
+value (2\'.google.cloud.datacatalog.v1.UsageStats:8BÆ
+com.google.cloud.datacatalog.v1PZAcloud.google.com/go/datacatalog/apiv1/datacatalogpb;datacatalogpbøªGoogle.Cloud.DataCatalog.V1ÊGoogle\\Cloud\\DataCatalog\\V1êGoogle::Cloud::DataCatalog::V1bproto3'
         , true);
 
         static::$is_initialized = true;

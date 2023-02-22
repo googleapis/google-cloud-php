@@ -28,7 +28,7 @@ class Cloudtasks
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ö5
+ë5
 +google/cloud/tasks/v2beta2/cloudtasks.protogoogle.cloud.tasks.v2beta2google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto&google/cloud/tasks/v2beta2/queue.proto%google/cloud/tasks/v2beta2/task.protogoogle/iam/v1/iam_policy.protogoogle/iam/v1/policy.protogoogle/protobuf/duration.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"·
 ListQueuesRequest7
 parent (	B\'àAúA!cloudtasks.googleapis.com/Queue
@@ -137,8 +137,8 @@ LeaseTasks-.google.cloud.tasks.v2beta2.LeaseTasksRequest..google.cloud.tasks.v
 
 RenewLease-.google.cloud.tasks.v2beta2.RenewLeaseRequest .google.cloud.tasks.v2beta2.Task"q‚Óä“G"B/v2beta2/{name=projects/*/locations/*/queues/*/tasks/*}:renewLease:*ÚA!name,schedule_time,lease_durationÄ
 CancelLease..google.cloud.tasks.v2beta2.CancelLeaseRequest .google.cloud.tasks.v2beta2.Task"c‚Óä“H"C/v2beta2/{name=projects/*/locations/*/queues/*/tasks/*}:cancelLease:*ÚAname,schedule_time¦
-RunTask*.google.cloud.tasks.v2beta2.RunTaskRequest .google.cloud.tasks.v2beta2.Task"M‚Óä“@";/v2beta2/{name=projects/*/locations/*/queues/*/tasks/*}:run:*ÚAnameMÊAcloudtasks.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB|
-com.google.cloud.tasks.v2beta2BCloudTasksProtoPZ?google.golang.org/genproto/googleapis/cloud/tasks/v2beta2;tasks¢TASKSbproto3'
+RunTask*.google.cloud.tasks.v2beta2.RunTaskRequest .google.cloud.tasks.v2beta2.Task"M‚Óä“@";/v2beta2/{name=projects/*/locations/*/queues/*/tasks/*}:run:*ÚAnameMÊAcloudtasks.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBq
+com.google.cloud.tasks.v2beta2BCloudTasksProtoPZ4cloud.google.com/go/tasks/apiv2beta2/taskspb;taskspb¢TASKSbproto3'
         , true);
 
         static::$is_initialized = true;

@@ -52,6 +52,16 @@ class Reservation extends \Google\Protobuf\Internal\Message
      */
     private $name = null;
     /**
+     * Generated from protobuf field <code>map<string, string> resource_policies = 22220385;</code>
+     */
+    private $resource_policies;
+    /**
+     * [Output Only] Status information for Reservation resource.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.AllocationResourceStatus resource_status = 249429315;</code>
+     */
+    private $resource_status = null;
+    /**
      * [Output Only] Reserved for future use.
      *
      * Generated from protobuf field <code>optional bool satisfies_pzs = 480964267;</code>
@@ -113,6 +123,9 @@ class Reservation extends \Google\Protobuf\Internal\Message
      *           [Output Only] Type of the resource. Always compute#reservations for reservations.
      *     @type string $name
      *           The name of the resource, provided by the client when initially creating the resource. The resource name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     *     @type array|\Google\Protobuf\Internal\MapField $resource_policies
+     *     @type \Google\Cloud\Compute\V1\AllocationResourceStatus $resource_status
+     *           [Output Only] Status information for Reservation resource.
      *     @type bool $satisfies_pzs
      *           [Output Only] Reserved for future use.
      *     @type string $self_link
@@ -347,6 +360,64 @@ class Reservation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>map<string, string> resource_policies = 22220385;</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getResourcePolicies()
+    {
+        return $this->resource_policies;
+    }
+
+    /**
+     * Generated from protobuf field <code>map<string, string> resource_policies = 22220385;</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setResourcePolicies($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->resource_policies = $arr;
+
+        return $this;
+    }
+
+    /**
+     * [Output Only] Status information for Reservation resource.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.AllocationResourceStatus resource_status = 249429315;</code>
+     * @return \Google\Cloud\Compute\V1\AllocationResourceStatus|null
+     */
+    public function getResourceStatus()
+    {
+        return $this->resource_status;
+    }
+
+    public function hasResourceStatus()
+    {
+        return isset($this->resource_status);
+    }
+
+    public function clearResourceStatus()
+    {
+        unset($this->resource_status);
+    }
+
+    /**
+     * [Output Only] Status information for Reservation resource.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.AllocationResourceStatus resource_status = 249429315;</code>
+     * @param \Google\Cloud\Compute\V1\AllocationResourceStatus $var
+     * @return $this
+     */
+    public function setResourceStatus($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\AllocationResourceStatus::class);
+        $this->resource_status = $var;
 
         return $this;
     }

@@ -191,9 +191,6 @@ class FleetRoutingGapicClient
      * @param array $options {
      *     Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress
-     *           **Deprecated**. This option will be removed in a future major release. Please
-     *           utilize the `$apiEndpoint` option instead.
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'cloudoptimization.googleapis.com:443'.
@@ -223,7 +220,7 @@ class FleetRoutingGapicClient
      *           *Advanced usage*: Additionally, it is possible to pass in an already
      *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
      *           that when this object is provided, any settings in $transportConfig, and any
-     *           $serviceAddress setting, will be ignored.
+     *           $apiEndpoint setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
      *           each supported transport type should be passed in a key for that transport. For
@@ -390,7 +387,7 @@ class FleetRoutingGapicClient
      *           By default, the solving mode is `DEFAULT_SOLVE` (0).
      *           For allowed values, use constants defined on {@see \Google\Cloud\Optimization\V1\OptimizeToursRequest\SolvingMode}
      *     @type int $maxValidationErrors
-     *           Truncates the number of validation errors returned. Those errors are
+     *           Truncates the number of validation errors returned. These errors are
      *           typically attached to an INVALID_ARGUMENT error payload as a BadRequest
      *           error detail (https://cloud.google.com/apis/design/errors#error_details),
      *           unless solving_mode=VALIDATE_ONLY: see the
@@ -556,7 +553,8 @@ class FleetRoutingGapicClient
      *           Label that may be used to identify this request, reported back in the
      *           [OptimizeToursResponse.request_label][google.cloud.optimization.v1.OptimizeToursResponse.request_label].
      *     @type bool $populateTravelStepPolylines
-     *           Deprecated: Use [OptimizeToursRequest.populate_transition_polylines][]
+     *           Deprecated: Use
+     *           [OptimizeToursRequest.populate_transition_polylines][google.cloud.optimization.v1.OptimizeToursRequest.populate_transition_polylines]
      *           instead. If true, polylines will be populated in response
      *           [ShipmentRoute.transitions][google.cloud.optimization.v1.ShipmentRoute.transitions].
      *           Note that in this case, the polylines will also be populated in the

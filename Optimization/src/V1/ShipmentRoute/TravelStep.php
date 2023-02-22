@@ -9,10 +9,11 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Deprecated: Use [ShipmentRoute.transitions][] instead.
- * Travel between each visit, along the route: from the
- * vehicle's `start_location` to the first visit's `arrival_location`, then
- * from the first visit's `departure_location` to the second visit's
+ * Deprecated: Use
+ * [ShipmentRoute.Transition][google.cloud.optimization.v1.ShipmentRoute.Transition]
+ * instead. Travel between each visit along the route: from the vehicle's
+ * `start_location` to the first visit's `arrival_location`, then from the
+ * first visit's `departure_location` to the second visit's
  * `arrival_location`, and so on until the vehicle's `end_location`. This
  * accounts only for the actual travel between visits, not counting the
  * waiting time, the time spent performing a visit, nor the distance covered

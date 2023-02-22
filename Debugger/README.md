@@ -4,7 +4,7 @@
 
 [![Latest Stable Version](https://poser.pugx.org/google/cloud-debugger/v/stable)](https://packagist.org/packages/google/cloud-debugger) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-debugger.svg)](https://packagist.org/packages/google/cloud-debugger)
 
-* [API documentation](http://googleapis.github.io/google-cloud-php/#/docs/cloud-debugger/latest)
+* [API documentation](https://cloud.google.com/php/docs/reference/cloud-debugger/latest)
 
 **NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googleapis/google-cloud-php). Any
 support requests, bug reports, or development contributions should be directed to
@@ -143,7 +143,7 @@ any minor or patch releases. We will address issues and requests with the highes
 
 [semaphore-extensions]: http://php.net/manual/en/book.sem.php
 [batch-daemon]: https://github.com/googleapis/google-cloud-php/blob/main/src/Core/Batch/BatchDaemon.php
-[debugger-daemon]: http://googleapis.github.io/google-cloud-php/#/docs/cloud-debugger/main/debugger/daemon
+[debugger-daemon]: https://cloud.google.com/php/docs/reference/debugger/latest/Daemon
 [pecl-debugger]: https://pecl.php.net/package/stackdriver_debugger
 [debugger-console]: https://console.cloud.google.com/debug
 [using-debug-snapshots]: https://cloud.google.com/debugger/docs/debugging

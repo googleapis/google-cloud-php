@@ -16,11 +16,20 @@ use Google\Protobuf\Internal\GPBUtil;
 class CustomJobDetail extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The name of the [CustomJob][google.cloud.aiplatform.v1.CustomJob].
+     * Output only. The name of the
+     * [CustomJob][google.cloud.aiplatform.v1.CustomJob].
      *
      * Generated from protobuf field <code>string job = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
     private $job = '';
+    /**
+     * Output only. The names of the previously failed
+     * [CustomJob][google.cloud.aiplatform.v1.CustomJob]. The list includes the
+     * all attempts in chronological order.
+     *
+     * Generated from protobuf field <code>repeated string failed_jobs = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $failed_jobs;
 
     /**
      * Constructor.
@@ -29,7 +38,12 @@ class CustomJobDetail extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $job
-     *           Output only. The name of the [CustomJob][google.cloud.aiplatform.v1.CustomJob].
+     *           Output only. The name of the
+     *           [CustomJob][google.cloud.aiplatform.v1.CustomJob].
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $failed_jobs
+     *           Output only. The names of the previously failed
+     *           [CustomJob][google.cloud.aiplatform.v1.CustomJob]. The list includes the
+     *           all attempts in chronological order.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,7 +52,8 @@ class CustomJobDetail extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The name of the [CustomJob][google.cloud.aiplatform.v1.CustomJob].
+     * Output only. The name of the
+     * [CustomJob][google.cloud.aiplatform.v1.CustomJob].
      *
      * Generated from protobuf field <code>string job = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @return string
@@ -49,7 +64,8 @@ class CustomJobDetail extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The name of the [CustomJob][google.cloud.aiplatform.v1.CustomJob].
+     * Output only. The name of the
+     * [CustomJob][google.cloud.aiplatform.v1.CustomJob].
      *
      * Generated from protobuf field <code>string job = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -59,6 +75,36 @@ class CustomJobDetail extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->job = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The names of the previously failed
+     * [CustomJob][google.cloud.aiplatform.v1.CustomJob]. The list includes the
+     * all attempts in chronological order.
+     *
+     * Generated from protobuf field <code>repeated string failed_jobs = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getFailedJobs()
+    {
+        return $this->failed_jobs;
+    }
+
+    /**
+     * Output only. The names of the previously failed
+     * [CustomJob][google.cloud.aiplatform.v1.CustomJob]. The list includes the
+     * all attempts in chronological order.
+     *
+     * Generated from protobuf field <code>repeated string failed_jobs = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setFailedJobs($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->failed_jobs = $arr;
 
         return $this;
     }

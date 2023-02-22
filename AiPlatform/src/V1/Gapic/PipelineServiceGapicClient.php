@@ -27,10 +27,8 @@ namespace Google\Cloud\AIPlatform\V1\Gapic;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\Call;
 use Google\ApiCore\CredentialsWrapper;
-
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\LongRunning\OperationsClient;
-
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
@@ -93,29 +91,19 @@ class PipelineServiceGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.aiplatform.v1.PipelineService';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'aiplatform.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
     ];
@@ -380,9 +368,6 @@ class PipelineServiceGapicClient
      * @param array $options {
      *     Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress
-     *           **Deprecated**. This option will be removed in a future major release. Please
-     *           utilize the `$apiEndpoint` option instead.
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'aiplatform.googleapis.com:443'.
@@ -412,7 +397,7 @@ class PipelineServiceGapicClient
      *           *Advanced usage*: Additionally, it is possible to pass in an already
      *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
      *           that when this object is provided, any settings in $transportConfig, and any
-     *           $serviceAddress setting, will be ignored.
+     *           $apiEndpoint setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
      *           each supported transport type should be passed in a key for that transport. For
@@ -442,12 +427,15 @@ class PipelineServiceGapicClient
      * Cancels a PipelineJob.
      * Starts asynchronous cancellation on the PipelineJob. The server
      * makes a best effort to cancel the pipeline, but success is not
-     * guaranteed. Clients can use [PipelineService.GetPipelineJob][google.cloud.aiplatform.v1.PipelineService.GetPipelineJob] or
-     * other methods to check whether the cancellation succeeded or whether the
+     * guaranteed. Clients can use
+     * [PipelineService.GetPipelineJob][google.cloud.aiplatform.v1.PipelineService.GetPipelineJob]
+     * or other methods to check whether the cancellation succeeded or whether the
      * pipeline completed despite cancellation. On successful cancellation,
      * the PipelineJob is not deleted; instead it becomes a pipeline with
-     * a [PipelineJob.error][google.cloud.aiplatform.v1.PipelineJob.error] value with a [google.rpc.Status.code][google.rpc.Status.code] of 1,
-     * corresponding to `Code.CANCELLED`, and [PipelineJob.state][google.cloud.aiplatform.v1.PipelineJob.state] is set to
+     * a [PipelineJob.error][google.cloud.aiplatform.v1.PipelineJob.error] value
+     * with a [google.rpc.Status.code][google.rpc.Status.code] of 1, corresponding
+     * to `Code.CANCELLED`, and
+     * [PipelineJob.state][google.cloud.aiplatform.v1.PipelineJob.state] is set to
      * `CANCELLED`.
      *
      * Sample code:
@@ -499,13 +487,17 @@ class PipelineServiceGapicClient
      * Cancels a TrainingPipeline.
      * Starts asynchronous cancellation on the TrainingPipeline. The server
      * makes a best effort to cancel the pipeline, but success is not
-     * guaranteed. Clients can use [PipelineService.GetTrainingPipeline][google.cloud.aiplatform.v1.PipelineService.GetTrainingPipeline] or
-     * other methods to check whether the cancellation succeeded or whether the
+     * guaranteed. Clients can use
+     * [PipelineService.GetTrainingPipeline][google.cloud.aiplatform.v1.PipelineService.GetTrainingPipeline]
+     * or other methods to check whether the cancellation succeeded or whether the
      * pipeline completed despite cancellation. On successful cancellation,
      * the TrainingPipeline is not deleted; instead it becomes a pipeline with
-     * a [TrainingPipeline.error][google.cloud.aiplatform.v1.TrainingPipeline.error] value with a [google.rpc.Status.code][google.rpc.Status.code] of 1,
-     * corresponding to `Code.CANCELLED`, and [TrainingPipeline.state][google.cloud.aiplatform.v1.TrainingPipeline.state] is set to
-     * `CANCELLED`.
+     * a
+     * [TrainingPipeline.error][google.cloud.aiplatform.v1.TrainingPipeline.error]
+     * value with a [google.rpc.Status.code][google.rpc.Status.code] of 1,
+     * corresponding to `Code.CANCELLED`, and
+     * [TrainingPipeline.state][google.cloud.aiplatform.v1.TrainingPipeline.state]
+     * is set to `CANCELLED`.
      *
      * Sample code:
      * ```
@@ -634,8 +626,8 @@ class PipelineServiceGapicClient
      * }
      * ```
      *
-     * @param string           $parent           Required. The resource name of the Location to create the TrainingPipeline in.
-     *                                           Format: `projects/{project}/locations/{location}`
+     * @param string           $parent           Required. The resource name of the Location to create the TrainingPipeline
+     *                                           in. Format: `projects/{project}/locations/{location}`
      * @param TrainingPipeline $trainingPipeline Required. The TrainingPipeline to create.
      * @param array            $optionalArgs     {
      *     Optional.
@@ -1087,8 +1079,8 @@ class PipelineServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the Location to list the TrainingPipelines from.
-     *                             Format: `projects/{project}/locations/{location}`
+     * @param string $parent       Required. The resource name of the Location to list the TrainingPipelines
+     *                             from. Format: `projects/{project}/locations/{location}`
      * @param array  $optionalArgs {
      *     Optional.
      *

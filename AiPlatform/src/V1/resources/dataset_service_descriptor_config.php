@@ -83,6 +83,16 @@ return [
                     'resourcesGetMethod' => 'getSavedQueries',
                 ],
             ],
+            'SearchDataItems' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getDataItemViews',
+                ],
+            ],
             'ListLocations' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',

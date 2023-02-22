@@ -48,7 +48,7 @@ class FormatMessage extends \Google\Protobuf\Internal\Message
      *           *   `Failed to load '$0' which helps debug $1 the first time it
      *               is loaded.  Again, $0 is very important.`
      *           *   `Please pay $$10 to use $0 instead of $1.`
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $parameters
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $parameters
      *           Optional parameters to be embedded into the message.
      * }
      */
@@ -110,7 +110,7 @@ class FormatMessage extends \Google\Protobuf\Internal\Message
      * Optional parameters to be embedded into the message.
      *
      * Generated from protobuf field <code>repeated string parameters = 2;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setParameters($var)

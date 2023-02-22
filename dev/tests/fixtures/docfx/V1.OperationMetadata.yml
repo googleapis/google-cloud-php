@@ -45,20 +45,17 @@ items:
           description: 'Current state of the batch operation.'
         -
           id: '↳ create_time'
-          var_type: Google\Protobuf\Timestamp
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Timestamp">Google\Protobuf\Timestamp</a>'
           description: 'The time when the batch request was received.'
         -
           id: '↳ update_time'
-          var_type: Google\Protobuf\Timestamp
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Timestamp">Google\Protobuf\Timestamp</a>'
           description: 'The time when the operation result was last updated.'
   -
     uid: '\Google\Cloud\Vision\V1\OperationMetadata::getState()'
     name: getState
     id: getState
-    summary: |
-      Current state of the batch operation.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.OperationMetadata.State state = 1;</code>
+    summary: 'Current state of the batch operation.'
     parent: \Google\Cloud\Vision\V1\OperationMetadata
     type: method
     langs:
@@ -71,10 +68,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\OperationMetadata::setState()'
     name: setState
     id: setState
-    summary: |
-      Current state of the batch operation.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.OperationMetadata.State state = 1;</code>
+    summary: 'Current state of the batch operation.'
     parent: \Google\Cloud\Vision\V1\OperationMetadata
     type: method
     langs:
@@ -92,10 +86,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\OperationMetadata::getCreateTime()'
     name: getCreateTime
     id: getCreateTime
-    summary: |
-      The time when the batch request was received.
-      
-      Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5;</code>
+    summary: 'The time when the batch request was received.'
     parent: \Google\Cloud\Vision\V1\OperationMetadata
     type: method
     langs:
@@ -103,7 +94,7 @@ items:
     syntax:
       returns:
         -
-          var_type: Google\Protobuf\Timestamp|null
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Timestamp">Google\Protobuf\Timestamp</a>|null'
   -
     uid: '\Google\Cloud\Vision\V1\OperationMetadata::hasCreateTime()'
     name: hasCreateTime
@@ -124,10 +115,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\OperationMetadata::setCreateTime()'
     name: setCreateTime
     id: setCreateTime
-    summary: |
-      The time when the batch request was received.
-      
-      Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5;</code>
+    summary: 'The time when the batch request was received.'
     parent: \Google\Cloud\Vision\V1\OperationMetadata
     type: method
     langs:
@@ -136,7 +124,7 @@ items:
       parameters:
         -
           id: var
-          var_type: Google\Protobuf\Timestamp
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Timestamp">Google\Protobuf\Timestamp</a>'
           description: ''
       returns:
         -
@@ -145,10 +133,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\OperationMetadata::getUpdateTime()'
     name: getUpdateTime
     id: getUpdateTime
-    summary: |
-      The time when the operation result was last updated.
-      
-      Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 6;</code>
+    summary: 'The time when the operation result was last updated.'
     parent: \Google\Cloud\Vision\V1\OperationMetadata
     type: method
     langs:
@@ -156,7 +141,7 @@ items:
     syntax:
       returns:
         -
-          var_type: Google\Protobuf\Timestamp|null
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Timestamp">Google\Protobuf\Timestamp</a>|null'
   -
     uid: '\Google\Cloud\Vision\V1\OperationMetadata::hasUpdateTime()'
     name: hasUpdateTime
@@ -177,10 +162,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\OperationMetadata::setUpdateTime()'
     name: setUpdateTime
     id: setUpdateTime
-    summary: |
-      The time when the operation result was last updated.
-      
-      Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 6;</code>
+    summary: 'The time when the operation result was last updated.'
     parent: \Google\Cloud\Vision\V1\OperationMetadata
     type: method
     langs:
@@ -189,7 +171,7 @@ items:
       parameters:
         -
           id: var
-          var_type: Google\Protobuf\Timestamp
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Timestamp">Google\Protobuf\Timestamp</a>'
           description: ''
       returns:
         -

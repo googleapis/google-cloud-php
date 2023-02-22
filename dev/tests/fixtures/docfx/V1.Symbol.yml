@@ -61,10 +61,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\Symbol::getProperty()'
     name: getProperty
     id: getProperty
-    summary: |
-      Additional information detected for the symbol.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
+    summary: 'Additional information detected for the symbol.'
     parent: \Google\Cloud\Vision\V1\Symbol
     type: method
     langs:
@@ -93,10 +90,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\Symbol::setProperty()'
     name: setProperty
     id: setProperty
-    summary: |
-      Additional information detected for the symbol.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
+    summary: 'Additional information detected for the symbol.'
     parent: \Google\Cloud\Vision\V1\Symbol
     type: method
     langs:
@@ -131,8 +125,6 @@ items:
            |    |
            1----0
         and the vertex order will still be (0, 1, 2, 3).
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.BoundingPoly bounding_box = 2;</code>
     parent: \Google\Cloud\Vision\V1\Symbol
     type: method
     langs:
@@ -178,8 +170,6 @@ items:
            |    |
            1----0
         and the vertex order will still be (0, 1, 2, 3).
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.BoundingPoly bounding_box = 2;</code>
     parent: \Google\Cloud\Vision\V1\Symbol
     type: method
     langs:
@@ -197,10 +187,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\Symbol::getText()'
     name: getText
     id: getText
-    summary: |
-      The actual UTF-8 representation of the symbol.
-      
-      Generated from protobuf field <code>string text = 3;</code>
+    summary: 'The actual UTF-8 representation of the symbol.'
     parent: \Google\Cloud\Vision\V1\Symbol
     type: method
     langs:
@@ -213,10 +200,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\Symbol::setText()'
     name: setText
     id: setText
-    summary: |
-      The actual UTF-8 representation of the symbol.
-      
-      Generated from protobuf field <code>string text = 3;</code>
+    summary: 'The actual UTF-8 representation of the symbol.'
     parent: \Google\Cloud\Vision\V1\Symbol
     type: method
     langs:
@@ -234,10 +218,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\Symbol::getConfidence()'
     name: getConfidence
     id: getConfidence
-    summary: |
-      Confidence of the OCR results for the symbol. Range [0, 1].
-      
-      Generated from protobuf field <code>float confidence = 4;</code>
+    summary: 'Confidence of the OCR results for the symbol. Range [0, 1].'
     parent: \Google\Cloud\Vision\V1\Symbol
     type: method
     langs:
@@ -250,10 +231,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\Symbol::setConfidence()'
     name: setConfidence
     id: setConfidence
-    summary: |
-      Confidence of the OCR results for the symbol. Range [0, 1].
-      
-      Generated from protobuf field <code>float confidence = 4;</code>
+    summary: 'Confidence of the OCR results for the symbol. Range [0, 1].'
     parent: \Google\Cloud\Vision\V1\Symbol
     type: method
     langs:

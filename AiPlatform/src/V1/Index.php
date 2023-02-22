@@ -24,7 +24,7 @@ class Index extends \Google\Protobuf\Internal\Message
     private $name = '';
     /**
      * Required. The display name of the Index.
-     * The name can be up to 128 characters long and can be consist of any UTF-8
+     * The name can be up to 128 characters long and can consist of any UTF-8
      * characters.
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -37,10 +37,10 @@ class Index extends \Google\Protobuf\Internal\Message
      */
     private $description = '';
     /**
-     * Immutable. Points to a YAML file stored on Google Cloud Storage describing additional
-     * information about the Index, that is specific to it. Unset if the Index
-     * does not have any additional information.
-     * The schema is defined as an OpenAPI 3.0.2 [Schema
+     * Immutable. Points to a YAML file stored on Google Cloud Storage describing
+     * additional information about the Index, that is specific to it. Unset if
+     * the Index does not have any additional information. The schema is defined
+     * as an OpenAPI 3.0.2 [Schema
      * Object](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.2.md#schemaObject).
      * Note: The URI given on output will be immutable and probably different,
      * including the URI scheme, than the one given on input. The output URI will
@@ -51,7 +51,8 @@ class Index extends \Google\Protobuf\Internal\Message
     private $metadata_schema_uri = '';
     /**
      * An additional information about the Index; the schema of the metadata can
-     * be found in [metadata_schema][google.cloud.aiplatform.v1.Index.metadata_schema_uri].
+     * be found in
+     * [metadata_schema][google.cloud.aiplatform.v1.Index.metadata_schema_uri].
      *
      * Generated from protobuf field <code>.google.protobuf.Value metadata = 6;</code>
      */
@@ -92,10 +93,10 @@ class Index extends \Google\Protobuf\Internal\Message
      * This also includes any update to the contents of the Index.
      * Note that Operations working on this Index may have their
      * [Operations.metadata.generic_metadata.update_time]
-     * [google.cloud.aiplatform.v1.GenericOperationMetadata.update_time] a little after the value of this
-     * timestamp, yet that does not mean their results are not already reflected
-     * in the Index. Result of any successfully completed Operation on the Index
-     * is reflected in it.
+     * [google.cloud.aiplatform.v1.GenericOperationMetadata.update_time] a little
+     * after the value of this timestamp, yet that does not mean their results are
+     * not already reflected in the Index. Result of any successfully completed
+     * Operation on the Index is reflected in it.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -107,8 +108,8 @@ class Index extends \Google\Protobuf\Internal\Message
      */
     private $index_stats = null;
     /**
-     * Immutable. The update method to use with this Index. If not set, BATCH_UPDATE will be
-     * used by default.
+     * Immutable. The update method to use with this Index. If not set,
+     * BATCH_UPDATE will be used by default.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Index.IndexUpdateMethod index_update_method = 16 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
@@ -124,22 +125,23 @@ class Index extends \Google\Protobuf\Internal\Message
      *           Output only. The resource name of the Index.
      *     @type string $display_name
      *           Required. The display name of the Index.
-     *           The name can be up to 128 characters long and can be consist of any UTF-8
+     *           The name can be up to 128 characters long and can consist of any UTF-8
      *           characters.
      *     @type string $description
      *           The description of the Index.
      *     @type string $metadata_schema_uri
-     *           Immutable. Points to a YAML file stored on Google Cloud Storage describing additional
-     *           information about the Index, that is specific to it. Unset if the Index
-     *           does not have any additional information.
-     *           The schema is defined as an OpenAPI 3.0.2 [Schema
+     *           Immutable. Points to a YAML file stored on Google Cloud Storage describing
+     *           additional information about the Index, that is specific to it. Unset if
+     *           the Index does not have any additional information. The schema is defined
+     *           as an OpenAPI 3.0.2 [Schema
      *           Object](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.2.md#schemaObject).
      *           Note: The URI given on output will be immutable and probably different,
      *           including the URI scheme, than the one given on input. The output URI will
      *           point to a location where the user only has a read access.
      *     @type \Google\Protobuf\Value $metadata
      *           An additional information about the Index; the schema of the metadata can
-     *           be found in [metadata_schema][google.cloud.aiplatform.v1.Index.metadata_schema_uri].
+     *           be found in
+     *           [metadata_schema][google.cloud.aiplatform.v1.Index.metadata_schema_uri].
      *     @type array<\Google\Cloud\AIPlatform\V1\DeployedIndexRef>|\Google\Protobuf\Internal\RepeatedField $deployed_indexes
      *           Output only. The pointers to DeployedIndexes created from this Index.
      *           An Index can be only deleted if all its DeployedIndexes had been undeployed
@@ -160,15 +162,15 @@ class Index extends \Google\Protobuf\Internal\Message
      *           This also includes any update to the contents of the Index.
      *           Note that Operations working on this Index may have their
      *           [Operations.metadata.generic_metadata.update_time]
-     *           [google.cloud.aiplatform.v1.GenericOperationMetadata.update_time] a little after the value of this
-     *           timestamp, yet that does not mean their results are not already reflected
-     *           in the Index. Result of any successfully completed Operation on the Index
-     *           is reflected in it.
+     *           [google.cloud.aiplatform.v1.GenericOperationMetadata.update_time] a little
+     *           after the value of this timestamp, yet that does not mean their results are
+     *           not already reflected in the Index. Result of any successfully completed
+     *           Operation on the Index is reflected in it.
      *     @type \Google\Cloud\AIPlatform\V1\IndexStats $index_stats
      *           Output only. Stats of the index resource.
      *     @type int $index_update_method
-     *           Immutable. The update method to use with this Index. If not set, BATCH_UPDATE will be
-     *           used by default.
+     *           Immutable. The update method to use with this Index. If not set,
+     *           BATCH_UPDATE will be used by default.
      * }
      */
     public function __construct($data = NULL) {
@@ -204,7 +206,7 @@ class Index extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The display name of the Index.
-     * The name can be up to 128 characters long and can be consist of any UTF-8
+     * The name can be up to 128 characters long and can consist of any UTF-8
      * characters.
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -217,7 +219,7 @@ class Index extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The display name of the Index.
-     * The name can be up to 128 characters long and can be consist of any UTF-8
+     * The name can be up to 128 characters long and can consist of any UTF-8
      * characters.
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -259,10 +261,10 @@ class Index extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. Points to a YAML file stored on Google Cloud Storage describing additional
-     * information about the Index, that is specific to it. Unset if the Index
-     * does not have any additional information.
-     * The schema is defined as an OpenAPI 3.0.2 [Schema
+     * Immutable. Points to a YAML file stored on Google Cloud Storage describing
+     * additional information about the Index, that is specific to it. Unset if
+     * the Index does not have any additional information. The schema is defined
+     * as an OpenAPI 3.0.2 [Schema
      * Object](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.2.md#schemaObject).
      * Note: The URI given on output will be immutable and probably different,
      * including the URI scheme, than the one given on input. The output URI will
@@ -277,10 +279,10 @@ class Index extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. Points to a YAML file stored on Google Cloud Storage describing additional
-     * information about the Index, that is specific to it. Unset if the Index
-     * does not have any additional information.
-     * The schema is defined as an OpenAPI 3.0.2 [Schema
+     * Immutable. Points to a YAML file stored on Google Cloud Storage describing
+     * additional information about the Index, that is specific to it. Unset if
+     * the Index does not have any additional information. The schema is defined
+     * as an OpenAPI 3.0.2 [Schema
      * Object](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.2.md#schemaObject).
      * Note: The URI given on output will be immutable and probably different,
      * including the URI scheme, than the one given on input. The output URI will
@@ -300,7 +302,8 @@ class Index extends \Google\Protobuf\Internal\Message
 
     /**
      * An additional information about the Index; the schema of the metadata can
-     * be found in [metadata_schema][google.cloud.aiplatform.v1.Index.metadata_schema_uri].
+     * be found in
+     * [metadata_schema][google.cloud.aiplatform.v1.Index.metadata_schema_uri].
      *
      * Generated from protobuf field <code>.google.protobuf.Value metadata = 6;</code>
      * @return \Google\Protobuf\Value|null
@@ -322,7 +325,8 @@ class Index extends \Google\Protobuf\Internal\Message
 
     /**
      * An additional information about the Index; the schema of the metadata can
-     * be found in [metadata_schema][google.cloud.aiplatform.v1.Index.metadata_schema_uri].
+     * be found in
+     * [metadata_schema][google.cloud.aiplatform.v1.Index.metadata_schema_uri].
      *
      * Generated from protobuf field <code>.google.protobuf.Value metadata = 6;</code>
      * @param \Google\Protobuf\Value $var
@@ -469,10 +473,10 @@ class Index extends \Google\Protobuf\Internal\Message
      * This also includes any update to the contents of the Index.
      * Note that Operations working on this Index may have their
      * [Operations.metadata.generic_metadata.update_time]
-     * [google.cloud.aiplatform.v1.GenericOperationMetadata.update_time] a little after the value of this
-     * timestamp, yet that does not mean their results are not already reflected
-     * in the Index. Result of any successfully completed Operation on the Index
-     * is reflected in it.
+     * [google.cloud.aiplatform.v1.GenericOperationMetadata.update_time] a little
+     * after the value of this timestamp, yet that does not mean their results are
+     * not already reflected in the Index. Result of any successfully completed
+     * Operation on the Index is reflected in it.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -497,10 +501,10 @@ class Index extends \Google\Protobuf\Internal\Message
      * This also includes any update to the contents of the Index.
      * Note that Operations working on this Index may have their
      * [Operations.metadata.generic_metadata.update_time]
-     * [google.cloud.aiplatform.v1.GenericOperationMetadata.update_time] a little after the value of this
-     * timestamp, yet that does not mean their results are not already reflected
-     * in the Index. Result of any successfully completed Operation on the Index
-     * is reflected in it.
+     * [google.cloud.aiplatform.v1.GenericOperationMetadata.update_time] a little
+     * after the value of this timestamp, yet that does not mean their results are
+     * not already reflected in the Index. Result of any successfully completed
+     * Operation on the Index is reflected in it.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -551,8 +555,8 @@ class Index extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. The update method to use with this Index. If not set, BATCH_UPDATE will be
-     * used by default.
+     * Immutable. The update method to use with this Index. If not set,
+     * BATCH_UPDATE will be used by default.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Index.IndexUpdateMethod index_update_method = 16 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return int
@@ -563,8 +567,8 @@ class Index extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. The update method to use with this Index. If not set, BATCH_UPDATE will be
-     * used by default.
+     * Immutable. The update method to use with this Index. If not set,
+     * BATCH_UPDATE will be used by default.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Index.IndexUpdateMethod index_update_method = 16 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @param int $var

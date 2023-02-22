@@ -18,7 +18,8 @@ class NoiseSigmaForFeature extends \Google\Protobuf\Internal\Message
     /**
      * The name of the input feature for which noise sigma is provided. The
      * features are defined in
-     * [explanation metadata inputs][google.cloud.aiplatform.v1.ExplanationMetadata.inputs].
+     * [explanation metadata
+     * inputs][google.cloud.aiplatform.v1.ExplanationMetadata.inputs].
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -26,8 +27,8 @@ class NoiseSigmaForFeature extends \Google\Protobuf\Internal\Message
     /**
      * This represents the standard deviation of the Gaussian kernel that will
      * be used to add noise to the feature prior to computing gradients. Similar
-     * to [noise_sigma][google.cloud.aiplatform.v1.SmoothGradConfig.noise_sigma] but represents the
-     * noise added to the current feature. Defaults to 0.1.
+     * to [noise_sigma][google.cloud.aiplatform.v1.SmoothGradConfig.noise_sigma]
+     * but represents the noise added to the current feature. Defaults to 0.1.
      *
      * Generated from protobuf field <code>float sigma = 2;</code>
      */
@@ -42,12 +43,13 @@ class NoiseSigmaForFeature extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           The name of the input feature for which noise sigma is provided. The
      *           features are defined in
-     *           [explanation metadata inputs][google.cloud.aiplatform.v1.ExplanationMetadata.inputs].
+     *           [explanation metadata
+     *           inputs][google.cloud.aiplatform.v1.ExplanationMetadata.inputs].
      *     @type float $sigma
      *           This represents the standard deviation of the Gaussian kernel that will
      *           be used to add noise to the feature prior to computing gradients. Similar
-     *           to [noise_sigma][google.cloud.aiplatform.v1.SmoothGradConfig.noise_sigma] but represents the
-     *           noise added to the current feature. Defaults to 0.1.
+     *           to [noise_sigma][google.cloud.aiplatform.v1.SmoothGradConfig.noise_sigma]
+     *           but represents the noise added to the current feature. Defaults to 0.1.
      * }
      */
     public function __construct($data = NULL) {
@@ -58,7 +60,8 @@ class NoiseSigmaForFeature extends \Google\Protobuf\Internal\Message
     /**
      * The name of the input feature for which noise sigma is provided. The
      * features are defined in
-     * [explanation metadata inputs][google.cloud.aiplatform.v1.ExplanationMetadata.inputs].
+     * [explanation metadata
+     * inputs][google.cloud.aiplatform.v1.ExplanationMetadata.inputs].
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -71,7 +74,8 @@ class NoiseSigmaForFeature extends \Google\Protobuf\Internal\Message
     /**
      * The name of the input feature for which noise sigma is provided. The
      * features are defined in
-     * [explanation metadata inputs][google.cloud.aiplatform.v1.ExplanationMetadata.inputs].
+     * [explanation metadata
+     * inputs][google.cloud.aiplatform.v1.ExplanationMetadata.inputs].
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
@@ -88,8 +92,8 @@ class NoiseSigmaForFeature extends \Google\Protobuf\Internal\Message
     /**
      * This represents the standard deviation of the Gaussian kernel that will
      * be used to add noise to the feature prior to computing gradients. Similar
-     * to [noise_sigma][google.cloud.aiplatform.v1.SmoothGradConfig.noise_sigma] but represents the
-     * noise added to the current feature. Defaults to 0.1.
+     * to [noise_sigma][google.cloud.aiplatform.v1.SmoothGradConfig.noise_sigma]
+     * but represents the noise added to the current feature. Defaults to 0.1.
      *
      * Generated from protobuf field <code>float sigma = 2;</code>
      * @return float
@@ -102,8 +106,8 @@ class NoiseSigmaForFeature extends \Google\Protobuf\Internal\Message
     /**
      * This represents the standard deviation of the Gaussian kernel that will
      * be used to add noise to the feature prior to computing gradients. Similar
-     * to [noise_sigma][google.cloud.aiplatform.v1.SmoothGradConfig.noise_sigma] but represents the
-     * noise added to the current feature. Defaults to 0.1.
+     * to [noise_sigma][google.cloud.aiplatform.v1.SmoothGradConfig.noise_sigma]
+     * but represents the noise added to the current feature. Defaults to 0.1.
      *
      * Generated from protobuf field <code>float sigma = 2;</code>
      * @param float $var

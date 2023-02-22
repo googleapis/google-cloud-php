@@ -37,26 +37,6 @@ php.owlbot_main(
         src / "*/src/V1/KeyManagementServiceClient.php"
     ]
 )
-
-
-# document and utilize apiEndpoint instead of serviceAddress
-s.replace(
-    "**/Gapic/*GapicClient.php",
-    r"'serviceAddress' =>",
-    r"'apiEndpoint' =>")
-s.replace(
-    "**/Gapic/*GapicClient.php",
-    r"@type string \$serviceAddress\n\s+\*\s+The address",
-    r"""@type string $serviceAddress
-     *           **Deprecated**. This option will be removed in a future major release. Please
-     *           utilize the `$apiEndpoint` option instead.
-     *     @type string $apiEndpoint
-     *           The address""")
-s.replace(
-    "**/Gapic/*GapicClient.php",
-    r"\$transportConfig, and any \$serviceAddress",
-    r"$transportConfig, and any `$apiEndpoint`")
-
 # V1 is GA, so remove @experimental tags
 s.replace(
     'src/V1/**/*Client.php',
@@ -79,6 +59,7 @@ s.replace(
     'src/V1/Gapic/KeyManagementServiceGapicClient.php',
     r'CryptoKey_CryptoKeyPurpose',
     'CryptoKeyPurpose')
+
 # Change the wording for the deprecation warning.
 s.replace(
     'src/V1/CryptoKey*_*.php',
@@ -94,12 +75,6 @@ s.replace(
     r"""Generated from protobuf field \1
      */
     private $""")
-
-# prevent proto messages from being marked final
-s.replace(
-    "src/**/V*/**/*.php",
-    r"final class",
-    r"class")
 
 # Replace "Unwrapped" with "Value" for method names.
 s.replace(

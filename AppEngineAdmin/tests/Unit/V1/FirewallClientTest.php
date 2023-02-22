@@ -23,11 +23,9 @@
 namespace Google\Cloud\AppEngine\Tests\Unit\V1;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-
 use Google\Cloud\AppEngine\V1\BatchUpdateIngressRulesResponse;
 use Google\Cloud\AppEngine\V1\FirewallClient;
 use Google\Cloud\AppEngine\V1\FirewallRule;
@@ -43,25 +41,19 @@ use stdClass;
  */
 class FirewallClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return FirewallClient
-     */
+    /** @return FirewallClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -70,9 +62,7 @@ class FirewallClientTest extends GeneratedTest
         return new FirewallClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function batchUpdateIngressRulesTest()
     {
         $transport = $this->createTransport();
@@ -93,9 +83,7 @@ class FirewallClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function batchUpdateIngressRulesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -126,9 +114,7 @@ class FirewallClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createIngressRuleTest()
     {
         $transport = $this->createTransport();
@@ -155,9 +141,7 @@ class FirewallClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createIngressRuleExceptionTest()
     {
         $transport = $this->createTransport();
@@ -188,9 +172,7 @@ class FirewallClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteIngressRuleTest()
     {
         $transport = $this->createTransport();
@@ -210,9 +192,7 @@ class FirewallClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteIngressRuleExceptionTest()
     {
         $transport = $this->createTransport();
@@ -243,9 +223,7 @@ class FirewallClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getIngressRuleTest()
     {
         $transport = $this->createTransport();
@@ -272,9 +250,7 @@ class FirewallClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getIngressRuleExceptionTest()
     {
         $transport = $this->createTransport();
@@ -305,9 +281,7 @@ class FirewallClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listIngressRulesTest()
     {
         $transport = $this->createTransport();
@@ -338,9 +312,7 @@ class FirewallClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listIngressRulesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -371,9 +343,7 @@ class FirewallClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateIngressRuleTest()
     {
         $transport = $this->createTransport();
@@ -400,9 +370,7 @@ class FirewallClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateIngressRuleExceptionTest()
     {
         $transport = $this->createTransport();

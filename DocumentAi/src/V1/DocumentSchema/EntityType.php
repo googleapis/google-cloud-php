@@ -28,7 +28,7 @@ class EntityType extends \Google\Protobuf\Internal\Message
      * cannot be a 'Common Type'.  Besides that we use the following naming
      * conventions:
      * - *use `snake_casing`*
-     * - name matching is case-insensitive
+     * - name matching is case-sensitive
      * - Maximum 64 characters.
      * - Must start with a letter.
      * - Allowed characters: ASCII letters `[a-z0-9_-]`.  (For backward
@@ -49,7 +49,7 @@ class EntityType extends \Google\Protobuf\Internal\Message
      */
     private $base_types;
     /**
-     * Describing the nested structure, or composition of an entity.
+     * Description the nested structure, or composition of an entity.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.DocumentSchema.EntityType.Property properties = 6;</code>
      */
@@ -75,7 +75,7 @@ class EntityType extends \Google\Protobuf\Internal\Message
      *           cannot be a 'Common Type'.  Besides that we use the following naming
      *           conventions:
      *           - *use `snake_casing`*
-     *           - name matching is case-insensitive
+     *           - name matching is case-sensitive
      *           - Maximum 64 characters.
      *           - Must start with a letter.
      *           - Allowed characters: ASCII letters `[a-z0-9_-]`.  (For backward
@@ -88,7 +88,7 @@ class EntityType extends \Google\Protobuf\Internal\Message
      *           The entity type that this type is derived from.  For now, one and only
      *           one should be set.
      *     @type array<\Google\Cloud\DocumentAI\V1\DocumentSchema\EntityType\Property>|\Google\Protobuf\Internal\RepeatedField $properties
-     *           Describing the nested structure, or composition of an entity.
+     *           Description the nested structure, or composition of an entity.
      * }
      */
     public function __construct($data = NULL) {
@@ -166,7 +166,7 @@ class EntityType extends \Google\Protobuf\Internal\Message
      * cannot be a 'Common Type'.  Besides that we use the following naming
      * conventions:
      * - *use `snake_casing`*
-     * - name matching is case-insensitive
+     * - name matching is case-sensitive
      * - Maximum 64 characters.
      * - Must start with a letter.
      * - Allowed characters: ASCII letters `[a-z0-9_-]`.  (For backward
@@ -189,7 +189,7 @@ class EntityType extends \Google\Protobuf\Internal\Message
      * cannot be a 'Common Type'.  Besides that we use the following naming
      * conventions:
      * - *use `snake_casing`*
-     * - name matching is case-insensitive
+     * - name matching is case-sensitive
      * - Maximum 64 characters.
      * - Must start with a letter.
      * - Allowed characters: ASCII letters `[a-z0-9_-]`.  (For backward
@@ -240,7 +240,7 @@ class EntityType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Describing the nested structure, or composition of an entity.
+     * Description the nested structure, or composition of an entity.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.DocumentSchema.EntityType.Property properties = 6;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -251,7 +251,7 @@ class EntityType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Describing the nested structure, or composition of an entity.
+     * Description the nested structure, or composition of an entity.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.DocumentSchema.EntityType.Property properties = 6;</code>
      * @param array<\Google\Cloud\DocumentAI\V1\DocumentSchema\EntityType\Property>|\Google\Protobuf\Internal\RepeatedField $var

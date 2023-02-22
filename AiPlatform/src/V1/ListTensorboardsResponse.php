@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Response message for [TensorboardService.ListTensorboards][google.cloud.aiplatform.v1.TensorboardService.ListTensorboards].
+ * Response message for
+ * [TensorboardService.ListTensorboards][google.cloud.aiplatform.v1.TensorboardService.ListTensorboards].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.ListTensorboardsResponse</code>
  */
@@ -22,7 +23,8 @@ class ListTensorboardsResponse extends \Google\Protobuf\Internal\Message
      */
     private $tensorboards;
     /**
-     * A token, which can be sent as [ListTensorboardsRequest.page_token][google.cloud.aiplatform.v1.ListTensorboardsRequest.page_token]
+     * A token, which can be sent as
+     * [ListTensorboardsRequest.page_token][google.cloud.aiplatform.v1.ListTensorboardsRequest.page_token]
      * to retrieve the next page. If this field is omitted, there are no
      * subsequent pages.
      *
@@ -39,7 +41,8 @@ class ListTensorboardsResponse extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Cloud\AIPlatform\V1\Tensorboard>|\Google\Protobuf\Internal\RepeatedField $tensorboards
      *           The Tensorboards mathching the request.
      *     @type string $next_page_token
-     *           A token, which can be sent as [ListTensorboardsRequest.page_token][google.cloud.aiplatform.v1.ListTensorboardsRequest.page_token]
+     *           A token, which can be sent as
+     *           [ListTensorboardsRequest.page_token][google.cloud.aiplatform.v1.ListTensorboardsRequest.page_token]
      *           to retrieve the next page. If this field is omitted, there are no
      *           subsequent pages.
      * }
@@ -76,7 +79,8 @@ class ListTensorboardsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A token, which can be sent as [ListTensorboardsRequest.page_token][google.cloud.aiplatform.v1.ListTensorboardsRequest.page_token]
+     * A token, which can be sent as
+     * [ListTensorboardsRequest.page_token][google.cloud.aiplatform.v1.ListTensorboardsRequest.page_token]
      * to retrieve the next page. If this field is omitted, there are no
      * subsequent pages.
      *
@@ -89,7 +93,8 @@ class ListTensorboardsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A token, which can be sent as [ListTensorboardsRequest.page_token][google.cloud.aiplatform.v1.ListTensorboardsRequest.page_token]
+     * A token, which can be sent as
+     * [ListTensorboardsRequest.page_token][google.cloud.aiplatform.v1.ListTensorboardsRequest.page_token]
      * to retrieve the next page. If this field is omitted, there are no
      * subsequent pages.
      *

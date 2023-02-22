@@ -7,7 +7,9 @@ namespace Google\Cloud\Channel\V1;
 use UnexpectedValueException;
 
 /**
- * The level of granularity the [ChannelPartnerLink][google.cloud.channel.v1.ChannelPartnerLink] will display.
+ * The level of granularity the
+ * [ChannelPartnerLink][google.cloud.channel.v1.ChannelPartnerLink] will
+ * display.
  *
  * Protobuf type <code>google.cloud.channel.v1.ChannelPartnerLinkView</code>
  */

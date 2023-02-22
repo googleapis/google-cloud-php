@@ -9,68 +9,85 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Defines controls over all certificate issuance within a [CaPool][google.cloud.security.privateca.v1.CaPool].
+ * Defines controls over all certificate issuance within a
+ * [CaPool][google.cloud.security.privateca.v1.CaPool].
  *
  * Generated from protobuf message <code>google.cloud.security.privateca.v1.CaPool.IssuancePolicy</code>
  */
 class IssuancePolicy extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. If any [AllowedKeyType][google.cloud.security.privateca.v1.CaPool.IssuancePolicy.AllowedKeyType] is specified, then the certificate request's
-     * public key must match one of the key types listed here. Otherwise,
-     * any key may be used.
+     * Optional. If any
+     * [AllowedKeyType][google.cloud.security.privateca.v1.CaPool.IssuancePolicy.AllowedKeyType]
+     * is specified, then the certificate request's public key must match one of
+     * the key types listed here. Otherwise, any key may be used.
      *
      * Generated from protobuf field <code>repeated .google.cloud.security.privateca.v1.CaPool.IssuancePolicy.AllowedKeyType allowed_key_types = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $allowed_key_types;
     /**
-     * Optional. The maximum lifetime allowed for issued [Certificates][google.cloud.security.privateca.v1.Certificate]. Note
-     * that if the issuing [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority] expires before a
-     * [Certificate][google.cloud.security.privateca.v1.Certificate]'s requested maximum_lifetime, the effective lifetime will
-     * be explicitly truncated to match it.
+     * Optional. The maximum lifetime allowed for issued
+     * [Certificates][google.cloud.security.privateca.v1.Certificate]. Note that
+     * if the issuing
+     * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+     * expires before a
+     * [Certificate][google.cloud.security.privateca.v1.Certificate]'s requested
+     * maximum_lifetime, the effective lifetime will be explicitly truncated to
+     * match it.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration maximum_lifetime = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $maximum_lifetime = null;
     /**
-     * Optional. If specified, then only methods allowed in the [IssuanceModes][google.cloud.security.privateca.v1.CaPool.IssuancePolicy.IssuanceModes] may be
-     * used to issue [Certificates][google.cloud.security.privateca.v1.Certificate].
+     * Optional. If specified, then only methods allowed in the
+     * [IssuanceModes][google.cloud.security.privateca.v1.CaPool.IssuancePolicy.IssuanceModes]
+     * may be used to issue
+     * [Certificates][google.cloud.security.privateca.v1.Certificate].
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.CaPool.IssuancePolicy.IssuanceModes allowed_issuance_modes = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $allowed_issuance_modes = null;
     /**
-     * Optional. A set of X.509 values that will be applied to all certificates issued
-     * through this [CaPool][google.cloud.security.privateca.v1.CaPool]. If a certificate request includes conflicting
-     * values for the same properties, they will be overwritten by the values
-     * defined here. If a certificate request uses a [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate]
+     * Optional. A set of X.509 values that will be applied to all certificates
+     * issued through this [CaPool][google.cloud.security.privateca.v1.CaPool].
+     * If a certificate request includes conflicting values for the same
+     * properties, they will be overwritten by the values defined here. If a
+     * certificate request uses a
+     * [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate]
      * that defines conflicting
-     * [predefined_values][google.cloud.security.privateca.v1.CertificateTemplate.predefined_values] for the same
-     * properties, the certificate issuance request will fail.
+     * [predefined_values][google.cloud.security.privateca.v1.CertificateTemplate.predefined_values]
+     * for the same properties, the certificate issuance request will fail.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.X509Parameters baseline_values = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $baseline_values = null;
     /**
      * Optional. Describes constraints on identities that may appear in
-     * [Certificates][google.cloud.security.privateca.v1.Certificate] issued through this [CaPool][google.cloud.security.privateca.v1.CaPool].
-     * If this is omitted, then this [CaPool][google.cloud.security.privateca.v1.CaPool] will not add restrictions on a
-     * certificate's identity.
+     * [Certificates][google.cloud.security.privateca.v1.Certificate] issued
+     * through this [CaPool][google.cloud.security.privateca.v1.CaPool]. If this
+     * is omitted, then this [CaPool][google.cloud.security.privateca.v1.CaPool]
+     * will not add restrictions on a certificate's identity.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.CertificateIdentityConstraints identity_constraints = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $identity_constraints = null;
     /**
      * Optional. Describes the set of X.509 extensions that may appear in a
-     * [Certificate][google.cloud.security.privateca.v1.Certificate] issued through this [CaPool][google.cloud.security.privateca.v1.CaPool]. If a certificate request
-     * sets extensions that don't appear in the [passthrough_extensions][google.cloud.security.privateca.v1.CaPool.IssuancePolicy.passthrough_extensions],
+     * [Certificate][google.cloud.security.privateca.v1.Certificate] issued
+     * through this [CaPool][google.cloud.security.privateca.v1.CaPool]. If a
+     * certificate request sets extensions that don't appear in the
+     * [passthrough_extensions][google.cloud.security.privateca.v1.CaPool.IssuancePolicy.passthrough_extensions],
      * those extensions will be dropped. If a certificate request uses a
-     * [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate] with
-     * [predefined_values][google.cloud.security.privateca.v1.CertificateTemplate.predefined_values] that don't
-     * appear here, the certificate issuance request will fail. If this is
-     * omitted, then this [CaPool][google.cloud.security.privateca.v1.CaPool] will not add restrictions on a
-     * certificate's X.509 extensions. These constraints do not apply to X.509
-     * extensions set in this [CaPool][google.cloud.security.privateca.v1.CaPool]'s [baseline_values][google.cloud.security.privateca.v1.CaPool.IssuancePolicy.baseline_values].
+     * [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate]
+     * with
+     * [predefined_values][google.cloud.security.privateca.v1.CertificateTemplate.predefined_values]
+     * that don't appear here, the certificate issuance request will fail. If
+     * this is omitted, then this
+     * [CaPool][google.cloud.security.privateca.v1.CaPool] will not add
+     * restrictions on a certificate's X.509 extensions. These constraints do
+     * not apply to X.509 extensions set in this
+     * [CaPool][google.cloud.security.privateca.v1.CaPool]'s
+     * [baseline_values][google.cloud.security.privateca.v1.CaPool.IssuancePolicy.baseline_values].
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.CertificateExtensionConstraints passthrough_extensions = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -83,41 +100,57 @@ class IssuancePolicy extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<\Google\Cloud\Security\PrivateCA\V1\CaPool\IssuancePolicy\AllowedKeyType>|\Google\Protobuf\Internal\RepeatedField $allowed_key_types
-     *           Optional. If any [AllowedKeyType][google.cloud.security.privateca.v1.CaPool.IssuancePolicy.AllowedKeyType] is specified, then the certificate request's
-     *           public key must match one of the key types listed here. Otherwise,
-     *           any key may be used.
+     *           Optional. If any
+     *           [AllowedKeyType][google.cloud.security.privateca.v1.CaPool.IssuancePolicy.AllowedKeyType]
+     *           is specified, then the certificate request's public key must match one of
+     *           the key types listed here. Otherwise, any key may be used.
      *     @type \Google\Protobuf\Duration $maximum_lifetime
-     *           Optional. The maximum lifetime allowed for issued [Certificates][google.cloud.security.privateca.v1.Certificate]. Note
-     *           that if the issuing [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority] expires before a
-     *           [Certificate][google.cloud.security.privateca.v1.Certificate]'s requested maximum_lifetime, the effective lifetime will
-     *           be explicitly truncated to match it.
+     *           Optional. The maximum lifetime allowed for issued
+     *           [Certificates][google.cloud.security.privateca.v1.Certificate]. Note that
+     *           if the issuing
+     *           [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+     *           expires before a
+     *           [Certificate][google.cloud.security.privateca.v1.Certificate]'s requested
+     *           maximum_lifetime, the effective lifetime will be explicitly truncated to
+     *           match it.
      *     @type \Google\Cloud\Security\PrivateCA\V1\CaPool\IssuancePolicy\IssuanceModes $allowed_issuance_modes
-     *           Optional. If specified, then only methods allowed in the [IssuanceModes][google.cloud.security.privateca.v1.CaPool.IssuancePolicy.IssuanceModes] may be
-     *           used to issue [Certificates][google.cloud.security.privateca.v1.Certificate].
+     *           Optional. If specified, then only methods allowed in the
+     *           [IssuanceModes][google.cloud.security.privateca.v1.CaPool.IssuancePolicy.IssuanceModes]
+     *           may be used to issue
+     *           [Certificates][google.cloud.security.privateca.v1.Certificate].
      *     @type \Google\Cloud\Security\PrivateCA\V1\X509Parameters $baseline_values
-     *           Optional. A set of X.509 values that will be applied to all certificates issued
-     *           through this [CaPool][google.cloud.security.privateca.v1.CaPool]. If a certificate request includes conflicting
-     *           values for the same properties, they will be overwritten by the values
-     *           defined here. If a certificate request uses a [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate]
+     *           Optional. A set of X.509 values that will be applied to all certificates
+     *           issued through this [CaPool][google.cloud.security.privateca.v1.CaPool].
+     *           If a certificate request includes conflicting values for the same
+     *           properties, they will be overwritten by the values defined here. If a
+     *           certificate request uses a
+     *           [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate]
      *           that defines conflicting
-     *           [predefined_values][google.cloud.security.privateca.v1.CertificateTemplate.predefined_values] for the same
-     *           properties, the certificate issuance request will fail.
+     *           [predefined_values][google.cloud.security.privateca.v1.CertificateTemplate.predefined_values]
+     *           for the same properties, the certificate issuance request will fail.
      *     @type \Google\Cloud\Security\PrivateCA\V1\CertificateIdentityConstraints $identity_constraints
      *           Optional. Describes constraints on identities that may appear in
-     *           [Certificates][google.cloud.security.privateca.v1.Certificate] issued through this [CaPool][google.cloud.security.privateca.v1.CaPool].
-     *           If this is omitted, then this [CaPool][google.cloud.security.privateca.v1.CaPool] will not add restrictions on a
-     *           certificate's identity.
+     *           [Certificates][google.cloud.security.privateca.v1.Certificate] issued
+     *           through this [CaPool][google.cloud.security.privateca.v1.CaPool]. If this
+     *           is omitted, then this [CaPool][google.cloud.security.privateca.v1.CaPool]
+     *           will not add restrictions on a certificate's identity.
      *     @type \Google\Cloud\Security\PrivateCA\V1\CertificateExtensionConstraints $passthrough_extensions
      *           Optional. Describes the set of X.509 extensions that may appear in a
-     *           [Certificate][google.cloud.security.privateca.v1.Certificate] issued through this [CaPool][google.cloud.security.privateca.v1.CaPool]. If a certificate request
-     *           sets extensions that don't appear in the [passthrough_extensions][google.cloud.security.privateca.v1.CaPool.IssuancePolicy.passthrough_extensions],
+     *           [Certificate][google.cloud.security.privateca.v1.Certificate] issued
+     *           through this [CaPool][google.cloud.security.privateca.v1.CaPool]. If a
+     *           certificate request sets extensions that don't appear in the
+     *           [passthrough_extensions][google.cloud.security.privateca.v1.CaPool.IssuancePolicy.passthrough_extensions],
      *           those extensions will be dropped. If a certificate request uses a
-     *           [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate] with
-     *           [predefined_values][google.cloud.security.privateca.v1.CertificateTemplate.predefined_values] that don't
-     *           appear here, the certificate issuance request will fail. If this is
-     *           omitted, then this [CaPool][google.cloud.security.privateca.v1.CaPool] will not add restrictions on a
-     *           certificate's X.509 extensions. These constraints do not apply to X.509
-     *           extensions set in this [CaPool][google.cloud.security.privateca.v1.CaPool]'s [baseline_values][google.cloud.security.privateca.v1.CaPool.IssuancePolicy.baseline_values].
+     *           [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate]
+     *           with
+     *           [predefined_values][google.cloud.security.privateca.v1.CertificateTemplate.predefined_values]
+     *           that don't appear here, the certificate issuance request will fail. If
+     *           this is omitted, then this
+     *           [CaPool][google.cloud.security.privateca.v1.CaPool] will not add
+     *           restrictions on a certificate's X.509 extensions. These constraints do
+     *           not apply to X.509 extensions set in this
+     *           [CaPool][google.cloud.security.privateca.v1.CaPool]'s
+     *           [baseline_values][google.cloud.security.privateca.v1.CaPool.IssuancePolicy.baseline_values].
      * }
      */
     public function __construct($data = NULL) {
@@ -126,9 +159,10 @@ class IssuancePolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If any [AllowedKeyType][google.cloud.security.privateca.v1.CaPool.IssuancePolicy.AllowedKeyType] is specified, then the certificate request's
-     * public key must match one of the key types listed here. Otherwise,
-     * any key may be used.
+     * Optional. If any
+     * [AllowedKeyType][google.cloud.security.privateca.v1.CaPool.IssuancePolicy.AllowedKeyType]
+     * is specified, then the certificate request's public key must match one of
+     * the key types listed here. Otherwise, any key may be used.
      *
      * Generated from protobuf field <code>repeated .google.cloud.security.privateca.v1.CaPool.IssuancePolicy.AllowedKeyType allowed_key_types = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -139,9 +173,10 @@ class IssuancePolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If any [AllowedKeyType][google.cloud.security.privateca.v1.CaPool.IssuancePolicy.AllowedKeyType] is specified, then the certificate request's
-     * public key must match one of the key types listed here. Otherwise,
-     * any key may be used.
+     * Optional. If any
+     * [AllowedKeyType][google.cloud.security.privateca.v1.CaPool.IssuancePolicy.AllowedKeyType]
+     * is specified, then the certificate request's public key must match one of
+     * the key types listed here. Otherwise, any key may be used.
      *
      * Generated from protobuf field <code>repeated .google.cloud.security.privateca.v1.CaPool.IssuancePolicy.AllowedKeyType allowed_key_types = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<\Google\Cloud\Security\PrivateCA\V1\CaPool\IssuancePolicy\AllowedKeyType>|\Google\Protobuf\Internal\RepeatedField $var
@@ -156,10 +191,14 @@ class IssuancePolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The maximum lifetime allowed for issued [Certificates][google.cloud.security.privateca.v1.Certificate]. Note
-     * that if the issuing [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority] expires before a
-     * [Certificate][google.cloud.security.privateca.v1.Certificate]'s requested maximum_lifetime, the effective lifetime will
-     * be explicitly truncated to match it.
+     * Optional. The maximum lifetime allowed for issued
+     * [Certificates][google.cloud.security.privateca.v1.Certificate]. Note that
+     * if the issuing
+     * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+     * expires before a
+     * [Certificate][google.cloud.security.privateca.v1.Certificate]'s requested
+     * maximum_lifetime, the effective lifetime will be explicitly truncated to
+     * match it.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration maximum_lifetime = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Duration|null
@@ -180,10 +219,14 @@ class IssuancePolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The maximum lifetime allowed for issued [Certificates][google.cloud.security.privateca.v1.Certificate]. Note
-     * that if the issuing [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority] expires before a
-     * [Certificate][google.cloud.security.privateca.v1.Certificate]'s requested maximum_lifetime, the effective lifetime will
-     * be explicitly truncated to match it.
+     * Optional. The maximum lifetime allowed for issued
+     * [Certificates][google.cloud.security.privateca.v1.Certificate]. Note that
+     * if the issuing
+     * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+     * expires before a
+     * [Certificate][google.cloud.security.privateca.v1.Certificate]'s requested
+     * maximum_lifetime, the effective lifetime will be explicitly truncated to
+     * match it.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration maximum_lifetime = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\Duration $var
@@ -198,8 +241,10 @@ class IssuancePolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If specified, then only methods allowed in the [IssuanceModes][google.cloud.security.privateca.v1.CaPool.IssuancePolicy.IssuanceModes] may be
-     * used to issue [Certificates][google.cloud.security.privateca.v1.Certificate].
+     * Optional. If specified, then only methods allowed in the
+     * [IssuanceModes][google.cloud.security.privateca.v1.CaPool.IssuancePolicy.IssuanceModes]
+     * may be used to issue
+     * [Certificates][google.cloud.security.privateca.v1.Certificate].
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.CaPool.IssuancePolicy.IssuanceModes allowed_issuance_modes = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Security\PrivateCA\V1\CaPool\IssuancePolicy\IssuanceModes|null
@@ -220,8 +265,10 @@ class IssuancePolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If specified, then only methods allowed in the [IssuanceModes][google.cloud.security.privateca.v1.CaPool.IssuancePolicy.IssuanceModes] may be
-     * used to issue [Certificates][google.cloud.security.privateca.v1.Certificate].
+     * Optional. If specified, then only methods allowed in the
+     * [IssuanceModes][google.cloud.security.privateca.v1.CaPool.IssuancePolicy.IssuanceModes]
+     * may be used to issue
+     * [Certificates][google.cloud.security.privateca.v1.Certificate].
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.CaPool.IssuancePolicy.IssuanceModes allowed_issuance_modes = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Security\PrivateCA\V1\CaPool\IssuancePolicy\IssuanceModes $var
@@ -236,13 +283,15 @@ class IssuancePolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A set of X.509 values that will be applied to all certificates issued
-     * through this [CaPool][google.cloud.security.privateca.v1.CaPool]. If a certificate request includes conflicting
-     * values for the same properties, they will be overwritten by the values
-     * defined here. If a certificate request uses a [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate]
+     * Optional. A set of X.509 values that will be applied to all certificates
+     * issued through this [CaPool][google.cloud.security.privateca.v1.CaPool].
+     * If a certificate request includes conflicting values for the same
+     * properties, they will be overwritten by the values defined here. If a
+     * certificate request uses a
+     * [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate]
      * that defines conflicting
-     * [predefined_values][google.cloud.security.privateca.v1.CertificateTemplate.predefined_values] for the same
-     * properties, the certificate issuance request will fail.
+     * [predefined_values][google.cloud.security.privateca.v1.CertificateTemplate.predefined_values]
+     * for the same properties, the certificate issuance request will fail.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.X509Parameters baseline_values = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Security\PrivateCA\V1\X509Parameters|null
@@ -263,13 +312,15 @@ class IssuancePolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A set of X.509 values that will be applied to all certificates issued
-     * through this [CaPool][google.cloud.security.privateca.v1.CaPool]. If a certificate request includes conflicting
-     * values for the same properties, they will be overwritten by the values
-     * defined here. If a certificate request uses a [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate]
+     * Optional. A set of X.509 values that will be applied to all certificates
+     * issued through this [CaPool][google.cloud.security.privateca.v1.CaPool].
+     * If a certificate request includes conflicting values for the same
+     * properties, they will be overwritten by the values defined here. If a
+     * certificate request uses a
+     * [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate]
      * that defines conflicting
-     * [predefined_values][google.cloud.security.privateca.v1.CertificateTemplate.predefined_values] for the same
-     * properties, the certificate issuance request will fail.
+     * [predefined_values][google.cloud.security.privateca.v1.CertificateTemplate.predefined_values]
+     * for the same properties, the certificate issuance request will fail.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.X509Parameters baseline_values = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Security\PrivateCA\V1\X509Parameters $var
@@ -285,9 +336,10 @@ class IssuancePolicy extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Describes constraints on identities that may appear in
-     * [Certificates][google.cloud.security.privateca.v1.Certificate] issued through this [CaPool][google.cloud.security.privateca.v1.CaPool].
-     * If this is omitted, then this [CaPool][google.cloud.security.privateca.v1.CaPool] will not add restrictions on a
-     * certificate's identity.
+     * [Certificates][google.cloud.security.privateca.v1.Certificate] issued
+     * through this [CaPool][google.cloud.security.privateca.v1.CaPool]. If this
+     * is omitted, then this [CaPool][google.cloud.security.privateca.v1.CaPool]
+     * will not add restrictions on a certificate's identity.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.CertificateIdentityConstraints identity_constraints = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Security\PrivateCA\V1\CertificateIdentityConstraints|null
@@ -309,9 +361,10 @@ class IssuancePolicy extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Describes constraints on identities that may appear in
-     * [Certificates][google.cloud.security.privateca.v1.Certificate] issued through this [CaPool][google.cloud.security.privateca.v1.CaPool].
-     * If this is omitted, then this [CaPool][google.cloud.security.privateca.v1.CaPool] will not add restrictions on a
-     * certificate's identity.
+     * [Certificates][google.cloud.security.privateca.v1.Certificate] issued
+     * through this [CaPool][google.cloud.security.privateca.v1.CaPool]. If this
+     * is omitted, then this [CaPool][google.cloud.security.privateca.v1.CaPool]
+     * will not add restrictions on a certificate's identity.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.CertificateIdentityConstraints identity_constraints = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Security\PrivateCA\V1\CertificateIdentityConstraints $var
@@ -327,15 +380,21 @@ class IssuancePolicy extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Describes the set of X.509 extensions that may appear in a
-     * [Certificate][google.cloud.security.privateca.v1.Certificate] issued through this [CaPool][google.cloud.security.privateca.v1.CaPool]. If a certificate request
-     * sets extensions that don't appear in the [passthrough_extensions][google.cloud.security.privateca.v1.CaPool.IssuancePolicy.passthrough_extensions],
+     * [Certificate][google.cloud.security.privateca.v1.Certificate] issued
+     * through this [CaPool][google.cloud.security.privateca.v1.CaPool]. If a
+     * certificate request sets extensions that don't appear in the
+     * [passthrough_extensions][google.cloud.security.privateca.v1.CaPool.IssuancePolicy.passthrough_extensions],
      * those extensions will be dropped. If a certificate request uses a
-     * [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate] with
-     * [predefined_values][google.cloud.security.privateca.v1.CertificateTemplate.predefined_values] that don't
-     * appear here, the certificate issuance request will fail. If this is
-     * omitted, then this [CaPool][google.cloud.security.privateca.v1.CaPool] will not add restrictions on a
-     * certificate's X.509 extensions. These constraints do not apply to X.509
-     * extensions set in this [CaPool][google.cloud.security.privateca.v1.CaPool]'s [baseline_values][google.cloud.security.privateca.v1.CaPool.IssuancePolicy.baseline_values].
+     * [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate]
+     * with
+     * [predefined_values][google.cloud.security.privateca.v1.CertificateTemplate.predefined_values]
+     * that don't appear here, the certificate issuance request will fail. If
+     * this is omitted, then this
+     * [CaPool][google.cloud.security.privateca.v1.CaPool] will not add
+     * restrictions on a certificate's X.509 extensions. These constraints do
+     * not apply to X.509 extensions set in this
+     * [CaPool][google.cloud.security.privateca.v1.CaPool]'s
+     * [baseline_values][google.cloud.security.privateca.v1.CaPool.IssuancePolicy.baseline_values].
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.CertificateExtensionConstraints passthrough_extensions = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Security\PrivateCA\V1\CertificateExtensionConstraints|null
@@ -357,15 +416,21 @@ class IssuancePolicy extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Describes the set of X.509 extensions that may appear in a
-     * [Certificate][google.cloud.security.privateca.v1.Certificate] issued through this [CaPool][google.cloud.security.privateca.v1.CaPool]. If a certificate request
-     * sets extensions that don't appear in the [passthrough_extensions][google.cloud.security.privateca.v1.CaPool.IssuancePolicy.passthrough_extensions],
+     * [Certificate][google.cloud.security.privateca.v1.Certificate] issued
+     * through this [CaPool][google.cloud.security.privateca.v1.CaPool]. If a
+     * certificate request sets extensions that don't appear in the
+     * [passthrough_extensions][google.cloud.security.privateca.v1.CaPool.IssuancePolicy.passthrough_extensions],
      * those extensions will be dropped. If a certificate request uses a
-     * [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate] with
-     * [predefined_values][google.cloud.security.privateca.v1.CertificateTemplate.predefined_values] that don't
-     * appear here, the certificate issuance request will fail. If this is
-     * omitted, then this [CaPool][google.cloud.security.privateca.v1.CaPool] will not add restrictions on a
-     * certificate's X.509 extensions. These constraints do not apply to X.509
-     * extensions set in this [CaPool][google.cloud.security.privateca.v1.CaPool]'s [baseline_values][google.cloud.security.privateca.v1.CaPool.IssuancePolicy.baseline_values].
+     * [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate]
+     * with
+     * [predefined_values][google.cloud.security.privateca.v1.CertificateTemplate.predefined_values]
+     * that don't appear here, the certificate issuance request will fail. If
+     * this is omitted, then this
+     * [CaPool][google.cloud.security.privateca.v1.CaPool] will not add
+     * restrictions on a certificate's X.509 extensions. These constraints do
+     * not apply to X.509 extensions set in this
+     * [CaPool][google.cloud.security.privateca.v1.CaPool]'s
+     * [baseline_values][google.cloud.security.privateca.v1.CaPool.IssuancePolicy.baseline_values].
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.CertificateExtensionConstraints passthrough_extensions = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Security\PrivateCA\V1\CertificateExtensionConstraints $var

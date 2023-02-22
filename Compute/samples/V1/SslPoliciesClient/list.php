@@ -26,7 +26,6 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\Compute\V1\SslPoliciesClient;
-use Google\Cloud\Compute\V1\SslPolicy;
 
 /**
  * Lists all the SSL policies that have been configured for the specified project.
@@ -43,7 +42,6 @@ function list_sample(string $project): void
         /** @var PagedListResponse $response */
         $response = $sslPoliciesClient->list($project);
 
-        /** @var SslPolicy $element */
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
         }

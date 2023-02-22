@@ -19,8 +19,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class PySparkBatch extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The HCFS URI of the main Python file to use as the Spark driver. Must
-     * be a .py file.
+     * Required. The HCFS URI of the main Python file to use as the Spark driver.
+     * Must be a .py file.
      *
      * Generated from protobuf field <code>string main_python_file_uri = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -70,8 +70,8 @@ class PySparkBatch extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $main_python_file_uri
-     *           Required. The HCFS URI of the main Python file to use as the Spark driver. Must
-     *           be a .py file.
+     *           Required. The HCFS URI of the main Python file to use as the Spark driver.
+     *           Must be a .py file.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $args
      *           Optional. The arguments to pass to the driver. Do not include arguments
      *           that can be set as batch properties, such as `--conf`, since a collision
@@ -97,8 +97,8 @@ class PySparkBatch extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The HCFS URI of the main Python file to use as the Spark driver. Must
-     * be a .py file.
+     * Required. The HCFS URI of the main Python file to use as the Spark driver.
+     * Must be a .py file.
      *
      * Generated from protobuf field <code>string main_python_file_uri = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -109,8 +109,8 @@ class PySparkBatch extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The HCFS URI of the main Python file to use as the Spark driver. Must
-     * be a .py file.
+     * Required. The HCFS URI of the main Python file to use as the Spark driver.
+     * Must be a .py file.
      *
      * Generated from protobuf field <code>string main_python_file_uri = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

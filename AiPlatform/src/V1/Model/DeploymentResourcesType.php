@@ -20,8 +20,9 @@ class DeploymentResourcesType
      */
     const DEPLOYMENT_RESOURCES_TYPE_UNSPECIFIED = 0;
     /**
-     * Resources that are dedicated to the [DeployedModel][google.cloud.aiplatform.v1.DeployedModel], and that need a
-     * higher degree of manual configuration.
+     * Resources that are dedicated to the
+     * [DeployedModel][google.cloud.aiplatform.v1.DeployedModel], and that need
+     * a higher degree of manual configuration.
      *
      * Generated from protobuf enum <code>DEDICATED_RESOURCES = 1;</code>
      */
@@ -34,8 +35,9 @@ class DeploymentResourcesType
      */
     const AUTOMATIC_RESOURCES = 2;
     /**
-     * Resources that can be shared by multiple [DeployedModels][google.cloud.aiplatform.v1.DeployedModel].
-     * A pre-configured [DeploymentResourcePool][] is required.
+     * Resources that can be shared by multiple
+     * [DeployedModels][google.cloud.aiplatform.v1.DeployedModel]. A
+     * pre-configured [DeploymentResourcePool][] is required.
      *
      * Generated from protobuf enum <code>SHARED_RESOURCES = 3;</code>
      */

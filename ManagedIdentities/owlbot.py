@@ -30,31 +30,29 @@ dest = Path().resolve()
 # Added so that we can pass copy_excludes in the owlbot_main() call
 _tracked_paths.add(src)
 
-php.owlbot_main(src=src, dest=dest)
+php.owlbot_main(
+    src=src,
+    dest=dest,
+    copy_excludes=[
+        src / "**/[A-Z]*_*.php",
+        src / "**/*GrpcClient.php",
+    ]
+)
 
-# document and utilize apiEndpoint instead of serviceAddress
-s.replace(
-    "**/Gapic/*GapicClient.php",
-    r"'serviceAddress' =>",
-    r"'apiEndpoint' =>")
-s.replace(
-    "**/Gapic/*GapicClient.php",
-    r"@type string \$serviceAddress\n\s+\*\s+The address",
-    r"""@type string $serviceAddress
-     *           **Deprecated**. This option will be removed in a future major release. Please
-     *           utilize the `$apiEndpoint` option instead.
-     *     @type string $apiEndpoint
-     *           The address""")
-s.replace(
-    "**/Gapic/*GapicClient.php",
-    r"\$transportConfig, and any \$serviceAddress",
-    r"$transportConfig, and any `$apiEndpoint`")
+# Apply fix to sample
+subprocess.run([
+    'git',
+    'apply',
+    '.owlbot/create_microsoft_ad_domain_sample_fix.patch'])
 
-# Change the wording for the deprecation warning.
+# remove class_alias code
 s.replace(
-    'src/*/*_*.php',
-    r'will be removed in the next major release',
-    'will be removed in a future release')
+    "src/V*/**/*.php",
+    r"^// Adding a class alias for backwards compatibility with the previous class name.$"
+    + "\n"
+    + r"^class_alias\(.*\);$"
+    + "\n",
+    '')
 
 ### [START] protoc backwards compatibility fixes
 
@@ -65,12 +63,6 @@ s.replace(
     r"""Generated from protobuf field \1
      */
     private $""")
-
-# prevent proto messages from being marked final
-s.replace(
-    "src/**/V*/**/*.php",
-    r"final class",
-    r"class")
 
 # Replace "Unwrapped" with "Value" for method names.
 s.replace(

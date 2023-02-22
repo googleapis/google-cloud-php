@@ -25,7 +25,6 @@ namespace Google\Cloud\AppEngine\Tests\Unit\V1;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\AppEngine\V1\AuthorizedDomain;
 use Google\Cloud\AppEngine\V1\AuthorizedDomainsClient;
@@ -40,25 +39,19 @@ use stdClass;
  */
 class AuthorizedDomainsClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return AuthorizedDomainsClient
-     */
+    /** @return AuthorizedDomainsClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -67,9 +60,7 @@ class AuthorizedDomainsClientTest extends GeneratedTest
         return new AuthorizedDomainsClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listAuthorizedDomainsTest()
     {
         $transport = $this->createTransport();
@@ -100,9 +91,7 @@ class AuthorizedDomainsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listAuthorizedDomainsExceptionTest()
     {
         $transport = $this->createTransport();

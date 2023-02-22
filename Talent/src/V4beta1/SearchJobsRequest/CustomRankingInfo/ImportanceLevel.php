@@ -7,7 +7,8 @@ namespace Google\Cloud\Talent\V4beta1\SearchJobsRequest\CustomRankingInfo;
 use UnexpectedValueException;
 
 /**
- * The importance level for [CustomRankingInfo.ranking_expression][google.cloud.talent.v4beta1.SearchJobsRequest.CustomRankingInfo.ranking_expression].
+ * The importance level for
+ * [CustomRankingInfo.ranking_expression][google.cloud.talent.v4beta1.SearchJobsRequest.CustomRankingInfo.ranking_expression].
  *
  * Protobuf type <code>google.cloud.talent.v4beta1.SearchJobsRequest.CustomRankingInfo.ImportanceLevel</code>
  */

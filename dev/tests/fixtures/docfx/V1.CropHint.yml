@@ -56,8 +56,6 @@ items:
     summary: |
       The bounding polygon for the crop region. The coordinates of the bounding
       box are in the original image's scale.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 1;</code>
     parent: \Google\Cloud\Vision\V1\CropHint
     type: method
     langs:
@@ -89,8 +87,6 @@ items:
     summary: |
       The bounding polygon for the crop region. The coordinates of the bounding
       box are in the original image's scale.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 1;</code>
     parent: \Google\Cloud\Vision\V1\CropHint
     type: method
     langs:
@@ -108,10 +104,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\CropHint::getConfidence()'
     name: getConfidence
     id: getConfidence
-    summary: |
-      Confidence of this being a salient region.  Range [0, 1].
-      
-      Generated from protobuf field <code>float confidence = 2;</code>
+    summary: 'Confidence of this being a salient region.  Range [0, 1].'
     parent: \Google\Cloud\Vision\V1\CropHint
     type: method
     langs:
@@ -124,10 +117,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\CropHint::setConfidence()'
     name: setConfidence
     id: setConfidence
-    summary: |
-      Confidence of this being a salient region.  Range [0, 1].
-      
-      Generated from protobuf field <code>float confidence = 2;</code>
+    summary: 'Confidence of this being a salient region.  Range [0, 1].'
     parent: \Google\Cloud\Vision\V1\CropHint
     type: method
     langs:
@@ -148,8 +138,6 @@ items:
     summary: |
       Fraction of importance of this salient region with respect to the original
       image.
-      
-      Generated from protobuf field <code>float importance_fraction = 3;</code>
     parent: \Google\Cloud\Vision\V1\CropHint
     type: method
     langs:
@@ -165,8 +153,6 @@ items:
     summary: |
       Fraction of importance of this salient region with respect to the original
       image.
-      
-      Generated from protobuf field <code>float importance_fraction = 3;</code>
     parent: \Google\Cloud\Vision\V1\CropHint
     type: method
     langs:

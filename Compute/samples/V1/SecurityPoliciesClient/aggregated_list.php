@@ -25,7 +25,6 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_SecurityPolicies_AggregatedList_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Compute\V1\SecurityPoliciesAggregatedList\ItemsEntry;
 use Google\Cloud\Compute\V1\SecurityPoliciesClient;
 
 /**
@@ -43,7 +42,6 @@ function aggregated_list_sample(string $project): void
         /** @var PagedListResponse $response */
         $response = $securityPoliciesClient->aggregatedList($project);
 
-        /** @var ItemsEntry $element */
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
         }

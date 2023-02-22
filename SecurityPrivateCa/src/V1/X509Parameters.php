@@ -9,23 +9,26 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * An [X509Parameters][google.cloud.security.privateca.v1.X509Parameters] is used to describe certain fields of an
- * X.509 certificate, such as the key usage fields, fields specific to CA
- * certificates, certificate policy extensions and custom extensions.
+ * An [X509Parameters][google.cloud.security.privateca.v1.X509Parameters] is
+ * used to describe certain fields of an X.509 certificate, such as the key
+ * usage fields, fields specific to CA certificates, certificate policy
+ * extensions and custom extensions.
  *
  * Generated from protobuf message <code>google.cloud.security.privateca.v1.X509Parameters</code>
  */
 class X509Parameters extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. Indicates the intended use for keys that correspond to a certificate.
+     * Optional. Indicates the intended use for keys that correspond to a
+     * certificate.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.KeyUsage key_usage = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $key_usage = null;
     /**
-     * Optional. Describes options in this [X509Parameters][google.cloud.security.privateca.v1.X509Parameters] that are relevant in a CA
-     * certificate.
+     * Optional. Describes options in this
+     * [X509Parameters][google.cloud.security.privateca.v1.X509Parameters] that
+     * are relevant in a CA certificate.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.X509Parameters.CaOptions ca_options = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -38,13 +41,19 @@ class X509Parameters extends \Google\Protobuf\Internal\Message
      */
     private $policy_ids;
     /**
-     * Optional. Describes Online Certificate Status Protocol (OCSP) endpoint addresses
-     * that appear in the "Authority Information Access" extension in the
-     * certificate.
+     * Optional. Describes Online Certificate Status Protocol (OCSP) endpoint
+     * addresses that appear in the "Authority Information Access" extension in
+     * the certificate.
      *
      * Generated from protobuf field <code>repeated string aia_ocsp_servers = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $aia_ocsp_servers;
+    /**
+     * Optional. Describes the X.509 name constraints extension.
+     *
+     * Generated from protobuf field <code>.google.cloud.security.privateca.v1.X509Parameters.NameConstraints name_constraints = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $name_constraints = null;
     /**
      * Optional. Describes custom X.509 extensions.
      *
@@ -59,17 +68,21 @@ class X509Parameters extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Security\PrivateCA\V1\KeyUsage $key_usage
-     *           Optional. Indicates the intended use for keys that correspond to a certificate.
-     *     @type \Google\Cloud\Security\PrivateCA\V1\X509Parameters\CaOptions $ca_options
-     *           Optional. Describes options in this [X509Parameters][google.cloud.security.privateca.v1.X509Parameters] that are relevant in a CA
+     *           Optional. Indicates the intended use for keys that correspond to a
      *           certificate.
+     *     @type \Google\Cloud\Security\PrivateCA\V1\X509Parameters\CaOptions $ca_options
+     *           Optional. Describes options in this
+     *           [X509Parameters][google.cloud.security.privateca.v1.X509Parameters] that
+     *           are relevant in a CA certificate.
      *     @type array<\Google\Cloud\Security\PrivateCA\V1\ObjectId>|\Google\Protobuf\Internal\RepeatedField $policy_ids
      *           Optional. Describes the X.509 certificate policy object identifiers, per
      *           https://tools.ietf.org/html/rfc5280#section-4.2.1.4.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $aia_ocsp_servers
-     *           Optional. Describes Online Certificate Status Protocol (OCSP) endpoint addresses
-     *           that appear in the "Authority Information Access" extension in the
-     *           certificate.
+     *           Optional. Describes Online Certificate Status Protocol (OCSP) endpoint
+     *           addresses that appear in the "Authority Information Access" extension in
+     *           the certificate.
+     *     @type \Google\Cloud\Security\PrivateCA\V1\X509Parameters\NameConstraints $name_constraints
+     *           Optional. Describes the X.509 name constraints extension.
      *     @type array<\Google\Cloud\Security\PrivateCA\V1\X509Extension>|\Google\Protobuf\Internal\RepeatedField $additional_extensions
      *           Optional. Describes custom X.509 extensions.
      * }
@@ -80,7 +93,8 @@ class X509Parameters extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Indicates the intended use for keys that correspond to a certificate.
+     * Optional. Indicates the intended use for keys that correspond to a
+     * certificate.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.KeyUsage key_usage = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Security\PrivateCA\V1\KeyUsage|null
@@ -101,7 +115,8 @@ class X509Parameters extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Indicates the intended use for keys that correspond to a certificate.
+     * Optional. Indicates the intended use for keys that correspond to a
+     * certificate.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.KeyUsage key_usage = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Security\PrivateCA\V1\KeyUsage $var
@@ -116,8 +131,9 @@ class X509Parameters extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Describes options in this [X509Parameters][google.cloud.security.privateca.v1.X509Parameters] that are relevant in a CA
-     * certificate.
+     * Optional. Describes options in this
+     * [X509Parameters][google.cloud.security.privateca.v1.X509Parameters] that
+     * are relevant in a CA certificate.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.X509Parameters.CaOptions ca_options = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Security\PrivateCA\V1\X509Parameters\CaOptions|null
@@ -138,8 +154,9 @@ class X509Parameters extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Describes options in this [X509Parameters][google.cloud.security.privateca.v1.X509Parameters] that are relevant in a CA
-     * certificate.
+     * Optional. Describes options in this
+     * [X509Parameters][google.cloud.security.privateca.v1.X509Parameters] that
+     * are relevant in a CA certificate.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.X509Parameters.CaOptions ca_options = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Security\PrivateCA\V1\X509Parameters\CaOptions $var
@@ -182,9 +199,9 @@ class X509Parameters extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Describes Online Certificate Status Protocol (OCSP) endpoint addresses
-     * that appear in the "Authority Information Access" extension in the
-     * certificate.
+     * Optional. Describes Online Certificate Status Protocol (OCSP) endpoint
+     * addresses that appear in the "Authority Information Access" extension in
+     * the certificate.
      *
      * Generated from protobuf field <code>repeated string aia_ocsp_servers = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -195,9 +212,9 @@ class X509Parameters extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Describes Online Certificate Status Protocol (OCSP) endpoint addresses
-     * that appear in the "Authority Information Access" extension in the
-     * certificate.
+     * Optional. Describes Online Certificate Status Protocol (OCSP) endpoint
+     * addresses that appear in the "Authority Information Access" extension in
+     * the certificate.
      *
      * Generated from protobuf field <code>repeated string aia_ocsp_servers = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -207,6 +224,42 @@ class X509Parameters extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->aia_ocsp_servers = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Describes the X.509 name constraints extension.
+     *
+     * Generated from protobuf field <code>.google.cloud.security.privateca.v1.X509Parameters.NameConstraints name_constraints = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Security\PrivateCA\V1\X509Parameters\NameConstraints|null
+     */
+    public function getNameConstraints()
+    {
+        return $this->name_constraints;
+    }
+
+    public function hasNameConstraints()
+    {
+        return isset($this->name_constraints);
+    }
+
+    public function clearNameConstraints()
+    {
+        unset($this->name_constraints);
+    }
+
+    /**
+     * Optional. Describes the X.509 name constraints extension.
+     *
+     * Generated from protobuf field <code>.google.cloud.security.privateca.v1.X509Parameters.NameConstraints name_constraints = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Security\PrivateCA\V1\X509Parameters\NameConstraints $var
+     * @return $this
+     */
+    public function setNameConstraints($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Security\PrivateCA\V1\X509Parameters\NameConstraints::class);
+        $this->name_constraints = $var;
 
         return $this;
     }

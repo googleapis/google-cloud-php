@@ -54,10 +54,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\ColorInfo::getColor()'
     name: getColor
     id: getColor
-    summary: |
-      RGB components of the color.
-      
-      Generated from protobuf field <code>.google.type.Color color = 1;</code>
+    summary: 'RGB components of the color.'
     parent: \Google\Cloud\Vision\V1\ColorInfo
     type: method
     langs:
@@ -86,10 +83,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\ColorInfo::setColor()'
     name: setColor
     id: setColor
-    summary: |
-      RGB components of the color.
-      
-      Generated from protobuf field <code>.google.type.Color color = 1;</code>
+    summary: 'RGB components of the color.'
     parent: \Google\Cloud\Vision\V1\ColorInfo
     type: method
     langs:
@@ -107,10 +101,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\ColorInfo::getScore()'
     name: getScore
     id: getScore
-    summary: |
-      Image-specific score for this color. Value in range [0, 1].
-      
-      Generated from protobuf field <code>float score = 2;</code>
+    summary: 'Image-specific score for this color. Value in range [0, 1].'
     parent: \Google\Cloud\Vision\V1\ColorInfo
     type: method
     langs:
@@ -123,10 +114,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\ColorInfo::setScore()'
     name: setScore
     id: setScore
-    summary: |
-      Image-specific score for this color. Value in range [0, 1].
-      
-      Generated from protobuf field <code>float score = 2;</code>
+    summary: 'Image-specific score for this color. Value in range [0, 1].'
     parent: \Google\Cloud\Vision\V1\ColorInfo
     type: method
     langs:
@@ -148,8 +136,6 @@ items:
       The fraction of pixels the color occupies in the image.
       
       Value in range [0, 1].
-      
-      Generated from protobuf field <code>float pixel_fraction = 3;</code>
     parent: \Google\Cloud\Vision\V1\ColorInfo
     type: method
     langs:
@@ -166,8 +152,6 @@ items:
       The fraction of pixels the color occupies in the image.
       
       Value in range [0, 1].
-      
-      Generated from protobuf field <code>float pixel_fraction = 3;</code>
     parent: \Google\Cloud\Vision\V1\ColorInfo
     type: method
     langs:
