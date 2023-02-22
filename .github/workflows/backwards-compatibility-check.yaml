@@ -31,4 +31,4 @@ jobs:
         run: |
           ~/.composer/vendor/bin/roave-backward-compatibility-check \
               --from=${{ steps.latest-release.outputs.release }} \
-              --to=main --format=github-actions
+              --to=origin/main --format=github-actions
