@@ -382,6 +382,8 @@ class DocumentReference
      *
      * @param array $options Configuration options.
      * @return ItemIterator<CollectionReference>
+     * @throws \InvalidArgumentException if an invalid `$options.readTime` is
+     *     specified.
      */
     public function collections(array $options = [])
     {

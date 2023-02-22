@@ -256,6 +256,8 @@ class CollectionReference extends Query
      *           resume the loading of results from a specific point.
      * }
      * @return ItemIterator<DocumentReference>
+     * @throws \InvalidArgumentException if an invalid `$options.readTime` is
+     *     specified.
      */
     public function listDocuments(array $options = [])
     {

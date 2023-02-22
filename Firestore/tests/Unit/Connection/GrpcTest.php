@@ -28,7 +28,7 @@ use Google\Cloud\Firestore\V1\Precondition;
 use Google\Cloud\Firestore\V1\StructuredQuery;
 use Google\Cloud\Firestore\V1\StructuredQuery\CollectionSelector;
 use Google\Cloud\Firestore\V1\TransactionOptions;
-use Google\Cloud\Firestore\V1\TransactionOptions_ReadWrite;
+use Google\Cloud\Firestore\V1\TransactionOptions\ReadWrite;
 use Google\Cloud\Firestore\V1\Value;
 use Google\Cloud\Firestore\V1\Write;
 use Google\Protobuf\Timestamp as ProtobufTimestamp;
@@ -112,8 +112,8 @@ class GrpcTest extends TestCase
             ),
             'documents' => $documents,
             'readTime' => [
-                'seconds' => (int) 202320232,
-                'nanos' => (int) 0
+                'seconds' => 202320232,
+                'nanos' => 0
             ]
         ];
 
@@ -134,7 +134,7 @@ class GrpcTest extends TestCase
             'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
         ];
 
-        $rw = new TransactionOptions_ReadWrite;
+        $rw = new ReadWrite();
 
         $options = new TransactionOptions;
         $options->setReadWrite($rw);
@@ -154,7 +154,7 @@ class GrpcTest extends TestCase
             'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
         ];
 
-        $rw = new TransactionOptions_ReadWrite;
+        $rw = new ReadWrite();
         $rw->setRetryTransaction($args['retryTransaction']);
 
         $options = new TransactionOptions;
@@ -239,8 +239,8 @@ class GrpcTest extends TestCase
                 self::DATABASE
             ),
             'readTime' => [
-                'seconds' => (int) 123456789,
-                'nanos' => (int) 0
+                'seconds' => 123456789,
+                'nanos' => 0
             ]
         ];
         $protobufTimestamp = new ProtobufTimestamp();
@@ -280,8 +280,8 @@ class GrpcTest extends TestCase
             'collectionId' => 'coll1',
             'mask' => [],
             'readTime' => [
-                'seconds' => (int) 123456789,
-                'nanos' => (int) 0
+                'seconds' => 123456789,
+                'nanos' => 0
             ]
         ];
 
@@ -338,8 +338,8 @@ class GrpcTest extends TestCase
             'parent' => 'parent!',
             'structuredQuery' => ['from' => [['collectionId' => 'parent']]],
             'readTime' => [
-                'seconds' => (int) 123456789,
-                'nanos' => (int) 0
+                'seconds' => 123456789,
+                'nanos' => 0
             ]
         ];
 

@@ -122,12 +122,8 @@ class Grpc implements ConnectionInterface
      */
     public function batchGetDocuments(array $args)
     {
-        if (isset($args['readTime'])) {
-            $args['readTime'] = $this->serializer->decodeMessage(
-                new ProtobufTimestamp(),
-                $args['readTime']
-            );
-        }
+        $args = $this->decodeTimestamp($args);
+
         return $this->send([$this->firestore, 'batchGetDocuments'], [
             $this->pluck('database', $args),
             $this->pluck('documents', $args),
@@ -195,12 +191,8 @@ class Grpc implements ConnectionInterface
      */
     public function listCollectionIds(array $args)
     {
-        if (isset($args['readTime'])) {
-            $args['readTime'] = $this->serializer->decodeMessage(
-                new ProtobufTimestamp(),
-                $args['readTime']
-            );
-        }
+        $args = $this->decodeTimestamp($args);
+
         return $this->send([$this->firestore, 'listCollectionIds'], [
             $this->pluck('parent', $args),
             $this->addRequestHeaders($args)
@@ -217,12 +209,7 @@ class Grpc implements ConnectionInterface
             : [];
 
         $args['mask'] = $this->documentMask($mask);
-        if (isset($args['readTime'])) {
-            $args['readTime'] = $this->serializer->decodeMessage(
-                new ProtobufTimestamp(),
-                $args['readTime']
-            );
-        }
+        $args = $this->decodeTimestamp($args);
 
         return $this->send([$this->firestore, 'listDocuments'], [
             $this->pluck('parent', $args),
@@ -254,12 +241,7 @@ class Grpc implements ConnectionInterface
             new StructuredQuery,
             $this->pluck('structuredQuery', $args)
         );
-        if (isset($args['readTime'])) {
-            $args['readTime'] = $this->serializer->decodeMessage(
-                new ProtobufTimestamp(),
-                $args['readTime']
-            );
-        }
+        $args = $this->decodeTimestamp($args);
 
         return $this->send([$this->firestore, 'runQuery'], [
             $this->pluck('parent', $args),
@@ -293,6 +275,24 @@ class Grpc implements ConnectionInterface
             $args['headers']['Authorization'] = ['Bearer owner'];
         }
 
+        return $args;
+    }
+
+    /**
+     * Decodes the 'readTime' API format timestamp to Protobuf timestamp if
+     * it is set.
+     *
+     * @param array $args
+     * @return array
+     */
+    private function decodeTimestamp(array $args)
+    {
+        if (isset($args['readTime'])) {
+            $args['readTime'] = $this->serializer->decodeMessage(
+                new ProtobufTimestamp(),
+                $args['readTime']
+            );
+        }
         return $args;
     }
 
