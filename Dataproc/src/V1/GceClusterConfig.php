@@ -17,13 +17,15 @@ use Google\Protobuf\Internal\GPBUtil;
 class GceClusterConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. The Compute Engine zone where the Dataproc cluster will be
-     * located. If omitted, the service will pick a zone in the cluster's Compute
-     * Engine region. On a get request, zone will always be present.
+     * Optional. The zone where the Compute Engine cluster will be located.
+     * On a create request, it is required in the "global" region. If omitted
+     * in a non-global Dataproc region, the service will pick a zone in the
+     * corresponding Compute Engine region. On a get request, zone will
+     * always be present.
      * A full URL, partial URI, or short name are valid. Examples:
      * * `https://www.googleapis.com/compute/v1/projects/[project_id]/zones/[zone]`
      * * `projects/[project_id]/zones/[zone]`
-     * * `[zone]`
+     * * `us-central1-f`
      *
      * Generated from protobuf field <code>string zone_uri = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -36,8 +38,8 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      * [Using Subnetworks](https://cloud.google.com/compute/docs/subnetworks) for
      * more information).
      * A full URL, partial URI, or short name are valid. Examples:
-     * * `https://www.googleapis.com/compute/v1/projects/[project_id]/global/networks/default`
-     * * `projects/[project_id]/global/networks/default`
+     * * `https://www.googleapis.com/compute/v1/projects/[project_id]/regions/global/default`
+     * * `projects/[project_id]/regions/global/default`
      * * `default`
      *
      * Generated from protobuf field <code>string network_uri = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -47,8 +49,8 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      * Optional. The Compute Engine subnetwork to be used for machine
      * communications. Cannot be specified with network_uri.
      * A full URL, partial URI, or short name are valid. Examples:
-     * * `https://www.googleapis.com/compute/v1/projects/[project_id]/regions/[region]/subnetworks/sub0`
-     * * `projects/[project_id]/regions/[region]/subnetworks/sub0`
+     * * `https://www.googleapis.com/compute/v1/projects/[project_id]/regions/us-east1/subnetworks/sub0`
+     * * `projects/[project_id]/regions/us-east1/subnetworks/sub0`
      * * `sub0`
      *
      * Generated from protobuf field <code>string subnetwork_uri = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -62,9 +64,9 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      * subnetwork enabled networks, and all off-cluster dependencies must be
      * configured to be accessible without external IP addresses.
      *
-     * Generated from protobuf field <code>optional bool internal_ip_only = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>bool internal_ip_only = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $internal_ip_only = null;
+    private $internal_ip_only = false;
     /**
      * Optional. The type of IPv6 access for a cluster.
      *
@@ -152,13 +154,15 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $zone_uri
-     *           Optional. The Compute Engine zone where the Dataproc cluster will be
-     *           located. If omitted, the service will pick a zone in the cluster's Compute
-     *           Engine region. On a get request, zone will always be present.
+     *           Optional. The zone where the Compute Engine cluster will be located.
+     *           On a create request, it is required in the "global" region. If omitted
+     *           in a non-global Dataproc region, the service will pick a zone in the
+     *           corresponding Compute Engine region. On a get request, zone will
+     *           always be present.
      *           A full URL, partial URI, or short name are valid. Examples:
      *           * `https://www.googleapis.com/compute/v1/projects/[project_id]/zones/[zone]`
      *           * `projects/[project_id]/zones/[zone]`
-     *           * `[zone]`
+     *           * `us-central1-f`
      *     @type string $network_uri
      *           Optional. The Compute Engine network to be used for machine
      *           communications. Cannot be specified with subnetwork_uri. If neither
@@ -167,15 +171,15 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      *           [Using Subnetworks](https://cloud.google.com/compute/docs/subnetworks) for
      *           more information).
      *           A full URL, partial URI, or short name are valid. Examples:
-     *           * `https://www.googleapis.com/compute/v1/projects/[project_id]/global/networks/default`
-     *           * `projects/[project_id]/global/networks/default`
+     *           * `https://www.googleapis.com/compute/v1/projects/[project_id]/regions/global/default`
+     *           * `projects/[project_id]/regions/global/default`
      *           * `default`
      *     @type string $subnetwork_uri
      *           Optional. The Compute Engine subnetwork to be used for machine
      *           communications. Cannot be specified with network_uri.
      *           A full URL, partial URI, or short name are valid. Examples:
-     *           * `https://www.googleapis.com/compute/v1/projects/[project_id]/regions/[region]/subnetworks/sub0`
-     *           * `projects/[project_id]/regions/[region]/subnetworks/sub0`
+     *           * `https://www.googleapis.com/compute/v1/projects/[project_id]/regions/us-east1/subnetworks/sub0`
+     *           * `projects/[project_id]/regions/us-east1/subnetworks/sub0`
      *           * `sub0`
      *     @type bool $internal_ip_only
      *           Optional. If true, all instances in the cluster will only have internal IP
@@ -235,13 +239,15 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The Compute Engine zone where the Dataproc cluster will be
-     * located. If omitted, the service will pick a zone in the cluster's Compute
-     * Engine region. On a get request, zone will always be present.
+     * Optional. The zone where the Compute Engine cluster will be located.
+     * On a create request, it is required in the "global" region. If omitted
+     * in a non-global Dataproc region, the service will pick a zone in the
+     * corresponding Compute Engine region. On a get request, zone will
+     * always be present.
      * A full URL, partial URI, or short name are valid. Examples:
      * * `https://www.googleapis.com/compute/v1/projects/[project_id]/zones/[zone]`
      * * `projects/[project_id]/zones/[zone]`
-     * * `[zone]`
+     * * `us-central1-f`
      *
      * Generated from protobuf field <code>string zone_uri = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -252,13 +258,15 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The Compute Engine zone where the Dataproc cluster will be
-     * located. If omitted, the service will pick a zone in the cluster's Compute
-     * Engine region. On a get request, zone will always be present.
+     * Optional. The zone where the Compute Engine cluster will be located.
+     * On a create request, it is required in the "global" region. If omitted
+     * in a non-global Dataproc region, the service will pick a zone in the
+     * corresponding Compute Engine region. On a get request, zone will
+     * always be present.
      * A full URL, partial URI, or short name are valid. Examples:
      * * `https://www.googleapis.com/compute/v1/projects/[project_id]/zones/[zone]`
      * * `projects/[project_id]/zones/[zone]`
-     * * `[zone]`
+     * * `us-central1-f`
      *
      * Generated from protobuf field <code>string zone_uri = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -280,8 +288,8 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      * [Using Subnetworks](https://cloud.google.com/compute/docs/subnetworks) for
      * more information).
      * A full URL, partial URI, or short name are valid. Examples:
-     * * `https://www.googleapis.com/compute/v1/projects/[project_id]/global/networks/default`
-     * * `projects/[project_id]/global/networks/default`
+     * * `https://www.googleapis.com/compute/v1/projects/[project_id]/regions/global/default`
+     * * `projects/[project_id]/regions/global/default`
      * * `default`
      *
      * Generated from protobuf field <code>string network_uri = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -300,8 +308,8 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      * [Using Subnetworks](https://cloud.google.com/compute/docs/subnetworks) for
      * more information).
      * A full URL, partial URI, or short name are valid. Examples:
-     * * `https://www.googleapis.com/compute/v1/projects/[project_id]/global/networks/default`
-     * * `projects/[project_id]/global/networks/default`
+     * * `https://www.googleapis.com/compute/v1/projects/[project_id]/regions/global/default`
+     * * `projects/[project_id]/regions/global/default`
      * * `default`
      *
      * Generated from protobuf field <code>string network_uri = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -320,8 +328,8 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      * Optional. The Compute Engine subnetwork to be used for machine
      * communications. Cannot be specified with network_uri.
      * A full URL, partial URI, or short name are valid. Examples:
-     * * `https://www.googleapis.com/compute/v1/projects/[project_id]/regions/[region]/subnetworks/sub0`
-     * * `projects/[project_id]/regions/[region]/subnetworks/sub0`
+     * * `https://www.googleapis.com/compute/v1/projects/[project_id]/regions/us-east1/subnetworks/sub0`
+     * * `projects/[project_id]/regions/us-east1/subnetworks/sub0`
      * * `sub0`
      *
      * Generated from protobuf field <code>string subnetwork_uri = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -336,8 +344,8 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      * Optional. The Compute Engine subnetwork to be used for machine
      * communications. Cannot be specified with network_uri.
      * A full URL, partial URI, or short name are valid. Examples:
-     * * `https://www.googleapis.com/compute/v1/projects/[project_id]/regions/[region]/subnetworks/sub0`
-     * * `projects/[project_id]/regions/[region]/subnetworks/sub0`
+     * * `https://www.googleapis.com/compute/v1/projects/[project_id]/regions/us-east1/subnetworks/sub0`
+     * * `projects/[project_id]/regions/us-east1/subnetworks/sub0`
      * * `sub0`
      *
      * Generated from protobuf field <code>string subnetwork_uri = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -360,22 +368,12 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      * subnetwork enabled networks, and all off-cluster dependencies must be
      * configured to be accessible without external IP addresses.
      *
-     * Generated from protobuf field <code>optional bool internal_ip_only = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>bool internal_ip_only = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getInternalIpOnly()
     {
-        return isset($this->internal_ip_only) ? $this->internal_ip_only : false;
-    }
-
-    public function hasInternalIpOnly()
-    {
-        return isset($this->internal_ip_only);
-    }
-
-    public function clearInternalIpOnly()
-    {
-        unset($this->internal_ip_only);
+        return $this->internal_ip_only;
     }
 
     /**
@@ -386,7 +384,7 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      * subnetwork enabled networks, and all off-cluster dependencies must be
      * configured to be accessible without external IP addresses.
      *
-     * Generated from protobuf field <code>optional bool internal_ip_only = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>bool internal_ip_only = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */

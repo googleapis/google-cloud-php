@@ -17,15 +17,14 @@ use Google\Protobuf\Internal\GPBUtil;
 class GkeNodePoolAutoscalingConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The minimum number of nodes in the node pool. Must be >= 0 and <=
+     * The minimum number of nodes in the NodePool. Must be >= 0 and <=
      * max_node_count.
      *
      * Generated from protobuf field <code>int32 min_node_count = 2;</code>
      */
     private $min_node_count = 0;
     /**
-     * The maximum number of nodes in the node pool. Must be >= min_node_count,
-     * and must be > 0.
+     * The maximum number of nodes in the NodePool. Must be >= min_node_count.
      * **Note:** Quota must be sufficient to scale up the cluster.
      *
      * Generated from protobuf field <code>int32 max_node_count = 3;</code>
@@ -39,11 +38,10 @@ class GkeNodePoolAutoscalingConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $min_node_count
-     *           The minimum number of nodes in the node pool. Must be >= 0 and <=
+     *           The minimum number of nodes in the NodePool. Must be >= 0 and <=
      *           max_node_count.
      *     @type int $max_node_count
-     *           The maximum number of nodes in the node pool. Must be >= min_node_count,
-     *           and must be > 0.
+     *           The maximum number of nodes in the NodePool. Must be >= min_node_count.
      *           **Note:** Quota must be sufficient to scale up the cluster.
      * }
      */
@@ -53,7 +51,7 @@ class GkeNodePoolAutoscalingConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The minimum number of nodes in the node pool. Must be >= 0 and <=
+     * The minimum number of nodes in the NodePool. Must be >= 0 and <=
      * max_node_count.
      *
      * Generated from protobuf field <code>int32 min_node_count = 2;</code>
@@ -65,7 +63,7 @@ class GkeNodePoolAutoscalingConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The minimum number of nodes in the node pool. Must be >= 0 and <=
+     * The minimum number of nodes in the NodePool. Must be >= 0 and <=
      * max_node_count.
      *
      * Generated from protobuf field <code>int32 min_node_count = 2;</code>
@@ -81,8 +79,7 @@ class GkeNodePoolAutoscalingConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum number of nodes in the node pool. Must be >= min_node_count,
-     * and must be > 0.
+     * The maximum number of nodes in the NodePool. Must be >= min_node_count.
      * **Note:** Quota must be sufficient to scale up the cluster.
      *
      * Generated from protobuf field <code>int32 max_node_count = 3;</code>
@@ -94,8 +91,7 @@ class GkeNodePoolAutoscalingConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum number of nodes in the node pool. Must be >= min_node_count,
-     * and must be > 0.
+     * The maximum number of nodes in the NodePool. Must be >= min_node_count.
      * **Note:** Quota must be sufficient to scale up the cluster.
      *
      * Generated from protobuf field <code>int32 max_node_count = 3;</code>

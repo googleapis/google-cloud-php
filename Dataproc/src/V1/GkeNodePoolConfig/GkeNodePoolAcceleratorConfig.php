@@ -10,7 +10,7 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * A GkeNodeConfigAcceleratorConfig represents a Hardware Accelerator request
- * for a node pool.
+ * for a NodePool.
  *
  * Generated from protobuf message <code>google.cloud.dataproc.v1.GkeNodePoolConfig.GkeNodePoolAcceleratorConfig</code>
  */
@@ -28,14 +28,6 @@ class GkeNodePoolAcceleratorConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string accelerator_type = 2;</code>
      */
     private $accelerator_type = '';
-    /**
-     * Size of partitions to create on the GPU. Valid values are described in
-     * the NVIDIA [mig user
-     * guide](https://docs.nvidia.com/datacenter/tesla/mig-user-guide/#partitioning).
-     *
-     * Generated from protobuf field <code>string gpu_partition_size = 3;</code>
-     */
-    private $gpu_partition_size = '';
 
     /**
      * Constructor.
@@ -47,10 +39,6 @@ class GkeNodePoolAcceleratorConfig extends \Google\Protobuf\Internal\Message
      *           The number of accelerator cards exposed to an instance.
      *     @type string $accelerator_type
      *           The accelerator type resource namename (see GPUs on Compute Engine).
-     *     @type string $gpu_partition_size
-     *           Size of partitions to create on the GPU. Valid values are described in
-     *           the NVIDIA [mig user
-     *           guide](https://docs.nvidia.com/datacenter/tesla/mig-user-guide/#partitioning).
      * }
      */
     public function __construct($data = NULL) {
@@ -106,36 +94,6 @@ class GkeNodePoolAcceleratorConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->accelerator_type = $var;
-
-        return $this;
-    }
-
-    /**
-     * Size of partitions to create on the GPU. Valid values are described in
-     * the NVIDIA [mig user
-     * guide](https://docs.nvidia.com/datacenter/tesla/mig-user-guide/#partitioning).
-     *
-     * Generated from protobuf field <code>string gpu_partition_size = 3;</code>
-     * @return string
-     */
-    public function getGpuPartitionSize()
-    {
-        return $this->gpu_partition_size;
-    }
-
-    /**
-     * Size of partitions to create on the GPU. Valid values are described in
-     * the NVIDIA [mig user
-     * guide](https://docs.nvidia.com/datacenter/tesla/mig-user-guide/#partitioning).
-     *
-     * Generated from protobuf field <code>string gpu_partition_size = 3;</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setGpuPartitionSize($var)
-    {
-        GPBUtil::checkString($var, True);
-        $this->gpu_partition_size = $var;
 
         return $this;
     }

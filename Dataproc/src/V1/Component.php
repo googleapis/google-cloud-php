@@ -60,12 +60,6 @@ class Component
      */
     const HIVE_WEBHCAT = 3;
     /**
-     * Hudi.
-     *
-     * Generated from protobuf enum <code>HUDI = 18;</code>
-     */
-    const HUDI = 18;
-    /**
      * The Jupyter Notebook.
      *
      * Generated from protobuf enum <code>JUPYTER = 1;</code>
@@ -77,12 +71,6 @@ class Component
      * Generated from protobuf enum <code>PRESTO = 6;</code>
      */
     const PRESTO = 6;
-    /**
-     * The Trino query engine.
-     *
-     * Generated from protobuf enum <code>TRINO = 17;</code>
-     */
-    const TRINO = 17;
     /**
      * The Ranger service.
      *
@@ -116,10 +104,8 @@ class Component
         self::FLINK => 'FLINK',
         self::HBASE => 'HBASE',
         self::HIVE_WEBHCAT => 'HIVE_WEBHCAT',
-        self::HUDI => 'HUDI',
         self::JUPYTER => 'JUPYTER',
         self::PRESTO => 'PRESTO',
-        self::TRINO => 'TRINO',
         self::RANGER => 'RANGER',
         self::SOLR => 'SOLR',
         self::ZEPPELIN => 'ZEPPELIN',
