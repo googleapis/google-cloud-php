@@ -19,7 +19,7 @@ jobs:
       - id: latest
         uses: pozetroninc/github-action-get-latest-release@master
         with:
-          repository: googleapis/google-cloud-php
+          repository: ${{ github.repository }}
       - name: "Check for BC breaks"
         run: |
           ~/.composer/vendor/bin/roave-backward-compatibility-check --from={{ steps.latest.outputs.release }} --format=github-actions
