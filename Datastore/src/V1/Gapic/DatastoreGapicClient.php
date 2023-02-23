@@ -228,7 +228,7 @@ class DatastoreGapicClient
         $requestParamHeaders['project_id'] = $projectId;
         if (isset($optionalArgs['databaseId'])) {
             $request->setDatabaseId($optionalArgs['databaseId']);
-            $requestParamHeaders['database_id'] = $optionalArgs['database_id'];
+            $requestParamHeaders['database_id'] = $optionalArgs['databaseId'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -279,7 +279,7 @@ class DatastoreGapicClient
         $requestParamHeaders['project_id'] = $projectId;
         if (isset($optionalArgs['databaseId'])) {
             $request->setDatabaseId($optionalArgs['databaseId']);
-            $requestParamHeaders['database_id'] = $optionalArgs['database_id'];
+            $requestParamHeaders['database_id'] = $optionalArgs['databaseId'];
         }
 
         if (isset($optionalArgs['transactionOptions'])) {
@@ -361,7 +361,7 @@ class DatastoreGapicClient
         $requestParamHeaders['project_id'] = $projectId;
         if (isset($optionalArgs['databaseId'])) {
             $request->setDatabaseId($optionalArgs['databaseId']);
-            $requestParamHeaders['database_id'] = $optionalArgs['database_id'];
+            $requestParamHeaders['database_id'] = $optionalArgs['databaseId'];
         }
 
         if (isset($optionalArgs['transaction'])) {
@@ -423,7 +423,7 @@ class DatastoreGapicClient
         $requestParamHeaders['project_id'] = $projectId;
         if (isset($optionalArgs['databaseId'])) {
             $request->setDatabaseId($optionalArgs['databaseId']);
-            $requestParamHeaders['database_id'] = $optionalArgs['database_id'];
+            $requestParamHeaders['database_id'] = $optionalArgs['databaseId'];
         }
 
         if (isset($optionalArgs['readOptions'])) {
@@ -481,7 +481,7 @@ class DatastoreGapicClient
         $requestParamHeaders['project_id'] = $projectId;
         if (isset($optionalArgs['databaseId'])) {
             $request->setDatabaseId($optionalArgs['databaseId']);
-            $requestParamHeaders['database_id'] = $optionalArgs['database_id'];
+            $requestParamHeaders['database_id'] = $optionalArgs['databaseId'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -534,7 +534,7 @@ class DatastoreGapicClient
         $requestParamHeaders['project_id'] = $projectId;
         if (isset($optionalArgs['databaseId'])) {
             $request->setDatabaseId($optionalArgs['databaseId']);
-            $requestParamHeaders['database_id'] = $optionalArgs['database_id'];
+            $requestParamHeaders['database_id'] = $optionalArgs['databaseId'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -594,7 +594,7 @@ class DatastoreGapicClient
         $requestParamHeaders['project_id'] = $projectId;
         if (isset($optionalArgs['databaseId'])) {
             $request->setDatabaseId($optionalArgs['databaseId']);
-            $requestParamHeaders['database_id'] = $optionalArgs['database_id'];
+            $requestParamHeaders['database_id'] = $optionalArgs['databaseId'];
         }
 
         if (isset($optionalArgs['partitionId'])) {
@@ -671,7 +671,7 @@ class DatastoreGapicClient
         $requestParamHeaders['project_id'] = $projectId;
         if (isset($optionalArgs['databaseId'])) {
             $request->setDatabaseId($optionalArgs['databaseId']);
-            $requestParamHeaders['database_id'] = $optionalArgs['database_id'];
+            $requestParamHeaders['database_id'] = $optionalArgs['databaseId'];
         }
 
         if (isset($optionalArgs['readOptions'])) {
