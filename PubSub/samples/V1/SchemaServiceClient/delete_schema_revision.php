@@ -35,8 +35,11 @@ use Google\Cloud\PubSub\V1\SchemaServiceClient;
  *
  *                              Example: `projects/123/schemas/my-schema&#64;c7cfa2a8`
  *                              Please see {@see SchemaServiceClient::schemaName()} for help formatting this field.
+ * @param string $revisionId    Optional. This field is deprecated and should not be used for specifying
+ *                              the revision ID. The revision ID should be specified via the `name`
+ *                              parameter.
  */
-function delete_schema_revision_sample(string $formattedName): void
+function delete_schema_revision_sample(string $formattedName, string $revisionId): void
 {
     // Create a client.
     $schemaServiceClient = new SchemaServiceClient();
@@ -44,7 +47,7 @@ function delete_schema_revision_sample(string $formattedName): void
     // Call the API and handle any network failures.
     try {
         /** @var Schema $response */
-        $response = $schemaServiceClient->deleteSchemaRevision($formattedName);
+        $response = $schemaServiceClient->deleteSchemaRevision($formattedName, $revisionId);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
@@ -63,7 +66,8 @@ function delete_schema_revision_sample(string $formattedName): void
 function callSample(): void
 {
     $formattedName = SchemaServiceClient::schemaName('[PROJECT]', '[SCHEMA]');
+    $revisionId = '[REVISION_ID]';
 
-    delete_schema_revision_sample($formattedName);
+    delete_schema_revision_sample($formattedName, $revisionId);
 }
 // [END pubsub_v1_generated_SchemaService_DeleteSchemaRevision_sync]
