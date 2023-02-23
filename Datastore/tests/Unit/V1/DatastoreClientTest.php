@@ -267,7 +267,9 @@ class DatastoreClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
+        $transaction = '-34';
         $expectedResponse = new LookupResponse();
+        $expectedResponse->setTransaction($transaction);
         $transport->addResponse($expectedResponse);
         // Mock request
         $projectId = 'projectId-1969970175';
@@ -453,7 +455,9 @@ class DatastoreClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
+        $transaction = '-34';
         $expectedResponse = new RunAggregationQueryResponse();
+        $expectedResponse->setTransaction($transaction);
         $transport->addResponse($expectedResponse);
         // Mock request
         $projectId = 'projectId-1969970175';
@@ -511,7 +515,9 @@ class DatastoreClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
+        $transaction = '-34';
         $expectedResponse = new RunQueryResponse();
+        $expectedResponse->setTransaction($transaction);
         $transport->addResponse($expectedResponse);
         // Mock request
         $projectId = 'projectId-1969970175';
