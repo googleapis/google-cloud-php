@@ -5,10 +5,12 @@ on:
     paths:
       - 'PubSub/**'
       - '.github/workflows/pubsub-emulator-system-tests.yaml'
+      - '.github/emulator/start-emulator.sh'
   pull_request:
     paths:
       - 'PubSub/**'
       - '.github/workflows/pubsub-emulator-system-tests.yaml'
+      - '.github/emulator/start-emulator.sh'
 name: Run PubSub System Tests With Emulator
 jobs:
   test:

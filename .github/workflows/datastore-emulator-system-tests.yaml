@@ -6,10 +6,12 @@ on:
     paths:
       - 'Datastore/**'
       - '.github/workflows/datastore-emulator-system-tests.yaml'
+      - '.github/emulator/start-emulator.sh'
   pull_request:
     paths:
       - 'Datastore/**'
       - '.github/workflows/datastore-emulator-system-tests.yaml'
+      - '.github/emulator/start-emulator.sh'
 jobs:
   test:
     runs-on: ubuntu-latest
