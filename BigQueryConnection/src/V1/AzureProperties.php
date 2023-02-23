@@ -47,16 +47,16 @@ class AzureProperties extends \Google\Protobuf\Internal\Message
      */
     private $redirect_uri = '';
     /**
-     * The client id of the user's Azure Active Directory Application used for a
+     * The client ID of the user's Azure Active Directory Application used for a
      * federated connection.
      *
      * Generated from protobuf field <code>string federated_application_client_id = 6;</code>
      */
     private $federated_application_client_id = '';
     /**
-     * Output only. A unique Google-owned and Google-generated identity for the Connection.
-     * This identity will be used to access the user's Azure Active Directory
-     * Application.
+     * Output only. A unique Google-owned and Google-generated identity for the
+     * Connection. This identity will be used to access the user's Azure Active
+     * Directory Application.
      *
      * Generated from protobuf field <code>string identity = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -80,12 +80,12 @@ class AzureProperties extends \Google\Protobuf\Internal\Message
      *           The URL user will be redirected to after granting consent during connection
      *           setup.
      *     @type string $federated_application_client_id
-     *           The client id of the user's Azure Active Directory Application used for a
+     *           The client ID of the user's Azure Active Directory Application used for a
      *           federated connection.
      *     @type string $identity
-     *           Output only. A unique Google-owned and Google-generated identity for the Connection.
-     *           This identity will be used to access the user's Azure Active Directory
-     *           Application.
+     *           Output only. A unique Google-owned and Google-generated identity for the
+     *           Connection. This identity will be used to access the user's Azure Active
+     *           Directory Application.
      * }
      */
     public function __construct($data = NULL) {
@@ -226,7 +226,7 @@ class AzureProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The client id of the user's Azure Active Directory Application used for a
+     * The client ID of the user's Azure Active Directory Application used for a
      * federated connection.
      *
      * Generated from protobuf field <code>string federated_application_client_id = 6;</code>
@@ -238,7 +238,7 @@ class AzureProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The client id of the user's Azure Active Directory Application used for a
+     * The client ID of the user's Azure Active Directory Application used for a
      * federated connection.
      *
      * Generated from protobuf field <code>string federated_application_client_id = 6;</code>
@@ -254,9 +254,9 @@ class AzureProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. A unique Google-owned and Google-generated identity for the Connection.
-     * This identity will be used to access the user's Azure Active Directory
-     * Application.
+     * Output only. A unique Google-owned and Google-generated identity for the
+     * Connection. This identity will be used to access the user's Azure Active
+     * Directory Application.
      *
      * Generated from protobuf field <code>string identity = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -267,9 +267,9 @@ class AzureProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. A unique Google-owned and Google-generated identity for the Connection.
-     * This identity will be used to access the user's Azure Active Directory
-     * Application.
+     * Output only. A unique Google-owned and Google-generated identity for the
+     * Connection. This identity will be used to access the user's Azure Active
+     * Directory Application.
      *
      * Generated from protobuf field <code>string identity = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
