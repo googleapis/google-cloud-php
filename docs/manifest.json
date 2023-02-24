@@ -1434,6 +1434,15 @@
             ]
         },
         {
+            "id": "cloud-datacatalog-lineage",
+            "name": "google/cloud-datacatalog-lineage",
+            "defaultService": "datacataloglineage/readme",
+            "versions": [
+                "0.1.0",
+                "main"
+            ]
+        },
+        {
             "id": "cloud-dataflow",
             "name": "google/cloud-dataflow",
             "defaultService": "dataflow/readme",

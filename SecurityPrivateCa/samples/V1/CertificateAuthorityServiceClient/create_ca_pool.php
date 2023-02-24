@@ -34,11 +34,14 @@ use Google\Rpc\Status;
  * Create a [CaPool][google.cloud.security.privateca.v1.CaPool].
  *
  * @param string $formattedParent The resource name of the location associated with the
- *                                [CaPool][google.cloud.security.privateca.v1.CaPool], in the format `projects/&#42;/locations/*`. Please see
+ *                                [CaPool][google.cloud.security.privateca.v1.CaPool], in the format
+ *                                `projects/&#42;/locations/*`. Please see
  *                                {@see CertificateAuthorityServiceClient::locationName()} for help formatting this field.
  * @param string $caPoolId        It must be unique within a location and match the regular
  *                                expression `[a-zA-Z0-9_-]{1,63}`
- * @param int    $caPoolTier      Immutable. The [Tier][google.cloud.security.privateca.v1.CaPool.Tier] of this [CaPool][google.cloud.security.privateca.v1.CaPool].
+ * @param int    $caPoolTier      Immutable. The
+ *                                [Tier][google.cloud.security.privateca.v1.CaPool.Tier] of this
+ *                                [CaPool][google.cloud.security.privateca.v1.CaPool].
  */
 function create_ca_pool_sample(string $formattedParent, string $caPoolId, int $caPoolTier): void
 {

@@ -33,6 +33,34 @@ class ExecutionConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string kms_key = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $kms_key = '';
+    /**
+     * Optional. The duration after which the workload will be terminated.
+     * When the workload passes this ttl, it will be unconditionally killed
+     * without waiting for ongoing work to finish.
+     * Minimum value is 10 minutes; maximum value is 14 days (see JSON
+     * representation of
+     * [Duration](https://developers.google.com/protocol-buffers/docs/proto3#json)).
+     * If both ttl and idle_ttl are specified, the conditions are treated as
+     * and OR: the workload will be terminated when it has been idle for idle_ttl
+     * or when the ttl has passed, whichever comes first.
+     * If ttl is not specified for a session, it defaults to 24h.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration ttl = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $ttl = null;
+    /**
+     * Optional. A Cloud Storage bucket used to stage workload dependencies,
+     * config files, and store workload output and other ephemeral data, such as
+     * Spark history files. If you do not specify a staging bucket, Cloud Dataproc
+     * will determine a Cloud Storage location according to the region where your
+     * workload is running, and then create and manage project-level, per-location
+     * staging and temporary buckets.
+     * **This field requires a Cloud Storage bucket name, not a `gs://...` URI to
+     * a Cloud Storage bucket.**
+     *
+     * Generated from protobuf field <code>string staging_bucket = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $staging_bucket = '';
     protected $network;
 
     /**
@@ -51,6 +79,26 @@ class ExecutionConfig extends \Google\Protobuf\Internal\Message
      *           Optional. Tags used for network traffic control.
      *     @type string $kms_key
      *           Optional. The Cloud KMS key to use for encryption.
+     *     @type \Google\Protobuf\Duration $ttl
+     *           Optional. The duration after which the workload will be terminated.
+     *           When the workload passes this ttl, it will be unconditionally killed
+     *           without waiting for ongoing work to finish.
+     *           Minimum value is 10 minutes; maximum value is 14 days (see JSON
+     *           representation of
+     *           [Duration](https://developers.google.com/protocol-buffers/docs/proto3#json)).
+     *           If both ttl and idle_ttl are specified, the conditions are treated as
+     *           and OR: the workload will be terminated when it has been idle for idle_ttl
+     *           or when the ttl has passed, whichever comes first.
+     *           If ttl is not specified for a session, it defaults to 24h.
+     *     @type string $staging_bucket
+     *           Optional. A Cloud Storage bucket used to stage workload dependencies,
+     *           config files, and store workload output and other ephemeral data, such as
+     *           Spark history files. If you do not specify a staging bucket, Cloud Dataproc
+     *           will determine a Cloud Storage location according to the region where your
+     *           workload is running, and then create and manage project-level, per-location
+     *           staging and temporary buckets.
+     *           **This field requires a Cloud Storage bucket name, not a `gs://...` URI to
+     *           a Cloud Storage bucket.**
      * }
      */
     public function __construct($data = NULL) {
@@ -194,6 +242,100 @@ class ExecutionConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->kms_key = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The duration after which the workload will be terminated.
+     * When the workload passes this ttl, it will be unconditionally killed
+     * without waiting for ongoing work to finish.
+     * Minimum value is 10 minutes; maximum value is 14 days (see JSON
+     * representation of
+     * [Duration](https://developers.google.com/protocol-buffers/docs/proto3#json)).
+     * If both ttl and idle_ttl are specified, the conditions are treated as
+     * and OR: the workload will be terminated when it has been idle for idle_ttl
+     * or when the ttl has passed, whichever comes first.
+     * If ttl is not specified for a session, it defaults to 24h.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration ttl = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Duration|null
+     */
+    public function getTtl()
+    {
+        return $this->ttl;
+    }
+
+    public function hasTtl()
+    {
+        return isset($this->ttl);
+    }
+
+    public function clearTtl()
+    {
+        unset($this->ttl);
+    }
+
+    /**
+     * Optional. The duration after which the workload will be terminated.
+     * When the workload passes this ttl, it will be unconditionally killed
+     * without waiting for ongoing work to finish.
+     * Minimum value is 10 minutes; maximum value is 14 days (see JSON
+     * representation of
+     * [Duration](https://developers.google.com/protocol-buffers/docs/proto3#json)).
+     * If both ttl and idle_ttl are specified, the conditions are treated as
+     * and OR: the workload will be terminated when it has been idle for idle_ttl
+     * or when the ttl has passed, whichever comes first.
+     * If ttl is not specified for a session, it defaults to 24h.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration ttl = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Protobuf\Duration $var
+     * @return $this
+     */
+    public function setTtl($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
+        $this->ttl = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. A Cloud Storage bucket used to stage workload dependencies,
+     * config files, and store workload output and other ephemeral data, such as
+     * Spark history files. If you do not specify a staging bucket, Cloud Dataproc
+     * will determine a Cloud Storage location according to the region where your
+     * workload is running, and then create and manage project-level, per-location
+     * staging and temporary buckets.
+     * **This field requires a Cloud Storage bucket name, not a `gs://...` URI to
+     * a Cloud Storage bucket.**
+     *
+     * Generated from protobuf field <code>string staging_bucket = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getStagingBucket()
+    {
+        return $this->staging_bucket;
+    }
+
+    /**
+     * Optional. A Cloud Storage bucket used to stage workload dependencies,
+     * config files, and store workload output and other ephemeral data, such as
+     * Spark history files. If you do not specify a staging bucket, Cloud Dataproc
+     * will determine a Cloud Storage location according to the region where your
+     * workload is running, and then create and manage project-level, per-location
+     * staging and temporary buckets.
+     * **This field requires a Cloud Storage bucket name, not a `gs://...` URI to
+     * a Cloud Storage bucket.**
+     *
+     * Generated from protobuf field <code>string staging_bucket = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setStagingBucket($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->staging_bucket = $var;
 
         return $this;
     }

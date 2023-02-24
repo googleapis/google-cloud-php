@@ -25,10 +25,17 @@ class Operator
      * Generated from protobuf enum <code>AND = 1;</code>
      */
     const PBAND = 1;
+    /**
+     * Documents are required to satisfy at least one of the combined filters.
+     *
+     * Generated from protobuf enum <code>OR = 2;</code>
+     */
+    const PBOR = 2;
 
     private static $valueToName = [
         self::OPERATOR_UNSPECIFIED => 'OPERATOR_UNSPECIFIED',
         self::PBAND => 'AND',
+        self::PBOR => 'OR',
     ];
 
     public static function name($value)

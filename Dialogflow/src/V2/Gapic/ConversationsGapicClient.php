@@ -34,6 +34,7 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\Dialogflow\V2\AssistQueryParameters;
 use Google\Cloud\Dialogflow\V2\CompleteConversationRequest;
 use Google\Cloud\Dialogflow\V2\Conversation;
 use Google\Cloud\Dialogflow\V2\CreateConversationRequest;
@@ -936,6 +937,8 @@ class ConversationsGapicClient
      *           Max number of messages prior to and including
      *           [latest_message] to use as context when compiling the
      *           suggestion. By default 500 and at most 1000.
+     *     @type AssistQueryParameters $assistQueryParams
+     *           Parameters for a human assist query.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -958,6 +961,10 @@ class ConversationsGapicClient
 
         if (isset($optionalArgs['contextSize'])) {
             $request->setContextSize($optionalArgs['contextSize']);
+        }
+
+        if (isset($optionalArgs['assistQueryParams'])) {
+            $request->setAssistQueryParams($optionalArgs['assistQueryParams']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);

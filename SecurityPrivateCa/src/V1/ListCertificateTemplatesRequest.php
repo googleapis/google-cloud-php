@@ -18,19 +18,21 @@ class ListCertificateTemplatesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The resource name of the location associated with the
-     * [CertificateTemplates][google.cloud.security.privateca.v1.CertificateTemplate], in the format
-     * `projects/&#42;&#47;locations/&#42;`.
+     * [CertificateTemplates][google.cloud.security.privateca.v1.CertificateTemplate],
+     * in the format `projects/&#42;&#47;locations/&#42;`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
      * Optional. Limit on the number of
-     * [CertificateTemplates][google.cloud.security.privateca.v1.CertificateTemplate] to include in the response.
-     * Further [CertificateTemplates][google.cloud.security.privateca.v1.CertificateTemplate] can subsequently be
-     * obtained by including the
-     * [ListCertificateTemplatesResponse.next_page_token][google.cloud.security.privateca.v1.ListCertificateTemplatesResponse.next_page_token] in a subsequent
-     * request. If unspecified, the server will pick an appropriate default.
+     * [CertificateTemplates][google.cloud.security.privateca.v1.CertificateTemplate]
+     * to include in the response. Further
+     * [CertificateTemplates][google.cloud.security.privateca.v1.CertificateTemplate]
+     * can subsequently be obtained by including the
+     * [ListCertificateTemplatesResponse.next_page_token][google.cloud.security.privateca.v1.ListCertificateTemplatesResponse.next_page_token]
+     * in a subsequent request. If unspecified, the server will pick an
+     * appropriate default.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -63,15 +65,17 @@ class ListCertificateTemplatesRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The resource name of the location associated with the
-     *           [CertificateTemplates][google.cloud.security.privateca.v1.CertificateTemplate], in the format
-     *           `projects/&#42;&#47;locations/&#42;`.
+     *           [CertificateTemplates][google.cloud.security.privateca.v1.CertificateTemplate],
+     *           in the format `projects/&#42;&#47;locations/&#42;`.
      *     @type int $page_size
      *           Optional. Limit on the number of
-     *           [CertificateTemplates][google.cloud.security.privateca.v1.CertificateTemplate] to include in the response.
-     *           Further [CertificateTemplates][google.cloud.security.privateca.v1.CertificateTemplate] can subsequently be
-     *           obtained by including the
-     *           [ListCertificateTemplatesResponse.next_page_token][google.cloud.security.privateca.v1.ListCertificateTemplatesResponse.next_page_token] in a subsequent
-     *           request. If unspecified, the server will pick an appropriate default.
+     *           [CertificateTemplates][google.cloud.security.privateca.v1.CertificateTemplate]
+     *           to include in the response. Further
+     *           [CertificateTemplates][google.cloud.security.privateca.v1.CertificateTemplate]
+     *           can subsequently be obtained by including the
+     *           [ListCertificateTemplatesResponse.next_page_token][google.cloud.security.privateca.v1.ListCertificateTemplatesResponse.next_page_token]
+     *           in a subsequent request. If unspecified, the server will pick an
+     *           appropriate default.
      *     @type string $page_token
      *           Optional. Pagination token, returned earlier via
      *           [ListCertificateTemplatesResponse.next_page_token][google.cloud.security.privateca.v1.ListCertificateTemplatesResponse.next_page_token].
@@ -88,8 +92,8 @@ class ListCertificateTemplatesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the location associated with the
-     * [CertificateTemplates][google.cloud.security.privateca.v1.CertificateTemplate], in the format
-     * `projects/&#42;&#47;locations/&#42;`.
+     * [CertificateTemplates][google.cloud.security.privateca.v1.CertificateTemplate],
+     * in the format `projects/&#42;&#47;locations/&#42;`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -101,8 +105,8 @@ class ListCertificateTemplatesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the location associated with the
-     * [CertificateTemplates][google.cloud.security.privateca.v1.CertificateTemplate], in the format
-     * `projects/&#42;&#47;locations/&#42;`.
+     * [CertificateTemplates][google.cloud.security.privateca.v1.CertificateTemplate],
+     * in the format `projects/&#42;&#47;locations/&#42;`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -118,11 +122,13 @@ class ListCertificateTemplatesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Limit on the number of
-     * [CertificateTemplates][google.cloud.security.privateca.v1.CertificateTemplate] to include in the response.
-     * Further [CertificateTemplates][google.cloud.security.privateca.v1.CertificateTemplate] can subsequently be
-     * obtained by including the
-     * [ListCertificateTemplatesResponse.next_page_token][google.cloud.security.privateca.v1.ListCertificateTemplatesResponse.next_page_token] in a subsequent
-     * request. If unspecified, the server will pick an appropriate default.
+     * [CertificateTemplates][google.cloud.security.privateca.v1.CertificateTemplate]
+     * to include in the response. Further
+     * [CertificateTemplates][google.cloud.security.privateca.v1.CertificateTemplate]
+     * can subsequently be obtained by including the
+     * [ListCertificateTemplatesResponse.next_page_token][google.cloud.security.privateca.v1.ListCertificateTemplatesResponse.next_page_token]
+     * in a subsequent request. If unspecified, the server will pick an
+     * appropriate default.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -134,11 +140,13 @@ class ListCertificateTemplatesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Limit on the number of
-     * [CertificateTemplates][google.cloud.security.privateca.v1.CertificateTemplate] to include in the response.
-     * Further [CertificateTemplates][google.cloud.security.privateca.v1.CertificateTemplate] can subsequently be
-     * obtained by including the
-     * [ListCertificateTemplatesResponse.next_page_token][google.cloud.security.privateca.v1.ListCertificateTemplatesResponse.next_page_token] in a subsequent
-     * request. If unspecified, the server will pick an appropriate default.
+     * [CertificateTemplates][google.cloud.security.privateca.v1.CertificateTemplate]
+     * to include in the response. Further
+     * [CertificateTemplates][google.cloud.security.privateca.v1.CertificateTemplate]
+     * can subsequently be obtained by including the
+     * [ListCertificateTemplatesResponse.next_page_token][google.cloud.security.privateca.v1.ListCertificateTemplatesResponse.next_page_token]
+     * in a subsequent request. If unspecified, the server will pick an
+     * appropriate default.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var

@@ -11,7 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * The Dataproc cluster config for a cluster that does not directly control the
  * underlying compute resources, such as a [Dataproc-on-GKE
- * cluster](https://cloud.google.com/dataproc/docs/guides/dpgke/dataproc-gke).
+ * cluster](https://cloud.google.com/dataproc/docs/guides/dpgke/dataproc-gke-overview).
  *
  * Generated from protobuf message <code>google.cloud.dataproc.v1.VirtualClusterConfig</code>
  */

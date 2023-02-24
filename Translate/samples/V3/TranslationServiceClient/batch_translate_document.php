@@ -50,10 +50,10 @@ use Google\Rpc\Status;
  *                                           the same location-id) can be used, otherwise an INVALID_ARGUMENT (400)
  *                                           error is returned. Please see
  *                                           {@see TranslationServiceClient::locationName()} for help formatting this field.
- * @param string $sourceLanguageCode         The BCP-47 language code of the input document if known, for
+ * @param string $sourceLanguageCode         The ISO-639 language code of the input document if known, for
  *                                           example, "en-US" or "sr-Latn". Supported language codes are listed in
- *                                           Language Support (https://cloud.google.com/translate/docs/languages).
- * @param string $targetLanguageCodesElement The BCP-47 language code to use for translation of the input
+ *                                           [Language Support](https://cloud.google.com/translate/docs/languages).
+ * @param string $targetLanguageCodesElement The ISO-639 language code to use for translation of the input
  *                                           document. Specify up to 10 language codes here.
  */
 function batch_translate_document_sample(

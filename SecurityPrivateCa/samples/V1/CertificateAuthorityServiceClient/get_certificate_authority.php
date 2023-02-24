@@ -28,10 +28,13 @@ use Google\Cloud\Security\PrivateCA\V1\CertificateAuthority;
 use Google\Cloud\Security\PrivateCA\V1\CertificateAuthorityServiceClient;
 
 /**
- * Returns a [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority].
+ * Returns a
+ * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority].
  *
- * @param string $formattedName The [name][google.cloud.security.privateca.v1.CertificateAuthority.name] of the [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority] to
- *                              get. Please see
+ * @param string $formattedName The
+ *                              [name][google.cloud.security.privateca.v1.CertificateAuthority.name] of the
+ *                              [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+ *                              to get. Please see
  *                              {@see CertificateAuthorityServiceClient::certificateAuthorityName()} for help formatting this field.
  */
 function get_certificate_authority_sample(string $formattedName): void

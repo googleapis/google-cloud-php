@@ -45,9 +45,19 @@
                                 "enableProcessor"
                             ]
                         },
+                        "EvaluateProcessorVersion": {
+                            "methods": [
+                                "evaluateProcessorVersion"
+                            ]
+                        },
                         "FetchProcessorTypes": {
                             "methods": [
                                 "fetchProcessorTypes"
+                            ]
+                        },
+                        "GetEvaluation": {
+                            "methods": [
+                                "getEvaluation"
                             ]
                         },
                         "GetProcessor": {
@@ -63,6 +73,11 @@
                         "GetProcessorVersion": {
                             "methods": [
                                 "getProcessorVersion"
+                            ]
+                        },
+                        "ListEvaluations": {
+                            "methods": [
+                                "listEvaluations"
                             ]
                         },
                         "ListProcessorTypes": {
@@ -93,6 +108,11 @@
                         "SetDefaultProcessorVersion": {
                             "methods": [
                                 "setDefaultProcessorVersion"
+                            ]
+                        },
+                        "TrainProcessorVersion": {
+                            "methods": [
+                                "trainProcessorVersion"
                             ]
                         },
                         "UndeployProcessorVersion": {

@@ -17,7 +17,7 @@ class BigQueryConfig extends \Google\Protobuf\Internal\Message
 {
     /**
      * The name of the table to which to write data, of the form
-     * {projectId}:{datasetId}.{tableId}
+     * {projectId}.{datasetId}.{tableId}
      *
      * Generated from protobuf field <code>string table = 1;</code>
      */
@@ -65,7 +65,7 @@ class BigQueryConfig extends \Google\Protobuf\Internal\Message
      *
      *     @type string $table
      *           The name of the table to which to write data, of the form
-     *           {projectId}:{datasetId}.{tableId}
+     *           {projectId}.{datasetId}.{tableId}
      *     @type bool $use_topic_schema
      *           When true, use the topic's schema as the columns to write to in BigQuery,
      *           if it exists.
@@ -93,7 +93,7 @@ class BigQueryConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * The name of the table to which to write data, of the form
-     * {projectId}:{datasetId}.{tableId}
+     * {projectId}.{datasetId}.{tableId}
      *
      * Generated from protobuf field <code>string table = 1;</code>
      * @return string
@@ -105,7 +105,7 @@ class BigQueryConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * The name of the table to which to write data, of the form
-     * {projectId}:{datasetId}.{tableId}
+     * {projectId}.{datasetId}.{tableId}
      *
      * Generated from protobuf field <code>string table = 1;</code>
      * @param string $var

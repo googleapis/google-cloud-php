@@ -31,7 +31,8 @@ use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
 /**
- * Update a [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList].
+ * Update a
+ * [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList].
  *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:
