@@ -24,7 +24,7 @@ class ClusterMetrics extends \Google\Protobuf\Internal\Message
      */
     private $hdfs_metrics;
     /**
-     * The YARN metrics.
+     * YARN metrics.
      *
      * Generated from protobuf field <code>map<string, int64> yarn_metrics = 2;</code>
      */
@@ -39,7 +39,7 @@ class ClusterMetrics extends \Google\Protobuf\Internal\Message
      *     @type array|\Google\Protobuf\Internal\MapField $hdfs_metrics
      *           The HDFS metrics.
      *     @type array|\Google\Protobuf\Internal\MapField $yarn_metrics
-     *           The YARN metrics.
+     *           YARN metrics.
      * }
      */
     public function __construct($data = NULL) {
@@ -74,7 +74,7 @@ class ClusterMetrics extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The YARN metrics.
+     * YARN metrics.
      *
      * Generated from protobuf field <code>map<string, int64> yarn_metrics = 2;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -85,7 +85,7 @@ class ClusterMetrics extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The YARN metrics.
+     * YARN metrics.
      *
      * Generated from protobuf field <code>map<string, int64> yarn_metrics = 2;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var

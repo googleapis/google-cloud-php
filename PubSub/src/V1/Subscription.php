@@ -9,7 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A subscription resource.
+ * A subscription resource. If none of `push_config` or `bigquery_config` is
+ * set, then the subscriber will pull and ack messages using API methods. At
+ * most one of these fields may be set.
  *
  * Generated from protobuf message <code>google.pubsub.v1.Subscription</code>
  */
@@ -36,18 +38,14 @@ class Subscription extends \Google\Protobuf\Internal\Message
     private $topic = '';
     /**
      * If push delivery is used with this subscription, this field is
-     * used to configure it. Either `pushConfig` or `bigQueryConfig` can be set,
-     * but not both. If both are empty, then the subscriber will pull and ack
-     * messages using API methods.
+     * used to configure it.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.PushConfig push_config = 4;</code>
      */
     private $push_config = null;
     /**
      * If delivery to BigQuery is used with this subscription, this field is
-     * used to configure it. Either `pushConfig` or `bigQueryConfig` can be set,
-     * but not both. If both are empty, then the subscriber will pull and ack
-     * messages using API methods.
+     * used to configure it.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.BigQueryConfig bigquery_config = 18;</code>
      */
@@ -56,7 +54,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * The approximate amount of time (on a best-effort basis) Pub/Sub waits for
      * the subscriber to acknowledge receipt before resending the message. In the
      * interval after the message is delivered and before it is acknowledged, it
-     * is considered to be <i>outstanding</i>. During that time period, the
+     * is considered to be _outstanding_. During that time period, the
      * message will not be redelivered (on a best-effort basis).
      * For pull subscriptions, this value is used as the initial value for the ack
      * deadline. To override this value for a given message, call
@@ -97,8 +95,8 @@ class Subscription extends \Google\Protobuf\Internal\Message
      */
     private $message_retention_duration = null;
     /**
-     * See <a href="https://cloud.google.com/pubsub/docs/labels"> Creating and
-     * managing labels</a>.
+     * See [Creating and managing
+     * labels](https://cloud.google.com/pubsub/docs/labels).
      *
      * Generated from protobuf field <code>map<string, string> labels = 9;</code>
      */
@@ -118,7 +116,8 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * successfully consuming messages from the subscription or is issuing
      * operations on the subscription. If `expiration_policy` is not set, a
      * *default policy* with `ttl` of 31 days will be used. The minimum allowed
-     * value for `expiration_policy.ttl` is 1 day.
+     * value for `expiration_policy.ttl` is 1 day. If `expiration_policy` is set,
+     * but `expiration_policy.ttl` is not set, the subscription never expires.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.ExpirationPolicy expiration_policy = 11;</code>
      */
@@ -218,19 +217,15 @@ class Subscription extends \Google\Protobuf\Internal\Message
      *           field will be `_deleted-topic_` if the topic has been deleted.
      *     @type \Google\Cloud\PubSub\V1\PushConfig $push_config
      *           If push delivery is used with this subscription, this field is
-     *           used to configure it. Either `pushConfig` or `bigQueryConfig` can be set,
-     *           but not both. If both are empty, then the subscriber will pull and ack
-     *           messages using API methods.
+     *           used to configure it.
      *     @type \Google\Cloud\PubSub\V1\BigQueryConfig $bigquery_config
      *           If delivery to BigQuery is used with this subscription, this field is
-     *           used to configure it. Either `pushConfig` or `bigQueryConfig` can be set,
-     *           but not both. If both are empty, then the subscriber will pull and ack
-     *           messages using API methods.
+     *           used to configure it.
      *     @type int $ack_deadline_seconds
      *           The approximate amount of time (on a best-effort basis) Pub/Sub waits for
      *           the subscriber to acknowledge receipt before resending the message. In the
      *           interval after the message is delivered and before it is acknowledged, it
-     *           is considered to be <i>outstanding</i>. During that time period, the
+     *           is considered to be _outstanding_. During that time period, the
      *           message will not be redelivered (on a best-effort basis).
      *           For pull subscriptions, this value is used as the initial value for the ack
      *           deadline. To override this value for a given message, call
@@ -259,8 +254,8 @@ class Subscription extends \Google\Protobuf\Internal\Message
      *           can be done. Defaults to 7 days. Cannot be more than 7 days or less than 10
      *           minutes.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
-     *           See <a href="https://cloud.google.com/pubsub/docs/labels"> Creating and
-     *           managing labels</a>.
+     *           See [Creating and managing
+     *           labels](https://cloud.google.com/pubsub/docs/labels).
      *     @type bool $enable_message_ordering
      *           If true, messages published with the same `ordering_key` in `PubsubMessage`
      *           will be delivered to the subscribers in the order in which they
@@ -272,7 +267,8 @@ class Subscription extends \Google\Protobuf\Internal\Message
      *           successfully consuming messages from the subscription or is issuing
      *           operations on the subscription. If `expiration_policy` is not set, a
      *           *default policy* with `ttl` of 31 days will be used. The minimum allowed
-     *           value for `expiration_policy.ttl` is 1 day.
+     *           value for `expiration_policy.ttl` is 1 day. If `expiration_policy` is set,
+     *           but `expiration_policy.ttl` is not set, the subscription never expires.
      *     @type string $filter
      *           An expression written in the Pub/Sub [filter
      *           language](https://cloud.google.com/pubsub/docs/filtering). If non-empty,
@@ -395,9 +391,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
 
     /**
      * If push delivery is used with this subscription, this field is
-     * used to configure it. Either `pushConfig` or `bigQueryConfig` can be set,
-     * but not both. If both are empty, then the subscriber will pull and ack
-     * messages using API methods.
+     * used to configure it.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.PushConfig push_config = 4;</code>
      * @return \Google\Cloud\PubSub\V1\PushConfig|null
@@ -419,9 +413,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
 
     /**
      * If push delivery is used with this subscription, this field is
-     * used to configure it. Either `pushConfig` or `bigQueryConfig` can be set,
-     * but not both. If both are empty, then the subscriber will pull and ack
-     * messages using API methods.
+     * used to configure it.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.PushConfig push_config = 4;</code>
      * @param \Google\Cloud\PubSub\V1\PushConfig $var
@@ -437,9 +429,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
 
     /**
      * If delivery to BigQuery is used with this subscription, this field is
-     * used to configure it. Either `pushConfig` or `bigQueryConfig` can be set,
-     * but not both. If both are empty, then the subscriber will pull and ack
-     * messages using API methods.
+     * used to configure it.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.BigQueryConfig bigquery_config = 18;</code>
      * @return \Google\Cloud\PubSub\V1\BigQueryConfig|null
@@ -461,9 +451,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
 
     /**
      * If delivery to BigQuery is used with this subscription, this field is
-     * used to configure it. Either `pushConfig` or `bigQueryConfig` can be set,
-     * but not both. If both are empty, then the subscriber will pull and ack
-     * messages using API methods.
+     * used to configure it.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.BigQueryConfig bigquery_config = 18;</code>
      * @param \Google\Cloud\PubSub\V1\BigQueryConfig $var
@@ -481,7 +469,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * The approximate amount of time (on a best-effort basis) Pub/Sub waits for
      * the subscriber to acknowledge receipt before resending the message. In the
      * interval after the message is delivered and before it is acknowledged, it
-     * is considered to be <i>outstanding</i>. During that time period, the
+     * is considered to be _outstanding_. During that time period, the
      * message will not be redelivered (on a best-effort basis).
      * For pull subscriptions, this value is used as the initial value for the ack
      * deadline. To override this value for a given message, call
@@ -508,7 +496,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * The approximate amount of time (on a best-effort basis) Pub/Sub waits for
      * the subscriber to acknowledge receipt before resending the message. In the
      * interval after the message is delivered and before it is acknowledged, it
-     * is considered to be <i>outstanding</i>. During that time period, the
+     * is considered to be _outstanding_. During that time period, the
      * message will not be redelivered (on a best-effort basis).
      * For pull subscriptions, this value is used as the initial value for the ack
      * deadline. To override this value for a given message, call
@@ -618,8 +606,8 @@ class Subscription extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * See <a href="https://cloud.google.com/pubsub/docs/labels"> Creating and
-     * managing labels</a>.
+     * See [Creating and managing
+     * labels](https://cloud.google.com/pubsub/docs/labels).
      *
      * Generated from protobuf field <code>map<string, string> labels = 9;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -630,8 +618,8 @@ class Subscription extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * See <a href="https://cloud.google.com/pubsub/docs/labels"> Creating and
-     * managing labels</a>.
+     * See [Creating and managing
+     * labels](https://cloud.google.com/pubsub/docs/labels).
      *
      * Generated from protobuf field <code>map<string, string> labels = 9;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
@@ -683,7 +671,8 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * successfully consuming messages from the subscription or is issuing
      * operations on the subscription. If `expiration_policy` is not set, a
      * *default policy* with `ttl` of 31 days will be used. The minimum allowed
-     * value for `expiration_policy.ttl` is 1 day.
+     * value for `expiration_policy.ttl` is 1 day. If `expiration_policy` is set,
+     * but `expiration_policy.ttl` is not set, the subscription never expires.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.ExpirationPolicy expiration_policy = 11;</code>
      * @return \Google\Cloud\PubSub\V1\ExpirationPolicy|null
@@ -709,7 +698,8 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * successfully consuming messages from the subscription or is issuing
      * operations on the subscription. If `expiration_policy` is not set, a
      * *default policy* with `ttl` of 31 days will be used. The minimum allowed
-     * value for `expiration_policy.ttl` is 1 day.
+     * value for `expiration_policy.ttl` is 1 day. If `expiration_policy` is set,
+     * but `expiration_policy.ttl` is not set, the subscription never expires.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.ExpirationPolicy expiration_policy = 11;</code>
      * @param \Google\Cloud\PubSub\V1\ExpirationPolicy $var

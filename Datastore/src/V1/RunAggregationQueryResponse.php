@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The response for [Datastore.RunAggregationQuery][google.datastore.v1.Datastore.RunAggregationQuery].
+ * The response for
+ * [Datastore.RunAggregationQuery][google.datastore.v1.Datastore.RunAggregationQuery].
  *
  * Generated from protobuf message <code>google.datastore.v1.RunAggregationQueryResponse</code>
  */
@@ -27,6 +28,17 @@ class RunAggregationQueryResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.datastore.v1.AggregationQuery query = 2;</code>
      */
     private $query = null;
+    /**
+     * The identifier of the transaction that was started as part of this
+     * RunAggregationQuery request.
+     * Set only when
+     * [ReadOptions.new_transaction][google.datastore.v1.ReadOptions.new_transaction]
+     * was set in
+     * [RunAggregationQueryRequest.read_options][google.datastore.v1.RunAggregationQueryRequest.read_options].
+     *
+     * Generated from protobuf field <code>bytes transaction = 5;</code>
+     */
+    private $transaction = '';
 
     /**
      * Constructor.
@@ -38,6 +50,13 @@ class RunAggregationQueryResponse extends \Google\Protobuf\Internal\Message
      *           A batch of aggregation results. Always present.
      *     @type \Google\Cloud\Datastore\V1\AggregationQuery $query
      *           The parsed form of the `GqlQuery` from the request, if it was set.
+     *     @type string $transaction
+     *           The identifier of the transaction that was started as part of this
+     *           RunAggregationQuery request.
+     *           Set only when
+     *           [ReadOptions.new_transaction][google.datastore.v1.ReadOptions.new_transaction]
+     *           was set in
+     *           [RunAggregationQueryRequest.read_options][google.datastore.v1.RunAggregationQueryRequest.read_options].
      * }
      */
     public function __construct($data = NULL) {
@@ -113,6 +132,42 @@ class RunAggregationQueryResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Datastore\V1\AggregationQuery::class);
         $this->query = $var;
+
+        return $this;
+    }
+
+    /**
+     * The identifier of the transaction that was started as part of this
+     * RunAggregationQuery request.
+     * Set only when
+     * [ReadOptions.new_transaction][google.datastore.v1.ReadOptions.new_transaction]
+     * was set in
+     * [RunAggregationQueryRequest.read_options][google.datastore.v1.RunAggregationQueryRequest.read_options].
+     *
+     * Generated from protobuf field <code>bytes transaction = 5;</code>
+     * @return string
+     */
+    public function getTransaction()
+    {
+        return $this->transaction;
+    }
+
+    /**
+     * The identifier of the transaction that was started as part of this
+     * RunAggregationQuery request.
+     * Set only when
+     * [ReadOptions.new_transaction][google.datastore.v1.ReadOptions.new_transaction]
+     * was set in
+     * [RunAggregationQueryRequest.read_options][google.datastore.v1.RunAggregationQueryRequest.read_options].
+     *
+     * Generated from protobuf field <code>bytes transaction = 5;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setTransaction($var)
+    {
+        GPBUtil::checkString($var, False);
+        $this->transaction = $var;
 
         return $this;
     }

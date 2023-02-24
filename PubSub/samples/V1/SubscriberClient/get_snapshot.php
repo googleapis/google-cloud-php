@@ -29,10 +29,10 @@ use Google\Cloud\PubSub\V1\SubscriberClient;
 
 /**
  * Gets the configuration details of a snapshot. Snapshots are used in
- * <a href="https://cloud.google.com/pubsub/docs/replay-overview">Seek</a>
- * operations, which allow you to manage message acknowledgments in bulk. That
- * is, you can set the acknowledgment state of messages in an existing
- * subscription to the state captured by a snapshot.
+ * [Seek](https://cloud.google.com/pubsub/docs/replay-overview) operations,
+ * which allow you to manage message acknowledgments in bulk. That is, you can
+ * set the acknowledgment state of messages in an existing subscription to the
+ * state captured by a snapshot.
  *
  * @param string $formattedSnapshot The name of the snapshot to get.
  *                                  Format is `projects/{project}/snapshots/{snap}`. Please see
