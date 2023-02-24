@@ -20,19 +20,19 @@ class Text extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string en_text = 1;</code>
      */
-    private $en_text = '';
+    protected $en_text = '';
     /**
      * The requested localized copy (if applicable).
      *
      * Generated from protobuf field <code>string localized_text = 2;</code>
      */
-    private $localized_text = '';
+    protected $localized_text = '';
     /**
      * Status of the localization.
      *
      * Generated from protobuf field <code>.google.cloud.advisorynotifications.v1.LocalizationState localization_state = 3;</code>
      */
-    private $localization_state = 0;
+    protected $localization_state = 0;
 
     /**
      * Constructor.

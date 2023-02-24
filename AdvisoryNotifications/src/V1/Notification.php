@@ -23,13 +23,13 @@ class Notification extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The subject line of the notification.
      *
      * Generated from protobuf field <code>.google.cloud.advisorynotifications.v1.Subject subject = 2;</code>
      */
-    private $subject = null;
+    protected $subject = null;
     /**
      * A list of messages in the notification.
      *
@@ -41,7 +41,7 @@ class Notification extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
 
     /**
      * Constructor.
