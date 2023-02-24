@@ -126,6 +126,8 @@ class PubSubClient
      *           fetcher instance.
      *     @type callable $httpHandler A handler used to deliver Psr7 requests.
      *           Only valid for requests sent over REST.
+     *     @type string $emulatorHost The pubsub emulator host used to test push
+     *           subscriptions in development. Example: localhost:8900
      *     @type array $keyFile The contents of the service account credentials
      *           .json file retrieved from the Google Developer's Console.
      *           Ex: `json_decode(file_get_contents($path), true)`.
@@ -149,7 +151,7 @@ class PubSubClient
     {
         $this->clientConfig = $config;
         $connectionType = $this->getConnectionType($config);
-        $emulatorHost = getenv('PUBSUB_EMULATOR_HOST');
+        $emulatorHost = $config['emulatorHost'] ?: getenv('PUBSUB_EMULATOR_HOST');
         $config += [
             'scopes' => [self::FULL_CONTROL_SCOPE],
             'projectIdRequired' => true,
