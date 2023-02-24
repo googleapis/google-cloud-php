@@ -70,6 +70,11 @@ class CommitRequest extends \Google\Protobuf\Internal\Message
      *           The identifier of the transaction associated with the commit. A
      *           transaction identifier is returned by a call to
      *           [Datastore.BeginTransaction][google.datastore.v1.Datastore.BeginTransaction].
+     *     @type \Google\Cloud\Datastore\V1\TransactionOptions $single_use_transaction
+     *           Options for beginning a new transaction for this request.
+     *           The transaction is committed when the request completes. If specified,
+     *           [TransactionOptions.mode][google.datastore.v1.TransactionOptions] must be
+     *           [TransactionOptions.ReadWrite][google.datastore.v1.TransactionOptions.ReadWrite].
      *     @type array<\Google\Cloud\Datastore\V1\Mutation>|\Google\Protobuf\Internal\RepeatedField $mutations
      *           The mutations to perform.
      *           When mode is `TRANSACTIONAL`, mutations affecting a single entity are
@@ -201,6 +206,43 @@ class CommitRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, False);
         $this->writeOneof(1, $var);
+
+        return $this;
+    }
+
+    /**
+     * Options for beginning a new transaction for this request.
+     * The transaction is committed when the request completes. If specified,
+     * [TransactionOptions.mode][google.datastore.v1.TransactionOptions] must be
+     * [TransactionOptions.ReadWrite][google.datastore.v1.TransactionOptions.ReadWrite].
+     *
+     * Generated from protobuf field <code>.google.datastore.v1.TransactionOptions single_use_transaction = 10;</code>
+     * @return \Google\Cloud\Datastore\V1\TransactionOptions|null
+     */
+    public function getSingleUseTransaction()
+    {
+        return $this->readOneof(10);
+    }
+
+    public function hasSingleUseTransaction()
+    {
+        return $this->hasOneof(10);
+    }
+
+    /**
+     * Options for beginning a new transaction for this request.
+     * The transaction is committed when the request completes. If specified,
+     * [TransactionOptions.mode][google.datastore.v1.TransactionOptions] must be
+     * [TransactionOptions.ReadWrite][google.datastore.v1.TransactionOptions.ReadWrite].
+     *
+     * Generated from protobuf field <code>.google.datastore.v1.TransactionOptions single_use_transaction = 10;</code>
+     * @param \Google\Cloud\Datastore\V1\TransactionOptions $var
+     * @return $this
+     */
+    public function setSingleUseTransaction($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Datastore\V1\TransactionOptions::class);
+        $this->writeOneof(10, $var);
 
         return $this;
     }

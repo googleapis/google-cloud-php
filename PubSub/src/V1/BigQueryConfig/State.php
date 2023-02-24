@@ -27,6 +27,11 @@ class State
     const ACTIVE = 1;
     /**
      * Cannot write to the BigQuery table because of permission denied errors.
+     * This can happen if
+     * - Pub/Sub SA has not been granted the [appropriate BigQuery IAM
+     * permissions](https://cloud.google.com/pubsub/docs/create-subscription#assign_bigquery_service_account)
+     * - bigquery.googleapis.com API is not enabled for the project
+     * ([instructions](https://cloud.google.com/service-usage/docs/enable-disable))
      *
      * Generated from protobuf enum <code>PERMISSION_DENIED = 2;</code>
      */

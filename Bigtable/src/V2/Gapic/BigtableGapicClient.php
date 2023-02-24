@@ -369,7 +369,7 @@ class BigtableGapicClient
 
         if (isset($optionalArgs['appProfileId'])) {
             $request->setAppProfileId($optionalArgs['appProfileId']);
-            $requestParamHeaders['app_profile_id'] = $optionalArgs['app_profile_id'];
+            $requestParamHeaders['app_profile_id'] = $optionalArgs['appProfileId'];
         }
 
         if (isset($optionalArgs['predicateFilter'])) {
@@ -498,7 +498,7 @@ class BigtableGapicClient
 
         if (isset($optionalArgs['appProfileId'])) {
             $request->setAppProfileId($optionalArgs['appProfileId']);
-            $requestParamHeaders['app_profile_id'] = $optionalArgs['app_profile_id'];
+            $requestParamHeaders['app_profile_id'] = $optionalArgs['appProfileId'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -561,7 +561,7 @@ class BigtableGapicClient
 
         if (isset($optionalArgs['appProfileId'])) {
             $request->setAppProfileId($optionalArgs['appProfileId']);
-            $requestParamHeaders['app_profile_id'] = $optionalArgs['app_profile_id'];
+            $requestParamHeaders['app_profile_id'] = $optionalArgs['appProfileId'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -615,7 +615,7 @@ class BigtableGapicClient
 
         if (isset($optionalArgs['appProfileId'])) {
             $request->setAppProfileId($optionalArgs['appProfileId']);
-            $requestParamHeaders['app_profile_id'] = $optionalArgs['app_profile_id'];
+            $requestParamHeaders['app_profile_id'] = $optionalArgs['appProfileId'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -781,7 +781,7 @@ class BigtableGapicClient
 
         if (isset($optionalArgs['appProfileId'])) {
             $request->setAppProfileId($optionalArgs['appProfileId']);
-            $requestParamHeaders['app_profile_id'] = $optionalArgs['app_profile_id'];
+            $requestParamHeaders['app_profile_id'] = $optionalArgs['appProfileId'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -852,7 +852,7 @@ class BigtableGapicClient
 
         if (isset($optionalArgs['appProfileId'])) {
             $request->setAppProfileId($optionalArgs['appProfileId']);
-            $requestParamHeaders['app_profile_id'] = $optionalArgs['app_profile_id'];
+            $requestParamHeaders['app_profile_id'] = $optionalArgs['appProfileId'];
         }
 
         if (isset($optionalArgs['rows'])) {
@@ -926,7 +926,7 @@ class BigtableGapicClient
 
         if (isset($optionalArgs['appProfileId'])) {
             $request->setAppProfileId($optionalArgs['appProfileId']);
-            $requestParamHeaders['app_profile_id'] = $optionalArgs['app_profile_id'];
+            $requestParamHeaders['app_profile_id'] = $optionalArgs['appProfileId'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);

@@ -30,8 +30,10 @@ use Google\Cloud\Dataproc\V1\BatchControllerClient;
 /**
  * Gets the batch workload resource representation.
  *
- * @param string $formattedName The name of the batch to retrieve. Please see
- *                              {@see BatchControllerClient::batchName()} for help formatting this field.
+ * @param string $formattedName The fully qualified name of the batch to retrieve
+ *                              in the format
+ *                              "projects/PROJECT_ID/locations/DATAPROC_REGION/batches/BATCH_ID"
+ *                              Please see {@see BatchControllerClient::batchName()} for help formatting this field.
  */
 function get_batch_sample(string $formattedName): void
 {
