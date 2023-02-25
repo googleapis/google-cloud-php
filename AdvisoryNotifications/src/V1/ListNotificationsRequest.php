@@ -21,7 +21,7 @@ class ListNotificationsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * The maximum number of notifications to return. The service may return
      * fewer than this value. If unspecified or equal to 0, at most 50
@@ -30,7 +30,7 @@ class ListNotificationsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * A page token returned from a previous request.
      * When paginating, all other parameters provided in the request
@@ -38,14 +38,14 @@ class ListNotificationsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * Specifies which parts of the notification resource should be returned
      * in the response.
      *
      * Generated from protobuf field <code>.google.cloud.advisorynotifications.v1.NotificationView view = 4;</code>
      */
-    private $view = 0;
+    protected $view = 0;
     /**
      * ISO code for requested localization language.  If unset, will be
      * interpereted as "en". If the requested language is valid, but not supported
@@ -55,7 +55,7 @@ class ListNotificationsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string language_code = 5;</code>
      */
-    private $language_code = '';
+    protected $language_code = '';
 
     /**
      * Constructor.
