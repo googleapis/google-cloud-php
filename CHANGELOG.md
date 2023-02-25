@@ -1,5 +1,191 @@
 # Changelog
 
+## 0.198.0
+
+<details><summary>google/cloud-advisorynotifications 0.1.0</summary>
+
+
+
+### Features
+
+* Introduce AdvisoryNotifications ([#5887](https://github.com/googleapis/google-cloud-php/issues/5887)) ([32d29f1](https://github.com/googleapis/google-cloud-php/commit/32d29f188a0a4c3fbd6c55f5a836c6475cfbdab3))
+
+</details>
+
+<details><summary>google/analytics-admin 0.10.0</summary>
+
+
+
+### Features
+
+* [AnalyticsAdmin] add AccessBinding and ExpandedDataset methods  ([#5886](https://github.com/googleapis/google-cloud-php/issues/5886)) ([23d3751](https://github.com/googleapis/google-cloud-php/commit/23d37515a12d6a807c5581b027797e151e94e465))
+* Add `AccessBinding`, `ExpandedDataSet`, `ExpandedDataSetFilter`, `ExpandedDataSetFilterExpression`, `ExpandedDataSetFilterExpressionList` resource types to the Admin API v1alpha ([23d3751](https://github.com/googleapis/google-cloud-php/commit/23d37515a12d6a807c5581b027797e151e94e465))
+* Add `CreateAccessBinding`, `GetAccessBinding`, `UpdateAccessBinding`, `DeleteAccessBinding`, `ListAccessBindings`, `BatchCreateAccessBindings`, `BatchGetAccessBindings`, `BatchUpdateAccessBindings`, `BatchDeleteAccessBindings` methods to the Admin API v1alpha ([23d3751](https://github.com/googleapis/google-cloud-php/commit/23d37515a12d6a807c5581b027797e151e94e465))
+* Add `GetExpandedDataSet`, `ListExpandedDataSets`, `CreateExpandedDataSet`, `UpdateExpandedDataSet`, `DeleteExpandedDataSet` methods to the Admin API v1alpha ([23d3751](https://github.com/googleapis/google-cloud-php/commit/23d37515a12d6a807c5581b027797e151e94e465))
+
+</details>
+
+<details><summary>google/cloud-bigtable 1.21.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-build 0.4.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* [Build] purge google/devtools/build in favor of google/devtools/cloudbuild ([#5869](https://github.com/googleapis/google-cloud-php/issues/5869))
+
+### Bug Fixes
+
+* [Build] purge google/devtools/build in favor of google/devtools/cloudbuild ([#5869](https://github.com/googleapis/google-cloud-php/issues/5869)) ([05fd13c](https://github.com/googleapis/google-cloud-php/commit/05fd13c8ae413728d6c9ba8a310f9254f2dc4b3a))
+
+</details>
+
+<details><summary>google/cloud-dataproc 3.5.0</summary>
+
+
+
+### Features
+
+* [Dataproc] add support for new Dataproc features ([#5883](https://github.com/googleapis/google-cloud-php/issues/5883)) ([8f648c7](https://github.com/googleapis/google-cloud-php/commit/8f648c75ab90c204a01f691d273eff69f07b4f35))
+* [Dataproc] add support for new Dataproc features ([#5896](https://github.com/googleapis/google-cloud-php/issues/5896)) ([1dc8286](https://github.com/googleapis/google-cloud-php/commit/1dc828639859dcc6bee22329642318b0bc7026ee))
+* [Dataproc] ROLLBACK: add support for new Dataproc features ([#5890](https://github.com/googleapis/google-cloud-php/issues/5890)) ([c8dd3e7](https://github.com/googleapis/google-cloud-php/commit/c8dd3e738375ee94d1122bd047db4d9f3c5ccab1))
+* Add support for new Dataproc features ([8f648c7](https://github.com/googleapis/google-cloud-php/commit/8f648c75ab90c204a01f691d273eff69f07b4f35))
+
+
+### Bug Fixes
+
+* Add service_yaml_parameters to py_gapic_library BUILD.bazel targets ([8f648c7](https://github.com/googleapis/google-cloud-php/commit/8f648c75ab90c204a01f691d273eff69f07b4f35))
+
+</details>
+
+<details><summary>google/cloud-datastore 1.19.0</summary>
+
+
+
+### Features
+
+* Add `OR` query support ([dfa8548](https://github.com/googleapis/google-cloud-php/commit/dfa85489800ec5e37769550abd65d51d53868b13))
+* Add dynamic routing header annotation to DatastoreV1 ([dfa8548](https://github.com/googleapis/google-cloud-php/commit/dfa85489800ec5e37769550abd65d51d53868b13))
+* New transaction options for datastoreV1 ([dfa8548](https://github.com/googleapis/google-cloud-php/commit/dfa85489800ec5e37769550abd65d51d53868b13))
+
+
+### Documentation
+
+* Minor documentation formatting and cleanup ([dfa8548](https://github.com/googleapis/google-cloud-php/commit/dfa85489800ec5e37769550abd65d51d53868b13))
+
+</details>
+
+<details><summary>google/cloud-dialogflow 1.2.0</summary>
+
+
+
+### Features
+
+* [Dialogflow] added support for AssistQueryParameters and SynthesizeSpeechConfig ([#5878](https://github.com/googleapis/google-cloud-php/issues/5878)) ([220d3fd](https://github.com/googleapis/google-cloud-php/commit/220d3fd255f72a1a76d440511e8694d6108ba821))
+* Added support for AssistQueryParameters and SynthesizeSpeechConfig ([220d3fd](https://github.com/googleapis/google-cloud-php/commit/220d3fd255f72a1a76d440511e8694d6108ba821))
+
+
+### Documentation
+
+* Add more meaningful comments ([220d3fd](https://github.com/googleapis/google-cloud-php/commit/220d3fd255f72a1a76d440511e8694d6108ba821))
+
+</details>
+
+<details><summary>google/cloud-document-ai 1.2.0</summary>
+
+
+
+### Features
+
+* [DocumentAi] Added Training and Evaluation functions, request, responses and metadata to document_processor_service.proto ([#5889](https://github.com/googleapis/google-cloud-php/issues/5889)) ([de4f655](https://github.com/googleapis/google-cloud-php/commit/de4f6553d9b7d613bb50f169d2928699485e9014))
+* Added evaluation.proto ([de4f655](https://github.com/googleapis/google-cloud-php/commit/de4f6553d9b7d613bb50f169d2928699485e9014))
+* Added latest_evaluation to processor.proto ([de4f655](https://github.com/googleapis/google-cloud-php/commit/de4f6553d9b7d613bb50f169d2928699485e9014))
+
+</details>
+
+<details><summary>google/cloud-logging 1.25.2</summary>
+
+
+
+### Bug Fixes
+
+* [Logging] ensure proper LRO & mixin HTTP overloads are used ([#5894](https://github.com/googleapis/google-cloud-php/issues/5894)) ([0da7450](https://github.com/googleapis/google-cloud-php/commit/0da7450bdb7211996c6f31f1eb0468b4c4391491))
+
+</details>
+
+<details><summary>google/cloud-pubsub 1.41.0</summary>
+
+
+
+### Features
+
+* Add temporary_failed_ack_ids to ModifyAckDeadlineConfirmation ([92c856c](https://github.com/googleapis/google-cloud-php/commit/92c856c2652c6eeb35e3795353c653dcbb374b2f))
+* Make INTERNAL a retryable error for Pull ([92c856c](https://github.com/googleapis/google-cloud-php/commit/92c856c2652c6eeb35e3795353c653dcbb374b2f))
+
+
+### Bug Fixes
+
+* [PubSub] prevent __debugInfo from throwing error ([#5664](https://github.com/googleapis/google-cloud-php/issues/5664)) ([28ef340](https://github.com/googleapis/google-cloud-php/commit/28ef340cb17f6a792d5e8145f9fbe453539d9612))
+
+
+### Documentation
+
+* Add x-ref for ordering messages ([92c856c](https://github.com/googleapis/google-cloud-php/commit/92c856c2652c6eeb35e3795353c653dcbb374b2f))
+* Clarify BigQueryConfig PERMISSION_DENIED state ([92c856c](https://github.com/googleapis/google-cloud-php/commit/92c856c2652c6eeb35e3795353c653dcbb374b2f))
+* Clarify subscription expiration policy ([92c856c](https://github.com/googleapis/google-cloud-php/commit/92c856c2652c6eeb35e3795353c653dcbb374b2f))
+
+</details>
+
+<details><summary>google/cloud-secret-manager 1.10.2</summary>
+
+
+
+### Bug Fixes
+
+* [SecretManager] ensure proper LRO & mixin HTTP overloads are used ([#5893](https://github.com/googleapis/google-cloud-php/issues/5893)) ([83a6515](https://github.com/googleapis/google-cloud-php/commit/83a6515bf12f1641580d860a7e9843a36536df04))
+
+</details>
+
+<details><summary>google/cloud-security-private-ca 1.1.0</summary>
+
+
+
+### Features
+
+* [SecurityPrivateCa] add X.509 Name Constraints support ([#5874](https://github.com/googleapis/google-cloud-php/issues/5874)) ([fda8c6c](https://github.com/googleapis/google-cloud-php/commit/fda8c6c0061184e889d039eb4bbb2e88e35be9a7))
+
+
+### Bug Fixes
+
+* [SecurityPrivateCa] ensure proper LRO & mixin HTTP overloads are used ([#5892](https://github.com/googleapis/google-cloud-php/issues/5892)) ([6bea181](https://github.com/googleapis/google-cloud-php/commit/6bea18182e4b90d44fe9505ebfd6fa5cb104370f))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.57.0</summary>
+
+
+
+### Features
+
+* [Spanner] CacheSessionPool::maintain deletes sessions older than 28d ([#5853](https://github.com/googleapis/google-cloud-php/issues/5853)) ([fbf2081](https://github.com/googleapis/google-cloud-php/commit/fbf2081aa2e6008e6d0f42eeccef50d583628d56))
+
+</details>
+
+<details><summary>google/cloud-translate 1.13.0</summary>
+
+
+
+### Features
+
+* [Translate] Add supported fields in document translation request and refresh translation v3 GA service proto documentation ([#5888](https://github.com/googleapis/google-cloud-php/issues/5888)) ([5230424](https://github.com/googleapis/google-cloud-php/commit/52304248423758b9667b821ec00075c54861eaed))
+
+</details>
+
 ## 0.197.0
 
 <details><summary>google/cloud-access-approval 1.0.3</summary>

@@ -11,6 +11,7 @@
             "name": "google/cloud",
             "defaultService": "servicebuilder",
             "versions": [
+                "v0.198.0",
                 "v0.197.0",
                 "v0.196.0",
                 "v0.195.0",
@@ -125,6 +126,7 @@
             "name": "google/analytics-admin",
             "defaultService": "analyticsadmin/readme",
             "versions": [
+                "v0.10.0",
                 "v0.9.0",
                 "v0.8.2",
                 "v0.8.1",
@@ -859,6 +861,7 @@
             "name": "google/cloud-bigtable",
             "defaultService": "bigtable/readme",
             "versions": [
+                "v1.21.1",
                 "v1.21.0",
                 "v1.20.3",
                 "v1.20.2",
@@ -1032,6 +1035,7 @@
             "name": "google/cloud-build",
             "defaultService": "build/readme",
             "versions": [
+                "v0.4.0",
                 "v0.3.8",
                 "v0.3.7",
                 "v0.3.6",
@@ -1520,6 +1524,7 @@
             "name": "google/cloud-dataproc",
             "defaultService": "dataproc/readme",
             "versions": [
+                "v3.5.0",
                 "v3.4.0",
                 "v3.3.0",
                 "v3.2.2",
@@ -1624,6 +1629,7 @@
             "name": "google/cloud-datastore",
             "defaultService": "datastore/datastoreclient",
             "versions": [
+                "v1.19.0",
                 "v1.18.1",
                 "v1.18.0",
                 "v1.17.1",
@@ -1838,6 +1844,7 @@
             "name": "google/cloud-dialogflow",
             "defaultService": "dialogflow/readme",
             "versions": [
+                "v1.2.0",
                 "v1.1.1",
                 "v1.1.0",
                 "v1.0.1",
@@ -2020,6 +2027,7 @@
             "name": "google/cloud-document-ai",
             "defaultService": "documentai/readme",
             "versions": [
+                "v1.2.0",
                 "v1.1.1",
                 "v1.1.0",
                 "v1.0.1",
@@ -2764,6 +2772,7 @@
             "name": "google/cloud-logging",
             "defaultService": "logging/loggingclient",
             "versions": [
+                "v1.25.2",
                 "v1.25.1",
                 "v1.25.0",
                 "v1.24.10",
@@ -3304,6 +3313,7 @@
             "name": "google/cloud-pubsub",
             "defaultService": "pubsub/pubsubclient",
             "versions": [
+                "v1.41.0",
                 "v1.40.1",
                 "v1.40.0",
                 "v1.39.3",
@@ -3714,6 +3724,7 @@
             "name": "google/cloud-secret-manager",
             "defaultService": "secretmanager/readme",
             "versions": [
+                "v1.10.2",
                 "v1.10.1",
                 "v1.10.0",
                 "v1.9.7",
@@ -3795,6 +3806,7 @@
             "name": "google/cloud-security-private-ca",
             "defaultService": "securityprivateca/readme",
             "versions": [
+                "v1.1.0",
                 "v1.0.3",
                 "v1.0.2",
                 "v1.0.1",
@@ -3956,6 +3968,7 @@
             "name": "google/cloud-spanner",
             "defaultService": "spanner/spannerclient",
             "versions": [
+                "v1.57.0",
                 "v1.56.0",
                 "v1.55.0",
                 "v1.54.2",
@@ -4561,6 +4574,7 @@
             "name": "google/cloud-translate",
             "defaultService": "translate/translateclient",
             "versions": [
+                "v1.13.0",
                 "v1.12.12",
                 "v1.12.11",
                 "v1.12.10",
