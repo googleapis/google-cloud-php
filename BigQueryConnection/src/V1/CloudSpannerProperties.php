@@ -38,8 +38,8 @@ class CloudSpannerProperties extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Cloud Spanner database role for fine-grained access control.
      * A database role is a collection of fine-grained access privileges. Example:
-     * Admin predefines roles that provides user a set of permissions {`SELECT`,
-     * `INSERT`, ..}. The user can then specify a predefined role on a connection to
+     * Admin predefines roles that provides user a set of permissions (SELECT,
+     * INSERT, ..). The user can then specify a predefined role on a connection to
      * execute their Cloud Spanner query. The role is passthrough here. If the
      * user is not authorized to use the specified role, they get an error. This
      * validation happens on Cloud Spanner.
@@ -68,8 +68,8 @@ class CloudSpannerProperties extends \Google\Protobuf\Internal\Message
      *     @type string $database_role
      *           Optional. Cloud Spanner database role for fine-grained access control.
      *           A database role is a collection of fine-grained access privileges. Example:
-     *           Admin predefines roles that provides user a set of permissions {`SELECT`,
-     *           `INSERT`, ..}. The user can then specify a predefined role on a connection to
+     *           Admin predefines roles that provides user a set of permissions (SELECT,
+     *           INSERT, ..). The user can then specify a predefined role on a connection to
      *           execute their Cloud Spanner query. The role is passthrough here. If the
      *           user is not authorized to use the specified role, they get an error. This
      *           validation happens on Cloud Spanner.
@@ -168,8 +168,8 @@ class CloudSpannerProperties extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Cloud Spanner database role for fine-grained access control.
      * A database role is a collection of fine-grained access privileges. Example:
-     * Admin predefines roles that provides user a set of permissions {`SELECT`,
-     * `INSERT`, ..}. The user can then specify a predefined role on a connection to
+     * Admin predefines roles that provides user a set of permissions (SELECT,
+     * INSERT, ..). The user can then specify a predefined role on a connection to
      * execute their Cloud Spanner query. The role is passthrough here. If the
      * user is not authorized to use the specified role, they get an error. This
      * validation happens on Cloud Spanner.
@@ -188,8 +188,8 @@ class CloudSpannerProperties extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Cloud Spanner database role for fine-grained access control.
      * A database role is a collection of fine-grained access privileges. Example:
-     * Admin predefines roles that provides user a set of permissions {`SELECT`,
-     * `INSERT`, ..}. The user can then specify a predefined role on a connection to
+     * Admin predefines roles that provides user a set of permissions (SELECT,
+     * INSERT, ..). The user can then specify a predefined role on a connection to
      * execute their Cloud Spanner query. The role is passthrough here. If the
      * user is not authorized to use the specified role, they get an error. This
      * validation happens on Cloud Spanner.
