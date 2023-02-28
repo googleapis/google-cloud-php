@@ -73,7 +73,7 @@ class CreateTransferConfigRequest extends \Google\Protobuf\Internal\Message
      */
     private $version_info = '';
     /**
-     * Optional service account name. If this field is set, the transfer config
+     * Optional service account email. If this field is set, the transfer config
      * will be created with this service account's credentials. It requires that
      * the requesting user calling this API has permissions to act as this service
      * account.
@@ -129,7 +129,7 @@ class CreateTransferConfigRequest extends \Google\Protobuf\Internal\Message
      *           Note that this should not be set when `service_account_name` is used to
      *           create the transfer config.
      *     @type string $service_account_name
-     *           Optional service account name. If this field is set, the transfer config
+     *           Optional service account email. If this field is set, the transfer config
      *           will be created with this service account's credentials. It requires that
      *           the requesting user calling this API has permissions to act as this service
      *           account.
@@ -315,7 +315,7 @@ class CreateTransferConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional service account name. If this field is set, the transfer config
+     * Optional service account email. If this field is set, the transfer config
      * will be created with this service account's credentials. It requires that
      * the requesting user calling this API has permissions to act as this service
      * account.
@@ -333,7 +333,7 @@ class CreateTransferConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional service account name. If this field is set, the transfer config
+     * Optional service account email. If this field is set, the transfer config
      * will be created with this service account's credentials. It requires that
      * the requesting user calling this API has permissions to act as this service
      * account.
