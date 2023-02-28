@@ -16,21 +16,20 @@ use Google\Protobuf\Internal\GPBUtil;
 class TunnelDestGroup extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Immutable. Identifier for the TunnelDestGroup. Must be unique
-     * within the project and contain only lower case letters (a-z) and dashes
-     * (-).
+     * Required. Immutable. Identifier for the TunnelDestGroup. Must be unique within the
+     * project.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
     private $name = '';
     /**
-     * Unordered list. List of CIDRs that this group applies to.
+     * null List of CIDRs that this group applies to.
      *
      * Generated from protobuf field <code>repeated string cidrs = 2 [(.google.api.field_behavior) = UNORDERED_LIST];</code>
      */
     private $cidrs;
     /**
-     * Unordered list. List of FQDNs that this group applies to.
+     * null List of FQDNs that this group applies to.
      *
      * Generated from protobuf field <code>repeated string fqdns = 3 [(.google.api.field_behavior) = UNORDERED_LIST];</code>
      */
@@ -43,13 +42,12 @@ class TunnelDestGroup extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. Immutable. Identifier for the TunnelDestGroup. Must be unique
-     *           within the project and contain only lower case letters (a-z) and dashes
-     *           (-).
+     *           Required. Immutable. Identifier for the TunnelDestGroup. Must be unique within the
+     *           project.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $cidrs
-     *           Unordered list. List of CIDRs that this group applies to.
+     *           null List of CIDRs that this group applies to.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $fqdns
-     *           Unordered list. List of FQDNs that this group applies to.
+     *           null List of FQDNs that this group applies to.
      * }
      */
     public function __construct($data = NULL) {
@@ -58,9 +56,8 @@ class TunnelDestGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Immutable. Identifier for the TunnelDestGroup. Must be unique
-     * within the project and contain only lower case letters (a-z) and dashes
-     * (-).
+     * Required. Immutable. Identifier for the TunnelDestGroup. Must be unique within the
+     * project.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
@@ -71,9 +68,8 @@ class TunnelDestGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Immutable. Identifier for the TunnelDestGroup. Must be unique
-     * within the project and contain only lower case letters (a-z) and dashes
-     * (-).
+     * Required. Immutable. Identifier for the TunnelDestGroup. Must be unique within the
+     * project.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var
@@ -88,7 +84,7 @@ class TunnelDestGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Unordered list. List of CIDRs that this group applies to.
+     * null List of CIDRs that this group applies to.
      *
      * Generated from protobuf field <code>repeated string cidrs = 2 [(.google.api.field_behavior) = UNORDERED_LIST];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -99,7 +95,7 @@ class TunnelDestGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Unordered list. List of CIDRs that this group applies to.
+     * null List of CIDRs that this group applies to.
      *
      * Generated from protobuf field <code>repeated string cidrs = 2 [(.google.api.field_behavior) = UNORDERED_LIST];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -114,7 +110,7 @@ class TunnelDestGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Unordered list. List of FQDNs that this group applies to.
+     * null List of FQDNs that this group applies to.
      *
      * Generated from protobuf field <code>repeated string fqdns = 3 [(.google.api.field_behavior) = UNORDERED_LIST];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -125,7 +121,7 @@ class TunnelDestGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Unordered list. List of FQDNs that this group applies to.
+     * null List of FQDNs that this group applies to.
      *
      * Generated from protobuf field <code>repeated string fqdns = 3 [(.google.api.field_behavior) = UNORDERED_LIST];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

@@ -14,6 +14,7 @@ class Customers
         if (static::$is_initialized == true) {
           return;
         }
+        \GPBMetadata\Google\Api\Annotations::initOnce();
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Api\Resource::initOnce();
         \GPBMetadata\Google\Cloud\Channel\V1\Common::initOnce();
@@ -21,8 +22,8 @@ class Customers
         \GPBMetadata\Google\Type\PostalAddress::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ó
-\'google/cloud/channel/v1/customers.protogoogle.cloud.channel.v1google/api/resource.proto$google/cloud/channel/v1/common.protogoogle/protobuf/timestamp.proto google/type/postal_address.proto"—
+∏
+\'google/cloud/channel/v1/customers.protogoogle.cloud.channel.v1google/api/field_behavior.protogoogle/api/resource.proto$google/cloud/channel/v1/common.protogoogle/protobuf/timestamp.proto google/type/postal_address.proto"—
 Customer
 name (	B‡A
 org_display_name (	B‡A;

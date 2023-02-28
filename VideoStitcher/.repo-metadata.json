@@ -1,7 +1,6 @@
 {
     "distribution_name": "google/cloud-video-stitcher",
-    "release_level": "preview",
+    "release_level": "beta",
     "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-video-stitcher/latest",
-    "library_type": "GAPIC_AUTO",
-    "api_shortname": "videostitcher"
+    "library_type": "GAPIC_AUTO"
 }

@@ -24,7 +24,8 @@ class GetSchemaRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
     /**
      * The set of fields to return in the response. If not set, returns a Schema
-     * with all fields filled out. Set to `BASIC` to omit the `definition`.
+     * with `name` and `type`, but not `definition`. Set to `FULL` to retrieve all
+     * fields.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.SchemaView view = 2;</code>
      */
@@ -41,7 +42,8 @@ class GetSchemaRequest extends \Google\Protobuf\Internal\Message
      *           Format is `projects/{project}/schemas/{schema}`.
      *     @type int $view
      *           The set of fields to return in the response. If not set, returns a Schema
-     *           with all fields filled out. Set to `BASIC` to omit the `definition`.
+     *           with `name` and `type`, but not `definition`. Set to `FULL` to retrieve all
+     *           fields.
      * }
      */
     public function __construct($data = NULL) {
@@ -79,7 +81,8 @@ class GetSchemaRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The set of fields to return in the response. If not set, returns a Schema
-     * with all fields filled out. Set to `BASIC` to omit the `definition`.
+     * with `name` and `type`, but not `definition`. Set to `FULL` to retrieve all
+     * fields.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.SchemaView view = 2;</code>
      * @return int
@@ -91,7 +94,8 @@ class GetSchemaRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The set of fields to return in the response. If not set, returns a Schema
-     * with all fields filled out. Set to `BASIC` to omit the `definition`.
+     * with `name` and `type`, but not `definition`. Set to `FULL` to retrieve all
+     * fields.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.SchemaView view = 2;</code>
      * @param int $var

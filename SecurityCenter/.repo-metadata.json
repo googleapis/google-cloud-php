@@ -1,7 +1,6 @@
 {
     "distribution_name": "google/cloud-security-center",
-    "release_level": "stable",
+    "release_level": "ga",
     "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-security-center/latest",
-    "library_type": "GAPIC_AUTO",
-    "api_shortname": "securitycenter"
+    "library_type": "GAPIC_AUTO"
 }

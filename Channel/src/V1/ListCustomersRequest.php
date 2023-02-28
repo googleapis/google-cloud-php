@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for
- * [CloudChannelService.ListCustomers][google.cloud.channel.v1.CloudChannelService.ListCustomers]
+ * Request message for [CloudChannelService.ListCustomers][google.cloud.channel.v1.CloudChannelService.ListCustomers]
  *
  * Generated from protobuf message <code>google.cloud.channel.v1.ListCustomersRequest</code>
  */
@@ -24,8 +23,8 @@ class ListCustomersRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
-     * Optional. The maximum number of customers to return. The service may return
-     * fewer than this value. If unspecified, returns at most 10 customers. The
+     * Optional. The maximum number of customers to return. The service may return fewer
+     * than this value. If unspecified, returns at most 10 customers. The
      * maximum value is 50.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -34,23 +33,12 @@ class ListCustomersRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A token identifying a page of results other than the first page.
      * Obtained through
-     * [ListCustomersResponse.next_page_token][google.cloud.channel.v1.ListCustomersResponse.next_page_token]
-     * of the previous
-     * [CloudChannelService.ListCustomers][google.cloud.channel.v1.CloudChannelService.ListCustomers]
-     * call.
+     * [ListCustomersResponse.next_page_token][google.cloud.channel.v1.ListCustomersResponse.next_page_token] of the previous
+     * [CloudChannelService.ListCustomers][google.cloud.channel.v1.CloudChannelService.ListCustomers] call.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_token = '';
-    /**
-     * Optional. Filters applied to the [CloudChannelService.ListCustomers]
-     * results. See
-     * https://cloud.google.com/channel/docs/concepts/google-cloud/filter-customers
-     * for more information.
-     *
-     * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     */
-    private $filter = '';
 
     /**
      * Constructor.
@@ -62,21 +50,14 @@ class ListCustomersRequest extends \Google\Protobuf\Internal\Message
      *           Required. The resource name of the reseller account to list customers from.
      *           Parent uses the format: accounts/{account_id}.
      *     @type int $page_size
-     *           Optional. The maximum number of customers to return. The service may return
-     *           fewer than this value. If unspecified, returns at most 10 customers. The
+     *           Optional. The maximum number of customers to return. The service may return fewer
+     *           than this value. If unspecified, returns at most 10 customers. The
      *           maximum value is 50.
      *     @type string $page_token
      *           Optional. A token identifying a page of results other than the first page.
      *           Obtained through
-     *           [ListCustomersResponse.next_page_token][google.cloud.channel.v1.ListCustomersResponse.next_page_token]
-     *           of the previous
-     *           [CloudChannelService.ListCustomers][google.cloud.channel.v1.CloudChannelService.ListCustomers]
-     *           call.
-     *     @type string $filter
-     *           Optional. Filters applied to the [CloudChannelService.ListCustomers]
-     *           results. See
-     *           https://cloud.google.com/channel/docs/concepts/google-cloud/filter-customers
-     *           for more information.
+     *           [ListCustomersResponse.next_page_token][google.cloud.channel.v1.ListCustomersResponse.next_page_token] of the previous
+     *           [CloudChannelService.ListCustomers][google.cloud.channel.v1.CloudChannelService.ListCustomers] call.
      * }
      */
     public function __construct($data = NULL) {
@@ -113,8 +94,8 @@ class ListCustomersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The maximum number of customers to return. The service may return
-     * fewer than this value. If unspecified, returns at most 10 customers. The
+     * Optional. The maximum number of customers to return. The service may return fewer
+     * than this value. If unspecified, returns at most 10 customers. The
      * maximum value is 50.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -126,8 +107,8 @@ class ListCustomersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The maximum number of customers to return. The service may return
-     * fewer than this value. If unspecified, returns at most 10 customers. The
+     * Optional. The maximum number of customers to return. The service may return fewer
+     * than this value. If unspecified, returns at most 10 customers. The
      * maximum value is 50.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -145,10 +126,8 @@ class ListCustomersRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A token identifying a page of results other than the first page.
      * Obtained through
-     * [ListCustomersResponse.next_page_token][google.cloud.channel.v1.ListCustomersResponse.next_page_token]
-     * of the previous
-     * [CloudChannelService.ListCustomers][google.cloud.channel.v1.CloudChannelService.ListCustomers]
-     * call.
+     * [ListCustomersResponse.next_page_token][google.cloud.channel.v1.ListCustomersResponse.next_page_token] of the previous
+     * [CloudChannelService.ListCustomers][google.cloud.channel.v1.CloudChannelService.ListCustomers] call.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -161,10 +140,8 @@ class ListCustomersRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A token identifying a page of results other than the first page.
      * Obtained through
-     * [ListCustomersResponse.next_page_token][google.cloud.channel.v1.ListCustomersResponse.next_page_token]
-     * of the previous
-     * [CloudChannelService.ListCustomers][google.cloud.channel.v1.CloudChannelService.ListCustomers]
-     * call.
+     * [ListCustomersResponse.next_page_token][google.cloud.channel.v1.ListCustomersResponse.next_page_token] of the previous
+     * [CloudChannelService.ListCustomers][google.cloud.channel.v1.CloudChannelService.ListCustomers] call.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -174,38 +151,6 @@ class ListCustomersRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->page_token = $var;
-
-        return $this;
-    }
-
-    /**
-     * Optional. Filters applied to the [CloudChannelService.ListCustomers]
-     * results. See
-     * https://cloud.google.com/channel/docs/concepts/google-cloud/filter-customers
-     * for more information.
-     *
-     * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return string
-     */
-    public function getFilter()
-    {
-        return $this->filter;
-    }
-
-    /**
-     * Optional. Filters applied to the [CloudChannelService.ListCustomers]
-     * results. See
-     * https://cloud.google.com/channel/docs/concepts/google-cloud/filter-customers
-     * for more information.
-     *
-     * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setFilter($var)
-    {
-        GPBUtil::checkString($var, True);
-        $this->filter = $var;
 
         return $this;
     }

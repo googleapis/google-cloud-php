@@ -1,9 +1,8 @@
 {
     "distribution_name": "google/cloud-gsuite-addons",
-    "release_level": "preview",
+    "release_level": "beta",
     "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-gsuite-addons/latest",
     "library_type": "GAPIC_AUTO",
     "product_documentation": "https://developers.google.com/workspace/add-ons/overview",
-    "issue_tracker": "https://github.com/googleapis/google-cloud-php/issues",
-    "api_shortname": "gsuiteaddons"
+    "issue_tracker": "https://github.com/googleapis/google-cloud-php/issues"
 }

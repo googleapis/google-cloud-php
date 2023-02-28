@@ -1,7 +1,6 @@
 {
     "distribution_name": "google/cloud-iap",
-    "release_level": "stable",
+    "release_level": "ga",
     "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-iap/latest",
-    "library_type": "GAPIC_AUTO",
-    "api_shortname": "iap"
+    "library_type": "GAPIC_AUTO"
 }

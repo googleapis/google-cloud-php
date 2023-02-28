@@ -48,17 +48,20 @@ items:
           description: 'The current state of the batch operation.'
         -
           id: '↳ submit_time'
-          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Timestamp">Google\Protobuf\Timestamp</a>'
+          var_type: Google\Protobuf\Timestamp
           description: 'The time when the batch request was submitted to the server.'
         -
           id: '↳ end_time'
-          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Timestamp">Google\Protobuf\Timestamp</a>'
+          var_type: Google\Protobuf\Timestamp
           description: 'The time when the batch request is finished and <xref uid="\Google\Longrunning\Operation::getDone()">google.longrunning.Operation.done</xref> is set to true.'
   -
     uid: '\Google\Cloud\Vision\V1\BatchOperationMetadata::getState()'
     name: getState
     id: getState
-    summary: 'The current state of the batch operation.'
+    summary: |
+      The current state of the batch operation.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.BatchOperationMetadata.State state = 1;</code>
     parent: \Google\Cloud\Vision\V1\BatchOperationMetadata
     type: method
     langs:
@@ -71,7 +74,10 @@ items:
     uid: '\Google\Cloud\Vision\V1\BatchOperationMetadata::setState()'
     name: setState
     id: setState
-    summary: 'The current state of the batch operation.'
+    summary: |
+      The current state of the batch operation.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.BatchOperationMetadata.State state = 1;</code>
     parent: \Google\Cloud\Vision\V1\BatchOperationMetadata
     type: method
     langs:
@@ -89,7 +95,10 @@ items:
     uid: '\Google\Cloud\Vision\V1\BatchOperationMetadata::getSubmitTime()'
     name: getSubmitTime
     id: getSubmitTime
-    summary: 'The time when the batch request was submitted to the server.'
+    summary: |
+      The time when the batch request was submitted to the server.
+      
+      Generated from protobuf field <code>.google.protobuf.Timestamp submit_time = 2;</code>
     parent: \Google\Cloud\Vision\V1\BatchOperationMetadata
     type: method
     langs:
@@ -97,7 +106,7 @@ items:
     syntax:
       returns:
         -
-          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Timestamp">Google\Protobuf\Timestamp</a>|null'
+          var_type: Google\Protobuf\Timestamp|null
   -
     uid: '\Google\Cloud\Vision\V1\BatchOperationMetadata::hasSubmitTime()'
     name: hasSubmitTime
@@ -118,7 +127,10 @@ items:
     uid: '\Google\Cloud\Vision\V1\BatchOperationMetadata::setSubmitTime()'
     name: setSubmitTime
     id: setSubmitTime
-    summary: 'The time when the batch request was submitted to the server.'
+    summary: |
+      The time when the batch request was submitted to the server.
+      
+      Generated from protobuf field <code>.google.protobuf.Timestamp submit_time = 2;</code>
     parent: \Google\Cloud\Vision\V1\BatchOperationMetadata
     type: method
     langs:
@@ -127,7 +139,7 @@ items:
       parameters:
         -
           id: var
-          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Timestamp">Google\Protobuf\Timestamp</a>'
+          var_type: Google\Protobuf\Timestamp
           description: ''
       returns:
         -
@@ -139,6 +151,8 @@ items:
     summary: |
       The time when the batch request is finished and
       <xref uid="\Google\Longrunning\Operation::getDone()">google.longrunning.Operation.done</xref> is set to true.
+      
+      Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 3;</code>
     parent: \Google\Cloud\Vision\V1\BatchOperationMetadata
     type: method
     langs:
@@ -146,7 +160,7 @@ items:
     syntax:
       returns:
         -
-          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Timestamp">Google\Protobuf\Timestamp</a>|null'
+          var_type: Google\Protobuf\Timestamp|null
   -
     uid: '\Google\Cloud\Vision\V1\BatchOperationMetadata::hasEndTime()'
     name: hasEndTime
@@ -170,6 +184,8 @@ items:
     summary: |
       The time when the batch request is finished and
       <xref uid="\Google\Longrunning\Operation::getDone()">google.longrunning.Operation.done</xref> is set to true.
+      
+      Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 3;</code>
     parent: \Google\Cloud\Vision\V1\BatchOperationMetadata
     type: method
     langs:
@@ -178,7 +194,7 @@ items:
       parameters:
         -
           id: var
-          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Timestamp">Google\Protobuf\Timestamp</a>'
+          var_type: Google\Protobuf\Timestamp
           description: ''
       returns:
         -

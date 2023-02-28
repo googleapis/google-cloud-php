@@ -34,8 +34,7 @@ class AwsClustersGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Creates a new [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster]
-     * resource on a given GCP project and region.
+     * Creates a new [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resource on a given GCP project and region.
      *
      * If successful, the response contains a newly created
      * [Operation][google.longrunning.Operation] resource that can be
@@ -69,8 +68,7 @@ class AwsClustersGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Describes a specific [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster]
-     * resource.
+     * Describes a specific [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resource.
      * @param \Google\Cloud\GkeMultiCloud\V1\GetAwsClusterRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -85,8 +83,8 @@ class AwsClustersGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Lists all [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resources
-     * on a given Google Cloud project and region.
+     * Lists all [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resources on a given Google Cloud project and
+     * region.
      * @param \Google\Cloud\GkeMultiCloud\V1\ListAwsClustersRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -101,11 +99,10 @@ class AwsClustersGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Deletes a specific [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster]
-     * resource.
+     * Deletes a specific [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resource.
      *
-     * Fails if the cluster has one or more associated
-     * [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] resources.
+     * Fails if the cluster has one or more associated [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool]
+     * resources.
      *
      * If successful, the response contains a newly created
      * [Operation][google.longrunning.Operation] resource that can be
@@ -140,8 +137,7 @@ class AwsClustersGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Creates a new [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool],
-     * attached to a given [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster].
+     * Creates a new [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool], attached to a given [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster].
      *
      * If successful, the response contains a newly created
      * [Operation][google.longrunning.Operation] resource that can be
@@ -175,8 +171,7 @@ class AwsClustersGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Describes a specific
-     * [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] resource.
+     * Describes a specific [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] resource.
      * @param \Google\Cloud\GkeMultiCloud\V1\GetAwsNodePoolRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -191,9 +186,7 @@ class AwsClustersGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Lists all [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool]
-     * resources on a given
-     * [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster].
+     * Lists all [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] resources on a given [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster].
      * @param \Google\Cloud\GkeMultiCloud\V1\ListAwsNodePoolsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -208,8 +201,7 @@ class AwsClustersGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Deletes a specific [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool]
-     * resource.
+     * Deletes a specific [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] resource.
      *
      * If successful, the response contains a newly created
      * [Operation][google.longrunning.Operation] resource that can be

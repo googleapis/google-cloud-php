@@ -88,18 +88,6 @@ return [
             ],
         ],
         'google.pubsub.v1.SchemaService' => [
-            'CommitSchema' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/{name=projects/*/schemas/*}:commit',
-                'body' => '*',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
             'CreateSchema' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*}/schemas',
@@ -123,31 +111,9 @@ return [
                     ],
                 ],
             ],
-            'DeleteSchemaRevision' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v1/{name=projects/*/schemas/*}:deleteRevision',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
             'GetSchema' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/schemas/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'ListSchemaRevisions' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{name=projects/*/schemas/*}:listRevisions',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -163,18 +129,6 @@ return [
                     'parent' => [
                         'getters' => [
                             'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'RollbackSchema' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/{name=projects/*/schemas/*}:rollback',
-                'body' => '*',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
                         ],
                     ],
                 ],
@@ -205,5 +159,4 @@ return [
             ],
         ],
     ],
-    'numericEnums' => true,
 ];

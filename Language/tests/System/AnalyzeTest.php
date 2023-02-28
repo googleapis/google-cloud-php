@@ -65,7 +65,7 @@ class AnalyzeTest extends LanguageTestCase
         $info = $result->info();
 
         foreach ($expectedValues as $key => $expected) {
-            $this->assertEqualsWithDelta($expected, $info[$key], 0.2);
+            $this->assertEquals($expected, $info[$key]);
         }
     }
 
@@ -147,15 +147,17 @@ class AnalyzeTest extends LanguageTestCase
                 if ($entity['name'] == $expectedEntity['name']) {
                     $exists = true;
                     $this->assertEquals($entity['type'], $expectedEntity['type']);
-                    $this->assertEqualsWithDelta(
+                    $this->assertEquals(
                         $entity['sentiment']['score'],
                         $expectedEntity['sentiment']['score'],
+                        '',
                         0.2
                     );
 
-                    $this->assertEqualsWithDelta(
+                    $this->assertEquals(
                         $entity['sentiment']['magnitude'],
                         $expectedEntity['sentiment']['magnitude'],
+                        '',
                         0.2
                     );
 
@@ -197,16 +199,16 @@ class AnalyzeTest extends LanguageTestCase
                         'name' => 'San Jose',
                         'type' => 'LOCATION',
                         'sentiment' => [
-                            'magnitude' => 0.8,
-                            'score' => 0.8,
+                            'magnitude' => 0.3,
+                            'score' => 0.3,
                         ],
                     ],
                     [
                         'name' => 'road',
                         'type' => 'LOCATION',
                         'sentiment' => [
-                            'magnitude' => 0.8,
-                            'score' => 0.8,
+                            'magnitude' => 0.3,
+                            'score' => 0.3,
                         ],
                     ],
                 ]

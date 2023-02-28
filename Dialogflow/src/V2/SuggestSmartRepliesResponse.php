@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The response message for
- * [Participants.SuggestSmartReplies][google.cloud.dialogflow.v2.Participants.SuggestSmartReplies].
+ * The response message for [Participants.SuggestSmartReplies][google.cloud.dialogflow.v2.Participants.SuggestSmartReplies].
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.SuggestSmartRepliesResponse</code>
  */
@@ -35,11 +34,10 @@ class SuggestSmartRepliesResponse extends \Google\Protobuf\Internal\Message
     private $latest_message = '';
     /**
      * Number of messages prior to and including
-     * [latest_message][google.cloud.dialogflow.v2.SuggestSmartRepliesResponse.latest_message]
-     * to compile the suggestion. It may be smaller than the
-     * [SuggestSmartRepliesRequest.context_size][google.cloud.dialogflow.v2.SuggestSmartRepliesRequest.context_size]
-     * field in the request if there aren't that many messages in the
-     * conversation.
+     * [latest_message][google.cloud.dialogflow.v2.SuggestSmartRepliesResponse.latest_message] to compile the
+     * suggestion. It may be smaller than the
+     * [SuggestSmartRepliesRequest.context_size][google.cloud.dialogflow.v2.SuggestSmartRepliesRequest.context_size] field in the request if there
+     * aren't that many messages in the conversation.
      *
      * Generated from protobuf field <code>int32 context_size = 3;</code>
      */
@@ -62,11 +60,10 @@ class SuggestSmartRepliesResponse extends \Google\Protobuf\Internal\Message
      *           ID>/conversations/<Conversation ID>/messages/<Message ID>`.
      *     @type int $context_size
      *           Number of messages prior to and including
-     *           [latest_message][google.cloud.dialogflow.v2.SuggestSmartRepliesResponse.latest_message]
-     *           to compile the suggestion. It may be smaller than the
-     *           [SuggestSmartRepliesRequest.context_size][google.cloud.dialogflow.v2.SuggestSmartRepliesRequest.context_size]
-     *           field in the request if there aren't that many messages in the
-     *           conversation.
+     *           [latest_message][google.cloud.dialogflow.v2.SuggestSmartRepliesResponse.latest_message] to compile the
+     *           suggestion. It may be smaller than the
+     *           [SuggestSmartRepliesRequest.context_size][google.cloud.dialogflow.v2.SuggestSmartRepliesRequest.context_size] field in the request if there
+     *           aren't that many messages in the conversation.
      * }
      */
     public function __construct($data = NULL) {
@@ -138,11 +135,10 @@ class SuggestSmartRepliesResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * Number of messages prior to and including
-     * [latest_message][google.cloud.dialogflow.v2.SuggestSmartRepliesResponse.latest_message]
-     * to compile the suggestion. It may be smaller than the
-     * [SuggestSmartRepliesRequest.context_size][google.cloud.dialogflow.v2.SuggestSmartRepliesRequest.context_size]
-     * field in the request if there aren't that many messages in the
-     * conversation.
+     * [latest_message][google.cloud.dialogflow.v2.SuggestSmartRepliesResponse.latest_message] to compile the
+     * suggestion. It may be smaller than the
+     * [SuggestSmartRepliesRequest.context_size][google.cloud.dialogflow.v2.SuggestSmartRepliesRequest.context_size] field in the request if there
+     * aren't that many messages in the conversation.
      *
      * Generated from protobuf field <code>int32 context_size = 3;</code>
      * @return int
@@ -154,11 +150,10 @@ class SuggestSmartRepliesResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * Number of messages prior to and including
-     * [latest_message][google.cloud.dialogflow.v2.SuggestSmartRepliesResponse.latest_message]
-     * to compile the suggestion. It may be smaller than the
-     * [SuggestSmartRepliesRequest.context_size][google.cloud.dialogflow.v2.SuggestSmartRepliesRequest.context_size]
-     * field in the request if there aren't that many messages in the
-     * conversation.
+     * [latest_message][google.cloud.dialogflow.v2.SuggestSmartRepliesResponse.latest_message] to compile the
+     * suggestion. It may be smaller than the
+     * [SuggestSmartRepliesRequest.context_size][google.cloud.dialogflow.v2.SuggestSmartRepliesRequest.context_size] field in the request if there
+     * aren't that many messages in the conversation.
      *
      * Generated from protobuf field <code>int32 context_size = 3;</code>
      * @param int $var

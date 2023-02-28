@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Response message for
- * [CloudChannelService.ListChannelPartnerLinks][google.cloud.channel.v1.CloudChannelService.ListChannelPartnerLinks].
+ * Response message for [CloudChannelService.ListChannelPartnerLinks][google.cloud.channel.v1.CloudChannelService.ListChannelPartnerLinks].
  *
  * Generated from protobuf message <code>google.cloud.channel.v1.ListChannelPartnerLinksResponse</code>
  */
@@ -24,9 +23,7 @@ class ListChannelPartnerLinksResponse extends \Google\Protobuf\Internal\Message
     private $channel_partner_links;
     /**
      * A token to retrieve the next page of results.
-     * Pass to
-     * [ListChannelPartnerLinksRequest.page_token][google.cloud.channel.v1.ListChannelPartnerLinksRequest.page_token]
-     * to obtain that page.
+     * Pass to [ListChannelPartnerLinksRequest.page_token][google.cloud.channel.v1.ListChannelPartnerLinksRequest.page_token] to obtain that page.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
@@ -38,13 +35,11 @@ class ListChannelPartnerLinksResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Channel\V1\ChannelPartnerLink>|\Google\Protobuf\Internal\RepeatedField $channel_partner_links
+     *     @type \Google\Cloud\Channel\V1\ChannelPartnerLink[]|\Google\Protobuf\Internal\RepeatedField $channel_partner_links
      *           The Channel partner links for a reseller.
      *     @type string $next_page_token
      *           A token to retrieve the next page of results.
-     *           Pass to
-     *           [ListChannelPartnerLinksRequest.page_token][google.cloud.channel.v1.ListChannelPartnerLinksRequest.page_token]
-     *           to obtain that page.
+     *           Pass to [ListChannelPartnerLinksRequest.page_token][google.cloud.channel.v1.ListChannelPartnerLinksRequest.page_token] to obtain that page.
      * }
      */
     public function __construct($data = NULL) {
@@ -67,7 +62,7 @@ class ListChannelPartnerLinksResponse extends \Google\Protobuf\Internal\Message
      * The Channel partner links for a reseller.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.ChannelPartnerLink channel_partner_links = 1;</code>
-     * @param array<\Google\Cloud\Channel\V1\ChannelPartnerLink>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Channel\V1\ChannelPartnerLink[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setChannelPartnerLinks($var)
@@ -80,9 +75,7 @@ class ListChannelPartnerLinksResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * A token to retrieve the next page of results.
-     * Pass to
-     * [ListChannelPartnerLinksRequest.page_token][google.cloud.channel.v1.ListChannelPartnerLinksRequest.page_token]
-     * to obtain that page.
+     * Pass to [ListChannelPartnerLinksRequest.page_token][google.cloud.channel.v1.ListChannelPartnerLinksRequest.page_token] to obtain that page.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @return string
@@ -94,9 +87,7 @@ class ListChannelPartnerLinksResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * A token to retrieve the next page of results.
-     * Pass to
-     * [ListChannelPartnerLinksRequest.page_token][google.cloud.channel.v1.ListChannelPartnerLinksRequest.page_token]
-     * to obtain that page.
+     * Pass to [ListChannelPartnerLinksRequest.page_token][google.cloud.channel.v1.ListChannelPartnerLinksRequest.page_token] to obtain that page.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @param string $var

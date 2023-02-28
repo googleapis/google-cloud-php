@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for
- * [VmwareEngine.CreatePrivateCloud][google.cloud.vmwareengine.v1.VmwareEngine.CreatePrivateCloud]
+ * Request message for [VmwareEngine.CreatePrivateCloud][google.cloud.vmwareengine.v1.VmwareEngine.CreatePrivateCloud]
  *
  * Generated from protobuf message <code>google.cloud.vmwareengine.v1.CreatePrivateCloudRequest</code>
  */
@@ -21,7 +20,7 @@ class CreatePrivateCloudRequest extends \Google\Protobuf\Internal\Message
      * private cloud in. Resource names are schemeless URIs that follow the
      * conventions in https://cloud.google.com/apis/design/resource_names.
      * For example:
-     * `projects/my-project/locations/us-central1-a`
+     * `projects/my-project/locations/us-west1-a`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -48,15 +47,15 @@ class CreatePrivateCloudRequest extends \Google\Protobuf\Internal\Message
      */
     private $private_cloud = null;
     /**
-     * Optional. The request ID must be a valid UUID with the exception that zero
-     * UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * Optional. The request ID must be a valid UUID with the exception that zero UUID is
+     * not supported (00000000-0000-0000-0000-000000000000).
      *
      * Generated from protobuf field <code>string request_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $request_id = '';
     /**
-     * Optional. True if you want the request to be validated and not executed;
-     * false otherwise.
+     * Optional. True if you want the request to be validated and not executed; false
+     * otherwise.
      *
      * Generated from protobuf field <code>bool validate_only = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -73,7 +72,7 @@ class CreatePrivateCloudRequest extends \Google\Protobuf\Internal\Message
      *           private cloud in. Resource names are schemeless URIs that follow the
      *           conventions in https://cloud.google.com/apis/design/resource_names.
      *           For example:
-     *           `projects/my-project/locations/us-central1-a`
+     *           `projects/my-project/locations/us-west1-a`
      *     @type string $private_cloud_id
      *           Required. The user-provided identifier of the private cloud to be created.
      *           This identifier must be unique among each `PrivateCloud` within the parent
@@ -88,11 +87,11 @@ class CreatePrivateCloudRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\VmwareEngine\V1\PrivateCloud $private_cloud
      *           Required. The initial description of the new private cloud.
      *     @type string $request_id
-     *           Optional. The request ID must be a valid UUID with the exception that zero
-     *           UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *           Optional. The request ID must be a valid UUID with the exception that zero UUID is
+     *           not supported (00000000-0000-0000-0000-000000000000).
      *     @type bool $validate_only
-     *           Optional. True if you want the request to be validated and not executed;
-     *           false otherwise.
+     *           Optional. True if you want the request to be validated and not executed; false
+     *           otherwise.
      * }
      */
     public function __construct($data = NULL) {
@@ -105,7 +104,7 @@ class CreatePrivateCloudRequest extends \Google\Protobuf\Internal\Message
      * private cloud in. Resource names are schemeless URIs that follow the
      * conventions in https://cloud.google.com/apis/design/resource_names.
      * For example:
-     * `projects/my-project/locations/us-central1-a`
+     * `projects/my-project/locations/us-west1-a`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -120,7 +119,7 @@ class CreatePrivateCloudRequest extends \Google\Protobuf\Internal\Message
      * private cloud in. Resource names are schemeless URIs that follow the
      * conventions in https://cloud.google.com/apis/design/resource_names.
      * For example:
-     * `projects/my-project/locations/us-central1-a`
+     * `projects/my-project/locations/us-west1-a`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -215,8 +214,8 @@ class CreatePrivateCloudRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The request ID must be a valid UUID with the exception that zero
-     * UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * Optional. The request ID must be a valid UUID with the exception that zero UUID is
+     * not supported (00000000-0000-0000-0000-000000000000).
      *
      * Generated from protobuf field <code>string request_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -227,8 +226,8 @@ class CreatePrivateCloudRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The request ID must be a valid UUID with the exception that zero
-     * UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * Optional. The request ID must be a valid UUID with the exception that zero UUID is
+     * not supported (00000000-0000-0000-0000-000000000000).
      *
      * Generated from protobuf field <code>string request_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -243,8 +242,8 @@ class CreatePrivateCloudRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. True if you want the request to be validated and not executed;
-     * false otherwise.
+     * Optional. True if you want the request to be validated and not executed; false
+     * otherwise.
      *
      * Generated from protobuf field <code>bool validate_only = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
@@ -255,8 +254,8 @@ class CreatePrivateCloudRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. True if you want the request to be validated and not executed;
-     * false otherwise.
+     * Optional. True if you want the request to be validated and not executed; false
+     * otherwise.
      *
      * Generated from protobuf field <code>bool validate_only = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var

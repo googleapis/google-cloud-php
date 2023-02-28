@@ -56,6 +56,8 @@ items:
       
       Format:
       `projects/PROJECT_ID/locations/LOC_ID`
+      
+      Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
     parent: \Google\Cloud\Vision\V1\ListProductsRequest
     type: method
     langs:
@@ -73,6 +75,8 @@ items:
       
       Format:
       `projects/PROJECT_ID/locations/LOC_ID`
+      
+      Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
     parent: \Google\Cloud\Vision\V1\ListProductsRequest
     type: method
     langs:
@@ -90,7 +94,10 @@ items:
     uid: '\Google\Cloud\Vision\V1\ListProductsRequest::getPageSize()'
     name: getPageSize
     id: getPageSize
-    summary: 'The maximum number of items to return. Default 10, maximum 100.'
+    summary: |
+      The maximum number of items to return. Default 10, maximum 100.
+      
+      Generated from protobuf field <code>int32 page_size = 2;</code>
     parent: \Google\Cloud\Vision\V1\ListProductsRequest
     type: method
     langs:
@@ -103,7 +110,10 @@ items:
     uid: '\Google\Cloud\Vision\V1\ListProductsRequest::setPageSize()'
     name: setPageSize
     id: setPageSize
-    summary: 'The maximum number of items to return. Default 10, maximum 100.'
+    summary: |
+      The maximum number of items to return. Default 10, maximum 100.
+      
+      Generated from protobuf field <code>int32 page_size = 2;</code>
     parent: \Google\Cloud\Vision\V1\ListProductsRequest
     type: method
     langs:
@@ -121,7 +131,10 @@ items:
     uid: '\Google\Cloud\Vision\V1\ListProductsRequest::getPageToken()'
     name: getPageToken
     id: getPageToken
-    summary: 'The next_page_token returned from a previous List request, if any.'
+    summary: |
+      The next_page_token returned from a previous List request, if any.
+      
+      Generated from protobuf field <code>string page_token = 3;</code>
     parent: \Google\Cloud\Vision\V1\ListProductsRequest
     type: method
     langs:
@@ -134,7 +147,10 @@ items:
     uid: '\Google\Cloud\Vision\V1\ListProductsRequest::setPageToken()'
     name: setPageToken
     id: setPageToken
-    summary: 'The next_page_token returned from a previous List request, if any.'
+    summary: |
+      The next_page_token returned from a previous List request, if any.
+      
+      Generated from protobuf field <code>string page_token = 3;</code>
     parent: \Google\Cloud\Vision\V1\ListProductsRequest
     type: method
     langs:

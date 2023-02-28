@@ -69,6 +69,8 @@ items:
       Format is:
       `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.
       This field is ignored when creating a product.
+      
+      Generated from protobuf field <code>string name = 1;</code>
     parent: \Google\Cloud\Vision\V1\Product
     type: method
     langs:
@@ -87,6 +89,8 @@ items:
       Format is:
       `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.
       This field is ignored when creating a product.
+      
+      Generated from protobuf field <code>string name = 1;</code>
     parent: \Google\Cloud\Vision\V1\Product
     type: method
     langs:
@@ -107,6 +111,8 @@ items:
     summary: |
       The user-provided name for this Product. Must not be empty. Must be at most
       4096 characters long.
+      
+      Generated from protobuf field <code>string display_name = 2;</code>
     parent: \Google\Cloud\Vision\V1\Product
     type: method
     langs:
@@ -122,6 +128,8 @@ items:
     summary: |
       The user-provided name for this Product. Must not be empty. Must be at most
       4096 characters long.
+      
+      Generated from protobuf field <code>string display_name = 2;</code>
     parent: \Google\Cloud\Vision\V1\Product
     type: method
     langs:
@@ -142,6 +150,8 @@ items:
     summary: |
       User-provided metadata to be stored with this product. Must be at most 4096
       characters long.
+      
+      Generated from protobuf field <code>string description = 3;</code>
     parent: \Google\Cloud\Vision\V1\Product
     type: method
     langs:
@@ -157,6 +167,8 @@ items:
     summary: |
       User-provided metadata to be stored with this product. Must be at most 4096
       characters long.
+      
+      Generated from protobuf field <code>string description = 3;</code>
     parent: \Google\Cloud\Vision\V1\Product
     type: method
     langs:
@@ -179,6 +191,8 @@ items:
       be one of "homegoods-v2", "apparel-v2", "toys-v2", "packagedgoods-v1" or
       "general-v1". The legacy categories "homegoods", "apparel", and "toys" are
       still supported, but these should not be used for new products.
+      
+      Generated from protobuf field <code>string product_category = 4 [(.google.api.field_behavior) = IMMUTABLE];</code>
     parent: \Google\Cloud\Vision\V1\Product
     type: method
     langs:
@@ -196,6 +210,8 @@ items:
       be one of "homegoods-v2", "apparel-v2", "toys-v2", "packagedgoods-v1" or
       "general-v1". The legacy categories "homegoods", "apparel", and "toys" are
       still supported, but these should not be used for new products.
+      
+      Generated from protobuf field <code>string product_category = 4 [(.google.api.field_behavior) = IMMUTABLE];</code>
     parent: \Google\Cloud\Vision\V1\Product
     type: method
     langs:
@@ -225,6 +241,8 @@ items:
       Notice that the total number of distinct product_labels over all products
       in one ProductSet cannot exceed 1M, otherwise the product search pipeline
       will refuse to work for that ProductSet.
+      
+      Generated from protobuf field <code>repeated .google.cloud.vision.v1.Product.KeyValue product_labels = 5;</code>
     parent: \Google\Cloud\Vision\V1\Product
     type: method
     langs:
@@ -232,7 +250,7 @@ items:
     syntax:
       returns:
         -
-          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Internal/RepeatedField">Google\Protobuf\Internal\RepeatedField</a>'
+          var_type: Google\Protobuf\Internal\RepeatedField
   -
     uid: '\Google\Cloud\Vision\V1\Product::setProductLabels()'
     name: setProductLabels
@@ -249,6 +267,8 @@ items:
       Notice that the total number of distinct product_labels over all products
       in one ProductSet cannot exceed 1M, otherwise the product search pipeline
       will refuse to work for that ProductSet.
+      
+      Generated from protobuf field <code>repeated .google.cloud.vision.v1.Product.KeyValue product_labels = 5;</code>
     parent: \Google\Cloud\Vision\V1\Product
     type: method
     langs:

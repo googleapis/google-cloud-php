@@ -65,7 +65,10 @@ items:
     uid: '\Google\Cloud\Vision\V1\LocalizedObjectAnnotation::getMid()'
     name: getMid
     id: getMid
-    summary: 'Object ID that should align with EntityAnnotation mid.'
+    summary: |
+      Object ID that should align with EntityAnnotation mid.
+      
+      Generated from protobuf field <code>string mid = 1;</code>
     parent: \Google\Cloud\Vision\V1\LocalizedObjectAnnotation
     type: method
     langs:
@@ -78,7 +81,10 @@ items:
     uid: '\Google\Cloud\Vision\V1\LocalizedObjectAnnotation::setMid()'
     name: setMid
     id: setMid
-    summary: 'Object ID that should align with EntityAnnotation mid.'
+    summary: |
+      Object ID that should align with EntityAnnotation mid.
+      
+      Generated from protobuf field <code>string mid = 1;</code>
     parent: \Google\Cloud\Vision\V1\LocalizedObjectAnnotation
     type: method
     langs:
@@ -100,6 +106,8 @@ items:
       The BCP-47 language code, such as "en-US" or "sr-Latn". For more
       information, see
       http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+      
+      Generated from protobuf field <code>string language_code = 2;</code>
     parent: \Google\Cloud\Vision\V1\LocalizedObjectAnnotation
     type: method
     langs:
@@ -116,6 +124,8 @@ items:
       The BCP-47 language code, such as "en-US" or "sr-Latn". For more
       information, see
       http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+      
+      Generated from protobuf field <code>string language_code = 2;</code>
     parent: \Google\Cloud\Vision\V1\LocalizedObjectAnnotation
     type: method
     langs:
@@ -133,7 +143,10 @@ items:
     uid: '\Google\Cloud\Vision\V1\LocalizedObjectAnnotation::getName()'
     name: getName
     id: getName
-    summary: 'Object name, expressed in its `language_code` language.'
+    summary: |
+      Object name, expressed in its `language_code` language.
+      
+      Generated from protobuf field <code>string name = 3;</code>
     parent: \Google\Cloud\Vision\V1\LocalizedObjectAnnotation
     type: method
     langs:
@@ -146,7 +159,10 @@ items:
     uid: '\Google\Cloud\Vision\V1\LocalizedObjectAnnotation::setName()'
     name: setName
     id: setName
-    summary: 'Object name, expressed in its `language_code` language.'
+    summary: |
+      Object name, expressed in its `language_code` language.
+      
+      Generated from protobuf field <code>string name = 3;</code>
     parent: \Google\Cloud\Vision\V1\LocalizedObjectAnnotation
     type: method
     langs:
@@ -164,7 +180,10 @@ items:
     uid: '\Google\Cloud\Vision\V1\LocalizedObjectAnnotation::getScore()'
     name: getScore
     id: getScore
-    summary: 'Score of the result. Range [0, 1].'
+    summary: |
+      Score of the result. Range [0, 1].
+      
+      Generated from protobuf field <code>float score = 4;</code>
     parent: \Google\Cloud\Vision\V1\LocalizedObjectAnnotation
     type: method
     langs:
@@ -177,7 +196,10 @@ items:
     uid: '\Google\Cloud\Vision\V1\LocalizedObjectAnnotation::setScore()'
     name: setScore
     id: setScore
-    summary: 'Score of the result. Range [0, 1].'
+    summary: |
+      Score of the result. Range [0, 1].
+      
+      Generated from protobuf field <code>float score = 4;</code>
     parent: \Google\Cloud\Vision\V1\LocalizedObjectAnnotation
     type: method
     langs:
@@ -195,7 +217,10 @@ items:
     uid: '\Google\Cloud\Vision\V1\LocalizedObjectAnnotation::getBoundingPoly()'
     name: getBoundingPoly
     id: getBoundingPoly
-    summary: 'Image region to which this object belongs. This must be populated.'
+    summary: |
+      Image region to which this object belongs. This must be populated.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 5;</code>
     parent: \Google\Cloud\Vision\V1\LocalizedObjectAnnotation
     type: method
     langs:
@@ -224,7 +249,10 @@ items:
     uid: '\Google\Cloud\Vision\V1\LocalizedObjectAnnotation::setBoundingPoly()'
     name: setBoundingPoly
     id: setBoundingPoly
-    summary: 'Image region to which this object belongs. This must be populated.'
+    summary: |
+      Image region to which this object belongs. This must be populated.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 5;</code>
     parent: \Google\Cloud\Vision\V1\LocalizedObjectAnnotation
     type: method
     langs:

@@ -30,9 +30,8 @@ use Google\Cloud\BigQuery\DataTransfer\V1\TransferRun;
 /**
  * Returns information about the particular transfer run.
  *
- * @param string $formattedName The field will contain name of the resource requested, for
- *                              example: `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}`
- *                              or
+ * @param string $formattedName The field will contain name of the resource requested, for example:
+ *                              `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}` or
  *                              `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`
  *                              Please see {@see DataTransferServiceClient::runName()} for help formatting this field.
  */

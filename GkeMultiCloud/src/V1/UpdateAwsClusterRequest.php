@@ -16,8 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class UpdateAwsClusterRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster]
-     * resource to update.
+     * Required. The [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resource to update.
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AwsCluster aws_cluster = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -44,17 +43,14 @@ class UpdateAwsClusterRequest extends \Google\Protobuf\Internal\Message
      *  *   `control_plane.proxy_config`.
      *  *   `control_plane.proxy_config.secret_arn`.
      *  *   `control_plane.proxy_config.secret_version`.
-     *  *   `control_plane.root_volume.size_gib`.
-     *  *   `control_plane.root_volume.volume_type`.
      *  *   `control_plane.root_volume.iops`.
      *  *   `control_plane.root_volume.kms_key_arn`.
+     *  *   `control_plane.root_volume.volume_type`.
+     *  *   `control_plane.root_volume.size_gib`.
      *  *   `control_plane.ssh_config`.
      *  *   `control_plane.ssh_config.ec2_key_pair`.
      *  *   `control_plane.instance_placement.tenancy`.
-     *  *   `control_plane.iam_instance_profile`.
-     *  *   `logging_config.component_config.enable_components`.
-     *  *   `control_plane.tags`.
-     *  *   `monitoring_config.managed_prometheus_config.enabled`.
+     *  *   `logging_config`.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -67,8 +63,7 @@ class UpdateAwsClusterRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\GkeMultiCloud\V1\AwsCluster $aws_cluster
-     *           Required. The [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster]
-     *           resource to update.
+     *           Required. The [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resource to update.
      *     @type bool $validate_only
      *           If set, only validate the request, but do not actually update the cluster.
      *     @type \Google\Protobuf\FieldMask $update_mask
@@ -87,17 +82,14 @@ class UpdateAwsClusterRequest extends \Google\Protobuf\Internal\Message
      *            *   `control_plane.proxy_config`.
      *            *   `control_plane.proxy_config.secret_arn`.
      *            *   `control_plane.proxy_config.secret_version`.
-     *            *   `control_plane.root_volume.size_gib`.
-     *            *   `control_plane.root_volume.volume_type`.
      *            *   `control_plane.root_volume.iops`.
      *            *   `control_plane.root_volume.kms_key_arn`.
+     *            *   `control_plane.root_volume.volume_type`.
+     *            *   `control_plane.root_volume.size_gib`.
      *            *   `control_plane.ssh_config`.
      *            *   `control_plane.ssh_config.ec2_key_pair`.
      *            *   `control_plane.instance_placement.tenancy`.
-     *            *   `control_plane.iam_instance_profile`.
-     *            *   `logging_config.component_config.enable_components`.
-     *            *   `control_plane.tags`.
-     *            *   `monitoring_config.managed_prometheus_config.enabled`.
+     *            *   `logging_config`.
      * }
      */
     public function __construct($data = NULL) {
@@ -106,8 +98,7 @@ class UpdateAwsClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster]
-     * resource to update.
+     * Required. The [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resource to update.
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AwsCluster aws_cluster = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\GkeMultiCloud\V1\AwsCluster|null
@@ -128,8 +119,7 @@ class UpdateAwsClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster]
-     * resource to update.
+     * Required. The [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resource to update.
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AwsCluster aws_cluster = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\GkeMultiCloud\V1\AwsCluster $var
@@ -185,17 +175,14 @@ class UpdateAwsClusterRequest extends \Google\Protobuf\Internal\Message
      *  *   `control_plane.proxy_config`.
      *  *   `control_plane.proxy_config.secret_arn`.
      *  *   `control_plane.proxy_config.secret_version`.
-     *  *   `control_plane.root_volume.size_gib`.
-     *  *   `control_plane.root_volume.volume_type`.
      *  *   `control_plane.root_volume.iops`.
      *  *   `control_plane.root_volume.kms_key_arn`.
+     *  *   `control_plane.root_volume.volume_type`.
+     *  *   `control_plane.root_volume.size_gib`.
      *  *   `control_plane.ssh_config`.
      *  *   `control_plane.ssh_config.ec2_key_pair`.
      *  *   `control_plane.instance_placement.tenancy`.
-     *  *   `control_plane.iam_instance_profile`.
-     *  *   `logging_config.component_config.enable_components`.
-     *  *   `control_plane.tags`.
-     *  *   `monitoring_config.managed_prometheus_config.enabled`.
+     *  *   `logging_config`.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\FieldMask|null
@@ -231,17 +218,14 @@ class UpdateAwsClusterRequest extends \Google\Protobuf\Internal\Message
      *  *   `control_plane.proxy_config`.
      *  *   `control_plane.proxy_config.secret_arn`.
      *  *   `control_plane.proxy_config.secret_version`.
-     *  *   `control_plane.root_volume.size_gib`.
-     *  *   `control_plane.root_volume.volume_type`.
      *  *   `control_plane.root_volume.iops`.
      *  *   `control_plane.root_volume.kms_key_arn`.
+     *  *   `control_plane.root_volume.volume_type`.
+     *  *   `control_plane.root_volume.size_gib`.
      *  *   `control_plane.ssh_config`.
      *  *   `control_plane.ssh_config.ec2_key_pair`.
      *  *   `control_plane.instance_placement.tenancy`.
-     *  *   `control_plane.iam_instance_profile`.
-     *  *   `logging_config.component_config.enable_components`.
-     *  *   `control_plane.tags`.
-     *  *   `monitoring_config.managed_prometheus_config.enabled`.
+     *  *   `logging_config`.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Protobuf\FieldMask $var

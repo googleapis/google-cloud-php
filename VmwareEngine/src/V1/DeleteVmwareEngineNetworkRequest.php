@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for
- * [VmwareEngine.DeleteVmwareEngineNetwork][google.cloud.vmwareengine.v1.VmwareEngine.DeleteVmwareEngineNetwork]
+ * Request message for [VmwareEngine.DeleteVmwareEngineNetwork][google.cloud.vmwareengine.v1.VmwareEngine.DeleteVmwareEngineNetwork]
  *
  * Generated from protobuf message <code>google.cloud.vmwareengine.v1.DeleteVmwareEngineNetworkRequest</code>
  */
@@ -44,10 +43,10 @@ class DeleteVmwareEngineNetworkRequest extends \Google\Protobuf\Internal\Message
      */
     private $request_id = '';
     /**
-     * Optional. Checksum used to ensure that the user-provided value is up to
-     * date before the server processes the request. The server compares provided
-     * checksum with the current checksum of the resource. If the user-provided
-     * value is out of date, this request returns an `ABORTED` error.
+     * Optional. Checksum used to ensure that the user-provided value is up to date before
+     * the server processes the request. The server compares provided checksum
+     * with the current checksum of the resource. If the user-provided value is
+     * out of date, this request returns an `ABORTED` error.
      *
      * Generated from protobuf field <code>string etag = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -79,10 +78,10 @@ class DeleteVmwareEngineNetworkRequest extends \Google\Protobuf\Internal\Message
      *           The request ID must be a valid UUID with the exception that zero UUID is
      *           not supported (00000000-0000-0000-0000-000000000000).
      *     @type string $etag
-     *           Optional. Checksum used to ensure that the user-provided value is up to
-     *           date before the server processes the request. The server compares provided
-     *           checksum with the current checksum of the resource. If the user-provided
-     *           value is out of date, this request returns an `ABORTED` error.
+     *           Optional. Checksum used to ensure that the user-provided value is up to date before
+     *           the server processes the request. The server compares provided checksum
+     *           with the current checksum of the resource. If the user-provided value is
+     *           out of date, this request returns an `ABORTED` error.
      * }
      */
     public function __construct($data = NULL) {
@@ -173,10 +172,10 @@ class DeleteVmwareEngineNetworkRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Checksum used to ensure that the user-provided value is up to
-     * date before the server processes the request. The server compares provided
-     * checksum with the current checksum of the resource. If the user-provided
-     * value is out of date, this request returns an `ABORTED` error.
+     * Optional. Checksum used to ensure that the user-provided value is up to date before
+     * the server processes the request. The server compares provided checksum
+     * with the current checksum of the resource. If the user-provided value is
+     * out of date, this request returns an `ABORTED` error.
      *
      * Generated from protobuf field <code>string etag = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -187,10 +186,10 @@ class DeleteVmwareEngineNetworkRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Checksum used to ensure that the user-provided value is up to
-     * date before the server processes the request. The server compares provided
-     * checksum with the current checksum of the resource. If the user-provided
-     * value is out of date, this request returns an `ABORTED` error.
+     * Optional. Checksum used to ensure that the user-provided value is up to date before
+     * the server processes the request. The server compares provided checksum
+     * with the current checksum of the resource. If the user-provided value is
+     * out of date, this request returns an `ABORTED` error.
      *
      * Generated from protobuf field <code>string etag = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

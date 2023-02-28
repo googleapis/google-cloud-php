@@ -73,4 +73,6 @@ class VirtualMachine extends \Google\Protobuf\Internal\Message
 
 }
 
+// Adding a class alias for backwards compatibility with the previous class name.
+class_alias(VirtualMachine::class, \Google\Cloud\NetworkConnectivity\V1\PolicyBasedRoute_VirtualMachine::class);
 

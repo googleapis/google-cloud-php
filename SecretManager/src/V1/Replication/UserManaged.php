@@ -9,17 +9,15 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A replication policy that replicates the
- * [Secret][google.cloud.secretmanager.v1.Secret] payload into the locations
- * specified in [Secret.replication.user_managed.replicas][]
+ * A replication policy that replicates the [Secret][google.cloud.secretmanager.v1.Secret] payload into the
+ * locations specified in [Secret.replication.user_managed.replicas][]
  *
  * Generated from protobuf message <code>google.cloud.secretmanager.v1.Replication.UserManaged</code>
  */
 class UserManaged extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The list of Replicas for this
-     * [Secret][google.cloud.secretmanager.v1.Secret].
+     * Required. The list of Replicas for this [Secret][google.cloud.secretmanager.v1.Secret].
      * Cannot be empty.
      *
      * Generated from protobuf field <code>repeated .google.cloud.secretmanager.v1.Replication.UserManaged.Replica replicas = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -33,8 +31,7 @@ class UserManaged extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<\Google\Cloud\SecretManager\V1\Replication\UserManaged\Replica>|\Google\Protobuf\Internal\RepeatedField $replicas
-     *           Required. The list of Replicas for this
-     *           [Secret][google.cloud.secretmanager.v1.Secret].
+     *           Required. The list of Replicas for this [Secret][google.cloud.secretmanager.v1.Secret].
      *           Cannot be empty.
      * }
      */
@@ -44,8 +41,7 @@ class UserManaged extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The list of Replicas for this
-     * [Secret][google.cloud.secretmanager.v1.Secret].
+     * Required. The list of Replicas for this [Secret][google.cloud.secretmanager.v1.Secret].
      * Cannot be empty.
      *
      * Generated from protobuf field <code>repeated .google.cloud.secretmanager.v1.Replication.UserManaged.Replica replicas = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -57,8 +53,7 @@ class UserManaged extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The list of Replicas for this
-     * [Secret][google.cloud.secretmanager.v1.Secret].
+     * Required. The list of Replicas for this [Secret][google.cloud.secretmanager.v1.Secret].
      * Cannot be empty.
      *
      * Generated from protobuf field <code>repeated .google.cloud.secretmanager.v1.Replication.UserManaged.Replica replicas = 1 [(.google.api.field_behavior) = REQUIRED];</code>

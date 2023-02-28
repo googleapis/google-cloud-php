@@ -33,7 +33,6 @@ use Google\Cloud\Datastore\Query\Query;
 use Google\Cloud\Datastore\Query\QueryInterface;
 use Google\Cloud\Datastore\ReadOnlyTransaction;
 use Google\Cloud\Datastore\Transaction;
-use Google\Protobuf\Timestamp;
 use Prophecy\Argument;
 use Yoast\PHPUnitPolyfills\Polyfills\AssertIsType;
 
@@ -374,12 +373,6 @@ class DatastoreClientTest extends SnippetTestCase
         ]);
         $res = $snippet->invoke('transaction');
         $this->assertInstanceOf(ReadOnlyTransaction::class, $res->returnVal());
-
-        $snippet = $this->snippetFromMethod(DatastoreClient::class, 'readOnlyTransaction', 1);
-        $snippet->addLocal('datastore', $this->client);
-        $snippet->addLocal('time', new Timestamp(['seconds' => time()]));
-        $res = $snippet->invoke('transaction');
-        $this->assertInstanceOf(ReadOnlyTransaction::class, $res->returnVal());
     }
 
     public function testInsert()
@@ -580,12 +573,6 @@ class DatastoreClientTest extends SnippetTestCase
 
         $res = $snippet->invoke();
         $this->assertEquals('Bob', $res->output());
-
-        $snippet = $this->snippetFromMethod(DatastoreClient::class, 'lookup', 1);
-        $snippet->addLocal('datastore', $this->client);
-        $snippet->addLocal('time', new Timestamp(['seconds' => time()]));
-        $res = $snippet->invoke();
-        $this->assertEquals('Bob', $res->output());
     }
 
     public function testLookupBatch()
@@ -632,13 +619,6 @@ class DatastoreClientTest extends SnippetTestCase
             'projectId' => self::PROJECT
         ]);
 
-        $res = $snippet->invoke();
-        $this->assertEquals("Bob", explode("\n", $res->output())[0]);
-        $this->assertEquals("John", explode("\n", $res->output())[1]);
-
-        $snippet = $this->snippetFromMethod(DatastoreClient::class, 'lookupBatch', 1);
-        $snippet->addLocal('datastore', $this->client);
-        $snippet->addLocal('time', new Timestamp(['seconds' => time()]));
         $res = $snippet->invoke();
         $this->assertEquals("Bob", explode("\n", $res->output())[0]);
         $this->assertEquals("John", explode("\n", $res->output())[1]);
@@ -704,13 +684,6 @@ class DatastoreClientTest extends SnippetTestCase
 
         $res = $snippet->invoke('result');
         $this->assertEquals('Bob', $res->output());
-
-        $snippet = $this->snippetFromMethod(DatastoreClient::class, 'runQuery', 1);
-        $snippet->addLocal('datastore', $this->client);
-        $snippet->addLocal('query', $query->reveal());
-        $snippet->addLocal('time', new Timestamp(['seconds' => time()]));
-        $res = $snippet->invoke('result');
-        $this->assertEquals('Bob', $res->output());
     }
 
     // ******** HELPERS
@@ -756,10 +729,6 @@ class DatastoreClientTest extends SnippetTestCase
             if (!empty((array) $options)) {
                 return $options === $args['transactionOptions'][$type];
             } else {
-                if (is_array($args['transactionOptions'][$type]) and
-                isset($args['transactionOptions'][$type]['readTime'])) {
-                    return true;
-                }
                 return is_object($args['transactionOptions'][$type])
                     && empty((array) $args['transactionOptions'][$type]);
             }

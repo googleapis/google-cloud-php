@@ -45,7 +45,10 @@ items:
     uid: '\Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak::getType()'
     name: getType
     id: getType
-    summary: 'Detected break type.'
+    summary: |
+      Detected break type.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.TextAnnotation.DetectedBreak.BreakType type = 1;</code>
     parent: \Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak
     type: method
     langs:
@@ -58,7 +61,10 @@ items:
     uid: '\Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak::setType()'
     name: setType
     id: setType
-    summary: 'Detected break type.'
+    summary: |
+      Detected break type.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.TextAnnotation.DetectedBreak.BreakType type = 1;</code>
     parent: \Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak
     type: method
     langs:
@@ -76,7 +82,10 @@ items:
     uid: '\Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak::getIsPrefix()'
     name: getIsPrefix
     id: getIsPrefix
-    summary: 'True if break prepends the element.'
+    summary: |
+      True if break prepends the element.
+      
+      Generated from protobuf field <code>bool is_prefix = 2;</code>
     parent: \Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak
     type: method
     langs:
@@ -89,7 +98,10 @@ items:
     uid: '\Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak::setIsPrefix()'
     name: setIsPrefix
     id: setIsPrefix
-    summary: 'True if break prepends the element.'
+    summary: |
+      True if break prepends the element.
+      
+      Generated from protobuf field <code>bool is_prefix = 2;</code>
     parent: \Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak
     type: method
     langs:

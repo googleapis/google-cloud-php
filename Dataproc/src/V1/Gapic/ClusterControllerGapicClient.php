@@ -277,12 +277,11 @@ class ClusterControllerGapicClient
      *     Optional.
      *
      *     @type string $requestId
-     *           Optional. A unique ID used to identify the request. If the server receives
-     *           two
+     *           Optional. A unique ID used to identify the request. If the server receives two
      *           [CreateClusterRequest](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#google.cloud.dataproc.v1.CreateClusterRequest)s
      *           with the same id, then the second request will be ignored and the
-     *           first [google.longrunning.Operation][google.longrunning.Operation] created
-     *           and stored in the backend is returned.
+     *           first [google.longrunning.Operation][google.longrunning.Operation] created and stored in the backend
+     *           is returned.
      *
      *           It is recommended to always set this value to a
      *           [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier).
@@ -380,8 +379,8 @@ class ClusterControllerGapicClient
      *           receives two
      *           [DeleteClusterRequest](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#google.cloud.dataproc.v1.DeleteClusterRequest)s
      *           with the same id, then the second request will be ignored and the
-     *           first [google.longrunning.Operation][google.longrunning.Operation] created
-     *           and stored in the backend is returned.
+     *           first [google.longrunning.Operation][google.longrunning.Operation] created and stored in the
+     *           backend is returned.
      *
      *           It is recommended to always set this value to a
      *           [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier).
@@ -701,8 +700,8 @@ class ClusterControllerGapicClient
      *           receives two
      *           [StartClusterRequest](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#google.cloud.dataproc.v1.StartClusterRequest)s
      *           with the same id, then the second request will be ignored and the
-     *           first [google.longrunning.Operation][google.longrunning.Operation] created
-     *           and stored in the backend is returned.
+     *           first [google.longrunning.Operation][google.longrunning.Operation] created and stored in the
+     *           backend is returned.
      *
      *           Recommendation: Set this value to a
      *           [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier).
@@ -798,8 +797,8 @@ class ClusterControllerGapicClient
      *           receives two
      *           [StopClusterRequest](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#google.cloud.dataproc.v1.StopClusterRequest)s
      *           with the same id, then the second request will be ignored and the
-     *           first [google.longrunning.Operation][google.longrunning.Operation] created
-     *           and stored in the backend is returned.
+     *           first [google.longrunning.Operation][google.longrunning.Operation] created and stored in the
+     *           backend is returned.
      *
      *           Recommendation: Set this value to a
      *           [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier).
@@ -843,8 +842,7 @@ class ClusterControllerGapicClient
      * Updates a cluster in a project. The returned
      * [Operation.metadata][google.longrunning.Operation.metadata] will be
      * [ClusterOperationMetadata](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#clusteroperationmetadata).
-     * The cluster must be in a
-     * [`RUNNING`][google.cloud.dataproc.v1.ClusterStatus.State] state or an error
+     * The cluster must be in a [`RUNNING`][google.cloud.dataproc.v1.ClusterStatus.State] state or an error
      * is returned.
      *
      * Sample code:
@@ -961,8 +959,8 @@ class ClusterControllerGapicClient
      *           receives two
      *           [UpdateClusterRequest](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#google.cloud.dataproc.v1.UpdateClusterRequest)s
      *           with the same id, then the second request will be ignored and the
-     *           first [google.longrunning.Operation][google.longrunning.Operation] created
-     *           and stored in the backend is returned.
+     *           first [google.longrunning.Operation][google.longrunning.Operation] created and stored in the
+     *           backend is returned.
      *
      *           It is recommended to always set this value to a
      *           [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier).

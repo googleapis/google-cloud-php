@@ -36,8 +36,8 @@ class Lake extends \Google\Protobuf\Internal\Message
      */
     private $display_name = '';
     /**
-     * Output only. System generated globally unique ID for the lake. This ID will
-     * be different if the lake is deleted and re-created with the same name.
+     * Output only. System generated globally unique ID for the lake. This ID will be
+     * different if the lake is deleted and re-created with the same name.
      *
      * Generated from protobuf field <code>string uid = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -73,9 +73,8 @@ class Lake extends \Google\Protobuf\Internal\Message
      */
     private $state = 0;
     /**
-     * Output only. Service account associated with this lake. This service
-     * account must be authorized to access or operate on resources managed by the
-     * lake.
+     * Output only. Service account associated with this lake. This service account must be
+     * authorized to access or operate on resources managed by the lake.
      *
      * Generated from protobuf field <code>string service_account = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -112,8 +111,8 @@ class Lake extends \Google\Protobuf\Internal\Message
      *     @type string $display_name
      *           Optional. User friendly display name.
      *     @type string $uid
-     *           Output only. System generated globally unique ID for the lake. This ID will
-     *           be different if the lake is deleted and re-created with the same name.
+     *           Output only. System generated globally unique ID for the lake. This ID will be
+     *           different if the lake is deleted and re-created with the same name.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. The time when the lake was created.
      *     @type \Google\Protobuf\Timestamp $update_time
@@ -125,9 +124,8 @@ class Lake extends \Google\Protobuf\Internal\Message
      *     @type int $state
      *           Output only. Current state of the lake.
      *     @type string $service_account
-     *           Output only. Service account associated with this lake. This service
-     *           account must be authorized to access or operate on resources managed by the
-     *           lake.
+     *           Output only. Service account associated with this lake. This service account must be
+     *           authorized to access or operate on resources managed by the lake.
      *     @type \Google\Cloud\Dataplex\V1\Lake\Metastore $metastore
      *           Optional. Settings to manage lake and Dataproc Metastore service instance
      *           association.
@@ -197,8 +195,8 @@ class Lake extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. System generated globally unique ID for the lake. This ID will
-     * be different if the lake is deleted and re-created with the same name.
+     * Output only. System generated globally unique ID for the lake. This ID will be
+     * different if the lake is deleted and re-created with the same name.
      *
      * Generated from protobuf field <code>string uid = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -209,8 +207,8 @@ class Lake extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. System generated globally unique ID for the lake. This ID will
-     * be different if the lake is deleted and re-created with the same name.
+     * Output only. System generated globally unique ID for the lake. This ID will be
+     * different if the lake is deleted and re-created with the same name.
      *
      * Generated from protobuf field <code>string uid = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -375,9 +373,8 @@ class Lake extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Service account associated with this lake. This service
-     * account must be authorized to access or operate on resources managed by the
-     * lake.
+     * Output only. Service account associated with this lake. This service account must be
+     * authorized to access or operate on resources managed by the lake.
      *
      * Generated from protobuf field <code>string service_account = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -388,9 +385,8 @@ class Lake extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Service account associated with this lake. This service
-     * account must be authorized to access or operate on resources managed by the
-     * lake.
+     * Output only. Service account associated with this lake. This service account must be
+     * authorized to access or operate on resources managed by the lake.
      *
      * Generated from protobuf field <code>string service_account = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var

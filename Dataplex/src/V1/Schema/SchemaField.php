@@ -16,16 +16,15 @@ use Google\Protobuf\Internal\GPBUtil;
 class SchemaField extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The name of the field. Must contain only letters, numbers and
-     * underscores, with a maximum length of 767 characters,
-     * and must begin with a letter or underscore.
+     * Required. The name of the field. The maximum length is 767 characters. The name
+     * must begins with a letter and not contains `:` and `.`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $name = '';
     /**
-     * Optional. User friendly field description. Must be less than or equal to
-     * 1024 characters.
+     * Optional. User friendly field description. Must be less than or equal to 1024
+     * characters.
      *
      * Generated from protobuf field <code>string description = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -56,17 +55,16 @@ class SchemaField extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The name of the field. Must contain only letters, numbers and
-     *           underscores, with a maximum length of 767 characters,
-     *           and must begin with a letter or underscore.
+     *           Required. The name of the field. The maximum length is 767 characters. The name
+     *           must begins with a letter and not contains `:` and `.`.
      *     @type string $description
-     *           Optional. User friendly field description. Must be less than or equal to
-     *           1024 characters.
+     *           Optional. User friendly field description. Must be less than or equal to 1024
+     *           characters.
      *     @type int $type
      *           Required. The type of field.
      *     @type int $mode
      *           Required. Additional field semantics.
-     *     @type array<\Google\Cloud\Dataplex\V1\Schema\SchemaField>|\Google\Protobuf\Internal\RepeatedField $fields
+     *     @type \Google\Cloud\Dataplex\V1\Schema\SchemaField[]|\Google\Protobuf\Internal\RepeatedField $fields
      *           Optional. Any nested field for complex types.
      * }
      */
@@ -76,9 +74,8 @@ class SchemaField extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the field. Must contain only letters, numbers and
-     * underscores, with a maximum length of 767 characters,
-     * and must begin with a letter or underscore.
+     * Required. The name of the field. The maximum length is 767 characters. The name
+     * must begins with a letter and not contains `:` and `.`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -89,9 +86,8 @@ class SchemaField extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the field. Must contain only letters, numbers and
-     * underscores, with a maximum length of 767 characters,
-     * and must begin with a letter or underscore.
+     * Required. The name of the field. The maximum length is 767 characters. The name
+     * must begins with a letter and not contains `:` and `.`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -106,8 +102,8 @@ class SchemaField extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. User friendly field description. Must be less than or equal to
-     * 1024 characters.
+     * Optional. User friendly field description. Must be less than or equal to 1024
+     * characters.
      *
      * Generated from protobuf field <code>string description = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -118,8 +114,8 @@ class SchemaField extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. User friendly field description. Must be less than or equal to
-     * 1024 characters.
+     * Optional. User friendly field description. Must be less than or equal to 1024
+     * characters.
      *
      * Generated from protobuf field <code>string description = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -200,7 +196,7 @@ class SchemaField extends \Google\Protobuf\Internal\Message
      * Optional. Any nested field for complex types.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.Schema.SchemaField fields = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Dataplex\V1\Schema\SchemaField>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dataplex\V1\Schema\SchemaField[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFields($var)

@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for
- * [VmwareEngine.GetCluster][google.cloud.vmwareengine.v1.VmwareEngine.GetCluster]
+ * Request message for [VmwareEngine.GetCluster][google.cloud.vmwareengine.v1.VmwareEngine.GetCluster]
  *
  * Generated from protobuf message <code>google.cloud.vmwareengine.v1.GetClusterRequest</code>
  */
@@ -21,7 +20,7 @@ class GetClusterRequest extends \Google\Protobuf\Internal\Message
      * Resource names are schemeless URIs that follow the conventions in
      * https://cloud.google.com/apis/design/resource_names.
      * For example:
-     * `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/clusters/my-cluster`
+     * `projects/my-project/locations/us-west1-a/privateClouds/my-cloud/clusters/my-cluster`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -38,7 +37,7 @@ class GetClusterRequest extends \Google\Protobuf\Internal\Message
      *           Resource names are schemeless URIs that follow the conventions in
      *           https://cloud.google.com/apis/design/resource_names.
      *           For example:
-     *           `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/clusters/my-cluster`
+     *           `projects/my-project/locations/us-west1-a/privateClouds/my-cloud/clusters/my-cluster`
      * }
      */
     public function __construct($data = NULL) {
@@ -51,7 +50,7 @@ class GetClusterRequest extends \Google\Protobuf\Internal\Message
      * Resource names are schemeless URIs that follow the conventions in
      * https://cloud.google.com/apis/design/resource_names.
      * For example:
-     * `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/clusters/my-cluster`
+     * `projects/my-project/locations/us-west1-a/privateClouds/my-cloud/clusters/my-cluster`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -66,7 +65,7 @@ class GetClusterRequest extends \Google\Protobuf\Internal\Message
      * Resource names are schemeless URIs that follow the conventions in
      * https://cloud.google.com/apis/design/resource_names.
      * For example:
-     * `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/clusters/my-cluster`
+     * `projects/my-project/locations/us-west1-a/privateClouds/my-cloud/clusters/my-cluster`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

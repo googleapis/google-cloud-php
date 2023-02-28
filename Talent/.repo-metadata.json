@@ -1,7 +1,6 @@
 {
     "distribution_name": "google/cloud-talent",
-    "release_level": "stable",
+    "release_level": "ga",
     "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-talent/latest",
-    "library_type": "GAPIC_AUTO",
-    "api_shortname": "jobs"
+    "library_type": "GAPIC_AUTO"
 }

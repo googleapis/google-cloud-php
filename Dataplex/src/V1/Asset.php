@@ -30,9 +30,8 @@ class Asset extends \Google\Protobuf\Internal\Message
      */
     private $display_name = '';
     /**
-     * Output only. System generated globally unique ID for the asset. This ID
-     * will be different if the asset is deleted and re-created with the same
-     * name.
+     * Output only. System generated globally unique ID for the asset. This ID will be
+     * different if the asset is deleted and re-created with the same name.
      *
      * Generated from protobuf field <code>string uid = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -80,23 +79,22 @@ class Asset extends \Google\Protobuf\Internal\Message
      */
     private $resource_status = null;
     /**
-     * Output only. Status of the security policy applied to resource referenced
-     * by this asset.
+     * Output only. Status of the security policy applied to resource referenced by this asset.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.Asset.SecurityStatus security_status = 103 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $security_status = null;
     /**
-     * Optional. Specification of the discovery feature applied to data referenced
-     * by this asset. When this spec is left unset, the asset will use the spec
-     * set on the parent zone.
+     * Optional. Specification of the discovery feature applied to data referenced by this
+     * asset.
+     * When this spec is left unset, the asset will use the spec set on the parent
+     * zone.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.Asset.DiscoverySpec discovery_spec = 106 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $discovery_spec = null;
     /**
-     * Output only. Status of the discovery feature applied to data referenced by
-     * this asset.
+     * Output only. Status of the discovery feature applied to data referenced by this asset.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.Asset.DiscoveryStatus discovery_status = 107 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -114,9 +112,8 @@ class Asset extends \Google\Protobuf\Internal\Message
      *     @type string $display_name
      *           Optional. User friendly display name.
      *     @type string $uid
-     *           Output only. System generated globally unique ID for the asset. This ID
-     *           will be different if the asset is deleted and re-created with the same
-     *           name.
+     *           Output only. System generated globally unique ID for the asset. This ID will be
+     *           different if the asset is deleted and re-created with the same name.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. The time when the asset was created.
      *     @type \Google\Protobuf\Timestamp $update_time
@@ -132,15 +129,14 @@ class Asset extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dataplex\V1\Asset\ResourceStatus $resource_status
      *           Output only. Status of the resource referenced by this asset.
      *     @type \Google\Cloud\Dataplex\V1\Asset\SecurityStatus $security_status
-     *           Output only. Status of the security policy applied to resource referenced
-     *           by this asset.
+     *           Output only. Status of the security policy applied to resource referenced by this asset.
      *     @type \Google\Cloud\Dataplex\V1\Asset\DiscoverySpec $discovery_spec
-     *           Optional. Specification of the discovery feature applied to data referenced
-     *           by this asset. When this spec is left unset, the asset will use the spec
-     *           set on the parent zone.
+     *           Optional. Specification of the discovery feature applied to data referenced by this
+     *           asset.
+     *           When this spec is left unset, the asset will use the spec set on the parent
+     *           zone.
      *     @type \Google\Cloud\Dataplex\V1\Asset\DiscoveryStatus $discovery_status
-     *           Output only. Status of the discovery feature applied to data referenced by
-     *           this asset.
+     *           Output only. Status of the discovery feature applied to data referenced by this asset.
      * }
      */
     public function __construct($data = NULL) {
@@ -203,9 +199,8 @@ class Asset extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. System generated globally unique ID for the asset. This ID
-     * will be different if the asset is deleted and re-created with the same
-     * name.
+     * Output only. System generated globally unique ID for the asset. This ID will be
+     * different if the asset is deleted and re-created with the same name.
      *
      * Generated from protobuf field <code>string uid = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -216,9 +211,8 @@ class Asset extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. System generated globally unique ID for the asset. This ID
-     * will be different if the asset is deleted and re-created with the same
-     * name.
+     * Output only. System generated globally unique ID for the asset. This ID will be
+     * different if the asset is deleted and re-created with the same name.
      *
      * Generated from protobuf field <code>string uid = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -455,8 +449,7 @@ class Asset extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Status of the security policy applied to resource referenced
-     * by this asset.
+     * Output only. Status of the security policy applied to resource referenced by this asset.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.Asset.SecurityStatus security_status = 103 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\Dataplex\V1\Asset\SecurityStatus|null
@@ -477,8 +470,7 @@ class Asset extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Status of the security policy applied to resource referenced
-     * by this asset.
+     * Output only. Status of the security policy applied to resource referenced by this asset.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.Asset.SecurityStatus security_status = 103 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\Dataplex\V1\Asset\SecurityStatus $var
@@ -493,9 +485,10 @@ class Asset extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Specification of the discovery feature applied to data referenced
-     * by this asset. When this spec is left unset, the asset will use the spec
-     * set on the parent zone.
+     * Optional. Specification of the discovery feature applied to data referenced by this
+     * asset.
+     * When this spec is left unset, the asset will use the spec set on the parent
+     * zone.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.Asset.DiscoverySpec discovery_spec = 106 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Dataplex\V1\Asset\DiscoverySpec|null
@@ -516,9 +509,10 @@ class Asset extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Specification of the discovery feature applied to data referenced
-     * by this asset. When this spec is left unset, the asset will use the spec
-     * set on the parent zone.
+     * Optional. Specification of the discovery feature applied to data referenced by this
+     * asset.
+     * When this spec is left unset, the asset will use the spec set on the parent
+     * zone.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.Asset.DiscoverySpec discovery_spec = 106 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Dataplex\V1\Asset\DiscoverySpec $var
@@ -533,8 +527,7 @@ class Asset extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Status of the discovery feature applied to data referenced by
-     * this asset.
+     * Output only. Status of the discovery feature applied to data referenced by this asset.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.Asset.DiscoveryStatus discovery_status = 107 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\Dataplex\V1\Asset\DiscoveryStatus|null
@@ -555,8 +548,7 @@ class Asset extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Status of the discovery feature applied to data referenced by
-     * this asset.
+     * Output only. Status of the discovery feature applied to data referenced by this asset.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.Asset.DiscoveryStatus discovery_status = 107 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\Dataplex\V1\Asset\DiscoveryStatus $var

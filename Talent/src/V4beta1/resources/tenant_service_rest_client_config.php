@@ -76,5 +76,4 @@ return [
             ],
         ],
     ],
-    'numericEnums' => true,
 ];

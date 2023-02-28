@@ -489,10 +489,8 @@ class ConversationModelsGapicClient
      * operation](https://cloud.google.com/dialogflow/es/docs/how/long-running-operations).
      * The returned `Operation` type has the following method-specific fields:
      *
-     * - `metadata`:
-     * [CreateConversationModelOperationMetadata][google.cloud.dialogflow.v2.CreateConversationModelOperationMetadata]
-     * - `response`:
-     * [ConversationModel][google.cloud.dialogflow.v2.ConversationModel]
+     * - `metadata`: [CreateConversationModelOperationMetadata][google.cloud.dialogflow.v2.CreateConversationModelOperationMetadata]
+     * - `response`: [ConversationModel][google.cloud.dialogflow.v2.ConversationModel]
      *
      * Sample code:
      * ```
@@ -638,8 +636,7 @@ class ConversationModelsGapicClient
      * operation](https://cloud.google.com/dialogflow/es/docs/how/long-running-operations).
      * The returned `Operation` type has the following method-specific fields:
      *
-     * - `metadata`:
-     * [DeleteConversationModelOperationMetadata][google.cloud.dialogflow.v2.DeleteConversationModelOperationMetadata]
+     * - `metadata`: [DeleteConversationModelOperationMetadata][google.cloud.dialogflow.v2.DeleteConversationModelOperationMetadata]
      * - `response`: An [Empty
      * message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#empty)
      *
@@ -713,8 +710,7 @@ class ConversationModelsGapicClient
      * operation](https://cloud.google.com/dialogflow/es/docs/how/long-running-operations).
      * The returned `Operation` type has the following method-specific fields:
      *
-     * - `metadata`:
-     * [DeployConversationModelOperationMetadata][google.cloud.dialogflow.v2.DeployConversationModelOperationMetadata]
+     * - `metadata`: [DeployConversationModelOperationMetadata][google.cloud.dialogflow.v2.DeployConversationModelOperationMetadata]
      * - `response`: An [Empty
      * message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#empty)
      *
@@ -1007,8 +1003,7 @@ class ConversationModelsGapicClient
      * operation](https://cloud.google.com/dialogflow/es/docs/how/long-running-operations).
      * The returned `Operation` type has the following method-specific fields:
      *
-     * - `metadata`:
-     * [UndeployConversationModelOperationMetadata][google.cloud.dialogflow.v2.UndeployConversationModelOperationMetadata]
+     * - `metadata`: [UndeployConversationModelOperationMetadata][google.cloud.dialogflow.v2.UndeployConversationModelOperationMetadata]
      * - `response`: An [Empty
      * message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#empty)
      *

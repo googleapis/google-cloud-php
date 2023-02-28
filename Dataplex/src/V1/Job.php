@@ -60,8 +60,7 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     private $service = 0;
     /**
-     * Output only. The full resource name for the job run under a particular
-     * service.
+     * Output only. The full resource name for the job run under a particular service.
      *
      * Generated from protobuf field <code>string service_job = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -96,8 +95,7 @@ class Job extends \Google\Protobuf\Internal\Message
      *     @type int $service
      *           Output only. The underlying service running a job.
      *     @type string $service_job
-     *           Output only. The full resource name for the job run under a particular
-     *           service.
+     *           Output only. The full resource name for the job run under a particular service.
      *     @type string $message
      *           Output only. Additional information about the current state.
      * }
@@ -314,8 +312,7 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The full resource name for the job run under a particular
-     * service.
+     * Output only. The full resource name for the job run under a particular service.
      *
      * Generated from protobuf field <code>string service_job = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -326,8 +323,7 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The full resource name for the job run under a particular
-     * service.
+     * Output only. The full resource name for the job run under a particular service.
      *
      * Generated from protobuf field <code>string service_job = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var

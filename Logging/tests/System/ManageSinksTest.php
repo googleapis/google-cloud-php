@@ -71,6 +71,7 @@ class ManageSinksTest extends LoggingTestCase
 
         $this->assertTrue($client->sink($name)->exists());
         $this->assertEquals($destination, $sink->info()['destination']);
+        $this->assertEquals($options['outputVersionFormat'], $sink->info()['outputVersionFormat']);
         $this->assertEquals($options['filter'], $sink->info()['filter']);
     }
 
@@ -133,6 +134,7 @@ class ManageSinksTest extends LoggingTestCase
         $destination = sprintf('pubsub.googleapis.com/%s', self::$topic->info()['name']);
         $sink = $client->createSink($name, $destination, $options);
         self::$deletionQueue->add($sink);
-        $this->assertEquals($options['filter'], $sink->reload()['filter']);
+
+        $this->assertEquals($options['outputVersionFormat'], $sink->reload()['outputVersionFormat']);
     }
 }

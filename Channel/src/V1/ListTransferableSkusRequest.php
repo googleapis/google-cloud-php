@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for
- * [CloudChannelService.ListTransferableSkus][google.cloud.channel.v1.CloudChannelService.ListTransferableSkus]
+ * Request message for [CloudChannelService.ListTransferableSkus][google.cloud.channel.v1.CloudChannelService.ListTransferableSkus]
  *
  * Generated from protobuf message <code>google.cloud.channel.v1.ListTransferableSkusRequest</code>
  */
@@ -35,21 +34,20 @@ class ListTransferableSkusRequest extends \Google\Protobuf\Internal\Message
     /**
      * A token for a page of results other than the first page.
      * Obtained using
-     * [ListTransferableSkusResponse.next_page_token][google.cloud.channel.v1.ListTransferableSkusResponse.next_page_token]
-     * of the previous
-     * [CloudChannelService.ListTransferableSkus][google.cloud.channel.v1.CloudChannelService.ListTransferableSkus]
-     * call. Optional.
+     * [ListTransferableSkusResponse.next_page_token][google.cloud.channel.v1.ListTransferableSkusResponse.next_page_token] of the previous
+     * [CloudChannelService.ListTransferableSkus][google.cloud.channel.v1.CloudChannelService.ListTransferableSkus] call.
+     * Optional.
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
     private $page_token = '';
     /**
-     * Optional. The super admin of the resold customer generates this token to
+     * The super admin of the resold customer generates this token to
      * authorize a reseller to access their Cloud Identity and purchase
      * entitlements on their behalf. You can omit this token after authorization.
      * See https://support.google.com/a/answer/7643790 for more details.
      *
-     * Generated from protobuf field <code>string auth_token = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string auth_token = 5;</code>
      */
     private $auth_token = '';
     /**
@@ -87,12 +85,11 @@ class ListTransferableSkusRequest extends \Google\Protobuf\Internal\Message
      *     @type string $page_token
      *           A token for a page of results other than the first page.
      *           Obtained using
-     *           [ListTransferableSkusResponse.next_page_token][google.cloud.channel.v1.ListTransferableSkusResponse.next_page_token]
-     *           of the previous
-     *           [CloudChannelService.ListTransferableSkus][google.cloud.channel.v1.CloudChannelService.ListTransferableSkus]
-     *           call. Optional.
+     *           [ListTransferableSkusResponse.next_page_token][google.cloud.channel.v1.ListTransferableSkusResponse.next_page_token] of the previous
+     *           [CloudChannelService.ListTransferableSkus][google.cloud.channel.v1.CloudChannelService.ListTransferableSkus] call.
+     *           Optional.
      *     @type string $auth_token
-     *           Optional. The super admin of the resold customer generates this token to
+     *           The super admin of the resold customer generates this token to
      *           authorize a reseller to access their Cloud Identity and purchase
      *           entitlements on their behalf. You can omit this token after authorization.
      *           See https://support.google.com/a/answer/7643790 for more details.
@@ -239,10 +236,9 @@ class ListTransferableSkusRequest extends \Google\Protobuf\Internal\Message
     /**
      * A token for a page of results other than the first page.
      * Obtained using
-     * [ListTransferableSkusResponse.next_page_token][google.cloud.channel.v1.ListTransferableSkusResponse.next_page_token]
-     * of the previous
-     * [CloudChannelService.ListTransferableSkus][google.cloud.channel.v1.CloudChannelService.ListTransferableSkus]
-     * call. Optional.
+     * [ListTransferableSkusResponse.next_page_token][google.cloud.channel.v1.ListTransferableSkusResponse.next_page_token] of the previous
+     * [CloudChannelService.ListTransferableSkus][google.cloud.channel.v1.CloudChannelService.ListTransferableSkus] call.
+     * Optional.
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      * @return string
@@ -255,10 +251,9 @@ class ListTransferableSkusRequest extends \Google\Protobuf\Internal\Message
     /**
      * A token for a page of results other than the first page.
      * Obtained using
-     * [ListTransferableSkusResponse.next_page_token][google.cloud.channel.v1.ListTransferableSkusResponse.next_page_token]
-     * of the previous
-     * [CloudChannelService.ListTransferableSkus][google.cloud.channel.v1.CloudChannelService.ListTransferableSkus]
-     * call. Optional.
+     * [ListTransferableSkusResponse.next_page_token][google.cloud.channel.v1.ListTransferableSkusResponse.next_page_token] of the previous
+     * [CloudChannelService.ListTransferableSkus][google.cloud.channel.v1.CloudChannelService.ListTransferableSkus] call.
+     * Optional.
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      * @param string $var
@@ -273,12 +268,12 @@ class ListTransferableSkusRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The super admin of the resold customer generates this token to
+     * The super admin of the resold customer generates this token to
      * authorize a reseller to access their Cloud Identity and purchase
      * entitlements on their behalf. You can omit this token after authorization.
      * See https://support.google.com/a/answer/7643790 for more details.
      *
-     * Generated from protobuf field <code>string auth_token = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string auth_token = 5;</code>
      * @return string
      */
     public function getAuthToken()
@@ -287,12 +282,12 @@ class ListTransferableSkusRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The super admin of the resold customer generates this token to
+     * The super admin of the resold customer generates this token to
      * authorize a reseller to access their Cloud Identity and purchase
      * entitlements on their behalf. You can omit this token after authorization.
      * See https://support.google.com/a/answer/7643790 for more details.
      *
-     * Generated from protobuf field <code>string auth_token = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string auth_token = 5;</code>
      * @param string $var
      * @return $this
      */

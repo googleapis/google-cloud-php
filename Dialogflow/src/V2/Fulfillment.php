@@ -34,8 +34,7 @@ class Fulfillment extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * Optional. The human-readable name of the fulfillment, unique within the
-     * agent.
+     * Optional. The human-readable name of the fulfillment, unique within the agent.
      * This field is not used for Fulfillment in an Environment.
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -48,8 +47,7 @@ class Fulfillment extends \Google\Protobuf\Internal\Message
      */
     private $enabled = false;
     /**
-     * Optional. The field defines whether the fulfillment is enabled for certain
-     * features.
+     * Optional. The field defines whether the fulfillment is enabled for certain features.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Fulfillment.Feature features = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -69,16 +67,14 @@ class Fulfillment extends \Google\Protobuf\Internal\Message
      *           - `projects/<Project ID>/locations/<Location ID>/agent/fulfillment`
      *           This field is not used for Fulfillment in an Environment.
      *     @type string $display_name
-     *           Optional. The human-readable name of the fulfillment, unique within the
-     *           agent.
+     *           Optional. The human-readable name of the fulfillment, unique within the agent.
      *           This field is not used for Fulfillment in an Environment.
      *     @type \Google\Cloud\Dialogflow\V2\Fulfillment\GenericWebService $generic_web_service
      *           Configuration for a generic web service.
      *     @type bool $enabled
      *           Optional. Whether fulfillment is enabled.
      *     @type array<\Google\Cloud\Dialogflow\V2\Fulfillment\Feature>|\Google\Protobuf\Internal\RepeatedField $features
-     *           Optional. The field defines whether the fulfillment is enabled for certain
-     *           features.
+     *           Optional. The field defines whether the fulfillment is enabled for certain features.
      * }
      */
     public function __construct($data = NULL) {
@@ -121,8 +117,7 @@ class Fulfillment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The human-readable name of the fulfillment, unique within the
-     * agent.
+     * Optional. The human-readable name of the fulfillment, unique within the agent.
      * This field is not used for Fulfillment in an Environment.
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -134,8 +129,7 @@ class Fulfillment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The human-readable name of the fulfillment, unique within the
-     * agent.
+     * Optional. The human-readable name of the fulfillment, unique within the agent.
      * This field is not used for Fulfillment in an Environment.
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -208,8 +202,7 @@ class Fulfillment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The field defines whether the fulfillment is enabled for certain
-     * features.
+     * Optional. The field defines whether the fulfillment is enabled for certain features.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Fulfillment.Feature features = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -220,8 +213,7 @@ class Fulfillment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The field defines whether the fulfillment is enabled for certain
-     * features.
+     * Optional. The field defines whether the fulfillment is enabled for certain features.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Fulfillment.Feature features = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<\Google\Cloud\Dialogflow\V2\Fulfillment\Feature>|\Google\Protobuf\Internal\RepeatedField $var

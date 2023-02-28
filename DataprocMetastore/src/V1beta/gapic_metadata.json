@@ -10,11 +10,6 @@
                 "grpc": {
                     "libraryClient": "DataprocMetastoreGapicClient",
                     "rpcs": {
-                        "AlterMetadataResourceLocation": {
-                            "methods": [
-                                "alterMetadataResourceLocation"
-                            ]
-                        },
                         "CreateBackup": {
                             "methods": [
                                 "createBackup"
@@ -73,21 +68,6 @@
                         "ListServices": {
                             "methods": [
                                 "listServices"
-                            ]
-                        },
-                        "MoveTableToDatabase": {
-                            "methods": [
-                                "moveTableToDatabase"
-                            ]
-                        },
-                        "QueryMetadata": {
-                            "methods": [
-                                "queryMetadata"
-                            ]
-                        },
-                        "RemoveIamPolicy": {
-                            "methods": [
-                                "removeIamPolicy"
                             ]
                         },
                         "RestoreService": {

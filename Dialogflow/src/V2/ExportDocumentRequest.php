@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for
- * [Documents.ExportDocument][google.cloud.dialogflow.v2.Documents.ExportDocument].
+ * Request message for [Documents.ExportDocument][google.cloud.dialogflow.v2.Documents.ExportDocument].
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.ExportDocumentRequest</code>
  */

@@ -55,11 +55,6 @@
                                 "getProcessor"
                             ]
                         },
-                        "GetProcessorType": {
-                            "methods": [
-                                "getProcessorType"
-                            ]
-                        },
                         "GetProcessorVersion": {
                             "methods": [
                                 "getProcessorVersion"

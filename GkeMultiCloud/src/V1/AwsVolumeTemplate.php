@@ -31,15 +31,14 @@ class AwsVolumeTemplate extends \Google\Protobuf\Internal\Message
      */
     private $volume_type = 0;
     /**
-     * Optional. The number of I/O operations per second (IOPS) to provision for
-     * GP3 volume.
+     * Optional. The number of I/O operations per second (IOPS) to provision for GP3 volume.
      *
      * Generated from protobuf field <code>int32 iops = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $iops = 0;
     /**
-     * Optional. The Amazon Resource Name (ARN) of the Customer Managed Key (CMK)
-     * used to encrypt AWS EBS volumes.
+     * Optional. The Amazon Resource Name (ARN) of the Customer Managed Key (CMK) used to
+     * encrypt AWS EBS volumes.
      * If not specified, the default Amazon managed key associated to
      * the AWS region where this cluster runs will be used.
      *
@@ -61,11 +60,10 @@ class AwsVolumeTemplate extends \Google\Protobuf\Internal\Message
      *           Optional. Type of the EBS volume.
      *           When unspecified, it defaults to GP2 volume.
      *     @type int $iops
-     *           Optional. The number of I/O operations per second (IOPS) to provision for
-     *           GP3 volume.
+     *           Optional. The number of I/O operations per second (IOPS) to provision for GP3 volume.
      *     @type string $kms_key_arn
-     *           Optional. The Amazon Resource Name (ARN) of the Customer Managed Key (CMK)
-     *           used to encrypt AWS EBS volumes.
+     *           Optional. The Amazon Resource Name (ARN) of the Customer Managed Key (CMK) used to
+     *           encrypt AWS EBS volumes.
      *           If not specified, the default Amazon managed key associated to
      *           the AWS region where this cluster runs will be used.
      * }
@@ -134,8 +132,7 @@ class AwsVolumeTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The number of I/O operations per second (IOPS) to provision for
-     * GP3 volume.
+     * Optional. The number of I/O operations per second (IOPS) to provision for GP3 volume.
      *
      * Generated from protobuf field <code>int32 iops = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -146,8 +143,7 @@ class AwsVolumeTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The number of I/O operations per second (IOPS) to provision for
-     * GP3 volume.
+     * Optional. The number of I/O operations per second (IOPS) to provision for GP3 volume.
      *
      * Generated from protobuf field <code>int32 iops = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
@@ -162,8 +158,8 @@ class AwsVolumeTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The Amazon Resource Name (ARN) of the Customer Managed Key (CMK)
-     * used to encrypt AWS EBS volumes.
+     * Optional. The Amazon Resource Name (ARN) of the Customer Managed Key (CMK) used to
+     * encrypt AWS EBS volumes.
      * If not specified, the default Amazon managed key associated to
      * the AWS region where this cluster runs will be used.
      *
@@ -176,8 +172,8 @@ class AwsVolumeTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The Amazon Resource Name (ARN) of the Customer Managed Key (CMK)
-     * used to encrypt AWS EBS volumes.
+     * Optional. The Amazon Resource Name (ARN) of the Customer Managed Key (CMK) used to
+     * encrypt AWS EBS volumes.
      * If not specified, the default Amazon managed key associated to
      * the AWS region where this cluster runs will be used.
      *

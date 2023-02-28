@@ -1,7 +1,6 @@
 {
     "distribution_name": "google/cloud-network-connectivity",
-    "release_level": "stable",
+    "release_level": "ga",
     "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-network-connectivity/latest",
-    "library_type": "GAPIC_AUTO",
-    "api_shortname": "networkconnectivity"
+    "library_type": "GAPIC_AUTO"
 }

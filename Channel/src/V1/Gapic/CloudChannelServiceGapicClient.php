@@ -27,11 +27,13 @@ namespace Google\Cloud\Channel\V1\Gapic;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
+
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
@@ -42,34 +44,22 @@ use Google\Cloud\Channel\V1\ChangeOfferRequest;
 use Google\Cloud\Channel\V1\ChangeParametersRequest;
 use Google\Cloud\Channel\V1\ChangeRenewalSettingsRequest;
 use Google\Cloud\Channel\V1\ChannelPartnerLink;
-use Google\Cloud\Channel\V1\ChannelPartnerRepricingConfig;
 use Google\Cloud\Channel\V1\CheckCloudIdentityAccountsExistRequest;
 use Google\Cloud\Channel\V1\CheckCloudIdentityAccountsExistResponse;
 use Google\Cloud\Channel\V1\CloudIdentityInfo;
 use Google\Cloud\Channel\V1\CreateChannelPartnerLinkRequest;
-use Google\Cloud\Channel\V1\CreateChannelPartnerRepricingConfigRequest;
-use Google\Cloud\Channel\V1\CreateCustomerRepricingConfigRequest;
 use Google\Cloud\Channel\V1\CreateCustomerRequest;
 use Google\Cloud\Channel\V1\CreateEntitlementRequest;
 use Google\Cloud\Channel\V1\Customer;
-use Google\Cloud\Channel\V1\CustomerRepricingConfig;
-use Google\Cloud\Channel\V1\DeleteChannelPartnerRepricingConfigRequest;
-use Google\Cloud\Channel\V1\DeleteCustomerRepricingConfigRequest;
 use Google\Cloud\Channel\V1\DeleteCustomerRequest;
 use Google\Cloud\Channel\V1\Entitlement;
 use Google\Cloud\Channel\V1\GetChannelPartnerLinkRequest;
-use Google\Cloud\Channel\V1\GetChannelPartnerRepricingConfigRequest;
-use Google\Cloud\Channel\V1\GetCustomerRepricingConfigRequest;
 use Google\Cloud\Channel\V1\GetCustomerRequest;
 use Google\Cloud\Channel\V1\GetEntitlementRequest;
 use Google\Cloud\Channel\V1\ImportCustomerRequest;
 use Google\Cloud\Channel\V1\ImportCustomerRequest\CustomerIdentityOneof;
 use Google\Cloud\Channel\V1\ListChannelPartnerLinksRequest;
 use Google\Cloud\Channel\V1\ListChannelPartnerLinksResponse;
-use Google\Cloud\Channel\V1\ListChannelPartnerRepricingConfigsRequest;
-use Google\Cloud\Channel\V1\ListChannelPartnerRepricingConfigsResponse;
-use Google\Cloud\Channel\V1\ListCustomerRepricingConfigsRequest;
-use Google\Cloud\Channel\V1\ListCustomerRepricingConfigsResponse;
 use Google\Cloud\Channel\V1\ListCustomersRequest;
 use Google\Cloud\Channel\V1\ListCustomersResponse;
 use Google\Cloud\Channel\V1\ListEntitlementsRequest;
@@ -91,6 +81,7 @@ use Google\Cloud\Channel\V1\ListSubscribersResponse;
 use Google\Cloud\Channel\V1\ListTransferableOffersRequest;
 use Google\Cloud\Channel\V1\ListTransferableOffersResponse;
 use Google\Cloud\Channel\V1\ListTransferableSkusRequest;
+
 use Google\Cloud\Channel\V1\ListTransferableSkusResponse;
 use Google\Cloud\Channel\V1\LookupOfferRequest;
 use Google\Cloud\Channel\V1\Offer;
@@ -107,8 +98,6 @@ use Google\Cloud\Channel\V1\TransferEntitlementsToGoogleRequest;
 use Google\Cloud\Channel\V1\UnregisterSubscriberRequest;
 use Google\Cloud\Channel\V1\UnregisterSubscriberResponse;
 use Google\Cloud\Channel\V1\UpdateChannelPartnerLinkRequest;
-use Google\Cloud\Channel\V1\UpdateChannelPartnerRepricingConfigRequest;
-use Google\Cloud\Channel\V1\UpdateCustomerRepricingConfigRequest;
 use Google\Cloud\Channel\V1\UpdateCustomerRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
@@ -125,16 +114,15 @@ use Google\Protobuf\GPBEmpty;
  * 3. Resellers and distributors can manage customer entitlements.
  *
  * CloudChannelService exposes the following resources:
- * - [Customer][google.cloud.channel.v1.Customer]s: An entity-usually an
- * enterprise-managed by a reseller or distributor.
+ * - [Customer][google.cloud.channel.v1.Customer]s: An entity—usually an enterprise—managed by a reseller or
+ * distributor.
  *
- * - [Entitlement][google.cloud.channel.v1.Entitlement]s: An entity that
- * provides a customer with the means to use a service. Entitlements are created
- * or updated as a result of a successful fulfillment.
+ * - [Entitlement][google.cloud.channel.v1.Entitlement]s: An entity that provides a customer with the means to use
+ * a service. Entitlements are created or updated as a result of a successful
+ * fulfillment.
  *
- * - [ChannelPartnerLink][google.cloud.channel.v1.ChannelPartnerLink]s: An
- * entity that identifies links between distributors and their indirect
- * resellers in a channel.
+ * - [ChannelPartnerLink][google.cloud.channel.v1.ChannelPartnerLink]s: An entity that identifies links between
+ * distributors and their indirect resellers in a channel.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
@@ -183,30 +171,36 @@ class CloudChannelServiceGapicClient
 {
     use GapicClientTrait;
 
-    /** The name of the service. */
+    /**
+     * The name of the service.
+     */
     const SERVICE_NAME = 'google.cloud.channel.v1.CloudChannelService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     */
     const SERVICE_ADDRESS = 'cloudchannel.googleapis.com';
 
-    /** The default port of the service. */
+    /**
+     * The default port of the service.
+     */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /** The name of the code generator, to be included in the agent header. */
+    /**
+     * The name of the code generator, to be included in the agent header.
+     */
     const CODEGEN_NAME = 'gapic';
 
-    /** The default scopes required by the service. */
+    /**
+     * The default scopes required by the service.
+     */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/apps.order',
     ];
 
     private static $channelPartnerLinkNameTemplate;
 
-    private static $channelPartnerRepricingConfigNameTemplate;
-
     private static $customerNameTemplate;
-
-    private static $customerRepricingConfigNameTemplate;
 
     private static $entitlementNameTemplate;
 
@@ -246,15 +240,6 @@ class CloudChannelServiceGapicClient
         return self::$channelPartnerLinkNameTemplate;
     }
 
-    private static function getChannelPartnerRepricingConfigNameTemplate()
-    {
-        if (self::$channelPartnerRepricingConfigNameTemplate == null) {
-            self::$channelPartnerRepricingConfigNameTemplate = new PathTemplate('accounts/{account}/channelPartnerLinks/{channel_partner}/channelPartnerRepricingConfigs/{channel_partner_repricing_config}');
-        }
-
-        return self::$channelPartnerRepricingConfigNameTemplate;
-    }
-
     private static function getCustomerNameTemplate()
     {
         if (self::$customerNameTemplate == null) {
@@ -262,15 +247,6 @@ class CloudChannelServiceGapicClient
         }
 
         return self::$customerNameTemplate;
-    }
-
-    private static function getCustomerRepricingConfigNameTemplate()
-    {
-        if (self::$customerRepricingConfigNameTemplate == null) {
-            self::$customerRepricingConfigNameTemplate = new PathTemplate('accounts/{account}/customers/{customer}/customerRepricingConfigs/{customer_repricing_config}');
-        }
-
-        return self::$customerRepricingConfigNameTemplate;
     }
 
     private static function getEntitlementNameTemplate()
@@ -305,9 +281,7 @@ class CloudChannelServiceGapicClient
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
                 'channelPartnerLink' => self::getChannelPartnerLinkNameTemplate(),
-                'channelPartnerRepricingConfig' => self::getChannelPartnerRepricingConfigNameTemplate(),
                 'customer' => self::getCustomerNameTemplate(),
-                'customerRepricingConfig' => self::getCustomerRepricingConfigNameTemplate(),
                 'entitlement' => self::getEntitlementNameTemplate(),
                 'offer' => self::getOfferNameTemplate(),
                 'product' => self::getProductNameTemplate(),
@@ -335,25 +309,6 @@ class CloudChannelServiceGapicClient
     }
 
     /**
-     * Formats a string containing the fully-qualified path to represent a
-     * channel_partner_repricing_config resource.
-     *
-     * @param string $account
-     * @param string $channelPartner
-     * @param string $channelPartnerRepricingConfig
-     *
-     * @return string The formatted channel_partner_repricing_config resource.
-     */
-    public static function channelPartnerRepricingConfigName($account, $channelPartner, $channelPartnerRepricingConfig)
-    {
-        return self::getChannelPartnerRepricingConfigNameTemplate()->render([
-            'account' => $account,
-            'channel_partner' => $channelPartner,
-            'channel_partner_repricing_config' => $channelPartnerRepricingConfig,
-        ]);
-    }
-
-    /**
      * Formats a string containing the fully-qualified path to represent a customer
      * resource.
      *
@@ -367,25 +322,6 @@ class CloudChannelServiceGapicClient
         return self::getCustomerNameTemplate()->render([
             'account' => $account,
             'customer' => $customer,
-        ]);
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent a
-     * customer_repricing_config resource.
-     *
-     * @param string $account
-     * @param string $customer
-     * @param string $customerRepricingConfig
-     *
-     * @return string The formatted customer_repricing_config resource.
-     */
-    public static function customerRepricingConfigName($account, $customer, $customerRepricingConfig)
-    {
-        return self::getCustomerRepricingConfigNameTemplate()->render([
-            'account' => $account,
-            'customer' => $customer,
-            'customer_repricing_config' => $customerRepricingConfig,
         ]);
     }
 
@@ -445,9 +381,7 @@ class CloudChannelServiceGapicClient
      * The following name formats are supported:
      * Template: Pattern
      * - channelPartnerLink: accounts/{account}/channelPartnerLinks/{channel_partner_link}
-     * - channelPartnerRepricingConfig: accounts/{account}/channelPartnerLinks/{channel_partner}/channelPartnerRepricingConfigs/{channel_partner_repricing_config}
      * - customer: accounts/{account}/customers/{customer}
-     * - customerRepricingConfig: accounts/{account}/customers/{customer}/customerRepricingConfigs/{customer_repricing_config}
      * - entitlement: accounts/{account}/customers/{customer}/entitlements/{entitlement}
      * - offer: accounts/{account}/offers/{offer}
      * - product: products/{product}
@@ -522,6 +456,9 @@ class CloudChannelServiceGapicClient
      * @param array $options {
      *     Optional. Options for configuring the service API wrapper.
      *
+     *     @type string $serviceAddress
+     *           **Deprecated**. This option will be removed in a future major release. Please
+     *           utilize the `$apiEndpoint` option instead.
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'cloudchannel.googleapis.com:443'.
@@ -551,7 +488,7 @@ class CloudChannelServiceGapicClient
      *           *Advanced usage*: Additionally, it is possible to pass in an already
      *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
      *           that when this object is provided, any settings in $transportConfig, and any
-     *           $apiEndpoint setting, will be ignored.
+     *           $serviceAddress setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
      *           each supported transport type should be passed in a key for that transport. For
@@ -649,9 +586,8 @@ class CloudChannelServiceGapicClient
      *     Optional.
      *
      *     @type string $requestId
-     *           Optional. You can specify an optional unique request ID, and if you need to
-     *           retry your request, the server will know to ignore the request if it's
-     *           complete.
+     *           Optional. You can specify an optional unique request ID, and if you need to retry
+     *           your request, the server will know to ignore the request if it's complete.
      *
      *           For example, you make an initial request and the request times out. If you
      *           make the request again with the same request ID, the server can check if
@@ -662,9 +598,10 @@ class CloudChannelServiceGapicClient
      *           with the exception that zero UUID is not supported
      *           (`00000000-0000-0000-0000-000000000000`).
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -755,9 +692,8 @@ class CloudChannelServiceGapicClient
      *     Optional.
      *
      *     @type string $requestId
-     *           Optional. You can specify an optional unique request ID, and if you need to
-     *           retry your request, the server will know to ignore the request if it's
-     *           complete.
+     *           Optional. You can specify an optional unique request ID, and if you need to retry
+     *           your request, the server will know to ignore the request if it's complete.
      *
      *           For example, you make an initial request and the request times out. If you
      *           make the request again with the same request ID, the server can check if
@@ -768,9 +704,10 @@ class CloudChannelServiceGapicClient
      *           with the exception that zero UUID is not supported
      *           (`00000000-0000-0000-0000-000000000000`).
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -861,16 +798,13 @@ class CloudChannelServiceGapicClient
      *     Optional.
      *
      *     @type Parameter[] $parameters
-     *           Optional. Parameters needed to purchase the Offer. To view the available
-     *           Parameters refer to the
-     *           [Offer.parameter_definitions][google.cloud.channel.v1.Offer.parameter_definitions]
-     *           from the desired offer.
+     *           Optional. Parameters needed to purchase the Offer. To view the available Parameters
+     *           refer to the [Offer.parameter_definitions][google.cloud.channel.v1.Offer.parameter_definitions] from the desired offer.
      *     @type string $purchaseOrderId
      *           Optional. Purchase order id provided by the reseller.
      *     @type string $requestId
-     *           Optional. You can specify an optional unique request ID, and if you need to
-     *           retry your request, the server will know to ignore the request if it's
-     *           complete.
+     *           Optional. You can specify an optional unique request ID, and if you need to retry
+     *           your request, the server will know to ignore the request if it's complete.
      *
      *           For example, you make an initial request and the request times out. If you
      *           make the request again with the same request ID, the server can check if
@@ -881,9 +815,10 @@ class CloudChannelServiceGapicClient
      *           with the exception that zero UUID is not supported
      *           (`00000000-0000-0000-0000-000000000000`).
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -979,19 +914,16 @@ class CloudChannelServiceGapicClient
      * @param string      $name         Required. The name of the entitlement to update.
      *                                  Name uses the format:
      *                                  accounts/{account_id}/customers/{customer_id}/entitlements/{entitlement_id}
-     * @param Parameter[] $parameters   Required. Entitlement parameters to update. You can only change editable
-     *                                  parameters.
+     * @param Parameter[] $parameters   Required. Entitlement parameters to update. You can only change editable parameters.
      *
      *                                  To view the available Parameters for a request, refer to the
-     *                                  [Offer.parameter_definitions][google.cloud.channel.v1.Offer.parameter_definitions]
-     *                                  from the desired offer.
+     *                                  [Offer.parameter_definitions][google.cloud.channel.v1.Offer.parameter_definitions] from the desired offer.
      * @param array       $optionalArgs {
      *     Optional.
      *
      *     @type string $requestId
-     *           Optional. You can specify an optional unique request ID, and if you need to
-     *           retry your request, the server will know to ignore the request if it's
-     *           complete.
+     *           Optional. You can specify an optional unique request ID, and if you need to retry
+     *           your request, the server will know to ignore the request if it's complete.
      *
      *           For example, you make an initial request and the request times out. If you
      *           make the request again with the same request ID, the server can check if
@@ -1004,9 +936,10 @@ class CloudChannelServiceGapicClient
      *     @type string $purchaseOrderId
      *           Optional. Purchase order ID provided by the reseller.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -1103,9 +1036,8 @@ class CloudChannelServiceGapicClient
      *     Optional.
      *
      *     @type string $requestId
-     *           Optional. You can specify an optional unique request ID, and if you need to
-     *           retry your request, the server will know to ignore the request if it's
-     *           complete.
+     *           Optional. You can specify an optional unique request ID, and if you need to retry
+     *           your request, the server will know to ignore the request if it's complete.
      *
      *           For example, you make an initial request and the request times out. If you
      *           make the request again with the same request ID, the server can check if
@@ -1116,9 +1048,10 @@ class CloudChannelServiceGapicClient
      *           with the exception that zero UUID is not supported
      *           (`00000000-0000-0000-0000-000000000000`).
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -1153,14 +1086,11 @@ class CloudChannelServiceGapicClient
      * * INVALID_VALUE: Invalid domain value in the request.
      *
      * Return value:
-     * A list of
-     * [CloudIdentityCustomerAccount][google.cloud.channel.v1.CloudIdentityCustomerAccount]
-     * resources for the domain (may be empty)
+     * A list of [CloudIdentityCustomerAccount][google.cloud.channel.v1.CloudIdentityCustomerAccount] resources for the domain (may be
+     * empty)
      *
      * Note: in the v1alpha1 version of the API, a NOT_FOUND error returns if
-     * no
-     * [CloudIdentityCustomerAccount][google.cloud.channel.v1.CloudIdentityCustomerAccount]
-     * resources match the domain.
+     * no [CloudIdentityCustomerAccount][google.cloud.channel.v1.CloudIdentityCustomerAccount] resources match the domain.
      *
      * Sample code:
      * ```
@@ -1181,9 +1111,10 @@ class CloudChannelServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Channel\V1\CheckCloudIdentityAccountsExistResponse
@@ -1224,8 +1155,7 @@ class CloudChannelServiceGapicClient
      * Contact Cloud Channel support.
      *
      * Return value:
-     * The new [ChannelPartnerLink][google.cloud.channel.v1.ChannelPartnerLink]
-     * resource.
+     * The new [ChannelPartnerLink][google.cloud.channel.v1.ChannelPartnerLink] resource.
      *
      * Sample code:
      * ```
@@ -1249,9 +1179,10 @@ class CloudChannelServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Channel\V1\ChannelPartnerLink
@@ -1271,92 +1202,8 @@ class CloudChannelServiceGapicClient
     }
 
     /**
-     * Creates a ChannelPartnerRepricingConfig. Call this method to set
-     * modifications for a specific ChannelPartner's bill. You can only create
-     * configs if the
-     * [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month]
-     * is a future month. If needed, you can create a config for the current
-     * month, with some restrictions.
-     *
-     * When creating a config for a future month, make sure there are no existing
-     * configs for that
-     * [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month].
-     *
-     * The following restrictions are for creating configs in the current month.
-     *
-     * * This functionality is reserved for recovering from an erroneous config,
-     * and should not be used for regular business cases.
-     * * The new config will not modify exports used with other configs.
-     * Changes to the config may be immediate, but may take up to 24 hours.
-     * * There is a limit of ten configs for any ChannelPartner or
-     * [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month].
-     * * The contained
-     * [ChannelPartnerRepricingConfig.repricing_config][google.cloud.channel.v1.ChannelPartnerRepricingConfig.repricing_config]
-     * vaule must be different from the value used in the current config for a
-     * ChannelPartner.
-     *
-     * Possible Error Codes:
-     *
-     * * PERMISSION_DENIED: If the account making the request and the account
-     * being queried are different.
-     * * INVALID_ARGUMENT: Missing or invalid required parameters in the
-     * request. Also displays if the updated config is for the current month or
-     * past months.
-     * * NOT_FOUND: The
-     * [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig]
-     * specified does not exist or is not associated with the given account.
-     * * INTERNAL: Any non-user error related to technical issues in the
-     * backend. In this case, contact Cloud Channel support.
-     *
-     * Return Value:
-     * If successful, the updated
-     * [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig]
-     * resource, otherwise returns an error.
-     *
-     * Sample code:
-     * ```
-     * $cloudChannelServiceClient = new CloudChannelServiceClient();
-     * try {
-     *     $formattedParent = $cloudChannelServiceClient->channelPartnerLinkName('[ACCOUNT]', '[CHANNEL_PARTNER_LINK]');
-     *     $channelPartnerRepricingConfig = new ChannelPartnerRepricingConfig();
-     *     $response = $cloudChannelServiceClient->createChannelPartnerRepricingConfig($formattedParent, $channelPartnerRepricingConfig);
-     * } finally {
-     *     $cloudChannelServiceClient->close();
-     * }
-     * ```
-     *
-     * @param string                        $parent                        Required. The resource name of the ChannelPartner that will receive the
-     *                                                                     repricing config. Parent uses the format:
-     *                                                                     accounts/{account_id}/channelPartnerLinks/{channel_partner_id}
-     * @param ChannelPartnerRepricingConfig $channelPartnerRepricingConfig Required. The ChannelPartnerRepricingConfig object to update.
-     * @param array                         $optionalArgs                  {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\Cloud\Channel\V1\ChannelPartnerRepricingConfig
-     *
-     * @throws ApiException if the remote call fails
-     */
-    public function createChannelPartnerRepricingConfig($parent, $channelPartnerRepricingConfig, array $optionalArgs = [])
-    {
-        $request = new CreateChannelPartnerRepricingConfigRequest();
-        $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setChannelPartnerRepricingConfig($channelPartnerRepricingConfig);
-        $requestParamHeaders['parent'] = $parent;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('CreateChannelPartnerRepricingConfig', ChannelPartnerRepricingConfig::class, $optionalArgs, $request)->wait();
-    }
-
-    /**
-     * Creates a new [Customer][google.cloud.channel.v1.Customer] resource under
-     * the reseller or distributor account.
+     * Creates a new [Customer][google.cloud.channel.v1.Customer] resource under the reseller or distributor
+     * account.
      *
      * Possible error codes:
      *
@@ -1381,16 +1228,17 @@ class CloudChannelServiceGapicClient
      * }
      * ```
      *
-     * @param string   $parent       Required. The resource name of reseller account in which to create the
-     *                               customer. Parent uses the format: accounts/{account_id}
+     * @param string   $parent       Required. The resource name of reseller account in which to create the customer.
+     *                               Parent uses the format: accounts/{account_id}
      * @param Customer $customer     Required. The customer to create.
      * @param array    $optionalArgs {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Channel\V1\Customer
@@ -1407,91 +1255,6 @@ class CloudChannelServiceGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CreateCustomer', Customer::class, $optionalArgs, $request)->wait();
-    }
-
-    /**
-     * Creates a CustomerRepricingConfig. Call this method to set modifications
-     * for a specific customer's bill. You can only create configs if the
-     * [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month]
-     * is a future month. If needed, you can create a config for the current
-     * month, with some restrictions.
-     *
-     * When creating a config for a future month, make sure there are no existing
-     * configs for that
-     * [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month].
-     *
-     * The following restrictions are for creating configs in the current month.
-     *
-     * * This functionality is reserved for recovering from an erroneous config,
-     * and should not be used for regular business cases.
-     * * The new config will not modify exports used with other configs.
-     * Changes to the config may be immediate, but may take up to 24 hours.
-     * * There is a limit of ten configs for any
-     * [RepricingConfig.EntitlementGranularity.entitlement][google.cloud.channel.v1.RepricingConfig.EntitlementGranularity.entitlement]
-     * or
-     * [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month].
-     * * The contained
-     * [CustomerRepricingConfig.repricing_config][google.cloud.channel.v1.CustomerRepricingConfig.repricing_config]
-     * vaule must be different from the value used in the current config for a
-     * [RepricingConfig.EntitlementGranularity.entitlement][google.cloud.channel.v1.RepricingConfig.EntitlementGranularity.entitlement].
-     *
-     * Possible Error Codes:
-     *
-     * * PERMISSION_DENIED: If the account making the request and the account
-     * being queried are different.
-     * * INVALID_ARGUMENT: Missing or invalid required parameters in the
-     * request. Also displays if the updated config is for the current month or
-     * past months.
-     * * NOT_FOUND: The
-     * [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig]
-     * specified does not exist or is not associated with the given account.
-     * * INTERNAL: Any non-user error related to technical issues in the
-     * backend. In this case, contact Cloud Channel support.
-     *
-     * Return Value:
-     * If successful, the updated
-     * [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig]
-     * resource, otherwise returns an error.
-     *
-     * Sample code:
-     * ```
-     * $cloudChannelServiceClient = new CloudChannelServiceClient();
-     * try {
-     *     $formattedParent = $cloudChannelServiceClient->customerName('[ACCOUNT]', '[CUSTOMER]');
-     *     $customerRepricingConfig = new CustomerRepricingConfig();
-     *     $response = $cloudChannelServiceClient->createCustomerRepricingConfig($formattedParent, $customerRepricingConfig);
-     * } finally {
-     *     $cloudChannelServiceClient->close();
-     * }
-     * ```
-     *
-     * @param string                  $parent                  Required. The resource name of the customer that will receive this
-     *                                                         repricing config. Parent uses the format:
-     *                                                         accounts/{account_id}/customers/{customer_id}
-     * @param CustomerRepricingConfig $customerRepricingConfig Required. The CustomerRepricingConfig object to update.
-     * @param array                   $optionalArgs            {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\Cloud\Channel\V1\CustomerRepricingConfig
-     *
-     * @throws ApiException if the remote call fails
-     */
-    public function createCustomerRepricingConfig($parent, $customerRepricingConfig, array $optionalArgs = [])
-    {
-        $request = new CreateCustomerRepricingConfigRequest();
-        $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setCustomerRepricingConfig($customerRepricingConfig);
-        $requestParamHeaders['parent'] = $parent;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('CreateCustomerRepricingConfig', CustomerRepricingConfig::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -1569,17 +1332,16 @@ class CloudChannelServiceGapicClient
      * }
      * ```
      *
-     * @param string      $parent       Required. The resource name of the reseller's customer account in which to
-     *                                  create the entitlement. Parent uses the format:
-     *                                  accounts/{account_id}/customers/{customer_id}
+     * @param string      $parent       Required. The resource name of the reseller's customer account in which to create the
+     *                                  entitlement.
+     *                                  Parent uses the format: accounts/{account_id}/customers/{customer_id}
      * @param Entitlement $entitlement  Required. The entitlement to create.
      * @param array       $optionalArgs {
      *     Optional.
      *
      *     @type string $requestId
-     *           Optional. You can specify an optional unique request ID, and if you need to
-     *           retry your request, the server will know to ignore the request if it's
-     *           complete.
+     *           Optional. You can specify an optional unique request ID, and if you need to retry
+     *           your request, the server will know to ignore the request if it's complete.
      *
      *           For example, you make an initial request and the request times out. If you
      *           make the request again with the same request ID, the server can check if
@@ -1590,9 +1352,10 @@ class CloudChannelServiceGapicClient
      *           with the exception that zero UUID is not supported
      *           (`00000000-0000-0000-0000-000000000000`).
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -1616,60 +1379,6 @@ class CloudChannelServiceGapicClient
     }
 
     /**
-     * Deletes the given
-     * [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig]
-     * permanently. You can only delete configs if their
-     * [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month]
-     * is set to a date after the current month.
-     *
-     * Possible error codes:
-     *
-     * * PERMISSION_DENIED: The account making the request does not own
-     * this customer.
-     * * INVALID_ARGUMENT: Required request parameters are missing or invalid.
-     * * FAILED_PRECONDITION: The
-     * [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig]
-     * is active or in the past.
-     * * NOT_FOUND: No
-     * [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig]
-     * found for the name in the request.
-     *
-     * Sample code:
-     * ```
-     * $cloudChannelServiceClient = new CloudChannelServiceClient();
-     * try {
-     *     $formattedName = $cloudChannelServiceClient->channelPartnerRepricingConfigName('[ACCOUNT]', '[CHANNEL_PARTNER]', '[CHANNEL_PARTNER_REPRICING_CONFIG]');
-     *     $cloudChannelServiceClient->deleteChannelPartnerRepricingConfig($formattedName);
-     * } finally {
-     *     $cloudChannelServiceClient->close();
-     * }
-     * ```
-     *
-     * @param string $name         Required. The resource name of the channel partner repricing config rule to
-     *                             delete.
-     * @param array  $optionalArgs {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @throws ApiException if the remote call fails
-     */
-    public function deleteChannelPartnerRepricingConfig($name, array $optionalArgs = [])
-    {
-        $request = new DeleteChannelPartnerRepricingConfigRequest();
-        $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('DeleteChannelPartnerRepricingConfig', GPBEmpty::class, $optionalArgs, $request)->wait();
-    }
-
-    /**
      * Deletes the given [Customer][google.cloud.channel.v1.Customer] permanently.
      *
      * Possible error codes:
@@ -1678,8 +1387,7 @@ class CloudChannelServiceGapicClient
      * this customer.
      * * INVALID_ARGUMENT: Required request parameters are missing or invalid.
      * * FAILED_PRECONDITION: The customer has existing entitlements.
-     * * NOT_FOUND: No [Customer][google.cloud.channel.v1.Customer] resource found
-     * for the name in the request.
+     * * NOT_FOUND: No [Customer][google.cloud.channel.v1.Customer] resource found for the name in the request.
      *
      * Sample code:
      * ```
@@ -1697,9 +1405,10 @@ class CloudChannelServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
      * @throws ApiException if the remote call fails
@@ -1716,63 +1425,7 @@ class CloudChannelServiceGapicClient
     }
 
     /**
-     * Deletes the given
-     * [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig]
-     * permanently. You can only delete configs if their
-     * [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month]
-     * is set to a date after the current month.
-     *
-     * Possible error codes:
-     *
-     * * PERMISSION_DENIED: The account making the request does not own
-     * this customer.
-     * * INVALID_ARGUMENT: Required request parameters are missing or invalid.
-     * * FAILED_PRECONDITION: The
-     * [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig]
-     * is active or in the past.
-     * * NOT_FOUND: No
-     * [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig]
-     * found for the name in the request.
-     *
-     * Sample code:
-     * ```
-     * $cloudChannelServiceClient = new CloudChannelServiceClient();
-     * try {
-     *     $formattedName = $cloudChannelServiceClient->customerRepricingConfigName('[ACCOUNT]', '[CUSTOMER]', '[CUSTOMER_REPRICING_CONFIG]');
-     *     $cloudChannelServiceClient->deleteCustomerRepricingConfig($formattedName);
-     * } finally {
-     *     $cloudChannelServiceClient->close();
-     * }
-     * ```
-     *
-     * @param string $name         Required. The resource name of the customer repricing config rule to
-     *                             delete. Format:
-     *                             accounts/{account_id}/customers/{customer_id}/customerRepricingConfigs/{id}.
-     * @param array  $optionalArgs {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @throws ApiException if the remote call fails
-     */
-    public function deleteCustomerRepricingConfig($name, array $optionalArgs = [])
-    {
-        $request = new DeleteCustomerRepricingConfigRequest();
-        $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('DeleteCustomerRepricingConfig', GPBEmpty::class, $optionalArgs, $request)->wait();
-    }
-
-    /**
-     * Returns the requested
-     * [ChannelPartnerLink][google.cloud.channel.v1.ChannelPartnerLink] resource.
+     * Returns the requested [ChannelPartnerLink][google.cloud.channel.v1.ChannelPartnerLink] resource.
      * You must be a distributor to call this method.
      *
      * Possible error codes:
@@ -1784,8 +1437,7 @@ class CloudChannelServiceGapicClient
      * invalid channel partner link name.
      *
      * Return value:
-     * The [ChannelPartnerLink][google.cloud.channel.v1.ChannelPartnerLink]
-     * resource.
+     * The [ChannelPartnerLink][google.cloud.channel.v1.ChannelPartnerLink] resource.
      *
      * Sample code:
      * ```
@@ -1808,9 +1460,10 @@ class CloudChannelServiceGapicClient
      *           Optional. The level of granularity the ChannelPartnerLink will display.
      *           For allowed values, use constants defined on {@see \Google\Cloud\Channel\V1\ChannelPartnerLinkView}
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Channel\V1\ChannelPartnerLink
@@ -1833,65 +1486,7 @@ class CloudChannelServiceGapicClient
     }
 
     /**
-     * Gets information about how a Distributor modifies their bill before sending
-     * it to a ChannelPartner.
-     *
-     * Possible Error Codes:
-     *
-     * * PERMISSION_DENIED: If the account making the request and the account
-     * being queried are different.
-     * * NOT_FOUND: The
-     * [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig]
-     * was not found.
-     * * INTERNAL: Any non-user error related to technical issues in the
-     * backend. In this case, contact Cloud Channel support.
-     *
-     * Return Value:
-     * If successful, the
-     * [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig]
-     * resource, otherwise returns an error.
-     *
-     * Sample code:
-     * ```
-     * $cloudChannelServiceClient = new CloudChannelServiceClient();
-     * try {
-     *     $formattedName = $cloudChannelServiceClient->channelPartnerRepricingConfigName('[ACCOUNT]', '[CHANNEL_PARTNER]', '[CHANNEL_PARTNER_REPRICING_CONFIG]');
-     *     $response = $cloudChannelServiceClient->getChannelPartnerRepricingConfig($formattedName);
-     * } finally {
-     *     $cloudChannelServiceClient->close();
-     * }
-     * ```
-     *
-     * @param string $name         Required. The resource name of the ChannelPartnerRepricingConfig
-     *                             Format:
-     *                             accounts/{account_id}/channelPartnerLinks/{channel_partner_id}/channelPartnerRepricingConfigs/{id}.
-     * @param array  $optionalArgs {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\Cloud\Channel\V1\ChannelPartnerRepricingConfig
-     *
-     * @throws ApiException if the remote call fails
-     */
-    public function getChannelPartnerRepricingConfig($name, array $optionalArgs = [])
-    {
-        $request = new GetChannelPartnerRepricingConfigRequest();
-        $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('GetChannelPartnerRepricingConfig', ChannelPartnerRepricingConfig::class, $optionalArgs, $request)->wait();
-    }
-
-    /**
-     * Returns the requested [Customer][google.cloud.channel.v1.Customer]
-     * resource.
+     * Returns the requested [Customer][google.cloud.channel.v1.Customer] resource.
      *
      * Possible error codes:
      *
@@ -1921,9 +1516,10 @@ class CloudChannelServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Channel\V1\Customer
@@ -1942,65 +1538,7 @@ class CloudChannelServiceGapicClient
     }
 
     /**
-     * Gets information about how a Reseller modifies their bill before sending
-     * it to a Customer.
-     *
-     * Possible Error Codes:
-     *
-     * * PERMISSION_DENIED: If the account making the request and the account
-     * being queried are different.
-     * * NOT_FOUND: The
-     * [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig]
-     * was not found.
-     * * INTERNAL: Any non-user error related to technical issues in the
-     * backend. In this case, contact Cloud Channel support.
-     *
-     * Return Value:
-     * If successful, the
-     * [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig]
-     * resource, otherwise returns an error.
-     *
-     * Sample code:
-     * ```
-     * $cloudChannelServiceClient = new CloudChannelServiceClient();
-     * try {
-     *     $formattedName = $cloudChannelServiceClient->customerRepricingConfigName('[ACCOUNT]', '[CUSTOMER]', '[CUSTOMER_REPRICING_CONFIG]');
-     *     $response = $cloudChannelServiceClient->getCustomerRepricingConfig($formattedName);
-     * } finally {
-     *     $cloudChannelServiceClient->close();
-     * }
-     * ```
-     *
-     * @param string $name         Required. The resource name of the CustomerRepricingConfig.
-     *                             Format:
-     *                             accounts/{account_id}/customers/{customer_id}/customerRepricingConfigs/{id}.
-     * @param array  $optionalArgs {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\Cloud\Channel\V1\CustomerRepricingConfig
-     *
-     * @throws ApiException if the remote call fails
-     */
-    public function getCustomerRepricingConfig($name, array $optionalArgs = [])
-    {
-        $request = new GetCustomerRepricingConfigRequest();
-        $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('GetCustomerRepricingConfig', CustomerRepricingConfig::class, $optionalArgs, $request)->wait();
-    }
-
-    /**
-     * Returns the requested [Entitlement][google.cloud.channel.v1.Entitlement]
-     * resource.
+     * Returns the requested [Entitlement][google.cloud.channel.v1.Entitlement] resource.
      *
      * Possible error codes:
      *
@@ -2029,9 +1567,10 @@ class CloudChannelServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Channel\V1\Entitlement
@@ -2050,10 +1589,10 @@ class CloudChannelServiceGapicClient
     }
 
     /**
-     * Imports a [Customer][google.cloud.channel.v1.Customer] from the Cloud
-     * Identity associated with the provided Cloud Identity ID or domain before a
-     * TransferEntitlements call. If a linked Customer already exists and
-     * overwrite_if_exists is true, it will update that Customer's data.
+     * Imports a [Customer][google.cloud.channel.v1.Customer] from the Cloud Identity associated with the provided
+     * Cloud Identity ID or domain before a TransferEntitlements call. If a
+     * linked Customer already exists and overwrite_if_exists is true, it will
+     * update that Customer's data.
      *
      * Possible error codes:
      *
@@ -2072,8 +1611,7 @@ class CloudChannelServiceGapicClient
      * ```
      * $cloudChannelServiceClient = new CloudChannelServiceClient();
      * try {
-     *     $customerIdentity = (new CustomerIdentityOneof())
-     *         ->setDomain('domain');
+     *     $customerIdentity = (new CustomerIdentityOneof())->setDomain('domain');
      *     $parent = 'parent';
      *     $overwriteIfExists = false;
      *     $response = $cloudChannelServiceClient->importCustomer($customerIdentity, $parent, $overwriteIfExists);
@@ -2098,18 +1636,18 @@ class CloudChannelServiceGapicClient
      *           entitlements on their behalf. You can omit this token after authorization.
      *           See https://support.google.com/a/answer/7643790 for more details.
      *     @type string $channelPartnerId
-     *           Optional. Cloud Identity ID of a channel partner who will be the direct
-     *           reseller for the customer's order. This field is required for 2-tier
-     *           transfer scenarios and can be provided via the request Parent binding as
-     *           well.
+     *           Optional. Cloud Identity ID of a channel partner who will be the direct reseller for
+     *           the customer's order. This field is required for 2-tier transfer scenarios
+     *           and can be provided via the request Parent binding as well.
      *     @type string $customer
      *           Optional. Specifies the customer that will receive imported Cloud Identity
      *           information.
      *           Format: accounts/{account_id}/customers/{customer_id}
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Channel\V1\Customer
@@ -2128,6 +1666,7 @@ class CloudChannelServiceGapicClient
             throw new ValidationException("A field for the oneof customer_identity must be set in param $customerIdentity");
         }
 
+        
         $request->setParent($parent);
         $request->setOverwriteIfExists($overwriteIfExists);
         $requestParamHeaders['parent'] = $parent;
@@ -2149,8 +1688,8 @@ class CloudChannelServiceGapicClient
     }
 
     /**
-     * List [ChannelPartnerLink][google.cloud.channel.v1.ChannelPartnerLink]s
-     * belonging to a distributor. You must be a distributor to call this method.
+     * List [ChannelPartnerLink][google.cloud.channel.v1.ChannelPartnerLink]s belonging to a distributor.
+     * You must be a distributor to call this method.
      *
      * Possible error codes:
      *
@@ -2159,8 +1698,7 @@ class CloudChannelServiceGapicClient
      * * INVALID_ARGUMENT: Required request parameters are missing or invalid.
      *
      * Return value:
-     * The list of the distributor account's
-     * [ChannelPartnerLink][google.cloud.channel.v1.ChannelPartnerLink] resources.
+     * The list of the distributor account's [ChannelPartnerLink][google.cloud.channel.v1.ChannelPartnerLink] resources.
      *
      * Sample code:
      * ```
@@ -2185,8 +1723,9 @@ class CloudChannelServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the reseller account for listing channel
-     *                             partner links. Parent uses the format: accounts/{account_id}
+     * @param string $parent       Required. The resource name of the reseller account for listing channel partner
+     *                             links.
+     *                             Parent uses the format: accounts/{account_id}
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -2203,9 +1742,10 @@ class CloudChannelServiceGapicClient
      *           Optional. The level of granularity the ChannelPartnerLink will display.
      *           For allowed values, use constants defined on {@see \Google\Cloud\Channel\V1\ChannelPartnerLinkView}
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -2236,221 +1776,6 @@ class CloudChannelServiceGapicClient
     }
 
     /**
-     * Lists information about how a Reseller modifies their bill before sending
-     * it to a ChannelPartner.
-     *
-     * Possible Error Codes:
-     *
-     * * PERMISSION_DENIED: If the account making the request and the account
-     * being queried are different.
-     * * NOT_FOUND: The
-     * [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig]
-     * specified does not exist or is not associated with the given account.
-     * * INTERNAL: Any non-user error related to technical issues in the
-     * backend. In this case, contact Cloud Channel support.
-     *
-     * Return Value:
-     * If successful, the
-     * [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig]
-     * resources. The data for each resource is displayed in the ascending order
-     * of:
-     * * channel partner ID
-     * * [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month]
-     * * [ChannelPartnerRepricingConfig.update_time][google.cloud.channel.v1.ChannelPartnerRepricingConfig.update_time]
-     *
-     * If unsuccessful, returns an error.
-     *
-     * Sample code:
-     * ```
-     * $cloudChannelServiceClient = new CloudChannelServiceClient();
-     * try {
-     *     $formattedParent = $cloudChannelServiceClient->channelPartnerLinkName('[ACCOUNT]', '[CHANNEL_PARTNER_LINK]');
-     *     // Iterate over pages of elements
-     *     $pagedResponse = $cloudChannelServiceClient->listChannelPartnerRepricingConfigs($formattedParent);
-     *     foreach ($pagedResponse->iteratePages() as $page) {
-     *         foreach ($page as $element) {
-     *             // doSomethingWith($element);
-     *         }
-     *     }
-     *     // Alternatively:
-     *     // Iterate through all elements
-     *     $pagedResponse = $cloudChannelServiceClient->listChannelPartnerRepricingConfigs($formattedParent);
-     *     foreach ($pagedResponse->iterateAllElements() as $element) {
-     *         // doSomethingWith($element);
-     *     }
-     * } finally {
-     *     $cloudChannelServiceClient->close();
-     * }
-     * ```
-     *
-     * @param string $parent       Required. The resource name of the account's
-     *                             [ChannelPartnerLink][google.cloud.channel.v1.ChannelPartnerLink]. Parent
-     *                             uses the format:
-     *                             accounts/{account_id}/channelPartnerLinks/{channel_partner_id}.
-     *                             Supports accounts/{account_id}/channelPartnerLinks/- to retrieve configs
-     *                             for all channel partners.
-     * @param array  $optionalArgs {
-     *     Optional.
-     *
-     *     @type int $pageSize
-     *           The maximum number of resources contained in the underlying API
-     *           response. The API may return fewer values in a page, even if
-     *           there are additional values to be retrieved.
-     *     @type string $pageToken
-     *           A page token is used to specify a page of values to be returned.
-     *           If no page token is specified (the default), the first page
-     *           of values will be returned. Any page token used here must have
-     *           been generated by a previous call to the API.
-     *     @type string $filter
-     *           Optional. A filter for
-     *           [CloudChannelService.ListChannelPartnerRepricingConfigs] results
-     *           (channel_partner_link only). You can use this filter when you support a
-     *           BatchGet-like query. To use the filter, you must set
-     *           `parent=accounts/{account_id}/channelPartnerLinks/-`.
-     *
-     *           Example: `channel_partner_link =
-     *           accounts/account_id/channelPartnerLinks/c1` OR `channel_partner_link =
-     *           accounts/account_id/channelPartnerLinks/c2`.
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\ApiCore\PagedListResponse
-     *
-     * @throws ApiException if the remote call fails
-     */
-    public function listChannelPartnerRepricingConfigs($parent, array $optionalArgs = [])
-    {
-        $request = new ListChannelPartnerRepricingConfigsRequest();
-        $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
-        if (isset($optionalArgs['pageSize'])) {
-            $request->setPageSize($optionalArgs['pageSize']);
-        }
-
-        if (isset($optionalArgs['pageToken'])) {
-            $request->setPageToken($optionalArgs['pageToken']);
-        }
-
-        if (isset($optionalArgs['filter'])) {
-            $request->setFilter($optionalArgs['filter']);
-        }
-
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->getPagedListResponse('ListChannelPartnerRepricingConfigs', $optionalArgs, ListChannelPartnerRepricingConfigsResponse::class, $request);
-    }
-
-    /**
-     * Lists information about how a Reseller modifies their bill before sending
-     * it to a Customer.
-     *
-     * Possible Error Codes:
-     *
-     * * PERMISSION_DENIED: If the account making the request and the account
-     * being queried are different.
-     * * NOT_FOUND: The
-     * [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig]
-     * specified does not exist or is not associated with the given account.
-     * * INTERNAL: Any non-user error related to technical issues in the
-     * backend. In this case, contact Cloud Channel support.
-     *
-     * Return Value:
-     * If successful, the
-     * [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig]
-     * resources. The data for each resource is displayed in the ascending order
-     * of:
-     * * customer ID
-     * * [RepricingConfig.EntitlementGranularity.entitlement][google.cloud.channel.v1.RepricingConfig.EntitlementGranularity.entitlement]
-     * * [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month]
-     * * [CustomerRepricingConfig.update_time][google.cloud.channel.v1.CustomerRepricingConfig.update_time]
-     *
-     * If unsuccessful, returns an error.
-     *
-     * Sample code:
-     * ```
-     * $cloudChannelServiceClient = new CloudChannelServiceClient();
-     * try {
-     *     $formattedParent = $cloudChannelServiceClient->customerName('[ACCOUNT]', '[CUSTOMER]');
-     *     // Iterate over pages of elements
-     *     $pagedResponse = $cloudChannelServiceClient->listCustomerRepricingConfigs($formattedParent);
-     *     foreach ($pagedResponse->iteratePages() as $page) {
-     *         foreach ($page as $element) {
-     *             // doSomethingWith($element);
-     *         }
-     *     }
-     *     // Alternatively:
-     *     // Iterate through all elements
-     *     $pagedResponse = $cloudChannelServiceClient->listCustomerRepricingConfigs($formattedParent);
-     *     foreach ($pagedResponse->iterateAllElements() as $element) {
-     *         // doSomethingWith($element);
-     *     }
-     * } finally {
-     *     $cloudChannelServiceClient->close();
-     * }
-     * ```
-     *
-     * @param string $parent       Required. The resource name of the customer.
-     *                             Parent uses the format: accounts/{account_id}/customers/{customer_id}.
-     *                             Supports accounts/{account_id}/customers/- to retrieve configs for all
-     *                             customers.
-     * @param array  $optionalArgs {
-     *     Optional.
-     *
-     *     @type int $pageSize
-     *           The maximum number of resources contained in the underlying API
-     *           response. The API may return fewer values in a page, even if
-     *           there are additional values to be retrieved.
-     *     @type string $pageToken
-     *           A page token is used to specify a page of values to be returned.
-     *           If no page token is specified (the default), the first page
-     *           of values will be returned. Any page token used here must have
-     *           been generated by a previous call to the API.
-     *     @type string $filter
-     *           Optional. A filter for [CloudChannelService.ListCustomerRepricingConfigs]
-     *           results (customer only). You can use this filter when you support
-     *           a BatchGet-like query.
-     *           To use the filter, you must set `parent=accounts/{account_id}/customers/-`.
-     *
-     *           Example: customer = accounts/account_id/customers/c1 OR
-     *           customer = accounts/account_id/customers/c2.
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\ApiCore\PagedListResponse
-     *
-     * @throws ApiException if the remote call fails
-     */
-    public function listCustomerRepricingConfigs($parent, array $optionalArgs = [])
-    {
-        $request = new ListCustomerRepricingConfigsRequest();
-        $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
-        if (isset($optionalArgs['pageSize'])) {
-            $request->setPageSize($optionalArgs['pageSize']);
-        }
-
-        if (isset($optionalArgs['pageToken'])) {
-            $request->setPageToken($optionalArgs['pageToken']);
-        }
-
-        if (isset($optionalArgs['filter'])) {
-            $request->setFilter($optionalArgs['filter']);
-        }
-
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->getPagedListResponse('ListCustomerRepricingConfigs', $optionalArgs, ListCustomerRepricingConfigsResponse::class, $request);
-    }
-
-    /**
      * List [Customer][google.cloud.channel.v1.Customer]s.
      *
      * Possible error codes:
@@ -2460,8 +1785,7 @@ class CloudChannelServiceGapicClient
      * * INVALID_ARGUMENT: Required request parameters are missing or invalid.
      *
      * Return value:
-     * List of [Customer][google.cloud.channel.v1.Customer]s, or an empty list if
-     * there are no customers.
+     * List of [Customer][google.cloud.channel.v1.Customer]s, or an empty list if there are no customers.
      *
      * Sample code:
      * ```
@@ -2500,15 +1824,11 @@ class CloudChannelServiceGapicClient
      *           If no page token is specified (the default), the first page
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
-     *     @type string $filter
-     *           Optional. Filters applied to the [CloudChannelService.ListCustomers]
-     *           results. See
-     *           https://cloud.google.com/channel/docs/concepts/google-cloud/filter-customers
-     *           for more information.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -2529,18 +1849,13 @@ class CloudChannelServiceGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
-        if (isset($optionalArgs['filter'])) {
-            $request->setFilter($optionalArgs['filter']);
-        }
-
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->getPagedListResponse('ListCustomers', $optionalArgs, ListCustomersResponse::class, $request);
     }
 
     /**
-     * Lists [Entitlement][google.cloud.channel.v1.Entitlement]s belonging to a
-     * customer.
+     * Lists [Entitlement][google.cloud.channel.v1.Entitlement]s belonging to a customer.
      *
      * Possible error codes:
      *
@@ -2548,8 +1863,7 @@ class CloudChannelServiceGapicClient
      * * INVALID_ARGUMENT: Required request parameters are missing or invalid.
      *
      * Return value:
-     * A list of the customer's
-     * [Entitlement][google.cloud.channel.v1.Entitlement]s.
+     * A list of the customer's [Entitlement][google.cloud.channel.v1.Entitlement]s.
      *
      * Sample code:
      * ```
@@ -2590,9 +1904,10 @@ class CloudChannelServiceGapicClient
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -2648,8 +1963,8 @@ class CloudChannelServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the reseller account from which to list
-     *                             Offers. Parent uses the format: accounts/{account_id}.
+     * @param string $parent       Required. The resource name of the reseller account from which to list Offers.
+     *                             Parent uses the format: accounts/{account_id}.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -2673,9 +1988,10 @@ class CloudChannelServiceGapicClient
      *           response will localize in the corresponding language code, if specified.
      *           The default value is "en-US".
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -2758,9 +2074,10 @@ class CloudChannelServiceGapicClient
      *           response will localize in the corresponding language code, if specified.
      *           The default value is "en-US".
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -2843,9 +2160,10 @@ class CloudChannelServiceGapicClient
      *           response will localize in the corresponding language code, if specified.
      *           The default value is "en-US".
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -2940,9 +2258,10 @@ class CloudChannelServiceGapicClient
      *           response will localize in the corresponding language code, if specified.
      *           The default value is "en-US".
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -3033,9 +2352,10 @@ class CloudChannelServiceGapicClient
      *           response will localize in the corresponding language code, if specified.
      *           The default value is "en-US".
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -3122,9 +2442,10 @@ class CloudChannelServiceGapicClient
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -3151,8 +2472,8 @@ class CloudChannelServiceGapicClient
     }
 
     /**
-     * List [TransferableOffer][google.cloud.channel.v1.TransferableOffer]s of a
-     * customer based on Cloud Identity ID or Customer Name in the request.
+     * List [TransferableOffer][google.cloud.channel.v1.TransferableOffer]s of a customer based on Cloud Identity ID or
+     * Customer Name in the request.
      *
      * Use this method when a reseller gets the entitlement information of an
      * unowned customer. The reseller should provide the customer's
@@ -3162,15 +2483,13 @@ class CloudChannelServiceGapicClient
      *
      * * PERMISSION_DENIED:
      * * The customer doesn't belong to the reseller and has no auth token.
-     * * The customer provided incorrect reseller information when generating
-     * auth token.
+     * * The supplied auth token is invalid.
      * * The reseller account making the request is different
      * from the reseller account in the query.
      * * INVALID_ARGUMENT: Required request parameters are missing or invalid.
      *
      * Return value:
-     * List of [TransferableOffer][google.cloud.channel.v1.TransferableOffer] for
-     * the given customer and SKU.
+     * List of [TransferableOffer][google.cloud.channel.v1.TransferableOffer] for the given customer and SKU.
      *
      * Sample code:
      * ```
@@ -3216,13 +2535,14 @@ class CloudChannelServiceGapicClient
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
      *     @type string $languageCode
-     *           Optional. The BCP-47 language code. For example, "en-US". The
+     *           The BCP-47 language code. For example, "en-US". The
      *           response will localize in the corresponding language code, if specified.
      *           The default value is "en-US".
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -3262,8 +2582,8 @@ class CloudChannelServiceGapicClient
     }
 
     /**
-     * List [TransferableSku][google.cloud.channel.v1.TransferableSku]s of a
-     * customer based on the Cloud Identity ID or Customer Name in the request.
+     * List [TransferableSku][google.cloud.channel.v1.TransferableSku]s of a customer based on the Cloud Identity ID or
+     * Customer Name in the request.
      *
      * Use this method to list the entitlements information of an
      * unowned customer. You should provide the customer's
@@ -3279,8 +2599,7 @@ class CloudChannelServiceGapicClient
      * * INVALID_ARGUMENT: Required request parameters are missing or invalid.
      *
      * Return value:
-     * A list of the customer's
-     * [TransferableSku][google.cloud.channel.v1.TransferableSku].
+     * A list of the customer's [TransferableSku][google.cloud.channel.v1.TransferableSku].
      *
      * Sample code:
      * ```
@@ -3327,7 +2646,7 @@ class CloudChannelServiceGapicClient
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
      *     @type string $authToken
-     *           Optional. The super admin of the resold customer generates this token to
+     *           The super admin of the resold customer generates this token to
      *           authorize a reseller to access their Cloud Identity and purchase
      *           entitlements on their behalf. You can omit this token after authorization.
      *           See https://support.google.com/a/answer/7643790 for more details.
@@ -3337,9 +2656,10 @@ class CloudChannelServiceGapicClient
      *           The default value is "en-US".
      *           Optional.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -3411,9 +2731,10 @@ class CloudChannelServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Channel\V1\Offer
@@ -3502,9 +2823,10 @@ class CloudChannelServiceGapicClient
      *     @type bool $validateOnly
      *           Validate the request and preview the review, but do not post it.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -3537,8 +2859,7 @@ class CloudChannelServiceGapicClient
     /**
      * Registers a service account with subscriber privileges on the Cloud Pub/Sub
      * topic for this Channel Services account. After you create a
-     * subscriber, you get the events through
-     * [SubscriberEvent][google.cloud.channel.v1.SubscriberEvent]
+     * subscriber, you get the events through [SubscriberEvent][google.cloud.channel.v1.SubscriberEvent]
      *
      * Possible error codes:
      *
@@ -3567,15 +2888,15 @@ class CloudChannelServiceGapicClient
      * ```
      *
      * @param string $account        Required. Resource name of the account.
-     * @param string $serviceAccount Required. Service account that provides subscriber access to the registered
-     *                               topic.
+     * @param string $serviceAccount Required. Service account that provides subscriber access to the registered topic.
      * @param array  $optionalArgs   {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Channel\V1\RegisterSubscriberResponse
@@ -3663,9 +2984,8 @@ class CloudChannelServiceGapicClient
      *     Optional.
      *
      *     @type string $requestId
-     *           Optional. You can specify an optional unique request ID, and if you need to
-     *           retry your request, the server will know to ignore the request if it's
-     *           complete.
+     *           Optional. You can specify an optional unique request ID, and if you need to retry
+     *           your request, the server will know to ignore the request if it's complete.
      *
      *           For example, you make an initial request and the request times out. If you
      *           make the request again with the same request ID, the server can check if
@@ -3676,9 +2996,10 @@ class CloudChannelServiceGapicClient
      *           with the exception that zero UUID is not supported
      *           (`00000000-0000-0000-0000-000000000000`).
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -3766,9 +3087,8 @@ class CloudChannelServiceGapicClient
      *     Optional.
      *
      *     @type string $requestId
-     *           Optional. You can specify an optional unique request ID, and if you need to
-     *           retry your request, the server will know to ignore the request if it's
-     *           complete.
+     *           Optional. You can specify an optional unique request ID, and if you need to retry
+     *           your request, the server will know to ignore the request if it's complete.
      *
      *           For example, you make an initial request and the request times out. If you
      *           make the request again with the same request ID, the server can check if
@@ -3779,9 +3099,10 @@ class CloudChannelServiceGapicClient
      *           with the exception that zero UUID is not supported
      *           (`00000000-0000-0000-0000-000000000000`).
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -3871,9 +3192,9 @@ class CloudChannelServiceGapicClient
      * }
      * ```
      *
-     * @param string        $parent       Required. The resource name of the reseller's customer account that will
-     *                                    receive transferred entitlements. Parent uses the format:
-     *                                    accounts/{account_id}/customers/{customer_id}
+     * @param string        $parent       Required. The resource name of the reseller's customer account that will receive
+     *                                    transferred entitlements.
+     *                                    Parent uses the format: accounts/{account_id}/customers/{customer_id}
      * @param Entitlement[] $entitlements Required. The new entitlements to create or transfer.
      * @param array         $optionalArgs {
      *     Optional.
@@ -3884,9 +3205,8 @@ class CloudChannelServiceGapicClient
      *           entitlements on their behalf. You can omit this token after authorization.
      *           See https://support.google.com/a/answer/7643790 for more details.
      *     @type string $requestId
-     *           Optional. You can specify an optional unique request ID, and if you need to
-     *           retry your request, the server will know to ignore the request if it's
-     *           complete.
+     *           Optional. You can specify an optional unique request ID, and if you need to retry
+     *           your request, the server will know to ignore the request if it's complete.
      *
      *           For example, you make an initial request and the request times out. If you
      *           make the request again with the same request ID, the server can check if
@@ -3897,9 +3217,10 @@ class CloudChannelServiceGapicClient
      *           with the exception that zero UUID is not supported
      *           (`00000000-0000-0000-0000-000000000000`).
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -3992,17 +3313,16 @@ class CloudChannelServiceGapicClient
      * }
      * ```
      *
-     * @param string        $parent       Required. The resource name of the reseller's customer account where the
-     *                                    entitlements transfer from. Parent uses the format:
-     *                                    accounts/{account_id}/customers/{customer_id}
+     * @param string        $parent       Required. The resource name of the reseller's customer account where the entitlements
+     *                                    transfer from.
+     *                                    Parent uses the format: accounts/{account_id}/customers/{customer_id}
      * @param Entitlement[] $entitlements Required. The entitlements to transfer to Google.
      * @param array         $optionalArgs {
      *     Optional.
      *
      *     @type string $requestId
-     *           Optional. You can specify an optional unique request ID, and if you need to
-     *           retry your request, the server will know to ignore the request if it's
-     *           complete.
+     *           Optional. You can specify an optional unique request ID, and if you need to retry
+     *           your request, the server will know to ignore the request if it's complete.
      *
      *           For example, you make an initial request and the request times out. If you
      *           make the request again with the same request ID, the server can check if
@@ -4013,9 +3333,10 @@ class CloudChannelServiceGapicClient
      *           with the exception that zero UUID is not supported
      *           (`00000000-0000-0000-0000-000000000000`).
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -4074,15 +3395,15 @@ class CloudChannelServiceGapicClient
      * ```
      *
      * @param string $account        Required. Resource name of the account.
-     * @param string $serviceAccount Required. Service account to unregister from subscriber access to the
-     *                               topic.
+     * @param string $serviceAccount Required. Service account to unregister from subscriber access to the topic.
      * @param array  $optionalArgs   {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Channel\V1\UnregisterSubscriberResponse
@@ -4122,8 +3443,7 @@ class CloudChannelServiceGapicClient
      * Contact Cloud Channel support.
      *
      * Return value:
-     * The updated
-     * [ChannelPartnerLink][google.cloud.channel.v1.ChannelPartnerLink] resource.
+     * The updated [ChannelPartnerLink][google.cloud.channel.v1.ChannelPartnerLink] resource.
      *
      * Sample code:
      * ```
@@ -4141,8 +3461,8 @@ class CloudChannelServiceGapicClient
      * @param string             $name               Required. The resource name of the channel partner link to cancel.
      *                                               Name uses the format: accounts/{account_id}/channelPartnerLinks/{id}
      *                                               where {id} is the Cloud Identity ID of the partner.
-     * @param ChannelPartnerLink $channelPartnerLink Required. The channel partner link to update. Only
-     *                                               channel_partner_link.link_state is allowed for updates.
+     * @param ChannelPartnerLink $channelPartnerLink Required. The channel partner link to update. Only channel_partner_link.link_state
+     *                                               is allowed for updates.
      * @param FieldMask          $updateMask         Required. The update mask that applies to the resource.
      *                                               The only allowable value for an update mask is
      *                                               channel_partner_link.link_state.
@@ -4150,9 +3470,10 @@ class CloudChannelServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Channel\V1\ChannelPartnerLink
@@ -4173,86 +3494,15 @@ class CloudChannelServiceGapicClient
     }
 
     /**
-     * Updates a ChannelPartnerRepricingConfig. Call this method to set
-     * modifications for a specific ChannelPartner's bill. This method overwrites
-     * the existing CustomerRepricingConfig.
-     *
-     * You can only update configs if the
-     * [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month]
-     * is a future month. To make changes to configs for the current month, use
-     * [CreateChannelPartnerRepricingConfig][google.cloud.channel.v1.CloudChannelService.CreateChannelPartnerRepricingConfig],
-     * taking note of its restrictions. You cannot update the
-     * [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month].
-     *
-     * When updating a config in the future:
-     *
-     * * This config must already exist.
-     *
-     * Possible Error Codes:
-     *
-     * * PERMISSION_DENIED: If the account making the request and the account
-     * being queried are different.
-     * * INVALID_ARGUMENT: Missing or invalid required parameters in the
-     * request. Also displays if the updated config is for the current month or
-     * past months.
-     * * NOT_FOUND: The
-     * [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig]
-     * specified does not exist or is not associated with the given account.
-     * * INTERNAL: Any non-user error related to technical issues in the
-     * backend. In this case, contact Cloud Channel support.
-     *
-     * Return Value:
-     * If successful, the updated
-     * [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig]
-     * resource, otherwise returns an error.
-     *
-     * Sample code:
-     * ```
-     * $cloudChannelServiceClient = new CloudChannelServiceClient();
-     * try {
-     *     $channelPartnerRepricingConfig = new ChannelPartnerRepricingConfig();
-     *     $response = $cloudChannelServiceClient->updateChannelPartnerRepricingConfig($channelPartnerRepricingConfig);
-     * } finally {
-     *     $cloudChannelServiceClient->close();
-     * }
-     * ```
-     *
-     * @param ChannelPartnerRepricingConfig $channelPartnerRepricingConfig Required. The ChannelPartnerRepricingConfig object to update.
-     * @param array                         $optionalArgs                  {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\Cloud\Channel\V1\ChannelPartnerRepricingConfig
-     *
-     * @throws ApiException if the remote call fails
-     */
-    public function updateChannelPartnerRepricingConfig($channelPartnerRepricingConfig, array $optionalArgs = [])
-    {
-        $request = new UpdateChannelPartnerRepricingConfigRequest();
-        $requestParamHeaders = [];
-        $request->setChannelPartnerRepricingConfig($channelPartnerRepricingConfig);
-        $requestParamHeaders['channel_partner_repricing_config.name'] = $channelPartnerRepricingConfig->getName();
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('UpdateChannelPartnerRepricingConfig', ChannelPartnerRepricingConfig::class, $optionalArgs, $request)->wait();
-    }
-
-    /**
-     * Updates an existing [Customer][google.cloud.channel.v1.Customer] resource
-     * for the reseller or distributor.
+     * Updates an existing [Customer][google.cloud.channel.v1.Customer] resource for the reseller or
+     * distributor.
      *
      * Possible error codes:
      *
      * * PERMISSION_DENIED: The reseller account making the request is different
      * from the reseller account in the API request.
      * * INVALID_ARGUMENT: Required request parameters are missing or invalid.
-     * * NOT_FOUND: No [Customer][google.cloud.channel.v1.Customer] resource found
-     * for the name in the request.
+     * * NOT_FOUND: No [Customer][google.cloud.channel.v1.Customer] resource found for the name in the request.
      *
      * Return value:
      * The updated [Customer][google.cloud.channel.v1.Customer] resource.
@@ -4276,9 +3526,10 @@ class CloudChannelServiceGapicClient
      *           The update mask that applies to the resource.
      *           Optional.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Channel\V1\Customer
@@ -4298,75 +3549,5 @@ class CloudChannelServiceGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('UpdateCustomer', Customer::class, $optionalArgs, $request)->wait();
-    }
-
-    /**
-     * Updates a CustomerRepricingConfig. Call this method to set modifications
-     * for a specific customer's bill. This method overwrites the existing
-     * CustomerRepricingConfig.
-     *
-     * You can only update configs if the
-     * [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month]
-     * is a future month. To make changes to configs for the current month, use
-     * [CreateCustomerRepricingConfig][google.cloud.channel.v1.CloudChannelService.CreateCustomerRepricingConfig],
-     * taking note of its restrictions. You cannot update the
-     * [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month].
-     *
-     * When updating a config in the future:
-     *
-     * * This config must already exist.
-     *
-     * Possible Error Codes:
-     *
-     * * PERMISSION_DENIED: If the account making the request and the account
-     * being queried are different.
-     * * INVALID_ARGUMENT: Missing or invalid required parameters in the
-     * request. Also displays if the updated config is for the current month or
-     * past months.
-     * * NOT_FOUND: The
-     * [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig]
-     * specified does not exist or is not associated with the given account.
-     * * INTERNAL: Any non-user error related to technical issues in the
-     * backend. In this case, contact Cloud Channel support.
-     *
-     * Return Value:
-     * If successful, the updated
-     * [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig]
-     * resource, otherwise returns an error.
-     *
-     * Sample code:
-     * ```
-     * $cloudChannelServiceClient = new CloudChannelServiceClient();
-     * try {
-     *     $customerRepricingConfig = new CustomerRepricingConfig();
-     *     $response = $cloudChannelServiceClient->updateCustomerRepricingConfig($customerRepricingConfig);
-     * } finally {
-     *     $cloudChannelServiceClient->close();
-     * }
-     * ```
-     *
-     * @param CustomerRepricingConfig $customerRepricingConfig Required. The CustomerRepricingConfig object to update.
-     * @param array                   $optionalArgs            {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\Cloud\Channel\V1\CustomerRepricingConfig
-     *
-     * @throws ApiException if the remote call fails
-     */
-    public function updateCustomerRepricingConfig($customerRepricingConfig, array $optionalArgs = [])
-    {
-        $request = new UpdateCustomerRepricingConfigRequest();
-        $requestParamHeaders = [];
-        $request->setCustomerRepricingConfig($customerRepricingConfig);
-        $requestParamHeaders['customer_repricing_config.name'] = $customerRepricingConfig->getName();
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('UpdateCustomerRepricingConfig', CustomerRepricingConfig::class, $optionalArgs, $request)->wait();
     }
 }

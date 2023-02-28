@@ -20,14 +20,13 @@ namespace Google\Cloud\Dev\DocFx\Node;
 trait XrefTrait
 {
     /**
-     * @param string $type The parameter type to replace
+     * @param string $type            The parameter type to replace
      */
     private function normalizeTypedVariables(string $type): string
     {
         $types = explode('|', $type);
 
         // Remove redundant "RepeatedField" type for protobuf parameters
-        // e.g. "@return array<Google\Cloud\SomeMessage>|\Google\Protobuf\Internal\RepeatedField[]"
         if (count($types) == 2 && '\Google\Protobuf\Internal\RepeatedField' === $types[1]) {
             array_pop($types);
         }
@@ -150,8 +149,8 @@ trait XrefTrait
                 $extLinkRoot = 'https://googleapis.github.io/google-auth-library-php/main/';
                 break;
             case 0 === strpos($uid, '\Google\Protobuf\\'):
-                $extLinkRoot = 'https://protobuf.dev/reference/php/api-docs/';
-                break;
+                // @TODO: link to reference docs for Protobuf
+                return $name;
             case 0 === strpos($uid, '\Google\Api\\'):
             case 0 === strpos($uid, '\Google\Cloud\Iam\V1\\'):
             case 0 === strpos($uid, '\Google\Cloud\Location\\'):

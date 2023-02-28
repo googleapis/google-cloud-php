@@ -136,13 +136,12 @@ class BatchRunnerTest extends TestCase
         // It should be still in the buffer.
         $this->assertEmpty($this->getResult());
         $this->runner->submitItem('batch-daemon-system-test', 'orange');
-        // This item should be picked by the call period.
-        sleep(1);
         $this->assertResultContains('APPLE');
         $this->assertResultContains('ORANGE');
 
-        $this->runner->submitItem('batch-daemon-system-test', 'peach');
+        // This item should be picked by the call period.
         sleep(1);
+        $this->runner->submitItem('batch-daemon-system-test', 'peach');
         $this->assertResultContains('PEACH');
 
         // Failure simulation
@@ -150,10 +149,9 @@ class BatchRunnerTest extends TestCase
 
         $this->runner->submitItem('batch-daemon-system-test', 'banana');
         $this->runner->submitItem('batch-daemon-system-test', 'lemon');
-        sleep(1);
         $result = $this->getResult();
-        $this->assertStringNotContainsString('BANANA', $result);
-        $this->assertStringNotContainsString('LEMON', $result);
+        $this->assertNotContains('BANANA', $result);
+        $this->assertNotContains('LEMON', $result);
 
         // Retry simulation
         unlink(self::$commandFile);
@@ -167,7 +165,6 @@ class BatchRunnerTest extends TestCase
             $retry = new Retry();
             $retry->retryAll();
         }
-        sleep(1);
         $this->assertResultContains('BANANA');
         $this->assertResultContains('LEMON');
     }

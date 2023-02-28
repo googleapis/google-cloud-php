@@ -16,9 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class GetAzureServerConfigRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The name of the
-     * [AzureServerConfig][google.cloud.gkemulticloud.v1.AzureServerConfig]
-     * resource to describe.
+     * Required. The name of the [AzureServerConfig][google.cloud.gkemulticloud.v1.AzureServerConfig] resource to describe.
      * `AzureServerConfig` names are formatted as
      * `projects/<project-id>/locations/<region>/azureServerConfig`.
      * See [Resource Names](https://cloud.google.com/apis/design/resource_names)
@@ -35,9 +33,7 @@ class GetAzureServerConfigRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The name of the
-     *           [AzureServerConfig][google.cloud.gkemulticloud.v1.AzureServerConfig]
-     *           resource to describe.
+     *           Required. The name of the [AzureServerConfig][google.cloud.gkemulticloud.v1.AzureServerConfig] resource to describe.
      *           `AzureServerConfig` names are formatted as
      *           `projects/<project-id>/locations/<region>/azureServerConfig`.
      *           See [Resource Names](https://cloud.google.com/apis/design/resource_names)
@@ -50,9 +46,7 @@ class GetAzureServerConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the
-     * [AzureServerConfig][google.cloud.gkemulticloud.v1.AzureServerConfig]
-     * resource to describe.
+     * Required. The name of the [AzureServerConfig][google.cloud.gkemulticloud.v1.AzureServerConfig] resource to describe.
      * `AzureServerConfig` names are formatted as
      * `projects/<project-id>/locations/<region>/azureServerConfig`.
      * See [Resource Names](https://cloud.google.com/apis/design/resource_names)
@@ -67,9 +61,7 @@ class GetAzureServerConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the
-     * [AzureServerConfig][google.cloud.gkemulticloud.v1.AzureServerConfig]
-     * resource to describe.
+     * Required. The name of the [AzureServerConfig][google.cloud.gkemulticloud.v1.AzureServerConfig] resource to describe.
      * `AzureServerConfig` names are formatted as
      * `projects/<project-id>/locations/<region>/azureServerConfig`.
      * See [Resource Names](https://cloud.google.com/apis/design/resource_names)

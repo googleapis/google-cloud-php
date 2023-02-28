@@ -65,7 +65,10 @@ items:
     uid: '\Google\Cloud\Vision\V1\Page::getProperty()'
     name: getProperty
     id: getProperty
-    summary: 'Additional information detected on the page.'
+    summary: |
+      Additional information detected on the page.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
     parent: \Google\Cloud\Vision\V1\Page
     type: method
     langs:
@@ -94,7 +97,10 @@ items:
     uid: '\Google\Cloud\Vision\V1\Page::setProperty()'
     name: setProperty
     id: setProperty
-    summary: 'Additional information detected on the page.'
+    summary: |
+      Additional information detected on the page.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
     parent: \Google\Cloud\Vision\V1\Page
     type: method
     langs:
@@ -115,6 +121,8 @@ items:
     summary: |
       Page width. For PDFs the unit is points. For images (including
       TIFFs) the unit is pixels.
+      
+      Generated from protobuf field <code>int32 width = 2;</code>
     parent: \Google\Cloud\Vision\V1\Page
     type: method
     langs:
@@ -130,6 +138,8 @@ items:
     summary: |
       Page width. For PDFs the unit is points. For images (including
       TIFFs) the unit is pixels.
+      
+      Generated from protobuf field <code>int32 width = 2;</code>
     parent: \Google\Cloud\Vision\V1\Page
     type: method
     langs:
@@ -150,6 +160,8 @@ items:
     summary: |
       Page height. For PDFs the unit is points. For images (including
       TIFFs) the unit is pixels.
+      
+      Generated from protobuf field <code>int32 height = 3;</code>
     parent: \Google\Cloud\Vision\V1\Page
     type: method
     langs:
@@ -165,6 +177,8 @@ items:
     summary: |
       Page height. For PDFs the unit is points. For images (including
       TIFFs) the unit is pixels.
+      
+      Generated from protobuf field <code>int32 height = 3;</code>
     parent: \Google\Cloud\Vision\V1\Page
     type: method
     langs:
@@ -182,7 +196,10 @@ items:
     uid: '\Google\Cloud\Vision\V1\Page::getBlocks()'
     name: getBlocks
     id: getBlocks
-    summary: 'List of blocks of text, images etc on this page.'
+    summary: |
+      List of blocks of text, images etc on this page.
+      
+      Generated from protobuf field <code>repeated .google.cloud.vision.v1.Block blocks = 4;</code>
     parent: \Google\Cloud\Vision\V1\Page
     type: method
     langs:
@@ -190,12 +207,15 @@ items:
     syntax:
       returns:
         -
-          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Internal/RepeatedField">Google\Protobuf\Internal\RepeatedField</a>'
+          var_type: Google\Protobuf\Internal\RepeatedField
   -
     uid: '\Google\Cloud\Vision\V1\Page::setBlocks()'
     name: setBlocks
     id: setBlocks
-    summary: 'List of blocks of text, images etc on this page.'
+    summary: |
+      List of blocks of text, images etc on this page.
+      
+      Generated from protobuf field <code>repeated .google.cloud.vision.v1.Block blocks = 4;</code>
     parent: \Google\Cloud\Vision\V1\Page
     type: method
     langs:
@@ -213,7 +233,10 @@ items:
     uid: '\Google\Cloud\Vision\V1\Page::getConfidence()'
     name: getConfidence
     id: getConfidence
-    summary: 'Confidence of the OCR results on the page. Range [0, 1].'
+    summary: |
+      Confidence of the OCR results on the page. Range [0, 1].
+      
+      Generated from protobuf field <code>float confidence = 5;</code>
     parent: \Google\Cloud\Vision\V1\Page
     type: method
     langs:
@@ -226,7 +249,10 @@ items:
     uid: '\Google\Cloud\Vision\V1\Page::setConfidence()'
     name: setConfidence
     id: setConfidence
-    summary: 'Confidence of the OCR results on the page. Range [0, 1].'
+    summary: |
+      Confidence of the OCR results on the page. Range [0, 1].
+      
+      Generated from protobuf field <code>float confidence = 5;</code>
     parent: \Google\Cloud\Vision\V1\Page
     type: method
     langs:

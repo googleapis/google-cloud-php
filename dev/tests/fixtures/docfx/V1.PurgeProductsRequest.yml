@@ -60,7 +60,10 @@ items:
     uid: '\Google\Cloud\Vision\V1\PurgeProductsRequest::getProductSetPurgeConfig()'
     name: getProductSetPurgeConfig
     id: getProductSetPurgeConfig
-    summary: 'Specify which ProductSet contains the Products to be deleted.'
+    summary: |
+      Specify which ProductSet contains the Products to be deleted.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.ProductSetPurgeConfig product_set_purge_config = 2;</code>
     parent: \Google\Cloud\Vision\V1\PurgeProductsRequest
     type: method
     langs:
@@ -81,7 +84,10 @@ items:
     uid: '\Google\Cloud\Vision\V1\PurgeProductsRequest::setProductSetPurgeConfig()'
     name: setProductSetPurgeConfig
     id: setProductSetPurgeConfig
-    summary: 'Specify which ProductSet contains the Products to be deleted.'
+    summary: |
+      Specify which ProductSet contains the Products to be deleted.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.ProductSetPurgeConfig product_set_purge_config = 2;</code>
     parent: \Google\Cloud\Vision\V1\PurgeProductsRequest
     type: method
     langs:
@@ -102,6 +108,8 @@ items:
     summary: |
       If delete_orphan_products is true, all Products that are not in any
       ProductSet will be deleted.
+      
+      Generated from protobuf field <code>bool delete_orphan_products = 3;</code>
     parent: \Google\Cloud\Vision\V1\PurgeProductsRequest
     type: method
     langs:
@@ -125,6 +133,8 @@ items:
     summary: |
       If delete_orphan_products is true, all Products that are not in any
       ProductSet will be deleted.
+      
+      Generated from protobuf field <code>bool delete_orphan_products = 3;</code>
     parent: \Google\Cloud\Vision\V1\PurgeProductsRequest
     type: method
     langs:
@@ -146,6 +156,8 @@ items:
       Required. The project and location in which the Products should be deleted.
       
       Format is `projects/PROJECT_ID/locations/LOC_ID`.
+      
+      Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
     parent: \Google\Cloud\Vision\V1\PurgeProductsRequest
     type: method
     langs:
@@ -162,6 +174,8 @@ items:
       Required. The project and location in which the Products should be deleted.
       
       Format is `projects/PROJECT_ID/locations/LOC_ID`.
+      
+      Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
     parent: \Google\Cloud\Vision\V1\PurgeProductsRequest
     type: method
     langs:
@@ -182,6 +196,8 @@ items:
     summary: |
       The default value is false. Override this value to true to actually perform
       the purge.
+      
+      Generated from protobuf field <code>bool force = 4;</code>
     parent: \Google\Cloud\Vision\V1\PurgeProductsRequest
     type: method
     langs:
@@ -197,6 +213,8 @@ items:
     summary: |
       The default value is false. Override this value to true to actually perform
       the purge.
+      
+      Generated from protobuf field <code>bool force = 4;</code>
     parent: \Google\Cloud\Vision\V1\PurgeProductsRequest
     type: method
     langs:

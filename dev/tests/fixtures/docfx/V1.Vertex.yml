@@ -47,7 +47,10 @@ items:
     uid: '\Google\Cloud\Vision\V1\Vertex::getX()'
     name: getX
     id: getX
-    summary: 'X coordinate.'
+    summary: |
+      X coordinate.
+      
+      Generated from protobuf field <code>int32 x = 1;</code>
     parent: \Google\Cloud\Vision\V1\Vertex
     type: method
     langs:
@@ -60,7 +63,10 @@ items:
     uid: '\Google\Cloud\Vision\V1\Vertex::setX()'
     name: setX
     id: setX
-    summary: 'X coordinate.'
+    summary: |
+      X coordinate.
+      
+      Generated from protobuf field <code>int32 x = 1;</code>
     parent: \Google\Cloud\Vision\V1\Vertex
     type: method
     langs:
@@ -78,7 +84,10 @@ items:
     uid: '\Google\Cloud\Vision\V1\Vertex::getY()'
     name: getY
     id: getY
-    summary: 'Y coordinate.'
+    summary: |
+      Y coordinate.
+      
+      Generated from protobuf field <code>int32 y = 2;</code>
     parent: \Google\Cloud\Vision\V1\Vertex
     type: method
     langs:
@@ -91,7 +100,10 @@ items:
     uid: '\Google\Cloud\Vision\V1\Vertex::setY()'
     name: setY
     id: setY
-    summary: 'Y coordinate.'
+    summary: |
+      Y coordinate.
+      
+      Generated from protobuf field <code>int32 y = 2;</code>
     parent: \Google\Cloud\Vision\V1\Vertex
     type: method
     langs:

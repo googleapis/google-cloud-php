@@ -49,8 +49,7 @@ class LifecycleConfig extends \Google\Protobuf\Internal\Message
      *           representation of
      *           [Duration](https://developers.google.com/protocol-buffers/docs/proto3#json)).
      *     @type \Google\Protobuf\Timestamp $auto_delete_time
-     *           Optional. The time when cluster will be auto-deleted (see JSON
-     *           representation of
+     *           Optional. The time when cluster will be auto-deleted (see JSON representation of
      *           [Timestamp](https://developers.google.com/protocol-buffers/docs/proto3#json)).
      *     @type \Google\Protobuf\Duration $auto_delete_ttl
      *           Optional. The lifetime duration of cluster. The cluster will be
@@ -114,8 +113,7 @@ class LifecycleConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The time when cluster will be auto-deleted (see JSON
-     * representation of
+     * Optional. The time when cluster will be auto-deleted (see JSON representation of
      * [Timestamp](https://developers.google.com/protocol-buffers/docs/proto3#json)).
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp auto_delete_time = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -132,8 +130,7 @@ class LifecycleConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The time when cluster will be auto-deleted (see JSON
-     * representation of
+     * Optional. The time when cluster will be auto-deleted (see JSON representation of
      * [Timestamp](https://developers.google.com/protocol-buffers/docs/proto3#json)).
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp auto_delete_time = 2 [(.google.api.field_behavior) = OPTIONAL];</code>

@@ -7,13 +7,6 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*/lakes/*}/contentitems',
                 'body' => 'content',
-                'additionalBindings' => [
-                    [
-                        'method' => 'post',
-                        'uriTemplate' => '/v1/{parent=projects/*/locations/*/lakes/*}/content',
-                        'body' => 'content',
-                    ],
-                ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -25,12 +18,6 @@ return [
             'DeleteContent' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/lakes/*/contentitems/**}',
-                'additionalBindings' => [
-                    [
-                        'method' => 'delete',
-                        'uriTemplate' => '/v1/{name=projects/*/locations/*/lakes/*/content/**}',
-                    ],
-                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -42,12 +29,6 @@ return [
             'GetContent' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/lakes/*/contentitems/**}',
-                'additionalBindings' => [
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v1/{name=projects/*/locations/*/lakes/*/content/**}',
-                    ],
-                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -56,32 +37,9 @@ return [
                     ],
                 ],
             ],
-            'GetIamPolicy' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{resource=projects/*/locations/*/lakes/*/contentitems/**}:getIamPolicy',
-                'additionalBindings' => [
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/lakes/*/content/**}:getIamPolicy',
-                    ],
-                ],
-                'placeholders' => [
-                    'resource' => [
-                        'getters' => [
-                            'getResource',
-                        ],
-                    ],
-                ],
-            ],
             'ListContent' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*/lakes/*}/contentitems',
-                'additionalBindings' => [
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v1/{parent=projects/*/locations/*/lakes/*}/content',
-                    ],
-                ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -90,58 +48,10 @@ return [
                     ],
                 ],
             ],
-            'SetIamPolicy' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/{resource=projects/*/locations/*/lakes/*/contentitems/**}:setIamPolicy',
-                'body' => '*',
-                'additionalBindings' => [
-                    [
-                        'method' => 'post',
-                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/lakes/*/content/**}:setIamPolicy',
-                        'body' => '*',
-                    ],
-                ],
-                'placeholders' => [
-                    'resource' => [
-                        'getters' => [
-                            'getResource',
-                        ],
-                    ],
-                ],
-            ],
-            'TestIamPermissions' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/{resource=projects/*/locations/*/lakes/*/contentitems/**}:testIamPermissions',
-                'body' => '*',
-                'additionalBindings' => [
-                    [
-                        'method' => 'post',
-                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/lakes/*/content/**}:testIamPermissions',
-                        'body' => '*',
-                    ],
-                ],
-                'placeholders' => [
-                    'resource' => [
-                        'getters' => [
-                            'getResource',
-                        ],
-                    ],
-                ],
-            ],
             'UpdateContent' => [
                 'method' => 'patch',
                 'uriTemplate' => '/v1/{content.name=projects/*/locations/*/lakes/*/contentitems/**}',
                 'body' => 'content',
-                'additionalBindings' => [
-                    [
-                        'method' => 'patch',
-                        'uriTemplate' => '/v1/{content.name=projects/*/locations/*/lakes/*/content/**}',
-                        'body' => 'content',
-                        'queryParams' => [
-                            'update_mask',
-                        ],
-                    ],
-                ],
                 'placeholders' => [
                     'content.name' => [
                         'getters' => [
@@ -202,19 +112,7 @@ return [
                     ],
                     [
                         'method' => 'get',
-                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/dataScans/*}:getIamPolicy',
-                    ],
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/dataTaxonomies/*}:getIamPolicy',
-                    ],
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/dataTaxonomies/*/attributes/*}:getIamPolicy',
-                    ],
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/dataAttributeBindings/*}:getIamPolicy',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/lakes/*/content/*}:getIamPolicy',
                     ],
                 ],
                 'placeholders' => [
@@ -252,22 +150,7 @@ return [
                     ],
                     [
                         'method' => 'post',
-                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/dataScans/*}:setIamPolicy',
-                        'body' => '*',
-                    ],
-                    [
-                        'method' => 'post',
-                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/dataTaxonomies/*}:setIamPolicy',
-                        'body' => '*',
-                    ],
-                    [
-                        'method' => 'post',
-                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/dataTaxonomies/*/attributes/*}:setIamPolicy',
-                        'body' => '*',
-                    ],
-                    [
-                        'method' => 'post',
-                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/dataAttributeBindings/*}:setIamPolicy',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/lakes/*/content/*}:setIamPolicy',
                         'body' => '*',
                     ],
                 ],
@@ -306,22 +189,7 @@ return [
                     ],
                     [
                         'method' => 'post',
-                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/dataScans/*}:testIamPermissions',
-                        'body' => '*',
-                    ],
-                    [
-                        'method' => 'post',
-                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/dataTaxonomies/*}:testIamPermissions',
-                        'body' => '*',
-                    ],
-                    [
-                        'method' => 'post',
-                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/dataTaxonomies/*/attributes/*}:testIamPermissions',
-                        'body' => '*',
-                    ],
-                    [
-                        'method' => 'post',
-                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/dataAttributeBindings/*}:testIamPermissions',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/lakes/*/content/*}:testIamPermissions',
                         'body' => '*',
                     ],
                 ],
@@ -382,5 +250,4 @@ return [
             ],
         ],
     ],
-    'numericEnums' => true,
 ];

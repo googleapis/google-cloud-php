@@ -31,10 +31,14 @@ namespace Google\Cloud\Channel\V1\ImportCustomerRequest;
  */
 class CustomerIdentityOneof
 {
-    /** The value for the field domain, if set. */
+    /**
+     * The value for the field domain, if set.
+     */
     private $domain;
 
-    /** The value for the field cloud_identity_id, if set. */
+    /**
+     * The value for the field cloud_identity_id, if set.
+     */
     private $cloudIdentityId;
 
     /**

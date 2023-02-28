@@ -23,10 +23,9 @@ class StackFrame extends \Google\Protobuf\Internal\Message
      */
     private $function_name = null;
     /**
-     * An un-mangled function name, if `function_name` is mangled.
-     * To get information about name mangling, run
-     * [this search](https://www.google.com/search?q=cxx+name+mangling).
-     * The name can be fully-qualified (up to 1024 bytes).
+     * An un-mangled function name, if `function_name` is
+     * [mangled](http://www.avabodh.com/cxxin/namemangling.html). The name can
+     * be fully-qualified (up to 1024 bytes).
      *
      * Generated from protobuf field <code>.google.devtools.cloudtrace.v2.TruncatableString original_function_name = 2;</code>
      */
@@ -74,10 +73,9 @@ class StackFrame extends \Google\Protobuf\Internal\Message
      *           The fully-qualified name that uniquely identifies the function or
      *           method that is active in this frame (up to 1024 bytes).
      *     @type \Google\Cloud\Trace\V2\TruncatableString $original_function_name
-     *           An un-mangled function name, if `function_name` is mangled.
-     *           To get information about name mangling, run
-     *           [this search](https://www.google.com/search?q=cxx+name+mangling).
-     *           The name can be fully-qualified (up to 1024 bytes).
+     *           An un-mangled function name, if `function_name` is
+     *           [mangled](http://www.avabodh.com/cxxin/namemangling.html). The name can
+     *           be fully-qualified (up to 1024 bytes).
      *     @type \Google\Cloud\Trace\V2\TruncatableString $file_name
      *           The name of the source file where the function call appears (up to 256
      *           bytes).
@@ -136,10 +134,9 @@ class StackFrame extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An un-mangled function name, if `function_name` is mangled.
-     * To get information about name mangling, run
-     * [this search](https://www.google.com/search?q=cxx+name+mangling).
-     * The name can be fully-qualified (up to 1024 bytes).
+     * An un-mangled function name, if `function_name` is
+     * [mangled](http://www.avabodh.com/cxxin/namemangling.html). The name can
+     * be fully-qualified (up to 1024 bytes).
      *
      * Generated from protobuf field <code>.google.devtools.cloudtrace.v2.TruncatableString original_function_name = 2;</code>
      * @return \Google\Cloud\Trace\V2\TruncatableString|null
@@ -160,10 +157,9 @@ class StackFrame extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An un-mangled function name, if `function_name` is mangled.
-     * To get information about name mangling, run
-     * [this search](https://www.google.com/search?q=cxx+name+mangling).
-     * The name can be fully-qualified (up to 1024 bytes).
+     * An un-mangled function name, if `function_name` is
+     * [mangled](http://www.avabodh.com/cxxin/namemangling.html). The name can
+     * be fully-qualified (up to 1024 bytes).
      *
      * Generated from protobuf field <code>.google.devtools.cloudtrace.v2.TruncatableString original_function_name = 2;</code>
      * @param \Google\Cloud\Trace\V2\TruncatableString $var

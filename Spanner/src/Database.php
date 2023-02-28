@@ -170,7 +170,7 @@ class Database
     private $isRunningTransaction = false;
 
     /**
-     * @var string|null
+     * @var string
      */
     private $databaseRole;
 

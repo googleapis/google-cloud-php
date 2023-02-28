@@ -18,16 +18,15 @@ class ProcessorType
         \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ä
-/google/cloud/documentai/v1/processor_type.protogoogle.cloud.documentai.v1google/api/resource.proto"“
+Æ
+/google/cloud/documentai/v1/processor_type.protogoogle.cloud.documentai.v1google/api/resource.proto"õ
 ProcessorType
 name (	
 type (	
 category (	S
 available_locations (26.google.cloud.documentai.v1.ProcessorType.LocationInfo
 allow_creation (-
-launch_stage (2.google.api.LaunchStage
-sample_document_uris	 (	#
+launch_stage (2.google.api.LaunchStage#
 LocationInfo
 location_id (	:uêAr
 \'documentai.googleapis.com/ProcessorTypeGprojects/{project}/locations/{location}/processorTypes/{processor_type}BÛ

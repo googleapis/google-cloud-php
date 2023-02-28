@@ -633,5 +633,4 @@ return [
             ],
         ],
     ],
-    'numericEnums' => true,
 ];

@@ -23,10 +23,8 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     private $project_id = '';
     /**
-     * Required. The cluster name, which must be unique within a project.
-     * The name must start with a lowercase letter, and can contain
-     * up to 51 lowercase letters, numbers, and hyphens. It cannot end
-     * with a hyphen. The name of a deleted cluster can be reused.
+     * Required. The cluster name. Cluster names within a project must be
+     * unique. Names of deleted clusters can be reused.
      *
      * Generated from protobuf field <code>string cluster_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -40,15 +38,13 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     private $config = null;
     /**
-     * Optional. The virtual cluster config is used when creating a Dataproc
-     * cluster that does not directly control the underlying compute resources,
-     * for example, when creating a [Dataproc-on-GKE
-     * cluster](https://cloud.google.com/dataproc/docs/guides/dpgke/dataproc-gke).
-     * Dataproc may set default values, and values may change when
-     * clusters are updated. Exactly one of
-     * [config][google.cloud.dataproc.v1.Cluster.config] or
-     * [virtual_cluster_config][google.cloud.dataproc.v1.Cluster.virtual_cluster_config]
-     * must be specified.
+     * Optional. The virtual cluster config, used when creating a Dataproc cluster that
+     * does not directly control the underlying compute resources, for example,
+     * when creating a [Dataproc-on-GKE
+     * cluster](https://cloud.google.com/dataproc/docs/concepts/jobs/dataproc-gke#create-a-dataproc-on-gke-cluster).
+     * Note that Dataproc may set default values, and values may change when
+     * clusters are updated. Exactly one of config or virtualClusterConfig must be
+     * specified.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.VirtualClusterConfig virtual_cluster_config = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -102,24 +98,20 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *     @type string $project_id
      *           Required. The Google Cloud Platform project ID that the cluster belongs to.
      *     @type string $cluster_name
-     *           Required. The cluster name, which must be unique within a project.
-     *           The name must start with a lowercase letter, and can contain
-     *           up to 51 lowercase letters, numbers, and hyphens. It cannot end
-     *           with a hyphen. The name of a deleted cluster can be reused.
+     *           Required. The cluster name. Cluster names within a project must be
+     *           unique. Names of deleted clusters can be reused.
      *     @type \Google\Cloud\Dataproc\V1\ClusterConfig $config
      *           Optional. The cluster config for a cluster of Compute Engine Instances.
      *           Note that Dataproc may set default values, and values may change
      *           when clusters are updated.
      *     @type \Google\Cloud\Dataproc\V1\VirtualClusterConfig $virtual_cluster_config
-     *           Optional. The virtual cluster config is used when creating a Dataproc
-     *           cluster that does not directly control the underlying compute resources,
-     *           for example, when creating a [Dataproc-on-GKE
-     *           cluster](https://cloud.google.com/dataproc/docs/guides/dpgke/dataproc-gke).
-     *           Dataproc may set default values, and values may change when
-     *           clusters are updated. Exactly one of
-     *           [config][google.cloud.dataproc.v1.Cluster.config] or
-     *           [virtual_cluster_config][google.cloud.dataproc.v1.Cluster.virtual_cluster_config]
-     *           must be specified.
+     *           Optional. The virtual cluster config, used when creating a Dataproc cluster that
+     *           does not directly control the underlying compute resources, for example,
+     *           when creating a [Dataproc-on-GKE
+     *           cluster](https://cloud.google.com/dataproc/docs/concepts/jobs/dataproc-gke#create-a-dataproc-on-gke-cluster).
+     *           Note that Dataproc may set default values, and values may change when
+     *           clusters are updated. Exactly one of config or virtualClusterConfig must be
+     *           specified.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Optional. The labels to associate with this cluster.
      *           Label **keys** must contain 1 to 63 characters, and must conform to
@@ -173,10 +165,8 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The cluster name, which must be unique within a project.
-     * The name must start with a lowercase letter, and can contain
-     * up to 51 lowercase letters, numbers, and hyphens. It cannot end
-     * with a hyphen. The name of a deleted cluster can be reused.
+     * Required. The cluster name. Cluster names within a project must be
+     * unique. Names of deleted clusters can be reused.
      *
      * Generated from protobuf field <code>string cluster_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -187,10 +177,8 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The cluster name, which must be unique within a project.
-     * The name must start with a lowercase letter, and can contain
-     * up to 51 lowercase letters, numbers, and hyphens. It cannot end
-     * with a hyphen. The name of a deleted cluster can be reused.
+     * Required. The cluster name. Cluster names within a project must be
+     * unique. Names of deleted clusters can be reused.
      *
      * Generated from protobuf field <code>string cluster_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -245,15 +233,13 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The virtual cluster config is used when creating a Dataproc
-     * cluster that does not directly control the underlying compute resources,
-     * for example, when creating a [Dataproc-on-GKE
-     * cluster](https://cloud.google.com/dataproc/docs/guides/dpgke/dataproc-gke).
-     * Dataproc may set default values, and values may change when
-     * clusters are updated. Exactly one of
-     * [config][google.cloud.dataproc.v1.Cluster.config] or
-     * [virtual_cluster_config][google.cloud.dataproc.v1.Cluster.virtual_cluster_config]
-     * must be specified.
+     * Optional. The virtual cluster config, used when creating a Dataproc cluster that
+     * does not directly control the underlying compute resources, for example,
+     * when creating a [Dataproc-on-GKE
+     * cluster](https://cloud.google.com/dataproc/docs/concepts/jobs/dataproc-gke#create-a-dataproc-on-gke-cluster).
+     * Note that Dataproc may set default values, and values may change when
+     * clusters are updated. Exactly one of config or virtualClusterConfig must be
+     * specified.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.VirtualClusterConfig virtual_cluster_config = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Dataproc\V1\VirtualClusterConfig|null
@@ -274,15 +260,13 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The virtual cluster config is used when creating a Dataproc
-     * cluster that does not directly control the underlying compute resources,
-     * for example, when creating a [Dataproc-on-GKE
-     * cluster](https://cloud.google.com/dataproc/docs/guides/dpgke/dataproc-gke).
-     * Dataproc may set default values, and values may change when
-     * clusters are updated. Exactly one of
-     * [config][google.cloud.dataproc.v1.Cluster.config] or
-     * [virtual_cluster_config][google.cloud.dataproc.v1.Cluster.virtual_cluster_config]
-     * must be specified.
+     * Optional. The virtual cluster config, used when creating a Dataproc cluster that
+     * does not directly control the underlying compute resources, for example,
+     * when creating a [Dataproc-on-GKE
+     * cluster](https://cloud.google.com/dataproc/docs/concepts/jobs/dataproc-gke#create-a-dataproc-on-gke-cluster).
+     * Note that Dataproc may set default values, and values may change when
+     * clusters are updated. Exactly one of config or virtualClusterConfig must be
+     * specified.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.VirtualClusterConfig virtual_cluster_config = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Dataproc\V1\VirtualClusterConfig $var

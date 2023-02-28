@@ -14,7 +14,8 @@ use UnexpectedValueException;
 class SearchableOption
 {
     /**
-     * Value used when unset.
+     * Value used when unset. Defaults to
+     * [SEARCHABLE_DISABLED][google.cloud.retail.v2.CatalogAttribute.SearchableOption.SEARCHABLE_DISABLED].
      *
      * Generated from protobuf enum <code>SEARCHABLE_OPTION_UNSPECIFIED = 0;</code>
      */

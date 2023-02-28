@@ -120,7 +120,7 @@ class BatchClient
     private $databaseName;
 
     /**
-     * @var string|null
+     * @var string
      */
     private $databaseRole;
 

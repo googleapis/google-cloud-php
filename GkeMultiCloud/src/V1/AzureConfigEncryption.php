@@ -18,8 +18,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class AzureConfigEncryption extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The ARM ID of the Azure Key Vault key to encrypt / decrypt config
-     * data.
+     * Required. The ARM ID of the Azure Key Vault key to encrypt / decrypt config data.
      * For example:
      * `/subscriptions/<subscription-id>/resourceGroups/<resource-group-id>/providers/Microsoft.KeyVault/vaults/<key-vault-id>/keys/<key-name>`
      *
@@ -27,8 +26,7 @@ class AzureConfigEncryption extends \Google\Protobuf\Internal\Message
      */
     private $key_id = '';
     /**
-     * Optional. RSA key of the Azure Key Vault public key to use for encrypting
-     * the data.
+     * Optional. RSA key of the Azure Key Vault public key to use for encrypting the data.
      * This key must be formatted as a PEM-encoded SubjectPublicKeyInfo (RFC 5280)
      * in ASN.1 DER form. The string must be comprised of a single PEM block of
      * type "PUBLIC KEY".
@@ -44,13 +42,11 @@ class AzureConfigEncryption extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $key_id
-     *           Required. The ARM ID of the Azure Key Vault key to encrypt / decrypt config
-     *           data.
+     *           Required. The ARM ID of the Azure Key Vault key to encrypt / decrypt config data.
      *           For example:
      *           `/subscriptions/<subscription-id>/resourceGroups/<resource-group-id>/providers/Microsoft.KeyVault/vaults/<key-vault-id>/keys/<key-name>`
      *     @type string $public_key
-     *           Optional. RSA key of the Azure Key Vault public key to use for encrypting
-     *           the data.
+     *           Optional. RSA key of the Azure Key Vault public key to use for encrypting the data.
      *           This key must be formatted as a PEM-encoded SubjectPublicKeyInfo (RFC 5280)
      *           in ASN.1 DER form. The string must be comprised of a single PEM block of
      *           type "PUBLIC KEY".
@@ -62,8 +58,7 @@ class AzureConfigEncryption extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The ARM ID of the Azure Key Vault key to encrypt / decrypt config
-     * data.
+     * Required. The ARM ID of the Azure Key Vault key to encrypt / decrypt config data.
      * For example:
      * `/subscriptions/<subscription-id>/resourceGroups/<resource-group-id>/providers/Microsoft.KeyVault/vaults/<key-vault-id>/keys/<key-name>`
      *
@@ -76,8 +71,7 @@ class AzureConfigEncryption extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The ARM ID of the Azure Key Vault key to encrypt / decrypt config
-     * data.
+     * Required. The ARM ID of the Azure Key Vault key to encrypt / decrypt config data.
      * For example:
      * `/subscriptions/<subscription-id>/resourceGroups/<resource-group-id>/providers/Microsoft.KeyVault/vaults/<key-vault-id>/keys/<key-name>`
      *
@@ -94,8 +88,7 @@ class AzureConfigEncryption extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. RSA key of the Azure Key Vault public key to use for encrypting
-     * the data.
+     * Optional. RSA key of the Azure Key Vault public key to use for encrypting the data.
      * This key must be formatted as a PEM-encoded SubjectPublicKeyInfo (RFC 5280)
      * in ASN.1 DER form. The string must be comprised of a single PEM block of
      * type "PUBLIC KEY".
@@ -109,8 +102,7 @@ class AzureConfigEncryption extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. RSA key of the Azure Key Vault public key to use for encrypting
-     * the data.
+     * Optional. RSA key of the Azure Key Vault public key to use for encrypting the data.
      * This key must be formatted as a PEM-encoded SubjectPublicKeyInfo (RFC 5280)
      * in ASN.1 DER form. The string must be comprised of a single PEM block of
      * type "PUBLIC KEY".

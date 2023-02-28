@@ -26,12 +26,9 @@ class EntityType extends \Google\Protobuf\Internal\Message
 {
     /**
      * The unique identifier of the entity type.
-     * Required for
-     * [EntityTypes.UpdateEntityType][google.cloud.dialogflow.v2.EntityTypes.UpdateEntityType]
-     * and
-     * [EntityTypes.BatchUpdateEntityTypes][google.cloud.dialogflow.v2.EntityTypes.BatchUpdateEntityTypes]
-     * methods. Format: `projects/<Project ID>/agent/entityTypes/<Entity Type
-     * ID>`.
+     * Required for [EntityTypes.UpdateEntityType][google.cloud.dialogflow.v2.EntityTypes.UpdateEntityType] and
+     * [EntityTypes.BatchUpdateEntityTypes][google.cloud.dialogflow.v2.EntityTypes.BatchUpdateEntityTypes] methods.
+     * Format: `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -76,12 +73,9 @@ class EntityType extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           The unique identifier of the entity type.
-     *           Required for
-     *           [EntityTypes.UpdateEntityType][google.cloud.dialogflow.v2.EntityTypes.UpdateEntityType]
-     *           and
-     *           [EntityTypes.BatchUpdateEntityTypes][google.cloud.dialogflow.v2.EntityTypes.BatchUpdateEntityTypes]
-     *           methods. Format: `projects/<Project ID>/agent/entityTypes/<Entity Type
-     *           ID>`.
+     *           Required for [EntityTypes.UpdateEntityType][google.cloud.dialogflow.v2.EntityTypes.UpdateEntityType] and
+     *           [EntityTypes.BatchUpdateEntityTypes][google.cloud.dialogflow.v2.EntityTypes.BatchUpdateEntityTypes] methods.
+     *           Format: `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
      *     @type string $display_name
      *           Required. The name of the entity type.
      *     @type int $kind
@@ -102,12 +96,9 @@ class EntityType extends \Google\Protobuf\Internal\Message
 
     /**
      * The unique identifier of the entity type.
-     * Required for
-     * [EntityTypes.UpdateEntityType][google.cloud.dialogflow.v2.EntityTypes.UpdateEntityType]
-     * and
-     * [EntityTypes.BatchUpdateEntityTypes][google.cloud.dialogflow.v2.EntityTypes.BatchUpdateEntityTypes]
-     * methods. Format: `projects/<Project ID>/agent/entityTypes/<Entity Type
-     * ID>`.
+     * Required for [EntityTypes.UpdateEntityType][google.cloud.dialogflow.v2.EntityTypes.UpdateEntityType] and
+     * [EntityTypes.BatchUpdateEntityTypes][google.cloud.dialogflow.v2.EntityTypes.BatchUpdateEntityTypes] methods.
+     * Format: `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -119,12 +110,9 @@ class EntityType extends \Google\Protobuf\Internal\Message
 
     /**
      * The unique identifier of the entity type.
-     * Required for
-     * [EntityTypes.UpdateEntityType][google.cloud.dialogflow.v2.EntityTypes.UpdateEntityType]
-     * and
-     * [EntityTypes.BatchUpdateEntityTypes][google.cloud.dialogflow.v2.EntityTypes.BatchUpdateEntityTypes]
-     * methods. Format: `projects/<Project ID>/agent/entityTypes/<Entity Type
-     * ID>`.
+     * Required for [EntityTypes.UpdateEntityType][google.cloud.dialogflow.v2.EntityTypes.UpdateEntityType] and
+     * [EntityTypes.BatchUpdateEntityTypes][google.cloud.dialogflow.v2.EntityTypes.BatchUpdateEntityTypes] methods.
+     * Format: `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var

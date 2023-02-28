@@ -63,7 +63,10 @@ items:
     uid: '\Google\Cloud\Vision\V1\AsyncAnnotateFileRequest::getInputConfig()'
     name: getInputConfig
     id: getInputConfig
-    summary: 'Required. Information about the input file.'
+    summary: |
+      Required. Information about the input file.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.InputConfig input_config = 1;</code>
     parent: \Google\Cloud\Vision\V1\AsyncAnnotateFileRequest
     type: method
     langs:
@@ -92,7 +95,10 @@ items:
     uid: '\Google\Cloud\Vision\V1\AsyncAnnotateFileRequest::setInputConfig()'
     name: setInputConfig
     id: setInputConfig
-    summary: 'Required. Information about the input file.'
+    summary: |
+      Required. Information about the input file.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.InputConfig input_config = 1;</code>
     parent: \Google\Cloud\Vision\V1\AsyncAnnotateFileRequest
     type: method
     langs:
@@ -110,7 +116,10 @@ items:
     uid: '\Google\Cloud\Vision\V1\AsyncAnnotateFileRequest::getFeatures()'
     name: getFeatures
     id: getFeatures
-    summary: 'Required. Requested features.'
+    summary: |
+      Required. Requested features.
+      
+      Generated from protobuf field <code>repeated .google.cloud.vision.v1.Feature features = 2;</code>
     parent: \Google\Cloud\Vision\V1\AsyncAnnotateFileRequest
     type: method
     langs:
@@ -118,12 +127,15 @@ items:
     syntax:
       returns:
         -
-          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Internal/RepeatedField">Google\Protobuf\Internal\RepeatedField</a>'
+          var_type: Google\Protobuf\Internal\RepeatedField
   -
     uid: '\Google\Cloud\Vision\V1\AsyncAnnotateFileRequest::setFeatures()'
     name: setFeatures
     id: setFeatures
-    summary: 'Required. Requested features.'
+    summary: |
+      Required. Requested features.
+      
+      Generated from protobuf field <code>repeated .google.cloud.vision.v1.Feature features = 2;</code>
     parent: \Google\Cloud\Vision\V1\AsyncAnnotateFileRequest
     type: method
     langs:
@@ -141,7 +153,10 @@ items:
     uid: '\Google\Cloud\Vision\V1\AsyncAnnotateFileRequest::getImageContext()'
     name: getImageContext
     id: getImageContext
-    summary: 'Additional context that may accompany the image(s) in the file.'
+    summary: |
+      Additional context that may accompany the image(s) in the file.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.ImageContext image_context = 3;</code>
     parent: \Google\Cloud\Vision\V1\AsyncAnnotateFileRequest
     type: method
     langs:
@@ -170,7 +185,10 @@ items:
     uid: '\Google\Cloud\Vision\V1\AsyncAnnotateFileRequest::setImageContext()'
     name: setImageContext
     id: setImageContext
-    summary: 'Additional context that may accompany the image(s) in the file.'
+    summary: |
+      Additional context that may accompany the image(s) in the file.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.ImageContext image_context = 3;</code>
     parent: \Google\Cloud\Vision\V1\AsyncAnnotateFileRequest
     type: method
     langs:
@@ -188,7 +206,10 @@ items:
     uid: '\Google\Cloud\Vision\V1\AsyncAnnotateFileRequest::getOutputConfig()'
     name: getOutputConfig
     id: getOutputConfig
-    summary: 'Required. The desired output location and metadata (e.g. format).'
+    summary: |
+      Required. The desired output location and metadata (e.g. format).
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.OutputConfig output_config = 4;</code>
     parent: \Google\Cloud\Vision\V1\AsyncAnnotateFileRequest
     type: method
     langs:
@@ -217,7 +238,10 @@ items:
     uid: '\Google\Cloud\Vision\V1\AsyncAnnotateFileRequest::setOutputConfig()'
     name: setOutputConfig
     id: setOutputConfig
-    summary: 'Required. The desired output location and metadata (e.g. format).'
+    summary: |
+      Required. The desired output location and metadata (e.g. format).
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.OutputConfig output_config = 4;</code>
     parent: \Google\Cloud\Vision\V1\AsyncAnnotateFileRequest
     type: method
     langs:

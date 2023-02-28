@@ -16,9 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class GetAzureNodePoolRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The name of the
-     * [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] resource to
-     * describe.
+     * Required. The name of the [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] resource to describe.
      * `AzureNodePool` names are formatted as
      * `projects/<project-id>/locations/<region>/azureClusters/<cluster-id>/azureNodePools/<node-pool-id>`.
      * See [Resource Names](https://cloud.google.com/apis/design/resource_names)
@@ -35,9 +33,7 @@ class GetAzureNodePoolRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The name of the
-     *           [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] resource to
-     *           describe.
+     *           Required. The name of the [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] resource to describe.
      *           `AzureNodePool` names are formatted as
      *           `projects/<project-id>/locations/<region>/azureClusters/<cluster-id>/azureNodePools/<node-pool-id>`.
      *           See [Resource Names](https://cloud.google.com/apis/design/resource_names)
@@ -50,9 +46,7 @@ class GetAzureNodePoolRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the
-     * [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] resource to
-     * describe.
+     * Required. The name of the [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] resource to describe.
      * `AzureNodePool` names are formatted as
      * `projects/<project-id>/locations/<region>/azureClusters/<cluster-id>/azureNodePools/<node-pool-id>`.
      * See [Resource Names](https://cloud.google.com/apis/design/resource_names)
@@ -67,9 +61,7 @@ class GetAzureNodePoolRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the
-     * [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] resource to
-     * describe.
+     * Required. The name of the [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] resource to describe.
      * `AzureNodePool` names are formatted as
      * `projects/<project-id>/locations/<region>/azureClusters/<cluster-id>/azureNodePools/<node-pool-id>`.
      * See [Resource Names](https://cloud.google.com/apis/design/resource_names)

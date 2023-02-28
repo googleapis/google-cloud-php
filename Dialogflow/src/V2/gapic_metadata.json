@@ -437,11 +437,6 @@
                                 "listMessages"
                             ]
                         },
-                        "SuggestConversationSummary": {
-                            "methods": [
-                                "suggestConversationSummary"
-                            ]
-                        },
                         "GetLocation": {
                             "methods": [
                                 "getLocation"

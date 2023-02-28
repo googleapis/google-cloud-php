@@ -72,8 +72,7 @@ trait GrpcTrait
         $requestOptions = $this->pluckArray([
             'grpcOptions',
             'retries',
-            'requestTimeout',
-            'grpcRetryFunction'
+            'requestTimeout'
         ], $args[count($args) - 1]);
 
         try {

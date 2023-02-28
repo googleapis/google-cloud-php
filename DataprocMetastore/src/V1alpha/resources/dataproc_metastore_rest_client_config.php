@@ -27,18 +27,6 @@ return [
             ],
         ],
         'google.cloud.metastore.v1alpha.DataprocMetastore' => [
-            'AlterMetadataResourceLocation' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1alpha/{service=projects/*/locations/*/services/*}:alterLocation',
-                'body' => '*',
-                'placeholders' => [
-                    'service' => [
-                        'getters' => [
-                            'getService',
-                        ],
-                    ],
-                ],
-            ],
             'CreateBackup' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1alpha/{parent=projects/*/locations/*/services/*}/backups',
@@ -180,42 +168,6 @@ return [
                     'parent' => [
                         'getters' => [
                             'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'MoveTableToDatabase' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1alpha/{service=projects/*/locations/*/services/*}:moveTableToDatabase',
-                'body' => '*',
-                'placeholders' => [
-                    'service' => [
-                        'getters' => [
-                            'getService',
-                        ],
-                    ],
-                ],
-            ],
-            'QueryMetadata' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1alpha/{service=projects/*/locations/*/services/*}:queryMetadata',
-                'body' => '*',
-                'placeholders' => [
-                    'service' => [
-                        'getters' => [
-                            'getService',
-                        ],
-                    ],
-                ],
-            ],
-            'RemoveIamPolicy' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1alpha/{resource=projects/*/locations/*/services/*/**}:removeIamPolicy',
-                'body' => '*',
-                'placeholders' => [
-                    'resource' => [
-                        'getters' => [
-                            'getResource',
                         ],
                     ],
                 ],
@@ -400,5 +352,4 @@ return [
             ],
         ],
     ],
-    'numericEnums' => true,
 ];

@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request message for
- * [Environments.GetEnvironmentHistory][google.cloud.dialogflow.v2.Environments.GetEnvironmentHistory].
+ * The request message for [Environments.GetEnvironmentHistory][google.cloud.dialogflow.v2.Environments.GetEnvironmentHistory].
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.GetEnvironmentHistoryRequest</code>
  */
@@ -28,8 +27,8 @@ class GetEnvironmentHistoryRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
-     * Optional. The maximum number of items to return in a single page. By
-     * default 100 and at most 1000.
+     * Optional. The maximum number of items to return in a single page. By default 100 and
+     * at most 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -55,8 +54,8 @@ class GetEnvironmentHistoryRequest extends \Google\Protobuf\Internal\Message
      *             ID>/agent/environments/<Environment ID>`
      *           The environment ID for the default environment is `-`.
      *     @type int $page_size
-     *           Optional. The maximum number of items to return in a single page. By
-     *           default 100 and at most 1000.
+     *           Optional. The maximum number of items to return in a single page. By default 100 and
+     *           at most 1000.
      *     @type string $page_token
      *           Optional. The next_page_token value returned from a previous list request.
      * }
@@ -103,8 +102,8 @@ class GetEnvironmentHistoryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The maximum number of items to return in a single page. By
-     * default 100 and at most 1000.
+     * Optional. The maximum number of items to return in a single page. By default 100 and
+     * at most 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -115,8 +114,8 @@ class GetEnvironmentHistoryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The maximum number of items to return in a single page. By
-     * default 100 and at most 1000.
+     * Optional. The maximum number of items to return in a single page. By default 100 and
+     * at most 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var

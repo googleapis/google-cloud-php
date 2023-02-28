@@ -32,9 +32,10 @@ class MaintenanceWindow extends \Google\Protobuf\Internal\Message
      */
     private $start_time = null;
     /**
-     * Required. Maintenance window end time. It is used only to calculate the
-     * duration of the maintenance window. The value for end-time must be in the
-     * future, relative to `start_time`.
+     * Required. Maintenance window end time. It is used only to calculate the duration of
+     * the maintenance window.
+     * The value for end-time must be in the future, relative to
+     * `start_time`.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -58,9 +59,10 @@ class MaintenanceWindow extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $start_time
      *           Required. Start time of the first recurrence of the maintenance window.
      *     @type \Google\Protobuf\Timestamp $end_time
-     *           Required. Maintenance window end time. It is used only to calculate the
-     *           duration of the maintenance window. The value for end-time must be in the
-     *           future, relative to `start_time`.
+     *           Required. Maintenance window end time. It is used only to calculate the duration of
+     *           the maintenance window.
+     *           The value for end-time must be in the future, relative to
+     *           `start_time`.
      *     @type string $recurrence
      *           Required. Maintenance window recurrence. Format is a subset of
      *           [RFC-5545](https://tools.ietf.org/html/rfc5545) `RRULE`. The only allowed
@@ -110,9 +112,10 @@ class MaintenanceWindow extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Maintenance window end time. It is used only to calculate the
-     * duration of the maintenance window. The value for end-time must be in the
-     * future, relative to `start_time`.
+     * Required. Maintenance window end time. It is used only to calculate the duration of
+     * the maintenance window.
+     * The value for end-time must be in the future, relative to
+     * `start_time`.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -133,9 +136,10 @@ class MaintenanceWindow extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Maintenance window end time. It is used only to calculate the
-     * duration of the maintenance window. The value for end-time must be in the
-     * future, relative to `start_time`.
+     * Required. Maintenance window end time. It is used only to calculate the duration of
+     * the maintenance window.
+     * The value for end-time must be in the future, relative to
+     * `start_time`.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Protobuf\Timestamp $var

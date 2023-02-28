@@ -16,9 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class GenerateAzureAccessTokenRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The name of the
-     * [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] resource to
-     * authenticate to.
+     * Required. The name of the [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] resource to authenticate to.
      * `AzureCluster` names are formatted as
      * `projects/<project-id>/locations/<region>/AzureClusters/<cluster-id>`.
      * See [Resource Names](https://cloud.google.com/apis/design/resource_names)
@@ -35,9 +33,7 @@ class GenerateAzureAccessTokenRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $azure_cluster
-     *           Required. The name of the
-     *           [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] resource to
-     *           authenticate to.
+     *           Required. The name of the [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] resource to authenticate to.
      *           `AzureCluster` names are formatted as
      *           `projects/<project-id>/locations/<region>/AzureClusters/<cluster-id>`.
      *           See [Resource Names](https://cloud.google.com/apis/design/resource_names)
@@ -50,9 +46,7 @@ class GenerateAzureAccessTokenRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the
-     * [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] resource to
-     * authenticate to.
+     * Required. The name of the [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] resource to authenticate to.
      * `AzureCluster` names are formatted as
      * `projects/<project-id>/locations/<region>/AzureClusters/<cluster-id>`.
      * See [Resource Names](https://cloud.google.com/apis/design/resource_names)
@@ -67,9 +61,7 @@ class GenerateAzureAccessTokenRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the
-     * [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] resource to
-     * authenticate to.
+     * Required. The name of the [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] resource to authenticate to.
      * `AzureCluster` names are formatted as
      * `projects/<project-id>/locations/<region>/AzureClusters/<cluster-id>`.
      * See [Resource Names](https://cloud.google.com/apis/design/resource_names)

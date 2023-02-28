@@ -76,16 +76,6 @@ class ReleaseBuilder extends GoogleCloudCommand
     private $defaultComponentComposer;
 
     /**
-     * @var Client
-     */
-    private $http;
-
-    /**
-     * @var string|false
-     */
-    private $token;
-
-    /**
      * A list of allowable release types.
      *
      * @var array

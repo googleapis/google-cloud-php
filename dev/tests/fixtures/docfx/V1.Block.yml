@@ -67,7 +67,10 @@ items:
     uid: '\Google\Cloud\Vision\V1\Block::getProperty()'
     name: getProperty
     id: getProperty
-    summary: 'Additional information detected for the block.'
+    summary: |
+      Additional information detected for the block.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
     parent: \Google\Cloud\Vision\V1\Block
     type: method
     langs:
@@ -96,7 +99,10 @@ items:
     uid: '\Google\Cloud\Vision\V1\Block::setProperty()'
     name: setProperty
     id: setProperty
-    summary: 'Additional information detected for the block.'
+    summary: |
+      Additional information detected for the block.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
     parent: \Google\Cloud\Vision\V1\Block
     type: method
     langs:
@@ -131,6 +137,8 @@ items:
               |    |
               1----0
         and the vertex order will still be (0, 1, 2, 3).
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.BoundingPoly bounding_box = 2;</code>
     parent: \Google\Cloud\Vision\V1\Block
     type: method
     langs:
@@ -176,6 +184,8 @@ items:
               |    |
               1----0
         and the vertex order will still be (0, 1, 2, 3).
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.BoundingPoly bounding_box = 2;</code>
     parent: \Google\Cloud\Vision\V1\Block
     type: method
     langs:
@@ -193,7 +203,10 @@ items:
     uid: '\Google\Cloud\Vision\V1\Block::getParagraphs()'
     name: getParagraphs
     id: getParagraphs
-    summary: 'List of paragraphs in this block (if this blocks is of type text).'
+    summary: |
+      List of paragraphs in this block (if this blocks is of type text).
+      
+      Generated from protobuf field <code>repeated .google.cloud.vision.v1.Paragraph paragraphs = 3;</code>
     parent: \Google\Cloud\Vision\V1\Block
     type: method
     langs:
@@ -201,12 +214,15 @@ items:
     syntax:
       returns:
         -
-          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Internal/RepeatedField">Google\Protobuf\Internal\RepeatedField</a>'
+          var_type: Google\Protobuf\Internal\RepeatedField
   -
     uid: '\Google\Cloud\Vision\V1\Block::setParagraphs()'
     name: setParagraphs
     id: setParagraphs
-    summary: 'List of paragraphs in this block (if this blocks is of type text).'
+    summary: |
+      List of paragraphs in this block (if this blocks is of type text).
+      
+      Generated from protobuf field <code>repeated .google.cloud.vision.v1.Paragraph paragraphs = 3;</code>
     parent: \Google\Cloud\Vision\V1\Block
     type: method
     langs:
@@ -224,7 +240,10 @@ items:
     uid: '\Google\Cloud\Vision\V1\Block::getBlockType()'
     name: getBlockType
     id: getBlockType
-    summary: 'Detected block type (text, image etc) for this block.'
+    summary: |
+      Detected block type (text, image etc) for this block.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.Block.BlockType block_type = 4;</code>
     parent: \Google\Cloud\Vision\V1\Block
     type: method
     langs:
@@ -237,7 +256,10 @@ items:
     uid: '\Google\Cloud\Vision\V1\Block::setBlockType()'
     name: setBlockType
     id: setBlockType
-    summary: 'Detected block type (text, image etc) for this block.'
+    summary: |
+      Detected block type (text, image etc) for this block.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.Block.BlockType block_type = 4;</code>
     parent: \Google\Cloud\Vision\V1\Block
     type: method
     langs:
@@ -255,7 +277,10 @@ items:
     uid: '\Google\Cloud\Vision\V1\Block::getConfidence()'
     name: getConfidence
     id: getConfidence
-    summary: 'Confidence of the OCR results on the block. Range [0, 1].'
+    summary: |
+      Confidence of the OCR results on the block. Range [0, 1].
+      
+      Generated from protobuf field <code>float confidence = 5;</code>
     parent: \Google\Cloud\Vision\V1\Block
     type: method
     langs:
@@ -268,7 +293,10 @@ items:
     uid: '\Google\Cloud\Vision\V1\Block::setConfidence()'
     name: setConfidence
     id: setConfidence
-    summary: 'Confidence of the OCR results on the block. Range [0, 1].'
+    summary: |
+      Confidence of the OCR results on the block. Range [0, 1].
+      
+      Generated from protobuf field <code>float confidence = 5;</code>
     parent: \Google\Cloud\Vision\V1\Block
     type: method
     langs:

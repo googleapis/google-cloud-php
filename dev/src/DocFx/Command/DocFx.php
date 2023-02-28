@@ -66,7 +66,15 @@ class DocFx extends Command
         if (empty($xml)) {
             $output->write('Running phpdoc to generate structure.xml... ');
             // Run "phpdoc"
-            $process = self::getPhpDocCommand($componentPath, $outDir);
+            $process = new Process([
+                'phpdoc',
+                '-d',
+                sprintf('%s/src', $componentPath),
+                '--template',
+                'xml',
+                '--target',
+                $outDir
+            ]);
             $process->mustRun();
             $output->writeln('Done.');
             $xml = $outDir . '/structure.xml';
@@ -118,7 +126,7 @@ class DocFx extends Command
         if (file_exists($overviewFile = sprintf('%s/README.md', $componentPath))) {
             $overview = new OverviewPage(
                 file_get_contents($overviewFile),
-                $releaseLevel !== 'stable'
+                $releaseLevel === 'beta'
             );
             $outFile = sprintf('%s/%s', $outDir, $overview->getFilename());
             file_put_contents($outFile, $overview->getContents());
@@ -130,7 +138,7 @@ class DocFx extends Command
         $componentToc = array_filter([
             'uid' => $this->getComponentUid(),
             'name' => $this->getDistributionName(),
-            'status' => $releaseLevel !== 'stable' ? 'beta' : '',
+            'status' => $releaseLevel === 'beta' ? 'beta' : '',
             'items' => $tocItems,
         ]);
         $tocYaml = Yaml::dump([$componentToc], $inline, $indent, $flags);
@@ -175,19 +183,6 @@ class DocFx extends Command
         }
     }
 
-    public static function getPhpDocCommand(string $componentPath, string $outDir): Process
-    {
-        return new Process([
-            'phpdoc',
-            '-d',
-            sprintf('%s/src', $componentPath),
-            '--template',
-            'xml',
-            '--target',
-            $outDir
-        ]);
-    }
-
     private function getComponentPath(string $component): string
     {
         $rootDir = __DIR__ . '/../../../../';
@@ -199,7 +194,7 @@ class DocFx extends Command
             }
         }
         if (!in_array($component, $components)) {
-            throw new \Exception($component ? 'Invalid component provided: ' . $component
+            throw new \Exception($component ? 'Invalid component provided'
                 : 'You are not in a component directory. Run this command from a valid component'
                   . ' directory or provide a valid component using the "component" option.');
         }

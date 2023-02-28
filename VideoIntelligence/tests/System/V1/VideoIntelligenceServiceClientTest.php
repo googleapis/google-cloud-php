@@ -72,7 +72,7 @@ class VideoIntelligenceServiceClientTest extends TestCase
      */
     public function testAnnotateVideo(VideoIntelligenceServiceClient $client)
     {
-        $inputUri = "gs://cloud-samples-data/video/cat.mp4";
+        $inputUri = "gs://cloudmleap/video/next/animals.mp4";
         $features = [
             Feature::LABEL_DETECTION,
             Feature::SHOT_CHANGE_DETECTION,
@@ -90,5 +90,6 @@ class VideoIntelligenceServiceClientTest extends TestCase
 
         $results = $operationResponse->getResult();
         $this->assertInstanceOf(AnnotateVideoResponse::class, $results);
+
     }
 }

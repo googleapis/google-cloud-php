@@ -64,10 +64,9 @@ class TransferRun extends \Google\Protobuf\Internal\Message
      */
     private $update_time = null;
     /**
-     * Output only. Parameters specific to each data source. For more information
-     * see the bq tab in the 'Setting up a data transfer' section for each data
-     * source. For example the parameters for Cloud Storage transfers are listed
-     * here:
+     * Output only. Parameters specific to each data source. For more information see the
+     * bq tab in the 'Setting up a data transfer' section for each data source.
+     * For example the parameters for Cloud Storage transfers are listed here:
      * https://cloud.google.com/bigquery-transfer/docs/cloud-storage-transfer#bq
      *
      * Generated from protobuf field <code>.google.protobuf.Struct params = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -147,10 +146,9 @@ class TransferRun extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. Last time the data transfer run state was updated.
      *     @type \Google\Protobuf\Struct $params
-     *           Output only. Parameters specific to each data source. For more information
-     *           see the bq tab in the 'Setting up a data transfer' section for each data
-     *           source. For example the parameters for Cloud Storage transfers are listed
-     *           here:
+     *           Output only. Parameters specific to each data source. For more information see the
+     *           bq tab in the 'Setting up a data transfer' section for each data source.
+     *           For example the parameters for Cloud Storage transfers are listed here:
      *           https://cloud.google.com/bigquery-transfer/docs/cloud-storage-transfer#bq
      *     @type string $destination_dataset_id
      *           Output only. The BigQuery target dataset id.
@@ -437,10 +435,9 @@ class TransferRun extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Parameters specific to each data source. For more information
-     * see the bq tab in the 'Setting up a data transfer' section for each data
-     * source. For example the parameters for Cloud Storage transfers are listed
-     * here:
+     * Output only. Parameters specific to each data source. For more information see the
+     * bq tab in the 'Setting up a data transfer' section for each data source.
+     * For example the parameters for Cloud Storage transfers are listed here:
      * https://cloud.google.com/bigquery-transfer/docs/cloud-storage-transfer#bq
      *
      * Generated from protobuf field <code>.google.protobuf.Struct params = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -462,10 +459,9 @@ class TransferRun extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Parameters specific to each data source. For more information
-     * see the bq tab in the 'Setting up a data transfer' section for each data
-     * source. For example the parameters for Cloud Storage transfers are listed
-     * here:
+     * Output only. Parameters specific to each data source. For more information see the
+     * bq tab in the 'Setting up a data transfer' section for each data source.
+     * For example the parameters for Cloud Storage transfers are listed here:
      * https://cloud.google.com/bigquery-transfer/docs/cloud-storage-transfer#bq
      *
      * Generated from protobuf field <code>.google.protobuf.Struct params = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>

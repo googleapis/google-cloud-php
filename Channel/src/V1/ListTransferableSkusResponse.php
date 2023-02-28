@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Response message for
- * [CloudChannelService.ListTransferableSkus][google.cloud.channel.v1.CloudChannelService.ListTransferableSkus].
+ * Response message for [CloudChannelService.ListTransferableSkus][google.cloud.channel.v1.CloudChannelService.ListTransferableSkus].
  *
  * Generated from protobuf message <code>google.cloud.channel.v1.ListTransferableSkusResponse</code>
  */
@@ -24,9 +23,8 @@ class ListTransferableSkusResponse extends \Google\Protobuf\Internal\Message
     private $transferable_skus;
     /**
      * A token to retrieve the next page of results.
-     * Pass to
-     * [ListTransferableSkusRequest.page_token][google.cloud.channel.v1.ListTransferableSkusRequest.page_token]
-     * to obtain that page.
+     * Pass to [ListTransferableSkusRequest.page_token][google.cloud.channel.v1.ListTransferableSkusRequest.page_token] to obtain
+     * that page.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
@@ -38,13 +36,12 @@ class ListTransferableSkusResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Channel\V1\TransferableSku>|\Google\Protobuf\Internal\RepeatedField $transferable_skus
+     *     @type \Google\Cloud\Channel\V1\TransferableSku[]|\Google\Protobuf\Internal\RepeatedField $transferable_skus
      *           Information about existing SKUs for a customer that needs a transfer.
      *     @type string $next_page_token
      *           A token to retrieve the next page of results.
-     *           Pass to
-     *           [ListTransferableSkusRequest.page_token][google.cloud.channel.v1.ListTransferableSkusRequest.page_token]
-     *           to obtain that page.
+     *           Pass to [ListTransferableSkusRequest.page_token][google.cloud.channel.v1.ListTransferableSkusRequest.page_token] to obtain
+     *           that page.
      * }
      */
     public function __construct($data = NULL) {
@@ -67,7 +64,7 @@ class ListTransferableSkusResponse extends \Google\Protobuf\Internal\Message
      * Information about existing SKUs for a customer that needs a transfer.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.TransferableSku transferable_skus = 1;</code>
-     * @param array<\Google\Cloud\Channel\V1\TransferableSku>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Channel\V1\TransferableSku[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTransferableSkus($var)
@@ -80,9 +77,8 @@ class ListTransferableSkusResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * A token to retrieve the next page of results.
-     * Pass to
-     * [ListTransferableSkusRequest.page_token][google.cloud.channel.v1.ListTransferableSkusRequest.page_token]
-     * to obtain that page.
+     * Pass to [ListTransferableSkusRequest.page_token][google.cloud.channel.v1.ListTransferableSkusRequest.page_token] to obtain
+     * that page.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @return string
@@ -94,9 +90,8 @@ class ListTransferableSkusResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * A token to retrieve the next page of results.
-     * Pass to
-     * [ListTransferableSkusRequest.page_token][google.cloud.channel.v1.ListTransferableSkusRequest.page_token]
-     * to obtain that page.
+     * Pass to [ListTransferableSkusRequest.page_token][google.cloud.channel.v1.ListTransferableSkusRequest.page_token] to obtain
+     * that page.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @param string $var

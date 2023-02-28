@@ -48,6 +48,8 @@ items:
     summary: |
       The key of the label attached to the product. Cannot be empty and cannot
       exceed 128 bytes.
+      
+      Generated from protobuf field <code>string key = 1;</code>
     parent: \Google\Cloud\Vision\V1\Product\KeyValue
     type: method
     langs:
@@ -63,6 +65,8 @@ items:
     summary: |
       The key of the label attached to the product. Cannot be empty and cannot
       exceed 128 bytes.
+      
+      Generated from protobuf field <code>string key = 1;</code>
     parent: \Google\Cloud\Vision\V1\Product\KeyValue
     type: method
     langs:
@@ -83,6 +87,8 @@ items:
     summary: |
       The value of the label attached to the product. Cannot be empty and
       cannot exceed 128 bytes.
+      
+      Generated from protobuf field <code>string value = 2;</code>
     parent: \Google\Cloud\Vision\V1\Product\KeyValue
     type: method
     langs:
@@ -98,6 +104,8 @@ items:
     summary: |
       The value of the label attached to the product. Cannot be empty and
       cannot exceed 128 bytes.
+      
+      Generated from protobuf field <code>string value = 2;</code>
     parent: \Google\Cloud\Vision\V1\Product\KeyValue
     type: method
     langs:

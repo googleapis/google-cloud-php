@@ -16,8 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateAwsNodePoolRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster]
-     * resource where this node pool will be created.
+     * Required. The [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resource where this node pool will be created.
      * `AwsCluster` names are formatted as
      * `projects/<project-id>/locations/<region>/awsClusters/<cluster-id>`.
      * See [Resource Names](https://cloud.google.com/apis/design/resource_names)
@@ -27,20 +26,18 @@ class CreateAwsNodePoolRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
-     * Required. The specification of the
-     * [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] to create.
+     * Required. The specification of the [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] to create.
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AwsNodePool aws_node_pool = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $aws_node_pool = null;
     /**
-     * Required. A client provided ID the resource. Must be unique within the
-     * parent resource.
-     * The provided ID will be part of the
-     * [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] resource name
-     * formatted as
+     * Required. A client provided ID the resource. Must be unique within the parent
+     * resource.
+     * The provided ID will be part of the [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool]
+     * resource name formatted as
      * `projects/<project-id>/locations/<region>/awsClusters/<cluster-id>/awsNodePools/<node-pool-id>`.
-     * Valid characters are `/[a-z][0-9]-/`. Cannot be longer than 63 characters.
+     * Valid characters are `/[a-z][0-9]-/`. Cannot be longer than 40 characters.
      *
      * Generated from protobuf field <code>string aws_node_pool_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -60,23 +57,20 @@ class CreateAwsNodePoolRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster]
-     *           resource where this node pool will be created.
+     *           Required. The [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resource where this node pool will be created.
      *           `AwsCluster` names are formatted as
      *           `projects/<project-id>/locations/<region>/awsClusters/<cluster-id>`.
      *           See [Resource Names](https://cloud.google.com/apis/design/resource_names)
      *           for more details on Google Cloud resource names.
      *     @type \Google\Cloud\GkeMultiCloud\V1\AwsNodePool $aws_node_pool
-     *           Required. The specification of the
-     *           [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] to create.
+     *           Required. The specification of the [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] to create.
      *     @type string $aws_node_pool_id
-     *           Required. A client provided ID the resource. Must be unique within the
-     *           parent resource.
-     *           The provided ID will be part of the
-     *           [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] resource name
-     *           formatted as
+     *           Required. A client provided ID the resource. Must be unique within the parent
+     *           resource.
+     *           The provided ID will be part of the [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool]
+     *           resource name formatted as
      *           `projects/<project-id>/locations/<region>/awsClusters/<cluster-id>/awsNodePools/<node-pool-id>`.
-     *           Valid characters are `/[a-z][0-9]-/`. Cannot be longer than 63 characters.
+     *           Valid characters are `/[a-z][0-9]-/`. Cannot be longer than 40 characters.
      *     @type bool $validate_only
      *           If set, only validate the request, but do not actually create the node
      *           pool.
@@ -88,8 +82,7 @@ class CreateAwsNodePoolRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster]
-     * resource where this node pool will be created.
+     * Required. The [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resource where this node pool will be created.
      * `AwsCluster` names are formatted as
      * `projects/<project-id>/locations/<region>/awsClusters/<cluster-id>`.
      * See [Resource Names](https://cloud.google.com/apis/design/resource_names)
@@ -104,8 +97,7 @@ class CreateAwsNodePoolRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster]
-     * resource where this node pool will be created.
+     * Required. The [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resource where this node pool will be created.
      * `AwsCluster` names are formatted as
      * `projects/<project-id>/locations/<region>/awsClusters/<cluster-id>`.
      * See [Resource Names](https://cloud.google.com/apis/design/resource_names)
@@ -124,8 +116,7 @@ class CreateAwsNodePoolRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The specification of the
-     * [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] to create.
+     * Required. The specification of the [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] to create.
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AwsNodePool aws_node_pool = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\GkeMultiCloud\V1\AwsNodePool|null
@@ -146,8 +137,7 @@ class CreateAwsNodePoolRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The specification of the
-     * [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] to create.
+     * Required. The specification of the [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] to create.
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AwsNodePool aws_node_pool = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\GkeMultiCloud\V1\AwsNodePool $var
@@ -162,13 +152,12 @@ class CreateAwsNodePoolRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. A client provided ID the resource. Must be unique within the
-     * parent resource.
-     * The provided ID will be part of the
-     * [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] resource name
-     * formatted as
+     * Required. A client provided ID the resource. Must be unique within the parent
+     * resource.
+     * The provided ID will be part of the [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool]
+     * resource name formatted as
      * `projects/<project-id>/locations/<region>/awsClusters/<cluster-id>/awsNodePools/<node-pool-id>`.
-     * Valid characters are `/[a-z][0-9]-/`. Cannot be longer than 63 characters.
+     * Valid characters are `/[a-z][0-9]-/`. Cannot be longer than 40 characters.
      *
      * Generated from protobuf field <code>string aws_node_pool_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -179,13 +168,12 @@ class CreateAwsNodePoolRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. A client provided ID the resource. Must be unique within the
-     * parent resource.
-     * The provided ID will be part of the
-     * [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] resource name
-     * formatted as
+     * Required. A client provided ID the resource. Must be unique within the parent
+     * resource.
+     * The provided ID will be part of the [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool]
+     * resource name formatted as
      * `projects/<project-id>/locations/<region>/awsClusters/<cluster-id>/awsNodePools/<node-pool-id>`.
-     * Valid characters are `/[a-z][0-9]-/`. Cannot be longer than 63 characters.
+     * Valid characters are `/[a-z][0-9]-/`. Cannot be longer than 40 characters.
      *
      * Generated from protobuf field <code>string aws_node_pool_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

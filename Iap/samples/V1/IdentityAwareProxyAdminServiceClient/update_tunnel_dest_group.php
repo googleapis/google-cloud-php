@@ -30,9 +30,8 @@ use Google\Cloud\Iap\V1\TunnelDestGroup;
 /**
  * Updates a TunnelDestGroup.
  *
- * @param string $tunnelDestGroupName Immutable. Identifier for the TunnelDestGroup. Must be unique
- *                                    within the project and contain only lower case letters (a-z) and dashes
- *                                    (-).
+ * @param string $tunnelDestGroupName Immutable. Identifier for the TunnelDestGroup. Must be unique within the
+ *                                    project.
  */
 function update_tunnel_dest_group_sample(string $tunnelDestGroupName): void
 {

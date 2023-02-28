@@ -16,9 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class DeleteTransferRunRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The field will contain name of the resource requested, for
-     * example: `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}`
-     * or
+     * Required. The field will contain name of the resource requested, for example:
+     * `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}` or
      * `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -32,9 +31,8 @@ class DeleteTransferRunRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The field will contain name of the resource requested, for
-     *           example: `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}`
-     *           or
+     *           Required. The field will contain name of the resource requested, for example:
+     *           `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}` or
      *           `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`
      * }
      */
@@ -44,9 +42,8 @@ class DeleteTransferRunRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The field will contain name of the resource requested, for
-     * example: `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}`
-     * or
+     * Required. The field will contain name of the resource requested, for example:
+     * `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}` or
      * `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -58,9 +55,8 @@ class DeleteTransferRunRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The field will contain name of the resource requested, for
-     * example: `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}`
-     * or
+     * Required. The field will contain name of the resource requested, for example:
+     * `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}` or
      * `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>

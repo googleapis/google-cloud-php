@@ -264,35 +264,6 @@
                 }
             }
         },
-        "SnoozeService": {
-            "clients": {
-                "grpc": {
-                    "libraryClient": "SnoozeServiceGapicClient",
-                    "rpcs": {
-                        "CreateSnooze": {
-                            "methods": [
-                                "createSnooze"
-                            ]
-                        },
-                        "GetSnooze": {
-                            "methods": [
-                                "getSnooze"
-                            ]
-                        },
-                        "ListSnoozes": {
-                            "methods": [
-                                "listSnoozes"
-                            ]
-                        },
-                        "UpdateSnooze": {
-                            "methods": [
-                                "updateSnooze"
-                            ]
-                        }
-                    }
-                }
-            }
-        },
         "UptimeCheckService": {
             "clients": {
                 "grpc": {

@@ -1,7 +1,6 @@
 {
     "distribution_name": "google/cloud-kms",
-    "release_level": "stable",
+    "release_level": "ga",
     "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-kms/latest",
-    "library_type": "GAPIC_AUTO",
-    "api_shortname": "cloudkms"
+    "library_type": "GAPIC_AUTO"
 }

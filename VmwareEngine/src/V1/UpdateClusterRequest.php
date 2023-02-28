@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for
- * [VmwareEngine.UpdateCluster][google.cloud.vmwareengine.v1.VmwareEngine.UpdateCluster]
+ * Request message for [VmwareEngine.UpdateCluster][google.cloud.vmwareengine.v1.VmwareEngine.UpdateCluster]
  *
  * Generated from protobuf message <code>google.cloud.vmwareengine.v1.UpdateClusterRequest</code>
  */
@@ -40,8 +39,8 @@ class UpdateClusterRequest extends \Google\Protobuf\Internal\Message
      */
     private $request_id = '';
     /**
-     * Optional. True if you want the request to be validated and not executed;
-     * false otherwise.
+     * Optional. True if you want the request to be validated and not executed; false
+     * otherwise.
      *
      * Generated from protobuf field <code>bool validate_only = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -65,8 +64,8 @@ class UpdateClusterRequest extends \Google\Protobuf\Internal\Message
      *           Optional. The request ID must be a valid UUID with the exception that
      *           zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      *     @type bool $validate_only
-     *           Optional. True if you want the request to be validated and not executed;
-     *           false otherwise.
+     *           Optional. True if you want the request to be validated and not executed; false
+     *           otherwise.
      * }
      */
     public function __construct($data = NULL) {
@@ -183,8 +182,8 @@ class UpdateClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. True if you want the request to be validated and not executed;
-     * false otherwise.
+     * Optional. True if you want the request to be validated and not executed; false
+     * otherwise.
      *
      * Generated from protobuf field <code>bool validate_only = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
@@ -195,8 +194,8 @@ class UpdateClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. True if you want the request to be validated and not executed;
-     * false otherwise.
+     * Optional. True if you want the request to be validated and not executed; false
+     * otherwise.
      *
      * Generated from protobuf field <code>bool validate_only = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var

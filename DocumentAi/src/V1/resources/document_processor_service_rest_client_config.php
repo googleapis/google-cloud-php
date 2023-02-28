@@ -114,17 +114,6 @@ return [
                     ],
                 ],
             ],
-            'GetProcessorType' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/processorTypes/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
             'GetProcessorVersion' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/processors/*/processorVersions/*}',
@@ -319,5 +308,4 @@ return [
             ],
         ],
     ],
-    'numericEnums' => true,
 ];

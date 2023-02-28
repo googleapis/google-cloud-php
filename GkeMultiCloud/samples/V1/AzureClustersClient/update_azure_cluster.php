@@ -32,7 +32,6 @@ use Google\Cloud\GkeMultiCloud\V1\AzureClusterUser;
 use Google\Cloud\GkeMultiCloud\V1\AzureClustersClient;
 use Google\Cloud\GkeMultiCloud\V1\AzureControlPlane;
 use Google\Cloud\GkeMultiCloud\V1\AzureSshConfig;
-use Google\Cloud\GkeMultiCloud\V1\Fleet;
 use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
@@ -45,13 +44,11 @@ use Google\Rpc\Status;
  *                                                                      You can call
  *                                                                      [GetAzureServerConfig][google.cloud.gkemulticloud.v1.AzureClusters.GetAzureServerConfig]
  *                                                                      to list all supported Azure regions within a given Google Cloud region.
- * @param string $azureClusterResourceGroupId                           The ARM ID of the resource group where the cluster resources are
- *                                                                      deployed. For example:
+ * @param string $azureClusterResourceGroupId                           The ARM ID of the resource group where the cluster resources are deployed.
+ *                                                                      For example:
  *                                                                      `/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>`
- * @param string $azureClusterAzureClient                               Name of the
- *                                                                      [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] that contains
- *                                                                      authentication configuration for how the Anthos Multi-Cloud API connects to
- *                                                                      Azure APIs.
+ * @param string $azureClusterAzureClient                               Name of the [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] that contains authentication configuration for
+ *                                                                      how the Anthos Multi-Cloud API connects to Azure APIs.
  *
  *                                                                      The `AzureClient` resource must reside on the same GCP project and region
  *                                                                      as the `AzureCluster`.
@@ -61,8 +58,8 @@ use Google\Rpc\Status;
  *
  *                                                                      See [Resource Names](https://cloud.google.com/apis/design/resource_names)
  *                                                                      for more details on Google Cloud resource names.
- * @param string $azureClusterNetworkingVirtualNetworkId                The Azure Resource Manager (ARM) ID of the VNet associated with
- *                                                                      your cluster.
+ * @param string $azureClusterNetworkingVirtualNetworkId                The Azure Resource Manager (ARM) ID of the VNet associated with your
+ *                                                                      cluster.
  *
  *                                                                      All components in the cluster (i.e. control plane and node pools) run on a
  *                                                                      single VNet.
@@ -91,15 +88,10 @@ use Google\Rpc\Status;
  *                                                                      You can list all supported versions on a given Google Cloud region by
  *                                                                      calling
  *                                                                      [GetAzureServerConfig][google.cloud.gkemulticloud.v1.AzureClusters.GetAzureServerConfig].
- * @param string $azureClusterControlPlaneSshConfigAuthorizedKey        The SSH public key data for VMs managed by Anthos. This accepts
- *                                                                      the authorized_keys file format used in OpenSSH according to the sshd(8)
- *                                                                      manual page.
+ * @param string $azureClusterControlPlaneSshConfigAuthorizedKey        The SSH public key data for VMs managed by Anthos. This accepts the
+ *                                                                      authorized_keys file format used in OpenSSH according to the sshd(8) manual
+ *                                                                      page.
  * @param string $azureClusterAuthorizationAdminUsersUsername           The name of the user, e.g. `my-gcp-id&#64;gmail.com`.
- * @param string $azureClusterFleetProject                              The name of the Fleet host project where this cluster will be
- *                                                                      registered.
- *
- *                                                                      Project names are formatted as
- *                                                                      `projects/<project-number>`.
  */
 function update_azure_cluster_sample(
     string $azureClusterAzureRegion,
@@ -110,8 +102,7 @@ function update_azure_cluster_sample(
     string $azureClusterNetworkingServiceAddressCidrBlocksElement,
     string $azureClusterControlPlaneVersion,
     string $azureClusterControlPlaneSshConfigAuthorizedKey,
-    string $azureClusterAuthorizationAdminUsersUsername,
-    string $azureClusterFleetProject
+    string $azureClusterAuthorizationAdminUsersUsername
 ): void {
     // Create a client.
     $azureClustersClient = new AzureClustersClient();
@@ -137,16 +128,13 @@ function update_azure_cluster_sample(
     $azureClusterAuthorizationAdminUsers = [$azureClusterUser,];
     $azureClusterAuthorization = (new AzureAuthorization())
         ->setAdminUsers($azureClusterAuthorizationAdminUsers);
-    $azureClusterFleet = (new Fleet())
-        ->setProject($azureClusterFleetProject);
     $azureCluster = (new AzureCluster())
         ->setAzureRegion($azureClusterAzureRegion)
         ->setResourceGroupId($azureClusterResourceGroupId)
         ->setAzureClient($azureClusterAzureClient)
         ->setNetworking($azureClusterNetworking)
         ->setControlPlane($azureClusterControlPlane)
-        ->setAuthorization($azureClusterAuthorization)
-        ->setFleet($azureClusterFleet);
+        ->setAuthorization($azureClusterAuthorization);
     $updateMask = new FieldMask();
 
     // Call the API and handle any network failures.
@@ -189,7 +177,6 @@ function callSample(): void
     $azureClusterControlPlaneVersion = '[VERSION]';
     $azureClusterControlPlaneSshConfigAuthorizedKey = '[AUTHORIZED_KEY]';
     $azureClusterAuthorizationAdminUsersUsername = '[USERNAME]';
-    $azureClusterFleetProject = '[PROJECT]';
 
     update_azure_cluster_sample(
         $azureClusterAzureRegion,
@@ -200,8 +187,7 @@ function callSample(): void
         $azureClusterNetworkingServiceAddressCidrBlocksElement,
         $azureClusterControlPlaneVersion,
         $azureClusterControlPlaneSshConfigAuthorizedKey,
-        $azureClusterAuthorizationAdminUsersUsername,
-        $azureClusterFleetProject
+        $azureClusterAuthorizationAdminUsersUsername
     );
 }
 // [END gkemulticloud_v1_generated_AzureClusters_UpdateAzureCluster_sync]

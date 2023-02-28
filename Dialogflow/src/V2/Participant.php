@@ -24,8 +24,8 @@ class Participant extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * Immutable. The role this participant plays in the conversation. This field
-     * must be set during participant creation and is then immutable.
+     * Immutable. The role this participant plays in the conversation. This field must be set
+     * during participant creation and is then immutable.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Participant.Role role = 2 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
@@ -39,23 +39,18 @@ class Participant extends \Google\Protobuf\Internal\Message
      */
     private $sip_recording_media_label = '';
     /**
-     * Optional. Obfuscated user id that should be associated with the created
-     * participant.
+     * Optional. Obfuscated user id that should be associated with the created participant.
      * You can specify a user id as follows:
      * 1. If you set this field in
-     *    [CreateParticipantRequest][google.cloud.dialogflow.v2.CreateParticipantRequest.participant]
-     *    or
+     *    [CreateParticipantRequest][google.cloud.dialogflow.v2.CreateParticipantRequest.participant] or
      *    [UpdateParticipantRequest][google.cloud.dialogflow.v2.UpdateParticipantRequest.participant],
      *    Dialogflow adds the obfuscated user id with the participant.
      * 2. If you set this field in
-     *    [AnalyzeContent][google.cloud.dialogflow.v2.AnalyzeContentRequest.obfuscated_external_user_id]
-     *    or
+     *    [AnalyzeContent][google.cloud.dialogflow.v2.AnalyzeContentRequest.obfuscated_external_user_id] or
      *    [StreamingAnalyzeContent][google.cloud.dialogflow.v2.StreamingAnalyzeContentRequest.obfuscated_external_user_id],
-     *    Dialogflow will update
-     *    [Participant.obfuscated_external_user_id][google.cloud.dialogflow.v2.Participant.obfuscated_external_user_id].
+     *    Dialogflow will update [Participant.obfuscated_external_user_id][google.cloud.dialogflow.v2.Participant.obfuscated_external_user_id].
      * Dialogflow returns an error if you try to add a user id for a
-     * non-[END_USER][google.cloud.dialogflow.v2.Participant.Role.END_USER]
-     * participant.
+     * non-[END_USER][google.cloud.dialogflow.v2.Participant.Role.END_USER] participant.
      * Dialogflow uses this user id for billing and measurement purposes. For
      * example, Dialogflow determines whether a user in one conversation returned
      * in a later conversation.
@@ -70,10 +65,9 @@ class Participant extends \Google\Protobuf\Internal\Message
      */
     private $obfuscated_external_user_id = '';
     /**
-     * Optional. Key-value filters on the metadata of documents returned by
-     * article suggestion. If specified, article suggestion only returns suggested
-     * documents that match all filters in their
-     * [Document.metadata][google.cloud.dialogflow.v2.Document.metadata]. Multiple
+     * Optional. Key-value filters on the metadata of documents returned by article
+     * suggestion. If specified, article suggestion only returns suggested
+     * documents that match all filters in their [Document.metadata][google.cloud.dialogflow.v2.Document.metadata]. Multiple
      * values for a metadata key should be concatenated by comma. For example,
      * filters to match all documents that have 'US' or 'CA' in their market
      * metadata values and 'agent' in their user metadata values will be
@@ -103,30 +97,25 @@ class Participant extends \Google\Protobuf\Internal\Message
      *           Format: `projects/<Project ID>/locations/<Location
      *           ID>/conversations/<Conversation ID>/participants/<Participant ID>`.
      *     @type int $role
-     *           Immutable. The role this participant plays in the conversation. This field
-     *           must be set during participant creation and is then immutable.
+     *           Immutable. The role this participant plays in the conversation. This field must be set
+     *           during participant creation and is then immutable.
      *     @type string $sip_recording_media_label
      *           Optional. Label applied to streams representing this participant in SIPREC
      *           XML metadata and SDP. This is used to assign transcriptions from that
      *           media stream to this participant. This field can be updated.
      *     @type string $obfuscated_external_user_id
-     *           Optional. Obfuscated user id that should be associated with the created
-     *           participant.
+     *           Optional. Obfuscated user id that should be associated with the created participant.
      *           You can specify a user id as follows:
      *           1. If you set this field in
-     *              [CreateParticipantRequest][google.cloud.dialogflow.v2.CreateParticipantRequest.participant]
-     *              or
+     *              [CreateParticipantRequest][google.cloud.dialogflow.v2.CreateParticipantRequest.participant] or
      *              [UpdateParticipantRequest][google.cloud.dialogflow.v2.UpdateParticipantRequest.participant],
      *              Dialogflow adds the obfuscated user id with the participant.
      *           2. If you set this field in
-     *              [AnalyzeContent][google.cloud.dialogflow.v2.AnalyzeContentRequest.obfuscated_external_user_id]
-     *              or
+     *              [AnalyzeContent][google.cloud.dialogflow.v2.AnalyzeContentRequest.obfuscated_external_user_id] or
      *              [StreamingAnalyzeContent][google.cloud.dialogflow.v2.StreamingAnalyzeContentRequest.obfuscated_external_user_id],
-     *              Dialogflow will update
-     *              [Participant.obfuscated_external_user_id][google.cloud.dialogflow.v2.Participant.obfuscated_external_user_id].
+     *              Dialogflow will update [Participant.obfuscated_external_user_id][google.cloud.dialogflow.v2.Participant.obfuscated_external_user_id].
      *           Dialogflow returns an error if you try to add a user id for a
-     *           non-[END_USER][google.cloud.dialogflow.v2.Participant.Role.END_USER]
-     *           participant.
+     *           non-[END_USER][google.cloud.dialogflow.v2.Participant.Role.END_USER] participant.
      *           Dialogflow uses this user id for billing and measurement purposes. For
      *           example, Dialogflow determines whether a user in one conversation returned
      *           in a later conversation.
@@ -137,10 +126,9 @@ class Participant extends \Google\Protobuf\Internal\Message
      *             hash function like SHA-512.
      *           * The length of the user id must be <= 256 characters.
      *     @type array|\Google\Protobuf\Internal\MapField $documents_metadata_filters
-     *           Optional. Key-value filters on the metadata of documents returned by
-     *           article suggestion. If specified, article suggestion only returns suggested
-     *           documents that match all filters in their
-     *           [Document.metadata][google.cloud.dialogflow.v2.Document.metadata]. Multiple
+     *           Optional. Key-value filters on the metadata of documents returned by article
+     *           suggestion. If specified, article suggestion only returns suggested
+     *           documents that match all filters in their [Document.metadata][google.cloud.dialogflow.v2.Document.metadata]. Multiple
      *           values for a metadata key should be concatenated by comma. For example,
      *           filters to match all documents that have 'US' or 'CA' in their market
      *           metadata values and 'agent' in their user metadata values will be
@@ -192,8 +180,8 @@ class Participant extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. The role this participant plays in the conversation. This field
-     * must be set during participant creation and is then immutable.
+     * Immutable. The role this participant plays in the conversation. This field must be set
+     * during participant creation and is then immutable.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Participant.Role role = 2 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return int
@@ -204,8 +192,8 @@ class Participant extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. The role this participant plays in the conversation. This field
-     * must be set during participant creation and is then immutable.
+     * Immutable. The role this participant plays in the conversation. This field must be set
+     * during participant creation and is then immutable.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Participant.Role role = 2 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @param int $var
@@ -250,23 +238,18 @@ class Participant extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Obfuscated user id that should be associated with the created
-     * participant.
+     * Optional. Obfuscated user id that should be associated with the created participant.
      * You can specify a user id as follows:
      * 1. If you set this field in
-     *    [CreateParticipantRequest][google.cloud.dialogflow.v2.CreateParticipantRequest.participant]
-     *    or
+     *    [CreateParticipantRequest][google.cloud.dialogflow.v2.CreateParticipantRequest.participant] or
      *    [UpdateParticipantRequest][google.cloud.dialogflow.v2.UpdateParticipantRequest.participant],
      *    Dialogflow adds the obfuscated user id with the participant.
      * 2. If you set this field in
-     *    [AnalyzeContent][google.cloud.dialogflow.v2.AnalyzeContentRequest.obfuscated_external_user_id]
-     *    or
+     *    [AnalyzeContent][google.cloud.dialogflow.v2.AnalyzeContentRequest.obfuscated_external_user_id] or
      *    [StreamingAnalyzeContent][google.cloud.dialogflow.v2.StreamingAnalyzeContentRequest.obfuscated_external_user_id],
-     *    Dialogflow will update
-     *    [Participant.obfuscated_external_user_id][google.cloud.dialogflow.v2.Participant.obfuscated_external_user_id].
+     *    Dialogflow will update [Participant.obfuscated_external_user_id][google.cloud.dialogflow.v2.Participant.obfuscated_external_user_id].
      * Dialogflow returns an error if you try to add a user id for a
-     * non-[END_USER][google.cloud.dialogflow.v2.Participant.Role.END_USER]
-     * participant.
+     * non-[END_USER][google.cloud.dialogflow.v2.Participant.Role.END_USER] participant.
      * Dialogflow uses this user id for billing and measurement purposes. For
      * example, Dialogflow determines whether a user in one conversation returned
      * in a later conversation.
@@ -286,23 +269,18 @@ class Participant extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Obfuscated user id that should be associated with the created
-     * participant.
+     * Optional. Obfuscated user id that should be associated with the created participant.
      * You can specify a user id as follows:
      * 1. If you set this field in
-     *    [CreateParticipantRequest][google.cloud.dialogflow.v2.CreateParticipantRequest.participant]
-     *    or
+     *    [CreateParticipantRequest][google.cloud.dialogflow.v2.CreateParticipantRequest.participant] or
      *    [UpdateParticipantRequest][google.cloud.dialogflow.v2.UpdateParticipantRequest.participant],
      *    Dialogflow adds the obfuscated user id with the participant.
      * 2. If you set this field in
-     *    [AnalyzeContent][google.cloud.dialogflow.v2.AnalyzeContentRequest.obfuscated_external_user_id]
-     *    or
+     *    [AnalyzeContent][google.cloud.dialogflow.v2.AnalyzeContentRequest.obfuscated_external_user_id] or
      *    [StreamingAnalyzeContent][google.cloud.dialogflow.v2.StreamingAnalyzeContentRequest.obfuscated_external_user_id],
-     *    Dialogflow will update
-     *    [Participant.obfuscated_external_user_id][google.cloud.dialogflow.v2.Participant.obfuscated_external_user_id].
+     *    Dialogflow will update [Participant.obfuscated_external_user_id][google.cloud.dialogflow.v2.Participant.obfuscated_external_user_id].
      * Dialogflow returns an error if you try to add a user id for a
-     * non-[END_USER][google.cloud.dialogflow.v2.Participant.Role.END_USER]
-     * participant.
+     * non-[END_USER][google.cloud.dialogflow.v2.Participant.Role.END_USER] participant.
      * Dialogflow uses this user id for billing and measurement purposes. For
      * example, Dialogflow determines whether a user in one conversation returned
      * in a later conversation.
@@ -326,10 +304,9 @@ class Participant extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Key-value filters on the metadata of documents returned by
-     * article suggestion. If specified, article suggestion only returns suggested
-     * documents that match all filters in their
-     * [Document.metadata][google.cloud.dialogflow.v2.Document.metadata]. Multiple
+     * Optional. Key-value filters on the metadata of documents returned by article
+     * suggestion. If specified, article suggestion only returns suggested
+     * documents that match all filters in their [Document.metadata][google.cloud.dialogflow.v2.Document.metadata]. Multiple
      * values for a metadata key should be concatenated by comma. For example,
      * filters to match all documents that have 'US' or 'CA' in their market
      * metadata values and 'agent' in their user metadata values will be
@@ -353,10 +330,9 @@ class Participant extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Key-value filters on the metadata of documents returned by
-     * article suggestion. If specified, article suggestion only returns suggested
-     * documents that match all filters in their
-     * [Document.metadata][google.cloud.dialogflow.v2.Document.metadata]. Multiple
+     * Optional. Key-value filters on the metadata of documents returned by article
+     * suggestion. If specified, article suggestion only returns suggested
+     * documents that match all filters in their [Document.metadata][google.cloud.dialogflow.v2.Document.metadata]. Multiple
      * values for a metadata key should be concatenated by comma. For example,
      * filters to match all documents that have 'US' or 'CA' in their market
      * metadata values and 'agent' in their user metadata values will be

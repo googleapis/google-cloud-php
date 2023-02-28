@@ -43,18 +43,16 @@ class AzureCluster extends \Google\Protobuf\Internal\Message
      */
     private $azure_region = '';
     /**
-     * Required. The ARM ID of the resource group where the cluster resources are
-     * deployed. For example:
+     * Required. The ARM ID of the resource group where the cluster resources are deployed.
+     * For example:
      * `/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>`
      *
      * Generated from protobuf field <code>string resource_group_id = 17 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $resource_group_id = '';
     /**
-     * Required. Name of the
-     * [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] that contains
-     * authentication configuration for how the Anthos Multi-Cloud API connects to
-     * Azure APIs.
+     * Required. Name of the [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] that contains authentication configuration for
+     * how the Anthos Multi-Cloud API connects to Azure APIs.
      * The `AzureClient` resource must reside on the same GCP project and region
      * as the `AzureCluster`.
      * `AzureClient` names are formatted as
@@ -154,13 +152,13 @@ class AzureCluster extends \Google\Protobuf\Internal\Message
      */
     private $cluster_ca_certificate = '';
     /**
-     * Required. Fleet configuration.
+     * Optional. Fleet configuration.
      *
-     * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.Fleet fleet = 20 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.Fleet fleet = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $fleet = null;
     /**
-     * Output only. Managed Azure resources for this cluster.
+     * Output only. Mananged Azure resources for this cluster.
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AzureClusterResources managed_resources = 21 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -171,18 +169,6 @@ class AzureCluster extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.LoggingConfig logging_config = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $logging_config = null;
-    /**
-     * Output only. A set of errors found in the cluster.
-     *
-     * Generated from protobuf field <code>repeated .google.cloud.gkemulticloud.v1.AzureClusterError errors = 24 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     */
-    private $errors;
-    /**
-     * Optional. Monitoring configuration for this cluster.
-     *
-     * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.MonitoringConfig monitoring_config = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
-     */
-    private $monitoring_config = null;
 
     /**
      * Constructor.
@@ -206,14 +192,12 @@ class AzureCluster extends \Google\Protobuf\Internal\Message
      *           [GetAzureServerConfig][google.cloud.gkemulticloud.v1.AzureClusters.GetAzureServerConfig]
      *           to list all supported Azure regions within a given Google Cloud region.
      *     @type string $resource_group_id
-     *           Required. The ARM ID of the resource group where the cluster resources are
-     *           deployed. For example:
+     *           Required. The ARM ID of the resource group where the cluster resources are deployed.
+     *           For example:
      *           `/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>`
      *     @type string $azure_client
-     *           Required. Name of the
-     *           [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] that contains
-     *           authentication configuration for how the Anthos Multi-Cloud API connects to
-     *           Azure APIs.
+     *           Required. Name of the [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] that contains authentication configuration for
+     *           how the Anthos Multi-Cloud API connects to Azure APIs.
      *           The `AzureClient` resource must reside on the same GCP project and region
      *           as the `AzureCluster`.
      *           `AzureClient` names are formatted as
@@ -257,15 +241,11 @@ class AzureCluster extends \Google\Protobuf\Internal\Message
      *     @type string $cluster_ca_certificate
      *           Output only. PEM encoded x509 certificate of the cluster root of trust.
      *     @type \Google\Cloud\GkeMultiCloud\V1\Fleet $fleet
-     *           Required. Fleet configuration.
+     *           Optional. Fleet configuration.
      *     @type \Google\Cloud\GkeMultiCloud\V1\AzureClusterResources $managed_resources
-     *           Output only. Managed Azure resources for this cluster.
+     *           Output only. Mananged Azure resources for this cluster.
      *     @type \Google\Cloud\GkeMultiCloud\V1\LoggingConfig $logging_config
      *           Optional. Logging configuration for this cluster.
-     *     @type array<\Google\Cloud\GkeMultiCloud\V1\AzureClusterError>|\Google\Protobuf\Internal\RepeatedField $errors
-     *           Output only. A set of errors found in the cluster.
-     *     @type \Google\Cloud\GkeMultiCloud\V1\MonitoringConfig $monitoring_config
-     *           Optional. Monitoring configuration for this cluster.
      * }
      */
     public function __construct($data = NULL) {
@@ -370,8 +350,8 @@ class AzureCluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The ARM ID of the resource group where the cluster resources are
-     * deployed. For example:
+     * Required. The ARM ID of the resource group where the cluster resources are deployed.
+     * For example:
      * `/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>`
      *
      * Generated from protobuf field <code>string resource_group_id = 17 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -383,8 +363,8 @@ class AzureCluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The ARM ID of the resource group where the cluster resources are
-     * deployed. For example:
+     * Required. The ARM ID of the resource group where the cluster resources are deployed.
+     * For example:
      * `/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>`
      *
      * Generated from protobuf field <code>string resource_group_id = 17 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -400,10 +380,8 @@ class AzureCluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Name of the
-     * [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] that contains
-     * authentication configuration for how the Anthos Multi-Cloud API connects to
-     * Azure APIs.
+     * Required. Name of the [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] that contains authentication configuration for
+     * how the Anthos Multi-Cloud API connects to Azure APIs.
      * The `AzureClient` resource must reside on the same GCP project and region
      * as the `AzureCluster`.
      * `AzureClient` names are formatted as
@@ -420,10 +398,8 @@ class AzureCluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Name of the
-     * [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] that contains
-     * authentication configuration for how the Anthos Multi-Cloud API connects to
-     * Azure APIs.
+     * Required. Name of the [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] that contains authentication configuration for
+     * how the Anthos Multi-Cloud API connects to Azure APIs.
      * The `AzureClient` resource must reside on the same GCP project and region
      * as the `AzureCluster`.
      * `AzureClient` names are formatted as
@@ -862,9 +838,9 @@ class AzureCluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Fleet configuration.
+     * Optional. Fleet configuration.
      *
-     * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.Fleet fleet = 20 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.Fleet fleet = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\GkeMultiCloud\V1\Fleet|null
      */
     public function getFleet()
@@ -883,9 +859,9 @@ class AzureCluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Fleet configuration.
+     * Optional. Fleet configuration.
      *
-     * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.Fleet fleet = 20 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.Fleet fleet = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\GkeMultiCloud\V1\Fleet $var
      * @return $this
      */
@@ -898,7 +874,7 @@ class AzureCluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Managed Azure resources for this cluster.
+     * Output only. Mananged Azure resources for this cluster.
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AzureClusterResources managed_resources = 21 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\GkeMultiCloud\V1\AzureClusterResources|null
@@ -919,7 +895,7 @@ class AzureCluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Managed Azure resources for this cluster.
+     * Output only. Mananged Azure resources for this cluster.
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AzureClusterResources managed_resources = 21 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\GkeMultiCloud\V1\AzureClusterResources $var
@@ -965,68 +941,6 @@ class AzureCluster extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\GkeMultiCloud\V1\LoggingConfig::class);
         $this->logging_config = $var;
-
-        return $this;
-    }
-
-    /**
-     * Output only. A set of errors found in the cluster.
-     *
-     * Generated from protobuf field <code>repeated .google.cloud.gkemulticloud.v1.AzureClusterError errors = 24 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
-     */
-    public function getErrors()
-    {
-        return $this->errors;
-    }
-
-    /**
-     * Output only. A set of errors found in the cluster.
-     *
-     * Generated from protobuf field <code>repeated .google.cloud.gkemulticloud.v1.AzureClusterError errors = 24 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\GkeMultiCloud\V1\AzureClusterError>|\Google\Protobuf\Internal\RepeatedField $var
-     * @return $this
-     */
-    public function setErrors($var)
-    {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\GkeMultiCloud\V1\AzureClusterError::class);
-        $this->errors = $arr;
-
-        return $this;
-    }
-
-    /**
-     * Optional. Monitoring configuration for this cluster.
-     *
-     * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.MonitoringConfig monitoring_config = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Cloud\GkeMultiCloud\V1\MonitoringConfig|null
-     */
-    public function getMonitoringConfig()
-    {
-        return $this->monitoring_config;
-    }
-
-    public function hasMonitoringConfig()
-    {
-        return isset($this->monitoring_config);
-    }
-
-    public function clearMonitoringConfig()
-    {
-        unset($this->monitoring_config);
-    }
-
-    /**
-     * Optional. Monitoring configuration for this cluster.
-     *
-     * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.MonitoringConfig monitoring_config = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param \Google\Cloud\GkeMultiCloud\V1\MonitoringConfig $var
-     * @return $this
-     */
-    public function setMonitoringConfig($var)
-    {
-        GPBUtil::checkMessage($var, \Google\Cloud\GkeMultiCloud\V1\MonitoringConfig::class);
-        $this->monitoring_config = $var;
 
         return $this;
     }

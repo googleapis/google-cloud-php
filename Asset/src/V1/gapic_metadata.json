@@ -25,21 +25,6 @@
                                 "analyzeMove"
                             ]
                         },
-                        "AnalyzeOrgPolicies": {
-                            "methods": [
-                                "analyzeOrgPolicies"
-                            ]
-                        },
-                        "AnalyzeOrgPolicyGovernedAssets": {
-                            "methods": [
-                                "analyzeOrgPolicyGovernedAssets"
-                            ]
-                        },
-                        "AnalyzeOrgPolicyGovernedContainers": {
-                            "methods": [
-                                "analyzeOrgPolicyGovernedContainers"
-                            ]
-                        },
                         "BatchGetAssetsHistory": {
                             "methods": [
                                 "batchGetAssetsHistory"

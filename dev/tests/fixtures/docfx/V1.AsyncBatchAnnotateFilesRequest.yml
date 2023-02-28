@@ -46,7 +46,10 @@ items:
     uid: '\Google\Cloud\Vision\V1\AsyncBatchAnnotateFilesRequest::getRequests()'
     name: getRequests
     id: getRequests
-    summary: 'Required. Individual async file annotation requests for this batch.'
+    summary: |
+      Required. Individual async file annotation requests for this batch.
+      
+      Generated from protobuf field <code>repeated .google.cloud.vision.v1.AsyncAnnotateFileRequest requests = 1 [(.google.api.field_behavior) = REQUIRED];</code>
     parent: \Google\Cloud\Vision\V1\AsyncBatchAnnotateFilesRequest
     type: method
     langs:
@@ -54,12 +57,15 @@ items:
     syntax:
       returns:
         -
-          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Internal/RepeatedField">Google\Protobuf\Internal\RepeatedField</a>'
+          var_type: Google\Protobuf\Internal\RepeatedField
   -
     uid: '\Google\Cloud\Vision\V1\AsyncBatchAnnotateFilesRequest::setRequests()'
     name: setRequests
     id: setRequests
-    summary: 'Required. Individual async file annotation requests for this batch.'
+    summary: |
+      Required. Individual async file annotation requests for this batch.
+      
+      Generated from protobuf field <code>repeated .google.cloud.vision.v1.AsyncAnnotateFileRequest requests = 1 [(.google.api.field_behavior) = REQUIRED];</code>
     parent: \Google\Cloud\Vision\V1\AsyncBatchAnnotateFilesRequest
     type: method
     langs:
@@ -87,6 +93,8 @@ items:
           `asia`: East asia areas, like Japan, Taiwan,
           `eu`: The European Union.
       Example: `projects/project-A/locations/eu`.
+      
+      Generated from protobuf field <code>string parent = 4;</code>
     parent: \Google\Cloud\Vision\V1\AsyncBatchAnnotateFilesRequest
     type: method
     langs:
@@ -109,6 +117,8 @@ items:
           `asia`: East asia areas, like Japan, Taiwan,
           `eu`: The European Union.
       Example: `projects/project-A/locations/eu`.
+      
+      Generated from protobuf field <code>string parent = 4;</code>
     parent: \Google\Cloud\Vision\V1\AsyncBatchAnnotateFilesRequest
     type: method
     langs:

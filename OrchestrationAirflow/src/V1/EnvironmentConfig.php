@@ -22,11 +22,10 @@ class EnvironmentConfig extends \Google\Protobuf\Internal\Message
      */
     private $gke_cluster = '';
     /**
-     * Output only. The Cloud Storage prefix of the DAGs for this environment.
-     * Although Cloud Storage objects reside in a flat namespace, a hierarchical
-     * file tree can be simulated using "/"-delimited object name prefixes. DAG
-     * objects for this environment reside in a simulated directory with the given
-     * prefix.
+     * Output only. The Cloud Storage prefix of the DAGs for this environment. Although Cloud
+     * Storage objects reside in a flat namespace, a hierarchical file tree
+     * can be simulated using "/"-delimited object name prefixes. DAG objects for
+     * this environment reside in a simulated directory with the given prefix.
      *
      * Generated from protobuf field <code>string dag_gcs_prefix = 2;</code>
      */
@@ -59,23 +58,21 @@ class EnvironmentConfig extends \Google\Protobuf\Internal\Message
      */
     private $private_environment_config = null;
     /**
-     * Optional. The network-level access control policy for the Airflow web
-     * server. If unspecified, no network-level access restrictions will be
-     * applied.
+     * Optional. The network-level access control policy for the Airflow web server. If
+     * unspecified, no network-level access restrictions will be applied.
      *
      * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.WebServerNetworkAccessControl web_server_network_access_control = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $web_server_network_access_control = null;
     /**
-     * Optional. The configuration settings for Cloud SQL instance used internally
-     * by Apache Airflow software.
+     * Optional. The configuration settings for Cloud SQL instance used internally by Apache
+     * Airflow software.
      *
      * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.DatabaseConfig database_config = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $database_config = null;
     /**
-     * Optional. The configuration settings for the Airflow web server App Engine
-     * instance.
+     * Optional. The configuration settings for the Airflow web server App Engine instance.
      *
      * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.WebServerConfig web_server_config = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -88,9 +85,9 @@ class EnvironmentConfig extends \Google\Protobuf\Internal\Message
      */
     private $encryption_config = null;
     /**
-     * Optional. The maintenance window is the period when Cloud Composer
-     * components may undergo maintenance. It is defined so that maintenance is
-     * not executed during peak hours or critical time periods.
+     * Optional. The maintenance window is the period when Cloud Composer components may
+     * undergo maintenance. It is defined so that maintenance is not executed
+     * during peak hours or critical time periods.
      * The system will not be under maintenance for every occurrence of this
      * window, but when maintenance is planned, it will be scheduled
      * during the window.
@@ -104,9 +101,9 @@ class EnvironmentConfig extends \Google\Protobuf\Internal\Message
      */
     private $maintenance_window = null;
     /**
-     * Optional. The workloads configuration settings for the GKE cluster
-     * associated with the Cloud Composer environment. The GKE cluster runs
-     * Airflow scheduler, web server and workers workloads.
+     * Optional. The workloads configuration settings for the GKE cluster associated with
+     * the Cloud Composer environment. The GKE cluster runs Airflow scheduler, web
+     * server and workers workloads.
      * This field is supported for Cloud Composer environments in versions
      * composer-2.*.*-airflow-*.*.* and newer.
      *
@@ -122,16 +119,16 @@ class EnvironmentConfig extends \Google\Protobuf\Internal\Message
      */
     private $environment_size = 0;
     /**
-     * Output only. The URI of the Apache Airflow Web UI hosted within this
-     * environment (see [Airflow web
+     * Output only. The URI of the Apache Airflow Web UI hosted within this environment (see
+     * [Airflow web
      * interface](https://cloud.google.com/composer/docs/how-to/accessing/airflow-web-interface)).
      *
      * Generated from protobuf field <code>string airflow_uri = 6;</code>
      */
     private $airflow_uri = '';
     /**
-     * Optional. The configuration options for GKE cluster master authorized
-     * networks. By default master authorized networks feature is:
+     * Optional. The configuration options for GKE cluster master authorized networks.
+     * By default master authorized networks feature is:
      * - in case of private environment: enabled with no external networks
      * allowlisted.
      * - in case of public environment: disabled.
@@ -157,11 +154,10 @@ class EnvironmentConfig extends \Google\Protobuf\Internal\Message
      *     @type string $gke_cluster
      *           Output only. The Kubernetes Engine cluster used to run this environment.
      *     @type string $dag_gcs_prefix
-     *           Output only. The Cloud Storage prefix of the DAGs for this environment.
-     *           Although Cloud Storage objects reside in a flat namespace, a hierarchical
-     *           file tree can be simulated using "/"-delimited object name prefixes. DAG
-     *           objects for this environment reside in a simulated directory with the given
-     *           prefix.
+     *           Output only. The Cloud Storage prefix of the DAGs for this environment. Although Cloud
+     *           Storage objects reside in a flat namespace, a hierarchical file tree
+     *           can be simulated using "/"-delimited object name prefixes. DAG objects for
+     *           this environment reside in a simulated directory with the given prefix.
      *     @type int $node_count
      *           The number of nodes in the Kubernetes Engine cluster that will be
      *           used to run this environment.
@@ -174,22 +170,20 @@ class EnvironmentConfig extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Orchestration\Airflow\Service\V1\PrivateEnvironmentConfig $private_environment_config
      *           The configuration used for the Private IP Cloud Composer environment.
      *     @type \Google\Cloud\Orchestration\Airflow\Service\V1\WebServerNetworkAccessControl $web_server_network_access_control
-     *           Optional. The network-level access control policy for the Airflow web
-     *           server. If unspecified, no network-level access restrictions will be
-     *           applied.
+     *           Optional. The network-level access control policy for the Airflow web server. If
+     *           unspecified, no network-level access restrictions will be applied.
      *     @type \Google\Cloud\Orchestration\Airflow\Service\V1\DatabaseConfig $database_config
-     *           Optional. The configuration settings for Cloud SQL instance used internally
-     *           by Apache Airflow software.
+     *           Optional. The configuration settings for Cloud SQL instance used internally by Apache
+     *           Airflow software.
      *     @type \Google\Cloud\Orchestration\Airflow\Service\V1\WebServerConfig $web_server_config
-     *           Optional. The configuration settings for the Airflow web server App Engine
-     *           instance.
+     *           Optional. The configuration settings for the Airflow web server App Engine instance.
      *     @type \Google\Cloud\Orchestration\Airflow\Service\V1\EncryptionConfig $encryption_config
      *           Optional. The encryption options for the Cloud Composer environment
      *           and its dependencies. Cannot be updated.
      *     @type \Google\Cloud\Orchestration\Airflow\Service\V1\MaintenanceWindow $maintenance_window
-     *           Optional. The maintenance window is the period when Cloud Composer
-     *           components may undergo maintenance. It is defined so that maintenance is
-     *           not executed during peak hours or critical time periods.
+     *           Optional. The maintenance window is the period when Cloud Composer components may
+     *           undergo maintenance. It is defined so that maintenance is not executed
+     *           during peak hours or critical time periods.
      *           The system will not be under maintenance for every occurrence of this
      *           window, but when maintenance is planned, it will be scheduled
      *           during the window.
@@ -199,9 +193,9 @@ class EnvironmentConfig extends \Google\Protobuf\Internal\Message
      *           If this value is omitted, the default value for maintenance window will be
      *           applied. The default value is Saturday and Sunday 00-06 GMT.
      *     @type \Google\Cloud\Orchestration\Airflow\Service\V1\WorkloadsConfig $workloads_config
-     *           Optional. The workloads configuration settings for the GKE cluster
-     *           associated with the Cloud Composer environment. The GKE cluster runs
-     *           Airflow scheduler, web server and workers workloads.
+     *           Optional. The workloads configuration settings for the GKE cluster associated with
+     *           the Cloud Composer environment. The GKE cluster runs Airflow scheduler, web
+     *           server and workers workloads.
      *           This field is supported for Cloud Composer environments in versions
      *           composer-2.*.*-airflow-*.*.* and newer.
      *     @type int $environment_size
@@ -209,12 +203,12 @@ class EnvironmentConfig extends \Google\Protobuf\Internal\Message
      *           This field is supported for Cloud Composer environments in versions
      *           composer-2.*.*-airflow-*.*.* and newer.
      *     @type string $airflow_uri
-     *           Output only. The URI of the Apache Airflow Web UI hosted within this
-     *           environment (see [Airflow web
+     *           Output only. The URI of the Apache Airflow Web UI hosted within this environment (see
+     *           [Airflow web
      *           interface](https://cloud.google.com/composer/docs/how-to/accessing/airflow-web-interface)).
      *     @type \Google\Cloud\Orchestration\Airflow\Service\V1\MasterAuthorizedNetworksConfig $master_authorized_networks_config
-     *           Optional. The configuration options for GKE cluster master authorized
-     *           networks. By default master authorized networks feature is:
+     *           Optional. The configuration options for GKE cluster master authorized networks.
+     *           By default master authorized networks feature is:
      *           - in case of private environment: enabled with no external networks
      *           allowlisted.
      *           - in case of public environment: disabled.
@@ -256,11 +250,10 @@ class EnvironmentConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The Cloud Storage prefix of the DAGs for this environment.
-     * Although Cloud Storage objects reside in a flat namespace, a hierarchical
-     * file tree can be simulated using "/"-delimited object name prefixes. DAG
-     * objects for this environment reside in a simulated directory with the given
-     * prefix.
+     * Output only. The Cloud Storage prefix of the DAGs for this environment. Although Cloud
+     * Storage objects reside in a flat namespace, a hierarchical file tree
+     * can be simulated using "/"-delimited object name prefixes. DAG objects for
+     * this environment reside in a simulated directory with the given prefix.
      *
      * Generated from protobuf field <code>string dag_gcs_prefix = 2;</code>
      * @return string
@@ -271,11 +264,10 @@ class EnvironmentConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The Cloud Storage prefix of the DAGs for this environment.
-     * Although Cloud Storage objects reside in a flat namespace, a hierarchical
-     * file tree can be simulated using "/"-delimited object name prefixes. DAG
-     * objects for this environment reside in a simulated directory with the given
-     * prefix.
+     * Output only. The Cloud Storage prefix of the DAGs for this environment. Although Cloud
+     * Storage objects reside in a flat namespace, a hierarchical file tree
+     * can be simulated using "/"-delimited object name prefixes. DAG objects for
+     * this environment reside in a simulated directory with the given prefix.
      *
      * Generated from protobuf field <code>string dag_gcs_prefix = 2;</code>
      * @param string $var
@@ -430,9 +422,8 @@ class EnvironmentConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The network-level access control policy for the Airflow web
-     * server. If unspecified, no network-level access restrictions will be
-     * applied.
+     * Optional. The network-level access control policy for the Airflow web server. If
+     * unspecified, no network-level access restrictions will be applied.
      *
      * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.WebServerNetworkAccessControl web_server_network_access_control = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Orchestration\Airflow\Service\V1\WebServerNetworkAccessControl|null
@@ -453,9 +444,8 @@ class EnvironmentConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The network-level access control policy for the Airflow web
-     * server. If unspecified, no network-level access restrictions will be
-     * applied.
+     * Optional. The network-level access control policy for the Airflow web server. If
+     * unspecified, no network-level access restrictions will be applied.
      *
      * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.WebServerNetworkAccessControl web_server_network_access_control = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Orchestration\Airflow\Service\V1\WebServerNetworkAccessControl $var
@@ -470,8 +460,8 @@ class EnvironmentConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The configuration settings for Cloud SQL instance used internally
-     * by Apache Airflow software.
+     * Optional. The configuration settings for Cloud SQL instance used internally by Apache
+     * Airflow software.
      *
      * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.DatabaseConfig database_config = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Orchestration\Airflow\Service\V1\DatabaseConfig|null
@@ -492,8 +482,8 @@ class EnvironmentConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The configuration settings for Cloud SQL instance used internally
-     * by Apache Airflow software.
+     * Optional. The configuration settings for Cloud SQL instance used internally by Apache
+     * Airflow software.
      *
      * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.DatabaseConfig database_config = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Orchestration\Airflow\Service\V1\DatabaseConfig $var
@@ -508,8 +498,7 @@ class EnvironmentConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The configuration settings for the Airflow web server App Engine
-     * instance.
+     * Optional. The configuration settings for the Airflow web server App Engine instance.
      *
      * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.WebServerConfig web_server_config = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Orchestration\Airflow\Service\V1\WebServerConfig|null
@@ -530,8 +519,7 @@ class EnvironmentConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The configuration settings for the Airflow web server App Engine
-     * instance.
+     * Optional. The configuration settings for the Airflow web server App Engine instance.
      *
      * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.WebServerConfig web_server_config = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Orchestration\Airflow\Service\V1\WebServerConfig $var
@@ -584,9 +572,9 @@ class EnvironmentConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The maintenance window is the period when Cloud Composer
-     * components may undergo maintenance. It is defined so that maintenance is
-     * not executed during peak hours or critical time periods.
+     * Optional. The maintenance window is the period when Cloud Composer components may
+     * undergo maintenance. It is defined so that maintenance is not executed
+     * during peak hours or critical time periods.
      * The system will not be under maintenance for every occurrence of this
      * window, but when maintenance is planned, it will be scheduled
      * during the window.
@@ -615,9 +603,9 @@ class EnvironmentConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The maintenance window is the period when Cloud Composer
-     * components may undergo maintenance. It is defined so that maintenance is
-     * not executed during peak hours or critical time periods.
+     * Optional. The maintenance window is the period when Cloud Composer components may
+     * undergo maintenance. It is defined so that maintenance is not executed
+     * during peak hours or critical time periods.
      * The system will not be under maintenance for every occurrence of this
      * window, but when maintenance is planned, it will be scheduled
      * during the window.
@@ -640,9 +628,9 @@ class EnvironmentConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The workloads configuration settings for the GKE cluster
-     * associated with the Cloud Composer environment. The GKE cluster runs
-     * Airflow scheduler, web server and workers workloads.
+     * Optional. The workloads configuration settings for the GKE cluster associated with
+     * the Cloud Composer environment. The GKE cluster runs Airflow scheduler, web
+     * server and workers workloads.
      * This field is supported for Cloud Composer environments in versions
      * composer-2.*.*-airflow-*.*.* and newer.
      *
@@ -665,9 +653,9 @@ class EnvironmentConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The workloads configuration settings for the GKE cluster
-     * associated with the Cloud Composer environment. The GKE cluster runs
-     * Airflow scheduler, web server and workers workloads.
+     * Optional. The workloads configuration settings for the GKE cluster associated with
+     * the Cloud Composer environment. The GKE cluster runs Airflow scheduler, web
+     * server and workers workloads.
      * This field is supported for Cloud Composer environments in versions
      * composer-2.*.*-airflow-*.*.* and newer.
      *
@@ -714,8 +702,8 @@ class EnvironmentConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The URI of the Apache Airflow Web UI hosted within this
-     * environment (see [Airflow web
+     * Output only. The URI of the Apache Airflow Web UI hosted within this environment (see
+     * [Airflow web
      * interface](https://cloud.google.com/composer/docs/how-to/accessing/airflow-web-interface)).
      *
      * Generated from protobuf field <code>string airflow_uri = 6;</code>
@@ -727,8 +715,8 @@ class EnvironmentConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The URI of the Apache Airflow Web UI hosted within this
-     * environment (see [Airflow web
+     * Output only. The URI of the Apache Airflow Web UI hosted within this environment (see
+     * [Airflow web
      * interface](https://cloud.google.com/composer/docs/how-to/accessing/airflow-web-interface)).
      *
      * Generated from protobuf field <code>string airflow_uri = 6;</code>
@@ -744,8 +732,8 @@ class EnvironmentConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The configuration options for GKE cluster master authorized
-     * networks. By default master authorized networks feature is:
+     * Optional. The configuration options for GKE cluster master authorized networks.
+     * By default master authorized networks feature is:
      * - in case of private environment: enabled with no external networks
      * allowlisted.
      * - in case of public environment: disabled.
@@ -769,8 +757,8 @@ class EnvironmentConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The configuration options for GKE cluster master authorized
-     * networks. By default master authorized networks feature is:
+     * Optional. The configuration options for GKE cluster master authorized networks.
+     * By default master authorized networks feature is:
      * - in case of private environment: enabled with no external networks
      * allowlisted.
      * - in case of public environment: disabled.

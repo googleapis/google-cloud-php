@@ -87,18 +87,6 @@ return [
                     ],
                 ],
             ],
-            'CreateChannelPartnerRepricingConfig' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/{parent=accounts/*/channelPartnerLinks/*}/channelPartnerRepricingConfigs',
-                'body' => 'channel_partner_repricing_config',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
             'CreateCustomer' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=accounts/*}/customers',
@@ -118,18 +106,6 @@ return [
                     ],
                 ],
             ],
-            'CreateCustomerRepricingConfig' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/{parent=accounts/*/customers/*}/customerRepricingConfigs',
-                'body' => 'customer_repricing_config',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
             'CreateEntitlement' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=accounts/*/customers/*}/entitlements',
@@ -138,17 +114,6 @@ return [
                     'parent' => [
                         'getters' => [
                             'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'DeleteChannelPartnerRepricingConfig' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v1/{name=accounts/*/channelPartnerLinks/*/channelPartnerRepricingConfigs/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
                         ],
                     ],
                 ],
@@ -170,31 +135,9 @@ return [
                     ],
                 ],
             ],
-            'DeleteCustomerRepricingConfig' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v1/{name=accounts/*/customers/*/customerRepricingConfigs/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
             'GetChannelPartnerLink' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=accounts/*/channelPartnerLinks/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'GetChannelPartnerRepricingConfig' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{name=accounts/*/channelPartnerLinks/*/channelPartnerRepricingConfigs/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -212,17 +155,6 @@ return [
                         'uriTemplate' => '/v1/{name=accounts/*/channelPartnerLinks/*/customers/*}',
                     ],
                 ],
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'GetCustomerRepricingConfig' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{name=accounts/*/customers/*/customerRepricingConfigs/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -264,28 +196,6 @@ return [
             'ListChannelPartnerLinks' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=accounts/*}/channelPartnerLinks',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'ListChannelPartnerRepricingConfigs' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{parent=accounts/*/channelPartnerLinks/*}/channelPartnerRepricingConfigs',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'ListCustomerRepricingConfigs' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{parent=accounts/*/customers/*}/customerRepricingConfigs',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -518,19 +428,6 @@ return [
                     ],
                 ],
             ],
-            'UpdateChannelPartnerRepricingConfig' => [
-                'method' => 'patch',
-                'uriTemplate' => '/v1/{channel_partner_repricing_config.name=accounts/*/channelPartnerLinks/*/channelPartnerRepricingConfigs/*}',
-                'body' => 'channel_partner_repricing_config',
-                'placeholders' => [
-                    'channel_partner_repricing_config.name' => [
-                        'getters' => [
-                            'getChannelPartnerRepricingConfig',
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
             'UpdateCustomer' => [
                 'method' => 'patch',
                 'uriTemplate' => '/v1/{customer.name=accounts/*/customers/*}',
@@ -546,19 +443,6 @@ return [
                     'customer.name' => [
                         'getters' => [
                             'getCustomer',
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'UpdateCustomerRepricingConfig' => [
-                'method' => 'patch',
-                'uriTemplate' => '/v1/{customer_repricing_config.name=accounts/*/customers/*/customerRepricingConfigs/*}',
-                'body' => 'customer_repricing_config',
-                'placeholders' => [
-                    'customer_repricing_config.name' => [
-                        'getters' => [
-                            'getCustomerRepricingConfig',
                             'getName',
                         ],
                     ],
@@ -613,5 +497,4 @@ return [
             ],
         ],
     ],
-    'numericEnums' => true,
 ];

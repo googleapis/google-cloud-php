@@ -16,17 +16,14 @@ use Google\Protobuf\Internal\GPBUtil;
 class SetDefaultProcessorVersionRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name of the
-     * [Processor][google.cloud.documentai.v1.Processor] to change default
-     * version.
+     * Required. The resource name of the [Processor][google.cloud.documentai.v1.Processor] to change default version.
      *
      * Generated from protobuf field <code>string processor = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $processor = '';
     /**
-     * Required. The resource name of child
-     * [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion] to use as
-     * default. Format:
+     * Required. The resource name of child [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion] to use as default.
+     * Format:
      * `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{version}`
      *
      * Generated from protobuf field <code>string default_processor_version = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -40,13 +37,10 @@ class SetDefaultProcessorVersionRequest extends \Google\Protobuf\Internal\Messag
      *     Optional. Data for populating the Message object.
      *
      *     @type string $processor
-     *           Required. The resource name of the
-     *           [Processor][google.cloud.documentai.v1.Processor] to change default
-     *           version.
+     *           Required. The resource name of the [Processor][google.cloud.documentai.v1.Processor] to change default version.
      *     @type string $default_processor_version
-     *           Required. The resource name of child
-     *           [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion] to use as
-     *           default. Format:
+     *           Required. The resource name of child [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion] to use as default.
+     *           Format:
      *           `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{version}`
      * }
      */
@@ -56,9 +50,7 @@ class SetDefaultProcessorVersionRequest extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * Required. The resource name of the
-     * [Processor][google.cloud.documentai.v1.Processor] to change default
-     * version.
+     * Required. The resource name of the [Processor][google.cloud.documentai.v1.Processor] to change default version.
      *
      * Generated from protobuf field <code>string processor = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -69,9 +61,7 @@ class SetDefaultProcessorVersionRequest extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * Required. The resource name of the
-     * [Processor][google.cloud.documentai.v1.Processor] to change default
-     * version.
+     * Required. The resource name of the [Processor][google.cloud.documentai.v1.Processor] to change default version.
      *
      * Generated from protobuf field <code>string processor = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -86,9 +76,8 @@ class SetDefaultProcessorVersionRequest extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * Required. The resource name of child
-     * [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion] to use as
-     * default. Format:
+     * Required. The resource name of child [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion] to use as default.
+     * Format:
      * `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{version}`
      *
      * Generated from protobuf field <code>string default_processor_version = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -100,9 +89,8 @@ class SetDefaultProcessorVersionRequest extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * Required. The resource name of child
-     * [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion] to use as
-     * default. Format:
+     * Required. The resource name of child [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion] to use as default.
+     * Format:
      * `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{version}`
      *
      * Generated from protobuf field <code>string default_processor_version = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>

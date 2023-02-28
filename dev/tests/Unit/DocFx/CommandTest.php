@@ -17,7 +17,6 @@
 
 namespace Google\Cloud\Dev\Tests\Unit\DocFx;
 
-use Google\Cloud\Dev\DocFx\Command\DocFx;
 use Google\Cloud\Dev\DocFx\Page\OverviewPage;
 use PHPUnit\Framework\TestCase;
 
@@ -28,20 +27,6 @@ class CommandTest extends TestCase
 {
     private static $fixturesDir;
     private static $tmpDir;
-
-    public function testGenerateVisionStructureXml()
-    {
-        if ('1' !== getenv('TEST_PHPDOC_STRUCTURE_XML')) {
-            $this->markTestSkipped('Set TEST_PHPDOC_STRUCTURE_XML=1 to run this test');
-        }
-        $componentDir = __DIR__ . '/../../../../Vision';
-        $process = DocFx::getPhpDocCommand($componentDir, self::$tmpDir);
-        $process->mustRun();
-        $left = __DIR__ . '/../../fixtures/phpdoc/structure.xml';
-        $right = self::$tmpDir . '/structure.xml';
-
-        $this->assertFileEqualsWithDiff($left, $right, '1' === getenv('UPDATE_FIXTURES'));
-    }
 
     public function testGenerateDocFxFiles()
     {
@@ -64,7 +49,16 @@ class CommandTest extends TestCase
 
         $left  = self::$fixturesDir . '/' . $file;
         $right = self::$tmpDir . '/' . $file;
-        $this->assertFileEqualsWithDiff($left, $right, '1' === getenv('UPDATE_FIXTURES'));
+        if (file_get_contents($left) !== file_get_contents($right)) {
+            if ('1' === getenv('UPDATE_FIXTURES')) {
+                file_put_contents(self::$fixturesDir . '/' . $file, file_get_contents($right));
+                $this->markTestIncomplete('Updated fixture ' . $file);
+            }
+            $output = shell_exec(sprintf('git diff --no-index %s %s --color=always', $left, $right));
+            $this->assertTrue(false, $output);
+        }
+
+        $this->assertTrue(true, 'file contents match');
     }
 
     /**
@@ -81,9 +75,13 @@ class CommandTest extends TestCase
         $right = self::$tmpDir . '/docs.metadata';
         $rightContents = preg_replace('/seconds: \d+/', 'seconds: *', file_get_contents($right));
         $rightContents = preg_replace('/nanos: \d+/', 'nanos: *', $rightContents);
-        file_put_contents($right, $rightContents);
+        if (file_get_contents($left) !== $rightContents) {
+            file_put_contents($right, $rightContents);
+            $output = shell_exec(sprintf('git diff --no-index %s %s --color=always', $left, $right));
+            $this->assertTrue(false, $output);
+        }
 
-        $this->assertFileEqualsWithDiff($left, $right);
+        $this->assertTrue(true, 'file contents match');
     }
 
     public function testOverviewPage()
@@ -130,19 +128,5 @@ class CommandTest extends TestCase
         self::$fixturesDir = realpath(__DIR__ . '/../../fixtures/docfx');
 
         return $filesAsArguments;
-    }
-
-    private function assertFileEqualsWithDiff(string $left, string $right, bool $updateFixtures = false)
-    {
-        if (file_get_contents($left) !== file_get_contents($right)) {
-            if ($updateFixtures) {
-                file_put_contents($left, file_get_contents($right));
-                $this->markTestIncomplete('Updated fixture ' . basename($left));
-            }
-            $output = shell_exec(sprintf('git diff --no-index %s %s --color=always', $left, $right));
-            $this->assertTrue(false, $output);
-        }
-
-        $this->assertTrue(true, 'file contents match');
     }
 }

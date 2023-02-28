@@ -96,31 +96,6 @@ class GrpcTraitTest extends TestCase
         $this->assertEquals($message, $actualResponse);
     }
 
-    public function testSendsRequestWithRetryFunction()
-    {
-        $timesCalled = 0;
-        $options = [
-            'retries' => 1,
-            'grpcRetryFunction' => function (\Exception $ex) {
-                return $ex->getMessage() === 'test retry';
-            }
-        ];
-        $requestWrapper = new GrpcRequestWrapper();
-        $this->implementation->setRequestWrapper($requestWrapper);
-        $actualResponse = $this->implementation->send(
-            function () use (&$timesCalled) {
-                if (2 === ++$timesCalled) {
-                    // succeed on second try
-                    return;
-                }
-                throw new NotFoundException('test retry');
-            },
-            [$options]
-        );
-
-        $this->assertEquals(2, $timesCalled);
-    }
-
     public function testSendsRequestNotFoundWhitelisted()
     {
         $grpcOptions = [

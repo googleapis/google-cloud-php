@@ -1,7 +1,6 @@
 {
     "distribution_name": "google/cloud-core",
-    "release_level": "stable",
+    "release_level": "ga",
     "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-core/latest",
-    "library_type": "CORE",
-    "api_shortname": ""
+    "library_type": "CORE"
 }
