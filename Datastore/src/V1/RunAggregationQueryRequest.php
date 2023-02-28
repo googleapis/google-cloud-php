@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request for [Datastore.RunAggregationQuery][google.datastore.v1.Datastore.RunAggregationQuery].
+ * The request for
+ * [Datastore.RunAggregationQuery][google.datastore.v1.Datastore.RunAggregationQuery].
  *
  * Generated from protobuf message <code>google.datastore.v1.RunAggregationQueryRequest</code>
  */

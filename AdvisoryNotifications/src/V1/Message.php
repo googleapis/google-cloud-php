@@ -20,7 +20,7 @@ class Message extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.advisorynotifications.v1.Message.Body body = 1;</code>
      */
-    private $body = null;
+    protected $body = null;
     /**
      * The attachments to download.
      *
@@ -32,13 +32,13 @@ class Message extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3;</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Time when Message was localized
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp localization_time = 4;</code>
      */
-    private $localization_time = null;
+    protected $localization_time = null;
 
     /**
      * Constructor.

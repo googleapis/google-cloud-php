@@ -22,7 +22,7 @@ class GetNotificationRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * ISO code for requested localization language. If unset, will be
      * interpereted as "en". If the requested language is valid, but not supported
@@ -32,7 +32,7 @@ class GetNotificationRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string language_code = 5;</code>
      */
-    private $language_code = '';
+    protected $language_code = '';
 
     /**
      * Constructor.
