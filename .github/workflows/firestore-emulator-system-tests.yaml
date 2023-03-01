@@ -5,12 +5,12 @@ on:
     paths:
       - 'Firestore/**'
       - '.github/workflows/firestore-emulator-system-tests.yaml'
-      - '.github/emulator/start-emulator.sh'
+      - '.github/emulator/**'
   pull_request:
     paths:
       - 'Firestore/**'
       - '.github/workflows/firestore-emulator-system-tests.yaml'
-      - '.github/emulator/start-emulator.sh'
+      - '.github/emulator/**'
 name: Run Firestore System Tests With Emulator
 jobs:
   test:
