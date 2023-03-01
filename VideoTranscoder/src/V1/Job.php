@@ -23,21 +23,21 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * Input only. Specify the `input_uri` to populate empty `uri` fields in each element of
-     * `Job.config.inputs` or `JobTemplate.config.inputs` when using template.
-     * URI of the media. Input files must be at least 5 seconds in duration and
-     * stored in Cloud Storage (for example, `gs://bucket/inputs/file.mp4`). See
-     * [Supported input and output
+     * Input only. Specify the `input_uri` to populate empty `uri` fields in each
+     * element of `Job.config.inputs` or `JobTemplate.config.inputs` when using
+     * template. URI of the media. Input files must be at least 5 seconds in
+     * duration and stored in Cloud Storage (for example,
+     * `gs://bucket/inputs/file.mp4`). See [Supported input and output
      * formats](https://cloud.google.com/transcoder/docs/concepts/supported-input-and-output-formats).
      *
      * Generated from protobuf field <code>string input_uri = 2 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      */
     private $input_uri = '';
     /**
-     * Input only. Specify the `output_uri` to populate an empty `Job.config.output.uri` or
-     * `JobTemplate.config.output.uri` when using template.
-     * URI for the output file(s). For example, `gs://my-bucket/outputs/`. See
-     * [Supported input and output
+     * Input only. Specify the `output_uri` to populate an empty
+     * `Job.config.output.uri` or `JobTemplate.config.output.uri` when using
+     * template. URI for the output file(s). For example,
+     * `gs://my-bucket/outputs/`. See [Supported input and output
      * formats](https://cloud.google.com/transcoder/docs/concepts/supported-input-and-output-formats).
      *
      * Generated from protobuf field <code>string output_uri = 3 [(.google.api.field_behavior) = INPUT_ONLY];</code>
@@ -101,21 +101,21 @@ class Job extends \Google\Protobuf\Internal\Message
      *           The resource name of the job.
      *           Format: `projects/{project_number}/locations/{location}/jobs/{job}`
      *     @type string $input_uri
-     *           Input only. Specify the `input_uri` to populate empty `uri` fields in each element of
-     *           `Job.config.inputs` or `JobTemplate.config.inputs` when using template.
-     *           URI of the media. Input files must be at least 5 seconds in duration and
-     *           stored in Cloud Storage (for example, `gs://bucket/inputs/file.mp4`). See
-     *           [Supported input and output
+     *           Input only. Specify the `input_uri` to populate empty `uri` fields in each
+     *           element of `Job.config.inputs` or `JobTemplate.config.inputs` when using
+     *           template. URI of the media. Input files must be at least 5 seconds in
+     *           duration and stored in Cloud Storage (for example,
+     *           `gs://bucket/inputs/file.mp4`). See [Supported input and output
      *           formats](https://cloud.google.com/transcoder/docs/concepts/supported-input-and-output-formats).
      *     @type string $output_uri
-     *           Input only. Specify the `output_uri` to populate an empty `Job.config.output.uri` or
-     *           `JobTemplate.config.output.uri` when using template.
-     *           URI for the output file(s). For example, `gs://my-bucket/outputs/`. See
-     *           [Supported input and output
+     *           Input only. Specify the `output_uri` to populate an empty
+     *           `Job.config.output.uri` or `JobTemplate.config.output.uri` when using
+     *           template. URI for the output file(s). For example,
+     *           `gs://my-bucket/outputs/`. See [Supported input and output
      *           formats](https://cloud.google.com/transcoder/docs/concepts/supported-input-and-output-formats).
      *     @type string $template_id
-     *           Input only. Specify the `template_id` to use for populating `Job.config`. The default
-     *           is `preset/web-hd`.
+     *           Input only. Specify the `template_id` to use for populating `Job.config`.
+     *           The default is `preset/web-hd`.
      *           Preset Transcoder templates:
      *           - `preset/{preset_id}`
      *           - User defined JobTemplate:
@@ -176,11 +176,11 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Input only. Specify the `input_uri` to populate empty `uri` fields in each element of
-     * `Job.config.inputs` or `JobTemplate.config.inputs` when using template.
-     * URI of the media. Input files must be at least 5 seconds in duration and
-     * stored in Cloud Storage (for example, `gs://bucket/inputs/file.mp4`). See
-     * [Supported input and output
+     * Input only. Specify the `input_uri` to populate empty `uri` fields in each
+     * element of `Job.config.inputs` or `JobTemplate.config.inputs` when using
+     * template. URI of the media. Input files must be at least 5 seconds in
+     * duration and stored in Cloud Storage (for example,
+     * `gs://bucket/inputs/file.mp4`). See [Supported input and output
      * formats](https://cloud.google.com/transcoder/docs/concepts/supported-input-and-output-formats).
      *
      * Generated from protobuf field <code>string input_uri = 2 [(.google.api.field_behavior) = INPUT_ONLY];</code>
@@ -192,11 +192,11 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Input only. Specify the `input_uri` to populate empty `uri` fields in each element of
-     * `Job.config.inputs` or `JobTemplate.config.inputs` when using template.
-     * URI of the media. Input files must be at least 5 seconds in duration and
-     * stored in Cloud Storage (for example, `gs://bucket/inputs/file.mp4`). See
-     * [Supported input and output
+     * Input only. Specify the `input_uri` to populate empty `uri` fields in each
+     * element of `Job.config.inputs` or `JobTemplate.config.inputs` when using
+     * template. URI of the media. Input files must be at least 5 seconds in
+     * duration and stored in Cloud Storage (for example,
+     * `gs://bucket/inputs/file.mp4`). See [Supported input and output
      * formats](https://cloud.google.com/transcoder/docs/concepts/supported-input-and-output-formats).
      *
      * Generated from protobuf field <code>string input_uri = 2 [(.google.api.field_behavior) = INPUT_ONLY];</code>
@@ -212,10 +212,10 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Input only. Specify the `output_uri` to populate an empty `Job.config.output.uri` or
-     * `JobTemplate.config.output.uri` when using template.
-     * URI for the output file(s). For example, `gs://my-bucket/outputs/`. See
-     * [Supported input and output
+     * Input only. Specify the `output_uri` to populate an empty
+     * `Job.config.output.uri` or `JobTemplate.config.output.uri` when using
+     * template. URI for the output file(s). For example,
+     * `gs://my-bucket/outputs/`. See [Supported input and output
      * formats](https://cloud.google.com/transcoder/docs/concepts/supported-input-and-output-formats).
      *
      * Generated from protobuf field <code>string output_uri = 3 [(.google.api.field_behavior) = INPUT_ONLY];</code>
@@ -227,10 +227,10 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Input only. Specify the `output_uri` to populate an empty `Job.config.output.uri` or
-     * `JobTemplate.config.output.uri` when using template.
-     * URI for the output file(s). For example, `gs://my-bucket/outputs/`. See
-     * [Supported input and output
+     * Input only. Specify the `output_uri` to populate an empty
+     * `Job.config.output.uri` or `JobTemplate.config.output.uri` when using
+     * template. URI for the output file(s). For example,
+     * `gs://my-bucket/outputs/`. See [Supported input and output
      * formats](https://cloud.google.com/transcoder/docs/concepts/supported-input-and-output-formats).
      *
      * Generated from protobuf field <code>string output_uri = 3 [(.google.api.field_behavior) = INPUT_ONLY];</code>
@@ -246,8 +246,8 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Input only. Specify the `template_id` to use for populating `Job.config`. The default
-     * is `preset/web-hd`.
+     * Input only. Specify the `template_id` to use for populating `Job.config`.
+     * The default is `preset/web-hd`.
      * Preset Transcoder templates:
      * - `preset/{preset_id}`
      * - User defined JobTemplate:
@@ -267,8 +267,8 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Input only. Specify the `template_id` to use for populating `Job.config`. The default
-     * is `preset/web-hd`.
+     * Input only. Specify the `template_id` to use for populating `Job.config`.
+     * The default is `preset/web-hd`.
      * Preset Transcoder templates:
      * - `preset/{preset_id}`
      * - User defined JobTemplate:
