@@ -5,10 +5,12 @@ on:
     paths:
       - 'Firestore/**'
       - '.github/workflows/firestore-emulator-system-tests.yaml'
+      - '.github/emulator/**'
   pull_request:
     paths:
       - 'Firestore/**'
       - '.github/workflows/firestore-emulator-system-tests.yaml'
+      - '.github/emulator/**'
 name: Run Firestore System Tests With Emulator
 jobs:
   test:
@@ -17,7 +19,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - run: ./.github/emulator/start-emulator.sh firestore
+      - run: ./.github/emulator/start-emulator.sh firestore 419.0.0-emulators
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
