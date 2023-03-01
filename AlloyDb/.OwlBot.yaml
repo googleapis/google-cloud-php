@@ -1,0 +1,4 @@
+deep-copy-regex:
+    - source: /google/cloud/alloydb/(v1|v1alpha|v1beta)/.*-php/(.*)
+      dest: /owl-bot-staging/AlloyDb/$1/$2
+api-name: AlloyDb
