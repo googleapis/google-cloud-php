@@ -33,8 +33,8 @@ use Google\Cloud\Video\Transcoder\V1\TranscoderServiceClient;
  * @param string $formattedParent The parent location to create this job template.
  *                                Format: `projects/{project}/locations/{location}`
  *                                Please see {@see TranscoderServiceClient::locationName()} for help formatting this field.
- * @param string $jobTemplateId   The ID to use for the job template, which will become the final component
- *                                of the job template's resource name.
+ * @param string $jobTemplateId   The ID to use for the job template, which will become the final
+ *                                component of the job template's resource name.
  *
  *                                This value should be 4-63 characters, and valid characters must match the
  *                                regular expression `[a-zA-Z][a-zA-Z0-9_-]*`.
