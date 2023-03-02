@@ -60,6 +60,12 @@ class MetricSource
      * Generated from protobuf enum <code>HIVESERVER2 = 6;</code>
      */
     const HIVESERVER2 = 6;
+    /**
+     * hivemetastore metric source
+     *
+     * Generated from protobuf enum <code>HIVEMETASTORE = 7;</code>
+     */
+    const HIVEMETASTORE = 7;
 
     private static $valueToName = [
         self::METRIC_SOURCE_UNSPECIFIED => 'METRIC_SOURCE_UNSPECIFIED',
@@ -69,6 +75,7 @@ class MetricSource
         self::YARN => 'YARN',
         self::SPARK_HISTORY_SERVER => 'SPARK_HISTORY_SERVER',
         self::HIVESERVER2 => 'HIVESERVER2',
+        self::HIVEMETASTORE => 'HIVEMETASTORE',
     ];
 
     public static function name($value)

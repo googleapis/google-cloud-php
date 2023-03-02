@@ -67,6 +67,9 @@ class SessionTest extends SpannerTestCase
 
         $this->assertPoolCounts($cache, $cacheKey, 0, 10, 0);
 
+        $pool->maintain();
+        $this->assertPoolCounts($cache, $cacheKey, 0, 10, 0);
+
         $exception = null;
         try {
             $pool->acquire();

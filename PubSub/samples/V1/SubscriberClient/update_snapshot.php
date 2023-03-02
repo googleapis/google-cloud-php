@@ -30,11 +30,10 @@ use Google\Protobuf\FieldMask;
 
 /**
  * Updates an existing snapshot. Snapshots are used in
- * <a href="https://cloud.google.com/pubsub/docs/replay-overview">Seek</a>
- * operations, which allow
- * you to manage message acknowledgments in bulk. That is, you can set the
- * acknowledgment state of messages in an existing subscription to the state
- * captured by a snapshot.
+ * [Seek](https://cloud.google.com/pubsub/docs/replay-overview) operations,
+ * which allow you to manage message acknowledgments in bulk. That is, you can
+ * set the acknowledgment state of messages in an existing subscription to the
+ * state captured by a snapshot.
  *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:

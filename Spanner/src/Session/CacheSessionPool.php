@@ -127,6 +127,7 @@ class CacheSessionPool implements SessionPoolInterface
     use SysvTrait;
 
     const CACHE_KEY_TEMPLATE = 'cache-session-pool.%s.%s.%s';
+    const DURATION_SESSION_LIFETIME = 28*24*3600; // 28 days
     const DURATION_TWENTY_MINUTES = 1200;
     const DURATION_ONE_MINUTE = 60;
     const WINDOW_SIZE = 600;
@@ -349,11 +350,16 @@ class CacheSessionPool implements SessionPoolInterface
             $name = $session->name();
 
             if (isset($data['inUse'][$name])) {
+                // set creation time to an expired time if no value is found
+                $creationTime = isset($data['inUse'][$name]['creation'])
+                    ? $data['inUse'][$name]['creation']
+                    : $this->time() - self::DURATION_SESSION_LIFETIME;
                 unset($data['inUse'][$name]);
                 array_push($data['queue'], [
                     'name' => $name,
                     'expiration' => $session->expiration()
-                        ?: $this->time() + SessionPoolInterface::SESSION_EXPIRATION_SECONDS
+                        ?: $this->time() + SessionPoolInterface::SESSION_EXPIRATION_SECONDS,
+                    'creation' => $creationTime,
                 ]);
                 $this->save($item->set($data));
             }
@@ -697,7 +703,8 @@ class CacheSessionPool implements SessionPoolInterface
             foreach ($res['session'] as $result) {
                 $sessions[] = [
                     'name' => $result['name'],
-                    'expiration' => $this->time() + SessionPoolInterface::SESSION_EXPIRATION_SECONDS
+                    'expiration' => $this->time() + SessionPoolInterface::SESSION_EXPIRATION_SECONDS,
+                    'creation' => $this->time(),
                 ];
 
                 $created++;
@@ -716,11 +723,19 @@ class CacheSessionPool implements SessionPoolInterface
      */
     private function isSessionValid(array $session)
     {
-        $halfHourBeforeExpiration = $session['expiration'] - (SessionPoolInterface::SESSION_EXPIRATION_SECONDS / 2);
+        $halfHourBeforeExpiration = $session['expiration'] - 1800;
 
+        // sessions more than 28 days old are auto deleted by server
+        if (self::DURATION_SESSION_LIFETIME + $session['creation'] <
+            $this->time() + SessionPoolInterface::SESSION_EXPIRATION_SECONDS) {
+            return false;
+        }
+        // session expires in more than half hour
         if ($this->time() < $halfHourBeforeExpiration) {
             return true;
-        } elseif ($halfHourBeforeExpiration < $this->time() && $this->time() < $session['expiration']) {
+        }
+        // session expires in less than a half hour, but is not expired
+        if ($this->time() < $session['expiration']) {
             return $this->database
                 ->session($session['name'])
                 ->exists();
@@ -920,6 +935,14 @@ class CacheSessionPool implements SessionPoolInterface
             }
 
             $sessions = $cachedData['queue'];
+            foreach ($sessions as $id => $session) {
+                if (self::DURATION_SESSION_LIFETIME + $session['creation'] <
+                    $this->time() + SessionPoolInterface::SESSION_EXPIRATION_SECONDS) {
+                    // sessions more than 28 days old are auto deleted by server
+                    $this->deleteQueue += $session;
+                    unset($sessions[$id]);
+                }
+            }
             // Sort sessions by expiration time, "oldest" first.
             // acquire() method picks sessions from the beginning of the queue,
             // so make sure that "oldest" ones will be picked first.
@@ -976,6 +999,7 @@ class CacheSessionPool implements SessionPoolInterface
                     $sessions[] = [
                         'name' => $item['name'],
                         'expiration' => $session->expiration(),
+                        'creation' => $item['creation'],
                     ];
                     $freshSessionsCount++;
                 } else {
@@ -1007,6 +1031,7 @@ class CacheSessionPool implements SessionPoolInterface
                             $sessions[] = [
                                 'name' => $item['name'],
                                 'expiration' => $session->expiration(),
+                                'creation' => $item['creation'],
                             ];
                         }
                     }

@@ -41,7 +41,7 @@ class UpdateClusterRequest extends \Google\Protobuf\Internal\Message
      */
     private $cluster = null;
     /**
-     * Optional. Timeout for graceful YARN decomissioning. Graceful
+     * Optional. Timeout for graceful YARN decommissioning. Graceful
      * decommissioning allows removing nodes from the cluster without
      * interrupting jobs in progress. Timeout specifies how long to wait for jobs
      * in progress to finish before forcefully removing nodes (and potentially
@@ -138,7 +138,7 @@ class UpdateClusterRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dataproc\V1\Cluster $cluster
      *           Required. The changes to the cluster.
      *     @type \Google\Protobuf\Duration $graceful_decommission_timeout
-     *           Optional. Timeout for graceful YARN decomissioning. Graceful
+     *           Optional. Timeout for graceful YARN decommissioning. Graceful
      *           decommissioning allows removing nodes from the cluster without
      *           interrupting jobs in progress. Timeout specifies how long to wait for jobs
      *           in progress to finish before forcefully removing nodes (and potentially
@@ -330,7 +330,7 @@ class UpdateClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Timeout for graceful YARN decomissioning. Graceful
+     * Optional. Timeout for graceful YARN decommissioning. Graceful
      * decommissioning allows removing nodes from the cluster without
      * interrupting jobs in progress. Timeout specifies how long to wait for jobs
      * in progress to finish before forcefully removing nodes (and potentially
@@ -358,7 +358,7 @@ class UpdateClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Timeout for graceful YARN decomissioning. Graceful
+     * Optional. Timeout for graceful YARN decommissioning. Graceful
      * decommissioning allows removing nodes from the cluster without
      * interrupting jobs in progress. Timeout specifies how long to wait for jobs
      * in progress to finish before forcefully removing nodes (and potentially

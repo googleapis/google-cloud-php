@@ -31,10 +31,9 @@ use Google\Cloud\Translate\V3\TranslationServiceClient;
  * Translates input text and returns translated text.
  *
  * @param string $contentsElement    The content of the input in string format.
- *                                   We recommend the total content be less than 30k codepoints. The max length
- *                                   of this field is 1024.
- *                                   Use BatchTranslateText for larger text.
- * @param string $targetLanguageCode The BCP-47 language code to use for translation of the input
+ *                                   We recommend the total content be less than 30,000 codepoints. The max
+ *                                   length of this field is 1024. Use BatchTranslateText for larger text.
+ * @param string $targetLanguageCode The ISO-639 language code to use for translation of the input
  *                                   text, set to one of the language codes listed in Language Support.
  * @param string $formattedParent    Project or location to make a call. Must refer to a caller's
  *                                   project.
