@@ -92,6 +92,7 @@ class SystemTestCase extends TestCase
      * @param string $bucketName
      * @param array $options
      * @return Bucket
+     * @throws \Exception
      *
      * @experimental
      * @internal
@@ -159,6 +160,7 @@ class SystemTestCase extends TestCase
      * @param string $topicName
      * @param array $options
      * @return Topic
+     * @throws \Exception
      *
      * @experimental
      * @internal

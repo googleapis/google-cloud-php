@@ -66,6 +66,7 @@ trait GrpcTrait
      * @param array $args
      * @param bool $whitelisted
      * @return \Generator|array
+     * @throws \Exception
      */
     public function send(callable $request, array $args, $whitelisted = false)
     {
