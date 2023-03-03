@@ -263,6 +263,17 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.EncryptionSpec encryption_spec = 24;</code>
      */
     private $encryption_spec = null;
+    /**
+     * For custom-trained Models and AutoML Tabular Models, the container of the
+     * DeployedModel instances will send `stderr` and `stdout` streams to
+     * Stackdriver Logging by default. Please note that the logs incur cost,
+     * which are subject to [Cloud Logging
+     * pricing](https://cloud.google.com/stackdriver/pricing).
+     * User can disable container logging by setting this flag to true.
+     *
+     * Generated from protobuf field <code>bool disable_container_logging = 34;</code>
+     */
+    private $disable_container_logging = false;
 
     /**
      * Constructor.
@@ -409,6 +420,13 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
      *           Customer-managed encryption key options for a BatchPredictionJob. If this
      *           is set, then all resources created by the BatchPredictionJob will be
      *           encrypted with the provided encryption key.
+     *     @type bool $disable_container_logging
+     *           For custom-trained Models and AutoML Tabular Models, the container of the
+     *           DeployedModel instances will send `stderr` and `stdout` streams to
+     *           Stackdriver Logging by default. Please note that the logs incur cost,
+     *           which are subject to [Cloud Logging
+     *           pricing](https://cloud.google.com/stackdriver/pricing).
+     *           User can disable container logging by setting this flag to true.
      * }
      */
     public function __construct($data = NULL) {
@@ -1432,6 +1450,42 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\EncryptionSpec::class);
         $this->encryption_spec = $var;
+
+        return $this;
+    }
+
+    /**
+     * For custom-trained Models and AutoML Tabular Models, the container of the
+     * DeployedModel instances will send `stderr` and `stdout` streams to
+     * Stackdriver Logging by default. Please note that the logs incur cost,
+     * which are subject to [Cloud Logging
+     * pricing](https://cloud.google.com/stackdriver/pricing).
+     * User can disable container logging by setting this flag to true.
+     *
+     * Generated from protobuf field <code>bool disable_container_logging = 34;</code>
+     * @return bool
+     */
+    public function getDisableContainerLogging()
+    {
+        return $this->disable_container_logging;
+    }
+
+    /**
+     * For custom-trained Models and AutoML Tabular Models, the container of the
+     * DeployedModel instances will send `stderr` and `stdout` streams to
+     * Stackdriver Logging by default. Please note that the logs incur cost,
+     * which are subject to [Cloud Logging
+     * pricing](https://cloud.google.com/stackdriver/pricing).
+     * User can disable container logging by setting this flag to true.
+     *
+     * Generated from protobuf field <code>bool disable_container_logging = 34;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setDisableContainerLogging($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->disable_container_logging = $var;
 
         return $this;
     }
