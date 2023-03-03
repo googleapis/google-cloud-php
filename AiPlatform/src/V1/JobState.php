@@ -75,11 +75,8 @@ class JobState
      */
     const JOB_STATE_EXPIRED = 9;
     /**
-     * The job is being updated. The job is only able to be updated at RUNNING
-     * state; if the update operation succeeds, job goes back to RUNNING state; if
-     * the update operation fails, the job goes back to RUNNING state with error
-     * messages written to [ModelDeploymentMonitoringJob.partial_errors][] field
-     * if it is a ModelDeploymentMonitoringJob.
+     * The job is being updated. Only jobs in the `RUNNING` state can be updated.
+     * After updating, the job goes back to the `RUNNING` state.
      *
      * Generated from protobuf enum <code>JOB_STATE_UPDATING = 10;</code>
      */
