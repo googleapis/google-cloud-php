@@ -257,6 +257,11 @@
                                 "deleteFeature"
                             ]
                         },
+                        "DeleteFeatureValues": {
+                            "methods": [
+                                "deleteFeatureValues"
+                            ]
+                        },
                         "DeleteFeaturestore": {
                             "methods": [
                                 "deleteFeaturestore"
@@ -946,6 +951,11 @@
                 "grpc": {
                     "libraryClient": "ModelServiceGapicClient",
                     "rpcs": {
+                        "BatchImportEvaluatedAnnotations": {
+                            "methods": [
+                                "batchImportEvaluatedAnnotations"
+                            ]
+                        },
                         "BatchImportModelEvaluationSlices": {
                             "methods": [
                                 "batchImportModelEvaluationSlices"

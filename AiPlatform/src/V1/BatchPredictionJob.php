@@ -39,7 +39,11 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
      * and their resources.
      * Exactly one of model and unmanaged_container_model must be set.
      * The model resource name may contain version id or version alias to specify
-     * the version, if no version is specified, the default version will be used.
+     * the version.
+     *  Example: `projects/{project}/locations/{location}/models/{model}&#64;2`
+     *              or
+     *            `projects/{project}/locations/{location}/models/{model}&#64;golden`
+     * if no version is specified, the default version will be deployed.
      *
      * Generated from protobuf field <code>string model = 3 [(.google.api.resource_reference) = {</code>
      */
@@ -277,7 +281,11 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
      *           and their resources.
      *           Exactly one of model and unmanaged_container_model must be set.
      *           The model resource name may contain version id or version alias to specify
-     *           the version, if no version is specified, the default version will be used.
+     *           the version.
+     *            Example: `projects/{project}/locations/{location}/models/{model}&#64;2`
+     *                        or
+     *                      `projects/{project}/locations/{location}/models/{model}&#64;golden`
+     *           if no version is specified, the default version will be deployed.
      *     @type string $model_version_id
      *           Output only. The version ID of the Model that produces the predictions via
      *           this job.
@@ -467,7 +475,11 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
      * and their resources.
      * Exactly one of model and unmanaged_container_model must be set.
      * The model resource name may contain version id or version alias to specify
-     * the version, if no version is specified, the default version will be used.
+     * the version.
+     *  Example: `projects/{project}/locations/{location}/models/{model}&#64;2`
+     *              or
+     *            `projects/{project}/locations/{location}/models/{model}&#64;golden`
+     * if no version is specified, the default version will be deployed.
      *
      * Generated from protobuf field <code>string model = 3 [(.google.api.resource_reference) = {</code>
      * @return string
@@ -484,7 +496,11 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
      * and their resources.
      * Exactly one of model and unmanaged_container_model must be set.
      * The model resource name may contain version id or version alias to specify
-     * the version, if no version is specified, the default version will be used.
+     * the version.
+     *  Example: `projects/{project}/locations/{location}/models/{model}&#64;2`
+     *              or
+     *            `projects/{project}/locations/{location}/models/{model}&#64;golden`
+     * if no version is specified, the default version will be deployed.
      *
      * Generated from protobuf field <code>string model = 3 [(.google.api.resource_reference) = {</code>
      * @param string $var
