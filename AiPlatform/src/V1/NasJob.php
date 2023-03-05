@@ -102,9 +102,10 @@ class NasJob extends \Google\Protobuf\Internal\Message
      * Optional. Enable a separation of Custom model training
      * and restricted image training for tenant project.
      *
-     * Generated from protobuf field <code>bool enable_restricted_image_training = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>bool enable_restricted_image_training = 14 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @deprecated
      */
-    private $enable_restricted_image_training = false;
+    protected $enable_restricted_image_training = false;
 
     /**
      * Constructor.
@@ -575,11 +576,13 @@ class NasJob extends \Google\Protobuf\Internal\Message
      * Optional. Enable a separation of Custom model training
      * and restricted image training for tenant project.
      *
-     * Generated from protobuf field <code>bool enable_restricted_image_training = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>bool enable_restricted_image_training = 14 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
+     * @deprecated
      */
     public function getEnableRestrictedImageTraining()
     {
+        @trigger_error('enable_restricted_image_training is deprecated.', E_USER_DEPRECATED);
         return $this->enable_restricted_image_training;
     }
 
@@ -587,12 +590,14 @@ class NasJob extends \Google\Protobuf\Internal\Message
      * Optional. Enable a separation of Custom model training
      * and restricted image training for tenant project.
      *
-     * Generated from protobuf field <code>bool enable_restricted_image_training = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>bool enable_restricted_image_training = 14 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
+     * @deprecated
      */
     public function setEnableRestrictedImageTraining($var)
     {
+        @trigger_error('enable_restricted_image_training is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkBool($var);
         $this->enable_restricted_image_training = $var;
 

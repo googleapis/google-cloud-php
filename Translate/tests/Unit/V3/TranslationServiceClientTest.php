@@ -385,9 +385,11 @@ class TranslationServiceClientTest extends GeneratedTest
         $transport->addResponse($incompleteOperation);
         $name = 'name3373707';
         $entryCount = 811131134;
+        $displayName = 'displayName1615086568';
         $expectedResponse = new Glossary();
         $expectedResponse->setName($name);
         $expectedResponse->setEntryCount($entryCount);
+        $expectedResponse->setDisplayName($displayName);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -679,9 +681,11 @@ class TranslationServiceClientTest extends GeneratedTest
         // Mock response
         $name2 = 'name2-1052831874';
         $entryCount = 811131134;
+        $displayName = 'displayName1615086568';
         $expectedResponse = new Glossary();
         $expectedResponse->setName($name2);
         $expectedResponse->setEntryCount($entryCount);
+        $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->glossaryName('[PROJECT]', '[LOCATION]', '[GLOSSARY]');

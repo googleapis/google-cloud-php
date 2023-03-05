@@ -285,6 +285,10 @@ return [
                     ],
                     [
                         'method' => 'post',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/schedules/*/operations/*}:cancel',
+                    ],
+                    [
+                        'method' => 'post',
                         'uriTemplate' => '/ui/{name=projects/*/locations/*/specialistPools/*/operations/*}:cancel',
                     ],
                     [
@@ -527,6 +531,10 @@ return [
                     [
                         'method' => 'delete',
                         'uriTemplate' => '/ui/{name=projects/*/locations/*/pipelineJobs/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/schedules/*/operations/*}',
                     ],
                     [
                         'method' => 'delete',
@@ -779,6 +787,10 @@ return [
                     ],
                     [
                         'method' => 'get',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/schedules/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'get',
                         'uriTemplate' => '/ui/{name=projects/*/locations/*/specialistPools/*/operations/*}',
                     ],
                     [
@@ -1024,6 +1036,10 @@ return [
                     ],
                     [
                         'method' => 'get',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/schedules/*}/operations',
+                    ],
+                    [
+                        'method' => 'get',
                         'uriTemplate' => '/ui/{name=projects/*/locations/*/specialistPools/*}/operations',
                     ],
                     [
@@ -1266,6 +1282,10 @@ return [
                     [
                         'method' => 'post',
                         'uriTemplate' => '/ui/{name=projects/*/locations/*/pipelineJobs/*/operations/*}:wait',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/schedules/*/operations/*}:wait',
                     ],
                     [
                         'method' => 'post',

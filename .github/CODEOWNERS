@@ -10,8 +10,8 @@
 *                               @googleapis/yoshi-php @googleapis/cicd
 
 /Bigtable       @googleapis/api-bigtable @googleapis/yoshi-php @googleapis/cicd
-/Datastore/     @googleapis/firestore-dpe @googleapis/yoshi-php @googleapis/cicd
-/Firestore/     @googleapis/firestore-dpe @googleapis/yoshi-php @googleapis/cicd
+/Datastore/     @googleapis/api-datastore-sdk @googleapis/yoshi-php @googleapis/cicd
+/Firestore/     @googleapis/api-firestore @googleapis/yoshi-php @googleapis/cicd
 /Storage/       @googleapis/cloud-storage-dpe @googleapis/yoshi-php @googleapis/cicd
 /BigQuery*/.    @googleapis/api-bigquery @googleapis/yoshi-php @googleapis/cicd
 /PubSub/        @googleapis/api-pubsub @googleapis/yoshi-php @googleapis/cicd

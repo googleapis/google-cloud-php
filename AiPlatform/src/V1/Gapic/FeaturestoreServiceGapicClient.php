@@ -48,6 +48,9 @@ use Google\Cloud\AIPlatform\V1\CreateFeaturestoreRequest;
 use Google\Cloud\AIPlatform\V1\CsvSource;
 use Google\Cloud\AIPlatform\V1\DeleteEntityTypeRequest;
 use Google\Cloud\AIPlatform\V1\DeleteFeatureRequest;
+use Google\Cloud\AIPlatform\V1\DeleteFeatureValuesRequest;
+use Google\Cloud\AIPlatform\V1\DeleteFeatureValuesRequest\SelectEntity;
+use Google\Cloud\AIPlatform\V1\DeleteFeatureValuesRequest\SelectTimeRangeAndFeature;
 use Google\Cloud\AIPlatform\V1\DeleteFeaturestoreRequest;
 use Google\Cloud\AIPlatform\V1\DestinationFeatureSetting;
 use Google\Cloud\AIPlatform\V1\EntityType;
@@ -1145,6 +1148,105 @@ class FeaturestoreServiceGapicClient
             : $requestParams->getHeader();
         return $this->startOperationsCall(
             'DeleteFeature',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Delete Feature values from Featurestore.
+     *
+     * The progress of the deletion is tracked by the returned operation. The
+     * deleted feature values are guaranteed to be invisible to subsequent read
+     * operations after the operation is marked as successfully done.
+     *
+     * If a delete feature values operation fails, the feature values
+     * returned from reads and exports may be inconsistent. If consistency is
+     * required, the caller must retry the same delete request again and wait till
+     * the new operation returned is marked as successfully done.
+     *
+     * Sample code:
+     * ```
+     * $featurestoreServiceClient = new FeaturestoreServiceClient();
+     * try {
+     *     $formattedEntityType = $featurestoreServiceClient->entityTypeName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]', '[ENTITY_TYPE]');
+     *     $operationResponse = $featurestoreServiceClient->deleteFeatureValues($formattedEntityType);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $featurestoreServiceClient->deleteFeatureValues($formattedEntityType);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $featurestoreServiceClient->resumeOperation($operationName, 'deleteFeatureValues');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $featurestoreServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $entityType   Required. The resource name of the EntityType grouping the Features for
+     *                             which values are being deleted from. Format:
+     *                             `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entityType}`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type SelectEntity $selectEntity
+     *           Select feature values to be deleted by specifying entities.
+     *     @type SelectTimeRangeAndFeature $selectTimeRangeAndFeature
+     *           Select feature values to be deleted by specifying time range and
+     *           features.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function deleteFeatureValues($entityType, array $optionalArgs = [])
+    {
+        $request = new DeleteFeatureValuesRequest();
+        $requestParamHeaders = [];
+        $request->setEntityType($entityType);
+        $requestParamHeaders['entity_type'] = $entityType;
+        if (isset($optionalArgs['selectEntity'])) {
+            $request->setSelectEntity($optionalArgs['selectEntity']);
+        }
+
+        if (isset($optionalArgs['selectTimeRangeAndFeature'])) {
+            $request->setSelectTimeRangeAndFeature(
+                $optionalArgs['selectTimeRangeAndFeature']
+            );
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'DeleteFeatureValues',
             $optionalArgs,
             $request,
             $this->getOperationsClient()

@@ -36,12 +36,15 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\AIPlatform\V1\BatchImportEvaluatedAnnotationsRequest;
+use Google\Cloud\AIPlatform\V1\BatchImportEvaluatedAnnotationsResponse;
 use Google\Cloud\AIPlatform\V1\BatchImportModelEvaluationSlicesRequest;
 use Google\Cloud\AIPlatform\V1\BatchImportModelEvaluationSlicesResponse;
 use Google\Cloud\AIPlatform\V1\CopyModelRequest;
 use Google\Cloud\AIPlatform\V1\DeleteModelRequest;
 use Google\Cloud\AIPlatform\V1\DeleteModelVersionRequest;
 use Google\Cloud\AIPlatform\V1\EncryptionSpec;
+use Google\Cloud\AIPlatform\V1\EvaluatedAnnotation;
 use Google\Cloud\AIPlatform\V1\ExportModelRequest;
 use Google\Cloud\AIPlatform\V1\ExportModelRequest\OutputConfig;
 use Google\Cloud\AIPlatform\V1\GetModelEvaluationRequest;
@@ -84,9 +87,9 @@ use Google\Protobuf\FieldMask;
  * ```
  * $modelServiceClient = new ModelServiceClient();
  * try {
- *     $formattedParent = $modelServiceClient->modelEvaluationName('[PROJECT]', '[LOCATION]', '[MODEL]', '[EVALUATION]');
- *     $modelEvaluationSlices = [];
- *     $response = $modelServiceClient->batchImportModelEvaluationSlices($formattedParent, $modelEvaluationSlices);
+ *     $formattedParent = $modelServiceClient->modelEvaluationSliceName('[PROJECT]', '[LOCATION]', '[MODEL]', '[EVALUATION]', '[SLICE]');
+ *     $evaluatedAnnotations = [];
+ *     $response = $modelServiceClient->batchImportEvaluatedAnnotations($formattedParent, $evaluatedAnnotations);
  * } finally {
  *     $modelServiceClient->close();
  * }
@@ -484,6 +487,62 @@ class ModelServiceGapicClient
     }
 
     /**
+     * Imports a list of externally generated EvaluatedAnnotations.
+     *
+     * Sample code:
+     * ```
+     * $modelServiceClient = new ModelServiceClient();
+     * try {
+     *     $formattedParent = $modelServiceClient->modelEvaluationSliceName('[PROJECT]', '[LOCATION]', '[MODEL]', '[EVALUATION]', '[SLICE]');
+     *     $evaluatedAnnotations = [];
+     *     $response = $modelServiceClient->batchImportEvaluatedAnnotations($formattedParent, $evaluatedAnnotations);
+     * } finally {
+     *     $modelServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string                $parent               Required. The name of the parent ModelEvaluationSlice resource.
+     *                                                    Format:
+     *                                                    `projects/{project}/locations/{location}/models/{model}/evaluations/{evaluation}/slices/{slice}`
+     * @param EvaluatedAnnotation[] $evaluatedAnnotations Required. Evaluated annotations resource to be imported.
+     * @param array                 $optionalArgs         {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\AIPlatform\V1\BatchImportEvaluatedAnnotationsResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function batchImportEvaluatedAnnotations(
+        $parent,
+        $evaluatedAnnotations,
+        array $optionalArgs = []
+    ) {
+        $request = new BatchImportEvaluatedAnnotationsRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setEvaluatedAnnotations($evaluatedAnnotations);
+        $requestParamHeaders['parent'] = $parent;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'BatchImportEvaluatedAnnotations',
+            BatchImportEvaluatedAnnotationsResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Imports a list of externally generated ModelEvaluationSlice.
      *
      * Sample code:
@@ -730,8 +789,9 @@ class ModelServiceGapicClient
     /**
      * Deletes a Model version.
      *
-     * Model version can only be deleted if there are no [DeployedModels][]
-     * created from it. Deleting the only version in the Model is not allowed. Use
+     * Model version can only be deleted if there are no
+     * [DeployedModels][google.cloud.aiplatform.v1.DeployedModel] created from it.
+     * Deleting the only version in the Model is not allowed. Use
      * [DeleteModel][google.cloud.aiplatform.v1.ModelService.DeleteModel] for
      * deleting the Model instead.
      *

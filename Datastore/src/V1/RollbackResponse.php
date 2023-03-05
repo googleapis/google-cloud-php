@@ -9,8 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The response for [Datastore.Rollback][google.datastore.v1.Datastore.Rollback].
- * (an empty message).
+ * The response for
+ * [Datastore.Rollback][google.datastore.v1.Datastore.Rollback]. (an empty
+ * message).
  *
  * Generated from protobuf message <code>google.datastore.v1.RollbackResponse</code>
  */

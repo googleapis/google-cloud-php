@@ -31,10 +31,39 @@ class SpeechEventType
      * Generated from protobuf enum <code>END_OF_SINGLE_UTTERANCE = 1;</code>
      */
     const END_OF_SINGLE_UTTERANCE = 1;
+    /**
+     * This event indicates that the server has detected the beginning of human
+     * voice activity in the stream. This event can be returned multiple times
+     * if speech starts and stops repeatedly throughout the stream. This event
+     * is only sent if `voice_activity_events` is set to true.
+     *
+     * Generated from protobuf enum <code>SPEECH_ACTIVITY_BEGIN = 2;</code>
+     */
+    const SPEECH_ACTIVITY_BEGIN = 2;
+    /**
+     * This event indicates that the server has detected the end of human voice
+     * activity in the stream. This event can be returned multiple times if
+     * speech starts and stops repeatedly throughout the stream. This event is
+     * only sent if `voice_activity_events` is set to true.
+     *
+     * Generated from protobuf enum <code>SPEECH_ACTIVITY_END = 3;</code>
+     */
+    const SPEECH_ACTIVITY_END = 3;
+    /**
+     * This event indicates that the user-set timeout for speech activity begin
+     * or end has exceeded. Upon receiving this event, the client is expected to
+     * send a half close. Further audio will not be processed.
+     *
+     * Generated from protobuf enum <code>SPEECH_ACTIVITY_TIMEOUT = 4;</code>
+     */
+    const SPEECH_ACTIVITY_TIMEOUT = 4;
 
     private static $valueToName = [
         self::SPEECH_EVENT_UNSPECIFIED => 'SPEECH_EVENT_UNSPECIFIED',
         self::END_OF_SINGLE_UTTERANCE => 'END_OF_SINGLE_UTTERANCE',
+        self::SPEECH_ACTIVITY_BEGIN => 'SPEECH_ACTIVITY_BEGIN',
+        self::SPEECH_ACTIVITY_END => 'SPEECH_ACTIVITY_END',
+        self::SPEECH_ACTIVITY_TIMEOUT => 'SPEECH_ACTIVITY_TIMEOUT',
     ];
 
     public static function name($value)

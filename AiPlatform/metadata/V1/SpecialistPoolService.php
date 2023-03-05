@@ -21,11 +21,12 @@ class SpecialistPoolService
         \GPBMetadata\Google\Cloud\Aiplatform\V1\Operation::initOnce();
         \GPBMetadata\Google\Cloud\Aiplatform\V1\SpecialistPool::initOnce();
         \GPBMetadata\Google\Longrunning\Operations::initOnce();
+        \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Å
-8google/cloud/aiplatform/v1/specialist_pool_service.protogoogle.cloud.aiplatform.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto*google/cloud/aiplatform/v1/operation.proto0google/cloud/aiplatform/v1/specialist_pool.proto#google/longrunning/operations.proto google/protobuf/field_mask.proto"¢
+â
+8google/cloud/aiplatform/v1/specialist_pool_service.protogoogle.cloud.aiplatform.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto*google/cloud/aiplatform/v1/operation.proto0google/cloud/aiplatform/v1/specialist_pool.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"¢
 CreateSpecialistPoolRequest9
 parent (	B)àAúA#
 !locations.googleapis.com/LocationH
