@@ -25,6 +25,11 @@
                     "retry_codes_name": "non_idempotent",
                     "retry_params_name": "default"
                 },
+                "GetEkmConfig": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "idempotent",
+                    "retry_params_name": "default"
+                },
                 "GetEkmConnection": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "idempotent",
@@ -33,6 +38,11 @@
                 "ListEkmConnections": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "idempotent",
+                    "retry_params_name": "default"
+                },
+                "UpdateEkmConfig": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "non_idempotent",
                     "retry_params_name": "default"
                 },
                 "UpdateEkmConnection": {

@@ -125,6 +125,23 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
      */
     private $import_failure_reason = '';
     /**
+     * Output only. The root cause of the most recent generation failure. Only
+     * present if [state][google.cloud.kms.v1.CryptoKeyVersion.state] is
+     * [GENERATION_FAILED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.GENERATION_FAILED].
+     *
+     * Generated from protobuf field <code>string generation_failure_reason = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $generation_failure_reason = '';
+    /**
+     * Output only. The root cause of the most recent external destruction
+     * failure. Only present if
+     * [state][google.cloud.kms.v1.CryptoKeyVersion.state] is
+     * [EXTERNAL_DESTRUCTION_FAILED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.EXTERNAL_DESTRUCTION_FAILED].
+     *
+     * Generated from protobuf field <code>string external_destruction_failure_reason = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $external_destruction_failure_reason = '';
+    /**
      * ExternalProtectionLevelOptions stores a group of additional fields for
      * configuring a [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] that
      * are specific to the
@@ -203,6 +220,15 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
      *           Output only. The root cause of the most recent import failure. Only present
      *           if [state][google.cloud.kms.v1.CryptoKeyVersion.state] is
      *           [IMPORT_FAILED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.IMPORT_FAILED].
+     *     @type string $generation_failure_reason
+     *           Output only. The root cause of the most recent generation failure. Only
+     *           present if [state][google.cloud.kms.v1.CryptoKeyVersion.state] is
+     *           [GENERATION_FAILED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.GENERATION_FAILED].
+     *     @type string $external_destruction_failure_reason
+     *           Output only. The root cause of the most recent external destruction
+     *           failure. Only present if
+     *           [state][google.cloud.kms.v1.CryptoKeyVersion.state] is
+     *           [EXTERNAL_DESTRUCTION_FAILED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.EXTERNAL_DESTRUCTION_FAILED].
      *     @type \Google\Cloud\Kms\V1\ExternalProtectionLevelOptions $external_protection_level_options
      *           ExternalProtectionLevelOptions stores a group of additional fields for
      *           configuring a [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] that
@@ -647,6 +673,68 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->import_failure_reason = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The root cause of the most recent generation failure. Only
+     * present if [state][google.cloud.kms.v1.CryptoKeyVersion.state] is
+     * [GENERATION_FAILED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.GENERATION_FAILED].
+     *
+     * Generated from protobuf field <code>string generation_failure_reason = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getGenerationFailureReason()
+    {
+        return $this->generation_failure_reason;
+    }
+
+    /**
+     * Output only. The root cause of the most recent generation failure. Only
+     * present if [state][google.cloud.kms.v1.CryptoKeyVersion.state] is
+     * [GENERATION_FAILED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.GENERATION_FAILED].
+     *
+     * Generated from protobuf field <code>string generation_failure_reason = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setGenerationFailureReason($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->generation_failure_reason = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The root cause of the most recent external destruction
+     * failure. Only present if
+     * [state][google.cloud.kms.v1.CryptoKeyVersion.state] is
+     * [EXTERNAL_DESTRUCTION_FAILED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.EXTERNAL_DESTRUCTION_FAILED].
+     *
+     * Generated from protobuf field <code>string external_destruction_failure_reason = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getExternalDestructionFailureReason()
+    {
+        return $this->external_destruction_failure_reason;
+    }
+
+    /**
+     * Output only. The root cause of the most recent external destruction
+     * failure. Only present if
+     * [state][google.cloud.kms.v1.CryptoKeyVersion.state] is
+     * [EXTERNAL_DESTRUCTION_FAILED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.EXTERNAL_DESTRUCTION_FAILED].
+     *
+     * Generated from protobuf field <code>string external_destruction_failure_reason = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setExternalDestructionFailureReason($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->external_destruction_failure_reason = $var;
 
         return $this;
     }
