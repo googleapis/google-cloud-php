@@ -18,6 +18,7 @@ class PipelineService
         \GPBMetadata\Google\Api\Client::initOnce();
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Api\Resource::initOnce();
+        \GPBMetadata\Google\Cloud\Aiplatform\V1\Operation::initOnce();
         \GPBMetadata\Google\Cloud\Aiplatform\V1\PipelineJob::initOnce();
         \GPBMetadata\Google\Cloud\Aiplatform\V1\TrainingPipeline::initOnce();
         \GPBMetadata\Google\Longrunning\Operations::initOnce();
@@ -25,8 +26,8 @@ class PipelineService
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-à!
-1google/cloud/aiplatform/v1/pipeline_service.protogoogle.cloud.aiplatform.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto-google/cloud/aiplatform/v1/pipeline_job.proto2google/cloud/aiplatform/v1/training_pipeline.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"¨
+Œ"
+1google/cloud/aiplatform/v1/pipeline_service.protogoogle.cloud.aiplatform.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto*google/cloud/aiplatform/v1/operation.proto-google/cloud/aiplatform/v1/pipeline_job.proto2google/cloud/aiplatform/v1/training_pipeline.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"¨
 CreateTrainingPipelineRequest9
 parent (	B)àAúA#
 !locations.googleapis.com/LocationL

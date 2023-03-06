@@ -51,6 +51,11 @@
                     "retry_codes_name": "no_retry_codes",
                     "retry_params_name": "no_retry_params"
                 },
+                "DeleteFeatureValues": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
                 "DeleteFeaturestore": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "no_retry_codes",
