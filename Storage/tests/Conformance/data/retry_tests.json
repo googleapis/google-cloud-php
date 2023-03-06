@@ -77,9 +77,6 @@
         "cases": [
           {
             "instructions": ["return-503"]
-          },
-          {
-            "instructions": ["return-reset-connection"]
           }
         ],
         "methods": [
@@ -104,9 +101,6 @@
         "cases": [
           {
             "instructions": ["return-503"]
-          },
-          {
-            "instructions": ["return-reset-connection"]
           }
         ],
         "methods": [

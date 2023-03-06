@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Storage\Tests\Unit;
+namespace Google\Cloud\Storage\Tests\Conformance;
 
 use Google\Cloud\Storage\StorageClient;
 use GuzzleHttp\Client;
@@ -48,7 +48,7 @@ class RetryConformanceTest extends TestCase
     private static $cases = [];
 
     // Storage test bench URL. To be populated by an env variable.
-    private static $emaulatorUrl = 'https://storage.googleapis.com';
+    private static $emulatorUrl = 'http://localhost:9000';
 
     public static function set_up_before_class()
     {
@@ -58,11 +58,15 @@ class RetryConformanceTest extends TestCase
         }
 
         $setup = true;
+        if (getenv('STORAGE_EMULATOR_HOST')) {
+            self::$emulatorUrl = getenv('STORAGE_EMULATOR_HOST');
+        }
+
         self::$httpClient = new Client([
-            'base_uri' => self::$emaulatorUrl
+            'base_uri' => self::$emulatorUrl
         ]);
         self::$storageClient = new StorageClient([
-            'apiEndpoint' => self::$emaulatorUrl,
+            'apiEndpoint' => self::$emulatorUrl,
             'projectId' => self::$projectId,
             'credentialsFetcher' => new InsecureCredentials()
         ]);
@@ -111,8 +115,10 @@ class RetryConformanceTest extends TestCase
     public function casesProvider()
     {
         self::set_up_before_class();
-        // These scenario IDs will be run
-        $scenarios = [1, 2, 3, 4, 5, 6, 7, 8];
+        // These scenario IDs will be run.
+        // Omit certain IDs for debugging or testing only
+        // certain cases.
+        $scenarios = [1,2,3,4,5,6,7,8];
 
         $cases = [];
 
@@ -135,7 +141,6 @@ class RetryConformanceTest extends TestCase
         $precondtionProvided,
         $invocationIndex
     ) {
-        $this->markTestSkipped();
         $caseId = $this->createRetryTestResource($methodName, $instructions, null);
 
         $methodInvocations = self::getMethodInvocationMapping();
@@ -826,11 +831,13 @@ class RetryConformanceTest extends TestCase
     /**
      * Helper function to create the resources needed by a test.
      *
-     * @param $list array List of resources to create.
+     * @param $resources array List of resources to create.
+     * @param $methodGroup string|null The group that the current
+     *        testing operation belongs to. This can be null
      *
      * @return array The ids of resources created(where applicable).
      */
-    private function createResources(array $resources, string $methodGroup)
+    private function createResources(array $resources, $methodGroup)
     {
         $ids = [];
 
