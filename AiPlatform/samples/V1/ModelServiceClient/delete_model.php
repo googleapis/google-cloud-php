@@ -31,9 +31,12 @@ use Google\Rpc\Status;
 /**
  * Deletes a Model.
  *
- * A model cannot be deleted if any [Endpoint][google.cloud.aiplatform.v1.Endpoint] resource has a
- * [DeployedModel][google.cloud.aiplatform.v1.DeployedModel] based on the model in its
- * [deployed_models][google.cloud.aiplatform.v1.Endpoint.deployed_models] field.
+ * A model cannot be deleted if any
+ * [Endpoint][google.cloud.aiplatform.v1.Endpoint] resource has a
+ * [DeployedModel][google.cloud.aiplatform.v1.DeployedModel] based on the
+ * model in its
+ * [deployed_models][google.cloud.aiplatform.v1.Endpoint.deployed_models]
+ * field.
  *
  * @param string $formattedName The name of the Model resource to be deleted.
  *                              Format: `projects/{project}/locations/{location}/models/{model}`

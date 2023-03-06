@@ -16,14 +16,14 @@ class CrawledUrl
         }
         $pool->internalAddGeneratedFile(
             '
-Â
+Ä
 8google/cloud/websecurityscanner/v1beta/crawled_url.proto&google.cloud.websecurityscanner.v1beta"<
 
 CrawledUrl
 http_method (	
 url (	
-body (	B—
-*com.google.cloud.websecurityscanner.v1betaBCrawledUrlProtoPZXgoogle.golang.org/genproto/googleapis/cloud/websecurityscanner/v1beta;websecurityscannerª&Google.Cloud.WebSecurityScanner.V1BetaÊ&Google\\Cloud\\WebSecurityScanner\\V1betaê)Google::Cloud::WebSecurityScanner::V1betabproto3'
+body (	B™
+*com.google.cloud.websecurityscanner.v1betaBCrawledUrlProtoPZZcloud.google.com/go/websecurityscanner/apiv1beta/websecurityscannerpb;websecurityscannerpbª&Google.Cloud.WebSecurityScanner.V1BetaÊ&Google\\Cloud\\WebSecurityScanner\\V1betaê)Google::Cloud::WebSecurityScanner::V1betabproto3'
         , true);
 
         static::$is_initialized = true;

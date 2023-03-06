@@ -17,14 +17,14 @@ class Video
         \GPBMetadata\Google\Cloud\Automl\V1Beta1\Classification::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ñ
+å
 \'google/cloud/automl/v1beta1/video.protogoogle.cloud.automl.v1beta1"$
 "VideoClassificationDatasetMetadata"$
 "VideoObjectTrackingDatasetMetadata""
  VideoClassificationModelMetadata""
- VideoObjectTrackingModelMetadataB±
+ VideoObjectTrackingModelMetadataBß
 com.google.cloud.automl.v1beta1B
-VideoProtoPZAgoogle.golang.org/genproto/googleapis/cloud/automl/v1beta1;automl Google\\Cloud\\AutoMl\\V1beta1ÍGoogle::Cloud::AutoML::V1beta1bproto3'
+VideoProtoPZ7cloud.google.com/go/automl/apiv1beta1/automlpb;automlpb Google\\Cloud\\AutoMl\\V1beta1ÍGoogle::Cloud::AutoML::V1beta1bproto3'
         , true);
 
         static::$is_initialized = true;

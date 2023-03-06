@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [TensorboardService.DeleteTensorboardRun][google.cloud.aiplatform.v1.TensorboardService.DeleteTensorboardRun].
+ * Request message for
+ * [TensorboardService.DeleteTensorboardRun][google.cloud.aiplatform.v1.TensorboardService.DeleteTensorboardRun].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.DeleteTensorboardRunRequest</code>
  */

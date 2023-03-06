@@ -282,10 +282,6 @@ items:
           var_type: array
           description: 'Optional. Options for configuring the service API wrapper.'
         -
-          id: '↳ serviceAddress'
-          var_type: string
-          description: '**Deprecated**. This option will be removed in a future major release. Please utilize the `$apiEndpoint` option instead.'
-        -
           id: '↳ apiEndpoint'
           var_type: string
           description: 'The address of the API remote host. May optionally include the port, formatted as "<uri>:<port>". Default ''vision.googleapis.com:443''.'
@@ -308,7 +304,7 @@ items:
         -
           id: '↳ transport'
           var_type: string|TransportInterface
-          description: 'The transport used for executing network requests. May be either the string `rest` or `grpc`. Defaults to `grpc` if gRPC support is detected on the system. *Advanced usage*: Additionally, it is possible to pass in an already instantiated <a href="https://googleapis.github.io/gax-php#Google/ApiCore/Transport/TransportInterface">Google\ApiCore\Transport\TransportInterface</a> object. Note that when this object is provided, any settings in $transportConfig, and any $serviceAddress setting, will be ignored.'
+          description: 'The transport used for executing network requests. May be either the string `rest` or `grpc`. Defaults to `grpc` if gRPC support is detected on the system. *Advanced usage*: Additionally, it is possible to pass in an already instantiated <a href="https://googleapis.github.io/gax-php#Google/ApiCore/Transport/TransportInterface">Google\ApiCore\Transport\TransportInterface</a> object. Note that when this object is provided, any settings in $transportConfig, and any $apiEndpoint setting, will be ignored.'
         -
           id: '↳ transportConfig'
           var_type: array
@@ -388,11 +384,19 @@ items:
         -
           id: name
           var_type: string
-          description: 'Required. The resource name for the ProductSet to modify.  Format is: `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`'
+          description: |
+            Required. The resource name for the ProductSet to modify.
+            
+            Format is:
+            `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
         -
           id: product
           var_type: string
-          description: 'Required. The resource name for the Product to be added to this ProductSet.  Format is: `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`'
+          description: |
+            Required. The resource name for the Product to be added to this ProductSet.
+            
+            Format is:
+            `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`
         -
           id: optionalArgs
           var_type: array
@@ -471,7 +475,11 @@ items:
         -
           id: parent
           var_type: string
-          description: 'Required. The project in which the Product should be created.  Format is `projects/PROJECT_ID/locations/LOC_ID`.'
+          description: |
+            Required. The project in which the Product should be created.
+            
+            Format is
+            `projects/PROJECT_ID/locations/LOC_ID`.
         -
           id: product
           var_type: '<xref uid="\Google\Cloud\Vision\V1\Product">Google\Cloud\Vision\V1\Product</xref>'
@@ -558,7 +566,10 @@ items:
         -
           id: parent
           var_type: string
-          description: 'Required. The project in which the ProductSet should be created.  Format is `projects/PROJECT_ID/locations/LOC_ID`.'
+          description: |
+            Required. The project in which the ProductSet should be created.
+            
+            Format is `projects/PROJECT_ID/locations/LOC_ID`.
         -
           id: productSet
           var_type: '<xref uid="\Google\Cloud\Vision\V1\ProductSet">Google\Cloud\Vision\V1\ProductSet</xref>'
@@ -664,11 +675,17 @@ items:
         -
           id: parent
           var_type: string
-          description: 'Required. Resource name of the product in which to create the reference image.  Format is `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.'
+          description: |
+            Required. Resource name of the product in which to create the reference image.
+            
+            Format is
+            `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.
         -
           id: referenceImage
           var_type: '<xref uid="\Google\Cloud\Vision\V1\ReferenceImage">Google\Cloud\Vision\V1\ReferenceImage</xref>'
-          description: 'Required. The reference image to create. If an image ID is specified, it is ignored.'
+          description: |
+            Required. The reference image to create.
+            If an image ID is specified, it is ignored.
         -
           id: optionalArgs
           var_type: array
@@ -746,7 +763,11 @@ items:
         -
           id: name
           var_type: string
-          description: 'Required. Resource name of product to delete.  Format is: `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`'
+          description: |
+            Required. Resource name of product to delete.
+            
+            Format is:
+            `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`
         -
           id: optionalArgs
           var_type: array
@@ -816,7 +837,11 @@ items:
         -
           id: name
           var_type: string
-          description: 'Required. Resource name of the ProductSet to delete.  Format is: `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`'
+          description: |
+            Required. Resource name of the ProductSet to delete.
+            
+            Format is:
+            `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
         -
           id: optionalArgs
           var_type: array
@@ -894,7 +919,11 @@ items:
         -
           id: name
           var_type: string
-          description: 'Required. The resource name of the reference image to delete.  Format is: `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID/referenceImages/IMAGE_ID`'
+          description: |
+            Required. The resource name of the reference image to delete.
+            
+            Format is:
+            `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID/referenceImages/IMAGE_ID`
         -
           id: optionalArgs
           var_type: array
@@ -967,7 +996,11 @@ items:
         -
           id: name
           var_type: string
-          description: 'Required. Resource name of the Product to get.  Format is: `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`'
+          description: |
+            Required. Resource name of the Product to get.
+            
+            Format is:
+            `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`
         -
           id: optionalArgs
           var_type: array
@@ -1043,7 +1076,11 @@ items:
         -
           id: name
           var_type: string
-          description: 'Required. Resource name of the ProductSet to get.  Format is: `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`'
+          description: |
+            Required. Resource name of the ProductSet to get.
+            
+            Format is:
+            `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
         -
           id: optionalArgs
           var_type: array
@@ -1124,7 +1161,11 @@ items:
         -
           id: name
           var_type: string
-          description: 'Required. The resource name of the ReferenceImage to get.  Format is: `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID/referenceImages/IMAGE_ID`.'
+          description: |
+            Required. The resource name of the ReferenceImage to get.
+            
+            Format is:
+            `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID/referenceImages/IMAGE_ID`.
         -
           id: optionalArgs
           var_type: array
@@ -1221,7 +1262,10 @@ items:
         -
           id: parent
           var_type: string
-          description: 'Required. The project in which the ProductSets should be imported.  Format is `projects/PROJECT_ID/locations/LOC_ID`.'
+          description: |
+            Required. The project in which the ProductSets should be imported.
+            
+            Format is `projects/PROJECT_ID/locations/LOC_ID`.
         -
           id: inputConfig
           var_type: '<xref uid="\Google\Cloud\Vision\V1\ImportProductSetsInputConfig">Google\Cloud\Vision\V1\ImportProductSetsInputConfig</xref>'
@@ -1306,7 +1350,10 @@ items:
         -
           id: parent
           var_type: string
-          description: 'Required. The project from which ProductSets should be listed.  Format is `projects/PROJECT_ID/locations/LOC_ID`.'
+          description: |
+            Required. The project from which ProductSets should be listed.
+            
+            Format is `projects/PROJECT_ID/locations/LOC_ID`.
         -
           id: optionalArgs
           var_type: array
@@ -1395,7 +1442,11 @@ items:
         -
           id: parent
           var_type: string
-          description: 'Required. The project OR ProductSet from which Products should be listed.  Format: `projects/PROJECT_ID/locations/LOC_ID`'
+          description: |
+            Required. The project OR ProductSet from which Products should be listed.
+            
+            Format:
+            `projects/PROJECT_ID/locations/LOC_ID`
         -
           id: optionalArgs
           var_type: array
@@ -1486,7 +1537,11 @@ items:
         -
           id: name
           var_type: string
-          description: 'Required. The ProductSet resource for which to retrieve Products.  Format is: `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`'
+          description: |
+            Required. The ProductSet resource for which to retrieve Products.
+            
+            Format is:
+            `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
         -
           id: optionalArgs
           var_type: array
@@ -1577,7 +1632,11 @@ items:
         -
           id: parent
           var_type: string
-          description: 'Required. Resource name of the product containing the reference images.  Format is `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.'
+          description: |
+            Required. Resource name of the product containing the reference images.
+            
+            Format is
+            `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.
         -
           id: optionalArgs
           var_type: array
@@ -1688,7 +1747,10 @@ items:
         -
           id: parent
           var_type: string
-          description: 'Required. The project and location in which the Products should be deleted.  Format is `projects/PROJECT_ID/locations/LOC_ID`.'
+          description: |
+            Required. The project and location in which the Products should be deleted.
+            
+            Format is `projects/PROJECT_ID/locations/LOC_ID`.
         -
           id: optionalArgs
           var_type: array
@@ -1778,11 +1840,19 @@ items:
         -
           id: name
           var_type: string
-          description: 'Required. The resource name for the ProductSet to modify.  Format is: `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`'
+          description: |
+            Required. The resource name for the ProductSet to modify.
+            
+            Format is:
+            `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
         -
           id: product
           var_type: string
-          description: 'Required. The resource name for the Product to be removed from this ProductSet.  Format is: `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`'
+          description: |
+            Required. The resource name for the Product to be removed from this ProductSet.
+            
+            Format is:
+            `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`
         -
           id: optionalArgs
           var_type: array
@@ -1855,7 +1925,9 @@ items:
         -
           id: product
           var_type: '<xref uid="\Google\Cloud\Vision\V1\Product">Google\Cloud\Vision\V1\Product</xref>'
-          description: 'Required. The Product resource which replaces the one on the server. product.name is immutable.'
+          description: |
+            Required. The Product resource which replaces the one on the server.
+            product.name is immutable.
         -
           id: optionalArgs
           var_type: array
@@ -1863,7 +1935,7 @@ items:
         -
           id: '↳ updateMask'
           var_type: FieldMask
-          description: 'The FieldMask that specifies which fields to update. If update_mask isn''t specified, all mutable fields are to be updated. Valid mask paths include `product_labels`, `display_name`, and `description`.'
+          description: 'The <a href="https://protobuf.dev/reference/php/api-docs/FieldMask">FieldMask</a> that specifies which fields to update. If update_mask isn''t specified, all mutable fields are to be updated. Valid mask paths include `product_labels`, `display_name`, and `description`.'
         -
           id: '↳ retrySettings'
           var_type: RetrySettings|array
@@ -1936,7 +2008,7 @@ items:
         -
           id: '↳ updateMask'
           var_type: FieldMask
-          description: 'The FieldMask that specifies which fields to update. If update_mask isn''t specified, all mutable fields are to be updated. Valid mask path is `display_name`.'
+          description: 'The <a href="https://protobuf.dev/reference/php/api-docs/FieldMask">FieldMask</a> that specifies which fields to update. If update_mask isn''t specified, all mutable fields are to be updated. Valid mask path is `display_name`.'
         -
           id: '↳ retrySettings'
           var_type: RetrySettings|array

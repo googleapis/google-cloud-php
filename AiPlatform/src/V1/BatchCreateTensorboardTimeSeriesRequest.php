@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [TensorboardService.BatchCreateTensorboardTimeSeries][google.cloud.aiplatform.v1.TensorboardService.BatchCreateTensorboardTimeSeries].
+ * Request message for
+ * [TensorboardService.BatchCreateTensorboardTimeSeries][google.cloud.aiplatform.v1.TensorboardService.BatchCreateTensorboardTimeSeries].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.BatchCreateTensorboardTimeSeriesRequest</code>
  */
@@ -28,8 +29,8 @@ class BatchCreateTensorboardTimeSeriesRequest extends \Google\Protobuf\Internal\
      */
     private $parent = '';
     /**
-     * Required. The request message specifying the TensorboardTimeSeries to create.
-     * A maximum of 1000 TensorboardTimeSeries can be created in a batch.
+     * Required. The request message specifying the TensorboardTimeSeries to
+     * create. A maximum of 1000 TensorboardTimeSeries can be created in a batch.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.CreateTensorboardTimeSeriesRequest requests = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -50,8 +51,8 @@ class BatchCreateTensorboardTimeSeriesRequest extends \Google\Protobuf\Internal\
      *           CreateTensorboardTimeSeriesRequest messages must be sub resources of this
      *           TensorboardExperiment.
      *     @type array<\Google\Cloud\AIPlatform\V1\CreateTensorboardTimeSeriesRequest>|\Google\Protobuf\Internal\RepeatedField $requests
-     *           Required. The request message specifying the TensorboardTimeSeries to create.
-     *           A maximum of 1000 TensorboardTimeSeries can be created in a batch.
+     *           Required. The request message specifying the TensorboardTimeSeries to
+     *           create. A maximum of 1000 TensorboardTimeSeries can be created in a batch.
      * }
      */
     public function __construct($data = NULL) {
@@ -98,8 +99,8 @@ class BatchCreateTensorboardTimeSeriesRequest extends \Google\Protobuf\Internal\
     }
 
     /**
-     * Required. The request message specifying the TensorboardTimeSeries to create.
-     * A maximum of 1000 TensorboardTimeSeries can be created in a batch.
+     * Required. The request message specifying the TensorboardTimeSeries to
+     * create. A maximum of 1000 TensorboardTimeSeries can be created in a batch.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.CreateTensorboardTimeSeriesRequest requests = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -110,8 +111,8 @@ class BatchCreateTensorboardTimeSeriesRequest extends \Google\Protobuf\Internal\
     }
 
     /**
-     * Required. The request message specifying the TensorboardTimeSeries to create.
-     * A maximum of 1000 TensorboardTimeSeries can be created in a batch.
+     * Required. The request message specifying the TensorboardTimeSeries to
+     * create. A maximum of 1000 TensorboardTimeSeries can be created in a batch.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.CreateTensorboardTimeSeriesRequest requests = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param array<\Google\Cloud\AIPlatform\V1\CreateTensorboardTimeSeriesRequest>|\Google\Protobuf\Internal\RepeatedField $var

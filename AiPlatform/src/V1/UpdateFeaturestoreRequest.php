@@ -9,16 +9,16 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [FeaturestoreService.UpdateFeaturestore][google.cloud.aiplatform.v1.FeaturestoreService.UpdateFeaturestore].
+ * Request message for
+ * [FeaturestoreService.UpdateFeaturestore][google.cloud.aiplatform.v1.FeaturestoreService.UpdateFeaturestore].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.UpdateFeaturestoreRequest</code>
  */
 class UpdateFeaturestoreRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The Featurestore's `name` field is used to identify the Featurestore to be
-     * updated.
-     * Format:
+     * Required. The Featurestore's `name` field is used to identify the
+     * Featurestore to be updated. Format:
      * `projects/{project}/locations/{location}/featurestores/{featurestore}`
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Featurestore featurestore = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -36,6 +36,7 @@ class UpdateFeaturestoreRequest extends \Google\Protobuf\Internal\Message
      *   * `labels`
      *   * `online_serving_config.fixed_node_count`
      *   * `online_serving_config.scaling`
+     *   * `online_storage_ttl_days` (available in Preview)
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
@@ -48,9 +49,8 @@ class UpdateFeaturestoreRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\AIPlatform\V1\Featurestore $featurestore
-     *           Required. The Featurestore's `name` field is used to identify the Featurestore to be
-     *           updated.
-     *           Format:
+     *           Required. The Featurestore's `name` field is used to identify the
+     *           Featurestore to be updated. Format:
      *           `projects/{project}/locations/{location}/featurestores/{featurestore}`
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           Field mask is used to specify the fields to be overwritten in the
@@ -64,6 +64,7 @@ class UpdateFeaturestoreRequest extends \Google\Protobuf\Internal\Message
      *             * `labels`
      *             * `online_serving_config.fixed_node_count`
      *             * `online_serving_config.scaling`
+     *             * `online_storage_ttl_days` (available in Preview)
      * }
      */
     public function __construct($data = NULL) {
@@ -72,9 +73,8 @@ class UpdateFeaturestoreRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The Featurestore's `name` field is used to identify the Featurestore to be
-     * updated.
-     * Format:
+     * Required. The Featurestore's `name` field is used to identify the
+     * Featurestore to be updated. Format:
      * `projects/{project}/locations/{location}/featurestores/{featurestore}`
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Featurestore featurestore = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -96,9 +96,8 @@ class UpdateFeaturestoreRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The Featurestore's `name` field is used to identify the Featurestore to be
-     * updated.
-     * Format:
+     * Required. The Featurestore's `name` field is used to identify the
+     * Featurestore to be updated. Format:
      * `projects/{project}/locations/{location}/featurestores/{featurestore}`
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Featurestore featurestore = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -125,6 +124,7 @@ class UpdateFeaturestoreRequest extends \Google\Protobuf\Internal\Message
      *   * `labels`
      *   * `online_serving_config.fixed_node_count`
      *   * `online_serving_config.scaling`
+     *   * `online_storage_ttl_days` (available in Preview)
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      * @return \Google\Protobuf\FieldMask|null
@@ -156,6 +156,7 @@ class UpdateFeaturestoreRequest extends \Google\Protobuf\Internal\Message
      *   * `labels`
      *   * `online_serving_config.fixed_node_count`
      *   * `online_serving_config.scaling`
+     *   * `online_storage_ttl_days` (available in Preview)
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      * @param \Google\Protobuf\FieldMask $var

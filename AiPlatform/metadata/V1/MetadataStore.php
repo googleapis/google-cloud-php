@@ -20,7 +20,7 @@ class MetadataStore
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Å
+˚
 /google/cloud/aiplatform/v1/metadata_store.protogoogle.cloud.aiplatform.v1google/api/resource.proto0google/cloud/aiplatform/v1/encryption_spec.protogoogle/protobuf/timestamp.proto"Á
 MetadataStore
 name (	B‡A4
@@ -31,8 +31,8 @@ class MetadataStore
 state (2<.google.cloud.aiplatform.v1.MetadataStore.MetadataStoreStateB‡A4
 MetadataStoreState
 disk_utilization_bytes (:uÍAr
-\'aiplatform.googleapis.com/MetadataStoreGprojects/{project}/locations/{location}/metadataStores/{metadata_store}B—
-com.google.cloud.aiplatform.v1BMetadataProtoPZDgoogle.golang.org/genproto/googleapis/cloud/aiplatform/v1;aiplatform™Google.Cloud.AIPlatform.V1 Google\\Cloud\\AIPlatform\\V1ÍGoogle::Cloud::AIPlatform::V1bproto3'
+\'aiplatform.googleapis.com/MetadataStoreGprojects/{project}/locations/{location}/metadataStores/{metadata_store}BÀ
+com.google.cloud.aiplatform.v1BMetadataProtoPZ>cloud.google.com/go/aiplatform/apiv1/aiplatformpb;aiplatformpb™Google.Cloud.AIPlatform.V1 Google\\Cloud\\AIPlatform\\V1ÍGoogle::Cloud::AIPlatform::V1bproto3'
         , true);
 
         static::$is_initialized = true;

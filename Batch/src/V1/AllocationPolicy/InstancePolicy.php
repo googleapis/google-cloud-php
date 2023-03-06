@@ -44,6 +44,13 @@ class InstancePolicy extends \Google\Protobuf\Internal\Message
      */
     private $accelerators;
     /**
+     * Book disk to be created and attached to each VM by this InstancePolicy.
+     * Boot disk will be deleted when the VM is deleted.
+     *
+     * Generated from protobuf field <code>.google.cloud.batch.v1.AllocationPolicy.Disk boot_disk = 8;</code>
+     */
+    private $boot_disk = null;
+    /**
      * Non-boot disks to be attached for each VM created by this InstancePolicy.
      * New disks will be deleted when the VM is deleted.
      *
@@ -68,6 +75,9 @@ class InstancePolicy extends \Google\Protobuf\Internal\Message
      *           The provisioning model.
      *     @type array<\Google\Cloud\Batch\V1\AllocationPolicy\Accelerator>|\Google\Protobuf\Internal\RepeatedField $accelerators
      *           The accelerators attached to each VM instance.
+     *     @type \Google\Cloud\Batch\V1\AllocationPolicy\Disk $boot_disk
+     *           Book disk to be created and attached to each VM by this InstancePolicy.
+     *           Boot disk will be deleted when the VM is deleted.
      *     @type array<\Google\Cloud\Batch\V1\AllocationPolicy\AttachedDisk>|\Google\Protobuf\Internal\RepeatedField $disks
      *           Non-boot disks to be attached for each VM created by this InstancePolicy.
      *           New disks will be deleted when the VM is deleted.
@@ -184,6 +194,44 @@ class InstancePolicy extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Batch\V1\AllocationPolicy\Accelerator::class);
         $this->accelerators = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Book disk to be created and attached to each VM by this InstancePolicy.
+     * Boot disk will be deleted when the VM is deleted.
+     *
+     * Generated from protobuf field <code>.google.cloud.batch.v1.AllocationPolicy.Disk boot_disk = 8;</code>
+     * @return \Google\Cloud\Batch\V1\AllocationPolicy\Disk|null
+     */
+    public function getBootDisk()
+    {
+        return $this->boot_disk;
+    }
+
+    public function hasBootDisk()
+    {
+        return isset($this->boot_disk);
+    }
+
+    public function clearBootDisk()
+    {
+        unset($this->boot_disk);
+    }
+
+    /**
+     * Book disk to be created and attached to each VM by this InstancePolicy.
+     * Boot disk will be deleted when the VM is deleted.
+     *
+     * Generated from protobuf field <code>.google.cloud.batch.v1.AllocationPolicy.Disk boot_disk = 8;</code>
+     * @param \Google\Cloud\Batch\V1\AllocationPolicy\Disk $var
+     * @return $this
+     */
+    public function setBootDisk($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Batch\V1\AllocationPolicy\Disk::class);
+        $this->boot_disk = $var;
 
         return $this;
     }

@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Response message for [IndexService.UpsertDatapoints][google.cloud.aiplatform.v1.IndexService.UpsertDatapoints]
+ * Response message for
+ * [IndexService.UpsertDatapoints][google.cloud.aiplatform.v1.IndexService.UpsertDatapoints]
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.UpsertDatapointsResponse</code>
  */

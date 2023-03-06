@@ -36,7 +36,7 @@ class SaaEnrollmentResponse extends \Google\Protobuf\Internal\Message
      *
      *     @type int $setup_status
      *           Indicates SAA enrollment status of a given workload.
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $setup_errors
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $setup_errors
      *           Indicates SAA enrollment setup error if any.
      * }
      */
@@ -96,7 +96,7 @@ class SaaEnrollmentResponse extends \Google\Protobuf\Internal\Message
      * Indicates SAA enrollment setup error if any.
      *
      * Generated from protobuf field <code>repeated .google.cloud.assuredworkloads.v1beta1.Workload.SaaEnrollmentResponse.SetupError setup_errors = 2;</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSetupErrors($var)

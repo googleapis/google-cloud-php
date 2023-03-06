@@ -23,11 +23,9 @@
 namespace Google\Cloud\RecaptchaEnterprise\Tests\Unit\V1;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-
 use Google\Cloud\RecaptchaEnterprise\V1\AnnotateAssessmentRequest\Annotation;
 use Google\Cloud\RecaptchaEnterprise\V1\AnnotateAssessmentResponse;
 use Google\Cloud\RecaptchaEnterprise\V1\Assessment;
@@ -39,6 +37,7 @@ use Google\Cloud\RecaptchaEnterprise\V1\Metrics;
 use Google\Cloud\RecaptchaEnterprise\V1\RecaptchaEnterpriseServiceClient;
 use Google\Cloud\RecaptchaEnterprise\V1\RelatedAccountGroup;
 use Google\Cloud\RecaptchaEnterprise\V1\RelatedAccountGroupMembership;
+use Google\Cloud\RecaptchaEnterprise\V1\RetrieveLegacySecretKeyResponse;
 use Google\Cloud\RecaptchaEnterprise\V1\SearchRelatedAccountGroupMembershipsResponse;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
@@ -51,25 +50,19 @@ use stdClass;
  */
 class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return RecaptchaEnterpriseServiceClient
-     */
+    /** @return RecaptchaEnterpriseServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -78,13 +71,11 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         return new RecaptchaEnterpriseServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function annotateAssessmentTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -92,9 +83,9 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $expectedResponse = new AnnotateAssessmentResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->assessmentName('[PROJECT]', '[ASSESSMENT]');
+        $formattedName = $gapicClient->assessmentName('[PROJECT]', '[ASSESSMENT]');
         $annotation = Annotation::ANNOTATION_UNSPECIFIED;
-        $response = $client->annotateAssessment($formattedName, $annotation);
+        $response = $gapicClient->annotateAssessment($formattedName, $annotation);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -108,13 +99,11 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function annotateAssessmentExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -129,11 +118,11 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->assessmentName('[PROJECT]', '[ASSESSMENT]');
+        $formattedName = $gapicClient->assessmentName('[PROJECT]', '[ASSESSMENT]');
         $annotation = Annotation::ANNOTATION_UNSPECIFIED;
         try {
-            $client->annotateAssessment($formattedName, $annotation);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->annotateAssessment($formattedName, $annotation);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -144,13 +133,11 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createAssessmentTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -160,9 +147,9 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
         $assessment = new Assessment();
-        $response = $client->createAssessment($formattedParent, $assessment);
+        $response = $gapicClient->createAssessment($formattedParent, $assessment);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -176,13 +163,11 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createAssessmentExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -197,11 +182,11 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
         $assessment = new Assessment();
         try {
-            $client->createAssessment($formattedParent, $assessment);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->createAssessment($formattedParent, $assessment);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -212,13 +197,11 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createKeyTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -230,9 +213,9 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
         $key = new Key();
-        $response = $client->createKey($formattedParent, $key);
+        $response = $gapicClient->createKey($formattedParent, $key);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -246,13 +229,11 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createKeyExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -267,11 +248,11 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
         $key = new Key();
         try {
-            $client->createKey($formattedParent, $key);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->createKey($formattedParent, $key);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -282,13 +263,11 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteKeyTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -296,8 +275,8 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->keyName('[PROJECT]', '[KEY]');
-        $client->deleteKey($formattedName);
+        $formattedName = $gapicClient->keyName('[PROJECT]', '[KEY]');
+        $gapicClient->deleteKey($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -308,13 +287,11 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteKeyExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -329,10 +306,10 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->keyName('[PROJECT]', '[KEY]');
+        $formattedName = $gapicClient->keyName('[PROJECT]', '[KEY]');
         try {
-            $client->deleteKey($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->deleteKey($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -343,13 +320,11 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getKeyTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -361,8 +336,8 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->keyName('[PROJECT]', '[KEY]');
-        $response = $client->getKey($formattedName);
+        $formattedName = $gapicClient->keyName('[PROJECT]', '[KEY]');
+        $response = $gapicClient->getKey($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -374,13 +349,11 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getKeyExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -395,10 +368,10 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->keyName('[PROJECT]', '[KEY]');
+        $formattedName = $gapicClient->keyName('[PROJECT]', '[KEY]');
         try {
-            $client->getKey($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getKey($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -409,13 +382,11 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getMetricsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -425,8 +396,8 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->metricsName('[PROJECT]', '[KEY]');
-        $response = $client->getMetrics($formattedName);
+        $formattedName = $gapicClient->metricsName('[PROJECT]', '[KEY]');
+        $response = $gapicClient->getMetrics($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -438,13 +409,11 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getMetricsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -459,10 +428,10 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->metricsName('[PROJECT]', '[KEY]');
+        $formattedName = $gapicClient->metricsName('[PROJECT]', '[KEY]');
         try {
-            $client->getMetrics($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getMetrics($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -473,13 +442,11 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listKeysTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -494,8 +461,8 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $expectedResponse->setKeys($keys);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
-        $response = $client->listKeys($formattedParent);
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
+        $response = $gapicClient->listKeys($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -510,13 +477,11 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listKeysExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -531,10 +496,10 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
         try {
-            $client->listKeys($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listKeys($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -545,13 +510,11 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listRelatedAccountGroupMembershipsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -566,8 +529,8 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $expectedResponse->setRelatedAccountGroupMemberships($relatedAccountGroupMemberships);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->relatedAccountGroupName('[PROJECT]', '[RELATEDACCOUNTGROUP]');
-        $response = $client->listRelatedAccountGroupMemberships($formattedParent);
+        $formattedParent = $gapicClient->relatedAccountGroupName('[PROJECT]', '[RELATEDACCOUNTGROUP]');
+        $response = $gapicClient->listRelatedAccountGroupMemberships($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -582,13 +545,11 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listRelatedAccountGroupMembershipsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -603,10 +564,10 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->relatedAccountGroupName('[PROJECT]', '[RELATEDACCOUNTGROUP]');
+        $formattedParent = $gapicClient->relatedAccountGroupName('[PROJECT]', '[RELATEDACCOUNTGROUP]');
         try {
-            $client->listRelatedAccountGroupMemberships($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listRelatedAccountGroupMemberships($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -617,13 +578,11 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listRelatedAccountGroupsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -638,8 +597,8 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $expectedResponse->setRelatedAccountGroups($relatedAccountGroups);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
-        $response = $client->listRelatedAccountGroups($formattedParent);
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
+        $response = $gapicClient->listRelatedAccountGroups($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -654,13 +613,11 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listRelatedAccountGroupsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -675,10 +632,10 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
         try {
-            $client->listRelatedAccountGroups($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listRelatedAccountGroups($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -689,13 +646,11 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function migrateKeyTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -707,8 +662,8 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->keyName('[PROJECT]', '[KEY]');
-        $response = $client->migrateKey($formattedName);
+        $formattedName = $gapicClient->keyName('[PROJECT]', '[KEY]');
+        $response = $gapicClient->migrateKey($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -720,13 +675,11 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function migrateKeyExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -741,10 +694,10 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->keyName('[PROJECT]', '[KEY]');
+        $formattedName = $gapicClient->keyName('[PROJECT]', '[KEY]');
         try {
-            $client->migrateKey($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->migrateKey($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -755,13 +708,71 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
+    public function retrieveLegacySecretKeyTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $legacySecretKey = 'legacySecretKey-1937138042';
+        $expectedResponse = new RetrieveLegacySecretKeyResponse();
+        $expectedResponse->setLegacySecretKey($legacySecretKey);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedKey = $gapicClient->keyName('[PROJECT]', '[KEY]');
+        $response = $gapicClient->retrieveLegacySecretKey($formattedKey);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService/RetrieveLegacySecretKey', $actualFuncCall);
+        $actualValue = $actualRequestObject->getKey();
+        $this->assertProtobufEquals($formattedKey, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function retrieveLegacySecretKeyExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedKey = $gapicClient->keyName('[PROJECT]', '[KEY]');
+        try {
+            $gapicClient->retrieveLegacySecretKey($formattedKey);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function searchRelatedAccountGroupMembershipsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -776,8 +787,8 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $expectedResponse->setRelatedAccountGroupMemberships($relatedAccountGroupMemberships);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->relatedAccountGroupName('[PROJECT]', '[RELATEDACCOUNTGROUP]');
-        $response = $client->searchRelatedAccountGroupMemberships($formattedParent);
+        $formattedProject = $gapicClient->relatedAccountGroupName('[PROJECT]', '[RELATEDACCOUNTGROUP]');
+        $response = $gapicClient->searchRelatedAccountGroupMemberships($formattedProject);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -787,18 +798,16 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService/SearchRelatedAccountGroupMemberships', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($formattedProject, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function searchRelatedAccountGroupMembershipsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -813,10 +822,10 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->relatedAccountGroupName('[PROJECT]', '[RELATEDACCOUNTGROUP]');
+        $formattedProject = $gapicClient->relatedAccountGroupName('[PROJECT]', '[RELATEDACCOUNTGROUP]');
         try {
-            $client->searchRelatedAccountGroupMemberships($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->searchRelatedAccountGroupMemberships($formattedProject);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -827,13 +836,11 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateKeyTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -846,7 +853,7 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $key = new Key();
-        $response = $client->updateKey($key);
+        $response = $gapicClient->updateKey($key);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -858,13 +865,11 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateKeyExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -881,8 +886,8 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         // Mock request
         $key = new Key();
         try {
-            $client->updateKey($key);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->updateKey($key);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

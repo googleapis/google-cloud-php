@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class MoveAnalysis extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The user friendly display name of the analysis. E.g. IAM, Organization
-     * Policy etc.
+     * The user friendly display name of the analysis. E.g. IAM, organization
+     * policy etc.
      *
      * Generated from protobuf field <code>string display_name = 1;</code>
      */
@@ -31,8 +31,8 @@ class MoveAnalysis extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $display_name
-     *           The user friendly display name of the analysis. E.g. IAM, Organization
-     *           Policy etc.
+     *           The user friendly display name of the analysis. E.g. IAM, organization
+     *           policy etc.
      *     @type \Google\Cloud\Asset\V1\MoveAnalysisResult $analysis
      *           Analysis result of moving the target resource.
      *     @type \Google\Rpc\Status $error
@@ -45,8 +45,8 @@ class MoveAnalysis extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The user friendly display name of the analysis. E.g. IAM, Organization
-     * Policy etc.
+     * The user friendly display name of the analysis. E.g. IAM, organization
+     * policy etc.
      *
      * Generated from protobuf field <code>string display_name = 1;</code>
      * @return string
@@ -57,8 +57,8 @@ class MoveAnalysis extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The user friendly display name of the analysis. E.g. IAM, Organization
-     * Policy etc.
+     * The user friendly display name of the analysis. E.g. IAM, organization
+     * policy etc.
      *
      * Generated from protobuf field <code>string display_name = 1;</code>
      * @param string $var

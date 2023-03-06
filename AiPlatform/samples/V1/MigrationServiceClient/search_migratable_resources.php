@@ -33,10 +33,9 @@ use Google\Cloud\AIPlatform\V1\MigrationServiceClient;
  * datalabeling.googleapis.com and ml.googleapis.com that can be migrated to
  * Vertex AI's given location.
  *
- * @param string $formattedParent The location that the migratable resources should be searched from.
- *                                It's the Vertex AI location that the resources can be migrated to, not
- *                                the resources' original location.
- *                                Format:
+ * @param string $formattedParent The location that the migratable resources should be searched
+ *                                from. It's the Vertex AI location that the resources can be migrated to,
+ *                                not the resources' original location. Format:
  *                                `projects/{project}/locations/{location}`
  *                                Please see {@see MigrationServiceClient::locationName()} for help formatting this field.
  */

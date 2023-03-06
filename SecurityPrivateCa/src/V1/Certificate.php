@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A [Certificate][google.cloud.security.privateca.v1.Certificate] corresponds to a signed X.509 certificate issued by a
+ * A [Certificate][google.cloud.security.privateca.v1.Certificate] corresponds
+ * to a signed X.509 certificate issued by a
  * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority].
  *
  * Generated from protobuf message <code>google.cloud.security.privateca.v1.Certificate</code>
@@ -17,22 +18,24 @@ use Google\Protobuf\Internal\GPBUtil;
 class Certificate extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The resource name for this [Certificate][google.cloud.security.privateca.v1.Certificate] in the format
+     * Output only. The resource name for this
+     * [Certificate][google.cloud.security.privateca.v1.Certificate] in the format
      * `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;&#47;certificates/&#42;`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
     /**
-     * Output only. The resource name of the issuing [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority] in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;&#47;certificateAuthorities/&#42;`.
+     * Output only. The resource name of the issuing
+     * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+     * in the format `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;&#47;certificateAuthorities/&#42;`.
      *
      * Generated from protobuf field <code>string issuer_certificate_authority = 4 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
     private $issuer_certificate_authority = '';
     /**
-     * Required. Immutable. The desired lifetime of a certificate. Used to create the
-     * "not_before_time" and "not_after_time" fields inside an X.509
+     * Required. Immutable. The desired lifetime of a certificate. Used to create
+     * the "not_before_time" and "not_after_time" fields inside an X.509
      * certificate. Note that the lifetime may be truncated if it would extend
      * past the life of any certificate authority in the issuing chain.
      *
@@ -40,26 +43,32 @@ class Certificate extends \Google\Protobuf\Internal\Message
      */
     private $lifetime = null;
     /**
-     * Immutable. The resource name for a [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate] used to issue this
-     * certificate, in the format
+     * Immutable. The resource name for a
+     * [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate]
+     * used to issue this certificate, in the format
      * `projects/&#42;&#47;locations/&#42;&#47;certificateTemplates/&#42;`.
      * If this is specified, the caller must have the necessary permission to
      * use this template. If this is omitted, no template will be used.
-     * This template must be in the same location as the [Certificate][google.cloud.security.privateca.v1.Certificate].
+     * This template must be in the same location as the
+     * [Certificate][google.cloud.security.privateca.v1.Certificate].
      *
      * Generated from protobuf field <code>string certificate_template = 6 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      */
     private $certificate_template = '';
     /**
-     * Immutable. Specifies how the [Certificate][google.cloud.security.privateca.v1.Certificate]'s identity fields are to be decided.
-     * If this is omitted, the `DEFAULT` subject mode will be used.
+     * Immutable. Specifies how the
+     * [Certificate][google.cloud.security.privateca.v1.Certificate]'s identity
+     * fields are to be decided. If this is omitted, the `DEFAULT` subject mode
+     * will be used.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.SubjectRequestMode subject_mode = 7 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
     private $subject_mode = 0;
     /**
-     * Output only. Details regarding the revocation of this [Certificate][google.cloud.security.privateca.v1.Certificate]. This
-     * [Certificate][google.cloud.security.privateca.v1.Certificate] is considered revoked if and only if this field is present.
+     * Output only. Details regarding the revocation of this
+     * [Certificate][google.cloud.security.privateca.v1.Certificate]. This
+     * [Certificate][google.cloud.security.privateca.v1.Certificate] is considered
+     * revoked if and only if this field is present.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.Certificate.RevocationDetails revocation_details = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -77,20 +86,22 @@ class Certificate extends \Google\Protobuf\Internal\Message
      */
     private $certificate_description = null;
     /**
-     * Output only. The chain that may be used to verify the X.509 certificate. Expected to be
-     * in issuer-to-root order according to RFC 5246.
+     * Output only. The chain that may be used to verify the X.509 certificate.
+     * Expected to be in issuer-to-root order according to RFC 5246.
      *
      * Generated from protobuf field <code>repeated string pem_certificate_chain = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $pem_certificate_chain;
     /**
-     * Output only. The time at which this [Certificate][google.cloud.security.privateca.v1.Certificate] was created.
+     * Output only. The time at which this
+     * [Certificate][google.cloud.security.privateca.v1.Certificate] was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $create_time = null;
     /**
-     * Output only. The time at which this [Certificate][google.cloud.security.privateca.v1.Certificate] was updated.
+     * Output only. The time at which this
+     * [Certificate][google.cloud.security.privateca.v1.Certificate] was updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -110,45 +121,55 @@ class Certificate extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Output only. The resource name for this [Certificate][google.cloud.security.privateca.v1.Certificate] in the format
+     *           Output only. The resource name for this
+     *           [Certificate][google.cloud.security.privateca.v1.Certificate] in the format
      *           `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;&#47;certificates/&#42;`.
      *     @type string $pem_csr
      *           Immutable. A pem-encoded X.509 certificate signing request (CSR).
      *     @type \Google\Cloud\Security\PrivateCA\V1\CertificateConfig $config
-     *           Immutable. A description of the certificate and key that does not require X.509 or
-     *           ASN.1.
+     *           Immutable. A description of the certificate and key that does not require
+     *           X.509 or ASN.1.
      *     @type string $issuer_certificate_authority
-     *           Output only. The resource name of the issuing [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority] in the format
-     *           `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;&#47;certificateAuthorities/&#42;`.
+     *           Output only. The resource name of the issuing
+     *           [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+     *           in the format `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;&#47;certificateAuthorities/&#42;`.
      *     @type \Google\Protobuf\Duration $lifetime
-     *           Required. Immutable. The desired lifetime of a certificate. Used to create the
-     *           "not_before_time" and "not_after_time" fields inside an X.509
+     *           Required. Immutable. The desired lifetime of a certificate. Used to create
+     *           the "not_before_time" and "not_after_time" fields inside an X.509
      *           certificate. Note that the lifetime may be truncated if it would extend
      *           past the life of any certificate authority in the issuing chain.
      *     @type string $certificate_template
-     *           Immutable. The resource name for a [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate] used to issue this
-     *           certificate, in the format
+     *           Immutable. The resource name for a
+     *           [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate]
+     *           used to issue this certificate, in the format
      *           `projects/&#42;&#47;locations/&#42;&#47;certificateTemplates/&#42;`.
      *           If this is specified, the caller must have the necessary permission to
      *           use this template. If this is omitted, no template will be used.
-     *           This template must be in the same location as the [Certificate][google.cloud.security.privateca.v1.Certificate].
+     *           This template must be in the same location as the
+     *           [Certificate][google.cloud.security.privateca.v1.Certificate].
      *     @type int $subject_mode
-     *           Immutable. Specifies how the [Certificate][google.cloud.security.privateca.v1.Certificate]'s identity fields are to be decided.
-     *           If this is omitted, the `DEFAULT` subject mode will be used.
+     *           Immutable. Specifies how the
+     *           [Certificate][google.cloud.security.privateca.v1.Certificate]'s identity
+     *           fields are to be decided. If this is omitted, the `DEFAULT` subject mode
+     *           will be used.
      *     @type \Google\Cloud\Security\PrivateCA\V1\Certificate\RevocationDetails $revocation_details
-     *           Output only. Details regarding the revocation of this [Certificate][google.cloud.security.privateca.v1.Certificate]. This
-     *           [Certificate][google.cloud.security.privateca.v1.Certificate] is considered revoked if and only if this field is present.
+     *           Output only. Details regarding the revocation of this
+     *           [Certificate][google.cloud.security.privateca.v1.Certificate]. This
+     *           [Certificate][google.cloud.security.privateca.v1.Certificate] is considered
+     *           revoked if and only if this field is present.
      *     @type string $pem_certificate
      *           Output only. The pem-encoded, signed X.509 certificate.
      *     @type \Google\Cloud\Security\PrivateCA\V1\CertificateDescription $certificate_description
      *           Output only. A structured description of the issued X.509 certificate.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $pem_certificate_chain
-     *           Output only. The chain that may be used to verify the X.509 certificate. Expected to be
-     *           in issuer-to-root order according to RFC 5246.
+     *           Output only. The chain that may be used to verify the X.509 certificate.
+     *           Expected to be in issuer-to-root order according to RFC 5246.
      *     @type \Google\Protobuf\Timestamp $create_time
-     *           Output only. The time at which this [Certificate][google.cloud.security.privateca.v1.Certificate] was created.
+     *           Output only. The time at which this
+     *           [Certificate][google.cloud.security.privateca.v1.Certificate] was created.
      *     @type \Google\Protobuf\Timestamp $update_time
-     *           Output only. The time at which this [Certificate][google.cloud.security.privateca.v1.Certificate] was updated.
+     *           Output only. The time at which this
+     *           [Certificate][google.cloud.security.privateca.v1.Certificate] was updated.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Optional. Labels with user-defined metadata.
      * }
@@ -159,7 +180,8 @@ class Certificate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The resource name for this [Certificate][google.cloud.security.privateca.v1.Certificate] in the format
+     * Output only. The resource name for this
+     * [Certificate][google.cloud.security.privateca.v1.Certificate] in the format
      * `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;&#47;certificates/&#42;`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
@@ -171,7 +193,8 @@ class Certificate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The resource name for this [Certificate][google.cloud.security.privateca.v1.Certificate] in the format
+     * Output only. The resource name for this
+     * [Certificate][google.cloud.security.privateca.v1.Certificate] in the format
      * `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;&#47;certificates/&#42;`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
@@ -218,8 +241,8 @@ class Certificate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. A description of the certificate and key that does not require X.509 or
-     * ASN.1.
+     * Immutable. A description of the certificate and key that does not require
+     * X.509 or ASN.1.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.CertificateConfig config = 3 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return \Google\Cloud\Security\PrivateCA\V1\CertificateConfig|null
@@ -235,8 +258,8 @@ class Certificate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. A description of the certificate and key that does not require X.509 or
-     * ASN.1.
+     * Immutable. A description of the certificate and key that does not require
+     * X.509 or ASN.1.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.CertificateConfig config = 3 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @param \Google\Cloud\Security\PrivateCA\V1\CertificateConfig $var
@@ -251,8 +274,9 @@ class Certificate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The resource name of the issuing [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority] in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;&#47;certificateAuthorities/&#42;`.
+     * Output only. The resource name of the issuing
+     * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+     * in the format `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;&#47;certificateAuthorities/&#42;`.
      *
      * Generated from protobuf field <code>string issuer_certificate_authority = 4 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @return string
@@ -263,8 +287,9 @@ class Certificate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The resource name of the issuing [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority] in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;&#47;certificateAuthorities/&#42;`.
+     * Output only. The resource name of the issuing
+     * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+     * in the format `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;&#47;certificateAuthorities/&#42;`.
      *
      * Generated from protobuf field <code>string issuer_certificate_authority = 4 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -279,8 +304,8 @@ class Certificate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Immutable. The desired lifetime of a certificate. Used to create the
-     * "not_before_time" and "not_after_time" fields inside an X.509
+     * Required. Immutable. The desired lifetime of a certificate. Used to create
+     * the "not_before_time" and "not_after_time" fields inside an X.509
      * certificate. Note that the lifetime may be truncated if it would extend
      * past the life of any certificate authority in the issuing chain.
      *
@@ -303,8 +328,8 @@ class Certificate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Immutable. The desired lifetime of a certificate. Used to create the
-     * "not_before_time" and "not_after_time" fields inside an X.509
+     * Required. Immutable. The desired lifetime of a certificate. Used to create
+     * the "not_before_time" and "not_after_time" fields inside an X.509
      * certificate. Note that the lifetime may be truncated if it would extend
      * past the life of any certificate authority in the issuing chain.
      *
@@ -321,12 +346,14 @@ class Certificate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. The resource name for a [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate] used to issue this
-     * certificate, in the format
+     * Immutable. The resource name for a
+     * [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate]
+     * used to issue this certificate, in the format
      * `projects/&#42;&#47;locations/&#42;&#47;certificateTemplates/&#42;`.
      * If this is specified, the caller must have the necessary permission to
      * use this template. If this is omitted, no template will be used.
-     * This template must be in the same location as the [Certificate][google.cloud.security.privateca.v1.Certificate].
+     * This template must be in the same location as the
+     * [Certificate][google.cloud.security.privateca.v1.Certificate].
      *
      * Generated from protobuf field <code>string certificate_template = 6 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      * @return string
@@ -337,12 +364,14 @@ class Certificate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. The resource name for a [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate] used to issue this
-     * certificate, in the format
+     * Immutable. The resource name for a
+     * [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate]
+     * used to issue this certificate, in the format
      * `projects/&#42;&#47;locations/&#42;&#47;certificateTemplates/&#42;`.
      * If this is specified, the caller must have the necessary permission to
      * use this template. If this is omitted, no template will be used.
-     * This template must be in the same location as the [Certificate][google.cloud.security.privateca.v1.Certificate].
+     * This template must be in the same location as the
+     * [Certificate][google.cloud.security.privateca.v1.Certificate].
      *
      * Generated from protobuf field <code>string certificate_template = 6 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -357,8 +386,10 @@ class Certificate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. Specifies how the [Certificate][google.cloud.security.privateca.v1.Certificate]'s identity fields are to be decided.
-     * If this is omitted, the `DEFAULT` subject mode will be used.
+     * Immutable. Specifies how the
+     * [Certificate][google.cloud.security.privateca.v1.Certificate]'s identity
+     * fields are to be decided. If this is omitted, the `DEFAULT` subject mode
+     * will be used.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.SubjectRequestMode subject_mode = 7 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return int
@@ -369,8 +400,10 @@ class Certificate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. Specifies how the [Certificate][google.cloud.security.privateca.v1.Certificate]'s identity fields are to be decided.
-     * If this is omitted, the `DEFAULT` subject mode will be used.
+     * Immutable. Specifies how the
+     * [Certificate][google.cloud.security.privateca.v1.Certificate]'s identity
+     * fields are to be decided. If this is omitted, the `DEFAULT` subject mode
+     * will be used.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.SubjectRequestMode subject_mode = 7 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @param int $var
@@ -385,8 +418,10 @@ class Certificate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Details regarding the revocation of this [Certificate][google.cloud.security.privateca.v1.Certificate]. This
-     * [Certificate][google.cloud.security.privateca.v1.Certificate] is considered revoked if and only if this field is present.
+     * Output only. Details regarding the revocation of this
+     * [Certificate][google.cloud.security.privateca.v1.Certificate]. This
+     * [Certificate][google.cloud.security.privateca.v1.Certificate] is considered
+     * revoked if and only if this field is present.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.Certificate.RevocationDetails revocation_details = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\Security\PrivateCA\V1\Certificate\RevocationDetails|null
@@ -407,8 +442,10 @@ class Certificate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Details regarding the revocation of this [Certificate][google.cloud.security.privateca.v1.Certificate]. This
-     * [Certificate][google.cloud.security.privateca.v1.Certificate] is considered revoked if and only if this field is present.
+     * Output only. Details regarding the revocation of this
+     * [Certificate][google.cloud.security.privateca.v1.Certificate]. This
+     * [Certificate][google.cloud.security.privateca.v1.Certificate] is considered
+     * revoked if and only if this field is present.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.Certificate.RevocationDetails revocation_details = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\Security\PrivateCA\V1\Certificate\RevocationDetails $var
@@ -485,8 +522,8 @@ class Certificate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The chain that may be used to verify the X.509 certificate. Expected to be
-     * in issuer-to-root order according to RFC 5246.
+     * Output only. The chain that may be used to verify the X.509 certificate.
+     * Expected to be in issuer-to-root order according to RFC 5246.
      *
      * Generated from protobuf field <code>repeated string pem_certificate_chain = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -497,8 +534,8 @@ class Certificate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The chain that may be used to verify the X.509 certificate. Expected to be
-     * in issuer-to-root order according to RFC 5246.
+     * Output only. The chain that may be used to verify the X.509 certificate.
+     * Expected to be in issuer-to-root order according to RFC 5246.
      *
      * Generated from protobuf field <code>repeated string pem_certificate_chain = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -513,7 +550,8 @@ class Certificate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The time at which this [Certificate][google.cloud.security.privateca.v1.Certificate] was created.
+     * Output only. The time at which this
+     * [Certificate][google.cloud.security.privateca.v1.Certificate] was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -534,7 +572,8 @@ class Certificate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The time at which this [Certificate][google.cloud.security.privateca.v1.Certificate] was created.
+     * Output only. The time at which this
+     * [Certificate][google.cloud.security.privateca.v1.Certificate] was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -549,7 +588,8 @@ class Certificate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The time at which this [Certificate][google.cloud.security.privateca.v1.Certificate] was updated.
+     * Output only. The time at which this
+     * [Certificate][google.cloud.security.privateca.v1.Certificate] was updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -570,7 +610,8 @@ class Certificate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The time at which this [Certificate][google.cloud.security.privateca.v1.Certificate] was updated.
+     * Output only. The time at which this
+     * [Certificate][google.cloud.security.privateca.v1.Certificate] was updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var

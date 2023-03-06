@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [VizierService.DeleteStudy][google.cloud.aiplatform.v1.VizierService.DeleteStudy].
+ * Request message for
+ * [VizierService.DeleteStudy][google.cloud.aiplatform.v1.VizierService.DeleteStudy].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.DeleteStudyRequest</code>
  */

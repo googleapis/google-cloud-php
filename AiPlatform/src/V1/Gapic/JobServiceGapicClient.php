@@ -41,11 +41,13 @@ use Google\Cloud\AIPlatform\V1\CancelBatchPredictionJobRequest;
 use Google\Cloud\AIPlatform\V1\CancelCustomJobRequest;
 use Google\Cloud\AIPlatform\V1\CancelDataLabelingJobRequest;
 use Google\Cloud\AIPlatform\V1\CancelHyperparameterTuningJobRequest;
+use Google\Cloud\AIPlatform\V1\CancelNasJobRequest;
 use Google\Cloud\AIPlatform\V1\CreateBatchPredictionJobRequest;
 use Google\Cloud\AIPlatform\V1\CreateCustomJobRequest;
 use Google\Cloud\AIPlatform\V1\CreateDataLabelingJobRequest;
 use Google\Cloud\AIPlatform\V1\CreateHyperparameterTuningJobRequest;
 use Google\Cloud\AIPlatform\V1\CreateModelDeploymentMonitoringJobRequest;
+use Google\Cloud\AIPlatform\V1\CreateNasJobRequest;
 use Google\Cloud\AIPlatform\V1\CustomJob;
 use Google\Cloud\AIPlatform\V1\DataLabelingJob;
 use Google\Cloud\AIPlatform\V1\DeleteBatchPredictionJobRequest;
@@ -53,11 +55,14 @@ use Google\Cloud\AIPlatform\V1\DeleteCustomJobRequest;
 use Google\Cloud\AIPlatform\V1\DeleteDataLabelingJobRequest;
 use Google\Cloud\AIPlatform\V1\DeleteHyperparameterTuningJobRequest;
 use Google\Cloud\AIPlatform\V1\DeleteModelDeploymentMonitoringJobRequest;
+use Google\Cloud\AIPlatform\V1\DeleteNasJobRequest;
 use Google\Cloud\AIPlatform\V1\GetBatchPredictionJobRequest;
 use Google\Cloud\AIPlatform\V1\GetCustomJobRequest;
 use Google\Cloud\AIPlatform\V1\GetDataLabelingJobRequest;
 use Google\Cloud\AIPlatform\V1\GetHyperparameterTuningJobRequest;
 use Google\Cloud\AIPlatform\V1\GetModelDeploymentMonitoringJobRequest;
+use Google\Cloud\AIPlatform\V1\GetNasJobRequest;
+use Google\Cloud\AIPlatform\V1\GetNasTrialDetailRequest;
 use Google\Cloud\AIPlatform\V1\HyperparameterTuningJob;
 use Google\Cloud\AIPlatform\V1\ListBatchPredictionJobsRequest;
 use Google\Cloud\AIPlatform\V1\ListBatchPredictionJobsResponse;
@@ -69,7 +74,13 @@ use Google\Cloud\AIPlatform\V1\ListHyperparameterTuningJobsRequest;
 use Google\Cloud\AIPlatform\V1\ListHyperparameterTuningJobsResponse;
 use Google\Cloud\AIPlatform\V1\ListModelDeploymentMonitoringJobsRequest;
 use Google\Cloud\AIPlatform\V1\ListModelDeploymentMonitoringJobsResponse;
+use Google\Cloud\AIPlatform\V1\ListNasJobsRequest;
+use Google\Cloud\AIPlatform\V1\ListNasJobsResponse;
+use Google\Cloud\AIPlatform\V1\ListNasTrialDetailsRequest;
+use Google\Cloud\AIPlatform\V1\ListNasTrialDetailsResponse;
 use Google\Cloud\AIPlatform\V1\ModelDeploymentMonitoringJob;
+use Google\Cloud\AIPlatform\V1\NasJob;
+use Google\Cloud\AIPlatform\V1\NasTrialDetail;
 use Google\Cloud\AIPlatform\V1\PauseModelDeploymentMonitoringJobRequest;
 use Google\Cloud\AIPlatform\V1\ResumeModelDeploymentMonitoringJobRequest;
 use Google\Cloud\AIPlatform\V1\SearchModelDeploymentMonitoringStatsAnomaliesRequest;
@@ -131,6 +142,7 @@ class JobServiceGapicClient
     /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
+        'https://www.googleapis.com/auth/cloud-platform.read-only',
     ];
 
     private static $batchPredictionJobNameTemplate;
@@ -150,6 +162,10 @@ class JobServiceGapicClient
     private static $modelNameTemplate;
 
     private static $modelDeploymentMonitoringJobNameTemplate;
+
+    private static $nasJobNameTemplate;
+
+    private static $nasTrialDetailNameTemplate;
 
     private static $pathTemplateMap;
 
@@ -279,6 +295,28 @@ class JobServiceGapicClient
         return self::$modelDeploymentMonitoringJobNameTemplate;
     }
 
+    private static function getNasJobNameTemplate()
+    {
+        if (self::$nasJobNameTemplate == null) {
+            self::$nasJobNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/nasJobs/{nas_job}'
+            );
+        }
+
+        return self::$nasJobNameTemplate;
+    }
+
+    private static function getNasTrialDetailNameTemplate()
+    {
+        if (self::$nasTrialDetailNameTemplate == null) {
+            self::$nasTrialDetailNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/nasJobs/{nas_job}/nasTrialDetails/{nas_trial_detail}'
+            );
+        }
+
+        return self::$nasTrialDetailNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (self::$pathTemplateMap == null) {
@@ -292,6 +330,8 @@ class JobServiceGapicClient
                 'location' => self::getLocationNameTemplate(),
                 'model' => self::getModelNameTemplate(),
                 'modelDeploymentMonitoringJob' => self::getModelDeploymentMonitoringJobNameTemplate(),
+                'nasJob' => self::getNasJobNameTemplate(),
+                'nasTrialDetail' => self::getNasTrialDetailNameTemplate(),
             ];
         }
 
@@ -480,6 +520,50 @@ class JobServiceGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a nas_job
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $nasJob
+     *
+     * @return string The formatted nas_job resource.
+     */
+    public static function nasJobName($project, $location, $nasJob)
+    {
+        return self::getNasJobNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'nas_job' => $nasJob,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * nas_trial_detail resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $nasJob
+     * @param string $nasTrialDetail
+     *
+     * @return string The formatted nas_trial_detail resource.
+     */
+    public static function nasTrialDetailName(
+        $project,
+        $location,
+        $nasJob,
+        $nasTrialDetail
+    ) {
+        return self::getNasTrialDetailNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'nas_job' => $nasJob,
+            'nas_trial_detail' => $nasTrialDetail,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
@@ -492,6 +576,8 @@ class JobServiceGapicClient
      * - location: projects/{project}/locations/{location}
      * - model: projects/{project}/locations/{location}/models/{model}
      * - modelDeploymentMonitoringJob: projects/{project}/locations/{location}/modelDeploymentMonitoringJobs/{model_deployment_monitoring_job}
+     * - nasJob: projects/{project}/locations/{location}/nasJobs/{nas_job}
+     * - nasTrialDetail: projects/{project}/locations/{location}/nasJobs/{nas_job}/nasTrialDetails/{nas_trial_detail}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -633,12 +719,14 @@ class JobServiceGapicClient
      *
      * Starts asynchronous cancellation on the BatchPredictionJob. The server
      * makes the best effort to cancel the job, but success is not
-     * guaranteed. Clients can use [JobService.GetBatchPredictionJob][google.cloud.aiplatform.v1.JobService.GetBatchPredictionJob] or
-     * other methods to check whether the cancellation succeeded or whether the
+     * guaranteed. Clients can use
+     * [JobService.GetBatchPredictionJob][google.cloud.aiplatform.v1.JobService.GetBatchPredictionJob]
+     * or other methods to check whether the cancellation succeeded or whether the
      * job completed despite cancellation. On a successful cancellation,
      * the BatchPredictionJob is not deleted;instead its
-     * [BatchPredictionJob.state][google.cloud.aiplatform.v1.BatchPredictionJob.state] is set to `CANCELLED`. Any files already
-     * outputted by the job are not deleted.
+     * [BatchPredictionJob.state][google.cloud.aiplatform.v1.BatchPredictionJob.state]
+     * is set to `CANCELLED`. Any files already outputted by the job are not
+     * deleted.
      *
      * Sample code:
      * ```
@@ -689,12 +777,15 @@ class JobServiceGapicClient
      * Cancels a CustomJob.
      * Starts asynchronous cancellation on the CustomJob. The server
      * makes a best effort to cancel the job, but success is not
-     * guaranteed. Clients can use [JobService.GetCustomJob][google.cloud.aiplatform.v1.JobService.GetCustomJob] or
-     * other methods to check whether the cancellation succeeded or whether the
+     * guaranteed. Clients can use
+     * [JobService.GetCustomJob][google.cloud.aiplatform.v1.JobService.GetCustomJob]
+     * or other methods to check whether the cancellation succeeded or whether the
      * job completed despite cancellation. On successful cancellation,
      * the CustomJob is not deleted; instead it becomes a job with
-     * a [CustomJob.error][google.cloud.aiplatform.v1.CustomJob.error] value with a [google.rpc.Status.code][google.rpc.Status.code] of 1,
-     * corresponding to `Code.CANCELLED`, and [CustomJob.state][google.cloud.aiplatform.v1.CustomJob.state] is set to
+     * a [CustomJob.error][google.cloud.aiplatform.v1.CustomJob.error] value with
+     * a [google.rpc.Status.code][google.rpc.Status.code] of 1, corresponding to
+     * `Code.CANCELLED`, and
+     * [CustomJob.state][google.cloud.aiplatform.v1.CustomJob.state] is set to
      * `CANCELLED`.
      *
      * Sample code:
@@ -794,13 +885,17 @@ class JobServiceGapicClient
      * Cancels a HyperparameterTuningJob.
      * Starts asynchronous cancellation on the HyperparameterTuningJob. The server
      * makes a best effort to cancel the job, but success is not
-     * guaranteed. Clients can use [JobService.GetHyperparameterTuningJob][google.cloud.aiplatform.v1.JobService.GetHyperparameterTuningJob] or
-     * other methods to check whether the cancellation succeeded or whether the
+     * guaranteed. Clients can use
+     * [JobService.GetHyperparameterTuningJob][google.cloud.aiplatform.v1.JobService.GetHyperparameterTuningJob]
+     * or other methods to check whether the cancellation succeeded or whether the
      * job completed despite cancellation. On successful cancellation,
      * the HyperparameterTuningJob is not deleted; instead it becomes a job with
-     * a [HyperparameterTuningJob.error][google.cloud.aiplatform.v1.HyperparameterTuningJob.error] value with a [google.rpc.Status.code][google.rpc.Status.code]
-     * of 1, corresponding to `Code.CANCELLED`, and
-     * [HyperparameterTuningJob.state][google.cloud.aiplatform.v1.HyperparameterTuningJob.state] is set to `CANCELLED`.
+     * a
+     * [HyperparameterTuningJob.error][google.cloud.aiplatform.v1.HyperparameterTuningJob.error]
+     * value with a [google.rpc.Status.code][google.rpc.Status.code] of 1,
+     * corresponding to `Code.CANCELLED`, and
+     * [HyperparameterTuningJob.state][google.cloud.aiplatform.v1.HyperparameterTuningJob.state]
+     * is set to `CANCELLED`.
      *
      * Sample code:
      * ```
@@ -850,6 +945,66 @@ class JobServiceGapicClient
     }
 
     /**
+     * Cancels a NasJob.
+     * Starts asynchronous cancellation on the NasJob. The server
+     * makes a best effort to cancel the job, but success is not
+     * guaranteed. Clients can use
+     * [JobService.GetNasJob][google.cloud.aiplatform.v1.JobService.GetNasJob] or
+     * other methods to check whether the cancellation succeeded or whether the
+     * job completed despite cancellation. On successful cancellation,
+     * the NasJob is not deleted; instead it becomes a job with
+     * a [NasJob.error][google.cloud.aiplatform.v1.NasJob.error] value with a
+     * [google.rpc.Status.code][google.rpc.Status.code] of 1, corresponding to
+     * `Code.CANCELLED`, and
+     * [NasJob.state][google.cloud.aiplatform.v1.NasJob.state] is set to
+     * `CANCELLED`.
+     *
+     * Sample code:
+     * ```
+     * $jobServiceClient = new JobServiceClient();
+     * try {
+     *     $formattedName = $jobServiceClient->nasJobName('[PROJECT]', '[LOCATION]', '[NAS_JOB]');
+     *     $jobServiceClient->cancelNasJob($formattedName);
+     * } finally {
+     *     $jobServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the NasJob to cancel.
+     *                             Format:
+     *                             `projects/{project}/locations/{location}/nasJobs/{nas_job}`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function cancelNasJob($name, array $optionalArgs = [])
+    {
+        $request = new CancelNasJobRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'CancelNasJob',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Creates a BatchPredictionJob. A BatchPredictionJob once created will
      * right away be attempted to start.
      *
@@ -865,8 +1020,8 @@ class JobServiceGapicClient
      * }
      * ```
      *
-     * @param string             $parent             Required. The resource name of the Location to create the BatchPredictionJob in.
-     *                                               Format: `projects/{project}/locations/{location}`
+     * @param string             $parent             Required. The resource name of the Location to create the
+     *                                               BatchPredictionJob in. Format: `projects/{project}/locations/{location}`
      * @param BatchPredictionJob $batchPredictionJob Required. The BatchPredictionJob to create.
      * @param array              $optionalArgs       {
      *     Optional.
@@ -1031,8 +1186,9 @@ class JobServiceGapicClient
      * }
      * ```
      *
-     * @param string                  $parent                  Required. The resource name of the Location to create the HyperparameterTuningJob in.
-     *                                                         Format: `projects/{project}/locations/{location}`
+     * @param string                  $parent                  Required. The resource name of the Location to create the
+     *                                                         HyperparameterTuningJob in. Format:
+     *                                                         `projects/{project}/locations/{location}`
      * @param HyperparameterTuningJob $hyperparameterTuningJob Required. The HyperparameterTuningJob to create.
      * @param array                   $optionalArgs            {
      *     Optional.
@@ -1124,6 +1280,58 @@ class JobServiceGapicClient
         return $this->startCall(
             'CreateModelDeploymentMonitoringJob',
             ModelDeploymentMonitoringJob::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Creates a NasJob
+     *
+     * Sample code:
+     * ```
+     * $jobServiceClient = new JobServiceClient();
+     * try {
+     *     $formattedParent = $jobServiceClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $nasJob = new NasJob();
+     *     $response = $jobServiceClient->createNasJob($formattedParent, $nasJob);
+     * } finally {
+     *     $jobServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The resource name of the Location to create the NasJob in.
+     *                             Format: `projects/{project}/locations/{location}`
+     * @param NasJob $nasJob       Required. The NasJob to create.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\AIPlatform\V1\NasJob
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function createNasJob($parent, $nasJob, array $optionalArgs = [])
+    {
+        $request = new CreateNasJobRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setNasJob($nasJob);
+        $requestParamHeaders['parent'] = $parent;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'CreateNasJob',
+            NasJob::class,
             $optionalArgs,
             $request
         )->wait();
@@ -1500,6 +1708,79 @@ class JobServiceGapicClient
     }
 
     /**
+     * Deletes a NasJob.
+     *
+     * Sample code:
+     * ```
+     * $jobServiceClient = new JobServiceClient();
+     * try {
+     *     $formattedName = $jobServiceClient->nasJobName('[PROJECT]', '[LOCATION]', '[NAS_JOB]');
+     *     $operationResponse = $jobServiceClient->deleteNasJob($formattedName);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         // operation succeeded and returns no value
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $jobServiceClient->deleteNasJob($formattedName);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $jobServiceClient->resumeOperation($operationName, 'deleteNasJob');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         // operation succeeded and returns no value
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $jobServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the NasJob resource to be deleted.
+     *                             Format:
+     *                             `projects/{project}/locations/{location}/nasJobs/{nas_job}`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function deleteNasJob($name, array $optionalArgs = [])
+    {
+        $request = new DeleteNasJobRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'DeleteNasJob',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
      * Gets a BatchPredictionJob
      *
      * Sample code:
@@ -1746,6 +2027,106 @@ class JobServiceGapicClient
         return $this->startCall(
             'GetModelDeploymentMonitoringJob',
             ModelDeploymentMonitoringJob::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Gets a NasJob
+     *
+     * Sample code:
+     * ```
+     * $jobServiceClient = new JobServiceClient();
+     * try {
+     *     $formattedName = $jobServiceClient->nasJobName('[PROJECT]', '[LOCATION]', '[NAS_JOB]');
+     *     $response = $jobServiceClient->getNasJob($formattedName);
+     * } finally {
+     *     $jobServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the NasJob resource.
+     *                             Format:
+     *                             `projects/{project}/locations/{location}/nasJobs/{nas_job}`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\AIPlatform\V1\NasJob
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getNasJob($name, array $optionalArgs = [])
+    {
+        $request = new GetNasJobRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetNasJob',
+            NasJob::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Gets a NasTrialDetail.
+     *
+     * Sample code:
+     * ```
+     * $jobServiceClient = new JobServiceClient();
+     * try {
+     *     $formattedName = $jobServiceClient->nasTrialDetailName('[PROJECT]', '[LOCATION]', '[NAS_JOB]', '[NAS_TRIAL_DETAIL]');
+     *     $response = $jobServiceClient->getNasTrialDetail($formattedName);
+     * } finally {
+     *     $jobServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the NasTrialDetail resource.
+     *                             Format:
+     *                             `projects/{project}/locations/{location}/nasJobs/{nas_job}/nasTrialDetails/{nas_trial_detail}`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\AIPlatform\V1\NasTrialDetail
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getNasTrialDetail($name, array $optionalArgs = [])
+    {
+        $request = new GetNasTrialDetailRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetNasTrialDetail',
+            NasTrialDetail::class,
             $optionalArgs,
             $request
         )->wait();
@@ -2116,8 +2497,9 @@ class JobServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the Location to list the HyperparameterTuningJobs
-     *                             from. Format: `projects/{project}/locations/{location}`
+     * @param string $parent       Required. The resource name of the Location to list the
+     *                             HyperparameterTuningJobs from. Format:
+     *                             `projects/{project}/locations/{location}`
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -2313,9 +2695,198 @@ class JobServiceGapicClient
     }
 
     /**
+     * Lists NasJobs in a Location.
+     *
+     * Sample code:
+     * ```
+     * $jobServiceClient = new JobServiceClient();
+     * try {
+     *     $formattedParent = $jobServiceClient->locationName('[PROJECT]', '[LOCATION]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $jobServiceClient->listNasJobs($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $jobServiceClient->listNasJobs($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $jobServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The resource name of the Location to list the NasJobs
+     *                             from. Format: `projects/{project}/locations/{location}`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $filter
+     *           The standard list filter.
+     *
+     *           Supported fields:
+     *
+     *           * `display_name` supports `=`, `!=` comparisons, and `:` wildcard.
+     *           * `state` supports `=`, `!=` comparisons.
+     *           * `create_time` supports `=`, `!=`,`<`, `<=`,`>`, `>=` comparisons.
+     *           `create_time` must be in RFC 3339 format.
+     *           * `labels` supports general map functions that is:
+     *           `labels.key=value` - key:value equality
+     *           `labels.key:* - key existence
+     *
+     *           Some examples of using the filter are:
+     *
+     *           * `state="JOB_STATE_SUCCEEDED" AND display_name:"my_job_*"`
+     *           * `state!="JOB_STATE_FAILED" OR display_name="my_job"`
+     *           * `NOT display_name="my_job"`
+     *           * `create_time>"2021-05-18T00:00:00Z"`
+     *           * `labels.keyA=valueA`
+     *           * `labels.keyB:*`
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type FieldMask $readMask
+     *           Mask specifying which fields to read.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listNasJobs($parent, array $optionalArgs = [])
+    {
+        $request = new ListNasJobsRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        if (isset($optionalArgs['readMask'])) {
+            $request->setReadMask($optionalArgs['readMask']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListNasJobs',
+            $optionalArgs,
+            ListNasJobsResponse::class,
+            $request
+        );
+    }
+
+    /**
+     * List top NasTrialDetails of a NasJob.
+     *
+     * Sample code:
+     * ```
+     * $jobServiceClient = new JobServiceClient();
+     * try {
+     *     $formattedParent = $jobServiceClient->nasJobName('[PROJECT]', '[LOCATION]', '[NAS_JOB]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $jobServiceClient->listNasTrialDetails($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $jobServiceClient->listNasTrialDetails($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $jobServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The name of the NasJob resource.
+     *                             Format:
+     *                             `projects/{project}/locations/{location}/nasJobs/{nas_job}`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listNasTrialDetails($parent, array $optionalArgs = [])
+    {
+        $request = new ListNasTrialDetailsRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListNasTrialDetails',
+            $optionalArgs,
+            ListNasTrialDetailsResponse::class,
+            $request
+        );
+    }
+
+    /**
      * Pauses a ModelDeploymentMonitoringJob. If the job is running, the server
      * makes a best effort to cancel the job. Will mark
-     * [ModelDeploymentMonitoringJob.state][google.cloud.aiplatform.v1.ModelDeploymentMonitoringJob.state] to 'PAUSED'.
+     * [ModelDeploymentMonitoringJob.state][google.cloud.aiplatform.v1.ModelDeploymentMonitoringJob.state]
+     * to 'PAUSED'.
      *
      * Sample code:
      * ```
@@ -2575,16 +3146,15 @@ class JobServiceGapicClient
      * }
      * ```
      *
-     * @param ModelDeploymentMonitoringJob $modelDeploymentMonitoringJob Required. The model monitoring configuration which replaces the resource on the
-     *                                                                   server.
-     * @param FieldMask                    $updateMask                   Required. The update mask is used to specify the fields to be overwritten in the
-     *                                                                   ModelDeploymentMonitoringJob resource by the update.
-     *                                                                   The fields specified in the update_mask are relative to the resource, not
-     *                                                                   the full request. A field will be overwritten if it is in the mask. If the
-     *                                                                   user does not provide a mask then only the non-empty fields present in the
-     *                                                                   request will be overwritten. Set the update_mask to `*` to override all
-     *                                                                   fields.
-     *                                                                   For the objective config, the user can either provide the update mask for
+     * @param ModelDeploymentMonitoringJob $modelDeploymentMonitoringJob Required. The model monitoring configuration which replaces the resource on
+     *                                                                   the server.
+     * @param FieldMask                    $updateMask                   Required. The update mask is used to specify the fields to be overwritten
+     *                                                                   in the ModelDeploymentMonitoringJob resource by the update. The fields
+     *                                                                   specified in the update_mask are relative to the resource, not the full
+     *                                                                   request. A field will be overwritten if it is in the mask. If the user does
+     *                                                                   not provide a mask then only the non-empty fields present in the request
+     *                                                                   will be overwritten. Set the update_mask to `*` to override all fields. For
+     *                                                                   the objective config, the user can either provide the update mask for
      *                                                                   model_deployment_monitoring_objective_configs or any combination of its
      *                                                                   nested fields, such as:
      *                                                                   model_deployment_monitoring_objective_configs.objective_config.training_dataset.

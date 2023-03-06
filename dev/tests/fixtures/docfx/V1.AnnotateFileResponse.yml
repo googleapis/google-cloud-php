@@ -62,10 +62,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\AnnotateFileResponse::getInputConfig()'
     name: getInputConfig
     id: getInputConfig
-    summary: |
-      Information about the file for which this response is generated.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.InputConfig input_config = 1;</code>
+    summary: 'Information about the file for which this response is generated.'
     parent: \Google\Cloud\Vision\V1\AnnotateFileResponse
     type: method
     langs:
@@ -94,10 +91,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\AnnotateFileResponse::setInputConfig()'
     name: setInputConfig
     id: setInputConfig
-    summary: |
-      Information about the file for which this response is generated.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.InputConfig input_config = 1;</code>
+    summary: 'Information about the file for which this response is generated.'
     parent: \Google\Cloud\Vision\V1\AnnotateFileResponse
     type: method
     langs:
@@ -118,8 +112,6 @@ items:
     summary: |
       Individual responses to images found within the file. This field will be
       empty if the `error` field is set.
-      
-      Generated from protobuf field <code>repeated .google.cloud.vision.v1.AnnotateImageResponse responses = 2;</code>
     parent: \Google\Cloud\Vision\V1\AnnotateFileResponse
     type: method
     langs:
@@ -127,7 +119,7 @@ items:
     syntax:
       returns:
         -
-          var_type: Google\Protobuf\Internal\RepeatedField
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Internal/RepeatedField">Google\Protobuf\Internal\RepeatedField</a>'
   -
     uid: '\Google\Cloud\Vision\V1\AnnotateFileResponse::setResponses()'
     name: setResponses
@@ -135,8 +127,6 @@ items:
     summary: |
       Individual responses to images found within the file. This field will be
       empty if the `error` field is set.
-      
-      Generated from protobuf field <code>repeated .google.cloud.vision.v1.AnnotateImageResponse responses = 2;</code>
     parent: \Google\Cloud\Vision\V1\AnnotateFileResponse
     type: method
     langs:
@@ -154,10 +144,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\AnnotateFileResponse::getTotalPages()'
     name: getTotalPages
     id: getTotalPages
-    summary: |
-      This field gives the total number of pages in the file.
-      
-      Generated from protobuf field <code>int32 total_pages = 3;</code>
+    summary: 'This field gives the total number of pages in the file.'
     parent: \Google\Cloud\Vision\V1\AnnotateFileResponse
     type: method
     langs:
@@ -170,10 +157,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\AnnotateFileResponse::setTotalPages()'
     name: setTotalPages
     id: setTotalPages
-    summary: |
-      This field gives the total number of pages in the file.
-      
-      Generated from protobuf field <code>int32 total_pages = 3;</code>
+    summary: 'This field gives the total number of pages in the file.'
     parent: \Google\Cloud\Vision\V1\AnnotateFileResponse
     type: method
     langs:
@@ -194,8 +178,6 @@ items:
     summary: |
       If set, represents the error message for the failed request. The
       `responses` field will not be set in this case.
-      
-      Generated from protobuf field <code>.google.rpc.Status error = 4;</code>
     parent: \Google\Cloud\Vision\V1\AnnotateFileResponse
     type: method
     langs:
@@ -227,8 +209,6 @@ items:
     summary: |
       If set, represents the error message for the failed request. The
       `responses` field will not be set in this case.
-      
-      Generated from protobuf field <code>.google.rpc.Status error = 4;</code>
     parent: \Google\Cloud\Vision\V1\AnnotateFileResponse
     type: method
     langs:

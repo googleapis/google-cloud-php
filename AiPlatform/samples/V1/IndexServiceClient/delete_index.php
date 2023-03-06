@@ -31,7 +31,8 @@ use Google\Rpc\Status;
 /**
  * Deletes an Index.
  * An Index can only be deleted when all its
- * [DeployedIndexes][google.cloud.aiplatform.v1.Index.deployed_indexes] had been undeployed.
+ * [DeployedIndexes][google.cloud.aiplatform.v1.Index.deployed_indexes] had
+ * been undeployed.
  *
  * @param string $formattedName The name of the Index resource to be deleted.
  *                              Format:

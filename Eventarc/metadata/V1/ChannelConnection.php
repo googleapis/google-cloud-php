@@ -19,7 +19,7 @@ class ChannelConnection
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-å
+Ñ
 1google/cloud/eventarc/v1/channel_connection.protogoogle.cloud.eventarc.v1google/api/resource.protogoogle/protobuf/timestamp.proto"ß
 ChannelConnection
 name (	B‡A
@@ -29,8 +29,8 @@ class ChannelConnection
 create_time (2.google.protobuf.TimestampB‡A4
 update_time (2.google.protobuf.TimestampB‡A
 activation_token (	B‡A:ßÍA£
-)eventarc.googleapis.com/ChannelConnectionOprojects/{project}/locations/{location}/channelConnections/{channel_connection}*channelConnections2channelConnectionBŒ
-com.google.cloud.eventarc.v1BChannelConnectionProtoPZ@google.golang.org/genproto/googleapis/cloud/eventarc/v1;eventarc™Google.Cloud.Eventarc.V1 Google\\Cloud\\Eventarc\\V1ÍGoogle::Cloud::Eventarc::V1bproto3'
+)eventarc.googleapis.com/ChannelConnectionOprojects/{project}/locations/{location}/channelConnections/{channel_connection}*channelConnections2channelConnectionB∆
+com.google.cloud.eventarc.v1BChannelConnectionProtoPZ8cloud.google.com/go/eventarc/apiv1/eventarcpb;eventarcpb™Google.Cloud.Eventarc.V1 Google\\Cloud\\Eventarc\\V1ÍGoogle::Cloud::Eventarc::V1bproto3'
         , true);
 
         static::$is_initialized = true;

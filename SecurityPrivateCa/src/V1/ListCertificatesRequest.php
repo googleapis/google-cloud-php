@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [CertificateAuthorityService.ListCertificates][google.cloud.security.privateca.v1.CertificateAuthorityService.ListCertificates].
+ * Request message for
+ * [CertificateAuthorityService.ListCertificates][google.cloud.security.privateca.v1.CertificateAuthorityService.ListCertificates].
  *
  * Generated from protobuf message <code>google.cloud.security.privateca.v1.ListCertificatesRequest</code>
  */
@@ -17,19 +18,21 @@ class ListCertificatesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The resource name of the location associated with the
-     * [Certificates][google.cloud.security.privateca.v1.Certificate], in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;`.
+     * [Certificates][google.cloud.security.privateca.v1.Certificate], in the
+     * format `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
      * Optional. Limit on the number of
-     * [Certificates][google.cloud.security.privateca.v1.Certificate] to include in the
-     * response. Further [Certificates][google.cloud.security.privateca.v1.Certificate] can subsequently be obtained
-     * by including the
-     * [ListCertificatesResponse.next_page_token][google.cloud.security.privateca.v1.ListCertificatesResponse.next_page_token] in a subsequent
-     * request. If unspecified, the server will pick an appropriate default.
+     * [Certificates][google.cloud.security.privateca.v1.Certificate] to include
+     * in the response. Further
+     * [Certificates][google.cloud.security.privateca.v1.Certificate] can
+     * subsequently be obtained by including the
+     * [ListCertificatesResponse.next_page_token][google.cloud.security.privateca.v1.ListCertificatesResponse.next_page_token]
+     * in a subsequent request. If unspecified, the server will pick an
+     * appropriate default.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -42,16 +45,16 @@ class ListCertificatesRequest extends \Google\Protobuf\Internal\Message
      */
     private $page_token = '';
     /**
-     * Optional. Only include resources that match the filter in the response. For details
-     * on supported filters and syntax, see [Certificates Filtering
+     * Optional. Only include resources that match the filter in the response. For
+     * details on supported filters and syntax, see [Certificates Filtering
      * documentation](https://cloud.google.com/certificate-authority-service/docs/sorting-filtering-certificates#filtering_support).
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $filter = '';
     /**
-     * Optional. Specify how the results should be sorted. For details on supported fields
-     * and syntax, see [Certificates Sorting
+     * Optional. Specify how the results should be sorted. For details on
+     * supported fields and syntax, see [Certificates Sorting
      * documentation](https://cloud.google.com/certificate-authority-service/docs/sorting-filtering-certificates#sorting_support).
      *
      * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -66,25 +69,27 @@ class ListCertificatesRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The resource name of the location associated with the
-     *           [Certificates][google.cloud.security.privateca.v1.Certificate], in the format
-     *           `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;`.
+     *           [Certificates][google.cloud.security.privateca.v1.Certificate], in the
+     *           format `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;`.
      *     @type int $page_size
      *           Optional. Limit on the number of
-     *           [Certificates][google.cloud.security.privateca.v1.Certificate] to include in the
-     *           response. Further [Certificates][google.cloud.security.privateca.v1.Certificate] can subsequently be obtained
-     *           by including the
-     *           [ListCertificatesResponse.next_page_token][google.cloud.security.privateca.v1.ListCertificatesResponse.next_page_token] in a subsequent
-     *           request. If unspecified, the server will pick an appropriate default.
+     *           [Certificates][google.cloud.security.privateca.v1.Certificate] to include
+     *           in the response. Further
+     *           [Certificates][google.cloud.security.privateca.v1.Certificate] can
+     *           subsequently be obtained by including the
+     *           [ListCertificatesResponse.next_page_token][google.cloud.security.privateca.v1.ListCertificatesResponse.next_page_token]
+     *           in a subsequent request. If unspecified, the server will pick an
+     *           appropriate default.
      *     @type string $page_token
      *           Optional. Pagination token, returned earlier via
      *           [ListCertificatesResponse.next_page_token][google.cloud.security.privateca.v1.ListCertificatesResponse.next_page_token].
      *     @type string $filter
-     *           Optional. Only include resources that match the filter in the response. For details
-     *           on supported filters and syntax, see [Certificates Filtering
+     *           Optional. Only include resources that match the filter in the response. For
+     *           details on supported filters and syntax, see [Certificates Filtering
      *           documentation](https://cloud.google.com/certificate-authority-service/docs/sorting-filtering-certificates#filtering_support).
      *     @type string $order_by
-     *           Optional. Specify how the results should be sorted. For details on supported fields
-     *           and syntax, see [Certificates Sorting
+     *           Optional. Specify how the results should be sorted. For details on
+     *           supported fields and syntax, see [Certificates Sorting
      *           documentation](https://cloud.google.com/certificate-authority-service/docs/sorting-filtering-certificates#sorting_support).
      * }
      */
@@ -95,8 +100,8 @@ class ListCertificatesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the location associated with the
-     * [Certificates][google.cloud.security.privateca.v1.Certificate], in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;`.
+     * [Certificates][google.cloud.security.privateca.v1.Certificate], in the
+     * format `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -108,8 +113,8 @@ class ListCertificatesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the location associated with the
-     * [Certificates][google.cloud.security.privateca.v1.Certificate], in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;`.
+     * [Certificates][google.cloud.security.privateca.v1.Certificate], in the
+     * format `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -125,11 +130,13 @@ class ListCertificatesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Limit on the number of
-     * [Certificates][google.cloud.security.privateca.v1.Certificate] to include in the
-     * response. Further [Certificates][google.cloud.security.privateca.v1.Certificate] can subsequently be obtained
-     * by including the
-     * [ListCertificatesResponse.next_page_token][google.cloud.security.privateca.v1.ListCertificatesResponse.next_page_token] in a subsequent
-     * request. If unspecified, the server will pick an appropriate default.
+     * [Certificates][google.cloud.security.privateca.v1.Certificate] to include
+     * in the response. Further
+     * [Certificates][google.cloud.security.privateca.v1.Certificate] can
+     * subsequently be obtained by including the
+     * [ListCertificatesResponse.next_page_token][google.cloud.security.privateca.v1.ListCertificatesResponse.next_page_token]
+     * in a subsequent request. If unspecified, the server will pick an
+     * appropriate default.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -141,11 +148,13 @@ class ListCertificatesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Limit on the number of
-     * [Certificates][google.cloud.security.privateca.v1.Certificate] to include in the
-     * response. Further [Certificates][google.cloud.security.privateca.v1.Certificate] can subsequently be obtained
-     * by including the
-     * [ListCertificatesResponse.next_page_token][google.cloud.security.privateca.v1.ListCertificatesResponse.next_page_token] in a subsequent
-     * request. If unspecified, the server will pick an appropriate default.
+     * [Certificates][google.cloud.security.privateca.v1.Certificate] to include
+     * in the response. Further
+     * [Certificates][google.cloud.security.privateca.v1.Certificate] can
+     * subsequently be obtained by including the
+     * [ListCertificatesResponse.next_page_token][google.cloud.security.privateca.v1.ListCertificatesResponse.next_page_token]
+     * in a subsequent request. If unspecified, the server will pick an
+     * appropriate default.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
@@ -188,8 +197,8 @@ class ListCertificatesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Only include resources that match the filter in the response. For details
-     * on supported filters and syntax, see [Certificates Filtering
+     * Optional. Only include resources that match the filter in the response. For
+     * details on supported filters and syntax, see [Certificates Filtering
      * documentation](https://cloud.google.com/certificate-authority-service/docs/sorting-filtering-certificates#filtering_support).
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -201,8 +210,8 @@ class ListCertificatesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Only include resources that match the filter in the response. For details
-     * on supported filters and syntax, see [Certificates Filtering
+     * Optional. Only include resources that match the filter in the response. For
+     * details on supported filters and syntax, see [Certificates Filtering
      * documentation](https://cloud.google.com/certificate-authority-service/docs/sorting-filtering-certificates#filtering_support).
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -218,8 +227,8 @@ class ListCertificatesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Specify how the results should be sorted. For details on supported fields
-     * and syntax, see [Certificates Sorting
+     * Optional. Specify how the results should be sorted. For details on
+     * supported fields and syntax, see [Certificates Sorting
      * documentation](https://cloud.google.com/certificate-authority-service/docs/sorting-filtering-certificates#sorting_support).
      *
      * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -231,8 +240,8 @@ class ListCertificatesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Specify how the results should be sorted. For details on supported fields
-     * and syntax, see [Certificates Sorting
+     * Optional. Specify how the results should be sorted. For details on
+     * supported fields and syntax, see [Certificates Sorting
      * documentation](https://cloud.google.com/certificate-authority-service/docs/sorting-filtering-certificates#sorting_support).
      *
      * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>

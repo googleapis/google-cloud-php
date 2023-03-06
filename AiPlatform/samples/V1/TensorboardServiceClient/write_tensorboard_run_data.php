@@ -32,17 +32,16 @@ use Google\Cloud\AIPlatform\V1\WriteTensorboardRunDataResponse;
 
 /**
  * Write time series data points into multiple TensorboardTimeSeries under
- * a TensorboardRun. If any data fail to be ingested, an error will be
- * returned.
+ * a TensorboardRun. If any data fail to be ingested, an error is returned.
  *
  * @param string $formattedTensorboardRun               The resource name of the TensorboardRun to write data to.
  *                                                      Format:
  *                                                      `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}/runs/{run}`
  *                                                      Please see {@see TensorboardServiceClient::tensorboardRunName()} for help formatting this field.
- * @param string $timeSeriesDataTensorboardTimeSeriesId The ID of the TensorboardTimeSeries, which will become the final component
- *                                                      of the TensorboardTimeSeries' resource name
- * @param int    $timeSeriesDataValueType               Immutable. The value type of this time series. All the values in this time series data
- *                                                      must match this value type.
+ * @param string $timeSeriesDataTensorboardTimeSeriesId The ID of the TensorboardTimeSeries, which will become the final
+ *                                                      component of the TensorboardTimeSeries' resource name
+ * @param int    $timeSeriesDataValueType               Immutable. The value type of this time series. All the values in
+ *                                                      this time series data must match this value type.
  */
 function write_tensorboard_run_data_sample(
     string $formattedTensorboardRun,

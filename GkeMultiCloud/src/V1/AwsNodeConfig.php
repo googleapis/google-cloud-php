@@ -46,16 +46,17 @@ class AwsNodeConfig extends \Google\Protobuf\Internal\Message
      */
     private $labels;
     /**
-     * Optional. Key/value metadata to assign to each underlying AWS resource. Specify at
-     * most 50 pairs containing alphanumerics, spaces, and symbols (.+-=_:&#64;/).
-     * Keys can be up to 127 Unicode characters.
-     * Values can be up to 255 Unicode characters.
+     * Optional. Key/value metadata to assign to each underlying AWS resource.
+     * Specify at most 50 pairs containing alphanumerics, spaces, and symbols
+     * (.+-=_:&#64;/). Keys can be up to 127 Unicode characters. Values can be up to
+     * 255 Unicode characters.
      *
      * Generated from protobuf field <code>map<string, string> tags = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $tags;
     /**
-     * Required. The name or ARN of the AWS IAM role assigned to nodes in the pool.
+     * Required. The name or ARN of the AWS IAM role assigned to nodes in the
+     * pool.
      *
      * Generated from protobuf field <code>string iam_instance_profile = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -76,9 +77,9 @@ class AwsNodeConfig extends \Google\Protobuf\Internal\Message
      */
     private $ssh_config = null;
     /**
-     * Optional. The IDs of additional security groups to add to nodes in this pool. The
-     * manager will automatically create security groups with minimum rules
-     * needed for a functioning cluster.
+     * Optional. The IDs of additional security groups to add to nodes in this
+     * pool. The manager will automatically create security groups with minimum
+     * rules needed for a functioning cluster.
      *
      * Generated from protobuf field <code>repeated string security_group_ids = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -102,6 +103,14 @@ class AwsNodeConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AwsInstancePlacement instance_placement = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $instance_placement = null;
+    /**
+     * Optional. Configuration related to CloudWatch metrics collection on the
+     * Auto Scaling group of the node pool.
+     * When unspecified, metrics collection is disabled.
+     *
+     * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AwsAutoscalingGroupMetricsCollection autoscaling_metrics_collection = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $autoscaling_metrics_collection = null;
 
     /**
      * Constructor.
@@ -124,12 +133,13 @@ class AwsNodeConfig extends \Google\Protobuf\Internal\Message
      *           containing a list of "key": value pairs. Example: { "name": "wrench",
      *           "mass": "1.3kg", "count": "3" }.
      *     @type array|\Google\Protobuf\Internal\MapField $tags
-     *           Optional. Key/value metadata to assign to each underlying AWS resource. Specify at
-     *           most 50 pairs containing alphanumerics, spaces, and symbols (.+-=_:&#64;/).
-     *           Keys can be up to 127 Unicode characters.
-     *           Values can be up to 255 Unicode characters.
+     *           Optional. Key/value metadata to assign to each underlying AWS resource.
+     *           Specify at most 50 pairs containing alphanumerics, spaces, and symbols
+     *           (.+-=_:&#64;/). Keys can be up to 127 Unicode characters. Values can be up to
+     *           255 Unicode characters.
      *     @type string $iam_instance_profile
-     *           Required. The name or ARN of the AWS IAM role assigned to nodes in the pool.
+     *           Required. The name or ARN of the AWS IAM role assigned to nodes in the
+     *           pool.
      *     @type string $image_type
      *           Optional. The OS image type to use on node pool instances.
      *           Can have a value of `ubuntu`, or `windows` if the cluster enables
@@ -138,9 +148,9 @@ class AwsNodeConfig extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\GkeMultiCloud\V1\AwsSshConfig $ssh_config
      *           Optional. The SSH configuration.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $security_group_ids
-     *           Optional. The IDs of additional security groups to add to nodes in this pool. The
-     *           manager will automatically create security groups with minimum rules
-     *           needed for a functioning cluster.
+     *           Optional. The IDs of additional security groups to add to nodes in this
+     *           pool. The manager will automatically create security groups with minimum
+     *           rules needed for a functioning cluster.
      *     @type \Google\Cloud\GkeMultiCloud\V1\AwsProxyConfig $proxy_config
      *           Optional. Proxy configuration for outbound HTTP(S) traffic.
      *     @type \Google\Cloud\GkeMultiCloud\V1\AwsConfigEncryption $config_encryption
@@ -148,6 +158,10 @@ class AwsNodeConfig extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\GkeMultiCloud\V1\AwsInstancePlacement $instance_placement
      *           Optional. Placement related info for this node.
      *           When unspecified, the VPC's default tenancy will be used.
+     *     @type \Google\Cloud\GkeMultiCloud\V1\AwsAutoscalingGroupMetricsCollection $autoscaling_metrics_collection
+     *           Optional. Configuration related to CloudWatch metrics collection on the
+     *           Auto Scaling group of the node pool.
+     *           When unspecified, metrics collection is disabled.
      * }
      */
     public function __construct($data = NULL) {
@@ -282,10 +296,10 @@ class AwsNodeConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Key/value metadata to assign to each underlying AWS resource. Specify at
-     * most 50 pairs containing alphanumerics, spaces, and symbols (.+-=_:&#64;/).
-     * Keys can be up to 127 Unicode characters.
-     * Values can be up to 255 Unicode characters.
+     * Optional. Key/value metadata to assign to each underlying AWS resource.
+     * Specify at most 50 pairs containing alphanumerics, spaces, and symbols
+     * (.+-=_:&#64;/). Keys can be up to 127 Unicode characters. Values can be up to
+     * 255 Unicode characters.
      *
      * Generated from protobuf field <code>map<string, string> tags = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -296,10 +310,10 @@ class AwsNodeConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Key/value metadata to assign to each underlying AWS resource. Specify at
-     * most 50 pairs containing alphanumerics, spaces, and symbols (.+-=_:&#64;/).
-     * Keys can be up to 127 Unicode characters.
-     * Values can be up to 255 Unicode characters.
+     * Optional. Key/value metadata to assign to each underlying AWS resource.
+     * Specify at most 50 pairs containing alphanumerics, spaces, and symbols
+     * (.+-=_:&#64;/). Keys can be up to 127 Unicode characters. Values can be up to
+     * 255 Unicode characters.
      *
      * Generated from protobuf field <code>map<string, string> tags = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
@@ -314,7 +328,8 @@ class AwsNodeConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name or ARN of the AWS IAM role assigned to nodes in the pool.
+     * Required. The name or ARN of the AWS IAM role assigned to nodes in the
+     * pool.
      *
      * Generated from protobuf field <code>string iam_instance_profile = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -325,7 +340,8 @@ class AwsNodeConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name or ARN of the AWS IAM role assigned to nodes in the pool.
+     * Required. The name or ARN of the AWS IAM role assigned to nodes in the
+     * pool.
      *
      * Generated from protobuf field <code>string iam_instance_profile = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -408,9 +424,9 @@ class AwsNodeConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The IDs of additional security groups to add to nodes in this pool. The
-     * manager will automatically create security groups with minimum rules
-     * needed for a functioning cluster.
+     * Optional. The IDs of additional security groups to add to nodes in this
+     * pool. The manager will automatically create security groups with minimum
+     * rules needed for a functioning cluster.
      *
      * Generated from protobuf field <code>repeated string security_group_ids = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -421,9 +437,9 @@ class AwsNodeConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The IDs of additional security groups to add to nodes in this pool. The
-     * manager will automatically create security groups with minimum rules
-     * needed for a functioning cluster.
+     * Optional. The IDs of additional security groups to add to nodes in this
+     * pool. The manager will automatically create security groups with minimum
+     * rules needed for a functioning cluster.
      *
      * Generated from protobuf field <code>repeated string security_group_ids = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -543,6 +559,46 @@ class AwsNodeConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\GkeMultiCloud\V1\AwsInstancePlacement::class);
         $this->instance_placement = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Configuration related to CloudWatch metrics collection on the
+     * Auto Scaling group of the node pool.
+     * When unspecified, metrics collection is disabled.
+     *
+     * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AwsAutoscalingGroupMetricsCollection autoscaling_metrics_collection = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\GkeMultiCloud\V1\AwsAutoscalingGroupMetricsCollection|null
+     */
+    public function getAutoscalingMetricsCollection()
+    {
+        return $this->autoscaling_metrics_collection;
+    }
+
+    public function hasAutoscalingMetricsCollection()
+    {
+        return isset($this->autoscaling_metrics_collection);
+    }
+
+    public function clearAutoscalingMetricsCollection()
+    {
+        unset($this->autoscaling_metrics_collection);
+    }
+
+    /**
+     * Optional. Configuration related to CloudWatch metrics collection on the
+     * Auto Scaling group of the node pool.
+     * When unspecified, metrics collection is disabled.
+     *
+     * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AwsAutoscalingGroupMetricsCollection autoscaling_metrics_collection = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\GkeMultiCloud\V1\AwsAutoscalingGroupMetricsCollection $var
+     * @return $this
+     */
+    public function setAutoscalingMetricsCollection($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\GkeMultiCloud\V1\AwsAutoscalingGroupMetricsCollection::class);
+        $this->autoscaling_metrics_collection = $var;
 
         return $this;
     }

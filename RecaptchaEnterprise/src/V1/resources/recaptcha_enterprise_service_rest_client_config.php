@@ -117,14 +117,25 @@ return [
                     ],
                 ],
             ],
+            'RetrieveLegacySecretKey' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{key=projects/*/keys/*}:retrieveLegacySecretKey',
+                'placeholders' => [
+                    'key' => [
+                        'getters' => [
+                            'getKey',
+                        ],
+                    ],
+                ],
+            ],
             'SearchRelatedAccountGroupMemberships' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1/{parent=projects/*}/relatedaccountgroupmemberships:search',
+                'uriTemplate' => '/v1/{project=projects/*}/relatedaccountgroupmemberships:search',
                 'body' => '*',
                 'placeholders' => [
-                    'parent' => [
+                    'project' => [
                         'getters' => [
-                            'getParent',
+                            'getProject',
                         ],
                     ],
                 ],
@@ -144,4 +155,5 @@ return [
             ],
         ],
     ],
+    'numericEnums' => true,
 ];

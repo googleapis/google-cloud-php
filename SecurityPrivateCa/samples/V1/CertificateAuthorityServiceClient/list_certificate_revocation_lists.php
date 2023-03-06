@@ -29,11 +29,12 @@ use Google\Cloud\Security\PrivateCA\V1\CertificateAuthorityServiceClient;
 use Google\Cloud\Security\PrivateCA\V1\CertificateRevocationList;
 
 /**
- * Lists [CertificateRevocationLists][google.cloud.security.privateca.v1.CertificateRevocationList].
+ * Lists
+ * [CertificateRevocationLists][google.cloud.security.privateca.v1.CertificateRevocationList].
  *
  * @param string $formattedParent The resource name of the location associated with the
- *                                [CertificateRevocationLists][google.cloud.security.privateca.v1.CertificateRevocationList], in the format
- *                                `projects/&#42;/locations/&#42;/caPools/&#42;/certificateAuthorities/*`. Please see
+ *                                [CertificateRevocationLists][google.cloud.security.privateca.v1.CertificateRevocationList],
+ *                                in the format `projects/&#42;/locations/&#42;/caPools/&#42;/certificateAuthorities/*`. Please see
  *                                {@see CertificateAuthorityServiceClient::certificateAuthorityName()} for help formatting this field.
  */
 function list_certificate_revocation_lists_sample(string $formattedParent): void

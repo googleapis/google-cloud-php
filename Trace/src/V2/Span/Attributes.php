@@ -9,16 +9,16 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A set of attributes, each in the format `[KEY]:[VALUE]`.
+ * A set of attributes as key-value pairs.
  *
  * Generated from protobuf message <code>google.devtools.cloudtrace.v2.Span.Attributes</code>
  */
 class Attributes extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The set of attributes. Each attribute's key can be up to 128 bytes
+     * A set of attributes. Each attribute's key can be up to 128 bytes
      * long. The value can be a string up to 256 bytes, a signed 64-bit integer,
-     * or the Boolean values `true` and `false`. For example:
+     * or the boolean values `true` or `false`. For example:
      *     "/instance_id": { "string_value": { "value": "my-instance" } }
      *     "/http/request_bytes": { "int_value": 300 }
      *     "abc.com/myattribute": { "bool_value": false }
@@ -42,9 +42,9 @@ class Attributes extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array|\Google\Protobuf\Internal\MapField $attribute_map
-     *           The set of attributes. Each attribute's key can be up to 128 bytes
+     *           A set of attributes. Each attribute's key can be up to 128 bytes
      *           long. The value can be a string up to 256 bytes, a signed 64-bit integer,
-     *           or the Boolean values `true` and `false`. For example:
+     *           or the boolean values `true` or `false`. For example:
      *               "/instance_id": { "string_value": { "value": "my-instance" } }
      *               "/http/request_bytes": { "int_value": 300 }
      *               "abc.com/myattribute": { "bool_value": false }
@@ -60,9 +60,9 @@ class Attributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The set of attributes. Each attribute's key can be up to 128 bytes
+     * A set of attributes. Each attribute's key can be up to 128 bytes
      * long. The value can be a string up to 256 bytes, a signed 64-bit integer,
-     * or the Boolean values `true` and `false`. For example:
+     * or the boolean values `true` or `false`. For example:
      *     "/instance_id": { "string_value": { "value": "my-instance" } }
      *     "/http/request_bytes": { "int_value": 300 }
      *     "abc.com/myattribute": { "bool_value": false }
@@ -76,9 +76,9 @@ class Attributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The set of attributes. Each attribute's key can be up to 128 bytes
+     * A set of attributes. Each attribute's key can be up to 128 bytes
      * long. The value can be a string up to 256 bytes, a signed 64-bit integer,
-     * or the Boolean values `true` and `false`. For example:
+     * or the boolean values `true` or `false`. For example:
      *     "/instance_id": { "string_value": { "value": "my-instance" } }
      *     "/http/request_bytes": { "int_value": 300 }
      *     "abc.com/myattribute": { "bool_value": false }

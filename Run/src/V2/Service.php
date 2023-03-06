@@ -37,8 +37,9 @@ class Service extends \Google\Protobuf\Internal\Message
      */
     private $description = '';
     /**
-     * Output only. Server assigned unique identifier for the trigger. The value is a UUID4
-     * string and guaranteed to remain unchanged until the resource is deleted.
+     * Output only. Server assigned unique identifier for the trigger. The value
+     * is a UUID4 string and guaranteed to remain unchanged until the resource is
+     * deleted.
      *
      * Generated from protobuf field <code>string uid = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -60,9 +61,10 @@ class Service extends \Google\Protobuf\Internal\Message
      * environment, state, etc. For more information, visit
      * https://cloud.google.com/resource-manager/docs/creating-managing-labels or
      * https://cloud.google.com/run/docs/configuring/labels
-     * Cloud Run will populate some labels with 'run.googleapis.com' or
-     * 'serving.knative.dev' namespaces. Those labels are read-only, and user
-     * changes will not be preserved.
+     * <p>Cloud Run API v2 does not support labels with  `run.googleapis.com`,
+     * `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev`
+     * namespaces, and they will be rejected. All system labels in v1 now have a
+     * corresponding field in v2 Service.
      *
      * Generated from protobuf field <code>map<string, string> labels = 5;</code>
      */
@@ -70,9 +72,13 @@ class Service extends \Google\Protobuf\Internal\Message
     /**
      * Unstructured key value map that may be set by external tools to store and
      * arbitrary metadata. They are not queryable and should be preserved
-     * when modifying objects. Cloud Run will populate some annotations using
-     * 'run.googleapis.com' or 'serving.knative.dev' namespaces. This field
-     * follows Kubernetes annotations' namespacing, limits, and rules. More info:
+     * when modifying objects.
+     * <p>Cloud Run API v2 does not support annotations with `run.googleapis.com`,
+     * `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev`
+     * namespaces, and they will be rejected. All system annotations in v1 now
+     * have a corresponding field in v2 Service.
+     * <p>This field follows Kubernetes
+     * annotations' namespacing, limits, and rules. More info:
      * https://kubernetes.io/docs/user-guide/annotations
      *
      * Generated from protobuf field <code>map<string, string> annotations = 6;</code>
@@ -165,52 +171,53 @@ class Service extends \Google\Protobuf\Internal\Message
      */
     private $traffic;
     /**
-     * Output only. The generation of this Service currently serving traffic. See comments in
-     * `reconciling` for additional information on reconciliation process in Cloud
-     * Run.
-     * Please note that unlike v1, this is an int64 value. As with most Google
-     * APIs, its JSON representation will be a `string` instead of an `integer`.
+     * Output only. The generation of this Service currently serving traffic. See
+     * comments in `reconciling` for additional information on reconciliation
+     * process in Cloud Run. Please note that unlike v1, this is an int64 value.
+     * As with most Google APIs, its JSON representation will be a `string`
+     * instead of an `integer`.
      *
      * Generated from protobuf field <code>int64 observed_generation = 30 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $observed_generation = 0;
     /**
-     * Output only. The Condition of this Service, containing its readiness status, and
-     * detailed error information in case it did not reach a serving state. See
-     * comments in `reconciling` for additional information on reconciliation
-     * process in Cloud Run.
+     * Output only. The Condition of this Service, containing its readiness
+     * status, and detailed error information in case it did not reach a serving
+     * state. See comments in `reconciling` for additional information on
+     * reconciliation process in Cloud Run.
      *
      * Generated from protobuf field <code>.google.cloud.run.v2.Condition terminal_condition = 31 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $terminal_condition = null;
     /**
-     * Output only. The Conditions of all other associated sub-resources. They contain
-     * additional diagnostics information in case the Service does not reach its
-     * Serving state. See comments in `reconciling` for additional information on
-     * reconciliation process in Cloud Run.
+     * Output only. The Conditions of all other associated sub-resources. They
+     * contain additional diagnostics information in case the Service does not
+     * reach its Serving state. See comments in `reconciling` for additional
+     * information on reconciliation process in Cloud Run.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.Condition conditions = 32 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $conditions;
     /**
-     * Output only. Name of the latest revision that is serving traffic. See comments in
-     * `reconciling` for additional information on reconciliation process in Cloud
-     * Run.
+     * Output only. Name of the latest revision that is serving traffic. See
+     * comments in `reconciling` for additional information on reconciliation
+     * process in Cloud Run.
      *
      * Generated from protobuf field <code>string latest_ready_revision = 33 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
     private $latest_ready_revision = '';
     /**
-     * Output only. Name of the last created revision. See comments in `reconciling` for
-     * additional information on reconciliation process in Cloud Run.
+     * Output only. Name of the last created revision. See comments in
+     * `reconciling` for additional information on reconciliation process in Cloud
+     * Run.
      *
      * Generated from protobuf field <code>string latest_created_revision = 34 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
     private $latest_created_revision = '';
     /**
-     * Output only. Detailed status information for corresponding traffic targets. See comments
-     * in `reconciling` for additional information on reconciliation process in
-     * Cloud Run.
+     * Output only. Detailed status information for corresponding traffic targets.
+     * See comments in `reconciling` for additional information on reconciliation
+     * process in Cloud Run.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.TrafficTargetStatus traffic_statuses = 35 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -222,8 +229,8 @@ class Service extends \Google\Protobuf\Internal\Message
      */
     private $uri = '';
     /**
-     * Output only. Returns true if the Service is currently being acted upon by the system to
-     * bring it into the desired state.
+     * Output only. Returns true if the Service is currently being acted upon by
+     * the system to bring it into the desired state.
      * When a new Service is created, or an existing one is updated, Cloud Run
      * will asynchronously perform all necessary steps to bring the Service to the
      * desired serving state. This process is called reconciliation.
@@ -269,8 +276,9 @@ class Service extends \Google\Protobuf\Internal\Message
      *           User-provided description of the Service. This field currently has a
      *           512-character limit.
      *     @type string $uid
-     *           Output only. Server assigned unique identifier for the trigger. The value is a UUID4
-     *           string and guaranteed to remain unchanged until the resource is deleted.
+     *           Output only. Server assigned unique identifier for the trigger. The value
+     *           is a UUID4 string and guaranteed to remain unchanged until the resource is
+     *           deleted.
      *     @type int|string $generation
      *           Output only. A number that monotonically increases every time the user
      *           modifies the desired state.
@@ -284,15 +292,20 @@ class Service extends \Google\Protobuf\Internal\Message
      *           environment, state, etc. For more information, visit
      *           https://cloud.google.com/resource-manager/docs/creating-managing-labels or
      *           https://cloud.google.com/run/docs/configuring/labels
-     *           Cloud Run will populate some labels with 'run.googleapis.com' or
-     *           'serving.knative.dev' namespaces. Those labels are read-only, and user
-     *           changes will not be preserved.
+     *           <p>Cloud Run API v2 does not support labels with  `run.googleapis.com`,
+     *           `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev`
+     *           namespaces, and they will be rejected. All system labels in v1 now have a
+     *           corresponding field in v2 Service.
      *     @type array|\Google\Protobuf\Internal\MapField $annotations
      *           Unstructured key value map that may be set by external tools to store and
      *           arbitrary metadata. They are not queryable and should be preserved
-     *           when modifying objects. Cloud Run will populate some annotations using
-     *           'run.googleapis.com' or 'serving.knative.dev' namespaces. This field
-     *           follows Kubernetes annotations' namespacing, limits, and rules. More info:
+     *           when modifying objects.
+     *           <p>Cloud Run API v2 does not support annotations with `run.googleapis.com`,
+     *           `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev`
+     *           namespaces, and they will be rejected. All system annotations in v1 now
+     *           have a corresponding field in v2 Service.
+     *           <p>This field follows Kubernetes
+     *           annotations' namespacing, limits, and rules. More info:
      *           https://kubernetes.io/docs/user-guide/annotations
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. The creation time.
@@ -329,37 +342,38 @@ class Service extends \Google\Protobuf\Internal\Message
      *           belonging to the Service. If traffic is empty or not provided, defaults to
      *           100% traffic to the latest `Ready` Revision.
      *     @type int|string $observed_generation
-     *           Output only. The generation of this Service currently serving traffic. See comments in
-     *           `reconciling` for additional information on reconciliation process in Cloud
-     *           Run.
-     *           Please note that unlike v1, this is an int64 value. As with most Google
-     *           APIs, its JSON representation will be a `string` instead of an `integer`.
+     *           Output only. The generation of this Service currently serving traffic. See
+     *           comments in `reconciling` for additional information on reconciliation
+     *           process in Cloud Run. Please note that unlike v1, this is an int64 value.
+     *           As with most Google APIs, its JSON representation will be a `string`
+     *           instead of an `integer`.
      *     @type \Google\Cloud\Run\V2\Condition $terminal_condition
-     *           Output only. The Condition of this Service, containing its readiness status, and
-     *           detailed error information in case it did not reach a serving state. See
+     *           Output only. The Condition of this Service, containing its readiness
+     *           status, and detailed error information in case it did not reach a serving
+     *           state. See comments in `reconciling` for additional information on
+     *           reconciliation process in Cloud Run.
+     *     @type array<\Google\Cloud\Run\V2\Condition>|\Google\Protobuf\Internal\RepeatedField $conditions
+     *           Output only. The Conditions of all other associated sub-resources. They
+     *           contain additional diagnostics information in case the Service does not
+     *           reach its Serving state. See comments in `reconciling` for additional
+     *           information on reconciliation process in Cloud Run.
+     *     @type string $latest_ready_revision
+     *           Output only. Name of the latest revision that is serving traffic. See
      *           comments in `reconciling` for additional information on reconciliation
      *           process in Cloud Run.
-     *     @type array<\Google\Cloud\Run\V2\Condition>|\Google\Protobuf\Internal\RepeatedField $conditions
-     *           Output only. The Conditions of all other associated sub-resources. They contain
-     *           additional diagnostics information in case the Service does not reach its
-     *           Serving state. See comments in `reconciling` for additional information on
-     *           reconciliation process in Cloud Run.
-     *     @type string $latest_ready_revision
-     *           Output only. Name of the latest revision that is serving traffic. See comments in
+     *     @type string $latest_created_revision
+     *           Output only. Name of the last created revision. See comments in
      *           `reconciling` for additional information on reconciliation process in Cloud
      *           Run.
-     *     @type string $latest_created_revision
-     *           Output only. Name of the last created revision. See comments in `reconciling` for
-     *           additional information on reconciliation process in Cloud Run.
      *     @type array<\Google\Cloud\Run\V2\TrafficTargetStatus>|\Google\Protobuf\Internal\RepeatedField $traffic_statuses
-     *           Output only. Detailed status information for corresponding traffic targets. See comments
-     *           in `reconciling` for additional information on reconciliation process in
-     *           Cloud Run.
+     *           Output only. Detailed status information for corresponding traffic targets.
+     *           See comments in `reconciling` for additional information on reconciliation
+     *           process in Cloud Run.
      *     @type string $uri
      *           Output only. The main URI in which this Service is serving traffic.
      *     @type bool $reconciling
-     *           Output only. Returns true if the Service is currently being acted upon by the system to
-     *           bring it into the desired state.
+     *           Output only. Returns true if the Service is currently being acted upon by
+     *           the system to bring it into the desired state.
      *           When a new Service is created, or an existing one is updated, Cloud Run
      *           will asynchronously perform all necessary steps to bring the Service to the
      *           desired serving state. This process is called reconciliation.
@@ -450,8 +464,9 @@ class Service extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Server assigned unique identifier for the trigger. The value is a UUID4
-     * string and guaranteed to remain unchanged until the resource is deleted.
+     * Output only. Server assigned unique identifier for the trigger. The value
+     * is a UUID4 string and guaranteed to remain unchanged until the resource is
+     * deleted.
      *
      * Generated from protobuf field <code>string uid = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -462,8 +477,9 @@ class Service extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Server assigned unique identifier for the trigger. The value is a UUID4
-     * string and guaranteed to remain unchanged until the resource is deleted.
+     * Output only. Server assigned unique identifier for the trigger. The value
+     * is a UUID4 string and guaranteed to remain unchanged until the resource is
+     * deleted.
      *
      * Generated from protobuf field <code>string uid = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -517,9 +533,10 @@ class Service extends \Google\Protobuf\Internal\Message
      * environment, state, etc. For more information, visit
      * https://cloud.google.com/resource-manager/docs/creating-managing-labels or
      * https://cloud.google.com/run/docs/configuring/labels
-     * Cloud Run will populate some labels with 'run.googleapis.com' or
-     * 'serving.knative.dev' namespaces. Those labels are read-only, and user
-     * changes will not be preserved.
+     * <p>Cloud Run API v2 does not support labels with  `run.googleapis.com`,
+     * `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev`
+     * namespaces, and they will be rejected. All system labels in v1 now have a
+     * corresponding field in v2 Service.
      *
      * Generated from protobuf field <code>map<string, string> labels = 5;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -537,9 +554,10 @@ class Service extends \Google\Protobuf\Internal\Message
      * environment, state, etc. For more information, visit
      * https://cloud.google.com/resource-manager/docs/creating-managing-labels or
      * https://cloud.google.com/run/docs/configuring/labels
-     * Cloud Run will populate some labels with 'run.googleapis.com' or
-     * 'serving.knative.dev' namespaces. Those labels are read-only, and user
-     * changes will not be preserved.
+     * <p>Cloud Run API v2 does not support labels with  `run.googleapis.com`,
+     * `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev`
+     * namespaces, and they will be rejected. All system labels in v1 now have a
+     * corresponding field in v2 Service.
      *
      * Generated from protobuf field <code>map<string, string> labels = 5;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
@@ -556,9 +574,13 @@ class Service extends \Google\Protobuf\Internal\Message
     /**
      * Unstructured key value map that may be set by external tools to store and
      * arbitrary metadata. They are not queryable and should be preserved
-     * when modifying objects. Cloud Run will populate some annotations using
-     * 'run.googleapis.com' or 'serving.knative.dev' namespaces. This field
-     * follows Kubernetes annotations' namespacing, limits, and rules. More info:
+     * when modifying objects.
+     * <p>Cloud Run API v2 does not support annotations with `run.googleapis.com`,
+     * `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev`
+     * namespaces, and they will be rejected. All system annotations in v1 now
+     * have a corresponding field in v2 Service.
+     * <p>This field follows Kubernetes
+     * annotations' namespacing, limits, and rules. More info:
      * https://kubernetes.io/docs/user-guide/annotations
      *
      * Generated from protobuf field <code>map<string, string> annotations = 6;</code>
@@ -572,9 +594,13 @@ class Service extends \Google\Protobuf\Internal\Message
     /**
      * Unstructured key value map that may be set by external tools to store and
      * arbitrary metadata. They are not queryable and should be preserved
-     * when modifying objects. Cloud Run will populate some annotations using
-     * 'run.googleapis.com' or 'serving.knative.dev' namespaces. This field
-     * follows Kubernetes annotations' namespacing, limits, and rules. More info:
+     * when modifying objects.
+     * <p>Cloud Run API v2 does not support annotations with `run.googleapis.com`,
+     * `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev`
+     * namespaces, and they will be rejected. All system annotations in v1 now
+     * have a corresponding field in v2 Service.
+     * <p>This field follows Kubernetes
+     * annotations' namespacing, limits, and rules. More info:
      * https://kubernetes.io/docs/user-guide/annotations
      *
      * Generated from protobuf field <code>map<string, string> annotations = 6;</code>
@@ -1004,11 +1030,11 @@ class Service extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The generation of this Service currently serving traffic. See comments in
-     * `reconciling` for additional information on reconciliation process in Cloud
-     * Run.
-     * Please note that unlike v1, this is an int64 value. As with most Google
-     * APIs, its JSON representation will be a `string` instead of an `integer`.
+     * Output only. The generation of this Service currently serving traffic. See
+     * comments in `reconciling` for additional information on reconciliation
+     * process in Cloud Run. Please note that unlike v1, this is an int64 value.
+     * As with most Google APIs, its JSON representation will be a `string`
+     * instead of an `integer`.
      *
      * Generated from protobuf field <code>int64 observed_generation = 30 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int|string
@@ -1019,11 +1045,11 @@ class Service extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The generation of this Service currently serving traffic. See comments in
-     * `reconciling` for additional information on reconciliation process in Cloud
-     * Run.
-     * Please note that unlike v1, this is an int64 value. As with most Google
-     * APIs, its JSON representation will be a `string` instead of an `integer`.
+     * Output only. The generation of this Service currently serving traffic. See
+     * comments in `reconciling` for additional information on reconciliation
+     * process in Cloud Run. Please note that unlike v1, this is an int64 value.
+     * As with most Google APIs, its JSON representation will be a `string`
+     * instead of an `integer`.
      *
      * Generated from protobuf field <code>int64 observed_generation = 30 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int|string $var
@@ -1038,10 +1064,10 @@ class Service extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The Condition of this Service, containing its readiness status, and
-     * detailed error information in case it did not reach a serving state. See
-     * comments in `reconciling` for additional information on reconciliation
-     * process in Cloud Run.
+     * Output only. The Condition of this Service, containing its readiness
+     * status, and detailed error information in case it did not reach a serving
+     * state. See comments in `reconciling` for additional information on
+     * reconciliation process in Cloud Run.
      *
      * Generated from protobuf field <code>.google.cloud.run.v2.Condition terminal_condition = 31 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\Run\V2\Condition|null
@@ -1062,10 +1088,10 @@ class Service extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The Condition of this Service, containing its readiness status, and
-     * detailed error information in case it did not reach a serving state. See
-     * comments in `reconciling` for additional information on reconciliation
-     * process in Cloud Run.
+     * Output only. The Condition of this Service, containing its readiness
+     * status, and detailed error information in case it did not reach a serving
+     * state. See comments in `reconciling` for additional information on
+     * reconciliation process in Cloud Run.
      *
      * Generated from protobuf field <code>.google.cloud.run.v2.Condition terminal_condition = 31 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\Run\V2\Condition $var
@@ -1080,10 +1106,10 @@ class Service extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The Conditions of all other associated sub-resources. They contain
-     * additional diagnostics information in case the Service does not reach its
-     * Serving state. See comments in `reconciling` for additional information on
-     * reconciliation process in Cloud Run.
+     * Output only. The Conditions of all other associated sub-resources. They
+     * contain additional diagnostics information in case the Service does not
+     * reach its Serving state. See comments in `reconciling` for additional
+     * information on reconciliation process in Cloud Run.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.Condition conditions = 32 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -1094,10 +1120,10 @@ class Service extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The Conditions of all other associated sub-resources. They contain
-     * additional diagnostics information in case the Service does not reach its
-     * Serving state. See comments in `reconciling` for additional information on
-     * reconciliation process in Cloud Run.
+     * Output only. The Conditions of all other associated sub-resources. They
+     * contain additional diagnostics information in case the Service does not
+     * reach its Serving state. See comments in `reconciling` for additional
+     * information on reconciliation process in Cloud Run.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.Condition conditions = 32 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param array<\Google\Cloud\Run\V2\Condition>|\Google\Protobuf\Internal\RepeatedField $var
@@ -1112,9 +1138,9 @@ class Service extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Name of the latest revision that is serving traffic. See comments in
-     * `reconciling` for additional information on reconciliation process in Cloud
-     * Run.
+     * Output only. Name of the latest revision that is serving traffic. See
+     * comments in `reconciling` for additional information on reconciliation
+     * process in Cloud Run.
      *
      * Generated from protobuf field <code>string latest_ready_revision = 33 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @return string
@@ -1125,9 +1151,9 @@ class Service extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Name of the latest revision that is serving traffic. See comments in
-     * `reconciling` for additional information on reconciliation process in Cloud
-     * Run.
+     * Output only. Name of the latest revision that is serving traffic. See
+     * comments in `reconciling` for additional information on reconciliation
+     * process in Cloud Run.
      *
      * Generated from protobuf field <code>string latest_ready_revision = 33 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -1142,8 +1168,9 @@ class Service extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Name of the last created revision. See comments in `reconciling` for
-     * additional information on reconciliation process in Cloud Run.
+     * Output only. Name of the last created revision. See comments in
+     * `reconciling` for additional information on reconciliation process in Cloud
+     * Run.
      *
      * Generated from protobuf field <code>string latest_created_revision = 34 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @return string
@@ -1154,8 +1181,9 @@ class Service extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Name of the last created revision. See comments in `reconciling` for
-     * additional information on reconciliation process in Cloud Run.
+     * Output only. Name of the last created revision. See comments in
+     * `reconciling` for additional information on reconciliation process in Cloud
+     * Run.
      *
      * Generated from protobuf field <code>string latest_created_revision = 34 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -1170,9 +1198,9 @@ class Service extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Detailed status information for corresponding traffic targets. See comments
-     * in `reconciling` for additional information on reconciliation process in
-     * Cloud Run.
+     * Output only. Detailed status information for corresponding traffic targets.
+     * See comments in `reconciling` for additional information on reconciliation
+     * process in Cloud Run.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.TrafficTargetStatus traffic_statuses = 35 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -1183,9 +1211,9 @@ class Service extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Detailed status information for corresponding traffic targets. See comments
-     * in `reconciling` for additional information on reconciliation process in
-     * Cloud Run.
+     * Output only. Detailed status information for corresponding traffic targets.
+     * See comments in `reconciling` for additional information on reconciliation
+     * process in Cloud Run.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.TrafficTargetStatus traffic_statuses = 35 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param array<\Google\Cloud\Run\V2\TrafficTargetStatus>|\Google\Protobuf\Internal\RepeatedField $var
@@ -1226,8 +1254,8 @@ class Service extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Returns true if the Service is currently being acted upon by the system to
-     * bring it into the desired state.
+     * Output only. Returns true if the Service is currently being acted upon by
+     * the system to bring it into the desired state.
      * When a new Service is created, or an existing one is updated, Cloud Run
      * will asynchronously perform all necessary steps to bring the Service to the
      * desired serving state. This process is called reconciliation.
@@ -1255,8 +1283,8 @@ class Service extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Returns true if the Service is currently being acted upon by the system to
-     * bring it into the desired state.
+     * Output only. Returns true if the Service is currently being acted upon by
+     * the system to bring it into the desired state.
      * When a new Service is created, or an existing one is updated, Cloud Run
      * will asynchronously perform all necessary steps to bring the Service to the
      * desired serving state. This process is called reconciliation.

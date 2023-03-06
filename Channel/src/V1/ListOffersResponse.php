@@ -34,7 +34,7 @@ class ListOffersResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Channel\V1\Offer[]|\Google\Protobuf\Internal\RepeatedField $offers
+     *     @type array<\Google\Cloud\Channel\V1\Offer>|\Google\Protobuf\Internal\RepeatedField $offers
      *           The list of Offers requested.
      *     @type string $next_page_token
      *           A token to retrieve the next page of results.
@@ -60,7 +60,7 @@ class ListOffersResponse extends \Google\Protobuf\Internal\Message
      * The list of Offers requested.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.Offer offers = 1;</code>
-     * @param \Google\Cloud\Channel\V1\Offer[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Channel\V1\Offer>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setOffers($var)

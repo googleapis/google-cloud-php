@@ -19,8 +19,12 @@ class Slice extends \Google\Protobuf\Internal\Message
      * Output only. The dimension of the slice.
      * Well-known dimensions are:
      *   * `annotationSpec`: This slice is on the test data that has either
-     *     ground truth or prediction with [AnnotationSpec.display_name][google.cloud.aiplatform.v1.AnnotationSpec.display_name]
-     *     equals to [value][google.cloud.aiplatform.v1.ModelEvaluationSlice.Slice.value].
+     *     ground truth or prediction with
+     *     [AnnotationSpec.display_name][google.cloud.aiplatform.v1.AnnotationSpec.display_name]
+     *     equals to
+     *     [value][google.cloud.aiplatform.v1.ModelEvaluationSlice.Slice.value].
+     *   * `slice`: This slice is a user customized slice defined by its
+     *     SliceSpec.
      *
      * Generated from protobuf field <code>string dimension = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -31,6 +35,12 @@ class Slice extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string value = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $value = '';
+    /**
+     * Output only. Specification for how the data was sliced.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ModelEvaluationSlice.Slice.SliceSpec slice_spec = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $slice_spec = null;
 
     /**
      * Constructor.
@@ -42,10 +52,16 @@ class Slice extends \Google\Protobuf\Internal\Message
      *           Output only. The dimension of the slice.
      *           Well-known dimensions are:
      *             * `annotationSpec`: This slice is on the test data that has either
-     *               ground truth or prediction with [AnnotationSpec.display_name][google.cloud.aiplatform.v1.AnnotationSpec.display_name]
-     *               equals to [value][google.cloud.aiplatform.v1.ModelEvaluationSlice.Slice.value].
+     *               ground truth or prediction with
+     *               [AnnotationSpec.display_name][google.cloud.aiplatform.v1.AnnotationSpec.display_name]
+     *               equals to
+     *               [value][google.cloud.aiplatform.v1.ModelEvaluationSlice.Slice.value].
+     *             * `slice`: This slice is a user customized slice defined by its
+     *               SliceSpec.
      *     @type string $value
      *           Output only. The value of the dimension in this slice.
+     *     @type \Google\Cloud\AIPlatform\V1\ModelEvaluationSlice\Slice\SliceSpec $slice_spec
+     *           Output only. Specification for how the data was sliced.
      * }
      */
     public function __construct($data = NULL) {
@@ -57,8 +73,12 @@ class Slice extends \Google\Protobuf\Internal\Message
      * Output only. The dimension of the slice.
      * Well-known dimensions are:
      *   * `annotationSpec`: This slice is on the test data that has either
-     *     ground truth or prediction with [AnnotationSpec.display_name][google.cloud.aiplatform.v1.AnnotationSpec.display_name]
-     *     equals to [value][google.cloud.aiplatform.v1.ModelEvaluationSlice.Slice.value].
+     *     ground truth or prediction with
+     *     [AnnotationSpec.display_name][google.cloud.aiplatform.v1.AnnotationSpec.display_name]
+     *     equals to
+     *     [value][google.cloud.aiplatform.v1.ModelEvaluationSlice.Slice.value].
+     *   * `slice`: This slice is a user customized slice defined by its
+     *     SliceSpec.
      *
      * Generated from protobuf field <code>string dimension = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -72,8 +92,12 @@ class Slice extends \Google\Protobuf\Internal\Message
      * Output only. The dimension of the slice.
      * Well-known dimensions are:
      *   * `annotationSpec`: This slice is on the test data that has either
-     *     ground truth or prediction with [AnnotationSpec.display_name][google.cloud.aiplatform.v1.AnnotationSpec.display_name]
-     *     equals to [value][google.cloud.aiplatform.v1.ModelEvaluationSlice.Slice.value].
+     *     ground truth or prediction with
+     *     [AnnotationSpec.display_name][google.cloud.aiplatform.v1.AnnotationSpec.display_name]
+     *     equals to
+     *     [value][google.cloud.aiplatform.v1.ModelEvaluationSlice.Slice.value].
+     *   * `slice`: This slice is a user customized slice defined by its
+     *     SliceSpec.
      *
      * Generated from protobuf field <code>string dimension = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -109,6 +133,42 @@ class Slice extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->value = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Specification for how the data was sliced.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ModelEvaluationSlice.Slice.SliceSpec slice_spec = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\AIPlatform\V1\ModelEvaluationSlice\Slice\SliceSpec|null
+     */
+    public function getSliceSpec()
+    {
+        return $this->slice_spec;
+    }
+
+    public function hasSliceSpec()
+    {
+        return isset($this->slice_spec);
+    }
+
+    public function clearSliceSpec()
+    {
+        unset($this->slice_spec);
+    }
+
+    /**
+     * Output only. Specification for how the data was sliced.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ModelEvaluationSlice.Slice.SliceSpec slice_spec = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\AIPlatform\V1\ModelEvaluationSlice\Slice\SliceSpec $var
+     * @return $this
+     */
+    public function setSliceSpec($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\ModelEvaluationSlice\Slice\SliceSpec::class);
+        $this->slice_spec = $var;
 
         return $this;
     }

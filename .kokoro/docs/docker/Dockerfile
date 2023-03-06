@@ -84,9 +84,17 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" &&
     php -r "if (hash_file('SHA384', 'composer-setup.php') === rtrim(file_get_contents('https://composer.github.io/installer.sig'))) { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;" && \
     php composer-setup.php --filename=composer --install-dir=/usr/local/bin
 
+# Use phpDocumentor from HEAD until they create a new release
+# TODO: Remove once phpDocumentor tags a new release
+# @see https://github.com/phpDocumentor/phpDocumentor/issues/3434
+COPY --from=phpdoc/phpdoc:202301112131087e6028 /opt/phpdoc /opt/phpdoc
+RUN ln -s /opt/phpdoc/bin/phpdoc /usr/local/bin/phpdoc
+ENV PHPDOC_ENV=prod
+
 # Install phpdoc
-RUN wget -O /usr/local/bin/phpdoc "https://github.com/phpDocumentor/phpDocumentor/releases/download/v3.3.1/phpDocumentor.phar" \
-  && chmod +x /usr/local/bin/phpdoc
+# TODO: uncomment once phpDocumentor creates a new release
+# RUN wget -O /usr/local/bin/phpdoc "https://github.com/phpDocumentor/phpDocumentor/releases/download/v3.3.1/phpDocumentor.phar" \
+#   && chmod +x /usr/local/bin/phpdoc
 
 # Install Python3
 RUN wget https://www.python.org/ftp/python/3.9.14/Python-3.9.14.tgz \

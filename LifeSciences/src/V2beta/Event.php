@@ -44,25 +44,35 @@ class Event extends \Google\Protobuf\Internal\Message
      *           change at any time without notice. Any application logic must use the
      *           information in the `details` field.
      *     @type \Google\Cloud\LifeSciences\V2beta\DelayedEvent $delayed
-     *           See [google.cloud.lifesciences.v2beta.DelayedEvent][google.cloud.lifesciences.v2beta.DelayedEvent].
+     *           See
+     *           [google.cloud.lifesciences.v2beta.DelayedEvent][google.cloud.lifesciences.v2beta.DelayedEvent].
      *     @type \Google\Cloud\LifeSciences\V2beta\WorkerAssignedEvent $worker_assigned
-     *           See [google.cloud.lifesciences.v2beta.WorkerAssignedEvent][google.cloud.lifesciences.v2beta.WorkerAssignedEvent].
+     *           See
+     *           [google.cloud.lifesciences.v2beta.WorkerAssignedEvent][google.cloud.lifesciences.v2beta.WorkerAssignedEvent].
      *     @type \Google\Cloud\LifeSciences\V2beta\WorkerReleasedEvent $worker_released
-     *           See [google.cloud.lifesciences.v2beta.WorkerReleasedEvent][google.cloud.lifesciences.v2beta.WorkerReleasedEvent].
+     *           See
+     *           [google.cloud.lifesciences.v2beta.WorkerReleasedEvent][google.cloud.lifesciences.v2beta.WorkerReleasedEvent].
      *     @type \Google\Cloud\LifeSciences\V2beta\PullStartedEvent $pull_started
-     *           See [google.cloud.lifesciences.v2beta.PullStartedEvent][google.cloud.lifesciences.v2beta.PullStartedEvent].
+     *           See
+     *           [google.cloud.lifesciences.v2beta.PullStartedEvent][google.cloud.lifesciences.v2beta.PullStartedEvent].
      *     @type \Google\Cloud\LifeSciences\V2beta\PullStoppedEvent $pull_stopped
-     *           See [google.cloud.lifesciences.v2beta.PullStoppedEvent][google.cloud.lifesciences.v2beta.PullStoppedEvent].
+     *           See
+     *           [google.cloud.lifesciences.v2beta.PullStoppedEvent][google.cloud.lifesciences.v2beta.PullStoppedEvent].
      *     @type \Google\Cloud\LifeSciences\V2beta\ContainerStartedEvent $container_started
-     *           See [google.cloud.lifesciences.v2beta.ContainerStartedEvent][google.cloud.lifesciences.v2beta.ContainerStartedEvent].
+     *           See
+     *           [google.cloud.lifesciences.v2beta.ContainerStartedEvent][google.cloud.lifesciences.v2beta.ContainerStartedEvent].
      *     @type \Google\Cloud\LifeSciences\V2beta\ContainerStoppedEvent $container_stopped
-     *           See [google.cloud.lifesciences.v2beta.ContainerStoppedEvent][google.cloud.lifesciences.v2beta.ContainerStoppedEvent].
+     *           See
+     *           [google.cloud.lifesciences.v2beta.ContainerStoppedEvent][google.cloud.lifesciences.v2beta.ContainerStoppedEvent].
      *     @type \Google\Cloud\LifeSciences\V2beta\ContainerKilledEvent $container_killed
-     *           See [google.cloud.lifesciences.v2beta.ContainerKilledEvent][google.cloud.lifesciences.v2beta.ContainerKilledEvent].
+     *           See
+     *           [google.cloud.lifesciences.v2beta.ContainerKilledEvent][google.cloud.lifesciences.v2beta.ContainerKilledEvent].
      *     @type \Google\Cloud\LifeSciences\V2beta\UnexpectedExitStatusEvent $unexpected_exit_status
-     *           See [google.cloud.lifesciences.v2beta.UnexpectedExitStatusEvent][google.cloud.lifesciences.v2beta.UnexpectedExitStatusEvent].
+     *           See
+     *           [google.cloud.lifesciences.v2beta.UnexpectedExitStatusEvent][google.cloud.lifesciences.v2beta.UnexpectedExitStatusEvent].
      *     @type \Google\Cloud\LifeSciences\V2beta\FailedEvent $failed
-     *           See [google.cloud.lifesciences.v2beta.FailedEvent][google.cloud.lifesciences.v2beta.FailedEvent].
+     *           See
+     *           [google.cloud.lifesciences.v2beta.FailedEvent][google.cloud.lifesciences.v2beta.FailedEvent].
      * }
      */
     public function __construct($data = NULL) {
@@ -137,7 +147,8 @@ class Event extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * See [google.cloud.lifesciences.v2beta.DelayedEvent][google.cloud.lifesciences.v2beta.DelayedEvent].
+     * See
+     * [google.cloud.lifesciences.v2beta.DelayedEvent][google.cloud.lifesciences.v2beta.DelayedEvent].
      *
      * Generated from protobuf field <code>.google.cloud.lifesciences.v2beta.DelayedEvent delayed = 17;</code>
      * @return \Google\Cloud\LifeSciences\V2beta\DelayedEvent|null
@@ -153,7 +164,8 @@ class Event extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * See [google.cloud.lifesciences.v2beta.DelayedEvent][google.cloud.lifesciences.v2beta.DelayedEvent].
+     * See
+     * [google.cloud.lifesciences.v2beta.DelayedEvent][google.cloud.lifesciences.v2beta.DelayedEvent].
      *
      * Generated from protobuf field <code>.google.cloud.lifesciences.v2beta.DelayedEvent delayed = 17;</code>
      * @param \Google\Cloud\LifeSciences\V2beta\DelayedEvent $var
@@ -168,7 +180,8 @@ class Event extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * See [google.cloud.lifesciences.v2beta.WorkerAssignedEvent][google.cloud.lifesciences.v2beta.WorkerAssignedEvent].
+     * See
+     * [google.cloud.lifesciences.v2beta.WorkerAssignedEvent][google.cloud.lifesciences.v2beta.WorkerAssignedEvent].
      *
      * Generated from protobuf field <code>.google.cloud.lifesciences.v2beta.WorkerAssignedEvent worker_assigned = 18;</code>
      * @return \Google\Cloud\LifeSciences\V2beta\WorkerAssignedEvent|null
@@ -184,7 +197,8 @@ class Event extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * See [google.cloud.lifesciences.v2beta.WorkerAssignedEvent][google.cloud.lifesciences.v2beta.WorkerAssignedEvent].
+     * See
+     * [google.cloud.lifesciences.v2beta.WorkerAssignedEvent][google.cloud.lifesciences.v2beta.WorkerAssignedEvent].
      *
      * Generated from protobuf field <code>.google.cloud.lifesciences.v2beta.WorkerAssignedEvent worker_assigned = 18;</code>
      * @param \Google\Cloud\LifeSciences\V2beta\WorkerAssignedEvent $var
@@ -199,7 +213,8 @@ class Event extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * See [google.cloud.lifesciences.v2beta.WorkerReleasedEvent][google.cloud.lifesciences.v2beta.WorkerReleasedEvent].
+     * See
+     * [google.cloud.lifesciences.v2beta.WorkerReleasedEvent][google.cloud.lifesciences.v2beta.WorkerReleasedEvent].
      *
      * Generated from protobuf field <code>.google.cloud.lifesciences.v2beta.WorkerReleasedEvent worker_released = 19;</code>
      * @return \Google\Cloud\LifeSciences\V2beta\WorkerReleasedEvent|null
@@ -215,7 +230,8 @@ class Event extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * See [google.cloud.lifesciences.v2beta.WorkerReleasedEvent][google.cloud.lifesciences.v2beta.WorkerReleasedEvent].
+     * See
+     * [google.cloud.lifesciences.v2beta.WorkerReleasedEvent][google.cloud.lifesciences.v2beta.WorkerReleasedEvent].
      *
      * Generated from protobuf field <code>.google.cloud.lifesciences.v2beta.WorkerReleasedEvent worker_released = 19;</code>
      * @param \Google\Cloud\LifeSciences\V2beta\WorkerReleasedEvent $var
@@ -230,7 +246,8 @@ class Event extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * See [google.cloud.lifesciences.v2beta.PullStartedEvent][google.cloud.lifesciences.v2beta.PullStartedEvent].
+     * See
+     * [google.cloud.lifesciences.v2beta.PullStartedEvent][google.cloud.lifesciences.v2beta.PullStartedEvent].
      *
      * Generated from protobuf field <code>.google.cloud.lifesciences.v2beta.PullStartedEvent pull_started = 20;</code>
      * @return \Google\Cloud\LifeSciences\V2beta\PullStartedEvent|null
@@ -246,7 +263,8 @@ class Event extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * See [google.cloud.lifesciences.v2beta.PullStartedEvent][google.cloud.lifesciences.v2beta.PullStartedEvent].
+     * See
+     * [google.cloud.lifesciences.v2beta.PullStartedEvent][google.cloud.lifesciences.v2beta.PullStartedEvent].
      *
      * Generated from protobuf field <code>.google.cloud.lifesciences.v2beta.PullStartedEvent pull_started = 20;</code>
      * @param \Google\Cloud\LifeSciences\V2beta\PullStartedEvent $var
@@ -261,7 +279,8 @@ class Event extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * See [google.cloud.lifesciences.v2beta.PullStoppedEvent][google.cloud.lifesciences.v2beta.PullStoppedEvent].
+     * See
+     * [google.cloud.lifesciences.v2beta.PullStoppedEvent][google.cloud.lifesciences.v2beta.PullStoppedEvent].
      *
      * Generated from protobuf field <code>.google.cloud.lifesciences.v2beta.PullStoppedEvent pull_stopped = 21;</code>
      * @return \Google\Cloud\LifeSciences\V2beta\PullStoppedEvent|null
@@ -277,7 +296,8 @@ class Event extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * See [google.cloud.lifesciences.v2beta.PullStoppedEvent][google.cloud.lifesciences.v2beta.PullStoppedEvent].
+     * See
+     * [google.cloud.lifesciences.v2beta.PullStoppedEvent][google.cloud.lifesciences.v2beta.PullStoppedEvent].
      *
      * Generated from protobuf field <code>.google.cloud.lifesciences.v2beta.PullStoppedEvent pull_stopped = 21;</code>
      * @param \Google\Cloud\LifeSciences\V2beta\PullStoppedEvent $var
@@ -292,7 +312,8 @@ class Event extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * See [google.cloud.lifesciences.v2beta.ContainerStartedEvent][google.cloud.lifesciences.v2beta.ContainerStartedEvent].
+     * See
+     * [google.cloud.lifesciences.v2beta.ContainerStartedEvent][google.cloud.lifesciences.v2beta.ContainerStartedEvent].
      *
      * Generated from protobuf field <code>.google.cloud.lifesciences.v2beta.ContainerStartedEvent container_started = 22;</code>
      * @return \Google\Cloud\LifeSciences\V2beta\ContainerStartedEvent|null
@@ -308,7 +329,8 @@ class Event extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * See [google.cloud.lifesciences.v2beta.ContainerStartedEvent][google.cloud.lifesciences.v2beta.ContainerStartedEvent].
+     * See
+     * [google.cloud.lifesciences.v2beta.ContainerStartedEvent][google.cloud.lifesciences.v2beta.ContainerStartedEvent].
      *
      * Generated from protobuf field <code>.google.cloud.lifesciences.v2beta.ContainerStartedEvent container_started = 22;</code>
      * @param \Google\Cloud\LifeSciences\V2beta\ContainerStartedEvent $var
@@ -323,7 +345,8 @@ class Event extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * See [google.cloud.lifesciences.v2beta.ContainerStoppedEvent][google.cloud.lifesciences.v2beta.ContainerStoppedEvent].
+     * See
+     * [google.cloud.lifesciences.v2beta.ContainerStoppedEvent][google.cloud.lifesciences.v2beta.ContainerStoppedEvent].
      *
      * Generated from protobuf field <code>.google.cloud.lifesciences.v2beta.ContainerStoppedEvent container_stopped = 23;</code>
      * @return \Google\Cloud\LifeSciences\V2beta\ContainerStoppedEvent|null
@@ -339,7 +362,8 @@ class Event extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * See [google.cloud.lifesciences.v2beta.ContainerStoppedEvent][google.cloud.lifesciences.v2beta.ContainerStoppedEvent].
+     * See
+     * [google.cloud.lifesciences.v2beta.ContainerStoppedEvent][google.cloud.lifesciences.v2beta.ContainerStoppedEvent].
      *
      * Generated from protobuf field <code>.google.cloud.lifesciences.v2beta.ContainerStoppedEvent container_stopped = 23;</code>
      * @param \Google\Cloud\LifeSciences\V2beta\ContainerStoppedEvent $var
@@ -354,7 +378,8 @@ class Event extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * See [google.cloud.lifesciences.v2beta.ContainerKilledEvent][google.cloud.lifesciences.v2beta.ContainerKilledEvent].
+     * See
+     * [google.cloud.lifesciences.v2beta.ContainerKilledEvent][google.cloud.lifesciences.v2beta.ContainerKilledEvent].
      *
      * Generated from protobuf field <code>.google.cloud.lifesciences.v2beta.ContainerKilledEvent container_killed = 24;</code>
      * @return \Google\Cloud\LifeSciences\V2beta\ContainerKilledEvent|null
@@ -370,7 +395,8 @@ class Event extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * See [google.cloud.lifesciences.v2beta.ContainerKilledEvent][google.cloud.lifesciences.v2beta.ContainerKilledEvent].
+     * See
+     * [google.cloud.lifesciences.v2beta.ContainerKilledEvent][google.cloud.lifesciences.v2beta.ContainerKilledEvent].
      *
      * Generated from protobuf field <code>.google.cloud.lifesciences.v2beta.ContainerKilledEvent container_killed = 24;</code>
      * @param \Google\Cloud\LifeSciences\V2beta\ContainerKilledEvent $var
@@ -385,7 +411,8 @@ class Event extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * See [google.cloud.lifesciences.v2beta.UnexpectedExitStatusEvent][google.cloud.lifesciences.v2beta.UnexpectedExitStatusEvent].
+     * See
+     * [google.cloud.lifesciences.v2beta.UnexpectedExitStatusEvent][google.cloud.lifesciences.v2beta.UnexpectedExitStatusEvent].
      *
      * Generated from protobuf field <code>.google.cloud.lifesciences.v2beta.UnexpectedExitStatusEvent unexpected_exit_status = 25;</code>
      * @return \Google\Cloud\LifeSciences\V2beta\UnexpectedExitStatusEvent|null
@@ -401,7 +428,8 @@ class Event extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * See [google.cloud.lifesciences.v2beta.UnexpectedExitStatusEvent][google.cloud.lifesciences.v2beta.UnexpectedExitStatusEvent].
+     * See
+     * [google.cloud.lifesciences.v2beta.UnexpectedExitStatusEvent][google.cloud.lifesciences.v2beta.UnexpectedExitStatusEvent].
      *
      * Generated from protobuf field <code>.google.cloud.lifesciences.v2beta.UnexpectedExitStatusEvent unexpected_exit_status = 25;</code>
      * @param \Google\Cloud\LifeSciences\V2beta\UnexpectedExitStatusEvent $var
@@ -416,7 +444,8 @@ class Event extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * See [google.cloud.lifesciences.v2beta.FailedEvent][google.cloud.lifesciences.v2beta.FailedEvent].
+     * See
+     * [google.cloud.lifesciences.v2beta.FailedEvent][google.cloud.lifesciences.v2beta.FailedEvent].
      *
      * Generated from protobuf field <code>.google.cloud.lifesciences.v2beta.FailedEvent failed = 26;</code>
      * @return \Google\Cloud\LifeSciences\V2beta\FailedEvent|null
@@ -432,7 +461,8 @@ class Event extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * See [google.cloud.lifesciences.v2beta.FailedEvent][google.cloud.lifesciences.v2beta.FailedEvent].
+     * See
+     * [google.cloud.lifesciences.v2beta.FailedEvent][google.cloud.lifesciences.v2beta.FailedEvent].
      *
      * Generated from protobuf field <code>.google.cloud.lifesciences.v2beta.FailedEvent failed = 26;</code>
      * @param \Google\Cloud\LifeSciences\V2beta\FailedEvent $var

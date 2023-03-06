@@ -2,6 +2,30 @@
 
 return [
     'interfaces' => [
+        'google.cloud.location.Locations' => [
+            'GetLocation' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListLocations' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*}/locations',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+        ],
         'google.cloud.secretmanager.v1.SecretManagerService' => [
             'AccessSecretVersion' => [
                 'method' => 'get',
@@ -185,4 +209,5 @@ return [
             ],
         ],
     ],
+    'numericEnums' => true,
 ];

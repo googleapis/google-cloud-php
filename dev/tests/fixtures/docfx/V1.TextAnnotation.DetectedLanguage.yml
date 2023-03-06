@@ -49,8 +49,6 @@ items:
       The BCP-47 language code, such as "en-US" or "sr-Latn". For more
       information, see
       http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
-      
-      Generated from protobuf field <code>string language_code = 1;</code>
     parent: \Google\Cloud\Vision\V1\TextAnnotation\DetectedLanguage
     type: method
     langs:
@@ -67,8 +65,6 @@ items:
       The BCP-47 language code, such as "en-US" or "sr-Latn". For more
       information, see
       http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
-      
-      Generated from protobuf field <code>string language_code = 1;</code>
     parent: \Google\Cloud\Vision\V1\TextAnnotation\DetectedLanguage
     type: method
     langs:
@@ -86,10 +82,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\TextAnnotation\DetectedLanguage::getConfidence()'
     name: getConfidence
     id: getConfidence
-    summary: |
-      Confidence of detected language. Range [0, 1].
-      
-      Generated from protobuf field <code>float confidence = 2;</code>
+    summary: 'Confidence of detected language. Range [0, 1].'
     parent: \Google\Cloud\Vision\V1\TextAnnotation\DetectedLanguage
     type: method
     langs:
@@ -102,10 +95,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\TextAnnotation\DetectedLanguage::setConfidence()'
     name: setConfidence
     id: setConfidence
-    summary: |
-      Confidence of detected language. Range [0, 1].
-      
-      Generated from protobuf field <code>float confidence = 2;</code>
+    summary: 'Confidence of detected language. Range [0, 1].'
     parent: \Google\Cloud\Vision\V1\TextAnnotation\DetectedLanguage
     type: method
     langs:

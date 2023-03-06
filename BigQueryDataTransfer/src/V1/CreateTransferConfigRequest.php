@@ -21,10 +21,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateTransferConfigRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The BigQuery project id where the transfer configuration should be created.
-     * Must be in the format projects/{project_id}/locations/{location_id} or
-     * projects/{project_id}. If specified location and location of the
-     * destination bigquery dataset do not match - the request will fail.
+     * Required. The BigQuery project id where the transfer configuration should
+     * be created. Must be in the format
+     * projects/{project_id}/locations/{location_id} or projects/{project_id}. If
+     * specified location and location of the destination bigquery dataset do not
+     * match - the request will fail.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -72,7 +73,7 @@ class CreateTransferConfigRequest extends \Google\Protobuf\Internal\Message
      */
     private $version_info = '';
     /**
-     * Optional service account name. If this field is set, the transfer config
+     * Optional service account email. If this field is set, the transfer config
      * will be created with this service account's credentials. It requires that
      * the requesting user calling this API has permissions to act as this service
      * account.
@@ -92,10 +93,11 @@ class CreateTransferConfigRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The BigQuery project id where the transfer configuration should be created.
-     *           Must be in the format projects/{project_id}/locations/{location_id} or
-     *           projects/{project_id}. If specified location and location of the
-     *           destination bigquery dataset do not match - the request will fail.
+     *           Required. The BigQuery project id where the transfer configuration should
+     *           be created. Must be in the format
+     *           projects/{project_id}/locations/{location_id} or projects/{project_id}. If
+     *           specified location and location of the destination bigquery dataset do not
+     *           match - the request will fail.
      *     @type \Google\Cloud\BigQuery\DataTransfer\V1\TransferConfig $transfer_config
      *           Required. Data transfer configuration to create.
      *     @type string $authorization_code
@@ -127,7 +129,7 @@ class CreateTransferConfigRequest extends \Google\Protobuf\Internal\Message
      *           Note that this should not be set when `service_account_name` is used to
      *           create the transfer config.
      *     @type string $service_account_name
-     *           Optional service account name. If this field is set, the transfer config
+     *           Optional service account email. If this field is set, the transfer config
      *           will be created with this service account's credentials. It requires that
      *           the requesting user calling this API has permissions to act as this service
      *           account.
@@ -143,10 +145,11 @@ class CreateTransferConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The BigQuery project id where the transfer configuration should be created.
-     * Must be in the format projects/{project_id}/locations/{location_id} or
-     * projects/{project_id}. If specified location and location of the
-     * destination bigquery dataset do not match - the request will fail.
+     * Required. The BigQuery project id where the transfer configuration should
+     * be created. Must be in the format
+     * projects/{project_id}/locations/{location_id} or projects/{project_id}. If
+     * specified location and location of the destination bigquery dataset do not
+     * match - the request will fail.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -157,10 +160,11 @@ class CreateTransferConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The BigQuery project id where the transfer configuration should be created.
-     * Must be in the format projects/{project_id}/locations/{location_id} or
-     * projects/{project_id}. If specified location and location of the
-     * destination bigquery dataset do not match - the request will fail.
+     * Required. The BigQuery project id where the transfer configuration should
+     * be created. Must be in the format
+     * projects/{project_id}/locations/{location_id} or projects/{project_id}. If
+     * specified location and location of the destination bigquery dataset do not
+     * match - the request will fail.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -311,7 +315,7 @@ class CreateTransferConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional service account name. If this field is set, the transfer config
+     * Optional service account email. If this field is set, the transfer config
      * will be created with this service account's credentials. It requires that
      * the requesting user calling this API has permissions to act as this service
      * account.
@@ -329,7 +333,7 @@ class CreateTransferConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional service account name. If this field is set, the transfer config
+     * Optional service account email. If this field is set, the transfer config
      * will be created with this service account's credentials. It requires that
      * the requesting user calling this API has permissions to act as this service
      * account.

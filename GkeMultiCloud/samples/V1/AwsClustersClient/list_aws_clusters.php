@@ -29,8 +29,8 @@ use Google\Cloud\GkeMultiCloud\V1\AwsCluster;
 use Google\Cloud\GkeMultiCloud\V1\AwsClustersClient;
 
 /**
- * Lists all [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resources on a given Google Cloud project and
- * region.
+ * Lists all [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resources
+ * on a given Google Cloud project and region.
  *
  * @param string $formattedParent The parent location which owns this collection of
  *                                [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resources.
@@ -38,7 +38,7 @@ use Google\Cloud\GkeMultiCloud\V1\AwsClustersClient;
  *                                Location names are formatted as `projects/<project-id>/locations/<region>`.
  *
  *                                See [Resource Names](https://cloud.google.com/apis/design/resource_names)
- *                                for more details on GCP resource names. Please see
+ *                                for more details on Google Cloud Platform resource names. Please see
  *                                {@see AwsClustersClient::locationName()} for help formatting this field.
  */
 function list_aws_clusters_sample(string $formattedParent): void

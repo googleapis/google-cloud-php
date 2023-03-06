@@ -31,8 +31,8 @@ use Google\Cloud\AIPlatform\V1\ModelServiceClient;
 /**
  * Lists ModelEvaluationSlices in a ModelEvaluation.
  *
- * @param string $formattedParent The resource name of the ModelEvaluation to list the ModelEvaluationSlices
- *                                from. Format:
+ * @param string $formattedParent The resource name of the ModelEvaluation to list the
+ *                                ModelEvaluationSlices from. Format:
  *                                `projects/{project}/locations/{location}/models/{model}/evaluations/{evaluation}`
  *                                Please see {@see ModelServiceClient::modelEvaluationName()} for help formatting this field.
  */

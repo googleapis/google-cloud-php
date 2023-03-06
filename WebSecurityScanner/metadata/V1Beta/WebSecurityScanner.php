@@ -27,7 +27,7 @@ class WebSecurityScanner
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-©-
+«-
 Agoogle/cloud/websecurityscanner/v1beta/web_security_scanner.proto&google.cloud.websecurityscanner.v1betagoogle/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto8google/cloud/websecurityscanner/v1beta/crawled_url.proto4google/cloud/websecurityscanner/v1beta/finding.proto?google/cloud/websecurityscanner/v1beta/finding_type_stats.proto8google/cloud/websecurityscanner/v1beta/scan_config.proto5google/cloud/websecurityscanner/v1beta/scan_run.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"¬
 CreateScanConfigRequestC
 parent (	B3àAúA-
@@ -111,8 +111,8 @@ GetScanRun9.google.cloud.websecurityscanner.v1beta.GetScanRunRequest/.google.c
 
 GetFinding9.google.cloud.websecurityscanner.v1beta.GetFindingRequest/.google.cloud.websecurityscanner.v1beta.Finding"L‚Óä“?=/v1beta/{name=projects/*/scanConfigs/*/scanRuns/*/findings/*}ÚAnameà
 ListFindings;.google.cloud.websecurityscanner.v1beta.ListFindingsRequest<.google.cloud.websecurityscanner.v1beta.ListFindingsResponse"U‚Óä“?=/v1beta/{parent=projects/*/scanConfigs/*/scanRuns/*}/findingsÚAparent,filterù
-ListFindingTypeStatsC.google.cloud.websecurityscanner.v1beta.ListFindingTypeStatsRequestD.google.cloud.websecurityscanner.v1beta.ListFindingTypeStatsResponse"V‚Óä“GE/v1beta/{parent=projects/*/scanConfigs/*/scanRuns/*}/findingTypeStatsÚAparentUÊA!websecurityscanner.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBŸ
-*com.google.cloud.websecurityscanner.v1betaBWebSecurityScannerProtoPZXgoogle.golang.org/genproto/googleapis/cloud/websecurityscanner/v1beta;websecurityscannerª&Google.Cloud.WebSecurityScanner.V1BetaÊ&Google\\Cloud\\WebSecurityScanner\\V1betaê)Google::Cloud::WebSecurityScanner::V1betabproto3'
+ListFindingTypeStatsC.google.cloud.websecurityscanner.v1beta.ListFindingTypeStatsRequestD.google.cloud.websecurityscanner.v1beta.ListFindingTypeStatsResponse"V‚Óä“GE/v1beta/{parent=projects/*/scanConfigs/*/scanRuns/*}/findingTypeStatsÚAparentUÊA!websecurityscanner.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB¡
+*com.google.cloud.websecurityscanner.v1betaBWebSecurityScannerProtoPZZcloud.google.com/go/websecurityscanner/apiv1beta/websecurityscannerpb;websecurityscannerpbª&Google.Cloud.WebSecurityScanner.V1BetaÊ&Google\\Cloud\\WebSecurityScanner\\V1betaê)Google::Cloud::WebSecurityScanner::V1betabproto3'
         , true);
 
         static::$is_initialized = true;

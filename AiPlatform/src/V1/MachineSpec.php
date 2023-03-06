@@ -21,15 +21,18 @@ class MachineSpec extends \Google\Protobuf\Internal\Message
      * prediction](https://cloud.google.com/vertex-ai/docs/predictions/configure-compute#machine-types)
      * See the [list of machine types supported for custom
      * training](https://cloud.google.com/vertex-ai/docs/training/configure-compute#machine-types).
-     * For [DeployedModel][google.cloud.aiplatform.v1.DeployedModel] this field is optional, and the default
-     * value is `n1-standard-2`. For [BatchPredictionJob][google.cloud.aiplatform.v1.BatchPredictionJob] or as part of
-     * [WorkerPoolSpec][google.cloud.aiplatform.v1.WorkerPoolSpec] this field is required.
+     * For [DeployedModel][google.cloud.aiplatform.v1.DeployedModel] this field is
+     * optional, and the default value is `n1-standard-2`. For
+     * [BatchPredictionJob][google.cloud.aiplatform.v1.BatchPredictionJob] or as
+     * part of [WorkerPoolSpec][google.cloud.aiplatform.v1.WorkerPoolSpec] this
+     * field is required.
      *
      * Generated from protobuf field <code>string machine_type = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
     private $machine_type = '';
     /**
-     * Immutable. The type of accelerator(s) that may be attached to the machine as per
+     * Immutable. The type of accelerator(s) that may be attached to the machine
+     * as per
      * [accelerator_count][google.cloud.aiplatform.v1.MachineSpec.accelerator_count].
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.AcceleratorType accelerator_type = 2 [(.google.api.field_behavior) = IMMUTABLE];</code>
@@ -54,11 +57,14 @@ class MachineSpec extends \Google\Protobuf\Internal\Message
      *           prediction](https://cloud.google.com/vertex-ai/docs/predictions/configure-compute#machine-types)
      *           See the [list of machine types supported for custom
      *           training](https://cloud.google.com/vertex-ai/docs/training/configure-compute#machine-types).
-     *           For [DeployedModel][google.cloud.aiplatform.v1.DeployedModel] this field is optional, and the default
-     *           value is `n1-standard-2`. For [BatchPredictionJob][google.cloud.aiplatform.v1.BatchPredictionJob] or as part of
-     *           [WorkerPoolSpec][google.cloud.aiplatform.v1.WorkerPoolSpec] this field is required.
+     *           For [DeployedModel][google.cloud.aiplatform.v1.DeployedModel] this field is
+     *           optional, and the default value is `n1-standard-2`. For
+     *           [BatchPredictionJob][google.cloud.aiplatform.v1.BatchPredictionJob] or as
+     *           part of [WorkerPoolSpec][google.cloud.aiplatform.v1.WorkerPoolSpec] this
+     *           field is required.
      *     @type int $accelerator_type
-     *           Immutable. The type of accelerator(s) that may be attached to the machine as per
+     *           Immutable. The type of accelerator(s) that may be attached to the machine
+     *           as per
      *           [accelerator_count][google.cloud.aiplatform.v1.MachineSpec.accelerator_count].
      *     @type int $accelerator_count
      *           The number of accelerators to attach to the machine.
@@ -75,9 +81,11 @@ class MachineSpec extends \Google\Protobuf\Internal\Message
      * prediction](https://cloud.google.com/vertex-ai/docs/predictions/configure-compute#machine-types)
      * See the [list of machine types supported for custom
      * training](https://cloud.google.com/vertex-ai/docs/training/configure-compute#machine-types).
-     * For [DeployedModel][google.cloud.aiplatform.v1.DeployedModel] this field is optional, and the default
-     * value is `n1-standard-2`. For [BatchPredictionJob][google.cloud.aiplatform.v1.BatchPredictionJob] or as part of
-     * [WorkerPoolSpec][google.cloud.aiplatform.v1.WorkerPoolSpec] this field is required.
+     * For [DeployedModel][google.cloud.aiplatform.v1.DeployedModel] this field is
+     * optional, and the default value is `n1-standard-2`. For
+     * [BatchPredictionJob][google.cloud.aiplatform.v1.BatchPredictionJob] or as
+     * part of [WorkerPoolSpec][google.cloud.aiplatform.v1.WorkerPoolSpec] this
+     * field is required.
      *
      * Generated from protobuf field <code>string machine_type = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
@@ -93,9 +101,11 @@ class MachineSpec extends \Google\Protobuf\Internal\Message
      * prediction](https://cloud.google.com/vertex-ai/docs/predictions/configure-compute#machine-types)
      * See the [list of machine types supported for custom
      * training](https://cloud.google.com/vertex-ai/docs/training/configure-compute#machine-types).
-     * For [DeployedModel][google.cloud.aiplatform.v1.DeployedModel] this field is optional, and the default
-     * value is `n1-standard-2`. For [BatchPredictionJob][google.cloud.aiplatform.v1.BatchPredictionJob] or as part of
-     * [WorkerPoolSpec][google.cloud.aiplatform.v1.WorkerPoolSpec] this field is required.
+     * For [DeployedModel][google.cloud.aiplatform.v1.DeployedModel] this field is
+     * optional, and the default value is `n1-standard-2`. For
+     * [BatchPredictionJob][google.cloud.aiplatform.v1.BatchPredictionJob] or as
+     * part of [WorkerPoolSpec][google.cloud.aiplatform.v1.WorkerPoolSpec] this
+     * field is required.
      *
      * Generated from protobuf field <code>string machine_type = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var
@@ -110,7 +120,8 @@ class MachineSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. The type of accelerator(s) that may be attached to the machine as per
+     * Immutable. The type of accelerator(s) that may be attached to the machine
+     * as per
      * [accelerator_count][google.cloud.aiplatform.v1.MachineSpec.accelerator_count].
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.AcceleratorType accelerator_type = 2 [(.google.api.field_behavior) = IMMUTABLE];</code>
@@ -122,7 +133,8 @@ class MachineSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. The type of accelerator(s) that may be attached to the machine as per
+     * Immutable. The type of accelerator(s) that may be attached to the machine
+     * as per
      * [accelerator_count][google.cloud.aiplatform.v1.MachineSpec.accelerator_count].
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.AcceleratorType accelerator_type = 2 [(.google.api.field_behavior) = IMMUTABLE];</code>

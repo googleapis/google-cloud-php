@@ -7,11 +7,15 @@ namespace Google\Cloud\CertificateManager\V1\Certificate\ManagedCertificate;
 use UnexpectedValueException;
 
 /**
+ * State of the managed certificate resource.
+ *
  * Protobuf type <code>google.cloud.certificatemanager.v1.Certificate.ManagedCertificate.State</code>
  */
 class State
 {
     /**
+     * State is unspecified.
+     *
      * Generated from protobuf enum <code>STATE_UNSPECIFIED = 0;</code>
      */
     const STATE_UNSPECIFIED = 0;

@@ -41,10 +41,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\LocationInfo::getLatLng()'
     name: getLatLng
     id: getLatLng
-    summary: |
-      lat/long location coordinates.
-      
-      Generated from protobuf field <code>.google.type.LatLng lat_lng = 1;</code>
+    summary: 'lat/long location coordinates.'
     parent: \Google\Cloud\Vision\V1\LocationInfo
     type: method
     langs:
@@ -73,10 +70,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\LocationInfo::setLatLng()'
     name: setLatLng
     id: setLatLng
-    summary: |
-      lat/long location coordinates.
-      
-      Generated from protobuf field <code>.google.type.LatLng lat_lng = 1;</code>
+    summary: 'lat/long location coordinates.'
     parent: \Google\Cloud\Vision\V1\LocationInfo
     type: method
     langs:

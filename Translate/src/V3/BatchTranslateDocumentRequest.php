@@ -27,15 +27,15 @@ class BatchTranslateDocumentRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
-     * Required. The BCP-47 language code of the input document if known, for
+     * Required. The ISO-639 language code of the input document if known, for
      * example, "en-US" or "sr-Latn". Supported language codes are listed in
-     * Language Support (https://cloud.google.com/translate/docs/languages).
+     * [Language Support](https://cloud.google.com/translate/docs/languages).
      *
      * Generated from protobuf field <code>string source_language_code = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $source_language_code = '';
     /**
-     * Required. The BCP-47 language code to use for translation of the input
+     * Required. The ISO-639 language code to use for translation of the input
      * document. Specify up to 10 language codes here.
      *
      * Generated from protobuf field <code>repeated string target_language_codes = 3 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -92,6 +92,15 @@ class BatchTranslateDocumentRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>map<string, string> format_conversions = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $format_conversions;
+    /**
+     * Optional. This flag is to support user customized attribution.
+     * If not provided, the default is `Machine Translated by Google`.
+     * Customized attribution should follow rules in
+     * https://cloud.google.com/translate/attribution#attribution_and_logos
+     *
+     * Generated from protobuf field <code>string customized_attribution = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $customized_attribution = '';
 
     /**
      * Constructor.
@@ -107,11 +116,11 @@ class BatchTranslateDocumentRequest extends \Google\Protobuf\Internal\Message
      *           the same location-id) can be used, otherwise an INVALID_ARGUMENT (400)
      *           error is returned.
      *     @type string $source_language_code
-     *           Required. The BCP-47 language code of the input document if known, for
+     *           Required. The ISO-639 language code of the input document if known, for
      *           example, "en-US" or "sr-Latn". Supported language codes are listed in
-     *           Language Support (https://cloud.google.com/translate/docs/languages).
+     *           [Language Support](https://cloud.google.com/translate/docs/languages).
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $target_language_codes
-     *           Required. The BCP-47 language code to use for translation of the input
+     *           Required. The ISO-639 language code to use for translation of the input
      *           document. Specify up to 10 language codes here.
      *     @type array<\Google\Cloud\Translate\V3\BatchDocumentInputConfig>|\Google\Protobuf\Internal\RepeatedField $input_configs
      *           Required. Input configurations.
@@ -144,6 +153,11 @@ class BatchTranslateDocumentRequest extends \Google\Protobuf\Internal\Message
      *             `application/vnd.openxmlformats-officedocument.wordprocessingml.document`
      *           If nothing specified, output files will be in the same format as the
      *           original file.
+     *     @type string $customized_attribution
+     *           Optional. This flag is to support user customized attribution.
+     *           If not provided, the default is `Machine Translated by Google`.
+     *           Customized attribution should follow rules in
+     *           https://cloud.google.com/translate/attribution#attribution_and_logos
      * }
      */
     public function __construct($data = NULL) {
@@ -188,9 +202,9 @@ class BatchTranslateDocumentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The BCP-47 language code of the input document if known, for
+     * Required. The ISO-639 language code of the input document if known, for
      * example, "en-US" or "sr-Latn". Supported language codes are listed in
-     * Language Support (https://cloud.google.com/translate/docs/languages).
+     * [Language Support](https://cloud.google.com/translate/docs/languages).
      *
      * Generated from protobuf field <code>string source_language_code = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -201,9 +215,9 @@ class BatchTranslateDocumentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The BCP-47 language code of the input document if known, for
+     * Required. The ISO-639 language code of the input document if known, for
      * example, "en-US" or "sr-Latn". Supported language codes are listed in
-     * Language Support (https://cloud.google.com/translate/docs/languages).
+     * [Language Support](https://cloud.google.com/translate/docs/languages).
      *
      * Generated from protobuf field <code>string source_language_code = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -218,7 +232,7 @@ class BatchTranslateDocumentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The BCP-47 language code to use for translation of the input
+     * Required. The ISO-639 language code to use for translation of the input
      * document. Specify up to 10 language codes here.
      *
      * Generated from protobuf field <code>repeated string target_language_codes = 3 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -230,7 +244,7 @@ class BatchTranslateDocumentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The BCP-47 language code to use for translation of the input
+     * Required. The ISO-639 language code to use for translation of the input
      * document. Specify up to 10 language codes here.
      *
      * Generated from protobuf field <code>repeated string target_language_codes = 3 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -423,6 +437,38 @@ class BatchTranslateDocumentRequest extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
         $this->format_conversions = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. This flag is to support user customized attribution.
+     * If not provided, the default is `Machine Translated by Google`.
+     * Customized attribution should follow rules in
+     * https://cloud.google.com/translate/attribution#attribution_and_logos
+     *
+     * Generated from protobuf field <code>string customized_attribution = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getCustomizedAttribution()
+    {
+        return $this->customized_attribution;
+    }
+
+    /**
+     * Optional. This flag is to support user customized attribution.
+     * If not provided, the default is `Machine Translated by Google`.
+     * Customized attribution should follow rules in
+     * https://cloud.google.com/translate/attribution#attribution_and_logos
+     *
+     * Generated from protobuf field <code>string customized_attribution = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setCustomizedAttribution($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->customized_attribution = $var;
 
         return $this;
     }

@@ -18,8 +18,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class SampledShapleyAttribution extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The number of feature permutations to consider when approximating the
-     * Shapley values.
+     * Required. The number of feature permutations to consider when approximating
+     * the Shapley values.
      * Valid range of its value is [1, 50], inclusively.
      *
      * Generated from protobuf field <code>int32 path_count = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -33,8 +33,8 @@ class SampledShapleyAttribution extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $path_count
-     *           Required. The number of feature permutations to consider when approximating the
-     *           Shapley values.
+     *           Required. The number of feature permutations to consider when approximating
+     *           the Shapley values.
      *           Valid range of its value is [1, 50], inclusively.
      * }
      */
@@ -44,8 +44,8 @@ class SampledShapleyAttribution extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The number of feature permutations to consider when approximating the
-     * Shapley values.
+     * Required. The number of feature permutations to consider when approximating
+     * the Shapley values.
      * Valid range of its value is [1, 50], inclusively.
      *
      * Generated from protobuf field <code>int32 path_count = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -57,8 +57,8 @@ class SampledShapleyAttribution extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The number of feature permutations to consider when approximating the
-     * Shapley values.
+     * Required. The number of feature permutations to consider when approximating
+     * the Shapley values.
      * Valid range of its value is [1, 50], inclusively.
      *
      * Generated from protobuf field <code>int32 path_count = 1 [(.google.api.field_behavior) = REQUIRED];</code>

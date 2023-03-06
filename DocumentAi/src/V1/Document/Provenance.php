@@ -19,9 +19,10 @@ class Provenance extends \Google\Protobuf\Internal\Message
     /**
      * The index of the revision that produced this element.
      *
-     * Generated from protobuf field <code>int32 revision = 1;</code>
+     * Generated from protobuf field <code>int32 revision = 1 [deprecated = true];</code>
+     * @deprecated
      */
-    private $revision = 0;
+    protected $revision = 0;
     /**
      * The Id of this operation.  Needs to be unique within the scope of the
      * revision.
@@ -68,23 +69,27 @@ class Provenance extends \Google\Protobuf\Internal\Message
     /**
      * The index of the revision that produced this element.
      *
-     * Generated from protobuf field <code>int32 revision = 1;</code>
+     * Generated from protobuf field <code>int32 revision = 1 [deprecated = true];</code>
      * @return int
+     * @deprecated
      */
     public function getRevision()
     {
+        @trigger_error('revision is deprecated.', E_USER_DEPRECATED);
         return $this->revision;
     }
 
     /**
      * The index of the revision that produced this element.
      *
-     * Generated from protobuf field <code>int32 revision = 1;</code>
+     * Generated from protobuf field <code>int32 revision = 1 [deprecated = true];</code>
      * @param int $var
      * @return $this
+     * @deprecated
      */
     public function setRevision($var)
     {
+        @trigger_error('revision is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkInt32($var);
         $this->revision = $var;
 

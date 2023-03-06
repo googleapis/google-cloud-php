@@ -9,7 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Details of [ModelService.ExportModel][google.cloud.aiplatform.v1.ModelService.ExportModel] operation.
+ * Details of
+ * [ModelService.ExportModel][google.cloud.aiplatform.v1.ModelService.ExportModel]
+ * operation.
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.ExportModelOperationMetadata</code>
  */
@@ -22,7 +24,8 @@ class ExportModelOperationMetadata extends \Google\Protobuf\Internal\Message
      */
     private $generic_metadata = null;
     /**
-     * Output only. Information further describing the output of this Model export.
+     * Output only. Information further describing the output of this Model
+     * export.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ExportModelOperationMetadata.OutputInfo output_info = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -37,7 +40,8 @@ class ExportModelOperationMetadata extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\AIPlatform\V1\GenericOperationMetadata $generic_metadata
      *           The common part of the operation metadata.
      *     @type \Google\Cloud\AIPlatform\V1\ExportModelOperationMetadata\OutputInfo $output_info
-     *           Output only. Information further describing the output of this Model export.
+     *           Output only. Information further describing the output of this Model
+     *           export.
      * }
      */
     public function __construct($data = NULL) {
@@ -82,7 +86,8 @@ class ExportModelOperationMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Information further describing the output of this Model export.
+     * Output only. Information further describing the output of this Model
+     * export.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ExportModelOperationMetadata.OutputInfo output_info = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\AIPlatform\V1\ExportModelOperationMetadata\OutputInfo|null
@@ -103,7 +108,8 @@ class ExportModelOperationMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Information further describing the output of this Model export.
+     * Output only. Information further describing the output of this Model
+     * export.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ExportModelOperationMetadata.OutputInfo output_info = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\AIPlatform\V1\ExportModelOperationMetadata\OutputInfo $var

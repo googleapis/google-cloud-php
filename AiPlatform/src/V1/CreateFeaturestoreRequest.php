@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [FeaturestoreService.CreateFeaturestore][google.cloud.aiplatform.v1.FeaturestoreService.CreateFeaturestore].
+ * Request message for
+ * [FeaturestoreService.CreateFeaturestore][google.cloud.aiplatform.v1.FeaturestoreService.CreateFeaturestore].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.CreateFeaturestoreRequest</code>
  */
@@ -30,8 +31,8 @@ class CreateFeaturestoreRequest extends \Google\Protobuf\Internal\Message
      */
     private $featurestore = null;
     /**
-     * Required. The ID to use for this Featurestore, which will become the final component
-     * of the Featurestore's resource name.
+     * Required. The ID to use for this Featurestore, which will become the final
+     * component of the Featurestore's resource name.
      * This value may be up to 60 characters, and valid characters are
      * `[a-z0-9_]`. The first character cannot be a number.
      * The value must be unique within the project and location.
@@ -53,8 +54,8 @@ class CreateFeaturestoreRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\AIPlatform\V1\Featurestore $featurestore
      *           Required. The Featurestore to create.
      *     @type string $featurestore_id
-     *           Required. The ID to use for this Featurestore, which will become the final component
-     *           of the Featurestore's resource name.
+     *           Required. The ID to use for this Featurestore, which will become the final
+     *           component of the Featurestore's resource name.
      *           This value may be up to 60 characters, and valid characters are
      *           `[a-z0-9_]`. The first character cannot be a number.
      *           The value must be unique within the project and location.
@@ -132,8 +133,8 @@ class CreateFeaturestoreRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The ID to use for this Featurestore, which will become the final component
-     * of the Featurestore's resource name.
+     * Required. The ID to use for this Featurestore, which will become the final
+     * component of the Featurestore's resource name.
      * This value may be up to 60 characters, and valid characters are
      * `[a-z0-9_]`. The first character cannot be a number.
      * The value must be unique within the project and location.
@@ -147,8 +148,8 @@ class CreateFeaturestoreRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The ID to use for this Featurestore, which will become the final component
-     * of the Featurestore's resource name.
+     * Required. The ID to use for this Featurestore, which will become the final
+     * component of the Featurestore's resource name.
      * This value may be up to 60 characters, and valid characters are
      * `[a-z0-9_]`. The first character cannot be a number.
      * The value must be unique within the project and location.

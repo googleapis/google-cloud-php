@@ -34,7 +34,7 @@ class ListSkusResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Channel\V1\Sku[]|\Google\Protobuf\Internal\RepeatedField $skus
+     *     @type array<\Google\Cloud\Channel\V1\Sku>|\Google\Protobuf\Internal\RepeatedField $skus
      *           The list of SKUs requested.
      *     @type string $next_page_token
      *           A token to retrieve the next page of results.
@@ -60,7 +60,7 @@ class ListSkusResponse extends \Google\Protobuf\Internal\Message
      * The list of SKUs requested.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.Sku skus = 1;</code>
-     * @param \Google\Cloud\Channel\V1\Sku[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Channel\V1\Sku>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSkus($var)

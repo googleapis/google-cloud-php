@@ -9,15 +9,17 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [FeaturestoreOnlineServingService.WriteFeatureValues][google.cloud.aiplatform.v1.FeaturestoreOnlineServingService.WriteFeatureValues].
+ * Request message for
+ * [FeaturestoreOnlineServingService.WriteFeatureValues][google.cloud.aiplatform.v1.FeaturestoreOnlineServingService.WriteFeatureValues].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.WriteFeatureValuesRequest</code>
  */
 class WriteFeatureValuesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name of the EntityType for the entities being written.
-     * Value format: `projects/{project}/locations/{location}/featurestores/
+     * Required. The resource name of the EntityType for the entities being
+     * written. Value format:
+     * `projects/{project}/locations/{location}/featurestores/
      * {featurestore}/entityTypes/{entityType}`. For example,
      * for a machine learning model predicting user clicks on a website, an
      * EntityType ID could be `user`.
@@ -26,8 +28,8 @@ class WriteFeatureValuesRequest extends \Google\Protobuf\Internal\Message
      */
     private $entity_type = '';
     /**
-     * Required. The entities to be written. Up to 100,000 feature values can be written
-     * across all `payloads`.
+     * Required. The entities to be written. Up to 100,000 feature values can be
+     * written across all `payloads`.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.WriteFeatureValuesPayload payloads = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -40,14 +42,15 @@ class WriteFeatureValuesRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $entity_type
-     *           Required. The resource name of the EntityType for the entities being written.
-     *           Value format: `projects/{project}/locations/{location}/featurestores/
+     *           Required. The resource name of the EntityType for the entities being
+     *           written. Value format:
+     *           `projects/{project}/locations/{location}/featurestores/
      *           {featurestore}/entityTypes/{entityType}`. For example,
      *           for a machine learning model predicting user clicks on a website, an
      *           EntityType ID could be `user`.
      *     @type array<\Google\Cloud\AIPlatform\V1\WriteFeatureValuesPayload>|\Google\Protobuf\Internal\RepeatedField $payloads
-     *           Required. The entities to be written. Up to 100,000 feature values can be written
-     *           across all `payloads`.
+     *           Required. The entities to be written. Up to 100,000 feature values can be
+     *           written across all `payloads`.
      * }
      */
     public function __construct($data = NULL) {
@@ -56,8 +59,9 @@ class WriteFeatureValuesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the EntityType for the entities being written.
-     * Value format: `projects/{project}/locations/{location}/featurestores/
+     * Required. The resource name of the EntityType for the entities being
+     * written. Value format:
+     * `projects/{project}/locations/{location}/featurestores/
      * {featurestore}/entityTypes/{entityType}`. For example,
      * for a machine learning model predicting user clicks on a website, an
      * EntityType ID could be `user`.
@@ -71,8 +75,9 @@ class WriteFeatureValuesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the EntityType for the entities being written.
-     * Value format: `projects/{project}/locations/{location}/featurestores/
+     * Required. The resource name of the EntityType for the entities being
+     * written. Value format:
+     * `projects/{project}/locations/{location}/featurestores/
      * {featurestore}/entityTypes/{entityType}`. For example,
      * for a machine learning model predicting user clicks on a website, an
      * EntityType ID could be `user`.
@@ -90,8 +95,8 @@ class WriteFeatureValuesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The entities to be written. Up to 100,000 feature values can be written
-     * across all `payloads`.
+     * Required. The entities to be written. Up to 100,000 feature values can be
+     * written across all `payloads`.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.WriteFeatureValuesPayload payloads = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -102,8 +107,8 @@ class WriteFeatureValuesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The entities to be written. Up to 100,000 feature values can be written
-     * across all `payloads`.
+     * Required. The entities to be written. Up to 100,000 feature values can be
+     * written across all `payloads`.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.WriteFeatureValuesPayload payloads = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param array<\Google\Cloud\AIPlatform\V1\WriteFeatureValuesPayload>|\Google\Protobuf\Internal\RepeatedField $var

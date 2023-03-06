@@ -47,7 +47,7 @@ class OptimizeToursRequest extends \Google\Protobuf\Internal\Message
      */
     private $solving_mode = 0;
     /**
-     * Truncates the number of validation errors returned. Those errors are
+     * Truncates the number of validation errors returned. These errors are
      * typically attached to an INVALID_ARGUMENT error payload as a BadRequest
      * error detail (https://cloud.google.com/apis/design/errors#error_details),
      * unless solving_mode=VALIDATE_ONLY: see the
@@ -248,7 +248,8 @@ class OptimizeToursRequest extends \Google\Protobuf\Internal\Message
      */
     private $label = '';
     /**
-     * Deprecated: Use [OptimizeToursRequest.populate_transition_polylines][]
+     * Deprecated: Use
+     * [OptimizeToursRequest.populate_transition_polylines][google.cloud.optimization.v1.OptimizeToursRequest.populate_transition_polylines]
      * instead. If true, polylines will be populated in response
      * [ShipmentRoute.transitions][google.cloud.optimization.v1.ShipmentRoute.transitions].
      * Note that in this case, the polylines will also be populated in the
@@ -280,7 +281,7 @@ class OptimizeToursRequest extends \Google\Protobuf\Internal\Message
      *     @type int $solving_mode
      *           By default, the solving mode is `DEFAULT_SOLVE` (0).
      *     @type int $max_validation_errors
-     *           Truncates the number of validation errors returned. Those errors are
+     *           Truncates the number of validation errors returned. These errors are
      *           typically attached to an INVALID_ARGUMENT error payload as a BadRequest
      *           error detail (https://cloud.google.com/apis/design/errors#error_details),
      *           unless solving_mode=VALIDATE_ONLY: see the
@@ -429,7 +430,8 @@ class OptimizeToursRequest extends \Google\Protobuf\Internal\Message
      *           Label that may be used to identify this request, reported back in the
      *           [OptimizeToursResponse.request_label][google.cloud.optimization.v1.OptimizeToursResponse.request_label].
      *     @type bool $populate_travel_step_polylines
-     *           Deprecated: Use [OptimizeToursRequest.populate_transition_polylines][]
+     *           Deprecated: Use
+     *           [OptimizeToursRequest.populate_transition_polylines][google.cloud.optimization.v1.OptimizeToursRequest.populate_transition_polylines]
      *           instead. If true, polylines will be populated in response
      *           [ShipmentRoute.transitions][google.cloud.optimization.v1.ShipmentRoute.transitions].
      *           Note that in this case, the polylines will also be populated in the
@@ -578,7 +580,7 @@ class OptimizeToursRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Truncates the number of validation errors returned. Those errors are
+     * Truncates the number of validation errors returned. These errors are
      * typically attached to an INVALID_ARGUMENT error payload as a BadRequest
      * error detail (https://cloud.google.com/apis/design/errors#error_details),
      * unless solving_mode=VALIDATE_ONLY: see the
@@ -605,7 +607,7 @@ class OptimizeToursRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Truncates the number of validation errors returned. Those errors are
+     * Truncates the number of validation errors returned. These errors are
      * typically attached to an INVALID_ARGUMENT error payload as a BadRequest
      * error detail (https://cloud.google.com/apis/design/errors#error_details),
      * unless solving_mode=VALIDATE_ONLY: see the
@@ -1192,7 +1194,8 @@ class OptimizeToursRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated: Use [OptimizeToursRequest.populate_transition_polylines][]
+     * Deprecated: Use
+     * [OptimizeToursRequest.populate_transition_polylines][google.cloud.optimization.v1.OptimizeToursRequest.populate_transition_polylines]
      * instead. If true, polylines will be populated in response
      * [ShipmentRoute.transitions][google.cloud.optimization.v1.ShipmentRoute.transitions].
      * Note that in this case, the polylines will also be populated in the
@@ -1209,7 +1212,8 @@ class OptimizeToursRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated: Use [OptimizeToursRequest.populate_transition_polylines][]
+     * Deprecated: Use
+     * [OptimizeToursRequest.populate_transition_polylines][google.cloud.optimization.v1.OptimizeToursRequest.populate_transition_polylines]
      * instead. If true, polylines will be populated in response
      * [ShipmentRoute.transitions][google.cloud.optimization.v1.ShipmentRoute.transitions].
      * Note that in this case, the polylines will also be populated in the

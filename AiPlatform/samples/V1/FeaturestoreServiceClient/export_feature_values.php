@@ -35,8 +35,8 @@ use Google\Rpc\Status;
 /**
  * Exports Feature values from all the entities of a target EntityType.
  *
- * @param string $formattedEntityType                The resource name of the EntityType from which to export Feature values.
- *                                                   Format:
+ * @param string $formattedEntityType                The resource name of the EntityType from which to export Feature
+ *                                                   values. Format:
  *                                                   `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}`
  *                                                   Please see {@see FeaturestoreServiceClient::entityTypeName()} for help formatting this field.
  * @param string $featureSelectorIdMatcherIdsElement The following are accepted as `ids`:

@@ -32,7 +32,8 @@ use Google\Cloud\Speech\V1p1beta1\PhraseSet;
  * a multi-word phrase. The items in the PhraseSet are favored by the
  * recognition model when you send a call that includes the PhraseSet.
  *
- * @param string $formattedParent The parent resource where this phrase set will be created. Format:
+ * @param string $formattedParent The parent resource where this phrase set will be created.
+ *                                Format:
  *
  *                                `projects/{project}/locations/{location}/phraseSets`
  *

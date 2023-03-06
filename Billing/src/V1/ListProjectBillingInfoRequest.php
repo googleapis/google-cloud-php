@@ -16,8 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListProjectBillingInfoRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name of the billing account associated with the projects that
-     * you want to list. For example, `billingAccounts/012345-567890-ABCDEF`.
+     * Required. The resource name of the billing account associated with the
+     * projects that you want to list. For example,
+     * `billingAccounts/012345-567890-ABCDEF`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -45,8 +46,9 @@ class ListProjectBillingInfoRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The resource name of the billing account associated with the projects that
-     *           you want to list. For example, `billingAccounts/012345-567890-ABCDEF`.
+     *           Required. The resource name of the billing account associated with the
+     *           projects that you want to list. For example,
+     *           `billingAccounts/012345-567890-ABCDEF`.
      *     @type int $page_size
      *           Requested page size. The maximum page size is 100; this is also the
      *           default.
@@ -62,8 +64,9 @@ class ListProjectBillingInfoRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the billing account associated with the projects that
-     * you want to list. For example, `billingAccounts/012345-567890-ABCDEF`.
+     * Required. The resource name of the billing account associated with the
+     * projects that you want to list. For example,
+     * `billingAccounts/012345-567890-ABCDEF`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -74,8 +77,9 @@ class ListProjectBillingInfoRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the billing account associated with the projects that
-     * you want to list. For example, `billingAccounts/012345-567890-ABCDEF`.
+     * Required. The resource name of the billing account associated with the
+     * projects that you want to list. For example,
+     * `billingAccounts/012345-567890-ABCDEF`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

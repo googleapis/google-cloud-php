@@ -1,6 +1,7 @@
 {
     "distribution_name": "google/cloud-logging",
-    "release_level": "ga",
+    "release_level": "stable",
     "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-logging/latest",
-    "library_type": "GAPIC_COMBO"
+    "library_type": "GAPIC_COMBO",
+    "api_shortname": "logging"
 }

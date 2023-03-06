@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Column properties for [TableCard][google.cloud.dialogflow.v2.Intent.Message.TableCard].
+ * Column properties for
+ * [TableCard][google.cloud.dialogflow.v2.Intent.Message.TableCard].
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.Intent.Message.ColumnProperties</code>
  */

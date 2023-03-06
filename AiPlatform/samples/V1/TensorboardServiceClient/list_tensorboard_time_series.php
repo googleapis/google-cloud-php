@@ -31,8 +31,8 @@ use Google\Cloud\AIPlatform\V1\TensorboardTimeSeries;
 /**
  * Lists TensorboardTimeSeries in a Location.
  *
- * @param string $formattedParent The resource name of the TensorboardRun to list TensorboardTimeSeries.
- *                                Format:
+ * @param string $formattedParent The resource name of the TensorboardRun to list
+ *                                TensorboardTimeSeries. Format:
  *                                `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}/runs/{run}`
  *                                Please see {@see TensorboardServiceClient::tensorboardRunName()} for help formatting this field.
  */

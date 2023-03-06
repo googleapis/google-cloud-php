@@ -29,8 +29,8 @@ class CreateWorkloadRequest extends \Google\Protobuf\Internal\Message
      */
     private $workload = null;
     /**
-     * Optional. A identifier associated with the workload and underlying projects
-     * which allows for the break down of billing costs for a workload. The value
+     * Optional. A identifier associated with the workload and underlying projects which
+     * allows for the break down of billing costs for a workload. The value
      * provided for the identifier will add a label to the workload and contained
      * projects with the identifier as the value.
      *
@@ -50,8 +50,8 @@ class CreateWorkloadRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\AssuredWorkloads\V1beta1\Workload $workload
      *           Required. Assured Workload to create
      *     @type string $external_id
-     *           Optional. A identifier associated with the workload and underlying projects
-     *           which allows for the break down of billing costs for a workload. The value
+     *           Optional. A identifier associated with the workload and underlying projects which
+     *           allows for the break down of billing costs for a workload. The value
      *           provided for the identifier will add a label to the workload and contained
      *           projects with the identifier as the value.
      * }
@@ -126,8 +126,8 @@ class CreateWorkloadRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A identifier associated with the workload and underlying projects
-     * which allows for the break down of billing costs for a workload. The value
+     * Optional. A identifier associated with the workload and underlying projects which
+     * allows for the break down of billing costs for a workload. The value
      * provided for the identifier will add a label to the workload and contained
      * projects with the identifier as the value.
      *
@@ -140,8 +140,8 @@ class CreateWorkloadRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A identifier associated with the workload and underlying projects
-     * which allows for the break down of billing costs for a workload. The value
+     * Optional. A identifier associated with the workload and underlying projects which
+     * allows for the break down of billing costs for a workload. The value
      * provided for the identifier will add a label to the workload and contained
      * projects with the identifier as the value.
      *

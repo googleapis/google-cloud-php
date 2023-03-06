@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A knowledge document to be used by a [KnowledgeBase][google.cloud.dialogflow.v2.KnowledgeBase].
+ * A knowledge document to be used by a
+ * [KnowledgeBase][google.cloud.dialogflow.v2.KnowledgeBase].
  * For more information, see the [knowledge base
  * guide](https://cloud.google.com/dialogflow/docs/how/knowledge-bases).
  * Note: The `projects.agent.knowledgeBases.documents` resource is deprecated;

@@ -22,13 +22,15 @@ class SchedulerResource extends \Google\Protobuf\Internal\Message
      */
     private $cpu = 0.0;
     /**
-     * Optional. Memory (GB) request and limit for a single Airflow scheduler replica.
+     * Optional. Memory (GB) request and limit for a single Airflow scheduler
+     * replica.
      *
      * Generated from protobuf field <code>float memory_gb = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $memory_gb = 0.0;
     /**
-     * Optional. Storage (GB) request and limit for a single Airflow scheduler replica.
+     * Optional. Storage (GB) request and limit for a single Airflow scheduler
+     * replica.
      *
      * Generated from protobuf field <code>float storage_gb = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -49,9 +51,11 @@ class SchedulerResource extends \Google\Protobuf\Internal\Message
      *     @type float $cpu
      *           Optional. CPU request and limit for a single Airflow scheduler replica.
      *     @type float $memory_gb
-     *           Optional. Memory (GB) request and limit for a single Airflow scheduler replica.
+     *           Optional. Memory (GB) request and limit for a single Airflow scheduler
+     *           replica.
      *     @type float $storage_gb
-     *           Optional. Storage (GB) request and limit for a single Airflow scheduler replica.
+     *           Optional. Storage (GB) request and limit for a single Airflow scheduler
+     *           replica.
      *     @type int $count
      *           Optional. The number of schedulers.
      * }
@@ -88,7 +92,8 @@ class SchedulerResource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Memory (GB) request and limit for a single Airflow scheduler replica.
+     * Optional. Memory (GB) request and limit for a single Airflow scheduler
+     * replica.
      *
      * Generated from protobuf field <code>float memory_gb = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return float
@@ -99,7 +104,8 @@ class SchedulerResource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Memory (GB) request and limit for a single Airflow scheduler replica.
+     * Optional. Memory (GB) request and limit for a single Airflow scheduler
+     * replica.
      *
      * Generated from protobuf field <code>float memory_gb = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param float $var
@@ -114,7 +120,8 @@ class SchedulerResource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Storage (GB) request and limit for a single Airflow scheduler replica.
+     * Optional. Storage (GB) request and limit for a single Airflow scheduler
+     * replica.
      *
      * Generated from protobuf field <code>float storage_gb = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return float
@@ -125,7 +132,8 @@ class SchedulerResource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Storage (GB) request and limit for a single Airflow scheduler replica.
+     * Optional. Storage (GB) request and limit for a single Airflow scheduler
+     * replica.
      *
      * Generated from protobuf field <code>float storage_gb = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param float $var
@@ -167,6 +175,4 @@ class SchedulerResource extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(SchedulerResource::class, \Google\Cloud\Orchestration\Airflow\Service\V1\WorkloadsConfig_SchedulerResource::class);
 

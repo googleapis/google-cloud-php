@@ -30,7 +30,7 @@ class PBNamespace
 key (	
 value (	:8:nêAk
 )servicedirectory.googleapis.com/Namespace>projects/{project}/locations/{location}/namespaces/{namespace}B’
-)com.google.cloud.servicedirectory.v1beta1BNamespaceProtoPZUgoogle.golang.org/genproto/googleapis/cloud/servicedirectory/v1beta1;servicedirectoryøª%Google.Cloud.ServiceDirectory.V1Beta1Ê%Google\\Cloud\\ServiceDirectory\\V1beta1ê(Google::Cloud::ServiceDirectory::V1beta1bproto3'
+)com.google.cloud.servicedirectory.v1beta1BNamespaceProtoPZUcloud.google.com/go/servicedirectory/apiv1beta1/servicedirectorypb;servicedirectorypbøª%Google.Cloud.ServiceDirectory.V1Beta1Ê%Google\\Cloud\\ServiceDirectory\\V1beta1ê(Google::Cloud::ServiceDirectory::V1beta1bproto3'
         , true);
 
         static::$is_initialized = true;

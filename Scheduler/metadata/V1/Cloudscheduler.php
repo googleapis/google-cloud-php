@@ -23,7 +23,7 @@ class Cloudscheduler
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-
+…
 .google/cloud/scheduler/v1/cloudscheduler.protogoogle.cloud.scheduler.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto#google/cloud/scheduler/v1/job.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"s
 ListJobsRequest9
 parent (	B)àAúA#!cloudscheduler.googleapis.com/Job
@@ -64,8 +64,8 @@ parent,job¥
 	DeleteJob+.google.cloud.scheduler.v1.DeleteJobRequest.google.protobuf.Empty"7‚Óä“**(/v1/{name=projects/*/locations/*/jobs/*}ÚAname˜
 PauseJob*.google.cloud.scheduler.v1.PauseJobRequest.google.cloud.scheduler.v1.Job"@‚Óä“3"./v1/{name=projects/*/locations/*/jobs/*}:pause:*ÚAname›
 	ResumeJob+.google.cloud.scheduler.v1.ResumeJobRequest.google.cloud.scheduler.v1.Job"A‚Óä“4"//v1/{name=projects/*/locations/*/jobs/*}:resume:*ÚAname’
-RunJob(.google.cloud.scheduler.v1.RunJobRequest.google.cloud.scheduler.v1.Job">‚Óä“1",/v1/{name=projects/*/locations/*/jobs/*}:run:*ÚAnameQÊAcloudscheduler.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB
-com.google.cloud.scheduler.v1BSchedulerProtoPZBgoogle.golang.org/genproto/googleapis/cloud/scheduler/v1;scheduler¢	SCHEDULERbproto3'
+RunJob(.google.cloud.scheduler.v1.RunJobRequest.google.cloud.scheduler.v1.Job">‚Óä“1",/v1/{name=projects/*/locations/*/jobs/*}:run:*ÚAnameQÊAcloudscheduler.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBz
+com.google.cloud.scheduler.v1BSchedulerProtoPZ;cloud.google.com/go/scheduler/apiv1/schedulerpb;schedulerpb¢	SCHEDULERbproto3'
         , true);
 
         static::$is_initialized = true;

@@ -1,6 +1,7 @@
 {
     "distribution_name": "google/cloud-service-usage",
-    "release_level": "ga",
+    "release_level": "stable",
     "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-service-usage/latest",
-    "library_type": "GAPIC_AUTO"
+    "library_type": "GAPIC_AUTO",
+    "api_shortname": "serviceusage"
 }

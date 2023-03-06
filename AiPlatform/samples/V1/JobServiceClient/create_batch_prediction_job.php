@@ -33,15 +33,15 @@ use Google\Cloud\AIPlatform\V1\JobServiceClient;
  * Creates a BatchPredictionJob. A BatchPredictionJob once created will
  * right away be attempted to start.
  *
- * @param string $formattedParent                                 The resource name of the Location to create the BatchPredictionJob in.
- *                                                                Format: `projects/{project}/locations/{location}`
+ * @param string $formattedParent                                 The resource name of the Location to create the
+ *                                                                BatchPredictionJob in. Format: `projects/{project}/locations/{location}`
  *                                                                Please see {@see JobServiceClient::locationName()} for help formatting this field.
  * @param string $batchPredictionJobDisplayName                   The user-defined name of this BatchPredictionJob.
  * @param string $batchPredictionJobInputConfigInstancesFormat    The format in which instances are given, must be one of the
  *                                                                [Model's][google.cloud.aiplatform.v1.BatchPredictionJob.model]
  *                                                                [supported_input_storage_formats][google.cloud.aiplatform.v1.Model.supported_input_storage_formats].
- * @param string $batchPredictionJobOutputConfigPredictionsFormat The format in which Vertex AI gives the predictions, must be one of the
- *                                                                [Model's][google.cloud.aiplatform.v1.BatchPredictionJob.model]
+ * @param string $batchPredictionJobOutputConfigPredictionsFormat The format in which Vertex AI gives the predictions, must be
+ *                                                                one of the [Model's][google.cloud.aiplatform.v1.BatchPredictionJob.model]
  *                                                                [supported_output_storage_formats][google.cloud.aiplatform.v1.Model.supported_output_storage_formats].
  */
 function create_batch_prediction_job_sample(

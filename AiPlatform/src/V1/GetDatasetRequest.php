@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [DatasetService.GetDataset][google.cloud.aiplatform.v1.DatasetService.GetDataset].
+ * Request message for
+ * [DatasetService.GetDataset][google.cloud.aiplatform.v1.DatasetService.GetDataset].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.GetDatasetRequest</code>
  */

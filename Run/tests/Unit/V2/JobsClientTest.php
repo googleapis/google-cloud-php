@@ -605,6 +605,9 @@ class JobsClientTest extends GeneratedTest
         $runningCount = 261439119;
         $succeededCount = 633694641;
         $failedCount = 2013829491;
+        $cancelledCount = 1921113249;
+        $retriedCount = 1654679545;
+        $logUri = 'logUri342054385';
         $etag2 = 'etag2-1293302904';
         $expectedResponse = new Execution();
         $expectedResponse->setName($name2);
@@ -618,6 +621,9 @@ class JobsClientTest extends GeneratedTest
         $expectedResponse->setRunningCount($runningCount);
         $expectedResponse->setSucceededCount($succeededCount);
         $expectedResponse->setFailedCount($failedCount);
+        $expectedResponse->setCancelledCount($cancelledCount);
+        $expectedResponse->setRetriedCount($retriedCount);
+        $expectedResponse->setLogUri($logUri);
         $expectedResponse->setEtag($etag2);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());

@@ -25,8 +25,10 @@ class FeatureValueDestination extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\AIPlatform\V1\BigQueryDestination $bigquery_destination
      *           Output in BigQuery format.
-     *           [BigQueryDestination.output_uri][google.cloud.aiplatform.v1.BigQueryDestination.output_uri] in
-     *           [FeatureValueDestination.bigquery_destination][google.cloud.aiplatform.v1.FeatureValueDestination.bigquery_destination] must refer to a table.
+     *           [BigQueryDestination.output_uri][google.cloud.aiplatform.v1.BigQueryDestination.output_uri]
+     *           in
+     *           [FeatureValueDestination.bigquery_destination][google.cloud.aiplatform.v1.FeatureValueDestination.bigquery_destination]
+     *           must refer to a table.
      *     @type \Google\Cloud\AIPlatform\V1\TFRecordDestination $tfrecord_destination
      *           Output in TFRecord format.
      *           Below are the mapping from Feature value type
@@ -49,8 +51,10 @@ class FeatureValueDestination extends \Google\Protobuf\Internal\Message
 
     /**
      * Output in BigQuery format.
-     * [BigQueryDestination.output_uri][google.cloud.aiplatform.v1.BigQueryDestination.output_uri] in
-     * [FeatureValueDestination.bigquery_destination][google.cloud.aiplatform.v1.FeatureValueDestination.bigquery_destination] must refer to a table.
+     * [BigQueryDestination.output_uri][google.cloud.aiplatform.v1.BigQueryDestination.output_uri]
+     * in
+     * [FeatureValueDestination.bigquery_destination][google.cloud.aiplatform.v1.FeatureValueDestination.bigquery_destination]
+     * must refer to a table.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.BigQueryDestination bigquery_destination = 1;</code>
      * @return \Google\Cloud\AIPlatform\V1\BigQueryDestination|null
@@ -67,8 +71,10 @@ class FeatureValueDestination extends \Google\Protobuf\Internal\Message
 
     /**
      * Output in BigQuery format.
-     * [BigQueryDestination.output_uri][google.cloud.aiplatform.v1.BigQueryDestination.output_uri] in
-     * [FeatureValueDestination.bigquery_destination][google.cloud.aiplatform.v1.FeatureValueDestination.bigquery_destination] must refer to a table.
+     * [BigQueryDestination.output_uri][google.cloud.aiplatform.v1.BigQueryDestination.output_uri]
+     * in
+     * [FeatureValueDestination.bigquery_destination][google.cloud.aiplatform.v1.FeatureValueDestination.bigquery_destination]
+     * must refer to a table.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.BigQueryDestination bigquery_destination = 1;</code>
      * @param \Google\Cloud\AIPlatform\V1\BigQueryDestination $var

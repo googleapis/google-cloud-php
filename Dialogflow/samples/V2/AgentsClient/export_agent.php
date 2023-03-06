@@ -38,15 +38,16 @@ use Google\Rpc\Status;
  *
  * - `metadata`: An empty [Struct
  * message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#struct)
- * - `response`: [ExportAgentResponse][google.cloud.dialogflow.v2.ExportAgentResponse]
+ * - `response`:
+ * [ExportAgentResponse][google.cloud.dialogflow.v2.ExportAgentResponse]
  *
  * @param string $formattedParent The project that the agent to export is associated with.
  *                                Format: `projects/<Project ID>`. Please see
  *                                {@see AgentsClient::projectName()} for help formatting this field.
- * @param string $agentUri        The [Google Cloud Storage](https://cloud.google.com/storage/docs/)
- *                                URI to export the agent to.
- *                                The format of this URI must be `gs://<bucket-name>/<object-name>`.
- *                                If left unspecified, the serialized agent is returned inline.
+ * @param string $agentUri        The [Google Cloud
+ *                                Storage](https://cloud.google.com/storage/docs/) URI to export the agent
+ *                                to. The format of this URI must be `gs://<bucket-name>/<object-name>`. If
+ *                                left unspecified, the serialized agent is returned inline.
  *
  *                                Dialogflow performs a write operation for the Cloud Storage object
  *                                on the caller's behalf, so your request authentication must

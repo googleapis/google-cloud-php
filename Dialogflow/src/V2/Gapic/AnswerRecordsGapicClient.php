@@ -45,7 +45,8 @@ use Google\Cloud\Location\Location;
 use Google\Protobuf\FieldMask;
 
 /**
- * Service Description: Service for managing [AnswerRecords][google.cloud.dialogflow.v2.AnswerRecord].
+ * Service Description: Service for managing
+ * [AnswerRecords][google.cloud.dialogflow.v2.AnswerRecord].
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:

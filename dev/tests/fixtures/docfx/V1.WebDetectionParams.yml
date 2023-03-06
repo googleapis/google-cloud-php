@@ -39,10 +39,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\WebDetectionParams::getIncludeGeoResults()'
     name: getIncludeGeoResults
     id: getIncludeGeoResults
-    summary: |
-      Whether to include results derived from the geo information in the image.
-      
-      Generated from protobuf field <code>bool include_geo_results = 2;</code>
+    summary: 'Whether to include results derived from the geo information in the image.'
     parent: \Google\Cloud\Vision\V1\WebDetectionParams
     type: method
     langs:
@@ -55,10 +52,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\WebDetectionParams::setIncludeGeoResults()'
     name: setIncludeGeoResults
     id: setIncludeGeoResults
-    summary: |
-      Whether to include results derived from the geo information in the image.
-      
-      Generated from protobuf field <code>bool include_geo_results = 2;</code>
+    summary: 'Whether to include results derived from the geo information in the image.'
     parent: \Google\Cloud\Vision\V1\WebDetectionParams
     type: method
     langs:

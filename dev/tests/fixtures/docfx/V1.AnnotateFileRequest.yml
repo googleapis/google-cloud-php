@@ -61,10 +61,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\AnnotateFileRequest::getInputConfig()'
     name: getInputConfig
     id: getInputConfig
-    summary: |
-      Required. Information about the input file.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.InputConfig input_config = 1;</code>
+    summary: 'Required. Information about the input file.'
     parent: \Google\Cloud\Vision\V1\AnnotateFileRequest
     type: method
     langs:
@@ -93,10 +90,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\AnnotateFileRequest::setInputConfig()'
     name: setInputConfig
     id: setInputConfig
-    summary: |
-      Required. Information about the input file.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.InputConfig input_config = 1;</code>
+    summary: 'Required. Information about the input file.'
     parent: \Google\Cloud\Vision\V1\AnnotateFileRequest
     type: method
     langs:
@@ -114,10 +108,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\AnnotateFileRequest::getFeatures()'
     name: getFeatures
     id: getFeatures
-    summary: |
-      Required. Requested features.
-      
-      Generated from protobuf field <code>repeated .google.cloud.vision.v1.Feature features = 2;</code>
+    summary: 'Required. Requested features.'
     parent: \Google\Cloud\Vision\V1\AnnotateFileRequest
     type: method
     langs:
@@ -125,15 +116,12 @@ items:
     syntax:
       returns:
         -
-          var_type: Google\Protobuf\Internal\RepeatedField
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Internal/RepeatedField">Google\Protobuf\Internal\RepeatedField</a>'
   -
     uid: '\Google\Cloud\Vision\V1\AnnotateFileRequest::setFeatures()'
     name: setFeatures
     id: setFeatures
-    summary: |
-      Required. Requested features.
-      
-      Generated from protobuf field <code>repeated .google.cloud.vision.v1.Feature features = 2;</code>
+    summary: 'Required. Requested features.'
     parent: \Google\Cloud\Vision\V1\AnnotateFileRequest
     type: method
     langs:
@@ -151,10 +139,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\AnnotateFileRequest::getImageContext()'
     name: getImageContext
     id: getImageContext
-    summary: |
-      Additional context that may accompany the image(s) in the file.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.ImageContext image_context = 3;</code>
+    summary: 'Additional context that may accompany the image(s) in the file.'
     parent: \Google\Cloud\Vision\V1\AnnotateFileRequest
     type: method
     langs:
@@ -183,10 +168,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\AnnotateFileRequest::setImageContext()'
     name: setImageContext
     id: setImageContext
-    summary: |
-      Additional context that may accompany the image(s) in the file.
-      
-      Generated from protobuf field <code>.google.cloud.vision.v1.ImageContext image_context = 3;</code>
+    summary: 'Additional context that may accompany the image(s) in the file.'
     parent: \Google\Cloud\Vision\V1\AnnotateFileRequest
     type: method
     langs:
@@ -216,8 +198,6 @@ items:
       If the file is GIF instead of PDF or TIFF, page refers to GIF frames.
       If this field is empty, by default the service performs image annotation
       for the first 5 pages of the file.
-      
-      Generated from protobuf field <code>repeated int32 pages = 4;</code>
     parent: \Google\Cloud\Vision\V1\AnnotateFileRequest
     type: method
     langs:
@@ -225,7 +205,7 @@ items:
     syntax:
       returns:
         -
-          var_type: Google\Protobuf\Internal\RepeatedField
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Internal/RepeatedField">Google\Protobuf\Internal\RepeatedField</a>'
   -
     uid: '\Google\Cloud\Vision\V1\AnnotateFileRequest::setPages()'
     name: setPages
@@ -242,8 +222,6 @@ items:
       If the file is GIF instead of PDF or TIFF, page refers to GIF frames.
       If this field is empty, by default the service performs image annotation
       for the first 5 pages of the file.
-      
-      Generated from protobuf field <code>repeated int32 pages = 4;</code>
     parent: \Google\Cloud\Vision\V1\AnnotateFileRequest
     type: method
     langs:

@@ -17,8 +17,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class KeyId extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. The value of this KeyId encoded in lowercase hexadecimal. This is most
-     * likely the 160 bit SHA-1 hash of the public key.
+     * Optional. The value of this KeyId encoded in lowercase hexadecimal. This
+     * is most likely the 160 bit SHA-1 hash of the public key.
      *
      * Generated from protobuf field <code>string key_id = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -31,8 +31,8 @@ class KeyId extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $key_id
-     *           Optional. The value of this KeyId encoded in lowercase hexadecimal. This is most
-     *           likely the 160 bit SHA-1 hash of the public key.
+     *           Optional. The value of this KeyId encoded in lowercase hexadecimal. This
+     *           is most likely the 160 bit SHA-1 hash of the public key.
      * }
      */
     public function __construct($data = NULL) {
@@ -41,8 +41,8 @@ class KeyId extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The value of this KeyId encoded in lowercase hexadecimal. This is most
-     * likely the 160 bit SHA-1 hash of the public key.
+     * Optional. The value of this KeyId encoded in lowercase hexadecimal. This
+     * is most likely the 160 bit SHA-1 hash of the public key.
      *
      * Generated from protobuf field <code>string key_id = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -53,8 +53,8 @@ class KeyId extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The value of this KeyId encoded in lowercase hexadecimal. This is most
-     * likely the 160 bit SHA-1 hash of the public key.
+     * Optional. The value of this KeyId encoded in lowercase hexadecimal. This
+     * is most likely the 160 bit SHA-1 hash of the public key.
      *
      * Generated from protobuf field <code>string key_id = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

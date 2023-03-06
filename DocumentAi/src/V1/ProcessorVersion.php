@@ -52,6 +52,12 @@ class ProcessorVersion extends \Google\Protobuf\Internal\Message
      */
     private $create_time = null;
     /**
+     * The most recently invoked evaluation for the processor version.
+     *
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.EvaluationReference latest_evaluation = 8;</code>
+     */
+    private $latest_evaluation = null;
+    /**
      * The KMS key name used for encryption.
      *
      * Generated from protobuf field <code>string kms_key_name = 9;</code>
@@ -94,6 +100,8 @@ class ProcessorVersion extends \Google\Protobuf\Internal\Message
      *           The state of the processor version.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           The time the processor version was created.
+     *     @type \Google\Cloud\DocumentAI\V1\EvaluationReference $latest_evaluation
+     *           The most recently invoked evaluation for the processor version.
      *     @type string $kms_key_name
      *           The KMS key name used for encryption.
      *     @type string $kms_key_version_name
@@ -259,6 +267,42 @@ class ProcessorVersion extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->create_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * The most recently invoked evaluation for the processor version.
+     *
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.EvaluationReference latest_evaluation = 8;</code>
+     * @return \Google\Cloud\DocumentAI\V1\EvaluationReference|null
+     */
+    public function getLatestEvaluation()
+    {
+        return $this->latest_evaluation;
+    }
+
+    public function hasLatestEvaluation()
+    {
+        return isset($this->latest_evaluation);
+    }
+
+    public function clearLatestEvaluation()
+    {
+        unset($this->latest_evaluation);
+    }
+
+    /**
+     * The most recently invoked evaluation for the processor version.
+     *
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.EvaluationReference latest_evaluation = 8;</code>
+     * @param \Google\Cloud\DocumentAI\V1\EvaluationReference $var
+     * @return $this
+     */
+    public function setLatestEvaluation($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DocumentAI\V1\EvaluationReference::class);
+        $this->latest_evaluation = $var;
 
         return $this;
     }

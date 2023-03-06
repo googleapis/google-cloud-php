@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Response message for [FeaturestoreService.ListFeaturestores][google.cloud.aiplatform.v1.FeaturestoreService.ListFeaturestores].
+ * Response message for
+ * [FeaturestoreService.ListFeaturestores][google.cloud.aiplatform.v1.FeaturestoreService.ListFeaturestores].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.ListFeaturestoresResponse</code>
  */
@@ -22,9 +23,10 @@ class ListFeaturestoresResponse extends \Google\Protobuf\Internal\Message
      */
     private $featurestores;
     /**
-     * A token, which can be sent as [ListFeaturestoresRequest.page_token][google.cloud.aiplatform.v1.ListFeaturestoresRequest.page_token] to
-     * retrieve the next page.
-     * If this field is omitted, there are no subsequent pages.
+     * A token, which can be sent as
+     * [ListFeaturestoresRequest.page_token][google.cloud.aiplatform.v1.ListFeaturestoresRequest.page_token]
+     * to retrieve the next page. If this field is omitted, there are no
+     * subsequent pages.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
@@ -39,9 +41,10 @@ class ListFeaturestoresResponse extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Cloud\AIPlatform\V1\Featurestore>|\Google\Protobuf\Internal\RepeatedField $featurestores
      *           The Featurestores matching the request.
      *     @type string $next_page_token
-     *           A token, which can be sent as [ListFeaturestoresRequest.page_token][google.cloud.aiplatform.v1.ListFeaturestoresRequest.page_token] to
-     *           retrieve the next page.
-     *           If this field is omitted, there are no subsequent pages.
+     *           A token, which can be sent as
+     *           [ListFeaturestoresRequest.page_token][google.cloud.aiplatform.v1.ListFeaturestoresRequest.page_token]
+     *           to retrieve the next page. If this field is omitted, there are no
+     *           subsequent pages.
      * }
      */
     public function __construct($data = NULL) {
@@ -76,9 +79,10 @@ class ListFeaturestoresResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A token, which can be sent as [ListFeaturestoresRequest.page_token][google.cloud.aiplatform.v1.ListFeaturestoresRequest.page_token] to
-     * retrieve the next page.
-     * If this field is omitted, there are no subsequent pages.
+     * A token, which can be sent as
+     * [ListFeaturestoresRequest.page_token][google.cloud.aiplatform.v1.ListFeaturestoresRequest.page_token]
+     * to retrieve the next page. If this field is omitted, there are no
+     * subsequent pages.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @return string
@@ -89,9 +93,10 @@ class ListFeaturestoresResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A token, which can be sent as [ListFeaturestoresRequest.page_token][google.cloud.aiplatform.v1.ListFeaturestoresRequest.page_token] to
-     * retrieve the next page.
-     * If this field is omitted, there are no subsequent pages.
+     * A token, which can be sent as
+     * [ListFeaturestoresRequest.page_token][google.cloud.aiplatform.v1.ListFeaturestoresRequest.page_token]
+     * to retrieve the next page. If this field is omitted, there are no
+     * subsequent pages.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @param string $var

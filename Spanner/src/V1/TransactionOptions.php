@@ -32,7 +32,8 @@ use Google\Protobuf\Internal\GPBUtil;
  *      need to be committed.
  *      Queries on change streams must be performed with the snapshot read-only
  *      transaction mode, specifying a strong read. Please see
- *      [TransactionOptions.ReadOnly.strong][google.spanner.v1.TransactionOptions.ReadOnly.strong] for more details.
+ *      [TransactionOptions.ReadOnly.strong][google.spanner.v1.TransactionOptions.ReadOnly.strong]
+ *      for more details.
  *   3. Partitioned DML. This type of transaction is used to execute
  *      a single Partitioned DML statement. Partitioned DML partitions
  *      the key space and runs the DML statement over each partition
@@ -138,7 +139,8 @@ use Google\Protobuf\Internal\GPBUtil;
  * timestamp.
  * Queries on change streams (see below for more details) must also specify
  * the strong read timestamp bound.
- * See [TransactionOptions.ReadOnly.strong][google.spanner.v1.TransactionOptions.ReadOnly.strong].
+ * See
+ * [TransactionOptions.ReadOnly.strong][google.spanner.v1.TransactionOptions.ReadOnly.strong].
  * Exact staleness:
  * These timestamp bounds execute reads at a user-specified
  * timestamp. Reads at a timestamp are guaranteed to see a consistent
@@ -154,7 +156,9 @@ use Google\Protobuf\Internal\GPBUtil;
  * timestamp. As a result, they execute slightly faster than the
  * equivalent boundedly stale concurrency modes. On the other hand,
  * boundedly stale reads usually return fresher results.
- * See [TransactionOptions.ReadOnly.read_timestamp][google.spanner.v1.TransactionOptions.ReadOnly.read_timestamp] and
+ * See
+ * [TransactionOptions.ReadOnly.read_timestamp][google.spanner.v1.TransactionOptions.ReadOnly.read_timestamp]
+ * and
  * [TransactionOptions.ReadOnly.exact_staleness][google.spanner.v1.TransactionOptions.ReadOnly.exact_staleness].
  * Bounded staleness:
  * Bounded staleness modes allow Cloud Spanner to pick the read timestamp,
@@ -177,7 +181,9 @@ use Google\Protobuf\Internal\GPBUtil;
  * Because the timestamp negotiation requires up-front knowledge of
  * which rows will be read, it can only be used with single-use
  * read-only transactions.
- * See [TransactionOptions.ReadOnly.max_staleness][google.spanner.v1.TransactionOptions.ReadOnly.max_staleness] and
+ * See
+ * [TransactionOptions.ReadOnly.max_staleness][google.spanner.v1.TransactionOptions.ReadOnly.max_staleness]
+ * and
  * [TransactionOptions.ReadOnly.min_read_timestamp][google.spanner.v1.TransactionOptions.ReadOnly.min_read_timestamp].
  * Old read timestamps and garbage collection:
  * Cloud Spanner continuously garbage collects deleted and overwritten data

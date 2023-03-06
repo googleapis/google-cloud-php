@@ -31,6 +31,7 @@ use Google\ApiCore\PagedListResponse;
 /**
  * Lists Audiences on a property.
  * Audiences created before 2020 may not be supported.
+ * Default audiences will not show filter definitions.
  *
  * @param string $formattedParent Example format: properties/1234
  *                                Please see {@see AnalyticsAdminServiceClient::propertyName()} for help formatting this field.

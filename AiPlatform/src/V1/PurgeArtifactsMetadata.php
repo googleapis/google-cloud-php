@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Details of operations that perform [MetadataService.PurgeArtifacts][google.cloud.aiplatform.v1.MetadataService.PurgeArtifacts].
+ * Details of operations that perform
+ * [MetadataService.PurgeArtifacts][google.cloud.aiplatform.v1.MetadataService.PurgeArtifacts].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.PurgeArtifactsMetadata</code>
  */

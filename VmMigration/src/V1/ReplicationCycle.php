@@ -17,17 +17,62 @@ use Google\Protobuf\Internal\GPBUtil;
 class ReplicationCycle extends \Google\Protobuf\Internal\Message
 {
     /**
+     * The identifier of the ReplicationCycle.
+     *
+     * Generated from protobuf field <code>string name = 13;</code>
+     */
+    private $name = '';
+    /**
+     * The cycle's ordinal number.
+     *
+     * Generated from protobuf field <code>int32 cycle_number = 10;</code>
+     */
+    private $cycle_number = 0;
+    /**
      * The time the replication cycle has started.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 1;</code>
      */
     private $start_time = null;
     /**
-     * The current progress in percentage of this cycle.
+     * The time the replication cycle has ended.
      *
-     * Generated from protobuf field <code>int32 progress_percent = 5;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 6;</code>
      */
-    private $progress_percent = 0;
+    private $end_time = null;
+    /**
+     * The accumulated duration the replication cycle was paused.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration total_pause_duration = 7;</code>
+     */
+    private $total_pause_duration = null;
+    /**
+     * The current progress in percentage of this cycle.
+     * Was replaced by 'steps' field, which breaks down the cycle progression more
+     * accurately.
+     *
+     * Generated from protobuf field <code>int32 progress_percent = 5 [deprecated = true];</code>
+     * @deprecated
+     */
+    protected $progress_percent = 0;
+    /**
+     * The cycle's steps list representing its progress.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.vmmigration.v1.CycleStep steps = 9;</code>
+     */
+    private $steps;
+    /**
+     * State of the ReplicationCycle.
+     *
+     * Generated from protobuf field <code>.google.cloud.vmmigration.v1.ReplicationCycle.State state = 11;</code>
+     */
+    private $state = 0;
+    /**
+     * Provides details on the state of the cycle in case of an error.
+     *
+     * Generated from protobuf field <code>.google.rpc.Status error = 12;</code>
+     */
+    private $error = null;
 
     /**
      * Constructor.
@@ -35,15 +80,83 @@ class ReplicationCycle extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type string $name
+     *           The identifier of the ReplicationCycle.
+     *     @type int $cycle_number
+     *           The cycle's ordinal number.
      *     @type \Google\Protobuf\Timestamp $start_time
      *           The time the replication cycle has started.
+     *     @type \Google\Protobuf\Timestamp $end_time
+     *           The time the replication cycle has ended.
+     *     @type \Google\Protobuf\Duration $total_pause_duration
+     *           The accumulated duration the replication cycle was paused.
      *     @type int $progress_percent
      *           The current progress in percentage of this cycle.
+     *           Was replaced by 'steps' field, which breaks down the cycle progression more
+     *           accurately.
+     *     @type array<\Google\Cloud\VMMigration\V1\CycleStep>|\Google\Protobuf\Internal\RepeatedField $steps
+     *           The cycle's steps list representing its progress.
+     *     @type int $state
+     *           State of the ReplicationCycle.
+     *     @type \Google\Rpc\Status $error
+     *           Provides details on the state of the cycle in case of an error.
      * }
      */
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Vmmigration\V1\Vmmigration::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * The identifier of the ReplicationCycle.
+     *
+     * Generated from protobuf field <code>string name = 13;</code>
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * The identifier of the ReplicationCycle.
+     *
+     * Generated from protobuf field <code>string name = 13;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->name = $var;
+
+        return $this;
+    }
+
+    /**
+     * The cycle's ordinal number.
+     *
+     * Generated from protobuf field <code>int32 cycle_number = 10;</code>
+     * @return int
+     */
+    public function getCycleNumber()
+    {
+        return $this->cycle_number;
+    }
+
+    /**
+     * The cycle's ordinal number.
+     *
+     * Generated from protobuf field <code>int32 cycle_number = 10;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setCycleNumber($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->cycle_number = $var;
+
+        return $this;
     }
 
     /**
@@ -83,27 +196,195 @@ class ReplicationCycle extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The current progress in percentage of this cycle.
+     * The time the replication cycle has ended.
      *
-     * Generated from protobuf field <code>int32 progress_percent = 5;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 6;</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getEndTime()
+    {
+        return $this->end_time;
+    }
+
+    public function hasEndTime()
+    {
+        return isset($this->end_time);
+    }
+
+    public function clearEndTime()
+    {
+        unset($this->end_time);
+    }
+
+    /**
+     * The time the replication cycle has ended.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 6;</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setEndTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->end_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * The accumulated duration the replication cycle was paused.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration total_pause_duration = 7;</code>
+     * @return \Google\Protobuf\Duration|null
+     */
+    public function getTotalPauseDuration()
+    {
+        return $this->total_pause_duration;
+    }
+
+    public function hasTotalPauseDuration()
+    {
+        return isset($this->total_pause_duration);
+    }
+
+    public function clearTotalPauseDuration()
+    {
+        unset($this->total_pause_duration);
+    }
+
+    /**
+     * The accumulated duration the replication cycle was paused.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration total_pause_duration = 7;</code>
+     * @param \Google\Protobuf\Duration $var
+     * @return $this
+     */
+    public function setTotalPauseDuration($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
+        $this->total_pause_duration = $var;
+
+        return $this;
+    }
+
+    /**
+     * The current progress in percentage of this cycle.
+     * Was replaced by 'steps' field, which breaks down the cycle progression more
+     * accurately.
+     *
+     * Generated from protobuf field <code>int32 progress_percent = 5 [deprecated = true];</code>
      * @return int
+     * @deprecated
      */
     public function getProgressPercent()
     {
+        @trigger_error('progress_percent is deprecated.', E_USER_DEPRECATED);
         return $this->progress_percent;
     }
 
     /**
      * The current progress in percentage of this cycle.
+     * Was replaced by 'steps' field, which breaks down the cycle progression more
+     * accurately.
      *
-     * Generated from protobuf field <code>int32 progress_percent = 5;</code>
+     * Generated from protobuf field <code>int32 progress_percent = 5 [deprecated = true];</code>
      * @param int $var
      * @return $this
+     * @deprecated
      */
     public function setProgressPercent($var)
     {
+        @trigger_error('progress_percent is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkInt32($var);
         $this->progress_percent = $var;
+
+        return $this;
+    }
+
+    /**
+     * The cycle's steps list representing its progress.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.vmmigration.v1.CycleStep steps = 9;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getSteps()
+    {
+        return $this->steps;
+    }
+
+    /**
+     * The cycle's steps list representing its progress.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.vmmigration.v1.CycleStep steps = 9;</code>
+     * @param array<\Google\Cloud\VMMigration\V1\CycleStep>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setSteps($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\VMMigration\V1\CycleStep::class);
+        $this->steps = $arr;
+
+        return $this;
+    }
+
+    /**
+     * State of the ReplicationCycle.
+     *
+     * Generated from protobuf field <code>.google.cloud.vmmigration.v1.ReplicationCycle.State state = 11;</code>
+     * @return int
+     */
+    public function getState()
+    {
+        return $this->state;
+    }
+
+    /**
+     * State of the ReplicationCycle.
+     *
+     * Generated from protobuf field <code>.google.cloud.vmmigration.v1.ReplicationCycle.State state = 11;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setState($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\VMMigration\V1\ReplicationCycle\State::class);
+        $this->state = $var;
+
+        return $this;
+    }
+
+    /**
+     * Provides details on the state of the cycle in case of an error.
+     *
+     * Generated from protobuf field <code>.google.rpc.Status error = 12;</code>
+     * @return \Google\Rpc\Status|null
+     */
+    public function getError()
+    {
+        return $this->error;
+    }
+
+    public function hasError()
+    {
+        return isset($this->error);
+    }
+
+    public function clearError()
+    {
+        unset($this->error);
+    }
+
+    /**
+     * Provides details on the state of the cycle in case of an error.
+     *
+     * Generated from protobuf field <code>.google.rpc.Status error = 12;</code>
+     * @param \Google\Rpc\Status $var
+     * @return $this
+     */
+    public function setError($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Rpc\Status::class);
+        $this->error = $var;
 
         return $this;
     }

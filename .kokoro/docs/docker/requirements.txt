@@ -4,9 +4,9 @@
 #
 #    pip-compile --generate-hashes /Users/betterbrent/Code/google-cloud-php/.kokoro/docs/docker/requirements.in
 #
-cachetools==5.2.0 \
-    --hash=sha256:6a94c6402995a99c3970cc7e4884bb60b4a8639938157eeed436098bf9831757 \
-    --hash=sha256:f9f17d2aec496a9aa6b76f53e3b614c965223c061982d434d160f930c698a9db
+cachetools==5.3.0 \
+    --hash=sha256:13dfddc7b8df938c21a940dfa6557ce6e94a2f1cdfa58eb90c805721d58f2c14 \
+    --hash=sha256:429e1a1e845c008ea6c85aa35d4b98b65d6a9763eeef3e37e92728a12d1de9d4
     # via google-auth
 certifi==2022.12.7 \
     --hash=sha256:35824b4c3a97115964b408844d64aa14db1cc518f6562e8d7261699d1350a9e3 \
@@ -34,9 +34,9 @@ google-api-core==2.11.0 \
     # via
     #   google-cloud-core
     #   google-cloud-storage
-google-auth==2.15.0 \
-    --hash=sha256:6897b93556d8d807ad70701bb89f000183aea366ca7ed94680828b37437a4994 \
-    --hash=sha256:72f12a6cfc968d754d7bdab369c5c5c16032106e52d32c6dfd8484e4c01a6d1f
+google-auth==2.16.1 \
+    --hash=sha256:5fd170986bce6bfd7bb5c845c4b8362edb1e0cba901e062196e83f8bb5d5d32c \
+    --hash=sha256:75d76ea857df65938e1f71dcbcd7d0cd48e3f80b34b8870ba229c9292081f7ef
     # via
     #   google-api-core
     #   google-cloud-core
@@ -119,33 +119,32 @@ google-crc32c==1.5.0 \
     --hash=sha256:fd8536e902db7e365f49e7d9029283403974ccf29b13fc7028b97e2295b33556 \
     --hash=sha256:fe70e325aa68fa4b5edf7d1a4b6f691eb04bbccac0ace68e34820d283b5f80d4
     # via google-resumable-media
-google-resumable-media==2.4.0 \
-    --hash=sha256:2aa004c16d295c8f6c33b2b4788ba59d366677c0a25ae7382436cb30f776deaa \
-    --hash=sha256:8d5518502f92b9ecc84ac46779bd4f09694ecb3ba38a3e7ca737a86d15cbca1f
+google-resumable-media==2.4.1 \
+    --hash=sha256:15b8a2e75df42dc6502d1306db0bce2647ba6013f9cd03b6e17368c0886ee90a \
+    --hash=sha256:831e86fd78d302c1a034730a0c6e5369dd11d37bad73fa69ca8998460d5bae8d
     # via google-cloud-storage
-googleapis-common-protos==1.57.0 \
-    --hash=sha256:27a849d6205838fb6cc3c1c21cb9800707a661bb21c6ce7fb13e99eb1f8a0c46 \
-    --hash=sha256:a9f4a1d7f6d9809657b7f1316a1aa527f6664891531bcfcc13b6696e685f443c
+googleapis-common-protos==1.58.0 \
+    --hash=sha256:c727251ec025947d545184ba17e3578840fc3a24a0516a020479edab660457df \
+    --hash=sha256:ca3befcd4580dab6ad49356b46bf165bb68ff4b32389f028f1abd7c10ab9519a
     # via google-api-core
 idna==3.4 \
     --hash=sha256:814f528e8dead7d329833b91c5faa87d60bf71824cd12a7530b5526063d02cb4 \
     --hash=sha256:90b77e79eaa3eba6de819a0c442c0b4ceefc341a7a2ab77d7562bf49f425c5c2
     # via requests
-protobuf==4.21.11 \
-    --hash=sha256:25266bf373ee06d5d66f9eb1ec9d434b243dccce5c32faf151054cfa6f9dcbf1 \
-    --hash=sha256:260e346927fd4e6fbb49ab545137b19610c24a1d853dc5f29ddf777ab1987211 \
-    --hash=sha256:2c6a4d13732d9b094db31b3841986c38b17ac61a3fe05ee26a779d94c4c3fb43 \
-    --hash=sha256:4922e3320ed70e81f05060822da36923d09fd9e04e17f411f2d8d8d0070f9f5c \
-    --hash=sha256:4b75c947289a2e9c1f37d21c593f1ef6fb4fed33977dfb2ac84f799eb29a8ff4 \
-    --hash=sha256:4d01ef83517c181d60ea1c6d0b2f644be250ade740d6554a2f5a021b1ad622e3 \
-    --hash=sha256:553e35c0878f6855e55f01a14561e6bce6df79b6636a5acf83b9d9ac7eab7922 \
-    --hash=sha256:85ccb4753ee21de7dc81a7a68a051f25dbe133ffa01a639ac998427d0b223387 \
-    --hash=sha256:a5a14b907a191319e7a58b38c583bbf50deb21e002f723a912c5e4f6969a778e \
-    --hash=sha256:a944dc9550baae276afc7dc8193191d4c2ad660270a1e5ed5a71539817ebe2e2 \
-    --hash=sha256:bab4b21a986ded225b9392c07ce21c35d790951f51e1ebfd32e4d443b05c3726 \
-    --hash=sha256:c3b9e329b4c247dc3ba5c50f60915a84e08278eb6d9e3fa674d0d04ff816bfd7 \
-    --hash=sha256:d91a47c77b33580024b0271b65bb820c4e0264c25eb49151ad01e691de8fa0b6 \
-    --hash=sha256:efb16b16fd3eef25357f84d516062753014b76279ce4e0ec4880badd2fba7370
+protobuf==4.22.0 \
+    --hash=sha256:1669cb7524221a8e2d9008d0842453dbefdd0fcdd64d67672f657244867635fb \
+    --hash=sha256:29288813aacaa302afa2381db1d6e0482165737b0afdf2811df5fa99185c457b \
+    --hash=sha256:47d31bdf58222dd296976aa1646c68c6ee80b96d22e0a3c336c9174e253fd35e \
+    --hash=sha256:652d8dfece122a24d98eebfef30e31e455d300efa41999d1182e015984ac5930 \
+    --hash=sha256:7c535d126e7dcc714105ab20b418c4fedbd28f8b8afc42b7350b1e317bbbcc71 \
+    --hash=sha256:86c3d20428b007537ba6792b475c0853bba7f66b1f60e610d913b77d94b486e4 \
+    --hash=sha256:a33a273d21852f911b8bda47f39f4383fe7c061eb1814db2c76c9875c89c2491 \
+    --hash=sha256:ab4d043865dd04e6b09386981fe8f80b39a1e46139fb4a3c206229d6b9f36ff6 \
+    --hash=sha256:b2fea9dc8e3c0f32c38124790ef16cba2ee0628fe2022a52e435e1117bfef9b1 \
+    --hash=sha256:c27f371f0159feb70e6ea52ed7e768b3f3a4c5676c1900a7e51a24740381650e \
+    --hash=sha256:c3325803095fb4c2a48649c321d2fbde59f8fbfcb9bfc7a86df27d112831c571 \
+    --hash=sha256:e474b63bab0a2ea32a7b26a4d8eec59e33e709321e5e16fb66e766b61b82a95e \
+    --hash=sha256:e894e9ae603e963f0842498c4cd5d39c6a60f0d7e4c103df50ee939564298658
     # via
     #   gcp-docuploader
     #   google-api-core
@@ -160,9 +159,9 @@ pyasn1-modules==0.2.8 \
     --hash=sha256:905f84c712230b2c592c19470d3ca8d552de726050d1d1716282a1f6146be65e \
     --hash=sha256:a50b808ffeb97cb3601dd25981f6b016cbb3d31fbf57a8b8a87428e6158d0c74
     # via google-auth
-requests==2.28.1 \
-    --hash=sha256:7c5599b102feddaa661c826c56ab4fee28bfd17f5abca1ebbe3e7f19d7c97983 \
-    --hash=sha256:8fefa2a1a1365bf5520aac41836fbee479da67864514bdb821f31ce07ce65349
+requests==2.28.2 \
+    --hash=sha256:64299f4909223da747622c030b781c0d7811e359c37124b4bd368fb8c6518baa \
+    --hash=sha256:98b1b2782e3c6c4904938b84c0eb932721069dfdb9134313beff7c83c2df24bf
     # via
     #   google-api-core
     #   google-cloud-storage
@@ -176,7 +175,7 @@ six==1.16.0 \
     # via
     #   gcp-docuploader
     #   google-auth
-urllib3==1.26.13 \
-    --hash=sha256:47cc05d99aaa09c9e72ed5809b60e7ba354e64b59c9c173ac3018642d8bb41fc \
-    --hash=sha256:c083dd0dce68dbfbe1129d5271cb90f9447dea7d52097c6e0126120c521ddea8
+urllib3==1.26.14 \
+    --hash=sha256:076907bf8fd355cde77728471316625a4d2f7e713c125f51953bb5b3eecf4f72 \
+    --hash=sha256:75edcdc2f7d85b137124a6c3c9fc3933cdeaa12ecb9a6a959f22797a0feca7e1
     # via requests

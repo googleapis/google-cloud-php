@@ -29,9 +29,11 @@ use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Bigtable\V2\BigtableClient;
 use Google\Cloud\Bigtable\V2\CheckAndMutateRowResponse;
+use Google\Cloud\Bigtable\V2\GenerateInitialChangeStreamPartitionsResponse;
 use Google\Cloud\Bigtable\V2\MutateRowResponse;
 use Google\Cloud\Bigtable\V2\MutateRowsResponse;
 use Google\Cloud\Bigtable\V2\PingAndWarmResponse;
+use Google\Cloud\Bigtable\V2\ReadChangeStreamResponse;
 use Google\Cloud\Bigtable\V2\ReadModifyWriteRowResponse;
 use Google\Cloud\Bigtable\V2\ReadRowsResponse;
 use Google\Cloud\Bigtable\V2\SampleRowKeysResponse;
@@ -120,6 +122,76 @@ class BigtableClientTest extends GeneratedTest
         try {
             $gapicClient->checkAndMutateRow($formattedTableName, $rowKey);
             // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function generateInitialChangeStreamPartitionsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new GenerateInitialChangeStreamPartitionsResponse();
+        $transport->addResponse($expectedResponse);
+        $expectedResponse2 = new GenerateInitialChangeStreamPartitionsResponse();
+        $transport->addResponse($expectedResponse2);
+        $expectedResponse3 = new GenerateInitialChangeStreamPartitionsResponse();
+        $transport->addResponse($expectedResponse3);
+        // Mock request
+        $formattedTableName = $gapicClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
+        $serverStream = $gapicClient->generateInitialChangeStreamPartitions($formattedTableName);
+        $this->assertInstanceOf(ServerStream::class, $serverStream);
+        $responses = iterator_to_array($serverStream->readAll());
+        $expectedResponses = [];
+        $expectedResponses[] = $expectedResponse;
+        $expectedResponses[] = $expectedResponse2;
+        $expectedResponses[] = $expectedResponse3;
+        $this->assertEquals($expectedResponses, $responses);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.bigtable.v2.Bigtable/GenerateInitialChangeStreamPartitions', $actualFuncCall);
+        $actualValue = $actualRequestObject->getTableName();
+        $this->assertProtobufEquals($formattedTableName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function generateInitialChangeStreamPartitionsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->setStreamingStatus($status);
+        $this->assertTrue($transport->isExhausted());
+        // Mock request
+        $formattedTableName = $gapicClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
+        $serverStream = $gapicClient->generateInitialChangeStreamPartitions($formattedTableName);
+        $results = $serverStream->readAll();
+        try {
+            iterator_to_array($results);
+            // If the close stream method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -318,6 +390,76 @@ class BigtableClientTest extends GeneratedTest
         try {
             $gapicClient->pingAndWarm($formattedName);
             // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function readChangeStreamTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new ReadChangeStreamResponse();
+        $transport->addResponse($expectedResponse);
+        $expectedResponse2 = new ReadChangeStreamResponse();
+        $transport->addResponse($expectedResponse2);
+        $expectedResponse3 = new ReadChangeStreamResponse();
+        $transport->addResponse($expectedResponse3);
+        // Mock request
+        $formattedTableName = $gapicClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
+        $serverStream = $gapicClient->readChangeStream($formattedTableName);
+        $this->assertInstanceOf(ServerStream::class, $serverStream);
+        $responses = iterator_to_array($serverStream->readAll());
+        $expectedResponses = [];
+        $expectedResponses[] = $expectedResponse;
+        $expectedResponses[] = $expectedResponse2;
+        $expectedResponses[] = $expectedResponse3;
+        $this->assertEquals($expectedResponses, $responses);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.bigtable.v2.Bigtable/ReadChangeStream', $actualFuncCall);
+        $actualValue = $actualRequestObject->getTableName();
+        $this->assertProtobufEquals($formattedTableName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function readChangeStreamExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->setStreamingStatus($status);
+        $this->assertTrue($transport->isExhausted());
+        // Mock request
+        $formattedTableName = $gapicClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
+        $serverStream = $gapicClient->readChangeStream($formattedTableName);
+        $results = $serverStream->readAll();
+        try {
+            iterator_to_array($results);
+            // If the close stream method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

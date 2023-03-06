@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Response message for [MetadataService.ListMetadataSchemas][google.cloud.aiplatform.v1.MetadataService.ListMetadataSchemas].
+ * Response message for
+ * [MetadataService.ListMetadataSchemas][google.cloud.aiplatform.v1.MetadataService.ListMetadataSchemas].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.ListMetadataSchemasResponse</code>
  */
@@ -23,8 +24,9 @@ class ListMetadataSchemasResponse extends \Google\Protobuf\Internal\Message
     private $metadata_schemas;
     /**
      * A token, which can be sent as
-     * [ListMetadataSchemasRequest.page_token][google.cloud.aiplatform.v1.ListMetadataSchemasRequest.page_token] to retrieve the next
-     * page. If this field is not populated, there are no subsequent pages.
+     * [ListMetadataSchemasRequest.page_token][google.cloud.aiplatform.v1.ListMetadataSchemasRequest.page_token]
+     * to retrieve the next page. If this field is not populated, there are no
+     * subsequent pages.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
@@ -40,8 +42,9 @@ class ListMetadataSchemasResponse extends \Google\Protobuf\Internal\Message
      *           The MetadataSchemas found for the MetadataStore.
      *     @type string $next_page_token
      *           A token, which can be sent as
-     *           [ListMetadataSchemasRequest.page_token][google.cloud.aiplatform.v1.ListMetadataSchemasRequest.page_token] to retrieve the next
-     *           page. If this field is not populated, there are no subsequent pages.
+     *           [ListMetadataSchemasRequest.page_token][google.cloud.aiplatform.v1.ListMetadataSchemasRequest.page_token]
+     *           to retrieve the next page. If this field is not populated, there are no
+     *           subsequent pages.
      * }
      */
     public function __construct($data = NULL) {
@@ -77,8 +80,9 @@ class ListMetadataSchemasResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * A token, which can be sent as
-     * [ListMetadataSchemasRequest.page_token][google.cloud.aiplatform.v1.ListMetadataSchemasRequest.page_token] to retrieve the next
-     * page. If this field is not populated, there are no subsequent pages.
+     * [ListMetadataSchemasRequest.page_token][google.cloud.aiplatform.v1.ListMetadataSchemasRequest.page_token]
+     * to retrieve the next page. If this field is not populated, there are no
+     * subsequent pages.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @return string
@@ -90,8 +94,9 @@ class ListMetadataSchemasResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * A token, which can be sent as
-     * [ListMetadataSchemasRequest.page_token][google.cloud.aiplatform.v1.ListMetadataSchemasRequest.page_token] to retrieve the next
-     * page. If this field is not populated, there are no subsequent pages.
+     * [ListMetadataSchemasRequest.page_token][google.cloud.aiplatform.v1.ListMetadataSchemasRequest.page_token]
+     * to retrieve the next page. If this field is not populated, there are no
+     * subsequent pages.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @param string $var

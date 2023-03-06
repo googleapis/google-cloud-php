@@ -31,8 +31,8 @@ use Google\Cloud\AIPlatform\V1\IndexEndpointServiceClient;
 /**
  * Lists IndexEndpoints in a Location.
  *
- * @param string $formattedParent The resource name of the Location from which to list the IndexEndpoints.
- *                                Format: `projects/{project}/locations/{location}`
+ * @param string $formattedParent The resource name of the Location from which to list the
+ *                                IndexEndpoints. Format: `projects/{project}/locations/{location}`
  *                                Please see {@see IndexEndpointServiceClient::locationName()} for help formatting this field.
  */
 function list_index_endpoints_sample(string $formattedParent): void

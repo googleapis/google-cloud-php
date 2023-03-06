@@ -20,11 +20,15 @@ import subprocess
 
 import synthtool as s
 from synthtool.languages import php
+from synthtool import _tracked_paths
 
 logging.basicConfig(level=logging.DEBUG)
 
 src = Path(f"../{php.STAGING_DIR}/BigQueryReservation").resolve()
 dest = Path().resolve()
+
+# Added so that we can pass copy_excludes in the owlbot_main() call
+_tracked_paths.add(src)
 
 php.owlbot_main(
     src=src,
@@ -44,23 +48,6 @@ s.replace(
     + "\n",
     '')
 
-# document and utilize apiEndpoint instead of serviceAddress
-s.replace(
-    "**/Gapic/*GapicClient.php",
-    r"'serviceAddress' =>",
-    r"'apiEndpoint' =>")
-s.replace(
-    "**/Gapic/*GapicClient.php",
-    r"@type string \$serviceAddress\n\s+\*\s+The address",
-    r"""@type string $serviceAddress
-     *           **Deprecated**. This option will be removed in a future major release. Please
-     *           utilize the `$apiEndpoint` option instead.
-     *     @type string $apiEndpoint
-     *           The address""")
-s.replace(
-    "**/Gapic/*GapicClient.php",
-    r"\$transportConfig, and any \$serviceAddress",
-    r"$transportConfig, and any `$apiEndpoint`")
 
 # prevent null reference error when descriptor uses optional field.
 s.replace(
@@ -73,12 +60,6 @@ s.replace(
             ]);
         }"""
 )
-
-# Change the wording for the deprecation warning.
-s.replace(
-    'src/*/*_*.php',
-    r'will be removed in the next major release',
-    'will be removed in a future release')
 
 # fix test group
 s.replace(
@@ -95,12 +76,6 @@ s.replace(
     r"""Generated from protobuf field \1
      */
     private $""")
-
-# prevent proto messages from being marked final
-s.replace(
-    "src/**/V*/**/*.php",
-    r"final class",
-    r"class")
 
 # Replace "Unwrapped" with "Value" for method names.
 s.replace(
