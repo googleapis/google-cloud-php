@@ -58,7 +58,7 @@ class RetryConformanceTest extends TestCase
         }
 
         $setup = true;
-        self::$emulatorUrl = getenv('STORAGE_TESTBENCH_EMULATOR_HOST');
+        self::$emulatorUrl = getenv('STORAGE_EMULATOR_HOST');
 
         self::$httpClient = new Client([
             'base_uri' => self::$emulatorUrl

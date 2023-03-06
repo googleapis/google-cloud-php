@@ -38,4 +38,4 @@ jobs:
         run: |
           Storage/vendor/bin/phpunit -c Storage/phpunit-conformance.xml.dist
         env:
-          STORAGE_TESTBENCH_EMULATOR_HOST: localhost:9000
+          STORAGE_EMULATOR_HOST: localhost:9000
