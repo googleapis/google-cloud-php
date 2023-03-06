@@ -16,7 +16,7 @@ jobs:
 
     services:
       emulator:
-        image: gcr.io/cloud-devrel-public-resources/storage-testbench:v0.32.0
+        image: gcr.io/cloud-devrel-public-resources/storage-testbench:v0.35.0
         ports:
           - 9000:9000
 
@@ -34,7 +34,7 @@ jobs:
           composer config repositories.local  --json '{"type":"path", "url": "../Core", "options": {"versions": {"google/cloud-core": "1.45"}}}' -d Storage
           composer update --prefer-dist --no-interaction --no-suggest -d Storage/
 
-      - name: Run system tests
+      - name: Run storage retry conformance tests
         run: |
           Storage/vendor/bin/phpunit -c Storage/phpunit-conformance.xml.dist
         env:
