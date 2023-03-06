@@ -415,19 +415,17 @@ class StorageObjectTest extends TestCase
         $bucket = 'bucket';
         $object = self::OBJECT;
         $stream = Utils::streamFor($string = 'abcdefg');
-        $this->connection->downloadObject([
-                'bucket' => $bucket,
-                'object' => $object,
-                'restOptions' => [
-                    'headers' => [
-                        'x-goog-encryption-algorithm' => 'AES256',
-                        'x-goog-encryption-key' => $key,
-                        'x-goog-encryption-key-sha256' => $hash,
-                    ]
-                ]
-            ])
-            ->willReturn($stream)
-            ->shouldBeCalledTimes(1);
+        $this->connection->downloadObject(Argument::allOf(
+            Argument::withEntry('bucket', $bucket),
+            Argument::withEntry('object', $object),
+            Argument::withEntry('restOptions', Argument::allOf(
+                Argument::withEntry('headers', Argument::allOf(
+                    Argument::withEntry('x-goog-encryption-algorithm', 'AES256'),
+                    Argument::withEntry('x-goog-encryption-key', $key),
+                    Argument::withEntry('x-goog-encryption-key-sha256', $hash)
+                ))
+            ))
+        ))->willReturn($stream)->shouldBeCalledTimes(1);
 
         $object = new StorageObject($this->connection->reveal(), $object, $bucket);
 
@@ -444,18 +442,17 @@ class StorageObjectTest extends TestCase
         $bucket = 'bucket';
         $object = self::OBJECT;
         $stream = Utils::streamFor($string = 'abcdefg');
-        $this->connection->downloadObject([
-                'bucket' => $bucket,
-                'object' => $object,
-                'restOptions' => [
-                    'headers' => [
-                        'x-goog-encryption-algorithm' => 'AES256',
-                        'x-goog-encryption-key' => $key,
-                        'x-goog-encryption-key-sha256' => $hash,
-                    ]
-                ]
-            ])
-            ->willReturn($stream);
+        $this->connection->downloadObject(Argument::allOf(
+            Argument::withEntry('bucket', $bucket),
+            Argument::withEntry('object', $object),
+            Argument::withEntry('restOptions', Argument::allOf(
+                Argument::withEntry('headers', Argument::allOf(
+                    Argument::withEntry('x-goog-encryption-algorithm', 'AES256'),
+                    Argument::withEntry('x-goog-encryption-key', $key),
+                    Argument::withEntry('x-goog-encryption-key-sha256', $hash)
+                ))
+            ))
+        ))->willReturn($stream);
 
         $object = new StorageObject($this->connection->reveal(), $object, $bucket);
 
@@ -491,11 +488,10 @@ class StorageObjectTest extends TestCase
         $bucket = 'bucket';
         $object = self::OBJECT;
         $stream = Utils::streamFor($string = 'abcdefg');
-        $this->connection->downloadObject([
-            'bucket' => $bucket,
-            'object' => $object,
-        ])
-            ->willReturn($stream);
+        $this->connection->downloadObject(Argument::allOf(
+            Argument::withEntry('bucket', $bucket),
+            Argument::withEntry('object', $object)
+        ))->willReturn($stream);
 
         $object = new StorageObject($this->connection->reveal(), $object, $bucket);
 
@@ -512,18 +508,17 @@ class StorageObjectTest extends TestCase
         $bucket = 'bucket';
         $object = self::OBJECT;
         $stream = Utils::streamFor($string = 'abcdefg');
-        $this->connection->downloadObject([
-            'bucket' => $bucket,
-            'object' => $object,
-            'restOptions' => [
-                'headers' => [
-                    'x-goog-encryption-algorithm' => 'AES256',
-                    'x-goog-encryption-key' => $key,
-                    'x-goog-encryption-key-sha256' => $hash
-                ]
-            ]
-        ])
-            ->willReturn($stream);
+        $this->connection->downloadObject(Argument::allOf(
+            Argument::withEntry('bucket', $bucket),
+            Argument::withEntry('object', $object),
+            Argument::withEntry('restOptions', Argument::allOf(
+                Argument::withEntry('headers', Argument::allOf(
+                    Argument::withEntry('x-goog-encryption-algorithm', 'AES256'),
+                    Argument::withEntry('x-goog-encryption-key', $key),
+                    Argument::withEntry('x-goog-encryption-key-sha256', $hash)
+                ))
+            ))
+        ))->willReturn($stream);
 
         $object = new StorageObject($this->connection->reveal(), $object, $bucket);
 

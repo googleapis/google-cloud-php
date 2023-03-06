@@ -24,6 +24,7 @@ use Google\Cloud\Core\Upload\MultipartUploader;
 use Google\Cloud\Core\Upload\ResumableUploader;
 use Google\Cloud\Core\Upload\StreamableUploader;
 use Google\Cloud\Storage\Connection\Rest;
+use Google\Cloud\Storage\Connection\RetryTrait;
 use Google\CRC32\CRC32;
 use GuzzleHttp\Promise;
 use GuzzleHttp\Promise\PromiseInterface;
@@ -407,7 +408,7 @@ class RestTest extends TestCase
      */
     public function testChooseValidationMethod($args, $extensionLoaded, $supportsBuiltin, $expected)
     {
-        $rest = new RestCrc32cStub;
+        $rest = new RestCrc32cStub();
         $rest->extensionLoaded = $extensionLoaded;
         $rest->supportsBuiltin = $supportsBuiltin;
 
@@ -466,6 +467,173 @@ class RestTest extends TestCase
         ];
     }
 
+    /**
+     * @dataProvider retryFunctionReturnValues
+     */
+    public function testIsPreconditionSupplied(
+        $resource,
+        $op,
+        $restConfig,
+        $args,
+        $errorCode,
+        $currAttempt,
+        $expected
+    ) {
+        $rest = new Rest($restConfig);
+        $reflector = new \ReflectionClass('Google\Cloud\Storage\Connection\Rest');
+        $method = $reflector->getMethod('isPreConditionSupplied');
+        $condIdempotentOps = $reflector->getProperty('condIdempotentOps');
+        $method->setAccessible(true);
+        $condIdempotentOps->setAccessible(true);
+        $condIdempotentOps = $condIdempotentOps->getValue($rest);
+        $methodName = sprintf('%s.%s', $resource, $op);
+        $preconditionNeeded = array_key_exists($methodName, $condIdempotentOps);
+        $result = $method->invokeArgs($rest, array($methodName, $args));
+        if ($preconditionNeeded and $errorCode != 400) {
+            $this->assertEquals($result, $expected);
+        } else {
+            // This case will imply:
+            //     * Precondition needed & errorCode == 400 => No retry
+            //     * Precondition non needed => idempotent / non idempotent op
+            // In both the case, this function's response will never be taken
+            // into consideration for deciding whether to retry or not. Thus
+            // we can just put a dummy assertion here.
+            $this->assertTrue(true);
+        }
+    }
+
+    /**
+     * @dataProvider retryFunctionReturnValues
+     * @dataProvider retryStrategyCases
+     */
+    public function testRetryFunction(
+        $resource,
+        $op,
+        $restConfig,
+        $args,
+        $errorCode,
+        $currAttempt,
+        $expected
+    ) {
+        $rest = new Rest($restConfig);
+        $reflection = new \ReflectionClass($rest);
+        $property = $reflection->getProperty('restRetryFunction');
+        $property->setAccessible(true);
+        $restRetryFunction = $property->getValue($rest);
+        $retryFun = $rest->getRestRetryFunction($resource, $op, $args, $restRetryFunction);
+
+        $this->assertEquals(
+            $expected,
+            $retryFun(new \Exception('', $errorCode), $currAttempt)
+        );
+    }
+
+    public function retryFunctionReturnValues()
+    {
+        $restMaxRetry = 7;
+        $opMaxRetry = 5;
+        $restRetryFunctionArg = ['restRetryFunction' => function (
+            \Exception $exception,
+            $currentAttempt
+        ) use ($restMaxRetry) {
+            if ($currentAttempt > $restMaxRetry) {
+                return false;
+            }
+            return true;
+        }];
+        $opRetryFunctionArg = ['restRetryFunction' => function (
+            \Exception $exception,
+            $currentAttempt
+        ) use ($opMaxRetry) {
+            if ($currentAttempt > $opMaxRetry) {
+                return false;
+            }
+            return true;
+        }];
+
+        return [
+            // Idempotent operation with retriable error code
+            ['buckets', 'get', [], [], 503, 1, true],
+            ['serviceaccount', 'get', [], [], 504, 1, true],
+            // Idempotent operation with non retriable error code
+            ['buckets', 'get', [], [], 400, 1, false],
+            // Conditionally Idempotent with retriable error code
+            // correct precondition provided
+            ['buckets', 'update', [], ['ifMetagenerationMatch' => 0], 503, 1, true],
+            // Conditionally Idempotent with retriable error code
+            // wrong precondition provided
+            ['buckets', 'update', [], ['ifGenerationMatch' => 0], 503, 1, false],
+            // Conditionally Idempotent with non retriable error code
+            // precondition provided
+            ['buckets', 'update', [], ['ifMetagenerationMatch' => 0], 400, 1, false],
+            // Conditionally Idempotent with retriable error code
+            // precondition not provided
+            ['buckets', 'update', [], [], 503, 1, false],
+            // Conditionally Idempotent with non retriable error code
+            // precondition not provided
+            ['buckets', 'update', [], [], 400, 1, false],
+            // Non idempotent
+            ['bucket_acl', 'delete', [], [], 503, 2, false],
+            ['bucket_acl', 'delete', [], [], 400, 3, false],
+            // Max retry reached
+            ['buckets', 'get', [], [], 503, 4, false],
+            // User given restRetryFunction in the StorageClient which internally reaches Rest
+            ['buckets', 'get', $restRetryFunctionArg, [], 503, $restMaxRetry, true],
+            ['buckets', 'get', $restRetryFunctionArg, [], 503, $restMaxRetry+1, false],
+            // User given restRetryFunction in the operation
+            ['buckets', 'get', [], $opRetryFunctionArg, 503, $opMaxRetry, true],
+            ['buckets', 'get', [], $opRetryFunctionArg, 503, $opMaxRetry+1, false],
+            // Precedence given to restRetryFunction in the operation than in the StorageClient
+            ['buckets', 'get', $restRetryFunctionArg, $opRetryFunctionArg, 503, $opMaxRetry+1, false],
+            ['buckets', 'get', $restRetryFunctionArg, $opRetryFunctionArg, 503, $opMaxRetry, true]
+        ];
+    }
+
+    /**
+     * Creates retry strategy test cases(for 'always' and 'never' retry cases)
+     * from the existing retry cases of @dataprovider: retryFunctionReturnValues
+     *
+     * Each case of this @dataprovider is of the format
+     * [
+     *     $resource,
+     *     $operation,
+     *     $restConfig,
+     *     $args,
+     *     $errorCode,
+     *     $retryCount,
+     *     $expectedResult
+     * ]
+     *
+     * @return array<array>
+     */
+    public function retryStrategyCases()
+    {
+        $retryCases = $this->retryFunctionReturnValues();
+        $retryStrategyCases = [];
+        foreach ($retryCases as $retryCase) {
+            // For retry always
+            $case = $retryCase;
+            $case[3]['retryStrategy'] = RetryTrait::$RETRY_STRATEGY_ALWAYS;
+            $case[6] = $this->assignExpectedOutcome(true, $retryCase);
+            if (!in_array(
+                $retryCase[4],
+                RetryTrait::$httpRetryCodes
+            ) || $retryCase[5] > 3
+            ) {
+                $case[6] = $this->assignExpectedOutcome(false, $retryCase);
+            }
+            $retryStrategyCases[] = $case;
+
+            // For retry never
+            $case = $retryCase;
+            $case[3]['retryStrategy'] = RetryTrait::$RETRY_STRATEGY_NEVER;
+            $case[6] = $this->assignExpectedOutcome(false, $retryCase);
+            $retryStrategyCases[] = $case;
+        }
+
+        return $retryStrategyCases;
+    }
+
     private function getContentTypeAndMetadata(RequestInterface $request)
     {
         // Resumable upload request
@@ -482,6 +650,21 @@ class RestTest extends TestCase
             trim(explode(':', $lines[7])[1]),
             json_decode($lines[5], true)
         ];
+    }
+
+    /**
+     * Method to check if we need to change the expected outcome incase of
+     * specific retry strategies like 'always' and 'never'.
+     */
+    private function assignExpectedOutcome($expected, $retryCase)
+    {
+        if (isset($retryCase[3]['restRetryFunction'])
+            || isset($retryCase[2]['restRetryFunction'])
+        ) {
+            return $retryCase[6];
+        }
+
+        return $expected;
     }
 }
 

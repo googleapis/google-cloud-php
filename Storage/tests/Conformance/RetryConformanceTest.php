@@ -114,7 +114,7 @@ class RetryConformanceTest extends TestCase
     {
         self::set_up_before_class();
         // These scenario IDs will be run
-        $scenarios = [1];
+        $scenarios = [1, 2, 3, 4, 5, 6, 7, 8];
 
         $cases = [];
 
@@ -155,7 +155,7 @@ class RetryConformanceTest extends TestCase
         ];
 
         // create the resources needed for test to run
-        $resourceIds = self::createResources(array_flip($resources));
+        $resourceIds = self::createResources(array_flip($resources), $methodGroup);
 
         // call the implementation
         try {
@@ -234,7 +234,7 @@ class RetryConformanceTest extends TestCase
                 function ($resourceIds, $options, $precondition = false) {
                     $bucketName = $resourceIds['bucketName'];
 
-                    $bucket = self::$storageClient->bucket('my-bucket');
+                    $bucket = self::$storageClient->bucket($bucketName);
                     $acl = $bucket->acl();
 
                     // this makes the storage.bucket_acl.list call
@@ -317,7 +317,7 @@ class RetryConformanceTest extends TestCase
 
                     $bucket = self::$storageClient->bucket($bucketName);
                     $acl = $bucket->defaultAcl();
-                    
+
                     $options['entity'] = 'allUsers';
                     $acl->get($options);
                 }
@@ -328,7 +328,7 @@ class RetryConformanceTest extends TestCase
 
                     $bucket = self::$storageClient->bucket($bucketName);
                     $acl = $bucket->defaultAcl();
-                    
+
                     $acl->get($options);
                 }
             ],
@@ -408,7 +408,7 @@ class RetryConformanceTest extends TestCase
                     $acl = $object->acl();
                     $options['entity'] = 'allUsers';
                     if ($precondition) {
-                        $options['generation'] = $object->info()['generation'];
+                        $options['ifGenerationMatch'] = $object->info()['generation'];
                     }
                     $acl->get($options);
                 }
@@ -422,13 +422,16 @@ class RetryConformanceTest extends TestCase
                     $object = $bucket->object($objectName);
                     $acl = $object->acl();
                     if ($precondition) {
-                        $options['generation'] = $object->info()['generation'];
+                        $options['ifGenerationMatch'] = $object->info()['generation'];
                     }
                     $acl->get($options);
                 }
             ],
             'storage.objects.get' => [
-                function ($resourceIds, $options, $precondition = false) {
+                function ($resourceIds, $options, $precondition = false, $methodGroup = null) {
+                    if (!is_null($methodGroup)) {
+                        self::markTestSkipped("Test only needs to run for resumable downloads");
+                    }
                     $bucketName = $resourceIds['bucketName'];
                     $objectName = $resourceIds['objectName'];
 
@@ -436,13 +439,49 @@ class RetryConformanceTest extends TestCase
                     $object = $bucket->object($objectName);
                     $object->reload($options);
                 },
-                function ($resourceIds, $options, $precondition = false) {
+                function ($resourceIds, $options, $precondition = false, $methodGroup = null) {
+                    if (!is_null($methodGroup)) {
+                        self::markTestSkipped("Test only needs to run for resumable downloads");
+                    }
                     $bucketName = $resourceIds['bucketName'];
                     $objectName = $resourceIds['objectName'];
 
                     $bucket = self::$storageClient->bucket($bucketName);
                     $object = $bucket->object($objectName);
                     $object->exists($options);
+                },
+                function ($resourceIds, $options, $precondition = false, $methodGroup = null) {
+                    if ($methodGroup !== 'storage.objects.download') {
+                        self::markTestSkipped("Test only needs to run for getObject");
+                    }
+                    $bucketName = $resourceIds['bucketName'];
+                    $objectName = $resourceIds['objectName'];
+
+                    $bucket = self::$storageClient->bucket($bucketName);
+                    $object = $bucket->object($objectName);
+                    $object->downloadAsStream($options);
+                },
+                function ($resourceIds, $options, $precondition = false, $methodGroup = null) {
+                    if ($methodGroup !== 'storage.objects.download') {
+                        self::markTestSkipped("Test only needs to run for getObject");
+                    }
+                    $bucketName = $resourceIds['bucketName'];
+                    $objectName = $resourceIds['objectName'];
+
+                    $bucket = self::$storageClient->bucket($bucketName);
+                    $object = $bucket->object($objectName);
+                    $object->downloadAsString($options);
+                },
+                function ($resourceIds, $options, $precondition = false, $methodGroup = null) {
+                    if ($methodGroup !== 'storage.objects.download') {
+                        self::markTestSkipped("Test only needs to run for getObject");
+                    }
+                    $bucketName = $resourceIds['bucketName'];
+                    $objectName = $resourceIds['objectName'];
+
+                    $bucket = self::$storageClient->bucket($bucketName);
+                    $object = $bucket->object($objectName);
+                    $object->downloadToFile('php://temp', $options);
                 }
             ],
             'storage.objects.list' => [
@@ -469,8 +508,7 @@ class RetryConformanceTest extends TestCase
                     $bucket = self::$storageClient->bucket($bucketName);
 
                     if ($precondition) {
-                        $metageneration = $bucket->info()['metageneration'];
-                        $options['ifMetagenerationMatch'] = $metageneration;
+                        $options['ifMetagenerationMatch'] = $bucket->info()['metageneration'];
                     }
 
                     $bucket->update($options);
@@ -556,7 +594,7 @@ class RetryConformanceTest extends TestCase
 
                     $bucket = self::$storageClient->bucket($bucketName);
                     $object = $bucket->object($objectName);
-                    
+
                     if ($precondition) {
                         $options['ifGenerationMatch'] = $object->info()['generation'];
                     }
@@ -571,7 +609,7 @@ class RetryConformanceTest extends TestCase
                     }
                     $bucketName = $resourceIds['bucketName'];
                     $bucket = self::$storageClient->bucket($bucketName);
-                    
+
                     if ($precondition) {
                         // 0 generation for a new file
                         $options['ifGenerationMatch'] = 0;
@@ -588,7 +626,7 @@ class RetryConformanceTest extends TestCase
                     }
                     $bucketName = $resourceIds['bucketName'];
                     $bucket = self::$storageClient->bucket($bucketName);
-                    
+
                     if ($precondition) {
                         // 0 generation for a new file
                         $options['ifGenerationMatch'] = 0;
@@ -611,7 +649,7 @@ class RetryConformanceTest extends TestCase
                     $options['resumable'] = true;
                     $options['chunkSize'] = 512 * 1024;
                     if ($precondition) {
-                        $options['IfGenerationMatch'] = 0;
+                        $options['ifGenerationMatch'] = 0;
                     }
                     $bucket->upload(random_bytes(16 * 1024 * 1024), $options);
 
@@ -622,11 +660,11 @@ class RetryConformanceTest extends TestCase
                 function ($resourceIds, $options, $precondition = false) {
                     $bucketName = $resourceIds['bucketName'];
                     $objectName = $resourceIds['objectName'];
-    
+
                     $bucket = self::$storageClient->bucket($bucketName);
                     $object = $bucket->object($objectName);
                     if ($precondition) {
-                        $options['ifGenerationMatch'] = $object->info()['generation'];
+                        $options['ifMetagenerationMatch'] = $object->info()['metageneration'];
                     }
 
                     $object->update(['name' => 'updated.txt'], $options);
@@ -637,7 +675,7 @@ class RetryConformanceTest extends TestCase
                 function ($resourceIds, $options, $precondition = false) {
                     $bucketName = $resourceIds['bucketName'];
                     $objectName = $resourceIds['objectName'];
-    
+
                     $bucket = self::$storageClient->bucket($bucketName);
                     $object = $bucket->object($objectName);
                     if ($precondition) {
@@ -793,7 +831,7 @@ class RetryConformanceTest extends TestCase
      *
      * @return array The ids of resources created(where applicable).
      */
-    private function createResources(array $resources)
+    private function createResources(array $resources, string $methodGroup)
     {
         $ids = [];
 
@@ -807,12 +845,12 @@ class RetryConformanceTest extends TestCase
             $acl = $bucket->acl();
             $acl->add('allUsers', 'READER');
             $acl->add('allAuthenticatedUsers', 'READER');
-            
+
             // Add the default ACL roles
             $acl = $bucket->defaultAcl();
             $acl->add('allUsers', 'READER');
             $acl->add('allAuthenticatedUsers', 'READER');
-            
+
             // Create a notification for the bucket
             $notifName = uniqid(self::$notificationPrefix);
             $notification = $bucket->createNotification($notifName);
@@ -821,7 +859,8 @@ class RetryConformanceTest extends TestCase
             // Create an object if needed
             if (isset($resources['OBJECT'])) {
                 $objectName = uniqid(self::$objectPrefix);
-                $object = $bucket->upload('file text', ['name' => $objectName]);
+                $content = ($methodGroup === 'storage.objects.download') ? random_bytes(10 * 1024 * 1024) : 'file text';
+                $object = $bucket->upload($content, ['name' => $objectName]);
                 $ids['objectName'] = $objectName;
 
                 // Create object ACL

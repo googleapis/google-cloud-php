@@ -20,6 +20,7 @@ namespace Google\Cloud\Storage\Connection;
 use Google\Cloud\Core\RequestBuilder;
 use Google\Cloud\Core\RequestWrapper;
 use Google\Cloud\Core\RestTrait;
+use Google\Cloud\Storage\Connection\RetryTrait;
 use Google\Cloud\Core\Upload\AbstractUploader;
 use Google\Cloud\Core\Upload\MultipartUploader;
 use Google\Cloud\Core\Upload\ResumableUploader;
@@ -34,6 +35,7 @@ use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Utils;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
+use Ramsey\Uuid\Uuid;
 
 /**
  * Implementation of the
@@ -42,6 +44,7 @@ use Psr\Http\Message\StreamInterface;
 class Rest implements ConnectionInterface
 {
     use RestTrait;
+    use RetryTrait;
     use UriTrait;
 
     /**
@@ -76,6 +79,12 @@ class Rest implements ConnectionInterface
     private $apiEndpoint;
 
     /**
+     * @var callable
+     * value null accepted
+     */
+    private $restRetryFunction;
+
+    /**
      * @param array $config
      */
     public function __construct(array $config = [])
@@ -98,6 +107,7 @@ class Rest implements ConnectionInterface
         ));
 
         $this->projectId = $this->pluck('projectId', $config, false);
+        $this->restRetryFunction = (isset($config['restRetryFunction'])) ? $config['restRetryFunction'] : null;
     }
 
     /**
@@ -113,7 +123,7 @@ class Rest implements ConnectionInterface
      */
     public function deleteAcl(array $args = [])
     {
-        return $this->send($args['type'], 'delete', $args);
+        return $this->sendWithRetry($args['type'], 'delete', $args);
     }
 
     /**
@@ -121,7 +131,7 @@ class Rest implements ConnectionInterface
      */
     public function getAcl(array $args = [])
     {
-        return $this->send($args['type'], 'get', $args);
+        return $this->sendWithRetry($args['type'], 'get', $args);
     }
 
     /**
@@ -129,7 +139,7 @@ class Rest implements ConnectionInterface
      */
     public function listAcl(array $args = [])
     {
-        return $this->send($args['type'], 'list', $args);
+        return $this->sendWithRetry($args['type'], 'list', $args);
     }
 
     /**
@@ -137,7 +147,7 @@ class Rest implements ConnectionInterface
      */
     public function insertAcl(array $args = [])
     {
-        return $this->send($args['type'], 'insert', $args);
+        return $this->sendWithRetry($args['type'], 'insert', $args);
     }
 
     /**
@@ -145,7 +155,7 @@ class Rest implements ConnectionInterface
      */
     public function patchAcl(array $args = [])
     {
-        return $this->send($args['type'], 'patch', $args);
+        return $this->sendWithRetry($args['type'], 'patch', $args);
     }
 
     /**
@@ -153,7 +163,7 @@ class Rest implements ConnectionInterface
      */
     public function deleteBucket(array $args = [])
     {
-        return $this->send('buckets', 'delete', $args);
+        return $this->sendWithRetry('buckets', 'delete', $args);
     }
 
     /**
@@ -161,7 +171,7 @@ class Rest implements ConnectionInterface
      */
     public function getBucket(array $args = [])
     {
-        return $this->send('buckets', 'get', $args);
+        return $this->sendWithRetry('buckets', 'get', $args);
     }
 
     /**
@@ -169,7 +179,7 @@ class Rest implements ConnectionInterface
      */
     public function listBuckets(array $args = [])
     {
-        return $this->send('buckets', 'list', $args);
+        return $this->sendWithRetry('buckets', 'list', $args);
     }
 
     /**
@@ -177,7 +187,7 @@ class Rest implements ConnectionInterface
      */
     public function insertBucket(array $args = [])
     {
-        return $this->send('buckets', 'insert', $args);
+        return $this->sendWithRetry('buckets', 'insert', $args);
     }
 
     /**
@@ -185,7 +195,7 @@ class Rest implements ConnectionInterface
      */
     public function patchBucket(array $args = [])
     {
-        return $this->send('buckets', 'patch', $args);
+        return $this->sendWithRetry('buckets', 'patch', $args);
     }
 
     /**
@@ -193,7 +203,7 @@ class Rest implements ConnectionInterface
      */
     public function deleteObject(array $args = [])
     {
-        return $this->send('objects', 'delete', $args);
+        return $this->sendWithRetry('objects', 'delete', $args);
     }
 
     /**
@@ -201,7 +211,7 @@ class Rest implements ConnectionInterface
      */
     public function copyObject(array $args = [])
     {
-        return $this->send('objects', 'copy', $args);
+        return $this->sendWithRetry('objects', 'copy', $args);
     }
 
     /**
@@ -209,7 +219,7 @@ class Rest implements ConnectionInterface
      */
     public function rewriteObject(array $args = [])
     {
-        return $this->send('objects', 'rewrite', $args);
+        return $this->sendWithRetry('objects', 'rewrite', $args);
     }
 
     /**
@@ -217,7 +227,7 @@ class Rest implements ConnectionInterface
      */
     public function composeObject(array $args = [])
     {
-        return $this->send('objects', 'compose', $args);
+        return $this->sendWithRetry('objects', 'compose', $args);
     }
 
     /**
@@ -225,7 +235,7 @@ class Rest implements ConnectionInterface
      */
     public function getObject(array $args = [])
     {
-        return $this->send('objects', 'get', $args);
+        return $this->sendWithRetry('objects', 'get', $args);
     }
 
     /**
@@ -233,7 +243,7 @@ class Rest implements ConnectionInterface
      */
     public function listObjects(array $args = [])
     {
-        return $this->send('objects', 'list', $args);
+        return $this->sendWithRetry('objects', 'list', $args);
     }
 
     /**
@@ -241,7 +251,7 @@ class Rest implements ConnectionInterface
      */
     public function patchObject(array $args = [])
     {
-        return $this->send('objects', 'patch', $args);
+        return $this->sendWithRetry('objects', 'patch', $args);
     }
 
     /**
@@ -250,6 +260,8 @@ class Rest implements ConnectionInterface
     public function downloadObject(array $args = [])
     {
         list($request, $requestOptions) = $this->buildDownloadObjectParams($args);
+
+        $requestOptions['restRetryFunction'] = $this->getRestRetryFunction('objects', 'get', $requestOptions);
 
         return $this->requestWrapper->send(
             $request,
@@ -301,6 +313,15 @@ class Rest implements ConnectionInterface
                 'userProject' => $args['userProject']
             ]
         ];
+
+        // Passing the preconditions we want to extract out of arguments
+        // into our query params.
+        $preconditions = RetryTrait::$condIdempotentOps['objects.insert'];
+        foreach ($preconditions as $precondition) {
+            if (isset($args[$precondition])) {
+                $uriParams['query'][$precondition] = $args[$precondition];
+            }
+        }
 
         return new $uploaderClass(
             $this->requestWrapper,
@@ -356,11 +377,25 @@ class Rest implements ConnectionInterface
             'chunkSize',
             'contentType',
             'metadata',
-            'uploadProgressCallback'
+            'uploadProgressCallback',
+            'restDelayFunction',
+            'restCalcDelayFunction',
         ];
 
         $args['uploaderOptions'] = array_intersect_key($args, array_flip($uploaderOptionKeys));
         $args = array_diff_key($args, array_flip($uploaderOptionKeys));
+
+        // Passing on custom retry function to $args['uploaderOptions']
+        $retryFunc = $this->getRestRetryFunction(
+            'objects',
+            'insert',
+            $args
+        );
+        $args['uploaderOptions']['restRetryFunction'] = $retryFunc;
+
+        $args['uploaderOptions'] = $this->addRetryHeaderCallbacks(
+            $args['uploaderOptions']
+        );
 
         return $args;
     }
@@ -370,7 +405,7 @@ class Rest implements ConnectionInterface
      */
     public function getBucketIamPolicy(array $args)
     {
-        return $this->send('buckets', 'getIamPolicy', $args);
+        return $this->sendWithRetry('buckets', 'getIamPolicy', $args);
     }
 
     /**
@@ -378,7 +413,7 @@ class Rest implements ConnectionInterface
      */
     public function setBucketIamPolicy(array $args)
     {
-        return $this->send('buckets', 'setIamPolicy', $args);
+        return $this->sendWithRetry('buckets', 'setIamPolicy', $args);
     }
 
     /**
@@ -386,7 +421,7 @@ class Rest implements ConnectionInterface
      */
     public function testBucketIamPermissions(array $args)
     {
-        return $this->send('buckets', 'testIamPermissions', $args);
+        return $this->sendWithRetry('buckets', 'testIamPermissions', $args);
     }
 
     /**
@@ -394,7 +429,7 @@ class Rest implements ConnectionInterface
      */
     public function getNotification(array $args = [])
     {
-        return $this->send('notifications', 'get', $args);
+        return $this->sendWithRetry('notifications', 'get', $args);
     }
 
     /**
@@ -402,7 +437,7 @@ class Rest implements ConnectionInterface
      */
     public function deleteNotification(array $args = [])
     {
-        return $this->send('notifications', 'delete', $args);
+        return $this->sendWithRetry('notifications', 'delete', $args);
     }
 
     /**
@@ -410,7 +445,7 @@ class Rest implements ConnectionInterface
      */
     public function insertNotification(array $args = [])
     {
-        return $this->send('notifications', 'insert', $args);
+        return $this->sendWithRetry('notifications', 'insert', $args);
     }
 
     /**
@@ -418,7 +453,7 @@ class Rest implements ConnectionInterface
      */
     public function listNotifications(array $args = [])
     {
-        return $this->send('notifications', 'list', $args);
+        return $this->sendWithRetry('notifications', 'list', $args);
     }
 
     /**
@@ -426,7 +461,7 @@ class Rest implements ConnectionInterface
      */
     public function getServiceAccount(array $args = [])
     {
-        return $this->send('projects.resources.serviceAccount', 'get', $args);
+        return $this->sendWithRetry('projects.resources.serviceAccount', 'get', $args);
     }
 
     /**
@@ -434,7 +469,7 @@ class Rest implements ConnectionInterface
      */
     public function lockRetentionPolicy(array $args = [])
     {
-        return $this->send('buckets', 'lockRetentionPolicy', $args);
+        return $this->sendWithRetry('buckets', 'lockRetentionPolicy', $args);
     }
 
     /**
@@ -442,7 +477,7 @@ class Rest implements ConnectionInterface
      */
     public function createHmacKey(array $args = [])
     {
-        return $this->send('projects.resources.hmacKeys', 'create', $args);
+        return $this->sendWithRetry('projects.resources.hmacKeys', 'create', $args);
     }
 
     /**
@@ -450,7 +485,7 @@ class Rest implements ConnectionInterface
      */
     public function deleteHmacKey(array $args = [])
     {
-        return $this->send('projects.resources.hmacKeys', 'delete', $args);
+        return $this->sendWithRetry('projects.resources.hmacKeys', 'delete', $args);
     }
 
     /**
@@ -458,7 +493,7 @@ class Rest implements ConnectionInterface
      */
     public function getHmacKey(array $args = [])
     {
-        return $this->send('projects.resources.hmacKeys', 'get', $args);
+        return $this->sendWithRetry('projects.resources.hmacKeys', 'get', $args);
     }
 
     /**
@@ -466,7 +501,7 @@ class Rest implements ConnectionInterface
      */
     public function updateHmacKey(array $args = [])
     {
-        return $this->send('projects.resources.hmacKeys', 'update', $args);
+        return $this->sendWithRetry('projects.resources.hmacKeys', 'update', $args);
     }
 
     /**
@@ -474,7 +509,7 @@ class Rest implements ConnectionInterface
      */
     public function listHmacKeys(array $args = [])
     {
-        return $this->send('projects.resources.hmacKeys', 'list', $args);
+        return $this->sendWithRetry('projects.resources.hmacKeys', 'list', $args);
     }
 
     /**
@@ -494,6 +529,7 @@ class Rest implements ConnectionInterface
             'restOptions' => null,
             'retries' => null,
             'restRetryFunction' => null,
+            'restOnRetryExceptionFunction' => null,
             'restCalcDelayFunction' => null,
             'restDelayFunction' => null
         ]);
@@ -599,5 +635,201 @@ class Rest implements ConnectionInterface
     protected function supportsBuiltinCrc32c()
     {
         return Builtin::supports(CRC32::CASTAGNOLI);
+    }
+
+    /**
+     * Add the required retry function and send the request.
+     *
+     * @param string $resource resource name, eg: buckets.
+     * @param string $method method name, eg: get
+     * @param array $args
+     */
+    private function sendWithRetry($resource, $method, array $args)
+    {
+        $retryMap = [
+            'projects.resources.serviceAccount' => 'serviceaccount',
+            'projects.resources.hmacKeys' => 'hmacKey',
+            'bucketAccessControls' => 'bucket_acl',
+            'defaultObjectAccessControls' => 'default_object_acl',
+            'objectAccessControls' => 'object_acl'
+        ];
+        $retryResource = isset($retryMap[$resource]) ? $retryMap[$resource] : $resource;
+        $args['restRetryFunction'] = $this->getRestRetryFunction(
+            $retryResource,
+            $method,
+            $args,
+            $this->restRetryFunction
+        );
+
+        $args = $this->addRetryHeaderCallbacks($args);
+
+        return $this->send($resource, $method, $args);
+    }
+
+    /**
+     * Adds callbacks to $args which amend retry hash and attempt to headers.
+     * @param array $args
+     *
+     * @return array
+     */
+    private function addRetryHeaderCallbacks(array $args)
+    {
+        $requestHash = Uuid::uuid4()->toString();
+        $args['restOnRetryExceptionFunction'] = function (
+            \Exception $e,
+            $currentAttempt,
+            &$arguments
+        ) use ($requestHash) {
+            // Since we the the last attempt number here, so incrementing it
+            // to get the current attempt count.
+            // We're adding a '2' and not '1' as we need to incorporate the initial
+            // request as well.
+            $this->updateRetryHeaders(
+                $arguments,
+                $requestHash,
+                $currentAttempt + 2
+            );
+        };
+
+        $args['restOnExecutionStartFunction'] = function (&$arguments) use ($requestHash) {
+            $this->updateRetryHeaders(
+                $arguments,
+                $requestHash
+            );
+        };
+        return $args;
+    }
+
+    /**
+     * Updates the api client identification header value with UUID
+     * and retry count
+     *
+     * @param array &$arguments The arguments array(passed by reference) used by
+     * execute method of ExponentialBackoff object.
+     * @param string $requestHash A UUID4 string value that represents a request and
+     * it's retries.
+     * @param int $currentAttempt The original attempt is of a value 1, and retries are
+     * 2, 3 and so on.
+     * @return void
+     */
+    private function updateRetryHeaders(
+        &$arguments,
+        $requestHash,
+        $currentAttempt = 1
+    ) {
+        $valueToAdd = sprintf("gccl-invocation-id/%s", $requestHash);
+        $this->updateHeader(
+            RequestWrapper::HEADER_API_CLIENT_IDENTIFICATION,
+            $arguments,
+            $valueToAdd
+        );
+
+        $valueToAdd = sprintf("gccl-attempt-count/%s", $currentAttempt);
+        $this->updateHeader(
+            RequestWrapper::HEADER_API_CLIENT_IDENTIFICATION,
+            $arguments,
+            $valueToAdd,
+            false
+        );
+    }
+
+    /**
+     * Amends the given header key with new value for a request such that
+     * the $request headers aren't modified directly and instead $options array
+     * which are applied to the request just before sending it at core level.
+     * Thus the $request object remains the same between each retry request at
+     * RequestWrappers' level.
+     *
+     * @param string $headerLine The header line to update.
+     * @param array &$arguments The arguments array(passed by reference) used by
+     * execute method of ExponentialBackoff object.
+     * @param string $value The value to be ammended in the header line.
+     * @param bool $getHeaderFromRequest [optional] A flag which determines if
+     *  existing header value is read from $request or from $options. It's useful
+     *  to read from $options incase we update multiple values to a single
+     *  header key.
+     */
+    private function updateHeader(
+        string $headerLine,
+        array &$arguments,
+        string $value,
+        $getHeaderFromRequest = true
+    ) {
+        // Fetch request and options
+        $request = $this->fetchRequest($arguments);
+        $options = $this->fetchOptions($arguments);
+
+        // add empty headers to handle requests where headers aren't passed.
+        $options += [
+            'headers' => []
+        ];
+
+        // Create the modified header
+        $headerValue = '';
+        if ($getHeaderFromRequest) {
+            $headerValues = $request->getHeader($headerLine);
+            $headerValues[] = $value;
+            $headerValue = implode(' ', $headerValues);
+        } else {
+            $headerValue = (isset($options['headers']) &&
+                isset($options['headers'][$headerLine]))
+                ? $options['headers'][$headerLine]
+                : '';
+            $headerValue .= (' ' . $value);
+        }
+
+        // Amend the $option's header value
+        $options['headers'][$headerLine] = $headerValue;
+
+        // Set the $argument's options array
+        $this->setOptions($arguments, $options);
+    }
+
+
+    /**
+     * This helper method fetches Request object from the $argument list.
+     * @param mixed $arguments
+     * @return Request|null
+     */
+    private function fetchRequest($arguments)
+    {
+        $request = null;
+        foreach ($arguments as $argument) {
+            if ($argument instanceof Request) {
+                $request = $argument;
+            }
+        }
+        return $request;
+    }
+
+    /**
+     * This helper method fetches $options array from the $argument list.
+     * @param mixed $arguments
+     * @return array
+     */
+    private function fetchOptions($arguments)
+    {
+        foreach ($arguments as $argument) {
+            if (is_array($argument) && isset($argument['headers'])) {
+                return $argument;
+            }
+        }
+        return [];
+    }
+
+    /**
+     * This helper method sets the $options array in the $argument list
+     * @param array &$arguments Argument list as reference
+     * @param array $options
+     * @return void
+     */
+    private function setOptions(array &$arguments, array $options)
+    {
+        foreach ($arguments as &$argument) {
+            if (is_array($argument) && isset($argument['headers'])) {
+                $argument = $options;
+                break;
+            }
+        }
     }
 }
