@@ -117,7 +117,7 @@ class GrpcRequestWrapper
      *     @type array $grpcOptions gRPC specific configuration options.
      * }
      * @return array
-     * @throws \Exception
+     * @throws Exception\ServiceException
      */
     public function send(callable $request, array $args, array $options = [])
     {

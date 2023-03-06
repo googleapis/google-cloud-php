@@ -315,7 +315,7 @@ class RequestWrapper
      *
      * @param FetchAuthTokenInterface $credentialsFetcher
      * @return array
-     * @throws \RuntimeException|ServiceException
+     * @throws ServiceException
      */
     private function fetchCredentials(FetchAuthTokenInterface $credentialsFetcher)
     {

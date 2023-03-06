@@ -115,7 +115,7 @@ class TranslateClient
      *     @type string $quotaProject Specifies a user project to bill for
      *           access charges associated with the request.
      * }
-     * @throws \InvalidArgumentException|GoogleException
+     * @throws GoogleException
      */
     public function __construct(array $config = [])
     {

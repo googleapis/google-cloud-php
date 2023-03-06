@@ -20,6 +20,7 @@ namespace Google\Cloud\Core\Testing\System;
 use Google\Cloud\BigQuery\BigQueryClient;
 use Google\Cloud\BigQuery\Dataset;
 use Google\Cloud\Core\Exception\BadRequestException;
+use Google\Cloud\Core\Exception\GoogleException;
 use Google\Cloud\Core\ExponentialBackoff;
 use Google\Cloud\PubSub\PubSubClient;
 use Google\Cloud\PubSub\Topic;
@@ -92,7 +93,7 @@ class SystemTestCase extends TestCase
      * @param string $bucketName
      * @param array $options
      * @return Bucket
-     * @throws \Exception
+     * @throws GoogleException
      *
      * @experimental
      * @internal
@@ -160,7 +161,7 @@ class SystemTestCase extends TestCase
      * @param string $topicName
      * @param array $options
      * @return Topic
-     * @throws \Exception
+     * @throws GoogleException
      *
      * @experimental
      * @internal
