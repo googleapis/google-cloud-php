@@ -827,11 +827,13 @@ class RetryConformanceTest extends TestCase
     /**
      * Helper function to create the resources needed by a test.
      *
-     * @param $list array List of resources to create.
+     * @param $resources array List of resources to create.
+     * @param $methodGroup string|null The group that the current
+     *        testing operation belongs to. This can be null
      *
      * @return array The ids of resources created(where applicable).
      */
-    private function createResources(array $resources, string $methodGroup)
+    private function createResources(array $resources, $methodGroup)
     {
         $ids = [];
 
