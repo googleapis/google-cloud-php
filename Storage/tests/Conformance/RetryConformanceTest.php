@@ -115,8 +115,10 @@ class RetryConformanceTest extends TestCase
     public function casesProvider()
     {
         self::set_up_before_class();
-        // These scenario IDs will be run
-        $scenarios = [1];
+        // These scenario IDs will be run.
+        // Omit certain IDs for debugging or testing only
+        // certain cases.
+        $scenarios = [1,2,3,4,5,6,7,8];
 
         $cases = [];
 

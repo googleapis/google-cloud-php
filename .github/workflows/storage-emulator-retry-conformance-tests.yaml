@@ -31,11 +31,11 @@ jobs:
 
       - name: Install dependencies
         run: |
-          composer config repositories.local  --json '{"type":"path", "url": "../Core", "options": {"versions": {"google/cloud-core": "1.45"}}}' -d Storage
+          composer config repositories.local  --json '{"type":"path", "url": "../Core", "options": {"versions": {"google/cloud-core": "1.43"}}}' -d Storage
           composer update --prefer-dist --no-interaction --no-suggest -d Storage/
 
       - name: Run storage retry conformance tests
         run: |
           Storage/vendor/bin/phpunit -c Storage/phpunit-conformance.xml.dist
         env:
-          STORAGE_EMULATOR_HOST: localhost:9000
+          STORAGE_EMULATOR_HOST: http://localhost:9000
