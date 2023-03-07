@@ -113,8 +113,6 @@ class AggregateQueryTest extends FirestoreTestCase
 
     public function testSnapshotCursors()
     {
-        // cursors are not supported by emulator
-        $this->skipEmulatorTests();
         $collection = self::$client->collection(uniqid(self::COLLECTION_NAME));
         self::$localDeletionQueue->add($collection);
 
@@ -140,8 +138,6 @@ class AggregateQueryTest extends FirestoreTestCase
 
     public function testLimitToLast()
     {
-        // limit is not supported by emulator
-        $this->skipEmulatorTests();
         $collection = self::$client->collection(uniqid(self::COLLECTION_NAME));
         self::$localDeletionQueue->add($collection);
         for ($i = 1; $i <= 5; $i++) {
@@ -156,8 +152,6 @@ class AggregateQueryTest extends FirestoreTestCase
 
     public function testLimitToLastWithCursors()
     {
-        // cursors are not supported by emulator
-        $this->skipEmulatorTests();
         $collection = self::$client->collection(uniqid(self::COLLECTION_NAME));
         self::$localDeletionQueue->add($collection);
         for ($i = 1; $i <= 5; $i++) {

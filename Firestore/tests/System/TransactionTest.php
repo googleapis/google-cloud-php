@@ -162,8 +162,6 @@ class TransactionTest extends FirestoreTestCase
 
     public function testAggregateQueryWithMultipleAggregation()
     {
-        // multiplleAggregation with limits is not supported by emulator
-        $this->skipEmulatorTests();
         $this->document->create([
             'bars' => ['foobar'],
         ]);
