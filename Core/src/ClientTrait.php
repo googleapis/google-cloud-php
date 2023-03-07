@@ -91,6 +91,7 @@ trait ClientTrait
      *
      * @param  array $config
      * @return array
+     * @throws GoogleException
      */
     private function configureAuthentication(array $config)
     {

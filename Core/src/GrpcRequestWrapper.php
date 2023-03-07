@@ -117,6 +117,7 @@ class GrpcRequestWrapper
      *     @type array $grpcOptions gRPC specific configuration options.
      * }
      * @return array
+     * @throws Exception\ServiceException
      */
     public function send(callable $request, array $args, array $options = [])
     {
@@ -187,6 +188,7 @@ class GrpcRequestWrapper
      *
      * @param ServerStream $response
      * @return \Generator|array|null
+     * @throws Exception\ServiceException
      */
     private function handleStream($response)
     {
