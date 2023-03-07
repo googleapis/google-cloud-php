@@ -109,6 +109,7 @@ class CloudTasksGapicClient
     ];
 
     private static $locationNameTemplate;
+    private static $projectNameTemplate;
 
     private static $queueNameTemplate;
 
