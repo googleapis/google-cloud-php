@@ -16,6 +16,7 @@ class AnalyticsAdmin
         }
         \GPBMetadata\Google\Analytics\Admin\V1Alpha\AccessReport::initOnce();
         \GPBMetadata\Google\Analytics\Admin\V1Alpha\Audience::initOnce();
+        \GPBMetadata\Google\Analytics\Admin\V1Alpha\ExpandedDataSet::initOnce();
         \GPBMetadata\Google\Analytics\Admin\V1Alpha\Resources::initOnce();
         \GPBMetadata\Google\Api\Annotations::initOnce();
         \GPBMetadata\Google\Api\Client::initOnce();
@@ -26,8 +27,8 @@ class AnalyticsAdmin
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-√û
-4google/analytics/admin/v1alpha/analytics_admin.protogoogle.analytics.admin.v1alpha-google/analytics/admin/v1alpha/audience.proto.google/analytics/admin/v1alpha/resources.protogoogle/api/annotations.protogoogle/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"§
+˚Œ
+4google/analytics/admin/v1alpha/analytics_admin.protogoogle.analytics.admin.v1alpha-google/analytics/admin/v1alpha/audience.proto6google/analytics/admin/v1alpha/expanded_data_set.proto.google/analytics/admin/v1alpha/resources.protogoogle/api/annotations.protogoogle/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"§
 RunAccessReportRequest
 entity (	C
 
@@ -407,7 +408,65 @@ page_token (	"m
 1analyticsadmin.googleapis.com/AttributionSettings"∞
  UpdateAttributionSettingsRequestV
 attribution_settings (23.google.analytics.admin.v1alpha.AttributionSettingsB‡A4
-update_mask (2.google.protobuf.FieldMaskB‡A"S
+update_mask (2.google.protobuf.FieldMaskB‡A"\\
+GetAccessBindingRequestA
+name (	B3‡A˙A-
++analyticsadmin.googleapis.com/AccessBinding"®
+BatchGetAccessBindingsRequestC
+parent (	B3‡A˙A-+analyticsadmin.googleapis.com/AccessBindingB
+names (	B3‡A˙A-
++analyticsadmin.googleapis.com/AccessBinding"h
+BatchGetAccessBindingsResponseF
+access_bindings (2-.google.analytics.admin.v1alpha.AccessBinding"á
+ListAccessBindingsRequestC
+parent (	B3‡A˙A-+analyticsadmin.googleapis.com/AccessBinding
+	page_size (
+
+page_token (	"}
+ListAccessBindingsResponseF
+access_bindings (2-.google.analytics.admin.v1alpha.AccessBinding
+next_page_token (	"≠
+CreateAccessBindingRequestC
+parent (	B3‡A˙A-+analyticsadmin.googleapis.com/AccessBindingJ
+access_binding (2-.google.analytics.admin.v1alpha.AccessBindingB‡A"∫
+ BatchCreateAccessBindingsRequestC
+parent (	B3‡A˙A-+analyticsadmin.googleapis.com/AccessBindingQ
+requests (2:.google.analytics.admin.v1alpha.CreateAccessBindingRequestB‡A"k
+!BatchCreateAccessBindingsResponseF
+access_bindings (2-.google.analytics.admin.v1alpha.AccessBinding"h
+UpdateAccessBindingRequestJ
+access_binding (2-.google.analytics.admin.v1alpha.AccessBindingB‡A"∫
+ BatchUpdateAccessBindingsRequestC
+parent (	B3‡A˙A-+analyticsadmin.googleapis.com/AccessBindingQ
+requests (2:.google.analytics.admin.v1alpha.UpdateAccessBindingRequestB‡A"k
+!BatchUpdateAccessBindingsResponseF
+access_bindings (2-.google.analytics.admin.v1alpha.AccessBinding"_
+DeleteAccessBindingRequestA
+name (	B3‡A˙A-
++analyticsadmin.googleapis.com/AccessBinding"∫
+ BatchDeleteAccessBindingsRequestC
+parent (	B3‡A˙A-+analyticsadmin.googleapis.com/AccessBindingQ
+requests (2:.google.analytics.admin.v1alpha.DeleteAccessBindingRequestB‡A"∂
+CreateExpandedDataSetRequestE
+parent (	B5‡A˙A/-analyticsadmin.googleapis.com/ExpandedDataSetO
+expanded_data_set (2/.google.analytics.admin.v1alpha.ExpandedDataSetB‡A"•
+UpdateExpandedDataSetRequestO
+expanded_data_set (2/.google.analytics.admin.v1alpha.ExpandedDataSetB‡A4
+update_mask (2.google.protobuf.FieldMaskB‡A"c
+DeleteExpandedDataSetRequestC
+name (	B5‡A˙A/
+-analyticsadmin.googleapis.com/ExpandedDataSet"`
+GetExpandedDataSetRequestC
+name (	B5‡A˙A/
+-analyticsadmin.googleapis.com/ExpandedDataSet"ã
+ListExpandedDataSetsRequestE
+parent (	B5‡A˙A/-analyticsadmin.googleapis.com/ExpandedDataSet
+	page_size (
+
+page_token (	"Ñ
+ListExpandedDataSetsResponseK
+expanded_data_sets (2/.google.analytics.admin.v1alpha.ExpandedDataSet
+next_page_token (	"S
 )SetAutomatedGa4ConfigurationOptOutRequest
 property (	B‡A
 opt_out (",
@@ -426,7 +485,7 @@ page_token (	"m
 page_token (	"z
 ListBigQueryLinksResponseD
 bigquery_links (2,.google.analytics.admin.v1alpha.BigQueryLink
-next_page_token (	2ıú
+next_page_token (	2∞∏
 AnalyticsAdminServiceì
 
 GetAccount1.google.analytics.admin.v1alpha.GetAccountRequest\'.google.analytics.admin.v1alpha.Account")Ç”‰ì/v1alpha/{name=accounts/*}⁄Anameî
@@ -512,7 +571,21 @@ GetAccount1.google.analytics.admin.v1alpha.GetAccountRequest\'.google.analytic
 UpdateSearchAds360Link=.google.analytics.admin.v1alpha.UpdateSearchAds360LinkRequest0.google.analytics.admin.v1alpha.SearchAds360Link"ÉÇ”‰ì[2D/v1alpha/{search_ads_360_link.name=properties/*/searchAds360Links/*}:search_ads_360_link⁄Asearch_ads_360_link,update_maskÕ
 GetAttributionSettings=.google.analytics.admin.v1alpha.GetAttributionSettingsRequest3.google.analytics.admin.v1alpha.AttributionSettings"?Ç”‰ì20/v1alpha/{name=properties/*/attributionSettings}⁄Anameõ
 UpdateAttributionSettings@.google.analytics.admin.v1alpha.UpdateAttributionSettingsRequest3.google.analytics.admin.v1alpha.AttributionSettings"ÜÇ”‰ì]2E/v1alpha/{attribution_settings.name=properties/*/attributionSettings}:attribution_settings⁄A attribution_settings,update_maskΩ
-RunAccessReport6.google.analytics.admin.v1alpha.RunAccessReportRequest7.google.analytics.admin.v1alpha.RunAccessReportResponse"9Ç”‰ì3"./v1alpha/{entity=properties/*}:runAccessReport:*˛
+RunAccessReport6.google.analytics.admin.v1alpha.RunAccessReportRequest7.google.analytics.admin.v1alpha.RunAccessReportResponse"9Ç”‰ì3"./v1alpha/{entity=properties/*}:runAccessReport:*ü
+CreateAccessBinding:.google.analytics.admin.v1alpha.CreateAccessBindingRequest-.google.analytics.admin.v1alpha.AccessBinding"úÇ”‰ì~"+/v1alpha/{parent=accounts/*}/accessBindings:access_bindingZ?"-/v1alpha/{parent=properties/*}/accessBindings:access_binding⁄Aparent,access_bindingÁ
+GetAccessBinding7.google.analytics.admin.v1alpha.GetAccessBindingRequest-.google.analytics.admin.v1alpha.AccessBinding"kÇ”‰ì^+/v1alpha/{name=accounts/*/accessBindings/*}Z/-/v1alpha/{name=properties/*/accessBindings/*}⁄Aname∑
+UpdateAccessBinding:.google.analytics.admin.v1alpha.UpdateAccessBindingRequest-.google.analytics.admin.v1alpha.AccessBinding"¥Ç”‰ìú2:/v1alpha/{access_binding.name=accounts/*/accessBindings/*}:access_bindingZN2</v1alpha/{access_binding.name=properties/*/accessBindings/*}:access_binding⁄Aaccess_binding÷
+DeleteAccessBinding:.google.analytics.admin.v1alpha.DeleteAccessBindingRequest.google.protobuf.Empty"kÇ”‰ì^*+/v1alpha/{name=accounts/*/accessBindings/*}Z/*-/v1alpha/{name=properties/*/accessBindings/*}⁄Aname˙
+ListAccessBindings9.google.analytics.admin.v1alpha.ListAccessBindingsRequest:.google.analytics.admin.v1alpha.ListAccessBindingsResponse"mÇ”‰ì^+/v1alpha/{parent=accounts/*}/accessBindingsZ/-/v1alpha/{parent=properties/*}/accessBindings⁄Aparent•
+BatchCreateAccessBindings@.google.analytics.admin.v1alpha.BatchCreateAccessBindingsRequestA.google.analytics.admin.v1alpha.BatchCreateAccessBindingsResponse"ÇÇ”‰ì|"7/v1alpha/{parent=accounts/*}/accessBindings:batchCreate:*Z>"9/v1alpha/{parent=properties/*}/accessBindings:batchCreate:*è
+BatchGetAccessBindings=.google.analytics.admin.v1alpha.BatchGetAccessBindingsRequest>.google.analytics.admin.v1alpha.BatchGetAccessBindingsResponse"vÇ”‰ìp4/v1alpha/{parent=accounts/*}/accessBindings:batchGetZ86/v1alpha/{parent=properties/*}/accessBindings:batchGet•
+BatchUpdateAccessBindings@.google.analytics.admin.v1alpha.BatchUpdateAccessBindingsRequestA.google.analytics.admin.v1alpha.BatchUpdateAccessBindingsResponse"ÇÇ”‰ì|"7/v1alpha/{parent=accounts/*}/accessBindings:batchUpdate:*Z>"9/v1alpha/{parent=properties/*}/accessBindings:batchUpdate:*˙
+BatchDeleteAccessBindings@.google.analytics.admin.v1alpha.BatchDeleteAccessBindingsRequest.google.protobuf.Empty"ÇÇ”‰ì|"7/v1alpha/{parent=accounts/*}/accessBindings:batchDelete:*Z>"9/v1alpha/{parent=properties/*}/accessBindings:batchDelete:*¿
+GetExpandedDataSet9.google.analytics.admin.v1alpha.GetExpandedDataSetRequest/.google.analytics.admin.v1alpha.ExpandedDataSet">Ç”‰ì1//v1alpha/{name=properties/*/expandedDataSets/*}⁄Aname”
+ListExpandedDataSets;.google.analytics.admin.v1alpha.ListExpandedDataSetsRequest<.google.analytics.admin.v1alpha.ListExpandedDataSetsResponse"@Ç”‰ì1//v1alpha/{parent=properties/*}/expandedDataSets⁄AparentÌ
+CreateExpandedDataSet<.google.analytics.admin.v1alpha.CreateExpandedDataSetRequest/.google.analytics.admin.v1alpha.ExpandedDataSet"eÇ”‰ìD"//v1alpha/{parent=properties/*}/expandedDataSets:expanded_data_set⁄Aparent,expanded_data_setÑ
+UpdateExpandedDataSet<.google.analytics.admin.v1alpha.UpdateExpandedDataSetRequest/.google.analytics.admin.v1alpha.ExpandedDataSet"|Ç”‰ìV2A/v1alpha/{expanded_data_set.name=properties/*/expandedDataSets/*}:expanded_data_set⁄Aexpanded_data_set,update_mask≠
+DeleteExpandedDataSet<.google.analytics.admin.v1alpha.DeleteExpandedDataSetRequest.google.protobuf.Empty">Ç”‰ì1*//v1alpha/{name=properties/*/expandedDataSets/*}⁄Aname˛
 "SetAutomatedGa4ConfigurationOptOutI.google.analytics.admin.v1alpha.SetAutomatedGa4ConfigurationOptOutRequestJ.google.analytics.admin.v1alpha.SetAutomatedGa4ConfigurationOptOutResponse"AÇ”‰ì;"6/v1alpha/properties:setAutomatedGa4ConfigurationOptOut:*Ü
 $FetchAutomatedGa4ConfigurationOptOutK.google.analytics.admin.v1alpha.FetchAutomatedGa4ConfigurationOptOutRequestL.google.analytics.admin.v1alpha.FetchAutomatedGa4ConfigurationOptOutResponse"CÇ”‰ì="8/v1alpha/properties:fetchAutomatedGa4ConfigurationOptOut:*¥
 GetBigQueryLink6.google.analytics.admin.v1alpha.GetBigQueryLinkRequest,.google.analytics.admin.v1alpha.BigQueryLink";Ç”‰ì.,/v1alpha/{name=properties/*/bigQueryLinks/*}⁄Aname«

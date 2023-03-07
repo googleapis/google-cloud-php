@@ -38,7 +38,7 @@ class PushConfig extends \Google\Protobuf\Internal\Message
      * * `v1beta1`: uses the push format defined in the v1beta1 Pub/Sub API.
      * * `v1` or `v1beta2`: uses the push format defined in the v1 Pub/Sub API.
      * For example:
-     * <pre><code>attributes { "x-goog-version": "v1" } </code></pre>
+     * `attributes { "x-goog-version": "v1" }`
      *
      * Generated from protobuf field <code>map<string, string> attributes = 2;</code>
      */
@@ -70,7 +70,7 @@ class PushConfig extends \Google\Protobuf\Internal\Message
      *           * `v1beta1`: uses the push format defined in the v1beta1 Pub/Sub API.
      *           * `v1` or `v1beta2`: uses the push format defined in the v1 Pub/Sub API.
      *           For example:
-     *           <pre><code>attributes { "x-goog-version": "v1" } </code></pre>
+     *           `attributes { "x-goog-version": "v1" }`
      *     @type \Google\Cloud\PubSub\V1\PushConfig\OidcToken $oidc_token
      *           If specified, Pub/Sub will generate and attach an OIDC JWT token as an
      *           `Authorization` header in the HTTP request for every pushed message.
@@ -125,7 +125,7 @@ class PushConfig extends \Google\Protobuf\Internal\Message
      * * `v1beta1`: uses the push format defined in the v1beta1 Pub/Sub API.
      * * `v1` or `v1beta2`: uses the push format defined in the v1 Pub/Sub API.
      * For example:
-     * <pre><code>attributes { "x-goog-version": "v1" } </code></pre>
+     * `attributes { "x-goog-version": "v1" }`
      *
      * Generated from protobuf field <code>map<string, string> attributes = 2;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -151,7 +151,7 @@ class PushConfig extends \Google\Protobuf\Internal\Message
      * * `v1beta1`: uses the push format defined in the v1beta1 Pub/Sub API.
      * * `v1` or `v1beta2`: uses the push format defined in the v1 Pub/Sub API.
      * For example:
-     * <pre><code>attributes { "x-goog-version": "v1" } </code></pre>
+     * `attributes { "x-goog-version": "v1" }`
      *
      * Generated from protobuf field <code>map<string, string> attributes = 2;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var

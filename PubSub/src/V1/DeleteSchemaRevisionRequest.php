@@ -18,19 +18,20 @@ class DeleteSchemaRevisionRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of the schema revision to be deleted, with a revision ID
      * explicitly included.
-     * Example: projects/123/schemas/my-schema&#64;c7cfa2a8
+     * Example: `projects/123/schemas/my-schema&#64;c7cfa2a8`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
     /**
-     * Required. The revision ID to roll back to.
-     * It must be a revision of the same schema.
-     *   Example: c7cfa2a8
+     * Optional. This field is deprecated and should not be used for specifying
+     * the revision ID. The revision ID should be specified via the `name`
+     * parameter.
      *
-     * Generated from protobuf field <code>string revision_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string revision_id = 2 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @deprecated
      */
-    private $revision_id = '';
+    protected $revision_id = '';
 
     /**
      * Constructor.
@@ -41,11 +42,11 @@ class DeleteSchemaRevisionRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. The name of the schema revision to be deleted, with a revision ID
      *           explicitly included.
-     *           Example: projects/123/schemas/my-schema&#64;c7cfa2a8
+     *           Example: `projects/123/schemas/my-schema&#64;c7cfa2a8`
      *     @type string $revision_id
-     *           Required. The revision ID to roll back to.
-     *           It must be a revision of the same schema.
-     *             Example: c7cfa2a8
+     *           Optional. This field is deprecated and should not be used for specifying
+     *           the revision ID. The revision ID should be specified via the `name`
+     *           parameter.
      * }
      */
     public function __construct($data = NULL) {
@@ -56,7 +57,7 @@ class DeleteSchemaRevisionRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of the schema revision to be deleted, with a revision ID
      * explicitly included.
-     * Example: projects/123/schemas/my-schema&#64;c7cfa2a8
+     * Example: `projects/123/schemas/my-schema&#64;c7cfa2a8`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -69,7 +70,7 @@ class DeleteSchemaRevisionRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of the schema revision to be deleted, with a revision ID
      * explicitly included.
-     * Example: projects/123/schemas/my-schema&#64;c7cfa2a8
+     * Example: `projects/123/schemas/my-schema&#64;c7cfa2a8`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -84,29 +85,33 @@ class DeleteSchemaRevisionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The revision ID to roll back to.
-     * It must be a revision of the same schema.
-     *   Example: c7cfa2a8
+     * Optional. This field is deprecated and should not be used for specifying
+     * the revision ID. The revision ID should be specified via the `name`
+     * parameter.
      *
-     * Generated from protobuf field <code>string revision_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string revision_id = 2 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
+     * @deprecated
      */
     public function getRevisionId()
     {
+        @trigger_error('revision_id is deprecated.', E_USER_DEPRECATED);
         return $this->revision_id;
     }
 
     /**
-     * Required. The revision ID to roll back to.
-     * It must be a revision of the same schema.
-     *   Example: c7cfa2a8
+     * Optional. This field is deprecated and should not be used for specifying
+     * the revision ID. The revision ID should be specified via the `name`
+     * parameter.
      *
-     * Generated from protobuf field <code>string revision_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string revision_id = 2 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
+     * @deprecated
      */
     public function setRevisionId($var)
     {
+        @trigger_error('revision_id is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkString($var, True);
         $this->revision_id = $var;
 

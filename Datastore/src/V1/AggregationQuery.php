@@ -9,14 +9,16 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Datastore query for running an aggregation over a [Query][google.datastore.v1.Query].
+ * Datastore query for running an aggregation over a
+ * [Query][google.datastore.v1.Query].
  *
  * Generated from protobuf message <code>google.datastore.v1.AggregationQuery</code>
  */
 class AggregationQuery extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. Series of aggregations to apply over the results of the `nested_query`.
+     * Optional. Series of aggregations to apply over the results of the
+     * `nested_query`.
      * Requires:
      * * A minimum of one and maximum of five aggregations per query.
      *
@@ -34,7 +36,8 @@ class AggregationQuery extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Datastore\V1\Query $nested_query
      *           Nested query for aggregation
      *     @type array<\Google\Cloud\Datastore\V1\AggregationQuery\Aggregation>|\Google\Protobuf\Internal\RepeatedField $aggregations
-     *           Optional. Series of aggregations to apply over the results of the `nested_query`.
+     *           Optional. Series of aggregations to apply over the results of the
+     *           `nested_query`.
      *           Requires:
      *           * A minimum of one and maximum of five aggregations per query.
      * }
@@ -76,7 +79,8 @@ class AggregationQuery extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Series of aggregations to apply over the results of the `nested_query`.
+     * Optional. Series of aggregations to apply over the results of the
+     * `nested_query`.
      * Requires:
      * * A minimum of one and maximum of five aggregations per query.
      *
@@ -89,7 +93,8 @@ class AggregationQuery extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Series of aggregations to apply over the results of the `nested_query`.
+     * Optional. Series of aggregations to apply over the results of the
+     * `nested_query`.
      * Requires:
      * * A minimum of one and maximum of five aggregations per query.
      *

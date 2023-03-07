@@ -40,6 +40,17 @@ class LookupResponse extends \Google\Protobuf\Internal\Message
      */
     private $deferred;
     /**
+     * The identifier of the transaction that was started as part of this Lookup
+     * request.
+     * Set only when
+     * [ReadOptions.new_transaction][google.datastore.v1.ReadOptions.new_transaction]
+     * was set in
+     * [LookupRequest.read_options][google.datastore.v1.LookupRequest.read_options].
+     *
+     * Generated from protobuf field <code>bytes transaction = 5;</code>
+     */
+    private $transaction = '';
+    /**
      * The time at which these entities were read or found missing.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 7;</code>
@@ -64,6 +75,13 @@ class LookupResponse extends \Google\Protobuf\Internal\Message
      *           A list of keys that were not looked up due to resource constraints. The
      *           order of results in this field is undefined and has no relation to the
      *           order of the keys in the input.
+     *     @type string $transaction
+     *           The identifier of the transaction that was started as part of this Lookup
+     *           request.
+     *           Set only when
+     *           [ReadOptions.new_transaction][google.datastore.v1.ReadOptions.new_transaction]
+     *           was set in
+     *           [LookupRequest.read_options][google.datastore.v1.LookupRequest.read_options].
      *     @type \Google\Protobuf\Timestamp $read_time
      *           The time at which these entities were read or found missing.
      * }
@@ -159,6 +177,42 @@ class LookupResponse extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Datastore\V1\Key::class);
         $this->deferred = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The identifier of the transaction that was started as part of this Lookup
+     * request.
+     * Set only when
+     * [ReadOptions.new_transaction][google.datastore.v1.ReadOptions.new_transaction]
+     * was set in
+     * [LookupRequest.read_options][google.datastore.v1.LookupRequest.read_options].
+     *
+     * Generated from protobuf field <code>bytes transaction = 5;</code>
+     * @return string
+     */
+    public function getTransaction()
+    {
+        return $this->transaction;
+    }
+
+    /**
+     * The identifier of the transaction that was started as part of this Lookup
+     * request.
+     * Set only when
+     * [ReadOptions.new_transaction][google.datastore.v1.ReadOptions.new_transaction]
+     * was set in
+     * [LookupRequest.read_options][google.datastore.v1.LookupRequest.read_options].
+     *
+     * Generated from protobuf field <code>bytes transaction = 5;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setTransaction($var)
+    {
+        GPBUtil::checkString($var, False);
+        $this->transaction = $var;
 
         return $this;
     }
