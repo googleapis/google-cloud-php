@@ -79,7 +79,7 @@ class FirstPartyPrincipal extends \Google\Protobuf\Internal\Message
      */
     public function getServiceMetadata()
     {
-        return isset($this->service_metadata) ? $this->service_metadata : null;
+        return $this->service_metadata;
     }
 
     public function hasServiceMetadata()
@@ -109,6 +109,4 @@ class FirstPartyPrincipal extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(FirstPartyPrincipal::class, \Google\Cloud\Audit\ServiceAccountDelegationInfo_FirstPartyPrincipal::class);
 
