@@ -39,6 +39,15 @@
         "title": "FieldValue",
         "type": "firestore/fieldvalue"
     }, {
+        "title": "Aggregate",
+        "type": "firestore/aggregate"
+    }, {
+        "title": "AggregateQuery",
+        "type": "firestore/aggregatequery"
+    }, {
+        "title": "AggregateQuerySnapshot",
+        "type": "firestore/aggregatequerysnapshot"
+    }, {
         "title": "v1",
         "type": "firestore/v1/readme",
         "patterns": [

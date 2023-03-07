@@ -210,8 +210,8 @@ class AggregateQueryTest extends FirestoreTestCase
         $expectedTimestamp = new Timestamp(new \DateTimeImmutable());
         $this->assertInstanceOf(Timestamp::class, $snapshot->getReadTime());
         $this->assertLessThanOrEqual(
-            $actualTimestamp->get()->getTimestamp(),
-            $expectedTimestamp->get()->getTimestamp()
+            $expectedTimestamp->get()->getTimestamp(),
+            $actualTimestamp->get()->getTimestamp()
         );
     }
 }
