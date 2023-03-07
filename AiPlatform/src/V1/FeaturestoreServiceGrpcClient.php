@@ -344,6 +344,30 @@ class FeaturestoreServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
+     * Delete Feature values from Featurestore.
+     *
+     * The progress of the deletion is tracked by the returned operation. The
+     * deleted feature values are guaranteed to be invisible to subsequent read
+     * operations after the operation is marked as successfully done.
+     *
+     * If a delete feature values operation fails, the feature values
+     * returned from reads and exports may be inconsistent. If consistency is
+     * required, the caller must retry the same delete request again and wait till
+     * the new operation returned is marked as successfully done.
+     * @param \Google\Cloud\AIPlatform\V1\DeleteFeatureValuesRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function DeleteFeatureValues(\Google\Cloud\AIPlatform\V1\DeleteFeatureValuesRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.aiplatform.v1.FeaturestoreService/DeleteFeatureValues',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
      * Searches Features matching a query in a given project.
      * @param \Google\Cloud\AIPlatform\V1\SearchFeaturesRequest $argument input argument
      * @param array $metadata metadata

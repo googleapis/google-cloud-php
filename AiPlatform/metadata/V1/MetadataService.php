@@ -27,11 +27,12 @@ class MetadataService
         \GPBMetadata\Google\Cloud\Aiplatform\V1\MetadataStore::initOnce();
         \GPBMetadata\Google\Cloud\Aiplatform\V1\Operation::initOnce();
         \GPBMetadata\Google\Longrunning\Operations::initOnce();
+        \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Øo
-1google/cloud/aiplatform/v1/metadata_service.protogoogle.cloud.aiplatform.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto)google/cloud/aiplatform/v1/artifact.proto(google/cloud/aiplatform/v1/context.proto&google/cloud/aiplatform/v1/event.proto*google/cloud/aiplatform/v1/execution.proto1google/cloud/aiplatform/v1/lineage_subgraph.proto0google/cloud/aiplatform/v1/metadata_schema.proto/google/cloud/aiplatform/v1/metadata_store.proto*google/cloud/aiplatform/v1/operation.proto#google/longrunning/operations.proto google/protobuf/field_mask.proto"º
+õo
+1google/cloud/aiplatform/v1/metadata_service.protogoogle.cloud.aiplatform.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto)google/cloud/aiplatform/v1/artifact.proto(google/cloud/aiplatform/v1/context.proto&google/cloud/aiplatform/v1/event.proto*google/cloud/aiplatform/v1/execution.proto1google/cloud/aiplatform/v1/lineage_subgraph.proto0google/cloud/aiplatform/v1/metadata_schema.proto/google/cloud/aiplatform/v1/metadata_store.proto*google/cloud/aiplatform/v1/operation.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"º
 CreateMetadataStoreRequest9
 parent (	B)àAúA#
 !locations.googleapis.com/LocationF
