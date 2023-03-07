@@ -34,7 +34,8 @@ php.owlbot_main(
     src=src,
     dest=dest,
     copy_excludes=[
-        src / "**/[A-Z]*_*.php"
+        src / "**/[A-Z]*_*.php",
+        src / "**/[A-Z]*GrpcClient.php"
     ]
 )
 
@@ -46,8 +47,6 @@ s.replace(
     + r"^class_alias\(.*\);$"
     + "\n",
     '')
-
-
 
 
 ### [START] protoc backwards compatibility fixes
