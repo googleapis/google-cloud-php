@@ -196,9 +196,10 @@ class Build extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Stores timing information for phases of the build. Valid keys
      * are:
-     * * BUILD: time to execute all build steps
+     * * BUILD: time to execute all build steps.
      * * PUSH: time to push all specified images.
      * * FETCHSOURCE: time to fetch source.
+     * * SETUPBUILD: time to set up build.
      * If the build does not specify source or images,
      * these keys will not be included.
      *
@@ -206,10 +207,16 @@ class Build extends \Google\Protobuf\Internal\Message
      */
     private $timing;
     /**
+     * Output only. Describes this build's approval configuration, status,
+     * and result.
+     *
+     * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.BuildApproval approval = 44 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $approval = null;
+    /**
      * IAM service account whose credentials will be used at build runtime.
      * Must be of the format `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.
      * ACCOUNT can be email address or uniqueId of the service account.
-     * This field is in beta.
      *
      * Generated from protobuf field <code>string service_account = 42 [(.google.api.resource_reference) = {</code>
      */
@@ -220,6 +227,19 @@ class Build extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.Secrets available_secrets = 47;</code>
      */
     private $available_secrets = null;
+    /**
+     * Output only. Non-fatal problems encountered during the execution of the
+     * build.
+     *
+     * Generated from protobuf field <code>repeated .google.devtools.cloudbuild.v1.Build.Warning warnings = 49 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $warnings;
+    /**
+     * Output only. Contains information about the build when status=FAILURE.
+     *
+     * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.Build.FailureInfo failure_info = 51 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $failure_info = null;
 
     /**
      * Constructor.
@@ -241,7 +261,7 @@ class Build extends \Google\Protobuf\Internal\Message
      *           Output only. Customer-readable message about the current status.
      *     @type \Google\Cloud\Build\V1\Source $source
      *           The location of the source files to build.
-     *     @type \Google\Cloud\Build\V1\BuildStep[]|\Google\Protobuf\Internal\RepeatedField $steps
+     *     @type array<\Google\Cloud\Build\V1\BuildStep>|\Google\Protobuf\Internal\RepeatedField $steps
      *           Required. The operations to be performed on the workspace.
      *     @type \Google\Cloud\Build\V1\Results $results
      *           Output only. Results of the build.
@@ -259,7 +279,7 @@ class Build extends \Google\Protobuf\Internal\Message
      *           and the build status will be `TIMEOUT`.
      *           `timeout` starts ticking from `startTime`.
      *           Default time is ten minutes.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $images
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $images
      *           A list of images to be pushed upon the successful completion of all build
      *           steps.
      *           The images are pushed using the builder service account's credentials.
@@ -291,9 +311,9 @@ class Build extends \Google\Protobuf\Internal\Message
      *           Output only. URL to logs for this build in Google Cloud Console.
      *     @type array|\Google\Protobuf\Internal\MapField $substitutions
      *           Substitutions data for `Build` resource.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $tags
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $tags
      *           Tags for annotation of a `Build`. These are not docker tags.
-     *     @type \Google\Cloud\Build\V1\Secret[]|\Google\Protobuf\Internal\RepeatedField $secrets
+     *     @type array<\Google\Cloud\Build\V1\Secret>|\Google\Protobuf\Internal\RepeatedField $secrets
      *           Secrets to decrypt using Cloud Key Management Service.
      *           Note: Secret Manager is the recommended technique
      *           for managing sensitive data with Cloud Build. Use `available_secrets` to
@@ -302,18 +322,26 @@ class Build extends \Google\Protobuf\Internal\Message
      *     @type array|\Google\Protobuf\Internal\MapField $timing
      *           Output only. Stores timing information for phases of the build. Valid keys
      *           are:
-     *           * BUILD: time to execute all build steps
+     *           * BUILD: time to execute all build steps.
      *           * PUSH: time to push all specified images.
      *           * FETCHSOURCE: time to fetch source.
+     *           * SETUPBUILD: time to set up build.
      *           If the build does not specify source or images,
      *           these keys will not be included.
+     *     @type \Google\Cloud\Build\V1\BuildApproval $approval
+     *           Output only. Describes this build's approval configuration, status,
+     *           and result.
      *     @type string $service_account
      *           IAM service account whose credentials will be used at build runtime.
      *           Must be of the format `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.
      *           ACCOUNT can be email address or uniqueId of the service account.
-     *           This field is in beta.
      *     @type \Google\Cloud\Build\V1\Secrets $available_secrets
      *           Secrets and secret environment variables.
+     *     @type array<\Google\Cloud\Build\V1\Build\Warning>|\Google\Protobuf\Internal\RepeatedField $warnings
+     *           Output only. Non-fatal problems encountered during the execution of the
+     *           build.
+     *     @type \Google\Cloud\Build\V1\Build\FailureInfo $failure_info
+     *           Output only. Contains information about the build when status=FAILURE.
      * }
      */
     public function __construct($data = NULL) {
@@ -463,7 +491,7 @@ class Build extends \Google\Protobuf\Internal\Message
      */
     public function getSource()
     {
-        return isset($this->source) ? $this->source : null;
+        return $this->source;
     }
 
     public function hasSource()
@@ -506,7 +534,7 @@ class Build extends \Google\Protobuf\Internal\Message
      * Required. The operations to be performed on the workspace.
      *
      * Generated from protobuf field <code>repeated .google.devtools.cloudbuild.v1.BuildStep steps = 11;</code>
-     * @param \Google\Cloud\Build\V1\BuildStep[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Build\V1\BuildStep>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSteps($var)
@@ -525,7 +553,7 @@ class Build extends \Google\Protobuf\Internal\Message
      */
     public function getResults()
     {
-        return isset($this->results) ? $this->results : null;
+        return $this->results;
     }
 
     public function hasResults()
@@ -561,7 +589,7 @@ class Build extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -597,7 +625,7 @@ class Build extends \Google\Protobuf\Internal\Message
      */
     public function getStartTime()
     {
-        return isset($this->start_time) ? $this->start_time : null;
+        return $this->start_time;
     }
 
     public function hasStartTime()
@@ -635,7 +663,7 @@ class Build extends \Google\Protobuf\Internal\Message
      */
     public function getFinishTime()
     {
-        return isset($this->finish_time) ? $this->finish_time : null;
+        return $this->finish_time;
     }
 
     public function hasFinishTime()
@@ -677,7 +705,7 @@ class Build extends \Google\Protobuf\Internal\Message
      */
     public function getTimeout()
     {
-        return isset($this->timeout) ? $this->timeout : null;
+        return $this->timeout;
     }
 
     public function hasTimeout()
@@ -736,7 +764,7 @@ class Build extends \Google\Protobuf\Internal\Message
      * `FAILURE`.
      *
      * Generated from protobuf field <code>repeated string images = 13;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setImages($var)
@@ -758,7 +786,7 @@ class Build extends \Google\Protobuf\Internal\Message
      */
     public function getQueueTtl()
     {
-        return isset($this->queue_ttl) ? $this->queue_ttl : null;
+        return $this->queue_ttl;
     }
 
     public function hasQueueTtl()
@@ -798,7 +826,7 @@ class Build extends \Google\Protobuf\Internal\Message
      */
     public function getArtifacts()
     {
-        return isset($this->artifacts) ? $this->artifacts : null;
+        return $this->artifacts;
     }
 
     public function hasArtifacts()
@@ -867,7 +895,7 @@ class Build extends \Google\Protobuf\Internal\Message
      */
     public function getSourceProvenance()
     {
-        return isset($this->source_provenance) ? $this->source_provenance : null;
+        return $this->source_provenance;
     }
 
     public function hasSourceProvenance()
@@ -931,7 +959,7 @@ class Build extends \Google\Protobuf\Internal\Message
      */
     public function getOptions()
     {
-        return isset($this->options) ? $this->options : null;
+        return $this->options;
     }
 
     public function hasOptions()
@@ -1026,7 +1054,7 @@ class Build extends \Google\Protobuf\Internal\Message
      * Tags for annotation of a `Build`. These are not docker tags.
      *
      * Generated from protobuf field <code>repeated string tags = 31;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTags($var)
@@ -1060,7 +1088,7 @@ class Build extends \Google\Protobuf\Internal\Message
      * see: https://cloud.google.com/cloud-build/docs/securing-builds/use-secrets
      *
      * Generated from protobuf field <code>repeated .google.devtools.cloudbuild.v1.Secret secrets = 32;</code>
-     * @param \Google\Cloud\Build\V1\Secret[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Build\V1\Secret>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSecrets($var)
@@ -1074,9 +1102,10 @@ class Build extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Stores timing information for phases of the build. Valid keys
      * are:
-     * * BUILD: time to execute all build steps
+     * * BUILD: time to execute all build steps.
      * * PUSH: time to push all specified images.
      * * FETCHSOURCE: time to fetch source.
+     * * SETUPBUILD: time to set up build.
      * If the build does not specify source or images,
      * these keys will not be included.
      *
@@ -1091,9 +1120,10 @@ class Build extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Stores timing information for phases of the build. Valid keys
      * are:
-     * * BUILD: time to execute all build steps
+     * * BUILD: time to execute all build steps.
      * * PUSH: time to push all specified images.
      * * FETCHSOURCE: time to fetch source.
+     * * SETUPBUILD: time to set up build.
      * If the build does not specify source or images,
      * these keys will not be included.
      *
@@ -1110,10 +1140,47 @@ class Build extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Output only. Describes this build's approval configuration, status,
+     * and result.
+     *
+     * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.BuildApproval approval = 44 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Build\V1\BuildApproval|null
+     */
+    public function getApproval()
+    {
+        return $this->approval;
+    }
+
+    public function hasApproval()
+    {
+        return isset($this->approval);
+    }
+
+    public function clearApproval()
+    {
+        unset($this->approval);
+    }
+
+    /**
+     * Output only. Describes this build's approval configuration, status,
+     * and result.
+     *
+     * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.BuildApproval approval = 44 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Build\V1\BuildApproval $var
+     * @return $this
+     */
+    public function setApproval($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Build\V1\BuildApproval::class);
+        $this->approval = $var;
+
+        return $this;
+    }
+
+    /**
      * IAM service account whose credentials will be used at build runtime.
      * Must be of the format `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.
      * ACCOUNT can be email address or uniqueId of the service account.
-     * This field is in beta.
      *
      * Generated from protobuf field <code>string service_account = 42 [(.google.api.resource_reference) = {</code>
      * @return string
@@ -1127,7 +1194,6 @@ class Build extends \Google\Protobuf\Internal\Message
      * IAM service account whose credentials will be used at build runtime.
      * Must be of the format `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.
      * ACCOUNT can be email address or uniqueId of the service account.
-     * This field is in beta.
      *
      * Generated from protobuf field <code>string service_account = 42 [(.google.api.resource_reference) = {</code>
      * @param string $var
@@ -1149,7 +1215,7 @@ class Build extends \Google\Protobuf\Internal\Message
      */
     public function getAvailableSecrets()
     {
-        return isset($this->available_secrets) ? $this->available_secrets : null;
+        return $this->available_secrets;
     }
 
     public function hasAvailableSecrets()
@@ -1173,6 +1239,70 @@ class Build extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Build\V1\Secrets::class);
         $this->available_secrets = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Non-fatal problems encountered during the execution of the
+     * build.
+     *
+     * Generated from protobuf field <code>repeated .google.devtools.cloudbuild.v1.Build.Warning warnings = 49 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getWarnings()
+    {
+        return $this->warnings;
+    }
+
+    /**
+     * Output only. Non-fatal problems encountered during the execution of the
+     * build.
+     *
+     * Generated from protobuf field <code>repeated .google.devtools.cloudbuild.v1.Build.Warning warnings = 49 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array<\Google\Cloud\Build\V1\Build\Warning>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setWarnings($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Build\V1\Build\Warning::class);
+        $this->warnings = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Contains information about the build when status=FAILURE.
+     *
+     * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.Build.FailureInfo failure_info = 51 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Build\V1\Build\FailureInfo|null
+     */
+    public function getFailureInfo()
+    {
+        return $this->failure_info;
+    }
+
+    public function hasFailureInfo()
+    {
+        return isset($this->failure_info);
+    }
+
+    public function clearFailureInfo()
+    {
+        unset($this->failure_info);
+    }
+
+    /**
+     * Output only. Contains information about the build when status=FAILURE.
+     *
+     * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.Build.FailureInfo failure_info = 51 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Build\V1\Build\FailureInfo $var
+     * @return $this
+     */
+    public function setFailureInfo($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Build\V1\Build\FailureInfo::class);
+        $this->failure_info = $var;
 
         return $this;
     }

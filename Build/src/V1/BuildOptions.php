@@ -70,13 +70,21 @@ class BuildOptions extends \Google\Protobuf\Internal\Message
      */
     private $log_streaming_option = 0;
     /**
-     * Option to specify a `WorkerPool` for the build.
-     * Format: projects/{project}/locations/{location}/workerPools/{workerPool}
-     * This field is experimental.
+     * This field deprecated; please use `pool.name` instead.
      *
-     * Generated from protobuf field <code>string worker_pool = 7;</code>
+     * Generated from protobuf field <code>string worker_pool = 7 [deprecated = true];</code>
+     * @deprecated
      */
-    private $worker_pool = '';
+    protected $worker_pool = '';
+    /**
+     * Optional. Specification for execution on a `WorkerPool`.
+     * See [running builds in a private
+     * pool](https://cloud.google.com/build/docs/private-pools/run-builds-in-private-pool)
+     * for more information.
+     *
+     * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.BuildOptions.PoolOption pool = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $pool = null;
     /**
      * Option to specify the logging mode, which determines if and where build
      * logs are stored.
@@ -122,7 +130,7 @@ class BuildOptions extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $source_provenance_hash
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $source_provenance_hash
      *           Requested hash for SourceProvenance.
      *     @type int $requested_verify_option
      *           Requested verifiability options.
@@ -149,24 +157,27 @@ class BuildOptions extends \Google\Protobuf\Internal\Message
      *           Option to define build log streaming behavior to Google Cloud
      *           Storage.
      *     @type string $worker_pool
-     *           Option to specify a `WorkerPool` for the build.
-     *           Format: projects/{project}/locations/{location}/workerPools/{workerPool}
-     *           This field is experimental.
+     *           This field deprecated; please use `pool.name` instead.
+     *     @type \Google\Cloud\Build\V1\BuildOptions\PoolOption $pool
+     *           Optional. Specification for execution on a `WorkerPool`.
+     *           See [running builds in a private
+     *           pool](https://cloud.google.com/build/docs/private-pools/run-builds-in-private-pool)
+     *           for more information.
      *     @type int $logging
      *           Option to specify the logging mode, which determines if and where build
      *           logs are stored.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $env
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $env
      *           A list of global environment variable definitions that will exist for all
      *           build steps in this build. If a variable is defined in both globally and in
      *           a build step, the variable will use the build step value.
      *           The elements are of the form "KEY=VALUE" for the environment variable "KEY"
      *           being given the value "VALUE".
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $secret_env
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $secret_env
      *           A list of global environment variables, which are encrypted using a Cloud
      *           Key Management Service crypto key. These values must be specified in the
      *           build's `Secret`. These variables will be available to all build steps
      *           in this build.
-     *     @type \Google\Cloud\Build\V1\Volume[]|\Google\Protobuf\Internal\RepeatedField $volumes
+     *     @type array<\Google\Cloud\Build\V1\Volume>|\Google\Protobuf\Internal\RepeatedField $volumes
      *           Global list of volumes to mount for ALL build steps
      *           Each volume is created as an empty volume prior to starting the build
      *           process. Upon completion of the build, volumes and their contents are
@@ -196,7 +207,7 @@ class BuildOptions extends \Google\Protobuf\Internal\Message
      * Requested hash for SourceProvenance.
      *
      * Generated from protobuf field <code>repeated .google.devtools.cloudbuild.v1.Hash.HashType source_provenance_hash = 1;</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSourceProvenanceHash($var)
@@ -388,31 +399,73 @@ class BuildOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Option to specify a `WorkerPool` for the build.
-     * Format: projects/{project}/locations/{location}/workerPools/{workerPool}
-     * This field is experimental.
+     * This field deprecated; please use `pool.name` instead.
      *
-     * Generated from protobuf field <code>string worker_pool = 7;</code>
+     * Generated from protobuf field <code>string worker_pool = 7 [deprecated = true];</code>
      * @return string
+     * @deprecated
      */
     public function getWorkerPool()
     {
+        @trigger_error('worker_pool is deprecated.', E_USER_DEPRECATED);
         return $this->worker_pool;
     }
 
     /**
-     * Option to specify a `WorkerPool` for the build.
-     * Format: projects/{project}/locations/{location}/workerPools/{workerPool}
-     * This field is experimental.
+     * This field deprecated; please use `pool.name` instead.
      *
-     * Generated from protobuf field <code>string worker_pool = 7;</code>
+     * Generated from protobuf field <code>string worker_pool = 7 [deprecated = true];</code>
      * @param string $var
      * @return $this
+     * @deprecated
      */
     public function setWorkerPool($var)
     {
+        @trigger_error('worker_pool is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkString($var, True);
         $this->worker_pool = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specification for execution on a `WorkerPool`.
+     * See [running builds in a private
+     * pool](https://cloud.google.com/build/docs/private-pools/run-builds-in-private-pool)
+     * for more information.
+     *
+     * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.BuildOptions.PoolOption pool = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Build\V1\BuildOptions\PoolOption|null
+     */
+    public function getPool()
+    {
+        return $this->pool;
+    }
+
+    public function hasPool()
+    {
+        return isset($this->pool);
+    }
+
+    public function clearPool()
+    {
+        unset($this->pool);
+    }
+
+    /**
+     * Optional. Specification for execution on a `WorkerPool`.
+     * See [running builds in a private
+     * pool](https://cloud.google.com/build/docs/private-pools/run-builds-in-private-pool)
+     * for more information.
+     *
+     * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.BuildOptions.PoolOption pool = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Build\V1\BuildOptions\PoolOption $var
+     * @return $this
+     */
+    public function setPool($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Build\V1\BuildOptions\PoolOption::class);
+        $this->pool = $var;
 
         return $this;
     }
@@ -468,7 +521,7 @@ class BuildOptions extends \Google\Protobuf\Internal\Message
      * being given the value "VALUE".
      *
      * Generated from protobuf field <code>repeated string env = 12;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setEnv($var)
@@ -500,7 +553,7 @@ class BuildOptions extends \Google\Protobuf\Internal\Message
      * in this build.
      *
      * Generated from protobuf field <code>repeated string secret_env = 13;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSecretEnv($var)
@@ -538,7 +591,7 @@ class BuildOptions extends \Google\Protobuf\Internal\Message
      * it is indicative of a build request with an incorrect configuration.
      *
      * Generated from protobuf field <code>repeated .google.devtools.cloudbuild.v1.Volume volumes = 14;</code>
-     * @param \Google\Cloud\Build\V1\Volume[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Build\V1\Volume>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setVolumes($var)
