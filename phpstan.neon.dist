@@ -1,17 +1,26 @@
 parameters:
     level: 0
     excludePaths:
-    - */vendor/*
-    - */samples/*
-    - */tests/*
+    # Ignore PHPDocumentor3 and PHPDocumentor4 for now, as these tests run using PHPDocumentor5
+    - Core/src/Testing/Reflection/ReflectionHandlerV3.php
+    - Core/src/Testing/Reflection/ReflectionHandlerV4.php
+    # Ignore classes not compatible with Monolog3
+    - Core/src/Logger/AppEngineFlexHandler.php
+    - Core/src/Logger/AppEngineFlexFormatterV2.php
+    - Core/src/Logger/AppEngineFlexFormatter.php
+    # Ignore deprecated classes
+    - Core/src/Lock/SymfonyLockAdapter.php
+    - Core/src/PhpArray.php
+    # Ignore classes using the deprecated stackriver_debugger extension
+    - Debugger/src/Agent.php
+    - Debugger/src/Breakpoint.php
     # Ignore Monolog3 for now, as these tests run using Monolog2
     - Logging/src/LogMessageProcessor/MonologV3MessageProcessor.php
-    # Ignore PHPDocumentor3 and PHPDocumentor4 for now, as these tests run using PHPDocumentor5
-    - Core/src/Testing/Reflection/ReflectionHandler/ReflectionHandlerV3.php
-    - Core/src/Testing/Reflection/ReflectionHandler/ReflectionHandlerV4.php
-    # Ignore PHPArray because it's deprecated
-    - Core/src/PhpArray.php
     ignoreErrors:
-    - '#^Class Google\\[A-Za-z1-9\\]+_[A-Za-z1-9]+ not found\.$#'
+    # Problems with legacy namespaces (I'm not sure why these are throwing errors)
+    - '#^Class Google\\[A-Za-z1-9\\]+_[A-Za-z1-9_]+ not found\.$#'
+    # Protobuf constant classes sometimes contain multiple values for one array key
     - '#Array has \d duplicate keys with value #'
+    # Ignore this error because I don't consider it to be level 0
+    - '#Unsafe usage of new static#'
 

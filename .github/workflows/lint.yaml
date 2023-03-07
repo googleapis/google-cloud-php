@@ -26,6 +26,7 @@ jobs:
 
   staticanalysis:
     runs-on: ubuntu-latest
+    name: PHPStan Static Analysis
     steps:
     - uses: actions/checkout@v3
     - name: Install PHP
