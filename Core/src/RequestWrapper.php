@@ -22,6 +22,7 @@ use Google\Auth\GetQuotaProjectInterface;
 use Google\Auth\HttpHandler\Guzzle5HttpHandler;
 use Google\Auth\HttpHandler\Guzzle6HttpHandler;
 use Google\Auth\HttpHandler\HttpHandlerFactory;
+use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Core\RequestWrapperTrait;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Promise\PromiseInterface;
@@ -181,6 +182,7 @@ class RequestWrapper
      *     @type array $restOptions HTTP client specific configuration options.
      * }
      * @return ResponseInterface
+     * @throws ServiceException
      */
     public function send(RequestInterface $request, array $options = [])
     {
@@ -231,6 +233,7 @@ class RequestWrapper
      *     @type array $restOptions HTTP client specific configuration options.
      * }
      * @return PromiseInterface<ResponseInterface>
+     * @throws ServiceException
      * @experimental The experimental flag means that while we believe this method
      *      or class is ready for use, it may change before release in backwards-
      *      incompatible ways. Please use with caution, and test thoroughly when
@@ -312,6 +315,7 @@ class RequestWrapper
      *
      * @param FetchAuthTokenInterface $credentialsFetcher
      * @return array
+     * @throws ServiceException
      */
     private function fetchCredentials(FetchAuthTokenInterface $credentialsFetcher)
     {
