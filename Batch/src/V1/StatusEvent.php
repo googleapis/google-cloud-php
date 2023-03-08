@@ -39,6 +39,12 @@ class StatusEvent extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.batch.v1.TaskExecution task_execution = 4;</code>
      */
     private $task_execution = null;
+    /**
+     * Task State
+     *
+     * Generated from protobuf field <code>.google.cloud.batch.v1.TaskStatus.State task_state = 5;</code>
+     */
+    private $task_state = 0;
 
     /**
      * Constructor.
@@ -54,6 +60,8 @@ class StatusEvent extends \Google\Protobuf\Internal\Message
      *           The time this event occurred.
      *     @type \Google\Cloud\Batch\V1\TaskExecution $task_execution
      *           Task Execution
+     *     @type int $task_state
+     *           Task State
      * }
      */
     public function __construct($data = NULL) {
@@ -181,6 +189,32 @@ class StatusEvent extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Batch\V1\TaskExecution::class);
         $this->task_execution = $var;
+
+        return $this;
+    }
+
+    /**
+     * Task State
+     *
+     * Generated from protobuf field <code>.google.cloud.batch.v1.TaskStatus.State task_state = 5;</code>
+     * @return int
+     */
+    public function getTaskState()
+    {
+        return $this->task_state;
+    }
+
+    /**
+     * Task State
+     *
+     * Generated from protobuf field <code>.google.cloud.batch.v1.TaskStatus.State task_state = 5;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setTaskState($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Batch\V1\TaskStatus\State::class);
+        $this->task_state = $var;
 
         return $this;
     }
