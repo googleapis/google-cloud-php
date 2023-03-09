@@ -1,1 +1,0 @@
-{"id":"securityprivateca\/v1\/fetchcacertsresponse_certchain","type":"","title":"Google\\Cloud\\Security\\PrivateCA\\V1\\FetchCaCertsResponse_CertChain","name":"FetchCaCertsResponse_CertChain","description":"<p>This class is deprecated. Use Google\\Cloud\\Security\\PrivateCA\\V1\\FetchCaCertsResponse\\CertChain instead.<\/p>","examples":[],"resources":[],"methods":[]}

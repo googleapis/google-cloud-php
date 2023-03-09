@@ -1,1 +1,0 @@
-{"id":"analyticsdata\/v1alpha\/alphaanalyticsdatagrpcclient","type":"","title":"Google\\Analytics\\Data\\V1alpha\\AlphaAnalyticsDataGrpcClient","name":"AlphaAnalyticsDataGrpcClient","description":"<p>Google Analytics reporting data service.<\/p>\n<p>Extends \\Grpc\\BaseStub<\/p>","examples":[],"resources":[],"methods":[]}

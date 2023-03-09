@@ -1,1 +1,0 @@
-{"id":"compute\/v1\/forwardingrule\/ipversion","type":"","title":"Google\\Cloud\\Compute\\V1\\ForwardingRule\\IpVersion","name":"IpVersion","description":"<p>The IP Version that will be used by this forwarding rule. Valid options are IPV4 or IPV6.<\/p>\n<p>Protobuf type <code>google.cloud.compute.v1.ForwardingRule.IpVersion<\/code><\/p>","examples":[],"resources":[],"methods":[]}
