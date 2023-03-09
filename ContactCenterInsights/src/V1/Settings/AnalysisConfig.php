@@ -22,6 +22,20 @@ class AnalysisConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>double runtime_integration_analysis_percentage = 1;</code>
      */
     private $runtime_integration_analysis_percentage = 0.0;
+    /**
+     * Percentage of conversations created using the UploadConversation endpoint
+     * to analyze automatically, between [0, 100].
+     *
+     * Generated from protobuf field <code>double upload_conversation_analysis_percentage = 6;</code>
+     */
+    private $upload_conversation_analysis_percentage = 0.0;
+    /**
+     * To select the annotators to run and the phrase matchers to use
+     * (if any). If not specified, all annotators will be run.
+     *
+     * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.AnnotatorSelector annotator_selector = 5;</code>
+     */
+    private $annotator_selector = null;
 
     /**
      * Constructor.
@@ -32,6 +46,12 @@ class AnalysisConfig extends \Google\Protobuf\Internal\Message
      *     @type float $runtime_integration_analysis_percentage
      *           Percentage of conversations created using Dialogflow runtime integration
      *           to analyze automatically, between [0, 100].
+     *     @type float $upload_conversation_analysis_percentage
+     *           Percentage of conversations created using the UploadConversation endpoint
+     *           to analyze automatically, between [0, 100].
+     *     @type \Google\Cloud\ContactCenterInsights\V1\AnnotatorSelector $annotator_selector
+     *           To select the annotators to run and the phrase matchers to use
+     *           (if any). If not specified, all annotators will be run.
      * }
      */
     public function __construct($data = NULL) {
@@ -63,6 +83,72 @@ class AnalysisConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkDouble($var);
         $this->runtime_integration_analysis_percentage = $var;
+
+        return $this;
+    }
+
+    /**
+     * Percentage of conversations created using the UploadConversation endpoint
+     * to analyze automatically, between [0, 100].
+     *
+     * Generated from protobuf field <code>double upload_conversation_analysis_percentage = 6;</code>
+     * @return float
+     */
+    public function getUploadConversationAnalysisPercentage()
+    {
+        return $this->upload_conversation_analysis_percentage;
+    }
+
+    /**
+     * Percentage of conversations created using the UploadConversation endpoint
+     * to analyze automatically, between [0, 100].
+     *
+     * Generated from protobuf field <code>double upload_conversation_analysis_percentage = 6;</code>
+     * @param float $var
+     * @return $this
+     */
+    public function setUploadConversationAnalysisPercentage($var)
+    {
+        GPBUtil::checkDouble($var);
+        $this->upload_conversation_analysis_percentage = $var;
+
+        return $this;
+    }
+
+    /**
+     * To select the annotators to run and the phrase matchers to use
+     * (if any). If not specified, all annotators will be run.
+     *
+     * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.AnnotatorSelector annotator_selector = 5;</code>
+     * @return \Google\Cloud\ContactCenterInsights\V1\AnnotatorSelector|null
+     */
+    public function getAnnotatorSelector()
+    {
+        return $this->annotator_selector;
+    }
+
+    public function hasAnnotatorSelector()
+    {
+        return isset($this->annotator_selector);
+    }
+
+    public function clearAnnotatorSelector()
+    {
+        unset($this->annotator_selector);
+    }
+
+    /**
+     * To select the annotators to run and the phrase matchers to use
+     * (if any). If not specified, all annotators will be run.
+     *
+     * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.AnnotatorSelector annotator_selector = 5;</code>
+     * @param \Google\Cloud\ContactCenterInsights\V1\AnnotatorSelector $var
+     * @return $this
+     */
+    public function setAnnotatorSelector($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\ContactCenterInsights\V1\AnnotatorSelector::class);
+        $this->annotator_selector = $var;
 
         return $this;
     }

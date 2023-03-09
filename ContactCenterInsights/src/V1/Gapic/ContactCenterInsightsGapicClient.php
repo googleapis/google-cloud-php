@@ -36,6 +36,8 @@ use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\ContactCenterInsights\V1\Analysis;
+use Google\Cloud\ContactCenterInsights\V1\AnnotatorSelector;
+use Google\Cloud\ContactCenterInsights\V1\BulkAnalyzeConversationsRequest;
 use Google\Cloud\ContactCenterInsights\V1\CalculateIssueModelStatsRequest;
 use Google\Cloud\ContactCenterInsights\V1\CalculateIssueModelStatsResponse;
 use Google\Cloud\ContactCenterInsights\V1\CalculateStatsRequest;
@@ -49,6 +51,7 @@ use Google\Cloud\ContactCenterInsights\V1\CreateViewRequest;
 use Google\Cloud\ContactCenterInsights\V1\DeleteAnalysisRequest;
 use Google\Cloud\ContactCenterInsights\V1\DeleteConversationRequest;
 use Google\Cloud\ContactCenterInsights\V1\DeleteIssueModelRequest;
+use Google\Cloud\ContactCenterInsights\V1\DeleteIssueRequest;
 use Google\Cloud\ContactCenterInsights\V1\DeletePhraseMatcherRequest;
 use Google\Cloud\ContactCenterInsights\V1\DeleteViewRequest;
 use Google\Cloud\ContactCenterInsights\V1\DeployIssueModelRequest;
@@ -61,6 +64,10 @@ use Google\Cloud\ContactCenterInsights\V1\GetIssueRequest;
 use Google\Cloud\ContactCenterInsights\V1\GetPhraseMatcherRequest;
 use Google\Cloud\ContactCenterInsights\V1\GetSettingsRequest;
 use Google\Cloud\ContactCenterInsights\V1\GetViewRequest;
+use Google\Cloud\ContactCenterInsights\V1\IngestConversationsRequest;
+use Google\Cloud\ContactCenterInsights\V1\IngestConversationsRequest\ConversationConfig;
+use Google\Cloud\ContactCenterInsights\V1\IngestConversationsRequest\GcsSource;
+use Google\Cloud\ContactCenterInsights\V1\IngestConversationsRequest\TranscriptObjectConfig;
 use Google\Cloud\ContactCenterInsights\V1\Issue;
 use Google\Cloud\ContactCenterInsights\V1\IssueModel;
 use Google\Cloud\ContactCenterInsights\V1\ListAnalysesRequest;
@@ -98,8 +105,35 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $contactCenterInsightsClient = new ContactCenterInsightsClient();
  * try {
- *     $formattedIssueModel = $contactCenterInsightsClient->issueModelName('[PROJECT]', '[LOCATION]', '[ISSUE_MODEL]');
- *     $response = $contactCenterInsightsClient->calculateIssueModelStats($formattedIssueModel);
+ *     $formattedParent = $contactCenterInsightsClient->locationName('[PROJECT]', '[LOCATION]');
+ *     $filter = 'filter';
+ *     $analysisPercentage = 0.0;
+ *     $operationResponse = $contactCenterInsightsClient->bulkAnalyzeConversations($formattedParent, $filter, $analysisPercentage);
+ *     $operationResponse->pollUntilComplete();
+ *     if ($operationResponse->operationSucceeded()) {
+ *         $result = $operationResponse->getResult();
+ *     // doSomethingWith($result)
+ *     } else {
+ *         $error = $operationResponse->getError();
+ *         // handleError($error)
+ *     }
+ *     // Alternatively:
+ *     // start the operation, keep the operation name, and resume later
+ *     $operationResponse = $contactCenterInsightsClient->bulkAnalyzeConversations($formattedParent, $filter, $analysisPercentage);
+ *     $operationName = $operationResponse->getName();
+ *     // ... do other work
+ *     $newOperationResponse = $contactCenterInsightsClient->resumeOperation($operationName, 'bulkAnalyzeConversations');
+ *     while (!$newOperationResponse->isDone()) {
+ *         // ... do other work
+ *         $newOperationResponse->reload();
+ *     }
+ *     if ($newOperationResponse->operationSucceeded()) {
+ *         $result = $newOperationResponse->getResult();
+ *     // doSomethingWith($result)
+ *     } else {
+ *         $error = $newOperationResponse->getError();
+ *         // handleError($error)
+ *     }
  * } finally {
  *     $contactCenterInsightsClient->close();
  * }
@@ -593,6 +627,97 @@ class ContactCenterInsightsGapicClient
     }
 
     /**
+     * Analyzes multiple conversations in a single request.
+     *
+     * Sample code:
+     * ```
+     * $contactCenterInsightsClient = new ContactCenterInsightsClient();
+     * try {
+     *     $formattedParent = $contactCenterInsightsClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $filter = 'filter';
+     *     $analysisPercentage = 0.0;
+     *     $operationResponse = $contactCenterInsightsClient->bulkAnalyzeConversations($formattedParent, $filter, $analysisPercentage);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $contactCenterInsightsClient->bulkAnalyzeConversations($formattedParent, $filter, $analysisPercentage);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $contactCenterInsightsClient->resumeOperation($operationName, 'bulkAnalyzeConversations');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $contactCenterInsightsClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent             Required. The parent resource to create analyses in.
+     * @param string $filter             Required. Filter used to select the subset of conversations to analyze.
+     * @param float  $analysisPercentage Required. Percentage of selected conversation to analyze, between
+     *                                   [0, 100].
+     * @param array  $optionalArgs       {
+     *     Optional.
+     *
+     *     @type AnnotatorSelector $annotatorSelector
+     *           To select the annotators to run and the phrase matchers to use
+     *           (if any). If not specified, all annotators will be run.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function bulkAnalyzeConversations(
+        $parent,
+        $filter,
+        $analysisPercentage,
+        array $optionalArgs = []
+    ) {
+        $request = new BulkAnalyzeConversationsRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setFilter($filter);
+        $request->setAnalysisPercentage($analysisPercentage);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['annotatorSelector'])) {
+            $request->setAnnotatorSelector($optionalArgs['annotatorSelector']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'BulkAnalyzeConversations',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
      * Gets an issue model's statistics.
      *
      * Sample code:
@@ -933,10 +1058,10 @@ class ContactCenterInsightsGapicClient
      * }
      * ```
      *
-     * @param string        $parent        Required. The parent resource of the phrase matcher. Required. The location to create
-     *                                     a phrase matcher for.
-     *                                     Format: `projects/<Project ID>/locations/<Location ID>` or
-     *                                     `projects/<Project Number>/locations/<Location ID>`
+     * @param string        $parent        Required. The parent resource of the phrase matcher. Required. The location
+     *                                     to create a phrase matcher for. Format: `projects/<Project
+     *                                     ID>/locations/<Location ID>` or `projects/<Project
+     *                                     Number>/locations/<Location ID>`
      * @param PhraseMatcher $phraseMatcher Required. The phrase matcher resource to create.
      * @param array         $optionalArgs  {
      *     Optional.
@@ -1123,6 +1248,52 @@ class ContactCenterInsightsGapicClient
             : $requestParams->getHeader();
         return $this->startCall(
             'DeleteConversation',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Deletes an issue.
+     *
+     * Sample code:
+     * ```
+     * $contactCenterInsightsClient = new ContactCenterInsightsClient();
+     * try {
+     *     $formattedName = $contactCenterInsightsClient->issueName('[PROJECT]', '[LOCATION]', '[ISSUE_MODEL]', '[ISSUE]');
+     *     $contactCenterInsightsClient->deleteIssue($formattedName);
+     * } finally {
+     *     $contactCenterInsightsClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the issue to delete.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function deleteIssue($name, array $optionalArgs = [])
+    {
+        $request = new DeleteIssueRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'DeleteIssue',
             GPBEmpty::class,
             $optionalArgs,
             $request
@@ -1809,6 +1980,102 @@ class ContactCenterInsightsGapicClient
             View::class,
             $optionalArgs,
             $request
+        )->wait();
+    }
+
+    /**
+     * Imports conversations and processes them according to the user's
+     * configuration.
+     *
+     * Sample code:
+     * ```
+     * $contactCenterInsightsClient = new ContactCenterInsightsClient();
+     * try {
+     *     $formattedParent = $contactCenterInsightsClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $operationResponse = $contactCenterInsightsClient->ingestConversations($formattedParent);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $contactCenterInsightsClient->ingestConversations($formattedParent);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $contactCenterInsightsClient->resumeOperation($operationName, 'ingestConversations');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $contactCenterInsightsClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The parent resource for new conversations.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type GcsSource $gcsSource
+     *           A cloud storage bucket source.
+     *     @type TranscriptObjectConfig $transcriptObjectConfig
+     *           Configuration for when `source` contains conversation transcripts.
+     *     @type ConversationConfig $conversationConfig
+     *           Configuration that applies to all conversations.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function ingestConversations($parent, array $optionalArgs = [])
+    {
+        $request = new IngestConversationsRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['gcsSource'])) {
+            $request->setGcsSource($optionalArgs['gcsSource']);
+        }
+
+        if (isset($optionalArgs['transcriptObjectConfig'])) {
+            $request->setTranscriptObjectConfig(
+                $optionalArgs['transcriptObjectConfig']
+            );
+        }
+
+        if (isset($optionalArgs['conversationConfig'])) {
+            $request->setConversationConfig(
+                $optionalArgs['conversationConfig']
+            );
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'IngestConversations',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
         )->wait();
     }
 
