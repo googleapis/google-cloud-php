@@ -18,7 +18,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class Count extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. Optional constraint on the maximum number of documents to count.
+     * Optional. Optional constraint on the maximum number of documents to
+     * count.
      * This provides a way to set an upper bound on the number of documents
      * to scan, limiting latency and cost.
      * Unspecified is interpreted as no bound.
@@ -40,7 +41,8 @@ class Count extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Protobuf\Int64Value $up_to
-     *           Optional. Optional constraint on the maximum number of documents to count.
+     *           Optional. Optional constraint on the maximum number of documents to
+     *           count.
      *           This provides a way to set an upper bound on the number of documents
      *           to scan, limiting latency and cost.
      *           Unspecified is interpreted as no bound.
@@ -58,7 +60,8 @@ class Count extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Optional constraint on the maximum number of documents to count.
+     * Optional. Optional constraint on the maximum number of documents to
+     * count.
      * This provides a way to set an upper bound on the number of documents
      * to scan, limiting latency and cost.
      * Unspecified is interpreted as no bound.
@@ -90,7 +93,8 @@ class Count extends \Google\Protobuf\Internal\Message
     /**
      * Returns the unboxed value from <code>getUpTo()</code>
 
-     * Optional. Optional constraint on the maximum number of documents to count.
+     * Optional. Optional constraint on the maximum number of documents to
+     * count.
      * This provides a way to set an upper bound on the number of documents
      * to scan, limiting latency and cost.
      * Unspecified is interpreted as no bound.
@@ -110,7 +114,8 @@ class Count extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Optional constraint on the maximum number of documents to count.
+     * Optional. Optional constraint on the maximum number of documents to
+     * count.
      * This provides a way to set an upper bound on the number of documents
      * to scan, limiting latency and cost.
      * Unspecified is interpreted as no bound.
@@ -136,7 +141,8 @@ class Count extends \Google\Protobuf\Internal\Message
     /**
      * Sets the field by wrapping a primitive type in a Google\Protobuf\Int64Value object.
 
-     * Optional. Optional constraint on the maximum number of documents to count.
+     * Optional. Optional constraint on the maximum number of documents to
+     * count.
      * This provides a way to set an upper bound on the number of documents
      * to scan, limiting latency and cost.
      * Unspecified is interpreted as no bound.
