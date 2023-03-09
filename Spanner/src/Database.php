@@ -873,7 +873,7 @@ class Database
 
         $delayFn = function (\Exception $e) {
             $defaultRetryDelay = ['seconds' => 0, 'nanos' => 0];
-            if ($e->getCode() === Code::INTERNAL && str_contains($e->getMessage(), 'RST_STREAM')) {
+            if ($e->getCode() === Code::INTERNAL && strpos($e->getMessage(), 'RST_STREAM') !== false) {
                 return $defaultRetryDelay;
             }
             if (!($e instanceof AbortedException)) {
