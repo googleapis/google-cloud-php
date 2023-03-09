@@ -37,6 +37,7 @@ use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Spanner\V1\SpannerClient as GapicSpannerClient;
 use Google\Cloud\Spanner\V1\TypeCode;
+use Google\Rpc\Code;
 
 /**
  * Represents a Cloud Spanner Database.
@@ -871,6 +872,10 @@ class Database
         };
 
         $delayFn = function (\Exception $e) {
+            $defaultRetryDelay = ['seconds' => 0, 'nanos' => 0];
+            if ($e->getCode() === Code::INTERNAL && str_contains($e->getMessage(), 'RST_STREAM')) {
+                return $defaultRetryDelay;
+            }
             if (!($e instanceof AbortedException)) {
                 throw $e;
             }
@@ -2090,7 +2095,7 @@ class Database
 
     /**
      * Returns the 'CREATE DATABASE' statement as per the given database dialect
-     * 
+     *
      * @param string $dialect The dialect of the database to be created
      * @return string The specific 'CREATE DATABASE' statement
      */
