@@ -15,9 +15,20 @@
  * limitations under the License.
  */
 
-class GcTestListener extends PHPUnit_Framework_BaseTestListener
+namespace Google\Cloud\Core\Testing;
+
+use PHPUnit\Framework\TestListener;
+use Yoast\PHPUnitPolyfills\TestListeners\TestListenerDefaultImplementation;
+
+/**
+ * Garbage collector for tests
+ * @internal
+ */
+class GcTestListener implements TestListener
 {
-    public function endTestSuite(\PHPUnit_Framework_TestSuite $suite)
+    use TestListenerDefaultImplementation;
+
+    public function end_test_suite($suite)
     {
         gc_collect_cycles();
     }

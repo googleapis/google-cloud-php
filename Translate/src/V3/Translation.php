@@ -17,6 +17,8 @@ class Translation extends \Google\Protobuf\Internal\Message
 {
     /**
      * Text translated into the target language.
+     * If an error occurs during translation, this field might be excluded from
+     * the response.
      *
      * Generated from protobuf field <code>string translated_text = 1;</code>
      */
@@ -34,7 +36,7 @@ class Translation extends \Google\Protobuf\Internal\Message
      */
     private $model = '';
     /**
-     * The BCP-47 language code of source text in the initial request, detected
+     * The ISO-639 language code of source text in the initial request, detected
      * automatically, if no source language was passed within the initial
      * request. If the source language was passed, auto-detection of the language
      * does not occur and this field is empty.
@@ -57,6 +59,8 @@ class Translation extends \Google\Protobuf\Internal\Message
      *
      *     @type string $translated_text
      *           Text translated into the target language.
+     *           If an error occurs during translation, this field might be excluded from
+     *           the response.
      *     @type string $model
      *           Only present when `model` is present in the request.
      *           `model` here is normalized to have project number.
@@ -66,7 +70,7 @@ class Translation extends \Google\Protobuf\Internal\Message
      *           `model` here would be normalized to
      *           `projects/{project-number}/locations/{location-id}/models/general/nmt`.
      *     @type string $detected_language_code
-     *           The BCP-47 language code of source text in the initial request, detected
+     *           The ISO-639 language code of source text in the initial request, detected
      *           automatically, if no source language was passed within the initial
      *           request. If the source language was passed, auto-detection of the language
      *           does not occur and this field is empty.
@@ -81,6 +85,8 @@ class Translation extends \Google\Protobuf\Internal\Message
 
     /**
      * Text translated into the target language.
+     * If an error occurs during translation, this field might be excluded from
+     * the response.
      *
      * Generated from protobuf field <code>string translated_text = 1;</code>
      * @return string
@@ -92,6 +98,8 @@ class Translation extends \Google\Protobuf\Internal\Message
 
     /**
      * Text translated into the target language.
+     * If an error occurs during translation, this field might be excluded from
+     * the response.
      *
      * Generated from protobuf field <code>string translated_text = 1;</code>
      * @param string $var
@@ -144,7 +152,7 @@ class Translation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The BCP-47 language code of source text in the initial request, detected
+     * The ISO-639 language code of source text in the initial request, detected
      * automatically, if no source language was passed within the initial
      * request. If the source language was passed, auto-detection of the language
      * does not occur and this field is empty.
@@ -158,7 +166,7 @@ class Translation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The BCP-47 language code of source text in the initial request, detected
+     * The ISO-639 language code of source text in the initial request, detected
      * automatically, if no source language was passed within the initial
      * request. If the source language was passed, auto-detection of the language
      * does not occur and this field is empty.
@@ -179,11 +187,11 @@ class Translation extends \Google\Protobuf\Internal\Message
      * The `glossary_config` used for this translation.
      *
      * Generated from protobuf field <code>.google.cloud.translation.v3.TranslateTextGlossaryConfig glossary_config = 3;</code>
-     * @return \Google\Cloud\Translate\V3\TranslateTextGlossaryConfig
+     * @return \Google\Cloud\Translate\V3\TranslateTextGlossaryConfig|null
      */
     public function getGlossaryConfig()
     {
-        return isset($this->glossary_config) ? $this->glossary_config : null;
+        return $this->glossary_config;
     }
 
     public function hasGlossaryConfig()

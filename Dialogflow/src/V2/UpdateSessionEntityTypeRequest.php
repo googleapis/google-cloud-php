@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request message for [SessionEntityTypes.UpdateSessionEntityType][google.cloud.dialogflow.v2.SessionEntityTypes.UpdateSessionEntityType].
+ * The request message for
+ * [SessionEntityTypes.UpdateSessionEntityType][google.cloud.dialogflow.v2.SessionEntityTypes.UpdateSessionEntityType].
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.UpdateSessionEntityTypeRequest</code>
  */
@@ -53,7 +54,7 @@ class UpdateSessionEntityTypeRequest extends \Google\Protobuf\Internal\Message
      */
     public function getSessionEntityType()
     {
-        return isset($this->session_entity_type) ? $this->session_entity_type : null;
+        return $this->session_entity_type;
     }
 
     public function hasSessionEntityType()
@@ -89,7 +90,7 @@ class UpdateSessionEntityTypeRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()

@@ -1,0 +1,15 @@
+{
+    "title": "servicemanagement",
+    "defaultService": "servicemanagement\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "servicemanagement\/readme"
+        },
+        {
+            "title": "ServiceManagerClient (v1)",
+            "type": "servicemanagement\/v1\/servicemanagerclient"
+        }
+    ],
+    "pattern": "servicemanagement\/\\w{1,}"
+}

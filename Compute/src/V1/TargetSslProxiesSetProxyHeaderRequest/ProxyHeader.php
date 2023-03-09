@@ -24,9 +24,9 @@ class ProxyHeader
      */
     const NONE = 2402104;
     /**
-     * Generated from protobuf enum <code>PROXY_V1 = 65917484;</code>
+     * Generated from protobuf enum <code>PROXY_V1 = 334352940;</code>
      */
-    const PROXY_V1 = 65917484;
+    const PROXY_V1 = 334352940;
 
     private static $valueToName = [
         self::UNDEFINED_PROXY_HEADER => 'UNDEFINED_PROXY_HEADER',

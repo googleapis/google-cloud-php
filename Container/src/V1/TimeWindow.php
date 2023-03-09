@@ -28,6 +28,7 @@ class TimeWindow extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 2;</code>
      */
     private $end_time = null;
+    protected $options;
 
     /**
      * Constructor.
@@ -35,6 +36,9 @@ class TimeWindow extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type \Google\Cloud\Container\V1\MaintenanceExclusionOptions $maintenance_exclusion_options
+     *           MaintenanceExclusionOptions provides maintenance exclusion related
+     *           options.
      *     @type \Google\Protobuf\Timestamp $start_time
      *           The time that the window first starts.
      *     @type \Google\Protobuf\Timestamp $end_time
@@ -48,6 +52,39 @@ class TimeWindow extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * MaintenanceExclusionOptions provides maintenance exclusion related
+     * options.
+     *
+     * Generated from protobuf field <code>.google.container.v1.MaintenanceExclusionOptions maintenance_exclusion_options = 3;</code>
+     * @return \Google\Cloud\Container\V1\MaintenanceExclusionOptions|null
+     */
+    public function getMaintenanceExclusionOptions()
+    {
+        return $this->readOneof(3);
+    }
+
+    public function hasMaintenanceExclusionOptions()
+    {
+        return $this->hasOneof(3);
+    }
+
+    /**
+     * MaintenanceExclusionOptions provides maintenance exclusion related
+     * options.
+     *
+     * Generated from protobuf field <code>.google.container.v1.MaintenanceExclusionOptions maintenance_exclusion_options = 3;</code>
+     * @param \Google\Cloud\Container\V1\MaintenanceExclusionOptions $var
+     * @return $this
+     */
+    public function setMaintenanceExclusionOptions($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\MaintenanceExclusionOptions::class);
+        $this->writeOneof(3, $var);
+
+        return $this;
+    }
+
+    /**
      * The time that the window first starts.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 1;</code>
@@ -55,7 +92,7 @@ class TimeWindow extends \Google\Protobuf\Internal\Message
      */
     public function getStartTime()
     {
-        return isset($this->start_time) ? $this->start_time : null;
+        return $this->start_time;
     }
 
     public function hasStartTime()
@@ -92,7 +129,7 @@ class TimeWindow extends \Google\Protobuf\Internal\Message
      */
     public function getEndTime()
     {
-        return isset($this->end_time) ? $this->end_time : null;
+        return $this->end_time;
     }
 
     public function hasEndTime()
@@ -119,6 +156,14 @@ class TimeWindow extends \Google\Protobuf\Internal\Message
         $this->end_time = $var;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getOptions()
+    {
+        return $this->whichOneof("options");
     }
 
 }

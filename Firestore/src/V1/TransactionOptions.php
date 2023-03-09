@@ -23,7 +23,7 @@ class TransactionOptions extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Firestore\V1\TransactionOptions\ReadOnly $read_only
+     *     @type \Google\Cloud\Firestore\V1\TransactionOptions\PBReadOnly $read_only
      *           The transaction can only be used for read operations.
      *     @type \Google\Cloud\Firestore\V1\TransactionOptions\ReadWrite $read_write
      *           The transaction can be used for both read and write operations.
@@ -38,7 +38,7 @@ class TransactionOptions extends \Google\Protobuf\Internal\Message
      * The transaction can only be used for read operations.
      *
      * Generated from protobuf field <code>.google.firestore.v1.TransactionOptions.ReadOnly read_only = 2;</code>
-     * @return \Google\Cloud\Firestore\V1\TransactionOptions\ReadOnly|null
+     * @return \Google\Cloud\Firestore\V1\TransactionOptions\PBReadOnly|null
      */
     public function getReadOnly()
     {
@@ -54,12 +54,12 @@ class TransactionOptions extends \Google\Protobuf\Internal\Message
      * The transaction can only be used for read operations.
      *
      * Generated from protobuf field <code>.google.firestore.v1.TransactionOptions.ReadOnly read_only = 2;</code>
-     * @param \Google\Cloud\Firestore\V1\TransactionOptions\ReadOnly $var
+     * @param \Google\Cloud\Firestore\V1\TransactionOptions\PBReadOnly $var
      * @return $this
      */
     public function setReadOnly($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Firestore\V1\TransactionOptions\ReadOnly::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Firestore\V1\TransactionOptions\PBReadOnly::class);
         $this->writeOneof(2, $var);
 
         return $this;

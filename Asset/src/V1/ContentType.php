@@ -32,17 +32,29 @@ class ContentType
      */
     const IAM_POLICY = 2;
     /**
-     * The Cloud Organization Policy set on an asset.
+     * The organization policy set on an asset.
      *
      * Generated from protobuf enum <code>ORG_POLICY = 4;</code>
      */
     const ORG_POLICY = 4;
     /**
-     * The Cloud Access context manager Policy set on an asset.
+     * The Access Context Manager policy set on an asset.
      *
      * Generated from protobuf enum <code>ACCESS_POLICY = 5;</code>
      */
     const ACCESS_POLICY = 5;
+    /**
+     * The runtime OS Inventory information.
+     *
+     * Generated from protobuf enum <code>OS_INVENTORY = 6;</code>
+     */
+    const OS_INVENTORY = 6;
+    /**
+     * The related resources.
+     *
+     * Generated from protobuf enum <code>RELATIONSHIP = 7;</code>
+     */
+    const RELATIONSHIP = 7;
 
     private static $valueToName = [
         self::CONTENT_TYPE_UNSPECIFIED => 'CONTENT_TYPE_UNSPECIFIED',
@@ -50,6 +62,8 @@ class ContentType
         self::IAM_POLICY => 'IAM_POLICY',
         self::ORG_POLICY => 'ORG_POLICY',
         self::ACCESS_POLICY => 'ACCESS_POLICY',
+        self::OS_INVENTORY => 'OS_INVENTORY',
+        self::RELATIONSHIP => 'RELATIONSHIP',
     ];
 
     public static function name($value)

@@ -35,7 +35,7 @@ class ListSnapshotsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\PubSub\V1\Snapshot[]|\Google\Protobuf\Internal\RepeatedField $snapshots
+     *     @type array<\Google\Cloud\PubSub\V1\Snapshot>|\Google\Protobuf\Internal\RepeatedField $snapshots
      *           The resulting snapshots.
      *     @type string $next_page_token
      *           If not empty, indicates that there may be more snapshot that match the
@@ -62,7 +62,7 @@ class ListSnapshotsResponse extends \Google\Protobuf\Internal\Message
      * The resulting snapshots.
      *
      * Generated from protobuf field <code>repeated .google.pubsub.v1.Snapshot snapshots = 1;</code>
-     * @param \Google\Cloud\PubSub\V1\Snapshot[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\PubSub\V1\Snapshot>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSnapshots($var)

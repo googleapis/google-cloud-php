@@ -490,6 +490,7 @@ class ChunkFormatter implements \IteratorAggregate
      * @return \Generator
      * @throws BigtableDataOperationException Thrown in the case of a malformed response.
      */
+    #[\ReturnTypeWillChange]
     public function getIterator()
     {
         return $this->readAll();

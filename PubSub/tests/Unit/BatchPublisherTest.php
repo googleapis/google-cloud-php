@@ -80,7 +80,9 @@ class BatchPublisherTest extends TestCase
 
     public function testPublishDeferred()
     {
-        $client = TestHelpers::stub(PubSubClient::class, [], [
+        $client = TestHelpers::stub(PubSubClient::class, [
+            ['suppressKeyFileNotice' => true, 'projectId' => 'example-project']
+        ], [
             'encode', 'connection'
         ]);
         $client->___setProperty('encode', false);
@@ -117,6 +119,11 @@ class BatchPublisherTest extends TestCase
 
             return Argument::withEntry('messages', array_values($messages));
         };
+
+        $connection->getTopic(Argument::any())
+            ->willReturn([
+                'name' => self::TOPIC_NAME,
+            ]);
 
         $connection->publishMessage($withOrderingKey('a'))
             ->will(function ($args) use ($withOrderingKey) {

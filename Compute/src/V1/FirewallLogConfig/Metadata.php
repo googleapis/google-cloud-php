@@ -20,9 +20,9 @@ class Metadata
      */
     const UNDEFINED_METADATA = 0;
     /**
-     * Generated from protobuf enum <code>EXCLUDE_ALL_METADATA = 66084498;</code>
+     * Generated from protobuf enum <code>EXCLUDE_ALL_METADATA = 334519954;</code>
      */
-    const EXCLUDE_ALL_METADATA = 66084498;
+    const EXCLUDE_ALL_METADATA = 334519954;
     /**
      * Generated from protobuf enum <code>INCLUDE_ALL_METADATA = 164619908;</code>
      */

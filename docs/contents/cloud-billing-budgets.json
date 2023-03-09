@@ -1,0 +1,19 @@
+{
+    "title": "BillingBudgets",
+    "defaultService": "billingbudgets\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "billingbudgets\/readme"
+        },
+        {
+            "title": "BudgetServiceClient (v1)",
+            "type": "billingbudgets\/v1\/budgetserviceclient"
+        },
+        {
+            "title": "BudgetServiceClient (v1beta1)",
+            "type": "billingbudgets\/v1beta1\/budgetserviceclient"
+        }
+    ],
+    "pattern": "billingbudgets\/\\w{1,}"
+}

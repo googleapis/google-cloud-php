@@ -28,7 +28,7 @@ class Text extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $text
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $text
      *           Optional. The collection of the agent's responses.
      * }
      */
@@ -52,7 +52,7 @@ class Text extends \Google\Protobuf\Internal\Message
      * Optional. The collection of the agent's responses.
      *
      * Generated from protobuf field <code>repeated string text = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setText($var)
@@ -65,6 +65,4 @@ class Text extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Text::class, \Google\Cloud\Dialogflow\V2\Intent_Message_Text::class);
 

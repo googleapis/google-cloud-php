@@ -127,6 +127,4 @@ class Classification
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Classification::class, \Google\Cloud\OsConfig\V1\WindowsUpdateSettings_Classification::class);
 

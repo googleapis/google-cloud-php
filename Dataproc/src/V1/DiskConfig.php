@@ -17,8 +17,10 @@ class DiskConfig extends \Google\Protobuf\Internal\Message
 {
     /**
      * Optional. Type of the boot disk (default is "pd-standard").
-     * Valid values: "pd-ssd" (Persistent Disk Solid State Drive) or
-     * "pd-standard" (Persistent Disk Hard Disk Drive).
+     * Valid values: "pd-balanced" (Persistent Disk Balanced Solid State Drive),
+     * "pd-ssd" (Persistent Disk Solid State Drive),
+     * or "pd-standard" (Persistent Disk Hard Disk Drive).
+     * See [Disk types](https://cloud.google.com/compute/docs/disks#disk-types).
      *
      * Generated from protobuf field <code>string boot_disk_type = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -30,16 +32,28 @@ class DiskConfig extends \Google\Protobuf\Internal\Message
      */
     private $boot_disk_size_gb = 0;
     /**
-     * Optional. Number of attached SSDs, from 0 to 4 (default is 0).
+     * Optional. Number of attached SSDs, from 0 to 8 (default is 0).
      * If SSDs are not attached, the boot disk is used to store runtime logs and
      * [HDFS](https://hadoop.apache.org/docs/r1.2.1/hdfs_user_guide.html) data.
      * If one or more SSDs are attached, this runtime bulk
      * data is spread across them, and the boot disk contains only basic
      * config and installed binaries.
+     * Note: Local SSD options may vary by machine type and number of vCPUs
+     * selected.
      *
      * Generated from protobuf field <code>int32 num_local_ssds = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $num_local_ssds = 0;
+    /**
+     * Optional. Interface type of local SSDs (default is "scsi").
+     * Valid values: "scsi" (Small Computer System Interface),
+     * "nvme" (Non-Volatile Memory Express).
+     * See [local SSD
+     * performance](https://cloud.google.com/compute/docs/disks/local-ssd#performance).
+     *
+     * Generated from protobuf field <code>string local_ssd_interface = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $local_ssd_interface = '';
 
     /**
      * Constructor.
@@ -49,17 +63,27 @@ class DiskConfig extends \Google\Protobuf\Internal\Message
      *
      *     @type string $boot_disk_type
      *           Optional. Type of the boot disk (default is "pd-standard").
-     *           Valid values: "pd-ssd" (Persistent Disk Solid State Drive) or
-     *           "pd-standard" (Persistent Disk Hard Disk Drive).
+     *           Valid values: "pd-balanced" (Persistent Disk Balanced Solid State Drive),
+     *           "pd-ssd" (Persistent Disk Solid State Drive),
+     *           or "pd-standard" (Persistent Disk Hard Disk Drive).
+     *           See [Disk types](https://cloud.google.com/compute/docs/disks#disk-types).
      *     @type int $boot_disk_size_gb
      *           Optional. Size in GB of the boot disk (default is 500GB).
      *     @type int $num_local_ssds
-     *           Optional. Number of attached SSDs, from 0 to 4 (default is 0).
+     *           Optional. Number of attached SSDs, from 0 to 8 (default is 0).
      *           If SSDs are not attached, the boot disk is used to store runtime logs and
      *           [HDFS](https://hadoop.apache.org/docs/r1.2.1/hdfs_user_guide.html) data.
      *           If one or more SSDs are attached, this runtime bulk
      *           data is spread across them, and the boot disk contains only basic
      *           config and installed binaries.
+     *           Note: Local SSD options may vary by machine type and number of vCPUs
+     *           selected.
+     *     @type string $local_ssd_interface
+     *           Optional. Interface type of local SSDs (default is "scsi").
+     *           Valid values: "scsi" (Small Computer System Interface),
+     *           "nvme" (Non-Volatile Memory Express).
+     *           See [local SSD
+     *           performance](https://cloud.google.com/compute/docs/disks/local-ssd#performance).
      * }
      */
     public function __construct($data = NULL) {
@@ -69,8 +93,10 @@ class DiskConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Type of the boot disk (default is "pd-standard").
-     * Valid values: "pd-ssd" (Persistent Disk Solid State Drive) or
-     * "pd-standard" (Persistent Disk Hard Disk Drive).
+     * Valid values: "pd-balanced" (Persistent Disk Balanced Solid State Drive),
+     * "pd-ssd" (Persistent Disk Solid State Drive),
+     * or "pd-standard" (Persistent Disk Hard Disk Drive).
+     * See [Disk types](https://cloud.google.com/compute/docs/disks#disk-types).
      *
      * Generated from protobuf field <code>string boot_disk_type = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -82,8 +108,10 @@ class DiskConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Type of the boot disk (default is "pd-standard").
-     * Valid values: "pd-ssd" (Persistent Disk Solid State Drive) or
-     * "pd-standard" (Persistent Disk Hard Disk Drive).
+     * Valid values: "pd-balanced" (Persistent Disk Balanced Solid State Drive),
+     * "pd-ssd" (Persistent Disk Solid State Drive),
+     * or "pd-standard" (Persistent Disk Hard Disk Drive).
+     * See [Disk types](https://cloud.google.com/compute/docs/disks#disk-types).
      *
      * Generated from protobuf field <code>string boot_disk_type = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -124,12 +152,14 @@ class DiskConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Number of attached SSDs, from 0 to 4 (default is 0).
+     * Optional. Number of attached SSDs, from 0 to 8 (default is 0).
      * If SSDs are not attached, the boot disk is used to store runtime logs and
      * [HDFS](https://hadoop.apache.org/docs/r1.2.1/hdfs_user_guide.html) data.
      * If one or more SSDs are attached, this runtime bulk
      * data is spread across them, and the boot disk contains only basic
      * config and installed binaries.
+     * Note: Local SSD options may vary by machine type and number of vCPUs
+     * selected.
      *
      * Generated from protobuf field <code>int32 num_local_ssds = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -140,12 +170,14 @@ class DiskConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Number of attached SSDs, from 0 to 4 (default is 0).
+     * Optional. Number of attached SSDs, from 0 to 8 (default is 0).
      * If SSDs are not attached, the boot disk is used to store runtime logs and
      * [HDFS](https://hadoop.apache.org/docs/r1.2.1/hdfs_user_guide.html) data.
      * If one or more SSDs are attached, this runtime bulk
      * data is spread across them, and the boot disk contains only basic
      * config and installed binaries.
+     * Note: Local SSD options may vary by machine type and number of vCPUs
+     * selected.
      *
      * Generated from protobuf field <code>int32 num_local_ssds = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
@@ -155,6 +187,40 @@ class DiskConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->num_local_ssds = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Interface type of local SSDs (default is "scsi").
+     * Valid values: "scsi" (Small Computer System Interface),
+     * "nvme" (Non-Volatile Memory Express).
+     * See [local SSD
+     * performance](https://cloud.google.com/compute/docs/disks/local-ssd#performance).
+     *
+     * Generated from protobuf field <code>string local_ssd_interface = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getLocalSsdInterface()
+    {
+        return $this->local_ssd_interface;
+    }
+
+    /**
+     * Optional. Interface type of local SSDs (default is "scsi").
+     * Valid values: "scsi" (Small Computer System Interface),
+     * "nvme" (Non-Volatile Memory Express).
+     * See [local SSD
+     * performance](https://cloud.google.com/compute/docs/disks/local-ssd#performance).
+     *
+     * Generated from protobuf field <code>string local_ssd_interface = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setLocalSsdInterface($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->local_ssd_interface = $var;
 
         return $this;
     }

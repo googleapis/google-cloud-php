@@ -9,54 +9,74 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * [Input Only] Specifies the parameters for a new disk that will be created alongside the new instance. Use initialization parameters to create boot disks or local SSDs attached to the new instance.
- * This property is mutually exclusive with the source property; you can only define one or the other, but not both.
+ * [Input Only] Specifies the parameters for a new disk that will be created alongside the new instance. Use initialization parameters to create boot disks or local SSDs attached to the new instance. This field is persisted and returned for instanceTemplate and not returned in the context of instance. This property is mutually exclusive with the source property; you can only define one or the other, but not both.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.AttachedDiskInitializeParams</code>
  */
 class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
 {
     /**
+     * The architecture of the attached disk. Valid values are arm64 or x86_64.
+     * Check the Architecture enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string architecture = 302803283;</code>
+     */
+    private $architecture = null;
+    /**
      * An optional description. Provide this property when creating the disk.
      *
-     * Generated from protobuf field <code>string description = 154502140;</code>
+     * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
-    private $description = '';
+    private $description = null;
     /**
      * Specifies the disk name. If not specified, the default is to use the name of the instance. If a disk with the same name already exists in the given region, the existing disk is attached to the new instance and the new disk is not created.
      *
-     * Generated from protobuf field <code>string disk_name = 92807149;</code>
+     * Generated from protobuf field <code>optional string disk_name = 92807149;</code>
      */
-    private $disk_name = '';
+    private $disk_name = null;
     /**
      * Specifies the size of the disk in base-2 GB. The size must be at least 10 GB. If you specify a sourceImage, which is required for boot disks, the default size is the size of the sourceImage. If you do not specify a sourceImage, the default disk size is 500 GB.
      *
-     * Generated from protobuf field <code>string disk_size_gb = 47828279;</code>
+     * Generated from protobuf field <code>optional int64 disk_size_gb = 316263735;</code>
      */
-    private $disk_size_gb = '';
+    private $disk_size_gb = null;
     /**
-     * Specifies the disk type to use to create the instance. If not specified, the default is pd-standard, specified using the full URL. For example:
-     * https://www.googleapis.com/compute/v1/projects/project/zones/zone/diskTypes/pd-standard
-     * Other values include pd-ssd and local-ssd. If you define this field, you can provide either the full or partial URL. For example, the following are valid values:
-     * - https://www.googleapis.com/compute/v1/projects/project/zones/zone/diskTypes/diskType
-     * - projects/project/zones/zone/diskTypes/diskType
-     * - zones/zone/diskTypes/diskType  Note that for InstanceTemplate, this is the name of the disk type, not URL.
+     * Specifies the disk type to use to create the instance. If not specified, the default is pd-standard, specified using the full URL. For example: https://www.googleapis.com/compute/v1/projects/project/zones/zone /diskTypes/pd-standard For a full list of acceptable values, see Persistent disk types. If you specify this field when creating a VM, you can provide either the full or partial URL. For example, the following values are valid: - https://www.googleapis.com/compute/v1/projects/project/zones/zone /diskTypes/diskType - projects/project/zones/zone/diskTypes/diskType - zones/zone/diskTypes/diskType If you specify this field when creating or updating an instance template or all-instances configuration, specify the type of the disk, not the URL. For example: pd-standard.
      *
-     * Generated from protobuf field <code>string disk_type = 93009052;</code>
+     * Generated from protobuf field <code>optional string disk_type = 93009052;</code>
      */
-    private $disk_type = '';
+    private $disk_type = null;
     /**
      * Labels to apply to this disk. These can be later modified by the disks.setLabels method. This field is only applicable for persistent disks.
      *
-     * Generated from protobuf field <code>map<string, string> labels = 231759871;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 500195327;</code>
      */
     private $labels;
     /**
-     * Specifies which action to take on instance update with this disk. Default is to use the existing disk.
+     * A list of publicly visible licenses. Reserved for Google's use.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.AttachedDiskInitializeParams.OnUpdateAction on_update_action = 202451980;</code>
+     * Generated from protobuf field <code>repeated string licenses = 337642578;</code>
      */
-    private $on_update_action = 0;
+    private $licenses;
+    /**
+     * Specifies which action to take on instance update with this disk. Default is to use the existing disk.
+     * Check the OnUpdateAction enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string on_update_action = 202451980;</code>
+     */
+    private $on_update_action = null;
+    /**
+     * Indicates how many IOPS to provision for the disk. This sets the number of I/O operations per second that the disk can handle. Values must be between 10,000 and 120,000. For more details, see the Extreme persistent disk documentation.
+     *
+     * Generated from protobuf field <code>optional int64 provisioned_iops = 186769108;</code>
+     */
+    private $provisioned_iops = null;
+    /**
+     * Resource manager tags to be bound to the disk. Tag keys and values have the same definition as resource manager tags. Keys must be in the format `tagKeys/{tag_key_id}`, and values are in the format `tagValues/456`. The field is ignored (both PUT & PATCH) when empty.
+     *
+     * Generated from protobuf field <code>map<string, string> resource_manager_tags = 377671164;</code>
+     */
+    private $resource_manager_tags;
     /**
      * Resource policies applied to this disk for automatic snapshot creations. Specified using the full or partial URL. For instance template, specify only the resource policy name.
      *
@@ -64,40 +84,27 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
      */
     private $resource_policies;
     /**
-     * The source image to create this disk. When creating a new instance, one of initializeParams.sourceImage or initializeParams.sourceSnapshot or disks.source is required except for local SSD.
-     * To create a disk with one of the public operating system images, specify the image by its family name. For example, specify family/debian-9 to use the latest Debian 9 image:
-     * projects/debian-cloud/global/images/family/debian-9
-     * Alternatively, use a specific version of a public operating system image:
-     * projects/debian-cloud/global/images/debian-9-stretch-vYYYYMMDD
-     * To create a disk with a custom image that you created, specify the image name in the following format:
-     * global/images/my-custom-image
-     * You can also specify a custom image by its image family, which returns the latest version of the image in that family. Replace the image name with family/family-name:
-     * global/images/family/my-image-family
-     * If the source image is deleted later, this field will not be set.
+     * The source image to create this disk. When creating a new instance, one of initializeParams.sourceImage or initializeParams.sourceSnapshot or disks.source is required except for local SSD. To create a disk with one of the public operating system images, specify the image by its family name. For example, specify family/debian-9 to use the latest Debian 9 image: projects/debian-cloud/global/images/family/debian-9 Alternatively, use a specific version of a public operating system image: projects/debian-cloud/global/images/debian-9-stretch-vYYYYMMDD To create a disk with a custom image that you created, specify the image name in the following format: global/images/my-custom-image You can also specify a custom image by its image family, which returns the latest version of the image in that family. Replace the image name with family/family-name: global/images/family/my-image-family If the source image is deleted later, this field will not be set.
      *
-     * Generated from protobuf field <code>string source_image = 50443319;</code>
+     * Generated from protobuf field <code>optional string source_image = 50443319;</code>
      */
-    private $source_image = '';
+    private $source_image = null;
     /**
-     * The customer-supplied encryption key of the source image. Required if the source image is protected by a customer-supplied encryption key.
-     * Instance templates do not store customer-supplied encryption keys, so you cannot create disks for instances in a managed instance group if the source images are encrypted with your own keys.
+     * The customer-supplied encryption key of the source image. Required if the source image is protected by a customer-supplied encryption key. InstanceTemplate and InstancePropertiesPatch do not store customer-supplied encryption keys, so you cannot create disks for instances in a managed instance group if the source images are encrypted with your own keys.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.CustomerEncryptionKey source_image_encryption_key = 113068203;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.CustomerEncryptionKey source_image_encryption_key = 381503659;</code>
      */
     private $source_image_encryption_key = null;
     /**
-     * The source snapshot to create this disk. When creating a new instance, one of initializeParams.sourceSnapshot or initializeParams.sourceImage or disks.source is required except for local SSD.
-     * To create a disk with a snapshot that you created, specify the snapshot name in the following format:
-     * global/snapshots/my-backup
-     * If the source snapshot is deleted later, this field will not be set.
+     * The source snapshot to create this disk. When creating a new instance, one of initializeParams.sourceSnapshot or initializeParams.sourceImage or disks.source is required except for local SSD. To create a disk with a snapshot that you created, specify the snapshot name in the following format: global/snapshots/my-backup If the source snapshot is deleted later, this field will not be set.
      *
-     * Generated from protobuf field <code>string source_snapshot = 126061928;</code>
+     * Generated from protobuf field <code>optional string source_snapshot = 126061928;</code>
      */
-    private $source_snapshot = '';
+    private $source_snapshot = null;
     /**
      * The customer-supplied encryption key of the source snapshot.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.CustomerEncryptionKey source_snapshot_encryption_key = 35243866;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.CustomerEncryptionKey source_snapshot_encryption_key = 303679322;</code>
      */
     private $source_snapshot_encryption_key = null;
 
@@ -107,44 +114,36 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type string $architecture
+     *           The architecture of the attached disk. Valid values are arm64 or x86_64.
+     *           Check the Architecture enum for the list of possible values.
      *     @type string $description
      *           An optional description. Provide this property when creating the disk.
      *     @type string $disk_name
      *           Specifies the disk name. If not specified, the default is to use the name of the instance. If a disk with the same name already exists in the given region, the existing disk is attached to the new instance and the new disk is not created.
-     *     @type string $disk_size_gb
+     *     @type int|string $disk_size_gb
      *           Specifies the size of the disk in base-2 GB. The size must be at least 10 GB. If you specify a sourceImage, which is required for boot disks, the default size is the size of the sourceImage. If you do not specify a sourceImage, the default disk size is 500 GB.
      *     @type string $disk_type
-     *           Specifies the disk type to use to create the instance. If not specified, the default is pd-standard, specified using the full URL. For example:
-     *           https://www.googleapis.com/compute/v1/projects/project/zones/zone/diskTypes/pd-standard
-     *           Other values include pd-ssd and local-ssd. If you define this field, you can provide either the full or partial URL. For example, the following are valid values:
-     *           - https://www.googleapis.com/compute/v1/projects/project/zones/zone/diskTypes/diskType
-     *           - projects/project/zones/zone/diskTypes/diskType
-     *           - zones/zone/diskTypes/diskType  Note that for InstanceTemplate, this is the name of the disk type, not URL.
+     *           Specifies the disk type to use to create the instance. If not specified, the default is pd-standard, specified using the full URL. For example: https://www.googleapis.com/compute/v1/projects/project/zones/zone /diskTypes/pd-standard For a full list of acceptable values, see Persistent disk types. If you specify this field when creating a VM, you can provide either the full or partial URL. For example, the following values are valid: - https://www.googleapis.com/compute/v1/projects/project/zones/zone /diskTypes/diskType - projects/project/zones/zone/diskTypes/diskType - zones/zone/diskTypes/diskType If you specify this field when creating or updating an instance template or all-instances configuration, specify the type of the disk, not the URL. For example: pd-standard.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Labels to apply to this disk. These can be later modified by the disks.setLabels method. This field is only applicable for persistent disks.
-     *     @type int $on_update_action
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $licenses
+     *           A list of publicly visible licenses. Reserved for Google's use.
+     *     @type string $on_update_action
      *           Specifies which action to take on instance update with this disk. Default is to use the existing disk.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $resource_policies
+     *           Check the OnUpdateAction enum for the list of possible values.
+     *     @type int|string $provisioned_iops
+     *           Indicates how many IOPS to provision for the disk. This sets the number of I/O operations per second that the disk can handle. Values must be between 10,000 and 120,000. For more details, see the Extreme persistent disk documentation.
+     *     @type array|\Google\Protobuf\Internal\MapField $resource_manager_tags
+     *           Resource manager tags to be bound to the disk. Tag keys and values have the same definition as resource manager tags. Keys must be in the format `tagKeys/{tag_key_id}`, and values are in the format `tagValues/456`. The field is ignored (both PUT & PATCH) when empty.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $resource_policies
      *           Resource policies applied to this disk for automatic snapshot creations. Specified using the full or partial URL. For instance template, specify only the resource policy name.
      *     @type string $source_image
-     *           The source image to create this disk. When creating a new instance, one of initializeParams.sourceImage or initializeParams.sourceSnapshot or disks.source is required except for local SSD.
-     *           To create a disk with one of the public operating system images, specify the image by its family name. For example, specify family/debian-9 to use the latest Debian 9 image:
-     *           projects/debian-cloud/global/images/family/debian-9
-     *           Alternatively, use a specific version of a public operating system image:
-     *           projects/debian-cloud/global/images/debian-9-stretch-vYYYYMMDD
-     *           To create a disk with a custom image that you created, specify the image name in the following format:
-     *           global/images/my-custom-image
-     *           You can also specify a custom image by its image family, which returns the latest version of the image in that family. Replace the image name with family/family-name:
-     *           global/images/family/my-image-family
-     *           If the source image is deleted later, this field will not be set.
+     *           The source image to create this disk. When creating a new instance, one of initializeParams.sourceImage or initializeParams.sourceSnapshot or disks.source is required except for local SSD. To create a disk with one of the public operating system images, specify the image by its family name. For example, specify family/debian-9 to use the latest Debian 9 image: projects/debian-cloud/global/images/family/debian-9 Alternatively, use a specific version of a public operating system image: projects/debian-cloud/global/images/debian-9-stretch-vYYYYMMDD To create a disk with a custom image that you created, specify the image name in the following format: global/images/my-custom-image You can also specify a custom image by its image family, which returns the latest version of the image in that family. Replace the image name with family/family-name: global/images/family/my-image-family If the source image is deleted later, this field will not be set.
      *     @type \Google\Cloud\Compute\V1\CustomerEncryptionKey $source_image_encryption_key
-     *           The customer-supplied encryption key of the source image. Required if the source image is protected by a customer-supplied encryption key.
-     *           Instance templates do not store customer-supplied encryption keys, so you cannot create disks for instances in a managed instance group if the source images are encrypted with your own keys.
+     *           The customer-supplied encryption key of the source image. Required if the source image is protected by a customer-supplied encryption key. InstanceTemplate and InstancePropertiesPatch do not store customer-supplied encryption keys, so you cannot create disks for instances in a managed instance group if the source images are encrypted with your own keys.
      *     @type string $source_snapshot
-     *           The source snapshot to create this disk. When creating a new instance, one of initializeParams.sourceSnapshot or initializeParams.sourceImage or disks.source is required except for local SSD.
-     *           To create a disk with a snapshot that you created, specify the snapshot name in the following format:
-     *           global/snapshots/my-backup
-     *           If the source snapshot is deleted later, this field will not be set.
+     *           The source snapshot to create this disk. When creating a new instance, one of initializeParams.sourceSnapshot or initializeParams.sourceImage or disks.source is required except for local SSD. To create a disk with a snapshot that you created, specify the snapshot name in the following format: global/snapshots/my-backup If the source snapshot is deleted later, this field will not be set.
      *     @type \Google\Cloud\Compute\V1\CustomerEncryptionKey $source_snapshot_encryption_key
      *           The customer-supplied encryption key of the source snapshot.
      * }
@@ -155,20 +154,68 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An optional description. Provide this property when creating the disk.
+     * The architecture of the attached disk. Valid values are arm64 or x86_64.
+     * Check the Architecture enum for the list of possible values.
      *
-     * Generated from protobuf field <code>string description = 154502140;</code>
+     * Generated from protobuf field <code>optional string architecture = 302803283;</code>
      * @return string
      */
-    public function getDescription()
+    public function getArchitecture()
     {
-        return $this->description;
+        return isset($this->architecture) ? $this->architecture : '';
+    }
+
+    public function hasArchitecture()
+    {
+        return isset($this->architecture);
+    }
+
+    public function clearArchitecture()
+    {
+        unset($this->architecture);
+    }
+
+    /**
+     * The architecture of the attached disk. Valid values are arm64 or x86_64.
+     * Check the Architecture enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string architecture = 302803283;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setArchitecture($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->architecture = $var;
+
+        return $this;
     }
 
     /**
      * An optional description. Provide this property when creating the disk.
      *
-     * Generated from protobuf field <code>string description = 154502140;</code>
+     * Generated from protobuf field <code>optional string description = 422937596;</code>
+     * @return string
+     */
+    public function getDescription()
+    {
+        return isset($this->description) ? $this->description : '';
+    }
+
+    public function hasDescription()
+    {
+        return isset($this->description);
+    }
+
+    public function clearDescription()
+    {
+        unset($this->description);
+    }
+
+    /**
+     * An optional description. Provide this property when creating the disk.
+     *
+     * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @param string $var
      * @return $this
      */
@@ -183,18 +230,28 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
     /**
      * Specifies the disk name. If not specified, the default is to use the name of the instance. If a disk with the same name already exists in the given region, the existing disk is attached to the new instance and the new disk is not created.
      *
-     * Generated from protobuf field <code>string disk_name = 92807149;</code>
+     * Generated from protobuf field <code>optional string disk_name = 92807149;</code>
      * @return string
      */
     public function getDiskName()
     {
-        return $this->disk_name;
+        return isset($this->disk_name) ? $this->disk_name : '';
+    }
+
+    public function hasDiskName()
+    {
+        return isset($this->disk_name);
+    }
+
+    public function clearDiskName()
+    {
+        unset($this->disk_name);
     }
 
     /**
      * Specifies the disk name. If not specified, the default is to use the name of the instance. If a disk with the same name already exists in the given region, the existing disk is attached to the new instance and the new disk is not created.
      *
-     * Generated from protobuf field <code>string disk_name = 92807149;</code>
+     * Generated from protobuf field <code>optional string disk_name = 92807149;</code>
      * @param string $var
      * @return $this
      */
@@ -209,54 +266,64 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
     /**
      * Specifies the size of the disk in base-2 GB. The size must be at least 10 GB. If you specify a sourceImage, which is required for boot disks, the default size is the size of the sourceImage. If you do not specify a sourceImage, the default disk size is 500 GB.
      *
-     * Generated from protobuf field <code>string disk_size_gb = 47828279;</code>
-     * @return string
+     * Generated from protobuf field <code>optional int64 disk_size_gb = 316263735;</code>
+     * @return int|string
      */
     public function getDiskSizeGb()
     {
-        return $this->disk_size_gb;
+        return isset($this->disk_size_gb) ? $this->disk_size_gb : 0;
+    }
+
+    public function hasDiskSizeGb()
+    {
+        return isset($this->disk_size_gb);
+    }
+
+    public function clearDiskSizeGb()
+    {
+        unset($this->disk_size_gb);
     }
 
     /**
      * Specifies the size of the disk in base-2 GB. The size must be at least 10 GB. If you specify a sourceImage, which is required for boot disks, the default size is the size of the sourceImage. If you do not specify a sourceImage, the default disk size is 500 GB.
      *
-     * Generated from protobuf field <code>string disk_size_gb = 47828279;</code>
-     * @param string $var
+     * Generated from protobuf field <code>optional int64 disk_size_gb = 316263735;</code>
+     * @param int|string $var
      * @return $this
      */
     public function setDiskSizeGb($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkInt64($var);
         $this->disk_size_gb = $var;
 
         return $this;
     }
 
     /**
-     * Specifies the disk type to use to create the instance. If not specified, the default is pd-standard, specified using the full URL. For example:
-     * https://www.googleapis.com/compute/v1/projects/project/zones/zone/diskTypes/pd-standard
-     * Other values include pd-ssd and local-ssd. If you define this field, you can provide either the full or partial URL. For example, the following are valid values:
-     * - https://www.googleapis.com/compute/v1/projects/project/zones/zone/diskTypes/diskType
-     * - projects/project/zones/zone/diskTypes/diskType
-     * - zones/zone/diskTypes/diskType  Note that for InstanceTemplate, this is the name of the disk type, not URL.
+     * Specifies the disk type to use to create the instance. If not specified, the default is pd-standard, specified using the full URL. For example: https://www.googleapis.com/compute/v1/projects/project/zones/zone /diskTypes/pd-standard For a full list of acceptable values, see Persistent disk types. If you specify this field when creating a VM, you can provide either the full or partial URL. For example, the following values are valid: - https://www.googleapis.com/compute/v1/projects/project/zones/zone /diskTypes/diskType - projects/project/zones/zone/diskTypes/diskType - zones/zone/diskTypes/diskType If you specify this field when creating or updating an instance template or all-instances configuration, specify the type of the disk, not the URL. For example: pd-standard.
      *
-     * Generated from protobuf field <code>string disk_type = 93009052;</code>
+     * Generated from protobuf field <code>optional string disk_type = 93009052;</code>
      * @return string
      */
     public function getDiskType()
     {
-        return $this->disk_type;
+        return isset($this->disk_type) ? $this->disk_type : '';
+    }
+
+    public function hasDiskType()
+    {
+        return isset($this->disk_type);
+    }
+
+    public function clearDiskType()
+    {
+        unset($this->disk_type);
     }
 
     /**
-     * Specifies the disk type to use to create the instance. If not specified, the default is pd-standard, specified using the full URL. For example:
-     * https://www.googleapis.com/compute/v1/projects/project/zones/zone/diskTypes/pd-standard
-     * Other values include pd-ssd and local-ssd. If you define this field, you can provide either the full or partial URL. For example, the following are valid values:
-     * - https://www.googleapis.com/compute/v1/projects/project/zones/zone/diskTypes/diskType
-     * - projects/project/zones/zone/diskTypes/diskType
-     * - zones/zone/diskTypes/diskType  Note that for InstanceTemplate, this is the name of the disk type, not URL.
+     * Specifies the disk type to use to create the instance. If not specified, the default is pd-standard, specified using the full URL. For example: https://www.googleapis.com/compute/v1/projects/project/zones/zone /diskTypes/pd-standard For a full list of acceptable values, see Persistent disk types. If you specify this field when creating a VM, you can provide either the full or partial URL. For example, the following values are valid: - https://www.googleapis.com/compute/v1/projects/project/zones/zone /diskTypes/diskType - projects/project/zones/zone/diskTypes/diskType - zones/zone/diskTypes/diskType If you specify this field when creating or updating an instance template or all-instances configuration, specify the type of the disk, not the URL. For example: pd-standard.
      *
-     * Generated from protobuf field <code>string disk_type = 93009052;</code>
+     * Generated from protobuf field <code>optional string disk_type = 93009052;</code>
      * @param string $var
      * @return $this
      */
@@ -271,7 +338,7 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
     /**
      * Labels to apply to this disk. These can be later modified by the disks.setLabels method. This field is only applicable for persistent disks.
      *
-     * Generated from protobuf field <code>map<string, string> labels = 231759871;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 500195327;</code>
      * @return \Google\Protobuf\Internal\MapField
      */
     public function getLabels()
@@ -282,7 +349,7 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
     /**
      * Labels to apply to this disk. These can be later modified by the disks.setLabels method. This field is only applicable for persistent disks.
      *
-     * Generated from protobuf field <code>map<string, string> labels = 231759871;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 500195327;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */
@@ -295,27 +362,127 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies which action to take on instance update with this disk. Default is to use the existing disk.
+     * A list of publicly visible licenses. Reserved for Google's use.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.AttachedDiskInitializeParams.OnUpdateAction on_update_action = 202451980;</code>
-     * @return int
+     * Generated from protobuf field <code>repeated string licenses = 337642578;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
-    public function getOnUpdateAction()
+    public function getLicenses()
     {
-        return $this->on_update_action;
+        return $this->licenses;
+    }
+
+    /**
+     * A list of publicly visible licenses. Reserved for Google's use.
+     *
+     * Generated from protobuf field <code>repeated string licenses = 337642578;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setLicenses($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->licenses = $arr;
+
+        return $this;
     }
 
     /**
      * Specifies which action to take on instance update with this disk. Default is to use the existing disk.
+     * Check the OnUpdateAction enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.AttachedDiskInitializeParams.OnUpdateAction on_update_action = 202451980;</code>
-     * @param int $var
+     * Generated from protobuf field <code>optional string on_update_action = 202451980;</code>
+     * @return string
+     */
+    public function getOnUpdateAction()
+    {
+        return isset($this->on_update_action) ? $this->on_update_action : '';
+    }
+
+    public function hasOnUpdateAction()
+    {
+        return isset($this->on_update_action);
+    }
+
+    public function clearOnUpdateAction()
+    {
+        unset($this->on_update_action);
+    }
+
+    /**
+     * Specifies which action to take on instance update with this disk. Default is to use the existing disk.
+     * Check the OnUpdateAction enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string on_update_action = 202451980;</code>
+     * @param string $var
      * @return $this
      */
     public function setOnUpdateAction($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Compute\V1\AttachedDiskInitializeParams\OnUpdateAction::class);
+        GPBUtil::checkString($var, True);
         $this->on_update_action = $var;
+
+        return $this;
+    }
+
+    /**
+     * Indicates how many IOPS to provision for the disk. This sets the number of I/O operations per second that the disk can handle. Values must be between 10,000 and 120,000. For more details, see the Extreme persistent disk documentation.
+     *
+     * Generated from protobuf field <code>optional int64 provisioned_iops = 186769108;</code>
+     * @return int|string
+     */
+    public function getProvisionedIops()
+    {
+        return isset($this->provisioned_iops) ? $this->provisioned_iops : 0;
+    }
+
+    public function hasProvisionedIops()
+    {
+        return isset($this->provisioned_iops);
+    }
+
+    public function clearProvisionedIops()
+    {
+        unset($this->provisioned_iops);
+    }
+
+    /**
+     * Indicates how many IOPS to provision for the disk. This sets the number of I/O operations per second that the disk can handle. Values must be between 10,000 and 120,000. For more details, see the Extreme persistent disk documentation.
+     *
+     * Generated from protobuf field <code>optional int64 provisioned_iops = 186769108;</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setProvisionedIops($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->provisioned_iops = $var;
+
+        return $this;
+    }
+
+    /**
+     * Resource manager tags to be bound to the disk. Tag keys and values have the same definition as resource manager tags. Keys must be in the format `tagKeys/{tag_key_id}`, and values are in the format `tagValues/456`. The field is ignored (both PUT & PATCH) when empty.
+     *
+     * Generated from protobuf field <code>map<string, string> resource_manager_tags = 377671164;</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getResourceManagerTags()
+    {
+        return $this->resource_manager_tags;
+    }
+
+    /**
+     * Resource manager tags to be bound to the disk. Tag keys and values have the same definition as resource manager tags. Keys must be in the format `tagKeys/{tag_key_id}`, and values are in the format `tagValues/456`. The field is ignored (both PUT & PATCH) when empty.
+     *
+     * Generated from protobuf field <code>map<string, string> resource_manager_tags = 377671164;</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setResourceManagerTags($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->resource_manager_tags = $arr;
 
         return $this;
     }
@@ -335,7 +502,7 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
      * Resource policies applied to this disk for automatic snapshot creations. Specified using the full or partial URL. For instance template, specify only the resource policy name.
      *
      * Generated from protobuf field <code>repeated string resource_policies = 22220385;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setResourcePolicies($var)
@@ -347,38 +514,30 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The source image to create this disk. When creating a new instance, one of initializeParams.sourceImage or initializeParams.sourceSnapshot or disks.source is required except for local SSD.
-     * To create a disk with one of the public operating system images, specify the image by its family name. For example, specify family/debian-9 to use the latest Debian 9 image:
-     * projects/debian-cloud/global/images/family/debian-9
-     * Alternatively, use a specific version of a public operating system image:
-     * projects/debian-cloud/global/images/debian-9-stretch-vYYYYMMDD
-     * To create a disk with a custom image that you created, specify the image name in the following format:
-     * global/images/my-custom-image
-     * You can also specify a custom image by its image family, which returns the latest version of the image in that family. Replace the image name with family/family-name:
-     * global/images/family/my-image-family
-     * If the source image is deleted later, this field will not be set.
+     * The source image to create this disk. When creating a new instance, one of initializeParams.sourceImage or initializeParams.sourceSnapshot or disks.source is required except for local SSD. To create a disk with one of the public operating system images, specify the image by its family name. For example, specify family/debian-9 to use the latest Debian 9 image: projects/debian-cloud/global/images/family/debian-9 Alternatively, use a specific version of a public operating system image: projects/debian-cloud/global/images/debian-9-stretch-vYYYYMMDD To create a disk with a custom image that you created, specify the image name in the following format: global/images/my-custom-image You can also specify a custom image by its image family, which returns the latest version of the image in that family. Replace the image name with family/family-name: global/images/family/my-image-family If the source image is deleted later, this field will not be set.
      *
-     * Generated from protobuf field <code>string source_image = 50443319;</code>
+     * Generated from protobuf field <code>optional string source_image = 50443319;</code>
      * @return string
      */
     public function getSourceImage()
     {
-        return $this->source_image;
+        return isset($this->source_image) ? $this->source_image : '';
+    }
+
+    public function hasSourceImage()
+    {
+        return isset($this->source_image);
+    }
+
+    public function clearSourceImage()
+    {
+        unset($this->source_image);
     }
 
     /**
-     * The source image to create this disk. When creating a new instance, one of initializeParams.sourceImage or initializeParams.sourceSnapshot or disks.source is required except for local SSD.
-     * To create a disk with one of the public operating system images, specify the image by its family name. For example, specify family/debian-9 to use the latest Debian 9 image:
-     * projects/debian-cloud/global/images/family/debian-9
-     * Alternatively, use a specific version of a public operating system image:
-     * projects/debian-cloud/global/images/debian-9-stretch-vYYYYMMDD
-     * To create a disk with a custom image that you created, specify the image name in the following format:
-     * global/images/my-custom-image
-     * You can also specify a custom image by its image family, which returns the latest version of the image in that family. Replace the image name with family/family-name:
-     * global/images/family/my-image-family
-     * If the source image is deleted later, this field will not be set.
+     * The source image to create this disk. When creating a new instance, one of initializeParams.sourceImage or initializeParams.sourceSnapshot or disks.source is required except for local SSD. To create a disk with one of the public operating system images, specify the image by its family name. For example, specify family/debian-9 to use the latest Debian 9 image: projects/debian-cloud/global/images/family/debian-9 Alternatively, use a specific version of a public operating system image: projects/debian-cloud/global/images/debian-9-stretch-vYYYYMMDD To create a disk with a custom image that you created, specify the image name in the following format: global/images/my-custom-image You can also specify a custom image by its image family, which returns the latest version of the image in that family. Replace the image name with family/family-name: global/images/family/my-image-family If the source image is deleted later, this field will not be set.
      *
-     * Generated from protobuf field <code>string source_image = 50443319;</code>
+     * Generated from protobuf field <code>optional string source_image = 50443319;</code>
      * @param string $var
      * @return $this
      */
@@ -391,15 +550,14 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The customer-supplied encryption key of the source image. Required if the source image is protected by a customer-supplied encryption key.
-     * Instance templates do not store customer-supplied encryption keys, so you cannot create disks for instances in a managed instance group if the source images are encrypted with your own keys.
+     * The customer-supplied encryption key of the source image. Required if the source image is protected by a customer-supplied encryption key. InstanceTemplate and InstancePropertiesPatch do not store customer-supplied encryption keys, so you cannot create disks for instances in a managed instance group if the source images are encrypted with your own keys.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.CustomerEncryptionKey source_image_encryption_key = 113068203;</code>
-     * @return \Google\Cloud\Compute\V1\CustomerEncryptionKey
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.CustomerEncryptionKey source_image_encryption_key = 381503659;</code>
+     * @return \Google\Cloud\Compute\V1\CustomerEncryptionKey|null
      */
     public function getSourceImageEncryptionKey()
     {
-        return isset($this->source_image_encryption_key) ? $this->source_image_encryption_key : null;
+        return $this->source_image_encryption_key;
     }
 
     public function hasSourceImageEncryptionKey()
@@ -413,10 +571,9 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The customer-supplied encryption key of the source image. Required if the source image is protected by a customer-supplied encryption key.
-     * Instance templates do not store customer-supplied encryption keys, so you cannot create disks for instances in a managed instance group if the source images are encrypted with your own keys.
+     * The customer-supplied encryption key of the source image. Required if the source image is protected by a customer-supplied encryption key. InstanceTemplate and InstancePropertiesPatch do not store customer-supplied encryption keys, so you cannot create disks for instances in a managed instance group if the source images are encrypted with your own keys.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.CustomerEncryptionKey source_image_encryption_key = 113068203;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.CustomerEncryptionKey source_image_encryption_key = 381503659;</code>
      * @param \Google\Cloud\Compute\V1\CustomerEncryptionKey $var
      * @return $this
      */
@@ -429,26 +586,30 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The source snapshot to create this disk. When creating a new instance, one of initializeParams.sourceSnapshot or initializeParams.sourceImage or disks.source is required except for local SSD.
-     * To create a disk with a snapshot that you created, specify the snapshot name in the following format:
-     * global/snapshots/my-backup
-     * If the source snapshot is deleted later, this field will not be set.
+     * The source snapshot to create this disk. When creating a new instance, one of initializeParams.sourceSnapshot or initializeParams.sourceImage or disks.source is required except for local SSD. To create a disk with a snapshot that you created, specify the snapshot name in the following format: global/snapshots/my-backup If the source snapshot is deleted later, this field will not be set.
      *
-     * Generated from protobuf field <code>string source_snapshot = 126061928;</code>
+     * Generated from protobuf field <code>optional string source_snapshot = 126061928;</code>
      * @return string
      */
     public function getSourceSnapshot()
     {
-        return $this->source_snapshot;
+        return isset($this->source_snapshot) ? $this->source_snapshot : '';
+    }
+
+    public function hasSourceSnapshot()
+    {
+        return isset($this->source_snapshot);
+    }
+
+    public function clearSourceSnapshot()
+    {
+        unset($this->source_snapshot);
     }
 
     /**
-     * The source snapshot to create this disk. When creating a new instance, one of initializeParams.sourceSnapshot or initializeParams.sourceImage or disks.source is required except for local SSD.
-     * To create a disk with a snapshot that you created, specify the snapshot name in the following format:
-     * global/snapshots/my-backup
-     * If the source snapshot is deleted later, this field will not be set.
+     * The source snapshot to create this disk. When creating a new instance, one of initializeParams.sourceSnapshot or initializeParams.sourceImage or disks.source is required except for local SSD. To create a disk with a snapshot that you created, specify the snapshot name in the following format: global/snapshots/my-backup If the source snapshot is deleted later, this field will not be set.
      *
-     * Generated from protobuf field <code>string source_snapshot = 126061928;</code>
+     * Generated from protobuf field <code>optional string source_snapshot = 126061928;</code>
      * @param string $var
      * @return $this
      */
@@ -463,12 +624,12 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
     /**
      * The customer-supplied encryption key of the source snapshot.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.CustomerEncryptionKey source_snapshot_encryption_key = 35243866;</code>
-     * @return \Google\Cloud\Compute\V1\CustomerEncryptionKey
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.CustomerEncryptionKey source_snapshot_encryption_key = 303679322;</code>
+     * @return \Google\Cloud\Compute\V1\CustomerEncryptionKey|null
      */
     public function getSourceSnapshotEncryptionKey()
     {
-        return isset($this->source_snapshot_encryption_key) ? $this->source_snapshot_encryption_key : null;
+        return $this->source_snapshot_encryption_key;
     }
 
     public function hasSourceSnapshotEncryptionKey()
@@ -484,7 +645,7 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
     /**
      * The customer-supplied encryption key of the source snapshot.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.CustomerEncryptionKey source_snapshot_encryption_key = 35243866;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.CustomerEncryptionKey source_snapshot_encryption_key = 303679322;</code>
      * @param \Google\Cloud\Compute\V1\CustomerEncryptionKey $var
      * @return $this
      */

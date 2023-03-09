@@ -18,7 +18,7 @@ class CreateWorkflowTemplateRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name of the region or location, as described
      * in https://cloud.google.com/apis/design/resource_names.
-     * * For `projects.regions.workflowTemplates,create`, the resource name of the
+     * * For `projects.regions.workflowTemplates.create`, the resource name of the
      *   region has the following format:
      *   `projects/{project_id}/regions/{region}`
      * * For `projects.locations.workflowTemplates.create`, the resource name of
@@ -44,7 +44,7 @@ class CreateWorkflowTemplateRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. The resource name of the region or location, as described
      *           in https://cloud.google.com/apis/design/resource_names.
-     *           * For `projects.regions.workflowTemplates,create`, the resource name of the
+     *           * For `projects.regions.workflowTemplates.create`, the resource name of the
      *             region has the following format:
      *             `projects/{project_id}/regions/{region}`
      *           * For `projects.locations.workflowTemplates.create`, the resource name of
@@ -62,7 +62,7 @@ class CreateWorkflowTemplateRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name of the region or location, as described
      * in https://cloud.google.com/apis/design/resource_names.
-     * * For `projects.regions.workflowTemplates,create`, the resource name of the
+     * * For `projects.regions.workflowTemplates.create`, the resource name of the
      *   region has the following format:
      *   `projects/{project_id}/regions/{region}`
      * * For `projects.locations.workflowTemplates.create`, the resource name of
@@ -80,7 +80,7 @@ class CreateWorkflowTemplateRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name of the region or location, as described
      * in https://cloud.google.com/apis/design/resource_names.
-     * * For `projects.regions.workflowTemplates,create`, the resource name of the
+     * * For `projects.regions.workflowTemplates.create`, the resource name of the
      *   region has the following format:
      *   `projects/{project_id}/regions/{region}`
      * * For `projects.locations.workflowTemplates.create`, the resource name of
@@ -107,7 +107,7 @@ class CreateWorkflowTemplateRequest extends \Google\Protobuf\Internal\Message
      */
     public function getTemplate()
     {
-        return isset($this->template) ? $this->template : null;
+        return $this->template;
     }
 
     public function hasTemplate()

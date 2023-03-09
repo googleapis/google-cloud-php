@@ -11,8 +11,10 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Options for beginning a new transaction.
  * Transactions can be created explicitly with calls to
- * [Datastore.BeginTransaction][google.datastore.v1.Datastore.BeginTransaction] or implicitly by setting
- * [ReadOptions.new_transaction][google.datastore.v1.ReadOptions.new_transaction] in read requests.
+ * [Datastore.BeginTransaction][google.datastore.v1.Datastore.BeginTransaction]
+ * or implicitly by setting
+ * [ReadOptions.new_transaction][google.datastore.v1.ReadOptions.new_transaction]
+ * in read requests.
  *
  * Generated from protobuf message <code>google.datastore.v1.TransactionOptions</code>
  */
@@ -28,7 +30,7 @@ class TransactionOptions extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Datastore\V1\TransactionOptions\ReadWrite $read_write
      *           The transaction should allow both reads and writes.
-     *     @type \Google\Cloud\Datastore\V1\TransactionOptions\ReadOnly $read_only
+     *     @type \Google\Cloud\Datastore\V1\TransactionOptions\PBReadOnly $read_only
      *           The transaction should only allow reads.
      * }
      */
@@ -72,7 +74,7 @@ class TransactionOptions extends \Google\Protobuf\Internal\Message
      * The transaction should only allow reads.
      *
      * Generated from protobuf field <code>.google.datastore.v1.TransactionOptions.ReadOnly read_only = 2;</code>
-     * @return \Google\Cloud\Datastore\V1\TransactionOptions\ReadOnly|null
+     * @return \Google\Cloud\Datastore\V1\TransactionOptions\PBReadOnly|null
      */
     public function getReadOnly()
     {
@@ -88,12 +90,12 @@ class TransactionOptions extends \Google\Protobuf\Internal\Message
      * The transaction should only allow reads.
      *
      * Generated from protobuf field <code>.google.datastore.v1.TransactionOptions.ReadOnly read_only = 2;</code>
-     * @param \Google\Cloud\Datastore\V1\TransactionOptions\ReadOnly $var
+     * @param \Google\Cloud\Datastore\V1\TransactionOptions\PBReadOnly $var
      * @return $this
      */
     public function setReadOnly($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Datastore\V1\TransactionOptions\ReadOnly::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Datastore\V1\TransactionOptions\PBReadOnly::class);
         $this->writeOneof(2, $var);
 
         return $this;

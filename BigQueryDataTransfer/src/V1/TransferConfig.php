@@ -22,12 +22,11 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
 {
     /**
      * The resource name of the transfer config.
-     * Transfer config names have the form of
+     * Transfer config names have the form
      * `projects/{project_id}/locations/{region}/transferConfigs/{config_id}`.
-     * The name is automatically generated based on the config_id specified in
-     * CreateTransferConfigRequest along with project_id and region. If config_id
-     * is not provided, usually a uuid, even though it is not guaranteed or
-     * required, will be generated for config_id.
+     * Where `config_id` is usually a uuid, even though it is not
+     * guaranteed or required. The name is ignored when creating a transfer
+     * config.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -39,13 +38,18 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
      */
     private $display_name = '';
     /**
-     * Data source id. Cannot be changed once data transfer is created.
+     * Data source ID. This cannot be changed once data transfer is created. The
+     * full list of available data source IDs can be returned through an API call:
+     * https://cloud.google.com/bigquery-transfer/docs/reference/datatransfer/rest/v1/projects.locations.dataSources/list
      *
      * Generated from protobuf field <code>string data_source_id = 5;</code>
      */
     private $data_source_id = '';
     /**
-     * Data transfer specific parameters.
+     * Parameters specific to each data source. For more information see the
+     * bq tab in the 'Setting up a data transfer' section for each data source.
+     * For example the parameters for Cloud Storage transfers are listed here:
+     * https://cloud.google.com/bigquery-transfer/docs/cloud-storage-transfer#bq
      *
      * Generated from protobuf field <code>.google.protobuf.Struct params = 9;</code>
      */
@@ -62,7 +66,8 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
      * `first sunday of quarter 00:00`.
      * See more explanation about the format here:
      * https://cloud.google.com/appengine/docs/flexible/python/scheduling-jobs-with-cron-yaml#the_schedule_format
-     * NOTE: the granularity should be at least 8 hours, or less frequent.
+     * NOTE: The minimum interval time between recurring transfers depends on the
+     * data source; refer to the documentation for your data source.
      *
      * Generated from protobuf field <code>string schedule = 7;</code>
      */
@@ -124,6 +129,8 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
     /**
      * Pub/Sub topic where notifications will be sent after transfer runs
      * associated with this transfer config finish.
+     * The format for specifying a pubsub topic is:
+     * `projects/{project}/topics/{topic}`
      *
      * Generated from protobuf field <code>string notification_pubsub_topic = 15;</code>
      */
@@ -135,6 +142,14 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.bigquery.datatransfer.v1.EmailPreferences email_preferences = 18;</code>
      */
     private $email_preferences = null;
+    /**
+     * Output only. Information about the user whose credentials are used to
+     * transfer data. Populated only for `transferConfigs.get` requests. In case
+     * the user information is not available, this field will not be populated.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.bigquery.datatransfer.v1.UserInfo owner_info = 27 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $owner_info = null;
     protected $destination;
 
     /**
@@ -145,20 +160,24 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           The resource name of the transfer config.
-     *           Transfer config names have the form of
+     *           Transfer config names have the form
      *           `projects/{project_id}/locations/{region}/transferConfigs/{config_id}`.
-     *           The name is automatically generated based on the config_id specified in
-     *           CreateTransferConfigRequest along with project_id and region. If config_id
-     *           is not provided, usually a uuid, even though it is not guaranteed or
-     *           required, will be generated for config_id.
+     *           Where `config_id` is usually a uuid, even though it is not
+     *           guaranteed or required. The name is ignored when creating a transfer
+     *           config.
      *     @type string $destination_dataset_id
      *           The BigQuery target dataset id.
      *     @type string $display_name
      *           User specified display name for the data transfer.
      *     @type string $data_source_id
-     *           Data source id. Cannot be changed once data transfer is created.
+     *           Data source ID. This cannot be changed once data transfer is created. The
+     *           full list of available data source IDs can be returned through an API call:
+     *           https://cloud.google.com/bigquery-transfer/docs/reference/datatransfer/rest/v1/projects.locations.dataSources/list
      *     @type \Google\Protobuf\Struct $params
-     *           Data transfer specific parameters.
+     *           Parameters specific to each data source. For more information see the
+     *           bq tab in the 'Setting up a data transfer' section for each data source.
+     *           For example the parameters for Cloud Storage transfers are listed here:
+     *           https://cloud.google.com/bigquery-transfer/docs/cloud-storage-transfer#bq
      *     @type string $schedule
      *           Data transfer schedule.
      *           If the data source does not support a custom schedule, this should be
@@ -171,7 +190,8 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
      *           `first sunday of quarter 00:00`.
      *           See more explanation about the format here:
      *           https://cloud.google.com/appengine/docs/flexible/python/scheduling-jobs-with-cron-yaml#the_schedule_format
-     *           NOTE: the granularity should be at least 8 hours, or less frequent.
+     *           NOTE: The minimum interval time between recurring transfers depends on the
+     *           data source; refer to the documentation for your data source.
      *     @type \Google\Cloud\BigQuery\DataTransfer\V1\ScheduleOptions $schedule_options
      *           Options customizing the data transfer schedule.
      *     @type int $data_refresh_window_days
@@ -197,9 +217,15 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
      *     @type string $notification_pubsub_topic
      *           Pub/Sub topic where notifications will be sent after transfer runs
      *           associated with this transfer config finish.
+     *           The format for specifying a pubsub topic is:
+     *           `projects/{project}/topics/{topic}`
      *     @type \Google\Cloud\BigQuery\DataTransfer\V1\EmailPreferences $email_preferences
      *           Email notifications will be sent according to these preferences
      *           to the email address of the user who owns this transfer config.
+     *     @type \Google\Cloud\BigQuery\DataTransfer\V1\UserInfo $owner_info
+     *           Output only. Information about the user whose credentials are used to
+     *           transfer data. Populated only for `transferConfigs.get` requests. In case
+     *           the user information is not available, this field will not be populated.
      * }
      */
     public function __construct($data = NULL) {
@@ -209,12 +235,11 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * The resource name of the transfer config.
-     * Transfer config names have the form of
+     * Transfer config names have the form
      * `projects/{project_id}/locations/{region}/transferConfigs/{config_id}`.
-     * The name is automatically generated based on the config_id specified in
-     * CreateTransferConfigRequest along with project_id and region. If config_id
-     * is not provided, usually a uuid, even though it is not guaranteed or
-     * required, will be generated for config_id.
+     * Where `config_id` is usually a uuid, even though it is not
+     * guaranteed or required. The name is ignored when creating a transfer
+     * config.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -226,12 +251,11 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * The resource name of the transfer config.
-     * Transfer config names have the form of
+     * Transfer config names have the form
      * `projects/{project_id}/locations/{region}/transferConfigs/{config_id}`.
-     * The name is automatically generated based on the config_id specified in
-     * CreateTransferConfigRequest along with project_id and region. If config_id
-     * is not provided, usually a uuid, even though it is not guaranteed or
-     * required, will be generated for config_id.
+     * Where `config_id` is usually a uuid, even though it is not
+     * guaranteed or required. The name is ignored when creating a transfer
+     * config.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
@@ -303,7 +327,9 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Data source id. Cannot be changed once data transfer is created.
+     * Data source ID. This cannot be changed once data transfer is created. The
+     * full list of available data source IDs can be returned through an API call:
+     * https://cloud.google.com/bigquery-transfer/docs/reference/datatransfer/rest/v1/projects.locations.dataSources/list
      *
      * Generated from protobuf field <code>string data_source_id = 5;</code>
      * @return string
@@ -314,7 +340,9 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Data source id. Cannot be changed once data transfer is created.
+     * Data source ID. This cannot be changed once data transfer is created. The
+     * full list of available data source IDs can be returned through an API call:
+     * https://cloud.google.com/bigquery-transfer/docs/reference/datatransfer/rest/v1/projects.locations.dataSources/list
      *
      * Generated from protobuf field <code>string data_source_id = 5;</code>
      * @param string $var
@@ -329,14 +357,17 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Data transfer specific parameters.
+     * Parameters specific to each data source. For more information see the
+     * bq tab in the 'Setting up a data transfer' section for each data source.
+     * For example the parameters for Cloud Storage transfers are listed here:
+     * https://cloud.google.com/bigquery-transfer/docs/cloud-storage-transfer#bq
      *
      * Generated from protobuf field <code>.google.protobuf.Struct params = 9;</code>
      * @return \Google\Protobuf\Struct|null
      */
     public function getParams()
     {
-        return isset($this->params) ? $this->params : null;
+        return $this->params;
     }
 
     public function hasParams()
@@ -350,7 +381,10 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Data transfer specific parameters.
+     * Parameters specific to each data source. For more information see the
+     * bq tab in the 'Setting up a data transfer' section for each data source.
+     * For example the parameters for Cloud Storage transfers are listed here:
+     * https://cloud.google.com/bigquery-transfer/docs/cloud-storage-transfer#bq
      *
      * Generated from protobuf field <code>.google.protobuf.Struct params = 9;</code>
      * @param \Google\Protobuf\Struct $var
@@ -376,7 +410,8 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
      * `first sunday of quarter 00:00`.
      * See more explanation about the format here:
      * https://cloud.google.com/appengine/docs/flexible/python/scheduling-jobs-with-cron-yaml#the_schedule_format
-     * NOTE: the granularity should be at least 8 hours, or less frequent.
+     * NOTE: The minimum interval time between recurring transfers depends on the
+     * data source; refer to the documentation for your data source.
      *
      * Generated from protobuf field <code>string schedule = 7;</code>
      * @return string
@@ -398,7 +433,8 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
      * `first sunday of quarter 00:00`.
      * See more explanation about the format here:
      * https://cloud.google.com/appengine/docs/flexible/python/scheduling-jobs-with-cron-yaml#the_schedule_format
-     * NOTE: the granularity should be at least 8 hours, or less frequent.
+     * NOTE: The minimum interval time between recurring transfers depends on the
+     * data source; refer to the documentation for your data source.
      *
      * Generated from protobuf field <code>string schedule = 7;</code>
      * @param string $var
@@ -420,7 +456,7 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
      */
     public function getScheduleOptions()
     {
-        return isset($this->schedule_options) ? $this->schedule_options : null;
+        return $this->schedule_options;
     }
 
     public function hasScheduleOptions()
@@ -520,7 +556,7 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateTime()
     {
-        return isset($this->update_time) ? $this->update_time : null;
+        return $this->update_time;
     }
 
     public function hasUpdateTime()
@@ -556,7 +592,7 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
      */
     public function getNextRunTime()
     {
-        return isset($this->next_run_time) ? $this->next_run_time : null;
+        return $this->next_run_time;
     }
 
     public function hasNextRunTime()
@@ -665,6 +701,8 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
     /**
      * Pub/Sub topic where notifications will be sent after transfer runs
      * associated with this transfer config finish.
+     * The format for specifying a pubsub topic is:
+     * `projects/{project}/topics/{topic}`
      *
      * Generated from protobuf field <code>string notification_pubsub_topic = 15;</code>
      * @return string
@@ -677,6 +715,8 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
     /**
      * Pub/Sub topic where notifications will be sent after transfer runs
      * associated with this transfer config finish.
+     * The format for specifying a pubsub topic is:
+     * `projects/{project}/topics/{topic}`
      *
      * Generated from protobuf field <code>string notification_pubsub_topic = 15;</code>
      * @param string $var
@@ -699,7 +739,7 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
      */
     public function getEmailPreferences()
     {
-        return isset($this->email_preferences) ? $this->email_preferences : null;
+        return $this->email_preferences;
     }
 
     public function hasEmailPreferences()
@@ -724,6 +764,46 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\DataTransfer\V1\EmailPreferences::class);
         $this->email_preferences = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Information about the user whose credentials are used to
+     * transfer data. Populated only for `transferConfigs.get` requests. In case
+     * the user information is not available, this field will not be populated.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.bigquery.datatransfer.v1.UserInfo owner_info = 27 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\BigQuery\DataTransfer\V1\UserInfo|null
+     */
+    public function getOwnerInfo()
+    {
+        return $this->owner_info;
+    }
+
+    public function hasOwnerInfo()
+    {
+        return isset($this->owner_info);
+    }
+
+    public function clearOwnerInfo()
+    {
+        unset($this->owner_info);
+    }
+
+    /**
+     * Output only. Information about the user whose credentials are used to
+     * transfer data. Populated only for `transferConfigs.get` requests. In case
+     * the user information is not available, this field will not be populated.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.bigquery.datatransfer.v1.UserInfo owner_info = 27 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\BigQuery\DataTransfer\V1\UserInfo $var
+     * @return $this
+     */
+    public function setOwnerInfo($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\DataTransfer\V1\UserInfo::class);
+        $this->owner_info = $var;
 
         return $this;
     }

@@ -57,7 +57,7 @@ class ColumnFamily extends \Google\Protobuf\Internal\Message
      */
     public function getGcRule()
     {
-        return isset($this->gc_rule) ? $this->gc_rule : null;
+        return $this->gc_rule;
     }
 
     public function hasGcRule()

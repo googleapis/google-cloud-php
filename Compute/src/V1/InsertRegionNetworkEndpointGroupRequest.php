@@ -18,29 +18,27 @@ class InsertRegionNetworkEndpointGroupRequest extends \Google\Protobuf\Internal\
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.NetworkEndpointGroup network_endpoint_group_resource = 257353383 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.NetworkEndpointGroup network_endpoint_group_resource = 525788839 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $network_endpoint_group_resource = null;
     /**
      * Project ID for this request.
      *
-     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "project"];</code>
      */
     private $project = '';
     /**
      * The name of the region where you want to create the network endpoint group. It should comply with RFC1035.
      *
-     * Generated from protobuf field <code>string region = 138946292 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string region = 138946292 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "region"];</code>
      */
     private $region = '';
     /**
-     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.
-     * For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.
-     * The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *
-     * Generated from protobuf field <code>string request_id = 37109963;</code>
+     * Generated from protobuf field <code>optional string request_id = 37109963;</code>
      */
-    private $request_id = '';
+    private $request_id = null;
 
     /**
      * Constructor.
@@ -55,9 +53,7 @@ class InsertRegionNetworkEndpointGroupRequest extends \Google\Protobuf\Internal\
      *     @type string $region
      *           The name of the region where you want to create the network endpoint group. It should comply with RFC1035.
      *     @type string $request_id
-     *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.
-     *           For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.
-     *           The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      * }
      */
     public function __construct($data = NULL) {
@@ -68,12 +64,12 @@ class InsertRegionNetworkEndpointGroupRequest extends \Google\Protobuf\Internal\
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.NetworkEndpointGroup network_endpoint_group_resource = 257353383 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Compute\V1\NetworkEndpointGroup
+     * Generated from protobuf field <code>.google.cloud.compute.v1.NetworkEndpointGroup network_endpoint_group_resource = 525788839 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @return \Google\Cloud\Compute\V1\NetworkEndpointGroup|null
      */
     public function getNetworkEndpointGroupResource()
     {
-        return isset($this->network_endpoint_group_resource) ? $this->network_endpoint_group_resource : null;
+        return $this->network_endpoint_group_resource;
     }
 
     public function hasNetworkEndpointGroupResource()
@@ -89,7 +85,7 @@ class InsertRegionNetworkEndpointGroupRequest extends \Google\Protobuf\Internal\
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.NetworkEndpointGroup network_endpoint_group_resource = 257353383 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.NetworkEndpointGroup network_endpoint_group_resource = 525788839 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Compute\V1\NetworkEndpointGroup $var
      * @return $this
      */
@@ -104,7 +100,7 @@ class InsertRegionNetworkEndpointGroupRequest extends \Google\Protobuf\Internal\
     /**
      * Project ID for this request.
      *
-     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "project"];</code>
      * @return string
      */
     public function getProject()
@@ -115,7 +111,7 @@ class InsertRegionNetworkEndpointGroupRequest extends \Google\Protobuf\Internal\
     /**
      * Project ID for this request.
      *
-     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "project"];</code>
      * @param string $var
      * @return $this
      */
@@ -130,7 +126,7 @@ class InsertRegionNetworkEndpointGroupRequest extends \Google\Protobuf\Internal\
     /**
      * The name of the region where you want to create the network endpoint group. It should comply with RFC1035.
      *
-     * Generated from protobuf field <code>string region = 138946292 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string region = 138946292 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "region"];</code>
      * @return string
      */
     public function getRegion()
@@ -141,7 +137,7 @@ class InsertRegionNetworkEndpointGroupRequest extends \Google\Protobuf\Internal\
     /**
      * The name of the region where you want to create the network endpoint group. It should comply with RFC1035.
      *
-     * Generated from protobuf field <code>string region = 138946292 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string region = 138946292 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "region"];</code>
      * @param string $var
      * @return $this
      */
@@ -154,24 +150,30 @@ class InsertRegionNetworkEndpointGroupRequest extends \Google\Protobuf\Internal\
     }
 
     /**
-     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.
-     * For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.
-     * The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *
-     * Generated from protobuf field <code>string request_id = 37109963;</code>
+     * Generated from protobuf field <code>optional string request_id = 37109963;</code>
      * @return string
      */
     public function getRequestId()
     {
-        return $this->request_id;
+        return isset($this->request_id) ? $this->request_id : '';
+    }
+
+    public function hasRequestId()
+    {
+        return isset($this->request_id);
+    }
+
+    public function clearRequestId()
+    {
+        unset($this->request_id);
     }
 
     /**
-     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.
-     * For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.
-     * The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *
-     * Generated from protobuf field <code>string request_id = 37109963;</code>
+     * Generated from protobuf field <code>optional string request_id = 37109963;</code>
      * @param string $var
      * @return $this
      */

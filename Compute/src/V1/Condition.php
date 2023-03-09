@@ -9,38 +9,41 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A condition to be met.
+ * This is deprecated and has no effect. Do not use.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.Condition</code>
  */
 class Condition extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Trusted attributes supplied by the IAM system.
+     * This is deprecated and has no effect. Do not use.
+     * Check the Iam enum for the list of possible values.
      *
-     * Generated from protobuf field <code>string iam = 104021;</code>
+     * Generated from protobuf field <code>optional string iam = 104021;</code>
      */
-    private $iam = '';
+    private $iam = null;
     /**
-     * An operator to apply the subject with.
+     * This is deprecated and has no effect. Do not use.
+     * Check the Op enum for the list of possible values.
      *
-     * Generated from protobuf field <code>string op = 3553;</code>
+     * Generated from protobuf field <code>optional string op = 3553;</code>
      */
-    private $op = '';
+    private $op = null;
     /**
-     * Trusted attributes discharged by the service.
+     * This is deprecated and has no effect. Do not use.
      *
-     * Generated from protobuf field <code>string svc = 114272;</code>
+     * Generated from protobuf field <code>optional string svc = 114272;</code>
      */
-    private $svc = '';
+    private $svc = null;
     /**
-     * Trusted attributes supplied by any service that owns resources and uses the IAM system for access control.
+     * This is deprecated and has no effect. Do not use.
+     * Check the Sys enum for the list of possible values.
      *
-     * Generated from protobuf field <code>string sys = 114381;</code>
+     * Generated from protobuf field <code>optional string sys = 114381;</code>
      */
-    private $sys = '';
+    private $sys = null;
     /**
-     * The objects of the condition.
+     * This is deprecated and has no effect. Do not use.
      *
      * Generated from protobuf field <code>repeated string values = 249928994;</code>
      */
@@ -53,15 +56,18 @@ class Condition extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $iam
-     *           Trusted attributes supplied by the IAM system.
+     *           This is deprecated and has no effect. Do not use.
+     *           Check the Iam enum for the list of possible values.
      *     @type string $op
-     *           An operator to apply the subject with.
+     *           This is deprecated and has no effect. Do not use.
+     *           Check the Op enum for the list of possible values.
      *     @type string $svc
-     *           Trusted attributes discharged by the service.
+     *           This is deprecated and has no effect. Do not use.
      *     @type string $sys
-     *           Trusted attributes supplied by any service that owns resources and uses the IAM system for access control.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $values
-     *           The objects of the condition.
+     *           This is deprecated and has no effect. Do not use.
+     *           Check the Sys enum for the list of possible values.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $values
+     *           This is deprecated and has no effect. Do not use.
      * }
      */
     public function __construct($data = NULL) {
@@ -70,20 +76,32 @@ class Condition extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Trusted attributes supplied by the IAM system.
+     * This is deprecated and has no effect. Do not use.
+     * Check the Iam enum for the list of possible values.
      *
-     * Generated from protobuf field <code>string iam = 104021;</code>
+     * Generated from protobuf field <code>optional string iam = 104021;</code>
      * @return string
      */
     public function getIam()
     {
-        return $this->iam;
+        return isset($this->iam) ? $this->iam : '';
+    }
+
+    public function hasIam()
+    {
+        return isset($this->iam);
+    }
+
+    public function clearIam()
+    {
+        unset($this->iam);
     }
 
     /**
-     * Trusted attributes supplied by the IAM system.
+     * This is deprecated and has no effect. Do not use.
+     * Check the Iam enum for the list of possible values.
      *
-     * Generated from protobuf field <code>string iam = 104021;</code>
+     * Generated from protobuf field <code>optional string iam = 104021;</code>
      * @param string $var
      * @return $this
      */
@@ -96,20 +114,32 @@ class Condition extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An operator to apply the subject with.
+     * This is deprecated and has no effect. Do not use.
+     * Check the Op enum for the list of possible values.
      *
-     * Generated from protobuf field <code>string op = 3553;</code>
+     * Generated from protobuf field <code>optional string op = 3553;</code>
      * @return string
      */
     public function getOp()
     {
-        return $this->op;
+        return isset($this->op) ? $this->op : '';
+    }
+
+    public function hasOp()
+    {
+        return isset($this->op);
+    }
+
+    public function clearOp()
+    {
+        unset($this->op);
     }
 
     /**
-     * An operator to apply the subject with.
+     * This is deprecated and has no effect. Do not use.
+     * Check the Op enum for the list of possible values.
      *
-     * Generated from protobuf field <code>string op = 3553;</code>
+     * Generated from protobuf field <code>optional string op = 3553;</code>
      * @param string $var
      * @return $this
      */
@@ -122,20 +152,30 @@ class Condition extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Trusted attributes discharged by the service.
+     * This is deprecated and has no effect. Do not use.
      *
-     * Generated from protobuf field <code>string svc = 114272;</code>
+     * Generated from protobuf field <code>optional string svc = 114272;</code>
      * @return string
      */
     public function getSvc()
     {
-        return $this->svc;
+        return isset($this->svc) ? $this->svc : '';
+    }
+
+    public function hasSvc()
+    {
+        return isset($this->svc);
+    }
+
+    public function clearSvc()
+    {
+        unset($this->svc);
     }
 
     /**
-     * Trusted attributes discharged by the service.
+     * This is deprecated and has no effect. Do not use.
      *
-     * Generated from protobuf field <code>string svc = 114272;</code>
+     * Generated from protobuf field <code>optional string svc = 114272;</code>
      * @param string $var
      * @return $this
      */
@@ -148,20 +188,32 @@ class Condition extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Trusted attributes supplied by any service that owns resources and uses the IAM system for access control.
+     * This is deprecated and has no effect. Do not use.
+     * Check the Sys enum for the list of possible values.
      *
-     * Generated from protobuf field <code>string sys = 114381;</code>
+     * Generated from protobuf field <code>optional string sys = 114381;</code>
      * @return string
      */
     public function getSys()
     {
-        return $this->sys;
+        return isset($this->sys) ? $this->sys : '';
+    }
+
+    public function hasSys()
+    {
+        return isset($this->sys);
+    }
+
+    public function clearSys()
+    {
+        unset($this->sys);
     }
 
     /**
-     * Trusted attributes supplied by any service that owns resources and uses the IAM system for access control.
+     * This is deprecated and has no effect. Do not use.
+     * Check the Sys enum for the list of possible values.
      *
-     * Generated from protobuf field <code>string sys = 114381;</code>
+     * Generated from protobuf field <code>optional string sys = 114381;</code>
      * @param string $var
      * @return $this
      */
@@ -174,7 +226,7 @@ class Condition extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The objects of the condition.
+     * This is deprecated and has no effect. Do not use.
      *
      * Generated from protobuf field <code>repeated string values = 249928994;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -185,10 +237,10 @@ class Condition extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The objects of the condition.
+     * This is deprecated and has no effect. Do not use.
      *
      * Generated from protobuf field <code>repeated string values = 249928994;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setValues($var)

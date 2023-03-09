@@ -1,0 +1,15 @@
+{
+    "title": "OrgPolicy",
+    "defaultService": "orgpolicy\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "orgpolicy\/readme"
+        },
+        {
+            "title": "OrgPolicyClient (v2)",
+            "type": "orgpolicy\/v2\/orgpolicyclient"
+        }
+    ],
+    "pattern": "orgpolicy\/\\w{1,}"
+}

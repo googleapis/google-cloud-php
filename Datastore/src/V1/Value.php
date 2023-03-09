@@ -53,7 +53,7 @@ class Value extends \Google\Protobuf\Internal\Message
      *           A key value.
      *     @type string $string_value
      *           A UTF-8 encoded string value.
-     *           When `exclude_from_indexes` is false (it is indexed), may have at most
+     *           When `exclude_from_indexes` is false (it is indexed) , may have at most
      *           1500 bytes. Otherwise, may be set to at most 1,000,000 bytes.
      *     @type string $blob_value
      *           A blob value.
@@ -276,7 +276,7 @@ class Value extends \Google\Protobuf\Internal\Message
 
     /**
      * A UTF-8 encoded string value.
-     * When `exclude_from_indexes` is false (it is indexed), may have at most
+     * When `exclude_from_indexes` is false (it is indexed) , may have at most
      * 1500 bytes. Otherwise, may be set to at most 1,000,000 bytes.
      *
      * Generated from protobuf field <code>string string_value = 17;</code>
@@ -294,7 +294,7 @@ class Value extends \Google\Protobuf\Internal\Message
 
     /**
      * A UTF-8 encoded string value.
-     * When `exclude_from_indexes` is false (it is indexed), may have at most
+     * When `exclude_from_indexes` is false (it is indexed) , may have at most
      * 1500 bytes. Otherwise, may be set to at most 1,000,000 bytes.
      *
      * Generated from protobuf field <code>string string_value = 17;</code>

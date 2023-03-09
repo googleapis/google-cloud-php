@@ -18,15 +18,15 @@ class AliasIpRange extends \Google\Protobuf\Internal\Message
     /**
      * The IP alias ranges to allocate for this interface. This IP CIDR range must belong to the specified subnetwork and cannot contain IP addresses reserved by system or used by other network interfaces. This range may be a single IP address (such as 10.2.3.4), a netmask (such as /24) or a CIDR-formatted string (such as 10.1.2.0/24).
      *
-     * Generated from protobuf field <code>string ip_cidr_range = 98117322;</code>
+     * Generated from protobuf field <code>optional string ip_cidr_range = 98117322;</code>
      */
-    private $ip_cidr_range = '';
+    private $ip_cidr_range = null;
     /**
      * The name of a subnetwork secondary IP range from which to allocate an IP alias range. If not specified, the primary range of the subnetwork is used.
      *
-     * Generated from protobuf field <code>string subnetwork_range_name = 119560510;</code>
+     * Generated from protobuf field <code>optional string subnetwork_range_name = 387995966;</code>
      */
-    private $subnetwork_range_name = '';
+    private $subnetwork_range_name = null;
 
     /**
      * Constructor.
@@ -48,18 +48,28 @@ class AliasIpRange extends \Google\Protobuf\Internal\Message
     /**
      * The IP alias ranges to allocate for this interface. This IP CIDR range must belong to the specified subnetwork and cannot contain IP addresses reserved by system or used by other network interfaces. This range may be a single IP address (such as 10.2.3.4), a netmask (such as /24) or a CIDR-formatted string (such as 10.1.2.0/24).
      *
-     * Generated from protobuf field <code>string ip_cidr_range = 98117322;</code>
+     * Generated from protobuf field <code>optional string ip_cidr_range = 98117322;</code>
      * @return string
      */
     public function getIpCidrRange()
     {
-        return $this->ip_cidr_range;
+        return isset($this->ip_cidr_range) ? $this->ip_cidr_range : '';
+    }
+
+    public function hasIpCidrRange()
+    {
+        return isset($this->ip_cidr_range);
+    }
+
+    public function clearIpCidrRange()
+    {
+        unset($this->ip_cidr_range);
     }
 
     /**
      * The IP alias ranges to allocate for this interface. This IP CIDR range must belong to the specified subnetwork and cannot contain IP addresses reserved by system or used by other network interfaces. This range may be a single IP address (such as 10.2.3.4), a netmask (such as /24) or a CIDR-formatted string (such as 10.1.2.0/24).
      *
-     * Generated from protobuf field <code>string ip_cidr_range = 98117322;</code>
+     * Generated from protobuf field <code>optional string ip_cidr_range = 98117322;</code>
      * @param string $var
      * @return $this
      */
@@ -74,18 +84,28 @@ class AliasIpRange extends \Google\Protobuf\Internal\Message
     /**
      * The name of a subnetwork secondary IP range from which to allocate an IP alias range. If not specified, the primary range of the subnetwork is used.
      *
-     * Generated from protobuf field <code>string subnetwork_range_name = 119560510;</code>
+     * Generated from protobuf field <code>optional string subnetwork_range_name = 387995966;</code>
      * @return string
      */
     public function getSubnetworkRangeName()
     {
-        return $this->subnetwork_range_name;
+        return isset($this->subnetwork_range_name) ? $this->subnetwork_range_name : '';
+    }
+
+    public function hasSubnetworkRangeName()
+    {
+        return isset($this->subnetwork_range_name);
+    }
+
+    public function clearSubnetworkRangeName()
+    {
+        unset($this->subnetwork_range_name);
     }
 
     /**
      * The name of a subnetwork secondary IP range from which to allocate an IP alias range. If not specified, the primary range of the subnetwork is used.
      *
-     * Generated from protobuf field <code>string subnetwork_range_name = 119560510;</code>
+     * Generated from protobuf field <code>optional string subnetwork_range_name = 387995966;</code>
      * @param string $var
      * @return $this
      */

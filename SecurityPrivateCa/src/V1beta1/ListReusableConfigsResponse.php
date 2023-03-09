@@ -43,13 +43,13 @@ class ListReusableConfigsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Security\PrivateCA\V1beta1\ReusableConfig[]|\Google\Protobuf\Internal\RepeatedField $reusable_configs
+     *     @type array<\Google\Cloud\Security\PrivateCA\V1beta1\ReusableConfig>|\Google\Protobuf\Internal\RepeatedField $reusable_configs
      *           The list of [ReusableConfigs][google.cloud.security.privateca.v1beta1.ReusableConfig].
      *     @type string $next_page_token
      *           A token to retrieve next page of results. Pass this value in
      *           [ListReusableConfigsRequest.next_page_token][] to retrieve
      *           the next page of results.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
      *           A list of locations (e.g. "us-west1") that could not be reached.
      * }
      */
@@ -73,7 +73,7 @@ class ListReusableConfigsResponse extends \Google\Protobuf\Internal\Message
      * The list of [ReusableConfigs][google.cloud.security.privateca.v1beta1.ReusableConfig].
      *
      * Generated from protobuf field <code>repeated .google.cloud.security.privateca.v1beta1.ReusableConfig reusable_configs = 1;</code>
-     * @param \Google\Cloud\Security\PrivateCA\V1beta1\ReusableConfig[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Security\PrivateCA\V1beta1\ReusableConfig>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setReusableConfigs($var)
@@ -129,7 +129,7 @@ class ListReusableConfigsResponse extends \Google\Protobuf\Internal\Message
      * A list of locations (e.g. "us-west1") that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setUnreachable($var)

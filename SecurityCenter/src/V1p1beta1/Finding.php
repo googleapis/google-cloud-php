@@ -93,7 +93,8 @@ class Finding extends \Google\Protobuf\Internal\Message
      * occurred. For example, if the finding represents an open firewall it would
      * capture the time the detector believes the firewall became open. The
      * accuracy is determined by the detector. If the finding were to be resolved
-     * afterward, this time would reflect when the finding was resolved.
+     * afterward, this time would reflect when the finding was resolved. Must not
+     * be set to a value greater than the current timestamp.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp event_time = 9;</code>
      */
@@ -111,6 +112,17 @@ class Finding extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1p1beta1.Finding.Severity severity = 13;</code>
      */
     private $severity = 0;
+    /**
+     * The canonical name of the finding. It's either
+     * "organizations/{organization_id}/sources/{source_id}/findings/{finding_id}",
+     * "folders/{folder_id}/sources/{source_id}/findings/{finding_id}" or
+     * "projects/{project_number}/sources/{source_id}/findings/{finding_id}",
+     * depending on the closest CRM ancestor of the resource associated with the
+     * finding.
+     *
+     * Generated from protobuf field <code>string canonical_name = 14;</code>
+     */
+    private $canonical_name = '';
 
     /**
      * Constructor.
@@ -160,12 +172,20 @@ class Finding extends \Google\Protobuf\Internal\Message
      *           occurred. For example, if the finding represents an open firewall it would
      *           capture the time the detector believes the firewall became open. The
      *           accuracy is determined by the detector. If the finding were to be resolved
-     *           afterward, this time would reflect when the finding was resolved.
+     *           afterward, this time would reflect when the finding was resolved. Must not
+     *           be set to a value greater than the current timestamp.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           The time at which the finding was created in Security Command Center.
      *     @type int $severity
      *           The severity of the finding. This field is managed by the source that
      *           writes the finding.
+     *     @type string $canonical_name
+     *           The canonical name of the finding. It's either
+     *           "organizations/{organization_id}/sources/{source_id}/findings/{finding_id}",
+     *           "folders/{folder_id}/sources/{source_id}/findings/{finding_id}" or
+     *           "projects/{project_number}/sources/{source_id}/findings/{finding_id}",
+     *           depending on the closest CRM ancestor of the resource associated with the
+     *           finding.
      * }
      */
     public function __construct($data = NULL) {
@@ -399,11 +419,11 @@ class Finding extends \Google\Protobuf\Internal\Message
      * to the finding.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1p1beta1.SecurityMarks security_marks = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Cloud\SecurityCenter\V1p1beta1\SecurityMarks
+     * @return \Google\Cloud\SecurityCenter\V1p1beta1\SecurityMarks|null
      */
     public function getSecurityMarks()
     {
-        return isset($this->security_marks) ? $this->security_marks : null;
+        return $this->security_marks;
     }
 
     public function hasSecurityMarks()
@@ -438,14 +458,15 @@ class Finding extends \Google\Protobuf\Internal\Message
      * occurred. For example, if the finding represents an open firewall it would
      * capture the time the detector believes the firewall became open. The
      * accuracy is determined by the detector. If the finding were to be resolved
-     * afterward, this time would reflect when the finding was resolved.
+     * afterward, this time would reflect when the finding was resolved. Must not
+     * be set to a value greater than the current timestamp.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp event_time = 9;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getEventTime()
     {
-        return isset($this->event_time) ? $this->event_time : null;
+        return $this->event_time;
     }
 
     public function hasEventTime()
@@ -463,7 +484,8 @@ class Finding extends \Google\Protobuf\Internal\Message
      * occurred. For example, if the finding represents an open firewall it would
      * capture the time the detector believes the firewall became open. The
      * accuracy is determined by the detector. If the finding were to be resolved
-     * afterward, this time would reflect when the finding was resolved.
+     * afterward, this time would reflect when the finding was resolved. Must not
+     * be set to a value greater than the current timestamp.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp event_time = 9;</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -481,11 +503,11 @@ class Finding extends \Google\Protobuf\Internal\Message
      * The time at which the finding was created in Security Command Center.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 10;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -537,6 +559,42 @@ class Finding extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\SecurityCenter\V1p1beta1\Finding\Severity::class);
         $this->severity = $var;
+
+        return $this;
+    }
+
+    /**
+     * The canonical name of the finding. It's either
+     * "organizations/{organization_id}/sources/{source_id}/findings/{finding_id}",
+     * "folders/{folder_id}/sources/{source_id}/findings/{finding_id}" or
+     * "projects/{project_number}/sources/{source_id}/findings/{finding_id}",
+     * depending on the closest CRM ancestor of the resource associated with the
+     * finding.
+     *
+     * Generated from protobuf field <code>string canonical_name = 14;</code>
+     * @return string
+     */
+    public function getCanonicalName()
+    {
+        return $this->canonical_name;
+    }
+
+    /**
+     * The canonical name of the finding. It's either
+     * "organizations/{organization_id}/sources/{source_id}/findings/{finding_id}",
+     * "folders/{folder_id}/sources/{source_id}/findings/{finding_id}" or
+     * "projects/{project_number}/sources/{source_id}/findings/{finding_id}",
+     * depending on the closest CRM ancestor of the resource associated with the
+     * finding.
+     *
+     * Generated from protobuf field <code>string canonical_name = 14;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setCanonicalName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->canonical_name = $var;
 
         return $this;
     }

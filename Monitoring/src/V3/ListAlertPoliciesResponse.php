@@ -29,6 +29,13 @@ class ListAlertPoliciesResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
     private $next_page_token = '';
+    /**
+     * The total number of alert policies in all pages. This number is only an
+     * estimate, and may change in subsequent pages. https://aip.dev/158
+     *
+     * Generated from protobuf field <code>int32 total_size = 4;</code>
+     */
+    private $total_size = 0;
 
     /**
      * Constructor.
@@ -36,12 +43,15 @@ class ListAlertPoliciesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Monitoring\V3\AlertPolicy[]|\Google\Protobuf\Internal\RepeatedField $alert_policies
+     *     @type array<\Google\Cloud\Monitoring\V3\AlertPolicy>|\Google\Protobuf\Internal\RepeatedField $alert_policies
      *           The returned alert policies.
      *     @type string $next_page_token
      *           If there might be more results than were returned, then this field is set
      *           to a non-empty value. To see the additional results,
      *           use that value as `page_token` in the next call to this method.
+     *     @type int $total_size
+     *           The total number of alert policies in all pages. This number is only an
+     *           estimate, and may change in subsequent pages. https://aip.dev/158
      * }
      */
     public function __construct($data = NULL) {
@@ -64,7 +74,7 @@ class ListAlertPoliciesResponse extends \Google\Protobuf\Internal\Message
      * The returned alert policies.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.AlertPolicy alert_policies = 3;</code>
-     * @param \Google\Cloud\Monitoring\V3\AlertPolicy[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Monitoring\V3\AlertPolicy>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAlertPolicies($var)
@@ -101,6 +111,34 @@ class ListAlertPoliciesResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->next_page_token = $var;
+
+        return $this;
+    }
+
+    /**
+     * The total number of alert policies in all pages. This number is only an
+     * estimate, and may change in subsequent pages. https://aip.dev/158
+     *
+     * Generated from protobuf field <code>int32 total_size = 4;</code>
+     * @return int
+     */
+    public function getTotalSize()
+    {
+        return $this->total_size;
+    }
+
+    /**
+     * The total number of alert policies in all pages. This number is only an
+     * estimate, and may change in subsequent pages. https://aip.dev/158
+     *
+     * Generated from protobuf field <code>int32 total_size = 4;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setTotalSize($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->total_size = $var;
 
         return $this;
     }

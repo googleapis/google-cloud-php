@@ -22,7 +22,6 @@
 
 namespace Google\Cloud\PubSub\Tests\Unit\V1;
 
-use Google\Cloud\PubSub\V1\SubscriberClient;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\BidiStream;
 use Google\ApiCore\CredentialsWrapper;
@@ -38,484 +37,368 @@ use Google\Cloud\PubSub\V1\SeekResponse;
 use Google\Cloud\PubSub\V1\Snapshot;
 use Google\Cloud\PubSub\V1\StreamingPullRequest;
 use Google\Cloud\PubSub\V1\StreamingPullResponse;
+use Google\Cloud\PubSub\V1\SubscriberClient;
 use Google\Cloud\PubSub\V1\Subscription;
-use Google\Protobuf\Any;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
-use Google\Protobuf\Timestamp;
 use Google\Rpc\Code;
 use stdClass;
 
 /**
  * @group pubsub
+ *
  * @group gapic
  */
 class SubscriberClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return SubscriberClient
-     */
+    /** @return SubscriberClient */
     private function createClient(array $options = [])
     {
         $options += [
             'credentials' => $this->createCredentials(),
         ];
-
         return new SubscriberClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
+    public function acknowledgeTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new GPBEmpty();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedSubscription = $gapicClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
+        $ackIds = [];
+        $gapicClient->acknowledge($formattedSubscription, $ackIds);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.pubsub.v1.Subscriber/Acknowledge', $actualFuncCall);
+        $actualValue = $actualRequestObject->getSubscription();
+        $this->assertProtobufEquals($formattedSubscription, $actualValue);
+        $actualValue = $actualRequestObject->getAckIds();
+        $this->assertProtobufEquals($ackIds, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function acknowledgeExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedSubscription = $gapicClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
+        $ackIds = [];
+        try {
+            $gapicClient->acknowledge($formattedSubscription, $ackIds);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function createSnapshotTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $topic = 'topic110546223';
+        $expectedResponse = new Snapshot();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setTopic($topic);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->snapshotName('[PROJECT]', '[SNAPSHOT]');
+        $formattedSubscription = $gapicClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
+        $response = $gapicClient->createSnapshot($formattedName, $formattedSubscription);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.pubsub.v1.Subscriber/CreateSnapshot', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualRequestObject->getSubscription();
+        $this->assertProtobufEquals($formattedSubscription, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function createSnapshotExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->snapshotName('[PROJECT]', '[SNAPSHOT]');
+        $formattedSubscription = $gapicClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
+        try {
+            $gapicClient->createSnapshot($formattedName, $formattedSubscription);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function createSubscriptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $name2 = 'name2-1052831874';
         $topic2 = 'topic2-1139259102';
-        $ackDeadlineSeconds = 2135351438;
-        $retainAckedMessages = false;
-        $enableMessageOrdering = true;
-        $filter = 'filter-1274492040';
-        $detached = true;
+        $ackDeadlineSeconds2 = 921632575;
+        $retainAckedMessages2 = true;
+        $enableMessageOrdering2 = false;
+        $filter2 = 'filter2-721168085';
+        $detached2 = false;
+        $enableExactlyOnceDelivery2 = true;
         $expectedResponse = new Subscription();
         $expectedResponse->setName($name2);
         $expectedResponse->setTopic($topic2);
-        $expectedResponse->setAckDeadlineSeconds($ackDeadlineSeconds);
-        $expectedResponse->setRetainAckedMessages($retainAckedMessages);
-        $expectedResponse->setEnableMessageOrdering($enableMessageOrdering);
-        $expectedResponse->setFilter($filter);
-        $expectedResponse->setDetached($detached);
+        $expectedResponse->setAckDeadlineSeconds($ackDeadlineSeconds2);
+        $expectedResponse->setRetainAckedMessages($retainAckedMessages2);
+        $expectedResponse->setEnableMessageOrdering($enableMessageOrdering2);
+        $expectedResponse->setFilter($filter2);
+        $expectedResponse->setDetached($detached2);
+        $expectedResponse->setEnableExactlyOnceDelivery($enableExactlyOnceDelivery2);
         $transport->addResponse($expectedResponse);
-
         // Mock request
-        $formattedName = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
-        $formattedTopic = $client->projectTopicName('[PROJECT]', '[TOPIC]');
-
-        $response = $client->createSubscription($formattedName, $formattedTopic);
+        $name = 'name3373707';
+        $formattedTopic = $gapicClient->topicName('[PROJECT]', '[TOPIC]');
+        $response = $gapicClient->createSubscription($name, $formattedTopic);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.pubsub.v1.Subscriber/CreateSubscription', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getName();
-
-        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertProtobufEquals($name, $actualValue);
         $actualValue = $actualRequestObject->getTopic();
-
         $this->assertProtobufEquals($formattedTopic, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createSubscriptionExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
-        $formattedName = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
-        $formattedTopic = $client->projectTopicName('[PROJECT]', '[TOPIC]');
-
-        try {
-            $client->createSubscription($formattedName, $formattedTopic);
-            // If the $client method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function getSubscriptionTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        // Mock response
         $name = 'name3373707';
-        $topic = 'topic110546223';
-        $ackDeadlineSeconds = 2135351438;
-        $retainAckedMessages = false;
-        $enableMessageOrdering = true;
-        $filter = 'filter-1274492040';
-        $detached = true;
-        $expectedResponse = new Subscription();
-        $expectedResponse->setName($name);
-        $expectedResponse->setTopic($topic);
-        $expectedResponse->setAckDeadlineSeconds($ackDeadlineSeconds);
-        $expectedResponse->setRetainAckedMessages($retainAckedMessages);
-        $expectedResponse->setEnableMessageOrdering($enableMessageOrdering);
-        $expectedResponse->setFilter($filter);
-        $expectedResponse->setDetached($detached);
-        $transport->addResponse($expectedResponse);
-
-        // Mock request
-        $formattedSubscription = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
-
-        $response = $client->getSubscription($formattedSubscription);
-        $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.pubsub.v1.Subscriber/GetSubscription', $actualFuncCall);
-
-        $actualValue = $actualRequestObject->getSubscription();
-
-        $this->assertProtobufEquals($formattedSubscription, $actualValue);
-
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function getSubscriptionExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
-        ], JSON_PRETTY_PRINT);
-        $transport->addResponse(null, $status);
-
-        // Mock request
-        $formattedSubscription = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
-
+        $formattedTopic = $gapicClient->topicName('[PROJECT]', '[TOPIC]');
         try {
-            $client->getSubscription($formattedSubscription);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->createSubscription($name, $formattedTopic);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
-    public function updateSubscriptionTest()
+    /** @test */
+    public function deleteSnapshotTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
-        // Mock response
-        $name = 'name3373707';
-        $topic = 'topic110546223';
-        $ackDeadlineSeconds2 = 921632575;
-        $retainAckedMessages = false;
-        $enableMessageOrdering = true;
-        $filter = 'filter-1274492040';
-        $detached = true;
-        $expectedResponse = new Subscription();
-        $expectedResponse->setName($name);
-        $expectedResponse->setTopic($topic);
-        $expectedResponse->setAckDeadlineSeconds($ackDeadlineSeconds2);
-        $expectedResponse->setRetainAckedMessages($retainAckedMessages);
-        $expectedResponse->setEnableMessageOrdering($enableMessageOrdering);
-        $expectedResponse->setFilter($filter);
-        $expectedResponse->setDetached($detached);
-        $transport->addResponse($expectedResponse);
-
-        // Mock request
-        $ackDeadlineSeconds = 42;
-        $subscription = new Subscription();
-        $subscription->setAckDeadlineSeconds($ackDeadlineSeconds);
-        $pathsElement = 'ack_deadline_seconds';
-        $paths = [$pathsElement];
-        $updateMask = new FieldMask();
-        $updateMask->setPaths($paths);
-
-        $response = $client->updateSubscription($subscription, $updateMask);
-        $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.pubsub.v1.Subscriber/UpdateSubscription', $actualFuncCall);
-
-        $actualValue = $actualRequestObject->getSubscription();
-
-        $this->assertProtobufEquals($subscription, $actualValue);
-        $actualValue = $actualRequestObject->getUpdateMask();
-
-        $this->assertProtobufEquals($updateMask, $actualValue);
-
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function updateSubscriptionExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
-        ], JSON_PRETTY_PRINT);
-        $transport->addResponse(null, $status);
-
-        // Mock request
-        $ackDeadlineSeconds = 42;
-        $subscription = new Subscription();
-        $subscription->setAckDeadlineSeconds($ackDeadlineSeconds);
-        $pathsElement = 'ack_deadline_seconds';
-        $paths = [$pathsElement];
-        $updateMask = new FieldMask();
-        $updateMask->setPaths($paths);
-
-        try {
-            $client->updateSubscription($subscription, $updateMask);
-            // If the $client method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function listSubscriptionsTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        // Mock response
-        $nextPageToken = '';
-        $subscriptionsElement = new Subscription();
-        $subscriptions = [$subscriptionsElement];
-        $expectedResponse = new ListSubscriptionsResponse();
-        $expectedResponse->setNextPageToken($nextPageToken);
-        $expectedResponse->setSubscriptions($subscriptions);
-        $transport->addResponse($expectedResponse);
-
-        // Mock request
-        $formattedProject = $client->projectName('[PROJECT]');
-
-        $response = $client->listSubscriptions($formattedProject);
-        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
-        $resources = iterator_to_array($response->iterateAllElements());
-        $this->assertSame(1, count($resources));
-        $this->assertEquals($expectedResponse->getSubscriptions()[0], $resources[0]);
-
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.pubsub.v1.Subscriber/ListSubscriptions', $actualFuncCall);
-
-        $actualValue = $actualRequestObject->getProject();
-
-        $this->assertProtobufEquals($formattedProject, $actualValue);
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function listSubscriptionsExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
-        ], JSON_PRETTY_PRINT);
-        $transport->addResponse(null, $status);
-
-        // Mock request
-        $formattedProject = $client->projectName('[PROJECT]');
-
-        try {
-            $client->listSubscriptions($formattedProject);
-            // If the $client method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function deleteSubscriptionTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-
         // Mock request
-        $formattedSubscription = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
+        $formattedSnapshot = $gapicClient->snapshotName('[PROJECT]', '[SNAPSHOT]');
+        $gapicClient->deleteSnapshot($formattedSnapshot);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.pubsub.v1.Subscriber/DeleteSnapshot', $actualFuncCall);
+        $actualValue = $actualRequestObject->getSnapshot();
+        $this->assertProtobufEquals($formattedSnapshot, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
 
-        $client->deleteSubscription($formattedSubscription);
+    /** @test */
+    public function deleteSnapshotExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedSnapshot = $gapicClient->snapshotName('[PROJECT]', '[SNAPSHOT]');
+        try {
+            $gapicClient->deleteSnapshot($formattedSnapshot);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteSubscriptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new GPBEmpty();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedSubscription = $gapicClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
+        $gapicClient->deleteSubscription($formattedSubscription);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.pubsub.v1.Subscriber/DeleteSubscription', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getSubscription();
-
         $this->assertProtobufEquals($formattedSubscription, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteSubscriptionExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
-        $formattedSubscription = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
-
+        $formattedSubscription = $gapicClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
         try {
-            $client->deleteSubscription($formattedSubscription);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->deleteSubscription($formattedSubscription);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getSnapshotTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $name = 'name3373707';
         $topic = 'topic110546223';
@@ -523,305 +406,517 @@ class SubscriberClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setTopic($topic);
         $transport->addResponse($expectedResponse);
-
         // Mock request
-        $formattedSnapshot = $client->snapshotName('[PROJECT]', '[SNAPSHOT]');
-
-        $response = $client->getSnapshot($formattedSnapshot);
+        $formattedSnapshot = $gapicClient->snapshotName('[PROJECT]', '[SNAPSHOT]');
+        $response = $gapicClient->getSnapshot($formattedSnapshot);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.pubsub.v1.Subscriber/GetSnapshot', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getSnapshot();
-
         $this->assertProtobufEquals($formattedSnapshot, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getSnapshotExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
-        $formattedSnapshot = $client->snapshotName('[PROJECT]', '[SNAPSHOT]');
-
+        $formattedSnapshot = $gapicClient->snapshotName('[PROJECT]', '[SNAPSHOT]');
         try {
-            $client->getSnapshot($formattedSnapshot);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getSnapshot($formattedSnapshot);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
+    public function getSubscriptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $topic = 'topic110546223';
+        $ackDeadlineSeconds = 2135351438;
+        $retainAckedMessages = false;
+        $enableMessageOrdering = true;
+        $filter = 'filter-1274492040';
+        $detached = true;
+        $enableExactlyOnceDelivery = false;
+        $expectedResponse = new Subscription();
+        $expectedResponse->setName($name);
+        $expectedResponse->setTopic($topic);
+        $expectedResponse->setAckDeadlineSeconds($ackDeadlineSeconds);
+        $expectedResponse->setRetainAckedMessages($retainAckedMessages);
+        $expectedResponse->setEnableMessageOrdering($enableMessageOrdering);
+        $expectedResponse->setFilter($filter);
+        $expectedResponse->setDetached($detached);
+        $expectedResponse->setEnableExactlyOnceDelivery($enableExactlyOnceDelivery);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedSubscription = $gapicClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
+        $response = $gapicClient->getSubscription($formattedSubscription);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.pubsub.v1.Subscriber/GetSubscription', $actualFuncCall);
+        $actualValue = $actualRequestObject->getSubscription();
+        $this->assertProtobufEquals($formattedSubscription, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getSubscriptionExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedSubscription = $gapicClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
+        try {
+            $gapicClient->getSubscription($formattedSubscription);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listSnapshotsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $snapshotsElement = new Snapshot();
+        $snapshots = [
+            $snapshotsElement,
+        ];
+        $expectedResponse = new ListSnapshotsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setSnapshots($snapshots);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedProject = $gapicClient->projectName('[PROJECT]');
+        $response = $gapicClient->listSnapshots($formattedProject);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getSnapshots()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.pubsub.v1.Subscriber/ListSnapshots', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($formattedProject, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listSnapshotsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedProject = $gapicClient->projectName('[PROJECT]');
+        try {
+            $gapicClient->listSnapshots($formattedProject);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listSubscriptionsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $subscriptionsElement = new Subscription();
+        $subscriptions = [
+            $subscriptionsElement,
+        ];
+        $expectedResponse = new ListSubscriptionsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setSubscriptions($subscriptions);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedProject = $gapicClient->projectName('[PROJECT]');
+        $response = $gapicClient->listSubscriptions($formattedProject);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getSubscriptions()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.pubsub.v1.Subscriber/ListSubscriptions', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($formattedProject, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listSubscriptionsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedProject = $gapicClient->projectName('[PROJECT]');
+        try {
+            $gapicClient->listSubscriptions($formattedProject);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function modifyAckDeadlineTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-
         // Mock request
-        $formattedSubscription = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
+        $formattedSubscription = $gapicClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
         $ackIds = [];
         $ackDeadlineSeconds = 2135351438;
-
-        $client->modifyAckDeadline($formattedSubscription, $ackIds, $ackDeadlineSeconds);
+        $gapicClient->modifyAckDeadline($formattedSubscription, $ackIds, $ackDeadlineSeconds);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.pubsub.v1.Subscriber/ModifyAckDeadline', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getSubscription();
-
         $this->assertProtobufEquals($formattedSubscription, $actualValue);
         $actualValue = $actualRequestObject->getAckIds();
-
         $this->assertProtobufEquals($ackIds, $actualValue);
         $actualValue = $actualRequestObject->getAckDeadlineSeconds();
-
         $this->assertProtobufEquals($ackDeadlineSeconds, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function modifyAckDeadlineExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
-        $formattedSubscription = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
+        $formattedSubscription = $gapicClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
         $ackIds = [];
         $ackDeadlineSeconds = 2135351438;
-
         try {
-            $client->modifyAckDeadline($formattedSubscription, $ackIds, $ackDeadlineSeconds);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->modifyAckDeadline($formattedSubscription, $ackIds, $ackDeadlineSeconds);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
-    public function acknowledgeTest()
+    /** @test */
+    public function modifyPushConfigTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-
         // Mock request
-        $formattedSubscription = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
-        $ackIds = [];
-
-        $client->acknowledge($formattedSubscription, $ackIds);
+        $formattedSubscription = $gapicClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
+        $pushConfig = new PushConfig();
+        $gapicClient->modifyPushConfig($formattedSubscription, $pushConfig);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.pubsub.v1.Subscriber/Acknowledge', $actualFuncCall);
-
+        $this->assertSame('/google.pubsub.v1.Subscriber/ModifyPushConfig', $actualFuncCall);
         $actualValue = $actualRequestObject->getSubscription();
-
         $this->assertProtobufEquals($formattedSubscription, $actualValue);
-        $actualValue = $actualRequestObject->getAckIds();
-
-        $this->assertProtobufEquals($ackIds, $actualValue);
-
+        $actualValue = $actualRequestObject->getPushConfig();
+        $this->assertProtobufEquals($pushConfig, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
-    public function acknowledgeExceptionTest()
+    /** @test */
+    public function modifyPushConfigExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
-        $formattedSubscription = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
-        $ackIds = [];
-
+        $formattedSubscription = $gapicClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
+        $pushConfig = new PushConfig();
         try {
-            $client->acknowledge($formattedSubscription, $ackIds);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->modifyPushConfig($formattedSubscription, $pushConfig);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function pullTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $expectedResponse = new PullResponse();
         $transport->addResponse($expectedResponse);
-
         // Mock request
-        $formattedSubscription = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
+        $formattedSubscription = $gapicClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
         $maxMessages = 496131527;
-
-        $response = $client->pull($formattedSubscription, $maxMessages);
+        $response = $gapicClient->pull($formattedSubscription, $maxMessages);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.pubsub.v1.Subscriber/Pull', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getSubscription();
-
         $this->assertProtobufEquals($formattedSubscription, $actualValue);
         $actualValue = $actualRequestObject->getMaxMessages();
-
         $this->assertProtobufEquals($maxMessages, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function pullExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
-        $formattedSubscription = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
+        $formattedSubscription = $gapicClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
         $maxMessages = 496131527;
-
         try {
-            $client->pull($formattedSubscription, $maxMessages);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->pull($formattedSubscription, $maxMessages);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
+    public function seekTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new SeekResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedSubscription = $gapicClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
+        $response = $gapicClient->seek($formattedSubscription);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.pubsub.v1.Subscriber/Seek', $actualFuncCall);
+        $actualValue = $actualRequestObject->getSubscription();
+        $this->assertProtobufEquals($formattedSubscription, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function seekExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedSubscription = $gapicClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
+        try {
+            $gapicClient->seek($formattedSubscription);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function streamingPullTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $expectedResponse = new StreamingPullResponse();
         $transport->addResponse($expectedResponse);
@@ -829,32 +924,31 @@ class SubscriberClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse2);
         $expectedResponse3 = new StreamingPullResponse();
         $transport->addResponse($expectedResponse3);
-
         // Mock request
-        $formattedSubscription = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
+        $formattedSubscription = $gapicClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
         $streamAckDeadlineSeconds = 1875467245;
         $request = new StreamingPullRequest();
         $request->setSubscription($formattedSubscription);
         $request->setStreamAckDeadlineSeconds($streamAckDeadlineSeconds);
-        $formattedSubscription2 = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
+        $formattedSubscription2 = $gapicClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
         $streamAckDeadlineSeconds2 = 1562238880;
         $request2 = new StreamingPullRequest();
         $request2->setSubscription($formattedSubscription2);
         $request2->setStreamAckDeadlineSeconds($streamAckDeadlineSeconds2);
-        $formattedSubscription3 = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
+        $formattedSubscription3 = $gapicClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
         $streamAckDeadlineSeconds3 = 1562238879;
         $request3 = new StreamingPullRequest();
         $request3->setSubscription($formattedSubscription3);
         $request3->setStreamAckDeadlineSeconds($streamAckDeadlineSeconds3);
-
-        $bidi = $client->streamingPull();
+        $bidi = $gapicClient->streamingPull();
         $this->assertInstanceOf(BidiStream::class, $bidi);
-
         $bidi->write($request);
         $responses = [];
         $responses[] = $bidi->read();
-
-        $bidi->writeAll([$request2, $request3]);
+        $bidi->writeAll([
+            $request2,
+            $request3,
+        ]);
         foreach ($bidi->closeWriteAndReadAll() as $response) {
             $responses[] = $response;
         }
@@ -864,54 +958,44 @@ class SubscriberClientTest extends GeneratedTest
         $expectedResponses[] = $expectedResponse2;
         $expectedResponses[] = $expectedResponse3;
         $this->assertEquals($expectedResponses, $responses);
-
         $createStreamRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($createStreamRequests));
         $streamFuncCall = $createStreamRequests[0]->getFuncCall();
         $streamRequestObject = $createStreamRequests[0]->getRequestObject();
         $this->assertSame('/google.pubsub.v1.Subscriber/StreamingPull', $streamFuncCall);
         $this->assertNull($streamRequestObject);
-
         $callObjects = $transport->popCallObjects();
         $this->assertSame(1, count($callObjects));
         $bidiCall = $callObjects[0];
-
         $writeRequests = $bidiCall->popReceivedCalls();
         $expectedRequests = [];
         $expectedRequests[] = $request;
         $expectedRequests[] = $request2;
         $expectedRequests[] = $request3;
         $this->assertEquals($expectedRequests, $writeRequests);
-
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function streamingPullExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
         $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
-
         $transport->setStreamingStatus($status);
-
         $this->assertTrue($transport->isExhausted());
-
-        $bidi = $client->streamingPull();
+        $bidi = $gapicClient->streamingPull();
         $results = $bidi->closeWriteAndReadAll();
-
         try {
             iterator_to_array($results);
             // If the close stream method call did not throw, fail the test
@@ -920,256 +1004,19 @@ class SubscriberClientTest extends GeneratedTest
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
-    public function modifyPushConfigTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        // Mock response
-        $expectedResponse = new GPBEmpty();
-        $transport->addResponse($expectedResponse);
-
-        // Mock request
-        $formattedSubscription = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
-        $pushConfig = new PushConfig();
-
-        $client->modifyPushConfig($formattedSubscription, $pushConfig);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.pubsub.v1.Subscriber/ModifyPushConfig', $actualFuncCall);
-
-        $actualValue = $actualRequestObject->getSubscription();
-
-        $this->assertProtobufEquals($formattedSubscription, $actualValue);
-        $actualValue = $actualRequestObject->getPushConfig();
-
-        $this->assertProtobufEquals($pushConfig, $actualValue);
-
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function modifyPushConfigExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
-        ], JSON_PRETTY_PRINT);
-        $transport->addResponse(null, $status);
-
-        // Mock request
-        $formattedSubscription = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
-        $pushConfig = new PushConfig();
-
-        try {
-            $client->modifyPushConfig($formattedSubscription, $pushConfig);
-            // If the $client method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function listSnapshotsTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        // Mock response
-        $nextPageToken = '';
-        $snapshotsElement = new Snapshot();
-        $snapshots = [$snapshotsElement];
-        $expectedResponse = new ListSnapshotsResponse();
-        $expectedResponse->setNextPageToken($nextPageToken);
-        $expectedResponse->setSnapshots($snapshots);
-        $transport->addResponse($expectedResponse);
-
-        // Mock request
-        $formattedProject = $client->projectName('[PROJECT]');
-
-        $response = $client->listSnapshots($formattedProject);
-        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
-        $resources = iterator_to_array($response->iterateAllElements());
-        $this->assertSame(1, count($resources));
-        $this->assertEquals($expectedResponse->getSnapshots()[0], $resources[0]);
-
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.pubsub.v1.Subscriber/ListSnapshots', $actualFuncCall);
-
-        $actualValue = $actualRequestObject->getProject();
-
-        $this->assertProtobufEquals($formattedProject, $actualValue);
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function listSnapshotsExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
-        ], JSON_PRETTY_PRINT);
-        $transport->addResponse(null, $status);
-
-        // Mock request
-        $formattedProject = $client->projectName('[PROJECT]');
-
-        try {
-            $client->listSnapshots($formattedProject);
-            // If the $client method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function createSnapshotTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        // Mock response
-        $name2 = 'name2-1052831874';
-        $topic = 'topic110546223';
-        $expectedResponse = new Snapshot();
-        $expectedResponse->setName($name2);
-        $expectedResponse->setTopic($topic);
-        $transport->addResponse($expectedResponse);
-
-        // Mock request
-        $formattedName = $client->snapshotName('[PROJECT]', '[SNAPSHOT]');
-        $formattedSubscription = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
-
-        $response = $client->createSnapshot($formattedName, $formattedSubscription);
-        $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.pubsub.v1.Subscriber/CreateSnapshot', $actualFuncCall);
-
-        $actualValue = $actualRequestObject->getName();
-
-        $this->assertProtobufEquals($formattedName, $actualValue);
-        $actualValue = $actualRequestObject->getSubscription();
-
-        $this->assertProtobufEquals($formattedSubscription, $actualValue);
-
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function createSnapshotExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
-        ], JSON_PRETTY_PRINT);
-        $transport->addResponse(null, $status);
-
-        // Mock request
-        $formattedName = $client->snapshotName('[PROJECT]', '[SNAPSHOT]');
-        $formattedSubscription = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
-
-        try {
-            $client->createSnapshot($formattedName, $formattedSubscription);
-            // If the $client method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
+    /** @test */
     public function updateSnapshotTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $name = 'name3373707';
         $topic = 'topic110546223';
@@ -1177,314 +1024,151 @@ class SubscriberClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setTopic($topic);
         $transport->addResponse($expectedResponse);
-
         // Mock request
-        $seconds = 123456;
-        $expireTime = new Timestamp();
-        $expireTime->setSeconds($seconds);
         $snapshot = new Snapshot();
-        $snapshot->setExpireTime($expireTime);
-        $pathsElement = 'expire_time';
-        $paths = [$pathsElement];
         $updateMask = new FieldMask();
-        $updateMask->setPaths($paths);
-
-        $response = $client->updateSnapshot($snapshot, $updateMask);
+        $response = $gapicClient->updateSnapshot($snapshot, $updateMask);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.pubsub.v1.Subscriber/UpdateSnapshot', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getSnapshot();
-
         $this->assertProtobufEquals($snapshot, $actualValue);
         $actualValue = $actualRequestObject->getUpdateMask();
-
         $this->assertProtobufEquals($updateMask, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateSnapshotExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
-        $seconds = 123456;
-        $expireTime = new Timestamp();
-        $expireTime->setSeconds($seconds);
         $snapshot = new Snapshot();
-        $snapshot->setExpireTime($expireTime);
-        $pathsElement = 'expire_time';
-        $paths = [$pathsElement];
         $updateMask = new FieldMask();
-        $updateMask->setPaths($paths);
-
         try {
-            $client->updateSnapshot($snapshot, $updateMask);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->updateSnapshot($snapshot, $updateMask);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
-    public function deleteSnapshotTest()
+    /** @test */
+    public function updateSubscriptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
-        $expectedResponse = new GPBEmpty();
+        $name = 'name3373707';
+        $topic = 'topic110546223';
+        $ackDeadlineSeconds = 2135351438;
+        $retainAckedMessages = false;
+        $enableMessageOrdering = true;
+        $filter = 'filter-1274492040';
+        $detached = true;
+        $enableExactlyOnceDelivery = false;
+        $expectedResponse = new Subscription();
+        $expectedResponse->setName($name);
+        $expectedResponse->setTopic($topic);
+        $expectedResponse->setAckDeadlineSeconds($ackDeadlineSeconds);
+        $expectedResponse->setRetainAckedMessages($retainAckedMessages);
+        $expectedResponse->setEnableMessageOrdering($enableMessageOrdering);
+        $expectedResponse->setFilter($filter);
+        $expectedResponse->setDetached($detached);
+        $expectedResponse->setEnableExactlyOnceDelivery($enableExactlyOnceDelivery);
         $transport->addResponse($expectedResponse);
-
         // Mock request
-        $formattedSnapshot = $client->snapshotName('[PROJECT]', '[SNAPSHOT]');
-
-        $client->deleteSnapshot($formattedSnapshot);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.pubsub.v1.Subscriber/DeleteSnapshot', $actualFuncCall);
-
-        $actualValue = $actualRequestObject->getSnapshot();
-
-        $this->assertProtobufEquals($formattedSnapshot, $actualValue);
-
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function deleteSnapshotExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
-        ], JSON_PRETTY_PRINT);
-        $transport->addResponse(null, $status);
-
-        // Mock request
-        $formattedSnapshot = $client->snapshotName('[PROJECT]', '[SNAPSHOT]');
-
-        try {
-            $client->deleteSnapshot($formattedSnapshot);
-            // If the $client method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function seekTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        // Mock response
-        $expectedResponse = new SeekResponse();
-        $transport->addResponse($expectedResponse);
-
-        // Mock request
-        $formattedSubscription = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
-
-        $response = $client->seek($formattedSubscription);
+        $subscription = new Subscription();
+        $subscriptionName = 'subscriptionName-515935928';
+        $subscription->setName($subscriptionName);
+        $subscriptionTopic = $gapicClient->topicName('[PROJECT]', '[TOPIC]');
+        $subscription->setTopic($subscriptionTopic);
+        $updateMask = new FieldMask();
+        $response = $gapicClient->updateSubscription($subscription, $updateMask);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.pubsub.v1.Subscriber/Seek', $actualFuncCall);
-
+        $this->assertSame('/google.pubsub.v1.Subscriber/UpdateSubscription', $actualFuncCall);
         $actualValue = $actualRequestObject->getSubscription();
-
-        $this->assertProtobufEquals($formattedSubscription, $actualValue);
-
+        $this->assertProtobufEquals($subscription, $actualValue);
+        $actualValue = $actualRequestObject->getUpdateMask();
+        $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
-    public function seekExceptionTest()
+    /** @test */
+    public function updateSubscriptionExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
-        $formattedSubscription = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
-
+        $subscription = new Subscription();
+        $subscriptionName = 'subscriptionName-515935928';
+        $subscription->setName($subscriptionName);
+        $subscriptionTopic = $gapicClient->topicName('[PROJECT]', '[TOPIC]');
+        $subscription->setTopic($subscriptionTopic);
+        $updateMask = new FieldMask();
         try {
-            $client->seek($formattedSubscription);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->updateSubscription($subscription, $updateMask);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
-    public function setIamPolicyTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        // Mock response
-        $version = 351608024;
-        $etag = '21';
-        $expectedResponse = new Policy();
-        $expectedResponse->setVersion($version);
-        $expectedResponse->setEtag($etag);
-        $transport->addResponse($expectedResponse);
-
-        // Mock request
-        $resource = 'resource-341064690';
-        $policy = new Policy();
-
-        $response = $client->setIamPolicy($resource, $policy);
-        $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.iam.v1.IAMPolicy/SetIamPolicy', $actualFuncCall);
-
-        $actualValue = $actualRequestObject->getResource();
-
-        $this->assertProtobufEquals($resource, $actualValue);
-        $actualValue = $actualRequestObject->getPolicy();
-
-        $this->assertProtobufEquals($policy, $actualValue);
-
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function setIamPolicyExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
-        ], JSON_PRETTY_PRINT);
-        $transport->addResponse(null, $status);
-
-        // Mock request
-        $resource = 'resource-341064690';
-        $policy = new Policy();
-
-        try {
-            $client->setIamPolicy($resource, $policy);
-            // If the $client method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
+    /** @test */
     public function getIamPolicyTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $version = 351608024;
         $etag = '21';
@@ -1492,135 +1176,176 @@ class SubscriberClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-
         // Mock request
         $resource = 'resource-341064690';
-
-        $response = $client->getIamPolicy($resource);
+        $response = $gapicClient->getIamPolicy($resource);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/GetIamPolicy', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getResource();
-
         $this->assertProtobufEquals($resource, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
         $resource = 'resource-341064690';
-
         try {
-            $client->getIamPolicy($resource);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getIamPolicy($resource);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
+    public function setIamPolicyTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $version = 351608024;
+        $etag = '21';
+        $expectedResponse = new Policy();
+        $expectedResponse->setVersion($version);
+        $expectedResponse->setEtag($etag);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $resource = 'resource-341064690';
+        $policy = new Policy();
+        $response = $gapicClient->setIamPolicy($resource, $policy);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.iam.v1.IAMPolicy/SetIamPolicy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
+        $actualValue = $actualRequestObject->getPolicy();
+        $this->assertProtobufEquals($policy, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function setIamPolicyExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $resource = 'resource-341064690';
+        $policy = new Policy();
+        try {
+            $gapicClient->setIamPolicy($resource, $policy);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function testIamPermissionsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $expectedResponse = new TestIamPermissionsResponse();
         $transport->addResponse($expectedResponse);
-
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-
-        $response = $client->testIamPermissions($resource, $permissions);
+        $response = $gapicClient->testIamPermissions($resource, $permissions);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/TestIamPermissions', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getResource();
-
         $this->assertProtobufEquals($resource, $actualValue);
         $actualValue = $actualRequestObject->getPermissions();
-
         $this->assertProtobufEquals($permissions, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function testIamPermissionsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-
         try {
-            $client->testIamPermissions($resource, $permissions);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->testIamPermissions($resource, $permissions);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());

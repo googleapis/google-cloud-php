@@ -18,7 +18,7 @@ You can sign these electronically (just scroll to the bottom). After that, we'll
 In order to use Google Cloud PHP, some setup is required!
 
 1. Install PHP.
-    Google Cloud PHP requires PHP 5.5 or higher. Installation of PHP varies depending on your system. Refer to the [PHP installation and configuration documentation](http://php.net/manual/en/install.php) for detailed instructions.
+    Google Cloud PHP requires PHP 5.6 or higher. Installation of PHP varies depending on your system. Refer to the [PHP installation and configuration documentation](http://php.net/manual/en/install.php) for detailed instructions.
 
 2. Install [Composer](https://getcomposer.org/download/).
 
@@ -115,6 +115,57 @@ You can check your code against these rules by running PHPCS with the proper rul
 ```sh
 $ composer style
 ```
+
+## Owlbot
+
+This repository is using OwlBot for copying code from the generated library in
+https://github.com/googleapis/googleapis-gen repository.
+
+### Clone googleapis-gen repository
+
+```sh
+$ cd /SOME/WHERE
+$ git clone git@github.com:googleapis/googleapis-gen.git
+```
+
+### Pull docker images
+
+```sh
+$ docker pull gcr.io/cloud-devrel-public-resources/owlbot-cli
+$ docker pull gcr.io/cloud-devrel-public-resources/owlbot-php
+```
+
+### Run copy code
+
+Here is the command for running copy-code for AccessApproval API:
+
+```sh
+$ GOOGLEAPIS_GEN=/SOME/WHERE/googleapis-gen
+
+$ docker run --rm --user $(id -u):$(id -g) \
+	-v $(pwd):/repo -w /repo \
+	-v ${GOOGLEAPIS_GEN}:/googleapis-gen \
+	gcr.io/cloud-devrel-public-resources/owlbot-cli:latest \
+	copy-code \
+	--config-file=AccessApproval/.OwlBot.yaml \
+	--source-repo=/googleapis-gen
+```
+
+This step just copies the code into owl-bot-staging directory.
+
+### Run OwlBot postprocessor
+
+Here is the command for running the postprocessor:
+
+```sh
+$ docker run \
+	--user $(id -u):$(id -g) --rm \
+	-v $(pwd):/repo -w /repo \
+	gcr.io/cloud-devrel-public-resources/owlbot-php
+```
+
+This step copies the code from owl-bot-staging directory to the final
+destination.
 
 ## Code of Conduct
 

@@ -1,0 +1,4 @@
+deep-copy-regex:
+    - source: /google/monitoring/(v3)/.*-php/(.*)
+      dest: /owl-bot-staging/Monitoring/$1/$2
+api-name: Monitoring

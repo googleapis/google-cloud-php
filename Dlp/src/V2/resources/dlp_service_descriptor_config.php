@@ -3,16 +3,6 @@
 return [
     'interfaces' => [
         'google.privacy.dlp.v2.DlpService' => [
-            'ListInspectTemplates' => [
-                'pageStreaming' => [
-                    'requestPageTokenGetMethod' => 'getPageToken',
-                    'requestPageTokenSetMethod' => 'setPageToken',
-                    'requestPageSizeGetMethod' => 'getPageSize',
-                    'requestPageSizeSetMethod' => 'setPageSize',
-                    'responsePageTokenGetMethod' => 'getNextPageToken',
-                    'resourcesGetMethod' => 'getInspectTemplates',
-                ],
-            ],
             'ListDeidentifyTemplates' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
@@ -23,16 +13,6 @@ return [
                     'resourcesGetMethod' => 'getDeidentifyTemplates',
                 ],
             ],
-            'ListJobTriggers' => [
-                'pageStreaming' => [
-                    'requestPageTokenGetMethod' => 'getPageToken',
-                    'requestPageTokenSetMethod' => 'setPageToken',
-                    'requestPageSizeGetMethod' => 'getPageSize',
-                    'requestPageSizeSetMethod' => 'setPageSize',
-                    'responsePageTokenGetMethod' => 'getNextPageToken',
-                    'resourcesGetMethod' => 'getJobTriggers',
-                ],
-            ],
             'ListDlpJobs' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
@@ -41,6 +21,26 @@ return [
                     'requestPageSizeSetMethod' => 'setPageSize',
                     'responsePageTokenGetMethod' => 'getNextPageToken',
                     'resourcesGetMethod' => 'getJobs',
+                ],
+            ],
+            'ListInspectTemplates' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getInspectTemplates',
+                ],
+            ],
+            'ListJobTriggers' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getJobTriggers',
                 ],
             ],
             'ListStoredInfoTypes' => [

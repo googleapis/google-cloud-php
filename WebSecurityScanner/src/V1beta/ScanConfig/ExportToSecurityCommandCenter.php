@@ -60,6 +60,4 @@ class ExportToSecurityCommandCenter
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ExportToSecurityCommandCenter::class, \Google\Cloud\WebSecurityScanner\V1beta\ScanConfig_ExportToSecurityCommandCenter::class);
 

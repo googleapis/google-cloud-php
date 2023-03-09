@@ -50,9 +50,9 @@ class WriteRequest extends \Google\Protobuf\Internal\Message
     /**
      * A stream token that was previously sent by the server.
      * The client should set this field to the token from the most recent
-     * [WriteResponse][google.firestore.v1.WriteResponse] it has received. This acknowledges that the client has
-     * received responses up to this token. After sending this token, earlier
-     * tokens may not be used anymore.
+     * [WriteResponse][google.firestore.v1.WriteResponse] it has received. This
+     * acknowledges that the client has received responses up to this token. After
+     * sending this token, earlier tokens may not be used anymore.
      * The server may close the stream if there are too many unacknowledged
      * responses.
      * Leave this field unset when creating a new stream. To resume a stream at
@@ -83,7 +83,7 @@ class WriteRequest extends \Google\Protobuf\Internal\Message
      *           The ID of the write stream to resume.
      *           This may only be set in the first message. When left empty, a new write
      *           stream will be created.
-     *     @type \Google\Cloud\Firestore\V1\Write[]|\Google\Protobuf\Internal\RepeatedField $writes
+     *     @type array<\Google\Cloud\Firestore\V1\Write>|\Google\Protobuf\Internal\RepeatedField $writes
      *           The writes to apply.
      *           Always executed atomically and in order.
      *           This must be empty on the first request.
@@ -92,9 +92,9 @@ class WriteRequest extends \Google\Protobuf\Internal\Message
      *     @type string $stream_token
      *           A stream token that was previously sent by the server.
      *           The client should set this field to the token from the most recent
-     *           [WriteResponse][google.firestore.v1.WriteResponse] it has received. This acknowledges that the client has
-     *           received responses up to this token. After sending this token, earlier
-     *           tokens may not be used anymore.
+     *           [WriteResponse][google.firestore.v1.WriteResponse] it has received. This
+     *           acknowledges that the client has received responses up to this token. After
+     *           sending this token, earlier tokens may not be used anymore.
      *           The server may close the stream if there are too many unacknowledged
      *           responses.
      *           Leave this field unset when creating a new stream. To resume a stream at
@@ -192,7 +192,7 @@ class WriteRequest extends \Google\Protobuf\Internal\Message
      * This must not be empty on all other requests.
      *
      * Generated from protobuf field <code>repeated .google.firestore.v1.Write writes = 3;</code>
-     * @param \Google\Cloud\Firestore\V1\Write[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Firestore\V1\Write>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setWrites($var)
@@ -206,9 +206,9 @@ class WriteRequest extends \Google\Protobuf\Internal\Message
     /**
      * A stream token that was previously sent by the server.
      * The client should set this field to the token from the most recent
-     * [WriteResponse][google.firestore.v1.WriteResponse] it has received. This acknowledges that the client has
-     * received responses up to this token. After sending this token, earlier
-     * tokens may not be used anymore.
+     * [WriteResponse][google.firestore.v1.WriteResponse] it has received. This
+     * acknowledges that the client has received responses up to this token. After
+     * sending this token, earlier tokens may not be used anymore.
      * The server may close the stream if there are too many unacknowledged
      * responses.
      * Leave this field unset when creating a new stream. To resume a stream at
@@ -226,9 +226,9 @@ class WriteRequest extends \Google\Protobuf\Internal\Message
     /**
      * A stream token that was previously sent by the server.
      * The client should set this field to the token from the most recent
-     * [WriteResponse][google.firestore.v1.WriteResponse] it has received. This acknowledges that the client has
-     * received responses up to this token. After sending this token, earlier
-     * tokens may not be used anymore.
+     * [WriteResponse][google.firestore.v1.WriteResponse] it has received. This
+     * acknowledges that the client has received responses up to this token. After
+     * sending this token, earlier tokens may not be used anymore.
      * The server may close the stream if there are too many unacknowledged
      * responses.
      * Leave this field unset when creating a new stream. To resume a stream at

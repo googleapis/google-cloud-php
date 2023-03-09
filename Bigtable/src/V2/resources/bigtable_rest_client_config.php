@@ -3,6 +3,30 @@
 return [
     'interfaces' => [
         'google.bigtable.v2.Bigtable' => [
+            'CheckAndMutateRow' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{table_name=projects/*/instances/*/tables/*}:checkAndMutateRow',
+                'body' => '*',
+                'placeholders' => [
+                    'table_name' => [
+                        'getters' => [
+                            'getTableName',
+                        ],
+                    ],
+                ],
+            ],
+            'GenerateInitialChangeStreamPartitions' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{table_name=projects/*/instances/*/tables/*}:generateInitialChangeStreamPartitions',
+                'body' => '*',
+                'placeholders' => [
+                    'table_name' => [
+                        'getters' => [
+                            'getTableName',
+                        ],
+                    ],
+                ],
+            ],
             'MutateRow' => [
                 'method' => 'post',
                 'uriTemplate' => '/v2/{table_name=projects/*/instances/*/tables/*}:mutateRow',
@@ -15,9 +39,33 @@ return [
                     ],
                 ],
             ],
-            'CheckAndMutateRow' => [
+            'MutateRows' => [
                 'method' => 'post',
-                'uriTemplate' => '/v2/{table_name=projects/*/instances/*/tables/*}:checkAndMutateRow',
+                'uriTemplate' => '/v2/{table_name=projects/*/instances/*/tables/*}:mutateRows',
+                'body' => '*',
+                'placeholders' => [
+                    'table_name' => [
+                        'getters' => [
+                            'getTableName',
+                        ],
+                    ],
+                ],
+            ],
+            'PingAndWarm' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{name=projects/*/instances/*}:ping',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ReadChangeStream' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{table_name=projects/*/instances/*/tables/*}:readChangeStream',
                 'body' => '*',
                 'placeholders' => [
                     'table_name' => [
@@ -39,6 +87,30 @@ return [
                     ],
                 ],
             ],
+            'ReadRows' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{table_name=projects/*/instances/*/tables/*}:readRows',
+                'body' => '*',
+                'placeholders' => [
+                    'table_name' => [
+                        'getters' => [
+                            'getTableName',
+                        ],
+                    ],
+                ],
+            ],
+            'SampleRowKeys' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{table_name=projects/*/instances/*/tables/*}:sampleRowKeys',
+                'placeholders' => [
+                    'table_name' => [
+                        'getters' => [
+                            'getTableName',
+                        ],
+                    ],
+                ],
+            ],
         ],
     ],
+    'numericEnums' => true,
 ];

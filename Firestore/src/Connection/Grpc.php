@@ -28,6 +28,7 @@ use Google\Cloud\Firestore\V1\StructuredQuery;
 use Google\Cloud\Firestore\V1\TransactionOptions;
 use Google\Cloud\Firestore\V1\TransactionOptions\ReadWrite;
 use Google\Cloud\Firestore\FirestoreClient as ManualFirestoreClient;
+use Google\Protobuf\Timestamp as ProtobufTimestamp;
 
 /**
  * A gRPC connection to Cloud Firestore via GAPIC.
@@ -101,7 +102,10 @@ class Grpc implements ConnectionInterface
         $config += ['emulatorHost' => null];
         if ((bool) $config['emulatorHost']) {
             $this->isUsingEmulator = true;
-            $grpcConfig += $this->emulatorGapicConfig($config['emulatorHost']);
+            $grpcConfig = array_merge(
+                $grpcConfig,
+                $this->emulatorGapicConfig($config['emulatorHost'])
+            );
         }
         //@codeCoverageIgnoreEnd
 
@@ -118,6 +122,12 @@ class Grpc implements ConnectionInterface
      */
     public function batchGetDocuments(array $args)
     {
+        if (isset($args['readTime'])) {
+            $args['readTime'] = $this->serializer->decodeMessage(
+                new ProtobufTimestamp(),
+                $args['readTime']
+            );
+        }
         return $this->send([$this->firestore, 'batchGetDocuments'], [
             $this->pluck('database', $args),
             $this->pluck('documents', $args),
@@ -158,6 +168,24 @@ class Grpc implements ConnectionInterface
         return $this->send([$this->firestore, 'commit'], [
             $this->pluck('database', $args),
             $writes,
+            $this->addRequestHeaders($args)
+        ]);
+    }
+
+    /**
+     * @param array $args
+     */
+    public function batchWrite(array $args)
+    {
+        $writes = $this->pluck('writes', $args);
+        foreach ($writes as $idx => $write) {
+            $args['writes'][$idx] = $this->serializer->decodeMessage(
+                new Write,
+                $write
+            );
+        }
+
+        return $this->send([$this->firestore, 'batchWrite'], [
             $this->addRequestHeaders($args)
         ]);
     }

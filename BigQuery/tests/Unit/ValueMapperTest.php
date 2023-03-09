@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\BigQuery\Tests\Unit;
 
+use Google\Cloud\BigQuery\BigNumeric;
 use Google\Cloud\BigQuery\Bytes;
 use Google\Cloud\BigQuery\Date;
 use Google\Cloud\BigQuery\Numeric;
@@ -25,37 +26,37 @@ use Google\Cloud\BigQuery\Timestamp;
 use Google\Cloud\BigQuery\ValueMapper;
 use Google\Cloud\Core\Int64;
 use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group bigquery
  */
 class ValueMapperTest extends TestCase
 {
-    /**
-     * @expectedException \InvalidArgumentException
-     */
+    use ExpectException;
+
     public function testThrowsExceptionWithUnhandledClass()
     {
+        $this->expectException('\InvalidArgumentException');
+
         $mapper = new ValueMapper(false);
         $mapper->toParameter(new \stdClass());
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
     public function testToParameterThrowsExceptionWithUnhandledType()
     {
+        $this->expectException('\InvalidArgumentException');
+
         $f = fopen('php://temp', 'r');
         fclose($f);
         $mapper = new ValueMapper(false);
         $mapper->toParameter($f);
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
     public function testFromBigQueryThrowsExceptionWithUnhandledType()
     {
+        $this->expectException('\InvalidArgumentException');
+
         $mapper = new ValueMapper(false);
         $mapper->fromBigQuery(['v' => 'hi'], ['type' => 'BLAH']);
     }
@@ -119,6 +120,11 @@ class ValueMapperTest extends TestCase
                 ['v' => '99999999999999999999999999999999999999.999999999'],
                 ['type' => 'NUMERIC'],
                 new Numeric('99999999999999999999999999999999999999.999999999')
+            ],
+            [
+                ['v' => str_pad('9', 75, '9') . '.999999999'],
+                ['type' => 'BIGNUMERIC'],
+                new BigNumeric(str_pad('9', 75, '9') . '.999999999')
             ],
             [
                 ['v' => 'Hello'],
@@ -240,6 +246,7 @@ class ValueMapperTest extends TestCase
         $date = new Date($dt);
         $int64 = new Int64('123');
         $numeric = new Numeric('99999999999999999999999999999999999999.999999999');
+        $bigNumeric = new BigNumeric(str_pad('9', 75, '9') . '.999999999');
 
         return [
             [$dt, $dt->format('Y-m-d\TH:i:s.u')],
@@ -251,6 +258,7 @@ class ValueMapperTest extends TestCase
             [1, 1],
             [$int64, '123'],
             [$numeric, $numeric->formatAsString()],
+            [$bigNumeric, $bigNumeric->formatAsString()],
         ];
     }
 

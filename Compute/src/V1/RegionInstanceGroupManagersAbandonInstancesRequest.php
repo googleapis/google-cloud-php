@@ -27,7 +27,7 @@ class RegionInstanceGroupManagersAbandonInstancesRequest extends \Google\Protobu
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $instances
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $instances
      *           The URLs of one or more instances to abandon. This can be a full URL or a partial URL, such as zones/[ZONE]/instances/[INSTANCE_NAME].
      * }
      */
@@ -51,7 +51,7 @@ class RegionInstanceGroupManagersAbandonInstancesRequest extends \Google\Protobu
      * The URLs of one or more instances to abandon. This can be a full URL or a partial URL, such as zones/[ZONE]/instances/[INSTANCE_NAME].
      *
      * Generated from protobuf field <code>repeated string instances = 29097598;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setInstances($var)

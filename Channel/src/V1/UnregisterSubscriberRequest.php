@@ -22,8 +22,8 @@ class UnregisterSubscriberRequest extends \Google\Protobuf\Internal\Message
      */
     private $account = '';
     /**
-     * Required. Service account which will be unregistered from getting subscriber access
-     * to the topic.
+     * Required. Service account to unregister from subscriber access to the
+     * topic.
      *
      * Generated from protobuf field <code>string service_account = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -38,8 +38,8 @@ class UnregisterSubscriberRequest extends \Google\Protobuf\Internal\Message
      *     @type string $account
      *           Required. Resource name of the account.
      *     @type string $service_account
-     *           Required. Service account which will be unregistered from getting subscriber access
-     *           to the topic.
+     *           Required. Service account to unregister from subscriber access to the
+     *           topic.
      * }
      */
     public function __construct($data = NULL) {
@@ -74,8 +74,8 @@ class UnregisterSubscriberRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Service account which will be unregistered from getting subscriber access
-     * to the topic.
+     * Required. Service account to unregister from subscriber access to the
+     * topic.
      *
      * Generated from protobuf field <code>string service_account = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -86,8 +86,8 @@ class UnregisterSubscriberRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Service account which will be unregistered from getting subscriber access
-     * to the topic.
+     * Required. Service account to unregister from subscriber access to the
+     * topic.
      *
      * Generated from protobuf field <code>string service_account = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

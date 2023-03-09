@@ -17,13 +17,13 @@ class CommitmentsScopedList extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] A list of commitments contained in this scope.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Commitment commitments = 182228990;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Commitment commitments = 450664446;</code>
      */
     private $commitments;
     /**
      * [Output Only] Informational warning which replaces the list of commitments when the list is empty.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Warning warning = 50704284;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Warning warning = 50704284;</code>
      */
     private $warning = null;
 
@@ -33,7 +33,7 @@ class CommitmentsScopedList extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Compute\V1\Commitment[]|\Google\Protobuf\Internal\RepeatedField $commitments
+     *     @type array<\Google\Cloud\Compute\V1\Commitment>|\Google\Protobuf\Internal\RepeatedField $commitments
      *           [Output Only] A list of commitments contained in this scope.
      *     @type \Google\Cloud\Compute\V1\Warning $warning
      *           [Output Only] Informational warning which replaces the list of commitments when the list is empty.
@@ -47,7 +47,7 @@ class CommitmentsScopedList extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] A list of commitments contained in this scope.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Commitment commitments = 182228990;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Commitment commitments = 450664446;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getCommitments()
@@ -58,8 +58,8 @@ class CommitmentsScopedList extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] A list of commitments contained in this scope.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Commitment commitments = 182228990;</code>
-     * @param \Google\Cloud\Compute\V1\Commitment[]|\Google\Protobuf\Internal\RepeatedField $var
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Commitment commitments = 450664446;</code>
+     * @param array<\Google\Cloud\Compute\V1\Commitment>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setCommitments($var)
@@ -73,12 +73,12 @@ class CommitmentsScopedList extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Informational warning which replaces the list of commitments when the list is empty.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Warning warning = 50704284;</code>
-     * @return \Google\Cloud\Compute\V1\Warning
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Warning warning = 50704284;</code>
+     * @return \Google\Cloud\Compute\V1\Warning|null
      */
     public function getWarning()
     {
-        return isset($this->warning) ? $this->warning : null;
+        return $this->warning;
     }
 
     public function hasWarning()
@@ -94,7 +94,7 @@ class CommitmentsScopedList extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Informational warning which replaces the list of commitments when the list is empty.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Warning warning = 50704284;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Warning warning = 50704284;</code>
      * @param \Google\Cloud\Compute\V1\Warning $var
      * @return $this
      */

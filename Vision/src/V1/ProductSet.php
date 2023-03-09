@@ -155,7 +155,7 @@ class ProductSet extends \Google\Protobuf\Internal\Message
      */
     public function getIndexTime()
     {
-        return isset($this->index_time) ? $this->index_time : null;
+        return $this->index_time;
     }
 
     public function hasIndexTime()
@@ -197,7 +197,7 @@ class ProductSet extends \Google\Protobuf\Internal\Message
      */
     public function getIndexError()
     {
-        return isset($this->index_error) ? $this->index_error : null;
+        return $this->index_error;
     }
 
     public function hasIndexError()

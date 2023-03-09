@@ -19,12 +19,15 @@ namespace Google\Cloud\Trace\Tests\Unit;
 
 use Google\Cloud\Trace\Span;
 use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\AssertionRenames;
 
 /**
  * @group trace
  */
 class SpanTest extends TestCase
 {
+    use AssertionRenames;
+
     const EXPECTED_TIMESTAMP_FORMAT = '/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{9}Z$/';
     const TRACE_ID = 'abcd1234';
 
@@ -33,7 +36,7 @@ class SpanTest extends TestCase
         $span = new Span(self::TRACE_ID);
         $info = $span->info();
         $this->assertArrayHasKey('spanId', $info);
-        $this->assertRegExp('/^[0-9a-f]{16}$/', $info['spanId']);
+        $this->assertMatchesRegularExpression('/^[0-9a-f]{16}$/', $info['spanId']);
         $this->assertEquals($info['spanId'], $span->spanId());
     }
 
@@ -42,7 +45,7 @@ class SpanTest extends TestCase
         $span = new Span(self::TRACE_ID, ['spanId' => '1234']);
         $info = $span->info();
         $this->assertArrayHasKey('spanId', $info);
-        $this->assertEquals('1234', $info['spanId']);
+        $this->assertEquals(1234, (int) $info['spanId']);
     }
 
     public function testReadsAttributes()
@@ -102,7 +105,7 @@ class SpanTest extends TestCase
         $span->setStartTime();
         $info = $span->info();
         $this->assertArrayHasKey('startTime', $info);
-        $this->assertRegExp(self::EXPECTED_TIMESTAMP_FORMAT, $info['startTime']);
+        $this->assertMatchesRegularExpression(self::EXPECTED_TIMESTAMP_FORMAT, $info['startTime']);
     }
 
     public function testFinishFormat()
@@ -111,7 +114,7 @@ class SpanTest extends TestCase
         $span->setEndTime();
         $info = $span->info();
         $this->assertArrayHasKey('endTime', $info);
-        $this->assertRegExp(self::EXPECTED_TIMESTAMP_FORMAT, $info['endTime']);
+        $this->assertMatchesRegularExpression(self::EXPECTED_TIMESTAMP_FORMAT, $info['endTime']);
     }
 
     public function testIgnoresUnknownFields()

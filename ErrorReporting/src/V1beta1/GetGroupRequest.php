@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class GetGroupRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The group resource name. Written as
+     * Required. The group resource name. Written as
      * `projects/{projectID}/groups/{group_name}`. Call
      * [`groupStats.list`](https://cloud.google.com/error-reporting/reference/rest/v1beta1/projects.groupStats/list)
      * to return a list of groups belonging to this project.
@@ -33,7 +33,7 @@ class GetGroupRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $group_name
-     *           The group resource name. Written as
+     *           Required. The group resource name. Written as
      *           `projects/{projectID}/groups/{group_name}`. Call
      *           [`groupStats.list`](https://cloud.google.com/error-reporting/reference/rest/v1beta1/projects.groupStats/list)
      *           to return a list of groups belonging to this project.
@@ -46,7 +46,7 @@ class GetGroupRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The group resource name. Written as
+     * Required. The group resource name. Written as
      * `projects/{projectID}/groups/{group_name}`. Call
      * [`groupStats.list`](https://cloud.google.com/error-reporting/reference/rest/v1beta1/projects.groupStats/list)
      * to return a list of groups belonging to this project.
@@ -61,7 +61,7 @@ class GetGroupRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The group resource name. Written as
+     * Required. The group resource name. Written as
      * `projects/{projectID}/groups/{group_name}`. Call
      * [`groupStats.list`](https://cloud.google.com/error-reporting/reference/rest/v1beta1/projects.groupStats/list)
      * to return a list of groups belonging to this project.

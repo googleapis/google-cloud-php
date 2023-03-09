@@ -34,9 +34,7 @@ class AuthorizationType
      */
     const GOOGLE_PLUS_AUTHORIZATION_CODE = 2;
     /**
-     * Use First Party Client OAuth. First Party Client OAuth doesn't require a
-     * refresh token to get an offline access token. Instead, it uses a
-     * client-signed JWT assertion to retrieve an access token.
+     * Use First Party OAuth.
      *
      * Generated from protobuf enum <code>FIRST_PARTY_OAUTH = 3;</code>
      */

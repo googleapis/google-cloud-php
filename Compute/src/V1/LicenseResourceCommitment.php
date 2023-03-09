@@ -18,21 +18,21 @@ class LicenseResourceCommitment extends \Google\Protobuf\Internal\Message
     /**
      * The number of licenses purchased.
      *
-     * Generated from protobuf field <code>string amount = 196759640;</code>
+     * Generated from protobuf field <code>optional int64 amount = 196759640;</code>
      */
-    private $amount = '';
+    private $amount = null;
     /**
      * Specifies the core range of the instance for which this license applies.
      *
-     * Generated from protobuf field <code>string cores_per_license = 32482324;</code>
+     * Generated from protobuf field <code>optional string cores_per_license = 32482324;</code>
      */
-    private $cores_per_license = '';
+    private $cores_per_license = null;
     /**
      * Any applicable license URI.
      *
-     * Generated from protobuf field <code>string license = 166757441;</code>
+     * Generated from protobuf field <code>optional string license = 166757441;</code>
      */
-    private $license = '';
+    private $license = null;
 
     /**
      * Constructor.
@@ -40,7 +40,7 @@ class LicenseResourceCommitment extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string $amount
+     *     @type int|string $amount
      *           The number of licenses purchased.
      *     @type string $cores_per_license
      *           Specifies the core range of the instance for which this license applies.
@@ -56,24 +56,34 @@ class LicenseResourceCommitment extends \Google\Protobuf\Internal\Message
     /**
      * The number of licenses purchased.
      *
-     * Generated from protobuf field <code>string amount = 196759640;</code>
-     * @return string
+     * Generated from protobuf field <code>optional int64 amount = 196759640;</code>
+     * @return int|string
      */
     public function getAmount()
     {
-        return $this->amount;
+        return isset($this->amount) ? $this->amount : 0;
+    }
+
+    public function hasAmount()
+    {
+        return isset($this->amount);
+    }
+
+    public function clearAmount()
+    {
+        unset($this->amount);
     }
 
     /**
      * The number of licenses purchased.
      *
-     * Generated from protobuf field <code>string amount = 196759640;</code>
-     * @param string $var
+     * Generated from protobuf field <code>optional int64 amount = 196759640;</code>
+     * @param int|string $var
      * @return $this
      */
     public function setAmount($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkInt64($var);
         $this->amount = $var;
 
         return $this;
@@ -82,18 +92,28 @@ class LicenseResourceCommitment extends \Google\Protobuf\Internal\Message
     /**
      * Specifies the core range of the instance for which this license applies.
      *
-     * Generated from protobuf field <code>string cores_per_license = 32482324;</code>
+     * Generated from protobuf field <code>optional string cores_per_license = 32482324;</code>
      * @return string
      */
     public function getCoresPerLicense()
     {
-        return $this->cores_per_license;
+        return isset($this->cores_per_license) ? $this->cores_per_license : '';
+    }
+
+    public function hasCoresPerLicense()
+    {
+        return isset($this->cores_per_license);
+    }
+
+    public function clearCoresPerLicense()
+    {
+        unset($this->cores_per_license);
     }
 
     /**
      * Specifies the core range of the instance for which this license applies.
      *
-     * Generated from protobuf field <code>string cores_per_license = 32482324;</code>
+     * Generated from protobuf field <code>optional string cores_per_license = 32482324;</code>
      * @param string $var
      * @return $this
      */
@@ -108,18 +128,28 @@ class LicenseResourceCommitment extends \Google\Protobuf\Internal\Message
     /**
      * Any applicable license URI.
      *
-     * Generated from protobuf field <code>string license = 166757441;</code>
+     * Generated from protobuf field <code>optional string license = 166757441;</code>
      * @return string
      */
     public function getLicense()
     {
-        return $this->license;
+        return isset($this->license) ? $this->license : '';
+    }
+
+    public function hasLicense()
+    {
+        return isset($this->license);
+    }
+
+    public function clearLicense()
+    {
+        unset($this->license);
     }
 
     /**
      * Any applicable license URI.
      *
-     * Generated from protobuf field <code>string license = 166757441;</code>
+     * Generated from protobuf field <code>optional string license = 166757441;</code>
      * @param string $var
      * @return $this
      */

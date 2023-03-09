@@ -63,7 +63,7 @@ class Location extends \Google\Protobuf\Internal\Message
      *           Unicode character offsets delimiting the finding.
      *           These are relative to the finding's containing element.
      *           Provided when the content is text.
-     *     @type \Google\Cloud\Dlp\V2\ContentLocation[]|\Google\Protobuf\Internal\RepeatedField $content_locations
+     *     @type array<\Google\Cloud\Dlp\V2\ContentLocation>|\Google\Protobuf\Internal\RepeatedField $content_locations
      *           List of nested objects pointing to the precise location of the finding
      *           within the file or record.
      *     @type \Google\Cloud\Dlp\V2\Container $container
@@ -87,7 +87,7 @@ class Location extends \Google\Protobuf\Internal\Message
      */
     public function getByteRange()
     {
-        return isset($this->byte_range) ? $this->byte_range : null;
+        return $this->byte_range;
     }
 
     public function hasByteRange()
@@ -129,7 +129,7 @@ class Location extends \Google\Protobuf\Internal\Message
      */
     public function getCodepointRange()
     {
-        return isset($this->codepoint_range) ? $this->codepoint_range : null;
+        return $this->codepoint_range;
     }
 
     public function hasCodepointRange()
@@ -176,7 +176,7 @@ class Location extends \Google\Protobuf\Internal\Message
      * within the file or record.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.ContentLocation content_locations = 7;</code>
-     * @param \Google\Cloud\Dlp\V2\ContentLocation[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dlp\V2\ContentLocation>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setContentLocations($var)
@@ -195,7 +195,7 @@ class Location extends \Google\Protobuf\Internal\Message
      */
     public function getContainer()
     {
-        return isset($this->container) ? $this->container : null;
+        return $this->container;
     }
 
     public function hasContainer()

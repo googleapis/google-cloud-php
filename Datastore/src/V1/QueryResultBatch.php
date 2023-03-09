@@ -65,6 +65,20 @@ class QueryResultBatch extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int64 snapshot_version = 7;</code>
      */
     private $snapshot_version = 0;
+    /**
+     * Read timestamp this batch was returned from.
+     * This applies to the range of results from the query's `start_cursor` (or
+     * the beginning of the query if no cursor was given) to this batch's
+     * `end_cursor` (not the query's `end_cursor`).
+     * In a single transaction, subsequent query result batches for the same query
+     * can have a greater timestamp. Each batch's read timestamp
+     * is valid for all preceding batches.
+     * This value will not be set for eventually consistent queries in Cloud
+     * Datastore.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 8;</code>
+     */
+    private $read_time = null;
 
     /**
      * Constructor.
@@ -79,7 +93,7 @@ class QueryResultBatch extends \Google\Protobuf\Internal\Message
      *           Will be set when `skipped_results` != 0.
      *     @type int $entity_result_type
      *           The result type for every entity in `entity_results`.
-     *     @type \Google\Cloud\Datastore\V1\EntityResult[]|\Google\Protobuf\Internal\RepeatedField $entity_results
+     *     @type array<\Google\Cloud\Datastore\V1\EntityResult>|\Google\Protobuf\Internal\RepeatedField $entity_results
      *           The results for this batch.
      *     @type string $end_cursor
      *           A cursor that points to the position after the last result in the batch.
@@ -94,6 +108,16 @@ class QueryResultBatch extends \Google\Protobuf\Internal\Message
      *           can have a greater snapshot version number. Each batch's snapshot version
      *           is valid for all preceding batches.
      *           The value will be zero for eventually consistent queries.
+     *     @type \Google\Protobuf\Timestamp $read_time
+     *           Read timestamp this batch was returned from.
+     *           This applies to the range of results from the query's `start_cursor` (or
+     *           the beginning of the query if no cursor was given) to this batch's
+     *           `end_cursor` (not the query's `end_cursor`).
+     *           In a single transaction, subsequent query result batches for the same query
+     *           can have a greater timestamp. Each batch's read timestamp
+     *           is valid for all preceding batches.
+     *           This value will not be set for eventually consistent queries in Cloud
+     *           Datastore.
      * }
      */
     public function __construct($data = NULL) {
@@ -196,7 +220,7 @@ class QueryResultBatch extends \Google\Protobuf\Internal\Message
      * The results for this batch.
      *
      * Generated from protobuf field <code>repeated .google.datastore.v1.EntityResult entity_results = 2;</code>
-     * @param \Google\Cloud\Datastore\V1\EntityResult[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Datastore\V1\EntityResult>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setEntityResults($var)
@@ -295,6 +319,58 @@ class QueryResultBatch extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt64($var);
         $this->snapshot_version = $var;
+
+        return $this;
+    }
+
+    /**
+     * Read timestamp this batch was returned from.
+     * This applies to the range of results from the query's `start_cursor` (or
+     * the beginning of the query if no cursor was given) to this batch's
+     * `end_cursor` (not the query's `end_cursor`).
+     * In a single transaction, subsequent query result batches for the same query
+     * can have a greater timestamp. Each batch's read timestamp
+     * is valid for all preceding batches.
+     * This value will not be set for eventually consistent queries in Cloud
+     * Datastore.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 8;</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getReadTime()
+    {
+        return $this->read_time;
+    }
+
+    public function hasReadTime()
+    {
+        return isset($this->read_time);
+    }
+
+    public function clearReadTime()
+    {
+        unset($this->read_time);
+    }
+
+    /**
+     * Read timestamp this batch was returned from.
+     * This applies to the range of results from the query's `start_cursor` (or
+     * the beginning of the query if no cursor was given) to this batch's
+     * `end_cursor` (not the query's `end_cursor`).
+     * In a single transaction, subsequent query result batches for the same query
+     * can have a greater timestamp. Each batch's read timestamp
+     * is valid for all preceding batches.
+     * This value will not be set for eventually consistent queries in Cloud
+     * Datastore.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 8;</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setReadTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->read_time = $var;
 
         return $this;
     }

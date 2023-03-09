@@ -17,7 +17,7 @@ class SetAddonsConfigRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Deprecated. The Google Developers Console [project ID or project
-     * number](https://support.google.com/cloud/answer/6158840).
+     * number](https://cloud.google.com/resource-manager/docs/creating-managing-projects).
      * This field has been deprecated and replaced by the name field.
      *
      * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
@@ -43,8 +43,8 @@ class SetAddonsConfigRequest extends \Google\Protobuf\Internal\Message
      */
     protected $cluster_id = '';
     /**
-     * Required. The desired configurations for the various addons available to run in the
-     * cluster.
+     * Required. The desired configurations for the various addons available to
+     * run in the cluster.
      *
      * Generated from protobuf field <code>.google.container.v1.AddonsConfig addons_config = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -65,7 +65,7 @@ class SetAddonsConfigRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $project_id
      *           Deprecated. The Google Developers Console [project ID or project
-     *           number](https://support.google.com/cloud/answer/6158840).
+     *           number](https://cloud.google.com/resource-manager/docs/creating-managing-projects).
      *           This field has been deprecated and replaced by the name field.
      *     @type string $zone
      *           Deprecated. The name of the Google Compute Engine
@@ -76,8 +76,8 @@ class SetAddonsConfigRequest extends \Google\Protobuf\Internal\Message
      *           Deprecated. The name of the cluster to upgrade.
      *           This field has been deprecated and replaced by the name field.
      *     @type \Google\Cloud\Container\V1\AddonsConfig $addons_config
-     *           Required. The desired configurations for the various addons available to run in the
-     *           cluster.
+     *           Required. The desired configurations for the various addons available to
+     *           run in the cluster.
      *     @type string $name
      *           The name (project, location, cluster) of the cluster to set addons.
      *           Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
@@ -90,7 +90,7 @@ class SetAddonsConfigRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Deprecated. The Google Developers Console [project ID or project
-     * number](https://support.google.com/cloud/answer/6158840).
+     * number](https://cloud.google.com/resource-manager/docs/creating-managing-projects).
      * This field has been deprecated and replaced by the name field.
      *
      * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
@@ -105,7 +105,7 @@ class SetAddonsConfigRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Deprecated. The Google Developers Console [project ID or project
-     * number](https://support.google.com/cloud/answer/6158840).
+     * number](https://cloud.google.com/resource-manager/docs/creating-managing-projects).
      * This field has been deprecated and replaced by the name field.
      *
      * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
@@ -191,15 +191,15 @@ class SetAddonsConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The desired configurations for the various addons available to run in the
-     * cluster.
+     * Required. The desired configurations for the various addons available to
+     * run in the cluster.
      *
      * Generated from protobuf field <code>.google.container.v1.AddonsConfig addons_config = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Container\V1\AddonsConfig|null
      */
     public function getAddonsConfig()
     {
-        return isset($this->addons_config) ? $this->addons_config : null;
+        return $this->addons_config;
     }
 
     public function hasAddonsConfig()
@@ -213,8 +213,8 @@ class SetAddonsConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The desired configurations for the various addons available to run in the
-     * cluster.
+     * Required. The desired configurations for the various addons available to
+     * run in the cluster.
      *
      * Generated from protobuf field <code>.google.container.v1.AddonsConfig addons_config = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Container\V1\AddonsConfig $var

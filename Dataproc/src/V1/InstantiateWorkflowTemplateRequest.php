@@ -52,7 +52,7 @@ class InstantiateWorkflowTemplateRequest extends \Google\Protobuf\Internal\Messa
     private $request_id = '';
     /**
      * Optional. Map from parameter names to values that should be used for those
-     * parameters. Values may not exceed 100 characters.
+     * parameters. Values may not exceed 1000 characters.
      *
      * Generated from protobuf field <code>map<string, string> parameters = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -89,7 +89,7 @@ class InstantiateWorkflowTemplateRequest extends \Google\Protobuf\Internal\Messa
      *           underscores (_), and hyphens (-). The maximum length is 40 characters.
      *     @type array|\Google\Protobuf\Internal\MapField $parameters
      *           Optional. Map from parameter names to values that should be used for those
-     *           parameters. Values may not exceed 100 characters.
+     *           parameters. Values may not exceed 1000 characters.
      * }
      */
     public function __construct($data = NULL) {
@@ -211,7 +211,7 @@ class InstantiateWorkflowTemplateRequest extends \Google\Protobuf\Internal\Messa
 
     /**
      * Optional. Map from parameter names to values that should be used for those
-     * parameters. Values may not exceed 100 characters.
+     * parameters. Values may not exceed 1000 characters.
      *
      * Generated from protobuf field <code>map<string, string> parameters = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -223,7 +223,7 @@ class InstantiateWorkflowTemplateRequest extends \Google\Protobuf\Internal\Messa
 
     /**
      * Optional. Map from parameter names to values that should be used for those
-     * parameters. Values may not exceed 100 characters.
+     * parameters. Values may not exceed 1000 characters.
      *
      * Generated from protobuf field <code>map<string, string> parameters = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var

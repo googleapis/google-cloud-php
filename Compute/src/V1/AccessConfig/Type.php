@@ -20,12 +20,17 @@ class Type
      */
     const UNDEFINED_TYPE = 0;
     /**
+     * Generated from protobuf enum <code>DIRECT_IPV6 = 4397213;</code>
+     */
+    const DIRECT_IPV6 = 4397213;
+    /**
      * Generated from protobuf enum <code>ONE_TO_ONE_NAT = 84090205;</code>
      */
     const ONE_TO_ONE_NAT = 84090205;
 
     private static $valueToName = [
         self::UNDEFINED_TYPE => 'UNDEFINED_TYPE',
+        self::DIRECT_IPV6 => 'DIRECT_IPV6',
         self::ONE_TO_ONE_NAT => 'ONE_TO_ONE_NAT',
     ];
 

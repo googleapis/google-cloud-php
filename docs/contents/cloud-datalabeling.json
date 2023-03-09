@@ -1,0 +1,15 @@
+{
+    "title": "DataLabeling",
+    "defaultService": "datalabeling\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "datalabeling\/readme"
+        },
+        {
+            "title": "DataLabelingServiceClient (v1beta1)",
+            "type": "datalabeling\/v1beta1\/datalabelingserviceclient"
+        }
+    ],
+    "pattern": "datalabeling\/\\w{1,}"
+}

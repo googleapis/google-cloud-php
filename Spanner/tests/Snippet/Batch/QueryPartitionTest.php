@@ -45,7 +45,7 @@ class QueryPartitionTest extends SnippetTestCase
     private $sql = 'SELECT 1=1';
     private $time;
 
-    public function setUp()
+    public function set_up()
     {
         $this->checkAndSkipGrpcTests();
 

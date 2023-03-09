@@ -18,8 +18,8 @@ class RestoreTableRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The name of the instance in which to create the restored
-     * table. This instance must be the parent of the source backup. Values are
-     * of the form `projects/<project>/instances/<instance>`.
+     * table. This instance must be in the same project as the source backup.
+     * Values are of the form `projects/<project>/instances/<instance>`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -43,8 +43,8 @@ class RestoreTableRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The name of the instance in which to create the restored
-     *           table. This instance must be the parent of the source backup. Values are
-     *           of the form `projects/<project>/instances/<instance>`.
+     *           table. This instance must be in the same project as the source backup.
+     *           Values are of the form `projects/<project>/instances/<instance>`.
      *     @type string $table_id
      *           Required. The id of the table to create and restore to. This
      *           table must not already exist. The `table_id` appended to
@@ -62,8 +62,8 @@ class RestoreTableRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the instance in which to create the restored
-     * table. This instance must be the parent of the source backup. Values are
-     * of the form `projects/<project>/instances/<instance>`.
+     * table. This instance must be in the same project as the source backup.
+     * Values are of the form `projects/<project>/instances/<instance>`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -75,8 +75,8 @@ class RestoreTableRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the instance in which to create the restored
-     * table. This instance must be the parent of the source backup. Values are
-     * of the form `projects/<project>/instances/<instance>`.
+     * table. This instance must be in the same project as the source backup.
+     * Values are of the form `projects/<project>/instances/<instance>`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

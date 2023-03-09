@@ -27,10 +27,10 @@ use Google\Cloud\Storage\Connection\Rest;
 use Google\CRC32\CRC32;
 use GuzzleHttp\Promise;
 use GuzzleHttp\Promise\PromiseInterface;
-use GuzzleHttp\Psr7;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
-use PHPUnit\Framework\TestCase;
+use GuzzleHttp\Psr7\Utils;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Prophecy\Argument;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamInterface;
@@ -51,7 +51,7 @@ class RestTest extends TestCase
         'userProject' => 'myProject'
     ];
 
-    public function setUp()
+    public function set_up()
     {
         $this->requestWrapper = $this->prophesize(RequestWrapper::class);
         $this->successBody = '{"canI":"kickIt"}';
@@ -287,9 +287,9 @@ class RestTest extends TestCase
 
     public function insertObjectProvider()
     {
-        $tempFile = Psr7\stream_for(fopen('php://temp', 'r+'));
+        $tempFile = Utils::streamFor(fopen('php://temp', 'r+'));
         $tempFile->write(str_repeat('0', 5000001));
-        $logoFile = Psr7\stream_for(fopen(__DIR__ . '/../data/logo.svg', 'r'));
+        $logoFile = Utils::streamFor(fopen(__DIR__ . '/../data/logo.svg', 'r'));
 
         $crc32c = CRC32::create(CRC32::CASTAGNOLI);
         $crc32c->update((string) $logoFile);
@@ -307,7 +307,7 @@ class RestTest extends TestCase
                 ResumableUploader::class,
                 'text/plain',
                 [
-                    'md5Hash' => base64_encode(Psr7\hash($tempFile, 'md5', true)),
+                    'md5Hash' => base64_encode(Utils::hash($tempFile, 'md5', true)),
                     'name' => 'file.txt'
                 ],
                 ['crc32c']

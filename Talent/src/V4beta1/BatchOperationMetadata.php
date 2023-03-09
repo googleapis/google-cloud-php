@@ -10,7 +10,8 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Metadata used for long running operations returned by CTS batch APIs.
- * It's used to replace [google.longrunning.Operation.metadata][google.longrunning.Operation.metadata].
+ * It's used to replace
+ * [google.longrunning.Operation.metadata][google.longrunning.Operation.metadata].
  *
  * Generated from protobuf message <code>google.cloud.talent.v4beta1.BatchOperationMetadata</code>
  */
@@ -54,15 +55,16 @@ class BatchOperationMetadata extends \Google\Protobuf\Internal\Message
     private $create_time = null;
     /**
      * The time when the batch operation status is updated. The metadata and the
-     * [update_time][google.cloud.talent.v4beta1.BatchOperationMetadata.update_time] is refreshed every minute otherwise cached data is
-     * returned.
+     * [update_time][google.cloud.talent.v4beta1.BatchOperationMetadata.update_time]
+     * is refreshed every minute otherwise cached data is returned.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 7;</code>
      */
     private $update_time = null;
     /**
      * The time when the batch operation is finished and
-     * [google.longrunning.Operation.done][google.longrunning.Operation.done] is set to `true`.
+     * [google.longrunning.Operation.done][google.longrunning.Operation.done] is
+     * set to `true`.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 8;</code>
      */
@@ -88,11 +90,12 @@ class BatchOperationMetadata extends \Google\Protobuf\Internal\Message
      *           The time when the batch operation is created.
      *     @type \Google\Protobuf\Timestamp $update_time
      *           The time when the batch operation status is updated. The metadata and the
-     *           [update_time][google.cloud.talent.v4beta1.BatchOperationMetadata.update_time] is refreshed every minute otherwise cached data is
-     *           returned.
+     *           [update_time][google.cloud.talent.v4beta1.BatchOperationMetadata.update_time]
+     *           is refreshed every minute otherwise cached data is returned.
      *     @type \Google\Protobuf\Timestamp $end_time
      *           The time when the batch operation is finished and
-     *           [google.longrunning.Operation.done][google.longrunning.Operation.done] is set to `true`.
+     *           [google.longrunning.Operation.done][google.longrunning.Operation.done] is
+     *           set to `true`.
      * }
      */
     public function __construct($data = NULL) {
@@ -238,7 +241,7 @@ class BatchOperationMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -268,15 +271,15 @@ class BatchOperationMetadata extends \Google\Protobuf\Internal\Message
 
     /**
      * The time when the batch operation status is updated. The metadata and the
-     * [update_time][google.cloud.talent.v4beta1.BatchOperationMetadata.update_time] is refreshed every minute otherwise cached data is
-     * returned.
+     * [update_time][google.cloud.talent.v4beta1.BatchOperationMetadata.update_time]
+     * is refreshed every minute otherwise cached data is returned.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 7;</code>
      * @return \Google\Protobuf\Timestamp|null
      */
     public function getUpdateTime()
     {
-        return isset($this->update_time) ? $this->update_time : null;
+        return $this->update_time;
     }
 
     public function hasUpdateTime()
@@ -291,8 +294,8 @@ class BatchOperationMetadata extends \Google\Protobuf\Internal\Message
 
     /**
      * The time when the batch operation status is updated. The metadata and the
-     * [update_time][google.cloud.talent.v4beta1.BatchOperationMetadata.update_time] is refreshed every minute otherwise cached data is
-     * returned.
+     * [update_time][google.cloud.talent.v4beta1.BatchOperationMetadata.update_time]
+     * is refreshed every minute otherwise cached data is returned.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 7;</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -308,14 +311,15 @@ class BatchOperationMetadata extends \Google\Protobuf\Internal\Message
 
     /**
      * The time when the batch operation is finished and
-     * [google.longrunning.Operation.done][google.longrunning.Operation.done] is set to `true`.
+     * [google.longrunning.Operation.done][google.longrunning.Operation.done] is
+     * set to `true`.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 8;</code>
      * @return \Google\Protobuf\Timestamp|null
      */
     public function getEndTime()
     {
-        return isset($this->end_time) ? $this->end_time : null;
+        return $this->end_time;
     }
 
     public function hasEndTime()
@@ -330,7 +334,8 @@ class BatchOperationMetadata extends \Google\Protobuf\Internal\Message
 
     /**
      * The time when the batch operation is finished and
-     * [google.longrunning.Operation.done][google.longrunning.Operation.done] is set to `true`.
+     * [google.longrunning.Operation.done][google.longrunning.Operation.done] is
+     * set to `true`.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 8;</code>
      * @param \Google\Protobuf\Timestamp $var

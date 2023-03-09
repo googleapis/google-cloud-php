@@ -7,20 +7,20 @@ return [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\Vision\V1\ImportProductSetsResponse',
                     'metadataReturnType' => '\Google\Cloud\Vision\V1\BatchOperationMetadata',
-                    'initialPollDelayMillis' => '20000',
+                    'initialPollDelayMillis' => '500',
                     'pollDelayMultiplier' => '1.5',
-                    'maxPollDelayMillis' => '45000',
-                    'totalPollTimeoutMillis' => '86400000',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
                 ],
             ],
             'PurgeProducts' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Protobuf\GPBEmpty',
                     'metadataReturnType' => '\Google\Cloud\Vision\V1\BatchOperationMetadata',
-                    'initialPollDelayMillis' => '20000',
+                    'initialPollDelayMillis' => '500',
                     'pollDelayMultiplier' => '1.5',
-                    'maxPollDelayMillis' => '45000',
-                    'totalPollTimeoutMillis' => '86400000',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
                 ],
             ],
             'ListProductSets' => [
@@ -43,16 +43,6 @@ return [
                     'resourcesGetMethod' => 'getProducts',
                 ],
             ],
-            'ListReferenceImages' => [
-                'pageStreaming' => [
-                    'requestPageTokenGetMethod' => 'getPageToken',
-                    'requestPageTokenSetMethod' => 'setPageToken',
-                    'requestPageSizeGetMethod' => 'getPageSize',
-                    'requestPageSizeSetMethod' => 'setPageSize',
-                    'responsePageTokenGetMethod' => 'getNextPageToken',
-                    'resourcesGetMethod' => 'getReferenceImages',
-                ],
-            ],
             'ListProductsInProductSet' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
@@ -61,6 +51,16 @@ return [
                     'requestPageSizeSetMethod' => 'setPageSize',
                     'responsePageTokenGetMethod' => 'getNextPageToken',
                     'resourcesGetMethod' => 'getProducts',
+                ],
+            ],
+            'ListReferenceImages' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getReferenceImages',
                 ],
             ],
         ],

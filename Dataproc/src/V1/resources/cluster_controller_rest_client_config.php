@@ -20,28 +20,6 @@ return [
                     ],
                 ],
             ],
-            'UpdateCluster' => [
-                'method' => 'patch',
-                'uriTemplate' => '/v1/projects/{project_id}/regions/{region}/clusters/{cluster_name}',
-                'body' => 'cluster',
-                'placeholders' => [
-                    'cluster_name' => [
-                        'getters' => [
-                            'getClusterName',
-                        ],
-                    ],
-                    'project_id' => [
-                        'getters' => [
-                            'getProjectId',
-                        ],
-                    ],
-                    'region' => [
-                        'getters' => [
-                            'getRegion',
-                        ],
-                    ],
-                ],
-            ],
             'DeleteCluster' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/projects/{project_id}/regions/{region}/clusters/{cluster_name}',
@@ -120,6 +98,75 @@ return [
                             'getRegion',
                         ],
                     ],
+                ],
+            ],
+            'StartCluster' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/projects/{project_id}/regions/{region}/clusters/{cluster_name}:start',
+                'body' => '*',
+                'placeholders' => [
+                    'cluster_name' => [
+                        'getters' => [
+                            'getClusterName',
+                        ],
+                    ],
+                    'project_id' => [
+                        'getters' => [
+                            'getProjectId',
+                        ],
+                    ],
+                    'region' => [
+                        'getters' => [
+                            'getRegion',
+                        ],
+                    ],
+                ],
+            ],
+            'StopCluster' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/projects/{project_id}/regions/{region}/clusters/{cluster_name}:stop',
+                'body' => '*',
+                'placeholders' => [
+                    'cluster_name' => [
+                        'getters' => [
+                            'getClusterName',
+                        ],
+                    ],
+                    'project_id' => [
+                        'getters' => [
+                            'getProjectId',
+                        ],
+                    ],
+                    'region' => [
+                        'getters' => [
+                            'getRegion',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateCluster' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/projects/{project_id}/regions/{region}/clusters/{cluster_name}',
+                'body' => 'cluster',
+                'placeholders' => [
+                    'cluster_name' => [
+                        'getters' => [
+                            'getClusterName',
+                        ],
+                    ],
+                    'project_id' => [
+                        'getters' => [
+                            'getProjectId',
+                        ],
+                    ],
+                    'region' => [
+                        'getters' => [
+                            'getRegion',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
                 ],
             ],
         ],
@@ -261,6 +308,12 @@ return [
             'CancelOperation' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{name=projects/*/regions/*/operations/*}:cancel',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/operations/*}:cancel',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -272,6 +325,12 @@ return [
             'DeleteOperation' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/regions/*/operations/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/operations/*}',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -283,6 +342,12 @@ return [
             'GetOperation' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/regions/*/operations/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/operations/*}',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -294,6 +359,12 @@ return [
             'ListOperations' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/regions/*/operations}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/operations}',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -304,4 +375,5 @@ return [
             ],
         ],
     ],
+    'numericEnums' => true,
 ];

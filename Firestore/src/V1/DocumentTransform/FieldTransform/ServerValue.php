@@ -21,7 +21,8 @@ class ServerValue
     const SERVER_VALUE_UNSPECIFIED = 0;
     /**
      * The time at which the server processed the request, with millisecond
-     * precision.
+     * precision. If used on multiple fields (same or different documents) in
+     * a transaction, all the fields will get the same server timestamp.
      *
      * Generated from protobuf enum <code>REQUEST_TIME = 1;</code>
      */

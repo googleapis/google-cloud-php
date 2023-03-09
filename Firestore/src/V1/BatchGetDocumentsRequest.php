@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request for [Firestore.BatchGetDocuments][google.firestore.v1.Firestore.BatchGetDocuments].
+ * The request for
+ * [Firestore.BatchGetDocuments][google.firestore.v1.Firestore.BatchGetDocuments].
  *
  * Generated from protobuf message <code>google.firestore.v1.BatchGetDocumentsRequest</code>
  */
@@ -50,7 +51,7 @@ class BatchGetDocumentsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $database
      *           Required. The database name. In the format:
      *           `projects/{project_id}/databases/{database_id}`.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $documents
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $documents
      *           The names of the documents to retrieve. In the format:
      *           `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
      *           The request will fail if any of the document is not a child resource of the
@@ -125,7 +126,7 @@ class BatchGetDocumentsRequest extends \Google\Protobuf\Internal\Message
      * given `database`. Duplicate names will be elided.
      *
      * Generated from protobuf field <code>repeated string documents = 2;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDocuments($var)
@@ -146,7 +147,7 @@ class BatchGetDocumentsRequest extends \Google\Protobuf\Internal\Message
      */
     public function getMask()
     {
-        return isset($this->mask) ? $this->mask : null;
+        return $this->mask;
     }
 
     public function hasMask()

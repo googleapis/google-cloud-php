@@ -22,7 +22,6 @@
 
 namespace Google\Cloud\WebSecurityScanner\Tests\Unit\V1beta;
 
-use Google\Cloud\WebSecurityScanner\V1beta\WebSecurityScannerClient;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
@@ -36,7 +35,7 @@ use Google\Cloud\WebSecurityScanner\V1beta\ListScanConfigsResponse;
 use Google\Cloud\WebSecurityScanner\V1beta\ListScanRunsResponse;
 use Google\Cloud\WebSecurityScanner\V1beta\ScanConfig;
 use Google\Cloud\WebSecurityScanner\V1beta\ScanRun;
-use Google\Protobuf\Any;
+use Google\Cloud\WebSecurityScanner\V1beta\WebSecurityScannerClient;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
@@ -44,50 +43,40 @@ use stdClass;
 
 /**
  * @group websecurityscanner
+ *
  * @group gapic
  */
 class WebSecurityScannerClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return WebSecurityScannerClient
-     */
+    /** @return WebSecurityScannerClient */
     private function createClient(array $options = [])
     {
         $options += [
             'credentials' => $this->createCredentials(),
         ];
-
         return new WebSecurityScannerClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createScanConfigTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $name = 'name3373707';
         $displayName = 'displayName1615086568';
@@ -97,788 +86,130 @@ class WebSecurityScannerClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setMaxQps($maxQps);
         $transport->addResponse($expectedResponse);
-
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
         $scanConfig = new ScanConfig();
-
-        $response = $client->createScanConfig($formattedParent, $scanConfig);
+        $scanConfigDisplayName = 'scanConfigDisplayName-609132338';
+        $scanConfig->setDisplayName($scanConfigDisplayName);
+        $scanConfigStartingUrls = [];
+        $scanConfig->setStartingUrls($scanConfigStartingUrls);
+        $response = $gapicClient->createScanConfig($formattedParent, $scanConfig);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.websecurityscanner.v1beta.WebSecurityScanner/CreateScanConfig', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getParent();
-
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualRequestObject->getScanConfig();
-
         $this->assertProtobufEquals($scanConfig, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createScanConfigExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
         $scanConfig = new ScanConfig();
-
+        $scanConfigDisplayName = 'scanConfigDisplayName-609132338';
+        $scanConfig->setDisplayName($scanConfigDisplayName);
+        $scanConfigStartingUrls = [];
+        $scanConfig->setStartingUrls($scanConfigStartingUrls);
         try {
-            $client->createScanConfig($formattedParent, $scanConfig);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->createScanConfig($formattedParent, $scanConfig);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteScanConfigTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-
         // Mock request
-        $formattedName = $client->scanConfigName('[PROJECT]', '[SCAN_CONFIG]');
-
-        $client->deleteScanConfig($formattedName);
+        $formattedName = $gapicClient->scanConfigName('[PROJECT]', '[SCAN_CONFIG]');
+        $gapicClient->deleteScanConfig($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.websecurityscanner.v1beta.WebSecurityScanner/DeleteScanConfig', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getName();
-
         $this->assertProtobufEquals($formattedName, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteScanConfigExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
-        $formattedName = $client->scanConfigName('[PROJECT]', '[SCAN_CONFIG]');
-
+        $formattedName = $gapicClient->scanConfigName('[PROJECT]', '[SCAN_CONFIG]');
         try {
-            $client->deleteScanConfig($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->deleteScanConfig($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
-    public function getScanConfigTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        // Mock response
-        $name2 = 'name2-1052831874';
-        $displayName = 'displayName1615086568';
-        $maxQps = 844445913;
-        $expectedResponse = new ScanConfig();
-        $expectedResponse->setName($name2);
-        $expectedResponse->setDisplayName($displayName);
-        $expectedResponse->setMaxQps($maxQps);
-        $transport->addResponse($expectedResponse);
-
-        // Mock request
-        $formattedName = $client->scanConfigName('[PROJECT]', '[SCAN_CONFIG]');
-
-        $response = $client->getScanConfig($formattedName);
-        $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.websecurityscanner.v1beta.WebSecurityScanner/GetScanConfig', $actualFuncCall);
-
-        $actualValue = $actualRequestObject->getName();
-
-        $this->assertProtobufEquals($formattedName, $actualValue);
-
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function getScanConfigExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
-        ], JSON_PRETTY_PRINT);
-        $transport->addResponse(null, $status);
-
-        // Mock request
-        $formattedName = $client->scanConfigName('[PROJECT]', '[SCAN_CONFIG]');
-
-        try {
-            $client->getScanConfig($formattedName);
-            // If the $client method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function listScanConfigsTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        // Mock response
-        $nextPageToken = '';
-        $scanConfigsElement = new ScanConfig();
-        $scanConfigs = [$scanConfigsElement];
-        $expectedResponse = new ListScanConfigsResponse();
-        $expectedResponse->setNextPageToken($nextPageToken);
-        $expectedResponse->setScanConfigs($scanConfigs);
-        $transport->addResponse($expectedResponse);
-
-        // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
-
-        $response = $client->listScanConfigs($formattedParent);
-        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
-        $resources = iterator_to_array($response->iterateAllElements());
-        $this->assertSame(1, count($resources));
-        $this->assertEquals($expectedResponse->getScanConfigs()[0], $resources[0]);
-
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.websecurityscanner.v1beta.WebSecurityScanner/ListScanConfigs', $actualFuncCall);
-
-        $actualValue = $actualRequestObject->getParent();
-
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function listScanConfigsExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
-        ], JSON_PRETTY_PRINT);
-        $transport->addResponse(null, $status);
-
-        // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
-
-        try {
-            $client->listScanConfigs($formattedParent);
-            // If the $client method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function updateScanConfigTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        // Mock response
-        $name = 'name3373707';
-        $displayName = 'displayName1615086568';
-        $maxQps = 844445913;
-        $expectedResponse = new ScanConfig();
-        $expectedResponse->setName($name);
-        $expectedResponse->setDisplayName($displayName);
-        $expectedResponse->setMaxQps($maxQps);
-        $transport->addResponse($expectedResponse);
-
-        // Mock request
-        $scanConfig = new ScanConfig();
-        $updateMask = new FieldMask();
-
-        $response = $client->updateScanConfig($scanConfig, $updateMask);
-        $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.websecurityscanner.v1beta.WebSecurityScanner/UpdateScanConfig', $actualFuncCall);
-
-        $actualValue = $actualRequestObject->getScanConfig();
-
-        $this->assertProtobufEquals($scanConfig, $actualValue);
-        $actualValue = $actualRequestObject->getUpdateMask();
-
-        $this->assertProtobufEquals($updateMask, $actualValue);
-
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function updateScanConfigExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
-        ], JSON_PRETTY_PRINT);
-        $transport->addResponse(null, $status);
-
-        // Mock request
-        $scanConfig = new ScanConfig();
-        $updateMask = new FieldMask();
-
-        try {
-            $client->updateScanConfig($scanConfig, $updateMask);
-            // If the $client method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function startScanRunTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        // Mock response
-        $name2 = 'name2-1052831874';
-        $urlsCrawledCount = 1749797253;
-        $urlsTestedCount = 1498664068;
-        $hasVulnerabilities = false;
-        $progressPercent = 2137894861;
-        $expectedResponse = new ScanRun();
-        $expectedResponse->setName($name2);
-        $expectedResponse->setUrlsCrawledCount($urlsCrawledCount);
-        $expectedResponse->setUrlsTestedCount($urlsTestedCount);
-        $expectedResponse->setHasVulnerabilities($hasVulnerabilities);
-        $expectedResponse->setProgressPercent($progressPercent);
-        $transport->addResponse($expectedResponse);
-
-        // Mock request
-        $formattedName = $client->scanConfigName('[PROJECT]', '[SCAN_CONFIG]');
-
-        $response = $client->startScanRun($formattedName);
-        $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.websecurityscanner.v1beta.WebSecurityScanner/StartScanRun', $actualFuncCall);
-
-        $actualValue = $actualRequestObject->getName();
-
-        $this->assertProtobufEquals($formattedName, $actualValue);
-
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function startScanRunExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
-        ], JSON_PRETTY_PRINT);
-        $transport->addResponse(null, $status);
-
-        // Mock request
-        $formattedName = $client->scanConfigName('[PROJECT]', '[SCAN_CONFIG]');
-
-        try {
-            $client->startScanRun($formattedName);
-            // If the $client method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function getScanRunTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        // Mock response
-        $name2 = 'name2-1052831874';
-        $urlsCrawledCount = 1749797253;
-        $urlsTestedCount = 1498664068;
-        $hasVulnerabilities = false;
-        $progressPercent = 2137894861;
-        $expectedResponse = new ScanRun();
-        $expectedResponse->setName($name2);
-        $expectedResponse->setUrlsCrawledCount($urlsCrawledCount);
-        $expectedResponse->setUrlsTestedCount($urlsTestedCount);
-        $expectedResponse->setHasVulnerabilities($hasVulnerabilities);
-        $expectedResponse->setProgressPercent($progressPercent);
-        $transport->addResponse($expectedResponse);
-
-        // Mock request
-        $formattedName = $client->scanRunName('[PROJECT]', '[SCAN_CONFIG]', '[SCAN_RUN]');
-
-        $response = $client->getScanRun($formattedName);
-        $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.websecurityscanner.v1beta.WebSecurityScanner/GetScanRun', $actualFuncCall);
-
-        $actualValue = $actualRequestObject->getName();
-
-        $this->assertProtobufEquals($formattedName, $actualValue);
-
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function getScanRunExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
-        ], JSON_PRETTY_PRINT);
-        $transport->addResponse(null, $status);
-
-        // Mock request
-        $formattedName = $client->scanRunName('[PROJECT]', '[SCAN_CONFIG]', '[SCAN_RUN]');
-
-        try {
-            $client->getScanRun($formattedName);
-            // If the $client method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function listScanRunsTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        // Mock response
-        $nextPageToken = '';
-        $scanRunsElement = new ScanRun();
-        $scanRuns = [$scanRunsElement];
-        $expectedResponse = new ListScanRunsResponse();
-        $expectedResponse->setNextPageToken($nextPageToken);
-        $expectedResponse->setScanRuns($scanRuns);
-        $transport->addResponse($expectedResponse);
-
-        // Mock request
-        $formattedParent = $client->scanConfigName('[PROJECT]', '[SCAN_CONFIG]');
-
-        $response = $client->listScanRuns($formattedParent);
-        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
-        $resources = iterator_to_array($response->iterateAllElements());
-        $this->assertSame(1, count($resources));
-        $this->assertEquals($expectedResponse->getScanRuns()[0], $resources[0]);
-
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.websecurityscanner.v1beta.WebSecurityScanner/ListScanRuns', $actualFuncCall);
-
-        $actualValue = $actualRequestObject->getParent();
-
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function listScanRunsExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
-        ], JSON_PRETTY_PRINT);
-        $transport->addResponse(null, $status);
-
-        // Mock request
-        $formattedParent = $client->scanConfigName('[PROJECT]', '[SCAN_CONFIG]');
-
-        try {
-            $client->listScanRuns($formattedParent);
-            // If the $client method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function stopScanRunTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        // Mock response
-        $name2 = 'name2-1052831874';
-        $urlsCrawledCount = 1749797253;
-        $urlsTestedCount = 1498664068;
-        $hasVulnerabilities = false;
-        $progressPercent = 2137894861;
-        $expectedResponse = new ScanRun();
-        $expectedResponse->setName($name2);
-        $expectedResponse->setUrlsCrawledCount($urlsCrawledCount);
-        $expectedResponse->setUrlsTestedCount($urlsTestedCount);
-        $expectedResponse->setHasVulnerabilities($hasVulnerabilities);
-        $expectedResponse->setProgressPercent($progressPercent);
-        $transport->addResponse($expectedResponse);
-
-        // Mock request
-        $formattedName = $client->scanRunName('[PROJECT]', '[SCAN_CONFIG]', '[SCAN_RUN]');
-
-        $response = $client->stopScanRun($formattedName);
-        $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.websecurityscanner.v1beta.WebSecurityScanner/StopScanRun', $actualFuncCall);
-
-        $actualValue = $actualRequestObject->getName();
-
-        $this->assertProtobufEquals($formattedName, $actualValue);
-
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function stopScanRunExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
-        ], JSON_PRETTY_PRINT);
-        $transport->addResponse(null, $status);
-
-        // Mock request
-        $formattedName = $client->scanRunName('[PROJECT]', '[SCAN_CONFIG]', '[SCAN_RUN]');
-
-        try {
-            $client->stopScanRun($formattedName);
-            // If the $client method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function listCrawledUrlsTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        // Mock response
-        $nextPageToken = '';
-        $crawledUrlsElement = new CrawledUrl();
-        $crawledUrls = [$crawledUrlsElement];
-        $expectedResponse = new ListCrawledUrlsResponse();
-        $expectedResponse->setNextPageToken($nextPageToken);
-        $expectedResponse->setCrawledUrls($crawledUrls);
-        $transport->addResponse($expectedResponse);
-
-        // Mock request
-        $formattedParent = $client->scanRunName('[PROJECT]', '[SCAN_CONFIG]', '[SCAN_RUN]');
-
-        $response = $client->listCrawledUrls($formattedParent);
-        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
-        $resources = iterator_to_array($response->iterateAllElements());
-        $this->assertSame(1, count($resources));
-        $this->assertEquals($expectedResponse->getCrawledUrls()[0], $resources[0]);
-
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.websecurityscanner.v1beta.WebSecurityScanner/ListCrawledUrls', $actualFuncCall);
-
-        $actualValue = $actualRequestObject->getParent();
-
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function listCrawledUrlsExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
-        ], JSON_PRETTY_PRINT);
-        $transport->addResponse(null, $status);
-
-        // Mock request
-        $formattedParent = $client->scanRunName('[PROJECT]', '[SCAN_CONFIG]', '[SCAN_RUN]');
-
-        try {
-            $client->listCrawledUrls($formattedParent);
-            // If the $client method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
+    /** @test */
     public function getFindingTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $name2 = 'name2-1052831874';
         $findingType = 'findingType274496048';
@@ -902,214 +233,726 @@ class WebSecurityScannerClientTest extends GeneratedTest
         $expectedResponse->setFinalUrl($finalUrl);
         $expectedResponse->setTrackingId($trackingId);
         $transport->addResponse($expectedResponse);
-
         // Mock request
-        $formattedName = $client->findingName('[PROJECT]', '[SCAN_CONFIG]', '[SCAN_RUN]', '[FINDING]');
-
-        $response = $client->getFinding($formattedName);
+        $formattedName = $gapicClient->findingName('[PROJECT]', '[SCAN_CONFIG]', '[SCAN_RUN]', '[FINDING]');
+        $response = $gapicClient->getFinding($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.websecurityscanner.v1beta.WebSecurityScanner/GetFinding', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getName();
-
         $this->assertProtobufEquals($formattedName, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getFindingExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
-        $formattedName = $client->findingName('[PROJECT]', '[SCAN_CONFIG]', '[SCAN_RUN]', '[FINDING]');
-
+        $formattedName = $gapicClient->findingName('[PROJECT]', '[SCAN_CONFIG]', '[SCAN_RUN]', '[FINDING]');
         try {
-            $client->getFinding($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getFinding($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
-    public function listFindingsTest()
+    /** @test */
+    public function getScanConfigTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
-        $nextPageToken = '';
-        $findingsElement = new Finding();
-        $findings = [$findingsElement];
-        $expectedResponse = new ListFindingsResponse();
-        $expectedResponse->setNextPageToken($nextPageToken);
-        $expectedResponse->setFindings($findings);
+        $name2 = 'name2-1052831874';
+        $displayName = 'displayName1615086568';
+        $maxQps = 844445913;
+        $expectedResponse = new ScanConfig();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setMaxQps($maxQps);
         $transport->addResponse($expectedResponse);
-
         // Mock request
-        $formattedParent = $client->scanRunName('[PROJECT]', '[SCAN_CONFIG]', '[SCAN_RUN]');
-        $filter = 'filter-1274492040';
-
-        $response = $client->listFindings($formattedParent, $filter);
-        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
-        $resources = iterator_to_array($response->iterateAllElements());
-        $this->assertSame(1, count($resources));
-        $this->assertEquals($expectedResponse->getFindings()[0], $resources[0]);
-
+        $formattedName = $gapicClient->scanConfigName('[PROJECT]', '[SCAN_CONFIG]');
+        $response = $gapicClient->getScanConfig($formattedName);
+        $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.websecurityscanner.v1beta.WebSecurityScanner/ListFindings', $actualFuncCall);
-
-        $actualValue = $actualRequestObject->getParent();
-
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getFilter();
-
-        $this->assertProtobufEquals($filter, $actualValue);
+        $this->assertSame('/google.cloud.websecurityscanner.v1beta.WebSecurityScanner/GetScanConfig', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
-    public function listFindingsExceptionTest()
+    /** @test */
+    public function getScanConfigExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
-        $formattedParent = $client->scanRunName('[PROJECT]', '[SCAN_CONFIG]', '[SCAN_RUN]');
-        $filter = 'filter-1274492040';
-
+        $formattedName = $gapicClient->scanConfigName('[PROJECT]', '[SCAN_CONFIG]');
         try {
-            $client->listFindings($formattedParent, $filter);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getScanConfig($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
+    public function getScanRunTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $urlsCrawledCount = 1749797253;
+        $urlsTestedCount = 1498664068;
+        $hasVulnerabilities = false;
+        $progressPercent = 2137894861;
+        $expectedResponse = new ScanRun();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setUrlsCrawledCount($urlsCrawledCount);
+        $expectedResponse->setUrlsTestedCount($urlsTestedCount);
+        $expectedResponse->setHasVulnerabilities($hasVulnerabilities);
+        $expectedResponse->setProgressPercent($progressPercent);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->scanRunName('[PROJECT]', '[SCAN_CONFIG]', '[SCAN_RUN]');
+        $response = $gapicClient->getScanRun($formattedName);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.websecurityscanner.v1beta.WebSecurityScanner/GetScanRun', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getScanRunExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->scanRunName('[PROJECT]', '[SCAN_CONFIG]', '[SCAN_RUN]');
+        try {
+            $gapicClient->getScanRun($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listCrawledUrlsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $crawledUrlsElement = new CrawledUrl();
+        $crawledUrls = [
+            $crawledUrlsElement,
+        ];
+        $expectedResponse = new ListCrawledUrlsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setCrawledUrls($crawledUrls);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->scanRunName('[PROJECT]', '[SCAN_CONFIG]', '[SCAN_RUN]');
+        $response = $gapicClient->listCrawledUrls($formattedParent);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getCrawledUrls()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.websecurityscanner.v1beta.WebSecurityScanner/ListCrawledUrls', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listCrawledUrlsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->scanRunName('[PROJECT]', '[SCAN_CONFIG]', '[SCAN_RUN]');
+        try {
+            $gapicClient->listCrawledUrls($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function listFindingTypeStatsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $expectedResponse = new ListFindingTypeStatsResponse();
         $transport->addResponse($expectedResponse);
-
         // Mock request
-        $formattedParent = $client->scanRunName('[PROJECT]', '[SCAN_CONFIG]', '[SCAN_RUN]');
-
-        $response = $client->listFindingTypeStats($formattedParent);
+        $formattedParent = $gapicClient->scanRunName('[PROJECT]', '[SCAN_CONFIG]', '[SCAN_RUN]');
+        $response = $gapicClient->listFindingTypeStats($formattedParent);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.websecurityscanner.v1beta.WebSecurityScanner/ListFindingTypeStats', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getParent();
-
         $this->assertProtobufEquals($formattedParent, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listFindingTypeStatsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
-        $formattedParent = $client->scanRunName('[PROJECT]', '[SCAN_CONFIG]', '[SCAN_RUN]');
-
+        $formattedParent = $gapicClient->scanRunName('[PROJECT]', '[SCAN_CONFIG]', '[SCAN_RUN]');
         try {
-            $client->listFindingTypeStats($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listFindingTypeStats($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
 
+    /** @test */
+    public function listFindingsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $findingsElement = new Finding();
+        $findings = [
+            $findingsElement,
+        ];
+        $expectedResponse = new ListFindingsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setFindings($findings);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->scanRunName('[PROJECT]', '[SCAN_CONFIG]', '[SCAN_RUN]');
+        $filter = 'filter-1274492040';
+        $response = $gapicClient->listFindings($formattedParent, $filter);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getFindings()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.websecurityscanner.v1beta.WebSecurityScanner/ListFindings', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getFilter();
+        $this->assertProtobufEquals($filter, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listFindingsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->scanRunName('[PROJECT]', '[SCAN_CONFIG]', '[SCAN_RUN]');
+        $filter = 'filter-1274492040';
+        try {
+            $gapicClient->listFindings($formattedParent, $filter);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listScanConfigsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $scanConfigsElement = new ScanConfig();
+        $scanConfigs = [
+            $scanConfigsElement,
+        ];
+        $expectedResponse = new ListScanConfigsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setScanConfigs($scanConfigs);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
+        $response = $gapicClient->listScanConfigs($formattedParent);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getScanConfigs()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.websecurityscanner.v1beta.WebSecurityScanner/ListScanConfigs', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listScanConfigsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
+        try {
+            $gapicClient->listScanConfigs($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listScanRunsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $scanRunsElement = new ScanRun();
+        $scanRuns = [
+            $scanRunsElement,
+        ];
+        $expectedResponse = new ListScanRunsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setScanRuns($scanRuns);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->scanConfigName('[PROJECT]', '[SCAN_CONFIG]');
+        $response = $gapicClient->listScanRuns($formattedParent);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getScanRuns()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.websecurityscanner.v1beta.WebSecurityScanner/ListScanRuns', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listScanRunsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->scanConfigName('[PROJECT]', '[SCAN_CONFIG]');
+        try {
+            $gapicClient->listScanRuns($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function startScanRunTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $urlsCrawledCount = 1749797253;
+        $urlsTestedCount = 1498664068;
+        $hasVulnerabilities = false;
+        $progressPercent = 2137894861;
+        $expectedResponse = new ScanRun();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setUrlsCrawledCount($urlsCrawledCount);
+        $expectedResponse->setUrlsTestedCount($urlsTestedCount);
+        $expectedResponse->setHasVulnerabilities($hasVulnerabilities);
+        $expectedResponse->setProgressPercent($progressPercent);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->scanConfigName('[PROJECT]', '[SCAN_CONFIG]');
+        $response = $gapicClient->startScanRun($formattedName);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.websecurityscanner.v1beta.WebSecurityScanner/StartScanRun', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function startScanRunExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->scanConfigName('[PROJECT]', '[SCAN_CONFIG]');
+        try {
+            $gapicClient->startScanRun($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function stopScanRunTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $urlsCrawledCount = 1749797253;
+        $urlsTestedCount = 1498664068;
+        $hasVulnerabilities = false;
+        $progressPercent = 2137894861;
+        $expectedResponse = new ScanRun();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setUrlsCrawledCount($urlsCrawledCount);
+        $expectedResponse->setUrlsTestedCount($urlsTestedCount);
+        $expectedResponse->setHasVulnerabilities($hasVulnerabilities);
+        $expectedResponse->setProgressPercent($progressPercent);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->scanRunName('[PROJECT]', '[SCAN_CONFIG]', '[SCAN_RUN]');
+        $response = $gapicClient->stopScanRun($formattedName);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.websecurityscanner.v1beta.WebSecurityScanner/StopScanRun', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function stopScanRunExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->scanRunName('[PROJECT]', '[SCAN_CONFIG]', '[SCAN_RUN]');
+        try {
+            $gapicClient->stopScanRun($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateScanConfigTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $displayName = 'displayName1615086568';
+        $maxQps = 844445913;
+        $expectedResponse = new ScanConfig();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setMaxQps($maxQps);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $scanConfig = new ScanConfig();
+        $scanConfigDisplayName = 'scanConfigDisplayName-609132338';
+        $scanConfig->setDisplayName($scanConfigDisplayName);
+        $scanConfigStartingUrls = [];
+        $scanConfig->setStartingUrls($scanConfigStartingUrls);
+        $updateMask = new FieldMask();
+        $response = $gapicClient->updateScanConfig($scanConfig, $updateMask);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.websecurityscanner.v1beta.WebSecurityScanner/UpdateScanConfig', $actualFuncCall);
+        $actualValue = $actualRequestObject->getScanConfig();
+        $this->assertProtobufEquals($scanConfig, $actualValue);
+        $actualValue = $actualRequestObject->getUpdateMask();
+        $this->assertProtobufEquals($updateMask, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateScanConfigExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $scanConfig = new ScanConfig();
+        $scanConfigDisplayName = 'scanConfigDisplayName-609132338';
+        $scanConfig->setDisplayName($scanConfigDisplayName);
+        $scanConfigStartingUrls = [];
+        $scanConfig->setStartingUrls($scanConfigStartingUrls);
+        $updateMask = new FieldMask();
+        try {
+            $gapicClient->updateScanConfig($scanConfig, $updateMask);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());

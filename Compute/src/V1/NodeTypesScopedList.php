@@ -17,13 +17,13 @@ class NodeTypesScopedList extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] A list of node types contained in this scope.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NodeType node_types = 213737468;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NodeType node_types = 482172924;</code>
      */
     private $node_types;
     /**
      * [Output Only] An informational warning that appears when the node types list is empty.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Warning warning = 50704284;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Warning warning = 50704284;</code>
      */
     private $warning = null;
 
@@ -33,7 +33,7 @@ class NodeTypesScopedList extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Compute\V1\NodeType[]|\Google\Protobuf\Internal\RepeatedField $node_types
+     *     @type array<\Google\Cloud\Compute\V1\NodeType>|\Google\Protobuf\Internal\RepeatedField $node_types
      *           [Output Only] A list of node types contained in this scope.
      *     @type \Google\Cloud\Compute\V1\Warning $warning
      *           [Output Only] An informational warning that appears when the node types list is empty.
@@ -47,7 +47,7 @@ class NodeTypesScopedList extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] A list of node types contained in this scope.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NodeType node_types = 213737468;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NodeType node_types = 482172924;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getNodeTypes()
@@ -58,8 +58,8 @@ class NodeTypesScopedList extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] A list of node types contained in this scope.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NodeType node_types = 213737468;</code>
-     * @param \Google\Cloud\Compute\V1\NodeType[]|\Google\Protobuf\Internal\RepeatedField $var
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NodeType node_types = 482172924;</code>
+     * @param array<\Google\Cloud\Compute\V1\NodeType>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setNodeTypes($var)
@@ -73,12 +73,12 @@ class NodeTypesScopedList extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] An informational warning that appears when the node types list is empty.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Warning warning = 50704284;</code>
-     * @return \Google\Cloud\Compute\V1\Warning
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Warning warning = 50704284;</code>
+     * @return \Google\Cloud\Compute\V1\Warning|null
      */
     public function getWarning()
     {
-        return isset($this->warning) ? $this->warning : null;
+        return $this->warning;
     }
 
     public function hasWarning()
@@ -94,7 +94,7 @@ class NodeTypesScopedList extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] An informational warning that appears when the node types list is empty.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Warning warning = 50704284;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Warning warning = 50704284;</code>
      * @param \Google\Cloud\Compute\V1\Warning $var
      * @return $this
      */

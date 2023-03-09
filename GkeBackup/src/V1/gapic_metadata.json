@@ -1,0 +1,138 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.gkebackup.v1",
+    "libraryPackage": "Google\\Cloud\\GkeBackup\\V1",
+    "services": {
+        "BackupForGKE": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "BackupForGKEGapicClient",
+                    "rpcs": {
+                        "CreateBackup": {
+                            "methods": [
+                                "createBackup"
+                            ]
+                        },
+                        "CreateBackupPlan": {
+                            "methods": [
+                                "createBackupPlan"
+                            ]
+                        },
+                        "CreateRestore": {
+                            "methods": [
+                                "createRestore"
+                            ]
+                        },
+                        "CreateRestorePlan": {
+                            "methods": [
+                                "createRestorePlan"
+                            ]
+                        },
+                        "DeleteBackup": {
+                            "methods": [
+                                "deleteBackup"
+                            ]
+                        },
+                        "DeleteBackupPlan": {
+                            "methods": [
+                                "deleteBackupPlan"
+                            ]
+                        },
+                        "DeleteRestore": {
+                            "methods": [
+                                "deleteRestore"
+                            ]
+                        },
+                        "DeleteRestorePlan": {
+                            "methods": [
+                                "deleteRestorePlan"
+                            ]
+                        },
+                        "GetBackup": {
+                            "methods": [
+                                "getBackup"
+                            ]
+                        },
+                        "GetBackupPlan": {
+                            "methods": [
+                                "getBackupPlan"
+                            ]
+                        },
+                        "GetRestore": {
+                            "methods": [
+                                "getRestore"
+                            ]
+                        },
+                        "GetRestorePlan": {
+                            "methods": [
+                                "getRestorePlan"
+                            ]
+                        },
+                        "GetVolumeBackup": {
+                            "methods": [
+                                "getVolumeBackup"
+                            ]
+                        },
+                        "GetVolumeRestore": {
+                            "methods": [
+                                "getVolumeRestore"
+                            ]
+                        },
+                        "ListBackupPlans": {
+                            "methods": [
+                                "listBackupPlans"
+                            ]
+                        },
+                        "ListBackups": {
+                            "methods": [
+                                "listBackups"
+                            ]
+                        },
+                        "ListRestorePlans": {
+                            "methods": [
+                                "listRestorePlans"
+                            ]
+                        },
+                        "ListRestores": {
+                            "methods": [
+                                "listRestores"
+                            ]
+                        },
+                        "ListVolumeBackups": {
+                            "methods": [
+                                "listVolumeBackups"
+                            ]
+                        },
+                        "ListVolumeRestores": {
+                            "methods": [
+                                "listVolumeRestores"
+                            ]
+                        },
+                        "UpdateBackup": {
+                            "methods": [
+                                "updateBackup"
+                            ]
+                        },
+                        "UpdateBackupPlan": {
+                            "methods": [
+                                "updateBackupPlan"
+                            ]
+                        },
+                        "UpdateRestore": {
+                            "methods": [
+                                "updateRestore"
+                            ]
+                        },
+                        "UpdateRestorePlan": {
+                            "methods": [
+                                "updateRestorePlan"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

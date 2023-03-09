@@ -55,7 +55,7 @@ class UpdateSubscriptionRequest extends \Google\Protobuf\Internal\Message
      */
     public function getSubscription()
     {
-        return isset($this->subscription) ? $this->subscription : null;
+        return $this->subscription;
     }
 
     public function hasSubscription()
@@ -92,7 +92,7 @@ class UpdateSubscriptionRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()

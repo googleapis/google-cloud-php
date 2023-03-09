@@ -63,7 +63,7 @@ class ResourceUsageExportConfig extends \Google\Protobuf\Internal\Message
      */
     public function getBigqueryDestination()
     {
-        return isset($this->bigquery_destination) ? $this->bigquery_destination : null;
+        return $this->bigquery_destination;
     }
 
     public function hasBigqueryDestination()
@@ -127,7 +127,7 @@ class ResourceUsageExportConfig extends \Google\Protobuf\Internal\Message
      */
     public function getConsumptionMeteringConfig()
     {
-        return isset($this->consumption_metering_config) ? $this->consumption_metering_config : null;
+        return $this->consumption_metering_config;
     }
 
     public function hasConsumptionMeteringConfig()

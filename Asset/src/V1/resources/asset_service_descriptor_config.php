@@ -3,6 +3,16 @@
 return [
     'interfaces' => [
         'google.cloud.asset.v1.AssetService' => [
+            'AnalyzeIamPolicyLongrunning' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Asset\V1\AnalyzeIamPolicyLongrunningResponse',
+                    'metadataReturnType' => '\Google\Cloud\Asset\V1\AnalyzeIamPolicyLongrunningMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+            ],
             'ExportAssets' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\Asset\V1\ExportAssetsResponse',
@@ -13,7 +23,57 @@ return [
                     'totalPollTimeoutMillis' => '300000',
                 ],
             ],
-            'SearchAllResources' => [
+            'AnalyzeOrgPolicies' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getOrgPolicyResults',
+                ],
+            ],
+            'AnalyzeOrgPolicyGovernedAssets' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getGovernedAssets',
+                ],
+            ],
+            'AnalyzeOrgPolicyGovernedContainers' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getGovernedContainers',
+                ],
+            ],
+            'ListAssets' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getAssets',
+                ],
+            ],
+            'ListSavedQueries' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getSavedQueries',
+                ],
+            ],
+            'SearchAllIamPolicies' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
                     'requestPageTokenSetMethod' => 'setPageToken',
@@ -23,7 +83,7 @@ return [
                     'resourcesGetMethod' => 'getResults',
                 ],
             ],
-            'SearchAllIamPolicies' => [
+            'SearchAllResources' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
                     'requestPageTokenSetMethod' => 'setPageToken',

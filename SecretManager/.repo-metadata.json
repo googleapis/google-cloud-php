@@ -1,5 +1,7 @@
 {
     "distribution_name": "google/cloud-secret-manager",
-    "release_level": "ga",
-    "client_documentation": "http://googleapis.github.io/google-cloud-php/#/docs/cloud-secret-manager/latest"
+    "release_level": "stable",
+    "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-secret-manager/latest",
+    "library_type": "GAPIC_AUTO",
+    "api_shortname": "secretmanager"
 }

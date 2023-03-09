@@ -15,6 +15,10 @@ return [
                         'method' => 'get',
                         'uriTemplate' => '/v1/{resource=projects/*/snapshots/*}:getIamPolicy',
                     ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{resource=projects/*/schemas/*}:getIamPolicy',
+                    ],
                 ],
                 'placeholders' => [
                     'resource' => [
@@ -37,6 +41,11 @@ return [
                     [
                         'method' => 'post',
                         'uriTemplate' => '/v1/{resource=projects/*/snapshots/*}:setIamPolicy',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/schemas/*}:setIamPolicy',
                         'body' => '*',
                     ],
                 ],
@@ -63,6 +72,11 @@ return [
                         'uriTemplate' => '/v1/{resource=projects/*/snapshots/*}:testIamPermissions',
                         'body' => '*',
                     ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/schemas/*}:testIamPermissions',
+                        'body' => '*',
+                    ],
                 ],
                 'placeholders' => [
                     'resource' => [
@@ -74,21 +88,10 @@ return [
             ],
         ],
         'google.pubsub.v1.SchemaService' => [
-            'CreateSchema' => [
+            'CommitSchema' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1/{parent=projects/*}/schemas',
-                'body' => 'schema',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'GetSchema' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{name=projects/*/schemas/*}',
+                'uriTemplate' => '/v1/{name=projects/*/schemas/*}:commit',
+                'body' => '*',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -97,9 +100,10 @@ return [
                     ],
                 ],
             ],
-            'ListSchemas' => [
-                'method' => 'get',
+            'CreateSchema' => [
+                'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*}/schemas',
+                'body' => 'schema',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -119,14 +123,58 @@ return [
                     ],
                 ],
             ],
-            'ValidateSchema' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/{parent=projects/*}/schemas:validate',
-                'body' => '*',
+            'DeleteSchemaRevision' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/schemas/*}:deleteRevision',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetSchema' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/schemas/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListSchemaRevisions' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/schemas/*}:listRevisions',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListSchemas' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*}/schemas',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'RollbackSchema' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/schemas/*}:rollback',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
                         ],
                     ],
                 ],
@@ -143,6 +191,19 @@ return [
                     ],
                 ],
             ],
+            'ValidateSchema' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*}/schemas:validate',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
         ],
     ],
+    'numericEnums' => true,
 ];

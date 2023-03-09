@@ -14,10 +14,9 @@ class Histogram
         if (static::$is_initialized == true) {
           return;
         }
-        \GPBMetadata\Google\Api\Annotations::initOnce();
         $pool->internalAddGeneratedFile(
             '
-´
+ª
 +google/cloud/talent/v4beta1/histogram.protogoogle.cloud.talent.v4beta1")
 HistogramQuery
 histogram_query (	"¶
@@ -26,8 +25,8 @@ class Histogram
 	histogram (2@.google.cloud.talent.v4beta1.HistogramQueryResult.HistogramEntry0
 HistogramEntry
 key (	
-value (:8B|
-com.google.cloud.talent.v4beta1BHistogramProtoPZAgoogle.golang.org/genproto/googleapis/cloud/talent/v4beta1;talent¢CTSbproto3'
+value (:8Br
+com.google.cloud.talent.v4beta1BHistogramProtoPZ7cloud.google.com/go/talent/apiv4beta1/talentpb;talentpb¢CTSbproto3'
         , true);
 
         static::$is_initialized = true;

@@ -14,13 +14,12 @@ class Endpoint
         if (static::$is_initialized == true) {
           return;
         }
-        \GPBMetadata\Google\Api\Annotations::initOnce();
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ÿ
-/google/cloud/servicedirectory/v1/endpoint.proto google.cloud.servicedirectory.v1google/api/field_behavior.protogoogle/api/resource.proto"ê
+Þ
+/google/cloud/servicedirectory/v1/endpoint.proto google.cloud.servicedirectory.v1google/api/resource.proto"ê
 Endpoint
 name (	BàA
 address (	BàA
@@ -30,7 +29,7 @@ class Endpoint
 key (	
 value (	:8:–êA’
 (servicedirectory.googleapis.com/Endpointfprojects/{project}/locations/{location}/namespaces/{namespace}/services/{service}/endpoints/{endpoint}Bø
-$com.google.cloud.servicedirectory.v1BEndpointProtoPZPgoogle.golang.org/genproto/googleapis/cloud/servicedirectory/v1;servicedirectoryøª Google.Cloud.ServiceDirectory.V1Ê Google\\Cloud\\ServiceDirectory\\V1ê#Google::Cloud::ServiceDirectory::V1bproto3'
+$com.google.cloud.servicedirectory.v1BEndpointProtoPZPcloud.google.com/go/servicedirectory/apiv1/servicedirectorypb;servicedirectorypbøª Google.Cloud.ServiceDirectory.V1Ê Google\\Cloud\\ServiceDirectory\\V1ê#Google::Cloud::ServiceDirectory::V1bproto3'
         , true);
 
         static::$is_initialized = true;

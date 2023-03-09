@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [CloudChannelService.GetCustomer][google.cloud.channel.v1.CloudChannelService.GetCustomer].
+ * Request message for
+ * [CloudChannelService.GetCustomer][google.cloud.channel.v1.CloudChannelService.GetCustomer].
  *
  * Generated from protobuf message <code>google.cloud.channel.v1.GetCustomerRequest</code>
  */
@@ -17,7 +18,7 @@ class GetCustomerRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The resource name of the customer to retrieve.
-     * The name takes the format: accounts/{account_id}/customers/{customer_id}
+     * Name uses the format: accounts/{account_id}/customers/{customer_id}
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -31,7 +32,7 @@ class GetCustomerRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. The resource name of the customer to retrieve.
-     *           The name takes the format: accounts/{account_id}/customers/{customer_id}
+     *           Name uses the format: accounts/{account_id}/customers/{customer_id}
      * }
      */
     public function __construct($data = NULL) {
@@ -41,7 +42,7 @@ class GetCustomerRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the customer to retrieve.
-     * The name takes the format: accounts/{account_id}/customers/{customer_id}
+     * Name uses the format: accounts/{account_id}/customers/{customer_id}
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -53,7 +54,7 @@ class GetCustomerRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the customer to retrieve.
-     * The name takes the format: accounts/{account_id}/customers/{customer_id}
+     * Name uses the format: accounts/{account_id}/customers/{customer_id}
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

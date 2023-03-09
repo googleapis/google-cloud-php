@@ -3,14 +3,14 @@
 return [
     'interfaces' => [
         'google.pubsub.v1.Publisher' => [
-            'ListTopics' => [
+            'ListTopicSnapshots' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
                     'requestPageTokenSetMethod' => 'setPageToken',
                     'requestPageSizeGetMethod' => 'getPageSize',
                     'requestPageSizeSetMethod' => 'setPageSize',
                     'responsePageTokenGetMethod' => 'getNextPageToken',
-                    'resourcesGetMethod' => 'getTopics',
+                    'resourcesGetMethod' => 'getSnapshots',
                 ],
             ],
             'ListTopicSubscriptions' => [
@@ -23,14 +23,14 @@ return [
                     'resourcesGetMethod' => 'getSubscriptions',
                 ],
             ],
-            'ListTopicSnapshots' => [
+            'ListTopics' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
                     'requestPageTokenSetMethod' => 'setPageToken',
                     'requestPageSizeGetMethod' => 'getPageSize',
                     'requestPageSizeSetMethod' => 'setPageSize',
                     'responsePageTokenGetMethod' => 'getNextPageToken',
-                    'resourcesGetMethod' => 'getSnapshots',
+                    'resourcesGetMethod' => 'getTopics',
                 ],
             ],
         ],

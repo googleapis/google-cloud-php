@@ -22,14 +22,14 @@ class CloudWorkspaceId extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.devtools.source.v1.RepoId repo_id = 1;</code>
      */
-    private $repo_id = null;
+    protected $repo_id = null;
     /**
      * The unique name of the workspace within the repo.  This is the name
      * chosen by the client in the Source API's CreateWorkspace method.
      *
      * Generated from protobuf field <code>string name = 2;</code>
      */
-    private $name = '';
+    protected $name = '';
 
     /**
      * Constructor.
@@ -53,11 +53,21 @@ class CloudWorkspaceId extends \Google\Protobuf\Internal\Message
      * The ID of the repo containing the workspace.
      *
      * Generated from protobuf field <code>.google.devtools.source.v1.RepoId repo_id = 1;</code>
-     * @return \Google\Cloud\DevTools\Source\V1\RepoId
+     * @return \Google\Cloud\DevTools\Source\V1\RepoId|null
      */
     public function getRepoId()
     {
-        return $this->repo_id;
+        return isset($this->repo_id) ? $this->repo_id : null;
+    }
+
+    public function hasRepoId()
+    {
+        return isset($this->repo_id);
+    }
+
+    public function clearRepoId()
+    {
+        unset($this->repo_id);
     }
 
     /**

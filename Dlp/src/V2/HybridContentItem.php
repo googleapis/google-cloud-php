@@ -54,7 +54,7 @@ class HybridContentItem extends \Google\Protobuf\Internal\Message
      */
     public function getItem()
     {
-        return isset($this->item) ? $this->item : null;
+        return $this->item;
     }
 
     public function hasItem()
@@ -90,7 +90,7 @@ class HybridContentItem extends \Google\Protobuf\Internal\Message
      */
     public function getFindingDetails()
     {
-        return isset($this->finding_details) ? $this->finding_details : null;
+        return $this->finding_details;
     }
 
     public function hasFindingDetails()

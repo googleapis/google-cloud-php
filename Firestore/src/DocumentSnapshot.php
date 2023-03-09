@@ -310,6 +310,7 @@ class DocumentSnapshot implements \ArrayAccess
     /**
      * @access private
      */
+    #[\ReturnTypeWillChange]
     public function offsetSet($offset, $value)
     {
         throw new \BadMethodCallException('DocumentSnapshots are read-only.');
@@ -318,6 +319,7 @@ class DocumentSnapshot implements \ArrayAccess
     /**
      * @access private
      */
+    #[\ReturnTypeWillChange]
     public function offsetExists($offset)
     {
         return array_key_exists($offset, $this->data);
@@ -326,6 +328,7 @@ class DocumentSnapshot implements \ArrayAccess
     /**
      * @access private
      */
+    #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
         throw new \BadMethodCallException('DocumentSnapshots are read-only.');
@@ -334,6 +337,7 @@ class DocumentSnapshot implements \ArrayAccess
     /**
      * @access private
      */
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         if (!$this->offsetExists($offset)) {

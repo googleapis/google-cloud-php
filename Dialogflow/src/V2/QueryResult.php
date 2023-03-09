@@ -86,6 +86,14 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      */
     private $all_required_params_present = false;
     /**
+     * Indicates whether the conversational query triggers a cancellation for slot
+     * filling. For more information, see the [cancel slot filling
+     * documentation](https://cloud.google.com/dialogflow/es/docs/intents-actions-parameters#cancel).
+     *
+     * Generated from protobuf field <code>bool cancels_slot_filling = 21;</code>
+     */
+    private $cancels_slot_filling = false;
+    /**
      * The text to be pronounced to the user or shown on the screen.
      * Note: This is a legacy field, `fulfillment_messages` should be preferred.
      *
@@ -213,10 +221,14 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      *              the required parameter values have been collected.
      *           - `true` if all required parameter values have been collected, or if the
      *              matched intent doesn't contain any required parameters.
+     *     @type bool $cancels_slot_filling
+     *           Indicates whether the conversational query triggers a cancellation for slot
+     *           filling. For more information, see the [cancel slot filling
+     *           documentation](https://cloud.google.com/dialogflow/es/docs/intents-actions-parameters#cancel).
      *     @type string $fulfillment_text
      *           The text to be pronounced to the user or shown on the screen.
      *           Note: This is a legacy field, `fulfillment_messages` should be preferred.
-     *     @type \Google\Cloud\Dialogflow\V2\Intent\Message[]|\Google\Protobuf\Internal\RepeatedField $fulfillment_messages
+     *     @type array<\Google\Cloud\Dialogflow\V2\Intent\Message>|\Google\Protobuf\Internal\RepeatedField $fulfillment_messages
      *           The collection of rich messages to present to the user.
      *     @type string $webhook_source
      *           If the query was fulfilled by a webhook call, this field is set to the
@@ -224,7 +236,7 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Struct $webhook_payload
      *           If the query was fulfilled by a webhook call, this field is set to the
      *           value of the `payload` field returned in the webhook response.
-     *     @type \Google\Cloud\Dialogflow\V2\Context[]|\Google\Protobuf\Internal\RepeatedField $output_contexts
+     *     @type array<\Google\Cloud\Dialogflow\V2\Context>|\Google\Protobuf\Internal\RepeatedField $output_contexts
      *           The collection of output contexts. If applicable,
      *           `output_contexts.parameters` contains entries with name
      *           `<parameter name>.original` containing the original parameter values
@@ -418,7 +430,7 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      */
     public function getParameters()
     {
-        return isset($this->parameters) ? $this->parameters : null;
+        return $this->parameters;
     }
 
     public function hasParameters()
@@ -494,6 +506,36 @@ class QueryResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Indicates whether the conversational query triggers a cancellation for slot
+     * filling. For more information, see the [cancel slot filling
+     * documentation](https://cloud.google.com/dialogflow/es/docs/intents-actions-parameters#cancel).
+     *
+     * Generated from protobuf field <code>bool cancels_slot_filling = 21;</code>
+     * @return bool
+     */
+    public function getCancelsSlotFilling()
+    {
+        return $this->cancels_slot_filling;
+    }
+
+    /**
+     * Indicates whether the conversational query triggers a cancellation for slot
+     * filling. For more information, see the [cancel slot filling
+     * documentation](https://cloud.google.com/dialogflow/es/docs/intents-actions-parameters#cancel).
+     *
+     * Generated from protobuf field <code>bool cancels_slot_filling = 21;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setCancelsSlotFilling($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->cancels_slot_filling = $var;
+
+        return $this;
+    }
+
+    /**
      * The text to be pronounced to the user or shown on the screen.
      * Note: This is a legacy field, `fulfillment_messages` should be preferred.
      *
@@ -536,7 +578,7 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      * The collection of rich messages to present to the user.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message fulfillment_messages = 7;</code>
-     * @param \Google\Cloud\Dialogflow\V2\Intent\Message[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dialogflow\V2\Intent\Message>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFulfillmentMessages($var)
@@ -584,7 +626,7 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      */
     public function getWebhookPayload()
     {
-        return isset($this->webhook_payload) ? $this->webhook_payload : null;
+        return $this->webhook_payload;
     }
 
     public function hasWebhookPayload()
@@ -634,7 +676,7 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      * before the query.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Context output_contexts = 10;</code>
-     * @param \Google\Cloud\Dialogflow\V2\Context[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dialogflow\V2\Context>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setOutputContexts($var)
@@ -655,7 +697,7 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      */
     public function getIntent()
     {
-        return isset($this->intent) ? $this->intent : null;
+        return $this->intent;
     }
 
     public function hasIntent()
@@ -738,7 +780,7 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      */
     public function getDiagnosticInfo()
     {
-        return isset($this->diagnostic_info) ? $this->diagnostic_info : null;
+        return $this->diagnostic_info;
     }
 
     public function hasDiagnosticInfo()
@@ -780,7 +822,7 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      */
     public function getSentimentAnalysisResult()
     {
-        return isset($this->sentiment_analysis_result) ? $this->sentiment_analysis_result : null;
+        return $this->sentiment_analysis_result;
     }
 
     public function hasSentimentAnalysisResult()

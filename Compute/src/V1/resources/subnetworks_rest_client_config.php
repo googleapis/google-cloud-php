@@ -18,11 +18,6 @@ return [
                 'method' => 'delete',
                 'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/subnetworks/{subnetwork}',
                 'placeholders' => [
-                    'subnetwork' => [
-                        'getters' => [
-                            'getSubnetwork',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
@@ -31,6 +26,11 @@ return [
                     'region' => [
                         'getters' => [
                             'getRegion',
+                        ],
+                    ],
+                    'subnetwork' => [
+                        'getters' => [
+                            'getSubnetwork',
                         ],
                     ],
                 ],
@@ -40,11 +40,6 @@ return [
                 'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/subnetworks/{subnetwork}/expandIpCidrRange',
                 'body' => 'subnetworks_expand_ip_cidr_range_request_resource',
                 'placeholders' => [
-                    'subnetwork' => [
-                        'getters' => [
-                            'getSubnetwork',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
@@ -53,6 +48,11 @@ return [
                     'region' => [
                         'getters' => [
                             'getRegion',
+                        ],
+                    ],
+                    'subnetwork' => [
+                        'getters' => [
+                            'getSubnetwork',
                         ],
                     ],
                 ],
@@ -61,11 +61,6 @@ return [
                 'method' => 'get',
                 'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/subnetworks/{subnetwork}',
                 'placeholders' => [
-                    'subnetwork' => [
-                        'getters' => [
-                            'getSubnetwork',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
@@ -74,6 +69,11 @@ return [
                     'region' => [
                         'getters' => [
                             'getRegion',
+                        ],
+                    ],
+                    'subnetwork' => [
+                        'getters' => [
+                            'getSubnetwork',
                         ],
                     ],
                 ],
@@ -82,11 +82,6 @@ return [
                 'method' => 'get',
                 'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/subnetworks/{resource}/getIamPolicy',
                 'placeholders' => [
-                    'resource' => [
-                        'getters' => [
-                            'getResource',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
@@ -95,6 +90,11 @@ return [
                     'region' => [
                         'getters' => [
                             'getRegion',
+                        ],
+                    ],
+                    'resource' => [
+                        'getters' => [
+                            'getResource',
                         ],
                     ],
                 ],
@@ -148,11 +148,6 @@ return [
                 'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/subnetworks/{subnetwork}',
                 'body' => 'subnetwork_resource',
                 'placeholders' => [
-                    'subnetwork' => [
-                        'getters' => [
-                            'getSubnetwork',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
@@ -161,6 +156,11 @@ return [
                     'region' => [
                         'getters' => [
                             'getRegion',
+                        ],
+                    ],
+                    'subnetwork' => [
+                        'getters' => [
+                            'getSubnetwork',
                         ],
                     ],
                 ],
@@ -170,11 +170,6 @@ return [
                 'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/subnetworks/{resource}/setIamPolicy',
                 'body' => 'region_set_policy_request_resource',
                 'placeholders' => [
-                    'resource' => [
-                        'getters' => [
-                            'getResource',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
@@ -183,6 +178,11 @@ return [
                     'region' => [
                         'getters' => [
                             'getRegion',
+                        ],
+                    ],
+                    'resource' => [
+                        'getters' => [
+                            'getResource',
                         ],
                     ],
                 ],
@@ -192,9 +192,54 @@ return [
                 'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/subnetworks/{subnetwork}/setPrivateIpGoogleAccess',
                 'body' => 'subnetworks_set_private_ip_google_access_request_resource',
                 'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'region' => [
+                        'getters' => [
+                            'getRegion',
+                        ],
+                    ],
                     'subnetwork' => [
                         'getters' => [
                             'getSubnetwork',
+                        ],
+                    ],
+                ],
+            ],
+            'TestIamPermissions' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/subnetworks/{resource}/testIamPermissions',
+                'body' => 'test_permissions_request_resource',
+                'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'region' => [
+                        'getters' => [
+                            'getRegion',
+                        ],
+                    ],
+                    'resource' => [
+                        'getters' => [
+                            'getResource',
+                        ],
+                    ],
+                ],
+            ],
+        ],
+        'google.cloud.compute.v1.RegionOperations' => [
+            'Delete' => [
+                'method' => 'delete',
+                'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/operations/{operation}',
+                'placeholders' => [
+                    'operation' => [
+                        'getters' => [
+                            'getOperation',
                         ],
                     ],
                     'project' => [
@@ -209,14 +254,50 @@ return [
                     ],
                 ],
             ],
-            'TestIamPermissions' => [
-                'method' => 'post',
-                'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/subnetworks/{resource}/testIamPermissions',
-                'body' => 'test_permissions_request_resource',
+            'Get' => [
+                'method' => 'get',
+                'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/operations/{operation}',
                 'placeholders' => [
-                    'resource' => [
+                    'operation' => [
                         'getters' => [
-                            'getResource',
+                            'getOperation',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'region' => [
+                        'getters' => [
+                            'getRegion',
+                        ],
+                    ],
+                ],
+            ],
+            'List' => [
+                'method' => 'get',
+                'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/operations',
+                'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'region' => [
+                        'getters' => [
+                            'getRegion',
+                        ],
+                    ],
+                ],
+            ],
+            'Wait' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/operations/{operation}/wait',
+                'placeholders' => [
+                    'operation' => [
+                        'getters' => [
+                            'getOperation',
                         ],
                     ],
                     'project' => [

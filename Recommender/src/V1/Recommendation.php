@@ -65,6 +65,12 @@ class Recommendation extends \Google\Protobuf\Internal\Message
      */
     private $additional_impact;
     /**
+     * Recommendation's priority.
+     *
+     * Generated from protobuf field <code>.google.cloud.recommender.v1.Recommendation.Priority priority = 17;</code>
+     */
+    private $priority = 0;
+    /**
      * Content of the recommendation describing recommended changes to resources.
      *
      * Generated from protobuf field <code>.google.cloud.recommender.v1.RecommendationContent content = 7;</code>
@@ -89,6 +95,15 @@ class Recommendation extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.recommender.v1.Recommendation.InsightReference associated_insights = 14;</code>
      */
     private $associated_insights;
+    /**
+     * Corresponds to a mutually exclusive group ID within a recommender.
+     * A non-empty ID indicates that the recommendation belongs to a mutually
+     * exclusive group. This means that only one recommendation within the group
+     * is suggested to be applied.
+     *
+     * Generated from protobuf field <code>string xor_group_id = 18;</code>
+     */
+    private $xor_group_id = '';
 
     /**
      * Constructor.
@@ -116,10 +131,12 @@ class Recommendation extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Recommender\V1\Impact $primary_impact
      *           The primary impact that this recommendation can have while trying to
      *           optimize for one category.
-     *     @type \Google\Cloud\Recommender\V1\Impact[]|\Google\Protobuf\Internal\RepeatedField $additional_impact
+     *     @type array<\Google\Cloud\Recommender\V1\Impact>|\Google\Protobuf\Internal\RepeatedField $additional_impact
      *           Optional set of additional impact that this recommendation may have when
      *           trying to optimize for the primary category. These may be positive
      *           or negative.
+     *     @type int $priority
+     *           Recommendation's priority.
      *     @type \Google\Cloud\Recommender\V1\RecommendationContent $content
      *           Content of the recommendation describing recommended changes to resources.
      *     @type \Google\Cloud\Recommender\V1\RecommendationStateInfo $state_info
@@ -127,8 +144,13 @@ class Recommendation extends \Google\Protobuf\Internal\Message
      *     @type string $etag
      *           Fingerprint of the Recommendation. Provides optimistic locking when
      *           updating states.
-     *     @type \Google\Cloud\Recommender\V1\Recommendation\InsightReference[]|\Google\Protobuf\Internal\RepeatedField $associated_insights
+     *     @type array<\Google\Cloud\Recommender\V1\Recommendation\InsightReference>|\Google\Protobuf\Internal\RepeatedField $associated_insights
      *           Insights that led to this recommendation.
+     *     @type string $xor_group_id
+     *           Corresponds to a mutually exclusive group ID within a recommender.
+     *           A non-empty ID indicates that the recommendation belongs to a mutually
+     *           exclusive group. This means that only one recommendation within the group
+     *           is suggested to be applied.
      * }
      */
     public function __construct($data = NULL) {
@@ -239,7 +261,7 @@ class Recommendation extends \Google\Protobuf\Internal\Message
      */
     public function getLastRefreshTime()
     {
-        return isset($this->last_refresh_time) ? $this->last_refresh_time : null;
+        return $this->last_refresh_time;
     }
 
     public function hasLastRefreshTime()
@@ -277,7 +299,7 @@ class Recommendation extends \Google\Protobuf\Internal\Message
      */
     public function getPrimaryImpact()
     {
-        return isset($this->primary_impact) ? $this->primary_impact : null;
+        return $this->primary_impact;
     }
 
     public function hasPrimaryImpact()
@@ -325,13 +347,39 @@ class Recommendation extends \Google\Protobuf\Internal\Message
      * or negative.
      *
      * Generated from protobuf field <code>repeated .google.cloud.recommender.v1.Impact additional_impact = 6;</code>
-     * @param \Google\Cloud\Recommender\V1\Impact[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Recommender\V1\Impact>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAdditionalImpact($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Recommender\V1\Impact::class);
         $this->additional_impact = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Recommendation's priority.
+     *
+     * Generated from protobuf field <code>.google.cloud.recommender.v1.Recommendation.Priority priority = 17;</code>
+     * @return int
+     */
+    public function getPriority()
+    {
+        return $this->priority;
+    }
+
+    /**
+     * Recommendation's priority.
+     *
+     * Generated from protobuf field <code>.google.cloud.recommender.v1.Recommendation.Priority priority = 17;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setPriority($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Recommender\V1\Recommendation\Priority::class);
+        $this->priority = $var;
 
         return $this;
     }
@@ -344,7 +392,7 @@ class Recommendation extends \Google\Protobuf\Internal\Message
      */
     public function getContent()
     {
-        return isset($this->content) ? $this->content : null;
+        return $this->content;
     }
 
     public function hasContent()
@@ -380,7 +428,7 @@ class Recommendation extends \Google\Protobuf\Internal\Message
      */
     public function getStateInfo()
     {
-        return isset($this->state_info) ? $this->state_info : null;
+        return $this->state_info;
     }
 
     public function hasStateInfo()
@@ -451,13 +499,45 @@ class Recommendation extends \Google\Protobuf\Internal\Message
      * Insights that led to this recommendation.
      *
      * Generated from protobuf field <code>repeated .google.cloud.recommender.v1.Recommendation.InsightReference associated_insights = 14;</code>
-     * @param \Google\Cloud\Recommender\V1\Recommendation\InsightReference[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Recommender\V1\Recommendation\InsightReference>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAssociatedInsights($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Recommender\V1\Recommendation\InsightReference::class);
         $this->associated_insights = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Corresponds to a mutually exclusive group ID within a recommender.
+     * A non-empty ID indicates that the recommendation belongs to a mutually
+     * exclusive group. This means that only one recommendation within the group
+     * is suggested to be applied.
+     *
+     * Generated from protobuf field <code>string xor_group_id = 18;</code>
+     * @return string
+     */
+    public function getXorGroupId()
+    {
+        return $this->xor_group_id;
+    }
+
+    /**
+     * Corresponds to a mutually exclusive group ID within a recommender.
+     * A non-empty ID indicates that the recommendation belongs to a mutually
+     * exclusive group. This means that only one recommendation within the group
+     * is suggested to be applied.
+     *
+     * Generated from protobuf field <code>string xor_group_id = 18;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setXorGroupId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->xor_group_id = $var;
 
         return $this;
     }

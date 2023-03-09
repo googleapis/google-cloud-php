@@ -15,42 +15,19 @@ return [
                     ],
                 ],
             ],
-            'GetConnection' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/connections/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'ListConnections' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/connections',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'UpdateConnection' => [
-                'method' => 'patch',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/connections/*}',
-                'body' => 'connection',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
             'DeleteConnection' => [
                 'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/connections/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetConnection' => [
+                'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/connections/*}',
                 'placeholders' => [
                     'name' => [
@@ -70,6 +47,20 @@ return [
                             'getResource',
                         ],
                     ],
+                ],
+            ],
+            'ListConnections' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/connections',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'page_size',
                 ],
             ],
             'SetIamPolicy' => [
@@ -96,6 +87,22 @@ return [
                     ],
                 ],
             ],
+            'UpdateConnection' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/connections/*}',
+                'body' => 'connection',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
+                ],
+            ],
         ],
     ],
+    'numericEnums' => true,
 ];

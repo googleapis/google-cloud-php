@@ -18,18 +18,6 @@ use Google\Protobuf\Internal\GPBUtil;
 class TransferableSku extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Whether a transferable SKU is commitment-based or not.
-     *
-     * Generated from protobuf field <code>.google.protobuf.BoolValue is_commitment = 6;</code>
-     */
-    private $is_commitment = null;
-    /**
-     * Commitment end timestamp.
-     *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp commitment_end_timestamp = 7;</code>
-     */
-    private $commitment_end_timestamp = null;
-    /**
      * Describes the transfer eligibility of a SKU.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.TransferEligibility transfer_eligibility = 9;</code>
@@ -41,6 +29,13 @@ class TransferableSku extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.channel.v1.Sku sku = 11;</code>
      */
     private $sku = null;
+    /**
+     * Optional. The customer to transfer has an entitlement with the populated
+     * legacy SKU.
+     *
+     * Generated from protobuf field <code>.google.cloud.channel.v1.Sku legacy_sku = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $legacy_sku = null;
 
     /**
      * Constructor.
@@ -48,14 +43,13 @@ class TransferableSku extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Protobuf\BoolValue $is_commitment
-     *           Whether a transferable SKU is commitment-based or not.
-     *     @type \Google\Protobuf\Timestamp $commitment_end_timestamp
-     *           Commitment end timestamp.
      *     @type \Google\Cloud\Channel\V1\TransferEligibility $transfer_eligibility
      *           Describes the transfer eligibility of a SKU.
      *     @type \Google\Cloud\Channel\V1\Sku $sku
      *           The SKU pertaining to the provisioning resource as specified in the Offer.
+     *     @type \Google\Cloud\Channel\V1\Sku $legacy_sku
+     *           Optional. The customer to transfer has an entitlement with the populated
+     *           legacy SKU.
      * }
      */
     public function __construct($data = NULL) {
@@ -64,113 +58,14 @@ class TransferableSku extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether a transferable SKU is commitment-based or not.
-     *
-     * Generated from protobuf field <code>.google.protobuf.BoolValue is_commitment = 6;</code>
-     * @return \Google\Protobuf\BoolValue
-     */
-    public function getIsCommitment()
-    {
-        return isset($this->is_commitment) ? $this->is_commitment : null;
-    }
-
-    public function hasIsCommitment()
-    {
-        return isset($this->is_commitment);
-    }
-
-    public function clearIsCommitment()
-    {
-        unset($this->is_commitment);
-    }
-
-    /**
-     * Returns the unboxed value from <code>getIsCommitment()</code>
-
-     * Whether a transferable SKU is commitment-based or not.
-     *
-     * Generated from protobuf field <code>.google.protobuf.BoolValue is_commitment = 6;</code>
-     * @return bool|null
-     */
-    public function getIsCommitmentValue()
-    {
-        return $this->readWrapperValue("is_commitment");
-    }
-
-    /**
-     * Whether a transferable SKU is commitment-based or not.
-     *
-     * Generated from protobuf field <code>.google.protobuf.BoolValue is_commitment = 6;</code>
-     * @param \Google\Protobuf\BoolValue $var
-     * @return $this
-     */
-    public function setIsCommitment($var)
-    {
-        GPBUtil::checkMessage($var, \Google\Protobuf\BoolValue::class);
-        $this->is_commitment = $var;
-
-        return $this;
-    }
-
-    /**
-     * Sets the field by wrapping a primitive type in a Google\Protobuf\BoolValue object.
-
-     * Whether a transferable SKU is commitment-based or not.
-     *
-     * Generated from protobuf field <code>.google.protobuf.BoolValue is_commitment = 6;</code>
-     * @param bool|null $var
-     * @return $this
-     */
-    public function setIsCommitmentValue($var)
-    {
-        $this->writeWrapperValue("is_commitment", $var);
-        return $this;}
-
-    /**
-     * Commitment end timestamp.
-     *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp commitment_end_timestamp = 7;</code>
-     * @return \Google\Protobuf\Timestamp
-     */
-    public function getCommitmentEndTimestamp()
-    {
-        return isset($this->commitment_end_timestamp) ? $this->commitment_end_timestamp : null;
-    }
-
-    public function hasCommitmentEndTimestamp()
-    {
-        return isset($this->commitment_end_timestamp);
-    }
-
-    public function clearCommitmentEndTimestamp()
-    {
-        unset($this->commitment_end_timestamp);
-    }
-
-    /**
-     * Commitment end timestamp.
-     *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp commitment_end_timestamp = 7;</code>
-     * @param \Google\Protobuf\Timestamp $var
-     * @return $this
-     */
-    public function setCommitmentEndTimestamp($var)
-    {
-        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
-        $this->commitment_end_timestamp = $var;
-
-        return $this;
-    }
-
-    /**
      * Describes the transfer eligibility of a SKU.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.TransferEligibility transfer_eligibility = 9;</code>
-     * @return \Google\Cloud\Channel\V1\TransferEligibility
+     * @return \Google\Cloud\Channel\V1\TransferEligibility|null
      */
     public function getTransferEligibility()
     {
-        return isset($this->transfer_eligibility) ? $this->transfer_eligibility : null;
+        return $this->transfer_eligibility;
     }
 
     public function hasTransferEligibility()
@@ -202,11 +97,11 @@ class TransferableSku extends \Google\Protobuf\Internal\Message
      * The SKU pertaining to the provisioning resource as specified in the Offer.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.Sku sku = 11;</code>
-     * @return \Google\Cloud\Channel\V1\Sku
+     * @return \Google\Cloud\Channel\V1\Sku|null
      */
     public function getSku()
     {
-        return isset($this->sku) ? $this->sku : null;
+        return $this->sku;
     }
 
     public function hasSku()
@@ -230,6 +125,44 @@ class TransferableSku extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Channel\V1\Sku::class);
         $this->sku = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The customer to transfer has an entitlement with the populated
+     * legacy SKU.
+     *
+     * Generated from protobuf field <code>.google.cloud.channel.v1.Sku legacy_sku = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Channel\V1\Sku|null
+     */
+    public function getLegacySku()
+    {
+        return $this->legacy_sku;
+    }
+
+    public function hasLegacySku()
+    {
+        return isset($this->legacy_sku);
+    }
+
+    public function clearLegacySku()
+    {
+        unset($this->legacy_sku);
+    }
+
+    /**
+     * Optional. The customer to transfer has an entitlement with the populated
+     * legacy SKU.
+     *
+     * Generated from protobuf field <code>.google.cloud.channel.v1.Sku legacy_sku = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Channel\V1\Sku $var
+     * @return $this
+     */
+    public function setLegacySku($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Channel\V1\Sku::class);
+        $this->legacy_sku = $var;
 
         return $this;
     }

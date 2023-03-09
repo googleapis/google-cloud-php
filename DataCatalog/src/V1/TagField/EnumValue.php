@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Holds an enum value.
+ * An enum value.
  *
  * Generated from protobuf message <code>google.cloud.datacatalog.v1.TagField.EnumValue</code>
  */

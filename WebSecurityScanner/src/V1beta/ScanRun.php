@@ -133,7 +133,7 @@ class ScanRun extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\WebSecurityScanner\V1beta\ScanRunErrorTrace $error_trace
      *           If result_state is an ERROR, this field provides the primary reason for
      *           scan's termination and more details, if such are available.
-     *     @type \Google\Cloud\WebSecurityScanner\V1beta\ScanRunWarningTrace[]|\Google\Protobuf\Internal\RepeatedField $warning_traces
+     *     @type array<\Google\Cloud\WebSecurityScanner\V1beta\ScanRunWarningTrace>|\Google\Protobuf\Internal\RepeatedField $warning_traces
      *           A list of warnings, if such are encountered during this scan run.
      * }
      */
@@ -234,7 +234,7 @@ class ScanRun extends \Google\Protobuf\Internal\Message
      */
     public function getStartTime()
     {
-        return isset($this->start_time) ? $this->start_time : null;
+        return $this->start_time;
     }
 
     public function hasStartTime()
@@ -271,7 +271,7 @@ class ScanRun extends \Google\Protobuf\Internal\Message
      */
     public function getEndTime()
     {
-        return isset($this->end_time) ? $this->end_time : null;
+        return $this->end_time;
     }
 
     public function hasEndTime()
@@ -427,7 +427,7 @@ class ScanRun extends \Google\Protobuf\Internal\Message
      */
     public function getErrorTrace()
     {
-        return isset($this->error_trace) ? $this->error_trace : null;
+        return $this->error_trace;
     }
 
     public function hasErrorTrace()
@@ -471,7 +471,7 @@ class ScanRun extends \Google\Protobuf\Internal\Message
      * A list of warnings, if such are encountered during this scan run.
      *
      * Generated from protobuf field <code>repeated .google.cloud.websecurityscanner.v1beta.ScanRunWarningTrace warning_traces = 11;</code>
-     * @param \Google\Cloud\WebSecurityScanner\V1beta\ScanRunWarningTrace[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\WebSecurityScanner\V1beta\ScanRunWarningTrace>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setWarningTraces($var)

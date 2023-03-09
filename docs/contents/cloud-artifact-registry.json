@@ -1,0 +1,15 @@
+{
+    "title": "ArtifactRegistry",
+    "defaultService": "artifactregistry\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "artifactregistry\/readme"
+        },
+        {
+            "title": "ArtifactRegistryClient (v1beta2)",
+            "type": "artifactregistry\/v1beta2\/artifactregistryclient"
+        }
+    ],
+    "pattern": "artifactregistry\/\\w{1,}"
+}

@@ -23,6 +23,16 @@ return [
                     'resourcesGetMethod' => 'getTransferConfigs',
                 ],
             ],
+            'ListTransferLogs' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getTransferMessages',
+                ],
+            ],
             'ListTransferRuns' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
@@ -33,14 +43,14 @@ return [
                     'resourcesGetMethod' => 'getTransferRuns',
                 ],
             ],
-            'ListTransferLogs' => [
+            'ListLocations' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
                     'requestPageTokenSetMethod' => 'setPageToken',
                     'requestPageSizeGetMethod' => 'getPageSize',
                     'requestPageSizeSetMethod' => 'setPageSize',
                     'responsePageTokenGetMethod' => 'getNextPageToken',
-                    'resourcesGetMethod' => 'getTransferMessages',
+                    'resourcesGetMethod' => 'getLocations',
                 ],
             ],
         ],

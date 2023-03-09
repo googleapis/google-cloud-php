@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The response message for [Environments.ListEnvironments][google.cloud.dialogflow.v2.Environments.ListEnvironments].
+ * The response message for
+ * [Environments.ListEnvironments][google.cloud.dialogflow.v2.Environments.ListEnvironments].
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.ListEnvironmentsResponse</code>
  */
@@ -36,7 +37,7 @@ class ListEnvironmentsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Dialogflow\V2\Environment[]|\Google\Protobuf\Internal\RepeatedField $environments
+     *     @type array<\Google\Cloud\Dialogflow\V2\Environment>|\Google\Protobuf\Internal\RepeatedField $environments
      *           The list of agent environments. There will be a maximum number of items
      *           returned based on the page_size field in the request.
      *     @type string $next_page_token
@@ -66,7 +67,7 @@ class ListEnvironmentsResponse extends \Google\Protobuf\Internal\Message
      * returned based on the page_size field in the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Environment environments = 1;</code>
-     * @param \Google\Cloud\Dialogflow\V2\Environment[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dialogflow\V2\Environment>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setEnvironments($var)

@@ -42,7 +42,7 @@ class StoredInfoTypeVersion extends \Google\Protobuf\Internal\Message
      * the five most recent errors will be displayed, with the most recent error
      * appearing first.
      * For example, some of the data for stored custom dictionaries is put in
-     * the user's Google Cloud Storage bucket, and if this data is modified or
+     * the user's Cloud Storage bucket, and if this data is modified or
      * deleted by the user or another system, the dictionary becomes invalid.
      * If any errors occur, fix the problem indicated by the error message and
      * use the UpdateStoredInfoType API method to create another version of the
@@ -73,13 +73,13 @@ class StoredInfoTypeVersion extends \Google\Protobuf\Internal\Message
      *     @type int $state
      *           Stored info type version state. Read-only, updated by the system
      *           during dictionary creation.
-     *     @type \Google\Cloud\Dlp\V2\Error[]|\Google\Protobuf\Internal\RepeatedField $errors
+     *     @type array<\Google\Cloud\Dlp\V2\Error>|\Google\Protobuf\Internal\RepeatedField $errors
      *           Errors that occurred when creating this storedInfoType version, or
      *           anomalies detected in the storedInfoType data that render it unusable. Only
      *           the five most recent errors will be displayed, with the most recent error
      *           appearing first.
      *           For example, some of the data for stored custom dictionaries is put in
-     *           the user's Google Cloud Storage bucket, and if this data is modified or
+     *           the user's Cloud Storage bucket, and if this data is modified or
      *           deleted by the user or another system, the dictionary becomes invalid.
      *           If any errors occur, fix the problem indicated by the error message and
      *           use the UpdateStoredInfoType API method to create another version of the
@@ -102,7 +102,7 @@ class StoredInfoTypeVersion extends \Google\Protobuf\Internal\Message
      */
     public function getConfig()
     {
-        return isset($this->config) ? $this->config : null;
+        return $this->config;
     }
 
     public function hasConfig()
@@ -139,7 +139,7 @@ class StoredInfoTypeVersion extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -202,7 +202,7 @@ class StoredInfoTypeVersion extends \Google\Protobuf\Internal\Message
      * the five most recent errors will be displayed, with the most recent error
      * appearing first.
      * For example, some of the data for stored custom dictionaries is put in
-     * the user's Google Cloud Storage bucket, and if this data is modified or
+     * the user's Cloud Storage bucket, and if this data is modified or
      * deleted by the user or another system, the dictionary becomes invalid.
      * If any errors occur, fix the problem indicated by the error message and
      * use the UpdateStoredInfoType API method to create another version of the
@@ -223,7 +223,7 @@ class StoredInfoTypeVersion extends \Google\Protobuf\Internal\Message
      * the five most recent errors will be displayed, with the most recent error
      * appearing first.
      * For example, some of the data for stored custom dictionaries is put in
-     * the user's Google Cloud Storage bucket, and if this data is modified or
+     * the user's Cloud Storage bucket, and if this data is modified or
      * deleted by the user or another system, the dictionary becomes invalid.
      * If any errors occur, fix the problem indicated by the error message and
      * use the UpdateStoredInfoType API method to create another version of the
@@ -231,7 +231,7 @@ class StoredInfoTypeVersion extends \Google\Protobuf\Internal\Message
      * not the source of the error.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Error errors = 4;</code>
-     * @param \Google\Cloud\Dlp\V2\Error[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dlp\V2\Error>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setErrors($var)
@@ -250,7 +250,7 @@ class StoredInfoTypeVersion extends \Google\Protobuf\Internal\Message
      */
     public function getStats()
     {
-        return isset($this->stats) ? $this->stats : null;
+        return $this->stats;
     }
 
     public function hasStats()

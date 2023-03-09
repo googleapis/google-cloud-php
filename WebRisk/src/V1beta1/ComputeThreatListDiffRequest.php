@@ -117,7 +117,7 @@ class ComputeThreatListDiffRequest extends \Google\Protobuf\Internal\Message
      */
     public function getConstraints()
     {
-        return isset($this->constraints) ? $this->constraints : null;
+        return $this->constraints;
     }
 
     public function hasConstraints()

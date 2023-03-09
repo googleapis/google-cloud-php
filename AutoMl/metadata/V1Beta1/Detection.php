@@ -16,12 +16,11 @@ class Detection
         }
         \GPBMetadata\Google\Cloud\Automl\V1Beta1\Geometry::initOnce();
         \GPBMetadata\Google\Protobuf\Duration::initOnce();
-        \GPBMetadata\Google\Api\Annotations::initOnce();
         $pool->internalAddGeneratedFile(
             '
-‚
+∫
 
-+google/cloud/automl/v1beta1/detection.protogoogle.cloud.automl.v1beta1google/protobuf/duration.protogoogle/api/annotations.proto"p
++google/cloud/automl/v1beta1/detection.protogoogle.cloud.automl.v1beta1google/protobuf/duration.proto"p
 ImageObjectDetectionAnnotation?
 bounding_box (2).google.cloud.automl.v1beta1.BoundingPoly
 score ("¥
@@ -47,8 +46,8 @@ $VideoObjectTrackingEvaluationMetrics
 evaluated_frame_count ($
 evaluated_bounding_box_count (Z
 bounding_box_metrics_entries (24.google.cloud.automl.v1beta1.BoundingBoxMetricsEntry+
-#bounding_box_mean_average_precision (B•
-com.google.cloud.automl.v1beta1PZAgoogle.golang.org/genproto/googleapis/cloud/automl/v1beta1;automl Google\\Cloud\\AutoMl\\V1beta1ÍGoogle::Cloud::AutoML::V1beta1bproto3'
+#bounding_box_mean_average_precision (Bõ
+com.google.cloud.automl.v1beta1PZ7cloud.google.com/go/automl/apiv1beta1/automlpb;automlpb Google\\Cloud\\AutoMl\\V1beta1ÍGoogle::Cloud::AutoML::V1beta1bproto3'
         , true);
 
         static::$is_initialized = true;

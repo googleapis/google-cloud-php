@@ -18,9 +18,9 @@ class PurgeUserEventsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name of the catalog under which the events are
      * created. The format is
-     * "projects/${projectId}/locations/global/catalogs/${catalogId}"
+     * `projects/${projectId}/locations/global/catalogs/${catalogId}`
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
@@ -65,7 +65,7 @@ class PurgeUserEventsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. The resource name of the catalog under which the events are
      *           created. The format is
-     *           "projects/${projectId}/locations/global/catalogs/${catalogId}"
+     *           `projects/${projectId}/locations/global/catalogs/${catalogId}`
      *     @type string $filter
      *           Required. The filter string to specify the events to be deleted with a
      *           length limit of 5,000 characters. Empty string filter is not allowed. The
@@ -100,9 +100,9 @@ class PurgeUserEventsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name of the catalog under which the events are
      * created. The format is
-     * "projects/${projectId}/locations/global/catalogs/${catalogId}"
+     * `projects/${projectId}/locations/global/catalogs/${catalogId}`
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -113,9 +113,9 @@ class PurgeUserEventsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name of the catalog under which the events are
      * created. The format is
-     * "projects/${projectId}/locations/global/catalogs/${catalogId}"
+     * `projects/${projectId}/locations/global/catalogs/${catalogId}`
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

@@ -182,12 +182,12 @@ class CertificateAuthority extends \Google\Protobuf\Internal\Message
      *           be updated, but this [CertificateAuthority][google.cloud.security.privateca.v1beta1.CertificateAuthority] must continue to validate.
      *     @type int $state
      *           Output only. The [State][google.cloud.security.privateca.v1beta1.CertificateAuthority.State] for this [CertificateAuthority][google.cloud.security.privateca.v1beta1.CertificateAuthority].
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $pem_ca_certificates
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $pem_ca_certificates
      *           Output only. This [CertificateAuthority][google.cloud.security.privateca.v1beta1.CertificateAuthority]'s certificate chain, including the current
      *           [CertificateAuthority][google.cloud.security.privateca.v1beta1.CertificateAuthority]'s certificate. Ordered such that the root issuer
      *           is the final element (consistent with RFC 5246). For a self-signed CA, this
      *           will only list the current [CertificateAuthority][google.cloud.security.privateca.v1beta1.CertificateAuthority]'s certificate.
-     *     @type \Google\Cloud\Security\PrivateCA\V1beta1\CertificateDescription[]|\Google\Protobuf\Internal\RepeatedField $ca_certificate_descriptions
+     *     @type array<\Google\Cloud\Security\PrivateCA\V1beta1\CertificateDescription>|\Google\Protobuf\Internal\RepeatedField $ca_certificate_descriptions
      *           Output only. A structured description of this [CertificateAuthority][google.cloud.security.privateca.v1beta1.CertificateAuthority]'s CA certificate
      *           and its issuers. Ordered as self-to-root.
      *     @type string $gcs_bucket
@@ -300,11 +300,11 @@ class CertificateAuthority extends \Google\Protobuf\Internal\Message
      * Required. Immutable. The config used to create a self-signed X.509 certificate or CSR.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1beta1.CertificateConfig config = 4 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
-     * @return \Google\Cloud\Security\PrivateCA\V1beta1\CertificateConfig
+     * @return \Google\Cloud\Security\PrivateCA\V1beta1\CertificateConfig|null
      */
     public function getConfig()
     {
-        return isset($this->config) ? $this->config : null;
+        return $this->config;
     }
 
     public function hasConfig()
@@ -338,11 +338,11 @@ class CertificateAuthority extends \Google\Protobuf\Internal\Message
      * certificate.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration lifetime = 5 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Duration
+     * @return \Google\Protobuf\Duration|null
      */
     public function getLifetime()
     {
-        return isset($this->lifetime) ? $this->lifetime : null;
+        return $this->lifetime;
     }
 
     public function hasLifetime()
@@ -379,11 +379,11 @@ class CertificateAuthority extends \Google\Protobuf\Internal\Message
      * is used to sign a CSR.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1beta1.CertificateAuthority.KeyVersionSpec key_spec = 6 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
-     * @return \Google\Cloud\Security\PrivateCA\V1beta1\CertificateAuthority\KeyVersionSpec
+     * @return \Google\Cloud\Security\PrivateCA\V1beta1\CertificateAuthority\KeyVersionSpec|null
      */
     public function getKeySpec()
     {
-        return isset($this->key_spec) ? $this->key_spec : null;
+        return $this->key_spec;
     }
 
     public function hasKeySpec()
@@ -419,11 +419,11 @@ class CertificateAuthority extends \Google\Protobuf\Internal\Message
      * [Certificates][google.cloud.security.privateca.v1beta1.Certificate] from this [CertificateAuthority][google.cloud.security.privateca.v1beta1.CertificateAuthority].
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1beta1.CertificateAuthority.CertificateAuthorityPolicy certificate_policy = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Cloud\Security\PrivateCA\V1beta1\CertificateAuthority\CertificateAuthorityPolicy
+     * @return \Google\Cloud\Security\PrivateCA\V1beta1\CertificateAuthority\CertificateAuthorityPolicy|null
      */
     public function getCertificatePolicy()
     {
-        return isset($this->certificate_policy) ? $this->certificate_policy : null;
+        return $this->certificate_policy;
     }
 
     public function hasCertificatePolicy()
@@ -457,11 +457,11 @@ class CertificateAuthority extends \Google\Protobuf\Internal\Message
      * from this [CertificateAuthority][google.cloud.security.privateca.v1beta1.CertificateAuthority].
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1beta1.CertificateAuthority.IssuingOptions issuing_options = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Cloud\Security\PrivateCA\V1beta1\CertificateAuthority\IssuingOptions
+     * @return \Google\Cloud\Security\PrivateCA\V1beta1\CertificateAuthority\IssuingOptions|null
      */
     public function getIssuingOptions()
     {
-        return isset($this->issuing_options) ? $this->issuing_options : null;
+        return $this->issuing_options;
     }
 
     public function hasIssuingOptions()
@@ -496,11 +496,11 @@ class CertificateAuthority extends \Google\Protobuf\Internal\Message
      * be updated, but this [CertificateAuthority][google.cloud.security.privateca.v1beta1.CertificateAuthority] must continue to validate.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1beta1.SubordinateConfig subordinate_config = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Cloud\Security\PrivateCA\V1beta1\SubordinateConfig
+     * @return \Google\Cloud\Security\PrivateCA\V1beta1\SubordinateConfig|null
      */
     public function getSubordinateConfig()
     {
-        return isset($this->subordinate_config) ? $this->subordinate_config : null;
+        return $this->subordinate_config;
     }
 
     public function hasSubordinateConfig()
@@ -577,7 +577,7 @@ class CertificateAuthority extends \Google\Protobuf\Internal\Message
      * will only list the current [CertificateAuthority][google.cloud.security.privateca.v1beta1.CertificateAuthority]'s certificate.
      *
      * Generated from protobuf field <code>repeated string pem_ca_certificates = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPemCaCertificates($var)
@@ -605,7 +605,7 @@ class CertificateAuthority extends \Google\Protobuf\Internal\Message
      * and its issuers. Ordered as self-to-root.
      *
      * Generated from protobuf field <code>repeated .google.cloud.security.privateca.v1beta1.CertificateDescription ca_certificate_descriptions = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param \Google\Cloud\Security\PrivateCA\V1beta1\CertificateDescription[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Security\PrivateCA\V1beta1\CertificateDescription>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setCaCertificateDescriptions($var)
@@ -657,11 +657,11 @@ class CertificateAuthority extends \Google\Protobuf\Internal\Message
      * and CRLs.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1beta1.CertificateAuthority.AccessUrls access_urls = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Cloud\Security\PrivateCA\V1beta1\CertificateAuthority\AccessUrls
+     * @return \Google\Cloud\Security\PrivateCA\V1beta1\CertificateAuthority\AccessUrls|null
      */
     public function getAccessUrls()
     {
-        return isset($this->access_urls) ? $this->access_urls : null;
+        return $this->access_urls;
     }
 
     public function hasAccessUrls()
@@ -694,11 +694,11 @@ class CertificateAuthority extends \Google\Protobuf\Internal\Message
      * Output only. The time at which this [CertificateAuthority][google.cloud.security.privateca.v1beta1.CertificateAuthority] was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -730,11 +730,11 @@ class CertificateAuthority extends \Google\Protobuf\Internal\Message
      * Output only. The time at which this [CertificateAuthority][google.cloud.security.privateca.v1beta1.CertificateAuthority] was updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getUpdateTime()
     {
-        return isset($this->update_time) ? $this->update_time : null;
+        return $this->update_time;
     }
 
     public function hasUpdateTime()
@@ -767,11 +767,11 @@ class CertificateAuthority extends \Google\Protobuf\Internal\Message
      * scheduled for deletion.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp delete_time = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getDeleteTime()
     {
-        return isset($this->delete_time) ? $this->delete_time : null;
+        return $this->delete_time;
     }
 
     public function hasDeleteTime()

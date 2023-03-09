@@ -1,0 +1,15 @@
+{
+    "title": "Deploy",
+    "defaultService": "deploy\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "deploy\/readme"
+        },
+        {
+            "title": "CloudDeployClient (v1)",
+            "type": "deploy\/v1\/clouddeployclient"
+        }
+    ],
+    "pattern": "deploy\/\\w{1,}"
+}

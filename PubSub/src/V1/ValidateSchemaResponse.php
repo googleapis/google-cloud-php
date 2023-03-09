@@ -10,6 +10,7 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Response for the `ValidateSchema` method.
+ * Empty for now.
  *
  * Generated from protobuf message <code>google.pubsub.v1.ValidateSchemaResponse</code>
  */

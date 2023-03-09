@@ -30,8 +30,7 @@ class CreateBackupMetadata extends \Google\Protobuf\Internal\Message
     private $database = '';
     /**
      * The progress of the
-     * [CreateBackup][google.spanner.admin.database.v1.DatabaseAdmin.CreateBackup]
-     * operation.
+     * [CreateBackup][google.spanner.admin.database.v1.DatabaseAdmin.CreateBackup] operation.
      *
      * Generated from protobuf field <code>.google.spanner.admin.database.v1.OperationProgress progress = 3;</code>
      */
@@ -66,8 +65,7 @@ class CreateBackupMetadata extends \Google\Protobuf\Internal\Message
      *           The name of the database the backup is created from.
      *     @type \Google\Cloud\Spanner\Admin\Database\V1\OperationProgress $progress
      *           The progress of the
-     *           [CreateBackup][google.spanner.admin.database.v1.DatabaseAdmin.CreateBackup]
-     *           operation.
+     *           [CreateBackup][google.spanner.admin.database.v1.DatabaseAdmin.CreateBackup] operation.
      *     @type \Google\Protobuf\Timestamp $cancel_time
      *           The time at which cancellation of this operation was received.
      *           [Operations.CancelOperation][google.longrunning.Operations.CancelOperation]
@@ -142,15 +140,14 @@ class CreateBackupMetadata extends \Google\Protobuf\Internal\Message
 
     /**
      * The progress of the
-     * [CreateBackup][google.spanner.admin.database.v1.DatabaseAdmin.CreateBackup]
-     * operation.
+     * [CreateBackup][google.spanner.admin.database.v1.DatabaseAdmin.CreateBackup] operation.
      *
      * Generated from protobuf field <code>.google.spanner.admin.database.v1.OperationProgress progress = 3;</code>
      * @return \Google\Cloud\Spanner\Admin\Database\V1\OperationProgress|null
      */
     public function getProgress()
     {
-        return isset($this->progress) ? $this->progress : null;
+        return $this->progress;
     }
 
     public function hasProgress()
@@ -165,8 +162,7 @@ class CreateBackupMetadata extends \Google\Protobuf\Internal\Message
 
     /**
      * The progress of the
-     * [CreateBackup][google.spanner.admin.database.v1.DatabaseAdmin.CreateBackup]
-     * operation.
+     * [CreateBackup][google.spanner.admin.database.v1.DatabaseAdmin.CreateBackup] operation.
      *
      * Generated from protobuf field <code>.google.spanner.admin.database.v1.OperationProgress progress = 3;</code>
      * @param \Google\Cloud\Spanner\Admin\Database\V1\OperationProgress $var
@@ -199,7 +195,7 @@ class CreateBackupMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getCancelTime()
     {
-        return isset($this->cancel_time) ? $this->cancel_time : null;
+        return $this->cancel_time;
     }
 
     public function hasCancelTime()

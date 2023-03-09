@@ -1,0 +1,4 @@
+deep-copy-regex:
+    - source: /google/cloud/servicedirectory/(v1|v1beta1)/.*-php/(.*)
+      dest: /owl-bot-staging/ServiceDirectory/$1/$2
+api-name: ServiceDirectory

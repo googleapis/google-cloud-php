@@ -1,0 +1,15 @@
+{
+    "title": "ContactCenterInsights",
+    "defaultService": "contactcenterinsights\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "contactcenterinsights\/readme"
+        },
+        {
+            "title": "ContactCenterInsightsClient (v1)",
+            "type": "contactcenterinsights\/v1\/contactcenterinsightsclient"
+        }
+    ],
+    "pattern": "contactcenterinsights\/\\w{1,}"
+}

@@ -15,37 +15,14 @@ return [
                     ],
                 ],
             ],
-            'GetDataset' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/datasets/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'ListDatasets' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/datasets',
+            'CreateModel' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/models',
+                'body' => 'model',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
                             'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'UpdateDataset' => [
-                'method' => 'patch',
-                'uriTemplate' => '/v1/{dataset.name=projects/*/locations/*/datasets/*}',
-                'body' => 'dataset',
-                'placeholders' => [
-                    'dataset.name' => [
-                        'getters' => [
-                            'getDataset',
-                            'getName',
                         ],
                     ],
                 ],
@@ -61,9 +38,20 @@ return [
                     ],
                 ],
             ],
-            'ImportData' => [
+            'DeleteModel' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/models/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeployModel' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/datasets/*}:importData',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/models/*}:deploy',
                 'body' => '*',
                 'placeholders' => [
                     'name' => [
@@ -85,6 +73,18 @@ return [
                     ],
                 ],
             ],
+            'ExportModel' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/models/*}:export',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetAnnotationSpec' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/datasets/*/annotationSpecs/*}',
@@ -96,14 +96,13 @@ return [
                     ],
                 ],
             ],
-            'CreateModel' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/models',
-                'body' => 'model',
+            'GetDataset' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/datasets/*}',
                 'placeholders' => [
-                    'parent' => [
+                    'name' => [
                         'getters' => [
-                            'getParent',
+                            'getName',
                         ],
                     ],
                 ],
@@ -111,77 +110,6 @@ return [
             'GetModel' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/models/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'ListModels' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/models',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'DeleteModel' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/models/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'UpdateModel' => [
-                'method' => 'patch',
-                'uriTemplate' => '/v1/{model.name=projects/*/locations/*/models/*}',
-                'body' => 'model',
-                'placeholders' => [
-                    'model.name' => [
-                        'getters' => [
-                            'getModel',
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'DeployModel' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/models/*}:deploy',
-                'body' => '*',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'UndeployModel' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/models/*}:undeploy',
-                'body' => '*',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'ExportModel' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/models/*}:export',
-                'body' => '*',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -201,6 +129,29 @@ return [
                     ],
                 ],
             ],
+            'ImportData' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/datasets/*}:importData',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListDatasets' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/datasets',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListModelEvaluations' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*/models/*}/modelEvaluations',
@@ -211,18 +162,102 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'filter',
+                ],
+            ],
+            'ListModels' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/models',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'UndeployModel' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/models/*}:undeploy',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateDataset' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{dataset.name=projects/*/locations/*/datasets/*}',
+                'body' => 'dataset',
+                'placeholders' => [
+                    'dataset.name' => [
+                        'getters' => [
+                            'getDataset',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
+                ],
+            ],
+            'UpdateModel' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{model.name=projects/*/locations/*/models/*}',
+                'body' => 'model',
+                'placeholders' => [
+                    'model.name' => [
+                        'getters' => [
+                            'getModel',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
+                ],
+            ],
+        ],
+        'google.cloud.location.Locations' => [
+            'GetLocation' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListLocations' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*}/locations',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
             ],
         ],
         'google.iam.v1.IAMPolicy' => [
-            'SetIamPolicy' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/{resource=projects/*/locations/*/datasets/*}:setIamPolicy',
-                'body' => '*',
+            'GetIamPolicy' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{resource=projects/*/locations/*}:getIamPolicy',
                 'additionalBindings' => [
                     [
-                        'method' => 'post',
-                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/models/*}:setIamPolicy',
-                        'body' => '*',
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/datasets/*}:getIamPolicy',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/models/*}:getIamPolicy',
                     ],
                 ],
                 'placeholders' => [
@@ -233,13 +268,20 @@ return [
                     ],
                 ],
             ],
-            'GetIamPolicy' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{resource=projects/*/locations/*/datasets/*}:getIamPolicy',
+            'SetIamPolicy' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{resource=projects/*/locations/*}:setIamPolicy',
+                'body' => '*',
                 'additionalBindings' => [
                     [
-                        'method' => 'get',
-                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/models/*}:getIamPolicy',
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/datasets/*}:setIamPolicy',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/models/*}:setIamPolicy',
+                        'body' => '*',
                     ],
                 ],
                 'placeholders' => [
@@ -264,20 +306,10 @@ return [
             ],
         ],
         'google.longrunning.Operations' => [
-            'ListOperations' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*}/operations',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'GetOperation' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/operations/*}',
+            'CancelOperation' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/operations/*}:cancel',
+                'body' => '*',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -297,9 +329,31 @@ return [
                     ],
                 ],
             ],
-            'CancelOperation' => [
+            'GetOperation' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/operations/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListOperations' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*}/operations',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'WaitOperation' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/operations/*}:cancel',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/operations/*}:wait',
                 'body' => '*',
                 'placeholders' => [
                     'name' => [
@@ -311,4 +365,5 @@ return [
             ],
         ],
     ],
+    'numericEnums' => true,
 ];

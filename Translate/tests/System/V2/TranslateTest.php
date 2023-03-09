@@ -17,14 +17,22 @@
 
 namespace Google\Cloud\Translate\Tests\System\V2;
 
+use Yoast\PHPUnitPolyfills\Polyfills\AssertIsType;
+use Yoast\PHPUnitPolyfills\Polyfills\AssertStringContains;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+
 /**
  * @group translate
  */
 class TranslateTest extends TranslateTestCase
 {
+    use AssertIsType;
+    use AssertStringContains;
+    use ExpectException;
+
     const INPUT_LANGUAGE = 'es';
     const INPUT_STRING = '¿hola, como estas?';
-    const OUTPUT_STRING = 'Hello how are you doing?';
+    const OUTPUT_STRING = 'Hello how are you?';
 
     public function testTranslate()
     {
@@ -56,30 +64,27 @@ class TranslateTest extends TranslateTestCase
         $this->assertEquals(self::INPUT_LANGUAGE, $res['source']);
         $this->assertEquals(self::INPUT_STRING, $res['input']);
         $this->assertEquals(self::OUTPUT_STRING, $res['text']);
-        $this->assertEquals('base', $res['model']);
+        $this->assertEquals('nmt', $res['model']);
     }
 
-    /**
-     * @expectedException Google\Cloud\Core\Exception\BadRequestException
-     */
     public function testTranslateInvalidModel()
     {
+        $this->expectException('Google\Cloud\Core\Exception\BadRequestException');
+
         self::$client->translate(self::INPUT_STRING, ['model' => 'thisDoesntActuallyExistSoGimmeErrorPlease']);
     }
 
-    /**
-     * @expectedException Google\Cloud\Core\Exception\BadRequestException
-     */
     public function testTranslateInvalidTarget()
     {
+        $this->expectException('Google\Cloud\Core\Exception\BadRequestException');
+
         self::$client->translate(self::INPUT_STRING, ['target' => 'thisDoesntActuallyExistSoGimmeErrorPlease']);
     }
 
-    /**
-     * @expectedException Google\Cloud\Core\Exception\BadRequestException
-     */
     public function testTranslateInvalidSource()
     {
+        $this->expectException('Google\Cloud\Core\Exception\BadRequestException');
+
         self::$client->translate(self::INPUT_STRING, ['source' => 'thisDoesntActuallyExistSoGimmeErrorPlease']);
     }
 
@@ -98,7 +103,7 @@ class TranslateTest extends TranslateTestCase
     {
         $client = self::$client;
 
-        $res = $client->translateBatch([self::INPUT_STRING], ['model' => 'nmt']);
+        $res = $client->translateBatch([self::INPUT_STRING], ['model' => 'base']);
         $this->assertEquals(self::INPUT_LANGUAGE, $res[0]['source']);
         $this->assertEquals(self::INPUT_STRING, $res[0]['input']);
         $this->assertEquals(self::OUTPUT_STRING, $res[0]['text']);
@@ -113,30 +118,27 @@ class TranslateTest extends TranslateTestCase
         $this->assertEquals(self::INPUT_LANGUAGE, $res[0]['source']);
         $this->assertEquals(self::INPUT_STRING, $res[0]['input']);
         $this->assertEquals(self::OUTPUT_STRING, $res[0]['text']);
-        $this->assertEquals('base', $res[0]['model']);
+        $this->assertEquals('nmt', $res[0]['model']);
     }
 
-    /**
-     * @expectedException Google\Cloud\Core\Exception\BadRequestException
-     */
     public function testTranslateBatchInvalidModel()
     {
+        $this->expectException('Google\Cloud\Core\Exception\BadRequestException');
+
         self::$client->translateBatch([self::INPUT_STRING], ['model' => 'thisDoesntActuallyExistSoGimmeErrorPlease']);
     }
 
-    /**
-     * @expectedException Google\Cloud\Core\Exception\BadRequestException
-     */
     public function testTranslateBatchInvalidTarget()
     {
+        $this->expectException('Google\Cloud\Core\Exception\BadRequestException');
+
         self::$client->translateBatch([self::INPUT_STRING], ['target' => 'thisDoesntActuallyExistSoGimmeErrorPlease']);
     }
 
-    /**
-     * @expectedException Google\Cloud\Core\Exception\BadRequestException
-     */
     public function testTranslateBatchInvalidSource()
     {
+        $this->expectException('Google\Cloud\Core\Exception\BadRequestException');
+
         self::$client->translateBatch([self::INPUT_STRING], ['source' => 'thisDoesntActuallyExistSoGimmeErrorPlease']);
     }
 
@@ -162,7 +164,7 @@ class TranslateTest extends TranslateTestCase
 
         $res = $client->detectLanguage('');
         $this->assertEquals('und', $res['languageCode']);
-        $this->assertEquals(1, $res['confidence']);
+        $this->assertEquals(0, $res['confidence']);
     }
 
     public function testDetectLanguageBatch()
@@ -187,7 +189,7 @@ class TranslateTest extends TranslateTestCase
 
         $res = $client->detectLanguageBatch(['']);
         $this->assertEquals('und', $res[0]['languageCode']);
-        $this->assertEquals(1, $res[0]['confidence']);
+        $this->assertEquals(0, $res[0]['confidence']);
     }
 
     public function testDetectLanguages()
@@ -195,7 +197,7 @@ class TranslateTest extends TranslateTestCase
         $client = self::$client;
 
         $res = $client->languages();
-        $this->assertInternalType('array', $res);
+        $this->assertIsArray($res);
         $this->assertContains('en', $res);
         $this->assertContains('es', $res);
     }
@@ -205,7 +207,7 @@ class TranslateTest extends TranslateTestCase
         $client = self::$client;
 
         $res = $client->localizedLanguages();
-        $this->assertInternalType('array', $res);
+        $this->assertIsArray($res);
         $this->assertContains(['code' => 'es', 'name' => 'Spanish'], $res);
         $this->assertContains(['code' => 'en', 'name' => 'English'], $res);
     }

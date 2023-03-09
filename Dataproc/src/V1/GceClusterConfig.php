@@ -17,15 +17,13 @@ use Google\Protobuf\Internal\GPBUtil;
 class GceClusterConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. The zone where the Compute Engine cluster will be located.
-     * On a create request, it is required in the "global" region. If omitted
-     * in a non-global Dataproc region, the service will pick a zone in the
-     * corresponding Compute Engine region. On a get request, zone will
-     * always be present.
+     * Optional. The Compute Engine zone where the Dataproc cluster will be
+     * located. If omitted, the service will pick a zone in the cluster's Compute
+     * Engine region. On a get request, zone will always be present.
      * A full URL, partial URI, or short name are valid. Examples:
      * * `https://www.googleapis.com/compute/v1/projects/[project_id]/zones/[zone]`
      * * `projects/[project_id]/zones/[zone]`
-     * * `us-central1-f`
+     * * `[zone]`
      *
      * Generated from protobuf field <code>string zone_uri = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -38,8 +36,8 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      * [Using Subnetworks](https://cloud.google.com/compute/docs/subnetworks) for
      * more information).
      * A full URL, partial URI, or short name are valid. Examples:
-     * * `https://www.googleapis.com/compute/v1/projects/[project_id]/regions/global/default`
-     * * `projects/[project_id]/regions/global/default`
+     * * `https://www.googleapis.com/compute/v1/projects/[project_id]/global/networks/default`
+     * * `projects/[project_id]/global/networks/default`
      * * `default`
      *
      * Generated from protobuf field <code>string network_uri = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -49,8 +47,8 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      * Optional. The Compute Engine subnetwork to be used for machine
      * communications. Cannot be specified with network_uri.
      * A full URL, partial URI, or short name are valid. Examples:
-     * * `https://www.googleapis.com/compute/v1/projects/[project_id]/regions/us-east1/subnetworks/sub0`
-     * * `projects/[project_id]/regions/us-east1/subnetworks/sub0`
+     * * `https://www.googleapis.com/compute/v1/projects/[project_id]/regions/[region]/subnetworks/sub0`
+     * * `projects/[project_id]/regions/[region]/subnetworks/sub0`
      * * `sub0`
      *
      * Generated from protobuf field <code>string subnetwork_uri = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -64,9 +62,15 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      * subnetwork enabled networks, and all off-cluster dependencies must be
      * configured to be accessible without external IP addresses.
      *
-     * Generated from protobuf field <code>bool internal_ip_only = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional bool internal_ip_only = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $internal_ip_only = false;
+    private $internal_ip_only = null;
+    /**
+     * Optional. The type of IPv6 access for a cluster.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.GceClusterConfig.PrivateIpv6GoogleAccess private_ipv6_google_access = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $private_ipv6_google_access = 0;
     /**
      * Optional. The [Dataproc service
      * account](https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/service-accounts#service_accounts_in_dataproc)
@@ -119,6 +123,27 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.ReservationAffinity reservation_affinity = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $reservation_affinity = null;
+    /**
+     * Optional. Node Group Affinity for sole-tenant clusters.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.NodeGroupAffinity node_group_affinity = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $node_group_affinity = null;
+    /**
+     * Optional. Shielded Instance Config for clusters using [Compute Engine
+     * Shielded
+     * VMs](https://cloud.google.com/security/shielded-cloud/shielded-vm).
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.ShieldedInstanceConfig shielded_instance_config = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $shielded_instance_config = null;
+    /**
+     * Optional. Confidential Instance Config for clusters using [Confidential
+     * VMs](https://cloud.google.com/compute/confidential-vm/docs).
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.ConfidentialInstanceConfig confidential_instance_config = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $confidential_instance_config = null;
 
     /**
      * Constructor.
@@ -127,15 +152,13 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $zone_uri
-     *           Optional. The zone where the Compute Engine cluster will be located.
-     *           On a create request, it is required in the "global" region. If omitted
-     *           in a non-global Dataproc region, the service will pick a zone in the
-     *           corresponding Compute Engine region. On a get request, zone will
-     *           always be present.
+     *           Optional. The Compute Engine zone where the Dataproc cluster will be
+     *           located. If omitted, the service will pick a zone in the cluster's Compute
+     *           Engine region. On a get request, zone will always be present.
      *           A full URL, partial URI, or short name are valid. Examples:
      *           * `https://www.googleapis.com/compute/v1/projects/[project_id]/zones/[zone]`
      *           * `projects/[project_id]/zones/[zone]`
-     *           * `us-central1-f`
+     *           * `[zone]`
      *     @type string $network_uri
      *           Optional. The Compute Engine network to be used for machine
      *           communications. Cannot be specified with subnetwork_uri. If neither
@@ -144,15 +167,15 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      *           [Using Subnetworks](https://cloud.google.com/compute/docs/subnetworks) for
      *           more information).
      *           A full URL, partial URI, or short name are valid. Examples:
-     *           * `https://www.googleapis.com/compute/v1/projects/[project_id]/regions/global/default`
-     *           * `projects/[project_id]/regions/global/default`
+     *           * `https://www.googleapis.com/compute/v1/projects/[project_id]/global/networks/default`
+     *           * `projects/[project_id]/global/networks/default`
      *           * `default`
      *     @type string $subnetwork_uri
      *           Optional. The Compute Engine subnetwork to be used for machine
      *           communications. Cannot be specified with network_uri.
      *           A full URL, partial URI, or short name are valid. Examples:
-     *           * `https://www.googleapis.com/compute/v1/projects/[project_id]/regions/us-east1/subnetworks/sub0`
-     *           * `projects/[project_id]/regions/us-east1/subnetworks/sub0`
+     *           * `https://www.googleapis.com/compute/v1/projects/[project_id]/regions/[region]/subnetworks/sub0`
+     *           * `projects/[project_id]/regions/[region]/subnetworks/sub0`
      *           * `sub0`
      *     @type bool $internal_ip_only
      *           Optional. If true, all instances in the cluster will only have internal IP
@@ -161,6 +184,8 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      *           instance. This `internal_ip_only` restriction can only be enabled for
      *           subnetwork enabled networks, and all off-cluster dependencies must be
      *           configured to be accessible without external IP addresses.
+     *     @type int $private_ipv6_google_access
+     *           Optional. The type of IPv6 access for a cluster.
      *     @type string $service_account
      *           Optional. The [Dataproc service
      *           account](https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/service-accounts#service_accounts_in_dataproc)
@@ -172,7 +197,7 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      *           [Compute Engine default service
      *           account](https://cloud.google.com/compute/docs/access/service-accounts#default_service_account)
      *           is used.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $service_account_scopes
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $service_account_scopes
      *           Optional. The URIs of service account scopes to be included in
      *           Compute Engine instances. The following base set of scopes is always
      *           included:
@@ -184,7 +209,7 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      *           * https://www.googleapis.com/auth/bigtable.admin.table
      *           * https://www.googleapis.com/auth/bigtable.data
      *           * https://www.googleapis.com/auth/devstorage.full_control
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $tags
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $tags
      *           The Compute Engine tags to add to all instances (see [Tagging
      *           instances](https://cloud.google.com/compute/docs/label-or-tag-resources#tags)).
      *     @type array|\Google\Protobuf\Internal\MapField $metadata
@@ -193,6 +218,15 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      *           metadata](https://cloud.google.com/compute/docs/storing-retrieving-metadata#project_and_instance_metadata)).
      *     @type \Google\Cloud\Dataproc\V1\ReservationAffinity $reservation_affinity
      *           Optional. Reservation Affinity for consuming Zonal reservation.
+     *     @type \Google\Cloud\Dataproc\V1\NodeGroupAffinity $node_group_affinity
+     *           Optional. Node Group Affinity for sole-tenant clusters.
+     *     @type \Google\Cloud\Dataproc\V1\ShieldedInstanceConfig $shielded_instance_config
+     *           Optional. Shielded Instance Config for clusters using [Compute Engine
+     *           Shielded
+     *           VMs](https://cloud.google.com/security/shielded-cloud/shielded-vm).
+     *     @type \Google\Cloud\Dataproc\V1\ConfidentialInstanceConfig $confidential_instance_config
+     *           Optional. Confidential Instance Config for clusters using [Confidential
+     *           VMs](https://cloud.google.com/compute/confidential-vm/docs).
      * }
      */
     public function __construct($data = NULL) {
@@ -201,15 +235,13 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The zone where the Compute Engine cluster will be located.
-     * On a create request, it is required in the "global" region. If omitted
-     * in a non-global Dataproc region, the service will pick a zone in the
-     * corresponding Compute Engine region. On a get request, zone will
-     * always be present.
+     * Optional. The Compute Engine zone where the Dataproc cluster will be
+     * located. If omitted, the service will pick a zone in the cluster's Compute
+     * Engine region. On a get request, zone will always be present.
      * A full URL, partial URI, or short name are valid. Examples:
      * * `https://www.googleapis.com/compute/v1/projects/[project_id]/zones/[zone]`
      * * `projects/[project_id]/zones/[zone]`
-     * * `us-central1-f`
+     * * `[zone]`
      *
      * Generated from protobuf field <code>string zone_uri = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -220,15 +252,13 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The zone where the Compute Engine cluster will be located.
-     * On a create request, it is required in the "global" region. If omitted
-     * in a non-global Dataproc region, the service will pick a zone in the
-     * corresponding Compute Engine region. On a get request, zone will
-     * always be present.
+     * Optional. The Compute Engine zone where the Dataproc cluster will be
+     * located. If omitted, the service will pick a zone in the cluster's Compute
+     * Engine region. On a get request, zone will always be present.
      * A full URL, partial URI, or short name are valid. Examples:
      * * `https://www.googleapis.com/compute/v1/projects/[project_id]/zones/[zone]`
      * * `projects/[project_id]/zones/[zone]`
-     * * `us-central1-f`
+     * * `[zone]`
      *
      * Generated from protobuf field <code>string zone_uri = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -250,8 +280,8 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      * [Using Subnetworks](https://cloud.google.com/compute/docs/subnetworks) for
      * more information).
      * A full URL, partial URI, or short name are valid. Examples:
-     * * `https://www.googleapis.com/compute/v1/projects/[project_id]/regions/global/default`
-     * * `projects/[project_id]/regions/global/default`
+     * * `https://www.googleapis.com/compute/v1/projects/[project_id]/global/networks/default`
+     * * `projects/[project_id]/global/networks/default`
      * * `default`
      *
      * Generated from protobuf field <code>string network_uri = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -270,8 +300,8 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      * [Using Subnetworks](https://cloud.google.com/compute/docs/subnetworks) for
      * more information).
      * A full URL, partial URI, or short name are valid. Examples:
-     * * `https://www.googleapis.com/compute/v1/projects/[project_id]/regions/global/default`
-     * * `projects/[project_id]/regions/global/default`
+     * * `https://www.googleapis.com/compute/v1/projects/[project_id]/global/networks/default`
+     * * `projects/[project_id]/global/networks/default`
      * * `default`
      *
      * Generated from protobuf field <code>string network_uri = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -290,8 +320,8 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      * Optional. The Compute Engine subnetwork to be used for machine
      * communications. Cannot be specified with network_uri.
      * A full URL, partial URI, or short name are valid. Examples:
-     * * `https://www.googleapis.com/compute/v1/projects/[project_id]/regions/us-east1/subnetworks/sub0`
-     * * `projects/[project_id]/regions/us-east1/subnetworks/sub0`
+     * * `https://www.googleapis.com/compute/v1/projects/[project_id]/regions/[region]/subnetworks/sub0`
+     * * `projects/[project_id]/regions/[region]/subnetworks/sub0`
      * * `sub0`
      *
      * Generated from protobuf field <code>string subnetwork_uri = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -306,8 +336,8 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      * Optional. The Compute Engine subnetwork to be used for machine
      * communications. Cannot be specified with network_uri.
      * A full URL, partial URI, or short name are valid. Examples:
-     * * `https://www.googleapis.com/compute/v1/projects/[project_id]/regions/us-east1/subnetworks/sub0`
-     * * `projects/[project_id]/regions/us-east1/subnetworks/sub0`
+     * * `https://www.googleapis.com/compute/v1/projects/[project_id]/regions/[region]/subnetworks/sub0`
+     * * `projects/[project_id]/regions/[region]/subnetworks/sub0`
      * * `sub0`
      *
      * Generated from protobuf field <code>string subnetwork_uri = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -330,12 +360,22 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      * subnetwork enabled networks, and all off-cluster dependencies must be
      * configured to be accessible without external IP addresses.
      *
-     * Generated from protobuf field <code>bool internal_ip_only = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional bool internal_ip_only = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getInternalIpOnly()
     {
-        return $this->internal_ip_only;
+        return isset($this->internal_ip_only) ? $this->internal_ip_only : false;
+    }
+
+    public function hasInternalIpOnly()
+    {
+        return isset($this->internal_ip_only);
+    }
+
+    public function clearInternalIpOnly()
+    {
+        unset($this->internal_ip_only);
     }
 
     /**
@@ -346,7 +386,7 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      * subnetwork enabled networks, and all off-cluster dependencies must be
      * configured to be accessible without external IP addresses.
      *
-     * Generated from protobuf field <code>bool internal_ip_only = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional bool internal_ip_only = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */
@@ -354,6 +394,32 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->internal_ip_only = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The type of IPv6 access for a cluster.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.GceClusterConfig.PrivateIpv6GoogleAccess private_ipv6_google_access = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getPrivateIpv6GoogleAccess()
+    {
+        return $this->private_ipv6_google_access;
+    }
+
+    /**
+     * Optional. The type of IPv6 access for a cluster.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.GceClusterConfig.PrivateIpv6GoogleAccess private_ipv6_google_access = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setPrivateIpv6GoogleAccess($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Dataproc\V1\GceClusterConfig\PrivateIpv6GoogleAccess::class);
+        $this->private_ipv6_google_access = $var;
 
         return $this;
     }
@@ -437,7 +503,7 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      * * https://www.googleapis.com/auth/devstorage.full_control
      *
      * Generated from protobuf field <code>repeated string service_account_scopes = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setServiceAccountScopes($var)
@@ -465,7 +531,7 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      * instances](https://cloud.google.com/compute/docs/label-or-tag-resources#tags)).
      *
      * Generated from protobuf field <code>repeated string tags = 4;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTags($var)
@@ -514,7 +580,7 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      */
     public function getReservationAffinity()
     {
-        return isset($this->reservation_affinity) ? $this->reservation_affinity : null;
+        return $this->reservation_affinity;
     }
 
     public function hasReservationAffinity()
@@ -538,6 +604,120 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dataproc\V1\ReservationAffinity::class);
         $this->reservation_affinity = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Node Group Affinity for sole-tenant clusters.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.NodeGroupAffinity node_group_affinity = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Dataproc\V1\NodeGroupAffinity|null
+     */
+    public function getNodeGroupAffinity()
+    {
+        return $this->node_group_affinity;
+    }
+
+    public function hasNodeGroupAffinity()
+    {
+        return isset($this->node_group_affinity);
+    }
+
+    public function clearNodeGroupAffinity()
+    {
+        unset($this->node_group_affinity);
+    }
+
+    /**
+     * Optional. Node Group Affinity for sole-tenant clusters.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.NodeGroupAffinity node_group_affinity = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dataproc\V1\NodeGroupAffinity $var
+     * @return $this
+     */
+    public function setNodeGroupAffinity($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataproc\V1\NodeGroupAffinity::class);
+        $this->node_group_affinity = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Shielded Instance Config for clusters using [Compute Engine
+     * Shielded
+     * VMs](https://cloud.google.com/security/shielded-cloud/shielded-vm).
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.ShieldedInstanceConfig shielded_instance_config = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Dataproc\V1\ShieldedInstanceConfig|null
+     */
+    public function getShieldedInstanceConfig()
+    {
+        return $this->shielded_instance_config;
+    }
+
+    public function hasShieldedInstanceConfig()
+    {
+        return isset($this->shielded_instance_config);
+    }
+
+    public function clearShieldedInstanceConfig()
+    {
+        unset($this->shielded_instance_config);
+    }
+
+    /**
+     * Optional. Shielded Instance Config for clusters using [Compute Engine
+     * Shielded
+     * VMs](https://cloud.google.com/security/shielded-cloud/shielded-vm).
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.ShieldedInstanceConfig shielded_instance_config = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dataproc\V1\ShieldedInstanceConfig $var
+     * @return $this
+     */
+    public function setShieldedInstanceConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataproc\V1\ShieldedInstanceConfig::class);
+        $this->shielded_instance_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Confidential Instance Config for clusters using [Confidential
+     * VMs](https://cloud.google.com/compute/confidential-vm/docs).
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.ConfidentialInstanceConfig confidential_instance_config = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Dataproc\V1\ConfidentialInstanceConfig|null
+     */
+    public function getConfidentialInstanceConfig()
+    {
+        return $this->confidential_instance_config;
+    }
+
+    public function hasConfidentialInstanceConfig()
+    {
+        return isset($this->confidential_instance_config);
+    }
+
+    public function clearConfidentialInstanceConfig()
+    {
+        unset($this->confidential_instance_config);
+    }
+
+    /**
+     * Optional. Confidential Instance Config for clusters using [Confidential
+     * VMs](https://cloud.google.com/compute/confidential-vm/docs).
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.ConfidentialInstanceConfig confidential_instance_config = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dataproc\V1\ConfidentialInstanceConfig $var
+     * @return $this
+     */
+    public function setConfidentialInstanceConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataproc\V1\ConfidentialInstanceConfig::class);
+        $this->confidential_instance_config = $var;
 
         return $this;
     }

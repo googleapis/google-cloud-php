@@ -94,6 +94,14 @@ class RunPivotReportResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.analytics.data.v1beta.PropertyQuota property_quota = 7;</code>
      */
     private $property_quota = null;
+    /**
+     * Identifies what kind of resource this message is. This `kind` is always the
+     * fixed string "analyticsData#runPivotReport". Useful to distinguish between
+     * response types in JSON.
+     *
+     * Generated from protobuf field <code>string kind = 8;</code>
+     */
+    private $kind = '';
 
     /**
      * Constructor.
@@ -101,7 +109,7 @@ class RunPivotReportResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Analytics\Data\V1beta\PivotHeader[]|\Google\Protobuf\Internal\RepeatedField $pivot_headers
+     *     @type array<\Google\Analytics\Data\V1beta\PivotHeader>|\Google\Protobuf\Internal\RepeatedField $pivot_headers
      *           Summarizes the columns and rows created by a pivot. Each pivot in the
      *           request produces one header in the response. If we have a request like
      *           this:
@@ -135,15 +143,15 @@ class RunPivotReportResponse extends \Google\Protobuf\Internal\Message
      *                   "dimensionValues": [{ "value": "scroll" }]
      *                 }]
      *               }]
-     *     @type \Google\Analytics\Data\V1beta\DimensionHeader[]|\Google\Protobuf\Internal\RepeatedField $dimension_headers
+     *     @type array<\Google\Analytics\Data\V1beta\DimensionHeader>|\Google\Protobuf\Internal\RepeatedField $dimension_headers
      *           Describes dimension columns. The number of DimensionHeaders and ordering of
      *           DimensionHeaders matches the dimensions present in rows.
-     *     @type \Google\Analytics\Data\V1beta\MetricHeader[]|\Google\Protobuf\Internal\RepeatedField $metric_headers
+     *     @type array<\Google\Analytics\Data\V1beta\MetricHeader>|\Google\Protobuf\Internal\RepeatedField $metric_headers
      *           Describes metric columns. The number of MetricHeaders and ordering of
      *           MetricHeaders matches the metrics present in rows.
-     *     @type \Google\Analytics\Data\V1beta\Row[]|\Google\Protobuf\Internal\RepeatedField $rows
+     *     @type array<\Google\Analytics\Data\V1beta\Row>|\Google\Protobuf\Internal\RepeatedField $rows
      *           Rows of dimension value combinations and metric values in the report.
-     *     @type \Google\Analytics\Data\V1beta\Row[]|\Google\Protobuf\Internal\RepeatedField $aggregates
+     *     @type array<\Google\Analytics\Data\V1beta\Row>|\Google\Protobuf\Internal\RepeatedField $aggregates
      *           Aggregation of metric values. Can be totals, minimums, or maximums. The
      *           returned aggregations are controlled by the metric_aggregations in the
      *           pivot. The type of aggregation returned in each row is shown by the
@@ -152,6 +160,10 @@ class RunPivotReportResponse extends \Google\Protobuf\Internal\Message
      *           Metadata for the report.
      *     @type \Google\Analytics\Data\V1beta\PropertyQuota $property_quota
      *           This Analytics Property's quota state including this request.
+     *     @type string $kind
+     *           Identifies what kind of resource this message is. This `kind` is always the
+     *           fixed string "analyticsData#runPivotReport". Useful to distinguish between
+     *           response types in JSON.
      * }
      */
     public function __construct($data = NULL) {
@@ -238,7 +250,7 @@ class RunPivotReportResponse extends \Google\Protobuf\Internal\Message
      *     }]
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.PivotHeader pivot_headers = 1;</code>
-     * @param \Google\Analytics\Data\V1beta\PivotHeader[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Analytics\Data\V1beta\PivotHeader>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPivotHeaders($var)
@@ -266,7 +278,7 @@ class RunPivotReportResponse extends \Google\Protobuf\Internal\Message
      * DimensionHeaders matches the dimensions present in rows.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.DimensionHeader dimension_headers = 2;</code>
-     * @param \Google\Analytics\Data\V1beta\DimensionHeader[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Analytics\Data\V1beta\DimensionHeader>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDimensionHeaders($var)
@@ -294,7 +306,7 @@ class RunPivotReportResponse extends \Google\Protobuf\Internal\Message
      * MetricHeaders matches the metrics present in rows.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.MetricHeader metric_headers = 3;</code>
-     * @param \Google\Analytics\Data\V1beta\MetricHeader[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Analytics\Data\V1beta\MetricHeader>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setMetricHeaders($var)
@@ -320,7 +332,7 @@ class RunPivotReportResponse extends \Google\Protobuf\Internal\Message
      * Rows of dimension value combinations and metric values in the report.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.Row rows = 4;</code>
-     * @param \Google\Analytics\Data\V1beta\Row[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Analytics\Data\V1beta\Row>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setRows($var)
@@ -352,7 +364,7 @@ class RunPivotReportResponse extends \Google\Protobuf\Internal\Message
      * dimension_values which are set to "RESERVED_<MetricAggregation>".
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.Row aggregates = 5;</code>
-     * @param \Google\Analytics\Data\V1beta\Row[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Analytics\Data\V1beta\Row>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAggregates($var)
@@ -371,7 +383,7 @@ class RunPivotReportResponse extends \Google\Protobuf\Internal\Message
      */
     public function getMetadata()
     {
-        return isset($this->metadata) ? $this->metadata : null;
+        return $this->metadata;
     }
 
     public function hasMetadata()
@@ -407,7 +419,7 @@ class RunPivotReportResponse extends \Google\Protobuf\Internal\Message
      */
     public function getPropertyQuota()
     {
-        return isset($this->property_quota) ? $this->property_quota : null;
+        return $this->property_quota;
     }
 
     public function hasPropertyQuota()
@@ -431,6 +443,36 @@ class RunPivotReportResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Analytics\Data\V1beta\PropertyQuota::class);
         $this->property_quota = $var;
+
+        return $this;
+    }
+
+    /**
+     * Identifies what kind of resource this message is. This `kind` is always the
+     * fixed string "analyticsData#runPivotReport". Useful to distinguish between
+     * response types in JSON.
+     *
+     * Generated from protobuf field <code>string kind = 8;</code>
+     * @return string
+     */
+    public function getKind()
+    {
+        return $this->kind;
+    }
+
+    /**
+     * Identifies what kind of resource this message is. This `kind` is always the
+     * fixed string "analyticsData#runPivotReport". Useful to distinguish between
+     * response types in JSON.
+     *
+     * Generated from protobuf field <code>string kind = 8;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setKind($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->kind = $var;
 
         return $this;
     }

@@ -75,11 +75,11 @@ class RunAssetDiscoveryResponse extends \Google\Protobuf\Internal\Message
      * The duration between asset discovery run start and end
      *
      * Generated from protobuf field <code>.google.protobuf.Duration duration = 2;</code>
-     * @return \Google\Protobuf\Duration
+     * @return \Google\Protobuf\Duration|null
      */
     public function getDuration()
     {
-        return isset($this->duration) ? $this->duration : null;
+        return $this->duration;
     }
 
     public function hasDuration()

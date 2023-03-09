@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Core;
 
-use GuzzleHttp\Psr7;
+use GuzzleHttp\Psr7\Utils;
 use Psr\Http\Message\StreamInterface;
 
 /**
@@ -38,7 +38,7 @@ use Psr\Http\Message\StreamInterface;
  * echo (string) $blob;
  * ```
  */
-class Blob
+class Blob implements \JsonSerializable
 {
     /**
      * @var mixed
@@ -52,7 +52,7 @@ class Blob
      */
     public function __construct($value)
     {
-        $this->value = Psr7\stream_for($value);
+        $this->value = Utils::streamFor($value);
     }
 
     /**
@@ -79,5 +79,17 @@ class Blob
     public function __toString()
     {
         return (string) $this->value;
+    }
+
+    /**
+     * Implement JsonSerializable by returning a base64 encoded string of the blob
+     *
+     * @return string
+     * @access private
+     */
+    #[\ReturnTypeWillChange]
+    public function jsonSerialize()
+    {
+        return base64_encode((string) $this->value);
     }
 }

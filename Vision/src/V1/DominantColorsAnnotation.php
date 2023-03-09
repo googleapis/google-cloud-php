@@ -28,7 +28,7 @@ class DominantColorsAnnotation extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Vision\V1\ColorInfo[]|\Google\Protobuf\Internal\RepeatedField $colors
+     *     @type array<\Google\Cloud\Vision\V1\ColorInfo>|\Google\Protobuf\Internal\RepeatedField $colors
      *           RGB color values with their score and pixel fraction.
      * }
      */
@@ -52,7 +52,7 @@ class DominantColorsAnnotation extends \Google\Protobuf\Internal\Message
      * RGB color values with their score and pixel fraction.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vision.v1.ColorInfo colors = 1;</code>
-     * @param \Google\Cloud\Vision\V1\ColorInfo[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Vision\V1\ColorInfo>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setColors($var)

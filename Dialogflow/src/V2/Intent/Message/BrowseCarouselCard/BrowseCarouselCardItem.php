@@ -81,7 +81,7 @@ class BrowseCarouselCardItem extends \Google\Protobuf\Internal\Message
      */
     public function getOpenUriAction()
     {
-        return isset($this->open_uri_action) ? $this->open_uri_action : null;
+        return $this->open_uri_action;
     }
 
     public function hasOpenUriAction()
@@ -171,7 +171,7 @@ class BrowseCarouselCardItem extends \Google\Protobuf\Internal\Message
      */
     public function getImage()
     {
-        return isset($this->image) ? $this->image : null;
+        return $this->image;
     }
 
     public function hasImage()
@@ -229,6 +229,4 @@ class BrowseCarouselCardItem extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(BrowseCarouselCardItem::class, \Google\Cloud\Dialogflow\V2\Intent_Message_BrowseCarouselCard_BrowseCarouselCardItem::class);
 

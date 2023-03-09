@@ -55,7 +55,7 @@ trait TransactionalReadTrait
     /**
      * @var int
      */
-    private $state = self::STATE_ACTIVE;
+    private $state = 0; // TransactionalReadInterface::STATE_ACTIVE
 
     /**
      * @var array
@@ -66,6 +66,11 @@ trait TransactionalReadTrait
      * @var int
      */
     private $seqno = 1;
+
+    /**
+     * @var string
+     */
+    private $tag = null;
 
     /**
      * Run a query.
@@ -246,6 +251,13 @@ trait TransactionalReadTrait
      *           query execution. Executing a SQL statement with an invalid
      *           optimizer version will fail with a syntax error
      *           (`INVALID_ARGUMENT`) status.
+     *     @type array $requestOptions Request options.
+     *         For more information on available options, please see
+     *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
+     *         Please note, if using the `priority` setting you may utilize the constants available
+     *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
+     *         Please note, the `transactionTag` setting will be ignored as the transaction tag should have already
+     *         been set when creating the transaction.
      * }
      * @codingStandardsIgnoreEnd
      * @return Result
@@ -263,6 +275,14 @@ trait TransactionalReadTrait
         $selector = $this->transactionSelector($options, $this->options);
 
         $options['transaction'] = $selector[0];
+
+        unset($options['requestOptions']['transactionTag']);
+        if (isset($this->tag)) {
+            $options += [
+                'requestOptions' => []
+            ];
+            $options['requestOptions']['transactionTag'] = $this->tag;
+        }
 
         return $this->operation->execute($this->session, $sql, $options);
     }
@@ -295,6 +315,13 @@ trait TransactionalReadTrait
      *
      *     @type string $index The name of an index on the table.
      *     @type int $limit The number of results to return.
+     *     @type array $requestOptions Request options.
+     *         For more information on available options, please see
+     *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
+     *         Please note, if using the `priority` setting you may utilize the constants available
+     *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
+     *         Please note, the `transactionTag` setting will be ignored as the transaction tag should have already
+     *         been set when creating the transaction.
      * }
      * @return Result
      */
@@ -309,6 +336,14 @@ trait TransactionalReadTrait
         $selector = $this->transactionSelector($options, $this->options);
 
         $options['transaction'] = $selector[0];
+
+        unset($options['requestOptions']['transactionTag']);
+        if (isset($this->tag)) {
+            $options += [
+                'requestOptions' => []
+            ];
+            $options['requestOptions']['transactionTag'] = $this->tag;
+        }
 
         return $this->operation->read($this->session, $table, $keySet, $columns, $options);
     }

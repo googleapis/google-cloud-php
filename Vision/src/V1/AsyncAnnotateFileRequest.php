@@ -48,7 +48,7 @@ class AsyncAnnotateFileRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Vision\V1\InputConfig $input_config
      *           Required. Information about the input file.
-     *     @type \Google\Cloud\Vision\V1\Feature[]|\Google\Protobuf\Internal\RepeatedField $features
+     *     @type array<\Google\Cloud\Vision\V1\Feature>|\Google\Protobuf\Internal\RepeatedField $features
      *           Required. Requested features.
      *     @type \Google\Cloud\Vision\V1\ImageContext $image_context
      *           Additional context that may accompany the image(s) in the file.
@@ -69,7 +69,7 @@ class AsyncAnnotateFileRequest extends \Google\Protobuf\Internal\Message
      */
     public function getInputConfig()
     {
-        return isset($this->input_config) ? $this->input_config : null;
+        return $this->input_config;
     }
 
     public function hasInputConfig()
@@ -112,7 +112,7 @@ class AsyncAnnotateFileRequest extends \Google\Protobuf\Internal\Message
      * Required. Requested features.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vision.v1.Feature features = 2;</code>
-     * @param \Google\Cloud\Vision\V1\Feature[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Vision\V1\Feature>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFeatures($var)
@@ -131,7 +131,7 @@ class AsyncAnnotateFileRequest extends \Google\Protobuf\Internal\Message
      */
     public function getImageContext()
     {
-        return isset($this->image_context) ? $this->image_context : null;
+        return $this->image_context;
     }
 
     public function hasImageContext()
@@ -167,7 +167,7 @@ class AsyncAnnotateFileRequest extends \Google\Protobuf\Internal\Message
      */
     public function getOutputConfig()
     {
-        return isset($this->output_config) ? $this->output_config : null;
+        return $this->output_config;
     }
 
     public function hasOutputConfig()

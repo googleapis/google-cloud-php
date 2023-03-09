@@ -19,7 +19,11 @@ class BigQueryDestination extends \Google\Protobuf\Internal\Message
      * Required. The BigQuery dataset in format
      * "projects/projectId/datasets/datasetId", to which the snapshot result
      * should be exported. If this dataset does not exist, the export call returns
-     * an INVALID_ARGUMENT error.
+     * an INVALID_ARGUMENT error. Setting the `contentType` for `exportAssets`
+     * determines the
+     * [schema](https://cloud.google.com/asset-inventory/docs/exporting-to-bigquery#bigquery-schema)
+     * of the BigQuery table. Setting `separateTablesPerAssetType` to `TRUE` also
+     * influences the schema.
      *
      * Generated from protobuf field <code>string dataset = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -44,7 +48,7 @@ class BigQueryDestination extends \Google\Protobuf\Internal\Message
     /**
      * [partition_spec] determines whether to export to partitioned table(s) and
      * how to partition the data.
-     * If [partition_spec] is unset or [partition_spec.partion_key] is unset or
+     * If [partition_spec] is unset or [partition_spec.partition_key] is unset or
      * `PARTITION_KEY_UNSPECIFIED`, the snapshot results will be exported to
      * non-partitioned table(s). [force] will decide whether to overwrite existing
      * table(s).
@@ -101,7 +105,11 @@ class BigQueryDestination extends \Google\Protobuf\Internal\Message
      *           Required. The BigQuery dataset in format
      *           "projects/projectId/datasets/datasetId", to which the snapshot result
      *           should be exported. If this dataset does not exist, the export call returns
-     *           an INVALID_ARGUMENT error.
+     *           an INVALID_ARGUMENT error. Setting the `contentType` for `exportAssets`
+     *           determines the
+     *           [schema](https://cloud.google.com/asset-inventory/docs/exporting-to-bigquery#bigquery-schema)
+     *           of the BigQuery table. Setting `separateTablesPerAssetType` to `TRUE` also
+     *           influences the schema.
      *     @type string $table
      *           Required. The BigQuery table to which the snapshot result should be
      *           written. If this table does not exist, a new table with the given name
@@ -114,7 +122,7 @@ class BigQueryDestination extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Asset\V1\PartitionSpec $partition_spec
      *           [partition_spec] determines whether to export to partitioned table(s) and
      *           how to partition the data.
-     *           If [partition_spec] is unset or [partition_spec.partion_key] is unset or
+     *           If [partition_spec] is unset or [partition_spec.partition_key] is unset or
      *           `PARTITION_KEY_UNSPECIFIED`, the snapshot results will be exported to
      *           non-partitioned table(s). [force] will decide whether to overwrite existing
      *           table(s).
@@ -163,7 +171,11 @@ class BigQueryDestination extends \Google\Protobuf\Internal\Message
      * Required. The BigQuery dataset in format
      * "projects/projectId/datasets/datasetId", to which the snapshot result
      * should be exported. If this dataset does not exist, the export call returns
-     * an INVALID_ARGUMENT error.
+     * an INVALID_ARGUMENT error. Setting the `contentType` for `exportAssets`
+     * determines the
+     * [schema](https://cloud.google.com/asset-inventory/docs/exporting-to-bigquery#bigquery-schema)
+     * of the BigQuery table. Setting `separateTablesPerAssetType` to `TRUE` also
+     * influences the schema.
      *
      * Generated from protobuf field <code>string dataset = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -177,7 +189,11 @@ class BigQueryDestination extends \Google\Protobuf\Internal\Message
      * Required. The BigQuery dataset in format
      * "projects/projectId/datasets/datasetId", to which the snapshot result
      * should be exported. If this dataset does not exist, the export call returns
-     * an INVALID_ARGUMENT error.
+     * an INVALID_ARGUMENT error. Setting the `contentType` for `exportAssets`
+     * determines the
+     * [schema](https://cloud.google.com/asset-inventory/docs/exporting-to-bigquery#bigquery-schema)
+     * of the BigQuery table. Setting `separateTablesPerAssetType` to `TRUE` also
+     * influences the schema.
      *
      * Generated from protobuf field <code>string dataset = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -256,7 +272,7 @@ class BigQueryDestination extends \Google\Protobuf\Internal\Message
     /**
      * [partition_spec] determines whether to export to partitioned table(s) and
      * how to partition the data.
-     * If [partition_spec] is unset or [partition_spec.partion_key] is unset or
+     * If [partition_spec] is unset or [partition_spec.partition_key] is unset or
      * `PARTITION_KEY_UNSPECIFIED`, the snapshot results will be exported to
      * non-partitioned table(s). [force] will decide whether to overwrite existing
      * table(s).
@@ -271,17 +287,27 @@ class BigQueryDestination extends \Google\Protobuf\Internal\Message
      * error will be returned if the schema update or data appension fails.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.PartitionSpec partition_spec = 4;</code>
-     * @return \Google\Cloud\Asset\V1\PartitionSpec
+     * @return \Google\Cloud\Asset\V1\PartitionSpec|null
      */
     public function getPartitionSpec()
     {
         return $this->partition_spec;
     }
 
+    public function hasPartitionSpec()
+    {
+        return isset($this->partition_spec);
+    }
+
+    public function clearPartitionSpec()
+    {
+        unset($this->partition_spec);
+    }
+
     /**
      * [partition_spec] determines whether to export to partitioned table(s) and
      * how to partition the data.
-     * If [partition_spec] is unset or [partition_spec.partion_key] is unset or
+     * If [partition_spec] is unset or [partition_spec.partition_key] is unset or
      * `PARTITION_KEY_UNSPECIFIED`, the snapshot results will be exported to
      * non-partitioned table(s). [force] will decide whether to overwrite existing
      * table(s).

@@ -17,8 +17,8 @@ class TranslateTextRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The content of the input in string format.
-     * We recommend the total content be less than 30k codepoints.
-     * Use BatchTranslateText for larger text.
+     * We recommend the total content be less than 30,000 codepoints. The max
+     * length of this field is 1024. Use BatchTranslateText for larger text.
      *
      * Generated from protobuf field <code>repeated string contents = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -31,7 +31,7 @@ class TranslateTextRequest extends \Google\Protobuf\Internal\Message
      */
     private $mime_type = '';
     /**
-     * Optional. The BCP-47 language code of the input text if
+     * Optional. The ISO-639 language code of the input text if
      * known, for example, "en-US" or "sr-Latn". Supported language codes are
      * listed in Language Support. If the source language isn't specified, the API
      * attempts to identify the source language automatically and returns the
@@ -41,7 +41,7 @@ class TranslateTextRequest extends \Google\Protobuf\Internal\Message
      */
     private $source_language_code = '';
     /**
-     * Required. The BCP-47 language code to use for translation of the input
+     * Required. The ISO-639 language code to use for translation of the input
      * text, set to one of the language codes listed in Language Support.
      *
      * Generated from protobuf field <code>string target_language_code = 5 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -69,11 +69,10 @@ class TranslateTextRequest extends \Google\Protobuf\Internal\Message
      *   `projects/{project-number-or-id}/locations/{location-id}/models/{model-id}`
      * - General (built-in) models:
      *   `projects/{project-number-or-id}/locations/{location-id}/models/general/nmt`,
-     *   `projects/{project-number-or-id}/locations/{location-id}/models/general/base`
      * For global (non-regionalized) requests, use `location-id` `global`.
      * For example,
      * `projects/{project-number-or-id}/locations/global/models/general/nmt`.
-     * If missing, the system decides which google base model to use.
+     * If not provided, the default Google model (NMT) will be used.
      *
      * Generated from protobuf field <code>string model = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -92,7 +91,8 @@ class TranslateTextRequest extends \Google\Protobuf\Internal\Message
      * (Unicode codepoints), can only contain lowercase letters, numeric
      * characters, underscores and dashes. International characters are allowed.
      * Label values are optional. Label keys must start with a letter.
-     * See https://cloud.google.com/translate/docs/labels for more information.
+     * See https://cloud.google.com/translate/docs/advanced/labels for more
+     * information.
      *
      * Generated from protobuf field <code>map<string, string> labels = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -104,21 +104,21 @@ class TranslateTextRequest extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $contents
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $contents
      *           Required. The content of the input in string format.
-     *           We recommend the total content be less than 30k codepoints.
-     *           Use BatchTranslateText for larger text.
+     *           We recommend the total content be less than 30,000 codepoints. The max
+     *           length of this field is 1024. Use BatchTranslateText for larger text.
      *     @type string $mime_type
      *           Optional. The format of the source text, for example, "text/html",
      *            "text/plain". If left blank, the MIME type defaults to "text/html".
      *     @type string $source_language_code
-     *           Optional. The BCP-47 language code of the input text if
+     *           Optional. The ISO-639 language code of the input text if
      *           known, for example, "en-US" or "sr-Latn". Supported language codes are
      *           listed in Language Support. If the source language isn't specified, the API
      *           attempts to identify the source language automatically and returns the
      *           source language within the response.
      *     @type string $target_language_code
-     *           Required. The BCP-47 language code to use for translation of the input
+     *           Required. The ISO-639 language code to use for translation of the input
      *           text, set to one of the language codes listed in Language Support.
      *     @type string $parent
      *           Required. Project or location to make a call. Must refer to a caller's
@@ -138,11 +138,10 @@ class TranslateTextRequest extends \Google\Protobuf\Internal\Message
      *             `projects/{project-number-or-id}/locations/{location-id}/models/{model-id}`
      *           - General (built-in) models:
      *             `projects/{project-number-or-id}/locations/{location-id}/models/general/nmt`,
-     *             `projects/{project-number-or-id}/locations/{location-id}/models/general/base`
      *           For global (non-regionalized) requests, use `location-id` `global`.
      *           For example,
      *           `projects/{project-number-or-id}/locations/global/models/general/nmt`.
-     *           If missing, the system decides which google base model to use.
+     *           If not provided, the default Google model (NMT) will be used.
      *     @type \Google\Cloud\Translate\V3\TranslateTextGlossaryConfig $glossary_config
      *           Optional. Glossary to be applied. The glossary must be
      *           within the same region (have the same location-id) as the model, otherwise
@@ -153,7 +152,8 @@ class TranslateTextRequest extends \Google\Protobuf\Internal\Message
      *           (Unicode codepoints), can only contain lowercase letters, numeric
      *           characters, underscores and dashes. International characters are allowed.
      *           Label values are optional. Label keys must start with a letter.
-     *           See https://cloud.google.com/translate/docs/labels for more information.
+     *           See https://cloud.google.com/translate/docs/advanced/labels for more
+     *           information.
      * }
      */
     public function __construct($data = NULL) {
@@ -163,8 +163,8 @@ class TranslateTextRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The content of the input in string format.
-     * We recommend the total content be less than 30k codepoints.
-     * Use BatchTranslateText for larger text.
+     * We recommend the total content be less than 30,000 codepoints. The max
+     * length of this field is 1024. Use BatchTranslateText for larger text.
      *
      * Generated from protobuf field <code>repeated string contents = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -176,11 +176,11 @@ class TranslateTextRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The content of the input in string format.
-     * We recommend the total content be less than 30k codepoints.
-     * Use BatchTranslateText for larger text.
+     * We recommend the total content be less than 30,000 codepoints. The max
+     * length of this field is 1024. Use BatchTranslateText for larger text.
      *
      * Generated from protobuf field <code>repeated string contents = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setContents($var)
@@ -220,7 +220,7 @@ class TranslateTextRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The BCP-47 language code of the input text if
+     * Optional. The ISO-639 language code of the input text if
      * known, for example, "en-US" or "sr-Latn". Supported language codes are
      * listed in Language Support. If the source language isn't specified, the API
      * attempts to identify the source language automatically and returns the
@@ -235,7 +235,7 @@ class TranslateTextRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The BCP-47 language code of the input text if
+     * Optional. The ISO-639 language code of the input text if
      * known, for example, "en-US" or "sr-Latn". Supported language codes are
      * listed in Language Support. If the source language isn't specified, the API
      * attempts to identify the source language automatically and returns the
@@ -254,7 +254,7 @@ class TranslateTextRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The BCP-47 language code to use for translation of the input
+     * Required. The ISO-639 language code to use for translation of the input
      * text, set to one of the language codes listed in Language Support.
      *
      * Generated from protobuf field <code>string target_language_code = 5 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -266,7 +266,7 @@ class TranslateTextRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The BCP-47 language code to use for translation of the input
+     * Required. The ISO-639 language code to use for translation of the input
      * text, set to one of the language codes listed in Language Support.
      *
      * Generated from protobuf field <code>string target_language_code = 5 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -332,11 +332,10 @@ class TranslateTextRequest extends \Google\Protobuf\Internal\Message
      *   `projects/{project-number-or-id}/locations/{location-id}/models/{model-id}`
      * - General (built-in) models:
      *   `projects/{project-number-or-id}/locations/{location-id}/models/general/nmt`,
-     *   `projects/{project-number-or-id}/locations/{location-id}/models/general/base`
      * For global (non-regionalized) requests, use `location-id` `global`.
      * For example,
      * `projects/{project-number-or-id}/locations/global/models/general/nmt`.
-     * If missing, the system decides which google base model to use.
+     * If not provided, the default Google model (NMT) will be used.
      *
      * Generated from protobuf field <code>string model = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -353,11 +352,10 @@ class TranslateTextRequest extends \Google\Protobuf\Internal\Message
      *   `projects/{project-number-or-id}/locations/{location-id}/models/{model-id}`
      * - General (built-in) models:
      *   `projects/{project-number-or-id}/locations/{location-id}/models/general/nmt`,
-     *   `projects/{project-number-or-id}/locations/{location-id}/models/general/base`
      * For global (non-regionalized) requests, use `location-id` `global`.
      * For example,
      * `projects/{project-number-or-id}/locations/global/models/general/nmt`.
-     * If missing, the system decides which google base model to use.
+     * If not provided, the default Google model (NMT) will be used.
      *
      * Generated from protobuf field <code>string model = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -377,11 +375,11 @@ class TranslateTextRequest extends \Google\Protobuf\Internal\Message
      * an INVALID_ARGUMENT (400) error is returned.
      *
      * Generated from protobuf field <code>.google.cloud.translation.v3.TranslateTextGlossaryConfig glossary_config = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Cloud\Translate\V3\TranslateTextGlossaryConfig
+     * @return \Google\Cloud\Translate\V3\TranslateTextGlossaryConfig|null
      */
     public function getGlossaryConfig()
     {
-        return isset($this->glossary_config) ? $this->glossary_config : null;
+        return $this->glossary_config;
     }
 
     public function hasGlossaryConfig()
@@ -417,7 +415,8 @@ class TranslateTextRequest extends \Google\Protobuf\Internal\Message
      * (Unicode codepoints), can only contain lowercase letters, numeric
      * characters, underscores and dashes. International characters are allowed.
      * Label values are optional. Label keys must start with a letter.
-     * See https://cloud.google.com/translate/docs/labels for more information.
+     * See https://cloud.google.com/translate/docs/advanced/labels for more
+     * information.
      *
      * Generated from protobuf field <code>map<string, string> labels = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -433,7 +432,8 @@ class TranslateTextRequest extends \Google\Protobuf\Internal\Message
      * (Unicode codepoints), can only contain lowercase letters, numeric
      * characters, underscores and dashes. International characters are allowed.
      * Label values are optional. Label keys must start with a letter.
-     * See https://cloud.google.com/translate/docs/labels for more information.
+     * See https://cloud.google.com/translate/docs/advanced/labels for more
+     * information.
      *
      * Generated from protobuf field <code>map<string, string> labels = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var

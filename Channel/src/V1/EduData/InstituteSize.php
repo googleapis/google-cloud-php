@@ -14,7 +14,7 @@ use UnexpectedValueException;
 class InstituteSize
 {
     /**
-     * Default value. This state doesn't show unless an error occurs.
+     * Not used.
      *
      * Generated from protobuf enum <code>INSTITUTE_SIZE_UNSPECIFIED = 0;</code>
      */
@@ -94,6 +94,4 @@ class InstituteSize
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(InstituteSize::class, \Google\Cloud\Channel\V1\EduData_InstituteSize::class);
 

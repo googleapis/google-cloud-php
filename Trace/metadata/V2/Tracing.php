@@ -20,11 +20,10 @@ class Tracing
         \GPBMetadata\Google\Api\Resource::initOnce();
         \GPBMetadata\Google\Devtools\Cloudtrace\V2\Trace::initOnce();
         \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
-        \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-∞
-+google/devtools/cloudtrace/v2/tracing.protogoogle.devtools.cloudtrace.v2google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto)google/devtools/cloudtrace/v2/trace.protogoogle/protobuf/empty.protogoogle/protobuf/timestamp.proto"î
+è
++google/devtools/cloudtrace/v2/tracing.protogoogle.devtools.cloudtrace.v2google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto)google/devtools/cloudtrace/v2/trace.protogoogle/protobuf/empty.proto"î
 BatchWriteSpansRequestA
 name (	B3‡A˙A-
 +cloudresourcemanager.googleapis.com/Project7

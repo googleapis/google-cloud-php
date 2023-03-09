@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class GcsOutputResult extends \Google\Protobuf\Internal\Message
 {
     /**
-     * List of uris of the Cloud Storage objects. Example:
+     * List of URIs of the Cloud Storage objects. Example:
      * "gs://bucket_name/object_name".
      *
      * Generated from protobuf field <code>repeated string uris = 1;</code>
@@ -29,8 +29,8 @@ class GcsOutputResult extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $uris
-     *           List of uris of the Cloud Storage objects. Example:
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $uris
+     *           List of URIs of the Cloud Storage objects. Example:
      *           "gs://bucket_name/object_name".
      * }
      */
@@ -40,7 +40,7 @@ class GcsOutputResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * List of uris of the Cloud Storage objects. Example:
+     * List of URIs of the Cloud Storage objects. Example:
      * "gs://bucket_name/object_name".
      *
      * Generated from protobuf field <code>repeated string uris = 1;</code>
@@ -52,11 +52,11 @@ class GcsOutputResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * List of uris of the Cloud Storage objects. Example:
+     * List of URIs of the Cloud Storage objects. Example:
      * "gs://bucket_name/object_name".
      *
      * Generated from protobuf field <code>repeated string uris = 1;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setUris($var)

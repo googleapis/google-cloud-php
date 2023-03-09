@@ -2,21 +2,35 @@
 
 return [
     'interfaces' => [
-        'google.cloud.memcache.v1.CloudMemcache' => [
-            'ListInstances' => [
+        'google.cloud.location.Locations' => [
+            'GetLocation' => [
                 'method' => 'get',
-                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/instances',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*}',
                 'placeholders' => [
-                    'parent' => [
+                    'name' => [
                         'getters' => [
-                            'getParent',
+                            'getName',
                         ],
                     ],
                 ],
             ],
-            'GetInstance' => [
+            'ListLocations' => [
                 'method' => 'get',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/instances/*}',
+                'uriTemplate' => '/v1/{name=projects/*}/locations',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+        ],
+        'google.cloud.memcache.v1.CloudMemcache' => [
+            'ApplyParameters' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/instances/*}:applyParameters',
+                'body' => '*',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -36,6 +50,54 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'instance_id',
+                ],
+            ],
+            'DeleteInstance' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/instances/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetInstance' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/instances/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListInstances' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/instances',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'RescheduleMaintenance' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{instance=projects/*/locations/*/instances/*}:rescheduleMaintenance',
+                'body' => '*',
+                'placeholders' => [
+                    'instance' => [
+                        'getters' => [
+                            'getInstance',
+                        ],
+                    ],
+                ],
             ],
             'UpdateInstance' => [
                 'method' => 'patch',
@@ -48,6 +110,9 @@ return [
                             'getName',
                         ],
                     ],
+                ],
+                'queryParams' => [
+                    'update_mask',
                 ],
             ],
             'UpdateParameters' => [
@@ -62,9 +127,12 @@ return [
                     ],
                 ],
             ],
-            'DeleteInstance' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/instances/*}',
+        ],
+        'google.longrunning.Operations' => [
+            'CancelOperation' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/operations/*}:cancel',
+                'body' => '*',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -73,10 +141,31 @@ return [
                     ],
                 ],
             ],
-            'ApplyParameters' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/instances/*}:applyParameters',
-                'body' => '*',
+            'DeleteOperation' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/operations/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetOperation' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/operations/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListOperations' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*}/operations',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -87,4 +176,5 @@ return [
             ],
         ],
     ],
+    'numericEnums' => true,
 ];

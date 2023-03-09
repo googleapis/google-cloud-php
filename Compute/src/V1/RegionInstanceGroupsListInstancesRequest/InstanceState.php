@@ -20,10 +20,14 @@ class InstanceState
      */
     const UNDEFINED_INSTANCE_STATE = 0;
     /**
+     * Matches any status of the instances, running, non-running and others.
+     *
      * Generated from protobuf enum <code>ALL = 64897;</code>
      */
     const ALL = 64897;
     /**
+     * Instance is in RUNNING state if it is running.
+     *
      * Generated from protobuf enum <code>RUNNING = 121282975;</code>
      */
     const RUNNING = 121282975;

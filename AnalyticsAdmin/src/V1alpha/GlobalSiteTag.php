@@ -10,7 +10,7 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Read-only resource with the tag for sending data from a website to a
- * WebDataStream.
+ * DataStream. Only present for web DataStream resources.
  *
  * Generated from protobuf message <code>google.analytics.admin.v1alpha.GlobalSiteTag</code>
  */
@@ -18,14 +18,15 @@ class GlobalSiteTag extends \Google\Protobuf\Internal\Message
 {
     /**
      * Output only. Resource name for this GlobalSiteTag resource.
-     * Format: properties/{propertyId}/globalSiteTag
+     * Format: properties/{property_id}/dataStreams/{stream_id}/globalSiteTag
+     * Example: "properties/123/dataStreams/456/globalSiteTag"
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $name = '';
     /**
-     * Immutable. JavaScript code snippet to be pasted as the first item into the head tag of
-     * every webpage to measure.
+     * Immutable. JavaScript code snippet to be pasted as the first item into the
+     * head tag of every webpage to measure.
      *
      * Generated from protobuf field <code>string snippet = 2 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
@@ -39,10 +40,11 @@ class GlobalSiteTag extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Output only. Resource name for this GlobalSiteTag resource.
-     *           Format: properties/{propertyId}/globalSiteTag
+     *           Format: properties/{property_id}/dataStreams/{stream_id}/globalSiteTag
+     *           Example: "properties/123/dataStreams/456/globalSiteTag"
      *     @type string $snippet
-     *           Immutable. JavaScript code snippet to be pasted as the first item into the head tag of
-     *           every webpage to measure.
+     *           Immutable. JavaScript code snippet to be pasted as the first item into the
+     *           head tag of every webpage to measure.
      * }
      */
     public function __construct($data = NULL) {
@@ -52,7 +54,8 @@ class GlobalSiteTag extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. Resource name for this GlobalSiteTag resource.
-     * Format: properties/{propertyId}/globalSiteTag
+     * Format: properties/{property_id}/dataStreams/{stream_id}/globalSiteTag
+     * Example: "properties/123/dataStreams/456/globalSiteTag"
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -64,7 +67,8 @@ class GlobalSiteTag extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. Resource name for this GlobalSiteTag resource.
-     * Format: properties/{propertyId}/globalSiteTag
+     * Format: properties/{property_id}/dataStreams/{stream_id}/globalSiteTag
+     * Example: "properties/123/dataStreams/456/globalSiteTag"
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -79,8 +83,8 @@ class GlobalSiteTag extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. JavaScript code snippet to be pasted as the first item into the head tag of
-     * every webpage to measure.
+     * Immutable. JavaScript code snippet to be pasted as the first item into the
+     * head tag of every webpage to measure.
      *
      * Generated from protobuf field <code>string snippet = 2 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
@@ -91,8 +95,8 @@ class GlobalSiteTag extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. JavaScript code snippet to be pasted as the first item into the head tag of
-     * every webpage to measure.
+     * Immutable. JavaScript code snippet to be pasted as the first item into the
+     * head tag of every webpage to measure.
      *
      * Generated from protobuf field <code>string snippet = 2 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var

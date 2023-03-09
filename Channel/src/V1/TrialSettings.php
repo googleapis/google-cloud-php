@@ -89,11 +89,11 @@ class TrialSettings extends \Google\Protobuf\Internal\Message
      * converter](https://www.epochconverter.com).
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 2;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getEndTime()
     {
-        return isset($this->end_time) ? $this->end_time : null;
+        return $this->end_time;
     }
 
     public function hasEndTime()

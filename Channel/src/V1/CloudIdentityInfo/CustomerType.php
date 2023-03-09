@@ -14,7 +14,7 @@ use UnexpectedValueException;
 class CustomerType
 {
     /**
-     * Default value. This state doesn't show unless an error occurs.
+     * Not used.
      *
      * Generated from protobuf enum <code>CUSTOMER_TYPE_UNSPECIFIED = 0;</code>
      */
@@ -59,6 +59,4 @@ class CustomerType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(CustomerType::class, \Google\Cloud\Channel\V1\CloudIdentityInfo_CustomerType::class);
 

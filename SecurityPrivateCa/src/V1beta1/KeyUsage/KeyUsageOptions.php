@@ -342,6 +342,4 @@ class KeyUsageOptions extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(KeyUsageOptions::class, \Google\Cloud\Security\PrivateCA\V1beta1\KeyUsage_KeyUsageOptions::class);
 

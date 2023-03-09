@@ -79,7 +79,7 @@ class Button extends \Google\Protobuf\Internal\Message
      */
     public function getOpenUriAction()
     {
-        return isset($this->open_uri_action) ? $this->open_uri_action : null;
+        return $this->open_uri_action;
     }
 
     public function hasOpenUriAction()
@@ -109,6 +109,4 @@ class Button extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Button::class, \Google\Cloud\Dialogflow\V2\Intent_Message_BasicCard_Button::class);
 

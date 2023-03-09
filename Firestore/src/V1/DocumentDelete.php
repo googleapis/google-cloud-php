@@ -10,17 +10,19 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * A [Document][google.firestore.v1.Document] has been deleted.
- * May be the result of multiple [writes][google.firestore.v1.Write], including updates, the
- * last of which deleted the [Document][google.firestore.v1.Document].
- * Multiple [DocumentDelete][google.firestore.v1.DocumentDelete] messages may be returned for the same logical
- * delete, if multiple targets are affected.
+ * May be the result of multiple [writes][google.firestore.v1.Write], including
+ * updates, the last of which deleted the
+ * [Document][google.firestore.v1.Document].
+ * Multiple [DocumentDelete][google.firestore.v1.DocumentDelete] messages may be
+ * returned for the same logical delete, if multiple targets are affected.
  *
  * Generated from protobuf message <code>google.firestore.v1.DocumentDelete</code>
  */
 class DocumentDelete extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The resource name of the [Document][google.firestore.v1.Document] that was deleted.
+     * The resource name of the [Document][google.firestore.v1.Document] that was
+     * deleted.
      *
      * Generated from protobuf field <code>string document = 1;</code>
      */
@@ -46,8 +48,9 @@ class DocumentDelete extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $document
-     *           The resource name of the [Document][google.firestore.v1.Document] that was deleted.
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $removed_target_ids
+     *           The resource name of the [Document][google.firestore.v1.Document] that was
+     *           deleted.
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $removed_target_ids
      *           A set of target IDs for targets that previously matched this entity.
      *     @type \Google\Protobuf\Timestamp $read_time
      *           The read timestamp at which the delete was observed.
@@ -60,7 +63,8 @@ class DocumentDelete extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name of the [Document][google.firestore.v1.Document] that was deleted.
+     * The resource name of the [Document][google.firestore.v1.Document] that was
+     * deleted.
      *
      * Generated from protobuf field <code>string document = 1;</code>
      * @return string
@@ -71,7 +75,8 @@ class DocumentDelete extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name of the [Document][google.firestore.v1.Document] that was deleted.
+     * The resource name of the [Document][google.firestore.v1.Document] that was
+     * deleted.
      *
      * Generated from protobuf field <code>string document = 1;</code>
      * @param string $var
@@ -100,7 +105,7 @@ class DocumentDelete extends \Google\Protobuf\Internal\Message
      * A set of target IDs for targets that previously matched this entity.
      *
      * Generated from protobuf field <code>repeated int32 removed_target_ids = 6;</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setRemovedTargetIds($var)
@@ -120,7 +125,7 @@ class DocumentDelete extends \Google\Protobuf\Internal\Message
      */
     public function getReadTime()
     {
-        return isset($this->read_time) ? $this->read_time : null;
+        return $this->read_time;
     }
 
     public function hasReadTime()

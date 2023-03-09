@@ -61,13 +61,15 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
      */
     private $company = '';
     /**
-     * The scope of the completion. The defaults is [CompletionScope.PUBLIC][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionScope.PUBLIC].
+     * The scope of the completion. The defaults is
+     * [CompletionScope.PUBLIC][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionScope.PUBLIC].
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionScope scope = 6;</code>
      */
     private $scope = 0;
     /**
-     * The completion topic. The default is [CompletionType.COMBINED][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType.COMBINED].
+     * The completion topic. The default is
+     * [CompletionType.COMBINED][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType.COMBINED].
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType type = 7;</code>
      */
@@ -88,7 +90,7 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
      *     @type string $query
      *           Required. The query used to generate suggestions.
      *           The maximum number of allowed characters is 255.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $language_codes
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $language_codes
      *           The list of languages of the query. This is
      *           the BCP-47 language code, such as "en-US" or "sr-Latn".
      *           For more information, see
@@ -105,9 +107,11 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
      *           If tenant id is unspecified, the default tenant is used, for
      *           example, "projects/foo".
      *     @type int $scope
-     *           The scope of the completion. The defaults is [CompletionScope.PUBLIC][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionScope.PUBLIC].
+     *           The scope of the completion. The defaults is
+     *           [CompletionScope.PUBLIC][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionScope.PUBLIC].
      *     @type int $type
-     *           The completion topic. The default is [CompletionType.COMBINED][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType.COMBINED].
+     *           The completion topic. The default is
+     *           [CompletionType.COMBINED][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType.COMBINED].
      * }
      */
     public function __construct($data = NULL) {
@@ -200,7 +204,7 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
      * The maximum number of allowed characters is 255.
      *
      * Generated from protobuf field <code>repeated string language_codes = 3;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setLanguageCodes($var)
@@ -276,7 +280,8 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The scope of the completion. The defaults is [CompletionScope.PUBLIC][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionScope.PUBLIC].
+     * The scope of the completion. The defaults is
+     * [CompletionScope.PUBLIC][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionScope.PUBLIC].
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionScope scope = 6;</code>
      * @return int
@@ -287,7 +292,8 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The scope of the completion. The defaults is [CompletionScope.PUBLIC][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionScope.PUBLIC].
+     * The scope of the completion. The defaults is
+     * [CompletionScope.PUBLIC][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionScope.PUBLIC].
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionScope scope = 6;</code>
      * @param int $var
@@ -302,7 +308,8 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The completion topic. The default is [CompletionType.COMBINED][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType.COMBINED].
+     * The completion topic. The default is
+     * [CompletionType.COMBINED][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType.COMBINED].
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType type = 7;</code>
      * @return int
@@ -313,7 +320,8 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The completion topic. The default is [CompletionType.COMBINED][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType.COMBINED].
+     * The completion topic. The default is
+     * [CompletionType.COMBINED][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType.COMBINED].
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType type = 7;</code>
      * @param int $var

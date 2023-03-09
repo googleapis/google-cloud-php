@@ -28,11 +28,12 @@ class MessageType
     /**
      * Event indicates that the server has detected the end of the user's speech
      * utterance and expects no additional inputs.
-     * Therefore, the server will not process additional audio (although it may subsequently return additional results). The
-     * client should stop sending additional audio data, half-close the gRPC
-     * connection, and wait for any additional results until the server closes
-     * the gRPC connection. This message is only sent if `single_utterance` was
-     * set to `true`, and is not used otherwise.
+     * Therefore, the server will not process additional audio (although it may
+     * subsequently return additional results). The client should stop sending
+     * additional audio data, half-close the gRPC connection, and wait for any
+     * additional results until the server closes the gRPC connection. This
+     * message is only sent if `single_utterance` was set to `true`, and is not
+     * used otherwise.
      *
      * Generated from protobuf enum <code>END_OF_SINGLE_UTTERANCE = 2;</code>
      */
@@ -65,6 +66,4 @@ class MessageType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(MessageType::class, \Google\Cloud\Dialogflow\V2\StreamingRecognitionResult_MessageType::class);
 

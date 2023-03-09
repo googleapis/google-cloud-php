@@ -20,18 +20,26 @@ class Status
      */
     const UNDEFINED_STATUS = 0;
     /**
-     * Generated from protobuf enum <code>DELETING = 260166568;</code>
+     * Image is deleting.
+     *
+     * Generated from protobuf enum <code>DELETING = 528602024;</code>
      */
-    const DELETING = 260166568;
+    const DELETING = 528602024;
     /**
-     * Generated from protobuf enum <code>FAILED = 187271229;</code>
+     * Image creation failed due to an error.
+     *
+     * Generated from protobuf enum <code>FAILED = 455706685;</code>
      */
-    const FAILED = 187271229;
+    const FAILED = 455706685;
     /**
+     * Image hasn't been created as yet.
+     *
      * Generated from protobuf enum <code>PENDING = 35394935;</code>
      */
     const PENDING = 35394935;
     /**
+     * Image has been successfully created.
+     *
      * Generated from protobuf enum <code>READY = 77848963;</code>
      */
     const READY = 77848963;

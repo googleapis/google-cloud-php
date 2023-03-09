@@ -18,21 +18,19 @@ class PatchUrlMapRequest extends \Google\Protobuf\Internal\Message
     /**
      * Project ID for this request.
      *
-     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "project"];</code>
      */
     private $project = '';
     /**
-     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.
-     * For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.
-     * The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *
-     * Generated from protobuf field <code>string request_id = 37109963;</code>
+     * Generated from protobuf field <code>optional string request_id = 37109963;</code>
      */
-    private $request_id = '';
+    private $request_id = null;
     /**
      * Name of the UrlMap resource to patch.
      *
-     * Generated from protobuf field <code>string url_map = 98585228 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string url_map = 367020684 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $url_map = '';
     /**
@@ -51,9 +49,7 @@ class PatchUrlMapRequest extends \Google\Protobuf\Internal\Message
      *     @type string $project
      *           Project ID for this request.
      *     @type string $request_id
-     *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.
-     *           For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.
-     *           The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type string $url_map
      *           Name of the UrlMap resource to patch.
      *     @type \Google\Cloud\Compute\V1\UrlMap $url_map_resource
@@ -68,7 +64,7 @@ class PatchUrlMapRequest extends \Google\Protobuf\Internal\Message
     /**
      * Project ID for this request.
      *
-     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "project"];</code>
      * @return string
      */
     public function getProject()
@@ -79,7 +75,7 @@ class PatchUrlMapRequest extends \Google\Protobuf\Internal\Message
     /**
      * Project ID for this request.
      *
-     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "project"];</code>
      * @param string $var
      * @return $this
      */
@@ -92,24 +88,30 @@ class PatchUrlMapRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.
-     * For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.
-     * The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *
-     * Generated from protobuf field <code>string request_id = 37109963;</code>
+     * Generated from protobuf field <code>optional string request_id = 37109963;</code>
      * @return string
      */
     public function getRequestId()
     {
-        return $this->request_id;
+        return isset($this->request_id) ? $this->request_id : '';
+    }
+
+    public function hasRequestId()
+    {
+        return isset($this->request_id);
+    }
+
+    public function clearRequestId()
+    {
+        unset($this->request_id);
     }
 
     /**
-     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.
-     * For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.
-     * The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *
-     * Generated from protobuf field <code>string request_id = 37109963;</code>
+     * Generated from protobuf field <code>optional string request_id = 37109963;</code>
      * @param string $var
      * @return $this
      */
@@ -124,7 +126,7 @@ class PatchUrlMapRequest extends \Google\Protobuf\Internal\Message
     /**
      * Name of the UrlMap resource to patch.
      *
-     * Generated from protobuf field <code>string url_map = 98585228 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string url_map = 367020684 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getUrlMap()
@@ -135,7 +137,7 @@ class PatchUrlMapRequest extends \Google\Protobuf\Internal\Message
     /**
      * Name of the UrlMap resource to patch.
      *
-     * Generated from protobuf field <code>string url_map = 98585228 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string url_map = 367020684 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -151,11 +153,11 @@ class PatchUrlMapRequest extends \Google\Protobuf\Internal\Message
      * The body resource for this request
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.UrlMap url_map_resource = 168675425 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Compute\V1\UrlMap
+     * @return \Google\Cloud\Compute\V1\UrlMap|null
      */
     public function getUrlMapResource()
     {
-        return isset($this->url_map_resource) ? $this->url_map_resource : null;
+        return $this->url_map_resource;
     }
 
     public function hasUrlMapResource()

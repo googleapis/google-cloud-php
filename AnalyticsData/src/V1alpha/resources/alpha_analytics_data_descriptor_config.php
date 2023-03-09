@@ -2,7 +2,6 @@
 
 return [
     'interfaces' => [
-        'google.analytics.data.v1alpha.AlphaAnalyticsData' => [
-        ],
+        'google.analytics.data.v1alpha.AlphaAnalyticsData' => [],
     ],
 ];

@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request for [ConnectionService.CreateConnection][google.cloud.bigquery.connection.v1.ConnectionService.CreateConnection].
+ * The request for
+ * [ConnectionService.CreateConnection][google.cloud.bigquery.connection.v1.ConnectionService.CreateConnection].
  *
  * Generated from protobuf message <code>google.cloud.bigquery.connection.v1.CreateConnectionRequest</code>
  */
@@ -117,7 +118,7 @@ class CreateConnectionRequest extends \Google\Protobuf\Internal\Message
      */
     public function getConnection()
     {
-        return isset($this->connection) ? $this->connection : null;
+        return $this->connection;
     }
 
     public function hasConnection()

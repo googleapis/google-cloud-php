@@ -4,7 +4,7 @@
 
 [![Latest Stable Version](https://poser.pugx.org/google/cloud-translate/v/stable)](https://packagist.org/packages/google/cloud-translate) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-translate.svg)](https://packagist.org/packages/google/cloud-translate)
 
-* [API documentation](http://googleapis.github.io/google-cloud-php/#/docs/cloud-translate/latest)
+* [API documentation](https://cloud.google.com/php/docs/reference/cloud-translate/latest)
 
 **NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googleapis/google-cloud-php). Any
 support requests, bug reports, or development contributions should be directed to
@@ -33,7 +33,7 @@ $ composer require google/cloud
 
 ### Authentication
 
-Please see our [Authentication guide](https://github.com/googleapis/google-cloud-php/blob/master/AUTHENTICATION.md) for more information
+Please see our [Authentication guide](https://github.com/googleapis/google-cloud-php/blob/main/AUTHENTICATION.md) for more information
 on authenticating your client. Once authenticated, you'll be ready to start making requests.
 
 ### Sample Using the Handwritten Client (Interacts with the V2 API)

@@ -9,12 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents a data source parameter with validation rules, so that
- * parameters can be rendered in the UI. These parameters are given to us by
- * supported data sources, and include all needed information for rendering
- * and validation.
- * Thus, whoever uses this api can decide to generate either generic ui,
- * or custom data source specific forms.
+ * A parameter used to define custom fields in a data source definition.
  *
  * Generated from protobuf message <code>google.cloud.bigquery.datatransfer.v1.DataSourceParameter</code>
  */
@@ -75,7 +70,7 @@ class DataSourceParameter extends \Google\Protobuf\Internal\Message
      */
     private $min_value = null;
     /**
-     * For integer and double values specifies maxminum allowed value.
+     * For integer and double values specifies maximum allowed value.
      *
      * Generated from protobuf field <code>.google.protobuf.DoubleValue max_value = 10;</code>
      */
@@ -139,13 +134,13 @@ class DataSourceParameter extends \Google\Protobuf\Internal\Message
      *           Deprecated. This field has no effect.
      *     @type string $validation_regex
      *           Regular expression which can be used for parameter validation.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $allowed_values
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $allowed_values
      *           All possible values for the parameter.
      *     @type \Google\Protobuf\DoubleValue $min_value
      *           For integer and double values specifies minimum allowed value.
      *     @type \Google\Protobuf\DoubleValue $max_value
-     *           For integer and double values specifies maxminum allowed value.
-     *     @type \Google\Cloud\BigQuery\DataTransfer\V1\DataSourceParameter[]|\Google\Protobuf\Internal\RepeatedField $fields
+     *           For integer and double values specifies maximum allowed value.
+     *     @type array<\Google\Cloud\BigQuery\DataTransfer\V1\DataSourceParameter>|\Google\Protobuf\Internal\RepeatedField $fields
      *           Deprecated. This field has no effect.
      *     @type string $validation_description
      *           Description of the requirements for this field, in case the user input does
@@ -363,7 +358,7 @@ class DataSourceParameter extends \Google\Protobuf\Internal\Message
      * All possible values for the parameter.
      *
      * Generated from protobuf field <code>repeated string allowed_values = 8;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAllowedValues($var)
@@ -382,7 +377,7 @@ class DataSourceParameter extends \Google\Protobuf\Internal\Message
      */
     public function getMinValue()
     {
-        return isset($this->min_value) ? $this->min_value : null;
+        return $this->min_value;
     }
 
     public function hasMinValue()
@@ -438,14 +433,14 @@ class DataSourceParameter extends \Google\Protobuf\Internal\Message
         return $this;}
 
     /**
-     * For integer and double values specifies maxminum allowed value.
+     * For integer and double values specifies maximum allowed value.
      *
      * Generated from protobuf field <code>.google.protobuf.DoubleValue max_value = 10;</code>
      * @return \Google\Protobuf\DoubleValue|null
      */
     public function getMaxValue()
     {
-        return isset($this->max_value) ? $this->max_value : null;
+        return $this->max_value;
     }
 
     public function hasMaxValue()
@@ -461,7 +456,7 @@ class DataSourceParameter extends \Google\Protobuf\Internal\Message
     /**
      * Returns the unboxed value from <code>getMaxValue()</code>
 
-     * For integer and double values specifies maxminum allowed value.
+     * For integer and double values specifies maximum allowed value.
      *
      * Generated from protobuf field <code>.google.protobuf.DoubleValue max_value = 10;</code>
      * @return float|null
@@ -472,7 +467,7 @@ class DataSourceParameter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * For integer and double values specifies maxminum allowed value.
+     * For integer and double values specifies maximum allowed value.
      *
      * Generated from protobuf field <code>.google.protobuf.DoubleValue max_value = 10;</code>
      * @param \Google\Protobuf\DoubleValue $var
@@ -489,7 +484,7 @@ class DataSourceParameter extends \Google\Protobuf\Internal\Message
     /**
      * Sets the field by wrapping a primitive type in a Google\Protobuf\DoubleValue object.
 
-     * For integer and double values specifies maxminum allowed value.
+     * For integer and double values specifies maximum allowed value.
      *
      * Generated from protobuf field <code>.google.protobuf.DoubleValue max_value = 10;</code>
      * @param float|null $var
@@ -515,7 +510,7 @@ class DataSourceParameter extends \Google\Protobuf\Internal\Message
      * Deprecated. This field has no effect.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.datatransfer.v1.DataSourceParameter fields = 11;</code>
-     * @param \Google\Cloud\BigQuery\DataTransfer\V1\DataSourceParameter[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\BigQuery\DataTransfer\V1\DataSourceParameter>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFields($var)

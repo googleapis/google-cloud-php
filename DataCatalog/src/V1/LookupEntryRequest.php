@@ -26,22 +26,31 @@ class LookupEntryRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $linked_resource
      *           The full name of the Google Cloud Platform resource the Data Catalog
-     *           entry represents. See:
-     *           https://cloud.google.com/apis/design/resource_names#full_resource_name.
-     *           Full names are case-sensitive.
-     *           Examples:
-     *            * //bigquery.googleapis.com/projects/projectId/datasets/datasetId/tables/tableId
-     *            * //pubsub.googleapis.com/projects/projectId/topics/topicId
+     *           entry represents. For more information, see [Full Resource Name]
+     *           (https://cloud.google.com/apis/design/resource_names#full_resource_name).
+     *           Full names are case-sensitive. For example:
+     *            * `//bigquery.googleapis.com/projects/{PROJECT_ID}/datasets/{DATASET_ID}/tables/{TABLE_ID}`
+     *            * `//pubsub.googleapis.com/projects/{PROJECT_ID}/topics/{TOPIC_ID}`
      *     @type string $sql_resource
      *           The SQL name of the entry. SQL names are case-sensitive.
      *           Examples:
-     *             * `pubsub.project_id.topic_id`
-     *             * ``pubsub.project_id.`topic.id.with.dots` ``
-     *             * `bigquery.table.project_id.dataset_id.table_id`
-     *             * `bigquery.dataset.project_id.dataset_id`
-     *             * `datacatalog.entry.project_id.location_id.entry_group_id.entry_id`
-     *           `*_id`s shoud satisfy the standard SQL rules for identifiers.
-     *           https://cloud.google.com/bigquery/docs/reference/standard-sql/lexical.
+     *           * `pubsub.topic.{PROJECT_ID}.{TOPIC_ID}`
+     *           * `pubsub.topic.{PROJECT_ID}.`\``{TOPIC.ID.SEPARATED.WITH.DOTS}`\`
+     *           * `bigquery.table.{PROJECT_ID}.{DATASET_ID}.{TABLE_ID}`
+     *           * `bigquery.dataset.{PROJECT_ID}.{DATASET_ID}`
+     *           * `datacatalog.entry.{PROJECT_ID}.{LOCATION_ID}.{ENTRY_GROUP_ID}.{ENTRY_ID}`
+     *           Identifiers (`*_ID`) should comply with the
+     *           [Lexical structure in Standard SQL]
+     *           (https://cloud.google.com/bigquery/docs/reference/standard-sql/lexical).
+     *     @type string $fully_qualified_name
+     *           Fully qualified name (FQN) of the resource.
+     *           FQNs take two forms:
+     *           * For non-regionalized resources:
+     *             `{SYSTEM}:{PROJECT}.{PATH_TO_RESOURCE_SEPARATED_WITH_DOTS}`
+     *           * For regionalized resources:
+     *             `{SYSTEM}:{PROJECT}.{LOCATION_ID}.{PATH_TO_RESOURCE_SEPARATED_WITH_DOTS}`
+     *           Example for a DPMS table:
+     *           `dataproc_metastore:{PROJECT_ID}.{LOCATION_ID}.{INSTANCE_ID}.{DATABASE_ID}.{TABLE_ID}`
      * }
      */
     public function __construct($data = NULL) {
@@ -51,12 +60,11 @@ class LookupEntryRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The full name of the Google Cloud Platform resource the Data Catalog
-     * entry represents. See:
-     * https://cloud.google.com/apis/design/resource_names#full_resource_name.
-     * Full names are case-sensitive.
-     * Examples:
-     *  * //bigquery.googleapis.com/projects/projectId/datasets/datasetId/tables/tableId
-     *  * //pubsub.googleapis.com/projects/projectId/topics/topicId
+     * entry represents. For more information, see [Full Resource Name]
+     * (https://cloud.google.com/apis/design/resource_names#full_resource_name).
+     * Full names are case-sensitive. For example:
+     *  * `//bigquery.googleapis.com/projects/{PROJECT_ID}/datasets/{DATASET_ID}/tables/{TABLE_ID}`
+     *  * `//pubsub.googleapis.com/projects/{PROJECT_ID}/topics/{TOPIC_ID}`
      *
      * Generated from protobuf field <code>string linked_resource = 1;</code>
      * @return string
@@ -73,12 +81,11 @@ class LookupEntryRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The full name of the Google Cloud Platform resource the Data Catalog
-     * entry represents. See:
-     * https://cloud.google.com/apis/design/resource_names#full_resource_name.
-     * Full names are case-sensitive.
-     * Examples:
-     *  * //bigquery.googleapis.com/projects/projectId/datasets/datasetId/tables/tableId
-     *  * //pubsub.googleapis.com/projects/projectId/topics/topicId
+     * entry represents. For more information, see [Full Resource Name]
+     * (https://cloud.google.com/apis/design/resource_names#full_resource_name).
+     * Full names are case-sensitive. For example:
+     *  * `//bigquery.googleapis.com/projects/{PROJECT_ID}/datasets/{DATASET_ID}/tables/{TABLE_ID}`
+     *  * `//pubsub.googleapis.com/projects/{PROJECT_ID}/topics/{TOPIC_ID}`
      *
      * Generated from protobuf field <code>string linked_resource = 1;</code>
      * @param string $var
@@ -95,13 +102,14 @@ class LookupEntryRequest extends \Google\Protobuf\Internal\Message
     /**
      * The SQL name of the entry. SQL names are case-sensitive.
      * Examples:
-     *   * `pubsub.project_id.topic_id`
-     *   * ``pubsub.project_id.`topic.id.with.dots` ``
-     *   * `bigquery.table.project_id.dataset_id.table_id`
-     *   * `bigquery.dataset.project_id.dataset_id`
-     *   * `datacatalog.entry.project_id.location_id.entry_group_id.entry_id`
-     * `*_id`s shoud satisfy the standard SQL rules for identifiers.
-     * https://cloud.google.com/bigquery/docs/reference/standard-sql/lexical.
+     * * `pubsub.topic.{PROJECT_ID}.{TOPIC_ID}`
+     * * `pubsub.topic.{PROJECT_ID}.`\``{TOPIC.ID.SEPARATED.WITH.DOTS}`\`
+     * * `bigquery.table.{PROJECT_ID}.{DATASET_ID}.{TABLE_ID}`
+     * * `bigquery.dataset.{PROJECT_ID}.{DATASET_ID}`
+     * * `datacatalog.entry.{PROJECT_ID}.{LOCATION_ID}.{ENTRY_GROUP_ID}.{ENTRY_ID}`
+     * Identifiers (`*_ID`) should comply with the
+     * [Lexical structure in Standard SQL]
+     * (https://cloud.google.com/bigquery/docs/reference/standard-sql/lexical).
      *
      * Generated from protobuf field <code>string sql_resource = 3;</code>
      * @return string
@@ -119,13 +127,14 @@ class LookupEntryRequest extends \Google\Protobuf\Internal\Message
     /**
      * The SQL name of the entry. SQL names are case-sensitive.
      * Examples:
-     *   * `pubsub.project_id.topic_id`
-     *   * ``pubsub.project_id.`topic.id.with.dots` ``
-     *   * `bigquery.table.project_id.dataset_id.table_id`
-     *   * `bigquery.dataset.project_id.dataset_id`
-     *   * `datacatalog.entry.project_id.location_id.entry_group_id.entry_id`
-     * `*_id`s shoud satisfy the standard SQL rules for identifiers.
-     * https://cloud.google.com/bigquery/docs/reference/standard-sql/lexical.
+     * * `pubsub.topic.{PROJECT_ID}.{TOPIC_ID}`
+     * * `pubsub.topic.{PROJECT_ID}.`\``{TOPIC.ID.SEPARATED.WITH.DOTS}`\`
+     * * `bigquery.table.{PROJECT_ID}.{DATASET_ID}.{TABLE_ID}`
+     * * `bigquery.dataset.{PROJECT_ID}.{DATASET_ID}`
+     * * `datacatalog.entry.{PROJECT_ID}.{LOCATION_ID}.{ENTRY_GROUP_ID}.{ENTRY_ID}`
+     * Identifiers (`*_ID`) should comply with the
+     * [Lexical structure in Standard SQL]
+     * (https://cloud.google.com/bigquery/docs/reference/standard-sql/lexical).
      *
      * Generated from protobuf field <code>string sql_resource = 3;</code>
      * @param string $var
@@ -135,6 +144,51 @@ class LookupEntryRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->writeOneof(3, $var);
+
+        return $this;
+    }
+
+    /**
+     * Fully qualified name (FQN) of the resource.
+     * FQNs take two forms:
+     * * For non-regionalized resources:
+     *   `{SYSTEM}:{PROJECT}.{PATH_TO_RESOURCE_SEPARATED_WITH_DOTS}`
+     * * For regionalized resources:
+     *   `{SYSTEM}:{PROJECT}.{LOCATION_ID}.{PATH_TO_RESOURCE_SEPARATED_WITH_DOTS}`
+     * Example for a DPMS table:
+     * `dataproc_metastore:{PROJECT_ID}.{LOCATION_ID}.{INSTANCE_ID}.{DATABASE_ID}.{TABLE_ID}`
+     *
+     * Generated from protobuf field <code>string fully_qualified_name = 5;</code>
+     * @return string
+     */
+    public function getFullyQualifiedName()
+    {
+        return $this->readOneof(5);
+    }
+
+    public function hasFullyQualifiedName()
+    {
+        return $this->hasOneof(5);
+    }
+
+    /**
+     * Fully qualified name (FQN) of the resource.
+     * FQNs take two forms:
+     * * For non-regionalized resources:
+     *   `{SYSTEM}:{PROJECT}.{PATH_TO_RESOURCE_SEPARATED_WITH_DOTS}`
+     * * For regionalized resources:
+     *   `{SYSTEM}:{PROJECT}.{LOCATION_ID}.{PATH_TO_RESOURCE_SEPARATED_WITH_DOTS}`
+     * Example for a DPMS table:
+     * `dataproc_metastore:{PROJECT_ID}.{LOCATION_ID}.{INSTANCE_ID}.{DATABASE_ID}.{TABLE_ID}`
+     *
+     * Generated from protobuf field <code>string fully_qualified_name = 5;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setFullyQualifiedName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->writeOneof(5, $var);
 
         return $this;
     }

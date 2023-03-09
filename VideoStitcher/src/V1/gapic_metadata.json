@@ -1,0 +1,118 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.video.stitcher.v1",
+    "libraryPackage": "Google\\Cloud\\Video\\Stitcher\\V1",
+    "services": {
+        "VideoStitcherService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "VideoStitcherServiceGapicClient",
+                    "rpcs": {
+                        "CreateCdnKey": {
+                            "methods": [
+                                "createCdnKey"
+                            ]
+                        },
+                        "CreateLiveSession": {
+                            "methods": [
+                                "createLiveSession"
+                            ]
+                        },
+                        "CreateSlate": {
+                            "methods": [
+                                "createSlate"
+                            ]
+                        },
+                        "CreateVodSession": {
+                            "methods": [
+                                "createVodSession"
+                            ]
+                        },
+                        "DeleteCdnKey": {
+                            "methods": [
+                                "deleteCdnKey"
+                            ]
+                        },
+                        "DeleteSlate": {
+                            "methods": [
+                                "deleteSlate"
+                            ]
+                        },
+                        "GetCdnKey": {
+                            "methods": [
+                                "getCdnKey"
+                            ]
+                        },
+                        "GetLiveAdTagDetail": {
+                            "methods": [
+                                "getLiveAdTagDetail"
+                            ]
+                        },
+                        "GetLiveSession": {
+                            "methods": [
+                                "getLiveSession"
+                            ]
+                        },
+                        "GetSlate": {
+                            "methods": [
+                                "getSlate"
+                            ]
+                        },
+                        "GetVodAdTagDetail": {
+                            "methods": [
+                                "getVodAdTagDetail"
+                            ]
+                        },
+                        "GetVodSession": {
+                            "methods": [
+                                "getVodSession"
+                            ]
+                        },
+                        "GetVodStitchDetail": {
+                            "methods": [
+                                "getVodStitchDetail"
+                            ]
+                        },
+                        "ListCdnKeys": {
+                            "methods": [
+                                "listCdnKeys"
+                            ]
+                        },
+                        "ListLiveAdTagDetails": {
+                            "methods": [
+                                "listLiveAdTagDetails"
+                            ]
+                        },
+                        "ListSlates": {
+                            "methods": [
+                                "listSlates"
+                            ]
+                        },
+                        "ListVodAdTagDetails": {
+                            "methods": [
+                                "listVodAdTagDetails"
+                            ]
+                        },
+                        "ListVodStitchDetails": {
+                            "methods": [
+                                "listVodStitchDetails"
+                            ]
+                        },
+                        "UpdateCdnKey": {
+                            "methods": [
+                                "updateCdnKey"
+                            ]
+                        },
+                        "UpdateSlate": {
+                            "methods": [
+                                "updateSlate"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

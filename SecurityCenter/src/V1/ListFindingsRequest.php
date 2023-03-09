@@ -17,9 +17,12 @@ class ListFindingsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Name of the source the findings belong to. Its format is
-     * "organizations/[organization_id]/sources/[source_id]". To list across all
-     * sources provide a source_id of `-`. For example:
-     * organizations/{organization_id}/sources/-
+     * "organizations/[organization_id]/sources/[source_id],
+     * folders/[folder_id]/sources/[source_id], or
+     * projects/[project_id]/sources/[source_id]". To list across all sources
+     * provide a source_id of `-`. For example:
+     * organizations/{organization_id}/sources/-, folders/{folder_id}/sources/- or
+     * projects/{projects_id}/sources/-
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -50,18 +53,28 @@ class ListFindingsRequest extends \Google\Protobuf\Internal\Message
      * * category: `=`, `:`
      * * external_uri: `=`, `:`
      * * event_time: `=`, `>`, `<`, `>=`, `<=`
-     * * severity: `=`, `:`
      *   Usage: This should be milliseconds since epoch or an RFC3339 string.
      *   Examples:
      *     `event_time = "2019-06-10T16:07:18-07:00"`
      *     `event_time = 1560208038000`
-     * security_marks.marks: `=`, `:`
-     * source_properties: `=`, `:`, `>`, `<`, `>=`, `<=`
-     * For example, `source_properties.size = 100` is a valid filter string.
-     * Use a partial match on the empty string to filter based on a property
-     * existing: `source_properties.my_property : ""`
-     * Use a negated partial match on the empty string to filter based on a
-     * property not existing: `-source_properties.my_property : ""`
+     * * severity: `=`, `:`
+     * * workflow_state: `=`, `:`
+     * * security_marks.marks: `=`, `:`
+     * * source_properties: `=`, `:`, `>`, `<`, `>=`, `<=`
+     *   For example, `source_properties.size = 100` is a valid filter string.
+     *   Use a partial match on the empty string to filter based on a property
+     *   existing: `source_properties.my_property : ""`
+     *   Use a negated partial match on the empty string to filter based on a
+     *   property not existing: `-source_properties.my_property : ""`
+     * * resource:
+     *   * resource.name: `=`, `:`
+     *   * resource.parent_name: `=`, `:`
+     *   * resource.parent_display_name: `=`, `:`
+     *   * resource.project_name: `=`, `:`
+     *   * resource.project_display_name: `=`, `:`
+     *   * resource.type: `=`, `:`
+     *   * resource.folders.resource_folder: `=`, `:`
+     *   * resource.display_name: `=`, `:`
      *
      * Generated from protobuf field <code>string filter = 2;</code>
      */
@@ -159,9 +172,12 @@ class ListFindingsRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. Name of the source the findings belong to. Its format is
-     *           "organizations/[organization_id]/sources/[source_id]". To list across all
-     *           sources provide a source_id of `-`. For example:
-     *           organizations/{organization_id}/sources/-
+     *           "organizations/[organization_id]/sources/[source_id],
+     *           folders/[folder_id]/sources/[source_id], or
+     *           projects/[project_id]/sources/[source_id]". To list across all sources
+     *           provide a source_id of `-`. For example:
+     *           organizations/{organization_id}/sources/-, folders/{folder_id}/sources/- or
+     *           projects/{projects_id}/sources/-
      *     @type string $filter
      *           Expression that defines the filter to apply across findings.
      *           The expression is a list of one or more restrictions combined via logical
@@ -188,18 +204,28 @@ class ListFindingsRequest extends \Google\Protobuf\Internal\Message
      *           * category: `=`, `:`
      *           * external_uri: `=`, `:`
      *           * event_time: `=`, `>`, `<`, `>=`, `<=`
-     *           * severity: `=`, `:`
      *             Usage: This should be milliseconds since epoch or an RFC3339 string.
      *             Examples:
      *               `event_time = "2019-06-10T16:07:18-07:00"`
      *               `event_time = 1560208038000`
-     *           security_marks.marks: `=`, `:`
-     *           source_properties: `=`, `:`, `>`, `<`, `>=`, `<=`
-     *           For example, `source_properties.size = 100` is a valid filter string.
-     *           Use a partial match on the empty string to filter based on a property
-     *           existing: `source_properties.my_property : ""`
-     *           Use a negated partial match on the empty string to filter based on a
-     *           property not existing: `-source_properties.my_property : ""`
+     *           * severity: `=`, `:`
+     *           * workflow_state: `=`, `:`
+     *           * security_marks.marks: `=`, `:`
+     *           * source_properties: `=`, `:`, `>`, `<`, `>=`, `<=`
+     *             For example, `source_properties.size = 100` is a valid filter string.
+     *             Use a partial match on the empty string to filter based on a property
+     *             existing: `source_properties.my_property : ""`
+     *             Use a negated partial match on the empty string to filter based on a
+     *             property not existing: `-source_properties.my_property : ""`
+     *           * resource:
+     *             * resource.name: `=`, `:`
+     *             * resource.parent_name: `=`, `:`
+     *             * resource.parent_display_name: `=`, `:`
+     *             * resource.project_name: `=`, `:`
+     *             * resource.project_display_name: `=`, `:`
+     *             * resource.type: `=`, `:`
+     *             * resource.folders.resource_folder: `=`, `:`
+     *             * resource.display_name: `=`, `:`
      *     @type string $order_by
      *           Expression that defines what fields and order to use for sorting. The
      *           string value should follow SQL syntax: comma separated list of fields. For
@@ -269,9 +295,12 @@ class ListFindingsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Name of the source the findings belong to. Its format is
-     * "organizations/[organization_id]/sources/[source_id]". To list across all
-     * sources provide a source_id of `-`. For example:
-     * organizations/{organization_id}/sources/-
+     * "organizations/[organization_id]/sources/[source_id],
+     * folders/[folder_id]/sources/[source_id], or
+     * projects/[project_id]/sources/[source_id]". To list across all sources
+     * provide a source_id of `-`. For example:
+     * organizations/{organization_id}/sources/-, folders/{folder_id}/sources/- or
+     * projects/{projects_id}/sources/-
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -283,9 +312,12 @@ class ListFindingsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Name of the source the findings belong to. Its format is
-     * "organizations/[organization_id]/sources/[source_id]". To list across all
-     * sources provide a source_id of `-`. For example:
-     * organizations/{organization_id}/sources/-
+     * "organizations/[organization_id]/sources/[source_id],
+     * folders/[folder_id]/sources/[source_id], or
+     * projects/[project_id]/sources/[source_id]". To list across all sources
+     * provide a source_id of `-`. For example:
+     * organizations/{organization_id}/sources/-, folders/{folder_id}/sources/- or
+     * projects/{projects_id}/sources/-
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -325,18 +357,28 @@ class ListFindingsRequest extends \Google\Protobuf\Internal\Message
      * * category: `=`, `:`
      * * external_uri: `=`, `:`
      * * event_time: `=`, `>`, `<`, `>=`, `<=`
-     * * severity: `=`, `:`
      *   Usage: This should be milliseconds since epoch or an RFC3339 string.
      *   Examples:
      *     `event_time = "2019-06-10T16:07:18-07:00"`
      *     `event_time = 1560208038000`
-     * security_marks.marks: `=`, `:`
-     * source_properties: `=`, `:`, `>`, `<`, `>=`, `<=`
-     * For example, `source_properties.size = 100` is a valid filter string.
-     * Use a partial match on the empty string to filter based on a property
-     * existing: `source_properties.my_property : ""`
-     * Use a negated partial match on the empty string to filter based on a
-     * property not existing: `-source_properties.my_property : ""`
+     * * severity: `=`, `:`
+     * * workflow_state: `=`, `:`
+     * * security_marks.marks: `=`, `:`
+     * * source_properties: `=`, `:`, `>`, `<`, `>=`, `<=`
+     *   For example, `source_properties.size = 100` is a valid filter string.
+     *   Use a partial match on the empty string to filter based on a property
+     *   existing: `source_properties.my_property : ""`
+     *   Use a negated partial match on the empty string to filter based on a
+     *   property not existing: `-source_properties.my_property : ""`
+     * * resource:
+     *   * resource.name: `=`, `:`
+     *   * resource.parent_name: `=`, `:`
+     *   * resource.parent_display_name: `=`, `:`
+     *   * resource.project_name: `=`, `:`
+     *   * resource.project_display_name: `=`, `:`
+     *   * resource.type: `=`, `:`
+     *   * resource.folders.resource_folder: `=`, `:`
+     *   * resource.display_name: `=`, `:`
      *
      * Generated from protobuf field <code>string filter = 2;</code>
      * @return string
@@ -372,18 +414,28 @@ class ListFindingsRequest extends \Google\Protobuf\Internal\Message
      * * category: `=`, `:`
      * * external_uri: `=`, `:`
      * * event_time: `=`, `>`, `<`, `>=`, `<=`
-     * * severity: `=`, `:`
      *   Usage: This should be milliseconds since epoch or an RFC3339 string.
      *   Examples:
      *     `event_time = "2019-06-10T16:07:18-07:00"`
      *     `event_time = 1560208038000`
-     * security_marks.marks: `=`, `:`
-     * source_properties: `=`, `:`, `>`, `<`, `>=`, `<=`
-     * For example, `source_properties.size = 100` is a valid filter string.
-     * Use a partial match on the empty string to filter based on a property
-     * existing: `source_properties.my_property : ""`
-     * Use a negated partial match on the empty string to filter based on a
-     * property not existing: `-source_properties.my_property : ""`
+     * * severity: `=`, `:`
+     * * workflow_state: `=`, `:`
+     * * security_marks.marks: `=`, `:`
+     * * source_properties: `=`, `:`, `>`, `<`, `>=`, `<=`
+     *   For example, `source_properties.size = 100` is a valid filter string.
+     *   Use a partial match on the empty string to filter based on a property
+     *   existing: `source_properties.my_property : ""`
+     *   Use a negated partial match on the empty string to filter based on a
+     *   property not existing: `-source_properties.my_property : ""`
+     * * resource:
+     *   * resource.name: `=`, `:`
+     *   * resource.parent_name: `=`, `:`
+     *   * resource.parent_display_name: `=`, `:`
+     *   * resource.project_name: `=`, `:`
+     *   * resource.project_display_name: `=`, `:`
+     *   * resource.type: `=`, `:`
+     *   * resource.folders.resource_folder: `=`, `:`
+     *   * resource.display_name: `=`, `:`
      *
      * Generated from protobuf field <code>string filter = 2;</code>
      * @param string $var
@@ -462,11 +514,11 @@ class ListFindingsRequest extends \Google\Protobuf\Internal\Message
      * API's version of NOW.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 4;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getReadTime()
     {
-        return isset($this->read_time) ? $this->read_time : null;
+        return $this->read_time;
     }
 
     public function hasReadTime()
@@ -526,11 +578,11 @@ class ListFindingsRequest extends \Google\Protobuf\Internal\Message
      * read_time.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration compare_duration = 5;</code>
-     * @return \Google\Protobuf\Duration
+     * @return \Google\Protobuf\Duration|null
      */
     public function getCompareDuration()
     {
-        return isset($this->compare_duration) ? $this->compare_duration : null;
+        return $this->compare_duration;
     }
 
     public function hasCompareDuration()
@@ -588,11 +640,11 @@ class ListFindingsRequest extends \Google\Protobuf\Internal\Message
      * An empty field mask will list all fields.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask field_mask = 7;</code>
-     * @return \Google\Protobuf\FieldMask
+     * @return \Google\Protobuf\FieldMask|null
      */
     public function getFieldMask()
     {
-        return isset($this->field_mask) ? $this->field_mask : null;
+        return $this->field_mask;
     }
 
     public function hasFieldMask()

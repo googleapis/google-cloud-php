@@ -14,6 +14,20 @@ return [
                     ],
                 ],
             ],
+            'ListEvents' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta1/{project_name=projects/*}/events',
+                'placeholders' => [
+                    'project_name' => [
+                        'getters' => [
+                            'getProjectName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'group_id',
+                ],
+            ],
             'ListGroupStats' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1beta1/{project_name=projects/*}/groupStats',
@@ -25,17 +39,7 @@ return [
                     ],
                 ],
             ],
-            'ListEvents' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1beta1/{project_name=projects/*}/events',
-                'placeholders' => [
-                    'project_name' => [
-                        'getters' => [
-                            'getProjectName',
-                        ],
-                    ],
-                ],
-            ],
         ],
     ],
+    'numericEnums' => true,
 ];

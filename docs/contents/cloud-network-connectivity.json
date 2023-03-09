@@ -1,0 +1,15 @@
+{
+    "title": "networkconnectivity",
+    "defaultService": "networkconnectivity\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "networkconnectivity\/readme"
+        },
+        {
+            "title": "HubServiceClient (v1)",
+            "type": "networkconnectivity\/v1\/hubserviceclient"
+        }
+    ],
+    "pattern": "networkconnectivity\/\\w{1,}"
+}

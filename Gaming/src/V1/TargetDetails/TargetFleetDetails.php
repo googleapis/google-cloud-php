@@ -49,11 +49,11 @@ class TargetFleetDetails extends \Google\Protobuf\Internal\Message
      * Reference to target Agones fleet.
      *
      * Generated from protobuf field <code>.google.cloud.gaming.v1.TargetDetails.TargetFleetDetails.TargetFleet fleet = 1;</code>
-     * @return \Google\Cloud\Gaming\V1\TargetDetails\TargetFleetDetails\TargetFleet
+     * @return \Google\Cloud\Gaming\V1\TargetDetails\TargetFleetDetails\TargetFleet|null
      */
     public function getFleet()
     {
-        return isset($this->fleet) ? $this->fleet : null;
+        return $this->fleet;
     }
 
     public function hasFleet()
@@ -85,11 +85,11 @@ class TargetFleetDetails extends \Google\Protobuf\Internal\Message
      * Reference to target Agones fleet autoscaling policy.
      *
      * Generated from protobuf field <code>.google.cloud.gaming.v1.TargetDetails.TargetFleetDetails.TargetFleetAutoscaler autoscaler = 2;</code>
-     * @return \Google\Cloud\Gaming\V1\TargetDetails\TargetFleetDetails\TargetFleetAutoscaler
+     * @return \Google\Cloud\Gaming\V1\TargetDetails\TargetFleetDetails\TargetFleetAutoscaler|null
      */
     public function getAutoscaler()
     {
-        return isset($this->autoscaler) ? $this->autoscaler : null;
+        return $this->autoscaler;
     }
 
     public function hasAutoscaler()
@@ -119,6 +119,4 @@ class TargetFleetDetails extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(TargetFleetDetails::class, \Google\Cloud\Gaming\V1\TargetDetails_TargetFleetDetails::class);
 

@@ -112,6 +112,7 @@ class ResumableStream implements \IteratorAggregate
      * @return \Generator
      * @throws ApiException Thrown in the case of a malformed response.
      */
+    #[\ReturnTypeWillChange]
     public function getIterator()
     {
         return $this->readAll();

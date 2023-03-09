@@ -18,9 +18,23 @@ class InterconnectDiagnostics extends \Google\Protobuf\Internal\Message
     /**
      * A list of InterconnectDiagnostics.ARPEntry objects, describing individual neighbors currently seen by the Google router in the ARP cache for the Interconnect. This will be empty when the Interconnect is not bundled.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectDiagnosticsARPEntry arp_caches = 146156305;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectDiagnosticsARPEntry arp_caches = 414591761;</code>
      */
     private $arp_caches;
+    /**
+     * The aggregation type of the bundle interface.
+     * Check the BundleAggregationType enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string bundle_aggregation_type = 434939028;</code>
+     */
+    private $bundle_aggregation_type = null;
+    /**
+     * The operational status of the bundle interface.
+     * Check the BundleOperationalStatus enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string bundle_operational_status = 106433500;</code>
+     */
+    private $bundle_operational_status = null;
     /**
      * A list of InterconnectDiagnostics.LinkStatus objects, describing the status for each link on the Interconnect.
      *
@@ -30,9 +44,9 @@ class InterconnectDiagnostics extends \Google\Protobuf\Internal\Message
     /**
      * The MAC address of the Interconnect's bundle interface.
      *
-     * Generated from protobuf field <code>string mac_address = 64104708;</code>
+     * Generated from protobuf field <code>optional string mac_address = 332540164;</code>
      */
-    private $mac_address = '';
+    private $mac_address = null;
 
     /**
      * Constructor.
@@ -40,9 +54,15 @@ class InterconnectDiagnostics extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Compute\V1\InterconnectDiagnosticsARPEntry[]|\Google\Protobuf\Internal\RepeatedField $arp_caches
+     *     @type array<\Google\Cloud\Compute\V1\InterconnectDiagnosticsARPEntry>|\Google\Protobuf\Internal\RepeatedField $arp_caches
      *           A list of InterconnectDiagnostics.ARPEntry objects, describing individual neighbors currently seen by the Google router in the ARP cache for the Interconnect. This will be empty when the Interconnect is not bundled.
-     *     @type \Google\Cloud\Compute\V1\InterconnectDiagnosticsLinkStatus[]|\Google\Protobuf\Internal\RepeatedField $links
+     *     @type string $bundle_aggregation_type
+     *           The aggregation type of the bundle interface.
+     *           Check the BundleAggregationType enum for the list of possible values.
+     *     @type string $bundle_operational_status
+     *           The operational status of the bundle interface.
+     *           Check the BundleOperationalStatus enum for the list of possible values.
+     *     @type array<\Google\Cloud\Compute\V1\InterconnectDiagnosticsLinkStatus>|\Google\Protobuf\Internal\RepeatedField $links
      *           A list of InterconnectDiagnostics.LinkStatus objects, describing the status for each link on the Interconnect.
      *     @type string $mac_address
      *           The MAC address of the Interconnect's bundle interface.
@@ -56,7 +76,7 @@ class InterconnectDiagnostics extends \Google\Protobuf\Internal\Message
     /**
      * A list of InterconnectDiagnostics.ARPEntry objects, describing individual neighbors currently seen by the Google router in the ARP cache for the Interconnect. This will be empty when the Interconnect is not bundled.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectDiagnosticsARPEntry arp_caches = 146156305;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectDiagnosticsARPEntry arp_caches = 414591761;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getArpCaches()
@@ -67,14 +87,90 @@ class InterconnectDiagnostics extends \Google\Protobuf\Internal\Message
     /**
      * A list of InterconnectDiagnostics.ARPEntry objects, describing individual neighbors currently seen by the Google router in the ARP cache for the Interconnect. This will be empty when the Interconnect is not bundled.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectDiagnosticsARPEntry arp_caches = 146156305;</code>
-     * @param \Google\Cloud\Compute\V1\InterconnectDiagnosticsARPEntry[]|\Google\Protobuf\Internal\RepeatedField $var
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectDiagnosticsARPEntry arp_caches = 414591761;</code>
+     * @param array<\Google\Cloud\Compute\V1\InterconnectDiagnosticsARPEntry>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setArpCaches($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Compute\V1\InterconnectDiagnosticsARPEntry::class);
         $this->arp_caches = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The aggregation type of the bundle interface.
+     * Check the BundleAggregationType enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string bundle_aggregation_type = 434939028;</code>
+     * @return string
+     */
+    public function getBundleAggregationType()
+    {
+        return isset($this->bundle_aggregation_type) ? $this->bundle_aggregation_type : '';
+    }
+
+    public function hasBundleAggregationType()
+    {
+        return isset($this->bundle_aggregation_type);
+    }
+
+    public function clearBundleAggregationType()
+    {
+        unset($this->bundle_aggregation_type);
+    }
+
+    /**
+     * The aggregation type of the bundle interface.
+     * Check the BundleAggregationType enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string bundle_aggregation_type = 434939028;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setBundleAggregationType($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->bundle_aggregation_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * The operational status of the bundle interface.
+     * Check the BundleOperationalStatus enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string bundle_operational_status = 106433500;</code>
+     * @return string
+     */
+    public function getBundleOperationalStatus()
+    {
+        return isset($this->bundle_operational_status) ? $this->bundle_operational_status : '';
+    }
+
+    public function hasBundleOperationalStatus()
+    {
+        return isset($this->bundle_operational_status);
+    }
+
+    public function clearBundleOperationalStatus()
+    {
+        unset($this->bundle_operational_status);
+    }
+
+    /**
+     * The operational status of the bundle interface.
+     * Check the BundleOperationalStatus enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string bundle_operational_status = 106433500;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setBundleOperationalStatus($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->bundle_operational_status = $var;
 
         return $this;
     }
@@ -94,7 +190,7 @@ class InterconnectDiagnostics extends \Google\Protobuf\Internal\Message
      * A list of InterconnectDiagnostics.LinkStatus objects, describing the status for each link on the Interconnect.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectDiagnosticsLinkStatus links = 102977465;</code>
-     * @param \Google\Cloud\Compute\V1\InterconnectDiagnosticsLinkStatus[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\InterconnectDiagnosticsLinkStatus>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setLinks($var)
@@ -108,18 +204,28 @@ class InterconnectDiagnostics extends \Google\Protobuf\Internal\Message
     /**
      * The MAC address of the Interconnect's bundle interface.
      *
-     * Generated from protobuf field <code>string mac_address = 64104708;</code>
+     * Generated from protobuf field <code>optional string mac_address = 332540164;</code>
      * @return string
      */
     public function getMacAddress()
     {
-        return $this->mac_address;
+        return isset($this->mac_address) ? $this->mac_address : '';
+    }
+
+    public function hasMacAddress()
+    {
+        return isset($this->mac_address);
+    }
+
+    public function clearMacAddress()
+    {
+        unset($this->mac_address);
     }
 
     /**
      * The MAC address of the Interconnect's bundle interface.
      *
-     * Generated from protobuf field <code>string mac_address = 64104708;</code>
+     * Generated from protobuf field <code>optional string mac_address = 332540164;</code>
      * @param string $var
      * @return $this
      */

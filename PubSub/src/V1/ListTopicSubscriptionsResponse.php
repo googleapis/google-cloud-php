@@ -36,7 +36,7 @@ class ListTopicSubscriptionsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $subscriptions
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $subscriptions
      *           The names of subscriptions attached to the topic specified in the request.
      *     @type string $next_page_token
      *           If not empty, indicates that there may be more subscriptions that match
@@ -64,7 +64,7 @@ class ListTopicSubscriptionsResponse extends \Google\Protobuf\Internal\Message
      * The names of subscriptions attached to the topic specified in the request.
      *
      * Generated from protobuf field <code>repeated string subscriptions = 1 [(.google.api.resource_reference) = {</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSubscriptions($var)

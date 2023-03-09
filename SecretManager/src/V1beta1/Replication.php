@@ -38,7 +38,7 @@ class Replication extends \Google\Protobuf\Internal\Message
      * The [Secret][google.cloud.secrets.v1beta1.Secret] will automatically be replicated without any restrictions.
      *
      * Generated from protobuf field <code>.google.cloud.secrets.v1beta1.Replication.Automatic automatic = 1;</code>
-     * @return \Google\Cloud\SecretManager\V1beta1\Replication\Automatic
+     * @return \Google\Cloud\SecretManager\V1beta1\Replication\Automatic|null
      */
     public function getAutomatic()
     {
@@ -69,7 +69,7 @@ class Replication extends \Google\Protobuf\Internal\Message
      * The [Secret][google.cloud.secrets.v1beta1.Secret] will only be replicated into the locations specified.
      *
      * Generated from protobuf field <code>.google.cloud.secrets.v1beta1.Replication.UserManaged user_managed = 2;</code>
-     * @return \Google\Cloud\SecretManager\V1beta1\Replication\UserManaged
+     * @return \Google\Cloud\SecretManager\V1beta1\Replication\UserManaged|null
      */
     public function getUserManaged()
     {

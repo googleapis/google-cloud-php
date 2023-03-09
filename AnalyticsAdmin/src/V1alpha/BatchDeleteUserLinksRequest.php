@@ -43,7 +43,7 @@ class BatchDeleteUserLinksRequest extends \Google\Protobuf\Internal\Message
      *           for. The parent of all values for user link names to delete must match this
      *           field.
      *           Example format: accounts/1234
-     *     @type \Google\Analytics\Admin\V1alpha\DeleteUserLinkRequest[]|\Google\Protobuf\Internal\RepeatedField $requests
+     *     @type array<\Google\Analytics\Admin\V1alpha\DeleteUserLinkRequest>|\Google\Protobuf\Internal\RepeatedField $requests
      *           Required. The requests specifying the user links to update.
      *           A maximum of 1000 user links can be updated in a batch.
      * }
@@ -102,7 +102,7 @@ class BatchDeleteUserLinksRequest extends \Google\Protobuf\Internal\Message
      * A maximum of 1000 user links can be updated in a batch.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.DeleteUserLinkRequest requests = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param \Google\Analytics\Admin\V1alpha\DeleteUserLinkRequest[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Analytics\Admin\V1alpha\DeleteUserLinkRequest>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setRequests($var)

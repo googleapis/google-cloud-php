@@ -24,14 +24,17 @@ class GcsDestination extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $uri
-     *           The uri of the Cloud Storage object. It's the same uri that is used by
+     *           The URI of the Cloud Storage object. It's the same URI that is used by
      *           gsutil. Example: "gs://bucket_name/object_name". See [Viewing and
      *           Editing Object
      *           Metadata](https://cloud.google.com/storage/docs/viewing-editing-metadata)
      *           for more information.
+     *           If the specified Cloud Storage object already exists and there is no
+     *           [hold](https://cloud.google.com/storage/docs/object-holds), it will be
+     *           overwritten with the exported result.
      *     @type string $uri_prefix
-     *           The uri prefix of all generated Cloud Storage objects. Example:
-     *           "gs://bucket_name/object_name_prefix". Each object uri is in format:
+     *           The URI prefix of all generated Cloud Storage objects. Example:
+     *           "gs://bucket_name/object_name_prefix". Each object URI is in format:
      *           "gs://bucket_name/object_name_prefix/<asset type>/<shard number> and only
      *           contains assets for that type. <shard number> starts from 0. Example:
      *           "gs://bucket_name/object_name_prefix/compute.googleapis.com/Disk/0" is
@@ -47,11 +50,14 @@ class GcsDestination extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The uri of the Cloud Storage object. It's the same uri that is used by
+     * The URI of the Cloud Storage object. It's the same URI that is used by
      * gsutil. Example: "gs://bucket_name/object_name". See [Viewing and
      * Editing Object
      * Metadata](https://cloud.google.com/storage/docs/viewing-editing-metadata)
      * for more information.
+     * If the specified Cloud Storage object already exists and there is no
+     * [hold](https://cloud.google.com/storage/docs/object-holds), it will be
+     * overwritten with the exported result.
      *
      * Generated from protobuf field <code>string uri = 1;</code>
      * @return string
@@ -61,12 +67,20 @@ class GcsDestination extends \Google\Protobuf\Internal\Message
         return $this->readOneof(1);
     }
 
+    public function hasUri()
+    {
+        return $this->hasOneof(1);
+    }
+
     /**
-     * The uri of the Cloud Storage object. It's the same uri that is used by
+     * The URI of the Cloud Storage object. It's the same URI that is used by
      * gsutil. Example: "gs://bucket_name/object_name". See [Viewing and
      * Editing Object
      * Metadata](https://cloud.google.com/storage/docs/viewing-editing-metadata)
      * for more information.
+     * If the specified Cloud Storage object already exists and there is no
+     * [hold](https://cloud.google.com/storage/docs/object-holds), it will be
+     * overwritten with the exported result.
      *
      * Generated from protobuf field <code>string uri = 1;</code>
      * @param string $var
@@ -81,8 +95,8 @@ class GcsDestination extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The uri prefix of all generated Cloud Storage objects. Example:
-     * "gs://bucket_name/object_name_prefix". Each object uri is in format:
+     * The URI prefix of all generated Cloud Storage objects. Example:
+     * "gs://bucket_name/object_name_prefix". Each object URI is in format:
      * "gs://bucket_name/object_name_prefix/<asset type>/<shard number> and only
      * contains assets for that type. <shard number> starts from 0. Example:
      * "gs://bucket_name/object_name_prefix/compute.googleapis.com/Disk/0" is
@@ -99,9 +113,14 @@ class GcsDestination extends \Google\Protobuf\Internal\Message
         return $this->readOneof(2);
     }
 
+    public function hasUriPrefix()
+    {
+        return $this->hasOneof(2);
+    }
+
     /**
-     * The uri prefix of all generated Cloud Storage objects. Example:
-     * "gs://bucket_name/object_name_prefix". Each object uri is in format:
+     * The URI prefix of all generated Cloud Storage objects. Example:
+     * "gs://bucket_name/object_name_prefix". Each object URI is in format:
      * "gs://bucket_name/object_name_prefix/<asset type>/<shard number> and only
      * contains assets for that type. <shard number> starts from 0. Example:
      * "gs://bucket_name/object_name_prefix/compute.googleapis.com/Disk/0" is

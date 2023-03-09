@@ -99,6 +99,4 @@ class WindowsUpdateCategory extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(WindowsUpdateCategory::class, \Google\Cloud\OsConfig\V1\Inventory_WindowsUpdatePackage_WindowsUpdateCategory::class);
 

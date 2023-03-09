@@ -61,6 +61,12 @@ class FieldOperationMetadata extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.firestore.admin.v1.Progress progress_bytes = 7;</code>
      */
     private $progress_bytes = null;
+    /**
+     * Describes the deltas of TTL configuration.
+     *
+     * Generated from protobuf field <code>.google.firestore.admin.v1.FieldOperationMetadata.TtlConfigDelta ttl_config_delta = 8;</code>
+     */
+    private $ttl_config_delta = null;
 
     /**
      * Constructor.
@@ -76,7 +82,7 @@ class FieldOperationMetadata extends \Google\Protobuf\Internal\Message
      *     @type string $field
      *           The field resource that this operation is acting on. For example:
      *           `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/fields/{field_path}`
-     *     @type \Google\Cloud\Firestore\Admin\V1\FieldOperationMetadata\IndexConfigDelta[]|\Google\Protobuf\Internal\RepeatedField $index_config_deltas
+     *     @type array<\Google\Cloud\Firestore\Admin\V1\FieldOperationMetadata\IndexConfigDelta>|\Google\Protobuf\Internal\RepeatedField $index_config_deltas
      *           A list of [IndexConfigDelta][google.firestore.admin.v1.FieldOperationMetadata.IndexConfigDelta], which describe the intent of this
      *           operation.
      *     @type int $state
@@ -85,6 +91,8 @@ class FieldOperationMetadata extends \Google\Protobuf\Internal\Message
      *           The progress, in documents, of this operation.
      *     @type \Google\Cloud\Firestore\Admin\V1\Progress $progress_bytes
      *           The progress, in bytes, of this operation.
+     *     @type \Google\Cloud\Firestore\Admin\V1\FieldOperationMetadata\TtlConfigDelta $ttl_config_delta
+     *           Describes the deltas of TTL configuration.
      * }
      */
     public function __construct($data = NULL) {
@@ -100,7 +108,7 @@ class FieldOperationMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getStartTime()
     {
-        return isset($this->start_time) ? $this->start_time : null;
+        return $this->start_time;
     }
 
     public function hasStartTime()
@@ -137,7 +145,7 @@ class FieldOperationMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getEndTime()
     {
-        return isset($this->end_time) ? $this->end_time : null;
+        return $this->end_time;
     }
 
     public function hasEndTime()
@@ -211,7 +219,7 @@ class FieldOperationMetadata extends \Google\Protobuf\Internal\Message
      * operation.
      *
      * Generated from protobuf field <code>repeated .google.firestore.admin.v1.FieldOperationMetadata.IndexConfigDelta index_config_deltas = 4;</code>
-     * @param \Google\Cloud\Firestore\Admin\V1\FieldOperationMetadata\IndexConfigDelta[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Firestore\Admin\V1\FieldOperationMetadata\IndexConfigDelta>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setIndexConfigDeltas($var)
@@ -256,7 +264,7 @@ class FieldOperationMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getProgressDocuments()
     {
-        return isset($this->progress_documents) ? $this->progress_documents : null;
+        return $this->progress_documents;
     }
 
     public function hasProgressDocuments()
@@ -292,7 +300,7 @@ class FieldOperationMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getProgressBytes()
     {
-        return isset($this->progress_bytes) ? $this->progress_bytes : null;
+        return $this->progress_bytes;
     }
 
     public function hasProgressBytes()
@@ -316,6 +324,42 @@ class FieldOperationMetadata extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Firestore\Admin\V1\Progress::class);
         $this->progress_bytes = $var;
+
+        return $this;
+    }
+
+    /**
+     * Describes the deltas of TTL configuration.
+     *
+     * Generated from protobuf field <code>.google.firestore.admin.v1.FieldOperationMetadata.TtlConfigDelta ttl_config_delta = 8;</code>
+     * @return \Google\Cloud\Firestore\Admin\V1\FieldOperationMetadata\TtlConfigDelta|null
+     */
+    public function getTtlConfigDelta()
+    {
+        return $this->ttl_config_delta;
+    }
+
+    public function hasTtlConfigDelta()
+    {
+        return isset($this->ttl_config_delta);
+    }
+
+    public function clearTtlConfigDelta()
+    {
+        unset($this->ttl_config_delta);
+    }
+
+    /**
+     * Describes the deltas of TTL configuration.
+     *
+     * Generated from protobuf field <code>.google.firestore.admin.v1.FieldOperationMetadata.TtlConfigDelta ttl_config_delta = 8;</code>
+     * @param \Google\Cloud\Firestore\Admin\V1\FieldOperationMetadata\TtlConfigDelta $var
+     * @return $this
+     */
+    public function setTtlConfigDelta($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Firestore\Admin\V1\FieldOperationMetadata\TtlConfigDelta::class);
+        $this->ttl_config_delta = $var;
 
         return $this;
     }

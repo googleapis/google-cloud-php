@@ -10,6 +10,7 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Response for the `ValidateMessage` method.
+ * Empty for now.
  *
  * Generated from protobuf message <code>google.pubsub.v1.ValidateMessageResponse</code>
  */

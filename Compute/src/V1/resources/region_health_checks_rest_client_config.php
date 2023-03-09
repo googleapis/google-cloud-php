@@ -7,6 +7,11 @@ return [
                 'method' => 'delete',
                 'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/healthChecks/{health_check}',
                 'placeholders' => [
+                    'health_check' => [
+                        'getters' => [
+                            'getHealthCheck',
+                        ],
+                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
@@ -15,11 +20,6 @@ return [
                     'region' => [
                         'getters' => [
                             'getRegion',
-                        ],
-                    ],
-                    'health_check' => [
-                        'getters' => [
-                            'getHealthCheck',
                         ],
                     ],
                 ],
@@ -28,6 +28,11 @@ return [
                 'method' => 'get',
                 'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/healthChecks/{health_check}',
                 'placeholders' => [
+                    'health_check' => [
+                        'getters' => [
+                            'getHealthCheck',
+                        ],
+                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
@@ -36,11 +41,6 @@ return [
                     'region' => [
                         'getters' => [
                             'getRegion',
-                        ],
-                    ],
-                    'health_check' => [
-                        'getters' => [
-                            'getHealthCheck',
                         ],
                     ],
                 ],
@@ -83,6 +83,11 @@ return [
                 'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/healthChecks/{health_check}',
                 'body' => 'health_check_resource',
                 'placeholders' => [
+                    'health_check' => [
+                        'getters' => [
+                            'getHealthCheck',
+                        ],
+                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
@@ -93,17 +98,77 @@ return [
                             'getRegion',
                         ],
                     ],
-                    'health_check' => [
-                        'getters' => [
-                            'getHealthCheck',
-                        ],
-                    ],
                 ],
             ],
             'Update' => [
                 'method' => 'put',
                 'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/healthChecks/{health_check}',
                 'body' => 'health_check_resource',
+                'placeholders' => [
+                    'health_check' => [
+                        'getters' => [
+                            'getHealthCheck',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'region' => [
+                        'getters' => [
+                            'getRegion',
+                        ],
+                    ],
+                ],
+            ],
+        ],
+        'google.cloud.compute.v1.RegionOperations' => [
+            'Delete' => [
+                'method' => 'delete',
+                'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/operations/{operation}',
+                'placeholders' => [
+                    'operation' => [
+                        'getters' => [
+                            'getOperation',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'region' => [
+                        'getters' => [
+                            'getRegion',
+                        ],
+                    ],
+                ],
+            ],
+            'Get' => [
+                'method' => 'get',
+                'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/operations/{operation}',
+                'placeholders' => [
+                    'operation' => [
+                        'getters' => [
+                            'getOperation',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'region' => [
+                        'getters' => [
+                            'getRegion',
+                        ],
+                    ],
+                ],
+            ],
+            'List' => [
+                'method' => 'get',
+                'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/operations',
                 'placeholders' => [
                     'project' => [
                         'getters' => [
@@ -115,9 +180,25 @@ return [
                             'getRegion',
                         ],
                     ],
-                    'health_check' => [
+                ],
+            ],
+            'Wait' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/operations/{operation}/wait',
+                'placeholders' => [
+                    'operation' => [
                         'getters' => [
-                            'getHealthCheck',
+                            'getOperation',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'region' => [
+                        'getters' => [
+                            'getRegion',
                         ],
                     ],
                 ],

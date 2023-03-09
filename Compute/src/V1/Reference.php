@@ -18,28 +18,27 @@ class Reference extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Type of the resource. Always compute#reference for references.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
-    private $kind = '';
+    private $kind = null;
     /**
-     * A description of the reference type with no implied semantics. Possible values include:
-     * - MEMBER_OF
+     * A description of the reference type with no implied semantics. Possible values include: 1. MEMBER_OF 
      *
-     * Generated from protobuf field <code>string reference_type = 247521198;</code>
+     * Generated from protobuf field <code>optional string reference_type = 247521198;</code>
      */
-    private $reference_type = '';
+    private $reference_type = null;
     /**
      * URL of the resource which refers to the target.
      *
-     * Generated from protobuf field <code>string referrer = 82738207;</code>
+     * Generated from protobuf field <code>optional string referrer = 351173663;</code>
      */
-    private $referrer = '';
+    private $referrer = null;
     /**
      * URL of the resource to which this reference points.
      *
-     * Generated from protobuf field <code>string target = 192835985;</code>
+     * Generated from protobuf field <code>optional string target = 192835985;</code>
      */
-    private $target = '';
+    private $target = null;
 
     /**
      * Constructor.
@@ -50,8 +49,7 @@ class Reference extends \Google\Protobuf\Internal\Message
      *     @type string $kind
      *           [Output Only] Type of the resource. Always compute#reference for references.
      *     @type string $reference_type
-     *           A description of the reference type with no implied semantics. Possible values include:
-     *           - MEMBER_OF
+     *           A description of the reference type with no implied semantics. Possible values include: 1. MEMBER_OF 
      *     @type string $referrer
      *           URL of the resource which refers to the target.
      *     @type string $target
@@ -66,18 +64,28 @@ class Reference extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Type of the resource. Always compute#reference for references.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
      */
     public function getKind()
     {
-        return $this->kind;
+        return isset($this->kind) ? $this->kind : '';
+    }
+
+    public function hasKind()
+    {
+        return isset($this->kind);
+    }
+
+    public function clearKind()
+    {
+        unset($this->kind);
     }
 
     /**
      * [Output Only] Type of the resource. Always compute#reference for references.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
      * @return $this
      */
@@ -90,22 +98,30 @@ class Reference extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A description of the reference type with no implied semantics. Possible values include:
-     * - MEMBER_OF
+     * A description of the reference type with no implied semantics. Possible values include: 1. MEMBER_OF 
      *
-     * Generated from protobuf field <code>string reference_type = 247521198;</code>
+     * Generated from protobuf field <code>optional string reference_type = 247521198;</code>
      * @return string
      */
     public function getReferenceType()
     {
-        return $this->reference_type;
+        return isset($this->reference_type) ? $this->reference_type : '';
+    }
+
+    public function hasReferenceType()
+    {
+        return isset($this->reference_type);
+    }
+
+    public function clearReferenceType()
+    {
+        unset($this->reference_type);
     }
 
     /**
-     * A description of the reference type with no implied semantics. Possible values include:
-     * - MEMBER_OF
+     * A description of the reference type with no implied semantics. Possible values include: 1. MEMBER_OF 
      *
-     * Generated from protobuf field <code>string reference_type = 247521198;</code>
+     * Generated from protobuf field <code>optional string reference_type = 247521198;</code>
      * @param string $var
      * @return $this
      */
@@ -120,18 +136,28 @@ class Reference extends \Google\Protobuf\Internal\Message
     /**
      * URL of the resource which refers to the target.
      *
-     * Generated from protobuf field <code>string referrer = 82738207;</code>
+     * Generated from protobuf field <code>optional string referrer = 351173663;</code>
      * @return string
      */
     public function getReferrer()
     {
-        return $this->referrer;
+        return isset($this->referrer) ? $this->referrer : '';
+    }
+
+    public function hasReferrer()
+    {
+        return isset($this->referrer);
+    }
+
+    public function clearReferrer()
+    {
+        unset($this->referrer);
     }
 
     /**
      * URL of the resource which refers to the target.
      *
-     * Generated from protobuf field <code>string referrer = 82738207;</code>
+     * Generated from protobuf field <code>optional string referrer = 351173663;</code>
      * @param string $var
      * @return $this
      */
@@ -146,18 +172,28 @@ class Reference extends \Google\Protobuf\Internal\Message
     /**
      * URL of the resource to which this reference points.
      *
-     * Generated from protobuf field <code>string target = 192835985;</code>
+     * Generated from protobuf field <code>optional string target = 192835985;</code>
      * @return string
      */
     public function getTarget()
     {
-        return $this->target;
+        return isset($this->target) ? $this->target : '';
+    }
+
+    public function hasTarget()
+    {
+        return isset($this->target);
+    }
+
+    public function clearTarget()
+    {
+        unset($this->target);
     }
 
     /**
      * URL of the resource to which this reference points.
      *
-     * Generated from protobuf field <code>string target = 192835985;</code>
+     * Generated from protobuf field <code>optional string target = 192835985;</code>
      * @param string $var
      * @return $this
      */

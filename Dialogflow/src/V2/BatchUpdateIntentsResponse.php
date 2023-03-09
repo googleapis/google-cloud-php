@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The response message for [Intents.BatchUpdateIntents][google.cloud.dialogflow.v2.Intents.BatchUpdateIntents].
+ * The response message for
+ * [Intents.BatchUpdateIntents][google.cloud.dialogflow.v2.Intents.BatchUpdateIntents].
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.BatchUpdateIntentsResponse</code>
  */
@@ -28,7 +29,7 @@ class BatchUpdateIntentsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Dialogflow\V2\Intent[]|\Google\Protobuf\Internal\RepeatedField $intents
+     *     @type array<\Google\Cloud\Dialogflow\V2\Intent>|\Google\Protobuf\Internal\RepeatedField $intents
      *           The collection of updated or created intents.
      * }
      */
@@ -52,7 +53,7 @@ class BatchUpdateIntentsResponse extends \Google\Protobuf\Internal\Message
      * The collection of updated or created intents.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent intents = 1;</code>
-     * @param \Google\Cloud\Dialogflow\V2\Intent[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dialogflow\V2\Intent>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setIntents($var)

@@ -30,7 +30,7 @@ class Chain extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Bigtable\V2\RowFilter[]|\Google\Protobuf\Internal\RepeatedField $filters
+     *     @type array<\Google\Cloud\Bigtable\V2\RowFilter>|\Google\Protobuf\Internal\RepeatedField $filters
      *           The elements of "filters" are chained together to process the input row:
      *           in row -> f(0) -> intermediate row -> f(1) -> ... -> f(N) -> out row
      *           The full chain is executed atomically.
@@ -60,7 +60,7 @@ class Chain extends \Google\Protobuf\Internal\Message
      * The full chain is executed atomically.
      *
      * Generated from protobuf field <code>repeated .google.bigtable.v2.RowFilter filters = 1;</code>
-     * @param \Google\Cloud\Bigtable\V2\RowFilter[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Bigtable\V2\RowFilter>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFilters($var)

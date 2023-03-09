@@ -29,7 +29,7 @@ class CatalogInlineSource extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\RecommendationEngine\V1beta1\CatalogItem[]|\Google\Protobuf\Internal\RepeatedField $catalog_items
+     *     @type array<\Google\Cloud\RecommendationEngine\V1beta1\CatalogItem>|\Google\Protobuf\Internal\RepeatedField $catalog_items
      *           Optional. A list of catalog items to update/create. Recommended max of 10k
      *           items.
      * }
@@ -56,7 +56,7 @@ class CatalogInlineSource extends \Google\Protobuf\Internal\Message
      * items.
      *
      * Generated from protobuf field <code>repeated .google.cloud.recommendationengine.v1beta1.CatalogItem catalog_items = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param \Google\Cloud\RecommendationEngine\V1beta1\CatalogItem[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\RecommendationEngine\V1beta1\CatalogItem>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setCatalogItems($var)

@@ -23,9 +23,10 @@ class UpdateAccountRequest extends \Google\Protobuf\Internal\Message
      */
     private $account = null;
     /**
-     * Required. The list of fields to be updated. Omitted fields will not be updated.
-     * To replace the entire entity, use one path with the string "*" to match
-     * all fields.
+     * Required. The list of fields to be updated. Field names must be in snake
+     * case (for example, "field_to_update"). Omitted fields will not be updated.
+     * To replace the entire entity, use one path with the string "*" to match all
+     * fields.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -41,9 +42,10 @@ class UpdateAccountRequest extends \Google\Protobuf\Internal\Message
      *           Required. The account to update.
      *           The account's `name` field is used to identify the account.
      *     @type \Google\Protobuf\FieldMask $update_mask
-     *           Required. The list of fields to be updated. Omitted fields will not be updated.
-     *           To replace the entire entity, use one path with the string "*" to match
-     *           all fields.
+     *           Required. The list of fields to be updated. Field names must be in snake
+     *           case (for example, "field_to_update"). Omitted fields will not be updated.
+     *           To replace the entire entity, use one path with the string "*" to match all
+     *           fields.
      * }
      */
     public function __construct($data = NULL) {
@@ -56,11 +58,11 @@ class UpdateAccountRequest extends \Google\Protobuf\Internal\Message
      * The account's `name` field is used to identify the account.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.Account account = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Analytics\Admin\V1alpha\Account
+     * @return \Google\Analytics\Admin\V1alpha\Account|null
      */
     public function getAccount()
     {
-        return isset($this->account) ? $this->account : null;
+        return $this->account;
     }
 
     public function hasAccount()
@@ -90,16 +92,17 @@ class UpdateAccountRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The list of fields to be updated. Omitted fields will not be updated.
-     * To replace the entire entity, use one path with the string "*" to match
-     * all fields.
+     * Required. The list of fields to be updated. Field names must be in snake
+     * case (for example, "field_to_update"). Omitted fields will not be updated.
+     * To replace the entire entity, use one path with the string "*" to match all
+     * fields.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\FieldMask
+     * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()
@@ -113,9 +116,10 @@ class UpdateAccountRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The list of fields to be updated. Omitted fields will not be updated.
-     * To replace the entire entity, use one path with the string "*" to match
-     * all fields.
+     * Required. The list of fields to be updated. Field names must be in snake
+     * case (for example, "field_to_update"). Omitted fields will not be updated.
+     * To replace the entire entity, use one path with the string "*" to match all
+     * fields.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Protobuf\FieldMask $var

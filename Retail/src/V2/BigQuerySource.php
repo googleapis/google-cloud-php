@@ -16,9 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class BigQuerySource extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The project id (can be project # or id) that the BigQuery source is in with
+     * The project ID (can be project # or ID) that the BigQuery source is in with
      * a length limit of 128 characters. If not specified, inherits the project
-     * id from the parent request.
+     * ID from the parent request.
      *
      * Generated from protobuf field <code>string project_id = 5;</code>
      */
@@ -56,12 +56,21 @@ class BigQuerySource extends \Google\Protobuf\Internal\Message
      * Supported values for user events imports:
      * * `user_event` (default): One JSON
      * [UserEvent][google.cloud.retail.v2.UserEvent] per line.
-     * * `user_event_ga360`: Using
-     *   https://support.google.com/analytics/answer/3437719?hl=en.
+     * * `user_event_ga360`:
+     *   The schema is available here:
+     *   https://support.google.com/analytics/answer/3437719.
+     * * `user_event_ga4`:
+     *   The schema is available here:
+     *   https://support.google.com/analytics/answer/7029846.
+     * Supported values for auto-completion imports:
+     * * `suggestions` (default): One JSON completion suggestion per line.
+     * * `denylist`:  One JSON deny suggestion per line.
+     * * `allowlist`:  One JSON allow suggestion per line.
      *
      * Generated from protobuf field <code>string data_schema = 4;</code>
      */
     private $data_schema = '';
+    protected $partition;
 
     /**
      * Constructor.
@@ -69,10 +78,14 @@ class BigQuerySource extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type \Google\Type\Date $partition_date
+     *           BigQuery time partitioned table's _PARTITIONDATE in YYYY-MM-DD format.
+     *           Only supported in
+     *           [ImportProductsRequest][google.cloud.retail.v2.ImportProductsRequest].
      *     @type string $project_id
-     *           The project id (can be project # or id) that the BigQuery source is in with
+     *           The project ID (can be project # or ID) that the BigQuery source is in with
      *           a length limit of 128 characters. If not specified, inherits the project
-     *           id from the parent request.
+     *           ID from the parent request.
      *     @type string $dataset_id
      *           Required. The BigQuery data set to copy the data from with a length limit
      *           of 1,024 characters.
@@ -94,8 +107,16 @@ class BigQuerySource extends \Google\Protobuf\Internal\Message
      *           Supported values for user events imports:
      *           * `user_event` (default): One JSON
      *           [UserEvent][google.cloud.retail.v2.UserEvent] per line.
-     *           * `user_event_ga360`: Using
-     *             https://support.google.com/analytics/answer/3437719?hl=en.
+     *           * `user_event_ga360`:
+     *             The schema is available here:
+     *             https://support.google.com/analytics/answer/3437719.
+     *           * `user_event_ga4`:
+     *             The schema is available here:
+     *             https://support.google.com/analytics/answer/7029846.
+     *           Supported values for auto-completion imports:
+     *           * `suggestions` (default): One JSON completion suggestion per line.
+     *           * `denylist`:  One JSON deny suggestion per line.
+     *           * `allowlist`:  One JSON allow suggestion per line.
      * }
      */
     public function __construct($data = NULL) {
@@ -104,9 +125,44 @@ class BigQuerySource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The project id (can be project # or id) that the BigQuery source is in with
+     * BigQuery time partitioned table's _PARTITIONDATE in YYYY-MM-DD format.
+     * Only supported in
+     * [ImportProductsRequest][google.cloud.retail.v2.ImportProductsRequest].
+     *
+     * Generated from protobuf field <code>.google.type.Date partition_date = 6;</code>
+     * @return \Google\Type\Date|null
+     */
+    public function getPartitionDate()
+    {
+        return $this->readOneof(6);
+    }
+
+    public function hasPartitionDate()
+    {
+        return $this->hasOneof(6);
+    }
+
+    /**
+     * BigQuery time partitioned table's _PARTITIONDATE in YYYY-MM-DD format.
+     * Only supported in
+     * [ImportProductsRequest][google.cloud.retail.v2.ImportProductsRequest].
+     *
+     * Generated from protobuf field <code>.google.type.Date partition_date = 6;</code>
+     * @param \Google\Type\Date $var
+     * @return $this
+     */
+    public function setPartitionDate($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Type\Date::class);
+        $this->writeOneof(6, $var);
+
+        return $this;
+    }
+
+    /**
+     * The project ID (can be project # or ID) that the BigQuery source is in with
      * a length limit of 128 characters. If not specified, inherits the project
-     * id from the parent request.
+     * ID from the parent request.
      *
      * Generated from protobuf field <code>string project_id = 5;</code>
      * @return string
@@ -117,9 +173,9 @@ class BigQuerySource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The project id (can be project # or id) that the BigQuery source is in with
+     * The project ID (can be project # or ID) that the BigQuery source is in with
      * a length limit of 128 characters. If not specified, inherits the project
-     * id from the parent request.
+     * ID from the parent request.
      *
      * Generated from protobuf field <code>string project_id = 5;</code>
      * @param string $var
@@ -230,8 +286,16 @@ class BigQuerySource extends \Google\Protobuf\Internal\Message
      * Supported values for user events imports:
      * * `user_event` (default): One JSON
      * [UserEvent][google.cloud.retail.v2.UserEvent] per line.
-     * * `user_event_ga360`: Using
-     *   https://support.google.com/analytics/answer/3437719?hl=en.
+     * * `user_event_ga360`:
+     *   The schema is available here:
+     *   https://support.google.com/analytics/answer/3437719.
+     * * `user_event_ga4`:
+     *   The schema is available here:
+     *   https://support.google.com/analytics/answer/7029846.
+     * Supported values for auto-completion imports:
+     * * `suggestions` (default): One JSON completion suggestion per line.
+     * * `denylist`:  One JSON deny suggestion per line.
+     * * `allowlist`:  One JSON allow suggestion per line.
      *
      * Generated from protobuf field <code>string data_schema = 4;</code>
      * @return string
@@ -252,8 +316,16 @@ class BigQuerySource extends \Google\Protobuf\Internal\Message
      * Supported values for user events imports:
      * * `user_event` (default): One JSON
      * [UserEvent][google.cloud.retail.v2.UserEvent] per line.
-     * * `user_event_ga360`: Using
-     *   https://support.google.com/analytics/answer/3437719?hl=en.
+     * * `user_event_ga360`:
+     *   The schema is available here:
+     *   https://support.google.com/analytics/answer/3437719.
+     * * `user_event_ga4`:
+     *   The schema is available here:
+     *   https://support.google.com/analytics/answer/7029846.
+     * Supported values for auto-completion imports:
+     * * `suggestions` (default): One JSON completion suggestion per line.
+     * * `denylist`:  One JSON deny suggestion per line.
+     * * `allowlist`:  One JSON allow suggestion per line.
      *
      * Generated from protobuf field <code>string data_schema = 4;</code>
      * @param string $var
@@ -265,6 +337,14 @@ class BigQuerySource extends \Google\Protobuf\Internal\Message
         $this->data_schema = $var;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPartition()
+    {
+        return $this->whichOneof("partition");
     }
 
 }

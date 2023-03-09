@@ -28,7 +28,7 @@ class CarouselSelect extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Dialogflow\V2\Intent\Message\CarouselSelect\Item[]|\Google\Protobuf\Internal\RepeatedField $items
+     *     @type array<\Google\Cloud\Dialogflow\V2\Intent\Message\CarouselSelect\Item>|\Google\Protobuf\Internal\RepeatedField $items
      *           Required. Carousel items.
      * }
      */
@@ -52,7 +52,7 @@ class CarouselSelect extends \Google\Protobuf\Internal\Message
      * Required. Carousel items.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message.CarouselSelect.Item items = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param \Google\Cloud\Dialogflow\V2\Intent\Message\CarouselSelect\Item[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dialogflow\V2\Intent\Message\CarouselSelect\Item>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setItems($var)
@@ -65,6 +65,4 @@ class CarouselSelect extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(CarouselSelect::class, \Google\Cloud\Dialogflow\V2\Intent_Message_CarouselSelect::class);
 

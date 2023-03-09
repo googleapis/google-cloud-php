@@ -29,7 +29,7 @@ class GetJSONWebKeysResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Container\V1\Jwk[]|\Google\Protobuf\Internal\RepeatedField $keys
+     *     @type array<\Google\Cloud\Container\V1\Jwk>|\Google\Protobuf\Internal\RepeatedField $keys
      *           The public component of the keys used by the cluster to sign token
      *           requests.
      * }
@@ -56,7 +56,7 @@ class GetJSONWebKeysResponse extends \Google\Protobuf\Internal\Message
      * requests.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.Jwk keys = 1;</code>
-     * @param \Google\Cloud\Container\V1\Jwk[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Container\V1\Jwk>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setKeys($var)

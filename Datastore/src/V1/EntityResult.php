@@ -24,15 +24,33 @@ class EntityResult extends \Google\Protobuf\Internal\Message
     /**
      * The version of the entity, a strictly positive number that monotonically
      * increases with changes to the entity.
-     * This field is set for [`FULL`][google.datastore.v1.EntityResult.ResultType.FULL] entity
-     * results.
-     * For [missing][google.datastore.v1.LookupResponse.missing] entities in `LookupResponse`, this
-     * is the version of the snapshot that was used to look up the entity, and it
-     * is always set except for eventually consistent reads.
+     * This field is set for
+     * [`FULL`][google.datastore.v1.EntityResult.ResultType.FULL] entity results.
+     * For [missing][google.datastore.v1.LookupResponse.missing] entities in
+     * `LookupResponse`, this is the version of the snapshot that was used to look
+     * up the entity, and it is always set except for eventually consistent reads.
      *
      * Generated from protobuf field <code>int64 version = 4;</code>
      */
     private $version = 0;
+    /**
+     * The time at which the entity was created.
+     * This field is set for
+     * [`FULL`][google.datastore.v1.EntityResult.ResultType.FULL] entity results.
+     * If this entity is missing, this field will not be set.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 6;</code>
+     */
+    private $create_time = null;
+    /**
+     * The time at which the entity was last changed.
+     * This field is set for
+     * [`FULL`][google.datastore.v1.EntityResult.ResultType.FULL] entity results.
+     * If this entity is missing, this field will not be set.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 5;</code>
+     */
+    private $update_time = null;
     /**
      * A cursor that points to the position after the result entity.
      * Set only when the `EntityResult` is part of a `QueryResultBatch` message.
@@ -52,11 +70,21 @@ class EntityResult extends \Google\Protobuf\Internal\Message
      *     @type int|string $version
      *           The version of the entity, a strictly positive number that monotonically
      *           increases with changes to the entity.
-     *           This field is set for [`FULL`][google.datastore.v1.EntityResult.ResultType.FULL] entity
-     *           results.
-     *           For [missing][google.datastore.v1.LookupResponse.missing] entities in `LookupResponse`, this
-     *           is the version of the snapshot that was used to look up the entity, and it
-     *           is always set except for eventually consistent reads.
+     *           This field is set for
+     *           [`FULL`][google.datastore.v1.EntityResult.ResultType.FULL] entity results.
+     *           For [missing][google.datastore.v1.LookupResponse.missing] entities in
+     *           `LookupResponse`, this is the version of the snapshot that was used to look
+     *           up the entity, and it is always set except for eventually consistent reads.
+     *     @type \Google\Protobuf\Timestamp $create_time
+     *           The time at which the entity was created.
+     *           This field is set for
+     *           [`FULL`][google.datastore.v1.EntityResult.ResultType.FULL] entity results.
+     *           If this entity is missing, this field will not be set.
+     *     @type \Google\Protobuf\Timestamp $update_time
+     *           The time at which the entity was last changed.
+     *           This field is set for
+     *           [`FULL`][google.datastore.v1.EntityResult.ResultType.FULL] entity results.
+     *           If this entity is missing, this field will not be set.
      *     @type string $cursor
      *           A cursor that points to the position after the result entity.
      *           Set only when the `EntityResult` is part of a `QueryResultBatch` message.
@@ -75,7 +103,7 @@ class EntityResult extends \Google\Protobuf\Internal\Message
      */
     public function getEntity()
     {
-        return isset($this->entity) ? $this->entity : null;
+        return $this->entity;
     }
 
     public function hasEntity()
@@ -106,11 +134,11 @@ class EntityResult extends \Google\Protobuf\Internal\Message
     /**
      * The version of the entity, a strictly positive number that monotonically
      * increases with changes to the entity.
-     * This field is set for [`FULL`][google.datastore.v1.EntityResult.ResultType.FULL] entity
-     * results.
-     * For [missing][google.datastore.v1.LookupResponse.missing] entities in `LookupResponse`, this
-     * is the version of the snapshot that was used to look up the entity, and it
-     * is always set except for eventually consistent reads.
+     * This field is set for
+     * [`FULL`][google.datastore.v1.EntityResult.ResultType.FULL] entity results.
+     * For [missing][google.datastore.v1.LookupResponse.missing] entities in
+     * `LookupResponse`, this is the version of the snapshot that was used to look
+     * up the entity, and it is always set except for eventually consistent reads.
      *
      * Generated from protobuf field <code>int64 version = 4;</code>
      * @return int|string
@@ -123,11 +151,11 @@ class EntityResult extends \Google\Protobuf\Internal\Message
     /**
      * The version of the entity, a strictly positive number that monotonically
      * increases with changes to the entity.
-     * This field is set for [`FULL`][google.datastore.v1.EntityResult.ResultType.FULL] entity
-     * results.
-     * For [missing][google.datastore.v1.LookupResponse.missing] entities in `LookupResponse`, this
-     * is the version of the snapshot that was used to look up the entity, and it
-     * is always set except for eventually consistent reads.
+     * This field is set for
+     * [`FULL`][google.datastore.v1.EntityResult.ResultType.FULL] entity results.
+     * For [missing][google.datastore.v1.LookupResponse.missing] entities in
+     * `LookupResponse`, this is the version of the snapshot that was used to look
+     * up the entity, and it is always set except for eventually consistent reads.
      *
      * Generated from protobuf field <code>int64 version = 4;</code>
      * @param int|string $var
@@ -137,6 +165,90 @@ class EntityResult extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt64($var);
         $this->version = $var;
+
+        return $this;
+    }
+
+    /**
+     * The time at which the entity was created.
+     * This field is set for
+     * [`FULL`][google.datastore.v1.EntityResult.ResultType.FULL] entity results.
+     * If this entity is missing, this field will not be set.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 6;</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getCreateTime()
+    {
+        return $this->create_time;
+    }
+
+    public function hasCreateTime()
+    {
+        return isset($this->create_time);
+    }
+
+    public function clearCreateTime()
+    {
+        unset($this->create_time);
+    }
+
+    /**
+     * The time at which the entity was created.
+     * This field is set for
+     * [`FULL`][google.datastore.v1.EntityResult.ResultType.FULL] entity results.
+     * If this entity is missing, this field will not be set.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 6;</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setCreateTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->create_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * The time at which the entity was last changed.
+     * This field is set for
+     * [`FULL`][google.datastore.v1.EntityResult.ResultType.FULL] entity results.
+     * If this entity is missing, this field will not be set.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 5;</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getUpdateTime()
+    {
+        return $this->update_time;
+    }
+
+    public function hasUpdateTime()
+    {
+        return isset($this->update_time);
+    }
+
+    public function clearUpdateTime()
+    {
+        unset($this->update_time);
+    }
+
+    /**
+     * The time at which the entity was last changed.
+     * This field is set for
+     * [`FULL`][google.datastore.v1.EntityResult.ResultType.FULL] entity results.
+     * If this entity is missing, this field will not be set.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 5;</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setUpdateTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->update_time = $var;
 
         return $this;
     }

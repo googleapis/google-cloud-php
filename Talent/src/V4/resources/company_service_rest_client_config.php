@@ -15,8 +15,8 @@ return [
                     ],
                 ],
             ],
-            'GetCompany' => [
-                'method' => 'get',
+            'DeleteCompany' => [
+                'method' => 'delete',
                 'uriTemplate' => '/v4/{name=projects/*/tenants/*/companies/*}',
                 'placeholders' => [
                     'name' => [
@@ -26,21 +26,8 @@ return [
                     ],
                 ],
             ],
-            'UpdateCompany' => [
-                'method' => 'patch',
-                'uriTemplate' => '/v4/{company.name=projects/*/tenants/*/companies/*}',
-                'body' => 'company',
-                'placeholders' => [
-                    'company.name' => [
-                        'getters' => [
-                            'getCompany',
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'DeleteCompany' => [
-                'method' => 'delete',
+            'GetCompany' => [
+                'method' => 'get',
                 'uriTemplate' => '/v4/{name=projects/*/tenants/*/companies/*}',
                 'placeholders' => [
                     'name' => [
@@ -61,6 +48,19 @@ return [
                     ],
                 ],
             ],
+            'UpdateCompany' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v4/{company.name=projects/*/tenants/*/companies/*}',
+                'body' => 'company',
+                'placeholders' => [
+                    'company.name' => [
+                        'getters' => [
+                            'getCompany',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
         ],
         'google.longrunning.Operations' => [
             'GetOperation' => [
@@ -76,4 +76,5 @@ return [
             ],
         ],
     ],
+    'numericEnums' => true,
 ];

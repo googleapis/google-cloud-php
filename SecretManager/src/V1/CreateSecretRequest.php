@@ -125,11 +125,11 @@ class CreateSecretRequest extends \Google\Protobuf\Internal\Message
      * Required. A [Secret][google.cloud.secretmanager.v1.Secret] with initial field values.
      *
      * Generated from protobuf field <code>.google.cloud.secretmanager.v1.Secret secret = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\SecretManager\V1\Secret
+     * @return \Google\Cloud\SecretManager\V1\Secret|null
      */
     public function getSecret()
     {
-        return isset($this->secret) ? $this->secret : null;
+        return $this->secret;
     }
 
     public function hasSecret()

@@ -47,7 +47,7 @@ class ApplySoftwareUpdateRequest extends \Google\Protobuf\Internal\Message
      *     @type string $instance
      *           Required. Resource name of the Memcached instance for which software update should be
      *           applied.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $node_ids
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $node_ids
      *           Nodes to which we should apply the update to. Note all the selected nodes
      *           are updated in parallel.
      *     @type bool $apply_all
@@ -106,7 +106,7 @@ class ApplySoftwareUpdateRequest extends \Google\Protobuf\Internal\Message
      * are updated in parallel.
      *
      * Generated from protobuf field <code>repeated string node_ids = 2;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setNodeIds($var)

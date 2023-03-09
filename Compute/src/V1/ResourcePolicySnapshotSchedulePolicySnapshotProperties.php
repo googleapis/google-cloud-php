@@ -18,25 +18,25 @@ class ResourcePolicySnapshotSchedulePolicySnapshotProperties extends \Google\Pro
     /**
      * Chain name that the snapshot is created in.
      *
-     * Generated from protobuf field <code>string chain_name = 68644169;</code>
+     * Generated from protobuf field <code>optional string chain_name = 68644169;</code>
      */
-    private $chain_name = '';
+    private $chain_name = null;
     /**
      * Indication to perform a 'guest aware' snapshot.
      *
-     * Generated from protobuf field <code>bool guest_flush = 117115357;</code>
+     * Generated from protobuf field <code>optional bool guest_flush = 385550813;</code>
      */
-    private $guest_flush = false;
+    private $guest_flush = null;
     /**
      * Labels to apply to scheduled snapshots. These can be later modified by the setLabels method. Label values may be empty.
      *
-     * Generated from protobuf field <code>map<string, string> labels = 231759871;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 500195327;</code>
      */
     private $labels;
     /**
      * Cloud Storage bucket storage location of the auto snapshot (regional or multi-regional).
      *
-     * Generated from protobuf field <code>repeated string storage_locations = 59569818;</code>
+     * Generated from protobuf field <code>repeated string storage_locations = 328005274;</code>
      */
     private $storage_locations;
 
@@ -52,7 +52,7 @@ class ResourcePolicySnapshotSchedulePolicySnapshotProperties extends \Google\Pro
      *           Indication to perform a 'guest aware' snapshot.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Labels to apply to scheduled snapshots. These can be later modified by the setLabels method. Label values may be empty.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $storage_locations
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $storage_locations
      *           Cloud Storage bucket storage location of the auto snapshot (regional or multi-regional).
      * }
      */
@@ -64,18 +64,28 @@ class ResourcePolicySnapshotSchedulePolicySnapshotProperties extends \Google\Pro
     /**
      * Chain name that the snapshot is created in.
      *
-     * Generated from protobuf field <code>string chain_name = 68644169;</code>
+     * Generated from protobuf field <code>optional string chain_name = 68644169;</code>
      * @return string
      */
     public function getChainName()
     {
-        return $this->chain_name;
+        return isset($this->chain_name) ? $this->chain_name : '';
+    }
+
+    public function hasChainName()
+    {
+        return isset($this->chain_name);
+    }
+
+    public function clearChainName()
+    {
+        unset($this->chain_name);
     }
 
     /**
      * Chain name that the snapshot is created in.
      *
-     * Generated from protobuf field <code>string chain_name = 68644169;</code>
+     * Generated from protobuf field <code>optional string chain_name = 68644169;</code>
      * @param string $var
      * @return $this
      */
@@ -90,18 +100,28 @@ class ResourcePolicySnapshotSchedulePolicySnapshotProperties extends \Google\Pro
     /**
      * Indication to perform a 'guest aware' snapshot.
      *
-     * Generated from protobuf field <code>bool guest_flush = 117115357;</code>
+     * Generated from protobuf field <code>optional bool guest_flush = 385550813;</code>
      * @return bool
      */
     public function getGuestFlush()
     {
-        return $this->guest_flush;
+        return isset($this->guest_flush) ? $this->guest_flush : false;
+    }
+
+    public function hasGuestFlush()
+    {
+        return isset($this->guest_flush);
+    }
+
+    public function clearGuestFlush()
+    {
+        unset($this->guest_flush);
     }
 
     /**
      * Indication to perform a 'guest aware' snapshot.
      *
-     * Generated from protobuf field <code>bool guest_flush = 117115357;</code>
+     * Generated from protobuf field <code>optional bool guest_flush = 385550813;</code>
      * @param bool $var
      * @return $this
      */
@@ -116,7 +136,7 @@ class ResourcePolicySnapshotSchedulePolicySnapshotProperties extends \Google\Pro
     /**
      * Labels to apply to scheduled snapshots. These can be later modified by the setLabels method. Label values may be empty.
      *
-     * Generated from protobuf field <code>map<string, string> labels = 231759871;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 500195327;</code>
      * @return \Google\Protobuf\Internal\MapField
      */
     public function getLabels()
@@ -127,7 +147,7 @@ class ResourcePolicySnapshotSchedulePolicySnapshotProperties extends \Google\Pro
     /**
      * Labels to apply to scheduled snapshots. These can be later modified by the setLabels method. Label values may be empty.
      *
-     * Generated from protobuf field <code>map<string, string> labels = 231759871;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 500195327;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */
@@ -142,7 +162,7 @@ class ResourcePolicySnapshotSchedulePolicySnapshotProperties extends \Google\Pro
     /**
      * Cloud Storage bucket storage location of the auto snapshot (regional or multi-regional).
      *
-     * Generated from protobuf field <code>repeated string storage_locations = 59569818;</code>
+     * Generated from protobuf field <code>repeated string storage_locations = 328005274;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getStorageLocations()
@@ -153,8 +173,8 @@ class ResourcePolicySnapshotSchedulePolicySnapshotProperties extends \Google\Pro
     /**
      * Cloud Storage bucket storage location of the auto snapshot (regional or multi-regional).
      *
-     * Generated from protobuf field <code>repeated string storage_locations = 59569818;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * Generated from protobuf field <code>repeated string storage_locations = 328005274;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setStorageLocations($var)

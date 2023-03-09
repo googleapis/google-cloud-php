@@ -9,19 +9,16 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A full or valid partial URL to a health check service. For example, the following are valid URLs:
- * - https://www.googleapis.com/compute/beta/projects/project-id/regions/us-west1/healthCheckServices/health-check-service
- * - projects/project-id/regions/us-west1/healthCheckServices/health-check-service
- * - regions/us-west1/healthCheckServices/health-check-service
+ * A full or valid partial URL to a health check service. For example, the following are valid URLs: - https://www.googleapis.com/compute/beta/projects/project-id/regions/us-west1/healthCheckServices/health-check-service - projects/project-id/regions/us-west1/healthCheckServices/health-check-service - regions/us-west1/healthCheckServices/health-check-service 
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.HealthCheckServiceReference</code>
  */
 class HealthCheckServiceReference extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Generated from protobuf field <code>string health_check_service = 139939291;</code>
+     * Generated from protobuf field <code>optional string health_check_service = 408374747;</code>
      */
-    private $health_check_service = '';
+    private $health_check_service = null;
 
     /**
      * Constructor.
@@ -38,16 +35,26 @@ class HealthCheckServiceReference extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string health_check_service = 139939291;</code>
+     * Generated from protobuf field <code>optional string health_check_service = 408374747;</code>
      * @return string
      */
     public function getHealthCheckService()
     {
-        return $this->health_check_service;
+        return isset($this->health_check_service) ? $this->health_check_service : '';
+    }
+
+    public function hasHealthCheckService()
+    {
+        return isset($this->health_check_service);
+    }
+
+    public function clearHealthCheckService()
+    {
+        unset($this->health_check_service);
     }
 
     /**
-     * Generated from protobuf field <code>string health_check_service = 139939291;</code>
+     * Generated from protobuf field <code>optional string health_check_service = 408374747;</code>
      * @param string $var
      * @return $this
      */

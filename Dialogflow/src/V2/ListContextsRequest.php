@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request message for [Contexts.ListContexts][google.cloud.dialogflow.v2.Contexts.ListContexts].
+ * The request message for
+ * [Contexts.ListContexts][google.cloud.dialogflow.v2.Contexts.ListContexts].
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.ListContextsRequest</code>
  */

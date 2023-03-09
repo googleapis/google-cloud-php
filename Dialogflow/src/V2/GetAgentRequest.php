@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request message for [Agents.GetAgent][google.cloud.dialogflow.v2.Agents.GetAgent].
+ * The request message for
+ * [Agents.GetAgent][google.cloud.dialogflow.v2.Agents.GetAgent].
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.GetAgentRequest</code>
  */

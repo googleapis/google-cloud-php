@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request message for [EntityTypes.BatchDeleteEntities][google.cloud.dialogflow.v2.EntityTypes.BatchDeleteEntities].
+ * The request message for
+ * [EntityTypes.BatchDeleteEntities][google.cloud.dialogflow.v2.EntityTypes.BatchDeleteEntities].
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.BatchDeleteEntitiesRequest</code>
  */
@@ -50,7 +51,7 @@ class BatchDeleteEntitiesRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. The name of the entity type to delete entries for. Format:
      *           `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $entity_values
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $entity_values
      *           Required. The reference `values` of the entities to delete. Note that
      *           these are not fully-qualified names, i.e. they don't start with
      *           `projects/<Project ID>`.
@@ -114,7 +115,7 @@ class BatchDeleteEntitiesRequest extends \Google\Protobuf\Internal\Message
      * `projects/<Project ID>`.
      *
      * Generated from protobuf field <code>repeated string entity_values = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setEntityValues($var)

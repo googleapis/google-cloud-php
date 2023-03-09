@@ -29,7 +29,7 @@ class Int64Test extends SnippetTestCase
 
     private $int64;
 
-    public function setUp()
+    public function set_up()
     {
         $this->int64 = new Int64((string)self::VALUE);
     }

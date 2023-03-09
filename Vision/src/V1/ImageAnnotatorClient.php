@@ -97,9 +97,9 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
      *     @type ImageContext        $imageContext  Additional context that may accompany the image.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          {@see RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     *          {@see RetrySettings} for example usage.
      * }
      *
      * @return AnnotateImageResponse
@@ -134,9 +134,9 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
      *     @type ImageContext        $imageContext  Additional context that may accompany the image.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          {@see RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     *          {@see RetrySettings} for example usage.
      * }
      *
      * @return AnnotateImageResponse
@@ -168,9 +168,9 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
      *     @type ImageContext        $imageContext  Additional context that may accompany the image.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          {@see RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     *          {@see RetrySettings} for example usage.
      * }
      *
      * @return AnnotateImageResponse
@@ -202,9 +202,9 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
      *     @type ImageContext        $imageContext  Additional context that may accompany the image.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          {@see RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     *          {@see RetrySettings} for example usage.
      * }
      *
      * @return AnnotateImageResponse
@@ -236,9 +236,9 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
      *     @type ImageContext        $imageContext  Additional context that may accompany the image.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          {@see RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     *          {@see RetrySettings} for example usage.
      * }
      *
      * @return AnnotateImageResponse
@@ -270,9 +270,9 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
      *     @type ImageContext        $imageContext  Additional context that may accompany the image.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          {@see RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     *          {@see RetrySettings} for example usage.
      * }
      *
      * @return AnnotateImageResponse
@@ -304,9 +304,9 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
      *     @type ImageContext        $imageContext  Additional context that may accompany the image.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          {@see RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     *          {@see RetrySettings} for example usage.
      * }
      *
      * @return AnnotateImageResponse
@@ -338,9 +338,9 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
      *     @type ImageContext        $imageContext  Additional context that may accompany the image.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          {@see RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     *          {@see RetrySettings} for example usage.
      * }
      *
      * @return AnnotateImageResponse
@@ -372,9 +372,9 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
      *     @type ImageContext        $imageContext  Additional context that may accompany the image.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          {@see RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     *          {@see RetrySettings} for example usage.
      * }
      *
      * @return AnnotateImageResponse
@@ -406,9 +406,9 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
      *     @type ImageContext        $imageContext  Additional context that may accompany the image.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          {@see RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     *          {@see RetrySettings} for example usage.
      * }
      *
      * @return AnnotateImageResponse
@@ -440,9 +440,9 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
      *     @type ImageContext        $imageContext  Additional context that may accompany the image.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          {@see RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     *          {@see RetrySettings} for example usage.
      * }
      *
      * @return AnnotateImageResponse
@@ -474,9 +474,9 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
      *     @type ImageContext        $imageContext  Additional context that may accompany the image.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          {@see RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     *          {@see RetrySettings} for example usage.
      * }
      *
      * @return AnnotateImageResponse
@@ -512,17 +512,17 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
      *
      * @param resource|string|Image $image The image to be processed.
      * @param ProductSearchParams   $productSearchParams Parameters for a product search request. Please note, this
-     *                              value will override the {@see Google\Cloud\Vision\V1\ProductSearchParams} in the
-     *                              {@see Google\Cloud\Vision\V1\ImageContext} instance if provided.
+     *                              value will override the {@see ProductSearchParams} in the
+     *                              {@see ImageContext} instance if provided.
      * @param array $optionalArgs   {
      *     Configuration Options.
      *
      *     @type ImageContext        $imageContext  Additional context that may accompany the image.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          {@see RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     *          {@see RetrySettings} for example usage.
      * }
      *
      * @return AnnotateImageResponse

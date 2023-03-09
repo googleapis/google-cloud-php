@@ -99,7 +99,7 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
      *           corresponding to `Code.CANCELLED`.
      *     @type string $api_version
      *           Output only. API version used to start the operation.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
      *           Output only. List of Locations that could not be reached.
      *     @type array|\Google\Protobuf\Internal\MapField $operation_status
      *           Output only. Operation status for Game Services API operations. Operation status is in
@@ -117,11 +117,11 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
      * Output only. The time the operation was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -153,11 +153,11 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
      * Output only. The time the operation finished running.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getEndTime()
     {
-        return isset($this->end_time) ? $this->end_time : null;
+        return $this->end_time;
     }
 
     public function hasEndTime()
@@ -336,7 +336,7 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
      * Output only. List of Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setUnreachable($var)

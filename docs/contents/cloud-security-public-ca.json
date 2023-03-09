@@ -1,0 +1,15 @@
+{
+    "title": "SecurityPublicCA",
+    "defaultService": "securitypublicca\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "securitypublicca\/readme"
+        },
+        {
+            "title": "PublicCertificateAuthorityServiceClient (v1beta1)",
+            "type": "securitypublicca\/v1beta1\/publiccertificateauthorityserviceclient"
+        }
+    ],
+    "pattern": "securitypublicca\/\\w{1,}"
+}

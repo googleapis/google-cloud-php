@@ -20,17 +20,17 @@ class State
      */
     const UNDEFINED_STATE = 0;
     /**
-     * Generated from protobuf enum <code>ACTIVE = 46297862;</code>
+     * Generated from protobuf enum <code>ACTIVE = 314733318;</code>
      */
-    const ACTIVE = 46297862;
+    const ACTIVE = 314733318;
     /**
      * Generated from protobuf enum <code>DELETED = 120962041;</code>
      */
     const DELETED = 120962041;
     /**
-     * Generated from protobuf enum <code>DEPRECATED = 194924979;</code>
+     * Generated from protobuf enum <code>DEPRECATED = 463360435;</code>
      */
-    const DEPRECATED = 194924979;
+    const DEPRECATED = 463360435;
     /**
      * Generated from protobuf enum <code>OBSOLETE = 66532761;</code>
      */

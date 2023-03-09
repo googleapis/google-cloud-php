@@ -36,7 +36,7 @@ class ListSessionsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Spanner\V1\Session[]|\Google\Protobuf\Internal\RepeatedField $sessions
+     *     @type array<\Google\Cloud\Spanner\V1\Session>|\Google\Protobuf\Internal\RepeatedField $sessions
      *           The list of requested sessions.
      *     @type string $next_page_token
      *           `next_page_token` can be sent in a subsequent
@@ -64,7 +64,7 @@ class ListSessionsResponse extends \Google\Protobuf\Internal\Message
      * The list of requested sessions.
      *
      * Generated from protobuf field <code>repeated .google.spanner.v1.Session sessions = 1;</code>
-     * @param \Google\Cloud\Spanner\V1\Session[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Spanner\V1\Session>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSessions($var)

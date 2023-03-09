@@ -17,33 +17,34 @@ class ExchangedPeeringRoute extends \Google\Protobuf\Internal\Message
     /**
      * The destination range of the route.
      *
-     * Generated from protobuf field <code>string dest_range = 112892256;</code>
+     * Generated from protobuf field <code>optional string dest_range = 381327712;</code>
      */
-    private $dest_range = '';
+    private $dest_range = null;
     /**
      * True if the peering route has been imported from a peer. The actual import happens if the field networkPeering.importCustomRoutes is true for this network, and networkPeering.exportCustomRoutes is true for the peer network, and the import does not result in a route conflict.
      *
-     * Generated from protobuf field <code>bool imported = 114502404;</code>
+     * Generated from protobuf field <code>optional bool imported = 114502404;</code>
      */
-    private $imported = false;
+    private $imported = null;
     /**
      * The region of peering route next hop, only applies to dynamic routes.
      *
-     * Generated from protobuf field <code>string next_hop_region = 122577014;</code>
+     * Generated from protobuf field <code>optional string next_hop_region = 122577014;</code>
      */
-    private $next_hop_region = '';
+    private $next_hop_region = null;
     /**
      * The priority of the peering route.
      *
-     * Generated from protobuf field <code>uint32 priority = 176716196;</code>
+     * Generated from protobuf field <code>optional uint32 priority = 445151652;</code>
      */
-    private $priority = 0;
+    private $priority = null;
     /**
      * The type of the peering route.
+     * Check the Type enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ExchangedPeeringRoute.Type type = 3575610;</code>
+     * Generated from protobuf field <code>optional string type = 3575610;</code>
      */
-    private $type = 0;
+    private $type = null;
 
     /**
      * Constructor.
@@ -59,8 +60,9 @@ class ExchangedPeeringRoute extends \Google\Protobuf\Internal\Message
      *           The region of peering route next hop, only applies to dynamic routes.
      *     @type int $priority
      *           The priority of the peering route.
-     *     @type int $type
+     *     @type string $type
      *           The type of the peering route.
+     *           Check the Type enum for the list of possible values.
      * }
      */
     public function __construct($data = NULL) {
@@ -71,18 +73,28 @@ class ExchangedPeeringRoute extends \Google\Protobuf\Internal\Message
     /**
      * The destination range of the route.
      *
-     * Generated from protobuf field <code>string dest_range = 112892256;</code>
+     * Generated from protobuf field <code>optional string dest_range = 381327712;</code>
      * @return string
      */
     public function getDestRange()
     {
-        return $this->dest_range;
+        return isset($this->dest_range) ? $this->dest_range : '';
+    }
+
+    public function hasDestRange()
+    {
+        return isset($this->dest_range);
+    }
+
+    public function clearDestRange()
+    {
+        unset($this->dest_range);
     }
 
     /**
      * The destination range of the route.
      *
-     * Generated from protobuf field <code>string dest_range = 112892256;</code>
+     * Generated from protobuf field <code>optional string dest_range = 381327712;</code>
      * @param string $var
      * @return $this
      */
@@ -97,18 +109,28 @@ class ExchangedPeeringRoute extends \Google\Protobuf\Internal\Message
     /**
      * True if the peering route has been imported from a peer. The actual import happens if the field networkPeering.importCustomRoutes is true for this network, and networkPeering.exportCustomRoutes is true for the peer network, and the import does not result in a route conflict.
      *
-     * Generated from protobuf field <code>bool imported = 114502404;</code>
+     * Generated from protobuf field <code>optional bool imported = 114502404;</code>
      * @return bool
      */
     public function getImported()
     {
-        return $this->imported;
+        return isset($this->imported) ? $this->imported : false;
+    }
+
+    public function hasImported()
+    {
+        return isset($this->imported);
+    }
+
+    public function clearImported()
+    {
+        unset($this->imported);
     }
 
     /**
      * True if the peering route has been imported from a peer. The actual import happens if the field networkPeering.importCustomRoutes is true for this network, and networkPeering.exportCustomRoutes is true for the peer network, and the import does not result in a route conflict.
      *
-     * Generated from protobuf field <code>bool imported = 114502404;</code>
+     * Generated from protobuf field <code>optional bool imported = 114502404;</code>
      * @param bool $var
      * @return $this
      */
@@ -123,18 +145,28 @@ class ExchangedPeeringRoute extends \Google\Protobuf\Internal\Message
     /**
      * The region of peering route next hop, only applies to dynamic routes.
      *
-     * Generated from protobuf field <code>string next_hop_region = 122577014;</code>
+     * Generated from protobuf field <code>optional string next_hop_region = 122577014;</code>
      * @return string
      */
     public function getNextHopRegion()
     {
-        return $this->next_hop_region;
+        return isset($this->next_hop_region) ? $this->next_hop_region : '';
+    }
+
+    public function hasNextHopRegion()
+    {
+        return isset($this->next_hop_region);
+    }
+
+    public function clearNextHopRegion()
+    {
+        unset($this->next_hop_region);
     }
 
     /**
      * The region of peering route next hop, only applies to dynamic routes.
      *
-     * Generated from protobuf field <code>string next_hop_region = 122577014;</code>
+     * Generated from protobuf field <code>optional string next_hop_region = 122577014;</code>
      * @param string $var
      * @return $this
      */
@@ -149,18 +181,28 @@ class ExchangedPeeringRoute extends \Google\Protobuf\Internal\Message
     /**
      * The priority of the peering route.
      *
-     * Generated from protobuf field <code>uint32 priority = 176716196;</code>
+     * Generated from protobuf field <code>optional uint32 priority = 445151652;</code>
      * @return int
      */
     public function getPriority()
     {
-        return $this->priority;
+        return isset($this->priority) ? $this->priority : 0;
+    }
+
+    public function hasPriority()
+    {
+        return isset($this->priority);
+    }
+
+    public function clearPriority()
+    {
+        unset($this->priority);
     }
 
     /**
      * The priority of the peering route.
      *
-     * Generated from protobuf field <code>uint32 priority = 176716196;</code>
+     * Generated from protobuf field <code>optional uint32 priority = 445151652;</code>
      * @param int $var
      * @return $this
      */
@@ -174,25 +216,37 @@ class ExchangedPeeringRoute extends \Google\Protobuf\Internal\Message
 
     /**
      * The type of the peering route.
+     * Check the Type enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ExchangedPeeringRoute.Type type = 3575610;</code>
-     * @return int
+     * Generated from protobuf field <code>optional string type = 3575610;</code>
+     * @return string
      */
     public function getType()
     {
-        return $this->type;
+        return isset($this->type) ? $this->type : '';
+    }
+
+    public function hasType()
+    {
+        return isset($this->type);
+    }
+
+    public function clearType()
+    {
+        unset($this->type);
     }
 
     /**
      * The type of the peering route.
+     * Check the Type enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ExchangedPeeringRoute.Type type = 3575610;</code>
-     * @param int $var
+     * Generated from protobuf field <code>optional string type = 3575610;</code>
+     * @param string $var
      * @return $this
      */
     public function setType($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Compute\V1\ExchangedPeeringRoute\Type::class);
+        GPBUtil::checkString($var, True);
         $this->type = $var;
 
         return $this;

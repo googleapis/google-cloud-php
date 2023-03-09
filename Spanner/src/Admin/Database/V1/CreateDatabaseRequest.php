@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request for
- * [CreateDatabase][google.spanner.admin.database.v1.DatabaseAdmin.CreateDatabase].
+ * The request for [CreateDatabase][google.spanner.admin.database.v1.DatabaseAdmin.CreateDatabase].
  *
  * Generated from protobuf message <code>google.spanner.admin.database.v1.CreateDatabaseRequest</code>
  */
@@ -43,13 +42,19 @@ class CreateDatabaseRequest extends \Google\Protobuf\Internal\Message
      */
     private $extra_statements;
     /**
-     * Optional. The encryption configuration for the database. If this field is
-     * not specified, Cloud Spanner will encrypt/decrypt all data at rest using
+     * Optional. The encryption configuration for the database. If this field is not
+     * specified, Cloud Spanner will encrypt/decrypt all data at rest using
      * Google default encryption.
      *
      * Generated from protobuf field <code>.google.spanner.admin.database.v1.EncryptionConfig encryption_config = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $encryption_config = null;
+    /**
+     * Optional. The dialect of the Cloud Spanner Database.
+     *
+     * Generated from protobuf field <code>.google.spanner.admin.database.v1.DatabaseDialect database_dialect = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $database_dialect = 0;
 
     /**
      * Constructor.
@@ -66,15 +71,17 @@ class CreateDatabaseRequest extends \Google\Protobuf\Internal\Message
      *           `[a-z][a-z0-9_\-]*[a-z0-9]` and be between 2 and 30 characters in length.
      *           If the database ID is a reserved word or if it contains a hyphen, the
      *           database ID must be enclosed in backticks (`` ` ``).
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $extra_statements
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $extra_statements
      *           Optional. A list of DDL statements to run inside the newly created
      *           database. Statements can create tables, indexes, etc. These
      *           statements execute atomically with the creation of the database:
      *           if there is an error in any statement, the database is not created.
      *     @type \Google\Cloud\Spanner\Admin\Database\V1\EncryptionConfig $encryption_config
-     *           Optional. The encryption configuration for the database. If this field is
-     *           not specified, Cloud Spanner will encrypt/decrypt all data at rest using
+     *           Optional. The encryption configuration for the database. If this field is not
+     *           specified, Cloud Spanner will encrypt/decrypt all data at rest using
      *           Google default encryption.
+     *     @type int $database_dialect
+     *           Optional. The dialect of the Cloud Spanner Database.
      * }
      */
     public function __construct($data = NULL) {
@@ -165,7 +172,7 @@ class CreateDatabaseRequest extends \Google\Protobuf\Internal\Message
      * if there is an error in any statement, the database is not created.
      *
      * Generated from protobuf field <code>repeated string extra_statements = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setExtraStatements($var)
@@ -177,8 +184,8 @@ class CreateDatabaseRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The encryption configuration for the database. If this field is
-     * not specified, Cloud Spanner will encrypt/decrypt all data at rest using
+     * Optional. The encryption configuration for the database. If this field is not
+     * specified, Cloud Spanner will encrypt/decrypt all data at rest using
      * Google default encryption.
      *
      * Generated from protobuf field <code>.google.spanner.admin.database.v1.EncryptionConfig encryption_config = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -186,7 +193,7 @@ class CreateDatabaseRequest extends \Google\Protobuf\Internal\Message
      */
     public function getEncryptionConfig()
     {
-        return isset($this->encryption_config) ? $this->encryption_config : null;
+        return $this->encryption_config;
     }
 
     public function hasEncryptionConfig()
@@ -200,8 +207,8 @@ class CreateDatabaseRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The encryption configuration for the database. If this field is
-     * not specified, Cloud Spanner will encrypt/decrypt all data at rest using
+     * Optional. The encryption configuration for the database. If this field is not
+     * specified, Cloud Spanner will encrypt/decrypt all data at rest using
      * Google default encryption.
      *
      * Generated from protobuf field <code>.google.spanner.admin.database.v1.EncryptionConfig encryption_config = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -212,6 +219,32 @@ class CreateDatabaseRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Spanner\Admin\Database\V1\EncryptionConfig::class);
         $this->encryption_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The dialect of the Cloud Spanner Database.
+     *
+     * Generated from protobuf field <code>.google.spanner.admin.database.v1.DatabaseDialect database_dialect = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getDatabaseDialect()
+    {
+        return $this->database_dialect;
+    }
+
+    /**
+     * Optional. The dialect of the Cloud Spanner Database.
+     *
+     * Generated from protobuf field <code>.google.spanner.admin.database.v1.DatabaseDialect database_dialect = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setDatabaseDialect($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Spanner\Admin\Database\V1\DatabaseDialect::class);
+        $this->database_dialect = $var;
 
         return $this;
     }

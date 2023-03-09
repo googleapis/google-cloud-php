@@ -74,7 +74,7 @@ class AnalyzeDataSourceRiskDetails extends \Google\Protobuf\Internal\Message
      */
     public function getRequestedPrivacyMetric()
     {
-        return isset($this->requested_privacy_metric) ? $this->requested_privacy_metric : null;
+        return $this->requested_privacy_metric;
     }
 
     public function hasRequestedPrivacyMetric()
@@ -110,7 +110,7 @@ class AnalyzeDataSourceRiskDetails extends \Google\Protobuf\Internal\Message
      */
     public function getRequestedSourceTable()
     {
-        return isset($this->requested_source_table) ? $this->requested_source_table : null;
+        return $this->requested_source_table;
     }
 
     public function hasRequestedSourceTable()
@@ -332,7 +332,7 @@ class AnalyzeDataSourceRiskDetails extends \Google\Protobuf\Internal\Message
      */
     public function getRequestedOptions()
     {
-        return isset($this->requested_options) ? $this->requested_options : null;
+        return $this->requested_options;
     }
 
     public function hasRequestedOptions()

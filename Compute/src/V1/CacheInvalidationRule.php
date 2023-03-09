@@ -17,13 +17,13 @@ class CacheInvalidationRule extends \Google\Protobuf\Internal\Message
     /**
      * If set, this invalidation rule will only apply to requests with a Host header matching host.
      *
-     * Generated from protobuf field <code>string host = 3208616;</code>
+     * Generated from protobuf field <code>optional string host = 3208616;</code>
      */
-    private $host = '';
+    private $host = null;
     /**
-     * Generated from protobuf field <code>string path = 3433509;</code>
+     * Generated from protobuf field <code>optional string path = 3433509;</code>
      */
-    private $path = '';
+    private $path = null;
 
     /**
      * Constructor.
@@ -44,18 +44,28 @@ class CacheInvalidationRule extends \Google\Protobuf\Internal\Message
     /**
      * If set, this invalidation rule will only apply to requests with a Host header matching host.
      *
-     * Generated from protobuf field <code>string host = 3208616;</code>
+     * Generated from protobuf field <code>optional string host = 3208616;</code>
      * @return string
      */
     public function getHost()
     {
-        return $this->host;
+        return isset($this->host) ? $this->host : '';
+    }
+
+    public function hasHost()
+    {
+        return isset($this->host);
+    }
+
+    public function clearHost()
+    {
+        unset($this->host);
     }
 
     /**
      * If set, this invalidation rule will only apply to requests with a Host header matching host.
      *
-     * Generated from protobuf field <code>string host = 3208616;</code>
+     * Generated from protobuf field <code>optional string host = 3208616;</code>
      * @param string $var
      * @return $this
      */
@@ -68,16 +78,26 @@ class CacheInvalidationRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string path = 3433509;</code>
+     * Generated from protobuf field <code>optional string path = 3433509;</code>
      * @return string
      */
     public function getPath()
     {
-        return $this->path;
+        return isset($this->path) ? $this->path : '';
+    }
+
+    public function hasPath()
+    {
+        return isset($this->path);
+    }
+
+    public function clearPath()
+    {
+        unset($this->path);
     }
 
     /**
-     * Generated from protobuf field <code>string path = 3433509;</code>
+     * Generated from protobuf field <code>optional string path = 3433509;</code>
      * @param string $var
      * @return $this
      */

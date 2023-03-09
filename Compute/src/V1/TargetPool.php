@@ -9,53 +9,48 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents a Target Pool resource.
- * Target pools are used for network TCP/UDP load balancing. A target pool references member instances, an associated legacy HttpHealthCheck resource, and, optionally, a backup target pool. For more information, read Using target pools. (== resource_for {$api_version}.targetPools ==)
+ * Represents a Target Pool resource. Target pools are used for network TCP/UDP load balancing. A target pool references member instances, an associated legacy HttpHealthCheck resource, and, optionally, a backup target pool. For more information, read Using target pools.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.TargetPool</code>
  */
 class TargetPool extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The server-defined URL for the resource. This field is applicable only when the containing target pool is serving a forwarding rule as the primary pool, and its failoverRatio field is properly set to a value between [0, 1].
-     * backupPool and failoverRatio together define the fallback behavior of the primary target pool: if the ratio of the healthy instances in the primary pool is at or below failoverRatio, traffic arriving at the load-balanced IP will be directed to the backup pool.
-     * In case where failoverRatio and backupPool are not set, or all the instances in the backup pool are unhealthy, the traffic will be directed back to the primary pool in the "force" mode, where traffic will be spread to the healthy instances with the best effort, or to all instances when no instance is healthy.
+     * The server-defined URL for the resource. This field is applicable only when the containing target pool is serving a forwarding rule as the primary pool, and its failoverRatio field is properly set to a value between [0, 1]. backupPool and failoverRatio together define the fallback behavior of the primary target pool: if the ratio of the healthy instances in the primary pool is at or below failoverRatio, traffic arriving at the load-balanced IP will be directed to the backup pool. In case where failoverRatio and backupPool are not set, or all the instances in the backup pool are unhealthy, the traffic will be directed back to the primary pool in the "force" mode, where traffic will be spread to the healthy instances with the best effort, or to all instances when no instance is healthy.
      *
-     * Generated from protobuf field <code>string backup_pool = 45884537;</code>
+     * Generated from protobuf field <code>optional string backup_pool = 45884537;</code>
      */
-    private $backup_pool = '';
+    private $backup_pool = null;
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
-     * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
+     * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      */
-    private $creation_timestamp = '';
+    private $creation_timestamp = null;
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 154502140;</code>
+     * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
-    private $description = '';
+    private $description = null;
     /**
-     * This field is applicable only when the containing target pool is serving a forwarding rule as the primary pool (i.e., not as a backup pool to some other target pool). The value of the field must be in [0, 1].
-     * If set, backupPool must also be set. They together define the fallback behavior of the primary target pool: if the ratio of the healthy instances in the primary pool is at or below this number, traffic arriving at the load-balanced IP will be directed to the backup pool.
-     * In case where failoverRatio is not set or all the instances in the backup pool are unhealthy, the traffic will be directed back to the primary pool in the "force" mode, where traffic will be spread to the healthy instances with the best effort, or to all instances when no instance is healthy.
+     * This field is applicable only when the containing target pool is serving a forwarding rule as the primary pool (i.e., not as a backup pool to some other target pool). The value of the field must be in [0, 1]. If set, backupPool must also be set. They together define the fallback behavior of the primary target pool: if the ratio of the healthy instances in the primary pool is at or below this number, traffic arriving at the load-balanced IP will be directed to the backup pool. In case where failoverRatio is not set or all the instances in the backup pool are unhealthy, the traffic will be directed back to the primary pool in the "force" mode, where traffic will be spread to the healthy instances with the best effort, or to all instances when no instance is healthy.
      *
-     * Generated from protobuf field <code>float failover_ratio = 212667006;</code>
+     * Generated from protobuf field <code>optional float failover_ratio = 212667006;</code>
      */
-    private $failover_ratio = 0.0;
+    private $failover_ratio = null;
     /**
-     * The URL of the HttpHealthCheck resource. A member instance in this pool is considered healthy if and only if the health checks pass. An empty list means all member instances will be considered healthy at all times. Only legacy HttpHealthChecks are supported. Only one health check may be specified.
+     * The URL of the HttpHealthCheck resource. A member instance in this pool is considered healthy if and only if the health checks pass. Only legacy HttpHealthChecks are supported. Only one health check may be specified.
      *
-     * Generated from protobuf field <code>repeated string health_checks = 179935150;</code>
+     * Generated from protobuf field <code>repeated string health_checks = 448370606;</code>
      */
     private $health_checks;
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
+     * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
-    private $id = '';
+    private $id = null;
     /**
      * A list of resource URLs to the virtual machine instances serving this pool. They must live in zones contained in the same region as this pool.
      *
@@ -65,36 +60,34 @@ class TargetPool extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Type of the resource. Always compute#targetPool for target pools.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
-    private $kind = '';
+    private $kind = null;
     /**
      * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
-    private $name = '';
+    private $name = null;
     /**
      * [Output Only] URL of the region where the target pool resides.
      *
-     * Generated from protobuf field <code>string region = 138946292;</code>
+     * Generated from protobuf field <code>optional string region = 138946292;</code>
      */
-    private $region = '';
+    private $region = null;
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 187779341;</code>
+     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
-    private $self_link = '';
+    private $self_link = null;
     /**
-     * Session affinity option, must be one of the following values:
-     * NONE: Connections from the same client IP may go to any instance in the pool.
-     * CLIENT_IP: Connections from the same client IP will go to the same instance in the pool while that instance remains healthy.
-     * CLIENT_IP_PROTO: Connections from the same client IP with the same IP protocol will go to the same instance in the pool while that instance remains healthy.
+     * Session affinity option, must be one of the following values: NONE: Connections from the same client IP may go to any instance in the pool. CLIENT_IP: Connections from the same client IP will go to the same instance in the pool while that instance remains healthy. CLIENT_IP_PROTO: Connections from the same client IP with the same IP protocol will go to the same instance in the pool while that instance remains healthy.
+     * Check the SessionAffinity enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.TargetPool.SessionAffinity session_affinity = 195453105;</code>
+     * Generated from protobuf field <code>optional string session_affinity = 463888561;</code>
      */
-    private $session_affinity = 0;
+    private $session_affinity = null;
 
     /**
      * Constructor.
@@ -103,22 +96,18 @@ class TargetPool extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $backup_pool
-     *           The server-defined URL for the resource. This field is applicable only when the containing target pool is serving a forwarding rule as the primary pool, and its failoverRatio field is properly set to a value between [0, 1].
-     *           backupPool and failoverRatio together define the fallback behavior of the primary target pool: if the ratio of the healthy instances in the primary pool is at or below failoverRatio, traffic arriving at the load-balanced IP will be directed to the backup pool.
-     *           In case where failoverRatio and backupPool are not set, or all the instances in the backup pool are unhealthy, the traffic will be directed back to the primary pool in the "force" mode, where traffic will be spread to the healthy instances with the best effort, or to all instances when no instance is healthy.
+     *           The server-defined URL for the resource. This field is applicable only when the containing target pool is serving a forwarding rule as the primary pool, and its failoverRatio field is properly set to a value between [0, 1]. backupPool and failoverRatio together define the fallback behavior of the primary target pool: if the ratio of the healthy instances in the primary pool is at or below failoverRatio, traffic arriving at the load-balanced IP will be directed to the backup pool. In case where failoverRatio and backupPool are not set, or all the instances in the backup pool are unhealthy, the traffic will be directed back to the primary pool in the "force" mode, where traffic will be spread to the healthy instances with the best effort, or to all instances when no instance is healthy.
      *     @type string $creation_timestamp
      *           [Output Only] Creation timestamp in RFC3339 text format.
      *     @type string $description
      *           An optional description of this resource. Provide this property when you create the resource.
      *     @type float $failover_ratio
-     *           This field is applicable only when the containing target pool is serving a forwarding rule as the primary pool (i.e., not as a backup pool to some other target pool). The value of the field must be in [0, 1].
-     *           If set, backupPool must also be set. They together define the fallback behavior of the primary target pool: if the ratio of the healthy instances in the primary pool is at or below this number, traffic arriving at the load-balanced IP will be directed to the backup pool.
-     *           In case where failoverRatio is not set or all the instances in the backup pool are unhealthy, the traffic will be directed back to the primary pool in the "force" mode, where traffic will be spread to the healthy instances with the best effort, or to all instances when no instance is healthy.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $health_checks
-     *           The URL of the HttpHealthCheck resource. A member instance in this pool is considered healthy if and only if the health checks pass. An empty list means all member instances will be considered healthy at all times. Only legacy HttpHealthChecks are supported. Only one health check may be specified.
-     *     @type string $id
+     *           This field is applicable only when the containing target pool is serving a forwarding rule as the primary pool (i.e., not as a backup pool to some other target pool). The value of the field must be in [0, 1]. If set, backupPool must also be set. They together define the fallback behavior of the primary target pool: if the ratio of the healthy instances in the primary pool is at or below this number, traffic arriving at the load-balanced IP will be directed to the backup pool. In case where failoverRatio is not set or all the instances in the backup pool are unhealthy, the traffic will be directed back to the primary pool in the "force" mode, where traffic will be spread to the healthy instances with the best effort, or to all instances when no instance is healthy.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $health_checks
+     *           The URL of the HttpHealthCheck resource. A member instance in this pool is considered healthy if and only if the health checks pass. Only legacy HttpHealthChecks are supported. Only one health check may be specified.
+     *     @type int|string $id
      *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $instances
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $instances
      *           A list of resource URLs to the virtual machine instances serving this pool. They must live in zones contained in the same region as this pool.
      *     @type string $kind
      *           [Output Only] Type of the resource. Always compute#targetPool for target pools.
@@ -128,11 +117,9 @@ class TargetPool extends \Google\Protobuf\Internal\Message
      *           [Output Only] URL of the region where the target pool resides.
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
-     *     @type int $session_affinity
-     *           Session affinity option, must be one of the following values:
-     *           NONE: Connections from the same client IP may go to any instance in the pool.
-     *           CLIENT_IP: Connections from the same client IP will go to the same instance in the pool while that instance remains healthy.
-     *           CLIENT_IP_PROTO: Connections from the same client IP with the same IP protocol will go to the same instance in the pool while that instance remains healthy.
+     *     @type string $session_affinity
+     *           Session affinity option, must be one of the following values: NONE: Connections from the same client IP may go to any instance in the pool. CLIENT_IP: Connections from the same client IP will go to the same instance in the pool while that instance remains healthy. CLIENT_IP_PROTO: Connections from the same client IP with the same IP protocol will go to the same instance in the pool while that instance remains healthy.
+     *           Check the SessionAffinity enum for the list of possible values.
      * }
      */
     public function __construct($data = NULL) {
@@ -141,24 +128,30 @@ class TargetPool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The server-defined URL for the resource. This field is applicable only when the containing target pool is serving a forwarding rule as the primary pool, and its failoverRatio field is properly set to a value between [0, 1].
-     * backupPool and failoverRatio together define the fallback behavior of the primary target pool: if the ratio of the healthy instances in the primary pool is at or below failoverRatio, traffic arriving at the load-balanced IP will be directed to the backup pool.
-     * In case where failoverRatio and backupPool are not set, or all the instances in the backup pool are unhealthy, the traffic will be directed back to the primary pool in the "force" mode, where traffic will be spread to the healthy instances with the best effort, or to all instances when no instance is healthy.
+     * The server-defined URL for the resource. This field is applicable only when the containing target pool is serving a forwarding rule as the primary pool, and its failoverRatio field is properly set to a value between [0, 1]. backupPool and failoverRatio together define the fallback behavior of the primary target pool: if the ratio of the healthy instances in the primary pool is at or below failoverRatio, traffic arriving at the load-balanced IP will be directed to the backup pool. In case where failoverRatio and backupPool are not set, or all the instances in the backup pool are unhealthy, the traffic will be directed back to the primary pool in the "force" mode, where traffic will be spread to the healthy instances with the best effort, or to all instances when no instance is healthy.
      *
-     * Generated from protobuf field <code>string backup_pool = 45884537;</code>
+     * Generated from protobuf field <code>optional string backup_pool = 45884537;</code>
      * @return string
      */
     public function getBackupPool()
     {
-        return $this->backup_pool;
+        return isset($this->backup_pool) ? $this->backup_pool : '';
+    }
+
+    public function hasBackupPool()
+    {
+        return isset($this->backup_pool);
+    }
+
+    public function clearBackupPool()
+    {
+        unset($this->backup_pool);
     }
 
     /**
-     * The server-defined URL for the resource. This field is applicable only when the containing target pool is serving a forwarding rule as the primary pool, and its failoverRatio field is properly set to a value between [0, 1].
-     * backupPool and failoverRatio together define the fallback behavior of the primary target pool: if the ratio of the healthy instances in the primary pool is at or below failoverRatio, traffic arriving at the load-balanced IP will be directed to the backup pool.
-     * In case where failoverRatio and backupPool are not set, or all the instances in the backup pool are unhealthy, the traffic will be directed back to the primary pool in the "force" mode, where traffic will be spread to the healthy instances with the best effort, or to all instances when no instance is healthy.
+     * The server-defined URL for the resource. This field is applicable only when the containing target pool is serving a forwarding rule as the primary pool, and its failoverRatio field is properly set to a value between [0, 1]. backupPool and failoverRatio together define the fallback behavior of the primary target pool: if the ratio of the healthy instances in the primary pool is at or below failoverRatio, traffic arriving at the load-balanced IP will be directed to the backup pool. In case where failoverRatio and backupPool are not set, or all the instances in the backup pool are unhealthy, the traffic will be directed back to the primary pool in the "force" mode, where traffic will be spread to the healthy instances with the best effort, or to all instances when no instance is healthy.
      *
-     * Generated from protobuf field <code>string backup_pool = 45884537;</code>
+     * Generated from protobuf field <code>optional string backup_pool = 45884537;</code>
      * @param string $var
      * @return $this
      */
@@ -173,18 +166,28 @@ class TargetPool extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
-     * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
+     * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @return string
      */
     public function getCreationTimestamp()
     {
-        return $this->creation_timestamp;
+        return isset($this->creation_timestamp) ? $this->creation_timestamp : '';
+    }
+
+    public function hasCreationTimestamp()
+    {
+        return isset($this->creation_timestamp);
+    }
+
+    public function clearCreationTimestamp()
+    {
+        unset($this->creation_timestamp);
     }
 
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
-     * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
+     * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @param string $var
      * @return $this
      */
@@ -199,18 +202,28 @@ class TargetPool extends \Google\Protobuf\Internal\Message
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 154502140;</code>
+     * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @return string
      */
     public function getDescription()
     {
-        return $this->description;
+        return isset($this->description) ? $this->description : '';
+    }
+
+    public function hasDescription()
+    {
+        return isset($this->description);
+    }
+
+    public function clearDescription()
+    {
+        unset($this->description);
     }
 
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 154502140;</code>
+     * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @param string $var
      * @return $this
      */
@@ -223,24 +236,30 @@ class TargetPool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This field is applicable only when the containing target pool is serving a forwarding rule as the primary pool (i.e., not as a backup pool to some other target pool). The value of the field must be in [0, 1].
-     * If set, backupPool must also be set. They together define the fallback behavior of the primary target pool: if the ratio of the healthy instances in the primary pool is at or below this number, traffic arriving at the load-balanced IP will be directed to the backup pool.
-     * In case where failoverRatio is not set or all the instances in the backup pool are unhealthy, the traffic will be directed back to the primary pool in the "force" mode, where traffic will be spread to the healthy instances with the best effort, or to all instances when no instance is healthy.
+     * This field is applicable only when the containing target pool is serving a forwarding rule as the primary pool (i.e., not as a backup pool to some other target pool). The value of the field must be in [0, 1]. If set, backupPool must also be set. They together define the fallback behavior of the primary target pool: if the ratio of the healthy instances in the primary pool is at or below this number, traffic arriving at the load-balanced IP will be directed to the backup pool. In case where failoverRatio is not set or all the instances in the backup pool are unhealthy, the traffic will be directed back to the primary pool in the "force" mode, where traffic will be spread to the healthy instances with the best effort, or to all instances when no instance is healthy.
      *
-     * Generated from protobuf field <code>float failover_ratio = 212667006;</code>
+     * Generated from protobuf field <code>optional float failover_ratio = 212667006;</code>
      * @return float
      */
     public function getFailoverRatio()
     {
-        return $this->failover_ratio;
+        return isset($this->failover_ratio) ? $this->failover_ratio : 0.0;
+    }
+
+    public function hasFailoverRatio()
+    {
+        return isset($this->failover_ratio);
+    }
+
+    public function clearFailoverRatio()
+    {
+        unset($this->failover_ratio);
     }
 
     /**
-     * This field is applicable only when the containing target pool is serving a forwarding rule as the primary pool (i.e., not as a backup pool to some other target pool). The value of the field must be in [0, 1].
-     * If set, backupPool must also be set. They together define the fallback behavior of the primary target pool: if the ratio of the healthy instances in the primary pool is at or below this number, traffic arriving at the load-balanced IP will be directed to the backup pool.
-     * In case where failoverRatio is not set or all the instances in the backup pool are unhealthy, the traffic will be directed back to the primary pool in the "force" mode, where traffic will be spread to the healthy instances with the best effort, or to all instances when no instance is healthy.
+     * This field is applicable only when the containing target pool is serving a forwarding rule as the primary pool (i.e., not as a backup pool to some other target pool). The value of the field must be in [0, 1]. If set, backupPool must also be set. They together define the fallback behavior of the primary target pool: if the ratio of the healthy instances in the primary pool is at or below this number, traffic arriving at the load-balanced IP will be directed to the backup pool. In case where failoverRatio is not set or all the instances in the backup pool are unhealthy, the traffic will be directed back to the primary pool in the "force" mode, where traffic will be spread to the healthy instances with the best effort, or to all instances when no instance is healthy.
      *
-     * Generated from protobuf field <code>float failover_ratio = 212667006;</code>
+     * Generated from protobuf field <code>optional float failover_ratio = 212667006;</code>
      * @param float $var
      * @return $this
      */
@@ -253,9 +272,9 @@ class TargetPool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The URL of the HttpHealthCheck resource. A member instance in this pool is considered healthy if and only if the health checks pass. An empty list means all member instances will be considered healthy at all times. Only legacy HttpHealthChecks are supported. Only one health check may be specified.
+     * The URL of the HttpHealthCheck resource. A member instance in this pool is considered healthy if and only if the health checks pass. Only legacy HttpHealthChecks are supported. Only one health check may be specified.
      *
-     * Generated from protobuf field <code>repeated string health_checks = 179935150;</code>
+     * Generated from protobuf field <code>repeated string health_checks = 448370606;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getHealthChecks()
@@ -264,10 +283,10 @@ class TargetPool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The URL of the HttpHealthCheck resource. A member instance in this pool is considered healthy if and only if the health checks pass. An empty list means all member instances will be considered healthy at all times. Only legacy HttpHealthChecks are supported. Only one health check may be specified.
+     * The URL of the HttpHealthCheck resource. A member instance in this pool is considered healthy if and only if the health checks pass. Only legacy HttpHealthChecks are supported. Only one health check may be specified.
      *
-     * Generated from protobuf field <code>repeated string health_checks = 179935150;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * Generated from protobuf field <code>repeated string health_checks = 448370606;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setHealthChecks($var)
@@ -281,24 +300,34 @@ class TargetPool extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
-     * @return string
+     * Generated from protobuf field <code>optional uint64 id = 3355;</code>
+     * @return int|string
      */
     public function getId()
     {
-        return $this->id;
+        return isset($this->id) ? $this->id : 0;
+    }
+
+    public function hasId()
+    {
+        return isset($this->id);
+    }
+
+    public function clearId()
+    {
+        unset($this->id);
     }
 
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
-     * @param string $var
+     * Generated from protobuf field <code>optional uint64 id = 3355;</code>
+     * @param int|string $var
      * @return $this
      */
     public function setId($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkUint64($var);
         $this->id = $var;
 
         return $this;
@@ -319,7 +348,7 @@ class TargetPool extends \Google\Protobuf\Internal\Message
      * A list of resource URLs to the virtual machine instances serving this pool. They must live in zones contained in the same region as this pool.
      *
      * Generated from protobuf field <code>repeated string instances = 29097598;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setInstances($var)
@@ -333,18 +362,28 @@ class TargetPool extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Type of the resource. Always compute#targetPool for target pools.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
      */
     public function getKind()
     {
-        return $this->kind;
+        return isset($this->kind) ? $this->kind : '';
+    }
+
+    public function hasKind()
+    {
+        return isset($this->kind);
+    }
+
+    public function clearKind()
+    {
+        unset($this->kind);
     }
 
     /**
      * [Output Only] Type of the resource. Always compute#targetPool for target pools.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
      * @return $this
      */
@@ -359,18 +398,28 @@ class TargetPool extends \Google\Protobuf\Internal\Message
     /**
      * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @return string
      */
     public function getName()
     {
-        return $this->name;
+        return isset($this->name) ? $this->name : '';
+    }
+
+    public function hasName()
+    {
+        return isset($this->name);
+    }
+
+    public function clearName()
+    {
+        unset($this->name);
     }
 
     /**
      * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @param string $var
      * @return $this
      */
@@ -385,18 +434,28 @@ class TargetPool extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] URL of the region where the target pool resides.
      *
-     * Generated from protobuf field <code>string region = 138946292;</code>
+     * Generated from protobuf field <code>optional string region = 138946292;</code>
      * @return string
      */
     public function getRegion()
     {
-        return $this->region;
+        return isset($this->region) ? $this->region : '';
+    }
+
+    public function hasRegion()
+    {
+        return isset($this->region);
+    }
+
+    public function clearRegion()
+    {
+        unset($this->region);
     }
 
     /**
      * [Output Only] URL of the region where the target pool resides.
      *
-     * Generated from protobuf field <code>string region = 138946292;</code>
+     * Generated from protobuf field <code>optional string region = 138946292;</code>
      * @param string $var
      * @return $this
      */
@@ -411,18 +470,28 @@ class TargetPool extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 187779341;</code>
+     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @return string
      */
     public function getSelfLink()
     {
-        return $this->self_link;
+        return isset($this->self_link) ? $this->self_link : '';
+    }
+
+    public function hasSelfLink()
+    {
+        return isset($this->self_link);
+    }
+
+    public function clearSelfLink()
+    {
+        unset($this->self_link);
     }
 
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 187779341;</code>
+     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @param string $var
      * @return $this
      */
@@ -435,32 +504,38 @@ class TargetPool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Session affinity option, must be one of the following values:
-     * NONE: Connections from the same client IP may go to any instance in the pool.
-     * CLIENT_IP: Connections from the same client IP will go to the same instance in the pool while that instance remains healthy.
-     * CLIENT_IP_PROTO: Connections from the same client IP with the same IP protocol will go to the same instance in the pool while that instance remains healthy.
+     * Session affinity option, must be one of the following values: NONE: Connections from the same client IP may go to any instance in the pool. CLIENT_IP: Connections from the same client IP will go to the same instance in the pool while that instance remains healthy. CLIENT_IP_PROTO: Connections from the same client IP with the same IP protocol will go to the same instance in the pool while that instance remains healthy.
+     * Check the SessionAffinity enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.TargetPool.SessionAffinity session_affinity = 195453105;</code>
-     * @return int
+     * Generated from protobuf field <code>optional string session_affinity = 463888561;</code>
+     * @return string
      */
     public function getSessionAffinity()
     {
-        return $this->session_affinity;
+        return isset($this->session_affinity) ? $this->session_affinity : '';
+    }
+
+    public function hasSessionAffinity()
+    {
+        return isset($this->session_affinity);
+    }
+
+    public function clearSessionAffinity()
+    {
+        unset($this->session_affinity);
     }
 
     /**
-     * Session affinity option, must be one of the following values:
-     * NONE: Connections from the same client IP may go to any instance in the pool.
-     * CLIENT_IP: Connections from the same client IP will go to the same instance in the pool while that instance remains healthy.
-     * CLIENT_IP_PROTO: Connections from the same client IP with the same IP protocol will go to the same instance in the pool while that instance remains healthy.
+     * Session affinity option, must be one of the following values: NONE: Connections from the same client IP may go to any instance in the pool. CLIENT_IP: Connections from the same client IP will go to the same instance in the pool while that instance remains healthy. CLIENT_IP_PROTO: Connections from the same client IP with the same IP protocol will go to the same instance in the pool while that instance remains healthy.
+     * Check the SessionAffinity enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.TargetPool.SessionAffinity session_affinity = 195453105;</code>
-     * @param int $var
+     * Generated from protobuf field <code>optional string session_affinity = 463888561;</code>
+     * @param string $var
      * @return $this
      */
     public function setSessionAffinity($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Compute\V1\TargetPool\SessionAffinity::class);
+        GPBUtil::checkString($var, True);
         $this->session_affinity = $var;
 
         return $this;

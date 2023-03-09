@@ -28,7 +28,7 @@ class ListInfoTypesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Dlp\V2\InfoTypeDescription[]|\Google\Protobuf\Internal\RepeatedField $info_types
+     *     @type array<\Google\Cloud\Dlp\V2\InfoTypeDescription>|\Google\Protobuf\Internal\RepeatedField $info_types
      *           Set of sensitive infoTypes.
      * }
      */
@@ -52,7 +52,7 @@ class ListInfoTypesResponse extends \Google\Protobuf\Internal\Message
      * Set of sensitive infoTypes.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.InfoTypeDescription info_types = 1;</code>
-     * @param \Google\Cloud\Dlp\V2\InfoTypeDescription[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dlp\V2\InfoTypeDescription>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setInfoTypes($var)

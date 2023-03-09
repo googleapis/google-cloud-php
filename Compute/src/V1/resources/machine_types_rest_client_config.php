@@ -23,14 +23,14 @@ return [
                             'getMachineType',
                         ],
                     ],
-                    'zone' => [
-                        'getters' => [
-                            'getZone',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
                         ],
                     ],
                 ],
@@ -39,14 +39,14 @@ return [
                 'method' => 'get',
                 'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/machineTypes',
                 'placeholders' => [
-                    'zone' => [
-                        'getters' => [
-                            'getZone',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
                         ],
                     ],
                 ],

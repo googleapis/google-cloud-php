@@ -113,6 +113,21 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.spanner.v1.ExecuteSqlRequest.QueryOptions query_options = 10;</code>
      */
     private $query_options = null;
+    /**
+     * Common options for this request.
+     *
+     * Generated from protobuf field <code>.google.spanner.v1.RequestOptions request_options = 11;</code>
+     */
+    private $request_options = null;
+    /**
+     * If this is for a partitioned read and this field is set to `true`, the
+     * request will be executed via Spanner independent compute resources.
+     * If the field is set to `true` but the request does not set
+     * `partition_token`, the API will return an `INVALID_ARGUMENT` error.
+     *
+     * Generated from protobuf field <code>bool data_boost_enabled = 15;</code>
+     */
+    private $data_boost_enabled = false;
 
     /**
      * Constructor.
@@ -177,6 +192,13 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
      *           Required for DML statements. Ignored for queries.
      *     @type \Google\Cloud\Spanner\V1\ExecuteSqlRequest\QueryOptions $query_options
      *           Query optimizer configuration to use for the given query.
+     *     @type \Google\Cloud\Spanner\V1\RequestOptions $request_options
+     *           Common options for this request.
+     *     @type bool $data_boost_enabled
+     *           If this is for a partitioned read and this field is set to `true`, the
+     *           request will be executed via Spanner independent compute resources.
+     *           If the field is set to `true` but the request does not set
+     *           `partition_token`, the API will return an `INVALID_ARGUMENT` error.
      * }
      */
     public function __construct($data = NULL) {
@@ -224,7 +246,7 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
      */
     public function getTransaction()
     {
-        return isset($this->transaction) ? $this->transaction : null;
+        return $this->transaction;
     }
 
     public function hasTransaction()
@@ -300,7 +322,7 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
      */
     public function getParams()
     {
-        return isset($this->params) ? $this->params : null;
+        return $this->params;
     }
 
     public function hasParams()
@@ -520,7 +542,7 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
      */
     public function getQueryOptions()
     {
-        return isset($this->query_options) ? $this->query_options : null;
+        return $this->query_options;
     }
 
     public function hasQueryOptions()
@@ -544,6 +566,74 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Spanner\V1\ExecuteSqlRequest\QueryOptions::class);
         $this->query_options = $var;
+
+        return $this;
+    }
+
+    /**
+     * Common options for this request.
+     *
+     * Generated from protobuf field <code>.google.spanner.v1.RequestOptions request_options = 11;</code>
+     * @return \Google\Cloud\Spanner\V1\RequestOptions|null
+     */
+    public function getRequestOptions()
+    {
+        return $this->request_options;
+    }
+
+    public function hasRequestOptions()
+    {
+        return isset($this->request_options);
+    }
+
+    public function clearRequestOptions()
+    {
+        unset($this->request_options);
+    }
+
+    /**
+     * Common options for this request.
+     *
+     * Generated from protobuf field <code>.google.spanner.v1.RequestOptions request_options = 11;</code>
+     * @param \Google\Cloud\Spanner\V1\RequestOptions $var
+     * @return $this
+     */
+    public function setRequestOptions($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Spanner\V1\RequestOptions::class);
+        $this->request_options = $var;
+
+        return $this;
+    }
+
+    /**
+     * If this is for a partitioned read and this field is set to `true`, the
+     * request will be executed via Spanner independent compute resources.
+     * If the field is set to `true` but the request does not set
+     * `partition_token`, the API will return an `INVALID_ARGUMENT` error.
+     *
+     * Generated from protobuf field <code>bool data_boost_enabled = 15;</code>
+     * @return bool
+     */
+    public function getDataBoostEnabled()
+    {
+        return $this->data_boost_enabled;
+    }
+
+    /**
+     * If this is for a partitioned read and this field is set to `true`, the
+     * request will be executed via Spanner independent compute resources.
+     * If the field is set to `true` but the request does not set
+     * `partition_token`, the API will return an `INVALID_ARGUMENT` error.
+     *
+     * Generated from protobuf field <code>bool data_boost_enabled = 15;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setDataBoostEnabled($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->data_boost_enabled = $var;
 
         return $this;
     }

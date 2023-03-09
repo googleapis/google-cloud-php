@@ -20,9 +20,9 @@ class Plan
      */
     const UNDEFINED_PLAN = 0;
     /**
-     * Generated from protobuf enum <code>INVALID = 261848535;</code>
+     * Generated from protobuf enum <code>INVALID = 530283991;</code>
      */
-    const INVALID = 261848535;
+    const INVALID = 530283991;
     /**
      * Generated from protobuf enum <code>THIRTY_SIX_MONTH = 266295942;</code>
      */

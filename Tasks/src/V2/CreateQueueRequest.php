@@ -98,7 +98,7 @@ class CreateQueueRequest extends \Google\Protobuf\Internal\Message
      */
     public function getQueue()
     {
-        return isset($this->queue) ? $this->queue : null;
+        return $this->queue;
     }
 
     public function hasQueue()

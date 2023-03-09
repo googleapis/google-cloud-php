@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request for [Firestore.DeleteDocument][google.firestore.v1.Firestore.DeleteDocument].
+ * The request for
+ * [Firestore.DeleteDocument][google.firestore.v1.Firestore.DeleteDocument].
  *
  * Generated from protobuf message <code>google.firestore.v1.DeleteDocumentRequest</code>
  */
@@ -86,7 +87,7 @@ class DeleteDocumentRequest extends \Google\Protobuf\Internal\Message
      */
     public function getCurrentDocument()
     {
-        return isset($this->current_document) ? $this->current_document : null;
+        return $this->current_document;
     }
 
     public function hasCurrentDocument()

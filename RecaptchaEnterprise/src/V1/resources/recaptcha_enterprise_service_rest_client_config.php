@@ -3,18 +3,6 @@
 return [
     'interfaces' => [
         'google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService' => [
-            'CreateAssessment' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/{parent=projects/*}/assessments',
-                'body' => 'assessment',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
             'AnnotateAssessment' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{name=projects/*/assessments/*}:annotate',
@@ -23,6 +11,18 @@ return [
                     'name' => [
                         'getters' => [
                             'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateAssessment' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*}/assessments',
+                'body' => 'assessment',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
                         ],
                     ],
                 ],
@@ -39,13 +39,13 @@ return [
                     ],
                 ],
             ],
-            'ListKeys' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{parent=projects/*}/keys',
+            'DeleteKey' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/keys/*}',
                 'placeholders' => [
-                    'parent' => [
+                    'name' => [
                         'getters' => [
-                            'getParent',
+                            'getName',
                         ],
                     ],
                 ],
@@ -57,6 +57,85 @@ return [
                     'name' => [
                         'getters' => [
                             'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetMetrics' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/keys/*/metrics}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListKeys' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*}/keys',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListRelatedAccountGroupMemberships' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/relatedaccountgroups/*}/memberships',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListRelatedAccountGroups' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*}/relatedaccountgroups',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'MigrateKey' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/keys/*}:migrate',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'RetrieveLegacySecretKey' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{key=projects/*/keys/*}:retrieveLegacySecretKey',
+                'placeholders' => [
+                    'key' => [
+                        'getters' => [
+                            'getKey',
+                        ],
+                    ],
+                ],
+            ],
+            'SearchRelatedAccountGroupMemberships' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{project=projects/*}/relatedaccountgroupmemberships:search',
+                'body' => '*',
+                'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
                         ],
                     ],
                 ],
@@ -74,17 +153,7 @@ return [
                     ],
                 ],
             ],
-            'DeleteKey' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v1/{name=projects/*/keys/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
         ],
     ],
+    'numericEnums' => true,
 ];

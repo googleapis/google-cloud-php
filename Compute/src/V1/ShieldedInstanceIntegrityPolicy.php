@@ -18,9 +18,9 @@ class ShieldedInstanceIntegrityPolicy extends \Google\Protobuf\Internal\Message
     /**
      * Updates the integrity policy baseline using the measurements from the VM instance's most recent boot.
      *
-     * Generated from protobuf field <code>bool update_auto_learn_policy = 245490215;</code>
+     * Generated from protobuf field <code>optional bool update_auto_learn_policy = 245490215;</code>
      */
-    private $update_auto_learn_policy = false;
+    private $update_auto_learn_policy = null;
 
     /**
      * Constructor.
@@ -40,18 +40,28 @@ class ShieldedInstanceIntegrityPolicy extends \Google\Protobuf\Internal\Message
     /**
      * Updates the integrity policy baseline using the measurements from the VM instance's most recent boot.
      *
-     * Generated from protobuf field <code>bool update_auto_learn_policy = 245490215;</code>
+     * Generated from protobuf field <code>optional bool update_auto_learn_policy = 245490215;</code>
      * @return bool
      */
     public function getUpdateAutoLearnPolicy()
     {
-        return $this->update_auto_learn_policy;
+        return isset($this->update_auto_learn_policy) ? $this->update_auto_learn_policy : false;
+    }
+
+    public function hasUpdateAutoLearnPolicy()
+    {
+        return isset($this->update_auto_learn_policy);
+    }
+
+    public function clearUpdateAutoLearnPolicy()
+    {
+        unset($this->update_auto_learn_policy);
     }
 
     /**
      * Updates the integrity policy baseline using the measurements from the VM instance's most recent boot.
      *
-     * Generated from protobuf field <code>bool update_auto_learn_policy = 245490215;</code>
+     * Generated from protobuf field <code>optional bool update_auto_learn_policy = 245490215;</code>
      * @param bool $var
      * @return $this
      */

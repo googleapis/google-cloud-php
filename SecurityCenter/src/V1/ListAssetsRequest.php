@@ -16,8 +16,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListAssetsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Name of the organization assets should belong to. Its format is
-     * "organizations/[organization_id]".
+     * Required. The name of the parent resource that contains the assets. The
+     * value that you can specify on parent depends on the method in which you
+     * specify parent. You can specify one of the following values:
+     * "organizations/[organization_id]", "folders/[folder_id]", or
+     * "projects/[project_id]".
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -164,8 +167,11 @@ class ListAssetsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. Name of the organization assets should belong to. Its format is
-     *           "organizations/[organization_id]".
+     *           Required. The name of the parent resource that contains the assets. The
+     *           value that you can specify on parent depends on the method in which you
+     *           specify parent. You can specify one of the following values:
+     *           "organizations/[organization_id]", "folders/[folder_id]", or
+     *           "projects/[project_id]".
      *     @type string $filter
      *           Expression that defines the filter to apply across assets.
      *           The expression is a list of zero or more restrictions combined via logical
@@ -280,8 +286,11 @@ class ListAssetsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Name of the organization assets should belong to. Its format is
-     * "organizations/[organization_id]".
+     * Required. The name of the parent resource that contains the assets. The
+     * value that you can specify on parent depends on the method in which you
+     * specify parent. You can specify one of the following values:
+     * "organizations/[organization_id]", "folders/[folder_id]", or
+     * "projects/[project_id]".
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -292,8 +301,11 @@ class ListAssetsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Name of the organization assets should belong to. Its format is
-     * "organizations/[organization_id]".
+     * Required. The name of the parent resource that contains the assets. The
+     * value that you can specify on parent depends on the method in which you
+     * specify parent. You can specify one of the following values:
+     * "organizations/[organization_id]", "folders/[folder_id]", or
+     * "projects/[project_id]".
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -496,11 +508,11 @@ class ListAssetsRequest extends \Google\Protobuf\Internal\Message
      * NOW.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 4;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getReadTime()
     {
-        return isset($this->read_time) ? $this->read_time : null;
+        return $this->read_time;
     }
 
     public function hasReadTime()
@@ -554,11 +566,11 @@ class ListAssetsRequest extends \Google\Protobuf\Internal\Message
      * read_time.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration compare_duration = 5;</code>
-     * @return \Google\Protobuf\Duration
+     * @return \Google\Protobuf\Duration|null
      */
     public function getCompareDuration()
     {
-        return isset($this->compare_duration) ? $this->compare_duration : null;
+        return $this->compare_duration;
     }
 
     public function hasCompareDuration()
@@ -611,11 +623,11 @@ class ListAssetsRequest extends \Google\Protobuf\Internal\Message
      * An empty field mask will list all fields.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask field_mask = 7;</code>
-     * @return \Google\Protobuf\FieldMask
+     * @return \Google\Protobuf\FieldMask|null
      */
     public function getFieldMask()
     {
-        return isset($this->field_mask) ? $this->field_mask : null;
+        return $this->field_mask;
     }
 
     public function hasFieldMask()

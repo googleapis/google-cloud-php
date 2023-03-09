@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request message for [Contexts.CreateContext][google.cloud.dialogflow.v2.Contexts.CreateContext].
+ * The request message for
+ * [Contexts.CreateContext][google.cloud.dialogflow.v2.Contexts.CreateContext].
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.CreateContextRequest</code>
  */
@@ -99,7 +100,7 @@ class CreateContextRequest extends \Google\Protobuf\Internal\Message
      */
     public function getContext()
     {
-        return isset($this->context) ? $this->context : null;
+        return $this->context;
     }
 
     public function hasContext()

@@ -18,9 +18,9 @@ class DisplayDevice extends \Google\Protobuf\Internal\Message
     /**
      * Defines whether the instance has Display enabled.
      *
-     * Generated from protobuf field <code>bool enable_display = 14266886;</code>
+     * Generated from protobuf field <code>optional bool enable_display = 14266886;</code>
      */
-    private $enable_display = false;
+    private $enable_display = null;
 
     /**
      * Constructor.
@@ -40,18 +40,28 @@ class DisplayDevice extends \Google\Protobuf\Internal\Message
     /**
      * Defines whether the instance has Display enabled.
      *
-     * Generated from protobuf field <code>bool enable_display = 14266886;</code>
+     * Generated from protobuf field <code>optional bool enable_display = 14266886;</code>
      * @return bool
      */
     public function getEnableDisplay()
     {
-        return $this->enable_display;
+        return isset($this->enable_display) ? $this->enable_display : false;
+    }
+
+    public function hasEnableDisplay()
+    {
+        return isset($this->enable_display);
+    }
+
+    public function clearEnableDisplay()
+    {
+        unset($this->enable_display);
     }
 
     /**
      * Defines whether the instance has Display enabled.
      *
-     * Generated from protobuf field <code>bool enable_display = 14266886;</code>
+     * Generated from protobuf field <code>optional bool enable_display = 14266886;</code>
      * @param bool $var
      * @return $this
      */

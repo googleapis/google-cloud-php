@@ -59,6 +59,4 @@ class DatabaseType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(DatabaseType::class, \Google\Cloud\BigQuery\Connection\V1\CloudSqlProperties_DatabaseType::class);
 

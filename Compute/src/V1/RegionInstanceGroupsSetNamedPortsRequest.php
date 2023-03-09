@@ -17,13 +17,13 @@ class RegionInstanceGroupsSetNamedPortsRequest extends \Google\Protobuf\Internal
     /**
      * The fingerprint of the named ports information for this instance group. Use this optional property to prevent conflicts when multiple users change the named ports settings concurrently. Obtain the fingerprint with the instanceGroups.get method. Then, include the fingerprint in your request to ensure that you do not overwrite changes that were applied from another concurrent request.
      *
-     * Generated from protobuf field <code>string fingerprint = 234678500;</code>
+     * Generated from protobuf field <code>optional string fingerprint = 234678500;</code>
      */
-    private $fingerprint = '';
+    private $fingerprint = null;
     /**
      * The list of named ports to set for this instance group.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NamedPort named_ports = 159163276;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NamedPort named_ports = 427598732;</code>
      */
     private $named_ports;
 
@@ -35,7 +35,7 @@ class RegionInstanceGroupsSetNamedPortsRequest extends \Google\Protobuf\Internal
      *
      *     @type string $fingerprint
      *           The fingerprint of the named ports information for this instance group. Use this optional property to prevent conflicts when multiple users change the named ports settings concurrently. Obtain the fingerprint with the instanceGroups.get method. Then, include the fingerprint in your request to ensure that you do not overwrite changes that were applied from another concurrent request.
-     *     @type \Google\Cloud\Compute\V1\NamedPort[]|\Google\Protobuf\Internal\RepeatedField $named_ports
+     *     @type array<\Google\Cloud\Compute\V1\NamedPort>|\Google\Protobuf\Internal\RepeatedField $named_ports
      *           The list of named ports to set for this instance group.
      * }
      */
@@ -47,18 +47,28 @@ class RegionInstanceGroupsSetNamedPortsRequest extends \Google\Protobuf\Internal
     /**
      * The fingerprint of the named ports information for this instance group. Use this optional property to prevent conflicts when multiple users change the named ports settings concurrently. Obtain the fingerprint with the instanceGroups.get method. Then, include the fingerprint in your request to ensure that you do not overwrite changes that were applied from another concurrent request.
      *
-     * Generated from protobuf field <code>string fingerprint = 234678500;</code>
+     * Generated from protobuf field <code>optional string fingerprint = 234678500;</code>
      * @return string
      */
     public function getFingerprint()
     {
-        return $this->fingerprint;
+        return isset($this->fingerprint) ? $this->fingerprint : '';
+    }
+
+    public function hasFingerprint()
+    {
+        return isset($this->fingerprint);
+    }
+
+    public function clearFingerprint()
+    {
+        unset($this->fingerprint);
     }
 
     /**
      * The fingerprint of the named ports information for this instance group. Use this optional property to prevent conflicts when multiple users change the named ports settings concurrently. Obtain the fingerprint with the instanceGroups.get method. Then, include the fingerprint in your request to ensure that you do not overwrite changes that were applied from another concurrent request.
      *
-     * Generated from protobuf field <code>string fingerprint = 234678500;</code>
+     * Generated from protobuf field <code>optional string fingerprint = 234678500;</code>
      * @param string $var
      * @return $this
      */
@@ -73,7 +83,7 @@ class RegionInstanceGroupsSetNamedPortsRequest extends \Google\Protobuf\Internal
     /**
      * The list of named ports to set for this instance group.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NamedPort named_ports = 159163276;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NamedPort named_ports = 427598732;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getNamedPorts()
@@ -84,8 +94,8 @@ class RegionInstanceGroupsSetNamedPortsRequest extends \Google\Protobuf\Internal
     /**
      * The list of named ports to set for this instance group.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NamedPort named_ports = 159163276;</code>
-     * @param \Google\Cloud\Compute\V1\NamedPort[]|\Google\Protobuf\Internal\RepeatedField $var
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NamedPort named_ports = 427598732;</code>
+     * @param array<\Google\Cloud\Compute\V1\NamedPort>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setNamedPorts($var)

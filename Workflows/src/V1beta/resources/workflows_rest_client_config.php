@@ -2,14 +2,53 @@
 
 return [
     'interfaces' => [
-        'google.cloud.workflows.v1beta.Workflows' => [
-            'ListWorkflows' => [
+        'google.cloud.location.Locations' => [
+            'GetLocation' => [
                 'method' => 'get',
+                'uriTemplate' => '/v1beta/{name=projects/*/locations/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListLocations' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta/{name=projects/*}/locations',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+        ],
+        'google.cloud.workflows.v1beta.Workflows' => [
+            'CreateWorkflow' => [
+                'method' => 'post',
                 'uriTemplate' => '/v1beta/{parent=projects/*/locations/*}/workflows',
+                'body' => 'workflow',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'workflow_id',
+                ],
+            ],
+            'DeleteWorkflow' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1beta/{name=projects/*/locations/*/workflows/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
                         ],
                     ],
                 ],
@@ -25,25 +64,13 @@ return [
                     ],
                 ],
             ],
-            'CreateWorkflow' => [
-                'method' => 'post',
+            'ListWorkflows' => [
+                'method' => 'get',
                 'uriTemplate' => '/v1beta/{parent=projects/*/locations/*}/workflows',
-                'body' => 'workflow',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
                             'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'DeleteWorkflow' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v1beta/{name=projects/*/locations/*/workflows/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
                         ],
                     ],
                 ],
@@ -63,9 +90,9 @@ return [
             ],
         ],
         'google.longrunning.Operations' => [
-            'ListOperations' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1beta/{name=projects/*/locations/*}/operations',
+            'DeleteOperation' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1beta/{name=projects/*/locations/*/operations/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -85,20 +112,9 @@ return [
                     ],
                 ],
             ],
-            'DeleteOperation' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v1beta/{name=projects/*/locations/*/operations/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'CancelOperation' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1beta/{name=projects/*/locations/*/operations/*}:cancel',
+            'ListOperations' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta/{name=projects/*/locations/*}/operations',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -109,4 +125,5 @@ return [
             ],
         ],
     ],
+    'numericEnums' => true,
 ];

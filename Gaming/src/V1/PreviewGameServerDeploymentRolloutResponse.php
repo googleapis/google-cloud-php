@@ -41,7 +41,7 @@ class PreviewGameServerDeploymentRolloutResponse extends \Google\Protobuf\Intern
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $unavailable
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unavailable
      *           Locations that could not be reached on this request.
      *     @type string $etag
      *           ETag of the game server deployment.
@@ -69,7 +69,7 @@ class PreviewGameServerDeploymentRolloutResponse extends \Google\Protobuf\Intern
      * Locations that could not be reached on this request.
      *
      * Generated from protobuf field <code>repeated string unavailable = 2;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setUnavailable($var)
@@ -110,11 +110,11 @@ class PreviewGameServerDeploymentRolloutResponse extends \Google\Protobuf\Intern
      * The target state.
      *
      * Generated from protobuf field <code>.google.cloud.gaming.v1.TargetState target_state = 4;</code>
-     * @return \Google\Cloud\Gaming\V1\TargetState
+     * @return \Google\Cloud\Gaming\V1\TargetState|null
      */
     public function getTargetState()
     {
-        return isset($this->target_state) ? $this->target_state : null;
+        return $this->target_state;
     }
 
     public function hasTargetState()

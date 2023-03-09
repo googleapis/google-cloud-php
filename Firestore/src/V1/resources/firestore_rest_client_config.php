@@ -3,70 +3,26 @@
 return [
     'interfaces' => [
         'google.firestore.v1.Firestore' => [
-            'GetDocument' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{name=projects/*/databases/*/documents/*/**}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'ListDocuments' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{parent=projects/*/databases/*/documents/*/**}/{collection_id}',
-                'placeholders' => [
-                    'collection_id' => [
-                        'getters' => [
-                            'getCollectionId',
-                        ],
-                    ],
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'CreateDocument' => [
+            'BatchGetDocuments' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1/{parent=projects/*/databases/*/documents/**}/{collection_id}',
-                'body' => 'document',
+                'uriTemplate' => '/v1/{database=projects/*/databases/*}/documents:batchGet',
+                'body' => '*',
                 'placeholders' => [
-                    'collection_id' => [
+                    'database' => [
                         'getters' => [
-                            'getCollectionId',
-                        ],
-                    ],
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
+                            'getDatabase',
                         ],
                     ],
                 ],
             ],
-            'UpdateDocument' => [
-                'method' => 'patch',
-                'uriTemplate' => '/v1/{document.name=projects/*/databases/*/documents/*/**}',
-                'body' => 'document',
+            'BatchWrite' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{database=projects/*/databases/*}/documents:batchWrite',
+                'body' => '*',
                 'placeholders' => [
-                    'document.name' => [
+                    'database' => [
                         'getters' => [
-                            'getDocument',
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'DeleteDocument' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v1/{name=projects/*/databases/*/documents/*/**}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
+                            'getDatabase',
                         ],
                     ],
                 ],
@@ -95,14 +51,44 @@ return [
                     ],
                 ],
             ],
-            'Rollback' => [
+            'CreateDocument' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1/{database=projects/*/databases/*}/documents:rollback',
-                'body' => '*',
+                'uriTemplate' => '/v1/{parent=projects/*/databases/*/documents/**}/{collection_id}',
+                'body' => 'document',
                 'placeholders' => [
-                    'database' => [
+                    'collection_id' => [
                         'getters' => [
-                            'getDatabase',
+                            'getCollectionId',
+                        ],
+                    ],
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'document_id',
+                ],
+            ],
+            'DeleteDocument' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/databases/*/documents/*/**}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetDocument' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/databases/*/documents/*/**}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
                         ],
                     ],
                 ],
@@ -119,6 +105,28 @@ return [
                     ],
                 ],
                 'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListDocuments' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/databases/*/documents/*/**}/{collection_id}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{parent=projects/*/databases/*/documents}/{collection_id}',
+                    ],
+                ],
+                'placeholders' => [
+                    'collection_id' => [
+                        'getters' => [
+                            'getCollectionId',
+                        ],
+                    ],
                     'parent' => [
                         'getters' => [
                             'getParent',
@@ -145,9 +153,9 @@ return [
                     ],
                 ],
             ],
-            'BatchWrite' => [
+            'Rollback' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1/{database=projects/*/databases/*}/documents:batchWrite',
+                'uriTemplate' => '/v1/{database=projects/*/databases/*}/documents:rollback',
                 'body' => '*',
                 'placeholders' => [
                     'database' => [
@@ -157,6 +165,108 @@ return [
                     ],
                 ],
             ],
+            'RunAggregationQuery' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/databases/*/documents}:runAggregationQuery',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{parent=projects/*/databases/*/documents/*/**}:runAggregationQuery',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'RunQuery' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/databases/*/documents}:runQuery',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{parent=projects/*/databases/*/documents/*/**}:runQuery',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateDocument' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{document.name=projects/*/databases/*/documents/*/**}',
+                'body' => 'document',
+                'placeholders' => [
+                    'document.name' => [
+                        'getters' => [
+                            'getDocument',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
+                ],
+            ],
+        ],
+        'google.longrunning.Operations' => [
+            'CancelOperation' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/databases/*/operations/*}:cancel',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteOperation' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/databases/*/operations/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetOperation' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/databases/*/operations/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListOperations' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/databases/*}/operations',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
         ],
     ],
+    'numericEnums' => true,
 ];

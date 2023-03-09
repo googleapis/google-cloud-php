@@ -127,7 +127,7 @@ class ComputeThreatListDiffResponse extends \Google\Protobuf\Internal\Message
      */
     public function getAdditions()
     {
-        return isset($this->additions) ? $this->additions : null;
+        return $this->additions;
     }
 
     public function hasAdditions()
@@ -164,7 +164,7 @@ class ComputeThreatListDiffResponse extends \Google\Protobuf\Internal\Message
      */
     public function getRemovals()
     {
-        return isset($this->removals) ? $this->removals : null;
+        return $this->removals;
     }
 
     public function hasRemovals()
@@ -230,7 +230,7 @@ class ComputeThreatListDiffResponse extends \Google\Protobuf\Internal\Message
      */
     public function getChecksum()
     {
-        return isset($this->checksum) ? $this->checksum : null;
+        return $this->checksum;
     }
 
     public function hasChecksum()
@@ -272,7 +272,7 @@ class ComputeThreatListDiffResponse extends \Google\Protobuf\Internal\Message
      */
     public function getRecommendedNextDiff()
     {
-        return isset($this->recommended_next_diff) ? $this->recommended_next_diff : null;
+        return $this->recommended_next_diff;
     }
 
     public function hasRecommendedNextDiff()

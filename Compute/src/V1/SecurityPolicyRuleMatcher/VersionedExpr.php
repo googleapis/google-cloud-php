@@ -20,6 +20,8 @@ class VersionedExpr
      */
     const UNDEFINED_VERSIONED_EXPR = 0;
     /**
+     * Matches the source IP address of a request to the IP ranges supplied in config.
+     *
      * Generated from protobuf enum <code>SRC_IPS_V1 = 70925961;</code>
      */
     const SRC_IPS_V1 = 70925961;

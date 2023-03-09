@@ -81,11 +81,11 @@ class ExportEntitiesMetadata extends \Google\Protobuf\Internal\Message
      * Metadata common to all Datastore Admin operations.
      *
      * Generated from protobuf field <code>.google.datastore.admin.v1.CommonMetadata common = 1;</code>
-     * @return \Google\Cloud\Datastore\Admin\V1\CommonMetadata
+     * @return \Google\Cloud\Datastore\Admin\V1\CommonMetadata|null
      */
     public function getCommon()
     {
-        return isset($this->common) ? $this->common : null;
+        return $this->common;
     }
 
     public function hasCommon()
@@ -117,11 +117,11 @@ class ExportEntitiesMetadata extends \Google\Protobuf\Internal\Message
      * An estimate of the number of entities processed.
      *
      * Generated from protobuf field <code>.google.datastore.admin.v1.Progress progress_entities = 2;</code>
-     * @return \Google\Cloud\Datastore\Admin\V1\Progress
+     * @return \Google\Cloud\Datastore\Admin\V1\Progress|null
      */
     public function getProgressEntities()
     {
-        return isset($this->progress_entities) ? $this->progress_entities : null;
+        return $this->progress_entities;
     }
 
     public function hasProgressEntities()
@@ -153,11 +153,11 @@ class ExportEntitiesMetadata extends \Google\Protobuf\Internal\Message
      * An estimate of the number of bytes processed.
      *
      * Generated from protobuf field <code>.google.datastore.admin.v1.Progress progress_bytes = 3;</code>
-     * @return \Google\Cloud\Datastore\Admin\V1\Progress
+     * @return \Google\Cloud\Datastore\Admin\V1\Progress|null
      */
     public function getProgressBytes()
     {
-        return isset($this->progress_bytes) ? $this->progress_bytes : null;
+        return $this->progress_bytes;
     }
 
     public function hasProgressBytes()
@@ -189,11 +189,11 @@ class ExportEntitiesMetadata extends \Google\Protobuf\Internal\Message
      * Description of which entities are being exported.
      *
      * Generated from protobuf field <code>.google.datastore.admin.v1.EntityFilter entity_filter = 4;</code>
-     * @return \Google\Cloud\Datastore\Admin\V1\EntityFilter
+     * @return \Google\Cloud\Datastore\Admin\V1\EntityFilter|null
      */
     public function getEntityFilter()
     {
-        return isset($this->entity_filter) ? $this->entity_filter : null;
+        return $this->entity_filter;
     }
 
     public function hasEntityFilter()

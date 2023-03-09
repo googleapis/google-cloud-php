@@ -9,15 +9,16 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Response message for [CloudChannelService.TransferEntitlements][google.cloud.channel.v1.CloudChannelService.TransferEntitlements].
- * This will be put into the response field of google.longrunning.Operation.
+ * Response message for
+ * [CloudChannelService.TransferEntitlements][google.cloud.channel.v1.CloudChannelService.TransferEntitlements].
+ * This is put in the response field of google.longrunning.Operation.
  *
  * Generated from protobuf message <code>google.cloud.channel.v1.TransferEntitlementsResponse</code>
  */
 class TransferEntitlementsResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The entitlements that have been transferred.
+     * The transferred entitlements.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.Entitlement entitlements = 1;</code>
      */
@@ -29,8 +30,8 @@ class TransferEntitlementsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Channel\V1\Entitlement[]|\Google\Protobuf\Internal\RepeatedField $entitlements
-     *           The entitlements that have been transferred.
+     *     @type array<\Google\Cloud\Channel\V1\Entitlement>|\Google\Protobuf\Internal\RepeatedField $entitlements
+     *           The transferred entitlements.
      * }
      */
     public function __construct($data = NULL) {
@@ -39,7 +40,7 @@ class TransferEntitlementsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The entitlements that have been transferred.
+     * The transferred entitlements.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.Entitlement entitlements = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -50,10 +51,10 @@ class TransferEntitlementsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The entitlements that have been transferred.
+     * The transferred entitlements.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.Entitlement entitlements = 1;</code>
-     * @param \Google\Cloud\Channel\V1\Entitlement[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Channel\V1\Entitlement>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setEntitlements($var)

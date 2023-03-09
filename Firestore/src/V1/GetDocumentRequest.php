@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request for [Firestore.GetDocument][google.firestore.v1.Firestore.GetDocument].
+ * The request for
+ * [Firestore.GetDocument][google.firestore.v1.Firestore.GetDocument].
  *
  * Generated from protobuf message <code>google.firestore.v1.GetDocumentRequest</code>
  */
@@ -95,7 +96,7 @@ class GetDocumentRequest extends \Google\Protobuf\Internal\Message
      */
     public function getMask()
     {
-        return isset($this->mask) ? $this->mask : null;
+        return $this->mask;
     }
 
     public function hasMask()

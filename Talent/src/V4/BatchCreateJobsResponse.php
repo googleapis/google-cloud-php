@@ -9,8 +9,11 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The result of [JobService.BatchCreateJobs][google.cloud.talent.v4.JobService.BatchCreateJobs]. It's used to
- * replace [google.longrunning.Operation.response][google.longrunning.Operation.response] in case of success.
+ * The result of
+ * [JobService.BatchCreateJobs][google.cloud.talent.v4.JobService.BatchCreateJobs].
+ * It's used to replace
+ * [google.longrunning.Operation.response][google.longrunning.Operation.response]
+ * in case of success.
  *
  * Generated from protobuf message <code>google.cloud.talent.v4.BatchCreateJobsResponse</code>
  */
@@ -30,7 +33,7 @@ class BatchCreateJobsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Talent\V4\JobResult[]|\Google\Protobuf\Internal\RepeatedField $job_results
+     *     @type array<\Google\Cloud\Talent\V4\JobResult>|\Google\Protobuf\Internal\RepeatedField $job_results
      *           List of job mutation results from a batch create operation. It can change
      *           until operation status is FINISHED, FAILED or CANCELLED.
      * }
@@ -57,7 +60,7 @@ class BatchCreateJobsResponse extends \Google\Protobuf\Internal\Message
      * until operation status is FINISHED, FAILED or CANCELLED.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4.JobResult job_results = 1;</code>
-     * @param \Google\Cloud\Talent\V4\JobResult[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Talent\V4\JobResult>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setJobResults($var)

@@ -271,7 +271,7 @@ class RetryConfig extends \Google\Protobuf\Internal\Message
      */
     public function getMaxRetryDuration()
     {
-        return isset($this->max_retry_duration) ? $this->max_retry_duration : null;
+        return $this->max_retry_duration;
     }
 
     public function hasMaxRetryDuration()
@@ -331,7 +331,7 @@ class RetryConfig extends \Google\Protobuf\Internal\Message
      */
     public function getMinBackoff()
     {
-        return isset($this->min_backoff) ? $this->min_backoff : null;
+        return $this->min_backoff;
     }
 
     public function hasMinBackoff()
@@ -389,7 +389,7 @@ class RetryConfig extends \Google\Protobuf\Internal\Message
      */
     public function getMaxBackoff()
     {
-        return isset($this->max_backoff) ? $this->max_backoff : null;
+        return $this->max_backoff;
     }
 
     public function hasMaxBackoff()

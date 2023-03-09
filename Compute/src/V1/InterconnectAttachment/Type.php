@@ -7,10 +7,7 @@ namespace Google\Cloud\Compute\V1\InterconnectAttachment;
 use UnexpectedValueException;
 
 /**
- * The type of interconnect attachment this is, which can take one of the following values:
- * - DEDICATED: an attachment to a Dedicated Interconnect.
- * - PARTNER: an attachment to a Partner Interconnect, created by the customer.
- * - PARTNER_PROVIDER: an attachment to a Partner Interconnect, created by the partner.
+ * The type of interconnect attachment this is, which can take one of the following values: - DEDICATED: an attachment to a Dedicated Interconnect. - PARTNER: an attachment to a Partner Interconnect, created by the customer. - PARTNER_PROVIDER: an attachment to a Partner Interconnect, created by the partner. 
  *
  * Protobuf type <code>google.cloud.compute.v1.InterconnectAttachment.Type</code>
  */
@@ -23,17 +20,23 @@ class Type
      */
     const UNDEFINED_TYPE = 0;
     /**
+     * Attachment to a dedicated interconnect.
+     *
      * Generated from protobuf enum <code>DEDICATED = 258411983;</code>
      */
     const DEDICATED = 258411983;
     /**
-     * Generated from protobuf enum <code>PARTNER = 193489064;</code>
+     * Attachment to a partner interconnect, created by the customer.
+     *
+     * Generated from protobuf enum <code>PARTNER = 461924520;</code>
      */
-    const PARTNER = 193489064;
+    const PARTNER = 461924520;
     /**
-     * Generated from protobuf enum <code>PARTNER_PROVIDER = 214825896;</code>
+     * Attachment to a partner interconnect, created by the partner.
+     *
+     * Generated from protobuf enum <code>PARTNER_PROVIDER = 483261352;</code>
      */
-    const PARTNER_PROVIDER = 214825896;
+    const PARTNER_PROVIDER = 483261352;
 
     private static $valueToName = [
         self::UNDEFINED_TYPE => 'UNDEFINED_TYPE',

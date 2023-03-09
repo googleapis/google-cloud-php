@@ -3,29 +3,6 @@
 return [
     'interfaces' => [
         'google.devtools.clouddebugger.v2.Controller2' => [
-            'UpdateActiveBreakpoint' => [
-                'method' => 'put',
-                'uriTemplate' => '/v2/controller/debuggees/{debuggee_id}/breakpoints/{breakpoint.id}',
-                'body' => '*',
-                'placeholders' => [
-                    'debuggee_id' => [
-                        'getters' => [
-                            'getDebuggeeId',
-                        ],
-                    ],
-                    'breakpoint.id' => [
-                        'getters' => [
-                            'getBreakpoint',
-                            'getId',
-                        ],
-                    ],
-                ],
-            ],
-            'RegisterDebuggee' => [
-                'method' => 'post',
-                'uriTemplate' => '/v2/controller/debuggees/register',
-                'body' => '*',
-            ],
             'ListActiveBreakpoints' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2/controller/debuggees/{debuggee_id}/breakpoints',
@@ -37,6 +14,30 @@ return [
                     ],
                 ],
             ],
+            'RegisterDebuggee' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/controller/debuggees/register',
+                'body' => '*',
+            ],
+            'UpdateActiveBreakpoint' => [
+                'method' => 'put',
+                'uriTemplate' => '/v2/controller/debuggees/{debuggee_id}/breakpoints/{breakpoint.id}',
+                'body' => '*',
+                'placeholders' => [
+                    'breakpoint.id' => [
+                        'getters' => [
+                            'getBreakpoint',
+                            'getId',
+                        ],
+                    ],
+                    'debuggee_id' => [
+                        'getters' => [
+                            'getDebuggeeId',
+                        ],
+                    ],
+                ],
+            ],
         ],
     ],
+    'numericEnums' => true,
 ];

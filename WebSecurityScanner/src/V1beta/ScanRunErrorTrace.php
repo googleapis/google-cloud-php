@@ -98,7 +98,7 @@ class ScanRunErrorTrace extends \Google\Protobuf\Internal\Message
      */
     public function getScanConfigError()
     {
-        return isset($this->scan_config_error) ? $this->scan_config_error : null;
+        return $this->scan_config_error;
     }
 
     public function hasScanConfigError()

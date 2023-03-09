@@ -83,7 +83,7 @@ class CreateSubmissionRequest extends \Google\Protobuf\Internal\Message
      */
     public function getSubmission()
     {
-        return isset($this->submission) ? $this->submission : null;
+        return $this->submission;
     }
 
     public function hasSubmission()

@@ -22,118 +22,96 @@
 
 namespace Google\Cloud\ServiceDirectory\Tests\Unit\V1;
 
-use Google\Cloud\ServiceDirectory\V1\LookupServiceClient;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
+use Google\Cloud\ServiceDirectory\V1\LookupServiceClient;
 use Google\Cloud\ServiceDirectory\V1\ResolveServiceResponse;
-use Google\Protobuf\Any;
 use Google\Rpc\Code;
 use stdClass;
 
 /**
  * @group servicedirectory
+ *
  * @group gapic
  */
 class LookupServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return LookupServiceClient
-     */
+    /** @return LookupServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
             'credentials' => $this->createCredentials(),
         ];
-
         return new LookupServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function resolveServiceTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $expectedResponse = new ResolveServiceResponse();
         $transport->addResponse($expectedResponse);
-
         // Mock request
-        $formattedName = $client->serviceName('[PROJECT]', '[LOCATION]', '[NAMESPACE]', '[SERVICE]');
-
-        $response = $client->resolveService($formattedName);
+        $formattedName = $gapicClient->serviceName('[PROJECT]', '[LOCATION]', '[NAMESPACE]', '[SERVICE]');
+        $response = $gapicClient->resolveService($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.servicedirectory.v1.LookupService/ResolveService', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getName();
-
         $this->assertProtobufEquals($formattedName, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function resolveServiceExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
-        $formattedName = $client->serviceName('[PROJECT]', '[LOCATION]', '[NAMESPACE]', '[SERVICE]');
-
+        $formattedName = $gapicClient->serviceName('[PROJECT]', '[LOCATION]', '[NAMESPACE]', '[SERVICE]');
         try {
-            $client->resolveService($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->resolveService($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());

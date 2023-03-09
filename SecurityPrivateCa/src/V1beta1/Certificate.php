@@ -104,7 +104,7 @@ class Certificate extends \Google\Protobuf\Internal\Message
      *           Output only. The pem-encoded, signed X.509 certificate.
      *     @type \Google\Cloud\Security\PrivateCA\V1beta1\CertificateDescription $certificate_description
      *           Output only. A structured description of the issued X.509 certificate.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $pem_certificate_chain
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $pem_certificate_chain
      *           Output only. The chain that may be used to verify the X.509 certificate. Expected to be
      *           in issuer-to-root order according to RFC 5246.
      *     @type \Google\Protobuf\Timestamp $create_time
@@ -184,7 +184,7 @@ class Certificate extends \Google\Protobuf\Internal\Message
      * ASN.1.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1beta1.CertificateConfig config = 3 [(.google.api.field_behavior) = IMMUTABLE];</code>
-     * @return \Google\Cloud\Security\PrivateCA\V1beta1\CertificateConfig
+     * @return \Google\Cloud\Security\PrivateCA\V1beta1\CertificateConfig|null
      */
     public function getConfig()
     {
@@ -219,11 +219,11 @@ class Certificate extends \Google\Protobuf\Internal\Message
      * past the life of any certificate authority in the issuing chain.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration lifetime = 4 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
-     * @return \Google\Protobuf\Duration
+     * @return \Google\Protobuf\Duration|null
      */
     public function getLifetime()
     {
-        return isset($this->lifetime) ? $this->lifetime : null;
+        return $this->lifetime;
     }
 
     public function hasLifetime()
@@ -259,11 +259,11 @@ class Certificate extends \Google\Protobuf\Internal\Message
      * [Certificate][google.cloud.security.privateca.v1beta1.Certificate] is considered revoked if and only if this field is present.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1beta1.Certificate.RevocationDetails revocation_details = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Cloud\Security\PrivateCA\V1beta1\Certificate\RevocationDetails
+     * @return \Google\Cloud\Security\PrivateCA\V1beta1\Certificate\RevocationDetails|null
      */
     public function getRevocationDetails()
     {
-        return isset($this->revocation_details) ? $this->revocation_details : null;
+        return $this->revocation_details;
     }
 
     public function hasRevocationDetails()
@@ -322,11 +322,11 @@ class Certificate extends \Google\Protobuf\Internal\Message
      * Output only. A structured description of the issued X.509 certificate.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1beta1.CertificateDescription certificate_description = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Cloud\Security\PrivateCA\V1beta1\CertificateDescription
+     * @return \Google\Cloud\Security\PrivateCA\V1beta1\CertificateDescription|null
      */
     public function getCertificateDescription()
     {
-        return isset($this->certificate_description) ? $this->certificate_description : null;
+        return $this->certificate_description;
     }
 
     public function hasCertificateDescription()
@@ -371,7 +371,7 @@ class Certificate extends \Google\Protobuf\Internal\Message
      * in issuer-to-root order according to RFC 5246.
      *
      * Generated from protobuf field <code>repeated string pem_certificate_chain = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPemCertificateChain($var)
@@ -386,11 +386,11 @@ class Certificate extends \Google\Protobuf\Internal\Message
      * Output only. The time at which this [Certificate][google.cloud.security.privateca.v1beta1.Certificate] was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -422,11 +422,11 @@ class Certificate extends \Google\Protobuf\Internal\Message
      * Output only. The time at which this [Certificate][google.cloud.security.privateca.v1beta1.Certificate] was updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getUpdateTime()
     {
-        return isset($this->update_time) ? $this->update_time : null;
+        return $this->update_time;
     }
 
     public function hasUpdateTime()

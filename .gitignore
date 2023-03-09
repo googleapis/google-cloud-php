@@ -1,11 +1,16 @@
 .DS_Store
-build/
 composer.phar
 composer.lock
+composer-local.*
 docs/json/**/*
 vendor/
 .idea/
 *.iml
+.phpunit.result.cache
+
+# DocFX
+**/out/*
+.phpdoc/
 
 # do not delete
 keys/

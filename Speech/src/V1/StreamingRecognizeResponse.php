@@ -14,8 +14,8 @@ use Google\Protobuf\Internal\GPBUtil;
  * messages are streamed back to the client. If there is no recognizable
  * audio, and `single_utterance` is set to false, then no messages are streamed
  * back to the client.
- * Here's an example of a series of ten `StreamingRecognizeResponse`s that might
- * be returned while processing audio:
+ * Here's an example of a series of `StreamingRecognizeResponse`s that might be
+ * returned while processing audio:
  * 1. results { alternatives { transcript: "tube" } stability: 0.01 }
  * 2. results { alternatives { transcript: "to be a" } stability: 0.01 }
  * 3. results { alternatives { transcript: "to be" } stability: 0.9 }
@@ -72,6 +72,32 @@ class StreamingRecognizeResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.speech.v1.StreamingRecognizeResponse.SpeechEventType speech_event_type = 4;</code>
      */
     private $speech_event_type = 0;
+    /**
+     * Time offset between the beginning of the audio and event emission.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration speech_event_time = 8;</code>
+     */
+    private $speech_event_time = null;
+    /**
+     * When available, billed audio seconds for the stream.
+     * Set only if this is the last response in the stream.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration total_billed_time = 5;</code>
+     */
+    private $total_billed_time = null;
+    /**
+     * Provides information on adaptation behavior in response
+     *
+     * Generated from protobuf field <code>.google.cloud.speech.v1.SpeechAdaptationInfo speech_adaptation_info = 9;</code>
+     */
+    private $speech_adaptation_info = null;
+    /**
+     * The ID associated with the request. This is a unique ID specific only to
+     * the given request.
+     *
+     * Generated from protobuf field <code>int64 request_id = 10;</code>
+     */
+    private $request_id = 0;
 
     /**
      * Constructor.
@@ -82,13 +108,23 @@ class StreamingRecognizeResponse extends \Google\Protobuf\Internal\Message
      *     @type \Google\Rpc\Status $error
      *           If set, returns a [google.rpc.Status][google.rpc.Status] message that
      *           specifies the error for the operation.
-     *     @type \Google\Cloud\Speech\V1\StreamingRecognitionResult[]|\Google\Protobuf\Internal\RepeatedField $results
+     *     @type array<\Google\Cloud\Speech\V1\StreamingRecognitionResult>|\Google\Protobuf\Internal\RepeatedField $results
      *           This repeated list contains zero or more results that
      *           correspond to consecutive portions of the audio currently being processed.
      *           It contains zero or one `is_final=true` result (the newly settled portion),
      *           followed by zero or more `is_final=false` results (the interim results).
      *     @type int $speech_event_type
      *           Indicates the type of speech event.
+     *     @type \Google\Protobuf\Duration $speech_event_time
+     *           Time offset between the beginning of the audio and event emission.
+     *     @type \Google\Protobuf\Duration $total_billed_time
+     *           When available, billed audio seconds for the stream.
+     *           Set only if this is the last response in the stream.
+     *     @type \Google\Cloud\Speech\V1\SpeechAdaptationInfo $speech_adaptation_info
+     *           Provides information on adaptation behavior in response
+     *     @type int|string $request_id
+     *           The ID associated with the request. This is a unique ID specific only to
+     *           the given request.
      * }
      */
     public function __construct($data = NULL) {
@@ -101,11 +137,11 @@ class StreamingRecognizeResponse extends \Google\Protobuf\Internal\Message
      * specifies the error for the operation.
      *
      * Generated from protobuf field <code>.google.rpc.Status error = 1;</code>
-     * @return \Google\Rpc\Status
+     * @return \Google\Rpc\Status|null
      */
     public function getError()
     {
-        return isset($this->error) ? $this->error : null;
+        return $this->error;
     }
 
     public function hasError()
@@ -155,7 +191,7 @@ class StreamingRecognizeResponse extends \Google\Protobuf\Internal\Message
      * followed by zero or more `is_final=false` results (the interim results).
      *
      * Generated from protobuf field <code>repeated .google.cloud.speech.v1.StreamingRecognitionResult results = 2;</code>
-     * @param \Google\Cloud\Speech\V1\StreamingRecognitionResult[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Speech\V1\StreamingRecognitionResult>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setResults($var)
@@ -188,6 +224,144 @@ class StreamingRecognizeResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Speech\V1\StreamingRecognizeResponse\SpeechEventType::class);
         $this->speech_event_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Time offset between the beginning of the audio and event emission.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration speech_event_time = 8;</code>
+     * @return \Google\Protobuf\Duration|null
+     */
+    public function getSpeechEventTime()
+    {
+        return $this->speech_event_time;
+    }
+
+    public function hasSpeechEventTime()
+    {
+        return isset($this->speech_event_time);
+    }
+
+    public function clearSpeechEventTime()
+    {
+        unset($this->speech_event_time);
+    }
+
+    /**
+     * Time offset between the beginning of the audio and event emission.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration speech_event_time = 8;</code>
+     * @param \Google\Protobuf\Duration $var
+     * @return $this
+     */
+    public function setSpeechEventTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
+        $this->speech_event_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * When available, billed audio seconds for the stream.
+     * Set only if this is the last response in the stream.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration total_billed_time = 5;</code>
+     * @return \Google\Protobuf\Duration|null
+     */
+    public function getTotalBilledTime()
+    {
+        return $this->total_billed_time;
+    }
+
+    public function hasTotalBilledTime()
+    {
+        return isset($this->total_billed_time);
+    }
+
+    public function clearTotalBilledTime()
+    {
+        unset($this->total_billed_time);
+    }
+
+    /**
+     * When available, billed audio seconds for the stream.
+     * Set only if this is the last response in the stream.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration total_billed_time = 5;</code>
+     * @param \Google\Protobuf\Duration $var
+     * @return $this
+     */
+    public function setTotalBilledTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
+        $this->total_billed_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Provides information on adaptation behavior in response
+     *
+     * Generated from protobuf field <code>.google.cloud.speech.v1.SpeechAdaptationInfo speech_adaptation_info = 9;</code>
+     * @return \Google\Cloud\Speech\V1\SpeechAdaptationInfo|null
+     */
+    public function getSpeechAdaptationInfo()
+    {
+        return $this->speech_adaptation_info;
+    }
+
+    public function hasSpeechAdaptationInfo()
+    {
+        return isset($this->speech_adaptation_info);
+    }
+
+    public function clearSpeechAdaptationInfo()
+    {
+        unset($this->speech_adaptation_info);
+    }
+
+    /**
+     * Provides information on adaptation behavior in response
+     *
+     * Generated from protobuf field <code>.google.cloud.speech.v1.SpeechAdaptationInfo speech_adaptation_info = 9;</code>
+     * @param \Google\Cloud\Speech\V1\SpeechAdaptationInfo $var
+     * @return $this
+     */
+    public function setSpeechAdaptationInfo($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Speech\V1\SpeechAdaptationInfo::class);
+        $this->speech_adaptation_info = $var;
+
+        return $this;
+    }
+
+    /**
+     * The ID associated with the request. This is a unique ID specific only to
+     * the given request.
+     *
+     * Generated from protobuf field <code>int64 request_id = 10;</code>
+     * @return int|string
+     */
+    public function getRequestId()
+    {
+        return $this->request_id;
+    }
+
+    /**
+     * The ID associated with the request. This is a unique ID specific only to
+     * the given request.
+     *
+     * Generated from protobuf field <code>int64 request_id = 10;</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setRequestId($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->request_id = $var;
 
         return $this;
     }

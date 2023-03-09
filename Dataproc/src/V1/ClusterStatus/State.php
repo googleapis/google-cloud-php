@@ -27,6 +27,9 @@ class State
     const CREATING = 1;
     /**
      * The cluster is currently running and healthy. It is ready for use.
+     * **Note:** The cluster state changes from "creating" to "running" status
+     * after the master node(s), first two primary worker nodes (and the last
+     * primary worker node if primary workers > 2) are running.
      *
      * Generated from protobuf enum <code>RUNNING = 2;</code>
      */
@@ -37,6 +40,13 @@ class State
      * Generated from protobuf enum <code>ERROR = 3;</code>
      */
     const ERROR = 3;
+    /**
+     * The cluster has encountered an error while being updated. Jobs can
+     * be submitted to the cluster, but the cluster cannot be updated.
+     *
+     * Generated from protobuf enum <code>ERROR_DUE_TO_UPDATE = 9;</code>
+     */
+    const ERROR_DUE_TO_UPDATE = 9;
     /**
      * The cluster is being deleted. It cannot be used.
      *
@@ -49,14 +59,36 @@ class State
      * Generated from protobuf enum <code>UPDATING = 5;</code>
      */
     const UPDATING = 5;
+    /**
+     * The cluster is being stopped. It cannot be used.
+     *
+     * Generated from protobuf enum <code>STOPPING = 6;</code>
+     */
+    const STOPPING = 6;
+    /**
+     * The cluster is currently stopped. It is not ready for use.
+     *
+     * Generated from protobuf enum <code>STOPPED = 7;</code>
+     */
+    const STOPPED = 7;
+    /**
+     * The cluster is being started. It is not ready for use.
+     *
+     * Generated from protobuf enum <code>STARTING = 8;</code>
+     */
+    const STARTING = 8;
 
     private static $valueToName = [
         self::UNKNOWN => 'UNKNOWN',
         self::CREATING => 'CREATING',
         self::RUNNING => 'RUNNING',
         self::ERROR => 'ERROR',
+        self::ERROR_DUE_TO_UPDATE => 'ERROR_DUE_TO_UPDATE',
         self::DELETING => 'DELETING',
         self::UPDATING => 'UPDATING',
+        self::STOPPING => 'STOPPING',
+        self::STOPPED => 'STOPPED',
+        self::STARTING => 'STARTING',
     ];
 
     public static function name($value)

@@ -4,7 +4,7 @@
 
 [![Latest Stable Version](https://poser.pugx.org/google/cloud-billing/v/stable)](https://packagist.org/packages/google/cloud-billing) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-billing.svg)](https://packagist.org/packages/google/cloud-billing)
 
-* [API documentation](http://googleapis.github.io/google-cloud-php/#/docs/cloud-billing/latest/billing/readme)
+* [API documentation](https://cloud.google.com/php/docs/reference/cloud-billing/latest)
 
 **NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googleapis/google-cloud-php). Any
 support requests, bug reports, or development contributions should be directed to
@@ -31,7 +31,7 @@ please see our [gRPC installation guide](https://cloud.google.com/php/grpc).
 
 ### Authentication
 
-Please see our [Authentication guide](https://github.com/googleapis/google-cloud-php/blob/master/AUTHENTICATION.md) for more information
+Please see our [Authentication guide](https://github.com/googleapis/google-cloud-php/blob/main/AUTHENTICATION.md) for more information
 on authenticating your client. Once authenticated, you'll be ready to start making requests.
 
 ### Sample

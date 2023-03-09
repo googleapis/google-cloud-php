@@ -37,6 +37,26 @@ interface ConnectionInterface
     /**
      * @param array $args
      */
+    public function createInstanceConfig(array $args);
+
+    /**
+     * @param array $args
+     */
+    public function updateInstanceConfig(array $args);
+
+    /**
+     * @param array $args
+     */
+    public function deleteInstanceConfig(array $args);
+
+    /**
+     * @param array $args
+     */
+    public function listInstanceConfigOperations(array $args);
+
+    /**
+     * @param array $args
+     */
     public function listInstances(array $args);
 
     /**
@@ -102,6 +122,11 @@ interface ConnectionInterface
      * @param array $args
      */
     public function createBackup(array $args);
+
+    /**
+     * @param array $args
+     */
+    public function copyBackup(array $args);
 
     /**
      * @param array $args

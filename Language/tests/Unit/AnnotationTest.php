@@ -18,7 +18,7 @@
 namespace Google\Cloud\Language\Tests\Unit;
 
 use Google\Cloud\Language\Annotation;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group language
@@ -30,7 +30,7 @@ class AnnotationTest extends TestCase
     private $info;
     private $token;
 
-    public function setUp()
+    public function set_up()
     {
         $this->entity = [
             'type' => 'PERSON'

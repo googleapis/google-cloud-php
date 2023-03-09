@@ -16,8 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class GroupAssetsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Name of the organization to groupBy. Its format is
-     * "organizations/[organization_id]".
+     * Required. The name of the parent to group the assets by. Its format is
+     * "organizations/[organization_id]", "folders/[folder_id]", or
+     * "projects/[project_id]".
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -75,9 +76,9 @@ class GroupAssetsRequest extends \Google\Protobuf\Internal\Message
      */
     private $filter = '';
     /**
-     * Required. Expression that defines what assets fields to use for grouping. The string
-     * value should follow SQL syntax: comma separated list of fields. For
-     * example:
+     * Required. Expression that defines what assets fields to use for grouping.
+     * The string value should follow SQL syntax: comma separated list of fields.
+     * For example:
      * "security_center_properties.resource_project,security_center_properties.project".
      * The following fields are supported when compare_duration is not set:
      * * security_center_properties.resource_project
@@ -152,8 +153,9 @@ class GroupAssetsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. Name of the organization to groupBy. Its format is
-     *           "organizations/[organization_id]".
+     *           Required. The name of the parent to group the assets by. Its format is
+     *           "organizations/[organization_id]", "folders/[folder_id]", or
+     *           "projects/[project_id]".
      *     @type string $filter
      *           Expression that defines the filter to apply across assets.
      *           The expression is a list of zero or more restrictions combined via logical
@@ -203,9 +205,9 @@ class GroupAssetsRequest extends \Google\Protobuf\Internal\Message
      *           Use a negated partial match on the empty string to filter based on a
      *           property not existing: `-resource_properties.my_property : ""`
      *     @type string $group_by
-     *           Required. Expression that defines what assets fields to use for grouping. The string
-     *           value should follow SQL syntax: comma separated list of fields. For
-     *           example:
+     *           Required. Expression that defines what assets fields to use for grouping.
+     *           The string value should follow SQL syntax: comma separated list of fields.
+     *           For example:
      *           "security_center_properties.resource_project,security_center_properties.project".
      *           The following fields are supported when compare_duration is not set:
      *           * security_center_properties.resource_project
@@ -260,8 +262,9 @@ class GroupAssetsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Name of the organization to groupBy. Its format is
-     * "organizations/[organization_id]".
+     * Required. The name of the parent to group the assets by. Its format is
+     * "organizations/[organization_id]", "folders/[folder_id]", or
+     * "projects/[project_id]".
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -272,8 +275,9 @@ class GroupAssetsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Name of the organization to groupBy. Its format is
-     * "organizations/[organization_id]".
+     * Required. The name of the parent to group the assets by. Its format is
+     * "organizations/[organization_id]", "folders/[folder_id]", or
+     * "projects/[project_id]".
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -406,9 +410,9 @@ class GroupAssetsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Expression that defines what assets fields to use for grouping. The string
-     * value should follow SQL syntax: comma separated list of fields. For
-     * example:
+     * Required. Expression that defines what assets fields to use for grouping.
+     * The string value should follow SQL syntax: comma separated list of fields.
+     * For example:
      * "security_center_properties.resource_project,security_center_properties.project".
      * The following fields are supported when compare_duration is not set:
      * * security_center_properties.resource_project
@@ -430,9 +434,9 @@ class GroupAssetsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Expression that defines what assets fields to use for grouping. The string
-     * value should follow SQL syntax: comma separated list of fields. For
-     * example:
+     * Required. Expression that defines what assets fields to use for grouping.
+     * The string value should follow SQL syntax: comma separated list of fields.
+     * For example:
      * "security_center_properties.resource_project,security_center_properties.project".
      * The following fields are supported when compare_duration is not set:
      * * security_center_properties.resource_project
@@ -482,11 +486,11 @@ class GroupAssetsRequest extends \Google\Protobuf\Internal\Message
      * `group_by`.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration compare_duration = 4;</code>
-     * @return \Google\Protobuf\Duration
+     * @return \Google\Protobuf\Duration|null
      */
     public function getCompareDuration()
     {
-        return isset($this->compare_duration) ? $this->compare_duration : null;
+        return $this->compare_duration;
     }
 
     public function hasCompareDuration()
@@ -542,11 +546,11 @@ class GroupAssetsRequest extends \Google\Protobuf\Internal\Message
      * NOW.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 5;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getReadTime()
     {
-        return isset($this->read_time) ? $this->read_time : null;
+        return $this->read_time;
     }
 
     public function hasReadTime()

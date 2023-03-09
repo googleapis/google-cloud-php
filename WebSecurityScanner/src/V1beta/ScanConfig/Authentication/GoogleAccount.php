@@ -103,6 +103,4 @@ class GoogleAccount extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(GoogleAccount::class, \Google\Cloud\WebSecurityScanner\V1beta\ScanConfig_Authentication_GoogleAccount::class);
 

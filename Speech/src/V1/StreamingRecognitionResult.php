@@ -61,9 +61,9 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
      */
     private $channel_tag = 0;
     /**
-     * The [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag of
-     * the language in this result. This language code was detected to have the
-     * most likelihood of being spoken in the audio.
+     * Output only. The [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt)
+     * language tag of the language in this result. This language code was
+     * detected to have the most likelihood of being spoken in the audio.
      *
      * Generated from protobuf field <code>string language_code = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -75,7 +75,7 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Speech\V1\SpeechRecognitionAlternative[]|\Google\Protobuf\Internal\RepeatedField $alternatives
+     *     @type array<\Google\Cloud\Speech\V1\SpeechRecognitionAlternative>|\Google\Protobuf\Internal\RepeatedField $alternatives
      *           May contain one or more recognition hypotheses (up to the
      *           maximum specified in `max_alternatives`).
      *           These alternatives are ordered in terms of accuracy, with the top (first)
@@ -100,9 +100,9 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
      *           recognized result for the audio from that channel.
      *           For audio_channel_count = N, its output values can range from '1' to 'N'.
      *     @type string $language_code
-     *           The [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag of
-     *           the language in this result. This language code was detected to have the
-     *           most likelihood of being spoken in the audio.
+     *           Output only. The [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt)
+     *           language tag of the language in this result. This language code was
+     *           detected to have the most likelihood of being spoken in the audio.
      * }
      */
     public function __construct($data = NULL) {
@@ -131,7 +131,7 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
      * alternative being the most probable, as ranked by the recognizer.
      *
      * Generated from protobuf field <code>repeated .google.cloud.speech.v1.SpeechRecognitionAlternative alternatives = 1;</code>
-     * @param \Google\Cloud\Speech\V1\SpeechRecognitionAlternative[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Speech\V1\SpeechRecognitionAlternative>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAlternatives($var)
@@ -215,11 +215,11 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
      * beginning of the audio.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration result_end_time = 4;</code>
-     * @return \Google\Protobuf\Duration
+     * @return \Google\Protobuf\Duration|null
      */
     public function getResultEndTime()
     {
-        return isset($this->result_end_time) ? $this->result_end_time : null;
+        return $this->result_end_time;
     }
 
     public function hasResultEndTime()
@@ -279,9 +279,9 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag of
-     * the language in this result. This language code was detected to have the
-     * most likelihood of being spoken in the audio.
+     * Output only. The [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt)
+     * language tag of the language in this result. This language code was
+     * detected to have the most likelihood of being spoken in the audio.
      *
      * Generated from protobuf field <code>string language_code = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -292,9 +292,9 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag of
-     * the language in this result. This language code was detected to have the
-     * most likelihood of being spoken in the audio.
+     * Output only. The [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt)
+     * language tag of the language in this result. This language code was
+     * detected to have the most likelihood of being spoken in the audio.
      *
      * Generated from protobuf field <code>string language_code = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var

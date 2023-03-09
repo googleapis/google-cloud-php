@@ -50,16 +50,17 @@ class RunReportRequest extends \Google\Protobuf\Internal\Message
      */
     private $date_ranges;
     /**
-     * The filter clause of dimensions. Dimensions must be requested to be used in
-     * this filter. Metrics cannot be used in this filter.
+     * Dimension filters allow you to ask for only specific dimension values in
+     * the report. To learn more, see [Fundamentals of Dimension
+     * Filters](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#dimension_filters)
+     * for examples. Metrics cannot be used in this filter.
      *
      * Generated from protobuf field <code>.google.analytics.data.v1beta.FilterExpression dimension_filter = 5;</code>
      */
     private $dimension_filter = null;
     /**
-     * The filter clause of metrics. Applied at post aggregation phase, similar to
-     * SQL having-clause. Metrics must be requested to be used in this filter.
-     * Dimensions cannot be used in this filter.
+     * The filter clause of metrics. Applied after aggregating the report's rows,
+     * similar to SQL having-clause. Dimensions cannot be used in this filter.
      *
      * Generated from protobuf field <code>.google.analytics.data.v1beta.FilterExpression metric_filter = 6;</code>
      */
@@ -148,23 +149,24 @@ class RunReportRequest extends \Google\Protobuf\Internal\Message
      *           Within a batch request, this property should either be unspecified or
      *           consistent with the batch-level property.
      *           Example: properties/1234
-     *     @type \Google\Analytics\Data\V1beta\Dimension[]|\Google\Protobuf\Internal\RepeatedField $dimensions
+     *     @type array<\Google\Analytics\Data\V1beta\Dimension>|\Google\Protobuf\Internal\RepeatedField $dimensions
      *           The dimensions requested and displayed.
-     *     @type \Google\Analytics\Data\V1beta\Metric[]|\Google\Protobuf\Internal\RepeatedField $metrics
+     *     @type array<\Google\Analytics\Data\V1beta\Metric>|\Google\Protobuf\Internal\RepeatedField $metrics
      *           The metrics requested and displayed.
-     *     @type \Google\Analytics\Data\V1beta\DateRange[]|\Google\Protobuf\Internal\RepeatedField $date_ranges
+     *     @type array<\Google\Analytics\Data\V1beta\DateRange>|\Google\Protobuf\Internal\RepeatedField $date_ranges
      *           Date ranges of data to read. If multiple date ranges are requested, each
      *           response row will contain a zero based date range index. If two date
      *           ranges overlap, the event data for the overlapping days is included in the
      *           response rows for both date ranges. In a cohort request, this `dateRanges`
      *           must be unspecified.
      *     @type \Google\Analytics\Data\V1beta\FilterExpression $dimension_filter
-     *           The filter clause of dimensions. Dimensions must be requested to be used in
-     *           this filter. Metrics cannot be used in this filter.
+     *           Dimension filters allow you to ask for only specific dimension values in
+     *           the report. To learn more, see [Fundamentals of Dimension
+     *           Filters](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#dimension_filters)
+     *           for examples. Metrics cannot be used in this filter.
      *     @type \Google\Analytics\Data\V1beta\FilterExpression $metric_filter
-     *           The filter clause of metrics. Applied at post aggregation phase, similar to
-     *           SQL having-clause. Metrics must be requested to be used in this filter.
-     *           Dimensions cannot be used in this filter.
+     *           The filter clause of metrics. Applied after aggregating the report's rows,
+     *           similar to SQL having-clause. Dimensions cannot be used in this filter.
      *     @type int|string $offset
      *           The row count of the start row. The first row is counted as row 0.
      *           When paging, the first request does not specify offset; or equivalently,
@@ -184,10 +186,10 @@ class RunReportRequest extends \Google\Protobuf\Internal\Message
      *           set `limit` to a higher value.
      *           To learn more about this pagination parameter, see
      *           [Pagination](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#pagination).
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $metric_aggregations
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $metric_aggregations
      *           Aggregation of metrics. Aggregated metric values will be shown in rows
      *           where the dimension_values are set to "RESERVED_(MetricAggregation)".
-     *     @type \Google\Analytics\Data\V1beta\OrderBy[]|\Google\Protobuf\Internal\RepeatedField $order_bys
+     *     @type array<\Google\Analytics\Data\V1beta\OrderBy>|\Google\Protobuf\Internal\RepeatedField $order_bys
      *           Specifies how rows are ordered in the response.
      *     @type string $currency_code
      *           A currency code in ISO4217 format, such as "AED", "USD", "JPY".
@@ -262,7 +264,7 @@ class RunReportRequest extends \Google\Protobuf\Internal\Message
      * The dimensions requested and displayed.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.Dimension dimensions = 2;</code>
-     * @param \Google\Analytics\Data\V1beta\Dimension[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Analytics\Data\V1beta\Dimension>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDimensions($var)
@@ -288,7 +290,7 @@ class RunReportRequest extends \Google\Protobuf\Internal\Message
      * The metrics requested and displayed.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.Metric metrics = 3;</code>
-     * @param \Google\Analytics\Data\V1beta\Metric[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Analytics\Data\V1beta\Metric>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setMetrics($var)
@@ -322,7 +324,7 @@ class RunReportRequest extends \Google\Protobuf\Internal\Message
      * must be unspecified.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.DateRange date_ranges = 4;</code>
-     * @param \Google\Analytics\Data\V1beta\DateRange[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Analytics\Data\V1beta\DateRange>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDateRanges($var)
@@ -334,15 +336,17 @@ class RunReportRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The filter clause of dimensions. Dimensions must be requested to be used in
-     * this filter. Metrics cannot be used in this filter.
+     * Dimension filters allow you to ask for only specific dimension values in
+     * the report. To learn more, see [Fundamentals of Dimension
+     * Filters](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#dimension_filters)
+     * for examples. Metrics cannot be used in this filter.
      *
      * Generated from protobuf field <code>.google.analytics.data.v1beta.FilterExpression dimension_filter = 5;</code>
      * @return \Google\Analytics\Data\V1beta\FilterExpression|null
      */
     public function getDimensionFilter()
     {
-        return isset($this->dimension_filter) ? $this->dimension_filter : null;
+        return $this->dimension_filter;
     }
 
     public function hasDimensionFilter()
@@ -356,8 +360,10 @@ class RunReportRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The filter clause of dimensions. Dimensions must be requested to be used in
-     * this filter. Metrics cannot be used in this filter.
+     * Dimension filters allow you to ask for only specific dimension values in
+     * the report. To learn more, see [Fundamentals of Dimension
+     * Filters](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#dimension_filters)
+     * for examples. Metrics cannot be used in this filter.
      *
      * Generated from protobuf field <code>.google.analytics.data.v1beta.FilterExpression dimension_filter = 5;</code>
      * @param \Google\Analytics\Data\V1beta\FilterExpression $var
@@ -372,16 +378,15 @@ class RunReportRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The filter clause of metrics. Applied at post aggregation phase, similar to
-     * SQL having-clause. Metrics must be requested to be used in this filter.
-     * Dimensions cannot be used in this filter.
+     * The filter clause of metrics. Applied after aggregating the report's rows,
+     * similar to SQL having-clause. Dimensions cannot be used in this filter.
      *
      * Generated from protobuf field <code>.google.analytics.data.v1beta.FilterExpression metric_filter = 6;</code>
      * @return \Google\Analytics\Data\V1beta\FilterExpression|null
      */
     public function getMetricFilter()
     {
-        return isset($this->metric_filter) ? $this->metric_filter : null;
+        return $this->metric_filter;
     }
 
     public function hasMetricFilter()
@@ -395,9 +400,8 @@ class RunReportRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The filter clause of metrics. Applied at post aggregation phase, similar to
-     * SQL having-clause. Metrics must be requested to be used in this filter.
-     * Dimensions cannot be used in this filter.
+     * The filter clause of metrics. Applied after aggregating the report's rows,
+     * similar to SQL having-clause. Dimensions cannot be used in this filter.
      *
      * Generated from protobuf field <code>.google.analytics.data.v1beta.FilterExpression metric_filter = 6;</code>
      * @param \Google\Analytics\Data\V1beta\FilterExpression $var
@@ -510,7 +514,7 @@ class RunReportRequest extends \Google\Protobuf\Internal\Message
      * where the dimension_values are set to "RESERVED_(MetricAggregation)".
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.MetricAggregation metric_aggregations = 9;</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setMetricAggregations($var)
@@ -536,7 +540,7 @@ class RunReportRequest extends \Google\Protobuf\Internal\Message
      * Specifies how rows are ordered in the response.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.OrderBy order_bys = 10;</code>
-     * @param \Google\Analytics\Data\V1beta\OrderBy[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Analytics\Data\V1beta\OrderBy>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setOrderBys($var)
@@ -584,7 +588,7 @@ class RunReportRequest extends \Google\Protobuf\Internal\Message
      */
     public function getCohortSpec()
     {
-        return isset($this->cohort_spec) ? $this->cohort_spec : null;
+        return $this->cohort_spec;
     }
 
     public function hasCohortSpec()

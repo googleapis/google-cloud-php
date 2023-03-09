@@ -3,6 +3,26 @@
 return [
     'interfaces' => [
         'google.datastore.admin.v1.DatastoreAdmin' => [
+            'CreateIndex' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Datastore\Admin\V1\Index',
+                    'metadataReturnType' => '\Google\Cloud\Datastore\Admin\V1\IndexOperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+            ],
+            'DeleteIndex' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Datastore\Admin\V1\Index',
+                    'metadataReturnType' => '\Google\Cloud\Datastore\Admin\V1\IndexOperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+            ],
             'ExportEntities' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\Datastore\Admin\V1\ExportEntitiesResponse',

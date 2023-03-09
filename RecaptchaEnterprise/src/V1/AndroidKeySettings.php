@@ -16,6 +16,12 @@ use Google\Protobuf\Internal\GPBUtil;
 class AndroidKeySettings extends \Google\Protobuf\Internal\Message
 {
     /**
+     * If set to true, allowed_package_names are not enforced.
+     *
+     * Generated from protobuf field <code>bool allow_all_package_names = 2;</code>
+     */
+    private $allow_all_package_names = false;
+    /**
      * Android package names of apps allowed to use the key.
      * Example: 'com.companyname.appname'
      *
@@ -29,7 +35,9 @@ class AndroidKeySettings extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $allowed_package_names
+     *     @type bool $allow_all_package_names
+     *           If set to true, allowed_package_names are not enforced.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $allowed_package_names
      *           Android package names of apps allowed to use the key.
      *           Example: 'com.companyname.appname'
      * }
@@ -37,6 +45,32 @@ class AndroidKeySettings extends \Google\Protobuf\Internal\Message
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Recaptchaenterprise\V1\Recaptchaenterprise::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * If set to true, allowed_package_names are not enforced.
+     *
+     * Generated from protobuf field <code>bool allow_all_package_names = 2;</code>
+     * @return bool
+     */
+    public function getAllowAllPackageNames()
+    {
+        return $this->allow_all_package_names;
+    }
+
+    /**
+     * If set to true, allowed_package_names are not enforced.
+     *
+     * Generated from protobuf field <code>bool allow_all_package_names = 2;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setAllowAllPackageNames($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->allow_all_package_names = $var;
+
+        return $this;
     }
 
     /**
@@ -56,7 +90,7 @@ class AndroidKeySettings extends \Google\Protobuf\Internal\Message
      * Example: 'com.companyname.appname'
      *
      * Generated from protobuf field <code>repeated string allowed_package_names = 1;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAllowedPackageNames($var)

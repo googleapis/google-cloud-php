@@ -19,7 +19,10 @@ namespace Google\Cloud\Spanner\Tests\System;
 
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
+use Google\Cloud\Spanner\Admin\Database\V1\DatabaseDialect;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
+use Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig;
+use Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig\Type;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Instance;
 use Google\Cloud\Spanner\InstanceConfiguration;
@@ -53,8 +56,10 @@ class AdminTest extends SpannerTestCase
         $this->assertEquals(Instance::STATE_READY, $instance->state());
 
         $displayName = uniqid(self::TESTING_PREFIX);
+        $processingUnits = 500;
         $op = $instance->update([
-            'displayName' => $displayName
+            'displayName' => $displayName,
+            'processingUnits' => $processingUnits,
         ]);
 
         $this->assertInstanceOf(LongRunningOperation::class, $op);
@@ -62,6 +67,7 @@ class AdminTest extends SpannerTestCase
 
         $instance = $client->instance(self::INSTANCE_NAME);
         $this->assertEquals($displayName, $instance->info()['displayName']);
+        $this->assertEquals($processingUnits, $instance->info()['processingUnits']);
 
         $requestedFieldNames = ['name', 'state'];
         $expectedInfo = [
@@ -70,6 +76,7 @@ class AdminTest extends SpannerTestCase
             'name' => $instance->name(),
             'displayName' => '',
             'nodeCount' => 0,
+            'processingUnits' => 0,
             'state' => Instance::STATE_READY,
             'config' => ''
         ];
@@ -101,8 +108,16 @@ class AdminTest extends SpannerTestCase
         });
 
         $this->assertInstanceOf(Database::class, current($database));
-
         $this->assertTrue($db->exists());
+
+        $expectedDatabaseDialect = DatabaseDialect::GOOGLE_STANDARD_SQL;
+
+        // TODO: Remove this, when the emulator supports PGSQL
+        if ((bool) getenv("SPANNER_EMULATOR_HOST")) {
+            $expectedDatabaseDialect = DatabaseDialect::DATABASE_DIALECT_UNSPECIFIED;
+        }
+
+        $this->assertEquals($db->info()['databaseDialect'], $expectedDatabaseDialect);
 
         $stmt = "CREATE TABLE Ids (\n" .
             "  id INT64 NOT NULL,\n" .
@@ -112,6 +127,138 @@ class AdminTest extends SpannerTestCase
         $op->pollUntilComplete();
 
         $this->assertEquals($db->ddl()[0], $stmt);
+    }
+
+    public function testCreateCustomerManagedInstanceConfiguration()
+    {
+        $this->skipEmulatorTests();
+
+        $client = self::$client;
+
+        // Custom instance configuration IDs must start with 'custom' and may not contain any underscores.
+        $customConfigId = uniqid('custom-' . str_replace('_', '-', self::TESTING_PREFIX));
+
+        // Find the first instance configuration that has at least one optional replica. This indicates that it is a
+        // Google Managed multi-region config that can be used as the base config for a customer managed configuration.
+        $configurations = iterator_to_array($client->instanceConfigurations());
+        foreach ($configurations as $configuration) {
+            if (!empty($configuration->info()['optionalReplicas'])) {
+                $baseConfig = $configuration;
+                break;
+            }
+        }
+        if (empty($baseConfig)) {
+            $this->fail('No suitable base configuration found to create a custom instance config');
+        }
+
+        $customConfiguration = $client->instanceConfiguration($customConfigId);
+        // Add all base config replicas + optional replicas, and set a random replica as the default leader.
+        $replicas = $baseConfig->info()['replicas'] + $baseConfig->info()['optionalReplicas'];
+        $replicas[array_rand($replicas)]['defaultLeaderLocation'] = true;
+        $op = $customConfiguration->create($baseConfig, $replicas);
+
+        $this->assertInstanceOf(LongRunningOperation::class, $op);
+        $op->pollUntilComplete();
+
+        $this->assertTrue($customConfiguration->exists());
+
+        // Queue the custom config for deletion after the test run has finished.
+        self::$deletionQueue->add(function () use ($customConfiguration) {
+            $customConfiguration->delete();
+        });
+
+        return $customConfigId;
+    }
+
+    /**
+     * @depends testCreateCustomerManagedInstanceConfiguration
+     */
+    public function testListCustomerManagedInstanceConfigurations($customConfigId)
+    {
+        $this->skipEmulatorTests();
+
+        $client = self::$client;
+
+        // Verify that we have one customer-managed instance configuration with the generated name.
+        $configurations = iterator_to_array($client->instanceConfigurations());
+        $customConfigurations = array_filter(
+            $configurations,
+            function ($configuration) use ($customConfigId) {
+                return $configuration->info()['configType'] === Type::USER_MANAGED
+                    && $this->parseInstanceConfigName($configuration->name()) === $customConfigId;
+            }
+        );
+        $this->assertEquals(1, sizeof($customConfigurations));
+        $customConfiguration = current($customConfigurations);
+        $this->assertEquals($customConfigId, $customConfiguration->info()['displayName']);
+
+        return $customConfigId;
+    }
+
+    /**
+     * @depends testListCustomerManagedInstanceConfigurations
+     */
+    public function testUpdateCustomerManagedInstanceConfiguration($customConfigId)
+    {
+        $this->skipEmulatorTests();
+
+        $client = self::$client;
+
+        $customConfiguration = $client->instanceConfiguration($customConfigId);
+        // Update the display name and labels of the custom instance configuration.
+        $op = $customConfiguration->update([
+            'displayName' => 'New display name',
+            'labels' => ['label1' => 'foo', 'label2' => 'bar']
+        ]);
+        $op->pollUntilComplete();
+        $customConfiguration->reload();
+        $this->assertEquals('New display name', $customConfiguration->info()['displayName']);
+        $this->assertEquals(['label1' => 'foo', 'label2' => 'bar'], $customConfiguration->info()['labels']);
+
+        return $customConfigId;
+    }
+
+    /**
+     * @depends testCreateCustomerManagedInstanceConfiguration
+     */
+    public function testListCustomerManagedInstanceConfigurationOperations()
+    {
+        $this->skipEmulatorTests();
+
+        $client = self::$client;
+
+        // List instance config operations and verify that at least one operation is present.
+        $operations = iterator_to_array($client->instanceConfigOperations());
+        $this->assertNotEmpty($operations);
+    }
+
+    public function testPgDatabase()
+    {
+        $this->skipEmulatorTests();
+
+        $instance = self::$instance;
+
+        $dbName = uniqid(self::TESTING_PREFIX);
+        $op = $instance->createDatabase($dbName, [
+            'databaseDialect' => DatabaseDialect::POSTGRESQL
+        ]);
+
+        $this->assertInstanceOf(LongRunningOperation::class, $op);
+        $db = $op->pollUntilComplete();
+        $this->assertInstanceOf(Database::class, $db);
+
+        self::$deletionQueue->add(function () use ($db) {
+            $db->drop();
+        });
+
+        $databases = $instance->databases();
+        $database = array_filter(iterator_to_array($databases), function ($db) use ($dbName) {
+            return $this->parseDbName($db->name()) === $dbName;
+        });
+
+        $this->assertInstanceOf(Database::class, current($database));
+        $this->assertTrue($db->exists());
+        $this->assertEquals($db->info()['databaseDialect'], DatabaseDialect::POSTGRESQL);
     }
 
     /**
@@ -146,5 +293,10 @@ class AdminTest extends SpannerTestCase
     private function parseDbName($name)
     {
         return DatabaseAdminClient::parseName($name)['database'];
+    }
+
+    private function parseInstanceConfigName($name)
+    {
+        return InstanceAdminClient::parseName($name)['instance_config'];
     }
 }

@@ -22,12 +22,12 @@ return [
                     ],
                 ],
             ],
-            'GetCompany' => [
-                'method' => 'get',
+            'DeleteCompany' => [
+                'method' => 'delete',
                 'uriTemplate' => '/v4beta1/{name=projects/*/tenants/*/companies/*}',
                 'additionalBindings' => [
                     [
-                        'method' => 'get',
+                        'method' => 'delete',
                         'uriTemplate' => '/v4beta1/{name=projects/*/companies/*}',
                     ],
                 ],
@@ -39,32 +39,12 @@ return [
                     ],
                 ],
             ],
-            'UpdateCompany' => [
-                'method' => 'patch',
-                'uriTemplate' => '/v4beta1/{company.name=projects/*/tenants/*/companies/*}',
-                'body' => '*',
-                'additionalBindings' => [
-                    [
-                        'method' => 'patch',
-                        'uriTemplate' => '/v4beta1/{company.name=projects/*/companies/*}',
-                        'body' => '*',
-                    ],
-                ],
-                'placeholders' => [
-                    'company.name' => [
-                        'getters' => [
-                            'getCompany',
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'DeleteCompany' => [
-                'method' => 'delete',
+            'GetCompany' => [
+                'method' => 'get',
                 'uriTemplate' => '/v4beta1/{name=projects/*/tenants/*/companies/*}',
                 'additionalBindings' => [
                     [
-                        'method' => 'delete',
+                        'method' => 'get',
                         'uriTemplate' => '/v4beta1/{name=projects/*/companies/*}',
                     ],
                 ],
@@ -93,6 +73,26 @@ return [
                     ],
                 ],
             ],
+            'UpdateCompany' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v4beta1/{company.name=projects/*/tenants/*/companies/*}',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v4beta1/{company.name=projects/*/companies/*}',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'company.name' => [
+                        'getters' => [
+                            'getCompany',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
         ],
         'google.longrunning.Operations' => [
             'GetOperation' => [
@@ -108,4 +108,5 @@ return [
             ],
         ],
     ],
+    'numericEnums' => true,
 ];

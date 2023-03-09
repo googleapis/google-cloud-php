@@ -17,23 +17,30 @@
 
 namespace Google\Cloud\Spanner\Tests\System;
 
-use Google\Auth\Cache\InvalidArgumentException;
 use Google\Cloud\Core\Exception\BadRequestException;
 use Google\Cloud\Core\Exception\ConflictException;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
+use Google\Cloud\Spanner\Admin\Database\V1\CreateBackupEncryptionConfig;
+use Google\Cloud\Spanner\Admin\Database\V1\RestoreDatabaseEncryptionConfig;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
+use Google\Cloud\Spanner\Admin\Database\V1\EncryptionConfig;
+use Google\Cloud\Spanner\Admin\Database\V1\EncryptionInfo\Type;
 use Google\Cloud\Spanner\Backup;
 use Google\Cloud\Spanner\Date;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group spanner
  */
 class BackupTest extends SpannerTestCase
 {
+    use ExpectException;
+
     const BACKUP_PREFIX = 'spanner_backup_';
 
     protected static $backupId1;
     protected static $backupId2;
+    protected static $copyBackupId;
     protected static $backupOperationName;
     protected static $restoreOperationName;
     protected static $createDbOperationName;
@@ -47,11 +54,11 @@ class BackupTest extends SpannerTestCase
 
     private static $hasSetUp = false;
 
-    public static function setUpBeforeClass()
+    public static function set_up_before_class()
     {
         self::skipEmulatorTests();
 
-        parent::setUpBeforeClass();
+        parent::set_up_before_class();
         if (self::$hasSetUp) {
             return;
         }
@@ -100,6 +107,7 @@ class BackupTest extends SpannerTestCase
 
         self::$backupId1 = uniqid(self::BACKUP_PREFIX);
         self::$backupId2 = uniqid("users-");
+        self::$copyBackupId = uniqid("copy-");
         self::$hasSetUp = true;
     }
 
@@ -117,13 +125,17 @@ class BackupTest extends SpannerTestCase
     {
         $expireTime = new \DateTime('+7 hours');
         $versionTime = new \DateTime('-5 seconds');
+        $encryptionConfig = [
+            'encryptionType' => CreateBackupEncryptionConfig\EncryptionType::GOOGLE_DEFAULT_ENCRYPTION,
+        ];
 
         $backup = self::$instance->backup(self::$backupId1);
         $db1 = self::getDatabaseInstance(self::$dbName1);
 
         self::$createTime1 = gmdate('"Y-m-d\TH:i:s\Z"');
         $op = $backup->create(self::$dbName1, $expireTime, [
-            "versionTime" => $versionTime,
+            'versionTime' => $versionTime,
+            'encryptionConfig' => $encryptionConfig,
         ]);
         self::$backupOperationName = $op->name();
 
@@ -149,7 +161,11 @@ class BackupTest extends SpannerTestCase
         $this->assertTrue(is_string($backup->info()['createTime']));
         $this->assertEquals(Backup::STATE_READY, $backup->state());
         $this->assertTrue($backup->info()['sizeBytes'] > 0);
-        $this->assertEquals($db1->info()['earliestVersionTime'], $backup->info()['versionTime']);
+        // earliestVersionTime deviates from backup's versionTime by a couple of minutes
+        $expectedDateTime = \DateTime::createFromFormat('Y-m-d\TH:i:s.u\Z', $db1->info()['earliestVersionTime']);
+        $actualDateTime = \DateTime::createFromFormat('Y-m-d\TH:i:s.u\Z', $backup->info()['versionTime']);
+        $this->assertEqualsWithDelta($expectedDateTime->getTimestamp(), $actualDateTime->getTimestamp(), 300);
+        $this->assertEquals(Type::GOOGLE_DEFAULT_ENCRYPTION, $backup->info()['encryptionInfo']['encryptionType']);
 
         $this->assertNotNull($metadata);
         $this->assertArrayHasKey('progress', $metadata);
@@ -191,6 +207,17 @@ class BackupTest extends SpannerTestCase
 
         $this->assertInstanceOf(\InvalidArgumentException::class, $e);
         $this->assertFalse($backup->exists());
+
+        $e = null;
+        try {
+            $backup->create(self::$dbName1, $expireTime, [
+                'encryptionConfig' => ['kmsKeyName' => 'validKeyName'],
+            ]);
+        } catch (BadRequestException $e) {
+        }
+
+        $this->assertInstanceOf(BadRequestException::class, $e);
+        $this->assertFalse($backup->exists());
     }
 
     public function testCancelBackupOperation()
@@ -211,6 +238,49 @@ class BackupTest extends SpannerTestCase
         $this->assertTrue($backup->exists());
     }
 
+    /**
+     * @depends testCreateBackup
+     */
+    public function testCreateBackupCopy()
+    {
+        $backup = self::$instance->backup(self::$backupId1);
+        $newBackup = self::$instance->backup(self::$copyBackupId);
+        $expireTime = new \DateTime('+7 hours');
+        $op = $backup->createCopy($newBackup, $expireTime);
+
+        $metadata = null;
+        foreach (self::$instance->backupOperations() as $listItem) {
+            if ($listItem->name() == $op->name()) {
+                $metadata = $listItem->info()['metadata'];
+                break;
+            }
+        }
+
+        $op->pollUntilComplete();
+
+        self::$deletionQueue->add(function () use ($newBackup) {
+            $newBackup->delete();
+        });
+
+        $this->assertTrue($newBackup->exists());
+        $this->assertInstanceOf(Backup::class, $newBackup);
+        $this->assertEquals(self::$copyBackupId, DatabaseAdminClient::parseName($newBackup->info()['name'])['backup']);
+        $this->assertEquals(self::$dbName1, DatabaseAdminClient::parseName($newBackup->info()['database'])['database']);
+        $this->assertEquals($expireTime->format('Y-m-d\TH:i:s.u\Z'), $newBackup->info()['expireTime']);
+        $this->assertTrue(is_string($newBackup->info()['createTime']));
+        $this->assertEquals(Backup::STATE_READY, $newBackup->state());
+        $this->assertTrue($newBackup->info()['sizeBytes'] > 0);
+        $this->assertEquals(Type::GOOGLE_DEFAULT_ENCRYPTION, $newBackup->info()['encryptionInfo']['encryptionType']);
+
+        $this->assertNotNull($metadata);
+        $this->assertArrayHasKey('progress', $metadata);
+        $this->assertArrayHasKey('progressPercent', $metadata['progress']);
+        $this->assertArrayHasKey('startTime', $metadata['progress']);
+    }
+
+    /**
+     * @depends testCreateBackup
+     */
     public function testReloadBackup()
     {
         $backup = self::$instance->backup(self::$backupId1);
@@ -224,6 +294,9 @@ class BackupTest extends SpannerTestCase
         $this->assertTrue($backup->info()['sizeBytes'] > 0);
     }
 
+    /**
+     * @depends testCreateBackup
+     */
     public function testUpdateExpirationTime()
     {
         $backup = self::$instance->backup(self::$backupId1);
@@ -238,6 +311,9 @@ class BackupTest extends SpannerTestCase
         $this->assertEquals($newExpireTime->format('Y-m-d\TH:i:s.u\Z'), $backup->info()['expireTime']);
     }
 
+    /**
+     * @depends testCreateBackup
+     */
     public function testUpdateExpirationTimeFailed()
     {
         $backup = self::$instance->backup(self::$backupId1);
@@ -332,6 +408,9 @@ class BackupTest extends SpannerTestCase
         $this->assertTrue(in_array(self::fullyQualifiedBackupName(self::$backupId2), $backupNames));
     }
 
+    /**
+     * @depends testCreateBackup
+     */
     public function testListAllBackupsWithSizeGreaterThanSomeBytes()
     {
         $backup = self::$instance->backup(self::$backupId1);
@@ -405,13 +484,43 @@ class BackupTest extends SpannerTestCase
         $backup->delete();
     }
 
-    public function testRestoreToNewDatabase()
+    public function testRestoreInvalidArgument()
     {
         $restoreDbName = uniqid('restored_db_');
 
+        $e = null;
+        try {
+            $this::$instance->createDatabaseFromBackup(
+                $restoreDbName,
+                self::fullyQualifiedBackupName(self::$backupId1),
+                [
+                    'encryptionConfig' => [
+                        'kmsKeyName' => 'validKmsKey'
+                    ]
+                ]
+            );
+        } catch (BadRequestException $e) {
+        }
+        $database = self::$instance->database($restoreDbName);
+
+        $this->assertInstanceOf(BadRequestException::class, $e);
+        $this->assertFalse($database->exists());
+    }
+
+    /**
+     * @depends testCreateBackup
+     */
+    public function testRestoreToNewDatabase()
+    {
+        $restoreDbName = uniqid('restored_db_');
+        $encryptionConfig = [
+            'encryptionType' => RestoreDatabaseEncryptionConfig\EncryptionType::GOOGLE_DEFAULT_ENCRYPTION
+        ];
+
         $op = $this::$instance->createDatabaseFromBackup(
             $restoreDbName,
-            self::fullyQualifiedBackupName(self::$backupId1)
+            self::fullyQualifiedBackupName(self::$backupId1),
+            ['encryptionConfig' => $encryptionConfig]
         );
         self::$restoreOperationName = $op->name();
 
@@ -436,6 +545,10 @@ class BackupTest extends SpannerTestCase
         $this->assertEquals(
             $backup->info()['versionTime'],
             $restoredDb->info()['restoreInfo']['backupInfo']['versionTime']
+        );
+        $this->assertEquals(
+            Type::GOOGLE_DEFAULT_ENCRYPTION,
+            current($restoredDb->info()['encryptionInfo'])['encryptionType']
         );
 
         $this->assertNotNull($metadata);

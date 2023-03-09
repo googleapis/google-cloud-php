@@ -6,5 +6,5 @@ and review pull requests against the main
 repository, which contains all of our client libraries. You will also need to
 sign a Contributor License Agreement. For more details about how to contribute,
 see the
-[CONTRIBUTING.md](https://github.com/googleapis/google-cloud-php/blob/master/CONTRIBUTING.md)
+[CONTRIBUTING.md](https://github.com/googleapis/google-cloud-php/blob/main/CONTRIBUTING.md)
 file in the main Google Cloud PHP repository.

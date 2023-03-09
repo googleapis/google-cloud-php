@@ -2,7 +2,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 // Original file comments:
-// Copyright 2020 Google LLC
+// Copyright 2021 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -54,6 +54,9 @@ class ClusterControllerGrpcClient extends \Grpc\BaseStub {
      * Updates a cluster in a project. The returned
      * [Operation.metadata][google.longrunning.Operation.metadata] will be
      * [ClusterOperationMetadata](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#clusteroperationmetadata).
+     * The cluster must be in a
+     * [`RUNNING`][google.cloud.dataproc.v1.ClusterStatus.State] state or an error
+     * is returned.
      * @param \Google\Cloud\Dataproc\V1\UpdateClusterRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -62,6 +65,36 @@ class ClusterControllerGrpcClient extends \Grpc\BaseStub {
     public function UpdateCluster(\Google\Cloud\Dataproc\V1\UpdateClusterRequest $argument,
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.cloud.dataproc.v1.ClusterController/UpdateCluster',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Stops a cluster in a project.
+     * @param \Google\Cloud\Dataproc\V1\StopClusterRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function StopCluster(\Google\Cloud\Dataproc\V1\StopClusterRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.dataproc.v1.ClusterController/StopCluster',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Starts a cluster in a project.
+     * @param \Google\Cloud\Dataproc\V1\StartClusterRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function StartCluster(\Google\Cloud\Dataproc\V1\StartClusterRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.dataproc.v1.ClusterController/StartCluster',
         $argument,
         ['\Google\LongRunning\Operation', 'decode'],
         $metadata, $options);

@@ -1,0 +1,613 @@
+<class final="false" abstract="false" namespace="\Google\Cloud\Vision\V1" line="26">
+    <name>ImageAnnotatorClient</name>
+                    <full_name>\Google\Cloud\Vision\V1\ImageAnnotatorClient</full_name>
+                    <docblock line="96">
+    <description>Service Description: Service that performs Google Cloud Vision API detection tasks over client
+images, such as face, landmark, logo, label, and text detection. The
+ImageAnnotator service returns detected entities from the images.</description>
+    <long-description>This class provides the ability to make remote calls to the backing service through method
+calls that map to API methods. Sample code to get started:
+
+```
+$imageAnnotatorClient = new ImageAnnotatorClient();
+try {
+    $requests = [];
+    $operationResponse = $imageAnnotatorClient-&gt;asyncBatchAnnotateFiles($requests);
+    $operationResponse-&gt;pollUntilComplete();
+    if ($operationResponse-&gt;operationSucceeded()) {
+        $result = $operationResponse-&gt;getResult();
+    // doSomethingWith($result)
+    } else {
+        $error = $operationResponse-&gt;getError();
+        // handleError($error)
+    }
+    // Alternatively:
+    // start the operation, keep the operation name, and resume later
+    $operationResponse = $imageAnnotatorClient-&gt;asyncBatchAnnotateFiles($requests);
+    $operationName = $operationResponse-&gt;getName();
+    // ... do other work
+    $newOperationResponse = $imageAnnotatorClient-&gt;resumeOperation($operationName, &#039;asyncBatchAnnotateFiles&#039;);
+    while (!$newOperationResponse-&gt;isDone()) {
+        // ... do other work
+        $newOperationResponse-&gt;reload();
+    }
+    if ($newOperationResponse-&gt;operationSucceeded()) {
+        $result = $newOperationResponse-&gt;getResult();
+    // doSomethingWith($result)
+    } else {
+        $error = $newOperationResponse-&gt;getError();
+        // handleError($error)
+    }
+} finally {
+    $imageAnnotatorClient-&gt;close();
+}
+```</long-description>
+                    <tag
+                name="package"
+                description="Application"
+                                                                                                />
+            </docblock>
+
+            <extends>\Google\Cloud\Vision\V1\Gapic\ImageAnnotatorGapicClient</extends>
+
+                                            <constant namespace="\Google\Cloud\Vision\V1\Gapic\ImageAnnotatorGapicClient" line="103" visibility="public">
+    <name>SERVICE_NAME</name>
+    <full_name>\Google\Cloud\Vision\V1\Gapic\ImageAnnotatorGapicClient::SERVICE_NAME</full_name>
+    <value>&#039;google.cloud.vision.v1.ImageAnnotator&#039;</value>
+        <docblock line="103">
+    <description>The name of the service.</description>
+    <long-description></long-description>
+                </docblock>
+
+</constant>
+
+                                            <constant namespace="\Google\Cloud\Vision\V1\Gapic\ImageAnnotatorGapicClient" line="108" visibility="public">
+    <name>SERVICE_ADDRESS</name>
+    <full_name>\Google\Cloud\Vision\V1\Gapic\ImageAnnotatorGapicClient::SERVICE_ADDRESS</full_name>
+    <value>&#039;vision.googleapis.com&#039;</value>
+        <docblock line="108">
+    <description>The default address of the service.</description>
+    <long-description></long-description>
+                </docblock>
+
+</constant>
+
+                                            <constant namespace="\Google\Cloud\Vision\V1\Gapic\ImageAnnotatorGapicClient" line="113" visibility="public">
+    <name>DEFAULT_SERVICE_PORT</name>
+    <full_name>\Google\Cloud\Vision\V1\Gapic\ImageAnnotatorGapicClient::DEFAULT_SERVICE_PORT</full_name>
+    <value>443</value>
+        <docblock line="113">
+    <description>The default port of the service.</description>
+    <long-description></long-description>
+                </docblock>
+
+</constant>
+
+                                            <constant namespace="\Google\Cloud\Vision\V1\Gapic\ImageAnnotatorGapicClient" line="118" visibility="public">
+    <name>CODEGEN_NAME</name>
+    <full_name>\Google\Cloud\Vision\V1\Gapic\ImageAnnotatorGapicClient::CODEGEN_NAME</full_name>
+    <value>&#039;gapic&#039;</value>
+        <docblock line="118">
+    <description>The name of the code generator, to be included in the agent header.</description>
+    <long-description></long-description>
+                </docblock>
+
+</constant>
+
+
+                                            <property namespace="\Google\Cloud\Vision\V1\Gapic\ImageAnnotatorGapicClient" line="123" visibility="public">
+    <name>serviceScopes</name>
+    <full_name>\Google\Cloud\Vision\V1\Gapic\ImageAnnotatorGapicClient::$serviceScopes</full_name>
+    <default>[&#039;https://www.googleapis.com/auth/cloud-platform&#039;, &#039;https://www.googleapis.com/auth/cloud-vision&#039;]</default>
+        <docblock line="123">
+    <description>The default scopes required by the service.</description>
+    <long-description></long-description>
+                </docblock>
+
+</property>
+
+                                            <property namespace="\Google\Cloud\Vision\V1\Gapic\ImageAnnotatorGapicClient" line="128" visibility="private">
+    <name>operationsClient</name>
+    <full_name>\Google\Cloud\Vision\V1\Gapic\ImageAnnotatorGapicClient::$operationsClient</full_name>
+    <default></default>
+        <docblock line="128">
+    <description></description>
+    <long-description></long-description>
+                </docblock>
+
+</property>
+
+
+                                            <method final="false" abstract="false" static="true" namespace="\Google\Cloud\Vision\V1\Gapic" line="130" visibility="private" returnByReference="false">
+    <name>getClientDefaults</name>
+    <full_name>\Google\Cloud\Vision\V1\Gapic\ImageAnnotatorGapicClient::getClientDefaults()</full_name>
+    <value></value>
+            <docblock line="130">
+    <description></description>
+    <long-description></long-description>
+    </docblock>
+
+</method>
+
+                                            <method final="false" abstract="false" static="false" namespace="\Google\Cloud\Vision\V1\Gapic" line="160" visibility="public" returnByReference="false">
+    <name>getOperationsClient</name>
+    <full_name>\Google\Cloud\Vision\V1\Gapic\ImageAnnotatorGapicClient::getOperationsClient()</full_name>
+    <value></value>
+            <docblock line="160">
+    <description>Return an OperationsClient object with the same endpoint as $this.</description>
+    <long-description></long-description>
+                    <tag
+                name="return"
+                description=""
+                                                                                                 type="\Google\ApiCore\LongRunning\OperationsClient"/>
+            </docblock>
+
+</method>
+
+                                            <method final="false" abstract="false" static="false" namespace="\Google\Cloud\Vision\V1\Gapic" line="176" visibility="public" returnByReference="false">
+    <name>resumeOperation</name>
+    <full_name>\Google\Cloud\Vision\V1\Gapic\ImageAnnotatorGapicClient::resumeOperation()</full_name>
+    <value></value>
+                <argument line="176" by_reference="false">
+    <name>operationName</name>
+    <default></default>
+    <type>string</type>
+</argument>
+
+            <argument line="176" by_reference="false">
+    <name>methodName</name>
+    <default>null</default>
+    <type>string</type>
+</argument>
+
+        <docblock line="176">
+    <description>Resume an existing long running operation that was previously started by a long
+running API method. If $methodName is not provided, or does not match a long
+running API method, then the operation can still be resumed, but the
+OperationResponse object will not deserialize the final response.</description>
+    <long-description></long-description>
+                    <tag
+                name="param"
+                description="The name of the long running operation"
+                                                                 variable="operationName"                                 type="string"/>
+                <tag
+                name="param"
+                description="The name of the method used to start the operation"
+                                                                 variable="methodName"                                 type="string"/>
+                            <tag
+                name="return"
+                description=""
+                                                                                                 type="\Google\ApiCore\OperationResponse"/>
+            </docblock>
+
+</method>
+
+                                            <method final="false" abstract="false" static="false" namespace="\Google\Cloud\Vision\V1\Gapic" line="247" visibility="public" returnByReference="false">
+    <name>__construct</name>
+    <full_name>\Google\Cloud\Vision\V1\Gapic\ImageAnnotatorGapicClient::__construct()</full_name>
+    <value></value>
+                <argument line="247" by_reference="false">
+    <name>options</name>
+    <default>[]</default>
+    <type>array</type>
+</argument>
+
+        <docblock line="247">
+    <description>Constructor.</description>
+    <long-description></long-description>
+                    <tag
+                name="param"
+                description="{
+    Optional. Options for configuring the service API wrapper.
+
+    @type string $serviceAddress
+          **Deprecated**. This option will be removed in a future major release. Please
+          utilize the `$apiEndpoint` option instead.
+    @type string $apiEndpoint
+          The address of the API remote host. May optionally include the port, formatted
+          as &quot;&lt;uri&gt;:&lt;port&gt;&quot;. Default &#039;vision.googleapis.com:443&#039;.
+    @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
+          The credentials to be used by the client to authorize API calls. This option
+          accepts either a path to a credentials file, or a decoded credentials file as a
+          PHP array.
+          *Advanced usage*: In addition, this option can also accept a pre-constructed
+          {@see \Google\Auth\FetchAuthTokenInterface} object or
+          {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
+          objects are provided, any settings in $credentialsConfig will be ignored.
+    @type array $credentialsConfig
+          Options used to configure credentials, including auth token caching, for the
+          client. For a full list of supporting configuration options, see
+          {@see \Google\ApiCore\CredentialsWrapper::build()} .
+    @type bool $disableRetries
+          Determines whether or not retries defined by the client configuration should be
+          disabled. Defaults to `false`.
+    @type string|array $clientConfig
+          Client method configuration, including retry settings. This option can be either
+          a path to a JSON file, or a PHP array containing the decoded JSON data. By
+          default this settings points to the default client config file, which is
+          provided in the resources folder.
+    @type string|TransportInterface $transport
+          The transport used for executing network requests. May be either the string
+          `rest` or `grpc`. Defaults to `grpc` if gRPC support is detected on the system.
+          *Advanced usage*: Additionally, it is possible to pass in an already
+          instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
+          that when this object is provided, any settings in $transportConfig, and any
+          $serviceAddress setting, will be ignored.
+    @type array $transportConfig
+          Configuration options that will be used to construct the transport. Options for
+          each supported transport type should be passed in a key for that transport. For
+          example:
+          $transportConfig = [
+              &#039;grpc&#039; =&gt; [...],
+              &#039;rest&#039; =&gt; [...],
+          ];
+          See the {@see \Google\ApiCore\Transport\GrpcTransport::build()} and
+          {@see \Google\ApiCore\Transport\RestTransport::build()} methods for the
+          supported options.
+    @type callable $clientCertSource
+          A callable which returns the client cert as a string. This can be used to
+          provide a certificate and private key to the transport layer for mTLS.
+}"
+                                                                 variable="options"                                 type="array"/>
+                            <tag
+                name="throws"
+                description=""
+                                                                                                 type="\Google\ApiCore\ValidationException"/>
+            </docblock>
+
+</method>
+
+                                            <method final="false" abstract="false" static="false" namespace="\Google\Cloud\Vision\V1\Gapic" line="325" visibility="public" returnByReference="false">
+    <name>asyncBatchAnnotateFiles</name>
+    <full_name>\Google\Cloud\Vision\V1\Gapic\ImageAnnotatorGapicClient::asyncBatchAnnotateFiles()</full_name>
+    <value></value>
+                <argument line="325" by_reference="false">
+    <name>requests</name>
+    <default></default>
+    <type>\Google\Cloud\Vision\V1\AsyncAnnotateFileRequest[]</type>
+</argument>
+
+            <argument line="325" by_reference="false">
+    <name>optionalArgs</name>
+    <default>[]</default>
+    <type>array</type>
+</argument>
+
+        <docblock line="325">
+    <description>Run asynchronous image detection and annotation for a list of generic
+files, such as PDF files, which may contain multiple pages and multiple
+images per page. Progress and results can be retrieved through the
+`google.longrunning.Operations` interface.</description>
+    <long-description>`Operation.metadata` contains `OperationMetadata` (metadata).
+`Operation.response` contains `AsyncBatchAnnotateFilesResponse` (results).
+
+Sample code:
+```
+$imageAnnotatorClient = new ImageAnnotatorClient();
+try {
+    $requests = [];
+    $operationResponse = $imageAnnotatorClient-&gt;asyncBatchAnnotateFiles($requests);
+    $operationResponse-&gt;pollUntilComplete();
+    if ($operationResponse-&gt;operationSucceeded()) {
+        $result = $operationResponse-&gt;getResult();
+    // doSomethingWith($result)
+    } else {
+        $error = $operationResponse-&gt;getError();
+        // handleError($error)
+    }
+    // Alternatively:
+    // start the operation, keep the operation name, and resume later
+    $operationResponse = $imageAnnotatorClient-&gt;asyncBatchAnnotateFiles($requests);
+    $operationName = $operationResponse-&gt;getName();
+    // ... do other work
+    $newOperationResponse = $imageAnnotatorClient-&gt;resumeOperation($operationName, &#039;asyncBatchAnnotateFiles&#039;);
+    while (!$newOperationResponse-&gt;isDone()) {
+        // ... do other work
+        $newOperationResponse-&gt;reload();
+    }
+    if ($newOperationResponse-&gt;operationSucceeded()) {
+        $result = $newOperationResponse-&gt;getResult();
+    // doSomethingWith($result)
+    } else {
+        $error = $newOperationResponse-&gt;getError();
+        // handleError($error)
+    }
+} finally {
+    $imageAnnotatorClient-&gt;close();
+}
+```</long-description>
+                    <tag
+                name="param"
+                description="Required. Individual async file annotation requests for this batch."
+                                                                 variable="requests"                                 type="\Google\Cloud\Vision\V1\AsyncAnnotateFileRequest[]"/>
+                <tag
+                name="param"
+                description="{
+    Optional.
+
+    @type string $parent
+          Optional. Target project and location to make a call.
+
+          Format: `projects/{project-id}/locations/{location-id}`.
+
+          If no parent is specified, a region will be chosen automatically.
+
+          Supported location-ids:
+          `us`: USA country only,
+          `asia`: East asia areas, like Japan, Taiwan,
+          `eu`: The European Union.
+
+          Example: `projects/project-A/locations/eu`.
+    @type RetrySettings|array $retrySettings
+          Retry settings to use for this call. Can be a {@see \Google\ApiCore\RetrySettings} object, or an
+          associative array of retry settings parameters. See the documentation on
+          {@see \Google\ApiCore\RetrySettings} for example usage.
+}"
+                                                                 variable="optionalArgs"                                 type="array"/>
+                            <tag
+                name="return"
+                description=""
+                                                                                                 type="\Google\ApiCore\OperationResponse"/>
+                            <tag
+                name="throws"
+                description="if the remote call fails"
+                                                                                                 type="\Google\ApiCore\ApiException"/>
+            </docblock>
+
+</method>
+
+                                            <method final="false" abstract="false" static="false" namespace="\Google\Cloud\Vision\V1\Gapic" line="425" visibility="public" returnByReference="false">
+    <name>asyncBatchAnnotateImages</name>
+    <full_name>\Google\Cloud\Vision\V1\Gapic\ImageAnnotatorGapicClient::asyncBatchAnnotateImages()</full_name>
+    <value></value>
+                <argument line="425" by_reference="false">
+    <name>requests</name>
+    <default></default>
+    <type>\Google\Cloud\Vision\V1\AnnotateImageRequest[]</type>
+</argument>
+
+            <argument line="425" by_reference="false">
+    <name>outputConfig</name>
+    <default></default>
+    <type>\Google\Cloud\Vision\V1\OutputConfig</type>
+</argument>
+
+            <argument line="425" by_reference="false">
+    <name>optionalArgs</name>
+    <default>[]</default>
+    <type>array</type>
+</argument>
+
+        <docblock line="425">
+    <description>Run asynchronous image detection and annotation for a list of images.</description>
+    <long-description>Progress and results can be retrieved through the
+`google.longrunning.Operations` interface.
+`Operation.metadata` contains `OperationMetadata` (metadata).
+`Operation.response` contains `AsyncBatchAnnotateImagesResponse` (results).
+
+This service will write image annotation outputs to json files in customer
+GCS bucket, each json file containing BatchAnnotateImagesResponse proto.
+
+Sample code:
+```
+$imageAnnotatorClient = new ImageAnnotatorClient();
+try {
+    $requests = [];
+    $outputConfig = new OutputConfig();
+    $operationResponse = $imageAnnotatorClient-&gt;asyncBatchAnnotateImages($requests, $outputConfig);
+    $operationResponse-&gt;pollUntilComplete();
+    if ($operationResponse-&gt;operationSucceeded()) {
+        $result = $operationResponse-&gt;getResult();
+    // doSomethingWith($result)
+    } else {
+        $error = $operationResponse-&gt;getError();
+        // handleError($error)
+    }
+    // Alternatively:
+    // start the operation, keep the operation name, and resume later
+    $operationResponse = $imageAnnotatorClient-&gt;asyncBatchAnnotateImages($requests, $outputConfig);
+    $operationName = $operationResponse-&gt;getName();
+    // ... do other work
+    $newOperationResponse = $imageAnnotatorClient-&gt;resumeOperation($operationName, &#039;asyncBatchAnnotateImages&#039;);
+    while (!$newOperationResponse-&gt;isDone()) {
+        // ... do other work
+        $newOperationResponse-&gt;reload();
+    }
+    if ($newOperationResponse-&gt;operationSucceeded()) {
+        $result = $newOperationResponse-&gt;getResult();
+    // doSomethingWith($result)
+    } else {
+        $error = $newOperationResponse-&gt;getError();
+        // handleError($error)
+    }
+} finally {
+    $imageAnnotatorClient-&gt;close();
+}
+```</long-description>
+                    <tag
+                name="param"
+                description="Required. Individual image annotation requests for this batch."
+                                                                 variable="requests"                                 type="\Google\Cloud\Vision\V1\AnnotateImageRequest[]"/>
+                <tag
+                name="param"
+                description="Required. The desired output location and metadata (e.g. format)."
+                                                                 variable="outputConfig"                                 type="\Google\Cloud\Vision\V1\OutputConfig"/>
+                <tag
+                name="param"
+                description="{
+    Optional.
+
+    @type string $parent
+          Optional. Target project and location to make a call.
+
+          Format: `projects/{project-id}/locations/{location-id}`.
+
+          If no parent is specified, a region will be chosen automatically.
+
+          Supported location-ids:
+          `us`: USA country only,
+          `asia`: East asia areas, like Japan, Taiwan,
+          `eu`: The European Union.
+
+          Example: `projects/project-A/locations/eu`.
+    @type RetrySettings|array $retrySettings
+          Retry settings to use for this call. Can be a {@see \Google\ApiCore\RetrySettings} object, or an
+          associative array of retry settings parameters. See the documentation on
+          {@see \Google\ApiCore\RetrySettings} for example usage.
+}"
+                                                                 variable="optionalArgs"                                 type="array"/>
+                            <tag
+                name="return"
+                description=""
+                                                                                                 type="\Google\ApiCore\OperationResponse"/>
+                            <tag
+                name="throws"
+                description="if the remote call fails"
+                                                                                                 type="\Google\ApiCore\ApiException"/>
+            </docblock>
+
+</method>
+
+                                            <method final="false" abstract="false" static="false" namespace="\Google\Cloud\Vision\V1\Gapic" line="501" visibility="public" returnByReference="false">
+    <name>batchAnnotateFiles</name>
+    <full_name>\Google\Cloud\Vision\V1\Gapic\ImageAnnotatorGapicClient::batchAnnotateFiles()</full_name>
+    <value></value>
+                <argument line="501" by_reference="false">
+    <name>requests</name>
+    <default></default>
+    <type>\Google\Cloud\Vision\V1\AnnotateFileRequest[]</type>
+</argument>
+
+            <argument line="501" by_reference="false">
+    <name>optionalArgs</name>
+    <default>[]</default>
+    <type>array</type>
+</argument>
+
+        <docblock line="501">
+    <description>Service that performs image detection and annotation for a batch of files.</description>
+    <long-description>Now only &quot;application/pdf&quot;, &quot;image/tiff&quot; and &quot;image/gif&quot; are supported.
+
+This service will extract at most 5 (customers can specify which 5 in
+AnnotateFileRequest.pages) frames (gif) or pages (pdf or tiff) from each
+file provided and perform detection and annotation for each image
+extracted.
+
+Sample code:
+```
+$imageAnnotatorClient = new ImageAnnotatorClient();
+try {
+    $requests = [];
+    $response = $imageAnnotatorClient-&gt;batchAnnotateFiles($requests);
+} finally {
+    $imageAnnotatorClient-&gt;close();
+}
+```</long-description>
+                    <tag
+                name="param"
+                description="Required. The list of file annotation requests. Right now we support only one
+AnnotateFileRequest in BatchAnnotateFilesRequest."
+                                                                 variable="requests"                                 type="\Google\Cloud\Vision\V1\AnnotateFileRequest[]"/>
+                <tag
+                name="param"
+                description="{
+    Optional.
+
+    @type string $parent
+          Optional. Target project and location to make a call.
+
+          Format: `projects/{project-id}/locations/{location-id}`.
+
+          If no parent is specified, a region will be chosen automatically.
+
+          Supported location-ids:
+          `us`: USA country only,
+          `asia`: East asia areas, like Japan, Taiwan,
+          `eu`: The European Union.
+
+          Example: `projects/project-A/locations/eu`.
+    @type RetrySettings|array $retrySettings
+          Retry settings to use for this call. Can be a {@see \Google\ApiCore\RetrySettings} object, or an
+          associative array of retry settings parameters. See the documentation on
+          {@see \Google\ApiCore\RetrySettings} for example usage.
+}"
+                                                                 variable="optionalArgs"                                 type="array"/>
+                            <tag
+                name="return"
+                description=""
+                                                                                                 type="\Google\Cloud\Vision\V1\BatchAnnotateFilesResponse"/>
+                            <tag
+                name="throws"
+                description="if the remote call fails"
+                                                                                                 type="\Google\ApiCore\ApiException"/>
+            </docblock>
+
+</method>
+
+                                            <method final="false" abstract="false" static="false" namespace="\Google\Cloud\Vision\V1\Gapic" line="566" visibility="public" returnByReference="false">
+    <name>batchAnnotateImages</name>
+    <full_name>\Google\Cloud\Vision\V1\Gapic\ImageAnnotatorGapicClient::batchAnnotateImages()</full_name>
+    <value></value>
+                <argument line="566" by_reference="false">
+    <name>requests</name>
+    <default></default>
+    <type>\Google\Cloud\Vision\V1\AnnotateImageRequest[]</type>
+</argument>
+
+            <argument line="566" by_reference="false">
+    <name>optionalArgs</name>
+    <default>[]</default>
+    <type>array</type>
+</argument>
+
+        <docblock line="566">
+    <description>Run image detection and annotation for a batch of images.</description>
+    <long-description>Sample code:
+```
+$imageAnnotatorClient = new ImageAnnotatorClient();
+try {
+    $requests = [];
+    $response = $imageAnnotatorClient-&gt;batchAnnotateImages($requests);
+} finally {
+    $imageAnnotatorClient-&gt;close();
+}
+```</long-description>
+                    <tag
+                name="param"
+                description="Required. Individual image annotation requests for this batch."
+                                                                 variable="requests"                                 type="\Google\Cloud\Vision\V1\AnnotateImageRequest[]"/>
+                <tag
+                name="param"
+                description="{
+    Optional.
+
+    @type string $parent
+          Optional. Target project and location to make a call.
+
+          Format: `projects/{project-id}/locations/{location-id}`.
+
+          If no parent is specified, a region will be chosen automatically.
+
+          Supported location-ids:
+          `us`: USA country only,
+          `asia`: East asia areas, like Japan, Taiwan,
+          `eu`: The European Union.
+
+          Example: `projects/project-A/locations/eu`.
+    @type RetrySettings|array $retrySettings
+          Retry settings to use for this call. Can be a {@see \Google\ApiCore\RetrySettings} object, or an
+          associative array of retry settings parameters. See the documentation on
+          {@see \Google\ApiCore\RetrySettings} for example usage.
+}"
+                                                                 variable="optionalArgs"                                 type="array"/>
+                            <tag
+                name="return"
+                description=""
+                                                                                                 type="\Google\Cloud\Vision\V1\BatchAnnotateImagesResponse"/>
+                            <tag
+                name="throws"
+                description="if the remote call fails"
+                                                                                                 type="\Google\ApiCore\ApiException"/>
+            </docblock>
+    </method>
+</class>

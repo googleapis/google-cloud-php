@@ -30,6 +30,12 @@ class KeyOperationAttestation extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bytes content = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $content = '';
+    /**
+     * Output only. The certificate chains needed to validate the attestation
+     *
+     * Generated from protobuf field <code>.google.cloud.kms.v1.KeyOperationAttestation.CertificateChains cert_chains = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $cert_chains = null;
 
     /**
      * Constructor.
@@ -42,6 +48,8 @@ class KeyOperationAttestation extends \Google\Protobuf\Internal\Message
      *     @type string $content
      *           Output only. The attestation data provided by the HSM when the key
      *           operation was performed.
+     *     @type \Google\Cloud\Kms\V1\KeyOperationAttestation\CertificateChains $cert_chains
+     *           Output only. The certificate chains needed to validate the attestation
      * }
      */
     public function __construct($data = NULL) {
@@ -99,6 +107,42 @@ class KeyOperationAttestation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, False);
         $this->content = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The certificate chains needed to validate the attestation
+     *
+     * Generated from protobuf field <code>.google.cloud.kms.v1.KeyOperationAttestation.CertificateChains cert_chains = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Kms\V1\KeyOperationAttestation\CertificateChains|null
+     */
+    public function getCertChains()
+    {
+        return $this->cert_chains;
+    }
+
+    public function hasCertChains()
+    {
+        return isset($this->cert_chains);
+    }
+
+    public function clearCertChains()
+    {
+        unset($this->cert_chains);
+    }
+
+    /**
+     * Output only. The certificate chains needed to validate the attestation
+     *
+     * Generated from protobuf field <code>.google.cloud.kms.v1.KeyOperationAttestation.CertificateChains cert_chains = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Kms\V1\KeyOperationAttestation\CertificateChains $var
+     * @return $this
+     */
+    public function setCertChains($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Kms\V1\KeyOperationAttestation\CertificateChains::class);
+        $this->cert_chains = $var;
 
         return $this;
     }

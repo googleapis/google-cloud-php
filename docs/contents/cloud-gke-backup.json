@@ -1,0 +1,15 @@
+{
+    "title": "GkeBackup",
+    "defaultService": "gkebackup\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "gkebackup\/readme"
+        },
+        {
+            "title": "BackupForGKEClient (v1)",
+            "type": "gkebackup\/v1\/backupforgkeclient"
+        }
+    ],
+    "pattern": "gkebackup\/\\w{1,}"
+}

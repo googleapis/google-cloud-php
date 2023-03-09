@@ -35,9 +35,12 @@ use Google\Cloud\Spanner\Connection\LongRunningConnection;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\Numeric;
 use Google\Cloud\Spanner\Timestamp;
+use Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig;
+use Google\Cloud\Spanner\Admin\Instance\V1\ReplicaInfo;
 use Google\Cloud\Spanner\V1\SpannerClient as GapicSpannerClient;
 use Psr\Cache\CacheItemPoolInterface;
 use Psr\Http\StreamInterface;
+use Google\ApiCore\ValidationException;
 
 /**
  * Cloud Spanner is a highly scalable, transactional, managed, NewSQL
@@ -90,7 +93,7 @@ class SpannerClient
     use LROTrait;
     use ValidateTrait;
 
-    const VERSION = '1.34.0';
+    const VERSION = '1.57.0';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/spanner.data';
     const ADMIN_SCOPE = 'https://www.googleapis.com/auth/spanner.admin';
@@ -249,11 +252,22 @@ class SpannerClient
      * $batch = $spanner->batch('instance-id', 'database-id');
      * ```
      *
+     * Database role configured in the optional $options array
+     * will be applied to the session created by this object.
+     * ```
+     * $batch = $spanner->batch('instance-id', 'database-id', ['databaseRole' => 'Reader']);
+     * ```
+     *
      * @param string $instanceId The instance to connect to.
      * @param string $databaseId The database to connect to.
+     * @param array $options  [optional] {
+     *     Configuration options.
+     *
+     *     @type string $databaseRole The user created database role which creates the session.
+     * }
      * @return BatchClient
      */
-    public function batch($instanceId, $databaseId)
+    public function batch($instanceId, $databaseId, array $options = [])
     {
         $operation = new Operation(
             $this->connection,
@@ -266,8 +280,71 @@ class SpannerClient
                 $this->projectId,
                 $instanceId,
                 $databaseId
-            )
+            ),
+            $options
         );
+    }
+
+    /**
+     * Create a new instance configuration.
+     *
+     * Example:
+     * ```
+     * use Google\Cloud\Spanner\Admin\Instance\V1\ReplicaInfo;
+     *
+     * $operation = $spanner->createInstanceConfiguration(
+     *     $baseInstanceConfig,
+     *     'custom-instance-config',
+     *     // The replicas for the custom instance configuration must include all the replicas of the base
+     *     // configuration, in addition to at least one from the list of optional replicas of the base
+     *     // configuration.
+     *     array_merge(
+     *         $baseInstanceConfig->info()['replicas'],
+     *         [
+     *             new ReplicaInfo([
+     *                 'location' => 'us-east1',
+     *                 'type' => ReplicaInfo\ReplicaType::READ_ONLY,
+     *                 'defaultLeaderLocation' => false
+     *             ])
+     *         ]
+     *     ),
+     *     [
+     *         'displayName' => 'This is a display name',
+     *         'labels' => ['cloud_spanner_samples' => true]
+     *     ]
+     * );
+     * ```
+     *
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.admin.instance.v1#createinstanceconfigrequest CreateInstanceConfigRequest
+     *
+     * @param InstanceConfiguration $baseConfig The base configuration to extend for this custom instance configuration.
+     * @param string $name The configuration name. Should be prefixed with "custom-".
+     * @param ReplicaInfo[]|array $replicas The replica information for the new instance configuration. This array must
+     *           contain all the replicas from the base configuration, plus at least one from list of optional replicas
+     *           of the base configuration. One of the replicas must be set as the default leader location.
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type string $displayName **Defaults to** the value of $name.
+     *     @type array $leaderOptions Allowed values of the "default_leader" schema option for databases in
+     *           instances that use this instance configuration. **Defaults to** the leader options of the base
+     *           configuration. Please note it may be possible for the default value to be an empty array when
+     *           lazy loading the base configuration. To ensure the default value matches the upstream values
+     *           please make sure to trigger a network request on the base configuration with either
+     *           {@see InstanceConfiguration::reload()} or {@see InstanceConfiguration::info()}.
+     *     @type array $labels For more information, see
+     *           [Using labels to organize Google Cloud Platform resources](https://cloudplatform.googleblog.com/2015/10/using-labels-to-organize-Google-Cloud-Platform-resources.html).
+     *     @type bool $validateOnly An option to validate, but not actually execute, the request, and provide the same
+     *           response. **Defaults to** `false`.
+     * }
+     * @return LongRunningOperation<InstanceConfiguration>
+     * @throws ValidationException
+     */
+    public function createInstanceConfiguration(InstanceConfiguration $baseConfig, $name, array $replicas, array $options = [])
+    {
+        $config = $this->instanceConfiguration($name);
+        return $config->create($baseConfig, $replicas, $options);
     }
 
     /**
@@ -335,9 +412,59 @@ class SpannerClient
      * @param array $config [optional] The configuration details.
      * @return InstanceConfiguration
      */
-    public function instanceConfiguration($name, array $config = [])
+    public function instanceConfiguration($name, array $options = [])
     {
-        return new InstanceConfiguration($this->connection, $this->projectId, $name, $config);
+        return new InstanceConfiguration(
+            $this->connection,
+            $this->projectId,
+            $name,
+            $options,
+            $this->lroConnection
+        );
+    }
+
+    /**
+     * Lists instance configuration operations for the project.
+     *
+     * Example:
+     * ```
+     * $instanceConfigOperations = $spanner->instanceConfigOperations();
+     * ```
+     *
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type int $pageSize
+     *          The maximum number of resources contained in the underlying API
+     *          response. The API may return fewer values in a page, even if
+     *          there are additional values to be retrieved.
+     *     @type int $resultLimit Limit the number of results returned in total.
+     *           **Defaults to** `0` (return all results).
+     *     @type string $pageToken
+     *          A page token is used to specify a page of values to be returned.
+     *          If no page token is specified (the default), the first page
+     *          of values will be returned. Any page token used here must have
+     *          been generated by a previous call to the API.
+     * }
+     *
+     * @return ItemIterator<LongRunningOperation>
+     */
+    public function instanceConfigOperations(array $options = [])
+    {
+        $resultLimit = $this->pluck('resultLimit', $options, false);
+        return new ItemIterator(
+            new PageIterator(
+                function (array $operation) {
+                    return $this->resumeOperation($operation['name'], $operation);
+                },
+                [$this->connection, 'listInstanceConfigOperations'],
+                ['projectName' => InstanceAdminClient::projectName($this->projectId)] + $options,
+                [
+                    'itemsKey' => 'operations',
+                    'resultLimit' => $resultLimit
+                ]
+            )
+        );
     }
 
     /**
@@ -451,6 +578,14 @@ class SpannerClient
      * $database = $spanner->connect('instance-id', 'database-id');
      * ```
      *
+     * Database role configured on the $options parameter
+     * will be applied to the session created by this object.
+     * Note: When the databseRole and sessionPool both are present in the options,
+     * we prioritize the sessionPool.
+     * ```
+     * $database = $spanner->connect('instance-id', 'database-id', ['databaseRole' => 'Reader']);
+     * ```
+     *
      * @param Instance|string $instance The instance object or instance name.
      * @param string $name The database name.
      * @param array $options [optional] {
@@ -458,6 +593,7 @@ class SpannerClient
      *
      *     @type SessionPoolInterface $sessionPool A pool used to manage
      *           sessions.
+     *     @type string $databaseRole The user created database role which creates the session.
      * }
      * @return Database
      */
@@ -607,6 +743,42 @@ class SpannerClient
     public function numeric($value)
     {
         return new Numeric($value);
+    }
+
+    /**
+     * Represents a value with a data type of
+     * [PG Numeric](https://cloud.google.com/spanner/docs/reference/postgresql/data-types) for the
+     * Postgres Dialect database.
+     *
+     * It supports a value precision of up to 131072 digits before the decimal point
+     * and up to 16383 digits after the decimal point.
+     *
+     * Example:
+     * ```
+     * $pgNumeric = $spanner->pgNumeric('99999999999999999999999999999999999999.000000999999999');
+     * ```
+     *
+     * @param string|int|float|null $value The PgNumeric value.
+     * @return PgNumeric
+     */
+    public function pgNumeric($value)
+    {
+        return new PgNumeric($value);
+    }
+
+    /**
+     * Represents a value with a data type of
+     * [PG JSONB](https://cloud.google.com/spanner/docs/reference/postgresql/data-types) for the
+     * Postgres Dialect database.
+     *
+     * Example:
+     * ```
+     * $pgJsonb = $spanner->pgJsonb('{}');
+     * ```
+     */
+    public function pgJsonb($value)
+    {
+        return new PgJsonb($value);
     }
 
     /**

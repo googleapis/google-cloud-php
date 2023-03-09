@@ -9,17 +9,15 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A request to list data transfer runs. UI can use this method to show/filter
- * specific data transfer runs. The data source can use this method to request
- * all scheduled transfer runs.
+ * A request to list data transfer runs.
  *
  * Generated from protobuf message <code>google.cloud.bigquery.datatransfer.v1.ListTransferRunsRequest</code>
  */
 class ListTransferRunsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Name of transfer configuration for which transfer runs should be retrieved.
-     * Format of transfer configuration resource name is:
+     * Required. Name of transfer configuration for which transfer runs should be
+     * retrieved. Format of transfer configuration resource name is:
      * `projects/{project_id}/transferConfigs/{config_id}` or
      * `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
      *
@@ -62,11 +60,11 @@ class ListTransferRunsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. Name of transfer configuration for which transfer runs should be retrieved.
-     *           Format of transfer configuration resource name is:
+     *           Required. Name of transfer configuration for which transfer runs should be
+     *           retrieved. Format of transfer configuration resource name is:
      *           `projects/{project_id}/transferConfigs/{config_id}` or
      *           `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $states
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $states
      *           When specified, only transfer runs with requested states are returned.
      *     @type string $page_token
      *           Pagination token, which can be used to request a specific page
@@ -86,8 +84,8 @@ class ListTransferRunsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Name of transfer configuration for which transfer runs should be retrieved.
-     * Format of transfer configuration resource name is:
+     * Required. Name of transfer configuration for which transfer runs should be
+     * retrieved. Format of transfer configuration resource name is:
      * `projects/{project_id}/transferConfigs/{config_id}` or
      * `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
      *
@@ -100,8 +98,8 @@ class ListTransferRunsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Name of transfer configuration for which transfer runs should be retrieved.
-     * Format of transfer configuration resource name is:
+     * Required. Name of transfer configuration for which transfer runs should be
+     * retrieved. Format of transfer configuration resource name is:
      * `projects/{project_id}/transferConfigs/{config_id}` or
      * `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
      *
@@ -132,7 +130,7 @@ class ListTransferRunsRequest extends \Google\Protobuf\Internal\Message
      * When specified, only transfer runs with requested states are returned.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.datatransfer.v1.TransferState states = 2;</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setStates($var)

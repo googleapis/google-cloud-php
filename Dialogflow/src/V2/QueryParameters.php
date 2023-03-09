@@ -97,13 +97,13 @@ class QueryParameters extends \Google\Protobuf\Internal\Message
      *           agent settings is used.
      *     @type \Google\Type\LatLng $geo_location
      *           The geo location of this conversational query.
-     *     @type \Google\Cloud\Dialogflow\V2\Context[]|\Google\Protobuf\Internal\RepeatedField $contexts
+     *     @type array<\Google\Cloud\Dialogflow\V2\Context>|\Google\Protobuf\Internal\RepeatedField $contexts
      *           The collection of contexts to be activated before this query is
      *           executed.
      *     @type bool $reset_contexts
      *           Specifies whether to delete all contexts in the current session
      *           before the new ones are activated.
-     *     @type \Google\Cloud\Dialogflow\V2\SessionEntityType[]|\Google\Protobuf\Internal\RepeatedField $session_entity_types
+     *     @type array<\Google\Cloud\Dialogflow\V2\SessionEntityType>|\Google\Protobuf\Internal\RepeatedField $session_entity_types
      *           Additional session entity types to replace or extend developer
      *           entity types with. The entity synonyms apply to all languages and persist
      *           for the session of this query.
@@ -173,7 +173,7 @@ class QueryParameters extends \Google\Protobuf\Internal\Message
      */
     public function getGeoLocation()
     {
-        return isset($this->geo_location) ? $this->geo_location : null;
+        return $this->geo_location;
     }
 
     public function hasGeoLocation()
@@ -218,7 +218,7 @@ class QueryParameters extends \Google\Protobuf\Internal\Message
      * executed.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Context contexts = 3;</code>
-     * @param \Google\Cloud\Dialogflow\V2\Context[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dialogflow\V2\Context>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setContexts($var)
@@ -276,7 +276,7 @@ class QueryParameters extends \Google\Protobuf\Internal\Message
      * for the session of this query.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.SessionEntityType session_entity_types = 5;</code>
-     * @param \Google\Cloud\Dialogflow\V2\SessionEntityType[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dialogflow\V2\SessionEntityType>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSessionEntityTypes($var)
@@ -299,7 +299,7 @@ class QueryParameters extends \Google\Protobuf\Internal\Message
      */
     public function getPayload()
     {
-        return isset($this->payload) ? $this->payload : null;
+        return $this->payload;
     }
 
     public function hasPayload()
@@ -340,7 +340,7 @@ class QueryParameters extends \Google\Protobuf\Internal\Message
      */
     public function getSentimentAnalysisRequestConfig()
     {
-        return isset($this->sentiment_analysis_request_config) ? $this->sentiment_analysis_request_config : null;
+        return $this->sentiment_analysis_request_config;
     }
 
     public function hasSentimentAnalysisRequestConfig()

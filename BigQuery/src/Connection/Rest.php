@@ -25,11 +25,13 @@ use Google\Cloud\Core\RestTrait;
 use Google\Cloud\Core\Upload\AbstractUploader;
 use Google\Cloud\Core\Upload\MultipartUploader;
 use Google\Cloud\Core\UriTrait;
-use GuzzleHttp\Psr7;
+use GuzzleHttp\Psr7\Utils;
 
 /**
  * Implementation of the
  * [Google BigQuery JSON API](https://cloud.google.com/bigquery/docs/reference/v2/).
+ *
+ * @internal
  */
 class Rest implements ConnectionInterface
 {
@@ -280,7 +282,7 @@ class Rest implements ConnectionInterface
             'jobReference' => []
         ];
 
-        $args['data'] = Psr7\stream_for($args['data']);
+        $args['data'] = Utils::streamFor($args['data']);
         $args['metadata'] = $this->pluckArray([
             'labels',
             'dryRun',

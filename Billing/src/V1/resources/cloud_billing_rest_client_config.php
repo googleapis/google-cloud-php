@@ -3,64 +3,14 @@
 return [
     'interfaces' => [
         'google.cloud.billing.v1.CloudBilling' => [
-            'GetBillingAccount' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{name=billingAccounts/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'ListBillingAccounts' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/billingAccounts',
-            ],
-            'UpdateBillingAccount' => [
-                'method' => 'patch',
-                'uriTemplate' => '/v1/{name=billingAccounts/*}',
-                'body' => 'account',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
             'CreateBillingAccount' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/billingAccounts',
                 'body' => 'billing_account',
             ],
-            'ListProjectBillingInfo' => [
+            'GetBillingAccount' => [
                 'method' => 'get',
-                'uriTemplate' => '/v1/{name=billingAccounts/*}/projects',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'GetProjectBillingInfo' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{name=projects/*}/billingInfo',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'UpdateProjectBillingInfo' => [
-                'method' => 'put',
-                'uriTemplate' => '/v1/{name=projects/*}/billingInfo',
-                'body' => 'project_billing_info',
+                'uriTemplate' => '/v1/{name=billingAccounts/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -76,6 +26,32 @@ return [
                     'resource' => [
                         'getters' => [
                             'getResource',
+                        ],
+                    ],
+                ],
+            ],
+            'GetProjectBillingInfo' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*}/billingInfo',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListBillingAccounts' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/billingAccounts',
+            ],
+            'ListProjectBillingInfo' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=billingAccounts/*}/projects',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
                         ],
                     ],
                 ],
@@ -104,6 +80,31 @@ return [
                     ],
                 ],
             ],
+            'UpdateBillingAccount' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{name=billingAccounts/*}',
+                'body' => 'account',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateProjectBillingInfo' => [
+                'method' => 'put',
+                'uriTemplate' => '/v1/{name=projects/*}/billingInfo',
+                'body' => 'project_billing_info',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
         ],
     ],
+    'numericEnums' => true,
 ];

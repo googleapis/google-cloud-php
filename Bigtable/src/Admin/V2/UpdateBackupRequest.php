@@ -70,7 +70,7 @@ class UpdateBackupRequest extends \Google\Protobuf\Internal\Message
      */
     public function getBackup()
     {
-        return isset($this->backup) ? $this->backup : null;
+        return $this->backup;
     }
 
     public function hasBackup()
@@ -113,7 +113,7 @@ class UpdateBackupRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()

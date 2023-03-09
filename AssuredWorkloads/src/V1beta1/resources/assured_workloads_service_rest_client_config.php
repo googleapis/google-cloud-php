@@ -15,19 +15,6 @@ return [
                     ],
                 ],
             ],
-            'UpdateWorkload' => [
-                'method' => 'patch',
-                'uriTemplate' => '/v1beta1/{workload.name=organizations/*/locations/*/workloads/*}',
-                'body' => 'workload',
-                'placeholders' => [
-                    'workload.name' => [
-                        'getters' => [
-                            'getWorkload',
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
             'DeleteWorkload' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1beta1/{name=organizations/*/locations/*/workloads/*}',
@@ -39,24 +26,14 @@ return [
                     ],
                 ],
             ],
-            'GetWorkload' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1beta1/{name=organizations/*/locations/*/workloads/*}',
+            'RestrictAllowedResources' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta1/{name=organizations/*/locations/*/workloads/*}:restrictAllowedResources',
+                'body' => '*',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
                             'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'ListWorkloads' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1beta1/{parent=organizations/*/locations/*}/workloads',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
                         ],
                     ],
                 ],
@@ -87,4 +64,5 @@ return [
             ],
         ],
     ],
+    'numericEnums' => true,
 ];

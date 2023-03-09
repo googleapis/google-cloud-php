@@ -53,8 +53,8 @@ class ImageProperties extends AbstractFeature
     /**
      * Create an ImageProperties result.
      *
-     * This class is created internally by {@see Google\Cloud\Vision\Annotation}.
-     * See {@see Google\Cloud\Vision\Annotation::imageProperties()} for full usage details.
+     * This class is created internally by {@see Annotation}.
+     * See {@see Annotation::imageProperties()} for full usage details.
      * This class should not be instantiated outside the externally.
      *
      * @param array $info The imageProperties annotation result

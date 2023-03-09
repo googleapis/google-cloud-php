@@ -27,8 +27,9 @@ use Google\Cloud\Storage\HmacKey;
 use Google\Cloud\Storage\Lifecycle;
 use Google\Cloud\Storage\StorageClient;
 use Google\Cloud\Storage\StreamWrapper;
-use GuzzleHttp\Psr7;
-use PHPUnit\Framework\TestCase;
+use GuzzleHttp\Psr7\Utils;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 use Prophecy\Argument;
 
 /**
@@ -37,10 +38,12 @@ use Prophecy\Argument;
  */
 class StorageClientTest extends TestCase
 {
+    use ExpectException;
+
     const PROJECT = 'my-project';
     public $connection;
 
-    public function setUp()
+    public function set_up()
     {
         $this->connection = $this->prophesize(Rest::class);
         $this->client = TestHelpers::stub(StorageClient::class, [['projectId' => self::PROJECT]]);
@@ -54,7 +57,11 @@ class StorageClientTest extends TestCase
 
     public function testGetBucketRequesterPaysDefaultProjectId()
     {
-        $this->connection->getBucket(Argument::withEntry('userProject', self::PROJECT));
+        $this->connection->projectId()->willReturn(self::PROJECT);
+        $this->connection->getBucket(Argument::allOf(
+            Argument::withEntry('bucket', 'myBucket'),
+            Argument::withEntry('userProject', self::PROJECT)
+        ))->shouldBeCalled();
         $this->client->___setProperty('connection', $this->connection->reveal());
         $bucket = $this->client->bucket('myBucket', true);
 
@@ -110,6 +117,34 @@ class StorageClientTest extends TestCase
         $this->assertInstanceOf(Bucket::class, $this->client->createBucket('bucket'));
     }
 
+    public function testCreatesDualRegionBucket()
+    {
+        $this->connection
+            ->insertBucket([
+                'project' => self::PROJECT,
+                'location' => 'US',
+                'name' => 'bucket',
+                'customPlacementConfig' => [
+                    'dataLocations' => ['US-EAST1', 'US-WEST1'],
+                ]
+            ])
+            ->willReturn(['name' => 'bucket']);
+        $this->connection->projectId()
+            ->willReturn(self::PROJECT);
+        $this->client->___setProperty('connection', $this->connection->reveal());
+        $createdBucket = $this->client->createBucket(
+            'bucket',
+            [
+                'location' => 'US',
+                'customPlacementConfig' => [
+                    'dataLocations' => ['US-EAST1', 'US-WEST1'],
+                ]
+            ]
+        );
+
+        $this->assertInstanceOf(Bucket::class, $createdBucket);
+    }
+
     public function testCreatesBucketWithLifecycleBuilder()
     {
         $bucket = 'bucket';
@@ -148,7 +183,7 @@ class StorageClientTest extends TestCase
     public function testSignedUrlUploader()
     {
         $uri = 'http://example.com';
-        $data = Psr7\stream_for('hello world');
+        $data = Utils::streamFor('hello world');
 
         $uploader = $this->client->signedUrlUploader($uri, $data);
         $this->assertInstanceOf(SignedUrlUploader::class, $uploader);
@@ -238,11 +273,12 @@ class StorageClientTest extends TestCase
     }
 
     /**
-     * @expectedException Google\Cloud\Core\Exception\GoogleException
      * @dataProvider requiresProjectIdMethods
      */
     public function testMethodsFailWithoutProjectId($method, array $args = [])
     {
+        $this->expectException('Google\Cloud\Core\Exception\GoogleException');
+
         $client = TestHelpers::stub(StorageClientStub::class, [], ['projectId']);
         $client->___setProperty('projectId', null);
 

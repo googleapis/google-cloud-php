@@ -14,7 +14,7 @@ use UnexpectedValueException;
 class ProvisioningState
 {
     /**
-     * Default value. This state doesn't show unless an error occurs.
+     * Not used.
      *
      * Generated from protobuf enum <code>PROVISIONING_STATE_UNSPECIFIED = 0;</code>
      */
@@ -59,6 +59,4 @@ class ProvisioningState
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ProvisioningState::class, \Google\Cloud\Channel\V1\Entitlement_ProvisioningState::class);
 

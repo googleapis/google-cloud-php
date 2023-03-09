@@ -38,7 +38,7 @@ class SearchHashesRequest extends \Google\Protobuf\Internal\Message
      *     @type string $hash_prefix
      *           A hash prefix, consisting of the most significant 4-32 bytes of a SHA256
      *           hash. For JSON requests, this field is base64-encoded.
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $threat_types
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $threat_types
      *           Required. The ThreatLists to search in.
      * }
      */
@@ -90,7 +90,7 @@ class SearchHashesRequest extends \Google\Protobuf\Internal\Message
      * Required. The ThreatLists to search in.
      *
      * Generated from protobuf field <code>repeated .google.cloud.webrisk.v1beta1.ThreatType threat_types = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setThreatTypes($var)

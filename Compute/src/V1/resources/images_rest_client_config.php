@@ -56,14 +56,14 @@ return [
                 'method' => 'get',
                 'uriTemplate' => '/compute/v1/projects/{project}/global/images/family/{family}',
                 'placeholders' => [
-                    'project' => [
-                        'getters' => [
-                            'getProject',
-                        ],
-                    ],
                     'family' => [
                         'getters' => [
                             'getFamily',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
                         ],
                     ],
                 ],
@@ -72,14 +72,14 @@ return [
                 'method' => 'get',
                 'uriTemplate' => '/compute/v1/projects/{project}/global/images/{resource}/getIamPolicy',
                 'placeholders' => [
-                    'resource' => [
-                        'getters' => [
-                            'getResource',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
+                        ],
+                    ],
+                    'resource' => [
+                        'getters' => [
+                            'getResource',
                         ],
                     ],
                 ],
@@ -129,14 +129,14 @@ return [
                 'uriTemplate' => '/compute/v1/projects/{project}/global/images/{resource}/setIamPolicy',
                 'body' => 'global_set_policy_request_resource',
                 'placeholders' => [
-                    'resource' => [
-                        'getters' => [
-                            'getResource',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
+                        ],
+                    ],
+                    'resource' => [
+                        'getters' => [
+                            'getResource',
                         ],
                     ],
                 ],
@@ -146,14 +146,14 @@ return [
                 'uriTemplate' => '/compute/v1/projects/{project}/global/images/{resource}/setLabels',
                 'body' => 'global_set_labels_request_resource',
                 'placeholders' => [
-                    'resource' => [
-                        'getters' => [
-                            'getResource',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
+                        ],
+                    ],
+                    'resource' => [
+                        'getters' => [
+                            'getResource',
                         ],
                     ],
                 ],
@@ -163,9 +163,81 @@ return [
                 'uriTemplate' => '/compute/v1/projects/{project}/global/images/{resource}/testIamPermissions',
                 'body' => 'test_permissions_request_resource',
                 'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
                     'resource' => [
                         'getters' => [
                             'getResource',
+                        ],
+                    ],
+                ],
+            ],
+        ],
+        'google.cloud.compute.v1.GlobalOperations' => [
+            'AggregatedList' => [
+                'method' => 'get',
+                'uriTemplate' => '/compute/v1/projects/{project}/aggregated/operations',
+                'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                ],
+            ],
+            'Delete' => [
+                'method' => 'delete',
+                'uriTemplate' => '/compute/v1/projects/{project}/global/operations/{operation}',
+                'placeholders' => [
+                    'operation' => [
+                        'getters' => [
+                            'getOperation',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                ],
+            ],
+            'Get' => [
+                'method' => 'get',
+                'uriTemplate' => '/compute/v1/projects/{project}/global/operations/{operation}',
+                'placeholders' => [
+                    'operation' => [
+                        'getters' => [
+                            'getOperation',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                ],
+            ],
+            'List' => [
+                'method' => 'get',
+                'uriTemplate' => '/compute/v1/projects/{project}/global/operations',
+                'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                ],
+            ],
+            'Wait' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/global/operations/{operation}/wait',
+                'placeholders' => [
+                    'operation' => [
+                        'getters' => [
+                            'getOperation',
                         ],
                     ],
                     'project' => [

@@ -22,16 +22,19 @@ use Google\Cloud\Datastore\DatastoreClient;
 use Google\Cloud\Datastore\DatastoreTrait;
 use Google\Cloud\Datastore\Key;
 use Google\Cloud\Datastore\Transaction;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\AssertIsType;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group datastore
  */
 class DatastoreTraitTest extends TestCase
 {
+    use AssertIsType;
+
     private $stub;
 
-    public function setUp()
+    public function set_up()
     {
         $this->stub = TestHelpers::impl(DatastoreTrait::class);
     }
@@ -42,8 +45,20 @@ class DatastoreTraitTest extends TestCase
             'foo', 'bar'
         ]);
 
-        $this->assertInternalType('array', $res);
+        $this->assertIsArray($res);
         $this->assertEquals('foo', $res['projectId']);
         $this->assertEquals('bar', $res['namespaceId']);
+    }
+
+    public function testPartitionIdWithDatabaseId()
+    {
+        $res = $this->stub->call('partitionId', [
+            'foo', 'bar', 'baz'
+        ]);
+
+        $this->assertIsArray($res);
+        $this->assertEquals('foo', $res['projectId']);
+        $this->assertEquals('bar', $res['namespaceId']);
+        $this->assertEquals('baz', $res['databaseId']);
     }
 }

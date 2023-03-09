@@ -17,9 +17,9 @@ class ProjectsListXpnHostsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional organization ID managed by Cloud Resource Manager, for which to list shared VPC host projects. If not specified, the organization will be inferred from the project.
      *
-     * Generated from protobuf field <code>string organization = 105180467;</code>
+     * Generated from protobuf field <code>optional string organization = 105180467;</code>
      */
-    private $organization = '';
+    private $organization = null;
 
     /**
      * Constructor.
@@ -39,18 +39,28 @@ class ProjectsListXpnHostsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional organization ID managed by Cloud Resource Manager, for which to list shared VPC host projects. If not specified, the organization will be inferred from the project.
      *
-     * Generated from protobuf field <code>string organization = 105180467;</code>
+     * Generated from protobuf field <code>optional string organization = 105180467;</code>
      * @return string
      */
     public function getOrganization()
     {
-        return $this->organization;
+        return isset($this->organization) ? $this->organization : '';
+    }
+
+    public function hasOrganization()
+    {
+        return isset($this->organization);
+    }
+
+    public function clearOrganization()
+    {
+        unset($this->organization);
     }
 
     /**
      * Optional organization ID managed by Cloud Resource Manager, for which to list shared VPC host projects. If not specified, the organization will be inferred from the project.
      *
-     * Generated from protobuf field <code>string organization = 105180467;</code>
+     * Generated from protobuf field <code>optional string organization = 105180467;</code>
      * @param string $var
      * @return $this
      */

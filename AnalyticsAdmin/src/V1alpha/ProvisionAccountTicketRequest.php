@@ -23,7 +23,7 @@ class ProvisionAccountTicketRequest extends \Google\Protobuf\Internal\Message
     private $account = null;
     /**
      * Redirect URI where the user will be sent after accepting Terms of Service.
-     * Must be configured in Developers Console as a Redirect URI
+     * Must be configured in Developers Console as a Redirect URI.
      *
      * Generated from protobuf field <code>string redirect_uri = 2;</code>
      */
@@ -39,7 +39,7 @@ class ProvisionAccountTicketRequest extends \Google\Protobuf\Internal\Message
      *           The account to create.
      *     @type string $redirect_uri
      *           Redirect URI where the user will be sent after accepting Terms of Service.
-     *           Must be configured in Developers Console as a Redirect URI
+     *           Must be configured in Developers Console as a Redirect URI.
      * }
      */
     public function __construct($data = NULL) {
@@ -51,11 +51,11 @@ class ProvisionAccountTicketRequest extends \Google\Protobuf\Internal\Message
      * The account to create.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.Account account = 1;</code>
-     * @return \Google\Analytics\Admin\V1alpha\Account
+     * @return \Google\Analytics\Admin\V1alpha\Account|null
      */
     public function getAccount()
     {
-        return isset($this->account) ? $this->account : null;
+        return $this->account;
     }
 
     public function hasAccount()
@@ -85,7 +85,7 @@ class ProvisionAccountTicketRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Redirect URI where the user will be sent after accepting Terms of Service.
-     * Must be configured in Developers Console as a Redirect URI
+     * Must be configured in Developers Console as a Redirect URI.
      *
      * Generated from protobuf field <code>string redirect_uri = 2;</code>
      * @return string
@@ -97,7 +97,7 @@ class ProvisionAccountTicketRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Redirect URI where the user will be sent after accepting Terms of Service.
-     * Must be configured in Developers Console as a Redirect URI
+     * Must be configured in Developers Console as a Redirect URI.
      *
      * Generated from protobuf field <code>string redirect_uri = 2;</code>
      * @param string $var

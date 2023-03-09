@@ -127,7 +127,7 @@ class ImageRedactionConfig extends \Google\Protobuf\Internal\Message
      */
     public function getRedactionColor()
     {
-        return isset($this->redaction_color) ? $this->redaction_color : null;
+        return $this->redaction_color;
     }
 
     public function hasRedactionColor()

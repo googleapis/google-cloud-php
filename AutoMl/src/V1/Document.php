@@ -57,7 +57,7 @@ class Document extends \Google\Protobuf\Internal\Message
      *           An input config specifying the content of the document.
      *     @type \Google\Cloud\AutoMl\V1\TextSnippet $document_text
      *           The plain text version of this document.
-     *     @type \Google\Cloud\AutoMl\V1\Document\Layout[]|\Google\Protobuf\Internal\RepeatedField $layout
+     *     @type array<\Google\Cloud\AutoMl\V1\Document\Layout>|\Google\Protobuf\Internal\RepeatedField $layout
      *           Describes the layout of the document.
      *           Sorted by [page_number][].
      *     @type \Google\Cloud\AutoMl\V1\DocumentDimensions $document_dimensions
@@ -79,7 +79,7 @@ class Document extends \Google\Protobuf\Internal\Message
      */
     public function getInputConfig()
     {
-        return isset($this->input_config) ? $this->input_config : null;
+        return $this->input_config;
     }
 
     public function hasInputConfig()
@@ -115,7 +115,7 @@ class Document extends \Google\Protobuf\Internal\Message
      */
     public function getDocumentText()
     {
-        return isset($this->document_text) ? $this->document_text : null;
+        return $this->document_text;
     }
 
     public function hasDocumentText()
@@ -160,7 +160,7 @@ class Document extends \Google\Protobuf\Internal\Message
      * Sorted by [page_number][].
      *
      * Generated from protobuf field <code>repeated .google.cloud.automl.v1.Document.Layout layout = 3;</code>
-     * @param \Google\Cloud\AutoMl\V1\Document\Layout[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AutoMl\V1\Document\Layout>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setLayout($var)
@@ -179,7 +179,7 @@ class Document extends \Google\Protobuf\Internal\Message
      */
     public function getDocumentDimensions()
     {
-        return isset($this->document_dimensions) ? $this->document_dimensions : null;
+        return $this->document_dimensions;
     }
 
     public function hasDocumentDimensions()

@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * SKU that can be used for a puchase. This is used in ListPurchasableSku API
+ * SKU that you can purchase. This is used in ListPurchasableSku API
  * response.
  *
  * Generated from protobuf message <code>google.cloud.channel.v1.PurchasableSku</code>
@@ -42,11 +42,11 @@ class PurchasableSku extends \Google\Protobuf\Internal\Message
      * SKU
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.Sku sku = 1;</code>
-     * @return \Google\Cloud\Channel\V1\Sku
+     * @return \Google\Cloud\Channel\V1\Sku|null
      */
     public function getSku()
     {
-        return isset($this->sku) ? $this->sku : null;
+        return $this->sku;
     }
 
     public function hasSku()

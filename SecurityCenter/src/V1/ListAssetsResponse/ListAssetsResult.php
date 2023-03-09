@@ -49,11 +49,11 @@ class ListAssetsResult extends \Google\Protobuf\Internal\Message
      * Asset matching the search request.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Asset asset = 1;</code>
-     * @return \Google\Cloud\SecurityCenter\V1\Asset
+     * @return \Google\Cloud\SecurityCenter\V1\Asset|null
      */
     public function getAsset()
     {
-        return isset($this->asset) ? $this->asset : null;
+        return $this->asset;
     }
 
     public function hasAsset()

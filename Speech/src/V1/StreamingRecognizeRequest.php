@@ -53,7 +53,7 @@ class StreamingRecognizeRequest extends \Google\Protobuf\Internal\Message
      * `streaming_config`  message.
      *
      * Generated from protobuf field <code>.google.cloud.speech.v1.StreamingRecognitionConfig streaming_config = 1;</code>
-     * @return \Google\Cloud\Speech\V1\StreamingRecognitionConfig
+     * @return \Google\Cloud\Speech\V1\StreamingRecognitionConfig|null
      */
     public function getStreamingConfig()
     {

@@ -18,23 +18,27 @@ class InsertSecurityPolicyRequest extends \Google\Protobuf\Internal\Message
     /**
      * Project ID for this request.
      *
-     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "project"];</code>
      */
     private $project = '';
     /**
-     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.
-     * For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.
-     * The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *
-     * Generated from protobuf field <code>string request_id = 37109963;</code>
+     * Generated from protobuf field <code>optional string request_id = 37109963;</code>
      */
-    private $request_id = '';
+    private $request_id = null;
     /**
      * The body resource for this request
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.SecurityPolicy security_policy_resource = 216159612 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $security_policy_resource = null;
+    /**
+     * If true, the request will not be committed.
+     *
+     * Generated from protobuf field <code>optional bool validate_only = 242744629;</code>
+     */
+    private $validate_only = null;
 
     /**
      * Constructor.
@@ -45,11 +49,11 @@ class InsertSecurityPolicyRequest extends \Google\Protobuf\Internal\Message
      *     @type string $project
      *           Project ID for this request.
      *     @type string $request_id
-     *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.
-     *           For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.
-     *           The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type \Google\Cloud\Compute\V1\SecurityPolicy $security_policy_resource
      *           The body resource for this request
+     *     @type bool $validate_only
+     *           If true, the request will not be committed.
      * }
      */
     public function __construct($data = NULL) {
@@ -60,7 +64,7 @@ class InsertSecurityPolicyRequest extends \Google\Protobuf\Internal\Message
     /**
      * Project ID for this request.
      *
-     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "project"];</code>
      * @return string
      */
     public function getProject()
@@ -71,7 +75,7 @@ class InsertSecurityPolicyRequest extends \Google\Protobuf\Internal\Message
     /**
      * Project ID for this request.
      *
-     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "project"];</code>
      * @param string $var
      * @return $this
      */
@@ -84,24 +88,30 @@ class InsertSecurityPolicyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.
-     * For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.
-     * The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *
-     * Generated from protobuf field <code>string request_id = 37109963;</code>
+     * Generated from protobuf field <code>optional string request_id = 37109963;</code>
      * @return string
      */
     public function getRequestId()
     {
-        return $this->request_id;
+        return isset($this->request_id) ? $this->request_id : '';
+    }
+
+    public function hasRequestId()
+    {
+        return isset($this->request_id);
+    }
+
+    public function clearRequestId()
+    {
+        unset($this->request_id);
     }
 
     /**
-     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.
-     * For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.
-     * The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *
-     * Generated from protobuf field <code>string request_id = 37109963;</code>
+     * Generated from protobuf field <code>optional string request_id = 37109963;</code>
      * @param string $var
      * @return $this
      */
@@ -117,11 +127,11 @@ class InsertSecurityPolicyRequest extends \Google\Protobuf\Internal\Message
      * The body resource for this request
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.SecurityPolicy security_policy_resource = 216159612 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Compute\V1\SecurityPolicy
+     * @return \Google\Cloud\Compute\V1\SecurityPolicy|null
      */
     public function getSecurityPolicyResource()
     {
-        return isset($this->security_policy_resource) ? $this->security_policy_resource : null;
+        return $this->security_policy_resource;
     }
 
     public function hasSecurityPolicyResource()
@@ -145,6 +155,42 @@ class InsertSecurityPolicyRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\SecurityPolicy::class);
         $this->security_policy_resource = $var;
+
+        return $this;
+    }
+
+    /**
+     * If true, the request will not be committed.
+     *
+     * Generated from protobuf field <code>optional bool validate_only = 242744629;</code>
+     * @return bool
+     */
+    public function getValidateOnly()
+    {
+        return isset($this->validate_only) ? $this->validate_only : false;
+    }
+
+    public function hasValidateOnly()
+    {
+        return isset($this->validate_only);
+    }
+
+    public function clearValidateOnly()
+    {
+        unset($this->validate_only);
+    }
+
+    /**
+     * If true, the request will not be committed.
+     *
+     * Generated from protobuf field <code>optional bool validate_only = 242744629;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setValidateOnly($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->validate_only = $var;
 
         return $this;
     }

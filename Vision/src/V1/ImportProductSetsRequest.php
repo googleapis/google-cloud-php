@@ -83,7 +83,7 @@ class ImportProductSetsRequest extends \Google\Protobuf\Internal\Message
      */
     public function getInputConfig()
     {
-        return isset($this->input_config) ? $this->input_config : null;
+        return $this->input_config;
     }
 
     public function hasInputConfig()

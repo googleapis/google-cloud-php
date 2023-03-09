@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\ResourceCommitment;
 use UnexpectedValueException;
 
 /**
- * Type of resource for which this commitment applies. Possible values are VCPU and MEMORY
+ * Type of resource for which this commitment applies. Possible values are VCPU, MEMORY, LOCAL_SSD, and ACCELERATOR.
  *
  * Protobuf type <code>google.cloud.compute.v1.ResourceCommitment.Type</code>
  */
@@ -20,21 +20,21 @@ class Type
      */
     const UNDEFINED_TYPE = 0;
     /**
-     * Generated from protobuf enum <code>ACCELERATOR = 161379915;</code>
+     * Generated from protobuf enum <code>ACCELERATOR = 429815371;</code>
      */
-    const ACCELERATOR = 161379915;
+    const ACCELERATOR = 429815371;
     /**
-     * Generated from protobuf enum <code>LOCAL_SSD = 240499440;</code>
+     * Generated from protobuf enum <code>LOCAL_SSD = 508934896;</code>
      */
-    const LOCAL_SSD = 240499440;
+    const LOCAL_SSD = 508934896;
     /**
      * Generated from protobuf enum <code>MEMORY = 123056385;</code>
      */
     const MEMORY = 123056385;
     /**
-     * Generated from protobuf enum <code>UNSPECIFIED = 258350871;</code>
+     * Generated from protobuf enum <code>UNSPECIFIED = 526786327;</code>
      */
-    const UNSPECIFIED = 258350871;
+    const UNSPECIFIED = 526786327;
     /**
      * Generated from protobuf enum <code>VCPU = 2628978;</code>
      */

@@ -21,6 +21,7 @@ use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\Testing\DatastoreOperationRefreshTrait;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
+use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Datastore\Blob;
 use Google\Cloud\Datastore\Connection\ConnectionInterface;
 use Google\Cloud\Datastore\Connection\Grpc;
@@ -34,7 +35,8 @@ use Google\Cloud\Datastore\Query\Query;
 use Google\Cloud\Datastore\Query\QueryInterface;
 use Google\Cloud\Datastore\ReadOnlyTransaction;
 use Google\Cloud\Datastore\Transaction;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 use Prophecy\Argument;
 
 /**
@@ -44,6 +46,7 @@ use Prophecy\Argument;
 class DatastoreClientTest extends TestCase
 {
     use DatastoreOperationRefreshTrait;
+    use ExpectException;
     use GrpcTestTrait;
 
     const PROJECT = 'example-project';
@@ -52,7 +55,7 @@ class DatastoreClientTest extends TestCase
     private $connection;
     private $client;
 
-    public function setUp()
+    public function set_up()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->client = TestHelpers::stub(DatastoreClient::class, [
@@ -67,7 +70,8 @@ class DatastoreClientTest extends TestCase
         $this->checkAndSkipGrpcTests();
 
         $client = TestHelpers::stub(DatastoreClient::class, [[
-            'transport' => 'grpc'
+            'projectId' => self::PROJECT,
+            'transport' => 'grpc',
         ]]);
 
         $this->assertInstanceOf(Grpc::class, $client->___getProperty('connection'));
@@ -78,7 +82,8 @@ class DatastoreClientTest extends TestCase
         $this->checkAndSkipGrpcTests();
 
         $client = TestHelpers::stub(DatastoreClient::class, [[
-            'transport' => 'rest'
+            'projectId' => self::PROJECT,
+            'transport' => 'rest',
         ]]);
 
         $this->assertInstanceOf(Rest::class, $client->___getProperty('connection'));
@@ -398,11 +403,10 @@ class DatastoreClientTest extends TestCase
         });
     }
 
-    /**
-     * @expectedException \DomainException
-     */
     public function testSingleMutationConflict()
     {
+        $this->expectException('DomainException');
+
         $this->connection->commit(Argument::any())
             ->shouldBeCalled()
             ->willReturn([
@@ -547,6 +551,53 @@ class DatastoreClientTest extends TestCase
         $this->assertInstanceOf(Key::class, $res['deferred'][0]);
     }
 
+    public function testLookupBatchWithReadTime()
+    {
+        $key = $this->client->key('Person', 'John');
+        $time = new Timestamp(new \DateTime());
+
+        $this->connection->lookup(
+            Argument::withEntry('readTime', $time)
+        )->shouldBeCalled()->willReturn([
+            'found' => [
+                [
+                    'entity' => $this->entityArray($key)
+                ]
+            ]
+        ]);
+
+        $this->refreshOperation($this->client, $this->connection->reveal(), [
+            'projectId' => self::PROJECT
+        ]);
+
+        $res = $this->client->lookupBatch([$key], ['readTime' => $time]);
+        $this->assertInstanceOf(Entity::class, $res['found'][0]);
+    }
+
+    public function testLookupWithReadTime()
+    {
+        $key = $this->client->key('Person', 'John');
+        $time = new Timestamp(new \DateTime());
+
+        $this->connection->lookup(Argument::allOf(
+            Argument::withEntry('keys', [$key->keyObject()]),
+            Argument::withEntry('readTime', $time)
+        ))->shouldBeCalled()->willReturn([
+            'found' => [
+                [
+                    'entity' => $this->entityArray($key)
+                ]
+            ]
+        ]);
+
+        $this->refreshOperation($this->client, $this->connection->reveal(), [
+            'projectId' => self::PROJECT
+        ]);
+
+        $res = $this->client->lookup($key, ['readTime' => $time]);
+        $this->assertInstanceOf(Entity::class, $res);
+    }
+
     public function testQuery()
     {
         $query = ['foo' => 'bar'];
@@ -589,6 +640,37 @@ class DatastoreClientTest extends TestCase
         $query->queryObject()->willReturn(['queryString' => 'SELECT 1=1']);
 
         $res = iterator_to_array($this->client->runQuery($query->reveal()));
+        $this->assertContainsOnlyInstancesOf(Entity::class, $res);
+    }
+
+    public function testRunQueryWithReadTime()
+    {
+        $key = $this->client->key('Person', 'John');
+        $time = new Timestamp(new \DateTime());
+
+        $this->connection->runQuery(Argument::allOf(
+            Argument::withEntry('partitionId', ['projectId' => self::PROJECT]),
+            Argument::withEntry('gqlQuery', ['queryString' => 'SELECT 1=1']),
+            Argument::withEntry('readTime', $time)
+        ))->shouldBeCalled()->willReturn([
+            'batch' => [
+                'entityResults' => [
+                    [
+                        'entity' => $this->entityArray($key)
+                    ]
+                ]
+            ]
+        ]);
+
+        $this->refreshOperation($this->client, $this->connection->reveal(), [
+            'projectId' => self::PROJECT
+        ]);
+
+        $query = $this->prophesize(QueryInterface::class);
+        $query->queryKey()->willReturn('gqlQuery');
+        $query->queryObject()->willReturn(['queryString' => 'SELECT 1=1']);
+
+        $res = iterator_to_array($this->client->runQuery($query->reveal(), ['readTime' => $time]));
         $this->assertContainsOnlyInstancesOf(Entity::class, $res);
     }
 

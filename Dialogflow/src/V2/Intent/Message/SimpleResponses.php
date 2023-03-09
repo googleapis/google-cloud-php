@@ -31,7 +31,7 @@ class SimpleResponses extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Dialogflow\V2\Intent\Message\SimpleResponse[]|\Google\Protobuf\Internal\RepeatedField $simple_responses
+     *     @type array<\Google\Cloud\Dialogflow\V2\Intent\Message\SimpleResponse>|\Google\Protobuf\Internal\RepeatedField $simple_responses
      *           Required. The list of simple responses.
      * }
      */
@@ -55,7 +55,7 @@ class SimpleResponses extends \Google\Protobuf\Internal\Message
      * Required. The list of simple responses.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message.SimpleResponse simple_responses = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param \Google\Cloud\Dialogflow\V2\Intent\Message\SimpleResponse[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dialogflow\V2\Intent\Message\SimpleResponse>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSimpleResponses($var)
@@ -68,6 +68,4 @@ class SimpleResponses extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(SimpleResponses::class, \Google\Cloud\Dialogflow\V2\Intent_Message_SimpleResponses::class);
 

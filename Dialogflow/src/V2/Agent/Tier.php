@@ -20,21 +20,22 @@ class Tier
      */
     const TIER_UNSPECIFIED = 0;
     /**
-     * Standard tier.
+     * Trial Edition, previously known as Standard Edition.
      *
      * Generated from protobuf enum <code>TIER_STANDARD = 1;</code>
      */
     const TIER_STANDARD = 1;
     /**
-     * Enterprise tier (Essentials).
+     * Essentials Edition, previously known as Enterprise Essential Edition.
      *
      * Generated from protobuf enum <code>TIER_ENTERPRISE = 2;</code>
      */
     const TIER_ENTERPRISE = 2;
     /**
-     * Enterprise tier (Plus).
+     * Essentials Edition (same as TIER_ENTERPRISE), previously known as
+     * Enterprise Plus Edition.
      *
-     * Generated from protobuf enum <code>TIER_ENTERPRISE_PLUS = 3;</code>
+     * Generated from protobuf enum <code>TIER_ENTERPRISE_PLUS = 3 [deprecated = true];</code>
      */
     const TIER_ENTERPRISE_PLUS = 3;
 
@@ -66,6 +67,4 @@ class Tier
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Tier::class, \Google\Cloud\Dialogflow\V2\Agent_Tier::class);
 

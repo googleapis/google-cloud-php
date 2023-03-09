@@ -15,22 +15,18 @@ use Google\Protobuf\Internal\GPBUtil;
 class InterconnectDiagnosticsLinkOpticalPower extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The status of the current value when compared to the warning and alarm levels for the receiving or transmitting transceiver. Possible states include:
-     * - OK: The value has not crossed a warning threshold.
-     * - LOW_WARNING: The value has crossed below the low warning threshold.
-     * - HIGH_WARNING: The value has crossed above the high warning threshold.
-     * - LOW_ALARM: The value has crossed below the low alarm threshold.
-     * - HIGH_ALARM: The value has crossed above the high alarm threshold.
+     * The status of the current value when compared to the warning and alarm levels for the receiving or transmitting transceiver. Possible states include: - OK: The value has not crossed a warning threshold. - LOW_WARNING: The value has crossed below the low warning threshold. - HIGH_WARNING: The value has crossed above the high warning threshold. - LOW_ALARM: The value has crossed below the low alarm threshold. - HIGH_ALARM: The value has crossed above the high alarm threshold.
+     * Check the State enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectDiagnosticsLinkOpticalPower.State state = 109757585;</code>
+     * Generated from protobuf field <code>optional string state = 109757585;</code>
      */
-    private $state = 0;
+    private $state = null;
     /**
      * Value of the current receiving or transmitting optical power, read in dBm. Take a known good optical value, give it a 10% margin and trigger warnings relative to that value. In general, a -7dBm warning and a -11dBm alarm are good optical value estimates for most links.
      *
-     * Generated from protobuf field <code>float value = 111972721;</code>
+     * Generated from protobuf field <code>optional float value = 111972721;</code>
      */
-    private $value = 0.0;
+    private $value = null;
 
     /**
      * Constructor.
@@ -38,13 +34,9 @@ class InterconnectDiagnosticsLinkOpticalPower extends \Google\Protobuf\Internal\
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type int $state
-     *           The status of the current value when compared to the warning and alarm levels for the receiving or transmitting transceiver. Possible states include:
-     *           - OK: The value has not crossed a warning threshold.
-     *           - LOW_WARNING: The value has crossed below the low warning threshold.
-     *           - HIGH_WARNING: The value has crossed above the high warning threshold.
-     *           - LOW_ALARM: The value has crossed below the low alarm threshold.
-     *           - HIGH_ALARM: The value has crossed above the high alarm threshold.
+     *     @type string $state
+     *           The status of the current value when compared to the warning and alarm levels for the receiving or transmitting transceiver. Possible states include: - OK: The value has not crossed a warning threshold. - LOW_WARNING: The value has crossed below the low warning threshold. - HIGH_WARNING: The value has crossed above the high warning threshold. - LOW_ALARM: The value has crossed below the low alarm threshold. - HIGH_ALARM: The value has crossed above the high alarm threshold.
+     *           Check the State enum for the list of possible values.
      *     @type float $value
      *           Value of the current receiving or transmitting optical power, read in dBm. Take a known good optical value, give it a 10% margin and trigger warnings relative to that value. In general, a -7dBm warning and a -11dBm alarm are good optical value estimates for most links.
      * }
@@ -55,36 +47,38 @@ class InterconnectDiagnosticsLinkOpticalPower extends \Google\Protobuf\Internal\
     }
 
     /**
-     * The status of the current value when compared to the warning and alarm levels for the receiving or transmitting transceiver. Possible states include:
-     * - OK: The value has not crossed a warning threshold.
-     * - LOW_WARNING: The value has crossed below the low warning threshold.
-     * - HIGH_WARNING: The value has crossed above the high warning threshold.
-     * - LOW_ALARM: The value has crossed below the low alarm threshold.
-     * - HIGH_ALARM: The value has crossed above the high alarm threshold.
+     * The status of the current value when compared to the warning and alarm levels for the receiving or transmitting transceiver. Possible states include: - OK: The value has not crossed a warning threshold. - LOW_WARNING: The value has crossed below the low warning threshold. - HIGH_WARNING: The value has crossed above the high warning threshold. - LOW_ALARM: The value has crossed below the low alarm threshold. - HIGH_ALARM: The value has crossed above the high alarm threshold.
+     * Check the State enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectDiagnosticsLinkOpticalPower.State state = 109757585;</code>
-     * @return int
+     * Generated from protobuf field <code>optional string state = 109757585;</code>
+     * @return string
      */
     public function getState()
     {
-        return $this->state;
+        return isset($this->state) ? $this->state : '';
+    }
+
+    public function hasState()
+    {
+        return isset($this->state);
+    }
+
+    public function clearState()
+    {
+        unset($this->state);
     }
 
     /**
-     * The status of the current value when compared to the warning and alarm levels for the receiving or transmitting transceiver. Possible states include:
-     * - OK: The value has not crossed a warning threshold.
-     * - LOW_WARNING: The value has crossed below the low warning threshold.
-     * - HIGH_WARNING: The value has crossed above the high warning threshold.
-     * - LOW_ALARM: The value has crossed below the low alarm threshold.
-     * - HIGH_ALARM: The value has crossed above the high alarm threshold.
+     * The status of the current value when compared to the warning and alarm levels for the receiving or transmitting transceiver. Possible states include: - OK: The value has not crossed a warning threshold. - LOW_WARNING: The value has crossed below the low warning threshold. - HIGH_WARNING: The value has crossed above the high warning threshold. - LOW_ALARM: The value has crossed below the low alarm threshold. - HIGH_ALARM: The value has crossed above the high alarm threshold.
+     * Check the State enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectDiagnosticsLinkOpticalPower.State state = 109757585;</code>
-     * @param int $var
+     * Generated from protobuf field <code>optional string state = 109757585;</code>
+     * @param string $var
      * @return $this
      */
     public function setState($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Compute\V1\InterconnectDiagnosticsLinkOpticalPower\State::class);
+        GPBUtil::checkString($var, True);
         $this->state = $var;
 
         return $this;
@@ -93,18 +87,28 @@ class InterconnectDiagnosticsLinkOpticalPower extends \Google\Protobuf\Internal\
     /**
      * Value of the current receiving or transmitting optical power, read in dBm. Take a known good optical value, give it a 10% margin and trigger warnings relative to that value. In general, a -7dBm warning and a -11dBm alarm are good optical value estimates for most links.
      *
-     * Generated from protobuf field <code>float value = 111972721;</code>
+     * Generated from protobuf field <code>optional float value = 111972721;</code>
      * @return float
      */
     public function getValue()
     {
-        return $this->value;
+        return isset($this->value) ? $this->value : 0.0;
+    }
+
+    public function hasValue()
+    {
+        return isset($this->value);
+    }
+
+    public function clearValue()
+    {
+        unset($this->value);
     }
 
     /**
      * Value of the current receiving or transmitting optical power, read in dBm. Take a known good optical value, give it a 10% margin and trigger warnings relative to that value. In general, a -7dBm warning and a -11dBm alarm are good optical value estimates for most links.
      *
-     * Generated from protobuf field <code>float value = 111972721;</code>
+     * Generated from protobuf field <code>optional float value = 111972721;</code>
      * @param float $var
      * @return $this
      */

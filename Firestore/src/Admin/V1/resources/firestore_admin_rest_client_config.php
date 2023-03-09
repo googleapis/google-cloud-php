@@ -15,19 +15,8 @@ return [
                     ],
                 ],
             ],
-            'ListIndexes' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{parent=projects/*/databases/*/collectionGroups/*}/indexes',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'GetIndex' => [
-                'method' => 'get',
+            'DeleteIndex' => [
+                'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/databases/*/collectionGroups/*/indexes/*}',
                 'placeholders' => [
                     'name' => [
@@ -37,8 +26,42 @@ return [
                     ],
                 ],
             ],
-            'DeleteIndex' => [
-                'method' => 'delete',
+            'ExportDocuments' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/databases/*}:exportDocuments',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetDatabase' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/databases/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetField' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/databases/*/collectionGroups/*/fields/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetIndex' => [
+                'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/databases/*/collectionGroups/*/indexes/*}',
                 'placeholders' => [
                     'name' => [
@@ -60,25 +83,13 @@ return [
                     ],
                 ],
             ],
-            'ExportDocuments' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/{name=projects/*/databases/*}:exportDocuments',
-                'body' => '*',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'GetField' => [
+            'ListDatabases' => [
                 'method' => 'get',
-                'uriTemplate' => '/v1/{name=projects/*/databases/*/collectionGroups/*/fields/*}',
+                'uriTemplate' => '/v1/{parent=projects/*}/databases',
                 'placeholders' => [
-                    'name' => [
+                    'parent' => [
                         'getters' => [
-                            'getName',
+                            'getParent',
                         ],
                     ],
                 ],
@@ -90,6 +101,30 @@ return [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListIndexes' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/databases/*/collectionGroups/*}/indexes',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateDatabase' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{database.name=projects/*/databases/*}',
+                'body' => 'database',
+                'placeholders' => [
+                    'database.name' => [
+                        'getters' => [
+                            'getDatabase',
+                            'getName',
                         ],
                     ],
                 ],
@@ -109,20 +144,10 @@ return [
             ],
         ],
         'google.longrunning.Operations' => [
-            'ListOperations' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{name=projects/*/databases/*}/operations',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'GetOperation' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{name=projects/*/databases/*/operations/*}',
+            'CancelOperation' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/databases/*/operations/*}:cancel',
+                'body' => '*',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -142,10 +167,20 @@ return [
                     ],
                 ],
             ],
-            'CancelOperation' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/{name=projects/*/databases/*/operations/*}:cancel',
-                'body' => '*',
+            'GetOperation' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/databases/*/operations/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListOperations' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/databases/*}/operations',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -156,4 +191,5 @@ return [
             ],
         ],
     ],
+    'numericEnums' => true,
 ];

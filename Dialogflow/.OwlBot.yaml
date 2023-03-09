@@ -1,0 +1,4 @@
+deep-copy-regex:
+    - source: /google/cloud/dialogflow/(v2)/.*-php/(.*)
+      dest: /owl-bot-staging/Dialogflow/$1/$2
+api-name: Dialogflow

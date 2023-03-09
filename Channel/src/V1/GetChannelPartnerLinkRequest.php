@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [CloudChannelService.GetChannelPartnerLink][google.cloud.channel.v1.CloudChannelService.GetChannelPartnerLink].
+ * Request message for
+ * [CloudChannelService.GetChannelPartnerLink][google.cloud.channel.v1.CloudChannelService.GetChannelPartnerLink].
  *
  * Generated from protobuf message <code>google.cloud.channel.v1.GetChannelPartnerLinkRequest</code>
  */
@@ -17,7 +18,7 @@ class GetChannelPartnerLinkRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The resource name of the channel partner link to retrieve.
-     * The name takes the format: accounts/{account_id}/channelPartnerLinks/{id}
+     * Name uses the format: accounts/{account_id}/channelPartnerLinks/{id}
      * where {id} is the Cloud Identity ID of the partner.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -38,7 +39,7 @@ class GetChannelPartnerLinkRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. The resource name of the channel partner link to retrieve.
-     *           The name takes the format: accounts/{account_id}/channelPartnerLinks/{id}
+     *           Name uses the format: accounts/{account_id}/channelPartnerLinks/{id}
      *           where {id} is the Cloud Identity ID of the partner.
      *     @type int $view
      *           Optional. The level of granularity the ChannelPartnerLink will display.
@@ -51,7 +52,7 @@ class GetChannelPartnerLinkRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the channel partner link to retrieve.
-     * The name takes the format: accounts/{account_id}/channelPartnerLinks/{id}
+     * Name uses the format: accounts/{account_id}/channelPartnerLinks/{id}
      * where {id} is the Cloud Identity ID of the partner.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -64,7 +65,7 @@ class GetChannelPartnerLinkRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the channel partner link to retrieve.
-     * The name takes the format: accounts/{account_id}/channelPartnerLinks/{id}
+     * Name uses the format: accounts/{account_id}/channelPartnerLinks/{id}
      * where {id} is the Cloud Identity ID of the partner.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>

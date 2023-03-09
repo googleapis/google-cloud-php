@@ -197,11 +197,11 @@ class ImportEntitiesRequest extends \Google\Protobuf\Internal\Message
      * specified then all entities from the export are imported.
      *
      * Generated from protobuf field <code>.google.datastore.admin.v1.EntityFilter entity_filter = 4;</code>
-     * @return \Google\Cloud\Datastore\Admin\V1\EntityFilter
+     * @return \Google\Cloud\Datastore\Admin\V1\EntityFilter|null
      */
     public function getEntityFilter()
     {
-        return isset($this->entity_filter) ? $this->entity_filter : null;
+        return $this->entity_filter;
     }
 
     public function hasEntityFilter()

@@ -14,7 +14,7 @@ use UnexpectedValueException;
 class OperationType
 {
     /**
-     * Default value. This state doesn't show unless an error occurs.
+     * Not used.
      *
      * Generated from protobuf enum <code>OPERATION_TYPE_UNSPECIFIED = 0;</code>
      */
@@ -122,6 +122,4 @@ class OperationType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(OperationType::class, \Google\Cloud\Channel\V1\OperationMetadata_OperationType::class);
 

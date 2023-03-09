@@ -122,7 +122,7 @@ class ErrorGroupStats extends \Google\Protobuf\Internal\Message
      *           context that was provided in the error report. If more users are
      *           implicitly affected, such as due to a crash of the whole service,
      *           this is not reflected here.
-     *     @type \Google\Cloud\ErrorReporting\V1beta1\TimedCount[]|\Google\Protobuf\Internal\RepeatedField $timed_counts
+     *     @type array<\Google\Cloud\ErrorReporting\V1beta1\TimedCount>|\Google\Protobuf\Internal\RepeatedField $timed_counts
      *           Approximate number of occurrences over time.
      *           Timed counts returned by ListGroups are guaranteed to be:
      *           - Inside the requested time interval
@@ -136,7 +136,7 @@ class ErrorGroupStats extends \Google\Protobuf\Internal\Message
      *           Approximate last occurrence that was ever seen for this group and
      *           which matches the given filter criteria, ignoring the time_range
      *           that was specified in the request.
-     *     @type \Google\Cloud\ErrorReporting\V1beta1\ServiceContext[]|\Google\Protobuf\Internal\RepeatedField $affected_services
+     *     @type array<\Google\Cloud\ErrorReporting\V1beta1\ServiceContext>|\Google\Protobuf\Internal\RepeatedField $affected_services
      *           Service contexts with a non-zero error count for the given filter
      *           criteria. This list can be truncated if multiple services are affected.
      *           Refer to `num_affected_services` for the total count.
@@ -160,11 +160,11 @@ class ErrorGroupStats extends \Google\Protobuf\Internal\Message
      * Group data that is independent of the filter criteria.
      *
      * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1;</code>
-     * @return \Google\Cloud\ErrorReporting\V1beta1\ErrorGroup
+     * @return \Google\Cloud\ErrorReporting\V1beta1\ErrorGroup|null
      */
     public function getGroup()
     {
-        return isset($this->group) ? $this->group : null;
+        return $this->group;
     }
 
     public function hasGroup()
@@ -291,7 +291,7 @@ class ErrorGroupStats extends \Google\Protobuf\Internal\Message
      * - Ordered by ascending time.
      *
      * Generated from protobuf field <code>repeated .google.devtools.clouderrorreporting.v1beta1.TimedCount timed_counts = 4;</code>
-     * @param \Google\Cloud\ErrorReporting\V1beta1\TimedCount[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\ErrorReporting\V1beta1\TimedCount>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTimedCounts($var)
@@ -308,11 +308,11 @@ class ErrorGroupStats extends \Google\Protobuf\Internal\Message
      * time_range that was specified in the request.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp first_seen_time = 5;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getFirstSeenTime()
     {
-        return isset($this->first_seen_time) ? $this->first_seen_time : null;
+        return $this->first_seen_time;
     }
 
     public function hasFirstSeenTime()
@@ -348,11 +348,11 @@ class ErrorGroupStats extends \Google\Protobuf\Internal\Message
      * that was specified in the request.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp last_seen_time = 6;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getLastSeenTime()
     {
-        return isset($this->last_seen_time) ? $this->last_seen_time : null;
+        return $this->last_seen_time;
     }
 
     public function hasLastSeenTime()
@@ -401,7 +401,7 @@ class ErrorGroupStats extends \Google\Protobuf\Internal\Message
      * Refer to `num_affected_services` for the total count.
      *
      * Generated from protobuf field <code>repeated .google.devtools.clouderrorreporting.v1beta1.ServiceContext affected_services = 7;</code>
-     * @param \Google\Cloud\ErrorReporting\V1beta1\ServiceContext[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\ErrorReporting\V1beta1\ServiceContext>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAffectedServices($var)
@@ -448,11 +448,11 @@ class ErrorGroupStats extends \Google\Protobuf\Internal\Message
      * insight into the characteristics of the group as a whole.
      *
      * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.ErrorEvent representative = 9;</code>
-     * @return \Google\Cloud\ErrorReporting\V1beta1\ErrorEvent
+     * @return \Google\Cloud\ErrorReporting\V1beta1\ErrorEvent|null
      */
     public function getRepresentative()
     {
-        return isset($this->representative) ? $this->representative : null;
+        return $this->representative;
     }
 
     public function hasRepresentative()

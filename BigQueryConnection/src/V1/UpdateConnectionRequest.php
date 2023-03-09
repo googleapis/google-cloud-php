@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request for [ConnectionService.UpdateConnection][google.cloud.bigquery.connection.v1.ConnectionService.UpdateConnection].
+ * The request for
+ * [ConnectionService.UpdateConnection][google.cloud.bigquery.connection.v1.ConnectionService.UpdateConnection].
  *
  * Generated from protobuf message <code>google.cloud.bigquery.connection.v1.UpdateConnectionRequest</code>
  */
@@ -91,7 +92,7 @@ class UpdateConnectionRequest extends \Google\Protobuf\Internal\Message
      */
     public function getConnection()
     {
-        return isset($this->connection) ? $this->connection : null;
+        return $this->connection;
     }
 
     public function hasConnection()
@@ -127,7 +128,7 @@ class UpdateConnectionRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()

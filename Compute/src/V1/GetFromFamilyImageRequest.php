@@ -18,7 +18,7 @@ class GetFromFamilyImageRequest extends \Google\Protobuf\Internal\Message
     /**
      * Name of the image family to search for.
      *
-     * Generated from protobuf field <code>string family = 60316516 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string family = 328751972 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $family = '';
     /**
@@ -48,7 +48,7 @@ class GetFromFamilyImageRequest extends \Google\Protobuf\Internal\Message
     /**
      * Name of the image family to search for.
      *
-     * Generated from protobuf field <code>string family = 60316516 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string family = 328751972 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getFamily()
@@ -59,7 +59,7 @@ class GetFromFamilyImageRequest extends \Google\Protobuf\Internal\Message
     /**
      * Name of the image family to search for.
      *
-     * Generated from protobuf field <code>string family = 60316516 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string family = 328751972 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */

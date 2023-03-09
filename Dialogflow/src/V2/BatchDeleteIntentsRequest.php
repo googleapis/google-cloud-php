@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request message for [Intents.BatchDeleteIntents][google.cloud.dialogflow.v2.Intents.BatchDeleteIntents].
+ * The request message for
+ * [Intents.BatchDeleteIntents][google.cloud.dialogflow.v2.Intents.BatchDeleteIntents].
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.BatchDeleteIntentsRequest</code>
  */
@@ -39,7 +40,7 @@ class BatchDeleteIntentsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. The name of the agent to delete all entities types for. Format:
      *           `projects/<Project ID>/agent`.
-     *     @type \Google\Cloud\Dialogflow\V2\Intent[]|\Google\Protobuf\Internal\RepeatedField $intents
+     *     @type array<\Google\Cloud\Dialogflow\V2\Intent>|\Google\Protobuf\Internal\RepeatedField $intents
      *           Required. The collection of intents to delete. Only intent `name` must be
      *           filled in.
      * }
@@ -94,7 +95,7 @@ class BatchDeleteIntentsRequest extends \Google\Protobuf\Internal\Message
      * filled in.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent intents = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param \Google\Cloud\Dialogflow\V2\Intent[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dialogflow\V2\Intent>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setIntents($var)

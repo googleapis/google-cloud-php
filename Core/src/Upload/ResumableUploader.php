@@ -23,7 +23,6 @@ use Google\Cloud\Core\Exception\UploadException;
 use Google\Cloud\Core\JsonTrait;
 use Google\Cloud\Core\RequestWrapper;
 use GuzzleHttp\Promise\PromiseInterface;
-use GuzzleHttp\Psr7;
 use GuzzleHttp\Psr7\LimitStream;
 use GuzzleHttp\Psr7\Request;
 use Psr\Http\Message\ResponseInterface;

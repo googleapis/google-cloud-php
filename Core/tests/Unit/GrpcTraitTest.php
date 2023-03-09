@@ -25,7 +25,8 @@ use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\Cloud\Core\GrpcTrait;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\AssertStringContains;
 use Prophecy\Argument;
 
 /**
@@ -33,12 +34,13 @@ use Prophecy\Argument;
  */
 class GrpcTraitTest extends TestCase
 {
+    use AssertStringContains;
     use GrpcTestTrait;
 
     private $implementation;
     private $requestWrapper;
 
-    public function setUp()
+    public function set_up()
     {
         $this->checkAndSkipGrpcTests();
 
@@ -94,6 +96,31 @@ class GrpcTraitTest extends TestCase
         $this->assertEquals($message, $actualResponse);
     }
 
+    public function testSendsRequestWithRetryFunction()
+    {
+        $timesCalled = 0;
+        $options = [
+            'retries' => 1,
+            'grpcRetryFunction' => function (\Exception $ex) {
+                return $ex->getMessage() === 'test retry';
+            }
+        ];
+        $requestWrapper = new GrpcRequestWrapper();
+        $this->implementation->setRequestWrapper($requestWrapper);
+        $actualResponse = $this->implementation->send(
+            function () use (&$timesCalled) {
+                if (2 === ++$timesCalled) {
+                    // succeed on second try
+                    return;
+                }
+                throw new NotFoundException('test retry');
+            },
+            [$options]
+        );
+
+        $this->assertEquals(2, $timesCalled);
+    }
+
     public function testSendsRequestNotFoundWhitelisted()
     {
         $grpcOptions = [
@@ -114,7 +141,7 @@ class GrpcTraitTest extends TestCase
             $msg = $e->getMessage();
         }
 
-        $this->assertContains('NOTE: Error may be due to Whitelist Restriction.', $msg);
+        $this->assertStringContainsString('NOTE: Error may be due to Whitelist Restriction.', $msg);
     }
 
     public function testSendsRequestNotFoundNotWhitelisted()
@@ -137,7 +164,7 @@ class GrpcTraitTest extends TestCase
             $msg = $e->getMessage();
         }
 
-        $this->assertNotContains('NOTE: Error may be due to Whitelist Restriction.', $msg);
+        $this->assertStringNotContainsString('NOTE: Error may be due to Whitelist Restriction.', $msg);
     }
 
     public function testGetsGaxConfig()

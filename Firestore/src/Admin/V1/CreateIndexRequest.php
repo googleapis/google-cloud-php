@@ -83,7 +83,7 @@ class CreateIndexRequest extends \Google\Protobuf\Internal\Message
      */
     public function getIndex()
     {
-        return isset($this->index) ? $this->index : null;
+        return $this->index;
     }
 
     public function hasIndex()

@@ -17,11 +17,10 @@ class Company
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Api\Resource::initOnce();
         \GPBMetadata\Google\Cloud\Talent\V4\Common::initOnce();
-        \GPBMetadata\Google\Api\Annotations::initOnce();
         $pool->internalAddGeneratedFile(
             '
-›
-$google/cloud/talent/v4/company.protogoogle.cloud.talent.v4google/api/resource.proto#google/cloud/talent/v4/common.protogoogle/api/annotations.proto"ƒ
+π
+$google/cloud/talent/v4/company.protogoogle.cloud.talent.v4google/api/resource.proto#google/cloud/talent/v4/common.proto"»
 Company
 name (	
 display_name (	B‡A
@@ -33,14 +32,14 @@ $google/cloud/talent/v4/company.protogoogle.cloud.talent.v4google/api/resour
 website_uri (	
 career_site_uri	 (	
 	image_uri
- (	0
-(keyword_searchable_job_custom_attributes (	F
+ (	4
+(keyword_searchable_job_custom_attributes (	BF
 derived_info (2+.google.cloud.talent.v4.Company.DerivedInfoB‡A
 	suspended (B‡AN
 DerivedInfo?
 headquarters_location (2 .google.cloud.talent.v4.Location:YÍAV
-jobs.googleapis.com/Company7projects/{project}/tenants/{tenant}/companies/{company}Bp
-com.google.cloud.talent.v4BCompanyProtoPZ<google.golang.org/genproto/googleapis/cloud/talent/v4;talent¢CTSbproto3'
+jobs.googleapis.com/Company7projects/{project}/tenants/{tenant}/companies/{company}Bf
+com.google.cloud.talent.v4BCompanyProtoPZ2cloud.google.com/go/talent/apiv4/talentpb;talentpb¢CTSbproto3'
         , true);
 
         static::$is_initialized = true;

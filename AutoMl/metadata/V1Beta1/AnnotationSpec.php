@@ -15,17 +15,16 @@ class AnnotationSpec
           return;
         }
         \GPBMetadata\Google\Api\Resource::initOnce();
-        \GPBMetadata\Google\Api\Annotations::initOnce();
         $pool->internalAddGeneratedFile(
             '
-˜
-1google/cloud/automl/v1beta1/annotation_spec.protogoogle.cloud.automl.v1beta1google/api/annotations.proto"÷
+œ
+1google/cloud/automl/v1beta1/annotation_spec.protogoogle.cloud.automl.v1beta1"÷
 AnnotationSpec
 name (	
 display_name (	
 example_count	 (:àÍAÑ
-$automl.googleapis.com/AnnotationSpec\\projects/{project}/locations/{location}/datasets/{dataset}/annotationSpecs/{annotation_spec}B•
-com.google.cloud.automl.v1beta1PZAgoogle.golang.org/genproto/googleapis/cloud/automl/v1beta1;automl Google\\Cloud\\AutoMl\\V1beta1ÍGoogle::Cloud::AutoML::V1beta1bproto3'
+$automl.googleapis.com/AnnotationSpec\\projects/{project}/locations/{location}/datasets/{dataset}/annotationSpecs/{annotation_spec}Bõ
+com.google.cloud.automl.v1beta1PZ7cloud.google.com/go/automl/apiv1beta1/automlpb;automlpb Google\\Cloud\\AutoMl\\V1beta1ÍGoogle::Cloud::AutoML::V1beta1bproto3'
         , true);
 
         static::$is_initialized = true;

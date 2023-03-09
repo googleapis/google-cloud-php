@@ -1,0 +1,15 @@
+{
+    "title": "LifeSciences",
+    "defaultService": "lifesciences\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "lifesciences\/readme"
+        },
+        {
+            "title": "WorkflowsServiceV2BetaClient (v2beta)",
+            "type": "lifesciences\/v2beta\/workflowsservicev2betaclient"
+        }
+    ],
+    "pattern": "lifesciences\/\\w{1,}"
+}

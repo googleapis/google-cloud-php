@@ -18,21 +18,22 @@ class ResourceCommitment extends \Google\Protobuf\Internal\Message
     /**
      * Name of the accelerator type resource. Applicable only when the type is ACCELERATOR.
      *
-     * Generated from protobuf field <code>string accelerator_type = 138031246;</code>
+     * Generated from protobuf field <code>optional string accelerator_type = 138031246;</code>
      */
-    private $accelerator_type = '';
+    private $accelerator_type = null;
     /**
      * The amount of the resource purchased (in a type-dependent unit, such as bytes). For vCPUs, this can just be an integer. For memory, this must be provided in MB. Memory must be a multiple of 256 MB, with up to 6.5GB of memory per every vCPU.
      *
-     * Generated from protobuf field <code>string amount = 196759640;</code>
+     * Generated from protobuf field <code>optional int64 amount = 196759640;</code>
      */
-    private $amount = '';
+    private $amount = null;
     /**
-     * Type of resource for which this commitment applies. Possible values are VCPU and MEMORY
+     * Type of resource for which this commitment applies. Possible values are VCPU, MEMORY, LOCAL_SSD, and ACCELERATOR.
+     * Check the Type enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ResourceCommitment.Type type = 3575610;</code>
+     * Generated from protobuf field <code>optional string type = 3575610;</code>
      */
-    private $type = 0;
+    private $type = null;
 
     /**
      * Constructor.
@@ -42,10 +43,11 @@ class ResourceCommitment extends \Google\Protobuf\Internal\Message
      *
      *     @type string $accelerator_type
      *           Name of the accelerator type resource. Applicable only when the type is ACCELERATOR.
-     *     @type string $amount
+     *     @type int|string $amount
      *           The amount of the resource purchased (in a type-dependent unit, such as bytes). For vCPUs, this can just be an integer. For memory, this must be provided in MB. Memory must be a multiple of 256 MB, with up to 6.5GB of memory per every vCPU.
-     *     @type int $type
-     *           Type of resource for which this commitment applies. Possible values are VCPU and MEMORY
+     *     @type string $type
+     *           Type of resource for which this commitment applies. Possible values are VCPU, MEMORY, LOCAL_SSD, and ACCELERATOR.
+     *           Check the Type enum for the list of possible values.
      * }
      */
     public function __construct($data = NULL) {
@@ -56,18 +58,28 @@ class ResourceCommitment extends \Google\Protobuf\Internal\Message
     /**
      * Name of the accelerator type resource. Applicable only when the type is ACCELERATOR.
      *
-     * Generated from protobuf field <code>string accelerator_type = 138031246;</code>
+     * Generated from protobuf field <code>optional string accelerator_type = 138031246;</code>
      * @return string
      */
     public function getAcceleratorType()
     {
-        return $this->accelerator_type;
+        return isset($this->accelerator_type) ? $this->accelerator_type : '';
+    }
+
+    public function hasAcceleratorType()
+    {
+        return isset($this->accelerator_type);
+    }
+
+    public function clearAcceleratorType()
+    {
+        unset($this->accelerator_type);
     }
 
     /**
      * Name of the accelerator type resource. Applicable only when the type is ACCELERATOR.
      *
-     * Generated from protobuf field <code>string accelerator_type = 138031246;</code>
+     * Generated from protobuf field <code>optional string accelerator_type = 138031246;</code>
      * @param string $var
      * @return $this
      */
@@ -82,50 +94,72 @@ class ResourceCommitment extends \Google\Protobuf\Internal\Message
     /**
      * The amount of the resource purchased (in a type-dependent unit, such as bytes). For vCPUs, this can just be an integer. For memory, this must be provided in MB. Memory must be a multiple of 256 MB, with up to 6.5GB of memory per every vCPU.
      *
-     * Generated from protobuf field <code>string amount = 196759640;</code>
-     * @return string
+     * Generated from protobuf field <code>optional int64 amount = 196759640;</code>
+     * @return int|string
      */
     public function getAmount()
     {
-        return $this->amount;
+        return isset($this->amount) ? $this->amount : 0;
+    }
+
+    public function hasAmount()
+    {
+        return isset($this->amount);
+    }
+
+    public function clearAmount()
+    {
+        unset($this->amount);
     }
 
     /**
      * The amount of the resource purchased (in a type-dependent unit, such as bytes). For vCPUs, this can just be an integer. For memory, this must be provided in MB. Memory must be a multiple of 256 MB, with up to 6.5GB of memory per every vCPU.
      *
-     * Generated from protobuf field <code>string amount = 196759640;</code>
-     * @param string $var
+     * Generated from protobuf field <code>optional int64 amount = 196759640;</code>
+     * @param int|string $var
      * @return $this
      */
     public function setAmount($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkInt64($var);
         $this->amount = $var;
 
         return $this;
     }
 
     /**
-     * Type of resource for which this commitment applies. Possible values are VCPU and MEMORY
+     * Type of resource for which this commitment applies. Possible values are VCPU, MEMORY, LOCAL_SSD, and ACCELERATOR.
+     * Check the Type enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ResourceCommitment.Type type = 3575610;</code>
-     * @return int
+     * Generated from protobuf field <code>optional string type = 3575610;</code>
+     * @return string
      */
     public function getType()
     {
-        return $this->type;
+        return isset($this->type) ? $this->type : '';
+    }
+
+    public function hasType()
+    {
+        return isset($this->type);
+    }
+
+    public function clearType()
+    {
+        unset($this->type);
     }
 
     /**
-     * Type of resource for which this commitment applies. Possible values are VCPU and MEMORY
+     * Type of resource for which this commitment applies. Possible values are VCPU, MEMORY, LOCAL_SSD, and ACCELERATOR.
+     * Check the Type enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ResourceCommitment.Type type = 3575610;</code>
-     * @param int $var
+     * Generated from protobuf field <code>optional string type = 3575610;</code>
+     * @param string $var
      * @return $this
      */
     public function setType($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Compute\V1\ResourceCommitment\Type::class);
+        GPBUtil::checkString($var, True);
         $this->type = $var;
 
         return $this;

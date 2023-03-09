@@ -17,7 +17,8 @@ class DerivedInfo extends \Google\Protobuf\Internal\Message
 {
     /**
      * A structured headquarters location of the company, resolved from
-     * [Company.headquarters_address][google.cloud.talent.v4.Company.headquarters_address] if provided.
+     * [Company.headquarters_address][google.cloud.talent.v4.Company.headquarters_address]
+     * if provided.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4.Location headquarters_location = 1;</code>
      */
@@ -31,7 +32,8 @@ class DerivedInfo extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Talent\V4\Location $headquarters_location
      *           A structured headquarters location of the company, resolved from
-     *           [Company.headquarters_address][google.cloud.talent.v4.Company.headquarters_address] if provided.
+     *           [Company.headquarters_address][google.cloud.talent.v4.Company.headquarters_address]
+     *           if provided.
      * }
      */
     public function __construct($data = NULL) {
@@ -41,14 +43,15 @@ class DerivedInfo extends \Google\Protobuf\Internal\Message
 
     /**
      * A structured headquarters location of the company, resolved from
-     * [Company.headquarters_address][google.cloud.talent.v4.Company.headquarters_address] if provided.
+     * [Company.headquarters_address][google.cloud.talent.v4.Company.headquarters_address]
+     * if provided.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4.Location headquarters_location = 1;</code>
      * @return \Google\Cloud\Talent\V4\Location|null
      */
     public function getHeadquartersLocation()
     {
-        return isset($this->headquarters_location) ? $this->headquarters_location : null;
+        return $this->headquarters_location;
     }
 
     public function hasHeadquartersLocation()
@@ -63,7 +66,8 @@ class DerivedInfo extends \Google\Protobuf\Internal\Message
 
     /**
      * A structured headquarters location of the company, resolved from
-     * [Company.headquarters_address][google.cloud.talent.v4.Company.headquarters_address] if provided.
+     * [Company.headquarters_address][google.cloud.talent.v4.Company.headquarters_address]
+     * if provided.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4.Location headquarters_location = 1;</code>
      * @param \Google\Cloud\Talent\V4\Location $var
@@ -79,6 +83,4 @@ class DerivedInfo extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(DerivedInfo::class, \Google\Cloud\Talent\V4\Company_DerivedInfo::class);
 

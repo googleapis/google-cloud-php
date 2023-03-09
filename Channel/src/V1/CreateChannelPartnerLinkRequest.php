@@ -9,16 +9,17 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [CloudChannelService.CreateChannelPartnerLink][google.cloud.channel.v1.CloudChannelService.CreateChannelPartnerLink]
+ * Request message for
+ * [CloudChannelService.CreateChannelPartnerLink][google.cloud.channel.v1.CloudChannelService.CreateChannelPartnerLink]
  *
  * Generated from protobuf message <code>google.cloud.channel.v1.CreateChannelPartnerLinkRequest</code>
  */
 class CreateChannelPartnerLinkRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name of reseller's account for which to create a channel
-     * partner link.
-     * The parent takes the format: accounts/{account_id}
+     * Required. Create a channel partner link for the provided reseller account's
+     * resource name.
+     * Parent uses the format: accounts/{account_id}
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -31,14 +32,6 @@ class CreateChannelPartnerLinkRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.channel.v1.ChannelPartnerLink channel_partner_link = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $channel_partner_link = null;
-    /**
-     * Optional. The invited partner's domain. Either domain or
-     * channel_partner_link.reseller_cloud_identity_id can be used to create a
-     * link.
-     *
-     * Generated from protobuf field <code>string domain = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     */
-    private $domain = '';
 
     /**
      * Constructor.
@@ -47,17 +40,13 @@ class CreateChannelPartnerLinkRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The resource name of reseller's account for which to create a channel
-     *           partner link.
-     *           The parent takes the format: accounts/{account_id}
+     *           Required. Create a channel partner link for the provided reseller account's
+     *           resource name.
+     *           Parent uses the format: accounts/{account_id}
      *     @type \Google\Cloud\Channel\V1\ChannelPartnerLink $channel_partner_link
      *           Required. The channel partner link to create.
      *           Either channel_partner_link.reseller_cloud_identity_id or domain can be
      *           used to create a link.
-     *     @type string $domain
-     *           Optional. The invited partner's domain. Either domain or
-     *           channel_partner_link.reseller_cloud_identity_id can be used to create a
-     *           link.
      * }
      */
     public function __construct($data = NULL) {
@@ -66,9 +55,9 @@ class CreateChannelPartnerLinkRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of reseller's account for which to create a channel
-     * partner link.
-     * The parent takes the format: accounts/{account_id}
+     * Required. Create a channel partner link for the provided reseller account's
+     * resource name.
+     * Parent uses the format: accounts/{account_id}
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -79,9 +68,9 @@ class CreateChannelPartnerLinkRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of reseller's account for which to create a channel
-     * partner link.
-     * The parent takes the format: accounts/{account_id}
+     * Required. Create a channel partner link for the provided reseller account's
+     * resource name.
+     * Parent uses the format: accounts/{account_id}
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -101,11 +90,11 @@ class CreateChannelPartnerLinkRequest extends \Google\Protobuf\Internal\Message
      * used to create a link.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.ChannelPartnerLink channel_partner_link = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Channel\V1\ChannelPartnerLink
+     * @return \Google\Cloud\Channel\V1\ChannelPartnerLink|null
      */
     public function getChannelPartnerLink()
     {
-        return isset($this->channel_partner_link) ? $this->channel_partner_link : null;
+        return $this->channel_partner_link;
     }
 
     public function hasChannelPartnerLink()
@@ -131,36 +120,6 @@ class CreateChannelPartnerLinkRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Channel\V1\ChannelPartnerLink::class);
         $this->channel_partner_link = $var;
-
-        return $this;
-    }
-
-    /**
-     * Optional. The invited partner's domain. Either domain or
-     * channel_partner_link.reseller_cloud_identity_id can be used to create a
-     * link.
-     *
-     * Generated from protobuf field <code>string domain = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return string
-     */
-    public function getDomain()
-    {
-        return $this->domain;
-    }
-
-    /**
-     * Optional. The invited partner's domain. Either domain or
-     * channel_partner_link.reseller_cloud_identity_id can be used to create a
-     * link.
-     *
-     * Generated from protobuf field <code>string domain = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setDomain($var)
-    {
-        GPBUtil::checkString($var, True);
-        $this->domain = $var;
 
         return $this;
     }

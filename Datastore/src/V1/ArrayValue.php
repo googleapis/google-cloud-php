@@ -30,7 +30,7 @@ class ArrayValue extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Datastore\V1\Value[]|\Google\Protobuf\Internal\RepeatedField $values
+     *     @type array<\Google\Cloud\Datastore\V1\Value>|\Google\Protobuf\Internal\RepeatedField $values
      *           Values in the array.
      *           The order of values in an array is preserved as long as all values have
      *           identical settings for 'exclude_from_indexes'.
@@ -60,7 +60,7 @@ class ArrayValue extends \Google\Protobuf\Internal\Message
      * identical settings for 'exclude_from_indexes'.
      *
      * Generated from protobuf field <code>repeated .google.datastore.v1.Value values = 1;</code>
-     * @param \Google\Cloud\Datastore\V1\Value[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Datastore\V1\Value>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setValues($var)

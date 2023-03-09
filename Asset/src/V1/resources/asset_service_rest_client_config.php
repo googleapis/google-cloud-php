@@ -3,14 +3,71 @@
 return [
     'interfaces' => [
         'google.cloud.asset.v1.AssetService' => [
-            'ExportAssets' => [
+            'AnalyzeIamPolicy' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{analysis_query.scope=*/*}:analyzeIamPolicy',
+                'placeholders' => [
+                    'analysis_query.scope' => [
+                        'getters' => [
+                            'getAnalysisQuery',
+                            'getScope',
+                        ],
+                    ],
+                ],
+            ],
+            'AnalyzeIamPolicyLongrunning' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1/{parent=*/*}:exportAssets',
+                'uriTemplate' => '/v1/{analysis_query.scope=*/*}:analyzeIamPolicyLongrunning',
                 'body' => '*',
                 'placeholders' => [
-                    'parent' => [
+                    'analysis_query.scope' => [
                         'getters' => [
-                            'getParent',
+                            'getAnalysisQuery',
+                            'getScope',
+                        ],
+                    ],
+                ],
+            ],
+            'AnalyzeMove' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{resource=*/*}:analyzeMove',
+                'placeholders' => [
+                    'resource' => [
+                        'getters' => [
+                            'getResource',
+                        ],
+                    ],
+                ],
+            ],
+            'AnalyzeOrgPolicies' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{scope=*/*}:analyzeOrgPolicies',
+                'placeholders' => [
+                    'scope' => [
+                        'getters' => [
+                            'getScope',
+                        ],
+                    ],
+                ],
+            ],
+            'AnalyzeOrgPolicyGovernedAssets' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{scope=*/*}:analyzeOrgPolicyGovernedAssets',
+                'placeholders' => [
+                    'scope' => [
+                        'getters' => [
+                            'getScope',
+                        ],
+                    ],
+                ],
+            ],
+            'AnalyzeOrgPolicyGovernedContainers' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{scope=*/*}:analyzeOrgPolicyGovernedContainers',
+                'placeholders' => [
+                    'scope' => [
+                        'getters' => [
+                            'getScope',
                         ],
                     ],
                 ],
@@ -26,9 +83,69 @@ return [
                     ],
                 ],
             ],
+            'BatchGetEffectiveIamPolicies' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{scope=*/*}/effectiveIamPolicies:batchGet',
+                'placeholders' => [
+                    'scope' => [
+                        'getters' => [
+                            'getScope',
+                        ],
+                    ],
+                ],
+            ],
             'CreateFeed' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=*/*}/feeds',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateSavedQuery' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=*/*}/savedQueries',
+                'body' => 'saved_query',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'saved_query_id',
+                ],
+            ],
+            'DeleteFeed' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=*/*/feeds/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteSavedQuery' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=*/*/savedQueries/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ExportAssets' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=*/*}:exportAssets',
                 'body' => '*',
                 'placeholders' => [
                     'parent' => [
@@ -49,6 +166,28 @@ return [
                     ],
                 ],
             ],
+            'GetSavedQuery' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=*/*/savedQueries/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListAssets' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=*/*}/assets',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListFeeds' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=*/*}/feeds',
@@ -56,6 +195,51 @@ return [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListSavedQueries' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=*/*}/savedQueries',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'QueryAssets' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=*/*}:queryAssets',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'SearchAllIamPolicies' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{scope=*/*}:searchAllIamPolicies',
+                'placeholders' => [
+                    'scope' => [
+                        'getters' => [
+                            'getScope',
+                        ],
+                    ],
+                ],
+            ],
+            'SearchAllResources' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{scope=*/*}:searchAllResources',
+                'placeholders' => [
+                    'scope' => [
+                        'getters' => [
+                            'getScope',
                         ],
                     ],
                 ],
@@ -73,74 +257,27 @@ return [
                     ],
                 ],
             ],
-            'DeleteFeed' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v1/{name=*/*/feeds/*}',
+            'UpdateSavedQuery' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{saved_query.name=*/*/savedQueries/*}',
+                'body' => 'saved_query',
                 'placeholders' => [
-                    'name' => [
+                    'saved_query.name' => [
                         'getters' => [
+                            'getSavedQuery',
                             'getName',
                         ],
                     ],
                 ],
-            ],
-            'SearchAllResources' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{scope=*/*}:searchAllResources',
-                'placeholders' => [
-                    'scope' => [
-                        'getters' => [
-                            'getScope',
-                        ],
-                    ],
-                ],
-            ],
-            'SearchAllIamPolicies' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{scope=*/*}:searchAllIamPolicies',
-                'placeholders' => [
-                    'scope' => [
-                        'getters' => [
-                            'getScope',
-                        ],
-                    ],
+                'queryParams' => [
+                    'update_mask',
                 ],
             ],
         ],
         'google.longrunning.Operations' => [
             'GetOperation' => [
                 'method' => 'get',
-                'uriTemplate' => '/v1alpha1/{name=projects/*/operations/*/*}',
-                'additionalBindings' => [
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v1alpha1/{name=organizations/*/operations/*/*}',
-                    ],
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v1alpha2/{name=projects/*/operations/*/*}',
-                    ],
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v1alpha2/{name=organizations/*/operations/*/*}',
-                    ],
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v1beta1/{name=projects/*/operations/*/*}',
-                    ],
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v1beta1/{name=folders/*/operations/*/*}',
-                    ],
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v1beta1/{name=organizations/*/operations/*/*}',
-                    ],
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v1/{name=*/*/operations/*/*}',
-                    ],
-                ],
+                'uriTemplate' => '/v1/{name=*/*/operations/*/**}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -151,4 +288,5 @@ return [
             ],
         ],
     ],
+    'numericEnums' => true,
 ];

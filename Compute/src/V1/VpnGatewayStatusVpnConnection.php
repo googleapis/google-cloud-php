@@ -18,19 +18,19 @@ class VpnGatewayStatusVpnConnection extends \Google\Protobuf\Internal\Message
     /**
      * URL reference to the peer external VPN gateways to which the VPN tunnels in this VPN connection are connected. This field is mutually exclusive with peer_gcp_gateway.
      *
-     * Generated from protobuf field <code>string peer_external_gateway = 116520717;</code>
+     * Generated from protobuf field <code>optional string peer_external_gateway = 384956173;</code>
      */
-    private $peer_external_gateway = '';
+    private $peer_external_gateway = null;
     /**
      * URL reference to the peer side VPN gateways to which the VPN tunnels in this VPN connection are connected. This field is mutually exclusive with peer_gcp_gateway.
      *
-     * Generated from protobuf field <code>string peer_gcp_gateway = 13431996;</code>
+     * Generated from protobuf field <code>optional string peer_gcp_gateway = 281867452;</code>
      */
-    private $peer_gcp_gateway = '';
+    private $peer_gcp_gateway = null;
     /**
      * HighAvailabilityRequirementState for the VPN connection.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.VpnGatewayStatusHighAvailabilityRequirementState state = 109757585;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.VpnGatewayStatusHighAvailabilityRequirementState state = 109757585;</code>
      */
     private $state = null;
     /**
@@ -52,7 +52,7 @@ class VpnGatewayStatusVpnConnection extends \Google\Protobuf\Internal\Message
      *           URL reference to the peer side VPN gateways to which the VPN tunnels in this VPN connection are connected. This field is mutually exclusive with peer_gcp_gateway.
      *     @type \Google\Cloud\Compute\V1\VpnGatewayStatusHighAvailabilityRequirementState $state
      *           HighAvailabilityRequirementState for the VPN connection.
-     *     @type \Google\Cloud\Compute\V1\VpnGatewayStatusTunnel[]|\Google\Protobuf\Internal\RepeatedField $tunnels
+     *     @type array<\Google\Cloud\Compute\V1\VpnGatewayStatusTunnel>|\Google\Protobuf\Internal\RepeatedField $tunnels
      *           List of VPN tunnels that are in this VPN connection.
      * }
      */
@@ -64,18 +64,28 @@ class VpnGatewayStatusVpnConnection extends \Google\Protobuf\Internal\Message
     /**
      * URL reference to the peer external VPN gateways to which the VPN tunnels in this VPN connection are connected. This field is mutually exclusive with peer_gcp_gateway.
      *
-     * Generated from protobuf field <code>string peer_external_gateway = 116520717;</code>
+     * Generated from protobuf field <code>optional string peer_external_gateway = 384956173;</code>
      * @return string
      */
     public function getPeerExternalGateway()
     {
-        return $this->peer_external_gateway;
+        return isset($this->peer_external_gateway) ? $this->peer_external_gateway : '';
+    }
+
+    public function hasPeerExternalGateway()
+    {
+        return isset($this->peer_external_gateway);
+    }
+
+    public function clearPeerExternalGateway()
+    {
+        unset($this->peer_external_gateway);
     }
 
     /**
      * URL reference to the peer external VPN gateways to which the VPN tunnels in this VPN connection are connected. This field is mutually exclusive with peer_gcp_gateway.
      *
-     * Generated from protobuf field <code>string peer_external_gateway = 116520717;</code>
+     * Generated from protobuf field <code>optional string peer_external_gateway = 384956173;</code>
      * @param string $var
      * @return $this
      */
@@ -90,18 +100,28 @@ class VpnGatewayStatusVpnConnection extends \Google\Protobuf\Internal\Message
     /**
      * URL reference to the peer side VPN gateways to which the VPN tunnels in this VPN connection are connected. This field is mutually exclusive with peer_gcp_gateway.
      *
-     * Generated from protobuf field <code>string peer_gcp_gateway = 13431996;</code>
+     * Generated from protobuf field <code>optional string peer_gcp_gateway = 281867452;</code>
      * @return string
      */
     public function getPeerGcpGateway()
     {
-        return $this->peer_gcp_gateway;
+        return isset($this->peer_gcp_gateway) ? $this->peer_gcp_gateway : '';
+    }
+
+    public function hasPeerGcpGateway()
+    {
+        return isset($this->peer_gcp_gateway);
+    }
+
+    public function clearPeerGcpGateway()
+    {
+        unset($this->peer_gcp_gateway);
     }
 
     /**
      * URL reference to the peer side VPN gateways to which the VPN tunnels in this VPN connection are connected. This field is mutually exclusive with peer_gcp_gateway.
      *
-     * Generated from protobuf field <code>string peer_gcp_gateway = 13431996;</code>
+     * Generated from protobuf field <code>optional string peer_gcp_gateway = 281867452;</code>
      * @param string $var
      * @return $this
      */
@@ -116,12 +136,12 @@ class VpnGatewayStatusVpnConnection extends \Google\Protobuf\Internal\Message
     /**
      * HighAvailabilityRequirementState for the VPN connection.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.VpnGatewayStatusHighAvailabilityRequirementState state = 109757585;</code>
-     * @return \Google\Cloud\Compute\V1\VpnGatewayStatusHighAvailabilityRequirementState
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.VpnGatewayStatusHighAvailabilityRequirementState state = 109757585;</code>
+     * @return \Google\Cloud\Compute\V1\VpnGatewayStatusHighAvailabilityRequirementState|null
      */
     public function getState()
     {
-        return isset($this->state) ? $this->state : null;
+        return $this->state;
     }
 
     public function hasState()
@@ -137,7 +157,7 @@ class VpnGatewayStatusVpnConnection extends \Google\Protobuf\Internal\Message
     /**
      * HighAvailabilityRequirementState for the VPN connection.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.VpnGatewayStatusHighAvailabilityRequirementState state = 109757585;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.VpnGatewayStatusHighAvailabilityRequirementState state = 109757585;</code>
      * @param \Google\Cloud\Compute\V1\VpnGatewayStatusHighAvailabilityRequirementState $var
      * @return $this
      */
@@ -164,7 +184,7 @@ class VpnGatewayStatusVpnConnection extends \Google\Protobuf\Internal\Message
      * List of VPN tunnels that are in this VPN connection.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.VpnGatewayStatusTunnel tunnels = 104561931;</code>
-     * @param \Google\Cloud\Compute\V1\VpnGatewayStatusTunnel[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\VpnGatewayStatusTunnel>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTunnels($var)

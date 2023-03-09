@@ -305,7 +305,7 @@ class TextSentimentEvaluationMetrics extends \Google\Protobuf\Internal\Message
      */
     public function getConfusionMatrix()
     {
-        return isset($this->confusion_matrix) ? $this->confusion_matrix : null;
+        return $this->confusion_matrix;
     }
 
     public function hasConfusionMatrix()

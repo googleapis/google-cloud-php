@@ -7,14 +7,14 @@ return [
                 'method' => 'delete',
                 'uriTemplate' => '/compute/v1/projects/{project}/global/interconnects/{interconnect}',
                 'placeholders' => [
-                    'project' => [
-                        'getters' => [
-                            'getProject',
-                        ],
-                    ],
                     'interconnect' => [
                         'getters' => [
                             'getInterconnect',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
                         ],
                     ],
                 ],
@@ -23,14 +23,14 @@ return [
                 'method' => 'get',
                 'uriTemplate' => '/compute/v1/projects/{project}/global/interconnects/{interconnect}',
                 'placeholders' => [
-                    'project' => [
-                        'getters' => [
-                            'getProject',
-                        ],
-                    ],
                     'interconnect' => [
                         'getters' => [
                             'getInterconnect',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
                         ],
                     ],
                 ],
@@ -39,14 +39,14 @@ return [
                 'method' => 'get',
                 'uriTemplate' => '/compute/v1/projects/{project}/global/interconnects/{interconnect}/getDiagnostics',
                 'placeholders' => [
-                    'project' => [
-                        'getters' => [
-                            'getProject',
-                        ],
-                    ],
                     'interconnect' => [
                         'getters' => [
                             'getInterconnect',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
                         ],
                     ],
                 ],
@@ -79,14 +79,103 @@ return [
                 'uriTemplate' => '/compute/v1/projects/{project}/global/interconnects/{interconnect}',
                 'body' => 'interconnect_resource',
                 'placeholders' => [
+                    'interconnect' => [
+                        'getters' => [
+                            'getInterconnect',
+                        ],
+                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
                         ],
                     ],
-                    'interconnect' => [
+                ],
+            ],
+            'SetLabels' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/global/interconnects/{resource}/setLabels',
+                'body' => 'global_set_labels_request_resource',
+                'placeholders' => [
+                    'project' => [
                         'getters' => [
-                            'getInterconnect',
+                            'getProject',
+                        ],
+                    ],
+                    'resource' => [
+                        'getters' => [
+                            'getResource',
+                        ],
+                    ],
+                ],
+            ],
+        ],
+        'google.cloud.compute.v1.GlobalOperations' => [
+            'AggregatedList' => [
+                'method' => 'get',
+                'uriTemplate' => '/compute/v1/projects/{project}/aggregated/operations',
+                'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                ],
+            ],
+            'Delete' => [
+                'method' => 'delete',
+                'uriTemplate' => '/compute/v1/projects/{project}/global/operations/{operation}',
+                'placeholders' => [
+                    'operation' => [
+                        'getters' => [
+                            'getOperation',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                ],
+            ],
+            'Get' => [
+                'method' => 'get',
+                'uriTemplate' => '/compute/v1/projects/{project}/global/operations/{operation}',
+                'placeholders' => [
+                    'operation' => [
+                        'getters' => [
+                            'getOperation',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                ],
+            ],
+            'List' => [
+                'method' => 'get',
+                'uriTemplate' => '/compute/v1/projects/{project}/global/operations',
+                'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                ],
+            ],
+            'Wait' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/global/operations/{operation}/wait',
+                'placeholders' => [
+                    'operation' => [
+                        'getters' => [
+                            'getOperation',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
                         ],
                     ],
                 ],

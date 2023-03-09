@@ -4,7 +4,7 @@
 
 [![Latest Stable Version](https://poser.pugx.org/google/cloud-videointelligence/v/stable)](https://packagist.org/packages/google/cloud-videointelligence) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-videointelligence.svg)](https://packagist.org/packages/google/cloud-videointelligence)
 
-* [API documentation](http://googleapis.github.io/google-cloud-php/#/docs/cloud-videointelligence/latest)
+* [API documentation](https://cloud.google.com/php/docs/reference/cloud-videointelligence/latest)
 
 **NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googleapis/google-cloud-php). Any
 support requests, bug reports, or development contributions should be directed to
@@ -17,7 +17,7 @@ per segment, per shot, and per frame.
 **NOTE:** This documentation covers the most recent stable release (V1). There is an additional beta release included
 in this component. To check out its documentation, see the link below:
 
-* [VideoIntelligence V1beta2 client](https://googleapis.github.io/google-cloud-php/#/docs/google-cloud/latest/videointelligence/v1beta2/videointelligenceserviceclient)
+* [VideoIntelligence](https://cloud.google.com/php/docs/reference/cloud-videointelligence/latest))
 
 ### Installation
 
@@ -40,7 +40,7 @@ please see our [gRPC installation guide](https://cloud.google.com/php/grpc).
 
 ### Authentication
 
-Please see our [Authentication guide](https://github.com/googleapis/google-cloud-php/blob/master/AUTHENTICATION.md) for more information
+Please see our [Authentication guide](https://github.com/googleapis/google-cloud-php/blob/main/AUTHENTICATION.md) for more information
 on authenticating your client. Once authenticated, you'll be ready to start making requests.
 
 ### Sample

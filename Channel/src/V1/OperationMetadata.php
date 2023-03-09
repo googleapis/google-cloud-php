@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Provides contextual information about a [google.longrunning.Operation][google.longrunning.Operation].
+ * Provides contextual information about a
+ * [google.longrunning.Operation][google.longrunning.Operation].
  *
  * Generated from protobuf message <code>google.cloud.channel.v1.OperationMetadata</code>
  */

@@ -83,7 +83,7 @@ class CreateAssessmentRequest extends \Google\Protobuf\Internal\Message
      */
     public function getAssessment()
     {
-        return isset($this->assessment) ? $this->assessment : null;
+        return $this->assessment;
     }
 
     public function hasAssessment()

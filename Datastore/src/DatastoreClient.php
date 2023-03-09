@@ -73,6 +73,16 @@ use Psr\Http\Message\StreamInterface;
  *
  * $datastore = new DatastoreClient();
  * ```
+ *
+ * ```
+ * // Multi-database applications can supply a database ID.
+ * use Google\Cloud\Datastore\DatastoreClient;
+ *
+ * $datastore = new DatastoreClient([
+ *     'namespaceId' => 'my-application-namespace',
+ *     'databaseId' => 'my-database'
+ * ]);
+ * ```
  */
 class DatastoreClient
 {
@@ -80,7 +90,7 @@ class DatastoreClient
     use ClientTrait;
     use DatastoreTrait;
 
-    const VERSION = '1.12.4';
+    const VERSION = '1.19.0';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/datastore';
 
@@ -134,6 +144,7 @@ class DatastoreClient
      *           access charges associated with the request.
      *     @type string $namespaceId Partitions data under a namespace. Useful for
      *           [Multitenant Projects](https://cloud.google.com/datastore/docs/concepts/multitenancy).
+     *     @type string $databaseId ID of the database to which the entities belong.
      *     @type bool $returnInt64AsObject If true, 64 bit integers will be
      *           returned as a {@see Google\Cloud\Core\Int64} object for 32 bit
      *           platform compatibility. **Defaults to** false.
@@ -148,6 +159,7 @@ class DatastoreClient
 
         $config += [
             'namespaceId' => null,
+            'databaseId' => '',
             'returnInt64AsObject' => false,
             'scopes' => [self::FULL_CONTROL_SCOPE],
             'projectIdRequired' => true,
@@ -167,7 +179,8 @@ class DatastoreClient
             $this->connection,
             $this->projectId,
             $config['namespaceId'],
-            $this->entityMapper
+            $this->entityMapper,
+            $config['databaseId']
         );
     }
 
@@ -530,6 +543,7 @@ class DatastoreClient
      *
      *     @type array $transactionOptions Transaction configuration. See
      *           [ReadWrite](https://cloud.google.com/datastore/docs/reference/rest/v1/projects/beginTransaction#ReadWrite).
+     *     @type string $databaseId ID of the database to which the entities belong.
      * }
      * @return Transaction
      * @codingStandardsIgnoreEnd
@@ -554,6 +568,10 @@ class DatastoreClient
      * ```
      * $transaction = $datastore->readOnlyTransaction();
      * ```
+     * Example with readTime option:
+     * ```
+     * $transaction = $datastore->readOnlyTransaction(['transactionOptions' => ['readTime' => $time]]);
+     * ```
      *
      * @see https://cloud.google.com/datastore/docs/concepts/transactions Datastore Transactions
      * @see https://cloud.google.com/datastore/docs/reference/rest/v1/projects/beginTransaction beginTransaction
@@ -564,6 +582,7 @@ class DatastoreClient
      *
      *     @type array $transactionOptions See
      *           [ReadOnly](https://cloud.google.com/datastore/docs/reference/rest/v1/projects/beginTransaction#ReadOnly).
+     *     @type string $databaseId ID of the database to which the entities belong.
      * }
      * @return ReadOnlyTransaction
      * @codingStandardsIgnoreEnd
@@ -914,6 +933,15 @@ class DatastoreClient
      *     echo $entity['firstName']; // 'Bob'
      * }
      * ```
+     * Example with readTime:
+     * ```
+     * $key = $datastore->key('Person', 'Bob');
+     *
+     * $entity = $datastore->lookup($key, ['readTime' => $time]);
+     * if (!is_null($entity)) {
+     *     echo $entity['firstName']; // 'Bob'
+     * }
+     * ```
      *
      * @see https://cloud.google.com/datastore/docs/reference/rest/v1/projects/lookup Lookup API documentation
      *
@@ -927,6 +955,8 @@ class DatastoreClient
      *           Value must be the name of a class implementing
      *           {@see Google\Cloud\Datastore\EntityInterface}. **Defaults to**
      *           {@see Google\Cloud\Datastore\Entity}.
+     *     @type string $databaseId ID of the database to which the entities belong.
+     *     @type Timestamp $readTime Reads entities as they were at the given timestamp.
      * }
      * @return EntityInterface|null
      */
@@ -958,6 +988,19 @@ class DatastoreClient
      *     echo $entity['firstName'] . PHP_EOL;
      * }
      * ```
+     * Example with readTime:
+     * ```
+     * $keys = [
+     *     $datastore->key('Person', 'Bob'),
+     *     $datastore->key('Person', 'John')
+     * ];
+     *
+     * $entities = $datastore->lookupBatch($keys, ['readTime' => $time]);
+     *
+     * foreach ($entities['found'] as $entity) {
+     *     echo $entity['firstName'] . PHP_EOL;
+     * }
+     * ```
      *
      * @see https://cloud.google.com/datastore/docs/reference/rest/v1/projects/lookup Lookup API documentation
      *
@@ -976,6 +1019,8 @@ class DatastoreClient
      *           {@see Google\Cloud\Datastore\Entity}.
      *     @type bool $sort If set to true, results in each set will be sorted
      *           to match the order given in $keys. **Defaults to** `false`.
+     *     @type string $databaseId ID of the database to which the entities belong.
+     *     @type Timestamp $readTime Reads entities as they were at the given timestamp.
      * }
      * @return array Returns an array with keys [`found`, `missing`, and `deferred`].
      *         Members of `found` will be instance of
@@ -1095,6 +1140,14 @@ class DatastoreClient
      *     echo $entity['firstName'];
      * }
      * ```
+     * Example with readTime:
+     * ```
+     * $result = $datastore->runQuery($query, ['readTime' => $time]);
+     *
+     * foreach ($result as $entity) {
+     *     echo $entity['firstName'];
+     * }
+     * ```
      *
      * @see https://cloud.google.com/datastore/docs/reference/rest/v1/projects/runQuery RunQuery API documentation
      *
@@ -1108,6 +1161,7 @@ class DatastoreClient
      *           {@see Google\Cloud\Datastore\Entity}.
      *     @type string $readConsistency See
      *           [ReadConsistency](https://cloud.google.com/datastore/reference/rest/v1/ReadOptions#ReadConsistency).
+     *     @type Timestamp $readTime Reads entities as they were at the given timestamp.
      * }
      * @return EntityIterator<EntityInterface>
      */

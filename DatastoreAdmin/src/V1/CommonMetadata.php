@@ -77,11 +77,11 @@ class CommonMetadata extends \Google\Protobuf\Internal\Message
      * The time that work began on the operation.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 1;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getStartTime()
     {
-        return isset($this->start_time) ? $this->start_time : null;
+        return $this->start_time;
     }
 
     public function hasStartTime()
@@ -113,11 +113,11 @@ class CommonMetadata extends \Google\Protobuf\Internal\Message
      * The time the operation ended, either successfully or otherwise.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 2;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getEndTime()
     {
-        return isset($this->end_time) ? $this->end_time : null;
+        return $this->end_time;
     }
 
     public function hasEndTime()

@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\HealthCheck;
 use UnexpectedValueException;
 
 /**
- * Specifies the type of the healthCheck, either TCP, SSL, HTTP, HTTPS or HTTP2. If not specified, the default is TCP. Exactly one of the protocol-specific health check field must be specified, which must match type field.
+ * Specifies the type of the healthCheck, either TCP, SSL, HTTP, HTTPS, HTTP2 or GRPC. Exactly one of the protocol-specific health check fields must be specified, which must match type field.
  *
  * Protobuf type <code>google.cloud.compute.v1.HealthCheck.Type</code>
  */
@@ -36,9 +36,9 @@ class Type
      */
     const HTTPS = 69079243;
     /**
-     * Generated from protobuf enum <code>INVALID = 261848535;</code>
+     * Generated from protobuf enum <code>INVALID = 530283991;</code>
      */
-    const INVALID = 261848535;
+    const INVALID = 530283991;
     /**
      * Generated from protobuf enum <code>SSL = 82412;</code>
      */

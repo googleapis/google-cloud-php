@@ -79,11 +79,11 @@ class AccessSecretVersionResponse extends \Google\Protobuf\Internal\Message
      * Secret payload
      *
      * Generated from protobuf field <code>.google.cloud.secrets.v1beta1.SecretPayload payload = 2;</code>
-     * @return \Google\Cloud\SecretManager\V1beta1\SecretPayload
+     * @return \Google\Cloud\SecretManager\V1beta1\SecretPayload|null
      */
     public function getPayload()
     {
-        return isset($this->payload) ? $this->payload : null;
+        return $this->payload;
     }
 
     public function hasPayload()

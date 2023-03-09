@@ -211,6 +211,7 @@ class FirestoreSessionHandler implements SessionHandlerInterface
      *        used in the Firestore collection ID.
      * @return bool
      */
+    #[\ReturnTypeWillChange]
     public function open($savePath, $sessionName)
     {
         $this->savePath = $savePath;
@@ -241,6 +242,7 @@ class FirestoreSessionHandler implements SessionHandlerInterface
     /**
      * Close the transaction and commit any changes.
      */
+    #[\ReturnTypeWillChange]
     public function close()
     {
         if (is_null($this->transaction)) {
@@ -264,6 +266,7 @@ class FirestoreSessionHandler implements SessionHandlerInterface
      * @param string $id Identifier used for the session.
      * @return string
      */
+    #[\ReturnTypeWillChange]
     public function read($id)
     {
         $this->id = $id;
@@ -298,6 +301,7 @@ class FirestoreSessionHandler implements SessionHandlerInterface
      * @param string $data The session data to write to the Firestore document.
      * @return bool
      */
+    #[\ReturnTypeWillChange]
     public function write($id, $data)
     {
         $docRef = $this->getDocumentReference(
@@ -320,6 +324,7 @@ class FirestoreSessionHandler implements SessionHandlerInterface
      * @param string $id Identifier used for the session
      * @return bool
      */
+    #[\ReturnTypeWillChange]
     public function destroy($id)
     {
         $docRef = $this->getDocumentReference(
@@ -340,6 +345,7 @@ class FirestoreSessionHandler implements SessionHandlerInterface
      *        in seconds.
      * @return int|bool
      */
+    #[\ReturnTypeWillChange]
     public function gc($maxlifetime)
     {
         if (0 === $this->options['gcLimit']) {

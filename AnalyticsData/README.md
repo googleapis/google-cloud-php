@@ -4,7 +4,7 @@
 
 [![Latest Stable Version](https://poser.pugx.org/google/analytics-data/v/stable)](https://packagist.org/packages/google/analytics-data) [![Packagist](https://img.shields.io/packagist/dm/google/analytics-data.svg)](https://packagist.org/packages/google/analytics-data)
 
-* [API documentation](http://googleapis.github.io/google-cloud-php/#/docs/analytics-data/latest/analyticsdata/readme)
+* [API documentation](https://cloud.google.com/php/docs/reference/analytics-data/latest)
 
 **NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googleapis/google-cloud-php). Any
 support requests, bug reports, or development contributions should be directed to
@@ -31,7 +31,7 @@ please see our [gRPC installation guide](https://cloud.google.com/php/grpc).
 
 ### Authentication
 
-Please see our [Authentication guide](https://github.com/googleapis/google-cloud-php/blob/master/AUTHENTICATION.md) for more information
+Please see our [Authentication guide](https://github.com/googleapis/google-cloud-php/blob/main/AUTHENTICATION.md) for more information
 on authenticating your client. Once authenticated, you'll be ready to start making requests.
 
 ### Sample
@@ -44,7 +44,7 @@ use Google\Analytics\Data\V1beta\BetaAnalyticsDataClient;
 $client = new BetaAnalyticsDataClient();
 
 $response = $client->runReport([
-    'property' => '[YOUR_PROPERTY_ID]'
+    'property' => 'properties/[YOUR_PROPERTY_ID]'
 ]);
 
 foreach ($response->getRows() as $row) {

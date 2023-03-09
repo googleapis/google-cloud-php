@@ -9,34 +9,35 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [CloudChannelService.TransferEntitlementsToGoogle][google.cloud.channel.v1.CloudChannelService.TransferEntitlementsToGoogle].
+ * Request message for
+ * [CloudChannelService.TransferEntitlementsToGoogle][google.cloud.channel.v1.CloudChannelService.TransferEntitlementsToGoogle].
  *
  * Generated from protobuf message <code>google.cloud.channel.v1.TransferEntitlementsToGoogleRequest</code>
  */
 class TransferEntitlementsToGoogleRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name of reseller's customer account where the entitlements
-     * transfer from.
-     * The parent takes the format: accounts/{account_id}/customers/{customer_id}
+     * Required. The resource name of the reseller's customer account where the
+     * entitlements transfer from. Parent uses the format:
+     * accounts/{account_id}/customers/{customer_id}
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $parent = '';
     /**
-     * Required. The entitlements to be transferred to Google.
+     * Required. The entitlements to transfer to Google.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.Entitlement entitlements = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $entitlements;
     /**
-     * Optional. An optional request ID to identify requests. Specify a unique request ID so
-     * that if you must retry your request, the server will know to ignore the
-     * request if it has already been completed.
-     * For example, consider a situation where you make an initial request and
-     * the request times out. If you make the request again with the same
-     * request ID, the server can check if the original operation with the same
-     * request ID was received, and if so, will ignore the second request.
+     * Optional. You can specify an optional unique request ID, and if you need to
+     * retry your request, the server will know to ignore the request if it's
+     * complete.
+     * For example, you make an initial request and the request times out. If you
+     * make the request again with the same request ID, the server can check if
+     * it received the original operation with the same request ID. If it did, it
+     * will ignore the second request.
      * The request ID must be a valid [UUID](https://tools.ietf.org/html/rfc4122)
      * with the exception that zero UUID is not supported
      * (`00000000-0000-0000-0000-000000000000`).
@@ -52,19 +53,19 @@ class TransferEntitlementsToGoogleRequest extends \Google\Protobuf\Internal\Mess
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The resource name of reseller's customer account where the entitlements
-     *           transfer from.
-     *           The parent takes the format: accounts/{account_id}/customers/{customer_id}
-     *     @type \Google\Cloud\Channel\V1\Entitlement[]|\Google\Protobuf\Internal\RepeatedField $entitlements
-     *           Required. The entitlements to be transferred to Google.
+     *           Required. The resource name of the reseller's customer account where the
+     *           entitlements transfer from. Parent uses the format:
+     *           accounts/{account_id}/customers/{customer_id}
+     *     @type array<\Google\Cloud\Channel\V1\Entitlement>|\Google\Protobuf\Internal\RepeatedField $entitlements
+     *           Required. The entitlements to transfer to Google.
      *     @type string $request_id
-     *           Optional. An optional request ID to identify requests. Specify a unique request ID so
-     *           that if you must retry your request, the server will know to ignore the
-     *           request if it has already been completed.
-     *           For example, consider a situation where you make an initial request and
-     *           the request times out. If you make the request again with the same
-     *           request ID, the server can check if the original operation with the same
-     *           request ID was received, and if so, will ignore the second request.
+     *           Optional. You can specify an optional unique request ID, and if you need to
+     *           retry your request, the server will know to ignore the request if it's
+     *           complete.
+     *           For example, you make an initial request and the request times out. If you
+     *           make the request again with the same request ID, the server can check if
+     *           it received the original operation with the same request ID. If it did, it
+     *           will ignore the second request.
      *           The request ID must be a valid [UUID](https://tools.ietf.org/html/rfc4122)
      *           with the exception that zero UUID is not supported
      *           (`00000000-0000-0000-0000-000000000000`).
@@ -76,9 +77,9 @@ class TransferEntitlementsToGoogleRequest extends \Google\Protobuf\Internal\Mess
     }
 
     /**
-     * Required. The resource name of reseller's customer account where the entitlements
-     * transfer from.
-     * The parent takes the format: accounts/{account_id}/customers/{customer_id}
+     * Required. The resource name of the reseller's customer account where the
+     * entitlements transfer from. Parent uses the format:
+     * accounts/{account_id}/customers/{customer_id}
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -89,9 +90,9 @@ class TransferEntitlementsToGoogleRequest extends \Google\Protobuf\Internal\Mess
     }
 
     /**
-     * Required. The resource name of reseller's customer account where the entitlements
-     * transfer from.
-     * The parent takes the format: accounts/{account_id}/customers/{customer_id}
+     * Required. The resource name of the reseller's customer account where the
+     * entitlements transfer from. Parent uses the format:
+     * accounts/{account_id}/customers/{customer_id}
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -106,7 +107,7 @@ class TransferEntitlementsToGoogleRequest extends \Google\Protobuf\Internal\Mess
     }
 
     /**
-     * Required. The entitlements to be transferred to Google.
+     * Required. The entitlements to transfer to Google.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.Entitlement entitlements = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -117,10 +118,10 @@ class TransferEntitlementsToGoogleRequest extends \Google\Protobuf\Internal\Mess
     }
 
     /**
-     * Required. The entitlements to be transferred to Google.
+     * Required. The entitlements to transfer to Google.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.Entitlement entitlements = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param \Google\Cloud\Channel\V1\Entitlement[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Channel\V1\Entitlement>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setEntitlements($var)
@@ -132,13 +133,13 @@ class TransferEntitlementsToGoogleRequest extends \Google\Protobuf\Internal\Mess
     }
 
     /**
-     * Optional. An optional request ID to identify requests. Specify a unique request ID so
-     * that if you must retry your request, the server will know to ignore the
-     * request if it has already been completed.
-     * For example, consider a situation where you make an initial request and
-     * the request times out. If you make the request again with the same
-     * request ID, the server can check if the original operation with the same
-     * request ID was received, and if so, will ignore the second request.
+     * Optional. You can specify an optional unique request ID, and if you need to
+     * retry your request, the server will know to ignore the request if it's
+     * complete.
+     * For example, you make an initial request and the request times out. If you
+     * make the request again with the same request ID, the server can check if
+     * it received the original operation with the same request ID. If it did, it
+     * will ignore the second request.
      * The request ID must be a valid [UUID](https://tools.ietf.org/html/rfc4122)
      * with the exception that zero UUID is not supported
      * (`00000000-0000-0000-0000-000000000000`).
@@ -152,13 +153,13 @@ class TransferEntitlementsToGoogleRequest extends \Google\Protobuf\Internal\Mess
     }
 
     /**
-     * Optional. An optional request ID to identify requests. Specify a unique request ID so
-     * that if you must retry your request, the server will know to ignore the
-     * request if it has already been completed.
-     * For example, consider a situation where you make an initial request and
-     * the request times out. If you make the request again with the same
-     * request ID, the server can check if the original operation with the same
-     * request ID was received, and if so, will ignore the second request.
+     * Optional. You can specify an optional unique request ID, and if you need to
+     * retry your request, the server will know to ignore the request if it's
+     * complete.
+     * For example, you make an initial request and the request times out. If you
+     * make the request again with the same request ID, the server can check if
+     * it received the original operation with the same request ID. If it did, it
+     * will ignore the second request.
      * The request ID must be a valid [UUID](https://tools.ietf.org/html/rfc4122)
      * with the exception that zero UUID is not supported
      * (`00000000-0000-0000-0000-000000000000`).

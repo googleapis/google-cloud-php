@@ -22,21 +22,30 @@ use Google\Cloud\Logging\Logger;
 use Google\Cloud\Logging\PsrLogger;
 use Psr\Log\Test\LoggerInterfaceTest;
 use Prophecy\Argument;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+
+// phpcs:disable
+if (!class_exists(LoggerInterfaceTest::class)) {
+    // We have to do this because fig/log-test does not support PHP 7.3 and below,
+    // but is required when using psr/log v2 (PHP 8.0 and above).
+    // This means that we cannot add that dependency to require-dev in the root
+    // composer.json file. As a result, these tests are skipped on PHP 8.0 and above.
+    return;
+}
+// phpcs:enable
 
 /**
  * @group logging
  */
 class PsrLoggerCompatibilityTest extends LoggerInterfaceTest
 {
-    public static $logs = [];
+    use ExpectException;
 
-    public function setUp()
-    {
-        self::$logs = [];
-    }
+    public static $logs = [];
 
     public function getLogger()
     {
+        self::$logs = [];
         $connection = $this->prophesize(ConnectionInterface::class);
         $connection->writeEntries(Argument::any())
             ->will(function ($entries) {
@@ -56,6 +65,14 @@ class PsrLoggerCompatibilityTest extends LoggerInterfaceTest
         $logger = new Logger($connection->reveal(), 'my-log', 'projectId');
 
         return new PsrLogger($logger);
+    }
+
+    public function testThrowsOnInvalidLevel()
+    {
+        $this->expectException('\Psr\Log\InvalidArgumentException');
+
+        $logger = $this->getLogger();
+        $logger->log('invalid level', 'Foo');
     }
 
     public function getLogs()

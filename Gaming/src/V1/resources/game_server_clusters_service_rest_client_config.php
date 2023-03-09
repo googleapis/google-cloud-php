@@ -3,13 +3,28 @@
 return [
     'interfaces' => [
         'google.cloud.gaming.v1.GameServerClustersService' => [
-            'ListGameServerClusters' => [
-                'method' => 'get',
+            'CreateGameServerCluster' => [
+                'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*/realms/*}/gameServerClusters',
+                'body' => 'game_server_cluster',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'game_server_cluster_id',
+                ],
+            ],
+            'DeleteGameServerCluster' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/realms/*/gameServerClusters/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
                         ],
                     ],
                 ],
@@ -25,10 +40,9 @@ return [
                     ],
                 ],
             ],
-            'CreateGameServerCluster' => [
-                'method' => 'post',
+            'ListGameServerClusters' => [
+                'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*/realms/*}/gameServerClusters',
-                'body' => 'game_server_cluster',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -49,36 +63,12 @@ return [
                     ],
                 ],
             ],
-            'DeleteGameServerCluster' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/realms/*/gameServerClusters/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
             'PreviewDeleteGameServerCluster' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/realms/*/gameServerClusters/*}:previewDelete',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'UpdateGameServerCluster' => [
-                'method' => 'patch',
-                'uriTemplate' => '/v1/{game_server_cluster.name=projects/*/locations/*/realms/*/gameServerClusters/*}',
-                'body' => 'game_server_cluster',
-                'placeholders' => [
-                    'game_server_cluster.name' => [
-                        'getters' => [
-                            'getGameServerCluster',
                             'getName',
                         ],
                     ],
@@ -97,11 +87,27 @@ return [
                     ],
                 ],
             ],
+            'UpdateGameServerCluster' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{game_server_cluster.name=projects/*/locations/*/realms/*/gameServerClusters/*}',
+                'body' => 'game_server_cluster',
+                'placeholders' => [
+                    'game_server_cluster.name' => [
+                        'getters' => [
+                            'getGameServerCluster',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
+                ],
+            ],
         ],
-        'google.longrunning.Operations' => [
-            'ListOperations' => [
+        'google.cloud.location.Locations' => [
+            'GetLocation' => [
                 'method' => 'get',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*}/operations',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -110,9 +116,60 @@ return [
                     ],
                 ],
             ],
-            'GetOperation' => [
+            'ListLocations' => [
                 'method' => 'get',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/operations/*}',
+                'uriTemplate' => '/v1/{name=projects/*}/locations',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+        ],
+        'google.iam.v1.IAMPolicy' => [
+            'GetIamPolicy' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{resource=projects/*/locations/*/gameServerDeployments/*}:getIamPolicy',
+                'placeholders' => [
+                    'resource' => [
+                        'getters' => [
+                            'getResource',
+                        ],
+                    ],
+                ],
+            ],
+            'SetIamPolicy' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{resource=projects/*/locations/*/gameServerDeployments/*}:setIamPolicy',
+                'body' => '*',
+                'placeholders' => [
+                    'resource' => [
+                        'getters' => [
+                            'getResource',
+                        ],
+                    ],
+                ],
+            ],
+            'TestIamPermissions' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{resource=projects/*/locations/*/gameServerDeployments/*}:testIamPermissions',
+                'body' => '*',
+                'placeholders' => [
+                    'resource' => [
+                        'getters' => [
+                            'getResource',
+                        ],
+                    ],
+                ],
+            ],
+        ],
+        'google.longrunning.Operations' => [
+            'CancelOperation' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/operations/*}:cancel',
+                'body' => '*',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -132,9 +189,20 @@ return [
                     ],
                 ],
             ],
-            'CancelOperation' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/operations/*}:cancel',
+            'GetOperation' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/operations/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListOperations' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*}/operations',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -145,4 +213,5 @@ return [
             ],
         ],
     ],
+    'numericEnums' => true,
 ];

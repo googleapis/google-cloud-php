@@ -33,6 +33,15 @@ class ValueDescriptor extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.api.MetricDescriptor.MetricKind metric_kind = 3;</code>
      */
     private $metric_kind = 0;
+    /**
+     * The unit in which `time_series` point values are reported. `unit`
+     * follows the UCUM format for units as seen in
+     * https://unitsofmeasure.org/ucum.html.
+     * `unit` is only valid if `value_type` is INTEGER, DOUBLE, DISTRIBUTION.
+     *
+     * Generated from protobuf field <code>string unit = 4;</code>
+     */
+    private $unit = '';
 
     /**
      * Constructor.
@@ -46,6 +55,11 @@ class ValueDescriptor extends \Google\Protobuf\Internal\Message
      *           The value type.
      *     @type int $metric_kind
      *           The value stream kind.
+     *     @type string $unit
+     *           The unit in which `time_series` point values are reported. `unit`
+     *           follows the UCUM format for units as seen in
+     *           https://unitsofmeasure.org/ucum.html.
+     *           `unit` is only valid if `value_type` is INTEGER, DOUBLE, DISTRIBUTION.
      * }
      */
     public function __construct($data = NULL) {
@@ -99,7 +113,7 @@ class ValueDescriptor extends \Google\Protobuf\Internal\Message
      */
     public function setValueType($var)
     {
-        GPBUtil::checkEnum($var, \Google\Api\MetricDescriptor_ValueType::class);
+        GPBUtil::checkEnum($var, \Google\Api\MetricDescriptor\ValueType::class);
         $this->value_type = $var;
 
         return $this;
@@ -125,8 +139,40 @@ class ValueDescriptor extends \Google\Protobuf\Internal\Message
      */
     public function setMetricKind($var)
     {
-        GPBUtil::checkEnum($var, \Google\Api\MetricDescriptor_MetricKind::class);
+        GPBUtil::checkEnum($var, \Google\Api\MetricDescriptor\MetricKind::class);
         $this->metric_kind = $var;
+
+        return $this;
+    }
+
+    /**
+     * The unit in which `time_series` point values are reported. `unit`
+     * follows the UCUM format for units as seen in
+     * https://unitsofmeasure.org/ucum.html.
+     * `unit` is only valid if `value_type` is INTEGER, DOUBLE, DISTRIBUTION.
+     *
+     * Generated from protobuf field <code>string unit = 4;</code>
+     * @return string
+     */
+    public function getUnit()
+    {
+        return $this->unit;
+    }
+
+    /**
+     * The unit in which `time_series` point values are reported. `unit`
+     * follows the UCUM format for units as seen in
+     * https://unitsofmeasure.org/ucum.html.
+     * `unit` is only valid if `value_type` is INTEGER, DOUBLE, DISTRIBUTION.
+     *
+     * Generated from protobuf field <code>string unit = 4;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setUnit($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->unit = $var;
 
         return $this;
     }

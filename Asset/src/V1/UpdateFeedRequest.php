@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class UpdateFeedRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The new values of feed details. It must match an existing feed and the
-     * field `name` must be in the format of:
+     * Required. The new values of feed details. It must match an existing feed
+     * and the field `name` must be in the format of:
      * projects/project_number/feeds/feed_id or
      * folders/folder_number/feeds/feed_id or
      * organizations/organization_number/feeds/feed_id.
@@ -41,8 +41,8 @@ class UpdateFeedRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Asset\V1\Feed $feed
-     *           Required. The new values of feed details. It must match an existing feed and the
-     *           field `name` must be in the format of:
+     *           Required. The new values of feed details. It must match an existing feed
+     *           and the field `name` must be in the format of:
      *           projects/project_number/feeds/feed_id or
      *           folders/folder_number/feeds/feed_id or
      *           organizations/organization_number/feeds/feed_id.
@@ -58,23 +58,33 @@ class UpdateFeedRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The new values of feed details. It must match an existing feed and the
-     * field `name` must be in the format of:
+     * Required. The new values of feed details. It must match an existing feed
+     * and the field `name` must be in the format of:
      * projects/project_number/feeds/feed_id or
      * folders/folder_number/feeds/feed_id or
      * organizations/organization_number/feeds/feed_id.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.Feed feed = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Asset\V1\Feed
+     * @return \Google\Cloud\Asset\V1\Feed|null
      */
     public function getFeed()
     {
         return $this->feed;
     }
 
+    public function hasFeed()
+    {
+        return isset($this->feed);
+    }
+
+    public function clearFeed()
+    {
+        unset($this->feed);
+    }
+
     /**
-     * Required. The new values of feed details. It must match an existing feed and the
-     * field `name` must be in the format of:
+     * Required. The new values of feed details. It must match an existing feed
+     * and the field `name` must be in the format of:
      * projects/project_number/feeds/feed_id or
      * folders/folder_number/feeds/feed_id or
      * organizations/organization_number/feeds/feed_id.
@@ -97,11 +107,21 @@ class UpdateFeedRequest extends \Google\Protobuf\Internal\Message
      * are immutable or only set by the server.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\FieldMask
+     * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {
         return $this->update_mask;
+    }
+
+    public function hasUpdateMask()
+    {
+        return isset($this->update_mask);
+    }
+
+    public function clearUpdateMask()
+    {
+        unset($this->update_mask);
     }
 
     /**

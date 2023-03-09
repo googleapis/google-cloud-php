@@ -22,6 +22,14 @@ class EnableSecretVersionRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
+    /**
+     * Optional. Etag of the [SecretVersion][google.cloud.secretmanager.v1.SecretVersion]. The request succeeds if it matches
+     * the etag of the currently stored secret version object. If the etag is
+     * omitted, the request succeeds.
+     *
+     * Generated from protobuf field <code>string etag = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $etag = '';
 
     /**
      * Constructor.
@@ -32,6 +40,10 @@ class EnableSecretVersionRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. The resource name of the [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] to enable in the format
      *           `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`.
+     *     @type string $etag
+     *           Optional. Etag of the [SecretVersion][google.cloud.secretmanager.v1.SecretVersion]. The request succeeds if it matches
+     *           the etag of the currently stored secret version object. If the etag is
+     *           omitted, the request succeeds.
      * }
      */
     public function __construct($data = NULL) {
@@ -63,6 +75,36 @@ class EnableSecretVersionRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Etag of the [SecretVersion][google.cloud.secretmanager.v1.SecretVersion]. The request succeeds if it matches
+     * the etag of the currently stored secret version object. If the etag is
+     * omitted, the request succeeds.
+     *
+     * Generated from protobuf field <code>string etag = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getEtag()
+    {
+        return $this->etag;
+    }
+
+    /**
+     * Optional. Etag of the [SecretVersion][google.cloud.secretmanager.v1.SecretVersion]. The request succeeds if it matches
+     * the etag of the currently stored secret version object. If the etag is
+     * omitted, the request succeeds.
+     *
+     * Generated from protobuf field <code>string etag = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setEtag($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->etag = $var;
 
         return $this;
     }

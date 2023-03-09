@@ -1,0 +1,15 @@
+{
+    "title": "GkeConnectGateway",
+    "defaultService": "gkeconnectgateway\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "gkeconnectgateway\/readme"
+        },
+        {
+            "title": "GatewayServiceClient (v1beta1)",
+            "type": "gkeconnectgateway\/v1beta1\/gatewayserviceclient"
+        }
+    ],
+    "pattern": "gkeconnectgateway\/\\w{1,}"
+}

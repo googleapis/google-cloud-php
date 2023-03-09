@@ -58,19 +58,19 @@ class BasicSli extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $method
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $method
      *           OPTIONAL: The set of RPCs to which this SLI is relevant. Telemetry from
      *           other methods will not be used to calculate performance for this SLI. If
      *           omitted, this SLI applies to all the Service's methods. For service types
      *           that don't support breaking down by method, setting this field will result
      *           in an error.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $location
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $location
      *           OPTIONAL: The set of locations to which this SLI is relevant. Telemetry
      *           from other locations will not be used to calculate performance for this
      *           SLI. If omitted, this SLI applies to all locations in which the Service has
      *           activity. For service types that don't support breaking down by location,
      *           setting this field will result in an error.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $version
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $version
      *           OPTIONAL: The set of API versions to which this SLI is relevant. Telemetry
      *           from other API versions will not be used to calculate performance for this
      *           SLI. If omitted, this SLI applies to all API versions. For service types
@@ -112,7 +112,7 @@ class BasicSli extends \Google\Protobuf\Internal\Message
      * in an error.
      *
      * Generated from protobuf field <code>repeated string method = 7;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setMethod($var)
@@ -146,7 +146,7 @@ class BasicSli extends \Google\Protobuf\Internal\Message
      * setting this field will result in an error.
      *
      * Generated from protobuf field <code>repeated string location = 8;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setLocation($var)
@@ -180,7 +180,7 @@ class BasicSli extends \Google\Protobuf\Internal\Message
      * in an error.
      *
      * Generated from protobuf field <code>repeated string version = 9;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setVersion($var)
@@ -196,11 +196,16 @@ class BasicSli extends \Google\Protobuf\Internal\Message
      * that return successfully.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.BasicSli.AvailabilityCriteria availability = 2;</code>
-     * @return \Google\Cloud\Monitoring\V3\BasicSli\AvailabilityCriteria
+     * @return \Google\Cloud\Monitoring\V3\BasicSli\AvailabilityCriteria|null
      */
     public function getAvailability()
     {
         return $this->readOneof(2);
+    }
+
+    public function hasAvailability()
+    {
+        return $this->hasOneof(2);
     }
 
     /**
@@ -213,7 +218,7 @@ class BasicSli extends \Google\Protobuf\Internal\Message
      */
     public function setAvailability($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\BasicSli_AvailabilityCriteria::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\BasicSli\AvailabilityCriteria::class);
         $this->writeOneof(2, $var);
 
         return $this;
@@ -224,11 +229,16 @@ class BasicSli extends \Google\Protobuf\Internal\Message
      * that are fast enough with respect to `latency.threshold`.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.BasicSli.LatencyCriteria latency = 3;</code>
-     * @return \Google\Cloud\Monitoring\V3\BasicSli\LatencyCriteria
+     * @return \Google\Cloud\Monitoring\V3\BasicSli\LatencyCriteria|null
      */
     public function getLatency()
     {
         return $this->readOneof(3);
+    }
+
+    public function hasLatency()
+    {
+        return $this->hasOneof(3);
     }
 
     /**
@@ -241,7 +251,7 @@ class BasicSli extends \Google\Protobuf\Internal\Message
      */
     public function setLatency($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\BasicSli_LatencyCriteria::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\BasicSli\LatencyCriteria::class);
         $this->writeOneof(3, $var);
 
         return $this;

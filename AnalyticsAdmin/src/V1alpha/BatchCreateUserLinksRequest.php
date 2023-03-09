@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class BatchCreateUserLinksRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The account or property that all user links in the request are for.
-     * This field is required. The parent field in the CreateUserLinkRequest
+     * Required. The account or property that all user links in the request are
+     * for. This field is required. The parent field in the CreateUserLinkRequest
      * messages must either be empty or match this field.
      * Example format: accounts/1234
      *
@@ -25,9 +25,9 @@ class BatchCreateUserLinksRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
-     * Optional. If set, then email the new users notifying them that they've been granted
-     * permissions to the resource. Regardless of whether this is set or not,
-     * notify_new_user field inside each individual request is ignored.
+     * Optional. If set, then email the new users notifying them that they've been
+     * granted permissions to the resource. Regardless of whether this is set or
+     * not, notify_new_user field inside each individual request is ignored.
      *
      * Generated from protobuf field <code>bool notify_new_users = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -47,15 +47,15 @@ class BatchCreateUserLinksRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The account or property that all user links in the request are for.
-     *           This field is required. The parent field in the CreateUserLinkRequest
+     *           Required. The account or property that all user links in the request are
+     *           for. This field is required. The parent field in the CreateUserLinkRequest
      *           messages must either be empty or match this field.
      *           Example format: accounts/1234
      *     @type bool $notify_new_users
-     *           Optional. If set, then email the new users notifying them that they've been granted
-     *           permissions to the resource. Regardless of whether this is set or not,
-     *           notify_new_user field inside each individual request is ignored.
-     *     @type \Google\Analytics\Admin\V1alpha\CreateUserLinkRequest[]|\Google\Protobuf\Internal\RepeatedField $requests
+     *           Optional. If set, then email the new users notifying them that they've been
+     *           granted permissions to the resource. Regardless of whether this is set or
+     *           not, notify_new_user field inside each individual request is ignored.
+     *     @type array<\Google\Analytics\Admin\V1alpha\CreateUserLinkRequest>|\Google\Protobuf\Internal\RepeatedField $requests
      *           Required. The requests specifying the user links to create.
      *           A maximum of 1000 user links can be created in a batch.
      * }
@@ -66,8 +66,8 @@ class BatchCreateUserLinksRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The account or property that all user links in the request are for.
-     * This field is required. The parent field in the CreateUserLinkRequest
+     * Required. The account or property that all user links in the request are
+     * for. This field is required. The parent field in the CreateUserLinkRequest
      * messages must either be empty or match this field.
      * Example format: accounts/1234
      *
@@ -80,8 +80,8 @@ class BatchCreateUserLinksRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The account or property that all user links in the request are for.
-     * This field is required. The parent field in the CreateUserLinkRequest
+     * Required. The account or property that all user links in the request are
+     * for. This field is required. The parent field in the CreateUserLinkRequest
      * messages must either be empty or match this field.
      * Example format: accounts/1234
      *
@@ -98,9 +98,9 @@ class BatchCreateUserLinksRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If set, then email the new users notifying them that they've been granted
-     * permissions to the resource. Regardless of whether this is set or not,
-     * notify_new_user field inside each individual request is ignored.
+     * Optional. If set, then email the new users notifying them that they've been
+     * granted permissions to the resource. Regardless of whether this is set or
+     * not, notify_new_user field inside each individual request is ignored.
      *
      * Generated from protobuf field <code>bool notify_new_users = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
@@ -111,9 +111,9 @@ class BatchCreateUserLinksRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If set, then email the new users notifying them that they've been granted
-     * permissions to the resource. Regardless of whether this is set or not,
-     * notify_new_user field inside each individual request is ignored.
+     * Optional. If set, then email the new users notifying them that they've been
+     * granted permissions to the resource. Regardless of whether this is set or
+     * not, notify_new_user field inside each individual request is ignored.
      *
      * Generated from protobuf field <code>bool notify_new_users = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
@@ -144,7 +144,7 @@ class BatchCreateUserLinksRequest extends \Google\Protobuf\Internal\Message
      * A maximum of 1000 user links can be created in a batch.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.CreateUserLinkRequest requests = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param \Google\Analytics\Admin\V1alpha\CreateUserLinkRequest[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Analytics\Admin\V1alpha\CreateUserLinkRequest>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setRequests($var)

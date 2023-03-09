@@ -132,7 +132,7 @@ class VideoObjectTrackingAnnotation extends \Google\Protobuf\Internal\Message
      */
     public function getTimeOffset()
     {
-        return isset($this->time_offset) ? $this->time_offset : null;
+        return $this->time_offset;
     }
 
     public function hasTimeOffset()
@@ -170,7 +170,7 @@ class VideoObjectTrackingAnnotation extends \Google\Protobuf\Internal\Message
      */
     public function getBoundingBox()
     {
-        return isset($this->bounding_box) ? $this->bounding_box : null;
+        return $this->bounding_box;
     }
 
     public function hasBoundingBox()

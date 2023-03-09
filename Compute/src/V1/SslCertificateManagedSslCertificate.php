@@ -18,21 +18,22 @@ class SslCertificateManagedSslCertificate extends \Google\Protobuf\Internal\Mess
     /**
      * [Output only] Detailed statuses of the domains specified for managed certificate resource.
      *
-     * Generated from protobuf field <code>map<string, string> domain_status = 91870157;</code>
+     * Generated from protobuf field <code>map<string, string> domain_status = 360305613;</code>
      */
     private $domain_status;
     /**
-     * The domains for which a managed SSL certificate will be generated. Currently only single-domain certs are supported.
+     * The domains for which a managed SSL certificate will be generated. Each Google-managed SSL certificate supports up to the [maximum number of domains per Google-managed SSL certificate](https://cloud.google.com/load-balancing/docs/quotas#ssl_certificates).
      *
      * Generated from protobuf field <code>repeated string domains = 226935855;</code>
      */
     private $domains;
     /**
      * [Output only] Status of the managed certificate resource.
+     * Check the Status enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.SslCertificateManagedSslCertificate.Status status = 181260274;</code>
+     * Generated from protobuf field <code>optional string status = 181260274;</code>
      */
-    private $status = 0;
+    private $status = null;
 
     /**
      * Constructor.
@@ -42,10 +43,11 @@ class SslCertificateManagedSslCertificate extends \Google\Protobuf\Internal\Mess
      *
      *     @type array|\Google\Protobuf\Internal\MapField $domain_status
      *           [Output only] Detailed statuses of the domains specified for managed certificate resource.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $domains
-     *           The domains for which a managed SSL certificate will be generated. Currently only single-domain certs are supported.
-     *     @type int $status
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $domains
+     *           The domains for which a managed SSL certificate will be generated. Each Google-managed SSL certificate supports up to the [maximum number of domains per Google-managed SSL certificate](https://cloud.google.com/load-balancing/docs/quotas#ssl_certificates).
+     *     @type string $status
      *           [Output only] Status of the managed certificate resource.
+     *           Check the Status enum for the list of possible values.
      * }
      */
     public function __construct($data = NULL) {
@@ -56,7 +58,7 @@ class SslCertificateManagedSslCertificate extends \Google\Protobuf\Internal\Mess
     /**
      * [Output only] Detailed statuses of the domains specified for managed certificate resource.
      *
-     * Generated from protobuf field <code>map<string, string> domain_status = 91870157;</code>
+     * Generated from protobuf field <code>map<string, string> domain_status = 360305613;</code>
      * @return \Google\Protobuf\Internal\MapField
      */
     public function getDomainStatus()
@@ -67,7 +69,7 @@ class SslCertificateManagedSslCertificate extends \Google\Protobuf\Internal\Mess
     /**
      * [Output only] Detailed statuses of the domains specified for managed certificate resource.
      *
-     * Generated from protobuf field <code>map<string, string> domain_status = 91870157;</code>
+     * Generated from protobuf field <code>map<string, string> domain_status = 360305613;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */
@@ -80,7 +82,7 @@ class SslCertificateManagedSslCertificate extends \Google\Protobuf\Internal\Mess
     }
 
     /**
-     * The domains for which a managed SSL certificate will be generated. Currently only single-domain certs are supported.
+     * The domains for which a managed SSL certificate will be generated. Each Google-managed SSL certificate supports up to the [maximum number of domains per Google-managed SSL certificate](https://cloud.google.com/load-balancing/docs/quotas#ssl_certificates).
      *
      * Generated from protobuf field <code>repeated string domains = 226935855;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -91,10 +93,10 @@ class SslCertificateManagedSslCertificate extends \Google\Protobuf\Internal\Mess
     }
 
     /**
-     * The domains for which a managed SSL certificate will be generated. Currently only single-domain certs are supported.
+     * The domains for which a managed SSL certificate will be generated. Each Google-managed SSL certificate supports up to the [maximum number of domains per Google-managed SSL certificate](https://cloud.google.com/load-balancing/docs/quotas#ssl_certificates).
      *
      * Generated from protobuf field <code>repeated string domains = 226935855;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDomains($var)
@@ -107,25 +109,37 @@ class SslCertificateManagedSslCertificate extends \Google\Protobuf\Internal\Mess
 
     /**
      * [Output only] Status of the managed certificate resource.
+     * Check the Status enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.SslCertificateManagedSslCertificate.Status status = 181260274;</code>
-     * @return int
+     * Generated from protobuf field <code>optional string status = 181260274;</code>
+     * @return string
      */
     public function getStatus()
     {
-        return $this->status;
+        return isset($this->status) ? $this->status : '';
+    }
+
+    public function hasStatus()
+    {
+        return isset($this->status);
+    }
+
+    public function clearStatus()
+    {
+        unset($this->status);
     }
 
     /**
      * [Output only] Status of the managed certificate resource.
+     * Check the Status enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.SslCertificateManagedSslCertificate.Status status = 181260274;</code>
-     * @param int $var
+     * Generated from protobuf field <code>optional string status = 181260274;</code>
+     * @param string $var
      * @return $this
      */
     public function setStatus($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Compute\V1\SslCertificateManagedSslCertificate\Status::class);
+        GPBUtil::checkString($var, True);
         $this->status = $var;
 
         return $this;

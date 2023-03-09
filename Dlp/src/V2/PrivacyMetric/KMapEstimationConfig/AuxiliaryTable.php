@@ -49,7 +49,7 @@ class AuxiliaryTable extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Dlp\V2\BigQueryTable $table
      *           Required. Auxiliary table location.
-     *     @type \Google\Cloud\Dlp\V2\PrivacyMetric\KMapEstimationConfig\AuxiliaryTable\QuasiIdField[]|\Google\Protobuf\Internal\RepeatedField $quasi_ids
+     *     @type array<\Google\Cloud\Dlp\V2\PrivacyMetric\KMapEstimationConfig\AuxiliaryTable\QuasiIdField>|\Google\Protobuf\Internal\RepeatedField $quasi_ids
      *           Required. Quasi-identifier columns.
      *     @type \Google\Cloud\Dlp\V2\FieldId $relative_frequency
      *           Required. The relative frequency column must contain a floating-point number
@@ -69,7 +69,7 @@ class AuxiliaryTable extends \Google\Protobuf\Internal\Message
      */
     public function getTable()
     {
-        return isset($this->table) ? $this->table : null;
+        return $this->table;
     }
 
     public function hasTable()
@@ -112,7 +112,7 @@ class AuxiliaryTable extends \Google\Protobuf\Internal\Message
      * Required. Quasi-identifier columns.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.PrivacyMetric.KMapEstimationConfig.AuxiliaryTable.QuasiIdField quasi_ids = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param \Google\Cloud\Dlp\V2\PrivacyMetric\KMapEstimationConfig\AuxiliaryTable\QuasiIdField[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dlp\V2\PrivacyMetric\KMapEstimationConfig\AuxiliaryTable\QuasiIdField>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setQuasiIds($var)
@@ -132,7 +132,7 @@ class AuxiliaryTable extends \Google\Protobuf\Internal\Message
      */
     public function getRelativeFrequency()
     {
-        return isset($this->relative_frequency) ? $this->relative_frequency : null;
+        return $this->relative_frequency;
     }
 
     public function hasRelativeFrequency()

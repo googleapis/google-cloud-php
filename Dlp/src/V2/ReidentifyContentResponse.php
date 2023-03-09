@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Results of re-identifying a item.
+ * Results of re-identifying an item.
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.ReidentifyContentResponse</code>
  */
@@ -53,7 +53,7 @@ class ReidentifyContentResponse extends \Google\Protobuf\Internal\Message
      */
     public function getItem()
     {
-        return isset($this->item) ? $this->item : null;
+        return $this->item;
     }
 
     public function hasItem()
@@ -89,7 +89,7 @@ class ReidentifyContentResponse extends \Google\Protobuf\Internal\Message
      */
     public function getOverview()
     {
-        return isset($this->overview) ? $this->overview : null;
+        return $this->overview;
     }
 
     public function hasOverview()

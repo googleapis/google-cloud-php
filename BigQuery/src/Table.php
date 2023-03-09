@@ -280,7 +280,7 @@ class Table
      *
      * @see https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs/insert Jobs insert API Documentation.
      *
-     * @deprecated Use {@see Google\Cloud\BigQuery\BigQueryClient::runJob()}.
+     * @deprecated Use {@see BigQueryClient::runJob()}.
      * @param JobConfigurationInterface $config The job configuration.
      * @param array $options [optional] {
      *     Configuration options.
@@ -310,7 +310,7 @@ class Table
      *
      * @see https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs/insert Jobs insert API Documentation.
      *
-     * @deprecated Use {@see Google\Cloud\BigQuery\BigQueryClient::startJob()}.
+     * @deprecated Use {@see BigQueryClient::startJob()}.
      * @param JobConfigurationInterface $config The job configuration.
      * @param array $options [optional] Configuration options.
      * @return Job
@@ -337,10 +337,20 @@ class Table
 
     /**
      * Returns a copy job configuration to be passed to either
-     * {@see Google\Cloud\BigQuery\BigQueryClient::runJob()} or
-     * {@see Google\Cloud\BigQuery\BigQueryClient::startJob()}. A
+     * {@see BigQueryClient::runJob()} or
+     * {@see BigQueryClient::startJob()}. A
      * configuration can be built using fluent setters or by providing a full
-     * set of options at once.
+     * set of options at once. This method can be used to create copy, snapshot
+     * and clone of the sourceTable as well as can also be used to restore
+     * snapshots by passing the following options:
+     * $options = [
+     *     'configuration' => [
+     *          'copy' => [
+     *              'operationType' => ('COPY' | 'SNAPSHOT' | 'CLONE' | 'RESTORE')
+     *          ]
+     *      ]
+     * ]
+     *
      *
      * Example:
      * ```
@@ -382,8 +392,8 @@ class Table
 
     /**
      * Returns an extract job configuration to be passed to either
-     * {@see Google\Cloud\BigQuery\BigQueryClient::runJob()} or
-     * {@see Google\Cloud\BigQuery\BigQueryClient::startJob()}. A
+     * {@see BigQueryClient::runJob()} or
+     * {@see BigQueryClient::startJob()}. A
      * configuration can be built using fluent setters or by providing a full
      * set of options at once.
      *
@@ -396,7 +406,7 @@ class Table
      * @see https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs/insert Jobs insert API Documentation.
      *
      * @param string|StorageObject $destination The destination object. May be
-     *        a {@see Google\Cloud\Storage\StorageObject} or a URI pointing to
+     *        a {@see StorageObject} or a URI pointing to
      *        a Google Cloud Storage object in the format of
      *        `gs://{bucket-name}/{object-name}`.
      * @param array $options [optional] {
@@ -430,8 +440,8 @@ class Table
 
     /**
      * Returns a load job configuration to be passed to either
-     * {@see Google\Cloud\BigQuery\BigQueryClient::runJob()} or
-     * {@see Google\Cloud\BigQuery\BigQueryClient::startJob()}. A
+     * {@see BigQueryClient::runJob()} or
+     * {@see BigQueryClient::startJob()}. A
      * configuration can be built using fluent setters or by providing a full
      * set of options at once.
      *
@@ -475,8 +485,8 @@ class Table
 
     /**
      * Returns a load job configuration to be passed to either
-     * {@see Google\Cloud\BigQuery\BigQueryClient::runJob()} or
-     * {@see Google\Cloud\BigQuery\BigQueryClient::startJob()}. A
+     * {@see BigQueryClient::runJob()} or
+     * {@see BigQueryClient::startJob()}. A
      * configuration can be built using fluent setters or by providing a full
      * set of options at once.
      *
@@ -489,7 +499,7 @@ class Table
      * @see https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs/insert Jobs insert API Documentation.
      *
      * @param string|StorageObject $object The object to load data from. May be
-     *        a {@see Google\Cloud\Storage\StorageObject} or a URI pointing to a
+     *        a {@see StorageObject} or a URI pointing to a
      *        Google Cloud Storage object in the format of
      *        `gs://{bucket-name}/{object-name}`.
      * @param array $options [optional] {
@@ -550,7 +560,7 @@ class Table
      * @param array $row Key/value set of data matching the table's schema.
      * @param array $options [optional] {
      *     Please see
-     *     {@see Google\Cloud\BigQuery\Table::insertRows()} for the
+     *     {@see Table::insertRows()} for the
      *     other available configuration options.
      *
      *     @type string $insertId Used to

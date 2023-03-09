@@ -36,7 +36,7 @@ class InitialStateConfig extends \Google\Protobuf\Internal\Message
     /**
      * The Platform Key (PK).
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.FileContentBuffer pk = 3579;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.FileContentBuffer pk = 3579;</code>
      */
     private $pk = null;
 
@@ -46,11 +46,11 @@ class InitialStateConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Compute\V1\FileContentBuffer[]|\Google\Protobuf\Internal\RepeatedField $dbs
+     *     @type array<\Google\Cloud\Compute\V1\FileContentBuffer>|\Google\Protobuf\Internal\RepeatedField $dbs
      *           The Key Database (db).
-     *     @type \Google\Cloud\Compute\V1\FileContentBuffer[]|\Google\Protobuf\Internal\RepeatedField $dbxs
+     *     @type array<\Google\Cloud\Compute\V1\FileContentBuffer>|\Google\Protobuf\Internal\RepeatedField $dbxs
      *           The forbidden key database (dbx).
-     *     @type \Google\Cloud\Compute\V1\FileContentBuffer[]|\Google\Protobuf\Internal\RepeatedField $keks
+     *     @type array<\Google\Cloud\Compute\V1\FileContentBuffer>|\Google\Protobuf\Internal\RepeatedField $keks
      *           The Key Exchange Key (KEK).
      *     @type \Google\Cloud\Compute\V1\FileContentBuffer $pk
      *           The Platform Key (PK).
@@ -76,7 +76,7 @@ class InitialStateConfig extends \Google\Protobuf\Internal\Message
      * The Key Database (db).
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.FileContentBuffer dbs = 99253;</code>
-     * @param \Google\Cloud\Compute\V1\FileContentBuffer[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\FileContentBuffer>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDbs($var)
@@ -102,7 +102,7 @@ class InitialStateConfig extends \Google\Protobuf\Internal\Message
      * The forbidden key database (dbx).
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.FileContentBuffer dbxs = 3077113;</code>
-     * @param \Google\Cloud\Compute\V1\FileContentBuffer[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\FileContentBuffer>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDbxs($var)
@@ -128,7 +128,7 @@ class InitialStateConfig extends \Google\Protobuf\Internal\Message
      * The Key Exchange Key (KEK).
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.FileContentBuffer keks = 3288130;</code>
-     * @param \Google\Cloud\Compute\V1\FileContentBuffer[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\FileContentBuffer>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setKeks($var)
@@ -142,12 +142,12 @@ class InitialStateConfig extends \Google\Protobuf\Internal\Message
     /**
      * The Platform Key (PK).
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.FileContentBuffer pk = 3579;</code>
-     * @return \Google\Cloud\Compute\V1\FileContentBuffer
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.FileContentBuffer pk = 3579;</code>
+     * @return \Google\Cloud\Compute\V1\FileContentBuffer|null
      */
     public function getPk()
     {
-        return isset($this->pk) ? $this->pk : null;
+        return $this->pk;
     }
 
     public function hasPk()
@@ -163,7 +163,7 @@ class InitialStateConfig extends \Google\Protobuf\Internal\Message
     /**
      * The Platform Key (PK).
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.FileContentBuffer pk = 3579;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.FileContentBuffer pk = 3579;</code>
      * @param \Google\Cloud\Compute\V1\FileContentBuffer $var
      * @return $this
      */

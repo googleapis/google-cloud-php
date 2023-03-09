@@ -17,13 +17,13 @@ class Warning extends \Google\Protobuf\Internal\Message
 {
     /**
      * [Output Only] A warning code, if applicable. For example, Compute Engine returns NO_RESULTS_ON_PAGE if there are no results in the response.
+     * Check the Code enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Warning.Code code = 3059181;</code>
+     * Generated from protobuf field <code>optional string code = 3059181;</code>
      */
-    private $code = 0;
+    private $code = null;
     /**
-     * [Output Only] Metadata about this warning in key: value format. For example:
-     * "data": [ { "key": "scope", "value": "zones/us-east1-d" }
+     * [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" } 
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Data data = 3076010;</code>
      */
@@ -31,9 +31,9 @@ class Warning extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] A human-readable description of the warning code.
      *
-     * Generated from protobuf field <code>string message = 149618695;</code>
+     * Generated from protobuf field <code>optional string message = 418054151;</code>
      */
-    private $message = '';
+    private $message = null;
 
     /**
      * Constructor.
@@ -41,11 +41,11 @@ class Warning extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type int $code
+     *     @type string $code
      *           [Output Only] A warning code, if applicable. For example, Compute Engine returns NO_RESULTS_ON_PAGE if there are no results in the response.
-     *     @type \Google\Cloud\Compute\V1\Data[]|\Google\Protobuf\Internal\RepeatedField $data
-     *           [Output Only] Metadata about this warning in key: value format. For example:
-     *           "data": [ { "key": "scope", "value": "zones/us-east1-d" }
+     *           Check the Code enum for the list of possible values.
+     *     @type array<\Google\Cloud\Compute\V1\Data>|\Google\Protobuf\Internal\RepeatedField $data
+     *           [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" } 
      *     @type string $message
      *           [Output Only] A human-readable description of the warning code.
      * }
@@ -57,33 +57,44 @@ class Warning extends \Google\Protobuf\Internal\Message
 
     /**
      * [Output Only] A warning code, if applicable. For example, Compute Engine returns NO_RESULTS_ON_PAGE if there are no results in the response.
+     * Check the Code enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Warning.Code code = 3059181;</code>
-     * @return int
+     * Generated from protobuf field <code>optional string code = 3059181;</code>
+     * @return string
      */
     public function getCode()
     {
-        return $this->code;
+        return isset($this->code) ? $this->code : '';
+    }
+
+    public function hasCode()
+    {
+        return isset($this->code);
+    }
+
+    public function clearCode()
+    {
+        unset($this->code);
     }
 
     /**
      * [Output Only] A warning code, if applicable. For example, Compute Engine returns NO_RESULTS_ON_PAGE if there are no results in the response.
+     * Check the Code enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Warning.Code code = 3059181;</code>
-     * @param int $var
+     * Generated from protobuf field <code>optional string code = 3059181;</code>
+     * @param string $var
      * @return $this
      */
     public function setCode($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Compute\V1\Warning\Code::class);
+        GPBUtil::checkString($var, True);
         $this->code = $var;
 
         return $this;
     }
 
     /**
-     * [Output Only] Metadata about this warning in key: value format. For example:
-     * "data": [ { "key": "scope", "value": "zones/us-east1-d" }
+     * [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" } 
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Data data = 3076010;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -94,11 +105,10 @@ class Warning extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Metadata about this warning in key: value format. For example:
-     * "data": [ { "key": "scope", "value": "zones/us-east1-d" }
+     * [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" } 
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Data data = 3076010;</code>
-     * @param \Google\Cloud\Compute\V1\Data[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\Data>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setData($var)
@@ -112,18 +122,28 @@ class Warning extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] A human-readable description of the warning code.
      *
-     * Generated from protobuf field <code>string message = 149618695;</code>
+     * Generated from protobuf field <code>optional string message = 418054151;</code>
      * @return string
      */
     public function getMessage()
     {
-        return $this->message;
+        return isset($this->message) ? $this->message : '';
+    }
+
+    public function hasMessage()
+    {
+        return isset($this->message);
+    }
+
+    public function clearMessage()
+    {
+        unset($this->message);
     }
 
     /**
      * [Output Only] A human-readable description of the warning code.
      *
-     * Generated from protobuf field <code>string message = 149618695;</code>
+     * Generated from protobuf field <code>optional string message = 418054151;</code>
      * @param string $var
      * @return $this
      */

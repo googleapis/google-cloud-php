@@ -16,8 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class UnregisterSubscriberResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Name of the topic from which the service account subscriber access has been
-     * removed.
+     * Name of the topic the service account subscriber access was removed from.
      *
      * Generated from protobuf field <code>string topic = 1;</code>
      */
@@ -30,8 +29,7 @@ class UnregisterSubscriberResponse extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $topic
-     *           Name of the topic from which the service account subscriber access has been
-     *           removed.
+     *           Name of the topic the service account subscriber access was removed from.
      * }
      */
     public function __construct($data = NULL) {
@@ -40,8 +38,7 @@ class UnregisterSubscriberResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the topic from which the service account subscriber access has been
-     * removed.
+     * Name of the topic the service account subscriber access was removed from.
      *
      * Generated from protobuf field <code>string topic = 1;</code>
      * @return string
@@ -52,8 +49,7 @@ class UnregisterSubscriberResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the topic from which the service account subscriber access has been
-     * removed.
+     * Name of the topic the service account subscriber access was removed from.
      *
      * Generated from protobuf field <code>string topic = 1;</code>
      * @param string $var

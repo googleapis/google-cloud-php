@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\BigQuery;
 
-use GuzzleHttp\Psr7;
+use GuzzleHttp\Psr7\Utils;
 use Psr\Http\Message\StreamInterface;
 
 /**
@@ -45,7 +45,7 @@ class Bytes implements ValueInterface
      */
     public function __construct($value)
     {
-        $this->value = Psr7\stream_for($value);
+        $this->value = Utils::streamFor($value);
     }
 
     /**

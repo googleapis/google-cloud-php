@@ -22,64 +22,53 @@
 
 namespace Google\Cloud\Talent\Tests\Unit\V4beta1;
 
-use Google\Cloud\Talent\V4beta1\CompanyServiceClient;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Talent\V4beta1\Company;
+use Google\Cloud\Talent\V4beta1\CompanyServiceClient;
 use Google\Cloud\Talent\V4beta1\ListCompaniesResponse;
-use Google\Protobuf\Any;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
 use stdClass;
 
 /**
  * @group talent
+ *
  * @group gapic
  */
 class CompanyServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return CompanyServiceClient
-     */
+    /** @return CompanyServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
             'credentials' => $this->createCredentials(),
         ];
-
         return new CompanyServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createCompanyTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $name = 'name3373707';
         $displayName = 'displayName1615086568';
@@ -103,79 +92,130 @@ class CompanyServiceClientTest extends GeneratedTest
         $expectedResponse->setImageUri($imageUri);
         $expectedResponse->setSuspended($suspended);
         $transport->addResponse($expectedResponse);
-
         // Mock request
-        $formattedParent = $client->tenantName('[PROJECT]', '[TENANT]');
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
         $company = new Company();
-
-        $response = $client->createCompany($formattedParent, $company);
+        $companyDisplayName = 'companyDisplayName-686915152';
+        $company->setDisplayName($companyDisplayName);
+        $companyExternalId = 'companyExternalId855180963';
+        $company->setExternalId($companyExternalId);
+        $response = $gapicClient->createCompany($formattedParent, $company);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.talent.v4beta1.CompanyService/CreateCompany', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getParent();
-
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualRequestObject->getCompany();
-
         $this->assertProtobufEquals($company, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createCompanyExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
-        $formattedParent = $client->tenantName('[PROJECT]', '[TENANT]');
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
         $company = new Company();
-
+        $companyDisplayName = 'companyDisplayName-686915152';
+        $company->setDisplayName($companyDisplayName);
+        $companyExternalId = 'companyExternalId855180963';
+        $company->setExternalId($companyExternalId);
         try {
-            $client->createCompany($formattedParent, $company);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->createCompany($formattedParent, $company);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
+    public function deleteCompanyTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new GPBEmpty();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->companyName('[PROJECT]', '[TENANT]', '[COMPANY]');
+        $gapicClient->deleteCompany($formattedName);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.talent.v4beta1.CompanyService/DeleteCompany', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteCompanyExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->companyName('[PROJECT]', '[TENANT]', '[COMPANY]');
+        try {
+            $gapicClient->deleteCompany($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function getCompanyTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $name2 = 'name2-1052831874';
         $displayName = 'displayName1615086568';
@@ -199,74 +239,129 @@ class CompanyServiceClientTest extends GeneratedTest
         $expectedResponse->setImageUri($imageUri);
         $expectedResponse->setSuspended($suspended);
         $transport->addResponse($expectedResponse);
-
         // Mock request
-        $formattedName = $client->projectTenantCompanyName('[PROJECT]', '[TENANT]', '[COMPANY]');
-
-        $response = $client->getCompany($formattedName);
+        $formattedName = $gapicClient->companyName('[PROJECT]', '[TENANT]', '[COMPANY]');
+        $response = $gapicClient->getCompany($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.talent.v4beta1.CompanyService/GetCompany', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getName();
-
         $this->assertProtobufEquals($formattedName, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getCompanyExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
-        $formattedName = $client->projectTenantCompanyName('[PROJECT]', '[TENANT]', '[COMPANY]');
-
+        $formattedName = $gapicClient->companyName('[PROJECT]', '[TENANT]', '[COMPANY]');
         try {
-            $client->getCompany($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getCompany($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
+    public function listCompaniesTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $companiesElement = new Company();
+        $companies = [
+            $companiesElement,
+        ];
+        $expectedResponse = new ListCompaniesResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setCompanies($companies);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
+        $response = $gapicClient->listCompanies($formattedParent);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getCompanies()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.talent.v4beta1.CompanyService/ListCompanies', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listCompaniesExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
+        try {
+            $gapicClient->listCompanies($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function updateCompanyTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $name = 'name3373707';
         $displayName = 'displayName1615086568';
@@ -290,208 +385,56 @@ class CompanyServiceClientTest extends GeneratedTest
         $expectedResponse->setImageUri($imageUri);
         $expectedResponse->setSuspended($suspended);
         $transport->addResponse($expectedResponse);
-
         // Mock request
         $company = new Company();
-
-        $response = $client->updateCompany($company);
+        $companyDisplayName = 'companyDisplayName-686915152';
+        $company->setDisplayName($companyDisplayName);
+        $companyExternalId = 'companyExternalId855180963';
+        $company->setExternalId($companyExternalId);
+        $response = $gapicClient->updateCompany($company);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.talent.v4beta1.CompanyService/UpdateCompany', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getCompany();
-
         $this->assertProtobufEquals($company, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateCompanyExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
         $company = new Company();
-
+        $companyDisplayName = 'companyDisplayName-686915152';
+        $company->setDisplayName($companyDisplayName);
+        $companyExternalId = 'companyExternalId855180963';
+        $company->setExternalId($companyExternalId);
         try {
-            $client->updateCompany($company);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->updateCompany($company);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function deleteCompanyTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        // Mock response
-        $expectedResponse = new GPBEmpty();
-        $transport->addResponse($expectedResponse);
-
-        // Mock request
-        $formattedName = $client->projectTenantCompanyName('[PROJECT]', '[TENANT]', '[COMPANY]');
-
-        $client->deleteCompany($formattedName);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.talent.v4beta1.CompanyService/DeleteCompany', $actualFuncCall);
-
-        $actualValue = $actualRequestObject->getName();
-
-        $this->assertProtobufEquals($formattedName, $actualValue);
-
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function deleteCompanyExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
-        ], JSON_PRETTY_PRINT);
-        $transport->addResponse(null, $status);
-
-        // Mock request
-        $formattedName = $client->projectTenantCompanyName('[PROJECT]', '[TENANT]', '[COMPANY]');
-
-        try {
-            $client->deleteCompany($formattedName);
-            // If the $client method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function listCompaniesTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        // Mock response
-        $nextPageToken = '';
-        $companiesElement = new Company();
-        $companies = [$companiesElement];
-        $expectedResponse = new ListCompaniesResponse();
-        $expectedResponse->setNextPageToken($nextPageToken);
-        $expectedResponse->setCompanies($companies);
-        $transport->addResponse($expectedResponse);
-
-        // Mock request
-        $formattedParent = $client->tenantName('[PROJECT]', '[TENANT]');
-
-        $response = $client->listCompanies($formattedParent);
-        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
-        $resources = iterator_to_array($response->iterateAllElements());
-        $this->assertSame(1, count($resources));
-        $this->assertEquals($expectedResponse->getCompanies()[0], $resources[0]);
-
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.talent.v4beta1.CompanyService/ListCompanies', $actualFuncCall);
-
-        $actualValue = $actualRequestObject->getParent();
-
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function listCompaniesExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
-        ], JSON_PRETTY_PRINT);
-        $transport->addResponse(null, $status);
-
-        // Mock request
-        $formattedParent = $client->tenantName('[PROJECT]', '[TENANT]');
-
-        try {
-            $client->listCompanies($formattedParent);
-            // If the $client method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());

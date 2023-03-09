@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2020 Google Inc.
+ * Copyright 2021 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,8 +17,9 @@
 
 namespace Google\Cloud\Compute\Tests\System\V1;
 
-use Google\Cloud\Compute\V1\ZonesClient;
 use Google\Cloud\Compute\V1\InstancesClient;
+use Google\Cloud\Compute\V1\ZonesClient;
+use Google\Cloud\Compute\V1\AcceleratorTypesClient;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -28,8 +29,10 @@ use PHPUnit\Framework\TestCase;
 class PaginationTest extends TestCase
 {
     private static $instancesClient;
+    private static $acceleratorTypesClient;
     private static $zonesClient;
     private static $projectId;
+    private static $zone;
 
     public static function setUpBeforeClass(): void
     {
@@ -39,23 +42,34 @@ class PaginationTest extends TestCase
         }
         self::$instancesClient = new InstancesClient();
         self::$zonesClient = new ZonesClient();
+        self::$acceleratorTypesClient = new AcceleratorTypesClient();
+        self::$zone = 'us-central1-a';
+
+        // test needs 4 or more instances
+        $response = self::$instancesClient->aggregatedList(self::$projectId);
+        $page = $response->getPage();
+        $allResults = self::getInstancesFromAggregatedPage($page);
+        if (count($allResults) < 4) {
+            self::fail('Atleast 4 instances are required for test run');
+        }
     }
 
     public static function tearDownAfterClass(): void
     {
         self::$instancesClient->close();
         self::$zonesClient->close();
+        self::$acceleratorTypesClient->close();
     }
 
     public function testPageToken()
     {
-        $response = self::$zonesClient->list_(
+        $response = self::$zonesClient->list(
             self::$projectId,
             ['maxResults' => 5]
         );
         $page = $response->getPage();
         $pageToken = $page->getNextPageToken();
-        $nextPage = self::$zonesClient->list_(
+        $nextPage = self::$zonesClient->list(
             self::$projectId,
             ['pageToken'=>$pageToken, 'maxResults' => 5]
         )->getPage();
@@ -66,7 +80,7 @@ class PaginationTest extends TestCase
 
     public function testNextPage()
     {
-        $response = self::$zonesClient->list_(
+        $response = self::$zonesClient->list(
             self::$projectId,
             ['maxResults' => 1]
         );
@@ -74,12 +88,14 @@ class PaginationTest extends TestCase
         $nextPage = $page->getNextPage(1);
         $content = iterator_to_array($page->getIterator());
         $nextContent = iterator_to_array($nextPage->getIterator());
-        self::assertNotEquals($content, $nextContent);
+        self::assertCount(1, $content);
+        self::assertCount(1, $nextContent);
+        self::assertNotEquals($content[0]->getId(), $nextContent[0]->getid());
     }
 
     public function  testNextPageSize()
     {
-        $response = self::$zonesClient->list_(
+        $response = self::$zonesClient->list(
             self::$projectId,
             ['maxResults' => 5]
         );
@@ -91,13 +107,47 @@ class PaginationTest extends TestCase
 
     public function testMaxResults()
     {
-        $response = self::$zonesClient->list_(
+        $response = self::$zonesClient->list(
             self::$projectId,
             ['maxResults' => 10]
         );
         $page = $response->getPage();
         $arr = iterator_to_array($page->getIterator());
         self::assertCount(10, $arr);
+    }
+
+    public function testAutoPaginationList()
+    {
+        $response = self::$acceleratorTypesClient->list(
+            self::$projectId,
+            self::$zone,
+            ['maxResults' => 2]
+        );
+        $presented = false;
+        foreach ($response->iterateAllElements() as $element){
+            if ($element->getName() == 'nvidia-tesla-t4'){
+                $presented = true;
+            }
+        }
+        self::assertTrue($presented);
+    }
+
+    public function testAutoPaginationMapResponse()
+    {
+        $response = self::$acceleratorTypesClient->aggregatedList(
+            self::$projectId,
+            ['maxResults' => 2]
+        );
+        $presented = false;
+        foreach ($response->iterateAllElements() as $zone => $element){
+            $types = $element->getAcceleratorTypes();
+            foreach ($types as $type){
+                if ($type->getName() == 'nvidia-tesla-t4'){
+                    $presented = true;
+                }
+            }
+        }
+        self::assertTrue($presented);
     }
 
     public function testAggregatedPageToken()
@@ -125,9 +175,13 @@ class PaginationTest extends TestCase
         );
         $page = $response->getPage();
         $nextPage = $page->getNextPage(1);
-        $content = iterator_to_array($page->getIterator());
-        $nextContent = iterator_to_array($nextPage->getIterator());
-        self::assertNotEquals($content, $nextContent);
+        $content = self::getInstancesFromAggregatedPage($page);
+        $nextContent = self::getInstancesFromAggregatedPage($nextPage);
+
+        self::assertNotEquals(
+            current($content)->getId(),
+            current($nextContent)->getid()
+        );
     }
 
     public function  testAggregatedNextPageSize()
@@ -138,11 +192,7 @@ class PaginationTest extends TestCase
         );
         $page = $response->getPage();
         $nextPage = $page->getNextPage(2);
-        $nextContent = [];
-        foreach ($nextPage->getIterator() as $zone => $instancesList) {
-            $pageResults = iterator_to_array($instancesList->getInstances());
-            $nextContent = array_merge($nextContent, $pageResults);
-        }
+        $nextContent = self::getInstancesFromAggregatedPage($nextPage);
         self::assertCount(2, $nextContent);
     }
 
@@ -153,11 +203,17 @@ class PaginationTest extends TestCase
             ['maxResults' => 3]
         );
         $page = $response->getPage();
-        $allResults = [];
-        foreach ($page->getIterator() as $zone => $instancesList) {
-            $zoneResults = iterator_to_array($instancesList->getInstances());
-            $allResults = array_merge($allResults, $zoneResults);
-        }
+        $allResults = self::getInstancesFromAggregatedPage($page);
         self::assertCount(3, $allResults);
+    }
+
+    private static function getInstancesFromAggregatedPage($page)
+    {
+        $results = [];
+        foreach ($page->getIterator() as $zone => $instancesList) {
+            $pageResults = iterator_to_array($instancesList->getInstances());
+            $results = array_merge($results, $pageResults);
+        }
+        return $results;
     }
 }

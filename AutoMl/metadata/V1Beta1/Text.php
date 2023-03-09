@@ -15,11 +15,10 @@ class Text
           return;
         }
         \GPBMetadata\Google\Cloud\Automl\V1Beta1\Classification::initOnce();
-        \GPBMetadata\Google\Api\Annotations::initOnce();
         $pool->internalAddGeneratedFile(
             '
-«
-&google/cloud/automl/v1beta1/text.protogoogle.cloud.automl.v1beta1google/api/annotations.proto"q
+ƒ
+&google/cloud/automl/v1beta1/text.protogoogle.cloud.automl.v1beta1"q
 !TextClassificationDatasetMetadataL
 classification_type (2/.google.cloud.automl.v1beta1.ClassificationType"o
 TextClassificationModelMetadataL
@@ -30,8 +29,8 @@ class Text
 model_hint (	"5
 TextSentimentDatasetMetadata
 sentiment_max ("
-TextSentimentModelMetadataB°
-com.google.cloud.automl.v1beta1B	TextProtoPZAgoogle.golang.org/genproto/googleapis/cloud/automl/v1beta1;automlÊGoogle\\Cloud\\AutoMl\\V1beta1êGoogle::Cloud::AutoML::V1beta1bproto3'
+TextSentimentModelMetadataB¦
+com.google.cloud.automl.v1beta1B	TextProtoPZ7cloud.google.com/go/automl/apiv1beta1/automlpb;automlpbÊGoogle\\Cloud\\AutoMl\\V1beta1êGoogle::Cloud::AutoML::V1beta1bproto3'
         , true);
 
         static::$is_initialized = true;

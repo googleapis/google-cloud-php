@@ -2,14 +2,50 @@
 
 return [
     'interfaces' => [
-        'google.cloud.scheduler.v1beta1.CloudScheduler' => [
-            'ListJobs' => [
+        'google.cloud.location.Locations' => [
+            'GetLocation' => [
                 'method' => 'get',
+                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListLocations' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta1/{name=projects/*}/locations',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+        ],
+        'google.cloud.scheduler.v1beta1.CloudScheduler' => [
+            'CreateJob' => [
+                'method' => 'post',
                 'uriTemplate' => '/v1beta1/{parent=projects/*/locations/*}/jobs',
+                'body' => 'job',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteJob' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/jobs/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
                         ],
                     ],
                 ],
@@ -25,38 +61,13 @@ return [
                     ],
                 ],
             ],
-            'CreateJob' => [
-                'method' => 'post',
+            'ListJobs' => [
+                'method' => 'get',
                 'uriTemplate' => '/v1beta1/{parent=projects/*/locations/*}/jobs',
-                'body' => 'job',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
                             'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'UpdateJob' => [
-                'method' => 'patch',
-                'uriTemplate' => '/v1beta1/{job.name=projects/*/locations/*/jobs/*}',
-                'body' => 'job',
-                'placeholders' => [
-                    'job.name' => [
-                        'getters' => [
-                            'getJob',
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'DeleteJob' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/jobs/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
                         ],
                     ],
                 ],
@@ -97,6 +108,20 @@ return [
                     ],
                 ],
             ],
+            'UpdateJob' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1beta1/{job.name=projects/*/locations/*/jobs/*}',
+                'body' => 'job',
+                'placeholders' => [
+                    'job.name' => [
+                        'getters' => [
+                            'getJob',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
         ],
     ],
+    'numericEnums' => true,
 ];

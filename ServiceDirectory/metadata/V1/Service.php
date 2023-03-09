@@ -14,14 +14,13 @@ class Service
         if (static::$is_initialized == true) {
           return;
         }
-        \GPBMetadata\Google\Api\Annotations::initOnce();
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Api\Resource::initOnce();
         \GPBMetadata\Google\Cloud\Servicedirectory\V1\Endpoint::initOnce();
         $pool->internalAddGeneratedFile(
             '
-¯
-.google/cloud/servicedirectory/v1/service.proto google.cloud.servicedirectory.v1google/api/field_behavior.protogoogle/api/resource.proto/google/cloud/servicedirectory/v1/endpoint.proto"ë
+Ž
+.google/cloud/servicedirectory/v1/service.proto google.cloud.servicedirectory.v1google/api/resource.proto/google/cloud/servicedirectory/v1/endpoint.proto"ë
 Service
 name (	BàAT
 annotations (2:.google.cloud.servicedirectory.v1.Service.AnnotationsEntryBàAB
@@ -30,7 +29,7 @@ class Service
 key (	
 value (	:8:êA|
 \'servicedirectory.googleapis.com/ServiceQprojects/{project}/locations/{location}/namespaces/{namespace}/services/{service}B÷
-$com.google.cloud.servicedirectory.v1BServiceProtoPZPgoogle.golang.org/genproto/googleapis/cloud/servicedirectory/v1;servicedirectoryøª Google.Cloud.ServiceDirectory.V1Ê Google\\Cloud\\ServiceDirectory\\V1ê#Google::Cloud::ServiceDirectory::V1bproto3'
+$com.google.cloud.servicedirectory.v1BServiceProtoPZPcloud.google.com/go/servicedirectory/apiv1/servicedirectorypb;servicedirectorypbøª Google.Cloud.ServiceDirectory.V1Ê Google\\Cloud\\ServiceDirectory\\V1ê#Google::Cloud::ServiceDirectory::V1bproto3'
         , true);
 
         static::$is_initialized = true;

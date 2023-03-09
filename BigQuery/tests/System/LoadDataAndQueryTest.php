@@ -17,10 +17,11 @@
 
 namespace Google\Cloud\BigQuery\Tests\System;
 
+use Google\Cloud\BigQuery\BigNumeric;
 use Google\Cloud\BigQuery\Geography;
 use Google\Cloud\BigQuery\Numeric;
 use Google\Cloud\Core\ExponentialBackoff;
-use GuzzleHttp\Psr7;
+use GuzzleHttp\Psr7\Utils;
 
 /**
  * @group bigquery
@@ -34,7 +35,7 @@ class LoadDataAndQueryTest extends BigQueryTestCase
     private $row;
     private $geographyPattern;
 
-    public function setUp()
+    public function set_up()
     {
         $this->row = [
             'Name' => 'Dave',
@@ -60,7 +61,11 @@ class LoadDataAndQueryTest extends BigQueryTestCase
                 'NextVacation' => self::$client->date(new \DateTime('2020-10-11')),
                 'FavoriteTime' => new \DateTime('1920-01-01 15:15:12')
             ],
-            'FavoriteNumbers' => [new Numeric('.123'), new Numeric('123.')],
+            'FavoriteNumbers' => [new Numeric('0.123'), new Numeric('0.123')],
+            'BiggerNumbers' => [
+                new BigNumeric('0.999999999999999999'),
+                new BigNumeric('343343434343433434343.2')
+            ],
             'Location' => new Geography('POINT(12 34)'),
         ];
         $this->geographyPattern = '/POINT\\s*\\(\\s*12\\s+34\\s*\\)/';
@@ -87,7 +92,7 @@ class LoadDataAndQueryTest extends BigQueryTestCase
 
         $this->assertEquals($expectedRow, $actualRow);
         $this->assertEquals((string) $expectedBytes, (string) $actualBytes);
-        $this->assertRegExp($this->geographyPattern, (string) $actualGeography);
+        $this->assertMatchesRegularExpression($this->geographyPattern, (string) $actualGeography);
     }
 
     /**
@@ -134,12 +139,13 @@ class LoadDataAndQueryTest extends BigQueryTestCase
             $this->assertEquals($spells['Properties'][0]['Name'], $actualRow['Spells_Properties_Name']);
             $this->assertEquals($spells['Properties'][0]['Power'], $actualRow['Spells_Properties_Power']);
             $this->assertEquals((string) $spells['Icon'], (string) $actualRow['Spells_Icon']);
-            $this->assertRegExp($this->geographyPattern, (string) $actualRow['Location']);
+            $this->assertMatchesRegularExpression($this->geographyPattern, (string) $actualRow['Location']);
         } else {
             $expectedRow = $this->row;
             $expectedBytes = $expectedRow['Spells'][0]['Icon'];
             $actualBytes = $actualRow['Spells'][0]['Icon'];
             unset($expectedRow['FavoriteNumbers']);
+            unset($expectedRow['BiggerNumbers']);
             unset($expectedRow['ImportantDates']);
             unset($expectedRow['Spells'][0]['Icon']);
             unset($actualRow['Spells'][0]['Icon']);
@@ -148,7 +154,7 @@ class LoadDataAndQueryTest extends BigQueryTestCase
 
             $this->assertEquals($expectedRow, $actualRow);
             $this->assertEquals((string) $expectedBytes, (string) $actualBytes);
-            $this->assertRegExp($this->geographyPattern, (string) $actualGeography);
+            $this->assertMatchesRegularExpression($this->geographyPattern, (string) $actualGeography);
         }
     }
 
@@ -160,8 +166,8 @@ class LoadDataAndQueryTest extends BigQueryTestCase
     {
         $queryString = sprintf(
             $useLegacySql
-                ? 'SELECT FavoriteNumbers, ImportantDates.* FROM [%s.%s]'
-                : 'SELECT FavoriteNumbers, ImportantDates FROM `%s.%s`',
+                ? 'SELECT FavoriteNumbers, BiggerNumbers, ImportantDates.* FROM [%s.%s]'
+                : 'SELECT FavoriteNumbers, BiggerNumbers, ImportantDates FROM `%s.%s`',
             self::$dataset->id(),
             self::$table->id()
         );
@@ -187,15 +193,21 @@ class LoadDataAndQueryTest extends BigQueryTestCase
         if ($useLegacySql) {
             $dates = $this->row['ImportantDates'];
             $numbers = $this->row['FavoriteNumbers'];
+            $biggerNumbers = $this->row['BiggerNumbers'];
 
             $this->assertEquals($numbers[0], $actualRows[0]['FavoriteNumbers']);
             $this->assertEquals($numbers[1], $actualRows[1]['FavoriteNumbers']);
+
+            $this->assertEquals($biggerNumbers[0], $actualRows[0]['BiggerNumbers']);
+            $this->assertEquals($biggerNumbers[1], $actualRows[1]['BiggerNumbers']);
+
             $this->assertEquals($dates['TeaTime'], $actualRows[0]['ImportantDates_TeaTime']);
             $this->assertEquals($dates['NextVacation'], $actualRows[0]['ImportantDates_NextVacation']);
             $this->assertEquals($dates['FavoriteTime'], $actualRows[0]['ImportantDates_FavoriteTime']);
         } else {
             $expectedRow = [
                 'FavoriteNumbers' => $this->row['FavoriteNumbers'],
+                'BiggerNumbers' => $this->row['BiggerNumbers'],
                 'ImportantDates' => $this->row['ImportantDates']
             ];
 
@@ -285,7 +297,7 @@ class LoadDataAndQueryTest extends BigQueryTestCase
 
         $this->assertEquals($params, $actualRow);
         $this->assertEquals((string) $bytes, (string) $actualBytes);
-        $this->assertRegExp($geographyPattern, (string) $actualGeography);
+        $this->assertMatchesRegularExpression($geographyPattern, (string) $actualGeography);
     }
 
     public function testRunQueryWithPositionalParameters()
@@ -399,7 +411,7 @@ class LoadDataAndQueryTest extends BigQueryTestCase
         return [
             [$data],
             [fopen(__DIR__ . '/data/table-data.json', 'r')],
-            [Psr7\stream_for($data)]
+            [Utils::streamFor($data)]
         ];
     }
 

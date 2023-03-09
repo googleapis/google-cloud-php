@@ -15,9 +15,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class SecurityPolicyReference extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Generated from protobuf field <code>string security_policy = 171082513;</code>
+     * Generated from protobuf field <code>optional string security_policy = 171082513;</code>
      */
-    private $security_policy = '';
+    private $security_policy = null;
 
     /**
      * Constructor.
@@ -34,16 +34,26 @@ class SecurityPolicyReference extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string security_policy = 171082513;</code>
+     * Generated from protobuf field <code>optional string security_policy = 171082513;</code>
      * @return string
      */
     public function getSecurityPolicy()
     {
-        return $this->security_policy;
+        return isset($this->security_policy) ? $this->security_policy : '';
+    }
+
+    public function hasSecurityPolicy()
+    {
+        return isset($this->security_policy);
+    }
+
+    public function clearSecurityPolicy()
+    {
+        unset($this->security_policy);
     }
 
     /**
-     * Generated from protobuf field <code>string security_policy = 171082513;</code>
+     * Generated from protobuf field <code>optional string security_policy = 171082513;</code>
      * @param string $var
      * @return $this
      */

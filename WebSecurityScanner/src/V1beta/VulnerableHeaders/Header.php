@@ -99,6 +99,4 @@ class Header extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Header::class, \Google\Cloud\WebSecurityScanner\V1beta\VulnerableHeaders_Header::class);
 

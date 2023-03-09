@@ -55,7 +55,7 @@ class Resource extends \Google\Protobuf\Internal\Message
      * Names](https://cloud.google.com/apis/design/resource_names#full_resource_name)
      * for more information.
      * For Google Cloud assets, this value is the parent resource defined in the
-     * [Cloud IAM policy
+     * [IAM policy
      * hierarchy](https://cloud.google.com/iam/docs/overview#policy_hierarchy).
      * Example:
      * `//cloudresourcemanager.googleapis.com/projects/my_project_123`
@@ -109,7 +109,7 @@ class Resource extends \Google\Protobuf\Internal\Message
      *           Names](https://cloud.google.com/apis/design/resource_names#full_resource_name)
      *           for more information.
      *           For Google Cloud assets, this value is the parent resource defined in the
-     *           [Cloud IAM policy
+     *           [IAM policy
      *           hierarchy](https://cloud.google.com/iam/docs/overview#policy_hierarchy).
      *           Example:
      *           `//cloudresourcemanager.googleapis.com/projects/my_project_123`
@@ -257,7 +257,7 @@ class Resource extends \Google\Protobuf\Internal\Message
      * Names](https://cloud.google.com/apis/design/resource_names#full_resource_name)
      * for more information.
      * For Google Cloud assets, this value is the parent resource defined in the
-     * [Cloud IAM policy
+     * [IAM policy
      * hierarchy](https://cloud.google.com/iam/docs/overview#policy_hierarchy).
      * Example:
      * `//cloudresourcemanager.googleapis.com/projects/my_project_123`
@@ -277,7 +277,7 @@ class Resource extends \Google\Protobuf\Internal\Message
      * Names](https://cloud.google.com/apis/design/resource_names#full_resource_name)
      * for more information.
      * For Google Cloud assets, this value is the parent resource defined in the
-     * [Cloud IAM policy
+     * [IAM policy
      * hierarchy](https://cloud.google.com/iam/docs/overview#policy_hierarchy).
      * Example:
      * `//cloudresourcemanager.googleapis.com/projects/my_project_123`
@@ -300,11 +300,21 @@ class Resource extends \Google\Protobuf\Internal\Message
      * and may not be present.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct data = 6;</code>
-     * @return \Google\Protobuf\Struct
+     * @return \Google\Protobuf\Struct|null
      */
     public function getData()
     {
         return $this->data;
+    }
+
+    public function hasData()
+    {
+        return isset($this->data);
+    }
+
+    public function clearData()
+    {
+        unset($this->data);
     }
 
     /**

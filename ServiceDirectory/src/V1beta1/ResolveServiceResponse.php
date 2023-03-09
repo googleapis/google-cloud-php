@@ -40,7 +40,7 @@ class ResolveServiceResponse extends \Google\Protobuf\Internal\Message
      */
     public function getService()
     {
-        return isset($this->service) ? $this->service : null;
+        return $this->service;
     }
 
     public function hasService()

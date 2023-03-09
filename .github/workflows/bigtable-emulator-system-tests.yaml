@@ -1,21 +1,25 @@
 on:
   push:
     branches:
-      - master
+      - main
     paths:
       - 'Bigtable/**'
+      - '.github/workflows/bigtable-emulator-system-tests.yaml'
+      - '.github/emulator/**'
   pull_request:
     paths:
       - 'Bigtable/**'
+      - '.github/workflows/bigtable-emulator-system-tests.yaml'
+      - '.github/emulator/**'
 name: Run Bigtable System Tests With Emulator
 jobs:
   test:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
-      - run: ./.github/emulator/start-emulator.sh bigtable
+      - run: ./.github/emulator/start-emulator.sh bigtable 419.0.0-emulators
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
@@ -26,7 +30,9 @@ jobs:
 
       - name: Install dependencies
         run: |
-          composer update --prefer-dist --no-interaction --no-suggest -d Bigtable/
+          composer config minimum-stability dev -d Bigtable/
+          composer config repositories.local path "../Core" -d Bigtable
+          composer require "google/cloud-core:*" -d Bigtable/
 
       - name: Run system tests
         run: |

@@ -10,8 +10,8 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Represents an offer made to resellers for purchase.
- * An offer is associated with a [Sku][google.cloud.channel.v1.Sku], has a plan for payment, a price, and
- * defines the constraints for buying.
+ * An offer is associated with a [Sku][google.cloud.channel.v1.Sku], has a plan
+ * for payment, a price, and defines the constraints for buying.
  *
  * Generated from protobuf message <code>google.cloud.channel.v1.Offer</code>
  */
@@ -72,6 +72,12 @@ class Offer extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.ParameterDefinition parameter_definitions = 9;</code>
      */
     private $parameter_definitions;
+    /**
+     * The deal code of the offer to get a special promotion or discount.
+     *
+     * Generated from protobuf field <code>string deal_code = 12;</code>
+     */
+    private $deal_code = '';
 
     /**
      * Constructor.
@@ -90,14 +96,16 @@ class Offer extends \Google\Protobuf\Internal\Message
      *           Describes the payment plan for the Offer.
      *     @type \Google\Cloud\Channel\V1\Constraints $constraints
      *           Constraints on transacting the Offer.
-     *     @type \Google\Cloud\Channel\V1\PriceByResource[]|\Google\Protobuf\Internal\RepeatedField $price_by_resources
+     *     @type array<\Google\Cloud\Channel\V1\PriceByResource>|\Google\Protobuf\Internal\RepeatedField $price_by_resources
      *           Price for each monetizable resource type.
      *     @type \Google\Protobuf\Timestamp $start_time
      *           Start of the Offer validity time.
      *     @type \Google\Protobuf\Timestamp $end_time
      *           Output only. End of the Offer validity time.
-     *     @type \Google\Cloud\Channel\V1\ParameterDefinition[]|\Google\Protobuf\Internal\RepeatedField $parameter_definitions
+     *     @type array<\Google\Cloud\Channel\V1\ParameterDefinition>|\Google\Protobuf\Internal\RepeatedField $parameter_definitions
      *           Parameters required to use current Offer to purchase.
+     *     @type string $deal_code
+     *           The deal code of the offer to get a special promotion or discount.
      * }
      */
     public function __construct($data = NULL) {
@@ -137,11 +145,11 @@ class Offer extends \Google\Protobuf\Internal\Message
      * Marketing information for the Offer.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.MarketingInfo marketing_info = 2;</code>
-     * @return \Google\Cloud\Channel\V1\MarketingInfo
+     * @return \Google\Cloud\Channel\V1\MarketingInfo|null
      */
     public function getMarketingInfo()
     {
-        return isset($this->marketing_info) ? $this->marketing_info : null;
+        return $this->marketing_info;
     }
 
     public function hasMarketingInfo()
@@ -173,11 +181,11 @@ class Offer extends \Google\Protobuf\Internal\Message
      * SKU the offer is associated with.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.Sku sku = 3;</code>
-     * @return \Google\Cloud\Channel\V1\Sku
+     * @return \Google\Cloud\Channel\V1\Sku|null
      */
     public function getSku()
     {
-        return isset($this->sku) ? $this->sku : null;
+        return $this->sku;
     }
 
     public function hasSku()
@@ -209,11 +217,11 @@ class Offer extends \Google\Protobuf\Internal\Message
      * Describes the payment plan for the Offer.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.Plan plan = 4;</code>
-     * @return \Google\Cloud\Channel\V1\Plan
+     * @return \Google\Cloud\Channel\V1\Plan|null
      */
     public function getPlan()
     {
-        return isset($this->plan) ? $this->plan : null;
+        return $this->plan;
     }
 
     public function hasPlan()
@@ -245,11 +253,11 @@ class Offer extends \Google\Protobuf\Internal\Message
      * Constraints on transacting the Offer.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.Constraints constraints = 5;</code>
-     * @return \Google\Cloud\Channel\V1\Constraints
+     * @return \Google\Cloud\Channel\V1\Constraints|null
      */
     public function getConstraints()
     {
-        return isset($this->constraints) ? $this->constraints : null;
+        return $this->constraints;
     }
 
     public function hasConstraints()
@@ -292,7 +300,7 @@ class Offer extends \Google\Protobuf\Internal\Message
      * Price for each monetizable resource type.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.PriceByResource price_by_resources = 6;</code>
-     * @param \Google\Cloud\Channel\V1\PriceByResource[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Channel\V1\PriceByResource>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPriceByResources($var)
@@ -307,11 +315,11 @@ class Offer extends \Google\Protobuf\Internal\Message
      * Start of the Offer validity time.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 7;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getStartTime()
     {
-        return isset($this->start_time) ? $this->start_time : null;
+        return $this->start_time;
     }
 
     public function hasStartTime()
@@ -343,11 +351,11 @@ class Offer extends \Google\Protobuf\Internal\Message
      * Output only. End of the Offer validity time.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getEndTime()
     {
-        return isset($this->end_time) ? $this->end_time : null;
+        return $this->end_time;
     }
 
     public function hasEndTime()
@@ -390,13 +398,39 @@ class Offer extends \Google\Protobuf\Internal\Message
      * Parameters required to use current Offer to purchase.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.ParameterDefinition parameter_definitions = 9;</code>
-     * @param \Google\Cloud\Channel\V1\ParameterDefinition[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Channel\V1\ParameterDefinition>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setParameterDefinitions($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Channel\V1\ParameterDefinition::class);
         $this->parameter_definitions = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The deal code of the offer to get a special promotion or discount.
+     *
+     * Generated from protobuf field <code>string deal_code = 12;</code>
+     * @return string
+     */
+    public function getDealCode()
+    {
+        return $this->deal_code;
+    }
+
+    /**
+     * The deal code of the offer to get a special promotion or discount.
+     *
+     * Generated from protobuf field <code>string deal_code = 12;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDealCode($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->deal_code = $var;
 
         return $this;
     }

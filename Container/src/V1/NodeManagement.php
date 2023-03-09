@@ -134,7 +134,7 @@ class NodeManagement extends \Google\Protobuf\Internal\Message
      */
     public function getUpgradeOptions()
     {
-        return isset($this->upgrade_options) ? $this->upgrade_options : null;
+        return $this->upgrade_options;
     }
 
     public function hasUpgradeOptions()

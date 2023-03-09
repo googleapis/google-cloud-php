@@ -1,0 +1,98 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.datacatalog.lineage.v1",
+    "libraryPackage": "Google\\Cloud\\DataCatalog\\Lineage\\V1",
+    "services": {
+        "Lineage": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "LineageGapicClient",
+                    "rpcs": {
+                        "BatchSearchLinkProcesses": {
+                            "methods": [
+                                "batchSearchLinkProcesses"
+                            ]
+                        },
+                        "CreateLineageEvent": {
+                            "methods": [
+                                "createLineageEvent"
+                            ]
+                        },
+                        "CreateProcess": {
+                            "methods": [
+                                "createProcess"
+                            ]
+                        },
+                        "CreateRun": {
+                            "methods": [
+                                "createRun"
+                            ]
+                        },
+                        "DeleteLineageEvent": {
+                            "methods": [
+                                "deleteLineageEvent"
+                            ]
+                        },
+                        "DeleteProcess": {
+                            "methods": [
+                                "deleteProcess"
+                            ]
+                        },
+                        "DeleteRun": {
+                            "methods": [
+                                "deleteRun"
+                            ]
+                        },
+                        "GetLineageEvent": {
+                            "methods": [
+                                "getLineageEvent"
+                            ]
+                        },
+                        "GetProcess": {
+                            "methods": [
+                                "getProcess"
+                            ]
+                        },
+                        "GetRun": {
+                            "methods": [
+                                "getRun"
+                            ]
+                        },
+                        "ListLineageEvents": {
+                            "methods": [
+                                "listLineageEvents"
+                            ]
+                        },
+                        "ListProcesses": {
+                            "methods": [
+                                "listProcesses"
+                            ]
+                        },
+                        "ListRuns": {
+                            "methods": [
+                                "listRuns"
+                            ]
+                        },
+                        "SearchLinks": {
+                            "methods": [
+                                "searchLinks"
+                            ]
+                        },
+                        "UpdateProcess": {
+                            "methods": [
+                                "updateProcess"
+                            ]
+                        },
+                        "UpdateRun": {
+                            "methods": [
+                                "updateRun"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

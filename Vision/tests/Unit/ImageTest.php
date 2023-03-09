@@ -20,12 +20,15 @@ namespace Google\Cloud\Vision\Tests\Unit;
 use Google\Cloud\Storage\StorageClient;
 use Google\Cloud\Vision\Image;
 use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group vision
  */
 class ImageTest extends TestCase
 {
+    use ExpectException;
+
     public function testWithString()
     {
         $bytes = file_get_contents(Fixtures::EIFFEL_TOWER_FIXTURE());
@@ -39,7 +42,7 @@ class ImageTest extends TestCase
 
     public function testWithStorage()
     {
-        $storage = new StorageClient;
+        $storage = new StorageClient(['suppressKeyFileNotice' => true]);
         $bucket = $storage->bucket('test-bucket');
         $object = $bucket->object('test-object.jpg');
 
@@ -75,11 +78,10 @@ class ImageTest extends TestCase
         $this->assertEquals($res['features'], [ ['type' => 'LANDMARK_DETECTION'] ]);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testWithInvalidType()
     {
+        $this->expectException('InvalidArgumentException');
+
         new Image([], ['landmarks']);
     }
 

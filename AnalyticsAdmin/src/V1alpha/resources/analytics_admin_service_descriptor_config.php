@@ -3,14 +3,24 @@
 return [
     'interfaces' => [
         'google.analytics.admin.v1alpha.AnalyticsAdminService' => [
-            'ListAccounts' => [
+            'AuditUserLinks' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
                     'requestPageTokenSetMethod' => 'setPageToken',
                     'requestPageSizeGetMethod' => 'getPageSize',
                     'requestPageSizeSetMethod' => 'setPageSize',
                     'responsePageTokenGetMethod' => 'getNextPageToken',
-                    'resourcesGetMethod' => 'getAccounts',
+                    'resourcesGetMethod' => 'getUserLinks',
+                ],
+            ],
+            'ListAccessBindings' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getAccessBindings',
                 ],
             ],
             'ListAccountSummaries' => [
@@ -23,64 +33,104 @@ return [
                     'resourcesGetMethod' => 'getAccountSummaries',
                 ],
             ],
-            'ListProperties' => [
+            'ListAccounts' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
                     'requestPageTokenSetMethod' => 'setPageToken',
                     'requestPageSizeGetMethod' => 'getPageSize',
                     'requestPageSizeSetMethod' => 'setPageSize',
                     'responsePageTokenGetMethod' => 'getNextPageToken',
-                    'resourcesGetMethod' => 'getProperties',
+                    'resourcesGetMethod' => 'getAccounts',
                 ],
             ],
-            'ListUserLinks' => [
+            'ListAudiences' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
                     'requestPageTokenSetMethod' => 'setPageToken',
                     'requestPageSizeGetMethod' => 'getPageSize',
                     'requestPageSizeSetMethod' => 'setPageSize',
                     'responsePageTokenGetMethod' => 'getNextPageToken',
-                    'resourcesGetMethod' => 'getUserLinks',
+                    'resourcesGetMethod' => 'getAudiences',
                 ],
             ],
-            'AuditUserLinks' => [
+            'ListBigQueryLinks' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
                     'requestPageTokenSetMethod' => 'setPageToken',
                     'requestPageSizeGetMethod' => 'getPageSize',
                     'requestPageSizeSetMethod' => 'setPageSize',
                     'responsePageTokenGetMethod' => 'getNextPageToken',
-                    'resourcesGetMethod' => 'getUserLinks',
+                    'resourcesGetMethod' => 'getBigqueryLinks',
                 ],
             ],
-            'ListWebDataStreams' => [
+            'ListConversionEvents' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
                     'requestPageTokenSetMethod' => 'setPageToken',
                     'requestPageSizeGetMethod' => 'getPageSize',
                     'requestPageSizeSetMethod' => 'setPageSize',
                     'responsePageTokenGetMethod' => 'getNextPageToken',
-                    'resourcesGetMethod' => 'getWebDataStreams',
+                    'resourcesGetMethod' => 'getConversionEvents',
                 ],
             ],
-            'ListIosAppDataStreams' => [
+            'ListCustomDimensions' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
                     'requestPageTokenSetMethod' => 'setPageToken',
                     'requestPageSizeGetMethod' => 'getPageSize',
                     'requestPageSizeSetMethod' => 'setPageSize',
                     'responsePageTokenGetMethod' => 'getNextPageToken',
-                    'resourcesGetMethod' => 'getIosAppDataStreams',
+                    'resourcesGetMethod' => 'getCustomDimensions',
                 ],
             ],
-            'ListAndroidAppDataStreams' => [
+            'ListCustomMetrics' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
                     'requestPageTokenSetMethod' => 'setPageToken',
                     'requestPageSizeGetMethod' => 'getPageSize',
                     'requestPageSizeSetMethod' => 'setPageSize',
                     'responsePageTokenGetMethod' => 'getNextPageToken',
-                    'resourcesGetMethod' => 'getAndroidAppDataStreams',
+                    'resourcesGetMethod' => 'getCustomMetrics',
+                ],
+            ],
+            'ListDataStreams' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getDataStreams',
+                ],
+            ],
+            'ListDisplayVideo360AdvertiserLinkProposals' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getDisplayVideo360AdvertiserLinkProposals',
+                ],
+            ],
+            'ListDisplayVideo360AdvertiserLinks' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getDisplayVideo360AdvertiserLinks',
+                ],
+            ],
+            'ListExpandedDataSets' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getExpandedDataSets',
                 ],
             ],
             'ListFirebaseLinks' => [
@@ -101,6 +151,56 @@ return [
                     'requestPageSizeSetMethod' => 'setPageSize',
                     'responsePageTokenGetMethod' => 'getNextPageToken',
                     'resourcesGetMethod' => 'getGoogleAdsLinks',
+                ],
+            ],
+            'ListMeasurementProtocolSecrets' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getMeasurementProtocolSecrets',
+                ],
+            ],
+            'ListProperties' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getProperties',
+                ],
+            ],
+            'ListSearchAds360Links' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getSearchAds360Links',
+                ],
+            ],
+            'ListUserLinks' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getUserLinks',
+                ],
+            ],
+            'SearchChangeHistoryEvents' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getChangeHistoryEvents',
                 ],
             ],
         ],

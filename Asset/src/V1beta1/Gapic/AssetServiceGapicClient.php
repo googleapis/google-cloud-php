@@ -129,16 +129,22 @@ class AssetServiceGapicClient
     {
         return [
             'serviceName' => self::SERVICE_NAME,
-            'apiEndpoint' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
-            'clientConfig' => __DIR__.'/../resources/asset_service_client_config.json',
-            'descriptorsConfigPath' => __DIR__.'/../resources/asset_service_descriptor_config.php',
-            'gcpApiConfigPath' => __DIR__.'/../resources/asset_service_grpc_config.json',
+            'apiEndpoint' =>
+                self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
+            'clientConfig' =>
+                __DIR__ . '/../resources/asset_service_client_config.json',
+            'descriptorsConfigPath' =>
+                __DIR__ . '/../resources/asset_service_descriptor_config.php',
+            'gcpApiConfigPath' =>
+                __DIR__ . '/../resources/asset_service_grpc_config.json',
             'credentialsConfig' => [
                 'scopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__.'/../resources/asset_service_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ .
+                        '/../resources/asset_service_rest_client_config.php',
                 ],
             ],
         ];
@@ -173,7 +179,11 @@ class AssetServiceGapicClient
         $options = isset($this->descriptors[$methodName]['longRunning'])
             ? $this->descriptors[$methodName]['longRunning']
             : [];
-        $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
+        $operation = new OperationResponse(
+            $operationName,
+            $this->getOperationsClient(),
+            $options
+        );
         $operation->reload();
 
         return $operation;
@@ -325,8 +335,11 @@ class AssetServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function exportAssets($parent, $outputConfig, array $optionalArgs = [])
-    {
+    public function exportAssets(
+        $parent,
+        $outputConfig,
+        array $optionalArgs = []
+    ) {
         $request = new ExportAssetsRequest();
         $request->setParent($parent);
         $request->setOutputConfig($outputConfig);
@@ -341,7 +354,7 @@ class AssetServiceGapicClient
         }
 
         $requestParams = new RequestParamsHeaderDescriptor([
-          'parent' => $request->getParent(),
+            'parent' => $request->getParent(),
         ]);
         $optionalArgs['headers'] = isset($optionalArgs['headers'])
             ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
@@ -427,7 +440,7 @@ class AssetServiceGapicClient
         }
 
         $requestParams = new RequestParamsHeaderDescriptor([
-          'parent' => $request->getParent(),
+            'parent' => $request->getParent(),
         ]);
         $optionalArgs['headers'] = isset($optionalArgs['headers'])
             ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])

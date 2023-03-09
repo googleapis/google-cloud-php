@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [CloudChannelService.ProvisionCloudIdentity][google.cloud.channel.v1.CloudChannelService.ProvisionCloudIdentity]
+ * Request message for
+ * [CloudChannelService.ProvisionCloudIdentity][google.cloud.channel.v1.CloudChannelService.ProvisionCloudIdentity]
  *
  * Generated from protobuf message <code>google.cloud.channel.v1.ProvisionCloudIdentityRequest</code>
  */
@@ -35,8 +36,7 @@ class ProvisionCloudIdentityRequest extends \Google\Protobuf\Internal\Message
      */
     private $user = null;
     /**
-     * If set, validate the request and preview the review, but do not actually
-     * post it.
+     * Validate the request and preview the review, but do not post it.
      *
      * Generated from protobuf field <code>bool validate_only = 4;</code>
      */
@@ -56,8 +56,7 @@ class ProvisionCloudIdentityRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Channel\V1\AdminUser $user
      *           Admin user information.
      *     @type bool $validate_only
-     *           If set, validate the request and preview the review, but do not actually
-     *           post it.
+     *           Validate the request and preview the review, but do not post it.
      * }
      */
     public function __construct($data = NULL) {
@@ -97,11 +96,11 @@ class ProvisionCloudIdentityRequest extends \Google\Protobuf\Internal\Message
      * CloudIdentity-specific customer information.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.CloudIdentityInfo cloud_identity_info = 2;</code>
-     * @return \Google\Cloud\Channel\V1\CloudIdentityInfo
+     * @return \Google\Cloud\Channel\V1\CloudIdentityInfo|null
      */
     public function getCloudIdentityInfo()
     {
-        return isset($this->cloud_identity_info) ? $this->cloud_identity_info : null;
+        return $this->cloud_identity_info;
     }
 
     public function hasCloudIdentityInfo()
@@ -133,11 +132,11 @@ class ProvisionCloudIdentityRequest extends \Google\Protobuf\Internal\Message
      * Admin user information.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.AdminUser user = 3;</code>
-     * @return \Google\Cloud\Channel\V1\AdminUser
+     * @return \Google\Cloud\Channel\V1\AdminUser|null
      */
     public function getUser()
     {
-        return isset($this->user) ? $this->user : null;
+        return $this->user;
     }
 
     public function hasUser()
@@ -166,8 +165,7 @@ class ProvisionCloudIdentityRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If set, validate the request and preview the review, but do not actually
-     * post it.
+     * Validate the request and preview the review, but do not post it.
      *
      * Generated from protobuf field <code>bool validate_only = 4;</code>
      * @return bool
@@ -178,8 +176,7 @@ class ProvisionCloudIdentityRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If set, validate the request and preview the review, but do not actually
-     * post it.
+     * Validate the request and preview the review, but do not post it.
      *
      * Generated from protobuf field <code>bool validate_only = 4;</code>
      * @param bool $var

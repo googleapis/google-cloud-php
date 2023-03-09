@@ -57,11 +57,11 @@ class CommitmentSettings extends \Google\Protobuf\Internal\Message
      * Output only. Commitment start timestamp.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getStartTime()
     {
-        return isset($this->start_time) ? $this->start_time : null;
+        return $this->start_time;
     }
 
     public function hasStartTime()
@@ -93,11 +93,11 @@ class CommitmentSettings extends \Google\Protobuf\Internal\Message
      * Output only. Commitment end timestamp.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getEndTime()
     {
-        return isset($this->end_time) ? $this->end_time : null;
+        return $this->end_time;
     }
 
     public function hasEndTime()
@@ -129,11 +129,11 @@ class CommitmentSettings extends \Google\Protobuf\Internal\Message
      * Optional. Renewal settings applicable for a commitment-based Offer.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.RenewalSettings renewal_settings = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Cloud\Channel\V1\RenewalSettings
+     * @return \Google\Cloud\Channel\V1\RenewalSettings|null
      */
     public function getRenewalSettings()
     {
-        return isset($this->renewal_settings) ? $this->renewal_settings : null;
+        return $this->renewal_settings;
     }
 
     public function hasRenewalSettings()

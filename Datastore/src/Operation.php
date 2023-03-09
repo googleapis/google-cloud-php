@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Datastore;
 
+use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\ValidateTrait;
 use Google\Cloud\Datastore\Connection\ConnectionInterface;
 use Google\Cloud\Datastore\Query\Query;
@@ -55,6 +56,11 @@ class Operation
     private $namespaceId;
 
     /**
+     * @var string
+     */
+    private $databaseId;
+
+    /**
      * @var EntityMapper
      */
     private $entityMapper;
@@ -66,16 +72,19 @@ class Operation
      * @param string $projectId The Google Cloud Platform project ID.
      * @param string $namespaceId The namespace to use for all service requests.
      * @param EntityMapper $entityMapper A Datastore Entity Mapper instance.
+     * @param string $databaseId ID of the database to which the entities belong.
      */
     public function __construct(
         ConnectionInterface $connection,
         $projectId,
         $namespaceId,
-        EntityMapper $entityMapper
+        EntityMapper $entityMapper,
+        $databaseId = ''
     ) {
         $this->connection = $connection;
         $this->projectId = $projectId;
         $this->namespaceId = $namespaceId;
+        $this->databaseId = $databaseId;
         $this->entityMapper = $entityMapper;
     }
 
@@ -95,13 +104,15 @@ class Operation
      *           if you want to create keys with `name` but your values may
      *           pass PHP's `is_numeric()` check), this value may be
      *           explicitly set using `Key::TYPE_ID` or `Key::TYPE_NAME`.
+     *     @type string $databaseId ID of the database to which the entities belong.
      * }
      * @return Key
      */
     public function key($kind, $identifier = null, array $options = [])
     {
         $options += [
-            'namespaceId' => $this->namespaceId
+            'namespaceId' => $this->namespaceId,
+            'databaseId' => $this->databaseId,
         ];
 
         $key = new Key($this->projectId, $options);
@@ -142,7 +153,7 @@ class Operation
             'number' => 1,
             'ancestors' => [],
             'id' => null,
-            'name' => null
+            'name' => null,
         ];
 
         if ($options['number'] < 1) {
@@ -157,12 +168,13 @@ class Operation
         $path[] = array_filter([
             'kind' => $kind,
             'id' => $options['id'],
-            'name' => $options['name']
+            'name' => $options['name'],
         ]);
 
         $key = new Key($this->projectId, [
             'path' => $path,
-            'namespaceId' => $this->namespaceId
+            'namespaceId' => $this->namespaceId,
+            'databaseId' => $this->databaseId,
         ]);
 
         $keys = [$key];
@@ -215,7 +227,7 @@ class Operation
     public function entity($key = null, array $entity = [], array $options = [])
     {
         $options += [
-            'className' => null
+            'className' => null,
         ];
 
         if ($key && !is_string($key) && !($key instanceof Key)) {
@@ -253,10 +265,20 @@ class Operation
      */
     public function beginTransaction($transactionOptions, array $options = [])
     {
-        $res = $this->connection->beginTransaction([
+        // Read Only option might not be present or empty
+        // Parse only when Read Time is valid
+        if (isset($transactionOptions['readOnly']) &&
+            is_array($transactionOptions['readOnly']) &&
+            isset($transactionOptions['readOnly']['readTime'])
+        ) {
+            $readTime = $transactionOptions['readOnly']['readTime'];
+            $transactionOptions['readOnly']['readTime'] = $this->parseCoreTimestamp($readTime);
+        }
+        $res = $this->connection->beginTransaction($options + [
             'projectId' => $this->projectId,
-            'transactionOptions' => $transactionOptions
-        ] + $options);
+            'databaseId' => $this->databaseId,
+            'transactionOptions' => $transactionOptions,
+        ]);
 
         return $res['transaction'];
     }
@@ -297,10 +319,11 @@ class Operation
             $serviceKeys[] = $key->keyObject();
         }
 
-        $res = $this->connection->allocateIds([
+        $res = $this->connection->allocateIds($options + [
             'projectId' => $this->projectId,
-            'keys' => $serviceKeys
-        ] + $options);
+            'databaseId' => $this->databaseId,
+            'keys' => $serviceKeys,
+        ]);
 
         if (isset($res['keys'])) {
             foreach ($res['keys'] as $index => $key) {
@@ -337,6 +360,8 @@ class Operation
      *           {@see Google\Cloud\Datastore\Entity}.
      *     @type bool $sort If set to true, results in each set will be sorted
      *           to match the order given in $keys. **Defaults to** `false`.
+     *     @type string $databaseId ID of the database to which the entities belong.
+     *     @type Timestamp $readTime Reads entities as they were at the given timestamp.
      * }
      * @return array Returns an array with keys [`found`, `missing`, and `deferred`].
      *         Members of `found` will be instance of
@@ -348,7 +373,7 @@ class Operation
     {
         $options += [
             'className' => Entity::class,
-            'sort' => false
+            'sort' => false,
         ];
 
         $serviceKeys = [];
@@ -366,7 +391,8 @@ class Operation
 
         $res = $this->connection->lookup($options + $this->readOptions($options) + [
             'projectId' => $this->projectId,
-            'keys' => $serviceKeys
+            'databaseId' => $this->databaseId,
+            'keys' => $serviceKeys,
         ]);
 
         $result = [];
@@ -422,6 +448,8 @@ class Operation
      *           {@see Google\Cloud\Datastore\Entity}.
      *     @type string $readConsistency See
      *           [ReadConsistency](https://cloud.google.com/datastore/reference/rest/v1/ReadOptions#ReadConsistency).
+     *     @type string $databaseId ID of the database to which the entities belong.
+     *     @type Timestamp $readTime Reads entities as they were at the given timestamp.
      * }
      * @return EntityIterator<EntityInterface>
      */
@@ -429,7 +457,8 @@ class Operation
     {
         $options += [
             'className' => Entity::class,
-            'namespaceId' => $this->namespaceId
+            'namespaceId' => $this->namespaceId,
+            'databaseId' => $this->databaseId,
         ];
 
         $iteratorConfig = [
@@ -448,21 +477,31 @@ class Operation
                 }
 
                 return false;
-            }
+            },
         ];
 
+        if (array_key_exists('limit', $query->queryObject())) {
+            $remainingLimit = $query->queryObject()['limit'];
+        }
         $runQueryObj = clone $query;
-        $runQueryFn = function (array $args = []) use (&$runQueryObj, $options) {
+        $runQueryFn = function (array $args = []) use (&$runQueryObj, $options, &$remainingLimit) {
             $args += [
-                'query' => []
+                'query' => [],
             ];
 
             // The iterator provides the startCursor for subsequent pages as an argument.
             $requestQueryArr = $args['query'] + $runQueryObj->queryObject();
+            if (isset($remainingLimit)) {
+                $requestQueryArr['limit'] = $remainingLimit;
+            }
             $request = [
                 'projectId' => $this->projectId,
-                'partitionId' => $this->partitionId($this->projectId, $options['namespaceId']),
-                $runQueryObj->queryKey() => $requestQueryArr
+                'partitionId' => $this->partitionId(
+                    $this->projectId,
+                    $options['namespaceId'],
+                    $options['databaseId']
+                ),
+                $runQueryObj->queryKey() => $requestQueryArr,
             ] + $this->readOptions($options) + $options;
 
             $res = $this->connection->runQuery($request);
@@ -475,6 +514,17 @@ class Operation
             // instance prior to the next iteration of the page.
             if (isset($res['query'])) {
                 $runQueryObj = new Query($this->entityMapper, $res['query']);
+            }
+            if (isset($res['query']['limit'])) {
+                // limit for GqlQuery in REST mode
+                $remainingLimit = $res['query']['limit'];
+            }
+            if (isset($remainingLimit['value'])) {
+                // limit for GqlQuery in GRPC mode
+                $remainingLimit = $remainingLimit['value'];
+            }
+            if (!is_null($remainingLimit)) {
+                $remainingLimit -= count($res['batch']['entityResults']);
             }
 
             return $res;
@@ -505,6 +555,7 @@ class Operation
      *
      *     @type string $transaction The transaction ID, if the query should be
      *           run in a transaction.
+     *     @type string $databaseId ID of the database to which the entities belong.
      * }
      * @return array [Response Body](https://cloud.google.com/datastore/reference/rest/v1/projects/commit#response-body)
      * @codingStandardsIgnoreEnd
@@ -512,13 +563,14 @@ class Operation
     public function commit(array $mutations, array $options = [])
     {
         $options += [
-            'transaction' => null
+            'transaction' => null,
+            'databaseId' => $this->databaseId,
         ];
 
         $res = $this->connection->commit($options + [
             'mode' => ($options['transaction']) ? 'TRANSACTIONAL' : 'NON_TRANSACTIONAL',
             'mutations' => $mutations,
-            'projectId' => $this->projectId
+            'projectId' => $this->projectId,
         ]);
 
         return $res;
@@ -599,7 +651,7 @@ class Operation
 
         return array_filter([
             $operation => $data,
-            'baseVersion' => $baseVersion
+            'baseVersion' => $baseVersion,
         ]);
     }
 
@@ -613,7 +665,8 @@ class Operation
     {
         $this->connection->rollback([
             'projectId' => $this->projectId,
-            'transaction' => $transactionId
+            'transaction' => $transactionId,
+            'databaseId' => $this->databaseId,
         ]);
     }
 
@@ -633,9 +686,9 @@ class Operation
         foreach ($entities as $entity) {
             if (!$entity->populatedByService() && !$allowOverwrite) {
                 throw new \InvalidArgumentException(sprintf(
-                    'Given entity cannot be saved because it may overwrite an '.
-                    'existing record. When updating manually created entities, '.
-                    'please set the options `$allowOverwrite` flag to `true`. '.
+                    'Given entity cannot be saved because it may overwrite an ' .
+                    'existing record. When updating manually created entities, ' .
+                    'please set the options `$allowOverwrite` flag to `true`. ' .
                     'Invalid entity key was %s',
                     (string) $entity->key()
                 ));
@@ -664,10 +717,14 @@ class Operation
         $namespaceId = (isset($entity['key']['partitionId']['namespaceId']))
             ? $entity['key']['partitionId']['namespaceId']
             : null;
+        $databaseId = (isset($entity['key']['partitionId']['databaseId']))
+            ? $entity['key']['partitionId']['databaseId']
+            : '';
 
         $key = new Key($this->projectId, [
             'path' => $entity['key']['path'],
-            'namespaceId' => $namespaceId
+            'namespaceId' => $namespaceId,
+            'databaseId' => $databaseId,
         ]);
 
         if (is_array($class)) {
@@ -706,7 +763,7 @@ class Operation
             'className' => $className,
             'populatedByService' => true,
             'excludeFromIndexes' => $excludes,
-            'meanings' => $meanings
+            'meanings' => $meanings,
         ]);
     }
 
@@ -719,6 +776,7 @@ class Operation
      *      @type string $transaction If set, query or lookup will run in transaction.
      *      @type string $readConsistency See
      *           [ReadConsistency](https://cloud.google.com/datastore/reference/rest/v1/ReadOptions#ReadConsistency).
+     *      @type Timestamp $readTime Reads entities as they were at the given timestamp.
      * }
      * @return array
      */
@@ -726,17 +784,40 @@ class Operation
     {
         $options += [
             'readConsistency' => null,
-            'transaction' => null
+            'transaction' => null,
+            'readTime' => null
         ];
+
+        if (isset($options['readTime'])) {
+            $options['readTime'] = $this->parseCoreTimestamp($options['readTime']);
+        }
 
         $readOptions = array_filter([
             'readConsistency' => $options['readConsistency'],
-            'transaction' => $options['transaction']
+            'transaction' => $options['transaction'],
+            'readTime' => $options['readTime']
         ]);
 
         return array_filter([
-            'readOptions' => $readOptions
+            'readOptions' => $readOptions,
         ]);
+    }
+
+    /**
+     * Format the timestamp.
+     *
+     * @param Timestamp $time
+     * @return array
+     */
+    private function parseCoreTimestamp($time)
+    {
+        if (!$time instanceof Timestamp) {
+            throw new \InvalidArgumentException(
+                'Read Time must be an instance of `Google\\Cloud\\Core\\Timestamp`'
+            );
+        }
+
+        return $time->formatForApi();
     }
 
     /**

@@ -43,7 +43,7 @@ class ImportUserEventsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Rpc\Status[]|\Google\Protobuf\Internal\RepeatedField $error_samples
+     *     @type array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $error_samples
      *           A sample of errors encountered while processing the request.
      *     @type \Google\Cloud\Retail\V2\ImportErrorsConfig $errors_config
      *           Echoes the destination for the complete errors if this field was set in
@@ -72,7 +72,7 @@ class ImportUserEventsResponse extends \Google\Protobuf\Internal\Message
      * A sample of errors encountered while processing the request.
      *
      * Generated from protobuf field <code>repeated .google.rpc.Status error_samples = 1;</code>
-     * @param \Google\Rpc\Status[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setErrorSamples($var)
@@ -92,7 +92,7 @@ class ImportUserEventsResponse extends \Google\Protobuf\Internal\Message
      */
     public function getErrorsConfig()
     {
-        return isset($this->errors_config) ? $this->errors_config : null;
+        return $this->errors_config;
     }
 
     public function hasErrorsConfig()
@@ -129,7 +129,7 @@ class ImportUserEventsResponse extends \Google\Protobuf\Internal\Message
      */
     public function getImportSummary()
     {
-        return isset($this->import_summary) ? $this->import_summary : null;
+        return $this->import_summary;
     }
 
     public function hasImportSummary()

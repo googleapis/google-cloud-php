@@ -15,9 +15,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class TargetReference extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Generated from protobuf field <code>string target = 192835985;</code>
+     * Generated from protobuf field <code>optional string target = 192835985;</code>
      */
-    private $target = '';
+    private $target = null;
 
     /**
      * Constructor.
@@ -34,16 +34,26 @@ class TargetReference extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string target = 192835985;</code>
+     * Generated from protobuf field <code>optional string target = 192835985;</code>
      * @return string
      */
     public function getTarget()
     {
-        return $this->target;
+        return isset($this->target) ? $this->target : '';
+    }
+
+    public function hasTarget()
+    {
+        return isset($this->target);
+    }
+
+    public function clearTarget()
+    {
+        unset($this->target);
     }
 
     /**
-     * Generated from protobuf field <code>string target = 192835985;</code>
+     * Generated from protobuf field <code>optional string target = 192835985;</code>
      * @param string $var
      * @return $this
      */

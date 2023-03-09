@@ -10,7 +10,7 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * A Dataproc job for running [Apache Spark
- * SQL](http://spark.apache.org/sql/) queries.
+ * SQL](https://spark.apache.org/sql/) queries.
  *
  * Generated from protobuf message <code>google.cloud.dataproc.v1.SparkSqlJob</code>
  */
@@ -62,7 +62,7 @@ class SparkSqlJob extends \Google\Protobuf\Internal\Message
      *           Optional. A mapping of property names to values, used to configure
      *           Spark SQL's SparkConf. Properties that conflict with values set by the
      *           Dataproc API may be overwritten.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $jar_file_uris
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $jar_file_uris
      *           Optional. HCFS URIs of jar files to be added to the Spark CLASSPATH.
      *     @type \Google\Cloud\Dataproc\V1\LoggingConfig $logging_config
      *           Optional. The runtime log config for job execution.
@@ -208,7 +208,7 @@ class SparkSqlJob extends \Google\Protobuf\Internal\Message
      * Optional. HCFS URIs of jar files to be added to the Spark CLASSPATH.
      *
      * Generated from protobuf field <code>repeated string jar_file_uris = 56 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setJarFileUris($var)
@@ -227,7 +227,7 @@ class SparkSqlJob extends \Google\Protobuf\Internal\Message
      */
     public function getLoggingConfig()
     {
-        return isset($this->logging_config) ? $this->logging_config : null;
+        return $this->logging_config;
     }
 
     public function hasLoggingConfig()

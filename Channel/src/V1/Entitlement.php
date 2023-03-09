@@ -61,16 +61,18 @@ class Entitlement extends \Google\Protobuf\Internal\Message
      */
     private $provisioned_service = null;
     /**
-     * Output only. Enumerable of all current suspension reasons for an entitlement.
+     * Output only. Enumerable of all current suspension reasons for an
+     * entitlement.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.Entitlement.SuspensionReason suspension_reasons = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $suspension_reasons;
     /**
-     * Optional. This purchase order (PO) information is for resellers to use for their
-     * company tracking usage. If a purchaseOrderId value is given, it appears in
-     * the API responses and shows up in the invoice. The property accepts up to
-     * 80 plain text characters.
+     * Optional. This purchase order (PO) information is for resellers to use for
+     * their company tracking usage. If a purchaseOrderId value is given, it
+     * appears in the API responses and shows up in the invoice. The property
+     * accepts up to 80 plain text characters. This is only supported for Google
+     * Workspace entitlements.
      *
      * Generated from protobuf field <code>string purchase_order_id = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -89,8 +91,12 @@ class Entitlement extends \Google\Protobuf\Internal\Message
     private $association_info = null;
     /**
      * Extended entitlement parameters. When creating an entitlement, valid
-     * parameters' names and values are defined in the offer's parameter
-     * definitions.
+     * parameter names and values are defined in the
+     * [Offer.parameter_definitions][google.cloud.channel.v1.Offer.parameter_definitions].
+     * The response may include the following output-only Parameters:
+     * - assigned_units: The number of licenses assigned to users.
+     * - max_units: The maximum assignable units for a flexible offer.
+     * - num_units: The total commitment for commitment-based offers.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.Parameter parameters = 26;</code>
      */
@@ -119,21 +125,27 @@ class Entitlement extends \Google\Protobuf\Internal\Message
      *           Output only. Current provisioning state of the entitlement.
      *     @type \Google\Cloud\Channel\V1\ProvisionedService $provisioned_service
      *           Output only. Service provisioning details for the entitlement.
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $suspension_reasons
-     *           Output only. Enumerable of all current suspension reasons for an entitlement.
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $suspension_reasons
+     *           Output only. Enumerable of all current suspension reasons for an
+     *           entitlement.
      *     @type string $purchase_order_id
-     *           Optional. This purchase order (PO) information is for resellers to use for their
-     *           company tracking usage. If a purchaseOrderId value is given, it appears in
-     *           the API responses and shows up in the invoice. The property accepts up to
-     *           80 plain text characters.
+     *           Optional. This purchase order (PO) information is for resellers to use for
+     *           their company tracking usage. If a purchaseOrderId value is given, it
+     *           appears in the API responses and shows up in the invoice. The property
+     *           accepts up to 80 plain text characters. This is only supported for Google
+     *           Workspace entitlements.
      *     @type \Google\Cloud\Channel\V1\TrialSettings $trial_settings
      *           Output only. Settings for trial offers.
      *     @type \Google\Cloud\Channel\V1\AssociationInfo $association_info
      *           Association information to other entitlements.
-     *     @type \Google\Cloud\Channel\V1\Parameter[]|\Google\Protobuf\Internal\RepeatedField $parameters
+     *     @type array<\Google\Cloud\Channel\V1\Parameter>|\Google\Protobuf\Internal\RepeatedField $parameters
      *           Extended entitlement parameters. When creating an entitlement, valid
-     *           parameters' names and values are defined in the offer's parameter
-     *           definitions.
+     *           parameter names and values are defined in the
+     *           [Offer.parameter_definitions][google.cloud.channel.v1.Offer.parameter_definitions].
+     *           The response may include the following output-only Parameters:
+     *           - assigned_units: The number of licenses assigned to users.
+     *           - max_units: The maximum assignable units for a flexible offer.
+     *           - num_units: The total commitment for commitment-based offers.
      * }
      */
     public function __construct($data = NULL) {
@@ -173,11 +185,11 @@ class Entitlement extends \Google\Protobuf\Internal\Message
      * Output only. The time at which the entitlement is created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -209,11 +221,11 @@ class Entitlement extends \Google\Protobuf\Internal\Message
      * Output only. The time at which the entitlement is updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getUpdateTime()
     {
-        return isset($this->update_time) ? $this->update_time : null;
+        return $this->update_time;
     }
 
     public function hasUpdateTime()
@@ -274,11 +286,11 @@ class Entitlement extends \Google\Protobuf\Internal\Message
      * Required for commitment based offers.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.CommitmentSettings commitment_settings = 12;</code>
-     * @return \Google\Cloud\Channel\V1\CommitmentSettings
+     * @return \Google\Cloud\Channel\V1\CommitmentSettings|null
      */
     public function getCommitmentSettings()
     {
-        return isset($this->commitment_settings) ? $this->commitment_settings : null;
+        return $this->commitment_settings;
     }
 
     public function hasCommitmentSettings()
@@ -337,11 +349,11 @@ class Entitlement extends \Google\Protobuf\Internal\Message
      * Output only. Service provisioning details for the entitlement.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.ProvisionedService provisioned_service = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Cloud\Channel\V1\ProvisionedService
+     * @return \Google\Cloud\Channel\V1\ProvisionedService|null
      */
     public function getProvisionedService()
     {
-        return isset($this->provisioned_service) ? $this->provisioned_service : null;
+        return $this->provisioned_service;
     }
 
     public function hasProvisionedService()
@@ -370,7 +382,8 @@ class Entitlement extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Enumerable of all current suspension reasons for an entitlement.
+     * Output only. Enumerable of all current suspension reasons for an
+     * entitlement.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.Entitlement.SuspensionReason suspension_reasons = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -381,10 +394,11 @@ class Entitlement extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Enumerable of all current suspension reasons for an entitlement.
+     * Output only. Enumerable of all current suspension reasons for an
+     * entitlement.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.Entitlement.SuspensionReason suspension_reasons = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSuspensionReasons($var)
@@ -396,10 +410,11 @@ class Entitlement extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. This purchase order (PO) information is for resellers to use for their
-     * company tracking usage. If a purchaseOrderId value is given, it appears in
-     * the API responses and shows up in the invoice. The property accepts up to
-     * 80 plain text characters.
+     * Optional. This purchase order (PO) information is for resellers to use for
+     * their company tracking usage. If a purchaseOrderId value is given, it
+     * appears in the API responses and shows up in the invoice. The property
+     * accepts up to 80 plain text characters. This is only supported for Google
+     * Workspace entitlements.
      *
      * Generated from protobuf field <code>string purchase_order_id = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -410,10 +425,11 @@ class Entitlement extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. This purchase order (PO) information is for resellers to use for their
-     * company tracking usage. If a purchaseOrderId value is given, it appears in
-     * the API responses and shows up in the invoice. The property accepts up to
-     * 80 plain text characters.
+     * Optional. This purchase order (PO) information is for resellers to use for
+     * their company tracking usage. If a purchaseOrderId value is given, it
+     * appears in the API responses and shows up in the invoice. The property
+     * accepts up to 80 plain text characters. This is only supported for Google
+     * Workspace entitlements.
      *
      * Generated from protobuf field <code>string purchase_order_id = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -431,11 +447,11 @@ class Entitlement extends \Google\Protobuf\Internal\Message
      * Output only. Settings for trial offers.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.TrialSettings trial_settings = 21 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Cloud\Channel\V1\TrialSettings
+     * @return \Google\Cloud\Channel\V1\TrialSettings|null
      */
     public function getTrialSettings()
     {
-        return isset($this->trial_settings) ? $this->trial_settings : null;
+        return $this->trial_settings;
     }
 
     public function hasTrialSettings()
@@ -467,11 +483,11 @@ class Entitlement extends \Google\Protobuf\Internal\Message
      * Association information to other entitlements.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.AssociationInfo association_info = 23;</code>
-     * @return \Google\Cloud\Channel\V1\AssociationInfo
+     * @return \Google\Cloud\Channel\V1\AssociationInfo|null
      */
     public function getAssociationInfo()
     {
-        return isset($this->association_info) ? $this->association_info : null;
+        return $this->association_info;
     }
 
     public function hasAssociationInfo()
@@ -501,8 +517,12 @@ class Entitlement extends \Google\Protobuf\Internal\Message
 
     /**
      * Extended entitlement parameters. When creating an entitlement, valid
-     * parameters' names and values are defined in the offer's parameter
-     * definitions.
+     * parameter names and values are defined in the
+     * [Offer.parameter_definitions][google.cloud.channel.v1.Offer.parameter_definitions].
+     * The response may include the following output-only Parameters:
+     * - assigned_units: The number of licenses assigned to users.
+     * - max_units: The maximum assignable units for a flexible offer.
+     * - num_units: The total commitment for commitment-based offers.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.Parameter parameters = 26;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -514,11 +534,15 @@ class Entitlement extends \Google\Protobuf\Internal\Message
 
     /**
      * Extended entitlement parameters. When creating an entitlement, valid
-     * parameters' names and values are defined in the offer's parameter
-     * definitions.
+     * parameter names and values are defined in the
+     * [Offer.parameter_definitions][google.cloud.channel.v1.Offer.parameter_definitions].
+     * The response may include the following output-only Parameters:
+     * - assigned_units: The number of licenses assigned to users.
+     * - max_units: The maximum assignable units for a flexible offer.
+     * - num_units: The total commitment for commitment-based offers.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.Parameter parameters = 26;</code>
-     * @param \Google\Cloud\Channel\V1\Parameter[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Channel\V1\Parameter>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setParameters($var)

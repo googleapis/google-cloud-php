@@ -18,13 +18,13 @@ class SetLabelsExternalVpnGatewayRequest extends \Google\Protobuf\Internal\Messa
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.GlobalSetLabelsRequest global_set_labels_request_resource = 51481733 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.GlobalSetLabelsRequest global_set_labels_request_resource = 319917189 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $global_set_labels_request_resource = null;
     /**
      * Project ID for this request.
      *
-     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "project"];</code>
      */
     private $project = '';
     /**
@@ -56,12 +56,12 @@ class SetLabelsExternalVpnGatewayRequest extends \Google\Protobuf\Internal\Messa
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.GlobalSetLabelsRequest global_set_labels_request_resource = 51481733 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Compute\V1\GlobalSetLabelsRequest
+     * Generated from protobuf field <code>.google.cloud.compute.v1.GlobalSetLabelsRequest global_set_labels_request_resource = 319917189 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @return \Google\Cloud\Compute\V1\GlobalSetLabelsRequest|null
      */
     public function getGlobalSetLabelsRequestResource()
     {
-        return isset($this->global_set_labels_request_resource) ? $this->global_set_labels_request_resource : null;
+        return $this->global_set_labels_request_resource;
     }
 
     public function hasGlobalSetLabelsRequestResource()
@@ -77,7 +77,7 @@ class SetLabelsExternalVpnGatewayRequest extends \Google\Protobuf\Internal\Messa
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.GlobalSetLabelsRequest global_set_labels_request_resource = 51481733 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.GlobalSetLabelsRequest global_set_labels_request_resource = 319917189 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Compute\V1\GlobalSetLabelsRequest $var
      * @return $this
      */
@@ -92,7 +92,7 @@ class SetLabelsExternalVpnGatewayRequest extends \Google\Protobuf\Internal\Messa
     /**
      * Project ID for this request.
      *
-     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "project"];</code>
      * @return string
      */
     public function getProject()
@@ -103,7 +103,7 @@ class SetLabelsExternalVpnGatewayRequest extends \Google\Protobuf\Internal\Messa
     /**
      * Project ID for this request.
      *
-     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "project"];</code>
      * @param string $var
      * @return $this
      */

@@ -16,19 +16,21 @@ class PBNamespace
         }
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Api\Resource::initOnce();
-        \GPBMetadata\Google\Api\Annotations::initOnce();
+        \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-«
-5google/cloud/servicedirectory/v1beta1/namespace.proto%google.cloud.servicedirectory.v1beta1google/api/resource.protogoogle/api/annotations.proto"ê
+∂
+5google/cloud/servicedirectory/v1beta1/namespace.proto%google.cloud.servicedirectory.v1beta1google/api/resource.protogoogle/protobuf/timestamp.proto"¸
 	Namespace
 name (	B‡AQ
-labels (2<.google.cloud.servicedirectory.v1beta1.Namespace.LabelsEntryB‡A-
+labels (2<.google.cloud.servicedirectory.v1beta1.Namespace.LabelsEntryB‡A4
+create_time (2.google.protobuf.TimestampB‡A4
+update_time (2.google.protobuf.TimestampB‡A-
 LabelsEntry
 key (	
 value (	:8:nÍAk
 )servicedirectory.googleapis.com/Namespace>projects/{project}/locations/{location}/namespaces/{namespace}Bí
-)com.google.cloud.servicedirectory.v1beta1BNamespaceProtoPZUgoogle.golang.org/genproto/googleapis/cloud/servicedirectory/v1beta1;servicedirectory¯™%Google.Cloud.ServiceDirectory.V1Beta1 %Google\\Cloud\\ServiceDirectory\\V1beta1Í(Google::Cloud::ServiceDirectory::V1beta1bproto3'
+)com.google.cloud.servicedirectory.v1beta1BNamespaceProtoPZUcloud.google.com/go/servicedirectory/apiv1beta1/servicedirectorypb;servicedirectorypb¯™%Google.Cloud.ServiceDirectory.V1Beta1 %Google\\Cloud\\ServiceDirectory\\V1beta1Í(Google::Cloud::ServiceDirectory::V1beta1bproto3'
         , true);
 
         static::$is_initialized = true;

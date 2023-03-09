@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request for [Firestore.BeginTransaction][google.firestore.v1.Firestore.BeginTransaction].
+ * The request for
+ * [Firestore.BeginTransaction][google.firestore.v1.Firestore.BeginTransaction].
  *
  * Generated from protobuf message <code>google.firestore.v1.BeginTransactionRequest</code>
  */
@@ -86,7 +87,7 @@ class BeginTransactionRequest extends \Google\Protobuf\Internal\Message
      */
     public function getOptions()
     {
-        return isset($this->options) ? $this->options : null;
+        return $this->options;
     }
 
     public function hasOptions()

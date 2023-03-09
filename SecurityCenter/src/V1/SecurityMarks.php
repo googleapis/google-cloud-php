@@ -40,6 +40,19 @@ class SecurityMarks extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>map<string, string> marks = 2;</code>
      */
     private $marks;
+    /**
+     * The canonical name of the marks.
+     * Examples:
+     * "organizations/{organization_id}/assets/{asset_id}/securityMarks"
+     * "folders/{folder_id}/assets/{asset_id}/securityMarks"
+     * "projects/{project_number}/assets/{asset_id}/securityMarks"
+     * "organizations/{organization_id}/sources/{source_id}/findings/{finding_id}/securityMarks"
+     * "folders/{folder_id}/sources/{source_id}/findings/{finding_id}/securityMarks"
+     * "projects/{project_number}/sources/{source_id}/findings/{finding_id}/securityMarks"
+     *
+     * Generated from protobuf field <code>string canonical_name = 3;</code>
+     */
+    private $canonical_name = '';
 
     /**
      * Constructor.
@@ -61,6 +74,15 @@ class SecurityMarks extends \Google\Protobuf\Internal\Message
      *             * Keys must be letters, numbers, underscores, or dashes
      *             * Values have leading and trailing whitespace trimmed, remaining
      *               characters must be between 1 - 4096 characters (inclusive)
+     *     @type string $canonical_name
+     *           The canonical name of the marks.
+     *           Examples:
+     *           "organizations/{organization_id}/assets/{asset_id}/securityMarks"
+     *           "folders/{folder_id}/assets/{asset_id}/securityMarks"
+     *           "projects/{project_number}/assets/{asset_id}/securityMarks"
+     *           "organizations/{organization_id}/sources/{source_id}/findings/{finding_id}/securityMarks"
+     *           "folders/{folder_id}/sources/{source_id}/findings/{finding_id}/securityMarks"
+     *           "projects/{project_number}/sources/{source_id}/findings/{finding_id}/securityMarks"
      * }
      */
     public function __construct($data = NULL) {
@@ -136,6 +158,46 @@ class SecurityMarks extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
         $this->marks = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The canonical name of the marks.
+     * Examples:
+     * "organizations/{organization_id}/assets/{asset_id}/securityMarks"
+     * "folders/{folder_id}/assets/{asset_id}/securityMarks"
+     * "projects/{project_number}/assets/{asset_id}/securityMarks"
+     * "organizations/{organization_id}/sources/{source_id}/findings/{finding_id}/securityMarks"
+     * "folders/{folder_id}/sources/{source_id}/findings/{finding_id}/securityMarks"
+     * "projects/{project_number}/sources/{source_id}/findings/{finding_id}/securityMarks"
+     *
+     * Generated from protobuf field <code>string canonical_name = 3;</code>
+     * @return string
+     */
+    public function getCanonicalName()
+    {
+        return $this->canonical_name;
+    }
+
+    /**
+     * The canonical name of the marks.
+     * Examples:
+     * "organizations/{organization_id}/assets/{asset_id}/securityMarks"
+     * "folders/{folder_id}/assets/{asset_id}/securityMarks"
+     * "projects/{project_number}/assets/{asset_id}/securityMarks"
+     * "organizations/{organization_id}/sources/{source_id}/findings/{finding_id}/securityMarks"
+     * "folders/{folder_id}/sources/{source_id}/findings/{finding_id}/securityMarks"
+     * "projects/{project_number}/sources/{source_id}/findings/{finding_id}/securityMarks"
+     *
+     * Generated from protobuf field <code>string canonical_name = 3;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setCanonicalName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->canonical_name = $var;
 
         return $this;
     }

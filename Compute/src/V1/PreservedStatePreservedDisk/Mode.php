@@ -20,10 +20,14 @@ class Mode
      */
     const UNDEFINED_MODE = 0;
     /**
+     * Attaches this disk in read-only mode. Multiple VM instances can use a disk in READ_ONLY mode at a time.
+     *
      * Generated from protobuf enum <code>READ_ONLY = 91950261;</code>
      */
     const READ_ONLY = 91950261;
     /**
+     * *[Default]* Attaches this disk in READ_WRITE mode. Only one VM instance at a time can be attached to a disk in READ_WRITE mode.
+     *
      * Generated from protobuf enum <code>READ_WRITE = 173607894;</code>
      */
     const READ_WRITE = 173607894;

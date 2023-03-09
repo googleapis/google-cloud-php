@@ -20,8 +20,8 @@ class OrderedJob extends \Google\Protobuf\Internal\Message
      * within the template.
      * The step id is used as prefix for job id, as job
      * `goog-dataproc-workflow-step-id` label, and in
-     * [prerequisiteStepIds][google.cloud.dataproc.v1.OrderedJob.prerequisite_step_ids] field from other
-     * steps.
+     * [prerequisiteStepIds][google.cloud.dataproc.v1.OrderedJob.prerequisite_step_ids]
+     * field from other steps.
      * The id must contain only letters (a-z, A-Z), numbers (0-9),
      * underscores (_), and hyphens (-). Cannot begin or end with underscore
      * or hyphen. Must consist of between 3 and 50 characters.
@@ -67,8 +67,8 @@ class OrderedJob extends \Google\Protobuf\Internal\Message
      *           within the template.
      *           The step id is used as prefix for job id, as job
      *           `goog-dataproc-workflow-step-id` label, and in
-     *           [prerequisiteStepIds][google.cloud.dataproc.v1.OrderedJob.prerequisite_step_ids] field from other
-     *           steps.
+     *           [prerequisiteStepIds][google.cloud.dataproc.v1.OrderedJob.prerequisite_step_ids]
+     *           field from other steps.
      *           The id must contain only letters (a-z, A-Z), numbers (0-9),
      *           underscores (_), and hyphens (-). Cannot begin or end with underscore
      *           or hyphen. Must consist of between 3 and 50 characters.
@@ -98,7 +98,7 @@ class OrderedJob extends \Google\Protobuf\Internal\Message
      *           No more than 32 labels can be associated with a given job.
      *     @type \Google\Cloud\Dataproc\V1\JobScheduling $scheduling
      *           Optional. Job scheduling configuration.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $prerequisite_step_ids
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $prerequisite_step_ids
      *           Optional. The optional list of prerequisite job step_ids.
      *           If not specified, the job will start at the beginning of workflow.
      * }
@@ -113,8 +113,8 @@ class OrderedJob extends \Google\Protobuf\Internal\Message
      * within the template.
      * The step id is used as prefix for job id, as job
      * `goog-dataproc-workflow-step-id` label, and in
-     * [prerequisiteStepIds][google.cloud.dataproc.v1.OrderedJob.prerequisite_step_ids] field from other
-     * steps.
+     * [prerequisiteStepIds][google.cloud.dataproc.v1.OrderedJob.prerequisite_step_ids]
+     * field from other steps.
      * The id must contain only letters (a-z, A-Z), numbers (0-9),
      * underscores (_), and hyphens (-). Cannot begin or end with underscore
      * or hyphen. Must consist of between 3 and 50 characters.
@@ -132,8 +132,8 @@ class OrderedJob extends \Google\Protobuf\Internal\Message
      * within the template.
      * The step id is used as prefix for job id, as job
      * `goog-dataproc-workflow-step-id` label, and in
-     * [prerequisiteStepIds][google.cloud.dataproc.v1.OrderedJob.prerequisite_step_ids] field from other
-     * steps.
+     * [prerequisiteStepIds][google.cloud.dataproc.v1.OrderedJob.prerequisite_step_ids]
+     * field from other steps.
      * The id must contain only letters (a-z, A-Z), numbers (0-9),
      * underscores (_), and hyphens (-). Cannot begin or end with underscore
      * or hyphen. Must consist of between 3 and 50 characters.
@@ -444,7 +444,7 @@ class OrderedJob extends \Google\Protobuf\Internal\Message
      */
     public function getScheduling()
     {
-        return isset($this->scheduling) ? $this->scheduling : null;
+        return $this->scheduling;
     }
 
     public function hasScheduling()
@@ -489,7 +489,7 @@ class OrderedJob extends \Google\Protobuf\Internal\Message
      * If not specified, the job will start at the beginning of workflow.
      *
      * Generated from protobuf field <code>repeated string prerequisite_step_ids = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPrerequisiteStepIds($var)

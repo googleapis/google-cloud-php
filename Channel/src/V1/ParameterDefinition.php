@@ -79,7 +79,7 @@ class ParameterDefinition extends \Google\Protobuf\Internal\Message
      *           Maximum value of the parameter, if applicable. Inclusive. For example,
      *           maximum seats when purchasing Google Workspace Business Standard.
      *           Applicable to INT64 and DOUBLE parameter types.
-     *     @type \Google\Cloud\Channel\V1\Value[]|\Google\Protobuf\Internal\RepeatedField $allowed_values
+     *     @type array<\Google\Cloud\Channel\V1\Value>|\Google\Protobuf\Internal\RepeatedField $allowed_values
      *           If not empty, parameter values must be drawn from this list.
      *           For example, [us-west1, us-west2, ...]
      *           Applicable to STRING parameter type.
@@ -152,11 +152,11 @@ class ParameterDefinition extends \Google\Protobuf\Internal\Message
      * Applicable to INT64 and DOUBLE parameter types.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.Value min_value = 3;</code>
-     * @return \Google\Cloud\Channel\V1\Value
+     * @return \Google\Cloud\Channel\V1\Value|null
      */
     public function getMinValue()
     {
-        return isset($this->min_value) ? $this->min_value : null;
+        return $this->min_value;
     }
 
     public function hasMinValue()
@@ -192,11 +192,11 @@ class ParameterDefinition extends \Google\Protobuf\Internal\Message
      * Applicable to INT64 and DOUBLE parameter types.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.Value max_value = 4;</code>
-     * @return \Google\Cloud\Channel\V1\Value
+     * @return \Google\Cloud\Channel\V1\Value|null
      */
     public function getMaxValue()
     {
-        return isset($this->max_value) ? $this->max_value : null;
+        return $this->max_value;
     }
 
     public function hasMaxValue()
@@ -245,7 +245,7 @@ class ParameterDefinition extends \Google\Protobuf\Internal\Message
      * Applicable to STRING parameter type.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.Value allowed_values = 5;</code>
-     * @param \Google\Cloud\Channel\V1\Value[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Channel\V1\Value>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAllowedValues($var)

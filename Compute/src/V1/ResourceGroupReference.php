@@ -17,9 +17,9 @@ class ResourceGroupReference extends \Google\Protobuf\Internal\Message
     /**
      * A URI referencing one of the instance groups or network endpoint groups listed in the backend service.
      *
-     * Generated from protobuf field <code>string group = 98629247;</code>
+     * Generated from protobuf field <code>optional string group = 98629247;</code>
      */
-    private $group = '';
+    private $group = null;
 
     /**
      * Constructor.
@@ -39,18 +39,28 @@ class ResourceGroupReference extends \Google\Protobuf\Internal\Message
     /**
      * A URI referencing one of the instance groups or network endpoint groups listed in the backend service.
      *
-     * Generated from protobuf field <code>string group = 98629247;</code>
+     * Generated from protobuf field <code>optional string group = 98629247;</code>
      * @return string
      */
     public function getGroup()
     {
-        return $this->group;
+        return isset($this->group) ? $this->group : '';
+    }
+
+    public function hasGroup()
+    {
+        return isset($this->group);
+    }
+
+    public function clearGroup()
+    {
+        unset($this->group);
     }
 
     /**
      * A URI referencing one of the instance groups or network endpoint groups listed in the backend service.
      *
-     * Generated from protobuf field <code>string group = 98629247;</code>
+     * Generated from protobuf field <code>optional string group = 98629247;</code>
      * @param string $var
      * @return $this
      */

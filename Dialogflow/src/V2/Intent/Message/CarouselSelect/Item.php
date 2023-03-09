@@ -69,7 +69,7 @@ class Item extends \Google\Protobuf\Internal\Message
      */
     public function getInfo()
     {
-        return isset($this->info) ? $this->info : null;
+        return $this->info;
     }
 
     public function hasInfo()
@@ -157,7 +157,7 @@ class Item extends \Google\Protobuf\Internal\Message
      */
     public function getImage()
     {
-        return isset($this->image) ? $this->image : null;
+        return $this->image;
     }
 
     public function hasImage()
@@ -187,6 +187,4 @@ class Item extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Item::class, \Google\Cloud\Dialogflow\V2\Intent_Message_CarouselSelect_Item::class);
 

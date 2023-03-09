@@ -52,7 +52,7 @@ class InstanceTest extends SnippetTestCase
     private $connection;
     private $instance;
 
-    public function setUp()
+    public function set_up()
     {
         $this->checkAndSkipGrpcTests();
 
@@ -290,7 +290,7 @@ class InstanceTest extends SnippetTestCase
                     ]
                 ]
             ]);
-    
+
         $this->instance->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke('backups');
@@ -348,7 +348,7 @@ class InstanceTest extends SnippetTestCase
                     ]
                 ]
             ]);
-    
+
         $this->instance->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke('databaseOperations');
@@ -398,5 +398,15 @@ class InstanceTest extends SnippetTestCase
         $res = $snippet->invoke('operations');
         $this->assertInstanceOf(ItemIterator::class, $res->returnVal());
         $this->assertContainsOnlyInstancesOf(LongRunningOperation::class, $res->returnVal());
+    }
+
+    public function testDatabaseWithDatabaseRole()
+    {
+        $snippet = $this->snippetFromMethod(Instance::class, 'database', 1);
+        $snippet->addLocal('instance', $this->instance);
+
+        $res = $snippet->invoke('database');
+        $this->assertInstanceOf(Database::class, $res->returnVal());
+        $this->assertEquals(self::DATABASE, DatabaseAdminClient::parseName($res->returnVal()->name())['database']);
     }
 }

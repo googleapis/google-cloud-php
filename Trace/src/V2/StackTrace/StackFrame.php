@@ -23,9 +23,10 @@ class StackFrame extends \Google\Protobuf\Internal\Message
      */
     private $function_name = null;
     /**
-     * An un-mangled function name, if `function_name` is
-     * [mangled](http://www.avabodh.com/cxxin/namemangling.html). The name can
-     * be fully-qualified (up to 1024 bytes).
+     * An un-mangled function name, if `function_name` is mangled.
+     * To get information about name mangling, run
+     * [this search](https://www.google.com/search?q=cxx+name+mangling).
+     * The name can be fully-qualified (up to 1024 bytes).
      *
      * Generated from protobuf field <code>.google.devtools.cloudtrace.v2.TruncatableString original_function_name = 2;</code>
      */
@@ -73,9 +74,10 @@ class StackFrame extends \Google\Protobuf\Internal\Message
      *           The fully-qualified name that uniquely identifies the function or
      *           method that is active in this frame (up to 1024 bytes).
      *     @type \Google\Cloud\Trace\V2\TruncatableString $original_function_name
-     *           An un-mangled function name, if `function_name` is
-     *           [mangled](http://www.avabodh.com/cxxin/namemangling.html). The name can
-     *           be fully-qualified (up to 1024 bytes).
+     *           An un-mangled function name, if `function_name` is mangled.
+     *           To get information about name mangling, run
+     *           [this search](https://www.google.com/search?q=cxx+name+mangling).
+     *           The name can be fully-qualified (up to 1024 bytes).
      *     @type \Google\Cloud\Trace\V2\TruncatableString $file_name
      *           The name of the source file where the function call appears (up to 256
      *           bytes).
@@ -104,7 +106,7 @@ class StackFrame extends \Google\Protobuf\Internal\Message
      */
     public function getFunctionName()
     {
-        return isset($this->function_name) ? $this->function_name : null;
+        return $this->function_name;
     }
 
     public function hasFunctionName()
@@ -134,16 +136,17 @@ class StackFrame extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An un-mangled function name, if `function_name` is
-     * [mangled](http://www.avabodh.com/cxxin/namemangling.html). The name can
-     * be fully-qualified (up to 1024 bytes).
+     * An un-mangled function name, if `function_name` is mangled.
+     * To get information about name mangling, run
+     * [this search](https://www.google.com/search?q=cxx+name+mangling).
+     * The name can be fully-qualified (up to 1024 bytes).
      *
      * Generated from protobuf field <code>.google.devtools.cloudtrace.v2.TruncatableString original_function_name = 2;</code>
      * @return \Google\Cloud\Trace\V2\TruncatableString|null
      */
     public function getOriginalFunctionName()
     {
-        return isset($this->original_function_name) ? $this->original_function_name : null;
+        return $this->original_function_name;
     }
 
     public function hasOriginalFunctionName()
@@ -157,9 +160,10 @@ class StackFrame extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An un-mangled function name, if `function_name` is
-     * [mangled](http://www.avabodh.com/cxxin/namemangling.html). The name can
-     * be fully-qualified (up to 1024 bytes).
+     * An un-mangled function name, if `function_name` is mangled.
+     * To get information about name mangling, run
+     * [this search](https://www.google.com/search?q=cxx+name+mangling).
+     * The name can be fully-qualified (up to 1024 bytes).
      *
      * Generated from protobuf field <code>.google.devtools.cloudtrace.v2.TruncatableString original_function_name = 2;</code>
      * @param \Google\Cloud\Trace\V2\TruncatableString $var
@@ -182,7 +186,7 @@ class StackFrame extends \Google\Protobuf\Internal\Message
      */
     public function getFileName()
     {
-        return isset($this->file_name) ? $this->file_name : null;
+        return $this->file_name;
     }
 
     public function hasFileName()
@@ -273,7 +277,7 @@ class StackFrame extends \Google\Protobuf\Internal\Message
      */
     public function getLoadModule()
     {
-        return isset($this->load_module) ? $this->load_module : null;
+        return $this->load_module;
     }
 
     public function hasLoadModule()
@@ -309,7 +313,7 @@ class StackFrame extends \Google\Protobuf\Internal\Message
      */
     public function getSourceVersion()
     {
-        return isset($this->source_version) ? $this->source_version : null;
+        return $this->source_version;
     }
 
     public function hasSourceVersion()

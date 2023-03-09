@@ -3,6 +3,86 @@
 return [
     'interfaces' => [
         'google.cloud.dataproc.v1.JobController' => [
+            'CancelJob' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/projects/{project_id}/regions/{region}/jobs/{job_id}:cancel',
+                'body' => '*',
+                'placeholders' => [
+                    'job_id' => [
+                        'getters' => [
+                            'getJobId',
+                        ],
+                    ],
+                    'project_id' => [
+                        'getters' => [
+                            'getProjectId',
+                        ],
+                    ],
+                    'region' => [
+                        'getters' => [
+                            'getRegion',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteJob' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/projects/{project_id}/regions/{region}/jobs/{job_id}',
+                'placeholders' => [
+                    'job_id' => [
+                        'getters' => [
+                            'getJobId',
+                        ],
+                    ],
+                    'project_id' => [
+                        'getters' => [
+                            'getProjectId',
+                        ],
+                    ],
+                    'region' => [
+                        'getters' => [
+                            'getRegion',
+                        ],
+                    ],
+                ],
+            ],
+            'GetJob' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/projects/{project_id}/regions/{region}/jobs/{job_id}',
+                'placeholders' => [
+                    'job_id' => [
+                        'getters' => [
+                            'getJobId',
+                        ],
+                    ],
+                    'project_id' => [
+                        'getters' => [
+                            'getProjectId',
+                        ],
+                    ],
+                    'region' => [
+                        'getters' => [
+                            'getRegion',
+                        ],
+                    ],
+                ],
+            ],
+            'ListJobs' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/projects/{project_id}/regions/{region}/jobs',
+                'placeholders' => [
+                    'project_id' => [
+                        'getters' => [
+                            'getProjectId',
+                        ],
+                    ],
+                    'region' => [
+                        'getters' => [
+                            'getRegion',
+                        ],
+                    ],
+                ],
+            ],
             'SubmitJob' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/projects/{project_id}/regions/{region}/jobs:submit',
@@ -37,56 +117,19 @@ return [
                     ],
                 ],
             ],
-            'GetJob' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/projects/{project_id}/regions/{region}/jobs/{job_id}',
-                'placeholders' => [
-                    'project_id' => [
-                        'getters' => [
-                            'getProjectId',
-                        ],
-                    ],
-                    'job_id' => [
-                        'getters' => [
-                            'getJobId',
-                        ],
-                    ],
-                    'region' => [
-                        'getters' => [
-                            'getRegion',
-                        ],
-                    ],
-                ],
-            ],
-            'ListJobs' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/projects/{project_id}/regions/{region}/jobs',
-                'placeholders' => [
-                    'project_id' => [
-                        'getters' => [
-                            'getProjectId',
-                        ],
-                    ],
-                    'region' => [
-                        'getters' => [
-                            'getRegion',
-                        ],
-                    ],
-                ],
-            ],
             'UpdateJob' => [
                 'method' => 'patch',
                 'uriTemplate' => '/v1/projects/{project_id}/regions/{region}/jobs/{job_id}',
                 'body' => 'job',
                 'placeholders' => [
-                    'project_id' => [
-                        'getters' => [
-                            'getProjectId',
-                        ],
-                    ],
                     'job_id' => [
                         'getters' => [
                             'getJobId',
+                        ],
+                    ],
+                    'project_id' => [
+                        'getters' => [
+                            'getProjectId',
                         ],
                     ],
                     'region' => [
@@ -95,48 +138,8 @@ return [
                         ],
                     ],
                 ],
-            ],
-            'CancelJob' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/projects/{project_id}/regions/{region}/jobs/{job_id}:cancel',
-                'body' => '*',
-                'placeholders' => [
-                    'project_id' => [
-                        'getters' => [
-                            'getProjectId',
-                        ],
-                    ],
-                    'job_id' => [
-                        'getters' => [
-                            'getJobId',
-                        ],
-                    ],
-                    'region' => [
-                        'getters' => [
-                            'getRegion',
-                        ],
-                    ],
-                ],
-            ],
-            'DeleteJob' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v1/projects/{project_id}/regions/{region}/jobs/{job_id}',
-                'placeholders' => [
-                    'project_id' => [
-                        'getters' => [
-                            'getProjectId',
-                        ],
-                    ],
-                    'job_id' => [
-                        'getters' => [
-                            'getJobId',
-                        ],
-                    ],
-                    'region' => [
-                        'getters' => [
-                            'getRegion',
-                        ],
-                    ],
+                'queryParams' => [
+                    'update_mask',
                 ],
             ],
         ],
@@ -278,6 +281,12 @@ return [
             'CancelOperation' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{name=projects/*/regions/*/operations/*}:cancel',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/operations/*}:cancel',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -289,6 +298,12 @@ return [
             'DeleteOperation' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/regions/*/operations/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/operations/*}',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -300,6 +315,12 @@ return [
             'GetOperation' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/regions/*/operations/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/operations/*}',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -311,6 +332,12 @@ return [
             'ListOperations' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/regions/*/operations}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/operations}',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -321,4 +348,5 @@ return [
             ],
         ],
     ],
+    'numericEnums' => true,
 ];

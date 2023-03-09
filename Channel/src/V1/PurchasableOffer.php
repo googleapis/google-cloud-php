@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Offer that can be puchased for a customer. This is used in
+ * Offer that you can purchase for a customer. This is used in the
  * ListPurchasableOffer API response.
  *
  * Generated from protobuf message <code>google.cloud.channel.v1.PurchasableOffer</code>
@@ -42,11 +42,11 @@ class PurchasableOffer extends \Google\Protobuf\Internal\Message
      * Offer.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.Offer offer = 1;</code>
-     * @return \Google\Cloud\Channel\V1\Offer
+     * @return \Google\Cloud\Channel\V1\Offer|null
      */
     public function getOffer()
     {
-        return isset($this->offer) ? $this->offer : null;
+        return $this->offer;
     }
 
     public function hasOffer()

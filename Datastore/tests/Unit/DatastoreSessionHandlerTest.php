@@ -26,20 +26,25 @@ use Google\Cloud\Datastore\Query\Query;
 use Google\Cloud\Datastore\Transaction;
 use InvalidArgumentException;
 use Prophecy\Argument;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\AssertIsType;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group datastore
  */
 class DatastoreSessionHandlerTest extends TestCase
 {
+    use AssertIsType;
+    use ExpectException;
+
     const KIND = 'PHPSESSID';
     const NAMESPACE_ID = 'sessions';
 
     private $datastore;
     private $transaction;
 
-    public function setUp()
+    public function set_up()
     {
         $this->datastore = $this->prophesize(DatastoreClient::class);
         $this->transaction = $this->prophesize(Transaction::class);
@@ -47,7 +52,7 @@ class DatastoreSessionHandlerTest extends TestCase
 
     public function testOpen()
     {
-        $this->datastore->transaction()
+        $this->datastore->transaction(['databaseId' => ''])
             ->shouldBeCalledTimes(1)
             ->willReturn($this->transaction->reveal());
         $datastoreSessionHandler = new DatastoreSessionHandler(
@@ -57,11 +62,10 @@ class DatastoreSessionHandlerTest extends TestCase
         $this->assertTrue($ret);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testOpenNotAllowed()
     {
+        $this->expectException('InvalidArgumentException');
+
         $this->datastore->transaction()
             ->shouldNotBeCalled()
             ->willReturn($this->transaction->reveal());
@@ -71,11 +75,10 @@ class DatastoreSessionHandlerTest extends TestCase
         $datastoreSessionHandler->open('/tmp/sessions', self::KIND);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testOpenReserved()
     {
+        $this->expectException('InvalidArgumentException');
+
         $this->datastore->transaction()
             ->shouldNotBeCalled()
             ->willReturn($this->transaction->reveal());
@@ -96,7 +99,7 @@ class DatastoreSessionHandlerTest extends TestCase
 
     public function testReadNothing()
     {
-        $this->datastore->transaction()
+        $this->datastore->transaction(['databaseId' => ''])
             ->shouldBeCalledTimes(1)
             ->willReturn($this->transaction->reveal());
         $key = new Key('projectid');
@@ -117,12 +120,11 @@ class DatastoreSessionHandlerTest extends TestCase
         $this->assertEquals('', $ret);
     }
 
-    /**
-     * @expectedException PHPUnit_Framework_Error_Warning
-     */
     public function testReadWithException()
     {
-        $this->datastore->transaction()
+        $this->expectException('PHPUnit\Framework\Error\Warning');
+
+        $this->datastore->transaction(['databaseId' => ''])
             ->shouldBeCalledTimes(1)
             ->willReturn($this->transaction->reveal());
         $datastoreSessionHandler = new DatastoreSessionHandler(
@@ -150,7 +152,7 @@ class DatastoreSessionHandlerTest extends TestCase
         $this->transaction->lookup($key)
             ->shouldBeCalledTimes(1)
             ->willReturn($entity);
-        $this->datastore->transaction()
+        $this->datastore->transaction(['databaseId' => ''])
             ->shouldBeCalledTimes(1)
             ->willReturn($this->transaction->reveal());
         $this->datastore->key(
@@ -179,7 +181,7 @@ class DatastoreSessionHandlerTest extends TestCase
             ->shouldBeCalledTimes(1);
         $this->transaction->commit()
             ->shouldBeCalledTimes(1);
-        $this->datastore->transaction()
+        $this->datastore->transaction(['databaseId' => ''])
             ->shouldBeCalledTimes(1)
             ->willReturn($this->transaction->reveal());
         $this->datastore->key(
@@ -194,7 +196,7 @@ class DatastoreSessionHandlerTest extends TestCase
             ->will(function ($args) use ($that, $key, $entity) {
                 $that->assertEquals($key, $args[0]);
                 $that->assertEquals('sessiondata', $args[1]['data']);
-                $that->assertInternalType('int', $args[1]['t']);
+                $that->assertIsInt($args[1]['t']);
                 $that->assertGreaterThanOrEqual($args[1]['t'], time());
                 // 2 seconds grace period should be enough
                 $that->assertLessThanOrEqual(2, time() - $args[1]['t']);
@@ -210,11 +212,10 @@ class DatastoreSessionHandlerTest extends TestCase
         $this->assertTrue($ret);
     }
 
-    /**
-     * @expectedException PHPUnit_Framework_Error_Warning
-     */
     public function testWriteWithException()
     {
+        $this->expectException('PHPUnit\Framework\Error\Warning');
+
         $data = 'sessiondata';
         $key = new Key('projectid');
         $key->pathElement(self::KIND, 'sessionid');
@@ -224,7 +225,7 @@ class DatastoreSessionHandlerTest extends TestCase
         $this->transaction->commit()
             ->shouldBeCalledTimes(1)
             ->willThrow(new Exception());
-        $this->datastore->transaction()
+        $this->datastore->transaction(['databaseId' => ''])
             ->shouldBeCalledTimes(1)
             ->willReturn($this->transaction->reveal());
         $this->datastore->key(
@@ -239,7 +240,7 @@ class DatastoreSessionHandlerTest extends TestCase
             ->will(function ($args) use ($that, $key, $entity) {
                 $that->assertEquals($key, $args[0]);
                 $that->assertEquals('sessiondata', $args[1]['data']);
-                $that->assertInternalType('int', $args[1]['t']);
+                $that->assertIsInt($args[1]['t']);
                 $that->assertGreaterThanOrEqual($args[1]['t'], time());
                 // 2 seconds grace period should be enough
                 $that->assertLessThanOrEqual(2, time() - $args[1]['t']);
@@ -269,7 +270,7 @@ class DatastoreSessionHandlerTest extends TestCase
             ->shouldBeCalledTimes(1);
         $this->transaction->commit()
             ->shouldBeCalledTimes(1);
-        $this->datastore->transaction()
+        $this->datastore->transaction(['databaseId' => ''])
             ->shouldBeCalledTimes(1)
             ->willReturn($this->transaction->reveal());
         $this->datastore->key(
@@ -284,7 +285,7 @@ class DatastoreSessionHandlerTest extends TestCase
             ->will(function ($args) use ($that, $key, $entity) {
                 $that->assertEquals($key, $args[0]);
                 $that->assertEquals('sessiondata', $args[1]['data']);
-                $that->assertInternalType('int', $args[1]['t']);
+                $that->assertIsInt($args[1]['t']);
                 $that->assertGreaterThanOrEqual($args[1]['t'], time());
                 // 2 seconds grace period should be enough
                 $that->assertLessThanOrEqual(2, time() - $args[1]['t']);
@@ -315,7 +316,7 @@ class DatastoreSessionHandlerTest extends TestCase
             ->shouldBeCalledTimes(1);
         $this->transaction->commit()
             ->shouldBeCalledTimes(1);
-        $this->datastore->transaction()
+        $this->datastore->transaction(['databaseId' => ''])
             ->shouldBeCalledTimes(1)
             ->willReturn($this->transaction->reveal());
         $this->datastore->key(
@@ -330,7 +331,7 @@ class DatastoreSessionHandlerTest extends TestCase
             ->will(function ($args) use ($that, $key, $entity) {
                 $that->assertEquals($key, $args[0]);
                 $that->assertEquals('sessiondata', $args[1]['data']);
-                $that->assertInternalType('int', $args[1]['t']);
+                $that->assertIsInt($args[1]['t']);
                 $that->assertGreaterThanOrEqual($args[1]['t'], time());
                 // 2 seconds grace period should be enough
                 $that->assertLessThanOrEqual(2, time() - $args[1]['t']);
@@ -350,10 +351,11 @@ class DatastoreSessionHandlerTest extends TestCase
 
     /**
      * @dataProvider invalidEntityOptions
-     * @expectedException InvalidArgumentException
      */
     public function testInvalidEntityOptions($datastoreSessionHandlerOptions)
     {
+        $this->expectException('InvalidArgumentException');
+
         new DatastoreSessionHandler(
             $this->datastore->reveal(),
             DatastoreSessionHandler::DEFAULT_GC_LIMIT,
@@ -381,7 +383,7 @@ class DatastoreSessionHandlerTest extends TestCase
             ->shouldBeCalledTimes(1);
         $this->transaction->commit()
             ->shouldBeCalledTimes(1);
-        $this->datastore->transaction()
+        $this->datastore->transaction(['databaseId' => ''])
             ->shouldBeCalledTimes(1)
             ->willReturn($this->transaction->reveal());
         $this->datastore->key(
@@ -401,11 +403,10 @@ class DatastoreSessionHandlerTest extends TestCase
         $this->assertTrue($ret);
     }
 
-    /**
-     * @expectedException PHPUnit_Framework_Error_Warning
-     */
     public function testDestroyWithException()
     {
+        $this->expectException('PHPUnit\Framework\Error\Warning');
+
         $key = new Key('projectid');
         $key->pathElement(self::KIND, 'sessionid');
         $this->transaction->delete($key)
@@ -413,7 +414,7 @@ class DatastoreSessionHandlerTest extends TestCase
         $this->transaction->commit()
             ->shouldBeCalledTimes(1)
             ->willThrow(new Exception());
-        $this->datastore->transaction()
+        $this->datastore->transaction(['databaseId' => ''])
             ->shouldBeCalledTimes(1)
             ->willReturn($this->transaction->reveal());
         $this->datastore->key(
@@ -435,7 +436,7 @@ class DatastoreSessionHandlerTest extends TestCase
 
     public function testDefaultGcDoesNothing()
     {
-        $this->datastore->transaction()
+        $this->datastore->transaction(['databaseId' => ''])
             ->shouldBeCalledTimes(1)
             ->willReturn($this->transaction->reveal());
         $this->datastore->query()->shouldNotBeCalled();
@@ -470,7 +471,7 @@ class DatastoreSessionHandlerTest extends TestCase
             ->will(function ($args) use ($that, $query) {
                 $that->assertEquals('t', $args[0]);
                 $that->assertEquals('<', $args[1]);
-                $that->assertInternalType('int', $args[2]);
+                $that->assertIsInt($args[2]);
                 $diff = time() - $args[2];
                 // 2 seconds grace period should be enough
                 $that->assertLessThanOrEqual(102, $diff);
@@ -488,7 +489,7 @@ class DatastoreSessionHandlerTest extends TestCase
             ->shouldBeCalledTimes(1)
             ->willReturn($query->reveal());
 
-        $this->datastore->transaction()
+        $this->datastore->transaction(['databaseId' => ''])
             ->shouldBeCalledTimes(1)
             ->willReturn($this->transaction->reveal());
         $this->datastore->query()
@@ -521,11 +522,10 @@ class DatastoreSessionHandlerTest extends TestCase
         $this->assertTrue($ret);
     }
 
-    /**
-     * @expectedException PHPUnit_Framework_Error_Warning
-     */
     public function testGcWithException()
     {
+        $this->expectException('PHPUnit\Framework\Error\Warning');
+
         $key1 = new Key('projectid');
         $key1->pathElement(self::KIND, 'sessionid1');
         $key2 = new Key('projectid');
@@ -546,7 +546,7 @@ class DatastoreSessionHandlerTest extends TestCase
             ->will(function ($args) use ($that, $query) {
                 $that->assertEquals('t', $args[0]);
                 $that->assertEquals('<', $args[1]);
-                $that->assertInternalType('int', $args[2]);
+                $that->assertIsInt($args[2]);
                 $diff = time() - $args[2];
                 // 2 seconds grace period should be enough
                 $that->assertLessThanOrEqual(102, $diff);
@@ -564,7 +564,7 @@ class DatastoreSessionHandlerTest extends TestCase
             ->shouldBeCalledTimes(1)
             ->willReturn($query->reveal());
 
-        $this->datastore->transaction()
+        $this->datastore->transaction(['databaseId' => ''])
             ->shouldBeCalledTimes(1)
             ->willReturn($this->transaction->reveal());
         $this->datastore->query()

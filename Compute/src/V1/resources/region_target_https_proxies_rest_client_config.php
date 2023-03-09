@@ -7,11 +7,6 @@ return [
                 'method' => 'delete',
                 'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/targetHttpsProxies/{target_https_proxy}',
                 'placeholders' => [
-                    'target_https_proxy' => [
-                        'getters' => [
-                            'getTargetHttpsProxy',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
@@ -20,6 +15,11 @@ return [
                     'region' => [
                         'getters' => [
                             'getRegion',
+                        ],
+                    ],
+                    'target_https_proxy' => [
+                        'getters' => [
+                            'getTargetHttpsProxy',
                         ],
                     ],
                 ],
@@ -28,11 +28,6 @@ return [
                 'method' => 'get',
                 'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/targetHttpsProxies/{target_https_proxy}',
                 'placeholders' => [
-                    'target_https_proxy' => [
-                        'getters' => [
-                            'getTargetHttpsProxy',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
@@ -41,6 +36,11 @@ return [
                     'region' => [
                         'getters' => [
                             'getRegion',
+                        ],
+                    ],
+                    'target_https_proxy' => [
+                        'getters' => [
+                            'getTargetHttpsProxy',
                         ],
                     ],
                 ],
@@ -78,14 +78,81 @@ return [
                     ],
                 ],
             ],
+            'Patch' => [
+                'method' => 'patch',
+                'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/targetHttpsProxies/{target_https_proxy}',
+                'body' => 'target_https_proxy_resource',
+                'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'region' => [
+                        'getters' => [
+                            'getRegion',
+                        ],
+                    ],
+                    'target_https_proxy' => [
+                        'getters' => [
+                            'getTargetHttpsProxy',
+                        ],
+                    ],
+                ],
+            ],
             'SetSslCertificates' => [
                 'method' => 'post',
                 'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/targetHttpsProxies/{target_https_proxy}/setSslCertificates',
                 'body' => 'region_target_https_proxies_set_ssl_certificates_request_resource',
                 'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'region' => [
+                        'getters' => [
+                            'getRegion',
+                        ],
+                    ],
                     'target_https_proxy' => [
                         'getters' => [
                             'getTargetHttpsProxy',
+                        ],
+                    ],
+                ],
+            ],
+            'SetUrlMap' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/targetHttpsProxies/{target_https_proxy}/setUrlMap',
+                'body' => 'url_map_reference_resource',
+                'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'region' => [
+                        'getters' => [
+                            'getRegion',
+                        ],
+                    ],
+                    'target_https_proxy' => [
+                        'getters' => [
+                            'getTargetHttpsProxy',
+                        ],
+                    ],
+                ],
+            ],
+        ],
+        'google.cloud.compute.v1.RegionOperations' => [
+            'Delete' => [
+                'method' => 'delete',
+                'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/operations/{operation}',
+                'placeholders' => [
+                    'operation' => [
+                        'getters' => [
+                            'getOperation',
                         ],
                     ],
                     'project' => [
@@ -100,14 +167,50 @@ return [
                     ],
                 ],
             ],
-            'SetUrlMap' => [
-                'method' => 'post',
-                'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/targetHttpsProxies/{target_https_proxy}/setUrlMap',
-                'body' => 'url_map_reference_resource',
+            'Get' => [
+                'method' => 'get',
+                'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/operations/{operation}',
                 'placeholders' => [
-                    'target_https_proxy' => [
+                    'operation' => [
                         'getters' => [
-                            'getTargetHttpsProxy',
+                            'getOperation',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'region' => [
+                        'getters' => [
+                            'getRegion',
+                        ],
+                    ],
+                ],
+            ],
+            'List' => [
+                'method' => 'get',
+                'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/operations',
+                'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'region' => [
+                        'getters' => [
+                            'getRegion',
+                        ],
+                    ],
+                ],
+            ],
+            'Wait' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/operations/{operation}/wait',
+                'placeholders' => [
+                    'operation' => [
+                        'getters' => [
+                            'getOperation',
                         ],
                     ],
                     'project' => [

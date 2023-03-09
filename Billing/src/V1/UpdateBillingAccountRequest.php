@@ -22,7 +22,8 @@ class UpdateBillingAccountRequest extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * Required. The billing account resource to replace the resource on the server.
+     * Required. The billing account resource to replace the resource on the
+     * server.
      *
      * Generated from protobuf field <code>.google.cloud.billing.v1.BillingAccount account = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -44,7 +45,8 @@ class UpdateBillingAccountRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. The name of the billing account resource to be updated.
      *     @type \Google\Cloud\Billing\V1\BillingAccount $account
-     *           Required. The billing account resource to replace the resource on the server.
+     *           Required. The billing account resource to replace the resource on the
+     *           server.
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           The update mask applied to the resource.
      *           Only "display_name" is currently supported.
@@ -82,14 +84,15 @@ class UpdateBillingAccountRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The billing account resource to replace the resource on the server.
+     * Required. The billing account resource to replace the resource on the
+     * server.
      *
      * Generated from protobuf field <code>.google.cloud.billing.v1.BillingAccount account = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Billing\V1\BillingAccount|null
      */
     public function getAccount()
     {
-        return isset($this->account) ? $this->account : null;
+        return $this->account;
     }
 
     public function hasAccount()
@@ -103,7 +106,8 @@ class UpdateBillingAccountRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The billing account resource to replace the resource on the server.
+     * Required. The billing account resource to replace the resource on the
+     * server.
      *
      * Generated from protobuf field <code>.google.cloud.billing.v1.BillingAccount account = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Billing\V1\BillingAccount $var
@@ -126,7 +130,7 @@ class UpdateBillingAccountRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()

@@ -44,15 +44,17 @@ class State
     const FAILED = 4;
     /**
      * The batch operation is in the process of cancelling after
-     * [google.longrunning.Operations.CancelOperation][google.longrunning.Operations.CancelOperation] is called.
+     * [google.longrunning.Operations.CancelOperation][google.longrunning.Operations.CancelOperation]
+     * is called.
      *
      * Generated from protobuf enum <code>CANCELLING = 5;</code>
      */
     const CANCELLING = 5;
     /**
      * The batch operation is done after
-     * [google.longrunning.Operations.CancelOperation][google.longrunning.Operations.CancelOperation] is called. Any items
-     * processed before cancelling are returned in the response.
+     * [google.longrunning.Operations.CancelOperation][google.longrunning.Operations.CancelOperation]
+     * is called. Any items processed before cancelling are returned in the
+     * response.
      *
      * Generated from protobuf enum <code>CANCELLED = 6;</code>
      */
@@ -89,6 +91,4 @@ class State
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(State::class, \Google\Cloud\Talent\V4\BatchOperationMetadata_State::class);
 

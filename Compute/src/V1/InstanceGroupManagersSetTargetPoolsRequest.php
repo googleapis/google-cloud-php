@@ -17,13 +17,13 @@ class InstanceGroupManagersSetTargetPoolsRequest extends \Google\Protobuf\Intern
     /**
      * The fingerprint of the target pools information. Use this optional property to prevent conflicts when multiple users change the target pools settings concurrently. Obtain the fingerprint with the instanceGroupManagers.get method. Then, include the fingerprint in your request to ensure that you do not overwrite changes that were applied from another concurrent request.
      *
-     * Generated from protobuf field <code>string fingerprint = 234678500;</code>
+     * Generated from protobuf field <code>optional string fingerprint = 234678500;</code>
      */
-    private $fingerprint = '';
+    private $fingerprint = null;
     /**
      * The list of target pool URLs that instances in this managed instance group belong to. The managed instance group applies these target pools to all of the instances in the group. Existing instances and new instances in the group all receive these target pool settings.
      *
-     * Generated from protobuf field <code>repeated string target_pools = 67637161;</code>
+     * Generated from protobuf field <code>repeated string target_pools = 336072617;</code>
      */
     private $target_pools;
 
@@ -35,7 +35,7 @@ class InstanceGroupManagersSetTargetPoolsRequest extends \Google\Protobuf\Intern
      *
      *     @type string $fingerprint
      *           The fingerprint of the target pools information. Use this optional property to prevent conflicts when multiple users change the target pools settings concurrently. Obtain the fingerprint with the instanceGroupManagers.get method. Then, include the fingerprint in your request to ensure that you do not overwrite changes that were applied from another concurrent request.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $target_pools
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $target_pools
      *           The list of target pool URLs that instances in this managed instance group belong to. The managed instance group applies these target pools to all of the instances in the group. Existing instances and new instances in the group all receive these target pool settings.
      * }
      */
@@ -47,18 +47,28 @@ class InstanceGroupManagersSetTargetPoolsRequest extends \Google\Protobuf\Intern
     /**
      * The fingerprint of the target pools information. Use this optional property to prevent conflicts when multiple users change the target pools settings concurrently. Obtain the fingerprint with the instanceGroupManagers.get method. Then, include the fingerprint in your request to ensure that you do not overwrite changes that were applied from another concurrent request.
      *
-     * Generated from protobuf field <code>string fingerprint = 234678500;</code>
+     * Generated from protobuf field <code>optional string fingerprint = 234678500;</code>
      * @return string
      */
     public function getFingerprint()
     {
-        return $this->fingerprint;
+        return isset($this->fingerprint) ? $this->fingerprint : '';
+    }
+
+    public function hasFingerprint()
+    {
+        return isset($this->fingerprint);
+    }
+
+    public function clearFingerprint()
+    {
+        unset($this->fingerprint);
     }
 
     /**
      * The fingerprint of the target pools information. Use this optional property to prevent conflicts when multiple users change the target pools settings concurrently. Obtain the fingerprint with the instanceGroupManagers.get method. Then, include the fingerprint in your request to ensure that you do not overwrite changes that were applied from another concurrent request.
      *
-     * Generated from protobuf field <code>string fingerprint = 234678500;</code>
+     * Generated from protobuf field <code>optional string fingerprint = 234678500;</code>
      * @param string $var
      * @return $this
      */
@@ -73,7 +83,7 @@ class InstanceGroupManagersSetTargetPoolsRequest extends \Google\Protobuf\Intern
     /**
      * The list of target pool URLs that instances in this managed instance group belong to. The managed instance group applies these target pools to all of the instances in the group. Existing instances and new instances in the group all receive these target pool settings.
      *
-     * Generated from protobuf field <code>repeated string target_pools = 67637161;</code>
+     * Generated from protobuf field <code>repeated string target_pools = 336072617;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getTargetPools()
@@ -84,8 +94,8 @@ class InstanceGroupManagersSetTargetPoolsRequest extends \Google\Protobuf\Intern
     /**
      * The list of target pool URLs that instances in this managed instance group belong to. The managed instance group applies these target pools to all of the instances in the group. Existing instances and new instances in the group all receive these target pool settings.
      *
-     * Generated from protobuf field <code>repeated string target_pools = 67637161;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * Generated from protobuf field <code>repeated string target_pools = 336072617;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTargetPools($var)

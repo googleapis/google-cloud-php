@@ -22,21 +22,18 @@ return [
                     ],
                 ],
             ],
-            'UpdateAutoscalingPolicy' => [
-                'method' => 'put',
-                'uriTemplate' => '/v1/{policy.name=projects/*/locations/*/autoscalingPolicies/*}',
-                'body' => 'policy',
+            'DeleteAutoscalingPolicy' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/autoscalingPolicies/*}',
                 'additionalBindings' => [
                     [
-                        'method' => 'put',
-                        'uriTemplate' => '/v1/{policy.name=projects/*/regions/*/autoscalingPolicies/*}',
-                        'body' => 'policy',
+                        'method' => 'delete',
+                        'uriTemplate' => '/v1/{name=projects/*/regions/*/autoscalingPolicies/*}',
                     ],
                 ],
                 'placeholders' => [
-                    'policy.name' => [
+                    'name' => [
                         'getters' => [
-                            'getPolicy',
                             'getName',
                         ],
                     ],
@@ -76,18 +73,21 @@ return [
                     ],
                 ],
             ],
-            'DeleteAutoscalingPolicy' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/autoscalingPolicies/*}',
+            'UpdateAutoscalingPolicy' => [
+                'method' => 'put',
+                'uriTemplate' => '/v1/{policy.name=projects/*/locations/*/autoscalingPolicies/*}',
+                'body' => 'policy',
                 'additionalBindings' => [
                     [
-                        'method' => 'delete',
-                        'uriTemplate' => '/v1/{name=projects/*/regions/*/autoscalingPolicies/*}',
+                        'method' => 'put',
+                        'uriTemplate' => '/v1/{policy.name=projects/*/regions/*/autoscalingPolicies/*}',
+                        'body' => 'policy',
                     ],
                 ],
                 'placeholders' => [
-                    'name' => [
+                    'policy.name' => [
                         'getters' => [
+                            'getPolicy',
                             'getName',
                         ],
                     ],
@@ -232,6 +232,12 @@ return [
             'CancelOperation' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{name=projects/*/regions/*/operations/*}:cancel',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/operations/*}:cancel',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -243,6 +249,12 @@ return [
             'DeleteOperation' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/regions/*/operations/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/operations/*}',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -254,6 +266,12 @@ return [
             'GetOperation' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/regions/*/operations/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/operations/*}',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -265,6 +283,12 @@ return [
             'ListOperations' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/regions/*/operations}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/operations}',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -275,4 +299,5 @@ return [
             ],
         ],
     ],
+    'numericEnums' => true,
 ];

@@ -30,8 +30,9 @@ use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Instance;
 use Google\Cloud\Spanner\Tests\StubCreationTrait;
 use Google\Cloud\Spanner\Backup;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Prophecy\Argument;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group spanner
@@ -39,6 +40,7 @@ use Prophecy\Argument;
  */
 class InstanceTest extends TestCase
 {
+    use ExpectException;
     use GrpcTestTrait;
     use StubCreationTrait;
 
@@ -46,12 +48,13 @@ class InstanceTest extends TestCase
     const NAME = 'instance-name';
     const DATABASE = 'database-name';
     const BACKUP = 'my-backup';
+    const SESSION = 'projects/test-project/instances/instance-name/databases/database-name/sessions/session';
 
     private $connection;
     private $instance;
     private $lroConnection;
 
-    public function setUp()
+    public function set_up()
     {
         $this->checkAndSkipGrpcTests();
 
@@ -275,6 +278,29 @@ class InstanceTest extends TestCase
         $this->instance->___setProperty('connection', $this->connection->reveal());
 
         $this->instance->update(['displayName' => 'bar']);
+    }
+
+    public function testUpdateWithProcessingUnits()
+    {
+        $instance = $this->getDefaultInstance();
+
+        $this->connection->updateInstance([
+            'processingUnits' => 500,
+            'name' => $instance['name'],
+        ])->shouldBeCalled()->willReturn([
+            'name' => 'my-operation'
+        ]);
+
+        $this->instance->___setProperty('connection', $this->connection->reveal());
+
+        $this->instance->update(['processingUnits' => 500]);
+    }
+
+    public function testUpdateRaisesInvalidArgument()
+    {
+        $this->expectException('\InvalidArgumentException');
+
+        $this->instance->update(['processingUnits' => 5000, 'nodeCount' => 5]);
     }
 
     public function testUpdateWithExistingLabels()
@@ -537,6 +563,23 @@ class InstanceTest extends TestCase
         $this->assertCount(2, $dbOps);
         $this->assertEquals('operation1', $dbOps[0]->name());
         $this->assertEquals('operation2', $dbOps[1]->name());
+    }
+
+    public function testInstanceDatabaseRole()
+    {
+        $database = $this->instance->database($this::DATABASE, ['databaseRole' => 'Reader']);
+
+        $this->connection->createSession(Argument::withEntry(
+            'session',
+            ['labels' => [], 'creator_role' => 'Reader']
+        ))
+        ->shouldBeCalled()
+        ->willReturn([
+                'name' => self::SESSION
+            ]);
+
+        $sql = 'SELECT * FROM Table';
+        $database->execute($sql);
     }
 
     // ************** //

@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request message for [Agents.ImportAgent][google.cloud.dialogflow.v2.Agents.ImportAgent].
+ * The request message for
+ * [Agents.ImportAgent][google.cloud.dialogflow.v2.Agents.ImportAgent].
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.ImportAgentRequest</code>
  */
@@ -36,6 +37,11 @@ class ImportAgentRequest extends \Google\Protobuf\Internal\Message
      *     @type string $agent_uri
      *           The URI to a Google Cloud Storage file containing the agent to import.
      *           Note: The URI must start with "gs://".
+     *           Dialogflow performs a read operation for the Cloud Storage object
+     *           on the caller's behalf, so your request authentication must
+     *           have read permissions for the object. For more information, see
+     *           [Dialogflow access
+     *           control](https://cloud.google.com/dialogflow/cx/docs/concept/access-control#storage).
      *     @type string $agent_content
      *           Zip compressed raw byte content for agent.
      * }
@@ -76,6 +82,11 @@ class ImportAgentRequest extends \Google\Protobuf\Internal\Message
     /**
      * The URI to a Google Cloud Storage file containing the agent to import.
      * Note: The URI must start with "gs://".
+     * Dialogflow performs a read operation for the Cloud Storage object
+     * on the caller's behalf, so your request authentication must
+     * have read permissions for the object. For more information, see
+     * [Dialogflow access
+     * control](https://cloud.google.com/dialogflow/cx/docs/concept/access-control#storage).
      *
      * Generated from protobuf field <code>string agent_uri = 2;</code>
      * @return string
@@ -93,6 +104,11 @@ class ImportAgentRequest extends \Google\Protobuf\Internal\Message
     /**
      * The URI to a Google Cloud Storage file containing the agent to import.
      * Note: The URI must start with "gs://".
+     * Dialogflow performs a read operation for the Cloud Storage object
+     * on the caller's behalf, so your request authentication must
+     * have read permissions for the object. For more information, see
+     * [Dialogflow access
+     * control](https://cloud.google.com/dialogflow/cx/docs/concept/access-control#storage).
      *
      * Generated from protobuf field <code>string agent_uri = 2;</code>
      * @param string $var

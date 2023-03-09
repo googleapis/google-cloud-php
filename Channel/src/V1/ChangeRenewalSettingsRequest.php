@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [CloudChannelService.ChangeRenewalSettings][google.cloud.channel.v1.CloudChannelService.ChangeRenewalSettings].
+ * Request message for
+ * [CloudChannelService.ChangeRenewalSettings][google.cloud.channel.v1.CloudChannelService.ChangeRenewalSettings].
  *
  * Generated from protobuf message <code>google.cloud.channel.v1.ChangeRenewalSettingsRequest</code>
  */
@@ -17,7 +18,7 @@ class ChangeRenewalSettingsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The name of the entitlement to update.
-     * The name takes the format:
+     * Name uses the format:
      * accounts/{account_id}/customers/{customer_id}/entitlements/{entitlement_id}
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -30,13 +31,13 @@ class ChangeRenewalSettingsRequest extends \Google\Protobuf\Internal\Message
      */
     private $renewal_settings = null;
     /**
-     * Optional. A request ID to identify requests. Specify a unique request ID so
-     * that if you must retry your request, the server will know to ignore the
-     * request if it has already been completed.
-     * For example, consider a situation where you make an initial request and
-     * the request times out. If you make the request again with the same
-     * request ID, the server can check if the original operation with the same
-     * request ID was received, and if so, will ignore the second request.
+     * Optional. You can specify an optional unique request ID, and if you need to
+     * retry your request, the server will know to ignore the request if it's
+     * complete.
+     * For example, you make an initial request and the request times out. If you
+     * make the request again with the same request ID, the server can check if
+     * it received the original operation with the same request ID. If it did, it
+     * will ignore the second request.
      * The request ID must be a valid [UUID](https://tools.ietf.org/html/rfc4122)
      * with the exception that zero UUID is not supported
      * (`00000000-0000-0000-0000-000000000000`).
@@ -53,18 +54,18 @@ class ChangeRenewalSettingsRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. The name of the entitlement to update.
-     *           The name takes the format:
+     *           Name uses the format:
      *           accounts/{account_id}/customers/{customer_id}/entitlements/{entitlement_id}
      *     @type \Google\Cloud\Channel\V1\RenewalSettings $renewal_settings
      *           Required. New renewal settings.
      *     @type string $request_id
-     *           Optional. A request ID to identify requests. Specify a unique request ID so
-     *           that if you must retry your request, the server will know to ignore the
-     *           request if it has already been completed.
-     *           For example, consider a situation where you make an initial request and
-     *           the request times out. If you make the request again with the same
-     *           request ID, the server can check if the original operation with the same
-     *           request ID was received, and if so, will ignore the second request.
+     *           Optional. You can specify an optional unique request ID, and if you need to
+     *           retry your request, the server will know to ignore the request if it's
+     *           complete.
+     *           For example, you make an initial request and the request times out. If you
+     *           make the request again with the same request ID, the server can check if
+     *           it received the original operation with the same request ID. If it did, it
+     *           will ignore the second request.
      *           The request ID must be a valid [UUID](https://tools.ietf.org/html/rfc4122)
      *           with the exception that zero UUID is not supported
      *           (`00000000-0000-0000-0000-000000000000`).
@@ -77,7 +78,7 @@ class ChangeRenewalSettingsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the entitlement to update.
-     * The name takes the format:
+     * Name uses the format:
      * accounts/{account_id}/customers/{customer_id}/entitlements/{entitlement_id}
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -90,7 +91,7 @@ class ChangeRenewalSettingsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the entitlement to update.
-     * The name takes the format:
+     * Name uses the format:
      * accounts/{account_id}/customers/{customer_id}/entitlements/{entitlement_id}
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -109,11 +110,11 @@ class ChangeRenewalSettingsRequest extends \Google\Protobuf\Internal\Message
      * Required. New renewal settings.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.RenewalSettings renewal_settings = 4 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Channel\V1\RenewalSettings
+     * @return \Google\Cloud\Channel\V1\RenewalSettings|null
      */
     public function getRenewalSettings()
     {
-        return isset($this->renewal_settings) ? $this->renewal_settings : null;
+        return $this->renewal_settings;
     }
 
     public function hasRenewalSettings()
@@ -142,13 +143,13 @@ class ChangeRenewalSettingsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A request ID to identify requests. Specify a unique request ID so
-     * that if you must retry your request, the server will know to ignore the
-     * request if it has already been completed.
-     * For example, consider a situation where you make an initial request and
-     * the request times out. If you make the request again with the same
-     * request ID, the server can check if the original operation with the same
-     * request ID was received, and if so, will ignore the second request.
+     * Optional. You can specify an optional unique request ID, and if you need to
+     * retry your request, the server will know to ignore the request if it's
+     * complete.
+     * For example, you make an initial request and the request times out. If you
+     * make the request again with the same request ID, the server can check if
+     * it received the original operation with the same request ID. If it did, it
+     * will ignore the second request.
      * The request ID must be a valid [UUID](https://tools.ietf.org/html/rfc4122)
      * with the exception that zero UUID is not supported
      * (`00000000-0000-0000-0000-000000000000`).
@@ -162,13 +163,13 @@ class ChangeRenewalSettingsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A request ID to identify requests. Specify a unique request ID so
-     * that if you must retry your request, the server will know to ignore the
-     * request if it has already been completed.
-     * For example, consider a situation where you make an initial request and
-     * the request times out. If you make the request again with the same
-     * request ID, the server can check if the original operation with the same
-     * request ID was received, and if so, will ignore the second request.
+     * Optional. You can specify an optional unique request ID, and if you need to
+     * retry your request, the server will know to ignore the request if it's
+     * complete.
+     * For example, you make an initial request and the request times out. If you
+     * make the request again with the same request ID, the server can check if
+     * it received the original operation with the same request ID. If it did, it
+     * will ignore the second request.
      * The request ID must be a valid [UUID](https://tools.ietf.org/html/rfc4122)
      * with the exception that zero UUID is not supported
      * (`00000000-0000-0000-0000-000000000000`).

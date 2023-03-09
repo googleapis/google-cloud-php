@@ -60,11 +60,13 @@ class DetectIntentRequest extends \Google\Protobuf\Internal\Message
      */
     private $output_audio_config = null;
     /**
-     * Mask for [output_audio_config][google.cloud.dialogflow.v2.DetectIntentRequest.output_audio_config] indicating which settings in this
-     * request-level config should override speech synthesizer settings defined at
-     * agent-level.
-     * If unspecified or empty, [output_audio_config][google.cloud.dialogflow.v2.DetectIntentRequest.output_audio_config] replaces the agent-level
-     * config in its entirety.
+     * Mask for
+     * [output_audio_config][google.cloud.dialogflow.v2.DetectIntentRequest.output_audio_config]
+     * indicating which settings in this request-level config should override
+     * speech synthesizer settings defined at agent-level.
+     * If unspecified or empty,
+     * [output_audio_config][google.cloud.dialogflow.v2.DetectIntentRequest.output_audio_config]
+     * replaces the agent-level config in its entirety.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask output_audio_config_mask = 7;</code>
      */
@@ -113,11 +115,13 @@ class DetectIntentRequest extends \Google\Protobuf\Internal\Message
      *           audio. If this field is not set and agent-level speech synthesizer is not
      *           configured, no output audio is generated.
      *     @type \Google\Protobuf\FieldMask $output_audio_config_mask
-     *           Mask for [output_audio_config][google.cloud.dialogflow.v2.DetectIntentRequest.output_audio_config] indicating which settings in this
-     *           request-level config should override speech synthesizer settings defined at
-     *           agent-level.
-     *           If unspecified or empty, [output_audio_config][google.cloud.dialogflow.v2.DetectIntentRequest.output_audio_config] replaces the agent-level
-     *           config in its entirety.
+     *           Mask for
+     *           [output_audio_config][google.cloud.dialogflow.v2.DetectIntentRequest.output_audio_config]
+     *           indicating which settings in this request-level config should override
+     *           speech synthesizer settings defined at agent-level.
+     *           If unspecified or empty,
+     *           [output_audio_config][google.cloud.dialogflow.v2.DetectIntentRequest.output_audio_config]
+     *           replaces the agent-level config in its entirety.
      *     @type string $input_audio
      *           The natural language speech audio to be processed. This field
      *           should be populated iff `query_input` is set to an input audio config.
@@ -191,7 +195,7 @@ class DetectIntentRequest extends \Google\Protobuf\Internal\Message
      */
     public function getQueryParams()
     {
-        return isset($this->query_params) ? $this->query_params : null;
+        return $this->query_params;
     }
 
     public function hasQueryParams()
@@ -231,7 +235,7 @@ class DetectIntentRequest extends \Google\Protobuf\Internal\Message
      */
     public function getQueryInput()
     {
-        return isset($this->query_input) ? $this->query_input : null;
+        return $this->query_input;
     }
 
     public function hasQueryInput()
@@ -273,7 +277,7 @@ class DetectIntentRequest extends \Google\Protobuf\Internal\Message
      */
     public function getOutputAudioConfig()
     {
-        return isset($this->output_audio_config) ? $this->output_audio_config : null;
+        return $this->output_audio_config;
     }
 
     public function hasOutputAudioConfig()
@@ -304,18 +308,20 @@ class DetectIntentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Mask for [output_audio_config][google.cloud.dialogflow.v2.DetectIntentRequest.output_audio_config] indicating which settings in this
-     * request-level config should override speech synthesizer settings defined at
-     * agent-level.
-     * If unspecified or empty, [output_audio_config][google.cloud.dialogflow.v2.DetectIntentRequest.output_audio_config] replaces the agent-level
-     * config in its entirety.
+     * Mask for
+     * [output_audio_config][google.cloud.dialogflow.v2.DetectIntentRequest.output_audio_config]
+     * indicating which settings in this request-level config should override
+     * speech synthesizer settings defined at agent-level.
+     * If unspecified or empty,
+     * [output_audio_config][google.cloud.dialogflow.v2.DetectIntentRequest.output_audio_config]
+     * replaces the agent-level config in its entirety.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask output_audio_config_mask = 7;</code>
      * @return \Google\Protobuf\FieldMask|null
      */
     public function getOutputAudioConfigMask()
     {
-        return isset($this->output_audio_config_mask) ? $this->output_audio_config_mask : null;
+        return $this->output_audio_config_mask;
     }
 
     public function hasOutputAudioConfigMask()
@@ -329,11 +335,13 @@ class DetectIntentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Mask for [output_audio_config][google.cloud.dialogflow.v2.DetectIntentRequest.output_audio_config] indicating which settings in this
-     * request-level config should override speech synthesizer settings defined at
-     * agent-level.
-     * If unspecified or empty, [output_audio_config][google.cloud.dialogflow.v2.DetectIntentRequest.output_audio_config] replaces the agent-level
-     * config in its entirety.
+     * Mask for
+     * [output_audio_config][google.cloud.dialogflow.v2.DetectIntentRequest.output_audio_config]
+     * indicating which settings in this request-level config should override
+     * speech synthesizer settings defined at agent-level.
+     * If unspecified or empty,
+     * [output_audio_config][google.cloud.dialogflow.v2.DetectIntentRequest.output_audio_config]
+     * replaces the agent-level config in its entirety.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask output_audio_config_mask = 7;</code>
      * @param \Google\Protobuf\FieldMask $var

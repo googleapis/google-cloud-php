@@ -22,12 +22,12 @@
 
 namespace Google\Cloud\Datastore\Admin\Tests\Unit\V1;
 
-use Google\Cloud\Datastore\Admin\V1\DatastoreAdminClient;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
+use Google\Cloud\Datastore\Admin\V1\DatastoreAdminClient;
 use Google\Cloud\Datastore\Admin\V1\ExportEntitiesResponse;
 use Google\Cloud\Datastore\Admin\V1\Index;
 use Google\Cloud\Datastore\Admin\V1\ListIndexesResponse;
@@ -40,60 +40,282 @@ use stdClass;
 
 /**
  * @group admin
+ *
  * @group gapic
  */
 class DatastoreAdminClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return DatastoreAdminClient
-     */
+    /** @return DatastoreAdminClient */
     private function createClient(array $options = [])
     {
         $options += [
             'credentials' => $this->createCredentials(),
         ];
-
         return new DatastoreAdminClient($options);
     }
 
-    /**
-     * @test
-     */
-    public function exportEntitiesTest()
+    /** @test */
+    public function createIndexTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
-
         $this->assertTrue($transport->isExhausted());
         $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/createIndexTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $projectId2 = 'projectId2939242356';
+        $indexId = 'indexId112508840';
+        $kind = 'kind3292052';
+        $expectedResponse = new Index();
+        $expectedResponse->setProjectId($projectId2);
+        $expectedResponse->setIndexId($indexId);
+        $expectedResponse->setKind($kind);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/createIndexTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        $response = $gapicClient->createIndex();
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.datastore.admin.v1.DatastoreAdmin/CreateIndex', $actualApiFuncCall);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/createIndexTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
 
+    /** @test */
+    public function createIndexExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/createIndexTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $operationsTransport->addResponse(null, $status);
+        $response = $gapicClient->createIndex();
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/createIndexTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteIndexTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/deleteIndexTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $projectId2 = 'projectId2939242356';
+        $indexId2 = 'indexId2746815835';
+        $kind = 'kind3292052';
+        $expectedResponse = new Index();
+        $expectedResponse->setProjectId($projectId2);
+        $expectedResponse->setIndexId($indexId2);
+        $expectedResponse->setKind($kind);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/deleteIndexTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        $response = $gapicClient->deleteIndex();
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.datastore.admin.v1.DatastoreAdmin/DeleteIndex', $actualApiFuncCall);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/deleteIndexTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteIndexExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/deleteIndexTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $operationsTransport->addResponse(null, $status);
+        $response = $gapicClient->deleteIndex();
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/deleteIndexTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function exportEntitiesTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
         // Mock response
         $incompleteOperation = new Operation();
         $incompleteOperation->setName('operations/exportEntitiesTest');
@@ -109,32 +331,25 @@ class DatastoreAdminClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-
         // Mock request
         $projectId = 'projectId-1969970175';
         $outputUrlPrefix = 'outputUrlPrefix1058210144';
-
-        $response = $client->exportEntities($projectId, $outputUrlPrefix);
+        $response = $gapicClient->exportEntities($projectId, $outputUrlPrefix);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
         $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
         $this->assertSame(0, count($operationsRequestsEmpty));
-
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.datastore.admin.v1.DatastoreAdmin/ExportEntities', $actualApiFuncCall);
         $actualValue = $actualApiRequestObject->getProjectId();
-
         $this->assertProtobufEquals($projectId, $actualValue);
         $actualValue = $actualApiRequestObject->getOutputUrlPrefix();
-
         $this->assertProtobufEquals($outputUrlPrefix, $actualValue);
-
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/exportEntitiesTest');
-
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -144,65 +359,53 @@ class DatastoreAdminClientTest extends GeneratedTest
         $this->assertSame(0, count($apiRequestsEmpty));
         $operationsRequests = $operationsTransport->popReceivedCalls();
         $this->assertSame(1, count($operationsRequests));
-
         $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
         $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
         $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
         $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
-
         $this->assertTrue($transport->isExhausted());
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function exportEntitiesExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
-
         $this->assertTrue($transport->isExhausted());
         $this->assertTrue($operationsTransport->isExhausted());
-
         // Mock response
         $incompleteOperation = new Operation();
         $incompleteOperation->setName('operations/exportEntitiesTest');
         $incompleteOperation->setDone(false);
         $transport->addResponse($incompleteOperation);
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
         $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-
         // Mock request
         $projectId = 'projectId-1969970175';
         $outputUrlPrefix = 'outputUrlPrefix1058210144';
-
-        $response = $client->exportEntities($projectId, $outputUrlPrefix);
+        $response = $gapicClient->exportEntities($projectId, $outputUrlPrefix);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
-
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/exportEntitiesTest');
-
         try {
             $response->pollUntilComplete([
                 'initialPollDelayMillis' => 1,
@@ -213,7 +416,6 @@ class DatastoreAdminClientTest extends GeneratedTest
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stubs are exhausted
         $transport->popReceivedCalls();
         $operationsTransport->popReceivedCalls();
@@ -221,26 +423,80 @@ class DatastoreAdminClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
+    public function getIndexTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $projectId2 = 'projectId2939242356';
+        $indexId2 = 'indexId2746815835';
+        $kind = 'kind3292052';
+        $expectedResponse = new Index();
+        $expectedResponse->setProjectId($projectId2);
+        $expectedResponse->setIndexId($indexId2);
+        $expectedResponse->setKind($kind);
+        $transport->addResponse($expectedResponse);
+        $response = $gapicClient->getIndex();
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.datastore.admin.v1.DatastoreAdmin/GetIndex', $actualFuncCall);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getIndexExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        try {
+            $gapicClient->getIndex();
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function importEntitiesTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
-
         $this->assertTrue($transport->isExhausted());
         $this->assertTrue($operationsTransport->isExhausted());
-
         // Mock response
         $incompleteOperation = new Operation();
         $incompleteOperation->setName('operations/importEntitiesTest');
@@ -254,32 +510,25 @@ class DatastoreAdminClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-
         // Mock request
         $projectId = 'projectId-1969970175';
         $inputUrl = 'inputUrl1707300730';
-
-        $response = $client->importEntities($projectId, $inputUrl);
+        $response = $gapicClient->importEntities($projectId, $inputUrl);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
         $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
         $this->assertSame(0, count($operationsRequestsEmpty));
-
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.datastore.admin.v1.DatastoreAdmin/ImportEntities', $actualApiFuncCall);
         $actualValue = $actualApiRequestObject->getProjectId();
-
         $this->assertProtobufEquals($projectId, $actualValue);
         $actualValue = $actualApiRequestObject->getInputUrl();
-
         $this->assertProtobufEquals($inputUrl, $actualValue);
-
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/importEntitiesTest');
-
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -289,65 +538,53 @@ class DatastoreAdminClientTest extends GeneratedTest
         $this->assertSame(0, count($apiRequestsEmpty));
         $operationsRequests = $operationsTransport->popReceivedCalls();
         $this->assertSame(1, count($operationsRequests));
-
         $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
         $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
         $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
         $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
-
         $this->assertTrue($transport->isExhausted());
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function importEntitiesExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
-
         $this->assertTrue($transport->isExhausted());
         $this->assertTrue($operationsTransport->isExhausted());
-
         // Mock response
         $incompleteOperation = new Operation();
         $incompleteOperation->setName('operations/importEntitiesTest');
         $incompleteOperation->setDone(false);
         $transport->addResponse($incompleteOperation);
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
         $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-
         // Mock request
         $projectId = 'projectId-1969970175';
         $inputUrl = 'inputUrl1707300730';
-
-        $response = $client->importEntities($projectId, $inputUrl);
+        $response = $gapicClient->importEntities($projectId, $inputUrl);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
-
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/importEntitiesTest');
-
         try {
             $response->pollUntilComplete([
                 'initialPollDelayMillis' => 1,
@@ -358,7 +595,6 @@ class DatastoreAdminClientTest extends GeneratedTest
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stubs are exhausted
         $transport->popReceivedCalls();
         $operationsTransport->popReceivedCalls();
@@ -366,138 +602,63 @@ class DatastoreAdminClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
-    public function getIndexTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        // Mock response
-        $projectId = 'projectId-1969970175';
-        $indexId = 'indexId112508840';
-        $kind = 'kind3292052';
-        $expectedResponse = new Index();
-        $expectedResponse->setProjectId($projectId);
-        $expectedResponse->setIndexId($indexId);
-        $expectedResponse->setKind($kind);
-        $transport->addResponse($expectedResponse);
-
-        $response = $client->getIndex();
-        $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.datastore.admin.v1.DatastoreAdmin/GetIndex', $actualFuncCall);
-
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function getIndexExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
-        ], JSON_PRETTY_PRINT);
-        $transport->addResponse(null, $status);
-
-        try {
-            $client->getIndex();
-            // If the $client method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
+    /** @test */
     public function listIndexesTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $nextPageToken = '';
         $indexesElement = new Index();
-        $indexes = [$indexesElement];
+        $indexes = [
+            $indexesElement,
+        ];
         $expectedResponse = new ListIndexesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setIndexes($indexes);
         $transport->addResponse($expectedResponse);
-
-        $response = $client->listIndexes();
+        $response = $gapicClient->listIndexes();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
         $this->assertEquals($expectedResponse->getIndexes()[0], $resources[0]);
-
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.datastore.admin.v1.DatastoreAdmin/ListIndexes', $actualFuncCall);
-
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listIndexesExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         try {
-            $client->listIndexes();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listIndexes();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());

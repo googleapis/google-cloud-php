@@ -4,7 +4,7 @@
 
 [![Latest Stable Version](https://poser.pugx.org/google/cloud-tasks/v/stable)](https://packagist.org/packages/google/cloud-tasks) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-tasks.svg)](https://packagist.org/packages/google/cloud-tasks)
 
-* [API documentation](http://googleapis.github.io/google-cloud-php/#/docs/cloud-tasks/latest/tasks/readme)
+* [API documentation](https://cloud.google.com/php/docs/reference/cloud-tasks/latest)
 
 **NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googleapis/google-cloud-php). Any
 support requests, bug reports, or development contributions should be directed to
@@ -32,7 +32,7 @@ please see our [gRPC installation guide](https://cloud.google.com/php/grpc).
 
 ### Authentication
 
-Please see our [Authentication guide](https://github.com/googleapis/google-cloud-php/blob/master/AUTHENTICATION.md) for more information
+Please see our [Authentication guide](https://github.com/googleapis/google-cloud-php/blob/main/AUTHENTICATION.md) for more information
 on authenticating your client. Once authenticated, you'll be ready to start making requests.
 
 ### Sample

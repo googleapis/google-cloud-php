@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The response message for [EntityTypes.ListEntityTypes][google.cloud.dialogflow.v2.EntityTypes.ListEntityTypes].
+ * The response message for
+ * [EntityTypes.ListEntityTypes][google.cloud.dialogflow.v2.EntityTypes.ListEntityTypes].
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.ListEntityTypesResponse</code>
  */
@@ -36,7 +37,7 @@ class ListEntityTypesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Dialogflow\V2\EntityType[]|\Google\Protobuf\Internal\RepeatedField $entity_types
+     *     @type array<\Google\Cloud\Dialogflow\V2\EntityType>|\Google\Protobuf\Internal\RepeatedField $entity_types
      *           The list of agent entity types. There will be a maximum number of items
      *           returned based on the page_size field in the request.
      *     @type string $next_page_token
@@ -66,7 +67,7 @@ class ListEntityTypesResponse extends \Google\Protobuf\Internal\Message
      * returned based on the page_size field in the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.EntityType entity_types = 1;</code>
-     * @param \Google\Cloud\Dialogflow\V2\EntityType[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dialogflow\V2\EntityType>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setEntityTypes($var)

@@ -17,13 +17,14 @@
 
 namespace Google\Cloud\Datastore\Tests\System;
 
+use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Datastore\DatastoreClient;
 
 /**
  * @group datastore
  * @group datastore-query
  */
-class RunQueryTest extends DatastoreTestCase
+class RunQueryTest extends DatastoreMultipleDbTestCase
 {
     private static $ancestor;
     private static $kind = 'Person';
@@ -50,9 +51,9 @@ class RunQueryTest extends DatastoreTestCase
         ]
     ];
 
-    public static function setUpBeforeClass()
+    public static function set_up_before_class()
     {
-        parent::setUpBeforeClass();
+        parent::set_up_before_class();
         self::$ancestor = self::$restClient->key(self::$kind, 'Grandpa Frank');
         $key1 = self::$restClient->key(self::$kind, 'Frank');
         $key1->ancestorKey(self::$ancestor);
@@ -78,8 +79,45 @@ class RunQueryTest extends DatastoreTestCase
         self::$localDeletionQueue->add($key3);
     }
 
+    public static function tear_down_after_class()
+    {
+        self::tearDownFixtures();
+    }
+
     /**
-     * @dataProvider clientProvider
+     * @dataProvider multiDbClientProvider
+     */
+    public function testQueryMultipleDbClients(DatastoreClient $client)
+    {
+        $query = $client->query()
+            ->kind(self::$kind)
+            ->order('knownDances');
+
+        $results = iterator_to_array($client->runQuery($query));
+
+        $this->assertCount(0, $results);
+    }
+
+    /**
+     * @dataProvider defaultDbClientProvider
+     */
+    public function testQueryDefaultDbClients(DatastoreClient $client)
+    {
+        $query = $client->query()
+            ->kind(self::$kind)
+            ->order('knownDances');
+
+        $results = iterator_to_array($client->runQuery($query));
+
+        $this->assertEquals(self::$data[0], $results[0]->get());
+        $this->assertEquals(self::$data[1], $results[1]->get());
+        $this->assertEquals(self::$data[2], $results[2]->get());
+        $this->assertEquals(self::$data[3], $results[3]->get());
+        $this->assertCount(4, $results);
+    }
+
+    /**
+     * @dataProvider defaultDbClientProvider
      */
     public function testQueryWithOrder(DatastoreClient $client)
     {
@@ -97,7 +135,7 @@ class RunQueryTest extends DatastoreTestCase
     }
 
     /**
-     * @dataProvider clientProvider
+     * @dataProvider defaultDbClientProvider
      */
     public function testQueryWithFilter(DatastoreClient $client)
     {
@@ -114,7 +152,7 @@ class RunQueryTest extends DatastoreTestCase
     }
 
     /**
-     * @dataProvider clientProvider
+     * @dataProvider defaultDbClientProvider
      */
     public function testQueryWithAncestor(DatastoreClient $client)
     {
@@ -131,7 +169,7 @@ class RunQueryTest extends DatastoreTestCase
     }
 
     /**
-     * @dataProvider clientProvider
+     * @dataProvider defaultDbClientProvider
      */
     public function testQueryWithProjection(DatastoreClient $client)
     {
@@ -156,7 +194,7 @@ class RunQueryTest extends DatastoreTestCase
     }
 
     /**
-     * @dataProvider clientProvider
+     * @dataProvider defaultDbClientProvider
      */
     public function testQueryWithDistinctOn(DatastoreClient $client)
     {
@@ -172,7 +210,7 @@ class RunQueryTest extends DatastoreTestCase
     }
 
     /**
-     * @dataProvider clientProvider
+     * @dataProvider defaultDbClientProvider
      */
     public function testQueryWithKeysOnly(DatastoreClient $client)
     {
@@ -189,7 +227,7 @@ class RunQueryTest extends DatastoreTestCase
     }
 
     /**
-     * @dataProvider clientProvider
+     * @dataProvider defaultDbClientProvider
      */
     public function testQueryWithOffset(DatastoreClient $client)
     {
@@ -204,7 +242,7 @@ class RunQueryTest extends DatastoreTestCase
     }
 
     /**
-     * @dataProvider clientProvider
+     * @dataProvider defaultDbClientProvider
      */
     public function testQueryWithStartCursor(DatastoreClient $client)
     {
@@ -227,7 +265,7 @@ class RunQueryTest extends DatastoreTestCase
     }
 
     /**
-     * @dataProvider clientProvider
+     * @dataProvider defaultDbClientProvider
      */
     public function testQueryWithEndCursor(DatastoreClient $client)
     {
@@ -248,7 +286,7 @@ class RunQueryTest extends DatastoreTestCase
     }
 
     /**
-     * @dataProvider clientProvider
+     * @dataProvider defaultDbClientProvider
      */
     public function testQueryWithLimit(DatastoreClient $client)
     {
@@ -263,7 +301,7 @@ class RunQueryTest extends DatastoreTestCase
     }
 
     /**
-     * @dataProvider clientProvider
+     * @dataProvider defaultDbClientProvider
      */
     public function testGqlQueryWithBindings(DatastoreClient $client)
     {
@@ -280,7 +318,7 @@ class RunQueryTest extends DatastoreTestCase
     }
 
     /**
-     * @dataProvider clientProvider
+     * @dataProvider defaultDbClientProvider
      */
     public function testGqlQueryWithLiteral(DatastoreClient $client)
     {
@@ -292,6 +330,49 @@ class RunQueryTest extends DatastoreTestCase
 
         $this->assertEquals(self::$data[2], $results[0]->get());
         $this->assertCount(1, $results);
+    }
+
+    /**
+     * @dataProvider defaultDbClientProvider
+     */
+    public function testRunQueryWithReadTime(DatastoreClient $client)
+    {
+        $this->skipEmulatorTests();
+        $kind = 'NewPerson';
+        $lastName = 'Geller';
+        $newLastName = 'Bing';
+        $key = $client->key($kind, time());
+        $person = $client->entity($key, [
+            'lastName' => $lastName
+        ]);
+        $client->insert($person);
+        self::$localDeletionQueue->add($key);
+
+        sleep(2);
+
+        $time = new Timestamp(new \DateTime());
+
+        sleep(2);
+
+        $person = $client->lookup($key);
+        $person['lastName'] = $newLastName;
+        $client->update($person);
+
+        sleep(2);
+
+        $query = $client->query()
+            ->kind($kind)
+            ->filter('__key__', '=', $key);
+        $result = $client->runQuery($query);
+        $personListEntities = iterator_to_array($result);
+
+        // Person lastName should be the lastName AFTER update
+        $this->assertEquals($personListEntities[0]['lastName'], $newLastName);
+
+        // Person lastName should be the lastName BEFORE update
+        $result = $client->runQuery($query, ['readTime' => $time]);
+        $personListEntities = iterator_to_array($result);
+        $this->assertEquals($personListEntities[0]['lastName'], $lastName);
     }
 
     private function runQueryAndSortResults($client, $query)

@@ -107,7 +107,7 @@ class Parameter extends \Google\Protobuf\Internal\Message
      *           Optional. Indicates whether the parameter is required. That is,
      *           whether the intent cannot be completed without collecting the parameter
      *           value.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $prompts
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $prompts
      *           Optional. The collection of prompts that the agent can present to the
      *           user in order to collect a value for the parameter.
      *     @type bool $is_list
@@ -316,7 +316,7 @@ class Parameter extends \Google\Protobuf\Internal\Message
      * user in order to collect a value for the parameter.
      *
      * Generated from protobuf field <code>repeated string prompts = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPrompts($var)
@@ -355,6 +355,4 @@ class Parameter extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Parameter::class, \Google\Cloud\Dialogflow\V2\Intent_Parameter::class);
 

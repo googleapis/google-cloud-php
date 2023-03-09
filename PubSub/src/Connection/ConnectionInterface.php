@@ -157,4 +157,34 @@ interface ConnectionInterface
      * @param array $args
      */
     public function detachSubscription(array $args);
+
+    /**
+     * @param array $args
+     */
+    public function listSchemas(array $args);
+
+    /**
+     * @param array $args
+     */
+    public function createSchema(array $args);
+
+    /**
+     * @param array $args
+     */
+    public function getSchema(array $args);
+
+    /**
+     * @param array $args
+     */
+    public function deleteSchema(array $args);
+
+    /**
+     * @param array $args
+     */
+    public function validateSchema(array $args);
+
+    /**
+     * @param array $args
+     */
+    public function validateMessage(array $args);
 }

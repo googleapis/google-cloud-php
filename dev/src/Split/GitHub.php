@@ -182,12 +182,12 @@ class GitHub
      *        by a forward slash, i.e. `organization/repository'.
      * @param string $ref The commit reference.
      * @param string $targetBranch The remote branch to push to. **Defaults to**
-     *        `master`.
+     *        `main`.
      * @param bool $initialCommit If true, attempt to create target branch.
      *        **Defaults to** `false`.
      * @return array A list containing [(bool) $success, (string) $output].
      */
-    public function push($target, $ref, $targetBranch = 'master', $initialCommit = false)
+    public function push($target, $ref, $targetBranch = 'main', $initialCommit = false)
     {
         $targetRef = $initialCommit
             ? 'refs/heads/' . $targetBranch

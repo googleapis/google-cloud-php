@@ -16,10 +16,11 @@ class TargetTcpProxiesSetProxyHeaderRequest extends \Google\Protobuf\Internal\Me
 {
     /**
      * The new type of proxy header to append before sending data to the backend. NONE or PROXY_V1 are allowed.
+     * Check the ProxyHeader enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.TargetTcpProxiesSetProxyHeaderRequest.ProxyHeader proxy_header = 160374142;</code>
+     * Generated from protobuf field <code>optional string proxy_header = 160374142;</code>
      */
-    private $proxy_header = 0;
+    private $proxy_header = null;
 
     /**
      * Constructor.
@@ -27,8 +28,9 @@ class TargetTcpProxiesSetProxyHeaderRequest extends \Google\Protobuf\Internal\Me
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type int $proxy_header
+     *     @type string $proxy_header
      *           The new type of proxy header to append before sending data to the backend. NONE or PROXY_V1 are allowed.
+     *           Check the ProxyHeader enum for the list of possible values.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,25 +40,37 @@ class TargetTcpProxiesSetProxyHeaderRequest extends \Google\Protobuf\Internal\Me
 
     /**
      * The new type of proxy header to append before sending data to the backend. NONE or PROXY_V1 are allowed.
+     * Check the ProxyHeader enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.TargetTcpProxiesSetProxyHeaderRequest.ProxyHeader proxy_header = 160374142;</code>
-     * @return int
+     * Generated from protobuf field <code>optional string proxy_header = 160374142;</code>
+     * @return string
      */
     public function getProxyHeader()
     {
-        return $this->proxy_header;
+        return isset($this->proxy_header) ? $this->proxy_header : '';
+    }
+
+    public function hasProxyHeader()
+    {
+        return isset($this->proxy_header);
+    }
+
+    public function clearProxyHeader()
+    {
+        unset($this->proxy_header);
     }
 
     /**
      * The new type of proxy header to append before sending data to the backend. NONE or PROXY_V1 are allowed.
+     * Check the ProxyHeader enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.TargetTcpProxiesSetProxyHeaderRequest.ProxyHeader proxy_header = 160374142;</code>
-     * @param int $var
+     * Generated from protobuf field <code>optional string proxy_header = 160374142;</code>
+     * @param string $var
      * @return $this
      */
     public function setProxyHeader($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Compute\V1\TargetTcpProxiesSetProxyHeaderRequest\ProxyHeader::class);
+        GPBUtil::checkString($var, True);
         $this->proxy_header = $var;
 
         return $this;

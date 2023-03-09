@@ -40,4 +40,11 @@ class Int64Test extends TestCase
 
         $this->assertEquals($int, (string) $int64);
     }
+
+    public function testJsonEncode()
+    {
+        $int64 = new Int64('123');
+
+        $this->assertEquals('"123"', json_encode($int64));
+    }
 }

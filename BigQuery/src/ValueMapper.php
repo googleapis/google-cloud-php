@@ -35,6 +35,7 @@ class ValueMapper
     const TYPE_FLOAT64 = 'FLOAT64';
     const TYPE_FLOAT = 'FLOAT';
     const TYPE_NUMERIC = 'NUMERIC';
+    const TYPE_BIGNUMERIC = 'BIGNUMERIC';
     const TYPE_STRING = 'STRING';
     const TYPE_BYTES = 'BYTES';
     const TYPE_DATE = 'DATE';
@@ -51,14 +52,14 @@ class ValueMapper
 
     /**
      * @var bool $returnInt64AsObject If true, 64 bit integers will be returned
-     *      as a {@see Google\Cloud\Core\Int64} object for 32 bit platform
+     *      as a {@see Int64} object for 32 bit platform
      *      compatibility.
      */
     private $returnInt64AsObject;
 
     /**
      * @param bool $returnInt64AsObject If true, 64 bit integers will be
-     *        returned as a {@see Google\Cloud\Core\Int64} object for 32 bit
+     *        returned as a {@see Int64} object for 32 bit
      *        platform compatibility.
      */
     public function __construct($returnInt64AsObject)
@@ -99,6 +100,8 @@ class ValueMapper
                 return (float) $value;
             case self::TYPE_NUMERIC:
                 return new Numeric($value);
+            case self::TYPE_BIGNUMERIC:
+                return new BigNumeric($value);
             case self::TYPE_STRING:
                 return (string) $value;
             case self::TYPE_BYTES:
@@ -191,7 +194,7 @@ class ValueMapper
 
                 break;
             case 'array':
-                list($pType, $pValue) = $this->isAssoc($value)
+                list($pType, $pValue) = $this->isAssoc($value, false)
                     ? $this->assocArrayToParameter($value)
                     : $this->arrayToParameter($value);
 
@@ -331,7 +334,7 @@ class ValueMapper
 
     /**
      * Converts a timestamp in string format received from BigQuery to a
-     * {@see Google\Cloud\BigQuery\Timestamp}.
+     * {@see Timestamp}.
      *
      * @param string $value The timestamp.
      * @return Timestamp

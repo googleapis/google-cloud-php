@@ -39,7 +39,7 @@ class TextDetectionConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $language_hints
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $language_hints
      *           Language hint can be specified if the language to be detected is known a
      *           priori. It can increase the accuracy of the detection. Language hint must
      *           be language code in BCP-47 format.
@@ -76,7 +76,7 @@ class TextDetectionConfig extends \Google\Protobuf\Internal\Message
      * Automatic language detection is performed if no hint is provided.
      *
      * Generated from protobuf field <code>repeated string language_hints = 1;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setLanguageHints($var)

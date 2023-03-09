@@ -90,11 +90,11 @@ class Sku extends \Google\Protobuf\Internal\Message
      * Marketing information for the SKU.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.MarketingInfo marketing_info = 2;</code>
-     * @return \Google\Cloud\Channel\V1\MarketingInfo
+     * @return \Google\Cloud\Channel\V1\MarketingInfo|null
      */
     public function getMarketingInfo()
     {
-        return isset($this->marketing_info) ? $this->marketing_info : null;
+        return $this->marketing_info;
     }
 
     public function hasMarketingInfo()
@@ -126,11 +126,11 @@ class Sku extends \Google\Protobuf\Internal\Message
      * Product the SKU is associated with.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.Product product = 3;</code>
-     * @return \Google\Cloud\Channel\V1\Product
+     * @return \Google\Cloud\Channel\V1\Product|null
      */
     public function getProduct()
     {
-        return isset($this->product) ? $this->product : null;
+        return $this->product;
     }
 
     public function hasProduct()

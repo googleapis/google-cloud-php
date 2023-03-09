@@ -22,14 +22,14 @@ class State
     const STATE_UNSPECIFIED = 0;
     /**
      * Capacity commitment is pending provisioning. Pending capacity commitment
-     * does not contribute to the parent's slot_capacity.
+     * does not contribute to the project's slot_capacity.
      *
      * Generated from protobuf enum <code>PENDING = 1;</code>
      */
     const PENDING = 1;
     /**
      * Once slots are provisioned, capacity commitment becomes active.
-     * slot_count is added to the parent's slot_capacity.
+     * slot_count is added to the project's slot_capacity.
      *
      * Generated from protobuf enum <code>ACTIVE = 2;</code>
      */
@@ -69,6 +69,4 @@ class State
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(State::class, \Google\Cloud\BigQuery\Reservation\V1\CapacityCommitment_State::class);
 

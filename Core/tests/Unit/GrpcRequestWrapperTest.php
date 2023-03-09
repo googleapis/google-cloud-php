@@ -35,16 +35,18 @@ use Google\Rpc\BadRequest\FieldViolation;
 use Google\Rpc\Code;
 use Google\Rpc\PreconditionFailure;
 use Google\Rpc\Status;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group core
  */
 class GrpcRequestWrapperTest extends TestCase
 {
+    use ExpectException;
     use GrpcTestTrait;
 
-    public function setUp()
+    public function set_up()
     {
         $this->checkAndSkipGrpcTests();
     }
@@ -107,11 +109,38 @@ class GrpcRequestWrapperTest extends TestCase
         ];
     }
 
-    /**
-     * @expectedException Google\Cloud\Core\Exception\GoogleException
-     */
+    public function testRetryFunction()
+    {
+        $requestWrapper = new GrpcRequestWrapper();
+        $timesCalled = 0;
+        $requestWrapper->send(
+            function () use (&$timesCalled) {
+                if (2 === ++$timesCalled) {
+                    // succeed on second try
+                    return;
+                }
+                throw new ApiException(
+                    'Retryable exception',
+                    \Google\Rpc\Code::NOT_FOUND,
+                    \Google\ApiCore\ApiStatus::NOT_FOUND
+                );
+            },
+            [[]],
+            [
+                'retries' => 1,
+                'grpcRetryFunction' => function (\Exception $ex) {
+                    return $ex->getMessage() === 'Retryable exception';
+                }
+            ]
+        );
+
+        $this->assertEquals(2, $timesCalled);
+    }
+
     public function testThrowsExceptionWhenRequestFails()
     {
+        $this->expectException('Google\Cloud\Core\Exception\GoogleException');
+
         $requestWrapper = new GrpcRequestWrapper();
 
         $requestWrapper->send(function () {
@@ -163,11 +192,10 @@ class GrpcRequestWrapperTest extends TestCase
         }
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testThrowsExceptionWithInvalidCredentialsFetcher()
     {
+        $this->expectException('InvalidArgumentException');
+
         $credentialsFetcher = new \stdClass();
 
         $requestWrapper = new GrpcRequestWrapper([

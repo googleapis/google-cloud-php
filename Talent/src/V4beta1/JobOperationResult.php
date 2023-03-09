@@ -9,9 +9,13 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The result of [JobService.BatchCreateJobs][google.cloud.talent.v4beta1.JobService.BatchCreateJobs] or
- * [JobService.BatchUpdateJobs][google.cloud.talent.v4beta1.JobService.BatchUpdateJobs] APIs. It's used to
- * replace [google.longrunning.Operation.response][google.longrunning.Operation.response] in case of success.
+ * The result of
+ * [JobService.BatchCreateJobs][google.cloud.talent.v4beta1.JobService.BatchCreateJobs]
+ * or
+ * [JobService.BatchUpdateJobs][google.cloud.talent.v4beta1.JobService.BatchUpdateJobs]
+ * APIs. It's used to replace
+ * [google.longrunning.Operation.response][google.longrunning.Operation.response]
+ * in case of success.
  *
  * Generated from protobuf message <code>google.cloud.talent.v4beta1.JobOperationResult</code>
  */
@@ -31,7 +35,7 @@ class JobOperationResult extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Talent\V4beta1\JobOperationResult\JobResult[]|\Google\Protobuf\Internal\RepeatedField $job_results
+     *     @type array<\Google\Cloud\Talent\V4beta1\JobOperationResult\JobResult>|\Google\Protobuf\Internal\RepeatedField $job_results
      *           List of job mutation results from a batch mutate operation. It can change
      *           until operation status is FINISHED, FAILED or CANCELLED.
      * }
@@ -58,7 +62,7 @@ class JobOperationResult extends \Google\Protobuf\Internal\Message
      * until operation status is FINISHED, FAILED or CANCELLED.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.JobOperationResult.JobResult job_results = 1;</code>
-     * @param \Google\Cloud\Talent\V4beta1\JobOperationResult\JobResult[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Talent\V4beta1\JobOperationResult\JobResult>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setJobResults($var)

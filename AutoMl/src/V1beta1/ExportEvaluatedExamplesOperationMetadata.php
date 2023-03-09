@@ -48,7 +48,7 @@ class ExportEvaluatedExamplesOperationMetadata extends \Google\Protobuf\Internal
      */
     public function getOutputInfo()
     {
-        return isset($this->output_info) ? $this->output_info : null;
+        return $this->output_info;
     }
 
     public function hasOutputInfo()

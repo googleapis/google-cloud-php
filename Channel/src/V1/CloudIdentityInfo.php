@@ -28,9 +28,13 @@ class CloudIdentityInfo extends \Google\Protobuf\Internal\Message
      */
     private $primary_domain = '';
     /**
-     * Whether the domain is verified.
+     * Output only. Whether the domain is verified.
+     * This field is not returned for a Customer's cloud_identity_info resource.
+     * Partners can use the domains.get() method of the Workspace SDK's
+     * Directory API, or listen to the PRIMARY_DOMAIN_VERIFIED Pub/Sub event in
+     * to track domain verification of their resolve Workspace customers.
      *
-     * Generated from protobuf field <code>bool is_domain_verified = 4;</code>
+     * Generated from protobuf field <code>bool is_domain_verified = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $is_domain_verified = false;
     /**
@@ -75,7 +79,11 @@ class CloudIdentityInfo extends \Google\Protobuf\Internal\Message
      *     @type string $primary_domain
      *           Output only. The primary domain name.
      *     @type bool $is_domain_verified
-     *           Whether the domain is verified.
+     *           Output only. Whether the domain is verified.
+     *           This field is not returned for a Customer's cloud_identity_info resource.
+     *           Partners can use the domains.get() method of the Workspace SDK's
+     *           Directory API, or listen to the PRIMARY_DOMAIN_VERIFIED Pub/Sub event in
+     *           to track domain verification of their resolve Workspace customers.
      *     @type string $alternate_email
      *           The alternate email.
      *     @type string $phone_number
@@ -146,9 +154,13 @@ class CloudIdentityInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether the domain is verified.
+     * Output only. Whether the domain is verified.
+     * This field is not returned for a Customer's cloud_identity_info resource.
+     * Partners can use the domains.get() method of the Workspace SDK's
+     * Directory API, or listen to the PRIMARY_DOMAIN_VERIFIED Pub/Sub event in
+     * to track domain verification of their resolve Workspace customers.
      *
-     * Generated from protobuf field <code>bool is_domain_verified = 4;</code>
+     * Generated from protobuf field <code>bool is_domain_verified = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return bool
      */
     public function getIsDomainVerified()
@@ -157,9 +169,13 @@ class CloudIdentityInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether the domain is verified.
+     * Output only. Whether the domain is verified.
+     * This field is not returned for a Customer's cloud_identity_info resource.
+     * Partners can use the domains.get() method of the Workspace SDK's
+     * Directory API, or listen to the PRIMARY_DOMAIN_VERIFIED Pub/Sub event in
+     * to track domain verification of their resolve Workspace customers.
      *
-     * Generated from protobuf field <code>bool is_domain_verified = 4;</code>
+     * Generated from protobuf field <code>bool is_domain_verified = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param bool $var
      * @return $this
      */
@@ -279,11 +295,11 @@ class CloudIdentityInfo extends \Google\Protobuf\Internal\Message
      * Edu information about the customer.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.EduData edu_data = 22;</code>
-     * @return \Google\Cloud\Channel\V1\EduData
+     * @return \Google\Cloud\Channel\V1\EduData|null
      */
     public function getEduData()
     {
-        return isset($this->edu_data) ? $this->edu_data : null;
+        return $this->edu_data;
     }
 
     public function hasEduData()

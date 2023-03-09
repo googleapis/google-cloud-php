@@ -17,6 +17,9 @@ class SpeechRecognitionAlternative extends \Google\Protobuf\Internal\Message
 {
     /**
      * Transcript text representing the words that the user spoke.
+     * In languages that use spaces to separate words, the transcript might have a
+     * leading space if it isn't the first result. You can concatenate each result
+     * to obtain the full transcript without using a separator.
      *
      * Generated from protobuf field <code>string transcript = 1;</code>
      */
@@ -50,6 +53,9 @@ class SpeechRecognitionAlternative extends \Google\Protobuf\Internal\Message
      *
      *     @type string $transcript
      *           Transcript text representing the words that the user spoke.
+     *           In languages that use spaces to separate words, the transcript might have a
+     *           leading space if it isn't the first result. You can concatenate each result
+     *           to obtain the full transcript without using a separator.
      *     @type float $confidence
      *           The confidence estimate between 0.0 and 1.0. A higher number
      *           indicates an estimated greater likelihood that the recognized words are
@@ -58,7 +64,7 @@ class SpeechRecognitionAlternative extends \Google\Protobuf\Internal\Message
      *           This field is not guaranteed to be accurate and users should not rely on it
      *           to be always provided.
      *           The default of 0.0 is a sentinel value indicating `confidence` was not set.
-     *     @type \Google\Cloud\Speech\V1\WordInfo[]|\Google\Protobuf\Internal\RepeatedField $words
+     *     @type array<\Google\Cloud\Speech\V1\WordInfo>|\Google\Protobuf\Internal\RepeatedField $words
      *           A list of word-specific information for each recognized word.
      *           Note: When `enable_speaker_diarization` is true, you will see all the words
      *           from the beginning of the audio.
@@ -71,6 +77,9 @@ class SpeechRecognitionAlternative extends \Google\Protobuf\Internal\Message
 
     /**
      * Transcript text representing the words that the user spoke.
+     * In languages that use spaces to separate words, the transcript might have a
+     * leading space if it isn't the first result. You can concatenate each result
+     * to obtain the full transcript without using a separator.
      *
      * Generated from protobuf field <code>string transcript = 1;</code>
      * @return string
@@ -82,6 +91,9 @@ class SpeechRecognitionAlternative extends \Google\Protobuf\Internal\Message
 
     /**
      * Transcript text representing the words that the user spoke.
+     * In languages that use spaces to separate words, the transcript might have a
+     * leading space if it isn't the first result. You can concatenate each result
+     * to obtain the full transcript without using a separator.
      *
      * Generated from protobuf field <code>string transcript = 1;</code>
      * @param string $var
@@ -152,7 +164,7 @@ class SpeechRecognitionAlternative extends \Google\Protobuf\Internal\Message
      * from the beginning of the audio.
      *
      * Generated from protobuf field <code>repeated .google.cloud.speech.v1.WordInfo words = 3;</code>
-     * @param \Google\Cloud\Speech\V1\WordInfo[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Speech\V1\WordInfo>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setWords($var)

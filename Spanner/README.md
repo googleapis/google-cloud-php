@@ -4,7 +4,7 @@
 
 [![Latest Stable Version](https://poser.pugx.org/google/cloud-spanner/v/stable)](https://packagist.org/packages/google/cloud-spanner) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-spanner.svg)](https://packagist.org/packages/google/cloud-spanner)
 
-* [API documentation](http://googleapis.github.io/google-cloud-php/#/docs/cloud-spanner/latest)
+* [API documentation](https://cloud.google.com/php/docs/reference/cloud-spanner/latest)
 
 **NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googleapis/google-cloud-php). Any
 support requests, bug reports, or development contributions should be directed to
@@ -34,7 +34,7 @@ for more information on how to configure the extension.
 
 ### Authentication
 
-Please see our [Authentication guide](https://github.com/googleapis/google-cloud-php/blob/master/AUTHENTICATION.md) for more information
+Please see our [Authentication guide](https://github.com/googleapis/google-cloud-php/blob/main/AUTHENTICATION.md) for more information
 on authenticating your client. Once authenticated, you'll be ready to start making requests.
 
 ### Sample
@@ -63,7 +63,7 @@ echo 'Hello ' . $user['firstName'];
 
 To issue a query against the Spanner service, the client library needs to request a session id from the server under the cover. This API call will add significant latency to your program. The Spanner client library provides a handy way to alleviate this problem by having a cached session pool.
 
-For more details, see: https://github.com/googleapis/google-cloud-php/blob/master/Spanner/src/Session/CacheSessionPool.php#L30
+For more details, see: https://github.com/googleapis/google-cloud-php/blob/main/Spanner/src/Session/CacheSessionPool.php#L30
 
 The following example shows how to use the `CacheSessionPool` with `SysVCacheItemPool` as well as how to configure a proper cache for authentication:
 
@@ -77,7 +77,12 @@ use Google\Auth\Cache\SysVCacheItemPool;
 $authCache = new SysVCacheItemPool();
 $sessionCache = new SysVCacheItemPool([
     // Use a different project identifier for ftok than the default
-    'proj' => 'B'
+    'proj' => 'B',
+    // We highly recommend using 250kb as it should safely contain the default
+    // 500 maximum sessions the pool can handle. Please modify this value
+    // accordingly depending on the number of maximum sessions you would like
+    // for the pool to handle.
+    'memsize' => 250000
 ]);
 
 $spanner = new SpannerClient([

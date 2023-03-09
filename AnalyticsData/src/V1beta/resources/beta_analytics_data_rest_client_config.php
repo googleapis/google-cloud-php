@@ -3,21 +3,9 @@
 return [
     'interfaces' => [
         'google.analytics.data.v1beta.BetaAnalyticsData' => [
-            'RunReport' => [
+            'BatchRunPivotReports' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1beta/{property=properties/*}:runReport',
-                'body' => '*',
-                'placeholders' => [
-                    'property' => [
-                        'getters' => [
-                            'getProperty',
-                        ],
-                    ],
-                ],
-            ],
-            'RunPivotReport' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1beta/{property=properties/*}:runPivotReport',
+                'uriTemplate' => '/v1beta/{property=properties/*}:batchRunPivotReports',
                 'body' => '*',
                 'placeholders' => [
                     'property' => [
@@ -39,9 +27,9 @@ return [
                     ],
                 ],
             ],
-            'BatchRunPivotReports' => [
+            'CheckCompatibility' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1beta/{property=properties/*}:batchRunPivotReports',
+                'uriTemplate' => '/v1beta/{property=properties/*}:checkCompatibility',
                 'body' => '*',
                 'placeholders' => [
                     'property' => [
@@ -62,6 +50,18 @@ return [
                     ],
                 ],
             ],
+            'RunPivotReport' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta/{property=properties/*}:runPivotReport',
+                'body' => '*',
+                'placeholders' => [
+                    'property' => [
+                        'getters' => [
+                            'getProperty',
+                        ],
+                    ],
+                ],
+            ],
             'RunRealtimeReport' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1beta/{property=properties/*}:runRealtimeReport',
@@ -74,6 +74,19 @@ return [
                     ],
                 ],
             ],
+            'RunReport' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta/{property=properties/*}:runReport',
+                'body' => '*',
+                'placeholders' => [
+                    'property' => [
+                        'getters' => [
+                            'getProperty',
+                        ],
+                    ],
+                ],
+            ],
         ],
     ],
+    'numericEnums' => true,
 ];

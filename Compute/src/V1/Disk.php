@@ -9,40 +9,39 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents a Persistent Disk resource.
- * Google Compute Engine has two Disk resources:
- * * [Zonal](/compute/docs/reference/rest/{$api_version}/disks) * [Regional](https://cloud.google.com/compute/docs/reference/rest/{$api_version}/regionDisks)
- * Persistent disks are required for running your VM instances. Create both boot and non-boot (data) persistent disks. For more information, read Persistent Disks. For more storage options, read Storage options.
- * The disks resource represents a zonal persistent disk. For more information, read Zonal persistent disks.
- * The regionDisks resource represents a regional persistent disk. For more information, read  Regional resources. (== resource_for {$api_version}.disks ==) (== resource_for {$api_version}.regionDisks ==)
+ * Represents a Persistent Disk resource. Google Compute Engine has two Disk resources: * [Zonal](/compute/docs/reference/rest/v1/disks) * [Regional](https://cloud.google.com/compute/docs/reference/rest/v1/regionDisks) Persistent disks are required for running your VM instances. Create both boot and non-boot (data) persistent disks. For more information, read Persistent Disks. For more storage options, read Storage options. The disks resource represents a zonal persistent disk. For more information, read Zonal persistent disks. The regionDisks resource represents a regional persistent disk. For more information, read Regional resources.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.Disk</code>
  */
 class Disk extends \Google\Protobuf\Internal\Message
 {
     /**
+     * The architecture of the disk. Valid values are ARM64 or X86_64.
+     * Check the Architecture enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string architecture = 302803283;</code>
+     */
+    private $architecture = null;
+    /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
-     * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
+     * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      */
-    private $creation_timestamp = '';
+    private $creation_timestamp = null;
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 154502140;</code>
+     * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
-    private $description = '';
+    private $description = null;
     /**
-     * Encrypts the disk using a customer-supplied encryption key.
-     * After you encrypt a disk with a customer-supplied key, you must provide the same key if you use the disk later (e.g. to create a disk snapshot, to create a disk image, to create a machine image, or to attach the disk to a virtual machine).
-     * Customer-supplied encryption keys do not protect access to metadata of the disk.
-     * If you do not provide an encryption key when creating the disk, then the disk will be encrypted using an automatically generated key and you do not need to provide a key to use the disk later.
+     * Encrypts the disk using a customer-supplied encryption key or a customer-managed encryption key. Encryption keys do not protect access to metadata of the disk. After you encrypt a disk with a customer-supplied key, you must provide the same key if you use the disk later. For example, to create a disk snapshot, to create a disk image, to create a machine image, or to attach the disk to a virtual machine. After you encrypt a disk with a customer-managed key, the diskEncryptionKey.kmsKeyName is set to a key *version* name once the disk is created. The disk is encrypted with this version of the key. In the response, diskEncryptionKey.kmsKeyName appears in the following format: "diskEncryptionKey.kmsKeyName": "projects/kms_project_id/locations/region/keyRings/ key_region/cryptoKeys/key /cryptoKeysVersions/version If you do not provide an encryption key when creating the disk, then the disk is encrypted using an automatically generated key and you don't need to provide a key to use the disk later.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.CustomerEncryptionKey disk_encryption_key = 3225221;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.CustomerEncryptionKey disk_encryption_key = 271660677;</code>
      */
     private $disk_encryption_key = null;
     /**
-     * A list of features to enable on the guest operating system. Applicable only for bootable images. Read  Enabling guest operating system features to see a list of available options.
+     * A list of features to enable on the guest operating system. Applicable only for bootable images. Read Enabling guest operating system features to see a list of available options.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.GuestOsFeature guest_os_features = 79294545;</code>
      */
@@ -50,76 +49,93 @@ class Disk extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
+     * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
-    private $id = '';
+    private $id = null;
     /**
      * [Output Only] Type of the resource. Always compute#disk for disks.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
-    private $kind = '';
+    private $kind = null;
     /**
-     * A fingerprint for the labels being applied to this disk, which is essentially a hash of the labels set used for optimistic locking. The fingerprint is initially generated by Compute Engine and changes after every request to modify or update labels. You must always provide an up-to-date fingerprint hash in order to update or change labels, otherwise the request will fail with error 412 conditionNotMet.
-     * To see the latest fingerprint, make a get() request to retrieve a disk.
+     * A fingerprint for the labels being applied to this disk, which is essentially a hash of the labels set used for optimistic locking. The fingerprint is initially generated by Compute Engine and changes after every request to modify or update labels. You must always provide an up-to-date fingerprint hash in order to update or change labels, otherwise the request will fail with error 412 conditionNotMet. To see the latest fingerprint, make a get() request to retrieve a disk.
      *
-     * Generated from protobuf field <code>string label_fingerprint = 178124825;</code>
+     * Generated from protobuf field <code>optional string label_fingerprint = 178124825;</code>
      */
-    private $label_fingerprint = '';
+    private $label_fingerprint = null;
     /**
      * Labels to apply to this disk. These can be later modified by the setLabels method.
      *
-     * Generated from protobuf field <code>map<string, string> labels = 231759871;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 500195327;</code>
      */
     private $labels;
     /**
      * [Output Only] Last attach timestamp in RFC3339 text format.
      *
-     * Generated from protobuf field <code>string last_attach_timestamp = 42159653;</code>
+     * Generated from protobuf field <code>optional string last_attach_timestamp = 42159653;</code>
      */
-    private $last_attach_timestamp = '';
+    private $last_attach_timestamp = null;
     /**
      * [Output Only] Last detach timestamp in RFC3339 text format.
      *
-     * Generated from protobuf field <code>string last_detach_timestamp = 56471027;</code>
+     * Generated from protobuf field <code>optional string last_detach_timestamp = 56471027;</code>
      */
-    private $last_detach_timestamp = '';
+    private $last_detach_timestamp = null;
     /**
      * Integer license codes indicating which licenses are attached to this disk.
      *
-     * Generated from protobuf field <code>repeated string license_codes = 45482664;</code>
+     * Generated from protobuf field <code>repeated int64 license_codes = 45482664;</code>
      */
     private $license_codes;
     /**
      * A list of publicly visible licenses. Reserved for Google's use.
      *
-     * Generated from protobuf field <code>repeated string licenses = 69207122;</code>
+     * Generated from protobuf field <code>repeated string licenses = 337642578;</code>
      */
     private $licenses;
     /**
+     * An opaque location hint used to place the disk close to other resources. This field is for use by internal tools that use the public API.
+     *
+     * Generated from protobuf field <code>optional string location_hint = 350519505;</code>
+     */
+    private $location_hint = null;
+    /**
      * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
-    private $name = '';
+    private $name = null;
     /**
      * Internal use only.
      *
-     * Generated from protobuf field <code>string options = 92702366;</code>
+     * Generated from protobuf field <code>optional string options = 361137822;</code>
      */
-    private $options = '';
+    private $options = null;
+    /**
+     * Input only. [Input Only] Additional params passed with the request, but not persisted as part of resource payload.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.DiskParams params = 78313862;</code>
+     */
+    private $params = null;
     /**
      * Physical block size of the persistent disk, in bytes. If not present in a request, a default value is used. The currently supported size is 4096, other sizes may be added in the future. If an unsupported value is requested, the error message will list the supported values for the caller's project.
      *
-     * Generated from protobuf field <code>string physical_block_size_bytes = 151572487;</code>
+     * Generated from protobuf field <code>optional int64 physical_block_size_bytes = 420007943;</code>
      */
-    private $physical_block_size_bytes = '';
+    private $physical_block_size_bytes = null;
+    /**
+     * Indicates how many IOPS to provision for the disk. This sets the number of I/O operations per second that the disk can handle. Values must be between 10,000 and 120,000. For more details, see the Extreme persistent disk documentation.
+     *
+     * Generated from protobuf field <code>optional int64 provisioned_iops = 186769108;</code>
+     */
+    private $provisioned_iops = null;
     /**
      * [Output Only] URL of the region where the disk resides. Only applicable for regional resources. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
      *
-     * Generated from protobuf field <code>string region = 138946292;</code>
+     * Generated from protobuf field <code>optional string region = 138946292;</code>
      */
-    private $region = '';
+    private $region = null;
     /**
      * URLs of the zones where the disk should be replicated to. Only applicable for regional resources.
      *
@@ -133,92 +149,90 @@ class Disk extends \Google\Protobuf\Internal\Message
      */
     private $resource_policies;
     /**
+     * [Output Only] Reserved for future use.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzs = 480964267;</code>
+     */
+    private $satisfies_pzs = null;
+    /**
      * [Output Only] Server-defined fully-qualified URL for this resource.
      *
-     * Generated from protobuf field <code>string self_link = 187779341;</code>
+     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
-    private $self_link = '';
+    private $self_link = null;
     /**
-     * Size, in GB, of the persistent disk. You can specify this field when creating a persistent disk using the sourceImage, sourceSnapshot, or sourceDisk parameter, or specify it alone to create an empty persistent disk.
-     * If you specify this field along with a source, the value of sizeGb must not be less than the size of the source. Acceptable values are 1 to 65536, inclusive.
+     * Size, in GB, of the persistent disk. You can specify this field when creating a persistent disk using the sourceImage, sourceSnapshot, or sourceDisk parameter, or specify it alone to create an empty persistent disk. If you specify this field along with a source, the value of sizeGb must not be less than the size of the source. Acceptable values are 1 to 65536, inclusive.
      *
-     * Generated from protobuf field <code>string size_gb = 226493913;</code>
+     * Generated from protobuf field <code>optional int64 size_gb = 494929369;</code>
      */
-    private $size_gb = '';
+    private $size_gb = null;
     /**
-     * The source disk used to create this disk. You can provide this as a partial or full URL to the resource. For example, the following are valid values:
-     * - https://www.googleapis.com/compute/v1/projects/project/zones/zone/disks/disk
-     * - projects/project/zones/zone/disks/disk
-     * - zones/zone/disks/disk
+     * The source disk used to create this disk. You can provide this as a partial or full URL to the resource. For example, the following are valid values: - https://www.googleapis.com/compute/v1/projects/project/zones/zone /disks/disk - https://www.googleapis.com/compute/v1/projects/project/regions/region /disks/disk - projects/project/zones/zone/disks/disk - projects/project/regions/region/disks/disk - zones/zone/disks/disk - regions/region/disks/disk 
      *
-     * Generated from protobuf field <code>string source_disk = 183318337;</code>
+     * Generated from protobuf field <code>optional string source_disk = 451753793;</code>
      */
-    private $source_disk = '';
+    private $source_disk = null;
     /**
      * [Output Only] The unique ID of the disk used to create this disk. This value identifies the exact disk that was used to create this persistent disk. For example, if you created the persistent disk from a disk that was later deleted and recreated under the same name, the source disk ID would identify the exact version of the disk that was used.
      *
-     * Generated from protobuf field <code>string source_disk_id = 185755353;</code>
+     * Generated from protobuf field <code>optional string source_disk_id = 454190809;</code>
      */
-    private $source_disk_id = '';
+    private $source_disk_id = null;
     /**
-     * The source image used to create this disk. If the source image is deleted, this field will not be set.
-     * To create a disk with one of the public operating system images, specify the image by its family name. For example, specify family/debian-9 to use the latest Debian 9 image:
-     * projects/debian-cloud/global/images/family/debian-9
-     * Alternatively, use a specific version of a public operating system image:
-     * projects/debian-cloud/global/images/debian-9-stretch-vYYYYMMDD
-     * To create a disk with a custom image that you created, specify the image name in the following format:
-     * global/images/my-custom-image
-     * You can also specify a custom image by its image family, which returns the latest version of the image in that family. Replace the image name with family/family-name:
-     * global/images/family/my-image-family
+     * The source image used to create this disk. If the source image is deleted, this field will not be set. To create a disk with one of the public operating system images, specify the image by its family name. For example, specify family/debian-9 to use the latest Debian 9 image: projects/debian-cloud/global/images/family/debian-9 Alternatively, use a specific version of a public operating system image: projects/debian-cloud/global/images/debian-9-stretch-vYYYYMMDD To create a disk with a custom image that you created, specify the image name in the following format: global/images/my-custom-image You can also specify a custom image by its image family, which returns the latest version of the image in that family. Replace the image name with family/family-name: global/images/family/my-image-family 
      *
-     * Generated from protobuf field <code>string source_image = 50443319;</code>
+     * Generated from protobuf field <code>optional string source_image = 50443319;</code>
      */
-    private $source_image = '';
+    private $source_image = null;
     /**
      * The customer-supplied encryption key of the source image. Required if the source image is protected by a customer-supplied encryption key.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.CustomerEncryptionKey source_image_encryption_key = 113068203;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.CustomerEncryptionKey source_image_encryption_key = 381503659;</code>
      */
     private $source_image_encryption_key = null;
     /**
      * [Output Only] The ID value of the image used to create this disk. This value identifies the exact image that was used to create this persistent disk. For example, if you created the persistent disk from an image that was later deleted and recreated under the same name, the source image ID would identify the exact version of the image that was used.
      *
-     * Generated from protobuf field <code>string source_image_id = 55328291;</code>
+     * Generated from protobuf field <code>optional string source_image_id = 55328291;</code>
      */
-    private $source_image_id = '';
+    private $source_image_id = null;
     /**
-     * The source snapshot used to create this disk. You can provide this as a partial or full URL to the resource. For example, the following are valid values:
-     * - https://www.googleapis.com/compute/v1/projects/project/global/snapshots/snapshot
-     * - projects/project/global/snapshots/snapshot
-     * - global/snapshots/snapshot
+     * The source snapshot used to create this disk. You can provide this as a partial or full URL to the resource. For example, the following are valid values: - https://www.googleapis.com/compute/v1/projects/project /global/snapshots/snapshot - projects/project/global/snapshots/snapshot - global/snapshots/snapshot 
      *
-     * Generated from protobuf field <code>string source_snapshot = 126061928;</code>
+     * Generated from protobuf field <code>optional string source_snapshot = 126061928;</code>
      */
-    private $source_snapshot = '';
+    private $source_snapshot = null;
     /**
      * The customer-supplied encryption key of the source snapshot. Required if the source snapshot is protected by a customer-supplied encryption key.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.CustomerEncryptionKey source_snapshot_encryption_key = 35243866;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.CustomerEncryptionKey source_snapshot_encryption_key = 303679322;</code>
      */
     private $source_snapshot_encryption_key = null;
     /**
      * [Output Only] The unique ID of the snapshot used to create this disk. This value identifies the exact snapshot that was used to create this persistent disk. For example, if you created the persistent disk from a snapshot that was later deleted and recreated under the same name, the source snapshot ID would identify the exact version of the snapshot that was used.
      *
-     * Generated from protobuf field <code>string source_snapshot_id = 98962258;</code>
+     * Generated from protobuf field <code>optional string source_snapshot_id = 98962258;</code>
      */
-    private $source_snapshot_id = '';
+    private $source_snapshot_id = null;
     /**
-     * [Output Only] The status of disk creation. CREATING: Disk is provisioning. RESTORING: Source data is being copied into the disk. FAILED: Disk creation failed. READY: Disk is ready for use. DELETING: Disk is deleting.
+     * The full Google Cloud Storage URI where the disk image is stored. This file must be a gzip-compressed tarball whose name ends in .tar.gz or virtual machine disk whose name ends in vmdk. Valid URIs may start with gs:// or https://storage.googleapis.com/. This flag is not optimized for creating multiple disks from a source storage object. To create many disks from a source storage object, use gcloud compute images import instead.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Disk.Status status = 181260274;</code>
+     * Generated from protobuf field <code>optional string source_storage_object = 233052711;</code>
      */
-    private $status = 0;
+    private $source_storage_object = null;
     /**
-     * URL of the disk type resource describing which disk type to use to create the disk. Provide this when creating the disk. For example: projects/project/zones/zone/diskTypes/pd-standard  or pd-ssd
+     * [Output Only] The status of disk creation. - CREATING: Disk is provisioning. - RESTORING: Source data is being copied into the disk. - FAILED: Disk creation failed. - READY: Disk is ready for use. - DELETING: Disk is deleting.
+     * Check the Status enum for the list of possible values.
      *
-     * Generated from protobuf field <code>string type = 3575610;</code>
+     * Generated from protobuf field <code>optional string status = 181260274;</code>
      */
-    private $type = '';
+    private $status = null;
+    /**
+     * URL of the disk type resource describing which disk type to use to create the disk. Provide this when creating the disk. For example: projects/project /zones/zone/diskTypes/pd-ssd . See Persistent disk types.
+     *
+     * Generated from protobuf field <code>optional string type = 3575610;</code>
+     */
+    private $type = null;
     /**
      * [Output Only] Links to the users of the disk (attached instances) in form: projects/project/zones/zone/instances/instance
      *
@@ -228,9 +242,9 @@ class Disk extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] URL of the zone where the disk resides. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
      *
-     * Generated from protobuf field <code>string zone = 3744684;</code>
+     * Generated from protobuf field <code>optional string zone = 3744684;</code>
      */
-    private $zone = '';
+    private $zone = null;
 
     /**
      * Constructor.
@@ -238,86 +252,81 @@ class Disk extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type string $architecture
+     *           The architecture of the disk. Valid values are ARM64 or X86_64.
+     *           Check the Architecture enum for the list of possible values.
      *     @type string $creation_timestamp
      *           [Output Only] Creation timestamp in RFC3339 text format.
      *     @type string $description
      *           An optional description of this resource. Provide this property when you create the resource.
      *     @type \Google\Cloud\Compute\V1\CustomerEncryptionKey $disk_encryption_key
-     *           Encrypts the disk using a customer-supplied encryption key.
-     *           After you encrypt a disk with a customer-supplied key, you must provide the same key if you use the disk later (e.g. to create a disk snapshot, to create a disk image, to create a machine image, or to attach the disk to a virtual machine).
-     *           Customer-supplied encryption keys do not protect access to metadata of the disk.
-     *           If you do not provide an encryption key when creating the disk, then the disk will be encrypted using an automatically generated key and you do not need to provide a key to use the disk later.
-     *     @type \Google\Cloud\Compute\V1\GuestOsFeature[]|\Google\Protobuf\Internal\RepeatedField $guest_os_features
-     *           A list of features to enable on the guest operating system. Applicable only for bootable images. Read  Enabling guest operating system features to see a list of available options.
-     *     @type string $id
+     *           Encrypts the disk using a customer-supplied encryption key or a customer-managed encryption key. Encryption keys do not protect access to metadata of the disk. After you encrypt a disk with a customer-supplied key, you must provide the same key if you use the disk later. For example, to create a disk snapshot, to create a disk image, to create a machine image, or to attach the disk to a virtual machine. After you encrypt a disk with a customer-managed key, the diskEncryptionKey.kmsKeyName is set to a key *version* name once the disk is created. The disk is encrypted with this version of the key. In the response, diskEncryptionKey.kmsKeyName appears in the following format: "diskEncryptionKey.kmsKeyName": "projects/kms_project_id/locations/region/keyRings/ key_region/cryptoKeys/key /cryptoKeysVersions/version If you do not provide an encryption key when creating the disk, then the disk is encrypted using an automatically generated key and you don't need to provide a key to use the disk later.
+     *     @type array<\Google\Cloud\Compute\V1\GuestOsFeature>|\Google\Protobuf\Internal\RepeatedField $guest_os_features
+     *           A list of features to enable on the guest operating system. Applicable only for bootable images. Read Enabling guest operating system features to see a list of available options.
+     *     @type int|string $id
      *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *     @type string $kind
      *           [Output Only] Type of the resource. Always compute#disk for disks.
      *     @type string $label_fingerprint
-     *           A fingerprint for the labels being applied to this disk, which is essentially a hash of the labels set used for optimistic locking. The fingerprint is initially generated by Compute Engine and changes after every request to modify or update labels. You must always provide an up-to-date fingerprint hash in order to update or change labels, otherwise the request will fail with error 412 conditionNotMet.
-     *           To see the latest fingerprint, make a get() request to retrieve a disk.
+     *           A fingerprint for the labels being applied to this disk, which is essentially a hash of the labels set used for optimistic locking. The fingerprint is initially generated by Compute Engine and changes after every request to modify or update labels. You must always provide an up-to-date fingerprint hash in order to update or change labels, otherwise the request will fail with error 412 conditionNotMet. To see the latest fingerprint, make a get() request to retrieve a disk.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Labels to apply to this disk. These can be later modified by the setLabels method.
      *     @type string $last_attach_timestamp
      *           [Output Only] Last attach timestamp in RFC3339 text format.
      *     @type string $last_detach_timestamp
      *           [Output Only] Last detach timestamp in RFC3339 text format.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $license_codes
+     *     @type array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $license_codes
      *           Integer license codes indicating which licenses are attached to this disk.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $licenses
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $licenses
      *           A list of publicly visible licenses. Reserved for Google's use.
+     *     @type string $location_hint
+     *           An opaque location hint used to place the disk close to other resources. This field is for use by internal tools that use the public API.
      *     @type string $name
      *           Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *     @type string $options
      *           Internal use only.
-     *     @type string $physical_block_size_bytes
+     *     @type \Google\Cloud\Compute\V1\DiskParams $params
+     *           Input only. [Input Only] Additional params passed with the request, but not persisted as part of resource payload.
+     *     @type int|string $physical_block_size_bytes
      *           Physical block size of the persistent disk, in bytes. If not present in a request, a default value is used. The currently supported size is 4096, other sizes may be added in the future. If an unsupported value is requested, the error message will list the supported values for the caller's project.
+     *     @type int|string $provisioned_iops
+     *           Indicates how many IOPS to provision for the disk. This sets the number of I/O operations per second that the disk can handle. Values must be between 10,000 and 120,000. For more details, see the Extreme persistent disk documentation.
      *     @type string $region
      *           [Output Only] URL of the region where the disk resides. Only applicable for regional resources. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $replica_zones
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $replica_zones
      *           URLs of the zones where the disk should be replicated to. Only applicable for regional resources.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $resource_policies
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $resource_policies
      *           Resource policies applied to this disk for automatic snapshot creations.
+     *     @type bool $satisfies_pzs
+     *           [Output Only] Reserved for future use.
      *     @type string $self_link
      *           [Output Only] Server-defined fully-qualified URL for this resource.
-     *     @type string $size_gb
-     *           Size, in GB, of the persistent disk. You can specify this field when creating a persistent disk using the sourceImage, sourceSnapshot, or sourceDisk parameter, or specify it alone to create an empty persistent disk.
-     *           If you specify this field along with a source, the value of sizeGb must not be less than the size of the source. Acceptable values are 1 to 65536, inclusive.
+     *     @type int|string $size_gb
+     *           Size, in GB, of the persistent disk. You can specify this field when creating a persistent disk using the sourceImage, sourceSnapshot, or sourceDisk parameter, or specify it alone to create an empty persistent disk. If you specify this field along with a source, the value of sizeGb must not be less than the size of the source. Acceptable values are 1 to 65536, inclusive.
      *     @type string $source_disk
-     *           The source disk used to create this disk. You can provide this as a partial or full URL to the resource. For example, the following are valid values:
-     *           - https://www.googleapis.com/compute/v1/projects/project/zones/zone/disks/disk
-     *           - projects/project/zones/zone/disks/disk
-     *           - zones/zone/disks/disk
+     *           The source disk used to create this disk. You can provide this as a partial or full URL to the resource. For example, the following are valid values: - https://www.googleapis.com/compute/v1/projects/project/zones/zone /disks/disk - https://www.googleapis.com/compute/v1/projects/project/regions/region /disks/disk - projects/project/zones/zone/disks/disk - projects/project/regions/region/disks/disk - zones/zone/disks/disk - regions/region/disks/disk 
      *     @type string $source_disk_id
      *           [Output Only] The unique ID of the disk used to create this disk. This value identifies the exact disk that was used to create this persistent disk. For example, if you created the persistent disk from a disk that was later deleted and recreated under the same name, the source disk ID would identify the exact version of the disk that was used.
      *     @type string $source_image
-     *           The source image used to create this disk. If the source image is deleted, this field will not be set.
-     *           To create a disk with one of the public operating system images, specify the image by its family name. For example, specify family/debian-9 to use the latest Debian 9 image:
-     *           projects/debian-cloud/global/images/family/debian-9
-     *           Alternatively, use a specific version of a public operating system image:
-     *           projects/debian-cloud/global/images/debian-9-stretch-vYYYYMMDD
-     *           To create a disk with a custom image that you created, specify the image name in the following format:
-     *           global/images/my-custom-image
-     *           You can also specify a custom image by its image family, which returns the latest version of the image in that family. Replace the image name with family/family-name:
-     *           global/images/family/my-image-family
+     *           The source image used to create this disk. If the source image is deleted, this field will not be set. To create a disk with one of the public operating system images, specify the image by its family name. For example, specify family/debian-9 to use the latest Debian 9 image: projects/debian-cloud/global/images/family/debian-9 Alternatively, use a specific version of a public operating system image: projects/debian-cloud/global/images/debian-9-stretch-vYYYYMMDD To create a disk with a custom image that you created, specify the image name in the following format: global/images/my-custom-image You can also specify a custom image by its image family, which returns the latest version of the image in that family. Replace the image name with family/family-name: global/images/family/my-image-family 
      *     @type \Google\Cloud\Compute\V1\CustomerEncryptionKey $source_image_encryption_key
      *           The customer-supplied encryption key of the source image. Required if the source image is protected by a customer-supplied encryption key.
      *     @type string $source_image_id
      *           [Output Only] The ID value of the image used to create this disk. This value identifies the exact image that was used to create this persistent disk. For example, if you created the persistent disk from an image that was later deleted and recreated under the same name, the source image ID would identify the exact version of the image that was used.
      *     @type string $source_snapshot
-     *           The source snapshot used to create this disk. You can provide this as a partial or full URL to the resource. For example, the following are valid values:
-     *           - https://www.googleapis.com/compute/v1/projects/project/global/snapshots/snapshot
-     *           - projects/project/global/snapshots/snapshot
-     *           - global/snapshots/snapshot
+     *           The source snapshot used to create this disk. You can provide this as a partial or full URL to the resource. For example, the following are valid values: - https://www.googleapis.com/compute/v1/projects/project /global/snapshots/snapshot - projects/project/global/snapshots/snapshot - global/snapshots/snapshot 
      *     @type \Google\Cloud\Compute\V1\CustomerEncryptionKey $source_snapshot_encryption_key
      *           The customer-supplied encryption key of the source snapshot. Required if the source snapshot is protected by a customer-supplied encryption key.
      *     @type string $source_snapshot_id
      *           [Output Only] The unique ID of the snapshot used to create this disk. This value identifies the exact snapshot that was used to create this persistent disk. For example, if you created the persistent disk from a snapshot that was later deleted and recreated under the same name, the source snapshot ID would identify the exact version of the snapshot that was used.
-     *     @type int $status
-     *           [Output Only] The status of disk creation. CREATING: Disk is provisioning. RESTORING: Source data is being copied into the disk. FAILED: Disk creation failed. READY: Disk is ready for use. DELETING: Disk is deleting.
+     *     @type string $source_storage_object
+     *           The full Google Cloud Storage URI where the disk image is stored. This file must be a gzip-compressed tarball whose name ends in .tar.gz or virtual machine disk whose name ends in vmdk. Valid URIs may start with gs:// or https://storage.googleapis.com/. This flag is not optimized for creating multiple disks from a source storage object. To create many disks from a source storage object, use gcloud compute images import instead.
+     *     @type string $status
+     *           [Output Only] The status of disk creation. - CREATING: Disk is provisioning. - RESTORING: Source data is being copied into the disk. - FAILED: Disk creation failed. - READY: Disk is ready for use. - DELETING: Disk is deleting.
+     *           Check the Status enum for the list of possible values.
      *     @type string $type
-     *           URL of the disk type resource describing which disk type to use to create the disk. Provide this when creating the disk. For example: projects/project/zones/zone/diskTypes/pd-standard  or pd-ssd
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $users
+     *           URL of the disk type resource describing which disk type to use to create the disk. Provide this when creating the disk. For example: projects/project /zones/zone/diskTypes/pd-ssd . See Persistent disk types.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $users
      *           [Output Only] Links to the users of the disk (attached instances) in form: projects/project/zones/zone/instances/instance
      *     @type string $zone
      *           [Output Only] URL of the zone where the disk resides. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
@@ -329,20 +338,68 @@ class Disk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp in RFC3339 text format.
+     * The architecture of the disk. Valid values are ARM64 or X86_64.
+     * Check the Architecture enum for the list of possible values.
      *
-     * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
+     * Generated from protobuf field <code>optional string architecture = 302803283;</code>
      * @return string
      */
-    public function getCreationTimestamp()
+    public function getArchitecture()
     {
-        return $this->creation_timestamp;
+        return isset($this->architecture) ? $this->architecture : '';
+    }
+
+    public function hasArchitecture()
+    {
+        return isset($this->architecture);
+    }
+
+    public function clearArchitecture()
+    {
+        unset($this->architecture);
+    }
+
+    /**
+     * The architecture of the disk. Valid values are ARM64 or X86_64.
+     * Check the Architecture enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string architecture = 302803283;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setArchitecture($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->architecture = $var;
+
+        return $this;
     }
 
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
-     * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
+     * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
+     * @return string
+     */
+    public function getCreationTimestamp()
+    {
+        return isset($this->creation_timestamp) ? $this->creation_timestamp : '';
+    }
+
+    public function hasCreationTimestamp()
+    {
+        return isset($this->creation_timestamp);
+    }
+
+    public function clearCreationTimestamp()
+    {
+        unset($this->creation_timestamp);
+    }
+
+    /**
+     * [Output Only] Creation timestamp in RFC3339 text format.
+     *
+     * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @param string $var
      * @return $this
      */
@@ -357,18 +414,28 @@ class Disk extends \Google\Protobuf\Internal\Message
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 154502140;</code>
+     * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @return string
      */
     public function getDescription()
     {
-        return $this->description;
+        return isset($this->description) ? $this->description : '';
+    }
+
+    public function hasDescription()
+    {
+        return isset($this->description);
+    }
+
+    public function clearDescription()
+    {
+        unset($this->description);
     }
 
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 154502140;</code>
+     * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @param string $var
      * @return $this
      */
@@ -381,17 +448,14 @@ class Disk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Encrypts the disk using a customer-supplied encryption key.
-     * After you encrypt a disk with a customer-supplied key, you must provide the same key if you use the disk later (e.g. to create a disk snapshot, to create a disk image, to create a machine image, or to attach the disk to a virtual machine).
-     * Customer-supplied encryption keys do not protect access to metadata of the disk.
-     * If you do not provide an encryption key when creating the disk, then the disk will be encrypted using an automatically generated key and you do not need to provide a key to use the disk later.
+     * Encrypts the disk using a customer-supplied encryption key or a customer-managed encryption key. Encryption keys do not protect access to metadata of the disk. After you encrypt a disk with a customer-supplied key, you must provide the same key if you use the disk later. For example, to create a disk snapshot, to create a disk image, to create a machine image, or to attach the disk to a virtual machine. After you encrypt a disk with a customer-managed key, the diskEncryptionKey.kmsKeyName is set to a key *version* name once the disk is created. The disk is encrypted with this version of the key. In the response, diskEncryptionKey.kmsKeyName appears in the following format: "diskEncryptionKey.kmsKeyName": "projects/kms_project_id/locations/region/keyRings/ key_region/cryptoKeys/key /cryptoKeysVersions/version If you do not provide an encryption key when creating the disk, then the disk is encrypted using an automatically generated key and you don't need to provide a key to use the disk later.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.CustomerEncryptionKey disk_encryption_key = 3225221;</code>
-     * @return \Google\Cloud\Compute\V1\CustomerEncryptionKey
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.CustomerEncryptionKey disk_encryption_key = 271660677;</code>
+     * @return \Google\Cloud\Compute\V1\CustomerEncryptionKey|null
      */
     public function getDiskEncryptionKey()
     {
-        return isset($this->disk_encryption_key) ? $this->disk_encryption_key : null;
+        return $this->disk_encryption_key;
     }
 
     public function hasDiskEncryptionKey()
@@ -405,12 +469,9 @@ class Disk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Encrypts the disk using a customer-supplied encryption key.
-     * After you encrypt a disk with a customer-supplied key, you must provide the same key if you use the disk later (e.g. to create a disk snapshot, to create a disk image, to create a machine image, or to attach the disk to a virtual machine).
-     * Customer-supplied encryption keys do not protect access to metadata of the disk.
-     * If you do not provide an encryption key when creating the disk, then the disk will be encrypted using an automatically generated key and you do not need to provide a key to use the disk later.
+     * Encrypts the disk using a customer-supplied encryption key or a customer-managed encryption key. Encryption keys do not protect access to metadata of the disk. After you encrypt a disk with a customer-supplied key, you must provide the same key if you use the disk later. For example, to create a disk snapshot, to create a disk image, to create a machine image, or to attach the disk to a virtual machine. After you encrypt a disk with a customer-managed key, the diskEncryptionKey.kmsKeyName is set to a key *version* name once the disk is created. The disk is encrypted with this version of the key. In the response, diskEncryptionKey.kmsKeyName appears in the following format: "diskEncryptionKey.kmsKeyName": "projects/kms_project_id/locations/region/keyRings/ key_region/cryptoKeys/key /cryptoKeysVersions/version If you do not provide an encryption key when creating the disk, then the disk is encrypted using an automatically generated key and you don't need to provide a key to use the disk later.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.CustomerEncryptionKey disk_encryption_key = 3225221;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.CustomerEncryptionKey disk_encryption_key = 271660677;</code>
      * @param \Google\Cloud\Compute\V1\CustomerEncryptionKey $var
      * @return $this
      */
@@ -423,7 +484,7 @@ class Disk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of features to enable on the guest operating system. Applicable only for bootable images. Read  Enabling guest operating system features to see a list of available options.
+     * A list of features to enable on the guest operating system. Applicable only for bootable images. Read Enabling guest operating system features to see a list of available options.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.GuestOsFeature guest_os_features = 79294545;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -434,10 +495,10 @@ class Disk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of features to enable on the guest operating system. Applicable only for bootable images. Read  Enabling guest operating system features to see a list of available options.
+     * A list of features to enable on the guest operating system. Applicable only for bootable images. Read Enabling guest operating system features to see a list of available options.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.GuestOsFeature guest_os_features = 79294545;</code>
-     * @param \Google\Cloud\Compute\V1\GuestOsFeature[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\GuestOsFeature>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setGuestOsFeatures($var)
@@ -451,24 +512,34 @@ class Disk extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
-     * @return string
+     * Generated from protobuf field <code>optional uint64 id = 3355;</code>
+     * @return int|string
      */
     public function getId()
     {
-        return $this->id;
+        return isset($this->id) ? $this->id : 0;
+    }
+
+    public function hasId()
+    {
+        return isset($this->id);
+    }
+
+    public function clearId()
+    {
+        unset($this->id);
     }
 
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
-     * @param string $var
+     * Generated from protobuf field <code>optional uint64 id = 3355;</code>
+     * @param int|string $var
      * @return $this
      */
     public function setId($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkUint64($var);
         $this->id = $var;
 
         return $this;
@@ -477,18 +548,28 @@ class Disk extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Type of the resource. Always compute#disk for disks.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
      */
     public function getKind()
     {
-        return $this->kind;
+        return isset($this->kind) ? $this->kind : '';
+    }
+
+    public function hasKind()
+    {
+        return isset($this->kind);
+    }
+
+    public function clearKind()
+    {
+        unset($this->kind);
     }
 
     /**
      * [Output Only] Type of the resource. Always compute#disk for disks.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
      * @return $this
      */
@@ -501,22 +582,30 @@ class Disk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A fingerprint for the labels being applied to this disk, which is essentially a hash of the labels set used for optimistic locking. The fingerprint is initially generated by Compute Engine and changes after every request to modify or update labels. You must always provide an up-to-date fingerprint hash in order to update or change labels, otherwise the request will fail with error 412 conditionNotMet.
-     * To see the latest fingerprint, make a get() request to retrieve a disk.
+     * A fingerprint for the labels being applied to this disk, which is essentially a hash of the labels set used for optimistic locking. The fingerprint is initially generated by Compute Engine and changes after every request to modify or update labels. You must always provide an up-to-date fingerprint hash in order to update or change labels, otherwise the request will fail with error 412 conditionNotMet. To see the latest fingerprint, make a get() request to retrieve a disk.
      *
-     * Generated from protobuf field <code>string label_fingerprint = 178124825;</code>
+     * Generated from protobuf field <code>optional string label_fingerprint = 178124825;</code>
      * @return string
      */
     public function getLabelFingerprint()
     {
-        return $this->label_fingerprint;
+        return isset($this->label_fingerprint) ? $this->label_fingerprint : '';
+    }
+
+    public function hasLabelFingerprint()
+    {
+        return isset($this->label_fingerprint);
+    }
+
+    public function clearLabelFingerprint()
+    {
+        unset($this->label_fingerprint);
     }
 
     /**
-     * A fingerprint for the labels being applied to this disk, which is essentially a hash of the labels set used for optimistic locking. The fingerprint is initially generated by Compute Engine and changes after every request to modify or update labels. You must always provide an up-to-date fingerprint hash in order to update or change labels, otherwise the request will fail with error 412 conditionNotMet.
-     * To see the latest fingerprint, make a get() request to retrieve a disk.
+     * A fingerprint for the labels being applied to this disk, which is essentially a hash of the labels set used for optimistic locking. The fingerprint is initially generated by Compute Engine and changes after every request to modify or update labels. You must always provide an up-to-date fingerprint hash in order to update or change labels, otherwise the request will fail with error 412 conditionNotMet. To see the latest fingerprint, make a get() request to retrieve a disk.
      *
-     * Generated from protobuf field <code>string label_fingerprint = 178124825;</code>
+     * Generated from protobuf field <code>optional string label_fingerprint = 178124825;</code>
      * @param string $var
      * @return $this
      */
@@ -531,7 +620,7 @@ class Disk extends \Google\Protobuf\Internal\Message
     /**
      * Labels to apply to this disk. These can be later modified by the setLabels method.
      *
-     * Generated from protobuf field <code>map<string, string> labels = 231759871;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 500195327;</code>
      * @return \Google\Protobuf\Internal\MapField
      */
     public function getLabels()
@@ -542,7 +631,7 @@ class Disk extends \Google\Protobuf\Internal\Message
     /**
      * Labels to apply to this disk. These can be later modified by the setLabels method.
      *
-     * Generated from protobuf field <code>map<string, string> labels = 231759871;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 500195327;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */
@@ -557,18 +646,28 @@ class Disk extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Last attach timestamp in RFC3339 text format.
      *
-     * Generated from protobuf field <code>string last_attach_timestamp = 42159653;</code>
+     * Generated from protobuf field <code>optional string last_attach_timestamp = 42159653;</code>
      * @return string
      */
     public function getLastAttachTimestamp()
     {
-        return $this->last_attach_timestamp;
+        return isset($this->last_attach_timestamp) ? $this->last_attach_timestamp : '';
+    }
+
+    public function hasLastAttachTimestamp()
+    {
+        return isset($this->last_attach_timestamp);
+    }
+
+    public function clearLastAttachTimestamp()
+    {
+        unset($this->last_attach_timestamp);
     }
 
     /**
      * [Output Only] Last attach timestamp in RFC3339 text format.
      *
-     * Generated from protobuf field <code>string last_attach_timestamp = 42159653;</code>
+     * Generated from protobuf field <code>optional string last_attach_timestamp = 42159653;</code>
      * @param string $var
      * @return $this
      */
@@ -583,18 +682,28 @@ class Disk extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Last detach timestamp in RFC3339 text format.
      *
-     * Generated from protobuf field <code>string last_detach_timestamp = 56471027;</code>
+     * Generated from protobuf field <code>optional string last_detach_timestamp = 56471027;</code>
      * @return string
      */
     public function getLastDetachTimestamp()
     {
-        return $this->last_detach_timestamp;
+        return isset($this->last_detach_timestamp) ? $this->last_detach_timestamp : '';
+    }
+
+    public function hasLastDetachTimestamp()
+    {
+        return isset($this->last_detach_timestamp);
+    }
+
+    public function clearLastDetachTimestamp()
+    {
+        unset($this->last_detach_timestamp);
     }
 
     /**
      * [Output Only] Last detach timestamp in RFC3339 text format.
      *
-     * Generated from protobuf field <code>string last_detach_timestamp = 56471027;</code>
+     * Generated from protobuf field <code>optional string last_detach_timestamp = 56471027;</code>
      * @param string $var
      * @return $this
      */
@@ -609,7 +718,7 @@ class Disk extends \Google\Protobuf\Internal\Message
     /**
      * Integer license codes indicating which licenses are attached to this disk.
      *
-     * Generated from protobuf field <code>repeated string license_codes = 45482664;</code>
+     * Generated from protobuf field <code>repeated int64 license_codes = 45482664;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getLicenseCodes()
@@ -620,13 +729,13 @@ class Disk extends \Google\Protobuf\Internal\Message
     /**
      * Integer license codes indicating which licenses are attached to this disk.
      *
-     * Generated from protobuf field <code>repeated string license_codes = 45482664;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * Generated from protobuf field <code>repeated int64 license_codes = 45482664;</code>
+     * @param array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setLicenseCodes($var)
     {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::INT64);
         $this->license_codes = $arr;
 
         return $this;
@@ -635,7 +744,7 @@ class Disk extends \Google\Protobuf\Internal\Message
     /**
      * A list of publicly visible licenses. Reserved for Google's use.
      *
-     * Generated from protobuf field <code>repeated string licenses = 69207122;</code>
+     * Generated from protobuf field <code>repeated string licenses = 337642578;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getLicenses()
@@ -646,8 +755,8 @@ class Disk extends \Google\Protobuf\Internal\Message
     /**
      * A list of publicly visible licenses. Reserved for Google's use.
      *
-     * Generated from protobuf field <code>repeated string licenses = 69207122;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * Generated from protobuf field <code>repeated string licenses = 337642578;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setLicenses($var)
@@ -659,20 +768,66 @@ class Disk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     * An opaque location hint used to place the disk close to other resources. This field is for use by internal tools that use the public API.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string location_hint = 350519505;</code>
      * @return string
      */
-    public function getName()
+    public function getLocationHint()
     {
-        return $this->name;
+        return isset($this->location_hint) ? $this->location_hint : '';
+    }
+
+    public function hasLocationHint()
+    {
+        return isset($this->location_hint);
+    }
+
+    public function clearLocationHint()
+    {
+        unset($this->location_hint);
+    }
+
+    /**
+     * An opaque location hint used to place the disk close to other resources. This field is for use by internal tools that use the public API.
+     *
+     * Generated from protobuf field <code>optional string location_hint = 350519505;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setLocationHint($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->location_hint = $var;
+
+        return $this;
     }
 
     /**
      * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
+     * @return string
+     */
+    public function getName()
+    {
+        return isset($this->name) ? $this->name : '';
+    }
+
+    public function hasName()
+    {
+        return isset($this->name);
+    }
+
+    public function clearName()
+    {
+        unset($this->name);
+    }
+
+    /**
+     * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     *
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @param string $var
      * @return $this
      */
@@ -687,18 +842,28 @@ class Disk extends \Google\Protobuf\Internal\Message
     /**
      * Internal use only.
      *
-     * Generated from protobuf field <code>string options = 92702366;</code>
+     * Generated from protobuf field <code>optional string options = 361137822;</code>
      * @return string
      */
     public function getOptions()
     {
-        return $this->options;
+        return isset($this->options) ? $this->options : '';
+    }
+
+    public function hasOptions()
+    {
+        return isset($this->options);
+    }
+
+    public function clearOptions()
+    {
+        unset($this->options);
     }
 
     /**
      * Internal use only.
      *
-     * Generated from protobuf field <code>string options = 92702366;</code>
+     * Generated from protobuf field <code>optional string options = 361137822;</code>
      * @param string $var
      * @return $this
      */
@@ -711,27 +876,109 @@ class Disk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Physical block size of the persistent disk, in bytes. If not present in a request, a default value is used. The currently supported size is 4096, other sizes may be added in the future. If an unsupported value is requested, the error message will list the supported values for the caller's project.
+     * Input only. [Input Only] Additional params passed with the request, but not persisted as part of resource payload.
      *
-     * Generated from protobuf field <code>string physical_block_size_bytes = 151572487;</code>
-     * @return string
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.DiskParams params = 78313862;</code>
+     * @return \Google\Cloud\Compute\V1\DiskParams|null
      */
-    public function getPhysicalBlockSizeBytes()
+    public function getParams()
     {
-        return $this->physical_block_size_bytes;
+        return $this->params;
+    }
+
+    public function hasParams()
+    {
+        return isset($this->params);
+    }
+
+    public function clearParams()
+    {
+        unset($this->params);
+    }
+
+    /**
+     * Input only. [Input Only] Additional params passed with the request, but not persisted as part of resource payload.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.DiskParams params = 78313862;</code>
+     * @param \Google\Cloud\Compute\V1\DiskParams $var
+     * @return $this
+     */
+    public function setParams($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\DiskParams::class);
+        $this->params = $var;
+
+        return $this;
     }
 
     /**
      * Physical block size of the persistent disk, in bytes. If not present in a request, a default value is used. The currently supported size is 4096, other sizes may be added in the future. If an unsupported value is requested, the error message will list the supported values for the caller's project.
      *
-     * Generated from protobuf field <code>string physical_block_size_bytes = 151572487;</code>
-     * @param string $var
+     * Generated from protobuf field <code>optional int64 physical_block_size_bytes = 420007943;</code>
+     * @return int|string
+     */
+    public function getPhysicalBlockSizeBytes()
+    {
+        return isset($this->physical_block_size_bytes) ? $this->physical_block_size_bytes : 0;
+    }
+
+    public function hasPhysicalBlockSizeBytes()
+    {
+        return isset($this->physical_block_size_bytes);
+    }
+
+    public function clearPhysicalBlockSizeBytes()
+    {
+        unset($this->physical_block_size_bytes);
+    }
+
+    /**
+     * Physical block size of the persistent disk, in bytes. If not present in a request, a default value is used. The currently supported size is 4096, other sizes may be added in the future. If an unsupported value is requested, the error message will list the supported values for the caller's project.
+     *
+     * Generated from protobuf field <code>optional int64 physical_block_size_bytes = 420007943;</code>
+     * @param int|string $var
      * @return $this
      */
     public function setPhysicalBlockSizeBytes($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkInt64($var);
         $this->physical_block_size_bytes = $var;
+
+        return $this;
+    }
+
+    /**
+     * Indicates how many IOPS to provision for the disk. This sets the number of I/O operations per second that the disk can handle. Values must be between 10,000 and 120,000. For more details, see the Extreme persistent disk documentation.
+     *
+     * Generated from protobuf field <code>optional int64 provisioned_iops = 186769108;</code>
+     * @return int|string
+     */
+    public function getProvisionedIops()
+    {
+        return isset($this->provisioned_iops) ? $this->provisioned_iops : 0;
+    }
+
+    public function hasProvisionedIops()
+    {
+        return isset($this->provisioned_iops);
+    }
+
+    public function clearProvisionedIops()
+    {
+        unset($this->provisioned_iops);
+    }
+
+    /**
+     * Indicates how many IOPS to provision for the disk. This sets the number of I/O operations per second that the disk can handle. Values must be between 10,000 and 120,000. For more details, see the Extreme persistent disk documentation.
+     *
+     * Generated from protobuf field <code>optional int64 provisioned_iops = 186769108;</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setProvisionedIops($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->provisioned_iops = $var;
 
         return $this;
     }
@@ -739,18 +986,28 @@ class Disk extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] URL of the region where the disk resides. Only applicable for regional resources. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
      *
-     * Generated from protobuf field <code>string region = 138946292;</code>
+     * Generated from protobuf field <code>optional string region = 138946292;</code>
      * @return string
      */
     public function getRegion()
     {
-        return $this->region;
+        return isset($this->region) ? $this->region : '';
+    }
+
+    public function hasRegion()
+    {
+        return isset($this->region);
+    }
+
+    public function clearRegion()
+    {
+        unset($this->region);
     }
 
     /**
      * [Output Only] URL of the region where the disk resides. Only applicable for regional resources. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
      *
-     * Generated from protobuf field <code>string region = 138946292;</code>
+     * Generated from protobuf field <code>optional string region = 138946292;</code>
      * @param string $var
      * @return $this
      */
@@ -777,7 +1034,7 @@ class Disk extends \Google\Protobuf\Internal\Message
      * URLs of the zones where the disk should be replicated to. Only applicable for regional resources.
      *
      * Generated from protobuf field <code>repeated string replica_zones = 48438272;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setReplicaZones($var)
@@ -803,7 +1060,7 @@ class Disk extends \Google\Protobuf\Internal\Message
      * Resource policies applied to this disk for automatic snapshot creations.
      *
      * Generated from protobuf field <code>repeated string resource_policies = 22220385;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setResourcePolicies($var)
@@ -815,20 +1072,66 @@ class Disk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined fully-qualified URL for this resource.
+     * [Output Only] Reserved for future use.
      *
-     * Generated from protobuf field <code>string self_link = 187779341;</code>
-     * @return string
+     * Generated from protobuf field <code>optional bool satisfies_pzs = 480964267;</code>
+     * @return bool
      */
-    public function getSelfLink()
+    public function getSatisfiesPzs()
     {
-        return $this->self_link;
+        return isset($this->satisfies_pzs) ? $this->satisfies_pzs : false;
+    }
+
+    public function hasSatisfiesPzs()
+    {
+        return isset($this->satisfies_pzs);
+    }
+
+    public function clearSatisfiesPzs()
+    {
+        unset($this->satisfies_pzs);
+    }
+
+    /**
+     * [Output Only] Reserved for future use.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzs = 480964267;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzs($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzs = $var;
+
+        return $this;
     }
 
     /**
      * [Output Only] Server-defined fully-qualified URL for this resource.
      *
-     * Generated from protobuf field <code>string self_link = 187779341;</code>
+     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
+     * @return string
+     */
+    public function getSelfLink()
+    {
+        return isset($this->self_link) ? $this->self_link : '';
+    }
+
+    public function hasSelfLink()
+    {
+        return isset($this->self_link);
+    }
+
+    public function clearSelfLink()
+    {
+        unset($this->self_link);
+    }
+
+    /**
+     * [Output Only] Server-defined fully-qualified URL for this resource.
+     *
+     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @param string $var
      * @return $this
      */
@@ -841,54 +1144,66 @@ class Disk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Size, in GB, of the persistent disk. You can specify this field when creating a persistent disk using the sourceImage, sourceSnapshot, or sourceDisk parameter, or specify it alone to create an empty persistent disk.
-     * If you specify this field along with a source, the value of sizeGb must not be less than the size of the source. Acceptable values are 1 to 65536, inclusive.
+     * Size, in GB, of the persistent disk. You can specify this field when creating a persistent disk using the sourceImage, sourceSnapshot, or sourceDisk parameter, or specify it alone to create an empty persistent disk. If you specify this field along with a source, the value of sizeGb must not be less than the size of the source. Acceptable values are 1 to 65536, inclusive.
      *
-     * Generated from protobuf field <code>string size_gb = 226493913;</code>
-     * @return string
+     * Generated from protobuf field <code>optional int64 size_gb = 494929369;</code>
+     * @return int|string
      */
     public function getSizeGb()
     {
-        return $this->size_gb;
+        return isset($this->size_gb) ? $this->size_gb : 0;
+    }
+
+    public function hasSizeGb()
+    {
+        return isset($this->size_gb);
+    }
+
+    public function clearSizeGb()
+    {
+        unset($this->size_gb);
     }
 
     /**
-     * Size, in GB, of the persistent disk. You can specify this field when creating a persistent disk using the sourceImage, sourceSnapshot, or sourceDisk parameter, or specify it alone to create an empty persistent disk.
-     * If you specify this field along with a source, the value of sizeGb must not be less than the size of the source. Acceptable values are 1 to 65536, inclusive.
+     * Size, in GB, of the persistent disk. You can specify this field when creating a persistent disk using the sourceImage, sourceSnapshot, or sourceDisk parameter, or specify it alone to create an empty persistent disk. If you specify this field along with a source, the value of sizeGb must not be less than the size of the source. Acceptable values are 1 to 65536, inclusive.
      *
-     * Generated from protobuf field <code>string size_gb = 226493913;</code>
-     * @param string $var
+     * Generated from protobuf field <code>optional int64 size_gb = 494929369;</code>
+     * @param int|string $var
      * @return $this
      */
     public function setSizeGb($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkInt64($var);
         $this->size_gb = $var;
 
         return $this;
     }
 
     /**
-     * The source disk used to create this disk. You can provide this as a partial or full URL to the resource. For example, the following are valid values:
-     * - https://www.googleapis.com/compute/v1/projects/project/zones/zone/disks/disk
-     * - projects/project/zones/zone/disks/disk
-     * - zones/zone/disks/disk
+     * The source disk used to create this disk. You can provide this as a partial or full URL to the resource. For example, the following are valid values: - https://www.googleapis.com/compute/v1/projects/project/zones/zone /disks/disk - https://www.googleapis.com/compute/v1/projects/project/regions/region /disks/disk - projects/project/zones/zone/disks/disk - projects/project/regions/region/disks/disk - zones/zone/disks/disk - regions/region/disks/disk 
      *
-     * Generated from protobuf field <code>string source_disk = 183318337;</code>
+     * Generated from protobuf field <code>optional string source_disk = 451753793;</code>
      * @return string
      */
     public function getSourceDisk()
     {
-        return $this->source_disk;
+        return isset($this->source_disk) ? $this->source_disk : '';
+    }
+
+    public function hasSourceDisk()
+    {
+        return isset($this->source_disk);
+    }
+
+    public function clearSourceDisk()
+    {
+        unset($this->source_disk);
     }
 
     /**
-     * The source disk used to create this disk. You can provide this as a partial or full URL to the resource. For example, the following are valid values:
-     * - https://www.googleapis.com/compute/v1/projects/project/zones/zone/disks/disk
-     * - projects/project/zones/zone/disks/disk
-     * - zones/zone/disks/disk
+     * The source disk used to create this disk. You can provide this as a partial or full URL to the resource. For example, the following are valid values: - https://www.googleapis.com/compute/v1/projects/project/zones/zone /disks/disk - https://www.googleapis.com/compute/v1/projects/project/regions/region /disks/disk - projects/project/zones/zone/disks/disk - projects/project/regions/region/disks/disk - zones/zone/disks/disk - regions/region/disks/disk 
      *
-     * Generated from protobuf field <code>string source_disk = 183318337;</code>
+     * Generated from protobuf field <code>optional string source_disk = 451753793;</code>
      * @param string $var
      * @return $this
      */
@@ -903,18 +1218,28 @@ class Disk extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique ID of the disk used to create this disk. This value identifies the exact disk that was used to create this persistent disk. For example, if you created the persistent disk from a disk that was later deleted and recreated under the same name, the source disk ID would identify the exact version of the disk that was used.
      *
-     * Generated from protobuf field <code>string source_disk_id = 185755353;</code>
+     * Generated from protobuf field <code>optional string source_disk_id = 454190809;</code>
      * @return string
      */
     public function getSourceDiskId()
     {
-        return $this->source_disk_id;
+        return isset($this->source_disk_id) ? $this->source_disk_id : '';
+    }
+
+    public function hasSourceDiskId()
+    {
+        return isset($this->source_disk_id);
+    }
+
+    public function clearSourceDiskId()
+    {
+        unset($this->source_disk_id);
     }
 
     /**
      * [Output Only] The unique ID of the disk used to create this disk. This value identifies the exact disk that was used to create this persistent disk. For example, if you created the persistent disk from a disk that was later deleted and recreated under the same name, the source disk ID would identify the exact version of the disk that was used.
      *
-     * Generated from protobuf field <code>string source_disk_id = 185755353;</code>
+     * Generated from protobuf field <code>optional string source_disk_id = 454190809;</code>
      * @param string $var
      * @return $this
      */
@@ -927,36 +1252,30 @@ class Disk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The source image used to create this disk. If the source image is deleted, this field will not be set.
-     * To create a disk with one of the public operating system images, specify the image by its family name. For example, specify family/debian-9 to use the latest Debian 9 image:
-     * projects/debian-cloud/global/images/family/debian-9
-     * Alternatively, use a specific version of a public operating system image:
-     * projects/debian-cloud/global/images/debian-9-stretch-vYYYYMMDD
-     * To create a disk with a custom image that you created, specify the image name in the following format:
-     * global/images/my-custom-image
-     * You can also specify a custom image by its image family, which returns the latest version of the image in that family. Replace the image name with family/family-name:
-     * global/images/family/my-image-family
+     * The source image used to create this disk. If the source image is deleted, this field will not be set. To create a disk with one of the public operating system images, specify the image by its family name. For example, specify family/debian-9 to use the latest Debian 9 image: projects/debian-cloud/global/images/family/debian-9 Alternatively, use a specific version of a public operating system image: projects/debian-cloud/global/images/debian-9-stretch-vYYYYMMDD To create a disk with a custom image that you created, specify the image name in the following format: global/images/my-custom-image You can also specify a custom image by its image family, which returns the latest version of the image in that family. Replace the image name with family/family-name: global/images/family/my-image-family 
      *
-     * Generated from protobuf field <code>string source_image = 50443319;</code>
+     * Generated from protobuf field <code>optional string source_image = 50443319;</code>
      * @return string
      */
     public function getSourceImage()
     {
-        return $this->source_image;
+        return isset($this->source_image) ? $this->source_image : '';
+    }
+
+    public function hasSourceImage()
+    {
+        return isset($this->source_image);
+    }
+
+    public function clearSourceImage()
+    {
+        unset($this->source_image);
     }
 
     /**
-     * The source image used to create this disk. If the source image is deleted, this field will not be set.
-     * To create a disk with one of the public operating system images, specify the image by its family name. For example, specify family/debian-9 to use the latest Debian 9 image:
-     * projects/debian-cloud/global/images/family/debian-9
-     * Alternatively, use a specific version of a public operating system image:
-     * projects/debian-cloud/global/images/debian-9-stretch-vYYYYMMDD
-     * To create a disk with a custom image that you created, specify the image name in the following format:
-     * global/images/my-custom-image
-     * You can also specify a custom image by its image family, which returns the latest version of the image in that family. Replace the image name with family/family-name:
-     * global/images/family/my-image-family
+     * The source image used to create this disk. If the source image is deleted, this field will not be set. To create a disk with one of the public operating system images, specify the image by its family name. For example, specify family/debian-9 to use the latest Debian 9 image: projects/debian-cloud/global/images/family/debian-9 Alternatively, use a specific version of a public operating system image: projects/debian-cloud/global/images/debian-9-stretch-vYYYYMMDD To create a disk with a custom image that you created, specify the image name in the following format: global/images/my-custom-image You can also specify a custom image by its image family, which returns the latest version of the image in that family. Replace the image name with family/family-name: global/images/family/my-image-family 
      *
-     * Generated from protobuf field <code>string source_image = 50443319;</code>
+     * Generated from protobuf field <code>optional string source_image = 50443319;</code>
      * @param string $var
      * @return $this
      */
@@ -971,12 +1290,12 @@ class Disk extends \Google\Protobuf\Internal\Message
     /**
      * The customer-supplied encryption key of the source image. Required if the source image is protected by a customer-supplied encryption key.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.CustomerEncryptionKey source_image_encryption_key = 113068203;</code>
-     * @return \Google\Cloud\Compute\V1\CustomerEncryptionKey
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.CustomerEncryptionKey source_image_encryption_key = 381503659;</code>
+     * @return \Google\Cloud\Compute\V1\CustomerEncryptionKey|null
      */
     public function getSourceImageEncryptionKey()
     {
-        return isset($this->source_image_encryption_key) ? $this->source_image_encryption_key : null;
+        return $this->source_image_encryption_key;
     }
 
     public function hasSourceImageEncryptionKey()
@@ -992,7 +1311,7 @@ class Disk extends \Google\Protobuf\Internal\Message
     /**
      * The customer-supplied encryption key of the source image. Required if the source image is protected by a customer-supplied encryption key.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.CustomerEncryptionKey source_image_encryption_key = 113068203;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.CustomerEncryptionKey source_image_encryption_key = 381503659;</code>
      * @param \Google\Cloud\Compute\V1\CustomerEncryptionKey $var
      * @return $this
      */
@@ -1007,18 +1326,28 @@ class Disk extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The ID value of the image used to create this disk. This value identifies the exact image that was used to create this persistent disk. For example, if you created the persistent disk from an image that was later deleted and recreated under the same name, the source image ID would identify the exact version of the image that was used.
      *
-     * Generated from protobuf field <code>string source_image_id = 55328291;</code>
+     * Generated from protobuf field <code>optional string source_image_id = 55328291;</code>
      * @return string
      */
     public function getSourceImageId()
     {
-        return $this->source_image_id;
+        return isset($this->source_image_id) ? $this->source_image_id : '';
+    }
+
+    public function hasSourceImageId()
+    {
+        return isset($this->source_image_id);
+    }
+
+    public function clearSourceImageId()
+    {
+        unset($this->source_image_id);
     }
 
     /**
      * [Output Only] The ID value of the image used to create this disk. This value identifies the exact image that was used to create this persistent disk. For example, if you created the persistent disk from an image that was later deleted and recreated under the same name, the source image ID would identify the exact version of the image that was used.
      *
-     * Generated from protobuf field <code>string source_image_id = 55328291;</code>
+     * Generated from protobuf field <code>optional string source_image_id = 55328291;</code>
      * @param string $var
      * @return $this
      */
@@ -1031,26 +1360,30 @@ class Disk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The source snapshot used to create this disk. You can provide this as a partial or full URL to the resource. For example, the following are valid values:
-     * - https://www.googleapis.com/compute/v1/projects/project/global/snapshots/snapshot
-     * - projects/project/global/snapshots/snapshot
-     * - global/snapshots/snapshot
+     * The source snapshot used to create this disk. You can provide this as a partial or full URL to the resource. For example, the following are valid values: - https://www.googleapis.com/compute/v1/projects/project /global/snapshots/snapshot - projects/project/global/snapshots/snapshot - global/snapshots/snapshot 
      *
-     * Generated from protobuf field <code>string source_snapshot = 126061928;</code>
+     * Generated from protobuf field <code>optional string source_snapshot = 126061928;</code>
      * @return string
      */
     public function getSourceSnapshot()
     {
-        return $this->source_snapshot;
+        return isset($this->source_snapshot) ? $this->source_snapshot : '';
+    }
+
+    public function hasSourceSnapshot()
+    {
+        return isset($this->source_snapshot);
+    }
+
+    public function clearSourceSnapshot()
+    {
+        unset($this->source_snapshot);
     }
 
     /**
-     * The source snapshot used to create this disk. You can provide this as a partial or full URL to the resource. For example, the following are valid values:
-     * - https://www.googleapis.com/compute/v1/projects/project/global/snapshots/snapshot
-     * - projects/project/global/snapshots/snapshot
-     * - global/snapshots/snapshot
+     * The source snapshot used to create this disk. You can provide this as a partial or full URL to the resource. For example, the following are valid values: - https://www.googleapis.com/compute/v1/projects/project /global/snapshots/snapshot - projects/project/global/snapshots/snapshot - global/snapshots/snapshot 
      *
-     * Generated from protobuf field <code>string source_snapshot = 126061928;</code>
+     * Generated from protobuf field <code>optional string source_snapshot = 126061928;</code>
      * @param string $var
      * @return $this
      */
@@ -1065,12 +1398,12 @@ class Disk extends \Google\Protobuf\Internal\Message
     /**
      * The customer-supplied encryption key of the source snapshot. Required if the source snapshot is protected by a customer-supplied encryption key.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.CustomerEncryptionKey source_snapshot_encryption_key = 35243866;</code>
-     * @return \Google\Cloud\Compute\V1\CustomerEncryptionKey
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.CustomerEncryptionKey source_snapshot_encryption_key = 303679322;</code>
+     * @return \Google\Cloud\Compute\V1\CustomerEncryptionKey|null
      */
     public function getSourceSnapshotEncryptionKey()
     {
-        return isset($this->source_snapshot_encryption_key) ? $this->source_snapshot_encryption_key : null;
+        return $this->source_snapshot_encryption_key;
     }
 
     public function hasSourceSnapshotEncryptionKey()
@@ -1086,7 +1419,7 @@ class Disk extends \Google\Protobuf\Internal\Message
     /**
      * The customer-supplied encryption key of the source snapshot. Required if the source snapshot is protected by a customer-supplied encryption key.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.CustomerEncryptionKey source_snapshot_encryption_key = 35243866;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.CustomerEncryptionKey source_snapshot_encryption_key = 303679322;</code>
      * @param \Google\Cloud\Compute\V1\CustomerEncryptionKey $var
      * @return $this
      */
@@ -1101,18 +1434,28 @@ class Disk extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique ID of the snapshot used to create this disk. This value identifies the exact snapshot that was used to create this persistent disk. For example, if you created the persistent disk from a snapshot that was later deleted and recreated under the same name, the source snapshot ID would identify the exact version of the snapshot that was used.
      *
-     * Generated from protobuf field <code>string source_snapshot_id = 98962258;</code>
+     * Generated from protobuf field <code>optional string source_snapshot_id = 98962258;</code>
      * @return string
      */
     public function getSourceSnapshotId()
     {
-        return $this->source_snapshot_id;
+        return isset($this->source_snapshot_id) ? $this->source_snapshot_id : '';
+    }
+
+    public function hasSourceSnapshotId()
+    {
+        return isset($this->source_snapshot_id);
+    }
+
+    public function clearSourceSnapshotId()
+    {
+        unset($this->source_snapshot_id);
     }
 
     /**
      * [Output Only] The unique ID of the snapshot used to create this disk. This value identifies the exact snapshot that was used to create this persistent disk. For example, if you created the persistent disk from a snapshot that was later deleted and recreated under the same name, the source snapshot ID would identify the exact version of the snapshot that was used.
      *
-     * Generated from protobuf field <code>string source_snapshot_id = 98962258;</code>
+     * Generated from protobuf field <code>optional string source_snapshot_id = 98962258;</code>
      * @param string $var
      * @return $this
      */
@@ -1125,46 +1468,104 @@ class Disk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The status of disk creation. CREATING: Disk is provisioning. RESTORING: Source data is being copied into the disk. FAILED: Disk creation failed. READY: Disk is ready for use. DELETING: Disk is deleting.
+     * The full Google Cloud Storage URI where the disk image is stored. This file must be a gzip-compressed tarball whose name ends in .tar.gz or virtual machine disk whose name ends in vmdk. Valid URIs may start with gs:// or https://storage.googleapis.com/. This flag is not optimized for creating multiple disks from a source storage object. To create many disks from a source storage object, use gcloud compute images import instead.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Disk.Status status = 181260274;</code>
-     * @return int
+     * Generated from protobuf field <code>optional string source_storage_object = 233052711;</code>
+     * @return string
      */
-    public function getStatus()
+    public function getSourceStorageObject()
     {
-        return $this->status;
+        return isset($this->source_storage_object) ? $this->source_storage_object : '';
+    }
+
+    public function hasSourceStorageObject()
+    {
+        return isset($this->source_storage_object);
+    }
+
+    public function clearSourceStorageObject()
+    {
+        unset($this->source_storage_object);
     }
 
     /**
-     * [Output Only] The status of disk creation. CREATING: Disk is provisioning. RESTORING: Source data is being copied into the disk. FAILED: Disk creation failed. READY: Disk is ready for use. DELETING: Disk is deleting.
+     * The full Google Cloud Storage URI where the disk image is stored. This file must be a gzip-compressed tarball whose name ends in .tar.gz or virtual machine disk whose name ends in vmdk. Valid URIs may start with gs:// or https://storage.googleapis.com/. This flag is not optimized for creating multiple disks from a source storage object. To create many disks from a source storage object, use gcloud compute images import instead.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Disk.Status status = 181260274;</code>
-     * @param int $var
+     * Generated from protobuf field <code>optional string source_storage_object = 233052711;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSourceStorageObject($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->source_storage_object = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Output Only] The status of disk creation. - CREATING: Disk is provisioning. - RESTORING: Source data is being copied into the disk. - FAILED: Disk creation failed. - READY: Disk is ready for use. - DELETING: Disk is deleting.
+     * Check the Status enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string status = 181260274;</code>
+     * @return string
+     */
+    public function getStatus()
+    {
+        return isset($this->status) ? $this->status : '';
+    }
+
+    public function hasStatus()
+    {
+        return isset($this->status);
+    }
+
+    public function clearStatus()
+    {
+        unset($this->status);
+    }
+
+    /**
+     * [Output Only] The status of disk creation. - CREATING: Disk is provisioning. - RESTORING: Source data is being copied into the disk. - FAILED: Disk creation failed. - READY: Disk is ready for use. - DELETING: Disk is deleting.
+     * Check the Status enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string status = 181260274;</code>
+     * @param string $var
      * @return $this
      */
     public function setStatus($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Compute\V1\Disk\Status::class);
+        GPBUtil::checkString($var, True);
         $this->status = $var;
 
         return $this;
     }
 
     /**
-     * URL of the disk type resource describing which disk type to use to create the disk. Provide this when creating the disk. For example: projects/project/zones/zone/diskTypes/pd-standard  or pd-ssd
+     * URL of the disk type resource describing which disk type to use to create the disk. Provide this when creating the disk. For example: projects/project /zones/zone/diskTypes/pd-ssd . See Persistent disk types.
      *
-     * Generated from protobuf field <code>string type = 3575610;</code>
+     * Generated from protobuf field <code>optional string type = 3575610;</code>
      * @return string
      */
     public function getType()
     {
-        return $this->type;
+        return isset($this->type) ? $this->type : '';
+    }
+
+    public function hasType()
+    {
+        return isset($this->type);
+    }
+
+    public function clearType()
+    {
+        unset($this->type);
     }
 
     /**
-     * URL of the disk type resource describing which disk type to use to create the disk. Provide this when creating the disk. For example: projects/project/zones/zone/diskTypes/pd-standard  or pd-ssd
+     * URL of the disk type resource describing which disk type to use to create the disk. Provide this when creating the disk. For example: projects/project /zones/zone/diskTypes/pd-ssd . See Persistent disk types.
      *
-     * Generated from protobuf field <code>string type = 3575610;</code>
+     * Generated from protobuf field <code>optional string type = 3575610;</code>
      * @param string $var
      * @return $this
      */
@@ -1191,7 +1592,7 @@ class Disk extends \Google\Protobuf\Internal\Message
      * [Output Only] Links to the users of the disk (attached instances) in form: projects/project/zones/zone/instances/instance
      *
      * Generated from protobuf field <code>repeated string users = 111578632;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setUsers($var)
@@ -1205,18 +1606,28 @@ class Disk extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] URL of the zone where the disk resides. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
      *
-     * Generated from protobuf field <code>string zone = 3744684;</code>
+     * Generated from protobuf field <code>optional string zone = 3744684;</code>
      * @return string
      */
     public function getZone()
     {
-        return $this->zone;
+        return isset($this->zone) ? $this->zone : '';
+    }
+
+    public function hasZone()
+    {
+        return isset($this->zone);
+    }
+
+    public function clearZone()
+    {
+        unset($this->zone);
     }
 
     /**
      * [Output Only] URL of the zone where the disk resides. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
      *
-     * Generated from protobuf field <code>string zone = 3744684;</code>
+     * Generated from protobuf field <code>optional string zone = 3744684;</code>
      * @param string $var
      * @return $this
      */

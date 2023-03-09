@@ -197,7 +197,7 @@ class SnapshotTableRequest extends \Google\Protobuf\Internal\Message
      */
     public function getTtl()
     {
-        return isset($this->ttl) ? $this->ttl : null;
+        return $this->ttl;
     }
 
     public function hasTtl()

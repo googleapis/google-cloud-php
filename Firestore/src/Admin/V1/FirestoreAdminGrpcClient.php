@@ -2,7 +2,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 // Original file comments:
-// Copyright 2019 Google LLC.
+// Copyright 2019 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,10 +16,35 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-//
 namespace Google\Cloud\Firestore\Admin\V1;
 
 /**
+ * The Cloud Firestore Admin API.
+ *
+ * This API provides several administrative services for Cloud Firestore.
+ *
+ * Project, Database, Namespace, Collection, Collection Group, and Document are
+ * used as defined in the Google Cloud Firestore API.
+ *
+ * Operation: An Operation represents work being performed in the background.
+ *
+ * The index service manages Cloud Firestore indexes.
+ *
+ * Index creation is performed asynchronously.
+ * An Operation resource is created for each such asynchronous operation.
+ * The state of the operation (including any errors encountered)
+ * may be queried via the Operation resource.
+ *
+ * The Operations collection provides a record of actions performed for the
+ * specified Project (including any Operations in progress). Operations are not
+ * created directly but through calls on other collections or resources.
+ *
+ * An Operation that is done may be deleted so that it is no longer listed as
+ * part of the Operation collection. Operations are garbage collected after
+ * 30 days. By default, ListOperations will only return in progress and failed
+ * operations. To list completed operation, issue a ListOperations request with
+ * the filter `done: true`.
+ *
  * Operations are created by service `FirestoreAdmin`, but are accessed via
  * service `google.longrunning.Operations`.
  */
@@ -144,7 +169,7 @@ class FirestoreAdminGrpcClient extends \Grpc\BaseStub {
      * Currently, [FirestoreAdmin.ListFields][google.firestore.admin.v1.FirestoreAdmin.ListFields] only supports listing fields
      * that have been explicitly overridden. To issue this query, call
      * [FirestoreAdmin.ListFields][google.firestore.admin.v1.FirestoreAdmin.ListFields] with the filter set to
-     * `indexConfig.usesAncestorConfig:false`.
+     * `indexConfig.usesAncestorConfig:false` .
      * @param \Google\Cloud\Firestore\Admin\V1\ListFieldsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -167,6 +192,9 @@ class FirestoreAdminGrpcClient extends \Grpc\BaseStub {
      * used once the associated operation is done. If an export operation is
      * cancelled before completion it may leave partial data behind in Google
      * Cloud Storage.
+     *
+     * For more details on export behavior and output format, refer to:
+     * https://cloud.google.com/firestore/docs/manage-data/export-import
      * @param \Google\Cloud\Firestore\Admin\V1\ExportDocumentsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -194,6 +222,51 @@ class FirestoreAdminGrpcClient extends \Grpc\BaseStub {
     public function ImportDocuments(\Google\Cloud\Firestore\Admin\V1\ImportDocumentsRequest $argument,
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.firestore.admin.v1.FirestoreAdmin/ImportDocuments',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Gets information about a database.
+     * @param \Google\Cloud\Firestore\Admin\V1\GetDatabaseRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function GetDatabase(\Google\Cloud\Firestore\Admin\V1\GetDatabaseRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.firestore.admin.v1.FirestoreAdmin/GetDatabase',
+        $argument,
+        ['\Google\Cloud\Firestore\Admin\V1\Database', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * List all the databases in the project.
+     * @param \Google\Cloud\Firestore\Admin\V1\ListDatabasesRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function ListDatabases(\Google\Cloud\Firestore\Admin\V1\ListDatabasesRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.firestore.admin.v1.FirestoreAdmin/ListDatabases',
+        $argument,
+        ['\Google\Cloud\Firestore\Admin\V1\ListDatabasesResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Updates a database.
+     * @param \Google\Cloud\Firestore\Admin\V1\UpdateDatabaseRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function UpdateDatabase(\Google\Cloud\Firestore\Admin\V1\UpdateDatabaseRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.firestore.admin.v1.FirestoreAdmin/UpdateDatabase',
         $argument,
         ['\Google\LongRunning\Operation', 'decode'],
         $metadata, $options);

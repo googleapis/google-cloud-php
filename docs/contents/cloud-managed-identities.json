@@ -1,0 +1,19 @@
+{
+    "title": "ManagedIdentities",
+    "defaultService": "managedidentities\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "managedidentities\/readme"
+        },
+        {
+            "title": "ManagedIdentitiesServiceClient (v1)",
+            "type": "managedidentities\/v1\/managedidentitiesserviceclient"
+        },
+        {
+            "title": "ManagedIdentitiesServiceClient (v1beta1)",
+            "type": "managedidentities\/v1beta1\/managedidentitiesserviceclient"
+        }
+    ],
+    "pattern": "managedidentities\/\\w{1,}"
+}

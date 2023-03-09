@@ -27,7 +27,7 @@ class OutputConfig extends \Google\Protobuf\Internal\Message
      *           Destination on Cloud Storage.
      *     @type \Google\Cloud\Asset\V1\BigQueryDestination $bigquery_destination
      *           Destination on BigQuery. The output table stores the fields in asset
-     *           proto as columns in BigQuery.
+     *           Protobuf as columns in BigQuery.
      * }
      */
     public function __construct($data = NULL) {
@@ -39,11 +39,16 @@ class OutputConfig extends \Google\Protobuf\Internal\Message
      * Destination on Cloud Storage.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.GcsDestination gcs_destination = 1;</code>
-     * @return \Google\Cloud\Asset\V1\GcsDestination
+     * @return \Google\Cloud\Asset\V1\GcsDestination|null
      */
     public function getGcsDestination()
     {
         return $this->readOneof(1);
+    }
+
+    public function hasGcsDestination()
+    {
+        return $this->hasOneof(1);
     }
 
     /**
@@ -63,19 +68,24 @@ class OutputConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Destination on BigQuery. The output table stores the fields in asset
-     * proto as columns in BigQuery.
+     * Protobuf as columns in BigQuery.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.BigQueryDestination bigquery_destination = 2;</code>
-     * @return \Google\Cloud\Asset\V1\BigQueryDestination
+     * @return \Google\Cloud\Asset\V1\BigQueryDestination|null
      */
     public function getBigqueryDestination()
     {
         return $this->readOneof(2);
     }
 
+    public function hasBigqueryDestination()
+    {
+        return $this->hasOneof(2);
+    }
+
     /**
      * Destination on BigQuery. The output table stores the fields in asset
-     * proto as columns in BigQuery.
+     * Protobuf as columns in BigQuery.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.BigQueryDestination bigquery_destination = 2;</code>
      * @param \Google\Cloud\Asset\V1\BigQueryDestination $var

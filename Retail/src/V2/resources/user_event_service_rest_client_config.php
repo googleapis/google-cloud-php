@@ -3,18 +3,6 @@
 return [
     'interfaces' => [
         'google.cloud.retail.v2.UserEventService' => [
-            'WriteUserEvent' => [
-                'method' => 'post',
-                'uriTemplate' => '/v2/{parent=projects/*/locations/*/catalogs/*}/userEvents:write',
-                'body' => 'user_event',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
             'CollectUserEvent' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2/{parent=projects/*/locations/*/catalogs/*}/userEvents:collect',
@@ -26,9 +14,9 @@ return [
                     ],
                 ],
             ],
-            'PurgeUserEvents' => [
+            'ImportUserEvents' => [
                 'method' => 'post',
-                'uriTemplate' => '/v2/{parent=projects/*/locations/*/catalogs/*}/userEvents:purge',
+                'uriTemplate' => '/v2/{parent=projects/*/locations/*/catalogs/*}/userEvents:import',
                 'body' => '*',
                 'placeholders' => [
                     'parent' => [
@@ -38,9 +26,9 @@ return [
                     ],
                 ],
             ],
-            'ImportUserEvents' => [
+            'PurgeUserEvents' => [
                 'method' => 'post',
-                'uriTemplate' => '/v2/{parent=projects/*/locations/*/catalogs/*}/userEvents:import',
+                'uriTemplate' => '/v2/{parent=projects/*/locations/*/catalogs/*}/userEvents:purge',
                 'body' => '*',
                 'placeholders' => [
                     'parent' => [
@@ -62,6 +50,18 @@ return [
                     ],
                 ],
             ],
+            'WriteUserEvent' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{parent=projects/*/locations/*/catalogs/*}/userEvents:write',
+                'body' => 'user_event',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
         ],
         'google.longrunning.Operations' => [
             'GetOperation' => [
@@ -70,11 +70,15 @@ return [
                 'additionalBindings' => [
                     [
                         'method' => 'get',
+                        'uriTemplate' => '/v2/{name=projects/*/locations/*/catalogs/*/branches/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'get',
                         'uriTemplate' => '/v2/{name=projects/*/locations/*/catalogs/*/operations/*}',
                     ],
                     [
                         'method' => 'get',
-                        'uriTemplate' => '/v2/{name=projects/*/locations/*/catalogs/*/branches/*/operations/*}',
+                        'uriTemplate' => '/v2/{name=projects/*/operations/*}',
                     ],
                 ],
                 'placeholders' => [
@@ -93,6 +97,10 @@ return [
                         'method' => 'get',
                         'uriTemplate' => '/v2/{name=projects/*/locations/*/catalogs/*}/operations',
                     ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{name=projects/*}/operations',
+                    ],
                 ],
                 'placeholders' => [
                     'name' => [
@@ -104,4 +112,5 @@ return [
             ],
         ],
     ],
+    'numericEnums' => true,
 ];

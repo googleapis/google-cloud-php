@@ -21,7 +21,7 @@ use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\Query;
 use Google\Cloud\Firestore\QuerySnapshot;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group firestore
@@ -32,7 +32,7 @@ class QuerySnapshotTest extends TestCase
     private $connection;
     private $snapshot;
 
-    public function setUp()
+    public function set_up()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->snapshot = TestHelpers::stub(QuerySnapshot::class, [

@@ -67,11 +67,11 @@ class Price extends \Google\Protobuf\Internal\Message
      * Base price.
      *
      * Generated from protobuf field <code>.google.type.Money base_price = 1;</code>
-     * @return \Google\Type\Money
+     * @return \Google\Type\Money|null
      */
     public function getBasePrice()
     {
-        return isset($this->base_price) ? $this->base_price : null;
+        return $this->base_price;
     }
 
     public function hasBasePrice()
@@ -131,11 +131,11 @@ class Price extends \Google\Protobuf\Internal\Message
      * Effective Price after applying the discounts.
      *
      * Generated from protobuf field <code>.google.type.Money effective_price = 3;</code>
-     * @return \Google\Type\Money
+     * @return \Google\Type\Money|null
      */
     public function getEffectivePrice()
     {
-        return isset($this->effective_price) ? $this->effective_price : null;
+        return $this->effective_price;
     }
 
     public function hasEffectivePrice()

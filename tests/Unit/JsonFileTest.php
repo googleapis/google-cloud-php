@@ -43,7 +43,7 @@ class JsonFileTest extends TestCase
     {
         $file = file_get_contents($component);
         $json = json_decode($file);
-        $this->assertEquals(JSON_ERROR_NONE, json_last_error());
+        $this->assertEquals(JSON_ERROR_NONE, json_last_error(), 'JSON parsing error in composer.json');
 
         $this->validateAndAssert($json, 'composer.json.schema');
     }

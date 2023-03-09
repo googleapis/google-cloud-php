@@ -107,11 +107,11 @@ class SecretVersion extends \Google\Protobuf\Internal\Message
      * Output only. The time at which the [SecretVersion][google.cloud.secrets.v1beta1.SecretVersion] was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -145,11 +145,11 @@ class SecretVersion extends \Google\Protobuf\Internal\Message
      * [DESTROYED][google.cloud.secrets.v1beta1.SecretVersion.State.DESTROYED].
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp destroy_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getDestroyTime()
     {
-        return isset($this->destroy_time) ? $this->destroy_time : null;
+        return $this->destroy_time;
     }
 
     public function hasDestroyTime()

@@ -22,62 +22,52 @@
 
 namespace Google\Cloud\Talent\Tests\Unit\V4beta1;
 
-use Google\Cloud\Talent\V4beta1\EventServiceClient;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Talent\V4beta1\ClientEvent;
-use Google\Protobuf\Any;
+use Google\Cloud\Talent\V4beta1\EventServiceClient;
+use Google\Protobuf\Timestamp;
 use Google\Rpc\Code;
 use stdClass;
 
 /**
  * @group talent
+ *
  * @group gapic
  */
 class EventServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return EventServiceClient
-     */
+    /** @return EventServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
             'credentials' => $this->createCredentials(),
         ];
-
         return new EventServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createClientEventTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $requestId = 'requestId37109963';
         $eventId = 'eventId278118624';
@@ -87,64 +77,60 @@ class EventServiceClientTest extends GeneratedTest
         $expectedResponse->setEventId($eventId);
         $expectedResponse->setEventNotes($eventNotes);
         $transport->addResponse($expectedResponse);
-
         // Mock request
-        $formattedParent = $client->tenantName('[PROJECT]', '[TENANT]');
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
         $clientEvent = new ClientEvent();
-
-        $response = $client->createClientEvent($formattedParent, $clientEvent);
+        $clientEventEventId = 'clientEventEventId319230150';
+        $clientEvent->setEventId($clientEventEventId);
+        $clientEventCreateTime = new Timestamp();
+        $clientEvent->setCreateTime($clientEventCreateTime);
+        $response = $gapicClient->createClientEvent($formattedParent, $clientEvent);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.talent.v4beta1.EventService/CreateClientEvent', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getParent();
-
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualRequestObject->getClientEvent();
-
         $this->assertProtobufEquals($clientEvent, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createClientEventExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
-        $formattedParent = $client->tenantName('[PROJECT]', '[TENANT]');
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
         $clientEvent = new ClientEvent();
-
+        $clientEventEventId = 'clientEventEventId319230150';
+        $clientEvent->setEventId($clientEventEventId);
+        $clientEventCreateTime = new Timestamp();
+        $clientEvent->setCreateTime($clientEventCreateTime);
         try {
-            $client->createClientEvent($formattedParent, $clientEvent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->createClientEvent($formattedParent, $clientEvent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());

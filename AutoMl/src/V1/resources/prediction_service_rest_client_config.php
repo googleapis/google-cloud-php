@@ -3,18 +3,6 @@
 return [
     'interfaces' => [
         'google.cloud.automl.v1.PredictionService' => [
-            'Predict' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/models/*}:predict',
-                'body' => '*',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
             'BatchPredict' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/models/*}:batchPredict',
@@ -27,17 +15,55 @@ return [
                     ],
                 ],
             ],
+            'Predict' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/models/*}:predict',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+        ],
+        'google.cloud.location.Locations' => [
+            'GetLocation' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListLocations' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*}/locations',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
         ],
         'google.iam.v1.IAMPolicy' => [
-            'SetIamPolicy' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/{resource=projects/*/locations/*/datasets/*}:setIamPolicy',
-                'body' => '*',
+            'GetIamPolicy' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{resource=projects/*/locations/*}:getIamPolicy',
                 'additionalBindings' => [
                     [
-                        'method' => 'post',
-                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/models/*}:setIamPolicy',
-                        'body' => '*',
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/datasets/*}:getIamPolicy',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/models/*}:getIamPolicy',
                     ],
                 ],
                 'placeholders' => [
@@ -48,13 +74,20 @@ return [
                     ],
                 ],
             ],
-            'GetIamPolicy' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{resource=projects/*/locations/*/datasets/*}:getIamPolicy',
+            'SetIamPolicy' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{resource=projects/*/locations/*}:setIamPolicy',
+                'body' => '*',
                 'additionalBindings' => [
                     [
-                        'method' => 'get',
-                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/models/*}:getIamPolicy',
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/datasets/*}:setIamPolicy',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/models/*}:setIamPolicy',
+                        'body' => '*',
                     ],
                 ],
                 'placeholders' => [
@@ -79,20 +112,10 @@ return [
             ],
         ],
         'google.longrunning.Operations' => [
-            'ListOperations' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*}/operations',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'GetOperation' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/operations/*}',
+            'CancelOperation' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/operations/*}:cancel',
+                'body' => '*',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -112,9 +135,31 @@ return [
                     ],
                 ],
             ],
-            'CancelOperation' => [
+            'GetOperation' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/operations/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListOperations' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*}/operations',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'WaitOperation' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/operations/*}:cancel',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/operations/*}:wait',
                 'body' => '*',
                 'placeholders' => [
                     'name' => [
@@ -126,4 +171,5 @@ return [
             ],
         ],
     ],
+    'numericEnums' => true,
 ];

@@ -66,6 +66,4 @@ class SearchMode
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(SearchMode::class, \Google\Cloud\Talent\V4beta1\SearchJobsRequest_SearchMode::class);
 

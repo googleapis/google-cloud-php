@@ -35,7 +35,7 @@ class ListStoredInfoTypesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Dlp\V2\StoredInfoType[]|\Google\Protobuf\Internal\RepeatedField $stored_info_types
+     *     @type array<\Google\Cloud\Dlp\V2\StoredInfoType>|\Google\Protobuf\Internal\RepeatedField $stored_info_types
      *           List of storedInfoTypes, up to page_size in ListStoredInfoTypesRequest.
      *     @type string $next_page_token
      *           If the next page is available then the next page token to be used
@@ -62,7 +62,7 @@ class ListStoredInfoTypesResponse extends \Google\Protobuf\Internal\Message
      * List of storedInfoTypes, up to page_size in ListStoredInfoTypesRequest.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.StoredInfoType stored_info_types = 1;</code>
-     * @param \Google\Cloud\Dlp\V2\StoredInfoType[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dlp\V2\StoredInfoType>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setStoredInfoTypes($var)

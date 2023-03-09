@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [CloudChannelService.UpdateCustomer][google.cloud.channel.v1.CloudChannelService.UpdateCustomer].
+ * Request message for
+ * [CloudChannelService.UpdateCustomer][google.cloud.channel.v1.CloudChannelService.UpdateCustomer].
  *
  * Generated from protobuf message <code>google.cloud.channel.v1.UpdateCustomerRequest</code>
  */
@@ -51,11 +52,11 @@ class UpdateCustomerRequest extends \Google\Protobuf\Internal\Message
      * Required. New contents of the customer.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.Customer customer = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Channel\V1\Customer
+     * @return \Google\Cloud\Channel\V1\Customer|null
      */
     public function getCustomer()
     {
-        return isset($this->customer) ? $this->customer : null;
+        return $this->customer;
     }
 
     public function hasCustomer()
@@ -88,11 +89,11 @@ class UpdateCustomerRequest extends \Google\Protobuf\Internal\Message
      * Optional.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3;</code>
-     * @return \Google\Protobuf\FieldMask
+     * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()

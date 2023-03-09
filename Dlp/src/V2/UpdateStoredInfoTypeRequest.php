@@ -101,7 +101,7 @@ class UpdateStoredInfoTypeRequest extends \Google\Protobuf\Internal\Message
      */
     public function getConfig()
     {
-        return isset($this->config) ? $this->config : null;
+        return $this->config;
     }
 
     public function hasConfig()
@@ -139,7 +139,7 @@ class UpdateStoredInfoTypeRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()

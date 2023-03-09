@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request message for [SessionEntityTypes.CreateSessionEntityType][google.cloud.dialogflow.v2.SessionEntityTypes.CreateSessionEntityType].
+ * The request message for
+ * [SessionEntityTypes.CreateSessionEntityType][google.cloud.dialogflow.v2.SessionEntityTypes.CreateSessionEntityType].
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.CreateSessionEntityTypeRequest</code>
  */
@@ -99,7 +100,7 @@ class CreateSessionEntityTypeRequest extends \Google\Protobuf\Internal\Message
      */
     public function getSessionEntityType()
     {
-        return isset($this->session_entity_type) ? $this->session_entity_type : null;
+        return $this->session_entity_type;
     }
 
     public function hasSessionEntityType()

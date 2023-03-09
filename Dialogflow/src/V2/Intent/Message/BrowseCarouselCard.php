@@ -37,7 +37,7 @@ class BrowseCarouselCard extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Dialogflow\V2\Intent\Message\BrowseCarouselCard\BrowseCarouselCardItem[]|\Google\Protobuf\Internal\RepeatedField $items
+     *     @type array<\Google\Cloud\Dialogflow\V2\Intent\Message\BrowseCarouselCard\BrowseCarouselCardItem>|\Google\Protobuf\Internal\RepeatedField $items
      *           Required. List of items in the Browse Carousel Card. Minimum of two
      *           items, maximum of ten.
      *     @type int $image_display_options
@@ -67,7 +67,7 @@ class BrowseCarouselCard extends \Google\Protobuf\Internal\Message
      * items, maximum of ten.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message.BrowseCarouselCard.BrowseCarouselCardItem items = 1;</code>
-     * @param \Google\Cloud\Dialogflow\V2\Intent\Message\BrowseCarouselCard\BrowseCarouselCardItem[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dialogflow\V2\Intent\Message\BrowseCarouselCard\BrowseCarouselCardItem>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setItems($var)
@@ -108,6 +108,4 @@ class BrowseCarouselCard extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(BrowseCarouselCard::class, \Google\Cloud\Dialogflow\V2\Intent_Message_BrowseCarouselCard::class);
 

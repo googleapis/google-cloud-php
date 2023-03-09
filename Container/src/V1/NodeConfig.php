@@ -10,6 +10,10 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Parameters that describe the nodes in a cluster.
+ * GKE Autopilot clusters do not
+ * recognize parameters in `NodeConfig`. Use
+ * [AutoprovisioningNodePoolDefaults][google.container.v1.AutoprovisioningNodePoolDefaults]
+ * instead.
  *
  * Generated from protobuf message <code>google.container.v1.NodeConfig</code>
  */
@@ -81,8 +85,6 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *  - "k8s-node-setup-psm1"
      *  - "install-ssh-psm1"
      *  - "user-profile-psm1"
-     * The following keys are reserved for Windows nodes:
-     *  - "serial-port-logging-enable"
      * Values are free-form strings, and only have meaning as interpreted by
      * the image running in the instance. The only restriction placed on them is
      * that each value's size must be less than or equal to 32 KB.
@@ -93,7 +95,9 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
     private $metadata;
     /**
      * The image type to use for this node. Note that for a given image type,
-     * the latest version of it will be used.
+     * the latest version of it will be used. Please see
+     * https://cloud.google.com/kubernetes-engine/docs/concepts/node-images for
+     * available image types.
      *
      * Generated from protobuf field <code>string image_type = 5;</code>
      */
@@ -211,6 +215,18 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      */
     private $shielded_instance_config = null;
     /**
+     * Parameters that can be configured on Linux nodes.
+     *
+     * Generated from protobuf field <code>.google.container.v1.LinuxNodeConfig linux_node_config = 21;</code>
+     */
+    private $linux_node_config = null;
+    /**
+     * Node kubelet configs.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodeKubeletConfig kubelet_config = 22;</code>
+     */
+    private $kubelet_config = null;
+    /**
      * The Customer Managed Encryption Key used to encrypt the boot disk attached
      * to each node in the node pool. This should be of the form
      * projects/[KEY_PROJECT_ID]/locations/[LOCATION]/keyRings/[RING_NAME]/cryptoKeys/[KEY_NAME].
@@ -221,6 +237,76 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string boot_disk_kms_key = 23;</code>
      */
     private $boot_disk_kms_key = '';
+    /**
+     * Google Container File System (image streaming) configs.
+     *
+     * Generated from protobuf field <code>.google.container.v1.GcfsConfig gcfs_config = 25;</code>
+     */
+    private $gcfs_config = null;
+    /**
+     * Advanced features for the Compute Engine VM.
+     *
+     * Generated from protobuf field <code>.google.container.v1.AdvancedMachineFeatures advanced_machine_features = 26;</code>
+     */
+    private $advanced_machine_features = null;
+    /**
+     * Enable or disable gvnic in the node pool.
+     *
+     * Generated from protobuf field <code>.google.container.v1.VirtualNIC gvnic = 29;</code>
+     */
+    private $gvnic = null;
+    /**
+     * Spot flag for enabling Spot VM, which is a rebrand of
+     * the existing preemptible flag.
+     *
+     * Generated from protobuf field <code>bool spot = 32;</code>
+     */
+    private $spot = false;
+    /**
+     * Confidential nodes config.
+     * All the nodes in the node pool will be Confidential VM once enabled.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ConfidentialNodes confidential_nodes = 35;</code>
+     */
+    private $confidential_nodes = null;
+    /**
+     * Enable or disable NCCL fast socket for the node pool.
+     *
+     * Generated from protobuf field <code>optional .google.container.v1.FastSocket fast_socket = 36;</code>
+     */
+    private $fast_socket = null;
+    /**
+     * The resource labels for the node pool to use to annotate any related
+     * Google Compute Engine resources.
+     *
+     * Generated from protobuf field <code>map<string, string> resource_labels = 37;</code>
+     */
+    private $resource_labels;
+    /**
+     * Logging configuration.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodePoolLoggingConfig logging_config = 38;</code>
+     */
+    private $logging_config = null;
+    /**
+     * Parameters that can be configured on Windows nodes.
+     *
+     * Generated from protobuf field <code>.google.container.v1.WindowsNodeConfig windows_node_config = 39;</code>
+     */
+    private $windows_node_config = null;
+    /**
+     * Parameters for using raw-block Local NVMe SSDs.
+     *
+     * Generated from protobuf field <code>.google.container.v1.LocalNvmeSsdBlockConfig local_nvme_ssd_block_config = 40;</code>
+     */
+    private $local_nvme_ssd_block_config = null;
+    /**
+     * Parameters for the node ephemeral storage using Local SSDs.
+     * If unspecified, ephemeral storage is backed by the boot disk.
+     *
+     * Generated from protobuf field <code>.google.container.v1.EphemeralStorageLocalSsdConfig ephemeral_storage_local_ssd_config = 41;</code>
+     */
+    private $ephemeral_storage_local_ssd_config = null;
 
     /**
      * Constructor.
@@ -236,7 +322,7 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *           Size of the disk attached to each node, specified in GB.
      *           The smallest allowed disk size is 10GB.
      *           If unspecified, the default disk size is 100GB.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $oauth_scopes
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $oauth_scopes
      *           The set of Google API scopes to be made available on all of the
      *           node VMs under the "default" service account.
      *           The following scopes are recommended, but not required, and by default are
@@ -278,15 +364,15 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *            - "k8s-node-setup-psm1"
      *            - "install-ssh-psm1"
      *            - "user-profile-psm1"
-     *           The following keys are reserved for Windows nodes:
-     *            - "serial-port-logging-enable"
      *           Values are free-form strings, and only have meaning as interpreted by
      *           the image running in the instance. The only restriction placed on them is
      *           that each value's size must be less than or equal to 32 KB.
      *           The total size of all keys and values must be less than 512 KB.
      *     @type string $image_type
      *           The image type to use for this node. Note that for a given image type,
-     *           the latest version of it will be used.
+     *           the latest version of it will be used. Please see
+     *           https://cloud.google.com/kubernetes-engine/docs/concepts/node-images for
+     *           available image types.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           The map of Kubernetes labels (key/value pairs) to be applied to each node.
      *           These will added in addition to any default label(s) that
@@ -302,7 +388,7 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *           disks available on a machine per zone. See:
      *           https://cloud.google.com/compute/docs/disks/local-ssd
      *           for more information.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $tags
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $tags
      *           The list of instance tags applied to all nodes. Tags are used to identify
      *           valid sources or targets for network firewalls and are specified by
      *           the client during cluster or node pool creation. Each tag within the list
@@ -311,7 +397,7 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *           Whether the nodes are created as preemptible VM instances. See:
      *           https://cloud.google.com/compute/docs/instances/preemptible for more
      *           information about preemptible VM instances.
-     *     @type \Google\Cloud\Container\V1\AcceleratorConfig[]|\Google\Protobuf\Internal\RepeatedField $accelerators
+     *     @type array<\Google\Cloud\Container\V1\AcceleratorConfig>|\Google\Protobuf\Internal\RepeatedField $accelerators
      *           A list of hardware accelerators to be attached to each node.
      *           See https://cloud.google.com/compute/docs/gpus for more information about
      *           support for GPUs.
@@ -329,7 +415,7 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *           platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)
      *     @type \Google\Cloud\Container\V1\WorkloadMetadataConfig $workload_metadata_config
      *           The workload metadata configuration for this node.
-     *     @type \Google\Cloud\Container\V1\NodeTaint[]|\Google\Protobuf\Internal\RepeatedField $taints
+     *     @type array<\Google\Cloud\Container\V1\NodeTaint>|\Google\Protobuf\Internal\RepeatedField $taints
      *           List of kubernetes taints to be applied to each node.
      *           For more information, including usage and the valid values, see:
      *           https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
@@ -347,6 +433,10 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *           to this node pool.
      *     @type \Google\Cloud\Container\V1\ShieldedInstanceConfig $shielded_instance_config
      *           Shielded Instance options.
+     *     @type \Google\Cloud\Container\V1\LinuxNodeConfig $linux_node_config
+     *           Parameters that can be configured on Linux nodes.
+     *     @type \Google\Cloud\Container\V1\NodeKubeletConfig $kubelet_config
+     *           Node kubelet configs.
      *     @type string $boot_disk_kms_key
      *           The Customer Managed Encryption Key used to encrypt the boot disk attached
      *           to each node in the node pool. This should be of the form
@@ -354,6 +444,32 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *           For more information about protecting resources with Cloud KMS Keys please
      *           see:
      *           https://cloud.google.com/compute/docs/disks/customer-managed-encryption
+     *     @type \Google\Cloud\Container\V1\GcfsConfig $gcfs_config
+     *           Google Container File System (image streaming) configs.
+     *     @type \Google\Cloud\Container\V1\AdvancedMachineFeatures $advanced_machine_features
+     *           Advanced features for the Compute Engine VM.
+     *     @type \Google\Cloud\Container\V1\VirtualNIC $gvnic
+     *           Enable or disable gvnic in the node pool.
+     *     @type bool $spot
+     *           Spot flag for enabling Spot VM, which is a rebrand of
+     *           the existing preemptible flag.
+     *     @type \Google\Cloud\Container\V1\ConfidentialNodes $confidential_nodes
+     *           Confidential nodes config.
+     *           All the nodes in the node pool will be Confidential VM once enabled.
+     *     @type \Google\Cloud\Container\V1\FastSocket $fast_socket
+     *           Enable or disable NCCL fast socket for the node pool.
+     *     @type array|\Google\Protobuf\Internal\MapField $resource_labels
+     *           The resource labels for the node pool to use to annotate any related
+     *           Google Compute Engine resources.
+     *     @type \Google\Cloud\Container\V1\NodePoolLoggingConfig $logging_config
+     *           Logging configuration.
+     *     @type \Google\Cloud\Container\V1\WindowsNodeConfig $windows_node_config
+     *           Parameters that can be configured on Windows nodes.
+     *     @type \Google\Cloud\Container\V1\LocalNvmeSsdBlockConfig $local_nvme_ssd_block_config
+     *           Parameters for using raw-block Local NVMe SSDs.
+     *     @type \Google\Cloud\Container\V1\EphemeralStorageLocalSsdConfig $ephemeral_storage_local_ssd_config
+     *           Parameters for the node ephemeral storage using Local SSDs.
+     *           If unspecified, ephemeral storage is backed by the boot disk.
      * }
      */
     public function __construct($data = NULL) {
@@ -458,7 +574,7 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      * Monitoring are enabled, in which case their required scopes will be added.
      *
      * Generated from protobuf field <code>repeated string oauth_scopes = 3;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setOauthScopes($var)
@@ -524,8 +640,6 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *  - "k8s-node-setup-psm1"
      *  - "install-ssh-psm1"
      *  - "user-profile-psm1"
-     * The following keys are reserved for Windows nodes:
-     *  - "serial-port-logging-enable"
      * Values are free-form strings, and only have meaning as interpreted by
      * the image running in the instance. The only restriction placed on them is
      * that each value's size must be less than or equal to 32 KB.
@@ -564,8 +678,6 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *  - "k8s-node-setup-psm1"
      *  - "install-ssh-psm1"
      *  - "user-profile-psm1"
-     * The following keys are reserved for Windows nodes:
-     *  - "serial-port-logging-enable"
      * Values are free-form strings, and only have meaning as interpreted by
      * the image running in the instance. The only restriction placed on them is
      * that each value's size must be less than or equal to 32 KB.
@@ -585,7 +697,9 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * The image type to use for this node. Note that for a given image type,
-     * the latest version of it will be used.
+     * the latest version of it will be used. Please see
+     * https://cloud.google.com/kubernetes-engine/docs/concepts/node-images for
+     * available image types.
      *
      * Generated from protobuf field <code>string image_type = 5;</code>
      * @return string
@@ -597,7 +711,9 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * The image type to use for this node. Note that for a given image type,
-     * the latest version of it will be used.
+     * the latest version of it will be used. Please see
+     * https://cloud.google.com/kubernetes-engine/docs/concepts/node-images for
+     * available image types.
      *
      * Generated from protobuf field <code>string image_type = 5;</code>
      * @param string $var
@@ -706,7 +822,7 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      * must comply with RFC1035.
      *
      * Generated from protobuf field <code>repeated string tags = 8;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTags($var)
@@ -766,7 +882,7 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      * support for GPUs.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.AcceleratorConfig accelerators = 11;</code>
-     * @param \Google\Cloud\Container\V1\AcceleratorConfig[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Container\V1\AcceleratorConfig>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAccelerators($var)
@@ -853,7 +969,7 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      */
     public function getWorkloadMetadataConfig()
     {
-        return isset($this->workload_metadata_config) ? $this->workload_metadata_config : null;
+        return $this->workload_metadata_config;
     }
 
     public function hasWorkloadMetadataConfig()
@@ -900,7 +1016,7 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      * https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
      *
      * Generated from protobuf field <code>repeated .google.container.v1.NodeTaint taints = 15;</code>
-     * @param \Google\Cloud\Container\V1\NodeTaint[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Container\V1\NodeTaint>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTaints($var)
@@ -919,7 +1035,7 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      */
     public function getSandboxConfig()
     {
-        return isset($this->sandbox_config) ? $this->sandbox_config : null;
+        return $this->sandbox_config;
     }
 
     public function hasSandboxConfig()
@@ -990,7 +1106,7 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      */
     public function getReservationAffinity()
     {
-        return isset($this->reservation_affinity) ? $this->reservation_affinity : null;
+        return $this->reservation_affinity;
     }
 
     public function hasReservationAffinity()
@@ -1029,7 +1145,7 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      */
     public function getShieldedInstanceConfig()
     {
-        return isset($this->shielded_instance_config) ? $this->shielded_instance_config : null;
+        return $this->shielded_instance_config;
     }
 
     public function hasShieldedInstanceConfig()
@@ -1053,6 +1169,78 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\ShieldedInstanceConfig::class);
         $this->shielded_instance_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Parameters that can be configured on Linux nodes.
+     *
+     * Generated from protobuf field <code>.google.container.v1.LinuxNodeConfig linux_node_config = 21;</code>
+     * @return \Google\Cloud\Container\V1\LinuxNodeConfig|null
+     */
+    public function getLinuxNodeConfig()
+    {
+        return $this->linux_node_config;
+    }
+
+    public function hasLinuxNodeConfig()
+    {
+        return isset($this->linux_node_config);
+    }
+
+    public function clearLinuxNodeConfig()
+    {
+        unset($this->linux_node_config);
+    }
+
+    /**
+     * Parameters that can be configured on Linux nodes.
+     *
+     * Generated from protobuf field <code>.google.container.v1.LinuxNodeConfig linux_node_config = 21;</code>
+     * @param \Google\Cloud\Container\V1\LinuxNodeConfig $var
+     * @return $this
+     */
+    public function setLinuxNodeConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\LinuxNodeConfig::class);
+        $this->linux_node_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Node kubelet configs.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodeKubeletConfig kubelet_config = 22;</code>
+     * @return \Google\Cloud\Container\V1\NodeKubeletConfig|null
+     */
+    public function getKubeletConfig()
+    {
+        return $this->kubelet_config;
+    }
+
+    public function hasKubeletConfig()
+    {
+        return isset($this->kubelet_config);
+    }
+
+    public function clearKubeletConfig()
+    {
+        unset($this->kubelet_config);
+    }
+
+    /**
+     * Node kubelet configs.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodeKubeletConfig kubelet_config = 22;</code>
+     * @param \Google\Cloud\Container\V1\NodeKubeletConfig $var
+     * @return $this
+     */
+    public function setKubeletConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\NodeKubeletConfig::class);
+        $this->kubelet_config = $var;
 
         return $this;
     }
@@ -1089,6 +1277,390 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->boot_disk_kms_key = $var;
+
+        return $this;
+    }
+
+    /**
+     * Google Container File System (image streaming) configs.
+     *
+     * Generated from protobuf field <code>.google.container.v1.GcfsConfig gcfs_config = 25;</code>
+     * @return \Google\Cloud\Container\V1\GcfsConfig|null
+     */
+    public function getGcfsConfig()
+    {
+        return $this->gcfs_config;
+    }
+
+    public function hasGcfsConfig()
+    {
+        return isset($this->gcfs_config);
+    }
+
+    public function clearGcfsConfig()
+    {
+        unset($this->gcfs_config);
+    }
+
+    /**
+     * Google Container File System (image streaming) configs.
+     *
+     * Generated from protobuf field <code>.google.container.v1.GcfsConfig gcfs_config = 25;</code>
+     * @param \Google\Cloud\Container\V1\GcfsConfig $var
+     * @return $this
+     */
+    public function setGcfsConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\GcfsConfig::class);
+        $this->gcfs_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Advanced features for the Compute Engine VM.
+     *
+     * Generated from protobuf field <code>.google.container.v1.AdvancedMachineFeatures advanced_machine_features = 26;</code>
+     * @return \Google\Cloud\Container\V1\AdvancedMachineFeatures|null
+     */
+    public function getAdvancedMachineFeatures()
+    {
+        return $this->advanced_machine_features;
+    }
+
+    public function hasAdvancedMachineFeatures()
+    {
+        return isset($this->advanced_machine_features);
+    }
+
+    public function clearAdvancedMachineFeatures()
+    {
+        unset($this->advanced_machine_features);
+    }
+
+    /**
+     * Advanced features for the Compute Engine VM.
+     *
+     * Generated from protobuf field <code>.google.container.v1.AdvancedMachineFeatures advanced_machine_features = 26;</code>
+     * @param \Google\Cloud\Container\V1\AdvancedMachineFeatures $var
+     * @return $this
+     */
+    public function setAdvancedMachineFeatures($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\AdvancedMachineFeatures::class);
+        $this->advanced_machine_features = $var;
+
+        return $this;
+    }
+
+    /**
+     * Enable or disable gvnic in the node pool.
+     *
+     * Generated from protobuf field <code>.google.container.v1.VirtualNIC gvnic = 29;</code>
+     * @return \Google\Cloud\Container\V1\VirtualNIC|null
+     */
+    public function getGvnic()
+    {
+        return $this->gvnic;
+    }
+
+    public function hasGvnic()
+    {
+        return isset($this->gvnic);
+    }
+
+    public function clearGvnic()
+    {
+        unset($this->gvnic);
+    }
+
+    /**
+     * Enable or disable gvnic in the node pool.
+     *
+     * Generated from protobuf field <code>.google.container.v1.VirtualNIC gvnic = 29;</code>
+     * @param \Google\Cloud\Container\V1\VirtualNIC $var
+     * @return $this
+     */
+    public function setGvnic($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\VirtualNIC::class);
+        $this->gvnic = $var;
+
+        return $this;
+    }
+
+    /**
+     * Spot flag for enabling Spot VM, which is a rebrand of
+     * the existing preemptible flag.
+     *
+     * Generated from protobuf field <code>bool spot = 32;</code>
+     * @return bool
+     */
+    public function getSpot()
+    {
+        return $this->spot;
+    }
+
+    /**
+     * Spot flag for enabling Spot VM, which is a rebrand of
+     * the existing preemptible flag.
+     *
+     * Generated from protobuf field <code>bool spot = 32;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSpot($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->spot = $var;
+
+        return $this;
+    }
+
+    /**
+     * Confidential nodes config.
+     * All the nodes in the node pool will be Confidential VM once enabled.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ConfidentialNodes confidential_nodes = 35;</code>
+     * @return \Google\Cloud\Container\V1\ConfidentialNodes|null
+     */
+    public function getConfidentialNodes()
+    {
+        return $this->confidential_nodes;
+    }
+
+    public function hasConfidentialNodes()
+    {
+        return isset($this->confidential_nodes);
+    }
+
+    public function clearConfidentialNodes()
+    {
+        unset($this->confidential_nodes);
+    }
+
+    /**
+     * Confidential nodes config.
+     * All the nodes in the node pool will be Confidential VM once enabled.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ConfidentialNodes confidential_nodes = 35;</code>
+     * @param \Google\Cloud\Container\V1\ConfidentialNodes $var
+     * @return $this
+     */
+    public function setConfidentialNodes($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\ConfidentialNodes::class);
+        $this->confidential_nodes = $var;
+
+        return $this;
+    }
+
+    /**
+     * Enable or disable NCCL fast socket for the node pool.
+     *
+     * Generated from protobuf field <code>optional .google.container.v1.FastSocket fast_socket = 36;</code>
+     * @return \Google\Cloud\Container\V1\FastSocket|null
+     */
+    public function getFastSocket()
+    {
+        return $this->fast_socket;
+    }
+
+    public function hasFastSocket()
+    {
+        return isset($this->fast_socket);
+    }
+
+    public function clearFastSocket()
+    {
+        unset($this->fast_socket);
+    }
+
+    /**
+     * Enable or disable NCCL fast socket for the node pool.
+     *
+     * Generated from protobuf field <code>optional .google.container.v1.FastSocket fast_socket = 36;</code>
+     * @param \Google\Cloud\Container\V1\FastSocket $var
+     * @return $this
+     */
+    public function setFastSocket($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\FastSocket::class);
+        $this->fast_socket = $var;
+
+        return $this;
+    }
+
+    /**
+     * The resource labels for the node pool to use to annotate any related
+     * Google Compute Engine resources.
+     *
+     * Generated from protobuf field <code>map<string, string> resource_labels = 37;</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getResourceLabels()
+    {
+        return $this->resource_labels;
+    }
+
+    /**
+     * The resource labels for the node pool to use to annotate any related
+     * Google Compute Engine resources.
+     *
+     * Generated from protobuf field <code>map<string, string> resource_labels = 37;</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setResourceLabels($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->resource_labels = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Logging configuration.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodePoolLoggingConfig logging_config = 38;</code>
+     * @return \Google\Cloud\Container\V1\NodePoolLoggingConfig|null
+     */
+    public function getLoggingConfig()
+    {
+        return $this->logging_config;
+    }
+
+    public function hasLoggingConfig()
+    {
+        return isset($this->logging_config);
+    }
+
+    public function clearLoggingConfig()
+    {
+        unset($this->logging_config);
+    }
+
+    /**
+     * Logging configuration.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodePoolLoggingConfig logging_config = 38;</code>
+     * @param \Google\Cloud\Container\V1\NodePoolLoggingConfig $var
+     * @return $this
+     */
+    public function setLoggingConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\NodePoolLoggingConfig::class);
+        $this->logging_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Parameters that can be configured on Windows nodes.
+     *
+     * Generated from protobuf field <code>.google.container.v1.WindowsNodeConfig windows_node_config = 39;</code>
+     * @return \Google\Cloud\Container\V1\WindowsNodeConfig|null
+     */
+    public function getWindowsNodeConfig()
+    {
+        return $this->windows_node_config;
+    }
+
+    public function hasWindowsNodeConfig()
+    {
+        return isset($this->windows_node_config);
+    }
+
+    public function clearWindowsNodeConfig()
+    {
+        unset($this->windows_node_config);
+    }
+
+    /**
+     * Parameters that can be configured on Windows nodes.
+     *
+     * Generated from protobuf field <code>.google.container.v1.WindowsNodeConfig windows_node_config = 39;</code>
+     * @param \Google\Cloud\Container\V1\WindowsNodeConfig $var
+     * @return $this
+     */
+    public function setWindowsNodeConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\WindowsNodeConfig::class);
+        $this->windows_node_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Parameters for using raw-block Local NVMe SSDs.
+     *
+     * Generated from protobuf field <code>.google.container.v1.LocalNvmeSsdBlockConfig local_nvme_ssd_block_config = 40;</code>
+     * @return \Google\Cloud\Container\V1\LocalNvmeSsdBlockConfig|null
+     */
+    public function getLocalNvmeSsdBlockConfig()
+    {
+        return $this->local_nvme_ssd_block_config;
+    }
+
+    public function hasLocalNvmeSsdBlockConfig()
+    {
+        return isset($this->local_nvme_ssd_block_config);
+    }
+
+    public function clearLocalNvmeSsdBlockConfig()
+    {
+        unset($this->local_nvme_ssd_block_config);
+    }
+
+    /**
+     * Parameters for using raw-block Local NVMe SSDs.
+     *
+     * Generated from protobuf field <code>.google.container.v1.LocalNvmeSsdBlockConfig local_nvme_ssd_block_config = 40;</code>
+     * @param \Google\Cloud\Container\V1\LocalNvmeSsdBlockConfig $var
+     * @return $this
+     */
+    public function setLocalNvmeSsdBlockConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\LocalNvmeSsdBlockConfig::class);
+        $this->local_nvme_ssd_block_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Parameters for the node ephemeral storage using Local SSDs.
+     * If unspecified, ephemeral storage is backed by the boot disk.
+     *
+     * Generated from protobuf field <code>.google.container.v1.EphemeralStorageLocalSsdConfig ephemeral_storage_local_ssd_config = 41;</code>
+     * @return \Google\Cloud\Container\V1\EphemeralStorageLocalSsdConfig|null
+     */
+    public function getEphemeralStorageLocalSsdConfig()
+    {
+        return $this->ephemeral_storage_local_ssd_config;
+    }
+
+    public function hasEphemeralStorageLocalSsdConfig()
+    {
+        return isset($this->ephemeral_storage_local_ssd_config);
+    }
+
+    public function clearEphemeralStorageLocalSsdConfig()
+    {
+        unset($this->ephemeral_storage_local_ssd_config);
+    }
+
+    /**
+     * Parameters for the node ephemeral storage using Local SSDs.
+     * If unspecified, ephemeral storage is backed by the boot disk.
+     *
+     * Generated from protobuf field <code>.google.container.v1.EphemeralStorageLocalSsdConfig ephemeral_storage_local_ssd_config = 41;</code>
+     * @param \Google\Cloud\Container\V1\EphemeralStorageLocalSsdConfig $var
+     * @return $this
+     */
+    public function setEphemeralStorageLocalSsdConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\EphemeralStorageLocalSsdConfig::class);
+        $this->ephemeral_storage_local_ssd_config = $var;
 
         return $this;
     }

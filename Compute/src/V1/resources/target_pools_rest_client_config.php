@@ -8,11 +8,6 @@ return [
                 'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/targetPools/{target_pool}/addHealthCheck',
                 'body' => 'target_pools_add_health_check_request_resource',
                 'placeholders' => [
-                    'target_pool' => [
-                        'getters' => [
-                            'getTargetPool',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
@@ -21,6 +16,11 @@ return [
                     'region' => [
                         'getters' => [
                             'getRegion',
+                        ],
+                    ],
+                    'target_pool' => [
+                        'getters' => [
+                            'getTargetPool',
                         ],
                     ],
                 ],
@@ -30,11 +30,6 @@ return [
                 'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/targetPools/{target_pool}/addInstance',
                 'body' => 'target_pools_add_instance_request_resource',
                 'placeholders' => [
-                    'target_pool' => [
-                        'getters' => [
-                            'getTargetPool',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
@@ -43,6 +38,11 @@ return [
                     'region' => [
                         'getters' => [
                             'getRegion',
+                        ],
+                    ],
+                    'target_pool' => [
+                        'getters' => [
+                            'getTargetPool',
                         ],
                     ],
                 ],
@@ -62,11 +62,6 @@ return [
                 'method' => 'delete',
                 'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/targetPools/{target_pool}',
                 'placeholders' => [
-                    'target_pool' => [
-                        'getters' => [
-                            'getTargetPool',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
@@ -75,6 +70,11 @@ return [
                     'region' => [
                         'getters' => [
                             'getRegion',
+                        ],
+                    ],
+                    'target_pool' => [
+                        'getters' => [
+                            'getTargetPool',
                         ],
                     ],
                 ],
@@ -83,11 +83,6 @@ return [
                 'method' => 'get',
                 'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/targetPools/{target_pool}',
                 'placeholders' => [
-                    'target_pool' => [
-                        'getters' => [
-                            'getTargetPool',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
@@ -96,6 +91,11 @@ return [
                     'region' => [
                         'getters' => [
                             'getRegion',
+                        ],
+                    ],
+                    'target_pool' => [
+                        'getters' => [
+                            'getTargetPool',
                         ],
                     ],
                 ],
@@ -105,11 +105,6 @@ return [
                 'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/targetPools/{target_pool}/getHealth',
                 'body' => 'instance_reference_resource',
                 'placeholders' => [
-                    'target_pool' => [
-                        'getters' => [
-                            'getTargetPool',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
@@ -118,6 +113,11 @@ return [
                     'region' => [
                         'getters' => [
                             'getRegion',
+                        ],
+                    ],
+                    'target_pool' => [
+                        'getters' => [
+                            'getTargetPool',
                         ],
                     ],
                 ],
@@ -160,11 +160,6 @@ return [
                 'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/targetPools/{target_pool}/removeHealthCheck',
                 'body' => 'target_pools_remove_health_check_request_resource',
                 'placeholders' => [
-                    'target_pool' => [
-                        'getters' => [
-                            'getTargetPool',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
@@ -173,6 +168,11 @@ return [
                     'region' => [
                         'getters' => [
                             'getRegion',
+                        ],
+                    ],
+                    'target_pool' => [
+                        'getters' => [
+                            'getTargetPool',
                         ],
                     ],
                 ],
@@ -182,9 +182,54 @@ return [
                 'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/targetPools/{target_pool}/removeInstance',
                 'body' => 'target_pools_remove_instance_request_resource',
                 'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'region' => [
+                        'getters' => [
+                            'getRegion',
+                        ],
+                    ],
                     'target_pool' => [
                         'getters' => [
                             'getTargetPool',
+                        ],
+                    ],
+                ],
+            ],
+            'SetBackup' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/targetPools/{target_pool}/setBackup',
+                'body' => 'target_reference_resource',
+                'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'region' => [
+                        'getters' => [
+                            'getRegion',
+                        ],
+                    ],
+                    'target_pool' => [
+                        'getters' => [
+                            'getTargetPool',
+                        ],
+                    ],
+                ],
+            ],
+        ],
+        'google.cloud.compute.v1.RegionOperations' => [
+            'Delete' => [
+                'method' => 'delete',
+                'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/operations/{operation}',
+                'placeholders' => [
+                    'operation' => [
+                        'getters' => [
+                            'getOperation',
                         ],
                     ],
                     'project' => [
@@ -199,14 +244,50 @@ return [
                     ],
                 ],
             ],
-            'SetBackup' => [
-                'method' => 'post',
-                'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/targetPools/{target_pool}/setBackup',
-                'body' => 'target_reference_resource',
+            'Get' => [
+                'method' => 'get',
+                'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/operations/{operation}',
                 'placeholders' => [
-                    'target_pool' => [
+                    'operation' => [
                         'getters' => [
-                            'getTargetPool',
+                            'getOperation',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'region' => [
+                        'getters' => [
+                            'getRegion',
+                        ],
+                    ],
+                ],
+            ],
+            'List' => [
+                'method' => 'get',
+                'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/operations',
+                'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'region' => [
+                        'getters' => [
+                            'getRegion',
+                        ],
+                    ],
+                ],
+            ],
+            'Wait' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/operations/{operation}/wait',
+                'placeholders' => [
+                    'operation' => [
+                        'getters' => [
+                            'getOperation',
                         ],
                     ],
                     'project' => [

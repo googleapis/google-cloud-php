@@ -17,15 +17,17 @@ use Google\Protobuf\Internal\GPBUtil;
 class TranslateTextGlossaryConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Specifies the glossary used for this translation. Use
-     * this format: projects/&#42;&#47;locations/&#42;&#47;glossaries/&#42;
+     * Required. The `glossary` to be applied for this translation.
+     * The format depends on the glossary:
+     * - User-provided custom glossary:
+     *   `projects/{project-number-or-id}/locations/{location-id}/glossaries/{glossary-id}`
      *
      * Generated from protobuf field <code>string glossary = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $glossary = '';
     /**
-     * Optional. Indicates match is case-insensitive.
-     * Default value is false if missing.
+     * Optional. Indicates match is case insensitive. The default value is `false`
+     * if missing.
      *
      * Generated from protobuf field <code>bool ignore_case = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -38,11 +40,13 @@ class TranslateTextGlossaryConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $glossary
-     *           Required. Specifies the glossary used for this translation. Use
-     *           this format: projects/&#42;&#47;locations/&#42;&#47;glossaries/&#42;
+     *           Required. The `glossary` to be applied for this translation.
+     *           The format depends on the glossary:
+     *           - User-provided custom glossary:
+     *             `projects/{project-number-or-id}/locations/{location-id}/glossaries/{glossary-id}`
      *     @type bool $ignore_case
-     *           Optional. Indicates match is case-insensitive.
-     *           Default value is false if missing.
+     *           Optional. Indicates match is case insensitive. The default value is `false`
+     *           if missing.
      * }
      */
     public function __construct($data = NULL) {
@@ -51,8 +55,10 @@ class TranslateTextGlossaryConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Specifies the glossary used for this translation. Use
-     * this format: projects/&#42;&#47;locations/&#42;&#47;glossaries/&#42;
+     * Required. The `glossary` to be applied for this translation.
+     * The format depends on the glossary:
+     * - User-provided custom glossary:
+     *   `projects/{project-number-or-id}/locations/{location-id}/glossaries/{glossary-id}`
      *
      * Generated from protobuf field <code>string glossary = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -63,8 +69,10 @@ class TranslateTextGlossaryConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Specifies the glossary used for this translation. Use
-     * this format: projects/&#42;&#47;locations/&#42;&#47;glossaries/&#42;
+     * Required. The `glossary` to be applied for this translation.
+     * The format depends on the glossary:
+     * - User-provided custom glossary:
+     *   `projects/{project-number-or-id}/locations/{location-id}/glossaries/{glossary-id}`
      *
      * Generated from protobuf field <code>string glossary = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -79,8 +87,8 @@ class TranslateTextGlossaryConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Indicates match is case-insensitive.
-     * Default value is false if missing.
+     * Optional. Indicates match is case insensitive. The default value is `false`
+     * if missing.
      *
      * Generated from protobuf field <code>bool ignore_case = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
@@ -91,8 +99,8 @@ class TranslateTextGlossaryConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Indicates match is case-insensitive.
-     * Default value is false if missing.
+     * Optional. Indicates match is case insensitive. The default value is `false`
+     * if missing.
      *
      * Generated from protobuf field <code>bool ignore_case = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var

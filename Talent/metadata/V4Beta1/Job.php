@@ -18,12 +18,10 @@ class Job
         \GPBMetadata\Google\Api\Resource::initOnce();
         \GPBMetadata\Google\Cloud\Talent\V4Beta1\Common::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
-        \GPBMetadata\Google\Type\PostalAddress::initOnce();
-        \GPBMetadata\Google\Api\Annotations::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Õ
-%google/cloud/talent/v4beta1/job.protogoogle.cloud.talent.v4beta1google/api/resource.proto(google/cloud/talent/v4beta1/common.protogoogle/protobuf/timestamp.proto google/type/postal_address.protogoogle/api/annotations.proto"à
+‹
+%google/cloud/talent/v4beta1/job.protogoogle.cloud.talent.v4beta1google/api/resource.proto(google/cloud/talent/v4beta1/common.protogoogle/protobuf/timestamp.proto"à
 Job
 name (	4
 company (	B#àAúA
@@ -73,8 +71,8 @@ visibility (2\'.google.cloud.talent.v4beta1.VisibilityB2
 CustomAttributesEntry
 key (	;
 value (2,.google.cloud.talent.v4beta1.CustomAttribute:8:kêAh
-jobs.googleapis.com/Job.projects/{project}/tenants/{tenant}/jobs/{job}projects/{project}/jobs/{job}B~
-com.google.cloud.talent.v4beta1BJobResourceProtoPZAgoogle.golang.org/genproto/googleapis/cloud/talent/v4beta1;talent¢CTSbproto3'
+jobs.googleapis.com/Job.projects/{project}/tenants/{tenant}/jobs/{job}projects/{project}/jobs/{job}Bt
+com.google.cloud.talent.v4beta1BJobResourceProtoPZ7cloud.google.com/go/talent/apiv4beta1/talentpb;talentpb¢CTSbproto3'
         , true);
 
         static::$is_initialized = true;

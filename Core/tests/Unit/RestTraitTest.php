@@ -24,20 +24,23 @@ use Google\Cloud\Core\RestTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Prophecy\Argument;
 use Psr\Http\Message\RequestInterface;
+use Yoast\PHPUnitPolyfills\Polyfills\AssertStringContains;
 
 /**
  * @group core
  */
 class RestTraitTest extends TestCase
 {
+    use AssertStringContains;
+
     private $implementation;
     private $requestBuilder;
     private $requestWrapper;
 
-    public function setUp()
+    public function set_up()
     {
         $this->implementation = $this->getObjectForTrait(RestTrait::class);
         $this->requestWrapper = $this->prophesize(RequestWrapper::class);
@@ -83,6 +86,34 @@ class RestTraitTest extends TestCase
         $this->assertEquals(json_decode($responseBody, true), $actualResponse);
     }
 
+    public function testRestSendsRequestWithRetryFunction()
+    {
+        $retryFunction = function (\Exception $ex) {
+            return true;
+        };
+        $restOptions = [
+            'restRetryFunction' => $retryFunction,
+        ];
+        $responseBody = '{"whatAWonderful": "response"}';
+        $this->requestBuilder->build('resource', 'method', Argument::any())
+            ->willReturn(new Request('GET', 'http://www.example.com'));
+
+        $actualRetryFunction = null;
+        $this->requestWrapper->send(Argument::any(), Argument::any())
+            ->will(function ($args) use (&$actualRetryFunction, $responseBody) {
+                $actualRetryFunction = $args[1]['restRetryFunction'];
+                return new Response(200, [], $responseBody);
+            })
+            ->shouldBeCalledOnce();
+        $this->implementation->setRequestBuilder($this->requestBuilder->reveal());
+        $this->implementation->setRequestWrapper($this->requestWrapper->reveal());
+
+        $actualResponse = $this->implementation->send('resource', 'method', $restOptions);
+
+        $this->assertEquals($retryFunction, $actualRetryFunction);
+        $this->assertEquals($actualResponse, json_decode($responseBody, true));
+    }
+
     public function testSendsRequestNotFoundWhitelisted()
     {
         $this->requestWrapper->send(
@@ -100,7 +131,7 @@ class RestTraitTest extends TestCase
             $msg = $e->getMessage();
         }
 
-        $this->assertContains('NOTE: Error may be due to Whitelist Restriction.', $msg);
+        $this->assertStringContainsString('NOTE: Error may be due to Whitelist Restriction.', $msg);
     }
 
     public function testSendsRequestNotFoundNotWhitelisted()
@@ -120,7 +151,7 @@ class RestTraitTest extends TestCase
             $msg = $e->getMessage();
         }
 
-        $this->assertNotContains('NOTE: Error may be due to Whitelist Restriction.', $msg);
+        $this->assertStringNotContainsString('NOTE: Error may be due to Whitelist Restriction.', $msg);
     }
 
     /**

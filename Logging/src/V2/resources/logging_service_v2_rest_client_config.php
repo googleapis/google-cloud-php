@@ -32,19 +32,10 @@ return [
                     ],
                 ],
             ],
-            'WriteLogEntries' => [
-                'method' => 'post',
-                'uriTemplate' => '/v2/entries:write',
-                'body' => '*',
-            ],
             'ListLogEntries' => [
                 'method' => 'post',
                 'uriTemplate' => '/v2/entries:list',
                 'body' => '*',
-            ],
-            'ListMonitoredResourceDescriptors' => [
-                'method' => 'get',
-                'uriTemplate' => '/v2/monitoredResourceDescriptors',
             ],
             'ListLogs' => [
                 'method' => 'get',
@@ -75,6 +66,110 @@ return [
                     ],
                 ],
             ],
+            'ListMonitoredResourceDescriptors' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/monitoredResourceDescriptors',
+            ],
+            'WriteLogEntries' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/entries:write',
+                'body' => '*',
+            ],
+        ],
+        'google.longrunning.Operations' => [
+            'CancelOperation' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{name=*/*/locations/*/operations/*}:cancel',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{name=projects/*/locations/*/operations/*}:cancel',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{name=organizations/*/locations/*/operations/*}:cancel',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{name=folders/*/locations/*/operations/*}:cancel',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{name=billingAccounts/*/locations/*/operations/*}:cancel',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetOperation' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{name=*/*/locations/*/operations/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{name=projects/*/locations/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{name=organizations/*/locations/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{name=folders/*/locations/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{name=billingAccounts/*/operations/*}',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListOperations' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{name=*/*/locations/*}/operations',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{name=projects/*/locations/*}/operations',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{name=organizations/*/locations/*}/operations',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{name=folders/*/locations/*}/operations',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{name=billingAccounts/*/locations/*}/operations',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
         ],
     ],
+    'numericEnums' => true,
 ];

@@ -32,20 +32,24 @@ use Google\Cloud\Spanner\Date;
 use Google\Cloud\Spanner\Duration;
 use Google\Cloud\Spanner\Instance;
 use Google\Cloud\Spanner\InstanceConfiguration;
+use Google\Cloud\Spanner\PgJsonb;
 use Google\Cloud\Spanner\KeyRange;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Numeric;
+use Google\Cloud\Spanner\PgNumeric;
 use Google\Cloud\Spanner\SpannerClient;
 use Google\Cloud\Spanner\Tests\StubCreationTrait;
 use Google\Cloud\Spanner\Timestamp;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Prophecy\Argument;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group spanner
  */
 class SpannerClientTest extends TestCase
 {
+    use ExpectException;
     use GrpcTestTrait;
     use StubCreationTrait;
 
@@ -57,7 +61,7 @@ class SpannerClientTest extends TestCase
     private $client;
     private $connection;
 
-    public function setUp()
+    public function set_up()
     {
         $this->checkAndSkipGrpcTests();
 
@@ -203,6 +207,87 @@ class SpannerClientTest extends TestCase
     /**
      * @group spanner-admin
      */
+    public function testCreateInstanceWithNodes()
+    {
+        $this->connection->createInstance(Argument::that(function ($arg) {
+            if ($arg['name'] !== InstanceAdminClient::instanceName(self::PROJECT, self::INSTANCE)) {
+                return false;
+            }
+
+            if ($arg['config'] !== InstanceAdminClient::instanceConfigName(self::PROJECT, self::CONFIG)) {
+                return false;
+            }
+
+            return isset($arg['nodeCount']) && $arg['nodeCount'] === 2;
+        }))
+            ->shouldBeCalled()
+            ->willReturn([
+                'name' => 'operations/foo'
+            ]);
+
+        $this->client->___setProperty('connection', $this->connection->reveal());
+
+        $config = $this->prophesize(InstanceConfiguration::class);
+        $config->name()->willReturn(InstanceAdminClient::instanceConfigName(self::PROJECT, self::CONFIG));
+
+        $operation = $this->client->createInstance($config->reveal(), self::INSTANCE, [
+            'nodeCount' => 2
+        ]);
+
+        $this->assertInstanceOf(LongRunningOperation::class, $operation);
+    }
+
+    /**
+     * @group spanner-admin
+     */
+    public function testCreateInstanceWithProcessingUnits()
+    {
+        $this->connection->createInstance(Argument::that(function ($arg) {
+            if ($arg['name'] !== InstanceAdminClient::instanceName(self::PROJECT, self::INSTANCE)) {
+                return false;
+            }
+
+            if ($arg['config'] !== InstanceAdminClient::instanceConfigName(self::PROJECT, self::CONFIG)) {
+                return false;
+            }
+
+            return isset($arg['processingUnits']) && $arg['processingUnits'] === 2000;
+        }))
+            ->shouldBeCalled()
+            ->willReturn([
+                'name' => 'operations/foo'
+            ]);
+
+        $this->client->___setProperty('connection', $this->connection->reveal());
+
+        $config = $this->prophesize(InstanceConfiguration::class);
+        $config->name()->willReturn(InstanceAdminClient::instanceConfigName(self::PROJECT, self::CONFIG));
+
+        $operation = $this->client->createInstance($config->reveal(), self::INSTANCE, [
+            'processingUnits' => 2000
+        ]);
+
+        $this->assertInstanceOf(LongRunningOperation::class, $operation);
+    }
+
+    /**
+     * @group spanner-admin
+     */
+    public function testCreateInstanceRaisesInvalidArgument()
+    {
+        $this->expectException('\InvalidArgumentException');
+
+        $config = $this->prophesize(InstanceConfiguration::class);
+
+        $this->client->createInstance($config->reveal(), self::INSTANCE, [
+            'nodeCount' => 2,
+            'processingUnits' => 2000,
+        ]);
+    }
+
+    /**
+     * @group spanner-admin
+     */
     public function testInstance()
     {
         $i = $this->client->instance('foo');
@@ -310,6 +395,30 @@ class SpannerClientTest extends TestCase
         $this->assertInstanceOf(Numeric::class, $n);
     }
 
+    public function testPgNumeric()
+    {
+        $decimalVal = $this->client->pgNumeric('12345.123456789');
+        $this->assertInstanceOf(PgNumeric::class, $decimalVal);
+
+        $scientificVal = $this->client->pgNumeric('1.09E100');
+        $this->assertInstanceOf(PgNumeric::class, $scientificVal);
+    }
+
+    public function testPgJsonB()
+    {
+        $strVal = $this->client->pgJsonb('{}');
+        $this->assertInstanceOf(PgJsonb::class, $strVal);
+
+        $arrVal = $this->client->pgJsonb(["a" => 1, "b" => 2]);
+        $this->assertInstanceOf(PgJsonb::class, $arrVal);
+
+        $stub = $this->prophesize('stdClass');
+        $stub->willImplement('JsonSerializable');
+        $stub->jsonSerialize()->willReturn(["a" => 1, "b" => null]);
+        $objVal = $this->client->pgJsonb($stub->reveal());
+        $this->assertInstanceOf(PgJsonb::class, $objVal);
+    }
+
     public function testInt64()
     {
         $i64 = $this->client->int64('123');
@@ -326,5 +435,12 @@ class SpannerClientTest extends TestCase
     {
         $t = $this->client->commitTimestamp();
         $this->assertInstanceOf(CommitTimestamp::class, $t);
+    }
+
+    public function testSpannerClientDatabaseRole()
+    {
+        $instance = $this->prophesize(Instance::class);
+        $instance->database(Argument::any(), ['databaseRole' => 'Reader'])->shouldBeCalled();
+        $this->client->connect($instance->reveal(), self::DATABASE, ['databaseRole' => 'Reader']);
     }
 }

@@ -3,11 +3,55 @@
 return [
     'interfaces' => [
         'google.datastore.admin.v1.DatastoreAdmin' => [
+            'CreateIndex' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/projects/{project_id}/indexes',
+                'body' => 'index',
+                'placeholders' => [
+                    'project_id' => [
+                        'getters' => [
+                            'getProjectId',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteIndex' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/projects/{project_id}/indexes/{index_id}',
+                'placeholders' => [
+                    'index_id' => [
+                        'getters' => [
+                            'getIndexId',
+                        ],
+                    ],
+                    'project_id' => [
+                        'getters' => [
+                            'getProjectId',
+                        ],
+                    ],
+                ],
+            ],
             'ExportEntities' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/projects/{project_id}:export',
                 'body' => '*',
                 'placeholders' => [
+                    'project_id' => [
+                        'getters' => [
+                            'getProjectId',
+                        ],
+                    ],
+                ],
+            ],
+            'GetIndex' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/projects/{project_id}/indexes/{index_id}',
+                'placeholders' => [
+                    'index_id' => [
+                        'getters' => [
+                            'getIndexId',
+                        ],
+                    ],
                     'project_id' => [
                         'getters' => [
                             'getProjectId',
@@ -23,22 +67,6 @@ return [
                     'project_id' => [
                         'getters' => [
                             'getProjectId',
-                        ],
-                    ],
-                ],
-            ],
-            'GetIndex' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/projects/{project_id}/indexes/{index_id}',
-                'placeholders' => [
-                    'project_id' => [
-                        'getters' => [
-                            'getProjectId',
-                        ],
-                    ],
-                    'index_id' => [
-                        'getters' => [
-                            'getIndexId',
                         ],
                     ],
                 ],
@@ -102,4 +130,5 @@ return [
             ],
         ],
     ],
+    'numericEnums' => true,
 ];

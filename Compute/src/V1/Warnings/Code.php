@@ -20,102 +20,164 @@ class Code
      */
     const UNDEFINED_CODE = 0;
     /**
+     * Warning about failed cleanup of transient changes made by a failed operation.
+     *
      * Generated from protobuf enum <code>CLEANUP_FAILED = 150308440;</code>
      */
     const CLEANUP_FAILED = 150308440;
     /**
-     * Generated from protobuf enum <code>DEPRECATED_RESOURCE_USED = 123400130;</code>
+     * A link to a deprecated resource was created.
+     *
+     * Generated from protobuf enum <code>DEPRECATED_RESOURCE_USED = 391835586;</code>
      */
-    const DEPRECATED_RESOURCE_USED = 123400130;
+    const DEPRECATED_RESOURCE_USED = 391835586;
     /**
-     * Generated from protobuf enum <code>DEPRECATED_TYPE_USED = 78090774;</code>
+     * When deploying and at least one of the resources has a type marked as deprecated
+     *
+     * Generated from protobuf enum <code>DEPRECATED_TYPE_USED = 346526230;</code>
      */
-    const DEPRECATED_TYPE_USED = 78090774;
+    const DEPRECATED_TYPE_USED = 346526230;
     /**
-     * Generated from protobuf enum <code>DISK_SIZE_LARGER_THAN_IMAGE_SIZE = 101007511;</code>
+     * The user created a boot disk that is larger than image size.
+     *
+     * Generated from protobuf enum <code>DISK_SIZE_LARGER_THAN_IMAGE_SIZE = 369442967;</code>
      */
-    const DISK_SIZE_LARGER_THAN_IMAGE_SIZE = 101007511;
+    const DISK_SIZE_LARGER_THAN_IMAGE_SIZE = 369442967;
     /**
-     * Generated from protobuf enum <code>EXPERIMENTAL_TYPE_USED = 183518987;</code>
+     * When deploying and at least one of the resources has a type marked as experimental
+     *
+     * Generated from protobuf enum <code>EXPERIMENTAL_TYPE_USED = 451954443;</code>
      */
-    const EXPERIMENTAL_TYPE_USED = 183518987;
+    const EXPERIMENTAL_TYPE_USED = 451954443;
     /**
+     * Warning that is present in an external api call
+     *
      * Generated from protobuf enum <code>EXTERNAL_API_WARNING = 175546307;</code>
      */
     const EXTERNAL_API_WARNING = 175546307;
     /**
-     * Generated from protobuf enum <code>FIELD_VALUE_OVERRIDEN = 61233967;</code>
+     * Warning that value of a field has been overridden. Deprecated unused field.
+     *
+     * Generated from protobuf enum <code>FIELD_VALUE_OVERRIDEN = 329669423;</code>
      */
-    const FIELD_VALUE_OVERRIDEN = 61233967;
+    const FIELD_VALUE_OVERRIDEN = 329669423;
     /**
-     * Generated from protobuf enum <code>INJECTED_KERNELS_DEPRECATED = 148941963;</code>
+     * The operation involved use of an injected kernel, which is deprecated.
+     *
+     * Generated from protobuf enum <code>INJECTED_KERNELS_DEPRECATED = 417377419;</code>
      */
-    const INJECTED_KERNELS_DEPRECATED = 148941963;
+    const INJECTED_KERNELS_DEPRECATED = 417377419;
     /**
-     * Generated from protobuf enum <code>LARGE_DEPLOYMENT_WARNING = 213005222;</code>
+     * A WEIGHTED_MAGLEV backend service is associated with a health check that is not of type HTTP/HTTPS/HTTP2.
+     *
+     * Generated from protobuf enum <code>INVALID_HEALTH_CHECK_FOR_DYNAMIC_WIEGHTED_LB = 401542606;</code>
      */
-    const LARGE_DEPLOYMENT_WARNING = 213005222;
+    const INVALID_HEALTH_CHECK_FOR_DYNAMIC_WIEGHTED_LB = 401542606;
     /**
-     * Generated from protobuf enum <code>MISSING_TYPE_DEPENDENCY = 76070007;</code>
+     * When deploying a deployment with a exceedingly large number of resources
+     *
+     * Generated from protobuf enum <code>LARGE_DEPLOYMENT_WARNING = 481440678;</code>
      */
-    const MISSING_TYPE_DEPENDENCY = 76070007;
+    const LARGE_DEPLOYMENT_WARNING = 481440678;
     /**
-     * Generated from protobuf enum <code>NEXT_HOP_ADDRESS_NOT_ASSIGNED = 56529543;</code>
+     * A resource depends on a missing type
+     *
+     * Generated from protobuf enum <code>MISSING_TYPE_DEPENDENCY = 344505463;</code>
      */
-    const NEXT_HOP_ADDRESS_NOT_ASSIGNED = 56529543;
+    const MISSING_TYPE_DEPENDENCY = 344505463;
     /**
-     * Generated from protobuf enum <code>NEXT_HOP_CANNOT_IP_FORWARD = 114947431;</code>
+     * The route's nextHopIp address is not assigned to an instance on the network.
+     *
+     * Generated from protobuf enum <code>NEXT_HOP_ADDRESS_NOT_ASSIGNED = 324964999;</code>
      */
-    const NEXT_HOP_CANNOT_IP_FORWARD = 114947431;
+    const NEXT_HOP_ADDRESS_NOT_ASSIGNED = 324964999;
     /**
-     * Generated from protobuf enum <code>NEXT_HOP_INSTANCE_NOT_FOUND = 195814990;</code>
+     * The route's next hop instance cannot ip forward.
+     *
+     * Generated from protobuf enum <code>NEXT_HOP_CANNOT_IP_FORWARD = 383382887;</code>
      */
-    const NEXT_HOP_INSTANCE_NOT_FOUND = 195814990;
+    const NEXT_HOP_CANNOT_IP_FORWARD = 383382887;
     /**
+     * The route's nextHopInstance URL refers to an instance that does not have an ipv6 interface on the same network as the route.
+     *
+     * Generated from protobuf enum <code>NEXT_HOP_INSTANCE_HAS_NO_IPV6_INTERFACE = 146748434;</code>
+     */
+    const NEXT_HOP_INSTANCE_HAS_NO_IPV6_INTERFACE = 146748434;
+    /**
+     * The route's nextHopInstance URL refers to an instance that does not exist.
+     *
+     * Generated from protobuf enum <code>NEXT_HOP_INSTANCE_NOT_FOUND = 464250446;</code>
+     */
+    const NEXT_HOP_INSTANCE_NOT_FOUND = 464250446;
+    /**
+     * The route's nextHopInstance URL refers to an instance that is not on the same network as the route.
+     *
      * Generated from protobuf enum <code>NEXT_HOP_INSTANCE_NOT_ON_NETWORK = 243758146;</code>
      */
     const NEXT_HOP_INSTANCE_NOT_ON_NETWORK = 243758146;
     /**
-     * Generated from protobuf enum <code>NEXT_HOP_NOT_RUNNING = 148645809;</code>
+     * The route's next hop instance does not have a status of RUNNING.
+     *
+     * Generated from protobuf enum <code>NEXT_HOP_NOT_RUNNING = 417081265;</code>
      */
-    const NEXT_HOP_NOT_RUNNING = 148645809;
+    const NEXT_HOP_NOT_RUNNING = 417081265;
     /**
+     * Error which is not critical. We decided to continue the process despite the mentioned error.
+     *
      * Generated from protobuf enum <code>NOT_CRITICAL_ERROR = 105763924;</code>
      */
     const NOT_CRITICAL_ERROR = 105763924;
     /**
+     * No results are present on a particular list page.
+     *
      * Generated from protobuf enum <code>NO_RESULTS_ON_PAGE = 30036744;</code>
      */
     const NO_RESULTS_ON_PAGE = 30036744;
     /**
+     * Success is reported, but some results may be missing due to errors
+     *
      * Generated from protobuf enum <code>PARTIAL_SUCCESS = 39966469;</code>
      */
     const PARTIAL_SUCCESS = 39966469;
     /**
+     * The user attempted to use a resource that requires a TOS they have not accepted.
+     *
      * Generated from protobuf enum <code>REQUIRED_TOS_AGREEMENT = 3745539;</code>
      */
     const REQUIRED_TOS_AGREEMENT = 3745539;
     /**
-     * Generated from protobuf enum <code>RESOURCE_IN_USE_BY_OTHER_RESOURCE_WARNING = 228293185;</code>
+     * Warning that a resource is in use.
+     *
+     * Generated from protobuf enum <code>RESOURCE_IN_USE_BY_OTHER_RESOURCE_WARNING = 496728641;</code>
      */
-    const RESOURCE_IN_USE_BY_OTHER_RESOURCE_WARNING = 228293185;
+    const RESOURCE_IN_USE_BY_OTHER_RESOURCE_WARNING = 496728641;
     /**
+     * One or more of the resources set to auto-delete could not be deleted because they were in use.
+     *
      * Generated from protobuf enum <code>RESOURCE_NOT_DELETED = 168598460;</code>
      */
     const RESOURCE_NOT_DELETED = 168598460;
     /**
-     * Generated from protobuf enum <code>SCHEMA_VALIDATION_IGNORED = 6810186;</code>
+     * When a resource schema validation is ignored.
+     *
+     * Generated from protobuf enum <code>SCHEMA_VALIDATION_IGNORED = 275245642;</code>
      */
-    const SCHEMA_VALIDATION_IGNORED = 6810186;
+    const SCHEMA_VALIDATION_IGNORED = 275245642;
     /**
+     * Instance template used in instance group manager is valid as such, but its application does not make a lot of sense, because it allows only single instance in instance group.
+     *
      * Generated from protobuf enum <code>SINGLE_INSTANCE_PROPERTY_TEMPLATE = 268305617;</code>
      */
     const SINGLE_INSTANCE_PROPERTY_TEMPLATE = 268305617;
     /**
-     * Generated from protobuf enum <code>UNDECLARED_PROPERTIES = 122077983;</code>
+     * When undeclared properties in the schema are present
+     *
+     * Generated from protobuf enum <code>UNDECLARED_PROPERTIES = 390513439;</code>
      */
-    const UNDECLARED_PROPERTIES = 122077983;
+    const UNDECLARED_PROPERTIES = 390513439;
     /**
+     * A given scope cannot be reached.
+     *
      * Generated from protobuf enum <code>UNREACHABLE = 13328052;</code>
      */
     const UNREACHABLE = 13328052;
@@ -130,10 +192,12 @@ class Code
         self::EXTERNAL_API_WARNING => 'EXTERNAL_API_WARNING',
         self::FIELD_VALUE_OVERRIDEN => 'FIELD_VALUE_OVERRIDEN',
         self::INJECTED_KERNELS_DEPRECATED => 'INJECTED_KERNELS_DEPRECATED',
+        self::INVALID_HEALTH_CHECK_FOR_DYNAMIC_WIEGHTED_LB => 'INVALID_HEALTH_CHECK_FOR_DYNAMIC_WIEGHTED_LB',
         self::LARGE_DEPLOYMENT_WARNING => 'LARGE_DEPLOYMENT_WARNING',
         self::MISSING_TYPE_DEPENDENCY => 'MISSING_TYPE_DEPENDENCY',
         self::NEXT_HOP_ADDRESS_NOT_ASSIGNED => 'NEXT_HOP_ADDRESS_NOT_ASSIGNED',
         self::NEXT_HOP_CANNOT_IP_FORWARD => 'NEXT_HOP_CANNOT_IP_FORWARD',
+        self::NEXT_HOP_INSTANCE_HAS_NO_IPV6_INTERFACE => 'NEXT_HOP_INSTANCE_HAS_NO_IPV6_INTERFACE',
         self::NEXT_HOP_INSTANCE_NOT_FOUND => 'NEXT_HOP_INSTANCE_NOT_FOUND',
         self::NEXT_HOP_INSTANCE_NOT_ON_NETWORK => 'NEXT_HOP_INSTANCE_NOT_ON_NETWORK',
         self::NEXT_HOP_NOT_RUNNING => 'NEXT_HOP_NOT_RUNNING',

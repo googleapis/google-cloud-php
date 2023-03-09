@@ -145,7 +145,7 @@ class CreateJobTriggerRequest extends \Google\Protobuf\Internal\Message
      */
     public function getJobTrigger()
     {
-        return isset($this->job_trigger) ? $this->job_trigger : null;
+        return $this->job_trigger;
     }
 
     public function hasJobTrigger()

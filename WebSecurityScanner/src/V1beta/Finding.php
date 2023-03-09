@@ -469,7 +469,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      */
     public function getForm()
     {
-        return isset($this->form) ? $this->form : null;
+        return $this->form;
     }
 
     public function hasForm()
@@ -506,7 +506,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      */
     public function getOutdatedLibrary()
     {
-        return isset($this->outdated_library) ? $this->outdated_library : null;
+        return $this->outdated_library;
     }
 
     public function hasOutdatedLibrary()
@@ -543,7 +543,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      */
     public function getViolatingResource()
     {
-        return isset($this->violating_resource) ? $this->violating_resource : null;
+        return $this->violating_resource;
     }
 
     public function hasViolatingResource()
@@ -580,7 +580,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      */
     public function getVulnerableHeaders()
     {
-        return isset($this->vulnerable_headers) ? $this->vulnerable_headers : null;
+        return $this->vulnerable_headers;
     }
 
     public function hasVulnerableHeaders()
@@ -617,7 +617,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      */
     public function getVulnerableParameters()
     {
-        return isset($this->vulnerable_parameters) ? $this->vulnerable_parameters : null;
+        return $this->vulnerable_parameters;
     }
 
     public function hasVulnerableParameters()
@@ -654,7 +654,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      */
     public function getXss()
     {
-        return isset($this->xss) ? $this->xss : null;
+        return $this->xss;
     }
 
     public function hasXss()

@@ -1,0 +1,36 @@
+{
+    "name": "google/cloud-dataproc-metastore",
+    "description": "Google Cloud Dataproc Metastore Client for PHP",
+    "license": "Apache-2.0",
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "Google\\Cloud\\Metastore\\": "src",
+            "GPBMetadata\\Google\\Cloud\\Metastore\\": "metadata"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Google\\Cloud\\Metastore\\Tests\\": "tests"
+        }
+    },
+    "extra": {
+        "component": {
+            "id": "cloud-dataproc-metastore",
+            "path": "DataprocMetastore",
+            "entry": null,
+            "target": "googleapis/google-cloud-php-dataproc-metastore.git"
+        }
+    },
+    "require": {
+        "google/gax": "^1.7.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^4.8|^5.0|^8.0",
+        "yoast/phpunit-polyfills": "^1.0"
+    },
+    "suggest": {
+        "ext-grpc": "Enables use of gRPC, a universal high-performance RPC framework created by Google.",
+        "ext-protobuf": "Provides a significant increase in throughput over the pure PHP protobuf implementation. See https://cloud.google.com/php/grpc for installation instructions."
+    }
+}

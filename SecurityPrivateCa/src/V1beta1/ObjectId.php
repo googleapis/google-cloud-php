@@ -30,7 +30,7 @@ class ObjectId extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $object_id_path
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $object_id_path
      *           Required. The parts of an OID path. The most significant parts of the path come
      *           first.
      * }
@@ -57,7 +57,7 @@ class ObjectId extends \Google\Protobuf\Internal\Message
      * first.
      *
      * Generated from protobuf field <code>repeated int32 object_id_path = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setObjectIdPath($var)

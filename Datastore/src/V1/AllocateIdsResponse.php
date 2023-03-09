@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The response for [Datastore.AllocateIds][google.datastore.v1.Datastore.AllocateIds].
+ * The response for
+ * [Datastore.AllocateIds][google.datastore.v1.Datastore.AllocateIds].
  *
  * Generated from protobuf message <code>google.datastore.v1.AllocateIdsResponse</code>
  */
@@ -29,7 +30,7 @@ class AllocateIdsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Datastore\V1\Key[]|\Google\Protobuf\Internal\RepeatedField $keys
+     *     @type array<\Google\Cloud\Datastore\V1\Key>|\Google\Protobuf\Internal\RepeatedField $keys
      *           The keys specified in the request (in the same order), each with
      *           its key path completed with a newly allocated ID.
      * }
@@ -56,7 +57,7 @@ class AllocateIdsResponse extends \Google\Protobuf\Internal\Message
      * its key path completed with a newly allocated ID.
      *
      * Generated from protobuf field <code>repeated .google.datastore.v1.Key keys = 1;</code>
-     * @param \Google\Cloud\Datastore\V1\Key[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Datastore\V1\Key>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setKeys($var)

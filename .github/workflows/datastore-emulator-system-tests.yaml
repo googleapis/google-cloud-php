@@ -1,32 +1,38 @@
+name: Run Datastore System Tests With Emulator
 on:
   push:
     branches:
-      - master
+      - main
     paths:
       - 'Datastore/**'
+      - '.github/workflows/datastore-emulator-system-tests.yaml'
+      - '.github/emulator/**'
   pull_request:
     paths:
       - 'Datastore/**'
-name: Run Datastore System Tests With Emulator
+      - '.github/workflows/datastore-emulator-system-tests.yaml'
+      - '.github/emulator/**'
 jobs:
   test:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
-      - run: ./.github/emulator/start-emulator.sh datastore
+      - run: ./.github/emulator/start-emulator.sh datastore 419.0.0-emulators
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: '7.4'
           tools: pecl
-          extensions: grpc
+          extensions: grpc-1.49.0
 
       - name: Install dependencies
         run: |
-          composer update --prefer-dist --no-interaction --no-suggest -d Datastore/
+          composer config minimum-stability dev -d Datastore/
+          composer config repositories.local path "../Core" -d Datastore
+          composer require "google/cloud-core:*" -d Datastore/
 
       - name: Run system tests
         run: |

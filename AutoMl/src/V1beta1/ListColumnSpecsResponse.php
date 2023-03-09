@@ -35,7 +35,7 @@ class ListColumnSpecsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\AutoMl\V1beta1\ColumnSpec[]|\Google\Protobuf\Internal\RepeatedField $column_specs
+     *     @type array<\Google\Cloud\AutoMl\V1beta1\ColumnSpec>|\Google\Protobuf\Internal\RepeatedField $column_specs
      *           The column specs read.
      *     @type string $next_page_token
      *           A token to retrieve next page of results.
@@ -62,7 +62,7 @@ class ListColumnSpecsResponse extends \Google\Protobuf\Internal\Message
      * The column specs read.
      *
      * Generated from protobuf field <code>repeated .google.cloud.automl.v1beta1.ColumnSpec column_specs = 1;</code>
-     * @param \Google\Cloud\AutoMl\V1beta1\ColumnSpec[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AutoMl\V1beta1\ColumnSpec>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setColumnSpecs($var)

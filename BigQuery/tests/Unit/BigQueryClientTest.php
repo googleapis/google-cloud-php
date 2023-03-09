@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\BigQuery\Tests\Unit;
 
+use Google\Cloud\BigQuery\BigNumeric;
 use Google\Cloud\BigQuery\BigQueryClient;
 use Google\Cloud\BigQuery\Bytes;
 use Google\Cloud\BigQuery\Connection\ConnectionInterface;
@@ -36,7 +37,7 @@ use Google\Cloud\BigQuery\Timestamp;
 use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Upload\AbstractUploader;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Prophecy\Argument;
 
 /**
@@ -62,7 +63,7 @@ class BigQueryClientTest extends TestCase
         ]
     ];
 
-    public function setUp()
+    public function set_up()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
     }
@@ -540,6 +541,13 @@ class BigQueryClientTest extends TestCase
         $numeric = $this->getClient()->numeric('9');
 
         $this->assertInstanceOf(Numeric::class, $numeric);
+    }
+
+    public function testGetsBigNumeric()
+    {
+        $numeric = $this->getClient()->bigNumeric('9');
+
+        $this->assertInstanceOf(BigNumeric::class, $numeric);
     }
 
     public function testGetsDate()

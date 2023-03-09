@@ -20,7 +20,7 @@ namespace Google\Cloud\Translate\Tests\Unit\V2;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Translate\V2\Connection\ConnectionInterface;
 use Google\Cloud\Translate\V2\TranslateClient;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Prophecy\Argument;
 
 /**
@@ -32,7 +32,7 @@ class TranslateClientTest extends TestCase
     private $connection;
     private $key = 'test_key';
 
-    public function setUp()
+    public function set_up()
     {
         $this->client = TestHelpers::stub(TranslateClient::class, [
             ['key' => $this->key]
@@ -59,13 +59,15 @@ class TranslateClientTest extends TestCase
             if (isset($args['model'])) {
                 return false;
             }
-        }));
+            return true;
+        }))->shouldBeCalled();
 
         $this->client->___setProperty('connection', $this->connection->reveal());
 
         $this->client->translate('foo bar');
 
-        $this->connection->listTranslations(Argument::withEntry('model', 'base'));
+        $this->connection->listTranslations(Argument::withEntry('model', 'base'))
+            ->shouldBeCalled();
 
         $this->client->___setProperty('connection', $this->connection->reveal());
         $this->client->translate('foo bar', ['model' => 'base']);

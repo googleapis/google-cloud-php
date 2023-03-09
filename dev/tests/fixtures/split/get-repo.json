@@ -96,7 +96,7 @@
     "forks": 0,
     "open_issues": 4,
     "watchers": 2,
-    "default_branch": "master",
+    "default_branch": "main",
     "temp_clone_token": null,
     "parent": {
       "id": 43642389,
@@ -171,7 +171,7 @@
       "ssh_url": "git@github.com:googleapis/google-cloud-php.git",
       "clone_url": "https://github.com/googleapis/google-cloud-php.git",
       "svn_url": "https://github.com/googleapis/google-cloud-php",
-      "homepage": "https://googleapis.github.io/google-cloud-php",
+      "homepage": "https://cloud.google.com/php/docs/reference",
       "size": 162863,
       "stargazers_count": 753,
       "watchers_count": 753,
@@ -196,7 +196,7 @@
       "forks": 310,
       "open_issues": 80,
       "watchers": 753,
-      "default_branch": "master"
+      "default_branch": "main"
     },
     "source": {
       "id": 43642389,
@@ -271,7 +271,7 @@
       "ssh_url": "git@github.com:googleapis/google-cloud-php.git",
       "clone_url": "https://github.com/googleapis/google-cloud-php.git",
       "svn_url": "https://github.com/googleapis/google-cloud-php",
-      "homepage": "https://googleapis.github.io/google-cloud-php",
+      "homepage": "https://cloud.google.com/php/docs/reference",
       "size": 162863,
       "stargazers_count": 753,
       "watchers_count": 753,
@@ -296,7 +296,7 @@
       "forks": 310,
       "open_issues": 80,
       "watchers": 753,
-      "default_branch": "master"
+      "default_branch": "main"
     },
     "network_count": 310,
     "subscribers_count": 1

@@ -28,7 +28,7 @@ class GeoPointTest extends SnippetTestCase
     private $point;
     private $gp;
 
-    public function setUp()
+    public function set_up()
     {
         $this->point = ['latitude' => 123.45, 'longitude' => 543.21];
         $this->gp = new GeoPoint($this->point['latitude'], $this->point['longitude']);

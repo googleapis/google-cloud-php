@@ -3,11 +3,6 @@
 return [
     'interfaces' => [
         'google.cloud.language.v1beta2.LanguageService' => [
-            'AnalyzeSentiment' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1beta2/documents:analyzeSentiment',
-                'body' => '*',
-            ],
             'AnalyzeEntities' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1beta2/documents:analyzeEntities',
@@ -18,14 +13,14 @@ return [
                 'uriTemplate' => '/v1beta2/documents:analyzeEntitySentiment',
                 'body' => '*',
             ],
+            'AnalyzeSentiment' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta2/documents:analyzeSentiment',
+                'body' => '*',
+            ],
             'AnalyzeSyntax' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1beta2/documents:analyzeSyntax',
-                'body' => '*',
-            ],
-            'ClassifyText' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1beta2/documents:classifyText',
                 'body' => '*',
             ],
             'AnnotateText' => [
@@ -33,6 +28,12 @@ return [
                 'uriTemplate' => '/v1beta2/documents:annotateText',
                 'body' => '*',
             ],
+            'ClassifyText' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta2/documents:classifyText',
+                'body' => '*',
+            ],
         ],
     ],
+    'numericEnums' => true,
 ];

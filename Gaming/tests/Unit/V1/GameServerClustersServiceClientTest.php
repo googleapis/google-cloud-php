@@ -22,13 +22,13 @@
 
 namespace Google\Cloud\Gaming\Tests\Unit\V1;
 
-use Google\Cloud\Gaming\V1\GameServerClustersServiceClient;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Gaming\V1\GameServerCluster;
+use Google\Cloud\Gaming\V1\GameServerClustersServiceClient;
 use Google\Cloud\Gaming\V1\ListGameServerClustersResponse;
 use Google\Cloud\Gaming\V1\PreviewCreateGameServerClusterResponse;
 use Google\Cloud\Gaming\V1\PreviewDeleteGameServerClusterResponse;
@@ -43,216 +43,48 @@ use stdClass;
 
 /**
  * @group gaming
+ *
  * @group gapic
  */
 class GameServerClustersServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return GameServerClustersServiceClient
-     */
+    /** @return GameServerClustersServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
             'credentials' => $this->createCredentials(),
         ];
-
         return new GameServerClustersServiceClient($options);
     }
 
-    /**
-     * @test
-     */
-    public function listGameServerClustersTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        // Mock response
-        $nextPageToken = '';
-        $gameServerClustersElement = new GameServerCluster();
-        $gameServerClusters = [$gameServerClustersElement];
-        $expectedResponse = new ListGameServerClustersResponse();
-        $expectedResponse->setNextPageToken($nextPageToken);
-        $expectedResponse->setGameServerClusters($gameServerClusters);
-        $transport->addResponse($expectedResponse);
-
-        // Mock request
-        $formattedParent = $client->realmName('[PROJECT]', '[LOCATION]', '[REALM]');
-
-        $response = $client->listGameServerClusters($formattedParent);
-        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
-        $resources = iterator_to_array($response->iterateAllElements());
-        $this->assertSame(1, count($resources));
-        $this->assertEquals($expectedResponse->getGameServerClusters()[0], $resources[0]);
-
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.gaming.v1.GameServerClustersService/ListGameServerClusters', $actualFuncCall);
-
-        $actualValue = $actualRequestObject->getParent();
-
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function listGameServerClustersExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
-        ], JSON_PRETTY_PRINT);
-        $transport->addResponse(null, $status);
-
-        // Mock request
-        $formattedParent = $client->realmName('[PROJECT]', '[LOCATION]', '[REALM]');
-
-        try {
-            $client->listGameServerClusters($formattedParent);
-            // If the $client method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function getGameServerClusterTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        // Mock response
-        $name2 = 'name2-1052831874';
-        $etag = 'etag3123477';
-        $description = 'description-1724546052';
-        $expectedResponse = new GameServerCluster();
-        $expectedResponse->setName($name2);
-        $expectedResponse->setEtag($etag);
-        $expectedResponse->setDescription($description);
-        $transport->addResponse($expectedResponse);
-
-        // Mock request
-        $formattedName = $client->gameServerClusterName('[PROJECT]', '[LOCATION]', '[REALM]', '[CLUSTER]');
-
-        $response = $client->getGameServerCluster($formattedName);
-        $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.gaming.v1.GameServerClustersService/GetGameServerCluster', $actualFuncCall);
-
-        $actualValue = $actualRequestObject->getName();
-
-        $this->assertProtobufEquals($formattedName, $actualValue);
-
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function getGameServerClusterExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
-        ], JSON_PRETTY_PRINT);
-        $transport->addResponse(null, $status);
-
-        // Mock request
-        $formattedName = $client->gameServerClusterName('[PROJECT]', '[LOCATION]', '[REALM]', '[CLUSTER]');
-
-        try {
-            $client->getGameServerCluster($formattedName);
-            // If the $client method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
+    /** @test */
     public function createGameServerClusterTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
-
         $this->assertTrue($transport->isExhausted());
         $this->assertTrue($operationsTransport->isExhausted());
-
         // Mock response
         $incompleteOperation = new Operation();
         $incompleteOperation->setName('operations/createGameServerClusterTest');
@@ -272,36 +104,30 @@ class GameServerClustersServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-
         // Mock request
-        $formattedParent = $client->realmName('[PROJECT]', '[LOCATION]', '[REALM]');
+        $formattedParent = $gapicClient->realmName('[PROJECT]', '[LOCATION]', '[REALM]');
         $gameServerClusterId = 'gameServerClusterId-858763025';
         $gameServerCluster = new GameServerCluster();
-
-        $response = $client->createGameServerCluster($formattedParent, $gameServerClusterId, $gameServerCluster);
+        $gameServerClusterName = 'gameServerClusterName-525342064';
+        $gameServerCluster->setName($gameServerClusterName);
+        $response = $gapicClient->createGameServerCluster($formattedParent, $gameServerClusterId, $gameServerCluster);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
         $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
         $this->assertSame(0, count($operationsRequestsEmpty));
-
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.gaming.v1.GameServerClustersService/CreateGameServerCluster', $actualApiFuncCall);
         $actualValue = $actualApiRequestObject->getParent();
-
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualApiRequestObject->getGameServerClusterId();
-
         $this->assertProtobufEquals($gameServerClusterId, $actualValue);
         $actualValue = $actualApiRequestObject->getGameServerCluster();
-
         $this->assertProtobufEquals($gameServerCluster, $actualValue);
-
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createGameServerClusterTest');
-
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -311,66 +137,56 @@ class GameServerClustersServiceClientTest extends GeneratedTest
         $this->assertSame(0, count($apiRequestsEmpty));
         $operationsRequests = $operationsTransport->popReceivedCalls();
         $this->assertSame(1, count($operationsRequests));
-
         $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
         $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
         $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
         $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
-
         $this->assertTrue($transport->isExhausted());
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createGameServerClusterExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
-
         $this->assertTrue($transport->isExhausted());
         $this->assertTrue($operationsTransport->isExhausted());
-
         // Mock response
         $incompleteOperation = new Operation();
         $incompleteOperation->setName('operations/createGameServerClusterTest');
         $incompleteOperation->setDone(false);
         $transport->addResponse($incompleteOperation);
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
         $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-
         // Mock request
-        $formattedParent = $client->realmName('[PROJECT]', '[LOCATION]', '[REALM]');
+        $formattedParent = $gapicClient->realmName('[PROJECT]', '[LOCATION]', '[REALM]');
         $gameServerClusterId = 'gameServerClusterId-858763025';
         $gameServerCluster = new GameServerCluster();
-
-        $response = $client->createGameServerCluster($formattedParent, $gameServerClusterId, $gameServerCluster);
+        $gameServerClusterName = 'gameServerClusterName-525342064';
+        $gameServerCluster->setName($gameServerClusterName);
+        $response = $gapicClient->createGameServerCluster($formattedParent, $gameServerClusterId, $gameServerCluster);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
-
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createGameServerClusterTest');
-
         try {
             $response->pollUntilComplete([
                 'initialPollDelayMillis' => 1,
@@ -381,7 +197,6 @@ class GameServerClustersServiceClientTest extends GeneratedTest
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stubs are exhausted
         $transport->popReceivedCalls();
         $operationsTransport->popReceivedCalls();
@@ -389,109 +204,22 @@ class GameServerClustersServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
-    public function previewCreateGameServerClusterTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        // Mock response
-        $etag = 'etag3123477';
-        $expectedResponse = new PreviewCreateGameServerClusterResponse();
-        $expectedResponse->setEtag($etag);
-        $transport->addResponse($expectedResponse);
-
-        // Mock request
-        $formattedParent = $client->realmName('[PROJECT]', '[LOCATION]', '[REALM]');
-        $gameServerClusterId = 'gameServerClusterId-858763025';
-        $gameServerCluster = new GameServerCluster();
-
-        $response = $client->previewCreateGameServerCluster($formattedParent, $gameServerClusterId, $gameServerCluster);
-        $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.gaming.v1.GameServerClustersService/PreviewCreateGameServerCluster', $actualFuncCall);
-
-        $actualValue = $actualRequestObject->getParent();
-
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getGameServerClusterId();
-
-        $this->assertProtobufEquals($gameServerClusterId, $actualValue);
-        $actualValue = $actualRequestObject->getGameServerCluster();
-
-        $this->assertProtobufEquals($gameServerCluster, $actualValue);
-
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function previewCreateGameServerClusterExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
-        ], JSON_PRETTY_PRINT);
-        $transport->addResponse(null, $status);
-
-        // Mock request
-        $formattedParent = $client->realmName('[PROJECT]', '[LOCATION]', '[REALM]');
-        $gameServerClusterId = 'gameServerClusterId-858763025';
-        $gameServerCluster = new GameServerCluster();
-
-        try {
-            $client->previewCreateGameServerCluster($formattedParent, $gameServerClusterId, $gameServerCluster);
-            // If the $client method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteGameServerClusterTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
-
         $this->assertTrue($transport->isExhausted());
         $this->assertTrue($operationsTransport->isExhausted());
-
         // Mock response
         $incompleteOperation = new Operation();
         $incompleteOperation->setName('operations/deleteGameServerClusterTest');
@@ -505,28 +233,22 @@ class GameServerClustersServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-
         // Mock request
-        $formattedName = $client->gameServerClusterName('[PROJECT]', '[LOCATION]', '[REALM]', '[CLUSTER]');
-
-        $response = $client->deleteGameServerCluster($formattedName);
+        $formattedName = $gapicClient->gameServerClusterName('[PROJECT]', '[LOCATION]', '[REALM]', '[CLUSTER]');
+        $response = $gapicClient->deleteGameServerCluster($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
         $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
         $this->assertSame(0, count($operationsRequestsEmpty));
-
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.gaming.v1.GameServerClustersService/DeleteGameServerCluster', $actualApiFuncCall);
         $actualValue = $actualApiRequestObject->getName();
-
         $this->assertProtobufEquals($formattedName, $actualValue);
-
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteGameServerClusterTest');
-
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -536,64 +258,52 @@ class GameServerClustersServiceClientTest extends GeneratedTest
         $this->assertSame(0, count($apiRequestsEmpty));
         $operationsRequests = $operationsTransport->popReceivedCalls();
         $this->assertSame(1, count($operationsRequests));
-
         $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
         $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
         $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
         $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
-
         $this->assertTrue($transport->isExhausted());
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteGameServerClusterExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
-
         $this->assertTrue($transport->isExhausted());
         $this->assertTrue($operationsTransport->isExhausted());
-
         // Mock response
         $incompleteOperation = new Operation();
         $incompleteOperation->setName('operations/deleteGameServerClusterTest');
         $incompleteOperation->setDone(false);
         $transport->addResponse($incompleteOperation);
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
         $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-
         // Mock request
-        $formattedName = $client->gameServerClusterName('[PROJECT]', '[LOCATION]', '[REALM]', '[CLUSTER]');
-
-        $response = $client->deleteGameServerCluster($formattedName);
+        $formattedName = $gapicClient->gameServerClusterName('[PROJECT]', '[LOCATION]', '[REALM]', '[CLUSTER]');
+        $response = $gapicClient->deleteGameServerCluster($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
-
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteGameServerClusterTest');
-
         try {
             $response->pollUntilComplete([
                 'initialPollDelayMillis' => 1,
@@ -604,7 +314,6 @@ class GameServerClustersServiceClientTest extends GeneratedTest
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stubs are exhausted
         $transport->popReceivedCalls();
         $operationsTransport->popReceivedCalls();
@@ -612,99 +321,354 @@ class GameServerClustersServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
+    public function getGameServerClusterTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $etag = 'etag3123477';
+        $description = 'description-1724546052';
+        $expectedResponse = new GameServerCluster();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setEtag($etag);
+        $expectedResponse->setDescription($description);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->gameServerClusterName('[PROJECT]', '[LOCATION]', '[REALM]', '[CLUSTER]');
+        $response = $gapicClient->getGameServerCluster($formattedName);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.gaming.v1.GameServerClustersService/GetGameServerCluster', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getGameServerClusterExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->gameServerClusterName('[PROJECT]', '[LOCATION]', '[REALM]', '[CLUSTER]');
+        try {
+            $gapicClient->getGameServerCluster($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listGameServerClustersTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $gameServerClustersElement = new GameServerCluster();
+        $gameServerClusters = [
+            $gameServerClustersElement,
+        ];
+        $expectedResponse = new ListGameServerClustersResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setGameServerClusters($gameServerClusters);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->realmName('[PROJECT]', '[LOCATION]', '[REALM]');
+        $response = $gapicClient->listGameServerClusters($formattedParent);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getGameServerClusters()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.gaming.v1.GameServerClustersService/ListGameServerClusters', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listGameServerClustersExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->realmName('[PROJECT]', '[LOCATION]', '[REALM]');
+        try {
+            $gapicClient->listGameServerClusters($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function previewCreateGameServerClusterTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $etag = 'etag3123477';
+        $expectedResponse = new PreviewCreateGameServerClusterResponse();
+        $expectedResponse->setEtag($etag);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->realmName('[PROJECT]', '[LOCATION]', '[REALM]');
+        $gameServerClusterId = 'gameServerClusterId-858763025';
+        $gameServerCluster = new GameServerCluster();
+        $gameServerClusterName = 'gameServerClusterName-525342064';
+        $gameServerCluster->setName($gameServerClusterName);
+        $response = $gapicClient->previewCreateGameServerCluster($formattedParent, $gameServerClusterId, $gameServerCluster);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.gaming.v1.GameServerClustersService/PreviewCreateGameServerCluster', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getGameServerClusterId();
+        $this->assertProtobufEquals($gameServerClusterId, $actualValue);
+        $actualValue = $actualRequestObject->getGameServerCluster();
+        $this->assertProtobufEquals($gameServerCluster, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function previewCreateGameServerClusterExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->realmName('[PROJECT]', '[LOCATION]', '[REALM]');
+        $gameServerClusterId = 'gameServerClusterId-858763025';
+        $gameServerCluster = new GameServerCluster();
+        $gameServerClusterName = 'gameServerClusterName-525342064';
+        $gameServerCluster->setName($gameServerClusterName);
+        try {
+            $gapicClient->previewCreateGameServerCluster($formattedParent, $gameServerClusterId, $gameServerCluster);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function previewDeleteGameServerClusterTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $etag = 'etag3123477';
         $expectedResponse = new PreviewDeleteGameServerClusterResponse();
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-
         // Mock request
-        $formattedName = $client->gameServerClusterName('[PROJECT]', '[LOCATION]', '[REALM]', '[CLUSTER]');
-
-        $response = $client->previewDeleteGameServerCluster($formattedName);
+        $formattedName = $gapicClient->gameServerClusterName('[PROJECT]', '[LOCATION]', '[REALM]', '[CLUSTER]');
+        $response = $gapicClient->previewDeleteGameServerCluster($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.gaming.v1.GameServerClustersService/PreviewDeleteGameServerCluster', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getName();
-
         $this->assertProtobufEquals($formattedName, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function previewDeleteGameServerClusterExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
-        $formattedName = $client->gameServerClusterName('[PROJECT]', '[LOCATION]', '[REALM]', '[CLUSTER]');
-
+        $formattedName = $gapicClient->gameServerClusterName('[PROJECT]', '[LOCATION]', '[REALM]', '[CLUSTER]');
         try {
-            $client->previewDeleteGameServerCluster($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->previewDeleteGameServerCluster($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
+    public function previewUpdateGameServerClusterTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $etag = 'etag3123477';
+        $expectedResponse = new PreviewUpdateGameServerClusterResponse();
+        $expectedResponse->setEtag($etag);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $gameServerCluster = new GameServerCluster();
+        $gameServerClusterName = 'gameServerClusterName-525342064';
+        $gameServerCluster->setName($gameServerClusterName);
+        $updateMask = new FieldMask();
+        $response = $gapicClient->previewUpdateGameServerCluster($gameServerCluster, $updateMask);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.gaming.v1.GameServerClustersService/PreviewUpdateGameServerCluster', $actualFuncCall);
+        $actualValue = $actualRequestObject->getGameServerCluster();
+        $this->assertProtobufEquals($gameServerCluster, $actualValue);
+        $actualValue = $actualRequestObject->getUpdateMask();
+        $this->assertProtobufEquals($updateMask, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function previewUpdateGameServerClusterExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $gameServerCluster = new GameServerCluster();
+        $gameServerClusterName = 'gameServerClusterName-525342064';
+        $gameServerCluster->setName($gameServerClusterName);
+        $updateMask = new FieldMask();
+        try {
+            $gapicClient->previewUpdateGameServerCluster($gameServerCluster, $updateMask);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function updateGameServerClusterTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
-
         $this->assertTrue($transport->isExhausted());
         $this->assertTrue($operationsTransport->isExhausted());
-
         // Mock response
         $incompleteOperation = new Operation();
         $incompleteOperation->setName('operations/updateGameServerClusterTest');
@@ -724,32 +688,27 @@ class GameServerClustersServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-
         // Mock request
         $gameServerCluster = new GameServerCluster();
+        $gameServerClusterName = 'gameServerClusterName-525342064';
+        $gameServerCluster->setName($gameServerClusterName);
         $updateMask = new FieldMask();
-
-        $response = $client->updateGameServerCluster($gameServerCluster, $updateMask);
+        $response = $gapicClient->updateGameServerCluster($gameServerCluster, $updateMask);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
         $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
         $this->assertSame(0, count($operationsRequestsEmpty));
-
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.gaming.v1.GameServerClustersService/UpdateGameServerCluster', $actualApiFuncCall);
         $actualValue = $actualApiRequestObject->getGameServerCluster();
-
         $this->assertProtobufEquals($gameServerCluster, $actualValue);
         $actualValue = $actualApiRequestObject->getUpdateMask();
-
         $this->assertProtobufEquals($updateMask, $actualValue);
-
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateGameServerClusterTest');
-
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -759,65 +718,55 @@ class GameServerClustersServiceClientTest extends GeneratedTest
         $this->assertSame(0, count($apiRequestsEmpty));
         $operationsRequests = $operationsTransport->popReceivedCalls();
         $this->assertSame(1, count($operationsRequests));
-
         $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
         $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
         $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
         $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
-
         $this->assertTrue($transport->isExhausted());
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateGameServerClusterExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
-
         $this->assertTrue($transport->isExhausted());
         $this->assertTrue($operationsTransport->isExhausted());
-
         // Mock response
         $incompleteOperation = new Operation();
         $incompleteOperation->setName('operations/updateGameServerClusterTest');
         $incompleteOperation->setDone(false);
         $transport->addResponse($incompleteOperation);
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
         $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-
         // Mock request
         $gameServerCluster = new GameServerCluster();
+        $gameServerClusterName = 'gameServerClusterName-525342064';
+        $gameServerCluster->setName($gameServerClusterName);
         $updateMask = new FieldMask();
-
-        $response = $client->updateGameServerCluster($gameServerCluster, $updateMask);
+        $response = $gapicClient->updateGameServerCluster($gameServerCluster, $updateMask);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
-
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateGameServerClusterTest');
-
         try {
             $response->pollUntilComplete([
                 'initialPollDelayMillis' => 1,
@@ -828,89 +777,10 @@ class GameServerClustersServiceClientTest extends GeneratedTest
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stubs are exhausted
         $transport->popReceivedCalls();
         $operationsTransport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
         $this->assertTrue($operationsTransport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function previewUpdateGameServerClusterTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        // Mock response
-        $etag = 'etag3123477';
-        $expectedResponse = new PreviewUpdateGameServerClusterResponse();
-        $expectedResponse->setEtag($etag);
-        $transport->addResponse($expectedResponse);
-
-        // Mock request
-        $gameServerCluster = new GameServerCluster();
-        $updateMask = new FieldMask();
-
-        $response = $client->previewUpdateGameServerCluster($gameServerCluster, $updateMask);
-        $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.gaming.v1.GameServerClustersService/PreviewUpdateGameServerCluster', $actualFuncCall);
-
-        $actualValue = $actualRequestObject->getGameServerCluster();
-
-        $this->assertProtobufEquals($gameServerCluster, $actualValue);
-        $actualValue = $actualRequestObject->getUpdateMask();
-
-        $this->assertProtobufEquals($updateMask, $actualValue);
-
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function previewUpdateGameServerClusterExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
-        ], JSON_PRETTY_PRINT);
-        $transport->addResponse(null, $status);
-
-        // Mock request
-        $gameServerCluster = new GameServerCluster();
-        $updateMask = new FieldMask();
-
-        try {
-            $client->previewUpdateGameServerCluster($gameServerCluster, $updateMask);
-            // If the $client method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
     }
 }

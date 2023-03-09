@@ -24,7 +24,7 @@ class BatchWriteSpansRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
     /**
      * Required. A list of new spans. The span names must not match existing
-     * spans, or the results are undefined.
+     * spans, otherwise the results are undefined.
      *
      * Generated from protobuf field <code>repeated .google.devtools.cloudtrace.v2.Span spans = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -39,9 +39,9 @@ class BatchWriteSpansRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. The name of the project where the spans belong. The format is
      *           `projects/[PROJECT_ID]`.
-     *     @type \Google\Cloud\Trace\V2\Span[]|\Google\Protobuf\Internal\RepeatedField $spans
+     *     @type array<\Google\Cloud\Trace\V2\Span>|\Google\Protobuf\Internal\RepeatedField $spans
      *           Required. A list of new spans. The span names must not match existing
-     *           spans, or the results are undefined.
+     *           spans, otherwise the results are undefined.
      * }
      */
     public function __construct($data = NULL) {
@@ -79,7 +79,7 @@ class BatchWriteSpansRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. A list of new spans. The span names must not match existing
-     * spans, or the results are undefined.
+     * spans, otherwise the results are undefined.
      *
      * Generated from protobuf field <code>repeated .google.devtools.cloudtrace.v2.Span spans = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -91,10 +91,10 @@ class BatchWriteSpansRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. A list of new spans. The span names must not match existing
-     * spans, or the results are undefined.
+     * spans, otherwise the results are undefined.
      *
      * Generated from protobuf field <code>repeated .google.devtools.cloudtrace.v2.Span spans = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param \Google\Cloud\Trace\V2\Span[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Trace\V2\Span>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSpans($var)

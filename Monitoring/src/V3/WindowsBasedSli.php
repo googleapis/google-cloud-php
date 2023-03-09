@@ -67,6 +67,11 @@ class WindowsBasedSli extends \Google\Protobuf\Internal\Message
         return $this->readOneof(5);
     }
 
+    public function hasGoodBadMetricFilter()
+    {
+        return $this->hasOneof(5);
+    }
+
     /**
      * A [monitoring filter](https://cloud.google.com/monitoring/api/v3/filters)
      * specifying a `TimeSeries` with `ValueType = BOOL`. The window is good if
@@ -88,11 +93,16 @@ class WindowsBasedSli extends \Google\Protobuf\Internal\Message
      * A window is good if its `performance` is high enough.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.WindowsBasedSli.PerformanceThreshold good_total_ratio_threshold = 2;</code>
-     * @return \Google\Cloud\Monitoring\V3\WindowsBasedSli\PerformanceThreshold
+     * @return \Google\Cloud\Monitoring\V3\WindowsBasedSli\PerformanceThreshold|null
      */
     public function getGoodTotalRatioThreshold()
     {
         return $this->readOneof(2);
+    }
+
+    public function hasGoodTotalRatioThreshold()
+    {
+        return $this->hasOneof(2);
     }
 
     /**
@@ -104,7 +114,7 @@ class WindowsBasedSli extends \Google\Protobuf\Internal\Message
      */
     public function setGoodTotalRatioThreshold($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\WindowsBasedSli_PerformanceThreshold::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\WindowsBasedSli\PerformanceThreshold::class);
         $this->writeOneof(2, $var);
 
         return $this;
@@ -115,11 +125,16 @@ class WindowsBasedSli extends \Google\Protobuf\Internal\Message
      * across returned streams.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.WindowsBasedSli.MetricRange metric_mean_in_range = 6;</code>
-     * @return \Google\Cloud\Monitoring\V3\WindowsBasedSli\MetricRange
+     * @return \Google\Cloud\Monitoring\V3\WindowsBasedSli\MetricRange|null
      */
     public function getMetricMeanInRange()
     {
         return $this->readOneof(6);
+    }
+
+    public function hasMetricMeanInRange()
+    {
+        return $this->hasOneof(6);
     }
 
     /**
@@ -132,7 +147,7 @@ class WindowsBasedSli extends \Google\Protobuf\Internal\Message
      */
     public function setMetricMeanInRange($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\WindowsBasedSli_MetricRange::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\WindowsBasedSli\MetricRange::class);
         $this->writeOneof(6, $var);
 
         return $this;
@@ -143,11 +158,16 @@ class WindowsBasedSli extends \Google\Protobuf\Internal\Message
      * returned streams.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.WindowsBasedSli.MetricRange metric_sum_in_range = 7;</code>
-     * @return \Google\Cloud\Monitoring\V3\WindowsBasedSli\MetricRange
+     * @return \Google\Cloud\Monitoring\V3\WindowsBasedSli\MetricRange|null
      */
     public function getMetricSumInRange()
     {
         return $this->readOneof(7);
+    }
+
+    public function hasMetricSumInRange()
+    {
+        return $this->hasOneof(7);
     }
 
     /**
@@ -160,7 +180,7 @@ class WindowsBasedSli extends \Google\Protobuf\Internal\Message
      */
     public function setMetricSumInRange($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\WindowsBasedSli_MetricRange::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\WindowsBasedSli\MetricRange::class);
         $this->writeOneof(7, $var);
 
         return $this;
@@ -171,11 +191,21 @@ class WindowsBasedSli extends \Google\Protobuf\Internal\Message
      * fraction of a day and at least `60s`.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration window_period = 4;</code>
-     * @return \Google\Protobuf\Duration
+     * @return \Google\Protobuf\Duration|null
      */
     public function getWindowPeriod()
     {
         return $this->window_period;
+    }
+
+    public function hasWindowPeriod()
+    {
+        return isset($this->window_period);
+    }
+
+    public function clearWindowPeriod()
+    {
+        unset($this->window_period);
     }
 
     /**

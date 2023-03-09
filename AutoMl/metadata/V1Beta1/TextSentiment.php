@@ -15,11 +15,10 @@ class TextSentiment
           return;
         }
         \GPBMetadata\Google\Cloud\Automl\V1Beta1\Classification::initOnce();
-        \GPBMetadata\Google\Api\Annotations::initOnce();
         $pool->internalAddGeneratedFile(
             '
-¥
-0google/cloud/automl/v1beta1/text_sentiment.protogoogle.cloud.automl.v1beta1google/api/annotations.proto",
+ý
+0google/cloud/automl/v1beta1/text_sentiment.protogoogle.cloud.automl.v1beta1",
 TextSentimentAnnotation
 	sentiment ("Å
 TextSentimentEvaluationMetrics
@@ -31,8 +30,8 @@ class TextSentiment
 linear_kappa (
 quadratic_kappa (f
 confusion_matrix (2L.google.cloud.automl.v1beta1.ClassificationEvaluationMetrics.ConfusionMatrix
-annotation_spec_id	 (	BB·
-com.google.cloud.automl.v1beta1BTextSentimentProtoZAgoogle.golang.org/genproto/googleapis/cloud/automl/v1beta1;automlÊGoogle\\Cloud\\AutoMl\\V1beta1êGoogle::Cloud::AutoML::V1beta1bproto3'
+annotation_spec_id	 (	BB­
+com.google.cloud.automl.v1beta1BTextSentimentProtoZ7cloud.google.com/go/automl/apiv1beta1/automlpb;automlpbÊGoogle\\Cloud\\AutoMl\\V1beta1êGoogle::Cloud::AutoML::V1beta1bproto3'
         , true);
 
         static::$is_initialized = true;

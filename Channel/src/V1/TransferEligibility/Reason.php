@@ -14,7 +14,7 @@ use UnexpectedValueException;
 class Reason
 {
     /**
-     * Reason is not available.
+     * Not used.
      *
      * Generated from protobuf enum <code>REASON_UNSPECIFIED = 0;</code>
      */
@@ -66,6 +66,4 @@ class Reason
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Reason::class, \Google\Cloud\Channel\V1\TransferEligibility_Reason::class);
 

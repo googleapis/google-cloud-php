@@ -52,11 +52,21 @@ class UpdateServiceLevelObjectiveRequest extends \Google\Protobuf\Internal\Messa
      * The given `name` specifies the resource to update.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.ServiceLevelObjective service_level_objective = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Monitoring\V3\ServiceLevelObjective
+     * @return \Google\Cloud\Monitoring\V3\ServiceLevelObjective|null
      */
     public function getServiceLevelObjective()
     {
         return $this->service_level_objective;
+    }
+
+    public function hasServiceLevelObjective()
+    {
+        return isset($this->service_level_objective);
+    }
+
+    public function clearServiceLevelObjective()
+    {
+        unset($this->service_level_objective);
     }
 
     /**
@@ -79,11 +89,21 @@ class UpdateServiceLevelObjectiveRequest extends \Google\Protobuf\Internal\Messa
      * A set of field paths defining which fields to use for the update.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
-     * @return \Google\Protobuf\FieldMask
+     * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {
         return $this->update_mask;
+    }
+
+    public function hasUpdateMask()
+    {
+        return isset($this->update_mask);
+    }
+
+    public function clearUpdateMask()
+    {
+        unset($this->update_mask);
     }
 
     /**

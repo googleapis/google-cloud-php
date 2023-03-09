@@ -9,7 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [DeleteProduct][] method.
+ * Request message for
+ * [ProductService.DeleteProduct][google.cloud.retail.v2.ProductService.DeleteProduct]
+ * method.
  *
  * Generated from protobuf message <code>google.cloud.retail.v2.DeleteProductRequest</code>
  */
@@ -24,6 +26,15 @@ class DeleteProductRequest extends \Google\Protobuf\Internal\Message
      * exists, a PERMISSION_DENIED error is returned.
      * If the [Product][google.cloud.retail.v2.Product] to delete does not exist,
      * a NOT_FOUND error is returned.
+     * The [Product][google.cloud.retail.v2.Product] to delete can neither be a
+     * [Product.Type.COLLECTION][google.cloud.retail.v2.Product.Type.COLLECTION]
+     * [Product][google.cloud.retail.v2.Product] member nor a
+     * [Product.Type.PRIMARY][google.cloud.retail.v2.Product.Type.PRIMARY]
+     * [Product][google.cloud.retail.v2.Product] with more than one
+     * [variants][google.cloud.retail.v2.Product.Type.VARIANT]. Otherwise, an
+     * INVALID_ARGUMENT error is returned.
+     * All inventory information for the named
+     * [Product][google.cloud.retail.v2.Product] will be deleted.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -44,6 +55,15 @@ class DeleteProductRequest extends \Google\Protobuf\Internal\Message
      *           exists, a PERMISSION_DENIED error is returned.
      *           If the [Product][google.cloud.retail.v2.Product] to delete does not exist,
      *           a NOT_FOUND error is returned.
+     *           The [Product][google.cloud.retail.v2.Product] to delete can neither be a
+     *           [Product.Type.COLLECTION][google.cloud.retail.v2.Product.Type.COLLECTION]
+     *           [Product][google.cloud.retail.v2.Product] member nor a
+     *           [Product.Type.PRIMARY][google.cloud.retail.v2.Product.Type.PRIMARY]
+     *           [Product][google.cloud.retail.v2.Product] with more than one
+     *           [variants][google.cloud.retail.v2.Product.Type.VARIANT]. Otherwise, an
+     *           INVALID_ARGUMENT error is returned.
+     *           All inventory information for the named
+     *           [Product][google.cloud.retail.v2.Product] will be deleted.
      * }
      */
     public function __construct($data = NULL) {
@@ -60,6 +80,15 @@ class DeleteProductRequest extends \Google\Protobuf\Internal\Message
      * exists, a PERMISSION_DENIED error is returned.
      * If the [Product][google.cloud.retail.v2.Product] to delete does not exist,
      * a NOT_FOUND error is returned.
+     * The [Product][google.cloud.retail.v2.Product] to delete can neither be a
+     * [Product.Type.COLLECTION][google.cloud.retail.v2.Product.Type.COLLECTION]
+     * [Product][google.cloud.retail.v2.Product] member nor a
+     * [Product.Type.PRIMARY][google.cloud.retail.v2.Product.Type.PRIMARY]
+     * [Product][google.cloud.retail.v2.Product] with more than one
+     * [variants][google.cloud.retail.v2.Product.Type.VARIANT]. Otherwise, an
+     * INVALID_ARGUMENT error is returned.
+     * All inventory information for the named
+     * [Product][google.cloud.retail.v2.Product] will be deleted.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -78,6 +107,15 @@ class DeleteProductRequest extends \Google\Protobuf\Internal\Message
      * exists, a PERMISSION_DENIED error is returned.
      * If the [Product][google.cloud.retail.v2.Product] to delete does not exist,
      * a NOT_FOUND error is returned.
+     * The [Product][google.cloud.retail.v2.Product] to delete can neither be a
+     * [Product.Type.COLLECTION][google.cloud.retail.v2.Product.Type.COLLECTION]
+     * [Product][google.cloud.retail.v2.Product] member nor a
+     * [Product.Type.PRIMARY][google.cloud.retail.v2.Product.Type.PRIMARY]
+     * [Product][google.cloud.retail.v2.Product] with more than one
+     * [variants][google.cloud.retail.v2.Product.Type.VARIANT]. Otherwise, an
+     * INVALID_ARGUMENT error is returned.
+     * All inventory information for the named
+     * [Product][google.cloud.retail.v2.Product] will be deleted.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

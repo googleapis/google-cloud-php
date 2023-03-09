@@ -16,11 +16,10 @@ class TableSpec
         }
         \GPBMetadata\Google\Api\Resource::initOnce();
         \GPBMetadata\Google\Cloud\Automl\V1Beta1\Io::initOnce();
-        \GPBMetadata\Google\Api\Annotations::initOnce();
         $pool->internalAddGeneratedFile(
             '
-É
-,google/cloud/automl/v1beta1/table_spec.protogoogle.cloud.automl.v1beta1$google/cloud/automl/v1beta1/io.protogoogle/api/annotations.proto"¡
+€
+,google/cloud/automl/v1beta1/table_spec.protogoogle.cloud.automl.v1beta1$google/cloud/automl/v1beta1/io.proto"¡
 	TableSpec
 name (	
 time_column_spec_id (	
@@ -29,8 +28,8 @@ class TableSpec
 column_count (?
 input_configs (2(.google.cloud.automl.v1beta1.InputConfig
 etag (	:xÍAu
-automl.googleapis.com/TableSpecRprojects/{project}/locations/{location}/datasets/{dataset}/tableSpecs/{table_spec}B•
-com.google.cloud.automl.v1beta1PZAgoogle.golang.org/genproto/googleapis/cloud/automl/v1beta1;automl Google\\Cloud\\AutoMl\\V1beta1ÍGoogle::Cloud::AutoML::V1beta1bproto3'
+automl.googleapis.com/TableSpecRprojects/{project}/locations/{location}/datasets/{dataset}/tableSpecs/{table_spec}Bõ
+com.google.cloud.automl.v1beta1PZ7cloud.google.com/go/automl/apiv1beta1/automlpb;automlpb Google\\Cloud\\AutoMl\\V1beta1ÍGoogle::Cloud::AutoML::V1beta1bproto3'
         , true);
 
         static::$is_initialized = true;

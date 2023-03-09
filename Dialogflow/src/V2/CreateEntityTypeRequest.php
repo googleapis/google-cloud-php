@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request message for [EntityTypes.CreateEntityType][google.cloud.dialogflow.v2.EntityTypes.CreateEntityType].
+ * The request message for
+ * [EntityTypes.CreateEntityType][google.cloud.dialogflow.v2.EntityTypes.CreateEntityType].
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.CreateEntityTypeRequest</code>
  */
@@ -99,7 +100,7 @@ class CreateEntityTypeRequest extends \Google\Protobuf\Internal\Message
      */
     public function getEntityType()
     {
-        return isset($this->entity_type) ? $this->entity_type : null;
+        return $this->entity_type;
     }
 
     public function hasEntityType()

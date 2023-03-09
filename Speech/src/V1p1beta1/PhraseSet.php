@@ -36,8 +36,8 @@ class PhraseSet extends \Google\Protobuf\Internal\Message
      * enabled, so negative boost will simply be ignored. Though `boost` can
      * accept a wide range of positive values, most use cases are best served with
      * values between 0 (exclusive) and 20. We recommend using a binary search
-     * approach to finding the optimal value for your use case. Speech recognition
-     * will skip PhraseSets with a boost value of 0.
+     * approach to finding the optimal value for your use case as well as adding
+     * phrases both with and without boost to your requests.
      *
      * Generated from protobuf field <code>float boost = 4;</code>
      */
@@ -51,7 +51,7 @@ class PhraseSet extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           The resource name of the phrase set.
-     *     @type \Google\Cloud\Speech\V1p1beta1\PhraseSet\Phrase[]|\Google\Protobuf\Internal\RepeatedField $phrases
+     *     @type array<\Google\Cloud\Speech\V1p1beta1\PhraseSet\Phrase>|\Google\Protobuf\Internal\RepeatedField $phrases
      *           A list of word and phrases.
      *     @type float $boost
      *           Hint Boost. Positive value will increase the probability that a specific
@@ -61,8 +61,8 @@ class PhraseSet extends \Google\Protobuf\Internal\Message
      *           enabled, so negative boost will simply be ignored. Though `boost` can
      *           accept a wide range of positive values, most use cases are best served with
      *           values between 0 (exclusive) and 20. We recommend using a binary search
-     *           approach to finding the optimal value for your use case. Speech recognition
-     *           will skip PhraseSets with a boost value of 0.
+     *           approach to finding the optimal value for your use case as well as adding
+     *           phrases both with and without boost to your requests.
      * }
      */
     public function __construct($data = NULL) {
@@ -111,7 +111,7 @@ class PhraseSet extends \Google\Protobuf\Internal\Message
      * A list of word and phrases.
      *
      * Generated from protobuf field <code>repeated .google.cloud.speech.v1p1beta1.PhraseSet.Phrase phrases = 2;</code>
-     * @param \Google\Cloud\Speech\V1p1beta1\PhraseSet\Phrase[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Speech\V1p1beta1\PhraseSet\Phrase>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPhrases($var)
@@ -130,8 +130,8 @@ class PhraseSet extends \Google\Protobuf\Internal\Message
      * enabled, so negative boost will simply be ignored. Though `boost` can
      * accept a wide range of positive values, most use cases are best served with
      * values between 0 (exclusive) and 20. We recommend using a binary search
-     * approach to finding the optimal value for your use case. Speech recognition
-     * will skip PhraseSets with a boost value of 0.
+     * approach to finding the optimal value for your use case as well as adding
+     * phrases both with and without boost to your requests.
      *
      * Generated from protobuf field <code>float boost = 4;</code>
      * @return float
@@ -149,8 +149,8 @@ class PhraseSet extends \Google\Protobuf\Internal\Message
      * enabled, so negative boost will simply be ignored. Though `boost` can
      * accept a wide range of positive values, most use cases are best served with
      * values between 0 (exclusive) and 20. We recommend using a binary search
-     * approach to finding the optimal value for your use case. Speech recognition
-     * will skip PhraseSets with a boost value of 0.
+     * approach to finding the optimal value for your use case as well as adding
+     * phrases both with and without boost to your requests.
      *
      * Generated from protobuf field <code>float boost = 4;</code>
      * @param float $var

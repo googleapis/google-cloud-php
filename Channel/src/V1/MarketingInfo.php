@@ -109,11 +109,11 @@ class MarketingInfo extends \Google\Protobuf\Internal\Message
      * Default logo.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.Media default_logo = 3;</code>
-     * @return \Google\Cloud\Channel\V1\Media
+     * @return \Google\Cloud\Channel\V1\Media|null
      */
     public function getDefaultLogo()
     {
-        return isset($this->default_logo) ? $this->default_logo : null;
+        return $this->default_logo;
     }
 
     public function hasDefaultLogo()

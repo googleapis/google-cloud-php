@@ -24,8 +24,8 @@ class CreateBackupEncryptionConfig extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The Cloud KMS key that will be used to protect the backup.
      * This field should be set only when
-     * [encryption_type][google.spanner.admin.database.v1.CreateBackupEncryptionConfig.encryption_type]
-     * is `CUSTOMER_MANAGED_ENCRYPTION`. Values are of the form
+     * [encryption_type][google.spanner.admin.database.v1.CreateBackupEncryptionConfig.encryption_type] is
+     * `CUSTOMER_MANAGED_ENCRYPTION`. Values are of the form
      * `projects/<project>/locations/<location>/keyRings/<key_ring>/cryptoKeys/<kms_key_name>`.
      *
      * Generated from protobuf field <code>string kms_key_name = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
@@ -43,8 +43,8 @@ class CreateBackupEncryptionConfig extends \Google\Protobuf\Internal\Message
      *     @type string $kms_key_name
      *           Optional. The Cloud KMS key that will be used to protect the backup.
      *           This field should be set only when
-     *           [encryption_type][google.spanner.admin.database.v1.CreateBackupEncryptionConfig.encryption_type]
-     *           is `CUSTOMER_MANAGED_ENCRYPTION`. Values are of the form
+     *           [encryption_type][google.spanner.admin.database.v1.CreateBackupEncryptionConfig.encryption_type] is
+     *           `CUSTOMER_MANAGED_ENCRYPTION`. Values are of the form
      *           `projects/<project>/locations/<location>/keyRings/<key_ring>/cryptoKeys/<kms_key_name>`.
      * }
      */
@@ -82,8 +82,8 @@ class CreateBackupEncryptionConfig extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The Cloud KMS key that will be used to protect the backup.
      * This field should be set only when
-     * [encryption_type][google.spanner.admin.database.v1.CreateBackupEncryptionConfig.encryption_type]
-     * is `CUSTOMER_MANAGED_ENCRYPTION`. Values are of the form
+     * [encryption_type][google.spanner.admin.database.v1.CreateBackupEncryptionConfig.encryption_type] is
+     * `CUSTOMER_MANAGED_ENCRYPTION`. Values are of the form
      * `projects/<project>/locations/<location>/keyRings/<key_ring>/cryptoKeys/<kms_key_name>`.
      *
      * Generated from protobuf field <code>string kms_key_name = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
@@ -97,8 +97,8 @@ class CreateBackupEncryptionConfig extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The Cloud KMS key that will be used to protect the backup.
      * This field should be set only when
-     * [encryption_type][google.spanner.admin.database.v1.CreateBackupEncryptionConfig.encryption_type]
-     * is `CUSTOMER_MANAGED_ENCRYPTION`. Values are of the form
+     * [encryption_type][google.spanner.admin.database.v1.CreateBackupEncryptionConfig.encryption_type] is
+     * `CUSTOMER_MANAGED_ENCRYPTION`. Values are of the form
      * `projects/<project>/locations/<location>/keyRings/<key_ring>/cryptoKeys/<kms_key_name>`.
      *
      * Generated from protobuf field <code>string kms_key_name = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>

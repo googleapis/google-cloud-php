@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Cloud KMS metadata for the given [google.cloud.location.Location][google.cloud.location.Location].
+ * Cloud KMS metadata for the given
+ * [google.cloud.location.Location][google.cloud.location.Location].
  *
  * Generated from protobuf message <code>google.cloud.kms.v1.LocationMetadata</code>
  */
@@ -18,7 +19,8 @@ class LocationMetadata extends \Google\Protobuf\Internal\Message
     /**
      * Indicates whether [CryptoKeys][google.cloud.kms.v1.CryptoKey] with
      * [protection_level][google.cloud.kms.v1.CryptoKeyVersionTemplate.protection_level]
-     * [HSM][google.cloud.kms.v1.ProtectionLevel.HSM] can be created in this location.
+     * [HSM][google.cloud.kms.v1.ProtectionLevel.HSM] can be created in this
+     * location.
      *
      * Generated from protobuf field <code>bool hsm_available = 1;</code>
      */
@@ -26,7 +28,8 @@ class LocationMetadata extends \Google\Protobuf\Internal\Message
     /**
      * Indicates whether [CryptoKeys][google.cloud.kms.v1.CryptoKey] with
      * [protection_level][google.cloud.kms.v1.CryptoKeyVersionTemplate.protection_level]
-     * [EXTERNAL][google.cloud.kms.v1.ProtectionLevel.EXTERNAL] can be created in this location.
+     * [EXTERNAL][google.cloud.kms.v1.ProtectionLevel.EXTERNAL] can be created in
+     * this location.
      *
      * Generated from protobuf field <code>bool ekm_available = 2;</code>
      */
@@ -41,11 +44,13 @@ class LocationMetadata extends \Google\Protobuf\Internal\Message
      *     @type bool $hsm_available
      *           Indicates whether [CryptoKeys][google.cloud.kms.v1.CryptoKey] with
      *           [protection_level][google.cloud.kms.v1.CryptoKeyVersionTemplate.protection_level]
-     *           [HSM][google.cloud.kms.v1.ProtectionLevel.HSM] can be created in this location.
+     *           [HSM][google.cloud.kms.v1.ProtectionLevel.HSM] can be created in this
+     *           location.
      *     @type bool $ekm_available
      *           Indicates whether [CryptoKeys][google.cloud.kms.v1.CryptoKey] with
      *           [protection_level][google.cloud.kms.v1.CryptoKeyVersionTemplate.protection_level]
-     *           [EXTERNAL][google.cloud.kms.v1.ProtectionLevel.EXTERNAL] can be created in this location.
+     *           [EXTERNAL][google.cloud.kms.v1.ProtectionLevel.EXTERNAL] can be created in
+     *           this location.
      * }
      */
     public function __construct($data = NULL) {
@@ -56,7 +61,8 @@ class LocationMetadata extends \Google\Protobuf\Internal\Message
     /**
      * Indicates whether [CryptoKeys][google.cloud.kms.v1.CryptoKey] with
      * [protection_level][google.cloud.kms.v1.CryptoKeyVersionTemplate.protection_level]
-     * [HSM][google.cloud.kms.v1.ProtectionLevel.HSM] can be created in this location.
+     * [HSM][google.cloud.kms.v1.ProtectionLevel.HSM] can be created in this
+     * location.
      *
      * Generated from protobuf field <code>bool hsm_available = 1;</code>
      * @return bool
@@ -69,7 +75,8 @@ class LocationMetadata extends \Google\Protobuf\Internal\Message
     /**
      * Indicates whether [CryptoKeys][google.cloud.kms.v1.CryptoKey] with
      * [protection_level][google.cloud.kms.v1.CryptoKeyVersionTemplate.protection_level]
-     * [HSM][google.cloud.kms.v1.ProtectionLevel.HSM] can be created in this location.
+     * [HSM][google.cloud.kms.v1.ProtectionLevel.HSM] can be created in this
+     * location.
      *
      * Generated from protobuf field <code>bool hsm_available = 1;</code>
      * @param bool $var
@@ -86,7 +93,8 @@ class LocationMetadata extends \Google\Protobuf\Internal\Message
     /**
      * Indicates whether [CryptoKeys][google.cloud.kms.v1.CryptoKey] with
      * [protection_level][google.cloud.kms.v1.CryptoKeyVersionTemplate.protection_level]
-     * [EXTERNAL][google.cloud.kms.v1.ProtectionLevel.EXTERNAL] can be created in this location.
+     * [EXTERNAL][google.cloud.kms.v1.ProtectionLevel.EXTERNAL] can be created in
+     * this location.
      *
      * Generated from protobuf field <code>bool ekm_available = 2;</code>
      * @return bool
@@ -99,7 +107,8 @@ class LocationMetadata extends \Google\Protobuf\Internal\Message
     /**
      * Indicates whether [CryptoKeys][google.cloud.kms.v1.CryptoKey] with
      * [protection_level][google.cloud.kms.v1.CryptoKeyVersionTemplate.protection_level]
-     * [EXTERNAL][google.cloud.kms.v1.ProtectionLevel.EXTERNAL] can be created in this location.
+     * [EXTERNAL][google.cloud.kms.v1.ProtectionLevel.EXTERNAL] can be created in
+     * this location.
      *
      * Generated from protobuf field <code>bool ekm_available = 2;</code>
      * @param bool $var

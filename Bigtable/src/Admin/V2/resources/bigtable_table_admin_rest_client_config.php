@@ -3,6 +3,33 @@
 return [
     'interfaces' => [
         'google.bigtable.admin.v2.BigtableTableAdmin' => [
+            'CheckConsistency' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{name=projects/*/instances/*/tables/*}:checkConsistency',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateBackup' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{parent=projects/*/instances/*/clusters/*}/backups',
+                'body' => 'backup',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'backup_id',
+                ],
+            ],
             'CreateTable' => [
                 'method' => 'post',
                 'uriTemplate' => '/v2/{parent=projects/*/instances/*}/tables',
@@ -27,20 +54,20 @@ return [
                     ],
                 ],
             ],
-            'ListTables' => [
-                'method' => 'get',
-                'uriTemplate' => '/v2/{parent=projects/*/instances/*}/tables',
+            'DeleteBackup' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v2/{name=projects/*/instances/*/clusters/*/backups/*}',
                 'placeholders' => [
-                    'parent' => [
+                    'name' => [
                         'getters' => [
-                            'getParent',
+                            'getName',
                         ],
                     ],
                 ],
             ],
-            'GetTable' => [
-                'method' => 'get',
-                'uriTemplate' => '/v2/{name=projects/*/instances/*/tables/*}',
+            'DeleteSnapshot' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v2/{name=projects/*/instances/*/clusters/*/snapshots/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -52,18 +79,6 @@ return [
             'DeleteTable' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v2/{name=projects/*/instances/*/tables/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'ModifyColumnFamilies' => [
-                'method' => 'post',
-                'uriTemplate' => '/v2/{name=projects/*/instances/*/tables/*}:modifyColumnFamilies',
-                'body' => '*',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -96,10 +111,9 @@ return [
                     ],
                 ],
             ],
-            'CheckConsistency' => [
-                'method' => 'post',
-                'uriTemplate' => '/v2/{name=projects/*/instances/*/tables/*}:checkConsistency',
-                'body' => '*',
+            'GetBackup' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{name=projects/*/instances/*/clusters/*/backups/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -127,6 +141,85 @@ return [
                     ],
                 ],
             ],
+            'GetSnapshot' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{name=projects/*/instances/*/clusters/*/snapshots/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetTable' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{name=projects/*/instances/*/tables/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListBackups' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{parent=projects/*/instances/*/clusters/*}/backups',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListSnapshots' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{parent=projects/*/instances/*/clusters/*}/snapshots',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListTables' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{parent=projects/*/instances/*}/tables',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ModifyColumnFamilies' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{name=projects/*/instances/*/tables/*}:modifyColumnFamilies',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'RestoreTable' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{parent=projects/*/instances/*}/tables:restore',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'SetIamPolicy' => [
                 'method' => 'post',
                 'uriTemplate' => '/v2/{resource=projects/*/instances/*/tables/*}:setIamPolicy',
@@ -135,25 +228,6 @@ return [
                     [
                         'method' => 'post',
                         'uriTemplate' => '/v2/{resource=projects/*/instances/*/clusters/*/backups/*}:setIamPolicy',
-                        'body' => '*',
-                    ],
-                ],
-                'placeholders' => [
-                    'resource' => [
-                        'getters' => [
-                            'getResource',
-                        ],
-                    ],
-                ],
-            ],
-            'TestIamPermissions' => [
-                'method' => 'post',
-                'uriTemplate' => '/v2/{resource=projects/*/instances/*/tables/*}:testIamPermissions',
-                'body' => '*',
-                'additionalBindings' => [
-                    [
-                        'method' => 'post',
-                        'uriTemplate' => '/v2/{resource=projects/*/instances/*/clusters/*/backups/*}:testIamPermissions',
                         'body' => '*',
                     ],
                 ],
@@ -177,69 +251,33 @@ return [
                     ],
                 ],
             ],
-            'GetSnapshot' => [
-                'method' => 'get',
-                'uriTemplate' => '/v2/{name=projects/*/instances/*/clusters/*/snapshots/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'ListSnapshots' => [
-                'method' => 'get',
-                'uriTemplate' => '/v2/{parent=projects/*/instances/*/clusters/*}/snapshots',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'DeleteSnapshot' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v2/{name=projects/*/instances/*/clusters/*/snapshots/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'CreateBackup' => [
+            'TestIamPermissions' => [
                 'method' => 'post',
-                'uriTemplate' => '/v2/{parent=projects/*/instances/*/clusters/*}/backups',
-                'body' => 'backup',
+                'uriTemplate' => '/v2/{resource=projects/*/instances/*/tables/*}:testIamPermissions',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{resource=projects/*/instances/*/clusters/*/backups/*}:testIamPermissions',
+                        'body' => '*',
+                    ],
+                ],
                 'placeholders' => [
-                    'parent' => [
+                    'resource' => [
                         'getters' => [
-                            'getParent',
+                            'getResource',
                         ],
                     ],
                 ],
             ],
-            'GetBackup' => [
-                'method' => 'get',
-                'uriTemplate' => '/v2/{name=projects/*/instances/*/clusters/*/backups/*}',
+            'UndeleteTable' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{name=projects/*/instances/*/tables/*}:undelete',
+                'body' => '*',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
                             'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'ListBackups' => [
-                'method' => 'get',
-                'uriTemplate' => '/v2/{parent=projects/*/instances/*/clusters/*}/backups',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
                         ],
                     ],
                 ],
@@ -256,28 +294,24 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'update_mask',
+                ],
             ],
-            'DeleteBackup' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v2/{name=projects/*/instances/*/clusters/*/backups/*}',
+            'UpdateTable' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v2/{table.name=projects/*/instances/*/tables/*}',
+                'body' => 'table',
                 'placeholders' => [
-                    'name' => [
+                    'table.name' => [
                         'getters' => [
+                            'getTable',
                             'getName',
                         ],
                     ],
                 ],
-            ],
-            'RestoreTable' => [
-                'method' => 'post',
-                'uriTemplate' => '/v2/{parent=projects/*/instances/*}/tables:restore',
-                'body' => '*',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
+                'queryParams' => [
+                    'update_mask',
                 ],
             ],
         ],
@@ -328,4 +362,5 @@ return [
             ],
         ],
     ],
+    'numericEnums' => true,
 ];

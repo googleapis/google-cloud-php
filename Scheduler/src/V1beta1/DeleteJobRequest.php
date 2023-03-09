@@ -23,6 +23,14 @@ class DeleteJobRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
+    /**
+     * This field is used to manage the legacy App Engine Cron jobs using the
+     * Cloud Scheduler API. If the field is set to true, the job in the __cron
+     * queue with the corresponding name will be deleted instead.
+     *
+     * Generated from protobuf field <code>bool legacy_app_engine_cron = 2;</code>
+     */
+    private $legacy_app_engine_cron = false;
 
     /**
      * Constructor.
@@ -33,6 +41,10 @@ class DeleteJobRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. The job name. For example:
      *           `projects/PROJECT_ID/locations/LOCATION_ID/jobs/JOB_ID`.
+     *     @type bool $legacy_app_engine_cron
+     *           This field is used to manage the legacy App Engine Cron jobs using the
+     *           Cloud Scheduler API. If the field is set to true, the job in the __cron
+     *           queue with the corresponding name will be deleted instead.
      * }
      */
     public function __construct($data = NULL) {
@@ -64,6 +76,36 @@ class DeleteJobRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
+    }
+
+    /**
+     * This field is used to manage the legacy App Engine Cron jobs using the
+     * Cloud Scheduler API. If the field is set to true, the job in the __cron
+     * queue with the corresponding name will be deleted instead.
+     *
+     * Generated from protobuf field <code>bool legacy_app_engine_cron = 2;</code>
+     * @return bool
+     */
+    public function getLegacyAppEngineCron()
+    {
+        return $this->legacy_app_engine_cron;
+    }
+
+    /**
+     * This field is used to manage the legacy App Engine Cron jobs using the
+     * Cloud Scheduler API. If the field is set to true, the job in the __cron
+     * queue with the corresponding name will be deleted instead.
+     *
+     * Generated from protobuf field <code>bool legacy_app_engine_cron = 2;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setLegacyAppEngineCron($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->legacy_app_engine_cron = $var;
 
         return $this;
     }
