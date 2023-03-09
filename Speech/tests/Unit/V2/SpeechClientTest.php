@@ -349,7 +349,7 @@ class SpeechClientTest extends GeneratedTest
         $transport->addResponse($incompleteOperation);
         $name = 'name3373707';
         $uid = 'uid115792';
-        $boost = 9392221.0;
+        $boost = 9392221;
         $displayName = 'displayName1615086568';
         $etag = 'etag3123477';
         $reconciling = false;
@@ -762,7 +762,7 @@ class SpeechClientTest extends GeneratedTest
         $transport->addResponse($incompleteOperation);
         $name2 = 'name2-1052831874';
         $uid = 'uid115792';
-        $boost = 9392221.0;
+        $boost = 9392221;
         $displayName = 'displayName1615086568';
         $etag2 = 'etag2-1293302904';
         $reconciling = false;
@@ -1150,7 +1150,7 @@ class SpeechClientTest extends GeneratedTest
         // Mock response
         $name2 = 'name2-1052831874';
         $uid = 'uid115792';
-        $boost = 9392221.0;
+        $boost = 9392221;
         $displayName = 'displayName1615086568';
         $etag = 'etag3123477';
         $reconciling = false;
@@ -1797,7 +1797,7 @@ class SpeechClientTest extends GeneratedTest
         $transport->addResponse($incompleteOperation);
         $name2 = 'name2-1052831874';
         $uid = 'uid115792';
-        $boost = 9392221.0;
+        $boost = 9392221;
         $displayName = 'displayName1615086568';
         $etag2 = 'etag2-1293302904';
         $reconciling = false;
@@ -2256,7 +2256,7 @@ class SpeechClientTest extends GeneratedTest
         $transport->addResponse($incompleteOperation);
         $name = 'name3373707';
         $uid = 'uid115792';
-        $boost = 9392221.0;
+        $boost = 9392221;
         $displayName = 'displayName1615086568';
         $etag = 'etag3123477';
         $reconciling = false;
