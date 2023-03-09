@@ -160,4 +160,33 @@ class ExponentialBackoffTest extends TestCase
             [10, 60000000, 60000000]
         ];
     }
+
+    public function testOnRetryExceptionFunction()
+    {
+        $args = ['foo' => 'bar'];
+        $onRetryExceptionFunction = function (
+            $ex,
+            $retryAttempt,
+            $arguments
+        ) {
+            $message = sprintf("%s, %s", $retryAttempt, $arguments[0]['foo']);
+            throw new \Exception($message);
+        };
+
+        $result = '';
+        $expected = "0, bar";
+        $backoff = new ExponentialBackoff(null, null, $onRetryExceptionFunction);
+        try {
+            $backoff->execute(
+                function ($options) use ($args) {
+                    throw new \Exception();
+                },
+                [$args]
+            );
+        } catch (\Exception $ex) {
+            $result = $ex->getMessage();
+        }
+
+        $this->assertEquals($expected, $result);
+    }
 }
