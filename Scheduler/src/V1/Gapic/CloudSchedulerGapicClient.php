@@ -665,22 +665,22 @@ class CloudSchedulerGapicClient
      * $cloudSchedulerClient = new CloudSchedulerClient();
      * try {
      *     $job = new Job();
-     *     $response = $cloudSchedulerClient->updateJob($job);
+     *     $updateMask = new FieldMask();
+     *     $response = $cloudSchedulerClient->updateJob($job, $updateMask);
      * } finally {
      *     $cloudSchedulerClient->close();
      * }
      * ```
      *
-     * @param Job   $job          Required. The new job properties.
-     *                            [name][google.cloud.scheduler.v1.Job.name] must be specified.
+     * @param Job       $job          Required. The new job properties.
+     *                                [name][google.cloud.scheduler.v1.Job.name] must be specified.
      *
-     *                            Output only fields cannot be modified using UpdateJob.
-     *                            Any value specified for an output only field will be ignored.
-     * @param array $optionalArgs {
+     *                                Output only fields cannot be modified using UpdateJob.
+     *                                Any value specified for an output only field will be ignored.
+     * @param FieldMask $updateMask   A  mask used to specify which fields of the job are being updated.
+     * @param array     $optionalArgs {
      *     Optional.
      *
-     *     @type FieldMask $updateMask
-     *           A  mask used to specify which fields of the job are being updated.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -691,16 +691,13 @@ class CloudSchedulerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateJob($job, array $optionalArgs = [])
+    public function updateJob($job, $updateMask, array $optionalArgs = [])
     {
         $request = new UpdateJobRequest();
         $requestParamHeaders = [];
         $request->setJob($job);
+        $request->setUpdateMask($updateMask);
         $requestParamHeaders['job.name'] = $job->getName();
-        if (isset($optionalArgs['updateMask'])) {
-            $request->setUpdateMask($optionalArgs['updateMask']);
-        }
-
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('UpdateJob', Job::class, $optionalArgs, $request)->wait();

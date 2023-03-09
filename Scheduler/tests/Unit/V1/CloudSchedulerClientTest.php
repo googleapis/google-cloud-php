@@ -31,6 +31,7 @@ use Google\Cloud\Location\Location;
 use Google\Cloud\Scheduler\V1\CloudSchedulerClient;
 use Google\Cloud\Scheduler\V1\Job;
 use Google\Cloud\Scheduler\V1\ListJobsResponse;
+use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
 use stdClass;
@@ -543,7 +544,8 @@ class CloudSchedulerClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $job = new Job();
-        $response = $gapicClient->updateJob($job);
+        $updateMask = new FieldMask();
+        $response = $gapicClient->updateJob($job, $updateMask);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -552,6 +554,8 @@ class CloudSchedulerClientTest extends GeneratedTest
         $this->assertSame('/google.cloud.scheduler.v1.CloudScheduler/UpdateJob', $actualFuncCall);
         $actualValue = $actualRequestObject->getJob();
         $this->assertProtobufEquals($job, $actualValue);
+        $actualValue = $actualRequestObject->getUpdateMask();
+        $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -575,8 +579,9 @@ class CloudSchedulerClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $job = new Job();
+        $updateMask = new FieldMask();
         try {
-            $gapicClient->updateJob($job);
+            $gapicClient->updateJob($job, $updateMask);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
