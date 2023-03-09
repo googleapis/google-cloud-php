@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class UpdateDataScanRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Update description.
+     * Required. DataScan resource to be updated.
      * Only fields specified in `update_mask` are updated.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataScan data_scan = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -36,7 +36,7 @@ class UpdateDataScanRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Dataplex\V1\DataScan $data_scan
-     *           Required. Update description.
+     *           Required. DataScan resource to be updated.
      *           Only fields specified in `update_mask` are updated.
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           Required. Mask of fields to update.
@@ -48,7 +48,7 @@ class UpdateDataScanRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Update description.
+     * Required. DataScan resource to be updated.
      * Only fields specified in `update_mask` are updated.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataScan data_scan = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -70,7 +70,7 @@ class UpdateDataScanRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Update description.
+     * Required. DataScan resource to be updated.
      * Only fields specified in `update_mask` are updated.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataScan data_scan = 1 [(.google.api.field_behavior) = REQUIRED];</code>

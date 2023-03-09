@@ -28,13 +28,14 @@ use Google\Cloud\Dataplex\V1\DataScanServiceClient;
 use Google\Cloud\Dataplex\V1\RunDataScanResponse;
 
 /**
- * Run an on demand execution of a DataScan.
+ * Runs an on-demand execution of a DataScan
  *
  * @param string $formattedName The resource name of the DataScan:
- *                              projects/{project}/locations/{location_id}/dataScans/{data_scan_id}.
- *                              where `{project}` refers to a project_id or project_number and
+ *                              `projects/{project}/locations/{location_id}/dataScans/{data_scan_id}`.
+ *                              where `project` refers to a *project_id* or *project_number* and
  *                              `location_id` refers to a GCP region.
- *                              Only on-demand DataScans are allowed. Please see
+ *
+ *                              Only **OnDemand** data scans are allowed. Please see
  *                              {@see DataScanServiceClient::dataScanName()} for help formatting this field.
  */
 function run_data_scan_sample(string $formattedName): void
