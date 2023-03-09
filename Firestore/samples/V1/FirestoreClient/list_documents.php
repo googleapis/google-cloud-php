@@ -31,15 +31,21 @@ use Google\Cloud\Firestore\V1\FirestoreClient;
 /**
  * Lists documents.
  *
- * @param string $parent The parent resource name. In the format:
- *                       `projects/{project_id}/databases/{database_id}/documents` or
- *                       `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
+ * @param string $parent       The parent resource name. In the format:
+ *                             `projects/{project_id}/databases/{database_id}/documents` or
+ *                             `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
  *
- *                       For example:
- *                       `projects/my-project/databases/my-database/documents` or
- *                       `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
+ *                             For example:
+ *                             `projects/my-project/databases/my-database/documents` or
+ *                             `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
+ * @param string $collectionId Optional. The collection ID, relative to `parent`, to list.
+ *
+ *                             For example: `chatrooms` or `messages`.
+ *
+ *                             This is optional, and when not provided, Firestore will list documents
+ *                             from all collections under the provided `parent`.
  */
-function list_documents_sample(string $parent): void
+function list_documents_sample(string $parent, string $collectionId): void
 {
     // Create a client.
     $firestoreClient = new FirestoreClient();
@@ -47,7 +53,7 @@ function list_documents_sample(string $parent): void
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $firestoreClient->listDocuments($parent);
+        $response = $firestoreClient->listDocuments($parent, $collectionId);
 
         /** @var Document $element */
         foreach ($response as $element) {
@@ -70,7 +76,8 @@ function list_documents_sample(string $parent): void
 function callSample(): void
 {
     $parent = '[PARENT]';
+    $collectionId = '[COLLECTION_ID]';
 
-    list_documents_sample($parent);
+    list_documents_sample($parent, $collectionId);
 }
 // [END firestore_v1_generated_Firestore_ListDocuments_sync]

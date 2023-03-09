@@ -703,8 +703,9 @@ class FirestoreGapicClient
      * $firestoreClient = new FirestoreClient();
      * try {
      *     $parent = 'parent';
+     *     $collectionId = 'collection_id';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $firestoreClient->listDocuments($parent);
+     *     $pagedResponse = $firestoreClient->listDocuments($parent, $collectionId);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -712,7 +713,7 @@ class FirestoreGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $firestoreClient->listDocuments($parent);
+     *     $pagedResponse = $firestoreClient->listDocuments($parent, $collectionId);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -728,16 +729,15 @@ class FirestoreGapicClient
      *                             For example:
      *                             `projects/my-project/databases/my-database/documents` or
      *                             `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
+     * @param string $collectionId Optional. The collection ID, relative to `parent`, to list.
+     *
+     *                             For example: `chatrooms` or `messages`.
+     *
+     *                             This is optional, and when not provided, Firestore will list documents
+     *                             from all collections under the provided `parent`.
      * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $collectionId
-     *           Optional. The collection ID, relative to `parent`, to list.
-     *
-     *           For example: `chatrooms` or `messages`.
-     *
-     *           This is optional, and when not provided, Firestore will list documents
-     *           from all collections under the provided `parent`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -786,17 +786,14 @@ class FirestoreGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listDocuments($parent, array $optionalArgs = [])
+    public function listDocuments($parent, $collectionId, array $optionalArgs = [])
     {
         $request = new ListDocumentsRequest();
         $requestParamHeaders = [];
         $request->setParent($parent);
+        $request->setCollectionId($collectionId);
         $requestParamHeaders['parent'] = $parent;
-        if (isset($optionalArgs['collectionId'])) {
-            $request->setCollectionId($optionalArgs['collectionId']);
-            $requestParamHeaders['collection_id'] = $optionalArgs['collectionId'];
-        }
-
+        $requestParamHeaders['collection_id'] = $collectionId;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
