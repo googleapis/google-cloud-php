@@ -155,7 +155,7 @@ function doRedirect(url) {
         }
     }
     matches = url.match(/docs\/([^/]+)\//)
-    if (matches) {
+    if (matches && matches[1] != "google-cloud") {
         return window.location = "https://cloud.google.com/php/docs/reference/" + matches[1] + "/latest"
     }
     return window.location = "https://cloud.google.com/php/docs/reference"
