@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2022 Google LLC
+ * Copyright 2023 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,23 +22,15 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START cloudscheduler_v1_generated_CloudScheduler_UpdateJob_sync]
+// [START cloudkms_v1_generated_EkmService_UpdateEkmConfig_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Scheduler\V1\CloudSchedulerClient;
-use Google\Cloud\Scheduler\V1\Job;
+use Google\Cloud\Kms\V1\EkmConfig;
+use Google\Cloud\Kms\V1\EkmServiceClient;
 use Google\Protobuf\FieldMask;
 
 /**
- * Updates a job.
- *
- * If successful, the updated [Job][google.cloud.scheduler.v1.Job] is
- * returned. If the job does not exist, `NOT_FOUND` is returned.
- *
- * If UpdateJob does not successfully return, it is possible for the
- * job to be in an
- * [Job.State.UPDATE_FAILED][google.cloud.scheduler.v1.Job.State.UPDATE_FAILED]
- * state. A job in this state may not be executed. If this happens, retry the
- * UpdateJob request until a successful response is received.
+ * Updates the [EkmConfig][google.cloud.kms.v1.EkmConfig] singleton resource
+ * for a given project and location.
  *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:
@@ -46,22 +38,22 @@ use Google\Protobuf\FieldMask;
  *  - It may require specifying regional endpoints when creating the service client,
  *    please see the apiEndpoint client configuration option for more details.
  */
-function update_job_sample(): void
+function update_ekm_config_sample(): void
 {
     // Create a client.
-    $cloudSchedulerClient = new CloudSchedulerClient();
+    $ekmServiceClient = new EkmServiceClient();
 
     // Prepare any non-scalar elements to be passed along with the request.
-    $job = new Job();
+    $ekmConfig = new EkmConfig();
     $updateMask = new FieldMask();
 
     // Call the API and handle any network failures.
     try {
-        /** @var Job $response */
-        $response = $cloudSchedulerClient->updateJob($job, $updateMask);
+        /** @var EkmConfig $response */
+        $response = $ekmServiceClient->updateEkmConfig($ekmConfig, $updateMask);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
 }
-// [END cloudscheduler_v1_generated_CloudScheduler_UpdateJob_sync]
+// [END cloudkms_v1_generated_EkmService_UpdateEkmConfig_sync]

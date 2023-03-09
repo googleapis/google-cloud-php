@@ -87,6 +87,32 @@ class CryptoKeyVersionState
      * Generated from protobuf enum <code>IMPORT_FAILED = 7;</code>
      */
     const IMPORT_FAILED = 7;
+    /**
+     * This version was not generated successfully. It may not be used, enabled,
+     * disabled, or destroyed. Additional details can be found in
+     * [CryptoKeyVersion.generation_failure_reason][google.cloud.kms.v1.CryptoKeyVersion.generation_failure_reason].
+     *
+     * Generated from protobuf enum <code>GENERATION_FAILED = 8;</code>
+     */
+    const GENERATION_FAILED = 8;
+    /**
+     * This version was destroyed, and it may not be used or enabled again.
+     * Cloud KMS is waiting for the corresponding key material residing in an
+     * external key manager to be destroyed.
+     *
+     * Generated from protobuf enum <code>PENDING_EXTERNAL_DESTRUCTION = 9;</code>
+     */
+    const PENDING_EXTERNAL_DESTRUCTION = 9;
+    /**
+     * This version was destroyed, and it may not be used or enabled again.
+     * However, Cloud KMS could not confirm that the corresponding key material
+     * residing in an external key manager was destroyed. Additional details can
+     * be found in
+     * [CryptoKeyVersion.external_destruction_failure_reason][google.cloud.kms.v1.CryptoKeyVersion.external_destruction_failure_reason].
+     *
+     * Generated from protobuf enum <code>EXTERNAL_DESTRUCTION_FAILED = 10;</code>
+     */
+    const EXTERNAL_DESTRUCTION_FAILED = 10;
 
     private static $valueToName = [
         self::CRYPTO_KEY_VERSION_STATE_UNSPECIFIED => 'CRYPTO_KEY_VERSION_STATE_UNSPECIFIED',
@@ -97,6 +123,9 @@ class CryptoKeyVersionState
         self::DESTROY_SCHEDULED => 'DESTROY_SCHEDULED',
         self::PENDING_IMPORT => 'PENDING_IMPORT',
         self::IMPORT_FAILED => 'IMPORT_FAILED',
+        self::GENERATION_FAILED => 'GENERATION_FAILED',
+        self::PENDING_EXTERNAL_DESTRUCTION => 'PENDING_EXTERNAL_DESTRUCTION',
+        self::EXTERNAL_DESTRUCTION_FAILED => 'EXTERNAL_DESTRUCTION_FAILED',
     ];
 
     public static function name($value)

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2022 Google LLC
+ * Copyright 2023 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,35 +22,28 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START cloudscheduler_v1_generated_CloudScheduler_ResumeJob_sync]
+// [START cloudkms_v1_generated_EkmService_GetEkmConfig_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Scheduler\V1\CloudSchedulerClient;
-use Google\Cloud\Scheduler\V1\Job;
+use Google\Cloud\Kms\V1\EkmConfig;
+use Google\Cloud\Kms\V1\EkmServiceClient;
 
 /**
- * Resume a job.
+ * Returns the [EkmConfig][google.cloud.kms.v1.EkmConfig] singleton resource
+ * for a given project and location.
  *
- * This method reenables a job after it has been
- * [Job.State.PAUSED][google.cloud.scheduler.v1.Job.State.PAUSED]. The state
- * of a job is stored in [Job.state][google.cloud.scheduler.v1.Job.state];
- * after calling this method it will be set to
- * [Job.State.ENABLED][google.cloud.scheduler.v1.Job.State.ENABLED]. A job
- * must be in [Job.State.PAUSED][google.cloud.scheduler.v1.Job.State.PAUSED]
- * to be resumed.
- *
- * @param string $formattedName The job name. For example:
- *                              `projects/PROJECT_ID/locations/LOCATION_ID/jobs/JOB_ID`. Please see
- *                              {@see CloudSchedulerClient::jobName()} for help formatting this field.
+ * @param string $formattedName The [name][google.cloud.kms.v1.EkmConfig.name] of the
+ *                              [EkmConfig][google.cloud.kms.v1.EkmConfig] to get. Please see
+ *                              {@see EkmServiceClient::ekmConfigName()} for help formatting this field.
  */
-function resume_job_sample(string $formattedName): void
+function get_ekm_config_sample(string $formattedName): void
 {
     // Create a client.
-    $cloudSchedulerClient = new CloudSchedulerClient();
+    $ekmServiceClient = new EkmServiceClient();
 
     // Call the API and handle any network failures.
     try {
-        /** @var Job $response */
-        $response = $cloudSchedulerClient->resumeJob($formattedName);
+        /** @var EkmConfig $response */
+        $response = $ekmServiceClient->getEkmConfig($formattedName);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
@@ -68,8 +61,8 @@ function resume_job_sample(string $formattedName): void
  */
 function callSample(): void
 {
-    $formattedName = CloudSchedulerClient::jobName('[PROJECT]', '[LOCATION]', '[JOB]');
+    $formattedName = EkmServiceClient::ekmConfigName('[PROJECT]', '[LOCATION]');
 
-    resume_job_sample($formattedName);
+    get_ekm_config_sample($formattedName);
 }
-// [END cloudscheduler_v1_generated_CloudScheduler_ResumeJob_sync]
+// [END cloudkms_v1_generated_EkmService_GetEkmConfig_sync]
