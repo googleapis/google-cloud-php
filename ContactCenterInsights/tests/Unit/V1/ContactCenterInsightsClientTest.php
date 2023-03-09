@@ -121,7 +121,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $filter = 'filter-1274492040';
-        $analysisPercentage = 1.60975766E8;
+        $analysisPercentage = 9980822;
         $response = $gapicClient->bulkAnalyzeConversations($formattedParent, $filter, $analysisPercentage);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -191,7 +191,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $filter = 'filter-1274492040';
-        $analysisPercentage = 1.60975766E8;
+        $analysisPercentage = 9980822;
         $response = $gapicClient->bulkAnalyzeConversations($formattedParent, $filter, $analysisPercentage);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
