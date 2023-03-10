@@ -28,13 +28,16 @@ use Google\Cloud\Dataplex\V1\ContentServiceClient;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 
 /**
- * Returns permissions that a caller has on the specified resource. If the
-resource does not exist, this will return an empty set of
-permissions, not a `NOT_FOUND` error.
-
-Note: This operation is designed to be used for building
-permission-aware UIs and command-line tools, not for authorization
-checking. This operation may "fail open" without warning.
+ * Returns the caller's permissions on a resource.
+ * If the resource does not exist, an empty set of
+ * permissions is returned (a `NOT_FOUND` error is not returned).
+ *
+ * A caller is not required to have Google IAM permission to make this
+ * request.
+ *
+ * Note: This operation is designed to be used for building permission-aware
+ * UIs and command-line tools, not for authorization checking. This operation
+ * may "fail open" without warning.
  *
  * @param string $resource           REQUIRED: The resource for which the policy detail is being requested.
  *                                   See the operation documentation for the appropriate value for this field.

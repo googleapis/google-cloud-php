@@ -21,11 +21,12 @@ class Batch
         \GPBMetadata\Google\Cloud\Batch\V1\Job::initOnce();
         \GPBMetadata\Google\Cloud\Batch\V1\Task::initOnce();
         \GPBMetadata\Google\Longrunning\Operations::initOnce();
+        \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-µ
-!google/cloud/batch/v1/batch.protogoogle.cloud.batch.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.protogoogle/cloud/batch/v1/job.proto google/cloud/batch/v1/task.proto#google/longrunning/operations.protogoogle/protobuf/timestamp.proto"›
+Ò
+!google/cloud/batch/v1/batch.protogoogle.cloud.batch.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.protogoogle/cloud/batch/v1/job.proto google/cloud/batch/v1/task.proto#google/longrunning/operations.protogoogle/protobuf/empty.protogoogle/protobuf/timestamp.proto"›
 CreateJobRequest0
 parent (	B àAúAbatch.googleapis.com/Job
 job_id (	,

@@ -1,4 +1,4 @@
 deep-copy-regex:
-    - source: /google/devtools/cloudbuild/v1/.*-php/(.*)
-      dest: /owl-bot-staging/Build/v1/$1
+    - source: /google/devtools/cloudbuild/(v1|v2)/.*-php/(.*)
+      dest: /owl-bot-staging/Build/$1/$2
 api-name: Build

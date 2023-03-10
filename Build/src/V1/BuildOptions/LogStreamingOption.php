@@ -60,6 +60,4 @@ class LogStreamingOption
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(LogStreamingOption::class, \Google\Cloud\Build\V1\BuildOptions_LogStreamingOption::class);
 

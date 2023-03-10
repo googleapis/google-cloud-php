@@ -2,6 +2,12 @@
 
 In general, the Google Cloud PHP library uses [Service Account](https://cloud.google.com/iam/docs/creating-managing-service-accounts) credentials to connect to Google Cloud services. When running on Compute Engine the credentials will be discovered automatically. When running on other environments, the Service Account credentials can be specified by providing the path to the [JSON keyfile](https://cloud.google.com/iam/docs/managing-service-account-keys) for the account (or the JSON itself) in environment variables.
 
+**NOTE**: It's important to note that this library uses [`getenv`](https://www.php.net/manual/en/function.getenv.php), so if your environemnt variables are set in PHP, they must use [`putenv`](https://www.php.net/manual/en/function.putenv.php),
+
+```php
+putenv("GOOGLE_APPLICATION_CREDENTIALS=" . __DIR__ . '/your-service-account-credentials.json');
+```
+
 General instructions, environment variables, and configuration options are covered in the general [Authentication guide](https://cloud.google.com/docs/authentication/production) for the `google-cloud` umbrella package. Specific instructions and environment variables for each individual service are linked from the README documents listed below for each service.
 
 ## Creating a Service Account
@@ -17,7 +23,7 @@ The Google Cloud PHP library aims to make authentication as simple as possible, 
 **Project ID** is discovered in the following order:
 
 1. Specify project ID in code
-2. Discover project ID in environment variables
+2. Discover project ID in environment variables 
 3. Discover GCE project ID
 
 **Credentials** are discovered in the following order:
@@ -48,6 +54,26 @@ Here are the environment variables that Google Cloud PHP checks for credentials:
 
 Each Google Cloud PHP client may be authenticated in code when creating a client library instance.
 
+Most clients use the `credentials` option for providing credentials as a constructor option:
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\VideoIntelligence\V1\VideoIntelligenceServiceClient;
+
+// Authenticating with keyfile data.
+$video = new VideoIntelligenceServiceClient([
+    'credentials' => json_decode(file_get_contents('/path/to/keyfile.json'), true)
+]);
+
+// Authenticating with a keyfile path.
+$video = new VideoIntelligenceServiceClient([
+    'credentials' => '/path/to/keyfile.json'
+]);
+```
+
+However, some clients use the `keyFile` or `keyFilePath` option: 
+
 ```php
 require 'vendor/autoload.php';
 
@@ -69,23 +95,9 @@ $storage = new StorageClient([
 ]);
 ```
 
-Generated clients use a slightly different method to provide authentication in code.
+Check the [client documentation][php-ref-docs] for the client library you're using.
 
-```php
-require 'vendor/autoload.php';
-
-use Google\Cloud\VideoIntelligence\V1\VideoIntelligenceServiceClient;
-
-// Authenticating with keyfile data.
-$video = new VideoIntelligenceServiceClient([
-    'credentials' => json_decode(file_get_contents('/path/to/keyfile.json'), true)
-]);
-
-// Authenticating with a keyfile path.
-$video = new VideoIntelligenceServiceClient([
-    'credentials' => '/path/to/keyfile.json'
-]);
-```
+[php-ref-docs]: https://cloud.google.com/php/docs/reference
 
 ### Cloud SDK
 

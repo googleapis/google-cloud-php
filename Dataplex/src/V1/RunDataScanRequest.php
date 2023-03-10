@@ -17,10 +17,10 @@ class RunDataScanRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The resource name of the DataScan:
-     * projects/{project}/locations/{location_id}/dataScans/{data_scan_id}.
-     * where `{project}` refers to a project_id or project_number and
+     * `projects/{project}/locations/{location_id}/dataScans/{data_scan_id}`.
+     * where `project` refers to a *project_id* or *project_number* and
      * `location_id` refers to a GCP region.
-     * Only on-demand DataScans are allowed.
+     * Only **OnDemand** data scans are allowed.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -34,10 +34,10 @@ class RunDataScanRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. The resource name of the DataScan:
-     *           projects/{project}/locations/{location_id}/dataScans/{data_scan_id}.
-     *           where `{project}` refers to a project_id or project_number and
+     *           `projects/{project}/locations/{location_id}/dataScans/{data_scan_id}`.
+     *           where `project` refers to a *project_id* or *project_number* and
      *           `location_id` refers to a GCP region.
-     *           Only on-demand DataScans are allowed.
+     *           Only **OnDemand** data scans are allowed.
      * }
      */
     public function __construct($data = NULL) {
@@ -47,10 +47,10 @@ class RunDataScanRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the DataScan:
-     * projects/{project}/locations/{location_id}/dataScans/{data_scan_id}.
-     * where `{project}` refers to a project_id or project_number and
+     * `projects/{project}/locations/{location_id}/dataScans/{data_scan_id}`.
+     * where `project` refers to a *project_id* or *project_number* and
      * `location_id` refers to a GCP region.
-     * Only on-demand DataScans are allowed.
+     * Only **OnDemand** data scans are allowed.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -62,10 +62,10 @@ class RunDataScanRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the DataScan:
-     * projects/{project}/locations/{location_id}/dataScans/{data_scan_id}.
-     * where `{project}` refers to a project_id or project_number and
+     * `projects/{project}/locations/{location_id}/dataScans/{data_scan_id}`.
+     * where `project` refers to a *project_id* or *project_number* and
      * `location_id` refers to a GCP region.
-     * Only on-demand DataScans are allowed.
+     * Only **OnDemand** data scans are allowed.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

@@ -35,7 +35,7 @@ class ListBuildsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Build\V1\Build[]|\Google\Protobuf\Internal\RepeatedField $builds
+     *     @type array<\Google\Cloud\Build\V1\Build>|\Google\Protobuf\Internal\RepeatedField $builds
      *           Builds will be sorted by `create_time`, descending.
      *     @type string $next_page_token
      *           Token to receive the next page of results.
@@ -62,7 +62,7 @@ class ListBuildsResponse extends \Google\Protobuf\Internal\Message
      * Builds will be sorted by `create_time`, descending.
      *
      * Generated from protobuf field <code>repeated .google.devtools.cloudbuild.v1.Build builds = 1;</code>
-     * @param \Google\Cloud\Build\V1\Build[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Build\V1\Build>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setBuilds($var)

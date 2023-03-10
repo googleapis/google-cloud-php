@@ -98,4 +98,36 @@ class EkmServiceGrpcClient extends \Grpc\BaseStub {
         $metadata, $options);
     }
 
+    /**
+     * Returns the [EkmConfig][google.cloud.kms.v1.EkmConfig] singleton resource
+     * for a given project and location.
+     * @param \Google\Cloud\Kms\V1\GetEkmConfigRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function GetEkmConfig(\Google\Cloud\Kms\V1\GetEkmConfigRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.kms.v1.EkmService/GetEkmConfig',
+        $argument,
+        ['\Google\Cloud\Kms\V1\EkmConfig', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Updates the [EkmConfig][google.cloud.kms.v1.EkmConfig] singleton resource
+     * for a given project and location.
+     * @param \Google\Cloud\Kms\V1\UpdateEkmConfigRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function UpdateEkmConfig(\Google\Cloud\Kms\V1\UpdateEkmConfigRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.kms.v1.EkmService/UpdateEkmConfig',
+        $argument,
+        ['\Google\Cloud\Kms\V1\EkmConfig', 'decode'],
+        $metadata, $options);
+    }
+
 }
