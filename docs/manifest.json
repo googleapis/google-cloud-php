@@ -11,6 +11,7 @@
             "name": "google/cloud",
             "defaultService": "servicebuilder",
             "versions": [
+                "v0.199.0",
                 "v0.198.0",
                 "v0.197.0",
                 "v0.196.0",
@@ -205,6 +206,7 @@
             "name": "google/cloud-ai-platform",
             "defaultService": "aiplatform/readme",
             "versions": [
+                "v0.13.0",
                 "v0.12.0",
                 "v0.11.1",
                 "v0.11.0",
@@ -300,6 +302,7 @@
             "name": "google/cloud-appengine-admin",
             "defaultService": "appengineadmin/readme",
             "versions": [
+                "v1.0.4",
                 "v1.0.3",
                 "v1.0.2",
                 "v1.0.1",
@@ -492,6 +495,7 @@
             "name": "google/cloud-batch",
             "defaultService": "batch/readme",
             "versions": [
+                "v0.5.0",
                 "v0.4.0",
                 "v0.3.0",
                 "v0.2.2",
@@ -657,6 +661,7 @@
             "name": "google/cloud-bigquery-connection",
             "defaultService": "bigqueryconnection/readme",
             "versions": [
+                "v1.1.0",
                 "v1.0.3",
                 "v1.0.2",
                 "v1.0.1",
@@ -794,6 +799,7 @@
             "name": "google/cloud-bigquerydatatransfer",
             "defaultService": "bigquerydatatransfer/readme",
             "versions": [
+                "v1.4.2",
                 "v1.4.1",
                 "v1.4.0",
                 "v1.3.8",
@@ -861,6 +867,7 @@
             "name": "google/cloud-bigtable",
             "defaultService": "bigtable/readme",
             "versions": [
+                "v1.22.0",
                 "v1.21.1",
                 "v1.21.0",
                 "v1.20.3",
@@ -1035,6 +1042,7 @@
             "name": "google/cloud-build",
             "defaultService": "build/readme",
             "versions": [
+                "v0.5.0",
                 "v0.4.0",
                 "v0.3.8",
                 "v0.3.7",
@@ -1057,6 +1065,7 @@
             "name": "google/cloud-certificate-manager",
             "defaultService": "certificatemanager/readme",
             "versions": [
+                "v0.3.5",
                 "v0.3.4",
                 "v0.3.3",
                 "v0.3.2",
@@ -1127,6 +1136,7 @@
             "name": "google/cloud-compute",
             "defaultService": "compute/readme",
             "versions": [
+                "v1.7.1",
                 "v1.7.0",
                 "v1.6.1",
                 "v1.6.0",
@@ -1159,6 +1169,7 @@
             "name": "google/cloud-contact-center-insights",
             "defaultService": "contactcenterinsights/readme",
             "versions": [
+                "v1.1.0",
                 "v1.0.3",
                 "v1.0.2",
                 "v1.0.1",
@@ -1183,6 +1194,7 @@
             "name": "google/cloud-container",
             "defaultService": "container/readme",
             "versions": [
+                "v1.10.2",
                 "v1.10.1",
                 "v1.10.0",
                 "v1.9.1",
@@ -1275,6 +1287,7 @@
             "name": "google/cloud-core",
             "defaultService": "core/servicebuilder",
             "versions": [
+                "v1.49.2",
                 "v1.49.1",
                 "v1.49.0",
                 "v1.48.1",
@@ -1507,6 +1520,7 @@
             "name": "google/cloud-dataplex",
             "defaultService": "dataplex/readme",
             "versions": [
+                "v0.2.2",
                 "v0.2.1",
                 "v0.2.0",
                 "v0.1.6",
@@ -1844,6 +1858,7 @@
             "name": "google/cloud-dialogflow",
             "defaultService": "dialogflow/readme",
             "versions": [
+                "v1.3.0",
                 "v1.2.0",
                 "v1.1.1",
                 "v1.1.0",
@@ -2230,6 +2245,7 @@
             "name": "google/cloud-firestore",
             "defaultService": "firestore/firestoreclient",
             "versions": [
+                "v1.28.0",
                 "v1.27.3",
                 "v1.27.2",
                 "v1.27.1",
@@ -2605,6 +2621,7 @@
             "name": "google/cloud-kms",
             "defaultService": "kms/readme",
             "versions": [
+                "v1.16.0",
                 "v1.15.3",
                 "v1.15.2",
                 "v1.15.1",
@@ -3292,6 +3309,7 @@
             "name": "google/cloud-profiler",
             "defaultService": "profiler/readme",
             "versions": [
+                "v1.1.0",
                 "v1.0.3",
                 "v1.0.2",
                 "v1.0.1",
@@ -3683,6 +3701,7 @@
             "name": "google/cloud-scheduler",
             "defaultService": "scheduler/readme",
             "versions": [
+                "v1.8.0",
                 "v1.7.1",
                 "v1.7.0",
                 "v1.6.8",
@@ -3968,6 +3987,7 @@
             "name": "google/cloud-spanner",
             "defaultService": "spanner/spannerclient",
             "versions": [
+                "v1.58.0",
                 "v1.57.0",
                 "v1.56.0",
                 "v1.55.0",
@@ -4099,6 +4119,7 @@
             "name": "google/cloud-speech",
             "defaultService": "speech/speechclient",
             "versions": [
+                "v1.10.0",
                 "v1.9.1",
                 "v1.9.0",
                 "v1.8.0",
@@ -4574,6 +4595,7 @@
             "name": "google/cloud-translate",
             "defaultService": "translate/translateclient",
             "versions": [
+                "v1.13.1",
                 "v1.13.0",
                 "v1.12.12",
                 "v1.12.11",
@@ -4671,6 +4693,7 @@
             "name": "google/cloud-video-transcoder",
             "defaultService": "videotranscoder/readme",
             "versions": [
+                "v0.6.0",
                 "v0.5.3",
                 "v0.5.2",
                 "v0.5.1",
@@ -5022,6 +5045,7 @@
             "name": "google/grafeas",
             "defaultService": "grafeas/readme",
             "versions": [
+                "v0.5.0",
                 "v0.4.4",
                 "v0.4.3",
                 "v0.4.2",
