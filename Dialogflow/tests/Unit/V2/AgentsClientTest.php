@@ -265,7 +265,7 @@ class AgentsClientTest extends GeneratedTest
         $description = 'description-1724546052';
         $avatarUri = 'avatarUri-402824826';
         $enableLogging = false;
-        $classificationThreshold = 1.11581064E8;
+        $classificationThreshold = 10917768;
         $expectedResponse = new Agent();
         $expectedResponse->setParent($parent2);
         $expectedResponse->setDisplayName($displayName);
@@ -699,7 +699,7 @@ class AgentsClientTest extends GeneratedTest
         $description = 'description-1724546052';
         $avatarUri = 'avatarUri-402824826';
         $enableLogging = false;
-        $classificationThreshold = 1.11581064E8;
+        $classificationThreshold = 10917768;
         $expectedResponse = new Agent();
         $expectedResponse->setParent($parent);
         $expectedResponse->setDisplayName($displayName);
