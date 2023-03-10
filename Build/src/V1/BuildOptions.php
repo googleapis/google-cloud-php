@@ -123,6 +123,12 @@ class BuildOptions extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.devtools.cloudbuild.v1.Volume volumes = 14;</code>
      */
     private $volumes;
+    /**
+     * Option to specify how default logs buckets are setup.
+     *
+     * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.BuildOptions.DefaultLogsBucketBehavior default_logs_bucket_behavior = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $default_logs_bucket_behavior = 0;
 
     /**
      * Constructor.
@@ -185,6 +191,8 @@ class BuildOptions extends \Google\Protobuf\Internal\Message
      *           defined a build step.
      *           Using a global volume in a build with only one step is not valid as
      *           it is indicative of a build request with an incorrect configuration.
+     *     @type int $default_logs_bucket_behavior
+     *           Option to specify how default logs buckets are setup.
      * }
      */
     public function __construct($data = NULL) {
@@ -598,6 +606,32 @@ class BuildOptions extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Build\V1\Volume::class);
         $this->volumes = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Option to specify how default logs buckets are setup.
+     *
+     * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.BuildOptions.DefaultLogsBucketBehavior default_logs_bucket_behavior = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getDefaultLogsBucketBehavior()
+    {
+        return $this->default_logs_bucket_behavior;
+    }
+
+    /**
+     * Option to specify how default logs buckets are setup.
+     *
+     * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.BuildOptions.DefaultLogsBucketBehavior default_logs_bucket_behavior = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setDefaultLogsBucketBehavior($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Build\V1\BuildOptions\DefaultLogsBucketBehavior::class);
+        $this->default_logs_bucket_behavior = $var;
 
         return $this;
     }
