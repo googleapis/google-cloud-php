@@ -36,6 +36,8 @@ use Google\Cloud\Datastore\V1\Query;
 use Google\Cloud\Datastore\V1\ReadOptions;
 use Google\Cloud\Datastore\V1\ReadOptions\ReadConsistency;
 use Google\Cloud\Datastore\V1\TransactionOptions;
+use Google\Cloud\Datastore\V1\TransactionOptions\PBReadOnly;
+use Google\Cloud\Datastore\V1\TransactionOptions\ReadWrite;
 use Google\Protobuf\NullValue;
 
 /**
@@ -137,11 +139,22 @@ class Grpc implements ConnectionInterface
                     $item = [];
                 }
             });
+            $options = new TransactionOptions;
+            if (isset($args['transactionOptions']['readOnly'])) {
+                $readOnlyClass = PHP_VERSION_ID >= 80100
+                    ? PBReadOnly::class
+                    : 'Google\Cloud\Datastore\V1\TransactionOptions\ReadOnly';
+                $readOnly = $this->serializer->decodeMessage(
+                    new $readOnlyClass(),
+                    $args['transactionOptions']['readOnly']
+                );
+                $options->setReadOnly($readOnly);
+            } elseif (isset($args['transactionOptions']['readWrite'])) {
+                $readWrite = new ReadWrite();
+                $options->setReadWrite($readWrite);
+            }
 
-            $args['transactionOptions'] = $this->serializer->decodeMessage(
-                new TransactionOptions,
-                $args['transactionOptions']
-            );
+            $args['transactionOptions'] = $options;
         }
 
         return $this->send([$this->datastoreClient, 'beginTransaction'], [
