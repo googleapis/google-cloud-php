@@ -239,7 +239,6 @@ class Grpc implements ConnectionInterface
                     array_walk(
                         $aggregation,
                         function (&$item) {
-                            // if ($item instanceof \stdClass) {
                             if (isset($item['upTo']) &&
                                 !is_array($item['upTo'])) {
                                 $item['upTo'] = [

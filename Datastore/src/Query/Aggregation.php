@@ -18,13 +18,13 @@
 namespace Google\Cloud\Datastore\Query;
 
 /**
- * Represents an Count Aggregation properties.
+ * Represents Count Aggregation properties.
  *
  * Example:
  * ```
  * $count = Aggregation::count();
  * $count->alias('count');
- * $count->upTo(100);
+ * $count->limit(100);
  *
  * echo json_encode($count->getProps());
  * ```
@@ -88,7 +88,7 @@ class Aggregation
     }
 
     /**
-     * Set the aggregation alias.
+     * Set the aggregation limit.
      *
      * Example:
      * ```
@@ -101,7 +101,7 @@ class Aggregation
      *
      * @param int $value The limit for aggregation.
      * @return Aggregation
-     * @throws InvalidArgumentException If value is non-positive.
+     * @throws \InvalidArgumentException If value is non-positive.
      */
     public function limit($value)
     {

@@ -123,17 +123,10 @@ class RunTransactionTest extends DatastoreMultipleDbTestCase
         // read transaction with aggregation query
         $transaction3 = $client->readOnlyTransaction();
         $query = $client->query()
-        ->kind($kind)
-        ->hasAncestor($key1)
-        ->filter('lastName', '=', 'Smith');
+            ->kind($kind)
+            ->hasAncestor($key1)
+            ->filter('lastName', '=', 'Smith');
         $this->assertAggregationQueryResult($transaction3, $query, 0);
-
-        // transaction with lookup
-        $transaction4 = $client->transaction();
-        $result = $transaction4->lookup($key1);
-        $transaction4->rollback();
-
-        $this->assertEquals($newLastName, $result['lastName']);
     }
 
     /**

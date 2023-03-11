@@ -31,7 +31,7 @@ use Google\Cloud\Datastore\Query\Query;
  * $query = $datastore->AggregationQuery();
  * $query->kind('Companies');
  * $query->filter('companyName', '=', 'Google');
- * $query->aggregation(Aggregation::count()->alias('total_upto_100'));
+ * $query->addAggregation(Aggregation::count()->alias('total_upto_100'));
  *
  * $res = $datastore->runAggregationQuery($query);
  * echo $res->get('total_upto_100');
@@ -66,7 +66,7 @@ class AggregationQuery
     }
 
     /**
-     * Set the Query Aggregation.
+     * Adds a Query Aggregation.
      *
      * Accepts an array of properties for aggregation.
      *
@@ -76,7 +76,7 @@ class AggregationQuery
      * $query = $datastore->AggregationQuery();
      * $query->kind('Companies');
      * $query->filter('companyName', '=', 'Google');
-     * $query->aggregation(Aggregation::count()->alias('total'));
+     * $query->addAggregation(Aggregation::count()->alias('total'));
      * echo json_encode($query->queryObject());
      * ```
      *
@@ -104,7 +104,7 @@ class AggregationQuery
      *
      * $pipeline = $datastore->AggregationQuery()
      *     ->over($query)
-     *     ->aggregation(Aggregation::count()->alias('total'));
+     *     ->addAggregation(Aggregation::count()->alias('total'));
      * ```
      *
      * @param QueryInterface $query The query whose properties to include.

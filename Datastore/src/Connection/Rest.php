@@ -27,8 +27,6 @@ use Google\Cloud\Datastore\DatastoreClient;
 /**
  * Implementation of the
  * [Google Datastore JSON API](https://cloud.google.com/datastore/reference/rest/).
- *
- * @internal
  */
 class Rest implements ConnectionInterface
 {
