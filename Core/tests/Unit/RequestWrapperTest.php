@@ -625,6 +625,29 @@ class RequestWrapperTest extends TestCase
 
         $requestWrapper->send(new Request('GET', 'http://www.example.com'));
     }
+
+    public function testRetryOptionsPassingInGetRetryOptions()
+    {
+        $requestWrapper = new RequestWrapper();
+        $reflection = new \ReflectionClass($requestWrapper);
+        $reflectionMethod = $reflection->getMethod('getRetryOptions');
+        $reflectionMethod->setAccessible(true);
+
+        $placeholderCallback = function () {
+        };
+        $options = [
+            'restRetryFunction' => $placeholderCallback,
+            'restOnRetryExceptionFunction' => $placeholderCallback,
+            'restOnExecutionStartFunction' => $placeholderCallback,
+        ];
+
+        $result = $reflectionMethod->invoke($requestWrapper, $options);
+        foreach ($options as $key => $value) {
+            $key = lcfirst(substr($key, 4));
+            $this->assertArrayHasKey($key, $result);
+            $this->assertEquals($value, $result[$key]);
+        }
+    }
 }
 
 //@codingStandardsIgnoreStart
