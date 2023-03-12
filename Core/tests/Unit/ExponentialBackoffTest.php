@@ -169,13 +169,38 @@ class ExponentialBackoffTest extends TestCase
             $retryAttempt,
             $arguments
         ) {
-            $message = sprintf("%s, %s", $retryAttempt, $arguments[0]['foo']);
+            $message = sprintf('%s, %s', $retryAttempt, $arguments[0]['foo']);
             throw new \Exception($message);
         };
 
         $result = '';
-        $expected = "0, bar";
+        $expected = '0, bar';
         $backoff = new ExponentialBackoff(null, null, $onRetryExceptionFunction);
+        try {
+            $backoff->execute(
+                function ($options) use ($args) {
+                    throw new \Exception();
+                },
+                [$args]
+            );
+        } catch (\Exception $ex) {
+            $result = $ex->getMessage();
+        }
+
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testOnExecutionStartFunction()
+    {
+        $args = ['foo' => 'bar'];
+        $onExecutionStartFunction = function ($arguments) {
+            $message = sprintf('%s', $arguments[0]['foo']);
+            throw new \Exception($message);
+        };
+
+        $result = '';
+        $expected = 'bar';
+        $backoff = new ExponentialBackoff(null, null, null, $onExecutionStartFunction);
         try {
             $backoff->execute(
                 function ($options) use ($args) {
