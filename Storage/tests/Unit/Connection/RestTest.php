@@ -528,6 +528,37 @@ class RestTest extends TestCase
         );
     }
 
+    /**
+     * This tests whether the $arguments passed to the callbacks for header
+     * updation is properly done when those callbacks are invoked in the
+     * ExponentialBackoff::execute() method.
+     */
+    public function testUpdateRetryHeaders()
+    {
+        $arguments = [new Request('GET', '/somewhere'), ['headers' => []]];
+        $requestHash = 'dummy_hash';
+        $currentAttempt = 1;
+        $headerLineName = RequestWrapper::HEADER_API_CLIENT_IDENTIFICATION;
+
+        $rest = new Rest();
+        $reflection = new \ReflectionClass(Rest::class);
+        $reflectionMethod = $reflection->getMethod('updateRetryheaders');
+        $reflectionMethod->setAccessible(true);
+        $reflectionMethod->invokeArgs($rest, [
+            &$arguments,
+            $requestHash,
+            $currentAttempt
+        ]);
+
+        $this->assertArrayHasKey($headerLineName, $arguments[1]['headers']);
+        $expected = sprintf(
+            "gccl-invocation-id/%s gccl-attempt-count/%s",
+            $requestHash,
+            $currentAttempt
+        );
+        $this->assertEquals($expected, $arguments[1]['headers'][$headerLineName]);
+    }
+
     public function retryFunctionReturnValues()
     {
         $restMaxRetry = 7;
@@ -579,12 +610,12 @@ class RestTest extends TestCase
             ['buckets', 'get', [], [], 503, 4, false],
             // User given restRetryFunction in the StorageClient which internally reaches Rest
             ['buckets', 'get', $restRetryFunctionArg, [], 503, $restMaxRetry, true],
-            ['buckets', 'get', $restRetryFunctionArg, [], 503, $restMaxRetry+1, false],
+            ['buckets', 'get', $restRetryFunctionArg, [], 503, $restMaxRetry + 1, false],
             // User given restRetryFunction in the operation
             ['buckets', 'get', [], $opRetryFunctionArg, 503, $opMaxRetry, true],
-            ['buckets', 'get', [], $opRetryFunctionArg, 503, $opMaxRetry+1, false],
+            ['buckets', 'get', [], $opRetryFunctionArg, 503, $opMaxRetry + 1, false],
             // Precedence given to restRetryFunction in the operation than in the StorageClient
-            ['buckets', 'get', $restRetryFunctionArg, $opRetryFunctionArg, 503, $opMaxRetry+1, false],
+            ['buckets', 'get', $restRetryFunctionArg, $opRetryFunctionArg, 503, $opMaxRetry + 1, false],
             ['buckets', 'get', $restRetryFunctionArg, $opRetryFunctionArg, 503, $opMaxRetry, true]
         ];
     }
@@ -615,10 +646,11 @@ class RestTest extends TestCase
             $case = $retryCase;
             $case[3]['retryStrategy'] = RetryTrait::$RETRY_STRATEGY_ALWAYS;
             $case[6] = $this->assignExpectedOutcome(true, $retryCase);
-            if (!in_array(
-                $retryCase[4],
-                RetryTrait::$httpRetryCodes
-            ) || $retryCase[5] > 3
+            if (
+                !in_array(
+                    $retryCase[4],
+                    RetryTrait::$httpRetryCodes
+                ) || $retryCase[5] > 3
             ) {
                 $case[6] = $this->assignExpectedOutcome(false, $retryCase);
             }
@@ -658,7 +690,8 @@ class RestTest extends TestCase
      */
     private function assignExpectedOutcome($expected, $retryCase)
     {
-        if (isset($retryCase[3]['restRetryFunction'])
+        if (
+            isset($retryCase[3]['restRetryFunction'])
             || isset($retryCase[2]['restRetryFunction'])
         ) {
             return $retryCase[6];
