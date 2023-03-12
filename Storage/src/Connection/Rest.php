@@ -667,7 +667,8 @@ class Rest implements ConnectionInterface
     }
 
     /**
-     * Adds callbacks to $args which amend retry hash and attempt to headers.
+     * Adds the callback methods to $args which amends retry hash and attempt
+     * count to the headers.
      * @param array $args
      *
      * @return array
