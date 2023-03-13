@@ -16,7 +16,8 @@ jobs:
         run: composer global require "roave/backward-compatibility-check:^8.2"
       - name: "Check for BC breaks"
         if: github.actor != 'release-please[bot]'
-        # Do not fail the build by adding the 'breaking change allowed' label to the PR.
+        # Ensure the build still passes by adding the 'breaking change allowed' label to the PR.
+        # NOTE: PR should contain a "BREAKING CHANGE JUSTIFICATION" in a comment or description
         continue-on-error: ${{ contains(github.event.pull_request.labels.*.name, 'breaking change allowed') }}
         run: |
           ~/.composer/vendor/bin/roave-backward-compatibility-check --from=origin/main --format=github-actions
@@ -28,7 +29,8 @@ jobs:
           repository: ${{ github.repository }}
       - name: "Check for BC breaks (Next Release)"
         if: github.actor == 'release-please[bot]'
-        # Do not fail the build by adding the 'breaking change allowed' label to the PR.
+        # Ensure the build still passes by adding the 'breaking change allowed' label to the PR.
+        # NOTE: PR should contain a "BREAKING CHANGE JUSTIFICATION" in a comment or description
         continue-on-error: ${{ contains(github.event.pull_request.labels.*.name, 'breaking change allowed') }}
         run: |
           ~/.composer/vendor/bin/roave-backward-compatibility-check \
