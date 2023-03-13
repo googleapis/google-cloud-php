@@ -75,4 +75,6 @@ class ThirdPartyPrincipal extends \Google\Protobuf\Internal\Message
 
 }
 
+// Adding a class alias for backwards compatibility with the previous class name.
+class_alias(ThirdPartyPrincipal::class, \Google\Cloud\Audit\ServiceAccountDelegationInfo_ThirdPartyPrincipal::class);
 

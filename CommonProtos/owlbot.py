@@ -16,6 +16,7 @@
 
 import logging
 from pathlib import Path
+from pathlib import PosixPath
 import subprocess
 
 import synthtool as s
@@ -61,9 +62,13 @@ php.owlbot_copy_version(
     version_string="common",
 )
 
-# remove class_alias code
+# remove class_alias code (but keep the existing class aliases)
+sources = list(Path(".").glob("src/**/*.php"))
+sources.remove(PosixPath("src/Audit/ServiceAccountDelegationInfo/FirstPartyPrincipal.php"))
+sources.remove(PosixPath("src/Audit/ServiceAccountDelegationInfo/ThirdPartyPrincipal.php"))
+sources.remove(PosixPath("src/DevTools/Source/V1/AliasContext/Kind.php"))
 s.replace(
-    "src/**/*.php",
+    sources,
     r"^// Adding a class alias for backwards compatibility with the previous class name.$"
     + "\n"
     + r"^class_alias\(.*\);$"
