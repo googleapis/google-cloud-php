@@ -626,6 +626,11 @@ class RequestWrapperTest extends TestCase
         $requestWrapper->send(new Request('GET', 'http://www.example.com'));
     }
 
+    /**
+     * This tests asserts the retry related options and callbacks are properly
+     * mapped and set in the RequestWrappers `$requestOptions` property as
+     * that property is further used down the line for the request.
+     */
     public function testRetryOptionsPassingInGetRetryOptions()
     {
         $requestWrapper = new RequestWrapper();

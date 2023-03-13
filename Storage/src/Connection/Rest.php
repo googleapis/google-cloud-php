@@ -751,9 +751,9 @@ class Rest implements ConnectionInterface
      *  header key.
      */
     private function updateHeader(
-        string $headerLine,
-        array &$arguments,
-        string $value,
+        $headerLine,
+        &$arguments,
+        $value,
         $getHeaderFromRequest = true
     ) {
         // Fetch request and options

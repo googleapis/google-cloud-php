@@ -161,6 +161,11 @@ class ExponentialBackoffTest extends TestCase
         ];
     }
 
+    /**
+     * Tests whether `onRetryExceptionFunction()` callback is
+     * properly invoked when exception occurs and retry is attempted while
+     * executing the request.
+     */
     public function testOnRetryExceptionFunction()
     {
         $args = ['foo' => 'bar'];
@@ -190,6 +195,11 @@ class ExponentialBackoffTest extends TestCase
         $this->assertEquals($expected, $result);
     }
 
+    /**
+     * Tests whether `testOnExecutionStartFunction()` callback is
+     * properly invoked when execute method is invoked and before network call
+     * is executed.
+     */
     public function testOnExecutionStartFunction()
     {
         $args = ['foo' => 'bar'];

@@ -173,12 +173,14 @@ class ResumableUploaderTest extends TestCase
         );
     }
 
+    /**
+     * This tests whether retry related options are properly set in the
+     * abstract uploader class. Since we already had these tests for
+     * ResumableUploader class which extends the AbstractUploader class,
+     * thus testing it here would be sufficient.
+     */
     public function testRetryOptionsPassing()
     {
-        // This tests whether retry related options are properly set in the
-        // abstract uploader class. Since we already had these tests for
-        // ResumableUploader class which extends the AbstractUploader class,
-        // thus testing it here would be sufficient.
         $options = [
             'restRetryFunction' => 'arg',
             'onExecutionStart' => 'arg',
