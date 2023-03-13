@@ -43,3 +43,4 @@ jobs:
           message: |
             To skip the breaking change detector, the PR must contain a "BREAKING_CHANGE_JUSTIFICATION"
             block in the PR description.
+          comment_tag: breaking_change_justification
