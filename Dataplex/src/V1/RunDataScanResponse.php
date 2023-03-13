@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class RunDataScanResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * DataScanJob created by RunDataScan API.
+     * DataScanJob created by RunDataScan request.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataScanJob job = 1;</code>
      */
@@ -29,7 +29,7 @@ class RunDataScanResponse extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Dataplex\V1\DataScanJob $job
-     *           DataScanJob created by RunDataScan API.
+     *           DataScanJob created by RunDataScan request.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,7 +38,7 @@ class RunDataScanResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * DataScanJob created by RunDataScan API.
+     * DataScanJob created by RunDataScan request.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataScanJob job = 1;</code>
      * @return \Google\Cloud\Dataplex\V1\DataScanJob|null
@@ -59,7 +59,7 @@ class RunDataScanResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * DataScanJob created by RunDataScan API.
+     * DataScanJob created by RunDataScan request.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataScanJob job = 1;</code>
      * @param \Google\Cloud\Dataplex\V1\DataScanJob $var

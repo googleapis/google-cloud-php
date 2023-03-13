@@ -9,18 +9,33 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request to list `WorkerPools`.
+ * Request to list `WorkerPool`s.
  *
  * Generated from protobuf message <code>google.devtools.cloudbuild.v1.ListWorkerPoolsRequest</code>
  */
 class ListWorkerPoolsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * ID of the parent project.
+     * Required. The parent of the collection of `WorkerPools`.
+     * Format: `projects/{project}/locations/{location}`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
+    /**
+     * The maximum number of `WorkerPool`s to return. The service may return
+     * fewer than this value. If omitted, the server will use a sensible default.
+     *
+     * Generated from protobuf field <code>int32 page_size = 2;</code>
+     */
+    private $page_size = 0;
+    /**
+     * A page token, received from a previous `ListWorkerPools` call. Provide this
+     * to retrieve the subsequent page.
+     *
+     * Generated from protobuf field <code>string page_token = 3;</code>
+     */
+    private $page_token = '';
 
     /**
      * Constructor.
@@ -29,7 +44,14 @@ class ListWorkerPoolsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           ID of the parent project.
+     *           Required. The parent of the collection of `WorkerPools`.
+     *           Format: `projects/{project}/locations/{location}`.
+     *     @type int $page_size
+     *           The maximum number of `WorkerPool`s to return. The service may return
+     *           fewer than this value. If omitted, the server will use a sensible default.
+     *     @type string $page_token
+     *           A page token, received from a previous `ListWorkerPools` call. Provide this
+     *           to retrieve the subsequent page.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,9 +60,10 @@ class ListWorkerPoolsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * ID of the parent project.
+     * Required. The parent of the collection of `WorkerPools`.
+     * Format: `projects/{project}/locations/{location}`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -49,9 +72,10 @@ class ListWorkerPoolsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * ID of the parent project.
+     * Required. The parent of the collection of `WorkerPools`.
+     * Format: `projects/{project}/locations/{location}`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -59,6 +83,62 @@ class ListWorkerPoolsRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->parent = $var;
+
+        return $this;
+    }
+
+    /**
+     * The maximum number of `WorkerPool`s to return. The service may return
+     * fewer than this value. If omitted, the server will use a sensible default.
+     *
+     * Generated from protobuf field <code>int32 page_size = 2;</code>
+     * @return int
+     */
+    public function getPageSize()
+    {
+        return $this->page_size;
+    }
+
+    /**
+     * The maximum number of `WorkerPool`s to return. The service may return
+     * fewer than this value. If omitted, the server will use a sensible default.
+     *
+     * Generated from protobuf field <code>int32 page_size = 2;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setPageSize($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->page_size = $var;
+
+        return $this;
+    }
+
+    /**
+     * A page token, received from a previous `ListWorkerPools` call. Provide this
+     * to retrieve the subsequent page.
+     *
+     * Generated from protobuf field <code>string page_token = 3;</code>
+     * @return string
+     */
+    public function getPageToken()
+    {
+        return $this->page_token;
+    }
+
+    /**
+     * A page token, received from a previous `ListWorkerPools` call. Provide this
+     * to retrieve the subsequent page.
+     *
+     * Generated from protobuf field <code>string page_token = 3;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPageToken($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->page_token = $var;
 
         return $this;
     }

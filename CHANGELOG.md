@@ -1,5 +1,297 @@
 # Changelog
 
+## 0.199.0
+
+<details><summary>google/cloud-ai-platform 0.13.0</summary>
+
+
+
+### Features
+
+* [AiPlatform] add disable_container_logging to BatchPredictionJob in aiplatform v1,v1beta1 batch_prediction_job.proto ([#5921](https://github.com/googleapis/google-cloud-php/issues/5921)) ([c11e34d](https://github.com/googleapis/google-cloud-php/commit/c11e34dfdf5c01339e2460c7f81db6f4880e48cf))
+* Add BatchImportEvaluatedAnnotations rpc to aiplatform v1 model_service.proto ([c11e34d](https://github.com/googleapis/google-cloud-php/commit/c11e34dfdf5c01339e2460c7f81db6f4880e48cf))
+* Add cpu_utilization_target to Featurestore.OnlineServingConfig.Scaling in aiplatform v1 featurestore.proto ([c11e34d](https://github.com/googleapis/google-cloud-php/commit/c11e34dfdf5c01339e2460c7f81db6f4880e48cf))
+* Add disable_container_logging to BatchPredictionJob in aiplatform v1,v1beta1 batch_prediction_job.proto ([c11e34d](https://github.com/googleapis/google-cloud-php/commit/c11e34dfdf5c01339e2460c7f81db6f4880e48cf))
+* Add evaluated_annotation.proto to aiplatform v1 ([c11e34d](https://github.com/googleapis/google-cloud-php/commit/c11e34dfdf5c01339e2460c7f81db6f4880e48cf))
+* Add offline_storage_ttl_days to EntityType in aiplatform v1 entity_type.proto ([c11e34d](https://github.com/googleapis/google-cloud-php/commit/c11e34dfdf5c01339e2460c7f81db6f4880e48cf))
+* Add online_storage_ttl_days to Featurestore in aiplatform v1 featurestore.proto ([c11e34d](https://github.com/googleapis/google-cloud-php/commit/c11e34dfdf5c01339e2460c7f81db6f4880e48cf))
+* Add slice_spec to ModelEvaluationSlice in aiplatform v1 model_evaluation_slice.proto ([c11e34d](https://github.com/googleapis/google-cloud-php/commit/c11e34dfdf5c01339e2460c7f81db6f4880e48cf))
+* Add split to ExportDataConfig in aiplatform v1 dataset.proto ([c11e34d](https://github.com/googleapis/google-cloud-php/commit/c11e34dfdf5c01339e2460c7f81db6f4880e48cf))
+* Add TPU_V4_POD to AcceleratorType in aiplatform v1 accelerator_type.proto ([c11e34d](https://github.com/googleapis/google-cloud-php/commit/c11e34dfdf5c01339e2460c7f81db6f4880e48cf))
+
+</details>
+
+<details><summary>google/cloud-alloydb 0.1.0</summary>
+
+
+
+### Features
+
+* Introduce AlloyDB ([#5913](https://github.com/googleapis/google-cloud-php/issues/5913)) ([302461b](https://github.com/googleapis/google-cloud-php/commit/302461bc1ff76e8e518906fe50319c7d9ac89631))
+
+</details>
+
+<details><summary>google/cloud-appengine-admin 1.0.4</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-batch 0.5.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* [Batch] added StatusEvent.task_state ([#5915](https://github.com/googleapis/google-cloud-php/issues/5915))
+
+### Features
+
+* [Batch] added StatusEvent.task_state ([#5915](https://github.com/googleapis/google-cloud-php/issues/5915)) ([4366506](https://github.com/googleapis/google-cloud-php/commit/43665060afda4053db639d427f202bfbc3b29a86))
+* Added StatusEvent.task_state ([4366506](https://github.com/googleapis/google-cloud-php/commit/43665060afda4053db639d427f202bfbc3b29a86))
+
+
+### Documentation
+
+* Updated comments ([4366506](https://github.com/googleapis/google-cloud-php/commit/43665060afda4053db639d427f202bfbc3b29a86))
+
+</details>
+
+<details><summary>google/cloud-bigquery-connection 1.1.0</summary>
+
+
+
+### Features
+
+* Add cloud spanner connection properties - database role ([3f46207](https://github.com/googleapis/google-cloud-php/commit/3f4620708518f7b7e311103e83c41754a768721f))
+* Add cloud spanner connection properties - serverless analytics ([3f46207](https://github.com/googleapis/google-cloud-php/commit/3f4620708518f7b7e311103e83c41754a768721f))
+
+</details>
+
+<details><summary>google/cloud-bigquerydatatransfer 1.4.2</summary>
+
+
+
+### Documentation
+
+* [BigQueryDataTransfer] minor comment update ([#5907](https://github.com/googleapis/google-cloud-php/issues/5907)) ([8a96c89](https://github.com/googleapis/google-cloud-php/commit/8a96c899b0e3153568486038177adb430b6fc1f4))
+* Minor comment update ([8a96c89](https://github.com/googleapis/google-cloud-php/commit/8a96c899b0e3153568486038177adb430b6fc1f4))
+
+</details>
+
+<details><summary>google/cloud-bigtable 1.22.0</summary>
+
+
+
+### Features
+
+* [Bigtable] add new_partitions field for CloseStream for Cloud Bigtable ChangeStream ([#5910](https://github.com/googleapis/google-cloud-php/issues/5910)) ([513701d](https://github.com/googleapis/google-cloud-php/commit/513701d0e9f2088a37ca952490a46407c1f131dc))
+* Add new_partitions field for CloseStream for Cloud Bigtable ChangeStream ([513701d](https://github.com/googleapis/google-cloud-php/commit/513701d0e9f2088a37ca952490a46407c1f131dc))
+
+</details>
+
+<details><summary>google/cloud-build 0.5.0</summary>
+
+
+
+### Features
+
+* [Build] updates from OwlBrent ([#5934](https://github.com/googleapis/google-cloud-php/issues/5934)) ([2a9a4b8](https://github.com/googleapis/google-cloud-php/commit/2a9a4b81b42f2cd427597ff2a68d0e71a4b051bf))
+* Add DefaultLogsBucketBehavior to BuildOptions ([#5945](https://github.com/googleapis/google-cloud-php/issues/5945)) ([83e7800](https://github.com/googleapis/google-cloud-php/commit/83e7800535143af4aad81e6a48ce6ec65ff67964))
+* **Build:** Introduce cloudbuild v2 ([#5924](https://github.com/googleapis/google-cloud-php/issues/5924)) ([9453ab3](https://github.com/googleapis/google-cloud-php/commit/9453ab3d7d836f2fce8d957b9b49fe1073945a27))
+
+</details>
+
+<details><summary>google/cloud-certificate-manager 0.3.5</summary>
+
+
+
+### Documentation
+
+* [CertificateManager] corrected information about the limit of certificates that can be attached to a Certificate Map Entry ([#5911](https://github.com/googleapis/google-cloud-php/issues/5911)) ([5b60ec2](https://github.com/googleapis/google-cloud-php/commit/5b60ec2d08d4035909fc49defc74dbff7abdf591))
+* Corrected information about the limit of certificates that can be attached to a Certificate Map Entry ([5b60ec2](https://github.com/googleapis/google-cloud-php/commit/5b60ec2d08d4035909fc49defc74dbff7abdf591))
+
+</details>
+
+<details><summary>google/cloud-compute 1.7.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-contact-center-insights 1.1.0</summary>
+
+
+
+### Features
+
+* Add a way to specify the conversation automatic analysis percentage for the UploadConversation API when creating Analyses in Insights ([06e3f61](https://github.com/googleapis/google-cloud-php/commit/06e3f61fde41b6dc76a6626b6e18e4cf84a42f1b))
+* Add Configurable Analysis, Bulk Upload, Bulk Analyze, Delete Issue Apis ([06e3f61](https://github.com/googleapis/google-cloud-php/commit/06e3f61fde41b6dc76a6626b6e18e4cf84a42f1b))
+* Add IngestConversationsStats ([06e3f61](https://github.com/googleapis/google-cloud-php/commit/06e3f61fde41b6dc76a6626b6e18e4cf84a42f1b))
+* Add location methods ([06e3f61](https://github.com/googleapis/google-cloud-php/commit/06e3f61fde41b6dc76a6626b6e18e4cf84a42f1b))
+
+
+### Documentation
+
+* Reformat some lines of code ([06e3f61](https://github.com/googleapis/google-cloud-php/commit/06e3f61fde41b6dc76a6626b6e18e4cf84a42f1b))
+
+</details>
+
+<details><summary>google/cloud-container 1.10.2</summary>
+
+
+
+### Documentation
+
+* [Container] minor grammar improvements ([#5906](https://github.com/googleapis/google-cloud-php/issues/5906)) ([6a13def](https://github.com/googleapis/google-cloud-php/commit/6a13def1af0344a2336f33045f216f42b98a5f8c))
+* Minor grammar improvements ([6a13def](https://github.com/googleapis/google-cloud-php/commit/6a13def1af0344a2336f33045f216f42b98a5f8c))
+* Minor typo fix ([#5925](https://github.com/googleapis/google-cloud-php/issues/5925)) ([136306f](https://github.com/googleapis/google-cloud-php/commit/136306f01460c46f8312e3725519f41d67d19a1c))
+
+</details>
+
+<details><summary>google/cloud-core 1.49.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-dataplex 0.2.2</summary>
+
+
+
+### Documentation
+
+* Improvements to DataScan API documentation ([5f60837](https://github.com/googleapis/google-cloud-php/commit/5f6083774990027b48dfee82f4a137201c6f4c07))
+
+</details>
+
+<details><summary>google/cloud-dialogflow 1.3.0</summary>
+
+
+
+### Features
+
+* Added support for custom content types ([010917c](https://github.com/googleapis/google-cloud-php/commit/010917cf182eb51c62c0ed6c90b508ae56703fcd))
+
+
+### Documentation
+
+* Clarified wording around quota usage ([010917c](https://github.com/googleapis/google-cloud-php/commit/010917cf182eb51c62c0ed6c90b508ae56703fcd))
+
+</details>
+
+<details><summary>google/cloud-firestore 1.28.0</summary>
+
+
+
+### Features
+
+* Add `OR` query support ([e69cb24](https://github.com/googleapis/google-cloud-php/commit/e69cb2469a4c407ea33eb419644a199ac7ad1720))
+
+
+### Documentation
+
+* Improve the API documentation for the `Firestore.ListDocuments` RPC ([e69cb24](https://github.com/googleapis/google-cloud-php/commit/e69cb2469a4c407ea33eb419644a199ac7ad1720))
+* Minor documentation formatting and cleanup ([e69cb24](https://github.com/googleapis/google-cloud-php/commit/e69cb2469a4c407ea33eb419644a199ac7ad1720))
+
+</details>
+
+<details><summary>google/grafeas 0.5.0</summary>
+
+
+
+### Features
+
+* [Grafeas] Import of Grafeas from Github ([#5920](https://github.com/googleapis/google-cloud-php/issues/5920)) ([6a3386a](https://github.com/googleapis/google-cloud-php/commit/6a3386a778a24e9a1406fe275fef5bf6cf81ca00))
+* Import of Grafeas from Github ([6a3386a](https://github.com/googleapis/google-cloud-php/commit/6a3386a778a24e9a1406fe275fef5bf6cf81ca00))
+
+</details>
+
+<details><summary>google/cloud-kms 1.16.0</summary>
+
+
+
+### Features
+
+* [Kms] add support for Coordinated External Keys ([#5929](https://github.com/googleapis/google-cloud-php/issues/5929)) ([f78bcf0](https://github.com/googleapis/google-cloud-php/commit/f78bcf029331dfa88f8f6cd63c69f7613b50fb13))
+* Add support for Coordinated External Keys ([f78bcf0](https://github.com/googleapis/google-cloud-php/commit/f78bcf029331dfa88f8f6cd63c69f7613b50fb13))
+
+</details>
+
+<details><summary>google/cloud-profiler 1.1.0</summary>
+
+
+
+### Features
+
+* Added new method signatures for `CreateOfflineProfile`, `UpdateProfile` ([#5943](https://github.com/googleapis/google-cloud-php/issues/5943)) ([ea67032](https://github.com/googleapis/google-cloud-php/commit/ea670325106c839924b210f12bc1085cd79e9401))
+* Marked `Profile` as a resource ([ea67032](https://github.com/googleapis/google-cloud-php/commit/ea670325106c839924b210f12bc1085cd79e9401))
+
+
+### Bug Fixes
+
+* Marked some fields as input only or output only ([ea67032](https://github.com/googleapis/google-cloud-php/commit/ea670325106c839924b210f12bc1085cd79e9401))
+
+
+### Documentation
+
+* Updated comments ([ea67032](https://github.com/googleapis/google-cloud-php/commit/ea670325106c839924b210f12bc1085cd79e9401))
+
+</details>
+
+<details><summary>google/cloud-scheduler 1.8.0</summary>
+
+
+
+### Features
+
+* Location API methods ([0429b0a](https://github.com/googleapis/google-cloud-php/commit/0429b0a1d289ae2cbc0b37f8ae1e93d0cdbe3542))
+
+
+### Documentation
+
+* Updated comments ([0429b0a](https://github.com/googleapis/google-cloud-php/commit/0429b0a1d289ae2cbc0b37f8ae1e93d0cdbe3542))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.58.0</summary>
+
+
+
+### Features
+
+* Adding new fields for Serverless analytics ([4bbd764](https://github.com/googleapis/google-cloud-php/commit/4bbd7640c6f4578be9e264fe4a61efc1a95d26c7))
+
+</details>
+
+<details><summary>google/cloud-speech 1.10.0</summary>
+
+
+
+### Features
+
+* [Speech] Voice Activity Detection: adding speech event time and speech event type ([#5902](https://github.com/googleapis/google-cloud-php/issues/5902)) ([58f3ed0](https://github.com/googleapis/google-cloud-php/commit/58f3ed0c5025d56f7705fa0c6b5e894f37719f3d))
+* Voice Activity Detection: adding speech event time and speech event type ([58f3ed0](https://github.com/googleapis/google-cloud-php/commit/58f3ed0c5025d56f7705fa0c6b5e894f37719f3d))
+
+</details>
+
+<details><summary>google/cloud-translate 1.13.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-video-transcoder 0.6.0</summary>
+
+
+
+### Features
+
+* [VideoTranscoder] Specifying language code and display name for text and audio streams is now supported ([#5912](https://github.com/googleapis/google-cloud-php/issues/5912)) ([56326d4](https://github.com/googleapis/google-cloud-php/commit/56326d440045171e644126d559df30055e90aed3))
+* Specifying language code and display name for text and audio streams is now supported ([56326d4](https://github.com/googleapis/google-cloud-php/commit/56326d440045171e644126d559df30055e90aed3))
+
+</details>
+
 ## 0.198.0
 
 <details><summary>google/cloud-advisorynotifications 0.1.0</summary>

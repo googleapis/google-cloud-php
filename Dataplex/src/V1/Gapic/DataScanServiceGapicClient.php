@@ -63,7 +63,9 @@ use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
 
 /**
- * Service Description:
+ * Service Description: DataScanService manages DataScan resources which can be configured to run
+ * various types of data scanning workload and generate enriched metadata (e.g.
+ * Data Profile, Data Quality) for the data source.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
@@ -414,7 +416,7 @@ class DataScanServiceGapicClient
     }
 
     /**
-     * Creates a dataScan resource.
+     * Creates a DataScan resource.
      *
      * Sample code:
      * ```
@@ -455,11 +457,12 @@ class DataScanServiceGapicClient
      * ```
      *
      * @param string   $parent       Required. The resource name of the parent location:
-     *                               projects/{project}/locations/{location_id}
-     *                               where `{project}` refers to a project_id or project_number and
+     *                               `projects/{project}/locations/{location_id}`
+     *                               where `project` refers to a *project_id* or *project_number* and
      *                               `location_id` refers to a GCP region.
      * @param DataScan $dataScan     Required. DataScan resource.
      * @param string   $dataScanId   Required. DataScan identifier.
+     *
      *                               * Must contain only lowercase letters, numbers and hyphens.
      *                               * Must start with a letter.
      *                               * Must end with a number or a letter.
@@ -505,7 +508,7 @@ class DataScanServiceGapicClient
     }
 
     /**
-     * Delete the dataScan resource.
+     * Deletes a DataScan resource.
      *
      * Sample code:
      * ```
@@ -542,8 +545,8 @@ class DataScanServiceGapicClient
      * ```
      *
      * @param string $name         Required. The resource name of the dataScan:
-     *                             projects/{project}/locations/{location_id}/dataScans/{data_scan_id}
-     *                             where `{project}` refers to a project_id or project_number and
+     *                             `projects/{project}/locations/{location_id}/dataScans/{data_scan_id}`
+     *                             where `project` refers to a *project_id* or *project_number* and
      *                             `location_id` refers to a GCP region.
      * @param array  $optionalArgs {
      *     Optional.
@@ -579,7 +582,7 @@ class DataScanServiceGapicClient
     }
 
     /**
-     * Get dataScan resource.
+     * Gets a DataScan resource.
      *
      * Sample code:
      * ```
@@ -593,15 +596,14 @@ class DataScanServiceGapicClient
      * ```
      *
      * @param string $name         Required. The resource name of the dataScan:
-     *                             projects/{project}/locations/{location_id}/dataScans/{data_scan_id}
-     *                             where `{project}` refers to a project_id or project_number and
+     *                             `projects/{project}/locations/{location_id}/dataScans/{data_scan_id}`
+     *                             where `project` refers to a *project_id* or *project_number* and
      *                             `location_id` refers to a GCP region.
      * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type int $view
-     *           Optional. Used to select the subset of DataScan information to return.
-     *           Defaults to `BASIC`.
+     *           Optional. Select the DataScan view to return. Defaults to `BASIC`.
      *           For allowed values, use constants defined on {@see \Google\Cloud\Dataplex\V1\GetDataScanRequest\DataScanView}
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
@@ -638,7 +640,7 @@ class DataScanServiceGapicClient
     }
 
     /**
-     * Get DataScanJob resource.
+     * Gets a DataScanJob resource.
      *
      * Sample code:
      * ```
@@ -652,15 +654,14 @@ class DataScanServiceGapicClient
      * ```
      *
      * @param string $name         Required. The resource name of the DataScanJob:
-     *                             projects/{project}/locations/{location_id}/dataScans/{data_scan_id}/dataScanJobs/{data_scan_job_id}
-     *                             where `{project}` refers to a project_id or project_number and
+     *                             `projects/{project}/locations/{location_id}/dataScans/{data_scan_id}/dataScanJobs/{data_scan_job_id}`
+     *                             where `project` refers to a *project_id* or *project_number* and
      *                             `location_id` refers to a GCP region.
      * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type int $view
-     *           Optional. Used to select the subset of DataScan information to return.
-     *           Defaults to `BASIC`.
+     *           Optional. Select the DataScanJob view to return. Defaults to `BASIC`.
      *           For allowed values, use constants defined on {@see \Google\Cloud\Dataplex\V1\GetDataScanJobRequest\DataScanJobView}
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
@@ -697,7 +698,7 @@ class DataScanServiceGapicClient
     }
 
     /**
-     * Lists DataScanJobs under the given dataScan.
+     * Lists DataScanJobs under the given DataScan.
      *
      * Sample code:
      * ```
@@ -723,8 +724,8 @@ class DataScanServiceGapicClient
      * ```
      *
      * @param string $parent       Required. The resource name of the parent environment:
-     *                             projects/{project}/locations/{location_id}/dataScans/{data_scan_id}
-     *                             where `{project}` refers to a project_id or project_number and
+     *                             `projects/{project}/locations/{location_id}/dataScans/{data_scan_id}`
+     *                             where `project` refers to a *project_id* or *project_number* and
      *                             `location_id` refers to a GCP region.
      * @param array  $optionalArgs {
      *     Optional.
@@ -777,7 +778,7 @@ class DataScanServiceGapicClient
     }
 
     /**
-     * Lists dataScans.
+     * Lists DataScans.
      *
      * Sample code:
      * ```
@@ -802,8 +803,9 @@ class DataScanServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. projects/{project}/locations/{location_id}
-     *                             where `{project}` refers to a project_id or project_number and
+     * @param string $parent       Required. The resource name of the parent location:
+     *                             `projects/{project}/locations/{location_id}`
+     *                             where `project` refers to a *project_id* or *project_number* and
      *                             `location_id` refers to a GCP region.
      * @param array  $optionalArgs {
      *     Optional.
@@ -820,7 +822,7 @@ class DataScanServiceGapicClient
      *     @type string $filter
      *           Optional. Filter request.
      *     @type string $orderBy
-     *           Optional. Order by fields (name or create_time) for the result.
+     *           Optional. Order by fields (`name` or `create_time`) for the result.
      *           If not specified, the ordering is undefined.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
@@ -869,7 +871,7 @@ class DataScanServiceGapicClient
     }
 
     /**
-     * Run an on demand execution of a DataScan.
+     * Runs an on-demand execution of a DataScan
      *
      * Sample code:
      * ```
@@ -883,10 +885,11 @@ class DataScanServiceGapicClient
      * ```
      *
      * @param string $name         Required. The resource name of the DataScan:
-     *                             projects/{project}/locations/{location_id}/dataScans/{data_scan_id}.
-     *                             where `{project}` refers to a project_id or project_number and
+     *                             `projects/{project}/locations/{location_id}/dataScans/{data_scan_id}`.
+     *                             where `project` refers to a *project_id* or *project_number* and
      *                             `location_id` refers to a GCP region.
-     *                             Only on-demand DataScans are allowed.
+     *
+     *                             Only **OnDemand** data scans are allowed.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -921,7 +924,7 @@ class DataScanServiceGapicClient
     }
 
     /**
-     * Update the dataScan resource.
+     * Updates a DataScan resource.
      *
      * Sample code:
      * ```
@@ -960,7 +963,8 @@ class DataScanServiceGapicClient
      * }
      * ```
      *
-     * @param DataScan  $dataScan     Required. Update description.
+     * @param DataScan  $dataScan     Required. DataScan resource to be updated.
+     *
      *                                Only fields specified in `update_mask` are updated.
      * @param FieldMask $updateMask   Required. Mask of fields to update.
      * @param array     $optionalArgs {

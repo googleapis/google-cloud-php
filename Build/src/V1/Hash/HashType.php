@@ -59,6 +59,4 @@ class HashType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(HashType::class, \Google\Cloud\Build\V1\Hash_HashType::class);
 
