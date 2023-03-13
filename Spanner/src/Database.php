@@ -872,15 +872,11 @@ class Database
         };
 
         $delayFn = function (\Exception $e) {
-            $defaultRetryDelay = ['seconds' => 0, 'nanos' => 0];
-            if ($e->getCode() === Code::INTERNAL && strpos($e->getMessage(), 'RST_STREAM') !== false) {
-                return $defaultRetryDelay;
+            if ($e instanceof AbortedException
+                || (Code::INTERNAL && strpos($e->getMessage(), 'RST_STREAM') !== false)) {
+                return $e->getRetryDelay();
             }
-            if (!($e instanceof AbortedException)) {
-                throw $e;
-            }
-
-            return $e->getRetryDelay();
+            throw $e;
         };
 
         $transactionFn = function ($operation, $session, $options) use ($startTransactionFn) {
