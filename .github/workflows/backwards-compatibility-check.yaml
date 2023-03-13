@@ -36,3 +36,9 @@ jobs:
           ~/.composer/vendor/bin/roave-backward-compatibility-check \
               --from=${{ steps.latest-release.outputs.release }} \
               --to=origin/main --format=github-actions
+      - name: "Justify Skipping Release"
+        if: contains(github.event.pull_request.labels.*.name, 'breaking change allowed')
+        uses: thollander/actions-comment-pull-request@v2.3.1
+        with:
+          message: |
+            The PR description looks like ${{ github.events.pull_request.body }}
