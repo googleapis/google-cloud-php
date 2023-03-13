@@ -130,7 +130,104 @@ class RetryConformanceTest extends TestCase
     }
 
     /**
+     * This tests that when we supply a header range with a start byte
+     * set, then the resulting stream is of the expected size.
+     * The same is tested when the download is interrupted and resumed.
+     */
+    public function testDownloadAsStreamForStartBytesGiven()
+    {
+        $bucketName = uniqid(self::$bucketPrefix);
+        $objectName = uniqid(self::$objectPrefix);
+        $content = random_bytes(512 * 1024);
+        $bucket = self::$storageClient->createBucket($bucketName);
+        $object = $bucket->upload($content, ['name' => $objectName]);
+
+        $options = [
+            'restOptions' => [
+                'headers' => [
+                    'Range' => sprintf('bytes=%s-', 200 * 1024)
+                ]
+            ]
+        ];
+
+        $stream = $object->downloadAsStream($options);
+        // since the object is 512K, and our Range header
+        // requests start from 200K
+        $this->assertEquals(312 * 1024, $stream->getSize());
+
+        // Now lets test the same when the download is interrupted
+        $caseId = $this->createRetryTestResource("storage.objects.get",["return-broken-stream-after-256K"]);
+        $options = [
+            'restOptions' => [
+                'headers' => [
+                    'Range' => sprintf('bytes=%s-', 200 * 1024),
+                    'x-retry-test-id' => $caseId
+                ]
+            ]
+        ];
+        $stream = $object->downloadAsStream($options);
+        $this->assertEquals(312 * 1024, $stream->getSize());
+
+        // Make sure the test case was used
+        $this->assertTrue($this->checkCaseCompletion($caseId));
+
+        // cleanup
+        $object->delete();
+        $bucket->delete();
+    }
+
+    /**
+     * When the download is interrupted for a transcoded object,
+     * the retry sends the whole object and the bytes header is not respected.
+     * @see: https://cloud.google.com/storage/docs/transcoding
+     */
+    public function testDownloadAsStreamForTranscodedObj()
+    {
+        $bucketName = uniqid(self::$bucketPrefix);
+        $objectName = uniqid(self::$objectPrefix).".txt.gz";
+        $content = gzencode((string)random_bytes(512 * 1024));
+        $bucket = self::$storageClient->createBucket($bucketName);
+        $object = $bucket->upload($content, [
+            'name' => $objectName,
+            'metadata' => ['contentType' => 'text/plain','contentEncoding' => 'gzip']
+        ]);
+
+        $options = [
+            'restOptions' => [
+                'headers' => [
+                    'Range' => sprintf('bytes=%s-', 200 * 1024)
+                ]
+            ]
+        ];
+
+        $stream = $object->downloadAsStream($options);
+        // Even though our Range header specifies the starting
+        // byte of 200K, but because the object is transcoded
+        // the full object is returned
+        $this->assertEquals(512 * 1024, $stream->getSize());
+
+        // Now we test the same for an interrupted download
+        $caseId = $this->createRetryTestResource("storage.objects.get",["return-broken-stream-after-256K"]);
+        $options = [
+            'restOptions' => [
+                'headers' => [
+                    'Range' => sprintf('bytes=%s-', 200 * 1024),
+                    'x-retry-test-id' => $caseId
+                ]
+            ]
+        ];
+        $stream = $object->downloadAsStream($options);
+        $this->assertEquals(512 * 1024, $stream->getSize());
+
+        // cleanup
+        $object->delete();
+        $bucket->delete();
+    }
+
+
+    /**
      * @dataProvider casesProvider
+     * All the retry conformance cases are tested here.
      */
     public function testOps(
         $methodName,
