@@ -44,3 +44,5 @@ jobs:
             To skip the breaking change detector, the PR must contain a "BREAKING_CHANGE_JUSTIFICATION"
             block in the PR description.
           comment_tag: breaking_change_justification
+      - if: contains(github.event.pull_request.labels.*.name, 'breaking change allowed') && !contains(github.event.pull_request.body, 'BREAKING_CHANGE_JUSTIFICATION')
+        run: exit 1
