@@ -82,6 +82,25 @@ return [
                     ],
                 ],
             ],
+            'BatchCreateAccessBindings' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1alpha/{parent=accounts/*}/accessBindings:batchCreate',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1alpha/{parent=properties/*}/accessBindings:batchCreate',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'BatchCreateUserLinks' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1alpha/{parent=accounts/*}/userLinks:batchCreate',
@@ -90,6 +109,25 @@ return [
                     [
                         'method' => 'post',
                         'uriTemplate' => '/v1alpha/{parent=properties/*}/userLinks:batchCreate',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchDeleteAccessBindings' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1alpha/{parent=accounts/*}/accessBindings:batchDelete',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1alpha/{parent=properties/*}/accessBindings:batchDelete',
                         'body' => '*',
                     ],
                 ],
@@ -120,6 +158,23 @@ return [
                     ],
                 ],
             ],
+            'BatchGetAccessBindings' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{parent=accounts/*}/accessBindings:batchGet',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1alpha/{parent=properties/*}/accessBindings:batchGet',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'BatchGetUserLinks' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1alpha/{parent=accounts/*}/userLinks:batchGet',
@@ -127,6 +182,25 @@ return [
                     [
                         'method' => 'get',
                         'uriTemplate' => '/v1alpha/{parent=properties/*}/userLinks:batchGet',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchUpdateAccessBindings' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1alpha/{parent=accounts/*}/accessBindings:batchUpdate',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1alpha/{parent=properties/*}/accessBindings:batchUpdate',
+                        'body' => '*',
                     ],
                 ],
                 'placeholders' => [
@@ -164,6 +238,25 @@ return [
                     'name' => [
                         'getters' => [
                             'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateAccessBinding' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1alpha/{parent=accounts/*}/accessBindings',
+                'body' => 'access_binding',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1alpha/{parent=properties/*}/accessBindings',
+                        'body' => 'access_binding',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
                         ],
                     ],
                 ],
@@ -252,6 +345,18 @@ return [
                     ],
                 ],
             ],
+            'CreateExpandedDataSet' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1alpha/{parent=properties/*}/expandedDataSets',
+                'body' => 'expanded_data_set',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateFirebaseLink' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1alpha/{parent=properties/*}/firebaseLinks',
@@ -293,6 +398,18 @@ return [
                 'uriTemplate' => '/v1alpha/properties',
                 'body' => 'property',
             ],
+            'CreateSearchAds360Link' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1alpha/{parent=properties/*}/searchAds360Links',
+                'body' => 'search_ads_360_link',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateUserLink' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1alpha/{parent=accounts/*}/userLinks',
@@ -308,6 +425,23 @@ return [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteAccessBinding' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1alpha/{name=accounts/*/accessBindings/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v1alpha/{name=properties/*/accessBindings/*}',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
                         ],
                     ],
                 ],
@@ -367,6 +501,17 @@ return [
                     ],
                 ],
             ],
+            'DeleteExpandedDataSet' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1alpha/{name=properties/*/expandedDataSets/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteFirebaseLink' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1alpha/{name=properties/*/firebaseLinks/*}',
@@ -411,6 +556,17 @@ return [
                     ],
                 ],
             ],
+            'DeleteSearchAds360Link' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1alpha/{name=properties/*/searchAds360Links/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteUserLink' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1alpha/{name=accounts/*/userLinks/*}',
@@ -418,6 +574,28 @@ return [
                     [
                         'method' => 'delete',
                         'uriTemplate' => '/v1alpha/{name=properties/*/userLinks/*}',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'FetchAutomatedGa4ConfigurationOptOut' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1alpha/properties:fetchAutomatedGa4ConfigurationOptOut',
+                'body' => '*',
+            ],
+            'GetAccessBinding' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{name=accounts/*/accessBindings/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1alpha/{name=properties/*/accessBindings/*}',
                     ],
                 ],
                 'placeholders' => [
@@ -453,6 +631,17 @@ return [
             'GetAudience' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1alpha/{name=properties/*/audiences/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetBigQueryLink' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{name=properties/*/bigQueryLinks/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -549,6 +738,17 @@ return [
                     ],
                 ],
             ],
+            'GetExpandedDataSet' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{name=properties/*/expandedDataSets/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetGlobalSiteTag' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1alpha/{name=properties/*/dataStreams/*/globalSiteTag}',
@@ -593,6 +793,17 @@ return [
                     ],
                 ],
             ],
+            'GetSearchAds360Link' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{name=properties/*/searchAds360Links/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetUserLink' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1alpha/{name=accounts/*/userLinks/*}',
@@ -610,6 +821,23 @@ return [
                     ],
                 ],
             ],
+            'ListAccessBindings' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{parent=accounts/*}/accessBindings',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1alpha/{parent=properties/*}/accessBindings',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListAccountSummaries' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1alpha/accountSummaries',
@@ -621,6 +849,17 @@ return [
             'ListAudiences' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1alpha/{parent=properties/*}/audiences',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListBigQueryLinks' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{parent=properties/*}/bigQueryLinks',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -695,6 +934,17 @@ return [
                     ],
                 ],
             ],
+            'ListExpandedDataSets' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{parent=properties/*}/expandedDataSets',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListFirebaseLinks' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1alpha/{parent=properties/*}/firebaseLinks',
@@ -733,6 +983,17 @@ return [
                 'uriTemplate' => '/v1alpha/properties',
                 'queryParams' => [
                     'filter',
+                ],
+            ],
+            'ListSearchAds360Links' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{parent=properties/*}/searchAds360Links',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
                 ],
             ],
             'ListUserLinks' => [
@@ -777,6 +1038,31 @@ return [
                     'account' => [
                         'getters' => [
                             'getAccount',
+                        ],
+                    ],
+                ],
+            ],
+            'SetAutomatedGa4ConfigurationOptOut' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1alpha/properties:setAutomatedGa4ConfigurationOptOut',
+                'body' => '*',
+            ],
+            'UpdateAccessBinding' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1alpha/{access_binding.name=accounts/*/accessBindings/*}',
+                'body' => 'access_binding',
+                'additionalBindings' => [
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v1alpha/{access_binding.name=properties/*/accessBindings/*}',
+                        'body' => 'access_binding',
+                    ],
+                ],
+                'placeholders' => [
+                    'access_binding.name' => [
+                        'getters' => [
+                            'getAccessBinding',
+                            'getName',
                         ],
                     ],
                 ],
@@ -909,6 +1195,22 @@ return [
                     'update_mask',
                 ],
             ],
+            'UpdateExpandedDataSet' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1alpha/{expanded_data_set.name=properties/*/expandedDataSets/*}',
+                'body' => 'expanded_data_set',
+                'placeholders' => [
+                    'expanded_data_set.name' => [
+                        'getters' => [
+                            'getExpandedDataSet',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
+                ],
+            ],
             'UpdateGoogleAdsLink' => [
                 'method' => 'patch',
                 'uriTemplate' => '/v1alpha/{google_ads_link.name=properties/*/googleAdsLinks/*}',
@@ -962,6 +1264,22 @@ return [
                     'property.name' => [
                         'getters' => [
                             'getProperty',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
+                ],
+            ],
+            'UpdateSearchAds360Link' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1alpha/{search_ads_360_link.name=properties/*/searchAds360Links/*}',
+                'body' => 'search_ads_360_link',
+                'placeholders' => [
+                    'search_ads_360_link.name' => [
+                        'getters' => [
+                            'getSearchAds360Link',
                             'getName',
                         ],
                     ],

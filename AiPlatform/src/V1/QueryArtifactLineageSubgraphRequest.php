@@ -9,16 +9,16 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [MetadataService.QueryArtifactLineageSubgraph][google.cloud.aiplatform.v1.MetadataService.QueryArtifactLineageSubgraph].
+ * Request message for
+ * [MetadataService.QueryArtifactLineageSubgraph][google.cloud.aiplatform.v1.MetadataService.QueryArtifactLineageSubgraph].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.QueryArtifactLineageSubgraphRequest</code>
  */
 class QueryArtifactLineageSubgraphRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name of the Artifact whose Lineage needs to be retrieved as a
-     * LineageSubgraph.
-     * Format:
+     * Required. The resource name of the Artifact whose Lineage needs to be
+     * retrieved as a LineageSubgraph. Format:
      * `projects/{project}/locations/{location}/metadataStores/{metadatastore}/artifacts/{artifact}`
      * The request may error with FAILED_PRECONDITION if the number of Artifacts,
      * the number of Executions, or the number of Events that would be returned
@@ -69,9 +69,8 @@ class QueryArtifactLineageSubgraphRequest extends \Google\Protobuf\Internal\Mess
      *     Optional. Data for populating the Message object.
      *
      *     @type string $artifact
-     *           Required. The resource name of the Artifact whose Lineage needs to be retrieved as a
-     *           LineageSubgraph.
-     *           Format:
+     *           Required. The resource name of the Artifact whose Lineage needs to be
+     *           retrieved as a LineageSubgraph. Format:
      *           `projects/{project}/locations/{location}/metadataStores/{metadatastore}/artifacts/{artifact}`
      *           The request may error with FAILED_PRECONDITION if the number of Artifacts,
      *           the number of Executions, or the number of Events that would be returned
@@ -110,9 +109,8 @@ class QueryArtifactLineageSubgraphRequest extends \Google\Protobuf\Internal\Mess
     }
 
     /**
-     * Required. The resource name of the Artifact whose Lineage needs to be retrieved as a
-     * LineageSubgraph.
-     * Format:
+     * Required. The resource name of the Artifact whose Lineage needs to be
+     * retrieved as a LineageSubgraph. Format:
      * `projects/{project}/locations/{location}/metadataStores/{metadatastore}/artifacts/{artifact}`
      * The request may error with FAILED_PRECONDITION if the number of Artifacts,
      * the number of Executions, or the number of Events that would be returned
@@ -127,9 +125,8 @@ class QueryArtifactLineageSubgraphRequest extends \Google\Protobuf\Internal\Mess
     }
 
     /**
-     * Required. The resource name of the Artifact whose Lineage needs to be retrieved as a
-     * LineageSubgraph.
-     * Format:
+     * Required. The resource name of the Artifact whose Lineage needs to be
+     * retrieved as a LineageSubgraph. Format:
      * `projects/{project}/locations/{location}/metadataStores/{metadatastore}/artifacts/{artifact}`
      * The request may error with FAILED_PRECONDITION if the number of Artifacts,
      * the number of Executions, or the number of Events that would be returned

@@ -109,6 +109,18 @@ class ChangeHistoryResourceType
      * Generated from protobuf enum <code>ATTRIBUTION_SETTINGS = 20;</code>
      */
     const ATTRIBUTION_SETTINGS = 20;
+    /**
+     * ExpandedDataSet resource
+     *
+     * Generated from protobuf enum <code>EXPANDED_DATA_SET = 21;</code>
+     */
+    const EXPANDED_DATA_SET = 21;
+    /**
+     * ChannelGroup resource
+     *
+     * Generated from protobuf enum <code>CHANNEL_GROUP = 22;</code>
+     */
+    const CHANNEL_GROUP = 22;
 
     private static $valueToName = [
         self::CHANGE_HISTORY_RESOURCE_TYPE_UNSPECIFIED => 'CHANGE_HISTORY_RESOURCE_TYPE_UNSPECIFIED',
@@ -127,6 +139,8 @@ class ChangeHistoryResourceType
         self::SEARCH_ADS_360_LINK => 'SEARCH_ADS_360_LINK',
         self::DATA_STREAM => 'DATA_STREAM',
         self::ATTRIBUTION_SETTINGS => 'ATTRIBUTION_SETTINGS',
+        self::EXPANDED_DATA_SET => 'EXPANDED_DATA_SET',
+        self::CHANNEL_GROUP => 'CHANNEL_GROUP',
     ];
 
     public static function name($value)

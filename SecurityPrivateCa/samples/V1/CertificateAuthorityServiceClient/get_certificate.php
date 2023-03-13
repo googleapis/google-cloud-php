@@ -30,7 +30,9 @@ use Google\Cloud\Security\PrivateCA\V1\CertificateAuthorityServiceClient;
 /**
  * Returns a [Certificate][google.cloud.security.privateca.v1.Certificate].
  *
- * @param string $formattedName The [name][google.cloud.security.privateca.v1.Certificate.name] of the [Certificate][google.cloud.security.privateca.v1.Certificate] to get. Please see
+ * @param string $formattedName The [name][google.cloud.security.privateca.v1.Certificate.name]
+ *                              of the [Certificate][google.cloud.security.privateca.v1.Certificate] to
+ *                              get. Please see
  *                              {@see CertificateAuthorityServiceClient::certificateName()} for help formatting this field.
  */
 function get_certificate_sample(string $formattedName): void

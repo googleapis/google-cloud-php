@@ -32,8 +32,8 @@ use Google\Cloud\Billing\V1\CloudBillingClient;
  * must be a [viewer of the billing
  * account](https://cloud.google.com/billing/docs/how-to/billing-access).
  *
- * @param string $formattedName The resource name of the billing account to retrieve. For example,
- *                              `billingAccounts/012345-567890-ABCDEF`. Please see
+ * @param string $formattedName The resource name of the billing account to retrieve. For
+ *                              example, `billingAccounts/012345-567890-ABCDEF`. Please see
  *                              {@see CloudBillingClient::billingAccountName()} for help formatting this field.
  */
 function get_billing_account_sample(string $formattedName): void

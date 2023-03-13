@@ -23,10 +23,11 @@ class FilterSplit extends \Google\Protobuf\Internal\Message
     /**
      * Required. A filter on DataItems of the Dataset. DataItems that match
      * this filter are used to train the Model. A filter with same syntax
-     * as the one used in [DatasetService.ListDataItems][google.cloud.aiplatform.v1.DatasetService.ListDataItems] may be used. If a
-     * single DataItem is matched by more than one of the FilterSplit filters,
-     * then it is assigned to the first set that applies to it in the
-     * training, validation, test order.
+     * as the one used in
+     * [DatasetService.ListDataItems][google.cloud.aiplatform.v1.DatasetService.ListDataItems]
+     * may be used. If a single DataItem is matched by more than one of the
+     * FilterSplit filters, then it is assigned to the first set that applies to
+     * it in the training, validation, test order.
      *
      * Generated from protobuf field <code>string training_filter = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -34,10 +35,11 @@ class FilterSplit extends \Google\Protobuf\Internal\Message
     /**
      * Required. A filter on DataItems of the Dataset. DataItems that match
      * this filter are used to validate the Model. A filter with same syntax
-     * as the one used in [DatasetService.ListDataItems][google.cloud.aiplatform.v1.DatasetService.ListDataItems] may be used. If a
-     * single DataItem is matched by more than one of the FilterSplit filters,
-     * then it is assigned to the first set that applies to it in the
-     * training, validation, test order.
+     * as the one used in
+     * [DatasetService.ListDataItems][google.cloud.aiplatform.v1.DatasetService.ListDataItems]
+     * may be used. If a single DataItem is matched by more than one of the
+     * FilterSplit filters, then it is assigned to the first set that applies to
+     * it in the training, validation, test order.
      *
      * Generated from protobuf field <code>string validation_filter = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -45,10 +47,11 @@ class FilterSplit extends \Google\Protobuf\Internal\Message
     /**
      * Required. A filter on DataItems of the Dataset. DataItems that match
      * this filter are used to test the Model. A filter with same syntax
-     * as the one used in [DatasetService.ListDataItems][google.cloud.aiplatform.v1.DatasetService.ListDataItems] may be used. If a
-     * single DataItem is matched by more than one of the FilterSplit filters,
-     * then it is assigned to the first set that applies to it in the
-     * training, validation, test order.
+     * as the one used in
+     * [DatasetService.ListDataItems][google.cloud.aiplatform.v1.DatasetService.ListDataItems]
+     * may be used. If a single DataItem is matched by more than one of the
+     * FilterSplit filters, then it is assigned to the first set that applies to
+     * it in the training, validation, test order.
      *
      * Generated from protobuf field <code>string test_filter = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -63,24 +66,27 @@ class FilterSplit extends \Google\Protobuf\Internal\Message
      *     @type string $training_filter
      *           Required. A filter on DataItems of the Dataset. DataItems that match
      *           this filter are used to train the Model. A filter with same syntax
-     *           as the one used in [DatasetService.ListDataItems][google.cloud.aiplatform.v1.DatasetService.ListDataItems] may be used. If a
-     *           single DataItem is matched by more than one of the FilterSplit filters,
-     *           then it is assigned to the first set that applies to it in the
-     *           training, validation, test order.
+     *           as the one used in
+     *           [DatasetService.ListDataItems][google.cloud.aiplatform.v1.DatasetService.ListDataItems]
+     *           may be used. If a single DataItem is matched by more than one of the
+     *           FilterSplit filters, then it is assigned to the first set that applies to
+     *           it in the training, validation, test order.
      *     @type string $validation_filter
      *           Required. A filter on DataItems of the Dataset. DataItems that match
      *           this filter are used to validate the Model. A filter with same syntax
-     *           as the one used in [DatasetService.ListDataItems][google.cloud.aiplatform.v1.DatasetService.ListDataItems] may be used. If a
-     *           single DataItem is matched by more than one of the FilterSplit filters,
-     *           then it is assigned to the first set that applies to it in the
-     *           training, validation, test order.
+     *           as the one used in
+     *           [DatasetService.ListDataItems][google.cloud.aiplatform.v1.DatasetService.ListDataItems]
+     *           may be used. If a single DataItem is matched by more than one of the
+     *           FilterSplit filters, then it is assigned to the first set that applies to
+     *           it in the training, validation, test order.
      *     @type string $test_filter
      *           Required. A filter on DataItems of the Dataset. DataItems that match
      *           this filter are used to test the Model. A filter with same syntax
-     *           as the one used in [DatasetService.ListDataItems][google.cloud.aiplatform.v1.DatasetService.ListDataItems] may be used. If a
-     *           single DataItem is matched by more than one of the FilterSplit filters,
-     *           then it is assigned to the first set that applies to it in the
-     *           training, validation, test order.
+     *           as the one used in
+     *           [DatasetService.ListDataItems][google.cloud.aiplatform.v1.DatasetService.ListDataItems]
+     *           may be used. If a single DataItem is matched by more than one of the
+     *           FilterSplit filters, then it is assigned to the first set that applies to
+     *           it in the training, validation, test order.
      * }
      */
     public function __construct($data = NULL) {
@@ -91,10 +97,11 @@ class FilterSplit extends \Google\Protobuf\Internal\Message
     /**
      * Required. A filter on DataItems of the Dataset. DataItems that match
      * this filter are used to train the Model. A filter with same syntax
-     * as the one used in [DatasetService.ListDataItems][google.cloud.aiplatform.v1.DatasetService.ListDataItems] may be used. If a
-     * single DataItem is matched by more than one of the FilterSplit filters,
-     * then it is assigned to the first set that applies to it in the
-     * training, validation, test order.
+     * as the one used in
+     * [DatasetService.ListDataItems][google.cloud.aiplatform.v1.DatasetService.ListDataItems]
+     * may be used. If a single DataItem is matched by more than one of the
+     * FilterSplit filters, then it is assigned to the first set that applies to
+     * it in the training, validation, test order.
      *
      * Generated from protobuf field <code>string training_filter = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -107,10 +114,11 @@ class FilterSplit extends \Google\Protobuf\Internal\Message
     /**
      * Required. A filter on DataItems of the Dataset. DataItems that match
      * this filter are used to train the Model. A filter with same syntax
-     * as the one used in [DatasetService.ListDataItems][google.cloud.aiplatform.v1.DatasetService.ListDataItems] may be used. If a
-     * single DataItem is matched by more than one of the FilterSplit filters,
-     * then it is assigned to the first set that applies to it in the
-     * training, validation, test order.
+     * as the one used in
+     * [DatasetService.ListDataItems][google.cloud.aiplatform.v1.DatasetService.ListDataItems]
+     * may be used. If a single DataItem is matched by more than one of the
+     * FilterSplit filters, then it is assigned to the first set that applies to
+     * it in the training, validation, test order.
      *
      * Generated from protobuf field <code>string training_filter = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -127,10 +135,11 @@ class FilterSplit extends \Google\Protobuf\Internal\Message
     /**
      * Required. A filter on DataItems of the Dataset. DataItems that match
      * this filter are used to validate the Model. A filter with same syntax
-     * as the one used in [DatasetService.ListDataItems][google.cloud.aiplatform.v1.DatasetService.ListDataItems] may be used. If a
-     * single DataItem is matched by more than one of the FilterSplit filters,
-     * then it is assigned to the first set that applies to it in the
-     * training, validation, test order.
+     * as the one used in
+     * [DatasetService.ListDataItems][google.cloud.aiplatform.v1.DatasetService.ListDataItems]
+     * may be used. If a single DataItem is matched by more than one of the
+     * FilterSplit filters, then it is assigned to the first set that applies to
+     * it in the training, validation, test order.
      *
      * Generated from protobuf field <code>string validation_filter = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -143,10 +152,11 @@ class FilterSplit extends \Google\Protobuf\Internal\Message
     /**
      * Required. A filter on DataItems of the Dataset. DataItems that match
      * this filter are used to validate the Model. A filter with same syntax
-     * as the one used in [DatasetService.ListDataItems][google.cloud.aiplatform.v1.DatasetService.ListDataItems] may be used. If a
-     * single DataItem is matched by more than one of the FilterSplit filters,
-     * then it is assigned to the first set that applies to it in the
-     * training, validation, test order.
+     * as the one used in
+     * [DatasetService.ListDataItems][google.cloud.aiplatform.v1.DatasetService.ListDataItems]
+     * may be used. If a single DataItem is matched by more than one of the
+     * FilterSplit filters, then it is assigned to the first set that applies to
+     * it in the training, validation, test order.
      *
      * Generated from protobuf field <code>string validation_filter = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -163,10 +173,11 @@ class FilterSplit extends \Google\Protobuf\Internal\Message
     /**
      * Required. A filter on DataItems of the Dataset. DataItems that match
      * this filter are used to test the Model. A filter with same syntax
-     * as the one used in [DatasetService.ListDataItems][google.cloud.aiplatform.v1.DatasetService.ListDataItems] may be used. If a
-     * single DataItem is matched by more than one of the FilterSplit filters,
-     * then it is assigned to the first set that applies to it in the
-     * training, validation, test order.
+     * as the one used in
+     * [DatasetService.ListDataItems][google.cloud.aiplatform.v1.DatasetService.ListDataItems]
+     * may be used. If a single DataItem is matched by more than one of the
+     * FilterSplit filters, then it is assigned to the first set that applies to
+     * it in the training, validation, test order.
      *
      * Generated from protobuf field <code>string test_filter = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -179,10 +190,11 @@ class FilterSplit extends \Google\Protobuf\Internal\Message
     /**
      * Required. A filter on DataItems of the Dataset. DataItems that match
      * this filter are used to test the Model. A filter with same syntax
-     * as the one used in [DatasetService.ListDataItems][google.cloud.aiplatform.v1.DatasetService.ListDataItems] may be used. If a
-     * single DataItem is matched by more than one of the FilterSplit filters,
-     * then it is assigned to the first set that applies to it in the
-     * training, validation, test order.
+     * as the one used in
+     * [DatasetService.ListDataItems][google.cloud.aiplatform.v1.DatasetService.ListDataItems]
+     * may be used. If a single DataItem is matched by more than one of the
+     * FilterSplit filters, then it is assigned to the first set that applies to
+     * it in the training, validation, test order.
      *
      * Generated from protobuf field <code>string test_filter = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

@@ -16,10 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class IL4Settings extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Input only. Immutable. Settings used to create a CMEK crypto
-     * key.
+     * Input only. Immutable. Settings used to create a CMEK crypto key.
      *
-     * Generated from protobuf field <code>.google.cloud.assuredworkloads.v1beta1.Workload.KMSSettings kms_settings = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>.google.cloud.assuredworkloads.v1beta1.Workload.KMSSettings kms_settings = 1 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
     private $kms_settings = null;
 
@@ -30,8 +29,7 @@ class IL4Settings extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\AssuredWorkloads\V1beta1\Workload\KMSSettings $kms_settings
-     *           Required. Input only. Immutable. Settings used to create a CMEK crypto
-     *           key.
+     *           Input only. Immutable. Settings used to create a CMEK crypto key.
      * }
      */
     public function __construct($data = NULL) {
@@ -40,10 +38,9 @@ class IL4Settings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Input only. Immutable. Settings used to create a CMEK crypto
-     * key.
+     * Input only. Immutable. Settings used to create a CMEK crypto key.
      *
-     * Generated from protobuf field <code>.google.cloud.assuredworkloads.v1beta1.Workload.KMSSettings kms_settings = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>.google.cloud.assuredworkloads.v1beta1.Workload.KMSSettings kms_settings = 1 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return \Google\Cloud\AssuredWorkloads\V1beta1\Workload\KMSSettings|null
      */
     public function getKmsSettings()
@@ -62,10 +59,9 @@ class IL4Settings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Input only. Immutable. Settings used to create a CMEK crypto
-     * key.
+     * Input only. Immutable. Settings used to create a CMEK crypto key.
      *
-     * Generated from protobuf field <code>.google.cloud.assuredworkloads.v1beta1.Workload.KMSSettings kms_settings = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>.google.cloud.assuredworkloads.v1beta1.Workload.KMSSettings kms_settings = 1 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param \Google\Cloud\AssuredWorkloads\V1beta1\Workload\KMSSettings $var
      * @return $this
      */

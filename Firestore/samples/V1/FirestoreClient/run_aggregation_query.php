@@ -31,8 +31,9 @@ use Google\Cloud\Firestore\V1\RunAggregationQueryResponse;
 /**
  * Runs an aggregation query.
  *
- * Rather than producing [Document][google.firestore.v1.Document] results like [Firestore.RunQuery][google.firestore.v1.Firestore.RunQuery],
- * this API allows running an aggregation to produce a series of
+ * Rather than producing [Document][google.firestore.v1.Document] results like
+ * [Firestore.RunQuery][google.firestore.v1.Firestore.RunQuery], this API
+ * allows running an aggregation to produce a series of
  * [AggregationResult][google.firestore.v1.AggregationResult] server-side.
  *
  * High-Level Example:

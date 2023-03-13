@@ -52,13 +52,12 @@ class TaskSpec extends \Google\Protobuf\Internal\Message
     private $max_retry_count = 0;
     /**
      * Lifecycle management schema when any task in a task group is failed.
-     * The valid size of lifecycle policies are [0, 10].
-     * For each lifecycle policy, when the condition is met,
-     * the action in that policy will execute.
-     * If there are multiple policies that the task execution result matches,
-     * we use the action from the first matched policy. If task execution result
-     * does not meet with any of the defined lifecycle policy, we consider it as
-     * the default policy. Default policy means if the exit code is 0, exit task.
+     * Currently we only support one lifecycle policy.
+     * When the lifecycle policy condition is met,
+     * the action in the policy will execute.
+     * If task execution result does not meet with the defined lifecycle
+     * policy, we consider it as the default policy.
+     * Default policy means if the exit code is 0, exit task.
      * If task ends with non-zero exit code, retry the task with max_retry_count.
      *
      * Generated from protobuf field <code>repeated .google.cloud.batch.v1.LifecyclePolicy lifecycle_policies = 9;</code>
@@ -111,13 +110,12 @@ class TaskSpec extends \Google\Protobuf\Internal\Message
      *           The valid value range is [0, 10].
      *     @type array<\Google\Cloud\Batch\V1\LifecyclePolicy>|\Google\Protobuf\Internal\RepeatedField $lifecycle_policies
      *           Lifecycle management schema when any task in a task group is failed.
-     *           The valid size of lifecycle policies are [0, 10].
-     *           For each lifecycle policy, when the condition is met,
-     *           the action in that policy will execute.
-     *           If there are multiple policies that the task execution result matches,
-     *           we use the action from the first matched policy. If task execution result
-     *           does not meet with any of the defined lifecycle policy, we consider it as
-     *           the default policy. Default policy means if the exit code is 0, exit task.
+     *           Currently we only support one lifecycle policy.
+     *           When the lifecycle policy condition is met,
+     *           the action in the policy will execute.
+     *           If task execution result does not meet with the defined lifecycle
+     *           policy, we consider it as the default policy.
+     *           Default policy means if the exit code is 0, exit task.
      *           If task ends with non-zero exit code, retry the task with max_retry_count.
      *     @type array|\Google\Protobuf\Internal\MapField $environments
      *           Deprecated: please use environment(non-plural) instead.
@@ -280,13 +278,12 @@ class TaskSpec extends \Google\Protobuf\Internal\Message
 
     /**
      * Lifecycle management schema when any task in a task group is failed.
-     * The valid size of lifecycle policies are [0, 10].
-     * For each lifecycle policy, when the condition is met,
-     * the action in that policy will execute.
-     * If there are multiple policies that the task execution result matches,
-     * we use the action from the first matched policy. If task execution result
-     * does not meet with any of the defined lifecycle policy, we consider it as
-     * the default policy. Default policy means if the exit code is 0, exit task.
+     * Currently we only support one lifecycle policy.
+     * When the lifecycle policy condition is met,
+     * the action in the policy will execute.
+     * If task execution result does not meet with the defined lifecycle
+     * policy, we consider it as the default policy.
+     * Default policy means if the exit code is 0, exit task.
      * If task ends with non-zero exit code, retry the task with max_retry_count.
      *
      * Generated from protobuf field <code>repeated .google.cloud.batch.v1.LifecyclePolicy lifecycle_policies = 9;</code>
@@ -299,13 +296,12 @@ class TaskSpec extends \Google\Protobuf\Internal\Message
 
     /**
      * Lifecycle management schema when any task in a task group is failed.
-     * The valid size of lifecycle policies are [0, 10].
-     * For each lifecycle policy, when the condition is met,
-     * the action in that policy will execute.
-     * If there are multiple policies that the task execution result matches,
-     * we use the action from the first matched policy. If task execution result
-     * does not meet with any of the defined lifecycle policy, we consider it as
-     * the default policy. Default policy means if the exit code is 0, exit task.
+     * Currently we only support one lifecycle policy.
+     * When the lifecycle policy condition is met,
+     * the action in the policy will execute.
+     * If task execution result does not meet with the defined lifecycle
+     * policy, we consider it as the default policy.
+     * Default policy means if the exit code is 0, exit task.
      * If task ends with non-zero exit code, retry the task with max_retry_count.
      *
      * Generated from protobuf field <code>repeated .google.cloud.batch.v1.LifecyclePolicy lifecycle_policies = 9;</code>

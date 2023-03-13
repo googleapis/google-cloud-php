@@ -17,6 +17,13 @@ use Google\Protobuf\Internal\GPBUtil;
 class ReceiveTriggerWebhookRequest extends \Google\Protobuf\Internal\Message
 {
     /**
+     * The name of the `ReceiveTriggerWebhook` to retrieve.
+     * Format: `projects/{project}/locations/{location}/triggers/{trigger}`
+     *
+     * Generated from protobuf field <code>string name = 5;</code>
+     */
+    private $name = '';
+    /**
      * HTTP request body.
      *
      * Generated from protobuf field <code>.google.api.HttpBody body = 1;</code>
@@ -47,6 +54,9 @@ class ReceiveTriggerWebhookRequest extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type string $name
+     *           The name of the `ReceiveTriggerWebhook` to retrieve.
+     *           Format: `projects/{project}/locations/{location}/triggers/{trigger}`
      *     @type \Google\Api\HttpBody $body
      *           HTTP request body.
      *     @type string $project_id
@@ -63,6 +73,34 @@ class ReceiveTriggerWebhookRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * The name of the `ReceiveTriggerWebhook` to retrieve.
+     * Format: `projects/{project}/locations/{location}/triggers/{trigger}`
+     *
+     * Generated from protobuf field <code>string name = 5;</code>
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * The name of the `ReceiveTriggerWebhook` to retrieve.
+     * Format: `projects/{project}/locations/{location}/triggers/{trigger}`
+     *
+     * Generated from protobuf field <code>string name = 5;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->name = $var;
+
+        return $this;
+    }
+
+    /**
      * HTTP request body.
      *
      * Generated from protobuf field <code>.google.api.HttpBody body = 1;</code>
@@ -70,7 +108,7 @@ class ReceiveTriggerWebhookRequest extends \Google\Protobuf\Internal\Message
      */
     public function getBody()
     {
-        return isset($this->body) ? $this->body : null;
+        return $this->body;
     }
 
     public function hasBody()

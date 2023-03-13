@@ -27,6 +27,7 @@ namespace Google\Cloud\Profiler\V2\Gapic;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
@@ -58,6 +59,11 @@ use Google\Protobuf\FieldMask;
  *     $profilerServiceClient->close();
  * }
  * ```
+ *
+ * Many parameters require resource names to be formatted in a particular way. To
+ * assist with these names, this class includes a format method for each type of
+ * name, and additionally a parseName method to extract the individual identifiers
+ * contained within formatted names that are returned by the API.
  */
 class ProfilerServiceGapicClient
 {
@@ -82,6 +88,10 @@ class ProfilerServiceGapicClient
         'https://www.googleapis.com/auth/monitoring.write',
     ];
 
+    private static $projectNameTemplate;
+
+    private static $pathTemplateMap;
+
     private static function getClientDefaults()
     {
         return [
@@ -99,6 +109,82 @@ class ProfilerServiceGapicClient
                 ],
             ],
         ];
+    }
+
+    private static function getProjectNameTemplate()
+    {
+        if (self::$projectNameTemplate == null) {
+            self::$projectNameTemplate = new PathTemplate('projects/{project}');
+        }
+
+        return self::$projectNameTemplate;
+    }
+
+    private static function getPathTemplateMap()
+    {
+        if (self::$pathTemplateMap == null) {
+            self::$pathTemplateMap = [
+                'project' => self::getProjectNameTemplate(),
+            ];
+        }
+
+        return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a project
+     * resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted project resource.
+     */
+    public static function projectName($project)
+    {
+        return self::getProjectNameTemplate()->render([
+            'project' => $project,
+        ]);
+    }
+
+    /**
+     * Parses a formatted name string and returns an associative array of the components in the name.
+     * The following name formats are supported:
+     * Template: Pattern
+     * - project: projects/{project}
+     *
+     * The optional $template argument can be supplied to specify a particular pattern,
+     * and must match one of the templates listed above. If no $template argument is
+     * provided, or if the $template argument does not match one of the templates
+     * listed, then parseName will check each of the supported templates, and return
+     * the first match.
+     *
+     * @param string $formattedName The formatted name string
+     * @param string $template      Optional name of template to match
+     *
+     * @return array An associative array from name component IDs to component values.
+     *
+     * @throws ValidationException If $formattedName could not be matched.
+     */
+    public static function parseName($formattedName, $template = null)
+    {
+        $templateMap = self::getPathTemplateMap();
+        if ($template) {
+            if (!isset($templateMap[$template])) {
+                throw new ValidationException("Template name $template does not exist");
+            }
+
+            return $templateMap[$template]->match($formattedName);
+        }
+
+        foreach ($templateMap as $templateName => $pathTemplate) {
+            try {
+                return $pathTemplate->match($formattedName);
+            } catch (ValidationException $ex) {
+                // Swallow the exception to continue trying other path templates
+            }
+        }
+
+        throw new ValidationException("Input did not match any known format. Input: $formattedName");
     }
 
     /**
@@ -226,6 +312,7 @@ class ProfilerServiceGapicClient
      * binary-serialized proto in the trailing metadata item named
      * "google.rpc.retryinfo-bin".
      *
+     *
      * Sample code:
      * ```
      * $profilerServiceClient = new ProfilerServiceClient();
@@ -298,7 +385,7 @@ class ProfilerServiceGapicClient
      *     Optional.
      *
      *     @type Profile $profile
-     *           Profile to update
+     *           Profile to update.
      *     @type FieldMask $updateMask
      *           Field mask used to specify the fields to be overwritten. Currently only
      *           profile_bytes and labels fields are supported by UpdateProfile, so only

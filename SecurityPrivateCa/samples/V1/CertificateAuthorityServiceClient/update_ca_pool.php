@@ -34,7 +34,9 @@ use Google\Rpc\Status;
 /**
  * Update a [CaPool][google.cloud.security.privateca.v1.CaPool].
  *
- * @param int $caPoolTier Immutable. The [Tier][google.cloud.security.privateca.v1.CaPool.Tier] of this [CaPool][google.cloud.security.privateca.v1.CaPool].
+ * @param int $caPoolTier Immutable. The
+ *                        [Tier][google.cloud.security.privateca.v1.CaPool.Tier] of this
+ *                        [CaPool][google.cloud.security.privateca.v1.CaPool].
  */
 function update_ca_pool_sample(int $caPoolTier): void
 {

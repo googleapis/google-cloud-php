@@ -30,12 +30,15 @@ use Google\Cloud\AIPlatform\V1\PipelineServiceClient;
  * Cancels a PipelineJob.
  * Starts asynchronous cancellation on the PipelineJob. The server
  * makes a best effort to cancel the pipeline, but success is not
- * guaranteed. Clients can use [PipelineService.GetPipelineJob][google.cloud.aiplatform.v1.PipelineService.GetPipelineJob] or
- * other methods to check whether the cancellation succeeded or whether the
+ * guaranteed. Clients can use
+ * [PipelineService.GetPipelineJob][google.cloud.aiplatform.v1.PipelineService.GetPipelineJob]
+ * or other methods to check whether the cancellation succeeded or whether the
  * pipeline completed despite cancellation. On successful cancellation,
  * the PipelineJob is not deleted; instead it becomes a pipeline with
- * a [PipelineJob.error][google.cloud.aiplatform.v1.PipelineJob.error] value with a [google.rpc.Status.code][google.rpc.Status.code] of 1,
- * corresponding to `Code.CANCELLED`, and [PipelineJob.state][google.cloud.aiplatform.v1.PipelineJob.state] is set to
+ * a [PipelineJob.error][google.cloud.aiplatform.v1.PipelineJob.error] value
+ * with a [google.rpc.Status.code][google.rpc.Status.code] of 1, corresponding
+ * to `Code.CANCELLED`, and
+ * [PipelineJob.state][google.cloud.aiplatform.v1.PipelineJob.state] is set to
  * `CANCELLED`.
  *
  * @param string $formattedName The name of the PipelineJob to cancel.

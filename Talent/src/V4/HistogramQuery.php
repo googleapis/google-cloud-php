@@ -18,7 +18,9 @@ class HistogramQuery extends \Google\Protobuf\Internal\Message
     /**
      * An expression specifies a histogram request against matching jobs for
      * searches.
-     * See [SearchJobsRequest.histogram_queries][google.cloud.talent.v4.SearchJobsRequest.histogram_queries] for details about syntax.
+     * See
+     * [SearchJobsRequest.histogram_queries][google.cloud.talent.v4.SearchJobsRequest.histogram_queries]
+     * for details about syntax.
      *
      * Generated from protobuf field <code>string histogram_query = 1;</code>
      */
@@ -33,7 +35,9 @@ class HistogramQuery extends \Google\Protobuf\Internal\Message
      *     @type string $histogram_query
      *           An expression specifies a histogram request against matching jobs for
      *           searches.
-     *           See [SearchJobsRequest.histogram_queries][google.cloud.talent.v4.SearchJobsRequest.histogram_queries] for details about syntax.
+     *           See
+     *           [SearchJobsRequest.histogram_queries][google.cloud.talent.v4.SearchJobsRequest.histogram_queries]
+     *           for details about syntax.
      * }
      */
     public function __construct($data = NULL) {
@@ -44,7 +48,9 @@ class HistogramQuery extends \Google\Protobuf\Internal\Message
     /**
      * An expression specifies a histogram request against matching jobs for
      * searches.
-     * See [SearchJobsRequest.histogram_queries][google.cloud.talent.v4.SearchJobsRequest.histogram_queries] for details about syntax.
+     * See
+     * [SearchJobsRequest.histogram_queries][google.cloud.talent.v4.SearchJobsRequest.histogram_queries]
+     * for details about syntax.
      *
      * Generated from protobuf field <code>string histogram_query = 1;</code>
      * @return string
@@ -57,7 +63,9 @@ class HistogramQuery extends \Google\Protobuf\Internal\Message
     /**
      * An expression specifies a histogram request against matching jobs for
      * searches.
-     * See [SearchJobsRequest.histogram_queries][google.cloud.talent.v4.SearchJobsRequest.histogram_queries] for details about syntax.
+     * See
+     * [SearchJobsRequest.histogram_queries][google.cloud.talent.v4.SearchJobsRequest.histogram_queries]
+     * for details about syntax.
      *
      * Generated from protobuf field <code>string histogram_query = 1;</code>
      * @param string $var

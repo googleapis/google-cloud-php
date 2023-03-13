@@ -1411,8 +1411,8 @@ class ClusterManagerGapicClient
      * }
      * ```
      *
-     * @param AddonsConfig $addonsConfig Required. The desired configurations for the various addons available to run in the
-     *                                   cluster.
+     * @param AddonsConfig $addonsConfig Required. The desired configurations for the various addons available to
+     *                                   run in the cluster.
      * @param array        $optionalArgs {
      *     Optional.
      *
@@ -2595,7 +2595,9 @@ class ClusterManagerGapicClient
      *                             - "1.X.Y": picks the highest valid gke.N patch in the 1.X.Y version
      *                             - "1.X.Y-gke.N": picks an explicit Kubernetes version
      *                             - "-": picks the Kubernetes master version
-     * @param string $imageType    Required. The desired image type for the node pool.
+     * @param string $imageType    Required. The desired image type for the node pool. Please see
+     *                             https://cloud.google.com/kubernetes-engine/docs/concepts/node-images for
+     *                             available image types.
      * @param array  $optionalArgs {
      *     Optional.
      *

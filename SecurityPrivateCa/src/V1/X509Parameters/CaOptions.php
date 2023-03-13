@@ -16,8 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class CaOptions extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. Refers to the "CA" X.509 extension, which is a boolean value. When this
-     * value is missing, the extension will be omitted from the CA certificate.
+     * Optional. Refers to the "CA" X.509 extension, which is a boolean value.
+     * When this value is missing, the extension will be omitted from the CA
+     * certificate.
      *
      * Generated from protobuf field <code>optional bool is_ca = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -41,8 +42,9 @@ class CaOptions extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $is_ca
-     *           Optional. Refers to the "CA" X.509 extension, which is a boolean value. When this
-     *           value is missing, the extension will be omitted from the CA certificate.
+     *           Optional. Refers to the "CA" X.509 extension, which is a boolean value.
+     *           When this value is missing, the extension will be omitted from the CA
+     *           certificate.
      *     @type int $max_issuer_path_length
      *           Optional. Refers to the path length restriction X.509 extension. For a CA
      *           certificate, this value describes the depth of subordinate CA
@@ -58,8 +60,9 @@ class CaOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Refers to the "CA" X.509 extension, which is a boolean value. When this
-     * value is missing, the extension will be omitted from the CA certificate.
+     * Optional. Refers to the "CA" X.509 extension, which is a boolean value.
+     * When this value is missing, the extension will be omitted from the CA
+     * certificate.
      *
      * Generated from protobuf field <code>optional bool is_ca = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
@@ -80,8 +83,9 @@ class CaOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Refers to the "CA" X.509 extension, which is a boolean value. When this
-     * value is missing, the extension will be omitted from the CA certificate.
+     * Optional. Refers to the "CA" X.509 extension, which is a boolean value.
+     * When this value is missing, the extension will be omitted from the CA
+     * certificate.
      *
      * Generated from protobuf field <code>optional bool is_ca = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var

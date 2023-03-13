@@ -17,9 +17,8 @@ class TranslateTextRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The content of the input in string format.
-     * We recommend the total content be less than 30k codepoints. The max length
-     * of this field is 1024.
-     * Use BatchTranslateText for larger text.
+     * We recommend the total content be less than 30,000 codepoints. The max
+     * length of this field is 1024. Use BatchTranslateText for larger text.
      *
      * Generated from protobuf field <code>repeated string contents = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -32,7 +31,7 @@ class TranslateTextRequest extends \Google\Protobuf\Internal\Message
      */
     private $mime_type = '';
     /**
-     * Optional. The BCP-47 language code of the input text if
+     * Optional. The ISO-639 language code of the input text if
      * known, for example, "en-US" or "sr-Latn". Supported language codes are
      * listed in Language Support. If the source language isn't specified, the API
      * attempts to identify the source language automatically and returns the
@@ -42,7 +41,7 @@ class TranslateTextRequest extends \Google\Protobuf\Internal\Message
      */
     private $source_language_code = '';
     /**
-     * Required. The BCP-47 language code to use for translation of the input
+     * Required. The ISO-639 language code to use for translation of the input
      * text, set to one of the language codes listed in Language Support.
      *
      * Generated from protobuf field <code>string target_language_code = 5 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -107,20 +106,19 @@ class TranslateTextRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $contents
      *           Required. The content of the input in string format.
-     *           We recommend the total content be less than 30k codepoints. The max length
-     *           of this field is 1024.
-     *           Use BatchTranslateText for larger text.
+     *           We recommend the total content be less than 30,000 codepoints. The max
+     *           length of this field is 1024. Use BatchTranslateText for larger text.
      *     @type string $mime_type
      *           Optional. The format of the source text, for example, "text/html",
      *            "text/plain". If left blank, the MIME type defaults to "text/html".
      *     @type string $source_language_code
-     *           Optional. The BCP-47 language code of the input text if
+     *           Optional. The ISO-639 language code of the input text if
      *           known, for example, "en-US" or "sr-Latn". Supported language codes are
      *           listed in Language Support. If the source language isn't specified, the API
      *           attempts to identify the source language automatically and returns the
      *           source language within the response.
      *     @type string $target_language_code
-     *           Required. The BCP-47 language code to use for translation of the input
+     *           Required. The ISO-639 language code to use for translation of the input
      *           text, set to one of the language codes listed in Language Support.
      *     @type string $parent
      *           Required. Project or location to make a call. Must refer to a caller's
@@ -165,9 +163,8 @@ class TranslateTextRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The content of the input in string format.
-     * We recommend the total content be less than 30k codepoints. The max length
-     * of this field is 1024.
-     * Use BatchTranslateText for larger text.
+     * We recommend the total content be less than 30,000 codepoints. The max
+     * length of this field is 1024. Use BatchTranslateText for larger text.
      *
      * Generated from protobuf field <code>repeated string contents = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -179,9 +176,8 @@ class TranslateTextRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The content of the input in string format.
-     * We recommend the total content be less than 30k codepoints. The max length
-     * of this field is 1024.
-     * Use BatchTranslateText for larger text.
+     * We recommend the total content be less than 30,000 codepoints. The max
+     * length of this field is 1024. Use BatchTranslateText for larger text.
      *
      * Generated from protobuf field <code>repeated string contents = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -224,7 +220,7 @@ class TranslateTextRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The BCP-47 language code of the input text if
+     * Optional. The ISO-639 language code of the input text if
      * known, for example, "en-US" or "sr-Latn". Supported language codes are
      * listed in Language Support. If the source language isn't specified, the API
      * attempts to identify the source language automatically and returns the
@@ -239,7 +235,7 @@ class TranslateTextRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The BCP-47 language code of the input text if
+     * Optional. The ISO-639 language code of the input text if
      * known, for example, "en-US" or "sr-Latn". Supported language codes are
      * listed in Language Support. If the source language isn't specified, the API
      * attempts to identify the source language automatically and returns the
@@ -258,7 +254,7 @@ class TranslateTextRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The BCP-47 language code to use for translation of the input
+     * Required. The ISO-639 language code to use for translation of the input
      * text, set to one of the language codes listed in Language Support.
      *
      * Generated from protobuf field <code>string target_language_code = 5 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -270,7 +266,7 @@ class TranslateTextRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The BCP-47 language code to use for translation of the input
+     * Required. The ISO-639 language code to use for translation of the input
      * text, set to one of the language codes listed in Language Support.
      *
      * Generated from protobuf field <code>string target_language_code = 5 [(.google.api.field_behavior) = REQUIRED];</code>

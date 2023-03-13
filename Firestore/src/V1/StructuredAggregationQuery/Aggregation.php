@@ -16,7 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class Aggregation extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. Optional name of the field to store the result of the aggregation into.
+     * Optional. Optional name of the field to store the result of the
+     * aggregation into.
      * If not provided, Firestore will pick a default name following the format
      * `field_<incremental_id++>`. For example:
      * ```
@@ -42,7 +43,8 @@ class Aggregation extends \Google\Protobuf\Internal\Message
      * ```
      * Requires:
      * * Must be unique across all aggregation aliases.
-     * * Conform to [document field name][google.firestore.v1.Document.fields] limitations.
+     * * Conform to [document field name][google.firestore.v1.Document.fields]
+     * limitations.
      *
      * Generated from protobuf field <code>string alias = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -58,7 +60,8 @@ class Aggregation extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Firestore\V1\StructuredAggregationQuery\Aggregation\Count $count
      *           Count aggregator.
      *     @type string $alias
-     *           Optional. Optional name of the field to store the result of the aggregation into.
+     *           Optional. Optional name of the field to store the result of the
+     *           aggregation into.
      *           If not provided, Firestore will pick a default name following the format
      *           `field_<incremental_id++>`. For example:
      *           ```
@@ -84,7 +87,8 @@ class Aggregation extends \Google\Protobuf\Internal\Message
      *           ```
      *           Requires:
      *           * Must be unique across all aggregation aliases.
-     *           * Conform to [document field name][google.firestore.v1.Document.fields] limitations.
+     *           * Conform to [document field name][google.firestore.v1.Document.fields]
+     *           limitations.
      * }
      */
     public function __construct($data = NULL) {
@@ -124,7 +128,8 @@ class Aggregation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Optional name of the field to store the result of the aggregation into.
+     * Optional. Optional name of the field to store the result of the
+     * aggregation into.
      * If not provided, Firestore will pick a default name following the format
      * `field_<incremental_id++>`. For example:
      * ```
@@ -150,7 +155,8 @@ class Aggregation extends \Google\Protobuf\Internal\Message
      * ```
      * Requires:
      * * Must be unique across all aggregation aliases.
-     * * Conform to [document field name][google.firestore.v1.Document.fields] limitations.
+     * * Conform to [document field name][google.firestore.v1.Document.fields]
+     * limitations.
      *
      * Generated from protobuf field <code>string alias = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -161,7 +167,8 @@ class Aggregation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Optional name of the field to store the result of the aggregation into.
+     * Optional. Optional name of the field to store the result of the
+     * aggregation into.
      * If not provided, Firestore will pick a default name following the format
      * `field_<incremental_id++>`. For example:
      * ```
@@ -187,7 +194,8 @@ class Aggregation extends \Google\Protobuf\Internal\Message
      * ```
      * Requires:
      * * Must be unique across all aggregation aliases.
-     * * Conform to [document field name][google.firestore.v1.Document.fields] limitations.
+     * * Conform to [document field name][google.firestore.v1.Document.fields]
+     * limitations.
      *
      * Generated from protobuf field <code>string alias = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

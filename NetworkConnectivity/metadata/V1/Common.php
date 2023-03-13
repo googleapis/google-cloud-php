@@ -19,7 +19,7 @@ class Common
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ø
+û
 0google/cloud/networkconnectivity/v1/common.proto#google.cloud.networkconnectivity.v1google/api/resource.protogoogle/protobuf/timestamp.proto"€
 OperationMetadata4
 create_time (2.google.protobuf.TimestampBàA1
@@ -28,8 +28,8 @@ class Common
 verb (	BàA
 status_message (	BàA#
 requested_cancellation (BàA
-api_version (	BàAB×
-\'com.google.cloud.networkconnectivity.v1BCommonProtoPZVgoogle.golang.org/genproto/googleapis/cloud/networkconnectivity/v1;networkconnectivityª#Google.Cloud.NetworkConnectivity.V1Ê#Google\\Cloud\\NetworkConnectivity\\V1ê&Google::Cloud::NetworkConnectivity::V1êAz
+api_version (	BàABÚ
+\'com.google.cloud.networkconnectivity.v1BCommonProtoPZYcloud.google.com/go/networkconnectivity/apiv1/networkconnectivitypb;networkconnectivitypbª#Google.Cloud.NetworkConnectivity.V1Ê#Google\\Cloud\\NetworkConnectivity\\V1ê&Google::Cloud::NetworkConnectivity::V1êAz
 -compute.googleapis.com/InterconnectAttachmentIprojects/{project}/regions/{region}/interconnectAttachments/{resource_id}êAR
 compute.googleapis.com/Network0projects/{project}/global/networks/{resource_id}bproto3'
         , true);

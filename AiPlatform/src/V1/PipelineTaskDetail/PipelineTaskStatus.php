@@ -28,12 +28,11 @@ class PipelineTaskStatus extends \Google\Protobuf\Internal\Message
      */
     private $state = 0;
     /**
-     * Output only. The error that occurred during the state. May be set when the state is
-     * any of the non-final state (PENDING/RUNNING/CANCELLING) or FAILED state.
-     * If the state is FAILED, the error here is final and not going to be
-     * retried.
-     * If the state is a non-final state, the error indicates a system-error
-     * being retried.
+     * Output only. The error that occurred during the state. May be set when
+     * the state is any of the non-final state (PENDING/RUNNING/CANCELLING) or
+     * FAILED state. If the state is FAILED, the error here is final and not
+     * going to be retried. If the state is a non-final state, the error
+     * indicates a system-error being retried.
      *
      * Generated from protobuf field <code>.google.rpc.Status error = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -50,12 +49,11 @@ class PipelineTaskStatus extends \Google\Protobuf\Internal\Message
      *     @type int $state
      *           Output only. The state of the task.
      *     @type \Google\Rpc\Status $error
-     *           Output only. The error that occurred during the state. May be set when the state is
-     *           any of the non-final state (PENDING/RUNNING/CANCELLING) or FAILED state.
-     *           If the state is FAILED, the error here is final and not going to be
-     *           retried.
-     *           If the state is a non-final state, the error indicates a system-error
-     *           being retried.
+     *           Output only. The error that occurred during the state. May be set when
+     *           the state is any of the non-final state (PENDING/RUNNING/CANCELLING) or
+     *           FAILED state. If the state is FAILED, the error here is final and not
+     *           going to be retried. If the state is a non-final state, the error
+     *           indicates a system-error being retried.
      * }
      */
     public function __construct($data = NULL) {
@@ -126,12 +124,11 @@ class PipelineTaskStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The error that occurred during the state. May be set when the state is
-     * any of the non-final state (PENDING/RUNNING/CANCELLING) or FAILED state.
-     * If the state is FAILED, the error here is final and not going to be
-     * retried.
-     * If the state is a non-final state, the error indicates a system-error
-     * being retried.
+     * Output only. The error that occurred during the state. May be set when
+     * the state is any of the non-final state (PENDING/RUNNING/CANCELLING) or
+     * FAILED state. If the state is FAILED, the error here is final and not
+     * going to be retried. If the state is a non-final state, the error
+     * indicates a system-error being retried.
      *
      * Generated from protobuf field <code>.google.rpc.Status error = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Rpc\Status|null
@@ -152,12 +149,11 @@ class PipelineTaskStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The error that occurred during the state. May be set when the state is
-     * any of the non-final state (PENDING/RUNNING/CANCELLING) or FAILED state.
-     * If the state is FAILED, the error here is final and not going to be
-     * retried.
-     * If the state is a non-final state, the error indicates a system-error
-     * being retried.
+     * Output only. The error that occurred during the state. May be set when
+     * the state is any of the non-final state (PENDING/RUNNING/CANCELLING) or
+     * FAILED state. If the state is FAILED, the error here is final and not
+     * going to be retried. If the state is a non-final state, the error
+     * indicates a system-error being retried.
      *
      * Generated from protobuf field <code>.google.rpc.Status error = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Rpc\Status $var

@@ -18,7 +18,7 @@ class Image
         \GPBMetadata\Google\Cloud\Automl\V1Beta1\Classification::initOnce();
         $pool->internalAddGeneratedFile(
             '
- 
+¿
 \'google/cloud/automl/v1beta1/image.protogoogle.cloud.automl.v1beta10google/cloud/automl/v1beta1/classification.proto"r
 "ImageClassificationDatasetMetadataL
 classification_type (2/.google.cloud.automl.v1beta1.ClassificationType"%
@@ -48,9 +48,9 @@ node_count (
 node_count ("A
 +ImageObjectDetectionModelDeploymentMetadata
 
-node_count (B±
+node_count (Bß
 com.google.cloud.automl.v1beta1B
-ImageProtoPZAgoogle.golang.org/genproto/googleapis/cloud/automl/v1beta1;automl Google\\Cloud\\AutoMl\\V1beta1ÍGoogle::Cloud::AutoML::V1beta1bproto3'
+ImageProtoPZ7cloud.google.com/go/automl/apiv1beta1/automlpb;automlpb Google\\Cloud\\AutoMl\\V1beta1ÍGoogle::Cloud::AutoML::V1beta1bproto3'
         , true);
 
         static::$is_initialized = true;

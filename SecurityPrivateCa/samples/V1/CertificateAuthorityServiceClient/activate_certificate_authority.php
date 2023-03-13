@@ -31,21 +31,29 @@ use Google\Cloud\Security\PrivateCA\V1\SubordinateConfig;
 use Google\Rpc\Status;
 
 /**
- * Activate a [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority] that is in state
+ * Activate a
+ * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+ * that is in state
  * [AWAITING_USER_ACTIVATION][google.cloud.security.privateca.v1.CertificateAuthority.State.AWAITING_USER_ACTIVATION]
- * and is of type [SUBORDINATE][google.cloud.security.privateca.v1.CertificateAuthority.Type.SUBORDINATE]. After
- * the parent Certificate Authority signs a certificate signing request from
- * [FetchCertificateAuthorityCsr][google.cloud.security.privateca.v1.CertificateAuthorityService.FetchCertificateAuthorityCsr], this method can complete the activation
- * process.
+ * and is of type
+ * [SUBORDINATE][google.cloud.security.privateca.v1.CertificateAuthority.Type.SUBORDINATE].
+ * After the parent Certificate Authority signs a certificate signing request
+ * from
+ * [FetchCertificateAuthorityCsr][google.cloud.security.privateca.v1.CertificateAuthorityService.FetchCertificateAuthorityCsr],
+ * this method can complete the activation process.
  *
- * @param string $formattedName                                  The resource name for this [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority] in the
- *                                                               format `projects/&#42;/locations/&#42;/caPools/&#42;/certificateAuthorities/*`. Please see
+ * @param string $formattedName                                  The resource name for this
+ *                                                               [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+ *                                                               in the format `projects/&#42;/locations/&#42;/caPools/&#42;/certificateAuthorities/*`. Please see
  *                                                               {@see CertificateAuthorityServiceClient::certificateAuthorityName()} for help formatting this field.
  * @param string $pemCaCertificate                               The signed CA certificate issued from
  *                                                               [FetchCertificateAuthorityCsrResponse.pem_csr][google.cloud.security.privateca.v1.FetchCertificateAuthorityCsrResponse.pem_csr].
- * @param string $formattedSubordinateConfigCertificateAuthority This can refer to a [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority] that was used to create a
- *                                                               subordinate [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]. This field is used for information
- *                                                               and usability purposes only. The resource name is in the format
+ * @param string $formattedSubordinateConfigCertificateAuthority This can refer to a
+ *                                                               [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+ *                                                               that was used to create a subordinate
+ *                                                               [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority].
+ *                                                               This field is used for information and usability purposes only. The
+ *                                                               resource name is in the format
  *                                                               `projects/&#42;/locations/&#42;/caPools/&#42;/certificateAuthorities/*`. Please see
  *                                                               {@see CertificateAuthorityServiceClient::certificateAuthorityName()} for help formatting this field.
  */

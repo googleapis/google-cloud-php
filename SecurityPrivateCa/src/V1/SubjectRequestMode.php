@@ -7,8 +7,11 @@ namespace Google\Cloud\Security\PrivateCA\V1;
 use UnexpectedValueException;
 
 /**
- * Describes the way in which a [Certificate][google.cloud.security.privateca.v1.Certificate]'s [Subject][google.cloud.security.privateca.v1.Subject] and/or
- * [SubjectAltNames][google.cloud.security.privateca.v1.SubjectAltNames] will be resolved.
+ * Describes the way in which a
+ * [Certificate][google.cloud.security.privateca.v1.Certificate]'s
+ * [Subject][google.cloud.security.privateca.v1.Subject] and/or
+ * [SubjectAltNames][google.cloud.security.privateca.v1.SubjectAltNames] will be
+ * resolved.
  *
  * Protobuf type <code>google.cloud.security.privateca.v1.SubjectRequestMode</code>
  */
@@ -22,19 +25,23 @@ class SubjectRequestMode
     const SUBJECT_REQUEST_MODE_UNSPECIFIED = 0;
     /**
      * The default mode used in most cases. Indicates that the certificate's
-     * [Subject][google.cloud.security.privateca.v1.Subject] and/or [SubjectAltNames][google.cloud.security.privateca.v1.SubjectAltNames] are specified in the certificate
-     * request. This mode requires the caller to have the
-     * `privateca.certificates.create` permission.
+     * [Subject][google.cloud.security.privateca.v1.Subject] and/or
+     * [SubjectAltNames][google.cloud.security.privateca.v1.SubjectAltNames] are
+     * specified in the certificate request. This mode requires the caller to have
+     * the `privateca.certificates.create` permission.
      *
      * Generated from protobuf enum <code>DEFAULT = 1;</code>
      */
     const PBDEFAULT = 1;
     /**
      * A mode reserved for special cases. Indicates that the certificate should
-     * have one or more SPIFFE [SubjectAltNames][google.cloud.security.privateca.v1.SubjectAltNames] set by the service based
-     * on the caller's identity. This mode will ignore any explicitly specified
-     * [Subject][google.cloud.security.privateca.v1.Subject] and/or [SubjectAltNames][google.cloud.security.privateca.v1.SubjectAltNames] in the certificate request.
-     * This mode requires the caller to have the
+     * have one or more SPIFFE
+     * [SubjectAltNames][google.cloud.security.privateca.v1.SubjectAltNames] set
+     * by the service based on the caller's identity. This mode will ignore any
+     * explicitly specified [Subject][google.cloud.security.privateca.v1.Subject]
+     * and/or
+     * [SubjectAltNames][google.cloud.security.privateca.v1.SubjectAltNames] in
+     * the certificate request. This mode requires the caller to have the
      * `privateca.certificates.createForSelf` permission.
      *
      * Generated from protobuf enum <code>REFLECTED_SPIFFE = 2;</code>

@@ -31,8 +31,8 @@ use Google\Cloud\Video\Transcoder\V1\TranscoderServiceClient;
 /**
  * Lists job templates in the specified region.
  *
- * @param string $formattedParent The parent location from which to retrieve the collection of job templates.
- *                                Format: `projects/{project}/locations/{location}`
+ * @param string $formattedParent The parent location from which to retrieve the collection of job
+ *                                templates. Format: `projects/{project}/locations/{location}`
  *                                Please see {@see TranscoderServiceClient::locationName()} for help formatting this field.
  */
 function list_job_templates_sample(string $formattedParent): void

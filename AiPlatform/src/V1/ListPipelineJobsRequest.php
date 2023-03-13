@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [PipelineService.ListPipelineJobs][google.cloud.aiplatform.v1.PipelineService.ListPipelineJobs].
+ * Request message for
+ * [PipelineService.ListPipelineJobs][google.cloud.aiplatform.v1.PipelineService.ListPipelineJobs].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.ListPipelineJobsRequest</code>
  */
@@ -65,8 +66,10 @@ class ListPipelineJobsRequest extends \Google\Protobuf\Internal\Message
     /**
      * The standard list page token.
      * Typically obtained via
-     * [ListPipelineJobsResponse.next_page_token][google.cloud.aiplatform.v1.ListPipelineJobsResponse.next_page_token] of the previous
-     * [PipelineService.ListPipelineJobs][google.cloud.aiplatform.v1.PipelineService.ListPipelineJobs] call.
+     * [ListPipelineJobsResponse.next_page_token][google.cloud.aiplatform.v1.ListPipelineJobsResponse.next_page_token]
+     * of the previous
+     * [PipelineService.ListPipelineJobs][google.cloud.aiplatform.v1.PipelineService.ListPipelineJobs]
+     * call.
      *
      * Generated from protobuf field <code>string page_token = 4;</code>
      */
@@ -139,8 +142,10 @@ class ListPipelineJobsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $page_token
      *           The standard list page token.
      *           Typically obtained via
-     *           [ListPipelineJobsResponse.next_page_token][google.cloud.aiplatform.v1.ListPipelineJobsResponse.next_page_token] of the previous
-     *           [PipelineService.ListPipelineJobs][google.cloud.aiplatform.v1.PipelineService.ListPipelineJobs] call.
+     *           [ListPipelineJobsResponse.next_page_token][google.cloud.aiplatform.v1.ListPipelineJobsResponse.next_page_token]
+     *           of the previous
+     *           [PipelineService.ListPipelineJobs][google.cloud.aiplatform.v1.PipelineService.ListPipelineJobs]
+     *           call.
      *     @type string $order_by
      *           A comma-separated list of fields to order by. The default sort order is in
      *           ascending order. Use "desc" after a field name for descending. You can have
@@ -302,8 +307,10 @@ class ListPipelineJobsRequest extends \Google\Protobuf\Internal\Message
     /**
      * The standard list page token.
      * Typically obtained via
-     * [ListPipelineJobsResponse.next_page_token][google.cloud.aiplatform.v1.ListPipelineJobsResponse.next_page_token] of the previous
-     * [PipelineService.ListPipelineJobs][google.cloud.aiplatform.v1.PipelineService.ListPipelineJobs] call.
+     * [ListPipelineJobsResponse.next_page_token][google.cloud.aiplatform.v1.ListPipelineJobsResponse.next_page_token]
+     * of the previous
+     * [PipelineService.ListPipelineJobs][google.cloud.aiplatform.v1.PipelineService.ListPipelineJobs]
+     * call.
      *
      * Generated from protobuf field <code>string page_token = 4;</code>
      * @return string
@@ -316,8 +323,10 @@ class ListPipelineJobsRequest extends \Google\Protobuf\Internal\Message
     /**
      * The standard list page token.
      * Typically obtained via
-     * [ListPipelineJobsResponse.next_page_token][google.cloud.aiplatform.v1.ListPipelineJobsResponse.next_page_token] of the previous
-     * [PipelineService.ListPipelineJobs][google.cloud.aiplatform.v1.PipelineService.ListPipelineJobs] call.
+     * [ListPipelineJobsResponse.next_page_token][google.cloud.aiplatform.v1.ListPipelineJobsResponse.next_page_token]
+     * of the previous
+     * [PipelineService.ListPipelineJobs][google.cloud.aiplatform.v1.PipelineService.ListPipelineJobs]
+     * call.
      *
      * Generated from protobuf field <code>string page_token = 4;</code>
      * @param string $var

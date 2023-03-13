@@ -25,9 +25,9 @@ class Action extends \Google\Protobuf\Internal\Message
      */
     private $container_name = '';
     /**
-     * Required. The URI to pull the container image from. Note that all images referenced
-     * by actions in the pipeline are pulled before the first action runs. If
-     * multiple actions reference the same image, it is only pulled once,
+     * Required. The URI to pull the container image from. Note that all images
+     * referenced by actions in the pipeline are pulled before the first action
+     * runs. If multiple actions reference the same image, it is only pulled once,
      * ensuring that the same image is used for all actions in a single pipeline.
      * The image URI can be either a complete host and image specification (e.g.,
      * quay.io/biocontainers/samtools), a library and image name (e.g.,
@@ -36,7 +36,8 @@ class Action extends \Google\Protobuf\Internal\Message
      * If the specified image is not public, the service account specified for
      * the Virtual Machine must have access to pull the images from GCR, or
      * appropriate credentials must be specified in the
-     * [google.cloud.lifesciences.v2beta.Action.credentials][google.cloud.lifesciences.v2beta.Action.credentials] field.
+     * [google.cloud.lifesciences.v2beta.Action.credentials][google.cloud.lifesciences.v2beta.Action.credentials]
+     * field.
      *
      * Generated from protobuf field <code>string image_uri = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -58,7 +59,8 @@ class Action extends \Google\Protobuf\Internal\Message
     private $entrypoint = '';
     /**
      * The environment to pass into the container. This environment is merged
-     * with values specified in the [google.cloud.lifesciences.v2beta.Pipeline][google.cloud.lifesciences.v2beta.Pipeline]
+     * with values specified in the
+     * [google.cloud.lifesciences.v2beta.Pipeline][google.cloud.lifesciences.v2beta.Pipeline]
      * message, overwriting any duplicate values.
      * In addition to the values passed here, a few other values are
      * automatically injected into the environment. These cannot be hidden or
@@ -77,8 +79,8 @@ class Action extends \Google\Protobuf\Internal\Message
     /**
      * The encrypted environment to pass into the container. This environment is
      * merged with values specified in the
-     * [google.cloud.lifesciences.v2beta.Pipeline][google.cloud.lifesciences.v2beta.Pipeline] message, overwriting any
-     * duplicate values.
+     * [google.cloud.lifesciences.v2beta.Pipeline][google.cloud.lifesciences.v2beta.Pipeline]
+     * message, overwriting any duplicate values.
      * The secret must decrypt to a JSON-encoded dictionary where key-value pairs
      * serve as environment variable names and their values. The decoded
      * environment variables can overwrite the values specified by the
@@ -235,9 +237,9 @@ class Action extends \Google\Protobuf\Internal\Message
      *           must contain only upper and lowercase alphanumeric characters and hyphens
      *           and cannot start with a hyphen.
      *     @type string $image_uri
-     *           Required. The URI to pull the container image from. Note that all images referenced
-     *           by actions in the pipeline are pulled before the first action runs. If
-     *           multiple actions reference the same image, it is only pulled once,
+     *           Required. The URI to pull the container image from. Note that all images
+     *           referenced by actions in the pipeline are pulled before the first action
+     *           runs. If multiple actions reference the same image, it is only pulled once,
      *           ensuring that the same image is used for all actions in a single pipeline.
      *           The image URI can be either a complete host and image specification (e.g.,
      *           quay.io/biocontainers/samtools), a library and image name (e.g.,
@@ -246,7 +248,8 @@ class Action extends \Google\Protobuf\Internal\Message
      *           If the specified image is not public, the service account specified for
      *           the Virtual Machine must have access to pull the images from GCR, or
      *           appropriate credentials must be specified in the
-     *           [google.cloud.lifesciences.v2beta.Action.credentials][google.cloud.lifesciences.v2beta.Action.credentials] field.
+     *           [google.cloud.lifesciences.v2beta.Action.credentials][google.cloud.lifesciences.v2beta.Action.credentials]
+     *           field.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $commands
      *           If specified, overrides the `CMD` specified in the container. If the
      *           container also has an `ENTRYPOINT` the values are used as entrypoint
@@ -256,7 +259,8 @@ class Action extends \Google\Protobuf\Internal\Message
      *           If specified, overrides the `ENTRYPOINT` specified in the container.
      *     @type array|\Google\Protobuf\Internal\MapField $environment
      *           The environment to pass into the container. This environment is merged
-     *           with values specified in the [google.cloud.lifesciences.v2beta.Pipeline][google.cloud.lifesciences.v2beta.Pipeline]
+     *           with values specified in the
+     *           [google.cloud.lifesciences.v2beta.Pipeline][google.cloud.lifesciences.v2beta.Pipeline]
      *           message, overwriting any duplicate values.
      *           In addition to the values passed here, a few other values are
      *           automatically injected into the environment. These cannot be hidden or
@@ -271,8 +275,8 @@ class Action extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\LifeSciences\V2beta\Secret $encrypted_environment
      *           The encrypted environment to pass into the container. This environment is
      *           merged with values specified in the
-     *           [google.cloud.lifesciences.v2beta.Pipeline][google.cloud.lifesciences.v2beta.Pipeline] message, overwriting any
-     *           duplicate values.
+     *           [google.cloud.lifesciences.v2beta.Pipeline][google.cloud.lifesciences.v2beta.Pipeline]
+     *           message, overwriting any duplicate values.
      *           The secret must decrypt to a JSON-encoded dictionary where key-value pairs
      *           serve as environment variable names and their values. The decoded
      *           environment variables can overwrite the values specified by the
@@ -396,9 +400,9 @@ class Action extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The URI to pull the container image from. Note that all images referenced
-     * by actions in the pipeline are pulled before the first action runs. If
-     * multiple actions reference the same image, it is only pulled once,
+     * Required. The URI to pull the container image from. Note that all images
+     * referenced by actions in the pipeline are pulled before the first action
+     * runs. If multiple actions reference the same image, it is only pulled once,
      * ensuring that the same image is used for all actions in a single pipeline.
      * The image URI can be either a complete host and image specification (e.g.,
      * quay.io/biocontainers/samtools), a library and image name (e.g.,
@@ -407,7 +411,8 @@ class Action extends \Google\Protobuf\Internal\Message
      * If the specified image is not public, the service account specified for
      * the Virtual Machine must have access to pull the images from GCR, or
      * appropriate credentials must be specified in the
-     * [google.cloud.lifesciences.v2beta.Action.credentials][google.cloud.lifesciences.v2beta.Action.credentials] field.
+     * [google.cloud.lifesciences.v2beta.Action.credentials][google.cloud.lifesciences.v2beta.Action.credentials]
+     * field.
      *
      * Generated from protobuf field <code>string image_uri = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -418,9 +423,9 @@ class Action extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The URI to pull the container image from. Note that all images referenced
-     * by actions in the pipeline are pulled before the first action runs. If
-     * multiple actions reference the same image, it is only pulled once,
+     * Required. The URI to pull the container image from. Note that all images
+     * referenced by actions in the pipeline are pulled before the first action
+     * runs. If multiple actions reference the same image, it is only pulled once,
      * ensuring that the same image is used for all actions in a single pipeline.
      * The image URI can be either a complete host and image specification (e.g.,
      * quay.io/biocontainers/samtools), a library and image name (e.g.,
@@ -429,7 +434,8 @@ class Action extends \Google\Protobuf\Internal\Message
      * If the specified image is not public, the service account specified for
      * the Virtual Machine must have access to pull the images from GCR, or
      * appropriate credentials must be specified in the
-     * [google.cloud.lifesciences.v2beta.Action.credentials][google.cloud.lifesciences.v2beta.Action.credentials] field.
+     * [google.cloud.lifesciences.v2beta.Action.credentials][google.cloud.lifesciences.v2beta.Action.credentials]
+     * field.
      *
      * Generated from protobuf field <code>string image_uri = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -503,7 +509,8 @@ class Action extends \Google\Protobuf\Internal\Message
 
     /**
      * The environment to pass into the container. This environment is merged
-     * with values specified in the [google.cloud.lifesciences.v2beta.Pipeline][google.cloud.lifesciences.v2beta.Pipeline]
+     * with values specified in the
+     * [google.cloud.lifesciences.v2beta.Pipeline][google.cloud.lifesciences.v2beta.Pipeline]
      * message, overwriting any duplicate values.
      * In addition to the values passed here, a few other values are
      * automatically injected into the environment. These cannot be hidden or
@@ -526,7 +533,8 @@ class Action extends \Google\Protobuf\Internal\Message
 
     /**
      * The environment to pass into the container. This environment is merged
-     * with values specified in the [google.cloud.lifesciences.v2beta.Pipeline][google.cloud.lifesciences.v2beta.Pipeline]
+     * with values specified in the
+     * [google.cloud.lifesciences.v2beta.Pipeline][google.cloud.lifesciences.v2beta.Pipeline]
      * message, overwriting any duplicate values.
      * In addition to the values passed here, a few other values are
      * automatically injected into the environment. These cannot be hidden or
@@ -554,8 +562,8 @@ class Action extends \Google\Protobuf\Internal\Message
     /**
      * The encrypted environment to pass into the container. This environment is
      * merged with values specified in the
-     * [google.cloud.lifesciences.v2beta.Pipeline][google.cloud.lifesciences.v2beta.Pipeline] message, overwriting any
-     * duplicate values.
+     * [google.cloud.lifesciences.v2beta.Pipeline][google.cloud.lifesciences.v2beta.Pipeline]
+     * message, overwriting any duplicate values.
      * The secret must decrypt to a JSON-encoded dictionary where key-value pairs
      * serve as environment variable names and their values. The decoded
      * environment variables can overwrite the values specified by the
@@ -582,8 +590,8 @@ class Action extends \Google\Protobuf\Internal\Message
     /**
      * The encrypted environment to pass into the container. This environment is
      * merged with values specified in the
-     * [google.cloud.lifesciences.v2beta.Pipeline][google.cloud.lifesciences.v2beta.Pipeline] message, overwriting any
-     * duplicate values.
+     * [google.cloud.lifesciences.v2beta.Pipeline][google.cloud.lifesciences.v2beta.Pipeline]
+     * message, overwriting any duplicate values.
      * The secret must decrypt to a JSON-encoded dictionary where key-value pairs
      * serve as environment variable names and their values. The decoded
      * environment variables can overwrite the values specified by the

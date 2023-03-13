@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Response message for [JobService.ListHyperparameterTuningJobs][google.cloud.aiplatform.v1.JobService.ListHyperparameterTuningJobs]
+ * Response message for
+ * [JobService.ListHyperparameterTuningJobs][google.cloud.aiplatform.v1.JobService.ListHyperparameterTuningJobs]
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.ListHyperparameterTuningJobsResponse</code>
  */
@@ -17,15 +18,17 @@ class ListHyperparameterTuningJobsResponse extends \Google\Protobuf\Internal\Mes
 {
     /**
      * List of HyperparameterTuningJobs in the requested page.
-     * [HyperparameterTuningJob.trials][google.cloud.aiplatform.v1.HyperparameterTuningJob.trials] of the jobs will be not be returned.
+     * [HyperparameterTuningJob.trials][google.cloud.aiplatform.v1.HyperparameterTuningJob.trials]
+     * of the jobs will be not be returned.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.HyperparameterTuningJob hyperparameter_tuning_jobs = 1;</code>
      */
     private $hyperparameter_tuning_jobs;
     /**
      * A token to retrieve the next page of results.
-     * Pass to [ListHyperparameterTuningJobsRequest.page_token][google.cloud.aiplatform.v1.ListHyperparameterTuningJobsRequest.page_token] to obtain that
-     * page.
+     * Pass to
+     * [ListHyperparameterTuningJobsRequest.page_token][google.cloud.aiplatform.v1.ListHyperparameterTuningJobsRequest.page_token]
+     * to obtain that page.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
@@ -39,11 +42,13 @@ class ListHyperparameterTuningJobsResponse extends \Google\Protobuf\Internal\Mes
      *
      *     @type array<\Google\Cloud\AIPlatform\V1\HyperparameterTuningJob>|\Google\Protobuf\Internal\RepeatedField $hyperparameter_tuning_jobs
      *           List of HyperparameterTuningJobs in the requested page.
-     *           [HyperparameterTuningJob.trials][google.cloud.aiplatform.v1.HyperparameterTuningJob.trials] of the jobs will be not be returned.
+     *           [HyperparameterTuningJob.trials][google.cloud.aiplatform.v1.HyperparameterTuningJob.trials]
+     *           of the jobs will be not be returned.
      *     @type string $next_page_token
      *           A token to retrieve the next page of results.
-     *           Pass to [ListHyperparameterTuningJobsRequest.page_token][google.cloud.aiplatform.v1.ListHyperparameterTuningJobsRequest.page_token] to obtain that
-     *           page.
+     *           Pass to
+     *           [ListHyperparameterTuningJobsRequest.page_token][google.cloud.aiplatform.v1.ListHyperparameterTuningJobsRequest.page_token]
+     *           to obtain that page.
      * }
      */
     public function __construct($data = NULL) {
@@ -53,7 +58,8 @@ class ListHyperparameterTuningJobsResponse extends \Google\Protobuf\Internal\Mes
 
     /**
      * List of HyperparameterTuningJobs in the requested page.
-     * [HyperparameterTuningJob.trials][google.cloud.aiplatform.v1.HyperparameterTuningJob.trials] of the jobs will be not be returned.
+     * [HyperparameterTuningJob.trials][google.cloud.aiplatform.v1.HyperparameterTuningJob.trials]
+     * of the jobs will be not be returned.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.HyperparameterTuningJob hyperparameter_tuning_jobs = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -65,7 +71,8 @@ class ListHyperparameterTuningJobsResponse extends \Google\Protobuf\Internal\Mes
 
     /**
      * List of HyperparameterTuningJobs in the requested page.
-     * [HyperparameterTuningJob.trials][google.cloud.aiplatform.v1.HyperparameterTuningJob.trials] of the jobs will be not be returned.
+     * [HyperparameterTuningJob.trials][google.cloud.aiplatform.v1.HyperparameterTuningJob.trials]
+     * of the jobs will be not be returned.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.HyperparameterTuningJob hyperparameter_tuning_jobs = 1;</code>
      * @param array<\Google\Cloud\AIPlatform\V1\HyperparameterTuningJob>|\Google\Protobuf\Internal\RepeatedField $var
@@ -81,8 +88,9 @@ class ListHyperparameterTuningJobsResponse extends \Google\Protobuf\Internal\Mes
 
     /**
      * A token to retrieve the next page of results.
-     * Pass to [ListHyperparameterTuningJobsRequest.page_token][google.cloud.aiplatform.v1.ListHyperparameterTuningJobsRequest.page_token] to obtain that
-     * page.
+     * Pass to
+     * [ListHyperparameterTuningJobsRequest.page_token][google.cloud.aiplatform.v1.ListHyperparameterTuningJobsRequest.page_token]
+     * to obtain that page.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @return string
@@ -94,8 +102,9 @@ class ListHyperparameterTuningJobsResponse extends \Google\Protobuf\Internal\Mes
 
     /**
      * A token to retrieve the next page of results.
-     * Pass to [ListHyperparameterTuningJobsRequest.page_token][google.cloud.aiplatform.v1.ListHyperparameterTuningJobsRequest.page_token] to obtain that
-     * page.
+     * Pass to
+     * [ListHyperparameterTuningJobsRequest.page_token][google.cloud.aiplatform.v1.ListHyperparameterTuningJobsRequest.page_token]
+     * to obtain that page.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @param string $var

@@ -21,7 +21,7 @@ class DeleteAzureClusterRequest extends \Google\Protobuf\Internal\Message
      * `AzureCluster` names are formatted as
      * `projects/<project-id>/locations/<region>/azureClusters/<cluster-id>`.
      * See [Resource Names](https://cloud.google.com/apis/design/resource_names)
-     * for more details on GCP resource names.
+     * for more details on Google Cloud Platform resource names.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -65,7 +65,7 @@ class DeleteAzureClusterRequest extends \Google\Protobuf\Internal\Message
      *           `AzureCluster` names are formatted as
      *           `projects/<project-id>/locations/<region>/azureClusters/<cluster-id>`.
      *           See [Resource Names](https://cloud.google.com/apis/design/resource_names)
-     *           for more details on GCP resource names.
+     *           for more details on Google Cloud Platform resource names.
      *     @type bool $allow_missing
      *           If set to true, and the
      *           [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] resource is not
@@ -93,7 +93,7 @@ class DeleteAzureClusterRequest extends \Google\Protobuf\Internal\Message
      * `AzureCluster` names are formatted as
      * `projects/<project-id>/locations/<region>/azureClusters/<cluster-id>`.
      * See [Resource Names](https://cloud.google.com/apis/design/resource_names)
-     * for more details on GCP resource names.
+     * for more details on Google Cloud Platform resource names.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -109,7 +109,7 @@ class DeleteAzureClusterRequest extends \Google\Protobuf\Internal\Message
      * `AzureCluster` names are formatted as
      * `projects/<project-id>/locations/<region>/azureClusters/<cluster-id>`.
      * See [Resource Names](https://cloud.google.com/apis/design/resource_names)
-     * for more details on GCP resource names.
+     * for more details on Google Cloud Platform resource names.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

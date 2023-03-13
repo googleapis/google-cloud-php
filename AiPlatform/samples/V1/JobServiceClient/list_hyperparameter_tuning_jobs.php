@@ -31,8 +31,9 @@ use Google\Cloud\AIPlatform\V1\JobServiceClient;
 /**
  * Lists HyperparameterTuningJobs in a Location.
  *
- * @param string $formattedParent The resource name of the Location to list the HyperparameterTuningJobs
- *                                from. Format: `projects/{project}/locations/{location}`
+ * @param string $formattedParent The resource name of the Location to list the
+ *                                HyperparameterTuningJobs from. Format:
+ *                                `projects/{project}/locations/{location}`
  *                                Please see {@see JobServiceClient::locationName()} for help formatting this field.
  */
 function list_hyperparameter_tuning_jobs_sample(string $formattedParent): void

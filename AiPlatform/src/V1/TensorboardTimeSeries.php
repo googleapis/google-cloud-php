@@ -61,8 +61,8 @@ class TensorboardTimeSeries extends \Google\Protobuf\Internal\Message
      */
     private $etag = '';
     /**
-     * Immutable. Name of the plugin this time series pertain to. Such as Scalar, Tensor,
-     * Blob
+     * Immutable. Name of the plugin this time series pertain to. Such as Scalar,
+     * Tensor, Blob
      *
      * Generated from protobuf field <code>string plugin_name = 8 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
@@ -74,7 +74,8 @@ class TensorboardTimeSeries extends \Google\Protobuf\Internal\Message
      */
     private $plugin_data = '';
     /**
-     * Output only. Scalar, Tensor, or Blob metadata for this TensorboardTimeSeries.
+     * Output only. Scalar, Tensor, or Blob metadata for this
+     * TensorboardTimeSeries.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.TensorboardTimeSeries.Metadata metadata = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -104,12 +105,13 @@ class TensorboardTimeSeries extends \Google\Protobuf\Internal\Message
      *           Used to perform a consistent read-modify-write updates. If not set, a blind
      *           "overwrite" update happens.
      *     @type string $plugin_name
-     *           Immutable. Name of the plugin this time series pertain to. Such as Scalar, Tensor,
-     *           Blob
+     *           Immutable. Name of the plugin this time series pertain to. Such as Scalar,
+     *           Tensor, Blob
      *     @type string $plugin_data
      *           Data of the current plugin, with the size limited to 65KB.
      *     @type \Google\Cloud\AIPlatform\V1\TensorboardTimeSeries\Metadata $metadata
-     *           Output only. Scalar, Tensor, or Blob metadata for this TensorboardTimeSeries.
+     *           Output only. Scalar, Tensor, or Blob metadata for this
+     *           TensorboardTimeSeries.
      * }
      */
     public function __construct($data = NULL) {
@@ -326,8 +328,8 @@ class TensorboardTimeSeries extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. Name of the plugin this time series pertain to. Such as Scalar, Tensor,
-     * Blob
+     * Immutable. Name of the plugin this time series pertain to. Such as Scalar,
+     * Tensor, Blob
      *
      * Generated from protobuf field <code>string plugin_name = 8 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
@@ -338,8 +340,8 @@ class TensorboardTimeSeries extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. Name of the plugin this time series pertain to. Such as Scalar, Tensor,
-     * Blob
+     * Immutable. Name of the plugin this time series pertain to. Such as Scalar,
+     * Tensor, Blob
      *
      * Generated from protobuf field <code>string plugin_name = 8 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var
@@ -380,7 +382,8 @@ class TensorboardTimeSeries extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Scalar, Tensor, or Blob metadata for this TensorboardTimeSeries.
+     * Output only. Scalar, Tensor, or Blob metadata for this
+     * TensorboardTimeSeries.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.TensorboardTimeSeries.Metadata metadata = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\AIPlatform\V1\TensorboardTimeSeries\Metadata|null
@@ -401,7 +404,8 @@ class TensorboardTimeSeries extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Scalar, Tensor, or Blob metadata for this TensorboardTimeSeries.
+     * Output only. Scalar, Tensor, or Blob metadata for this
+     * TensorboardTimeSeries.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.TensorboardTimeSeries.Metadata metadata = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\AIPlatform\V1\TensorboardTimeSeries\Metadata $var

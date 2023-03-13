@@ -19,7 +19,7 @@ class RegistryModels
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ë
+Ê
 4google/cloud/apigeeregistry/v1/registry_models.protogoogle.cloud.apigeeregistry.v1google/api/resource.protogoogle/protobuf/timestamp.proto"©
 Api
 name (	
@@ -117,8 +117,8 @@ source_uri (	
 size_bytes (B‡A
 hash (	B‡A
 contents (B‡A:⁄ÍA÷
-&apigeeregistry.googleapis.com/Artifact<projects/{project}/locations/{location}/artifacts/{artifact}Gprojects/{project}/locations/{location}/apis/{api}/artifacts/{artifact}Zprojects/{project}/locations/{location}/apis/{api}/versions/{version}/artifacts/{artifact}gprojects/{project}/locations/{location}/apis/{api}/versions/{version}/specs/{spec}/artifacts/{artifact}`projects/{project}/locations/{location}/apis/{api}/deployments/{deployment}/artifacts/{artifact}BÔ
-"com.google.cloud.apigeeregistry.v1BRegistryModelsProtoPZLgoogle.golang.org/genproto/googleapis/cloud/apigeeregistry/v1;apigeeregistry™Google.Cloud.ApigeeRegistry.V1 Google\\Cloud\\ApigeeRegistry\\V1Í!Google::Cloud::ApigeeRegistry::V1bproto3'
+&apigeeregistry.googleapis.com/Artifact<projects/{project}/locations/{location}/artifacts/{artifact}Gprojects/{project}/locations/{location}/apis/{api}/artifacts/{artifact}Zprojects/{project}/locations/{location}/apis/{api}/versions/{version}/artifacts/{artifact}gprojects/{project}/locations/{location}/apis/{api}/versions/{version}/specs/{spec}/artifacts/{artifact}`projects/{project}/locations/{location}/apis/{api}/deployments/{deployment}/artifacts/{artifact}BÌ
+"com.google.cloud.apigeeregistry.v1BRegistryModelsProtoPZJcloud.google.com/go/apigeeregistry/apiv1/apigeeregistrypb;apigeeregistrypb™Google.Cloud.ApigeeRegistry.V1 Google\\Cloud\\ApigeeRegistry\\V1Í!Google::Cloud::ApigeeRegistry::V1bproto3'
         , true);
 
         static::$is_initialized = true;

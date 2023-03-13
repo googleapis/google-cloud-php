@@ -25,6 +25,7 @@
 namespace Google\Cloud\VMMigration\V1\Gapic;
 
 use Google\ApiCore\ApiException;
+use Google\ApiCore\Call;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\LongRunning\OperationsClient;
@@ -35,6 +36,10 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\Location\GetLocationRequest;
+use Google\Cloud\Location\ListLocationsRequest;
+use Google\Cloud\Location\ListLocationsResponse;
+use Google\Cloud\Location\Location;
 use Google\Cloud\VMMigration\V1\AddGroupMigrationRequest;
 use Google\Cloud\VMMigration\V1\CancelCloneJobRequest;
 use Google\Cloud\VMMigration\V1\CancelCutoverJobRequest;
@@ -63,6 +68,7 @@ use Google\Cloud\VMMigration\V1\GetCutoverJobRequest;
 use Google\Cloud\VMMigration\V1\GetDatacenterConnectorRequest;
 use Google\Cloud\VMMigration\V1\GetGroupRequest;
 use Google\Cloud\VMMigration\V1\GetMigratingVmRequest;
+use Google\Cloud\VMMigration\V1\GetReplicationCycleRequest;
 use Google\Cloud\VMMigration\V1\GetSourceRequest;
 use Google\Cloud\VMMigration\V1\GetTargetProjectRequest;
 use Google\Cloud\VMMigration\V1\GetUtilizationReportRequest;
@@ -77,6 +83,8 @@ use Google\Cloud\VMMigration\V1\ListGroupsRequest;
 use Google\Cloud\VMMigration\V1\ListGroupsResponse;
 use Google\Cloud\VMMigration\V1\ListMigratingVmsRequest;
 use Google\Cloud\VMMigration\V1\ListMigratingVmsResponse;
+use Google\Cloud\VMMigration\V1\ListReplicationCyclesRequest;
+use Google\Cloud\VMMigration\V1\ListReplicationCyclesResponse;
 use Google\Cloud\VMMigration\V1\ListSourcesRequest;
 use Google\Cloud\VMMigration\V1\ListSourcesResponse;
 use Google\Cloud\VMMigration\V1\ListTargetProjectsRequest;
@@ -86,6 +94,7 @@ use Google\Cloud\VMMigration\V1\ListUtilizationReportsResponse;
 use Google\Cloud\VMMigration\V1\MigratingVm;
 use Google\Cloud\VMMigration\V1\PauseMigrationRequest;
 use Google\Cloud\VMMigration\V1\RemoveGroupMigrationRequest;
+use Google\Cloud\VMMigration\V1\ReplicationCycle;
 use Google\Cloud\VMMigration\V1\ResumeMigrationRequest;
 use Google\Cloud\VMMigration\V1\Source;
 use Google\Cloud\VMMigration\V1\StartMigrationRequest;
@@ -177,6 +186,8 @@ class VmMigrationGapicClient
     private static $locationNameTemplate;
 
     private static $migratingVmNameTemplate;
+
+    private static $replicationCycleNameTemplate;
 
     private static $sourceNameTemplate;
 
@@ -279,6 +290,17 @@ class VmMigrationGapicClient
         return self::$migratingVmNameTemplate;
     }
 
+    private static function getReplicationCycleNameTemplate()
+    {
+        if (self::$replicationCycleNameTemplate == null) {
+            self::$replicationCycleNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/sources/{source}/migratingVms/{migrating_vm}/replicationCycles/{replication_cycle}'
+            );
+        }
+
+        return self::$replicationCycleNameTemplate;
+    }
+
     private static function getSourceNameTemplate()
     {
         if (self::$sourceNameTemplate == null) {
@@ -322,6 +344,7 @@ class VmMigrationGapicClient
                 'group' => self::getGroupNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
                 'migratingVm' => self::getMigratingVmNameTemplate(),
+                'replicationCycle' => self::getReplicationCycleNameTemplate(),
                 'source' => self::getSourceNameTemplate(),
                 'targetProject' => self::getTargetProjectNameTemplate(),
                 'utilizationReport' => self::getUtilizationReportNameTemplate(),
@@ -474,6 +497,34 @@ class VmMigrationGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * replication_cycle resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $source
+     * @param string $migratingVm
+     * @param string $replicationCycle
+     *
+     * @return string The formatted replication_cycle resource.
+     */
+    public static function replicationCycleName(
+        $project,
+        $location,
+        $source,
+        $migratingVm,
+        $replicationCycle
+    ) {
+        return self::getReplicationCycleNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'source' => $source,
+            'migrating_vm' => $migratingVm,
+            'replication_cycle' => $replicationCycle,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a source
      * resource.
      *
@@ -549,6 +600,7 @@ class VmMigrationGapicClient
      * - group: projects/{project}/locations/{location}/groups/{group}
      * - location: projects/{project}/locations/{location}
      * - migratingVm: projects/{project}/locations/{location}/sources/{source}/migratingVms/{migrating_vm}
+     * - replicationCycle: projects/{project}/locations/{location}/sources/{source}/migratingVms/{migrating_vm}/replicationCycles/{replication_cycle}
      * - source: projects/{project}/locations/{location}/sources/{source}
      * - targetProject: projects/{project}/locations/{location}/targetProjects/{target_project}
      * - utilizationReport: projects/{project}/locations/{location}/sources/{source}/utilizationReports/{utilization_report}
@@ -2634,6 +2686,54 @@ class VmMigrationGapicClient
     }
 
     /**
+     * Gets details of a single ReplicationCycle.
+     *
+     * Sample code:
+     * ```
+     * $vmMigrationClient = new VmMigrationClient();
+     * try {
+     *     $formattedName = $vmMigrationClient->replicationCycleName('[PROJECT]', '[LOCATION]', '[SOURCE]', '[MIGRATING_VM]', '[REPLICATION_CYCLE]');
+     *     $response = $vmMigrationClient->getReplicationCycle($formattedName);
+     * } finally {
+     *     $vmMigrationClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the ReplicationCycle.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\VMMigration\V1\ReplicationCycle
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getReplicationCycle($name, array $optionalArgs = [])
+    {
+        $request = new GetReplicationCycleRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetReplicationCycle',
+            ReplicationCycle::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Gets details of a single Source.
      *
      * Sample code:
@@ -3230,6 +3330,95 @@ class VmMigrationGapicClient
             'ListMigratingVms',
             $optionalArgs,
             ListMigratingVmsResponse::class,
+            $request
+        );
+    }
+
+    /**
+     * Lists ReplicationCycles in a given MigratingVM.
+     *
+     * Sample code:
+     * ```
+     * $vmMigrationClient = new VmMigrationClient();
+     * try {
+     *     $formattedParent = $vmMigrationClient->migratingVmName('[PROJECT]', '[LOCATION]', '[SOURCE]', '[MIGRATING_VM]');
+     *     $pageToken = 'page_token';
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $vmMigrationClient->listReplicationCycles($formattedParent, $pageToken);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $vmMigrationClient->listReplicationCycles($formattedParent, $pageToken);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $vmMigrationClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The parent, which owns this collection of ReplicationCycles.
+     * @param string $pageToken    A page token is used to specify a page of values to be returned.
+     *                             If no page token is specified (the default), the first page
+     *                             of values will be returned. Any page token used here must have
+     *                             been generated by a previous call to the API.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $filter
+     *           Optional. The filter request.
+     *     @type string $orderBy
+     *           Optional. the order by fields for the result.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listReplicationCycles(
+        $parent,
+        $pageToken,
+        array $optionalArgs = []
+    ) {
+        $request = new ListReplicationCyclesRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setPageToken($pageToken);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['orderBy'])) {
+            $request->setOrderBy($optionalArgs['orderBy']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListReplicationCycles',
+            $optionalArgs,
+            ListReplicationCyclesResponse::class,
             $request
         );
     }
@@ -4314,5 +4503,145 @@ class VmMigrationGapicClient
             $request,
             $this->getOperationsClient()
         )->wait();
+    }
+
+    /**
+     * Gets information about a location.
+     *
+     * Sample code:
+     * ```
+     * $vmMigrationClient = new VmMigrationClient();
+     * try {
+     *     $response = $vmMigrationClient->getLocation();
+     * } finally {
+     *     $vmMigrationClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $name
+     *           Resource name for the location.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Location\Location
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getLocation(array $optionalArgs = [])
+    {
+        $request = new GetLocationRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetLocation',
+            Location::class,
+            $optionalArgs,
+            $request,
+            Call::UNARY_CALL,
+            'google.cloud.location.Locations'
+        )->wait();
+    }
+
+    /**
+     * Lists information about the supported locations for this service.
+     *
+     * Sample code:
+     * ```
+     * $vmMigrationClient = new VmMigrationClient();
+     * try {
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $vmMigrationClient->listLocations();
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $vmMigrationClient->listLocations();
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $vmMigrationClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $name
+     *           The resource that owns the locations collection, if applicable.
+     *     @type string $filter
+     *           The standard list filter.
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listLocations(array $optionalArgs = [])
+    {
+        $request = new ListLocationsRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListLocations',
+            $optionalArgs,
+            ListLocationsResponse::class,
+            $request,
+            'google.cloud.location.Locations'
+        );
     }
 }

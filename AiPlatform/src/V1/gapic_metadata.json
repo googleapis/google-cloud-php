@@ -257,6 +257,11 @@
                                 "deleteFeature"
                             ]
                         },
+                        "DeleteFeatureValues": {
+                            "methods": [
+                                "deleteFeatureValues"
+                            ]
+                        },
                         "DeleteFeaturestore": {
                             "methods": [
                                 "deleteFeaturestore"
@@ -519,6 +524,11 @@
                                 "cancelHyperparameterTuningJob"
                             ]
                         },
+                        "CancelNasJob": {
+                            "methods": [
+                                "cancelNasJob"
+                            ]
+                        },
                         "CreateBatchPredictionJob": {
                             "methods": [
                                 "createBatchPredictionJob"
@@ -542,6 +552,11 @@
                         "CreateModelDeploymentMonitoringJob": {
                             "methods": [
                                 "createModelDeploymentMonitoringJob"
+                            ]
+                        },
+                        "CreateNasJob": {
+                            "methods": [
+                                "createNasJob"
                             ]
                         },
                         "DeleteBatchPredictionJob": {
@@ -569,6 +584,11 @@
                                 "deleteModelDeploymentMonitoringJob"
                             ]
                         },
+                        "DeleteNasJob": {
+                            "methods": [
+                                "deleteNasJob"
+                            ]
+                        },
                         "GetBatchPredictionJob": {
                             "methods": [
                                 "getBatchPredictionJob"
@@ -594,6 +614,16 @@
                                 "getModelDeploymentMonitoringJob"
                             ]
                         },
+                        "GetNasJob": {
+                            "methods": [
+                                "getNasJob"
+                            ]
+                        },
+                        "GetNasTrialDetail": {
+                            "methods": [
+                                "getNasTrialDetail"
+                            ]
+                        },
                         "ListBatchPredictionJobs": {
                             "methods": [
                                 "listBatchPredictionJobs"
@@ -617,6 +647,16 @@
                         "ListModelDeploymentMonitoringJobs": {
                             "methods": [
                                 "listModelDeploymentMonitoringJobs"
+                            ]
+                        },
+                        "ListNasJobs": {
+                            "methods": [
+                                "listNasJobs"
+                            ]
+                        },
+                        "ListNasTrialDetails": {
+                            "methods": [
+                                "listNasTrialDetails"
                             ]
                         },
                         "PauseModelDeploymentMonitoringJob": {
@@ -911,9 +951,19 @@
                 "grpc": {
                     "libraryClient": "ModelServiceGapicClient",
                     "rpcs": {
+                        "BatchImportEvaluatedAnnotations": {
+                            "methods": [
+                                "batchImportEvaluatedAnnotations"
+                            ]
+                        },
                         "BatchImportModelEvaluationSlices": {
                             "methods": [
                                 "batchImportModelEvaluationSlices"
+                            ]
+                        },
+                        "CopyModel": {
+                            "methods": [
+                                "copyModel"
                             ]
                         },
                         "DeleteModel": {
@@ -1320,6 +1370,11 @@
                         "ReadTensorboardTimeSeriesData": {
                             "methods": [
                                 "readTensorboardTimeSeriesData"
+                            ]
+                        },
+                        "ReadTensorboardUsage": {
+                            "methods": [
+                                "readTensorboardUsage"
                             ]
                         },
                         "UpdateTensorboard": {

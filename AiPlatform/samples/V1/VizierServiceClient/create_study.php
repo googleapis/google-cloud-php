@@ -39,11 +39,11 @@ use Google\Cloud\AIPlatform\V1\VizierServiceClient;
  *                                                    Format: `projects/{project}/locations/{location}`
  *                                                    Please see {@see VizierServiceClient::locationName()} for help formatting this field.
  * @param string $studyDisplayName                    Describes the Study, default value is empty string.
- * @param string $studyStudySpecMetricsMetricId       The ID of the metric. Must not contain whitespaces and must be unique
- *                                                    amongst all MetricSpecs.
+ * @param string $studyStudySpecMetricsMetricId       The ID of the metric. Must not contain whitespaces and must be
+ *                                                    unique amongst all MetricSpecs.
  * @param int    $studyStudySpecMetricsGoal           The optimization goal of the metric.
- * @param string $studyStudySpecParametersParameterId The ID of the parameter. Must not contain whitespaces and must be unique
- *                                                    amongst all ParameterSpecs.
+ * @param string $studyStudySpecParametersParameterId The ID of the parameter. Must not contain whitespaces and must
+ *                                                    be unique amongst all ParameterSpecs.
  */
 function create_study_sample(
     string $formattedParent,

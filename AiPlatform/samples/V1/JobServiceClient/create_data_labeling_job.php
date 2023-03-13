@@ -38,18 +38,17 @@ use Google\Protobuf\Value;
  *                                                        The name can be up to 128 characters long and can consist of any UTF-8
  *                                                        characters.
  *                                                        Display name of a DataLabelingJob.
- * @param string $formattedDataLabelingJobDatasetsElement Dataset resource names. Right now we only support labeling from a single
- *                                                        Dataset.
- *                                                        Format:
+ * @param string $formattedDataLabelingJobDatasetsElement Dataset resource names. Right now we only support labeling from a
+ *                                                        single Dataset. Format:
  *                                                        `projects/{project}/locations/{location}/datasets/{dataset}`
  *                                                        Please see {@see JobServiceClient::datasetName()} for help formatting this field.
  * @param int    $dataLabelingJobLabelerCount             Number of labelers to work on each DataItem.
- * @param string $dataLabelingJobInstructionUri           The Google Cloud Storage location of the instruction pdf. This pdf is
- *                                                        shared with labelers, and provides detailed description on how to label
- *                                                        DataItems in Datasets.
- * @param string $dataLabelingJobInputsSchemaUri          Points to a YAML file stored on Google Cloud Storage describing the
- *                                                        config for a specific type of DataLabelingJob.
- *                                                        The schema files that can be used here are found in the
+ * @param string $dataLabelingJobInstructionUri           The Google Cloud Storage location of the instruction pdf. This
+ *                                                        pdf is shared with labelers, and provides detailed description on how to
+ *                                                        label DataItems in Datasets.
+ * @param string $dataLabelingJobInputsSchemaUri          Points to a YAML file stored on Google Cloud Storage describing
+ *                                                        the config for a specific type of DataLabelingJob. The schema files that
+ *                                                        can be used here are found in the
  *                                                        https://storage.googleapis.com/google-cloud-aiplatform bucket in the
  *                                                        /schema/datalabelingjob/inputs/ folder.
  */

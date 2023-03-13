@@ -29,17 +29,19 @@ class ModelEvaluationSlice extends \Google\Protobuf\Internal\Message
      */
     private $slice = null;
     /**
-     * Output only. Points to a YAML file stored on Google Cloud Storage describing the
-     * [metrics][google.cloud.aiplatform.v1.ModelEvaluationSlice.metrics] of this ModelEvaluationSlice. The
-     * schema is defined as an OpenAPI 3.0.2 [Schema
+     * Output only. Points to a YAML file stored on Google Cloud Storage
+     * describing the
+     * [metrics][google.cloud.aiplatform.v1.ModelEvaluationSlice.metrics] of this
+     * ModelEvaluationSlice. The schema is defined as an OpenAPI 3.0.2 [Schema
      * Object](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.2.md#schemaObject).
      *
      * Generated from protobuf field <code>string metrics_schema_uri = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $metrics_schema_uri = '';
     /**
-     * Output only. Sliced evaluation metrics of the Model. The schema of the metrics is stored
-     * in [metrics_schema_uri][google.cloud.aiplatform.v1.ModelEvaluationSlice.metrics_schema_uri]
+     * Output only. Sliced evaluation metrics of the Model. The schema of the
+     * metrics is stored in
+     * [metrics_schema_uri][google.cloud.aiplatform.v1.ModelEvaluationSlice.metrics_schema_uri]
      *
      * Generated from protobuf field <code>.google.protobuf.Value metrics = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -50,6 +52,15 @@ class ModelEvaluationSlice extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $create_time = null;
+    /**
+     * Output only. Aggregated explanation metrics for the Model's prediction
+     * output over the data this ModelEvaluation uses. This field is populated
+     * only if the Model is evaluated with explanations, and only for tabular
+     * Models.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ModelExplanation model_explanation = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $model_explanation = null;
 
     /**
      * Constructor.
@@ -62,15 +73,22 @@ class ModelEvaluationSlice extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\AIPlatform\V1\ModelEvaluationSlice\Slice $slice
      *           Output only. The slice of the test data that is used to evaluate the Model.
      *     @type string $metrics_schema_uri
-     *           Output only. Points to a YAML file stored on Google Cloud Storage describing the
-     *           [metrics][google.cloud.aiplatform.v1.ModelEvaluationSlice.metrics] of this ModelEvaluationSlice. The
-     *           schema is defined as an OpenAPI 3.0.2 [Schema
+     *           Output only. Points to a YAML file stored on Google Cloud Storage
+     *           describing the
+     *           [metrics][google.cloud.aiplatform.v1.ModelEvaluationSlice.metrics] of this
+     *           ModelEvaluationSlice. The schema is defined as an OpenAPI 3.0.2 [Schema
      *           Object](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.2.md#schemaObject).
      *     @type \Google\Protobuf\Value $metrics
-     *           Output only. Sliced evaluation metrics of the Model. The schema of the metrics is stored
-     *           in [metrics_schema_uri][google.cloud.aiplatform.v1.ModelEvaluationSlice.metrics_schema_uri]
+     *           Output only. Sliced evaluation metrics of the Model. The schema of the
+     *           metrics is stored in
+     *           [metrics_schema_uri][google.cloud.aiplatform.v1.ModelEvaluationSlice.metrics_schema_uri]
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. Timestamp when this ModelEvaluationSlice was created.
+     *     @type \Google\Cloud\AIPlatform\V1\ModelExplanation $model_explanation
+     *           Output only. Aggregated explanation metrics for the Model's prediction
+     *           output over the data this ModelEvaluation uses. This field is populated
+     *           only if the Model is evaluated with explanations, and only for tabular
+     *           Models.
      * }
      */
     public function __construct($data = NULL) {
@@ -141,9 +159,10 @@ class ModelEvaluationSlice extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Points to a YAML file stored on Google Cloud Storage describing the
-     * [metrics][google.cloud.aiplatform.v1.ModelEvaluationSlice.metrics] of this ModelEvaluationSlice. The
-     * schema is defined as an OpenAPI 3.0.2 [Schema
+     * Output only. Points to a YAML file stored on Google Cloud Storage
+     * describing the
+     * [metrics][google.cloud.aiplatform.v1.ModelEvaluationSlice.metrics] of this
+     * ModelEvaluationSlice. The schema is defined as an OpenAPI 3.0.2 [Schema
      * Object](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.2.md#schemaObject).
      *
      * Generated from protobuf field <code>string metrics_schema_uri = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -155,9 +174,10 @@ class ModelEvaluationSlice extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Points to a YAML file stored on Google Cloud Storage describing the
-     * [metrics][google.cloud.aiplatform.v1.ModelEvaluationSlice.metrics] of this ModelEvaluationSlice. The
-     * schema is defined as an OpenAPI 3.0.2 [Schema
+     * Output only. Points to a YAML file stored on Google Cloud Storage
+     * describing the
+     * [metrics][google.cloud.aiplatform.v1.ModelEvaluationSlice.metrics] of this
+     * ModelEvaluationSlice. The schema is defined as an OpenAPI 3.0.2 [Schema
      * Object](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.2.md#schemaObject).
      *
      * Generated from protobuf field <code>string metrics_schema_uri = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -173,8 +193,9 @@ class ModelEvaluationSlice extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Sliced evaluation metrics of the Model. The schema of the metrics is stored
-     * in [metrics_schema_uri][google.cloud.aiplatform.v1.ModelEvaluationSlice.metrics_schema_uri]
+     * Output only. Sliced evaluation metrics of the Model. The schema of the
+     * metrics is stored in
+     * [metrics_schema_uri][google.cloud.aiplatform.v1.ModelEvaluationSlice.metrics_schema_uri]
      *
      * Generated from protobuf field <code>.google.protobuf.Value metrics = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Value|null
@@ -195,8 +216,9 @@ class ModelEvaluationSlice extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Sliced evaluation metrics of the Model. The schema of the metrics is stored
-     * in [metrics_schema_uri][google.cloud.aiplatform.v1.ModelEvaluationSlice.metrics_schema_uri]
+     * Output only. Sliced evaluation metrics of the Model. The schema of the
+     * metrics is stored in
+     * [metrics_schema_uri][google.cloud.aiplatform.v1.ModelEvaluationSlice.metrics_schema_uri]
      *
      * Generated from protobuf field <code>.google.protobuf.Value metrics = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Value $var
@@ -242,6 +264,48 @@ class ModelEvaluationSlice extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->create_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Aggregated explanation metrics for the Model's prediction
+     * output over the data this ModelEvaluation uses. This field is populated
+     * only if the Model is evaluated with explanations, and only for tabular
+     * Models.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ModelExplanation model_explanation = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\AIPlatform\V1\ModelExplanation|null
+     */
+    public function getModelExplanation()
+    {
+        return $this->model_explanation;
+    }
+
+    public function hasModelExplanation()
+    {
+        return isset($this->model_explanation);
+    }
+
+    public function clearModelExplanation()
+    {
+        unset($this->model_explanation);
+    }
+
+    /**
+     * Output only. Aggregated explanation metrics for the Model's prediction
+     * output over the data this ModelEvaluation uses. This field is populated
+     * only if the Model is evaluated with explanations, and only for tabular
+     * Models.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ModelExplanation model_explanation = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\AIPlatform\V1\ModelExplanation $var
+     * @return $this
+     */
+    public function setModelExplanation($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\ModelExplanation::class);
+        $this->model_explanation = $var;
 
         return $this;
     }

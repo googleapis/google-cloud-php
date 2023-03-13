@@ -38,9 +38,13 @@ use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
 /**
- * Update a [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority].
+ * Update a
+ * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority].
  *
- * @param int $certificateAuthorityType Immutable. The [Type][google.cloud.security.privateca.v1.CertificateAuthority.Type] of this [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority].
+ * @param int $certificateAuthorityType Immutable. The
+ *                                      [Type][google.cloud.security.privateca.v1.CertificateAuthority.Type] of
+ *                                      this
+ *                                      [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority].
  */
 function update_certificate_authority_sample(int $certificateAuthorityType): void
 {

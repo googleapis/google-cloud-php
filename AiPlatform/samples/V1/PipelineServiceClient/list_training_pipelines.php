@@ -31,8 +31,8 @@ use Google\Cloud\AIPlatform\V1\TrainingPipeline;
 /**
  * Lists TrainingPipelines in a Location.
  *
- * @param string $formattedParent The resource name of the Location to list the TrainingPipelines from.
- *                                Format: `projects/{project}/locations/{location}`
+ * @param string $formattedParent The resource name of the Location to list the TrainingPipelines
+ *                                from. Format: `projects/{project}/locations/{location}`
  *                                Please see {@see PipelineServiceClient::locationName()} for help formatting this field.
  */
 function list_training_pipelines_sample(string $formattedParent): void

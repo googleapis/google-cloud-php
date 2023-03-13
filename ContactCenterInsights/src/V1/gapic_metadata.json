@@ -10,6 +10,11 @@
                 "grpc": {
                     "libraryClient": "ContactCenterInsightsGapicClient",
                     "rpcs": {
+                        "BulkAnalyzeConversations": {
+                            "methods": [
+                                "bulkAnalyzeConversations"
+                            ]
+                        },
                         "CalculateIssueModelStats": {
                             "methods": [
                                 "calculateIssueModelStats"
@@ -53,6 +58,11 @@
                         "DeleteConversation": {
                             "methods": [
                                 "deleteConversation"
+                            ]
+                        },
+                        "DeleteIssue": {
+                            "methods": [
+                                "deleteIssue"
                             ]
                         },
                         "DeleteIssueModel": {
@@ -113,6 +123,11 @@
                         "GetView": {
                             "methods": [
                                 "getView"
+                            ]
+                        },
+                        "IngestConversations": {
+                            "methods": [
+                                "ingestConversations"
                             ]
                         },
                         "ListAnalyses": {

@@ -97,12 +97,15 @@ class JobServiceGrpcClient extends \Grpc\BaseStub {
      * Cancels a CustomJob.
      * Starts asynchronous cancellation on the CustomJob. The server
      * makes a best effort to cancel the job, but success is not
-     * guaranteed. Clients can use [JobService.GetCustomJob][google.cloud.aiplatform.v1.JobService.GetCustomJob] or
-     * other methods to check whether the cancellation succeeded or whether the
+     * guaranteed. Clients can use
+     * [JobService.GetCustomJob][google.cloud.aiplatform.v1.JobService.GetCustomJob]
+     * or other methods to check whether the cancellation succeeded or whether the
      * job completed despite cancellation. On successful cancellation,
      * the CustomJob is not deleted; instead it becomes a job with
-     * a [CustomJob.error][google.cloud.aiplatform.v1.CustomJob.error] value with a [google.rpc.Status.code][google.rpc.Status.code] of 1,
-     * corresponding to `Code.CANCELLED`, and [CustomJob.state][google.cloud.aiplatform.v1.CustomJob.state] is set to
+     * a [CustomJob.error][google.cloud.aiplatform.v1.CustomJob.error] value with
+     * a [google.rpc.Status.code][google.rpc.Status.code] of 1, corresponding to
+     * `Code.CANCELLED`, and
+     * [CustomJob.state][google.cloud.aiplatform.v1.CustomJob.state] is set to
      * `CANCELLED`.
      * @param \Google\Cloud\AIPlatform\V1\CancelCustomJobRequest $argument input argument
      * @param array $metadata metadata
@@ -256,13 +259,17 @@ class JobServiceGrpcClient extends \Grpc\BaseStub {
      * Cancels a HyperparameterTuningJob.
      * Starts asynchronous cancellation on the HyperparameterTuningJob. The server
      * makes a best effort to cancel the job, but success is not
-     * guaranteed. Clients can use [JobService.GetHyperparameterTuningJob][google.cloud.aiplatform.v1.JobService.GetHyperparameterTuningJob] or
-     * other methods to check whether the cancellation succeeded or whether the
+     * guaranteed. Clients can use
+     * [JobService.GetHyperparameterTuningJob][google.cloud.aiplatform.v1.JobService.GetHyperparameterTuningJob]
+     * or other methods to check whether the cancellation succeeded or whether the
      * job completed despite cancellation. On successful cancellation,
      * the HyperparameterTuningJob is not deleted; instead it becomes a job with
-     * a [HyperparameterTuningJob.error][google.cloud.aiplatform.v1.HyperparameterTuningJob.error] value with a [google.rpc.Status.code][google.rpc.Status.code]
-     * of 1, corresponding to `Code.CANCELLED`, and
-     * [HyperparameterTuningJob.state][google.cloud.aiplatform.v1.HyperparameterTuningJob.state] is set to `CANCELLED`.
+     * a
+     * [HyperparameterTuningJob.error][google.cloud.aiplatform.v1.HyperparameterTuningJob.error]
+     * value with a [google.rpc.Status.code][google.rpc.Status.code] of 1,
+     * corresponding to `Code.CANCELLED`, and
+     * [HyperparameterTuningJob.state][google.cloud.aiplatform.v1.HyperparameterTuningJob.state]
+     * is set to `CANCELLED`.
      * @param \Google\Cloud\AIPlatform\V1\CancelHyperparameterTuningJobRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -273,6 +280,123 @@ class JobServiceGrpcClient extends \Grpc\BaseStub {
         return $this->_simpleRequest('/google.cloud.aiplatform.v1.JobService/CancelHyperparameterTuningJob',
         $argument,
         ['\Google\Protobuf\GPBEmpty', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Creates a NasJob
+     * @param \Google\Cloud\AIPlatform\V1\CreateNasJobRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function CreateNasJob(\Google\Cloud\AIPlatform\V1\CreateNasJobRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.aiplatform.v1.JobService/CreateNasJob',
+        $argument,
+        ['\Google\Cloud\AIPlatform\V1\NasJob', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Gets a NasJob
+     * @param \Google\Cloud\AIPlatform\V1\GetNasJobRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function GetNasJob(\Google\Cloud\AIPlatform\V1\GetNasJobRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.aiplatform.v1.JobService/GetNasJob',
+        $argument,
+        ['\Google\Cloud\AIPlatform\V1\NasJob', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Lists NasJobs in a Location.
+     * @param \Google\Cloud\AIPlatform\V1\ListNasJobsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function ListNasJobs(\Google\Cloud\AIPlatform\V1\ListNasJobsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.aiplatform.v1.JobService/ListNasJobs',
+        $argument,
+        ['\Google\Cloud\AIPlatform\V1\ListNasJobsResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Deletes a NasJob.
+     * @param \Google\Cloud\AIPlatform\V1\DeleteNasJobRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function DeleteNasJob(\Google\Cloud\AIPlatform\V1\DeleteNasJobRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.aiplatform.v1.JobService/DeleteNasJob',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Cancels a NasJob.
+     * Starts asynchronous cancellation on the NasJob. The server
+     * makes a best effort to cancel the job, but success is not
+     * guaranteed. Clients can use
+     * [JobService.GetNasJob][google.cloud.aiplatform.v1.JobService.GetNasJob] or
+     * other methods to check whether the cancellation succeeded or whether the
+     * job completed despite cancellation. On successful cancellation,
+     * the NasJob is not deleted; instead it becomes a job with
+     * a [NasJob.error][google.cloud.aiplatform.v1.NasJob.error] value with a
+     * [google.rpc.Status.code][google.rpc.Status.code] of 1, corresponding to
+     * `Code.CANCELLED`, and
+     * [NasJob.state][google.cloud.aiplatform.v1.NasJob.state] is set to
+     * `CANCELLED`.
+     * @param \Google\Cloud\AIPlatform\V1\CancelNasJobRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function CancelNasJob(\Google\Cloud\AIPlatform\V1\CancelNasJobRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.aiplatform.v1.JobService/CancelNasJob',
+        $argument,
+        ['\Google\Protobuf\GPBEmpty', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Gets a NasTrialDetail.
+     * @param \Google\Cloud\AIPlatform\V1\GetNasTrialDetailRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function GetNasTrialDetail(\Google\Cloud\AIPlatform\V1\GetNasTrialDetailRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.aiplatform.v1.JobService/GetNasTrialDetail',
+        $argument,
+        ['\Google\Cloud\AIPlatform\V1\NasTrialDetail', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * List top NasTrialDetails of a NasJob.
+     * @param \Google\Cloud\AIPlatform\V1\ListNasTrialDetailsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function ListNasTrialDetails(\Google\Cloud\AIPlatform\V1\ListNasTrialDetailsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.aiplatform.v1.JobService/ListNasTrialDetails',
+        $argument,
+        ['\Google\Cloud\AIPlatform\V1\ListNasTrialDetailsResponse', 'decode'],
         $metadata, $options);
     }
 
@@ -343,12 +467,14 @@ class JobServiceGrpcClient extends \Grpc\BaseStub {
      *
      * Starts asynchronous cancellation on the BatchPredictionJob. The server
      * makes the best effort to cancel the job, but success is not
-     * guaranteed. Clients can use [JobService.GetBatchPredictionJob][google.cloud.aiplatform.v1.JobService.GetBatchPredictionJob] or
-     * other methods to check whether the cancellation succeeded or whether the
+     * guaranteed. Clients can use
+     * [JobService.GetBatchPredictionJob][google.cloud.aiplatform.v1.JobService.GetBatchPredictionJob]
+     * or other methods to check whether the cancellation succeeded or whether the
      * job completed despite cancellation. On a successful cancellation,
      * the BatchPredictionJob is not deleted;instead its
-     * [BatchPredictionJob.state][google.cloud.aiplatform.v1.BatchPredictionJob.state] is set to `CANCELLED`. Any files already
-     * outputted by the job are not deleted.
+     * [BatchPredictionJob.state][google.cloud.aiplatform.v1.BatchPredictionJob.state]
+     * is set to `CANCELLED`. Any files already outputted by the job are not
+     * deleted.
      * @param \Google\Cloud\AIPlatform\V1\CancelBatchPredictionJobRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -456,7 +582,8 @@ class JobServiceGrpcClient extends \Grpc\BaseStub {
     /**
      * Pauses a ModelDeploymentMonitoringJob. If the job is running, the server
      * makes a best effort to cancel the job. Will mark
-     * [ModelDeploymentMonitoringJob.state][google.cloud.aiplatform.v1.ModelDeploymentMonitoringJob.state] to 'PAUSED'.
+     * [ModelDeploymentMonitoringJob.state][google.cloud.aiplatform.v1.ModelDeploymentMonitoringJob.state]
+     * to 'PAUSED'.
      * @param \Google\Cloud\AIPlatform\V1\PauseModelDeploymentMonitoringJobRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options

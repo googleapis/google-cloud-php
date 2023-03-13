@@ -23,7 +23,7 @@ class ComputeEngineTargetDetails extends \Google\Protobuf\Internal\Message
      */
     private $vm_name = '';
     /**
-     * The GCP target project ID or project name.
+     * The Google Cloud target project ID or project name.
      *
      * Generated from protobuf field <code>string project = 2;</code>
      */
@@ -135,7 +135,7 @@ class ComputeEngineTargetDetails extends \Google\Protobuf\Internal\Message
      *     @type string $vm_name
      *           The name of the VM to create.
      *     @type string $project
-     *           The GCP target project ID or project name.
+     *           The Google Cloud target project ID or project name.
      *     @type string $zone
      *           The zone in which to create the VM.
      *     @type string $machine_type_series
@@ -203,7 +203,7 @@ class ComputeEngineTargetDetails extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The GCP target project ID or project name.
+     * The Google Cloud target project ID or project name.
      *
      * Generated from protobuf field <code>string project = 2;</code>
      * @return string
@@ -214,7 +214,7 @@ class ComputeEngineTargetDetails extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The GCP target project ID or project name.
+     * The Google Cloud target project ID or project name.
      *
      * Generated from protobuf field <code>string project = 2;</code>
      * @param string $var

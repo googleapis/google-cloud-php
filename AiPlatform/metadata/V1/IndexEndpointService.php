@@ -21,11 +21,12 @@ class IndexEndpointService
         \GPBMetadata\Google\Cloud\Aiplatform\V1\IndexEndpoint::initOnce();
         \GPBMetadata\Google\Cloud\Aiplatform\V1\Operation::initOnce();
         \GPBMetadata\Google\Longrunning\Operations::initOnce();
+        \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ä$
-7google/cloud/aiplatform/v1/index_endpoint_service.protogoogle.cloud.aiplatform.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto/google/cloud/aiplatform/v1/index_endpoint.proto*google/cloud/aiplatform/v1/operation.proto#google/longrunning/operations.proto google/protobuf/field_mask.proto"Ÿ
+û$
+7google/cloud/aiplatform/v1/index_endpoint_service.protogoogle.cloud.aiplatform.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto/google/cloud/aiplatform/v1/index_endpoint.proto*google/cloud/aiplatform/v1/operation.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"Ÿ
 CreateIndexEndpointRequest9
 parent (	B)àAúA#
 !locations.googleapis.com/LocationF
@@ -90,8 +91,8 @@ $MutateDeployedIndexOperationMetadataN
 UndeployIndex0.google.cloud.aiplatform.v1.UndeployIndexRequest.google.longrunning.Operation"²‚Óä“O"J/v1/{index_endpoint=projects/*/locations/*/indexEndpoints/*}:undeployIndex:*ÚA index_endpoint,deployed_index_idÊA7
 UndeployIndexResponseUndeployIndexOperationMetadata½
 MutateDeployedIndex6.google.cloud.aiplatform.v1.MutateDeployedIndexRequest.google.longrunning.Operation"Î‚Óä“b"P/v1/{index_endpoint=projects/*/locations/*/indexEndpoints/*}:mutateDeployedIndex:deployed_indexÚAindex_endpoint,deployed_indexÊAC
-MutateDeployedIndexResponse$MutateDeployedIndexOperationMetadataMÊAaiplatform.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBÝ
-com.google.cloud.aiplatform.v1BIndexEndpointServiceProtoPZDgoogle.golang.org/genproto/googleapis/cloud/aiplatform/v1;aiplatformªGoogle.Cloud.AIPlatform.V1ÊGoogle\\Cloud\\AIPlatform\\V1êGoogle::Cloud::AIPlatform::V1bproto3'
+MutateDeployedIndexResponse$MutateDeployedIndexOperationMetadataMÊAaiplatform.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB×
+com.google.cloud.aiplatform.v1BIndexEndpointServiceProtoPZ>cloud.google.com/go/aiplatform/apiv1/aiplatformpb;aiplatformpbªGoogle.Cloud.AIPlatform.V1ÊGoogle\\Cloud\\AIPlatform\\V1êGoogle::Cloud::AIPlatform::V1bproto3'
         , true);
 
         static::$is_initialized = true;

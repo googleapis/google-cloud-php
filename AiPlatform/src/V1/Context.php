@@ -59,8 +59,8 @@ class Context extends \Google\Protobuf\Internal\Message
      */
     private $update_time = null;
     /**
-     * Output only. A list of resource names of Contexts that are parents of this Context.
-     * A Context may have at most 10 parent_contexts.
+     * Output only. A list of resource names of Contexts that are parents of this
+     * Context. A Context may have at most 10 parent_contexts.
      *
      * Generated from protobuf field <code>repeated string parent_contexts = 12 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
@@ -124,8 +124,8 @@ class Context extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. Timestamp when this Context was last updated.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $parent_contexts
-     *           Output only. A list of resource names of Contexts that are parents of this Context.
-     *           A Context may have at most 10 parent_contexts.
+     *           Output only. A list of resource names of Contexts that are parents of this
+     *           Context. A Context may have at most 10 parent_contexts.
      *     @type string $schema_title
      *           The title of the schema describing the metadata.
      *           Schema title and version is expected to be registered in earlier Create
@@ -340,8 +340,8 @@ class Context extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. A list of resource names of Contexts that are parents of this Context.
-     * A Context may have at most 10 parent_contexts.
+     * Output only. A list of resource names of Contexts that are parents of this
+     * Context. A Context may have at most 10 parent_contexts.
      *
      * Generated from protobuf field <code>repeated string parent_contexts = 12 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -352,8 +352,8 @@ class Context extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. A list of resource names of Contexts that are parents of this Context.
-     * A Context may have at most 10 parent_contexts.
+     * Output only. A list of resource names of Contexts that are parents of this
+     * Context. A Context may have at most 10 parent_contexts.
      *
      * Generated from protobuf field <code>repeated string parent_contexts = 12 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

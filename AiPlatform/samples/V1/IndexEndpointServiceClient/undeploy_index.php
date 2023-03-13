@@ -33,11 +33,12 @@ use Google\Rpc\Status;
  * Undeploys an Index from an IndexEndpoint, removing a DeployedIndex from it,
  * and freeing all resources it's using.
  *
- * @param string $formattedIndexEndpoint The name of the IndexEndpoint resource from which to undeploy an Index.
- *                                       Format:
+ * @param string $formattedIndexEndpoint The name of the IndexEndpoint resource from which to undeploy an
+ *                                       Index. Format:
  *                                       `projects/{project}/locations/{location}/indexEndpoints/{index_endpoint}`
  *                                       Please see {@see IndexEndpointServiceClient::indexEndpointName()} for help formatting this field.
- * @param string $deployedIndexId        The ID of the DeployedIndex to be undeployed from the IndexEndpoint.
+ * @param string $deployedIndexId        The ID of the DeployedIndex to be undeployed from the
+ *                                       IndexEndpoint.
  */
 function undeploy_index_sample(string $formattedIndexEndpoint, string $deployedIndexId): void
 {

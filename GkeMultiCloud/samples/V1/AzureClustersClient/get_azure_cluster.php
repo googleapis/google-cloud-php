@@ -39,7 +39,7 @@ use Google\Cloud\GkeMultiCloud\V1\AzureClustersClient;
  *                              `projects/<project-id>/locations/<region>/azureClusters/<cluster-id>`.
  *
  *                              See [Resource Names](https://cloud.google.com/apis/design/resource_names)
- *                              for more details on GCP resource names. Please see
+ *                              for more details on Google Cloud Platform resource names. Please see
  *                              {@see AzureClustersClient::azureClusterName()} for help formatting this field.
  */
 function get_azure_cluster_sample(string $formattedName): void

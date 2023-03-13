@@ -19,14 +19,14 @@ class LineageSubgraph
         \GPBMetadata\Google\Cloud\Aiplatform\V1\Execution::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Á
+»
 1google/cloud/aiplatform/v1/lineage_subgraph.protogoogle.cloud.aiplatform.v1&google/cloud/aiplatform/v1/event.proto*google/cloud/aiplatform/v1/execution.proto"¸
 LineageSubgraph7
 	artifacts (2$.google.cloud.aiplatform.v1.Artifact9
 
 executions (2%.google.cloud.aiplatform.v1.Execution1
-events (2!.google.cloud.aiplatform.v1.EventBØ
-com.google.cloud.aiplatform.v1BLineageSubgraphProtoPZDgoogle.golang.org/genproto/googleapis/cloud/aiplatform/v1;aiplatformªGoogle.Cloud.AIPlatform.V1ÊGoogle\\Cloud\\AIPlatform\\V1êGoogle::Cloud::AIPlatform::V1bproto3'
+events (2!.google.cloud.aiplatform.v1.EventBÒ
+com.google.cloud.aiplatform.v1BLineageSubgraphProtoPZ>cloud.google.com/go/aiplatform/apiv1/aiplatformpb;aiplatformpbªGoogle.Cloud.AIPlatform.V1ÊGoogle\\Cloud\\AIPlatform\\V1êGoogle::Cloud::AIPlatform::V1bproto3'
         , true);
 
         static::$is_initialized = true;

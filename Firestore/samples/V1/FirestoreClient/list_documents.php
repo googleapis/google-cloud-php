@@ -34,11 +34,16 @@ use Google\Cloud\Firestore\V1\FirestoreClient;
  * @param string $parent       The parent resource name. In the format:
  *                             `projects/{project_id}/databases/{database_id}/documents` or
  *                             `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
+ *
  *                             For example:
  *                             `projects/my-project/databases/my-database/documents` or
  *                             `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
- * @param string $collectionId The collection ID, relative to `parent`, to list. For example: `chatrooms`
- *                             or `messages`.
+ * @param string $collectionId Optional. The collection ID, relative to `parent`, to list.
+ *
+ *                             For example: `chatrooms` or `messages`.
+ *
+ *                             This is optional, and when not provided, Firestore will list documents
+ *                             from all collections under the provided `parent`.
  */
 function list_documents_sample(string $parent, string $collectionId): void
 {

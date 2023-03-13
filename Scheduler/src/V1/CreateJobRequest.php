@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [CreateJob][google.cloud.scheduler.v1.CloudScheduler.CreateJob].
+ * Request message for
+ * [CreateJob][google.cloud.scheduler.v1.CloudScheduler.CreateJob].
  *
  * Generated from protobuf message <code>google.cloud.scheduler.v1.CreateJobRequest</code>
  */
@@ -24,7 +25,8 @@ class CreateJobRequest extends \Google\Protobuf\Internal\Message
     private $parent = '';
     /**
      * Required. The job to add. The user can optionally specify a name for the
-     * job in [name][google.cloud.scheduler.v1.Job.name]. [name][google.cloud.scheduler.v1.Job.name] cannot be the same as an
+     * job in [name][google.cloud.scheduler.v1.Job.name].
+     * [name][google.cloud.scheduler.v1.Job.name] cannot be the same as an
      * existing job. If a name is not specified then the system will
      * generate a random unique name that will be returned
      * ([name][google.cloud.scheduler.v1.Job.name]) in the response.
@@ -44,7 +46,8 @@ class CreateJobRequest extends \Google\Protobuf\Internal\Message
      *           `projects/PROJECT_ID/locations/LOCATION_ID`.
      *     @type \Google\Cloud\Scheduler\V1\Job $job
      *           Required. The job to add. The user can optionally specify a name for the
-     *           job in [name][google.cloud.scheduler.v1.Job.name]. [name][google.cloud.scheduler.v1.Job.name] cannot be the same as an
+     *           job in [name][google.cloud.scheduler.v1.Job.name].
+     *           [name][google.cloud.scheduler.v1.Job.name] cannot be the same as an
      *           existing job. If a name is not specified then the system will
      *           generate a random unique name that will be returned
      *           ([name][google.cloud.scheduler.v1.Job.name]) in the response.
@@ -85,7 +88,8 @@ class CreateJobRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The job to add. The user can optionally specify a name for the
-     * job in [name][google.cloud.scheduler.v1.Job.name]. [name][google.cloud.scheduler.v1.Job.name] cannot be the same as an
+     * job in [name][google.cloud.scheduler.v1.Job.name].
+     * [name][google.cloud.scheduler.v1.Job.name] cannot be the same as an
      * existing job. If a name is not specified then the system will
      * generate a random unique name that will be returned
      * ([name][google.cloud.scheduler.v1.Job.name]) in the response.
@@ -110,7 +114,8 @@ class CreateJobRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The job to add. The user can optionally specify a name for the
-     * job in [name][google.cloud.scheduler.v1.Job.name]. [name][google.cloud.scheduler.v1.Job.name] cannot be the same as an
+     * job in [name][google.cloud.scheduler.v1.Job.name].
+     * [name][google.cloud.scheduler.v1.Job.name] cannot be the same as an
      * existing job. If a name is not specified then the system will
      * generate a random unique name that will be returned
      * ([name][google.cloud.scheduler.v1.Job.name]) in the response.

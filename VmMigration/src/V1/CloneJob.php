@@ -62,6 +62,12 @@ class CloneJob extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.rpc.Status error = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $error = null;
+    /**
+     * Output only. The clone steps list representing its progress.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.vmmigration.v1.CloneStep steps = 23 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $steps;
     protected $target_vm_details;
 
     /**
@@ -86,6 +92,8 @@ class CloneJob extends \Google\Protobuf\Internal\Message
      *     @type \Google\Rpc\Status $error
      *           Output only. Provides details for the errors that led to the Clone Job's
      *           state.
+     *     @type array<\Google\Cloud\VMMigration\V1\CloneStep>|\Google\Protobuf\Internal\RepeatedField $steps
+     *           Output only. The clone steps list representing its progress.
      * }
      */
     public function __construct($data = NULL) {
@@ -320,6 +328,32 @@ class CloneJob extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Rpc\Status::class);
         $this->error = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The clone steps list representing its progress.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.vmmigration.v1.CloneStep steps = 23 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getSteps()
+    {
+        return $this->steps;
+    }
+
+    /**
+     * Output only. The clone steps list representing its progress.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.vmmigration.v1.CloneStep steps = 23 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array<\Google\Cloud\VMMigration\V1\CloneStep>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setSteps($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\VMMigration\V1\CloneStep::class);
+        $this->steps = $arr;
 
         return $this;
     }

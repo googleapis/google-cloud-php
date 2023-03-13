@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request for [Datastore.ReserveIds][google.datastore.v1.Datastore.ReserveIds].
+ * The request for
+ * [Datastore.ReserveIds][google.datastore.v1.Datastore.ReserveIds].
  *
  * Generated from protobuf message <code>google.datastore.v1.ReserveIdsRequest</code>
  */
@@ -30,8 +31,8 @@ class ReserveIdsRequest extends \Google\Protobuf\Internal\Message
      */
     private $database_id = '';
     /**
-     * Required. A list of keys with complete key paths whose numeric IDs should not be
-     * auto-allocated.
+     * Required. A list of keys with complete key paths whose numeric IDs should
+     * not be auto-allocated.
      *
      * Generated from protobuf field <code>repeated .google.datastore.v1.Key keys = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -50,8 +51,8 @@ class ReserveIdsRequest extends \Google\Protobuf\Internal\Message
      *           '(default)' is not allowed; please use empty string '' to refer the default
      *           database.
      *     @type array<\Google\Cloud\Datastore\V1\Key>|\Google\Protobuf\Internal\RepeatedField $keys
-     *           Required. A list of keys with complete key paths whose numeric IDs should not be
-     *           auto-allocated.
+     *           Required. A list of keys with complete key paths whose numeric IDs should
+     *           not be auto-allocated.
      * }
      */
     public function __construct($data = NULL) {
@@ -116,8 +117,8 @@ class ReserveIdsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. A list of keys with complete key paths whose numeric IDs should not be
-     * auto-allocated.
+     * Required. A list of keys with complete key paths whose numeric IDs should
+     * not be auto-allocated.
      *
      * Generated from protobuf field <code>repeated .google.datastore.v1.Key keys = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -128,8 +129,8 @@ class ReserveIdsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. A list of keys with complete key paths whose numeric IDs should not be
-     * auto-allocated.
+     * Required. A list of keys with complete key paths whose numeric IDs should
+     * not be auto-allocated.
      *
      * Generated from protobuf field <code>repeated .google.datastore.v1.Key keys = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param array<\Google\Cloud\Datastore\V1\Key>|\Google\Protobuf\Internal\RepeatedField $var

@@ -24,8 +24,8 @@ class DataScan extends \Google\Protobuf\Internal\Message
 {
     /**
      * Output only. The relative resource name of the scan, of the form:
-     * projects/{project}/locations/{location_id}/dataScans/{datascan_id}.
-     * where `{project}` refers to a project_id or project_number and
+     * `projects/{project}/locations/{location_id}/dataScans/{datascan_id}`,
+     * where `project` refers to a *project_id* or *project_number* and
      * `location_id` refers to a GCP region.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -84,7 +84,7 @@ class DataScan extends \Google\Protobuf\Internal\Message
     private $data = null;
     /**
      * Optional. DataScan execution settings.
-     * If not specified, the fields under it will use their default values.
+     * If not specified, the fields in it will use their default values.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataScan.ExecutionSpec execution_spec = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -112,8 +112,8 @@ class DataScan extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Output only. The relative resource name of the scan, of the form:
-     *           projects/{project}/locations/{location_id}/dataScans/{datascan_id}.
-     *           where `{project}` refers to a project_id or project_number and
+     *           `projects/{project}/locations/{location_id}/dataScans/{datascan_id}`,
+     *           where `project` refers to a *project_id* or *project_number* and
      *           `location_id` refers to a GCP region.
      *     @type string $uid
      *           Output only. System generated globally unique ID for the scan. This ID will
@@ -136,7 +136,7 @@ class DataScan extends \Google\Protobuf\Internal\Message
      *           Required. The data source for DataScan.
      *     @type \Google\Cloud\Dataplex\V1\DataScan\ExecutionSpec $execution_spec
      *           Optional. DataScan execution settings.
-     *           If not specified, the fields under it will use their default values.
+     *           If not specified, the fields in it will use their default values.
      *     @type \Google\Cloud\Dataplex\V1\DataScan\ExecutionStatus $execution_status
      *           Output only. Status of the data scan execution.
      *     @type int $type
@@ -158,8 +158,8 @@ class DataScan extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The relative resource name of the scan, of the form:
-     * projects/{project}/locations/{location_id}/dataScans/{datascan_id}.
-     * where `{project}` refers to a project_id or project_number and
+     * `projects/{project}/locations/{location_id}/dataScans/{datascan_id}`,
+     * where `project` refers to a *project_id* or *project_number* and
      * `location_id` refers to a GCP region.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -172,8 +172,8 @@ class DataScan extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The relative resource name of the scan, of the form:
-     * projects/{project}/locations/{location_id}/dataScans/{datascan_id}.
-     * where `{project}` refers to a project_id or project_number and
+     * `projects/{project}/locations/{location_id}/dataScans/{datascan_id}`,
+     * where `project` refers to a *project_id* or *project_number* and
      * `location_id` refers to a GCP region.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -434,7 +434,7 @@ class DataScan extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. DataScan execution settings.
-     * If not specified, the fields under it will use their default values.
+     * If not specified, the fields in it will use their default values.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataScan.ExecutionSpec execution_spec = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Dataplex\V1\DataScan\ExecutionSpec|null
@@ -456,7 +456,7 @@ class DataScan extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. DataScan execution settings.
-     * If not specified, the fields under it will use their default values.
+     * If not specified, the fields in it will use their default values.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataScan.ExecutionSpec execution_spec = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Dataplex\V1\DataScan\ExecutionSpec $var

@@ -17,8 +17,8 @@
 
 namespace Google\Cloud\Datastore\Tests\System;
 
+use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Datastore\DatastoreClient;
-use Google\Protobuf\Timestamp;
 
 /**
  * @group datastore
@@ -101,7 +101,7 @@ class RunTransactionTest extends DatastoreMultipleDbTestCase
 
         sleep(2);
 
-        $time = new Timestamp(['seconds' => time()]);
+        $time = new Timestamp(new \DateTime());
 
         sleep(2);
 

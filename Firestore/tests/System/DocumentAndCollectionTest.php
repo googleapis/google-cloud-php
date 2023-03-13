@@ -47,7 +47,9 @@ class DocumentAndCollectionTest extends FirestoreTestCase
 
     public function testSnapshotWithReadTime()
     {
-        $readTime = new Timestamp(new \DateTimeImmutable());
+        // without sleep, test fails intermittently
+        sleep(1);
+        $readTime = new Timestamp(new \DateTimeImmutable('now'));
         $snapshotData = $this->document->snapshot([
             'readTime' => $readTime
         ])->data();

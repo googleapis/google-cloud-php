@@ -28,11 +28,26 @@ class TextStream extends \Google\Protobuf\Internal\Message
      */
     private $codec = '';
     /**
+     * The BCP-47 language code, such as `en-US` or `sr-Latn`. For more
+     * information, see
+     * https://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+     *
+     * Generated from protobuf field <code>string language_code = 2;</code>
+     */
+    private $language_code = '';
+    /**
      * The mapping for the `Job.edit_list` atoms with text `EditAtom.inputs`.
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.transcoder.v1.TextStream.TextMapping mapping = 3;</code>
      */
     private $mapping;
+    /**
+     * The name for this particular text stream that
+     * will be added to the HLS/DASH manifest.
+     *
+     * Generated from protobuf field <code>string display_name = 4;</code>
+     */
+    private $display_name = '';
 
     /**
      * Constructor.
@@ -48,8 +63,15 @@ class TextStream extends \Google\Protobuf\Internal\Message
      *           - `cea608`
      *           - `cea708`
      *           - `webvtt`
+     *     @type string $language_code
+     *           The BCP-47 language code, such as `en-US` or `sr-Latn`. For more
+     *           information, see
+     *           https://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
      *     @type array<\Google\Cloud\Video\Transcoder\V1\TextStream\TextMapping>|\Google\Protobuf\Internal\RepeatedField $mapping
      *           The mapping for the `Job.edit_list` atoms with text `EditAtom.inputs`.
+     *     @type string $display_name
+     *           The name for this particular text stream that
+     *           will be added to the HLS/DASH manifest.
      * }
      */
     public function __construct($data = NULL) {
@@ -96,6 +118,36 @@ class TextStream extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * The BCP-47 language code, such as `en-US` or `sr-Latn`. For more
+     * information, see
+     * https://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+     *
+     * Generated from protobuf field <code>string language_code = 2;</code>
+     * @return string
+     */
+    public function getLanguageCode()
+    {
+        return $this->language_code;
+    }
+
+    /**
+     * The BCP-47 language code, such as `en-US` or `sr-Latn`. For more
+     * information, see
+     * https://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+     *
+     * Generated from protobuf field <code>string language_code = 2;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setLanguageCode($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->language_code = $var;
+
+        return $this;
+    }
+
+    /**
      * The mapping for the `Job.edit_list` atoms with text `EditAtom.inputs`.
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.transcoder.v1.TextStream.TextMapping mapping = 3;</code>
@@ -117,6 +169,34 @@ class TextStream extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Video\Transcoder\V1\TextStream\TextMapping::class);
         $this->mapping = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The name for this particular text stream that
+     * will be added to the HLS/DASH manifest.
+     *
+     * Generated from protobuf field <code>string display_name = 4;</code>
+     * @return string
+     */
+    public function getDisplayName()
+    {
+        return $this->display_name;
+    }
+
+    /**
+     * The name for this particular text stream that
+     * will be added to the HLS/DASH manifest.
+     *
+     * Generated from protobuf field <code>string display_name = 4;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDisplayName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->display_name = $var;
 
         return $this;
     }

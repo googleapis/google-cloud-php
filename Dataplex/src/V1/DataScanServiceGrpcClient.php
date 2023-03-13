@@ -19,6 +19,9 @@
 namespace Google\Cloud\Dataplex\V1;
 
 /**
+ * DataScanService manages DataScan resources which can be configured to run
+ * various types of data scanning workload and generate enriched metadata (e.g.
+ * Data Profile, Data Quality) for the data source.
  */
 class DataScanServiceGrpcClient extends \Grpc\BaseStub {
 
@@ -32,7 +35,7 @@ class DataScanServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Creates a dataScan resource.
+     * Creates a DataScan resource.
      * @param \Google\Cloud\Dataplex\V1\CreateDataScanRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -47,7 +50,7 @@ class DataScanServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Update the dataScan resource.
+     * Updates a DataScan resource.
      * @param \Google\Cloud\Dataplex\V1\UpdateDataScanRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -62,7 +65,7 @@ class DataScanServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Delete the dataScan resource.
+     * Deletes a DataScan resource.
      * @param \Google\Cloud\Dataplex\V1\DeleteDataScanRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -77,7 +80,7 @@ class DataScanServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Get dataScan resource.
+     * Gets a DataScan resource.
      * @param \Google\Cloud\Dataplex\V1\GetDataScanRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -92,7 +95,7 @@ class DataScanServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Lists dataScans.
+     * Lists DataScans.
      * @param \Google\Cloud\Dataplex\V1\ListDataScansRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -107,7 +110,7 @@ class DataScanServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Run an on demand execution of a DataScan.
+     * Runs an on-demand execution of a DataScan
      * @param \Google\Cloud\Dataplex\V1\RunDataScanRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -122,7 +125,7 @@ class DataScanServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Get DataScanJob resource.
+     * Gets a DataScanJob resource.
      * @param \Google\Cloud\Dataplex\V1\GetDataScanJobRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -137,7 +140,7 @@ class DataScanServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Lists DataScanJobs under the given dataScan.
+     * Lists DataScanJobs under the given DataScan.
      * @param \Google\Cloud\Dataplex\V1\ListDataScanJobsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options

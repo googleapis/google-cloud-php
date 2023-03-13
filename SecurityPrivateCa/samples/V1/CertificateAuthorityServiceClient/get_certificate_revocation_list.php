@@ -28,10 +28,14 @@ use Google\Cloud\Security\PrivateCA\V1\CertificateAuthorityServiceClient;
 use Google\Cloud\Security\PrivateCA\V1\CertificateRevocationList;
 
 /**
- * Returns a [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList].
+ * Returns a
+ * [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList].
  *
- * @param string $formattedName The [name][google.cloud.security.privateca.v1.CertificateRevocationList.name] of the
- *                              [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList] to get. Please see
+ * @param string $formattedName The
+ *                              [name][google.cloud.security.privateca.v1.CertificateRevocationList.name]
+ *                              of the
+ *                              [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList]
+ *                              to get. Please see
  *                              {@see CertificateAuthorityServiceClient::certificateRevocationListName()} for help formatting this field.
  */
 function get_certificate_revocation_list_sample(string $formattedName): void

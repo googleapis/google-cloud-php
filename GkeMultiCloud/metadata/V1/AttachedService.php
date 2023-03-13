@@ -23,7 +23,7 @@ class AttachedService
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ì 
+é 
 4google/cloud/gkemulticloud/v1/attached_service.protogoogle.cloud.gkemulticloud.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto6google/cloud/gkemulticloud/v1/attached_resources.proto#google/longrunning/operations.proto google/protobuf/field_mask.proto"¶
 -GenerateAttachedClusterInstallManifestRequestD
 parent (	B4àAúA.,gkemulticloud.googleapis.com/AttachedCluster 
@@ -79,8 +79,8 @@ page_token (	"‚
 DeleteAttachedCluster;.google.cloud.gkemulticloud.v1.DeleteAttachedClusterRequest.google.longrunning.Operation"p‚Óä“6*4/v1/{name=projects/*/locations/*/attachedClusters/*}ÚAnameÊA*
 google.protobuf.EmptyOperationMetadataÔ
 GetAttachedServerConfig=.google.cloud.gkemulticloud.v1.GetAttachedServerConfigRequest3.google.cloud.gkemulticloud.v1.AttachedServerConfig"E‚Óä“86/v1/{name=projects/*/locations/*/attachedServerConfig}ÚAname¶
-&GenerateAttachedClusterInstallManifestL.google.cloud.gkemulticloud.v1.GenerateAttachedClusterInstallManifestRequestM.google.cloud.gkemulticloud.v1.GenerateAttachedClusterInstallManifestResponse"o‚Óä“LJ/v1/{parent=projects/*/locations/*}:generateAttachedClusterInstallManifestÚAparent,attached_cluster_idPÊAgkemulticloud.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBê
-!com.google.cloud.gkemulticloud.v1BAttachedServiceProtoPZJgoogle.golang.org/genproto/googleapis/cloud/gkemulticloud/v1;gkemulticloudªGoogle.Cloud.GkeMultiCloud.V1ÊGoogle\\Cloud\\GkeMultiCloud\\V1ê Google::Cloud::GkeMultiCloud::V1bproto3'
+&GenerateAttachedClusterInstallManifestL.google.cloud.gkemulticloud.v1.GenerateAttachedClusterInstallManifestRequestM.google.cloud.gkemulticloud.v1.GenerateAttachedClusterInstallManifestResponse"o‚Óä“LJ/v1/{parent=projects/*/locations/*}:generateAttachedClusterInstallManifestÚAparent,attached_cluster_idPÊAgkemulticloud.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBç
+!com.google.cloud.gkemulticloud.v1BAttachedServiceProtoPZGcloud.google.com/go/gkemulticloud/apiv1/gkemulticloudpb;gkemulticloudpbªGoogle.Cloud.GkeMultiCloud.V1ÊGoogle\\Cloud\\GkeMultiCloud\\V1ê Google::Cloud::GkeMultiCloud::V1bproto3'
         , true);
 
         static::$is_initialized = true;

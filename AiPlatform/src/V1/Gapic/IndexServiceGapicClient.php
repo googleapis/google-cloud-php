@@ -454,7 +454,8 @@ class IndexServiceGapicClient
     /**
      * Deletes an Index.
      * An Index can only be deleted when all its
-     * [DeployedIndexes][google.cloud.aiplatform.v1.Index.deployed_indexes] had been undeployed.
+     * [DeployedIndexes][google.cloud.aiplatform.v1.Index.deployed_indexes] had
+     * been undeployed.
      *
      * Sample code:
      * ```
@@ -767,7 +768,8 @@ class IndexServiceGapicClient
      *
      *     @type FieldMask $updateMask
      *           The update mask applies to the resource.
-     *           For the `FieldMask` definition, see [google.protobuf.FieldMask][google.protobuf.FieldMask].
+     *           For the `FieldMask` definition, see
+     *           [google.protobuf.FieldMask][google.protobuf.FieldMask].
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on

@@ -3,6 +3,18 @@
 return [
     'interfaces' => [
         'google.cloud.contactcenterinsights.v1.ContactCenterInsights' => [
+            'BulkAnalyzeConversations' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/conversations:bulkAnalyze',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CalculateIssueModelStats' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{issue_model=projects/*/locations/*/issueModels/*}:calculateIssueModelStats',
@@ -99,6 +111,17 @@ return [
             'DeleteConversation' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/conversations/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteIssue' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/issueModels/*/issues/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -237,6 +260,18 @@ return [
                     'name' => [
                         'getters' => [
                             'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'IngestConversations' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/conversations:ingest',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
                         ],
                     ],
                 ],
@@ -437,4 +472,5 @@ return [
             ],
         ],
     ],
+    'numericEnums' => true,
 ];

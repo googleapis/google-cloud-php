@@ -30,17 +30,19 @@ use Google\Cloud\AIPlatform\V1\TensorboardServiceClient;
 /**
  * Reads multiple TensorboardTimeSeries' data. The data point number limit is
  * 1000 for scalars, 100 for tensors and blob references. If the number of
- * data points stored is less than the limit, all data will be returned.
- * Otherwise, that limit number of data points will be randomly selected from
+ * data points stored is less than the limit, all data is returned.
+ * Otherwise, the number limit of data points is randomly selected from
  * this time series and returned.
  *
- * @param string $formattedTensorboard       The resource name of the Tensorboard containing TensorboardTimeSeries to
- *                                           read data from. Format:
+ * @param string $formattedTensorboard       The resource name of the Tensorboard containing
+ *                                           TensorboardTimeSeries to read data from. Format:
  *                                           `projects/{project}/locations/{location}/tensorboards/{tensorboard}`.
- *                                           The TensorboardTimeSeries referenced by [time_series][google.cloud.aiplatform.v1.BatchReadTensorboardTimeSeriesDataRequest.time_series] must be sub
- *                                           resources of this Tensorboard. Please see
+ *                                           The TensorboardTimeSeries referenced by
+ *                                           [time_series][google.cloud.aiplatform.v1.BatchReadTensorboardTimeSeriesDataRequest.time_series]
+ *                                           must be sub resources of this Tensorboard. Please see
  *                                           {@see TensorboardServiceClient::tensorboardName()} for help formatting this field.
- * @param string $formattedTimeSeriesElement The resource names of the TensorboardTimeSeries to read data from. Format:
+ * @param string $formattedTimeSeriesElement The resource names of the TensorboardTimeSeries to read data
+ *                                           from. Format:
  *                                           `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}/runs/{run}/timeSeries/{time_series}`
  *                                           Please see {@see TensorboardServiceClient::tensorboardTimeSeriesName()} for help formatting this field.
  */
