@@ -36,9 +36,10 @@ jobs:
           ~/.composer/vendor/bin/roave-backward-compatibility-check \
               --from=${{ steps.latest-release.outputs.release }} \
               --to=origin/main --format=github-actions
-      - name: "Justify Skipping Release"
-        if: contains(github.event.pull_request.labels.*.name, 'breaking change allowed')
+      - name: "Justify accepting a breaking change"
+        if: contains(github.event.pull_request.labels.*.name, 'breaking change allowed') && !contains(github.event.pull_request.body, 'BREAKING_CHANGE_JUSTIFICATION')
         uses: thollander/actions-comment-pull-request@v2.3.1
         with:
           message: |
-            The PR description looks like ${{ github.events.pull_request.body }}
+            To skip the breaking change detector, the PR must contain a "BREAKING_CHANGE_JUSTIFICATION"
+            block in the PR description.
