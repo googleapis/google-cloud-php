@@ -48,6 +48,20 @@ class ListSecretVersionsRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $filter = '';
+    /**
+     * @param string $parent Required. The resource name of the [Secret][google.cloud.secretmanager.v1.Secret] associated with the
+     *                       [SecretVersions][google.cloud.secretmanager.v1.SecretVersion] to list, in the format
+     *                       `projects/&#42;/secrets/*`. Please see
+     *                       {@see SecretManagerServiceClient::secretName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\SecretManager\V1\ListSecretVersionsRequest
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
 
     /**
      * Constructor.
