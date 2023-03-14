@@ -31,6 +31,23 @@ class CreateCryptoKeyVersionRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKeyVersion crypto_key_version = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $crypto_key_version = null;
+    /**
+     * @param string                                $parent           Required. The [name][google.cloud.kms.v1.CryptoKey.name] of the
+     *                                                                [CryptoKey][google.cloud.kms.v1.CryptoKey] associated with the
+     *                                                                [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion]. Please see
+     *                                                                {@see KeyManagementServiceClient::cryptoKeyName()} for help formatting this field.
+     * @param \Google\Cloud\Kms\V1\CryptoKeyVersion $cryptoKeyVersion Required. A [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] with
+     *                                                                initial field values.
+     *
+     * @return \Google\Cloud\Kms\V1\CreateCryptoKeyVersionRequest
+     */
+    public static function build(string $parent, \Google\Cloud\Kms\V1\CryptoKeyVersion $cryptoKeyVersion): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setCryptoKeyVersion($cryptoKeyVersion);
+    }
+
 
     /**
      * Constructor.

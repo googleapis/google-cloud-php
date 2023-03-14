@@ -23,6 +23,19 @@ class GetKeyRingRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
+    /**
+     * @param string $name Required. The [name][google.cloud.kms.v1.KeyRing.name] of the
+     *                     [KeyRing][google.cloud.kms.v1.KeyRing] to get. Please see
+     *                     {@see KeyManagementServiceClient::keyRingName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Kms\V1\GetKeyRingRequest
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
 
     /**
      * Constructor.

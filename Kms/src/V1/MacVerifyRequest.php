@@ -82,6 +82,26 @@ class MacVerifyRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Int64Value mac_crc32c = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $mac_crc32c = null;
+    /**
+     * @param string $name Required. The resource name of the
+     *                     [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use for
+     *                     verification. Please see
+     *                     {@see KeyManagementServiceClient::cryptoKeyVersionName()} for help formatting this field.
+     * @param string $data Required. The data used previously as a
+     *                     [MacSignRequest.data][google.cloud.kms.v1.MacSignRequest.data] to generate
+     *                     the MAC tag.
+     * @param string $mac  Required. The signature to verify.
+     *
+     * @return \Google\Cloud\Kms\V1\MacVerifyRequest
+     */
+    public static function build(string $name, string $data, string $mac): self
+    {
+        return (new self())
+            ->setName($name)
+            ->setData($data)
+            ->setMac($mac);
+    }
+
 
     /**
      * Constructor.

@@ -23,6 +23,19 @@ class GetEkmConfigRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
+    /**
+     * @param string $name Required. The [name][google.cloud.kms.v1.EkmConfig.name] of the
+     *                     [EkmConfig][google.cloud.kms.v1.EkmConfig] to get. Please see
+     *                     {@see EkmServiceClient::ekmConfigName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Kms\V1\GetEkmConfigRequest
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
 
     /**
      * Constructor.

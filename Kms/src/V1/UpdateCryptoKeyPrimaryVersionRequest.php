@@ -30,6 +30,22 @@ class UpdateCryptoKeyPrimaryVersionRequest extends \Google\Protobuf\Internal\Mes
      * Generated from protobuf field <code>string crypto_key_version_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $crypto_key_version_id = '';
+    /**
+     * @param string $name               Required. The resource name of the
+     *                                   [CryptoKey][google.cloud.kms.v1.CryptoKey] to update. Please see
+     *                                   {@see KeyManagementServiceClient::cryptoKeyName()} for help formatting this field.
+     * @param string $cryptoKeyVersionId Required. The id of the child
+     *                                   [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use as primary.
+     *
+     * @return \Google\Cloud\Kms\V1\UpdateCryptoKeyPrimaryVersionRequest
+     */
+    public static function build(string $name, string $cryptoKeyVersionId): self
+    {
+        return (new self())
+            ->setName($name)
+            ->setCryptoKeyVersionId($cryptoKeyVersionId);
+    }
+
 
     /**
      * Constructor.

@@ -56,6 +56,24 @@ class AsymmetricDecryptRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Int64Value ciphertext_crc32c = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $ciphertext_crc32c = null;
+    /**
+     * @param string $name       Required. The resource name of the
+     *                           [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use for
+     *                           decryption. Please see
+     *                           {@see KeyManagementServiceClient::cryptoKeyVersionName()} for help formatting this field.
+     * @param string $ciphertext Required. The data encrypted with the named
+     *                           [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]'s public key using
+     *                           OAEP.
+     *
+     * @return \Google\Cloud\Kms\V1\AsymmetricDecryptRequest
+     */
+    public static function build(string $name, string $ciphertext): self
+    {
+        return (new self())
+            ->setName($name)
+            ->setCiphertext($ciphertext);
+    }
+
 
     /**
      * Constructor.
