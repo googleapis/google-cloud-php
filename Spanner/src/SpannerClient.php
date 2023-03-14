@@ -341,12 +341,11 @@ class SpannerClient
      * @return LongRunningOperation<InstanceConfiguration>
      * @throws ValidationException
      */
-    // DELETE THIS METHOD TO TEST BC-CHECKER
-    //public function createInstanceConfiguration(InstanceConfiguration $baseConfig, $name, array $replicas, array $options = [])
-    //{
-    //    $config = $this->instanceConfiguration($name);
-    //    return $config->create($baseConfig, $replicas, $options);
-    //}
+    public function createInstanceConfiguration(InstanceConfiguration $baseConfig, $name, array $replicas, array $options = [])
+    {
+        $config = $this->instanceConfiguration($name);
+        return $config->create($baseConfig, $replicas, $options);
+    }
 
     /**
      * List all available instance configurations.
