@@ -10,7 +10,8 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Location of the source manifest in Google Cloud Storage.
- * This feature is in Preview.
+ * This feature is in Preview; see description
+ * [here](https://github.com/GoogleCloudPlatform/cloud-builders/tree/master/gcs-fetcher).
  *
  * Generated from protobuf message <code>google.devtools.cloudbuild.v1.StorageSourceManifest</code>
  */
