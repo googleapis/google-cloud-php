@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class DetectedLanguage extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The BCP-47 language code of source content in the request, detected
+     * The ISO-639 language code of the source content in the request, detected
      * automatically.
      *
      * Generated from protobuf field <code>string language_code = 1;</code>
@@ -36,7 +36,7 @@ class DetectedLanguage extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $language_code
-     *           The BCP-47 language code of source content in the request, detected
+     *           The ISO-639 language code of the source content in the request, detected
      *           automatically.
      *     @type float $confidence
      *           The confidence of the detection result for this language.
@@ -48,7 +48,7 @@ class DetectedLanguage extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The BCP-47 language code of source content in the request, detected
+     * The ISO-639 language code of the source content in the request, detected
      * automatically.
      *
      * Generated from protobuf field <code>string language_code = 1;</code>
@@ -60,7 +60,7 @@ class DetectedLanguage extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The BCP-47 language code of source content in the request, detected
+     * The ISO-639 language code of the source content in the request, detected
      * automatically.
      *
      * Generated from protobuf field <code>string language_code = 1;</code>

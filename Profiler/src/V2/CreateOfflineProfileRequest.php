@@ -10,7 +10,7 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * CreateOfflineProfileRequest describes a profile resource offline creation
- * request. Profile field must be set.
+ * request.
  *
  * Generated from protobuf message <code>google.devtools.cloudprofiler.v2.CreateOfflineProfileRequest</code>
  */
@@ -19,7 +19,7 @@ class CreateOfflineProfileRequest extends \Google\Protobuf\Internal\Message
     /**
      * Parent project to create the profile in.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
@@ -49,7 +49,7 @@ class CreateOfflineProfileRequest extends \Google\Protobuf\Internal\Message
     /**
      * Parent project to create the profile in.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -60,7 +60,7 @@ class CreateOfflineProfileRequest extends \Google\Protobuf\Internal\Message
     /**
      * Parent project to create the profile in.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

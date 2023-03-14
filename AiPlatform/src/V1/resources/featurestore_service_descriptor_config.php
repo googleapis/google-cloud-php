@@ -73,6 +73,16 @@ return [
                     'totalPollTimeoutMillis' => '300000',
                 ],
             ],
+            'DeleteFeatureValues' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\AIPlatform\V1\DeleteFeatureValuesResponse',
+                    'metadataReturnType' => '\Google\Cloud\AIPlatform\V1\DeleteFeatureValuesOperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+            ],
             'DeleteFeaturestore' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Protobuf\GPBEmpty',

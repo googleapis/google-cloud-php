@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents a glossary built from user provided data.
+ * Represents a glossary built from user-provided data.
  *
  * Generated from protobuf message <code>google.cloud.translation.v3.Glossary</code>
  */
@@ -47,6 +47,12 @@ class Glossary extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $end_time = null;
+    /**
+     * Optional. The display name of the glossary.
+     *
+     * Generated from protobuf field <code>string display_name = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $display_name = '';
     protected $languages;
 
     /**
@@ -71,6 +77,8 @@ class Glossary extends \Google\Protobuf\Internal\Message
      *           Output only. When CreateGlossary was called.
      *     @type \Google\Protobuf\Timestamp $end_time
      *           Output only. When the glossary creation was finished.
+     *     @type string $display_name
+     *           Optional. The display name of the glossary.
      * }
      */
     public function __construct($data = NULL) {
@@ -300,6 +308,32 @@ class Glossary extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->end_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The display name of the glossary.
+     *
+     * Generated from protobuf field <code>string display_name = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getDisplayName()
+    {
+        return $this->display_name;
+    }
+
+    /**
+     * Optional. The display name of the glossary.
+     *
+     * Generated from protobuf field <code>string display_name = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDisplayName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->display_name = $var;
 
         return $this;
     }

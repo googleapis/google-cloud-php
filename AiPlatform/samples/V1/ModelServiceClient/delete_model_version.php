@@ -31,8 +31,9 @@ use Google\Rpc\Status;
 /**
  * Deletes a Model version.
  *
- * Model version can only be deleted if there are no [DeployedModels][]
- * created from it. Deleting the only version in the Model is not allowed. Use
+ * Model version can only be deleted if there are no
+ * [DeployedModels][google.cloud.aiplatform.v1.DeployedModel] created from it.
+ * Deleting the only version in the Model is not allowed. Use
  * [DeleteModel][google.cloud.aiplatform.v1.ModelService.DeleteModel] for
  * deleting the Model instead.
  *

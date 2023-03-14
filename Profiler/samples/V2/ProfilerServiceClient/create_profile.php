@@ -42,6 +42,7 @@ use Google\Cloud\Profiler\V2\ProfilerServiceClient;
  * binary-serialized proto in the trailing metadata item named
  * "google.rpc.retryinfo-bin".
  *
+ *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:
  *  - It may require correct/in-range values for request initialization.

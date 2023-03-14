@@ -35,6 +35,12 @@ class AcknowledgeConfirmation extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string unordered_ack_ids = 3;</code>
      */
     private $unordered_ack_ids;
+    /**
+     * List of acknowledgement IDs that failed processing with temporary issues.
+     *
+     * Generated from protobuf field <code>repeated string temporary_failed_ack_ids = 4;</code>
+     */
+    private $temporary_failed_ack_ids;
 
     /**
      * Constructor.
@@ -49,6 +55,8 @@ class AcknowledgeConfirmation extends \Google\Protobuf\Internal\Message
      *           deadline has expired.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unordered_ack_ids
      *           List of acknowledgement IDs that were out of order.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $temporary_failed_ack_ids
+     *           List of acknowledgement IDs that failed processing with temporary issues.
      * }
      */
     public function __construct($data = NULL) {
@@ -132,6 +140,32 @@ class AcknowledgeConfirmation extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->unordered_ack_ids = $arr;
+
+        return $this;
+    }
+
+    /**
+     * List of acknowledgement IDs that failed processing with temporary issues.
+     *
+     * Generated from protobuf field <code>repeated string temporary_failed_ack_ids = 4;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getTemporaryFailedAckIds()
+    {
+        return $this->temporary_failed_ack_ids;
+    }
+
+    /**
+     * List of acknowledgement IDs that failed processing with temporary issues.
+     *
+     * Generated from protobuf field <code>repeated string temporary_failed_ack_ids = 4;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setTemporaryFailedAckIds($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->temporary_failed_ack_ids = $arr;
 
         return $this;
     }

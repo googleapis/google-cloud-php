@@ -20,7 +20,8 @@ class AggregationResult extends \Google\Protobuf\Internal\Message
 {
     /**
      * The result of the aggregation functions, ex: `COUNT(*) AS total_docs`.
-     * The key is the [alias][google.firestore.v1.StructuredAggregationQuery.Aggregation.alias]
+     * The key is the
+     * [alias][google.firestore.v1.StructuredAggregationQuery.Aggregation.alias]
      * assigned to the aggregation function on input and the size of this map
      * equals the number of aggregation functions in the query.
      *
@@ -36,7 +37,8 @@ class AggregationResult extends \Google\Protobuf\Internal\Message
      *
      *     @type array|\Google\Protobuf\Internal\MapField $aggregate_fields
      *           The result of the aggregation functions, ex: `COUNT(*) AS total_docs`.
-     *           The key is the [alias][google.firestore.v1.StructuredAggregationQuery.Aggregation.alias]
+     *           The key is the
+     *           [alias][google.firestore.v1.StructuredAggregationQuery.Aggregation.alias]
      *           assigned to the aggregation function on input and the size of this map
      *           equals the number of aggregation functions in the query.
      * }
@@ -48,7 +50,8 @@ class AggregationResult extends \Google\Protobuf\Internal\Message
 
     /**
      * The result of the aggregation functions, ex: `COUNT(*) AS total_docs`.
-     * The key is the [alias][google.firestore.v1.StructuredAggregationQuery.Aggregation.alias]
+     * The key is the
+     * [alias][google.firestore.v1.StructuredAggregationQuery.Aggregation.alias]
      * assigned to the aggregation function on input and the size of this map
      * equals the number of aggregation functions in the query.
      *
@@ -62,7 +65,8 @@ class AggregationResult extends \Google\Protobuf\Internal\Message
 
     /**
      * The result of the aggregation functions, ex: `COUNT(*) AS total_docs`.
-     * The key is the [alias][google.firestore.v1.StructuredAggregationQuery.Aggregation.alias]
+     * The key is the
+     * [alias][google.firestore.v1.StructuredAggregationQuery.Aggregation.alias]
      * assigned to the aggregation function on input and the size of this map
      * equals the number of aggregation functions in the query.
      *

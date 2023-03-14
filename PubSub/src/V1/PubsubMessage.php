@@ -61,6 +61,8 @@ class PubsubMessage extends \Google\Protobuf\Internal\Message
      * delivered to subscribers in the order in which they are received by the
      * Pub/Sub system. All `PubsubMessage`s published in a given `PublishRequest`
      * must specify the same `ordering_key` value.
+     * For more information, see [ordering
+     * messages](https://cloud.google.com/pubsub/docs/ordering).
      *
      * Generated from protobuf field <code>string ordering_key = 5;</code>
      */
@@ -95,6 +97,8 @@ class PubsubMessage extends \Google\Protobuf\Internal\Message
      *           delivered to subscribers in the order in which they are received by the
      *           Pub/Sub system. All `PubsubMessage`s published in a given `PublishRequest`
      *           must specify the same `ordering_key` value.
+     *           For more information, see [ordering
+     *           messages](https://cloud.google.com/pubsub/docs/ordering).
      * }
      */
     public function __construct($data = NULL) {
@@ -239,6 +243,8 @@ class PubsubMessage extends \Google\Protobuf\Internal\Message
      * delivered to subscribers in the order in which they are received by the
      * Pub/Sub system. All `PubsubMessage`s published in a given `PublishRequest`
      * must specify the same `ordering_key` value.
+     * For more information, see [ordering
+     * messages](https://cloud.google.com/pubsub/docs/ordering).
      *
      * Generated from protobuf field <code>string ordering_key = 5;</code>
      * @return string
@@ -255,6 +261,8 @@ class PubsubMessage extends \Google\Protobuf\Internal\Message
      * delivered to subscribers in the order in which they are received by the
      * Pub/Sub system. All `PubsubMessage`s published in a given `PublishRequest`
      * must specify the same `ordering_key` value.
+     * For more information, see [ordering
+     * messages](https://cloud.google.com/pubsub/docs/ordering).
      *
      * Generated from protobuf field <code>string ordering_key = 5;</code>
      * @param string $var

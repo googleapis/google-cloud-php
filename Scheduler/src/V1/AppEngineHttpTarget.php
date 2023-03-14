@@ -10,7 +10,8 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * App Engine target. The job will be pushed to a job handler by means
- * of an HTTP request via an [http_method][google.cloud.scheduler.v1.AppEngineHttpTarget.http_method] such
+ * of an HTTP request via an
+ * [http_method][google.cloud.scheduler.v1.AppEngineHttpTarget.http_method] such
  * as HTTP POST, HTTP GET, etc. The job is acknowledged by means of an
  * HTTP response code in the range [200 - 299]. Error 503 is
  * considered an App Engine system error instead of an application
@@ -57,8 +58,13 @@ class AppEngineHttpTarget extends \Google\Protobuf\Internal\Message
      *   `"AppEngine-Google; (+http://code.google.com/appengine)"` to the
      *   modified `User-Agent`.
      * * `X-CloudScheduler`: This header will be set to true.
-     * If the job has an [body][google.cloud.scheduler.v1.AppEngineHttpTarget.body], Cloud Scheduler sets
-     * the following headers:
+     * * `X-CloudScheduler-JobName`: This header will contain the job name.
+     * * `X-CloudScheduler-ScheduleTime`: For Cloud Scheduler jobs specified in
+     * the unix-cron format, this header will contain the job schedule time in
+     * RFC3339 UTC "Zulu" format.
+     * If the job has an
+     * [body][google.cloud.scheduler.v1.AppEngineHttpTarget.body], Cloud Scheduler
+     * sets the following headers:
      * * `Content-Type`: By default, the `Content-Type` header is set to
      *   `"application/octet-stream"`. The default can be overridden by explictly
      *   setting `Content-Type` to a particular media type when the job is
@@ -79,7 +85,8 @@ class AppEngineHttpTarget extends \Google\Protobuf\Internal\Message
      * Body.
      * HTTP request body. A request body is allowed only if the HTTP method is
      * POST or PUT. It will result in invalid argument error to set a body on a
-     * job with an incompatible [HttpMethod][google.cloud.scheduler.v1.HttpMethod].
+     * job with an incompatible
+     * [HttpMethod][google.cloud.scheduler.v1.HttpMethod].
      *
      * Generated from protobuf field <code>bytes body = 5;</code>
      */
@@ -113,8 +120,13 @@ class AppEngineHttpTarget extends \Google\Protobuf\Internal\Message
      *             `"AppEngine-Google; (+http://code.google.com/appengine)"` to the
      *             modified `User-Agent`.
      *           * `X-CloudScheduler`: This header will be set to true.
-     *           If the job has an [body][google.cloud.scheduler.v1.AppEngineHttpTarget.body], Cloud Scheduler sets
-     *           the following headers:
+     *           * `X-CloudScheduler-JobName`: This header will contain the job name.
+     *           * `X-CloudScheduler-ScheduleTime`: For Cloud Scheduler jobs specified in
+     *           the unix-cron format, this header will contain the job schedule time in
+     *           RFC3339 UTC "Zulu" format.
+     *           If the job has an
+     *           [body][google.cloud.scheduler.v1.AppEngineHttpTarget.body], Cloud Scheduler
+     *           sets the following headers:
      *           * `Content-Type`: By default, the `Content-Type` header is set to
      *             `"application/octet-stream"`. The default can be overridden by explictly
      *             setting `Content-Type` to a particular media type when the job is
@@ -131,7 +143,8 @@ class AppEngineHttpTarget extends \Google\Protobuf\Internal\Message
      *           Body.
      *           HTTP request body. A request body is allowed only if the HTTP method is
      *           POST or PUT. It will result in invalid argument error to set a body on a
-     *           job with an incompatible [HttpMethod][google.cloud.scheduler.v1.HttpMethod].
+     *           job with an incompatible
+     *           [HttpMethod][google.cloud.scheduler.v1.HttpMethod].
      * }
      */
     public function __construct($data = NULL) {
@@ -248,8 +261,13 @@ class AppEngineHttpTarget extends \Google\Protobuf\Internal\Message
      *   `"AppEngine-Google; (+http://code.google.com/appengine)"` to the
      *   modified `User-Agent`.
      * * `X-CloudScheduler`: This header will be set to true.
-     * If the job has an [body][google.cloud.scheduler.v1.AppEngineHttpTarget.body], Cloud Scheduler sets
-     * the following headers:
+     * * `X-CloudScheduler-JobName`: This header will contain the job name.
+     * * `X-CloudScheduler-ScheduleTime`: For Cloud Scheduler jobs specified in
+     * the unix-cron format, this header will contain the job schedule time in
+     * RFC3339 UTC "Zulu" format.
+     * If the job has an
+     * [body][google.cloud.scheduler.v1.AppEngineHttpTarget.body], Cloud Scheduler
+     * sets the following headers:
      * * `Content-Type`: By default, the `Content-Type` header is set to
      *   `"application/octet-stream"`. The default can be overridden by explictly
      *   setting `Content-Type` to a particular media type when the job is
@@ -282,8 +300,13 @@ class AppEngineHttpTarget extends \Google\Protobuf\Internal\Message
      *   `"AppEngine-Google; (+http://code.google.com/appengine)"` to the
      *   modified `User-Agent`.
      * * `X-CloudScheduler`: This header will be set to true.
-     * If the job has an [body][google.cloud.scheduler.v1.AppEngineHttpTarget.body], Cloud Scheduler sets
-     * the following headers:
+     * * `X-CloudScheduler-JobName`: This header will contain the job name.
+     * * `X-CloudScheduler-ScheduleTime`: For Cloud Scheduler jobs specified in
+     * the unix-cron format, this header will contain the job schedule time in
+     * RFC3339 UTC "Zulu" format.
+     * If the job has an
+     * [body][google.cloud.scheduler.v1.AppEngineHttpTarget.body], Cloud Scheduler
+     * sets the following headers:
      * * `Content-Type`: By default, the `Content-Type` header is set to
      *   `"application/octet-stream"`. The default can be overridden by explictly
      *   setting `Content-Type` to a particular media type when the job is
@@ -313,7 +336,8 @@ class AppEngineHttpTarget extends \Google\Protobuf\Internal\Message
      * Body.
      * HTTP request body. A request body is allowed only if the HTTP method is
      * POST or PUT. It will result in invalid argument error to set a body on a
-     * job with an incompatible [HttpMethod][google.cloud.scheduler.v1.HttpMethod].
+     * job with an incompatible
+     * [HttpMethod][google.cloud.scheduler.v1.HttpMethod].
      *
      * Generated from protobuf field <code>bytes body = 5;</code>
      * @return string
@@ -327,7 +351,8 @@ class AppEngineHttpTarget extends \Google\Protobuf\Internal\Message
      * Body.
      * HTTP request body. A request body is allowed only if the HTTP method is
      * POST or PUT. It will result in invalid argument error to set a body on a
-     * job with an incompatible [HttpMethod][google.cloud.scheduler.v1.HttpMethod].
+     * job with an incompatible
+     * [HttpMethod][google.cloud.scheduler.v1.HttpMethod].
      *
      * Generated from protobuf field <code>bytes body = 5;</code>
      * @param string $var

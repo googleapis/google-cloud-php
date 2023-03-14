@@ -87,7 +87,7 @@ class PubSubClient
     use IncomingMessageTrait;
     use ResourceNameTrait;
 
-    const VERSION = '1.40.1';
+    const VERSION = '1.41.0';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/pubsub';
 
@@ -783,10 +783,14 @@ class PubSubClient
      */
     public function __debugInfo()
     {
-        return [
-            'connection' => get_class($this->connection),
-            'projectId' => $this->projectId,
-            'encode' => $this->encode
-        ];
+        $debugInfo = [];
+        if ($this->connection) {
+            $debugInfo['connection'] = get_class($this->connection);
+        }
+
+        $debugInfo['projectId'] = $this->projectId;
+        $debugInfo['encode'] = $this->encode;
+
+        return $debugInfo;
     }
 }

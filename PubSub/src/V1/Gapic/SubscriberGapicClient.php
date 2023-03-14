@@ -504,9 +504,9 @@ class SubscriberGapicClient
      * @param string $name         Required. User-provided name for this snapshot. If the name is not provided
      *                             in the request, the server will assign a random name for this snapshot on
      *                             the same project as the subscription. Note that for REST API requests, you
-     *                             must specify a name.  See the <a
-     *                             href="https://cloud.google.com/pubsub/docs/admin#resource_names"> resource
-     *                             name rules</a>. Format is `projects/{project}/snapshots/{snap}`.
+     *                             must specify a name.  See the [resource name
+     *                             rules](https://cloud.google.com/pubsub/docs/admin#resource_names). Format
+     *                             is `projects/{project}/snapshots/{snap}`.
      * @param string $subscription Required. The subscription whose backlog the snapshot retains.
      *                             Specifically, the created snapshot is guaranteed to retain:
      *                             (a) The existing backlog on the subscription. More precisely, this is
@@ -520,8 +520,8 @@ class SubscriberGapicClient
      *     Optional.
      *
      *     @type array $labels
-     *           See <a href="https://cloud.google.com/pubsub/docs/labels"> Creating and
-     *           managing labels</a>.
+     *           See [Creating and managing
+     *           labels](https://cloud.google.com/pubsub/docs/labels).
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -587,19 +587,15 @@ class SubscriberGapicClient
      *
      *     @type PushConfig $pushConfig
      *           If push delivery is used with this subscription, this field is
-     *           used to configure it. Either `pushConfig` or `bigQueryConfig` can be set,
-     *           but not both. If both are empty, then the subscriber will pull and ack
-     *           messages using API methods.
+     *           used to configure it.
      *     @type BigQueryConfig $bigqueryConfig
      *           If delivery to BigQuery is used with this subscription, this field is
-     *           used to configure it. Either `pushConfig` or `bigQueryConfig` can be set,
-     *           but not both. If both are empty, then the subscriber will pull and ack
-     *           messages using API methods.
+     *           used to configure it.
      *     @type int $ackDeadlineSeconds
      *           The approximate amount of time (on a best-effort basis) Pub/Sub waits for
      *           the subscriber to acknowledge receipt before resending the message. In the
      *           interval after the message is delivered and before it is acknowledged, it
-     *           is considered to be <i>outstanding</i>. During that time period, the
+     *           is considered to be _outstanding_. During that time period, the
      *           message will not be redelivered (on a best-effort basis).
      *
      *           For pull subscriptions, this value is used as the initial value for the ack
@@ -631,8 +627,8 @@ class SubscriberGapicClient
      *           can be done. Defaults to 7 days. Cannot be more than 7 days or less than 10
      *           minutes.
      *     @type array $labels
-     *           See <a href="https://cloud.google.com/pubsub/docs/labels"> Creating and
-     *           managing labels</a>.
+     *           See [Creating and managing
+     *           labels](https://cloud.google.com/pubsub/docs/labels).
      *     @type bool $enableMessageOrdering
      *           If true, messages published with the same `ordering_key` in `PubsubMessage`
      *           will be delivered to the subscribers in the order in which they
@@ -644,7 +640,8 @@ class SubscriberGapicClient
      *           successfully consuming messages from the subscription or is issuing
      *           operations on the subscription. If `expiration_policy` is not set, a
      *           *default policy* with `ttl` of 31 days will be used. The minimum allowed
-     *           value for `expiration_policy.ttl` is 1 day.
+     *           value for `expiration_policy.ttl` is 1 day. If `expiration_policy` is set,
+     *           but `expiration_policy.ttl` is not set, the subscription never expires.
      *     @type string $filter
      *           An expression written in the Pub/Sub [filter
      *           language](https://cloud.google.com/pubsub/docs/filtering). If non-empty,
@@ -869,10 +866,10 @@ class SubscriberGapicClient
 
     /**
      * Gets the configuration details of a snapshot. Snapshots are used in
-     * <a href="https://cloud.google.com/pubsub/docs/replay-overview">Seek</a>
-     * operations, which allow you to manage message acknowledgments in bulk. That
-     * is, you can set the acknowledgment state of messages in an existing
-     * subscription to the state captured by a snapshot.
+     * [Seek](https://cloud.google.com/pubsub/docs/replay-overview) operations,
+     * which allow you to manage message acknowledgments in bulk. That is, you can
+     * set the acknowledgment state of messages in an existing subscription to the
+     * state captured by a snapshot.
      *
      * Sample code:
      * ```
@@ -1200,9 +1197,7 @@ class SubscriberGapicClient
     }
 
     /**
-     * Pulls messages from the server. The server may return `UNAVAILABLE` if
-     * there are too many concurrent pull requests pending for the given
-     * subscription.
+     * Pulls messages from the server.
      *
      * Sample code:
      * ```
@@ -1398,11 +1393,10 @@ class SubscriberGapicClient
 
     /**
      * Updates an existing snapshot. Snapshots are used in
-     * <a href="https://cloud.google.com/pubsub/docs/replay-overview">Seek</a>
-     * operations, which allow
-     * you to manage message acknowledgments in bulk. That is, you can set the
-     * acknowledgment state of messages in an existing subscription to the state
-     * captured by a snapshot.
+     * [Seek](https://cloud.google.com/pubsub/docs/replay-overview) operations,
+     * which allow you to manage message acknowledgments in bulk. That is, you can
+     * set the acknowledgment state of messages in an existing subscription to the
+     * state captured by a snapshot.
      *
      * Sample code:
      * ```

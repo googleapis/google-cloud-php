@@ -45,7 +45,7 @@ class BuildOperationMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getBuild()
     {
-        return isset($this->build) ? $this->build : null;
+        return $this->build;
     }
 
     public function hasBuild()

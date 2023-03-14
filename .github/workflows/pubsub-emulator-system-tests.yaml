@@ -5,10 +5,12 @@ on:
     paths:
       - 'PubSub/**'
       - '.github/workflows/pubsub-emulator-system-tests.yaml'
+      - '.github/emulator/**'
   pull_request:
     paths:
       - 'PubSub/**'
       - '.github/workflows/pubsub-emulator-system-tests.yaml'
+      - '.github/emulator/**'
 name: Run PubSub System Tests With Emulator
 jobs:
   test:
@@ -17,7 +19,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - run: ./.github/emulator/start-emulator.sh pubsub
+      - run: ./.github/emulator/start-emulator.sh pubsub 412.0.0-emulators
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2

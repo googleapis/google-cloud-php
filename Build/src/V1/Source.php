@@ -30,7 +30,8 @@ class Source extends \Google\Protobuf\Internal\Message
      *           Repository.
      *     @type \Google\Cloud\Build\V1\StorageSourceManifest $storage_source_manifest
      *           If provided, get the source from this manifest in Google Cloud Storage.
-     *           This feature is in Preview.
+     *           This feature is in Preview; see description
+     *           [here](https://github.com/GoogleCloudPlatform/cloud-builders/tree/master/gcs-fetcher).
      * }
      */
     public function __construct($data = NULL) {
@@ -104,7 +105,8 @@ class Source extends \Google\Protobuf\Internal\Message
 
     /**
      * If provided, get the source from this manifest in Google Cloud Storage.
-     * This feature is in Preview.
+     * This feature is in Preview; see description
+     * [here](https://github.com/GoogleCloudPlatform/cloud-builders/tree/master/gcs-fetcher).
      *
      * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.StorageSourceManifest storage_source_manifest = 8;</code>
      * @return \Google\Cloud\Build\V1\StorageSourceManifest|null
@@ -121,7 +123,8 @@ class Source extends \Google\Protobuf\Internal\Message
 
     /**
      * If provided, get the source from this manifest in Google Cloud Storage.
-     * This feature is in Preview.
+     * This feature is in Preview; see description
+     * [here](https://github.com/GoogleCloudPlatform/cloud-builders/tree/master/gcs-fetcher).
      *
      * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.StorageSourceManifest storage_source_manifest = 8;</code>
      * @param \Google\Cloud\Build\V1\StorageSourceManifest $var

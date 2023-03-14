@@ -8,6 +8,7 @@ use UnexpectedValueException;
 
 /**
  * Represents a hardware accelerator type.
+ * NEXT ID: 11.
  *
  * Protobuf type <code>google.cloud.aiplatform.v1.AcceleratorType</code>
  */
@@ -67,6 +68,12 @@ class AcceleratorType
      * Generated from protobuf enum <code>TPU_V3 = 7;</code>
      */
     const TPU_V3 = 7;
+    /**
+     * TPU v4.
+     *
+     * Generated from protobuf enum <code>TPU_V4_POD = 10;</code>
+     */
+    const TPU_V4_POD = 10;
 
     private static $valueToName = [
         self::ACCELERATOR_TYPE_UNSPECIFIED => 'ACCELERATOR_TYPE_UNSPECIFIED',
@@ -78,6 +85,7 @@ class AcceleratorType
         self::NVIDIA_TESLA_A100 => 'NVIDIA_TESLA_A100',
         self::TPU_V2 => 'TPU_V2',
         self::TPU_V3 => 'TPU_V3',
+        self::TPU_V4_POD => 'TPU_V4_POD',
     ];
 
     public static function name($value)

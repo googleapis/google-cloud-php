@@ -33,28 +33,38 @@ class OperationType
      */
     const REMOVE = 2;
     /**
-     * Replace an element identified by `parent`.
+     * Updates any fields within the given provenance scope of the message. It
+     * 'overwrites'  the fields rather than replacing them.  This is
+     * especially relevant when we just want to update a field value of an
+     * entity without also affecting all the child properties.
+     *
+     * Generated from protobuf enum <code>UPDATE = 7;</code>
+     */
+    const UPDATE = 7;
+    /**
+     * Currently unused. Replace an element identified by `parent`.
      *
      * Generated from protobuf enum <code>REPLACE = 3;</code>
      */
     const REPLACE = 3;
     /**
-     * Request human review for the element identified by `parent`.
+     * Deprecated. Request human review for the element identified by
+     * `parent`.
      *
-     * Generated from protobuf enum <code>EVAL_REQUESTED = 4;</code>
+     * Generated from protobuf enum <code>EVAL_REQUESTED = 4 [deprecated = true];</code>
      */
     const EVAL_REQUESTED = 4;
     /**
-     * Element is reviewed and approved at human review, confidence will be
-     * set to 1.0.
+     * Deprecated. Element is reviewed and approved at human review,
+     * confidence will be set to 1.0.
      *
-     * Generated from protobuf enum <code>EVAL_APPROVED = 5;</code>
+     * Generated from protobuf enum <code>EVAL_APPROVED = 5 [deprecated = true];</code>
      */
     const EVAL_APPROVED = 5;
     /**
-     * Element is skipped in the validation process.
+     * Deprecated. Element is skipped in the validation process.
      *
-     * Generated from protobuf enum <code>EVAL_SKIPPED = 6;</code>
+     * Generated from protobuf enum <code>EVAL_SKIPPED = 6 [deprecated = true];</code>
      */
     const EVAL_SKIPPED = 6;
 
@@ -62,6 +72,7 @@ class OperationType
         self::OPERATION_TYPE_UNSPECIFIED => 'OPERATION_TYPE_UNSPECIFIED',
         self::ADD => 'ADD',
         self::REMOVE => 'REMOVE',
+        self::UPDATE => 'UPDATE',
         self::REPLACE => 'REPLACE',
         self::EVAL_REQUESTED => 'EVAL_REQUESTED',
         self::EVAL_APPROVED => 'EVAL_APPROVED',

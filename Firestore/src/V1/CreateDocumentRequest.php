@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request for [Firestore.CreateDocument][google.firestore.v1.Firestore.CreateDocument].
+ * The request for
+ * [Firestore.CreateDocument][google.firestore.v1.Firestore.CreateDocument].
  *
  * Generated from protobuf message <code>google.firestore.v1.CreateDocumentRequest</code>
  */
@@ -24,7 +25,8 @@ class CreateDocumentRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
-     * Required. The collection ID, relative to `parent`, to list. For example: `chatrooms`.
+     * Required. The collection ID, relative to `parent`, to list. For example:
+     * `chatrooms`.
      *
      * Generated from protobuf field <code>string collection_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -62,7 +64,8 @@ class CreateDocumentRequest extends \Google\Protobuf\Internal\Message
      *           `projects/{project_id}/databases/{database_id}/documents` or
      *           `projects/{project_id}/databases/{database_id}/documents/chatrooms/{chatroom_id}`
      *     @type string $collection_id
-     *           Required. The collection ID, relative to `parent`, to list. For example: `chatrooms`.
+     *           Required. The collection ID, relative to `parent`, to list. For example:
+     *           `chatrooms`.
      *     @type string $document_id
      *           The client-assigned document ID to use for this document.
      *           Optional. If not specified, an ID will be assigned by the service.
@@ -110,7 +113,8 @@ class CreateDocumentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The collection ID, relative to `parent`, to list. For example: `chatrooms`.
+     * Required. The collection ID, relative to `parent`, to list. For example:
+     * `chatrooms`.
      *
      * Generated from protobuf field <code>string collection_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -121,7 +125,8 @@ class CreateDocumentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The collection ID, relative to `parent`, to list. For example: `chatrooms`.
+     * Required. The collection ID, relative to `parent`, to list. For example:
+     * `chatrooms`.
      *
      * Generated from protobuf field <code>string collection_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

@@ -30,8 +30,9 @@ class AwsCrossAccountRole extends \Google\Protobuf\Internal\Message
      */
     private $iam_user_id = '';
     /**
-     * Output only. A Google-generated id for representing Connection’s identity in AWS.
-     * External Id is also used for preventing the Confused Deputy Problem. See
+     * Output only. A Google-generated id for representing Connection’s identity
+     * in AWS. External Id is also used for preventing the Confused Deputy
+     * Problem. See
      * https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html
      *
      * Generated from protobuf field <code>string external_id = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -50,8 +51,9 @@ class AwsCrossAccountRole extends \Google\Protobuf\Internal\Message
      *     @type string $iam_user_id
      *           Output only. Google-owned AWS IAM User for a Connection.
      *     @type string $external_id
-     *           Output only. A Google-generated id for representing Connection’s identity in AWS.
-     *           External Id is also used for preventing the Confused Deputy Problem. See
+     *           Output only. A Google-generated id for representing Connection’s identity
+     *           in AWS. External Id is also used for preventing the Confused Deputy
+     *           Problem. See
      *           https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html
      * }
      */
@@ -115,8 +117,9 @@ class AwsCrossAccountRole extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. A Google-generated id for representing Connection’s identity in AWS.
-     * External Id is also used for preventing the Confused Deputy Problem. See
+     * Output only. A Google-generated id for representing Connection’s identity
+     * in AWS. External Id is also used for preventing the Confused Deputy
+     * Problem. See
      * https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html
      *
      * Generated from protobuf field <code>string external_id = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -128,8 +131,9 @@ class AwsCrossAccountRole extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. A Google-generated id for representing Connection’s identity in AWS.
-     * External Id is also used for preventing the Confused Deputy Problem. See
+     * Output only. A Google-generated id for representing Connection’s identity
+     * in AWS. External Id is also used for preventing the Confused Deputy
+     * Problem. See
      * https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html
      *
      * Generated from protobuf field <code>string external_id = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
