@@ -73,6 +73,12 @@ class StreamingRecognizeResponse extends \Google\Protobuf\Internal\Message
      */
     private $speech_event_type = 0;
     /**
+     * Time offset between the beginning of the audio and event emission.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration speech_event_time = 8;</code>
+     */
+    private $speech_event_time = null;
+    /**
      * When available, billed audio seconds for the stream.
      * Set only if this is the last response in the stream.
      *
@@ -109,6 +115,8 @@ class StreamingRecognizeResponse extends \Google\Protobuf\Internal\Message
      *           followed by zero or more `is_final=false` results (the interim results).
      *     @type int $speech_event_type
      *           Indicates the type of speech event.
+     *     @type \Google\Protobuf\Duration $speech_event_time
+     *           Time offset between the beginning of the audio and event emission.
      *     @type \Google\Protobuf\Duration $total_billed_time
      *           When available, billed audio seconds for the stream.
      *           Set only if this is the last response in the stream.
@@ -216,6 +224,42 @@ class StreamingRecognizeResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Speech\V1\StreamingRecognizeResponse\SpeechEventType::class);
         $this->speech_event_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Time offset between the beginning of the audio and event emission.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration speech_event_time = 8;</code>
+     * @return \Google\Protobuf\Duration|null
+     */
+    public function getSpeechEventTime()
+    {
+        return $this->speech_event_time;
+    }
+
+    public function hasSpeechEventTime()
+    {
+        return isset($this->speech_event_time);
+    }
+
+    public function clearSpeechEventTime()
+    {
+        unset($this->speech_event_time);
+    }
+
+    /**
+     * Time offset between the beginning of the audio and event emission.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration speech_event_time = 8;</code>
+     * @param \Google\Protobuf\Duration $var
+     * @return $this
+     */
+    public function setSpeechEventTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
+        $this->speech_event_time = $var;
 
         return $this;
     }

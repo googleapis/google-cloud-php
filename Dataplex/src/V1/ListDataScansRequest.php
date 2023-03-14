@@ -16,8 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListDataScansRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. projects/{project}/locations/{location_id}
-     * where `{project}` refers to a project_id or project_number and
+     * Required. The resource name of the parent location:
+     * `projects/{project}/locations/{location_id}`
+     * where `project` refers to a *project_id* or *project_number* and
      * `location_id` refers to a GCP region.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -47,7 +48,7 @@ class ListDataScansRequest extends \Google\Protobuf\Internal\Message
      */
     private $filter = '';
     /**
-     * Optional. Order by fields (name or create_time) for the result.
+     * Optional. Order by fields (`name` or `create_time`) for the result.
      * If not specified, the ordering is undefined.
      *
      * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -61,8 +62,9 @@ class ListDataScansRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. projects/{project}/locations/{location_id}
-     *           where `{project}` refers to a project_id or project_number and
+     *           Required. The resource name of the parent location:
+     *           `projects/{project}/locations/{location_id}`
+     *           where `project` refers to a *project_id* or *project_number* and
      *           `location_id` refers to a GCP region.
      *     @type int $page_size
      *           Optional. Maximum number of dataScans to return. The service may return
@@ -76,7 +78,7 @@ class ListDataScansRequest extends \Google\Protobuf\Internal\Message
      *     @type string $filter
      *           Optional. Filter request.
      *     @type string $order_by
-     *           Optional. Order by fields (name or create_time) for the result.
+     *           Optional. Order by fields (`name` or `create_time`) for the result.
      *           If not specified, the ordering is undefined.
      * }
      */
@@ -86,8 +88,9 @@ class ListDataScansRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. projects/{project}/locations/{location_id}
-     * where `{project}` refers to a project_id or project_number and
+     * Required. The resource name of the parent location:
+     * `projects/{project}/locations/{location_id}`
+     * where `project` refers to a *project_id* or *project_number* and
      * `location_id` refers to a GCP region.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -99,8 +102,9 @@ class ListDataScansRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. projects/{project}/locations/{location_id}
-     * where `{project}` refers to a project_id or project_number and
+     * Required. The resource name of the parent location:
+     * `projects/{project}/locations/{location_id}`
+     * where `project` refers to a *project_id* or *project_number* and
      * `location_id` refers to a GCP region.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -204,7 +208,7 @@ class ListDataScansRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Order by fields (name or create_time) for the result.
+     * Optional. Order by fields (`name` or `create_time`) for the result.
      * If not specified, the ordering is undefined.
      *
      * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -216,7 +220,7 @@ class ListDataScansRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Order by fields (name or create_time) for the result.
+     * Optional. Order by fields (`name` or `create_time`) for the result.
      * If not specified, the ordering is undefined.
      *
      * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>

@@ -79,6 +79,7 @@ class Operator
      * Limit the result set to the given entity and its descendants.
      * Requires:
      * * That `value` is an entity key.
+     * * No other `HAS_ANCESTOR` is in the same query.
      *
      * Generated from protobuf enum <code>HAS_ANCESTOR = 11;</code>
      */

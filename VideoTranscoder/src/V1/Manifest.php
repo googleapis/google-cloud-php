@@ -29,7 +29,8 @@ class Manifest extends \Google\Protobuf\Internal\Message
      */
     private $type = 0;
     /**
-     * Required. List of user given `MuxStream.key`s that should appear in this manifest.
+     * Required. List of user given `MuxStream.key`s that should appear in this
+     * manifest.
      * When `Manifest.type` is `HLS`, a media manifest with name `MuxStream.key`
      * and `.m3u8` extension is generated for each element of the
      * `Manifest.mux_streams`.
@@ -50,7 +51,8 @@ class Manifest extends \Google\Protobuf\Internal\Message
      *     @type int $type
      *           Required. Type of the manifest, can be `HLS` or `DASH`.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $mux_streams
-     *           Required. List of user given `MuxStream.key`s that should appear in this manifest.
+     *           Required. List of user given `MuxStream.key`s that should appear in this
+     *           manifest.
      *           When `Manifest.type` is `HLS`, a media manifest with name `MuxStream.key`
      *           and `.m3u8` extension is generated for each element of the
      *           `Manifest.mux_streams`.
@@ -116,7 +118,8 @@ class Manifest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. List of user given `MuxStream.key`s that should appear in this manifest.
+     * Required. List of user given `MuxStream.key`s that should appear in this
+     * manifest.
      * When `Manifest.type` is `HLS`, a media manifest with name `MuxStream.key`
      * and `.m3u8` extension is generated for each element of the
      * `Manifest.mux_streams`.
@@ -130,7 +133,8 @@ class Manifest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. List of user given `MuxStream.key`s that should appear in this manifest.
+     * Required. List of user given `MuxStream.key`s that should appear in this
+     * manifest.
      * When `Manifest.type` is `HLS`, a media manifest with name `MuxStream.key`
      * and `.m3u8` extension is generated for each element of the
      * `Manifest.mux_streams`.

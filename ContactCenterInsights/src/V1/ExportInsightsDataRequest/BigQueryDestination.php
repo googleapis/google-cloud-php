@@ -24,9 +24,9 @@ class BigQueryDestination extends \Google\Protobuf\Internal\Message
      */
     private $project_id = '';
     /**
-     * Required. The name of the BigQuery dataset that the snapshot result should be
-     * exported to. If this dataset does not exist, the export call returns an
-     * INVALID_ARGUMENT error.
+     * Required. The name of the BigQuery dataset that the snapshot result
+     * should be exported to. If this dataset does not exist, the export call
+     * returns an INVALID_ARGUMENT error.
      *
      * Generated from protobuf field <code>string dataset = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -51,9 +51,9 @@ class BigQueryDestination extends \Google\Protobuf\Internal\Message
      *           write data to this project instead of the resource project. Otherwise,
      *           the resource project will be used.
      *     @type string $dataset
-     *           Required. The name of the BigQuery dataset that the snapshot result should be
-     *           exported to. If this dataset does not exist, the export call returns an
-     *           INVALID_ARGUMENT error.
+     *           Required. The name of the BigQuery dataset that the snapshot result
+     *           should be exported to. If this dataset does not exist, the export call
+     *           returns an INVALID_ARGUMENT error.
      *     @type string $table
      *           The BigQuery table name to which the insights data should be written.
      *           If this table does not exist, the export call returns an INVALID_ARGUMENT
@@ -96,9 +96,9 @@ class BigQueryDestination extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the BigQuery dataset that the snapshot result should be
-     * exported to. If this dataset does not exist, the export call returns an
-     * INVALID_ARGUMENT error.
+     * Required. The name of the BigQuery dataset that the snapshot result
+     * should be exported to. If this dataset does not exist, the export call
+     * returns an INVALID_ARGUMENT error.
      *
      * Generated from protobuf field <code>string dataset = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -109,9 +109,9 @@ class BigQueryDestination extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the BigQuery dataset that the snapshot result should be
-     * exported to. If this dataset does not exist, the export call returns an
-     * INVALID_ARGUMENT error.
+     * Required. The name of the BigQuery dataset that the snapshot result
+     * should be exported to. If this dataset does not exist, the export call
+     * returns an INVALID_ARGUMENT error.
      *
      * Generated from protobuf field <code>string dataset = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

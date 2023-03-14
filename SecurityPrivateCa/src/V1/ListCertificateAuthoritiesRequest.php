@@ -17,20 +17,23 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListCertificateAuthoritiesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name of the [CaPool][google.cloud.security.privateca.v1.CaPool] associated with the
-     * [CertificateAuthorities][google.cloud.security.privateca.v1.CertificateAuthority], in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;`.
+     * Required. The resource name of the
+     * [CaPool][google.cloud.security.privateca.v1.CaPool] associated with the
+     * [CertificateAuthorities][google.cloud.security.privateca.v1.CertificateAuthority],
+     * in the format `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
-     * Optional. Limit on the number of [CertificateAuthorities][google.cloud.security.privateca.v1.CertificateAuthority] to
-     * include in the response.
-     * Further [CertificateAuthorities][google.cloud.security.privateca.v1.CertificateAuthority] can subsequently be
-     * obtained by including the
-     * [ListCertificateAuthoritiesResponse.next_page_token][google.cloud.security.privateca.v1.ListCertificateAuthoritiesResponse.next_page_token] in a subsequent
-     * request. If unspecified, the server will pick an appropriate default.
+     * Optional. Limit on the number of
+     * [CertificateAuthorities][google.cloud.security.privateca.v1.CertificateAuthority]
+     * to include in the response. Further
+     * [CertificateAuthorities][google.cloud.security.privateca.v1.CertificateAuthority]
+     * can subsequently be obtained by including the
+     * [ListCertificateAuthoritiesResponse.next_page_token][google.cloud.security.privateca.v1.ListCertificateAuthoritiesResponse.next_page_token]
+     * in a subsequent request. If unspecified, the server will pick an
+     * appropriate default.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -62,16 +65,19 @@ class ListCertificateAuthoritiesRequest extends \Google\Protobuf\Internal\Messag
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The resource name of the [CaPool][google.cloud.security.privateca.v1.CaPool] associated with the
-     *           [CertificateAuthorities][google.cloud.security.privateca.v1.CertificateAuthority], in the format
-     *           `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;`.
+     *           Required. The resource name of the
+     *           [CaPool][google.cloud.security.privateca.v1.CaPool] associated with the
+     *           [CertificateAuthorities][google.cloud.security.privateca.v1.CertificateAuthority],
+     *           in the format `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;`.
      *     @type int $page_size
-     *           Optional. Limit on the number of [CertificateAuthorities][google.cloud.security.privateca.v1.CertificateAuthority] to
-     *           include in the response.
-     *           Further [CertificateAuthorities][google.cloud.security.privateca.v1.CertificateAuthority] can subsequently be
-     *           obtained by including the
-     *           [ListCertificateAuthoritiesResponse.next_page_token][google.cloud.security.privateca.v1.ListCertificateAuthoritiesResponse.next_page_token] in a subsequent
-     *           request. If unspecified, the server will pick an appropriate default.
+     *           Optional. Limit on the number of
+     *           [CertificateAuthorities][google.cloud.security.privateca.v1.CertificateAuthority]
+     *           to include in the response. Further
+     *           [CertificateAuthorities][google.cloud.security.privateca.v1.CertificateAuthority]
+     *           can subsequently be obtained by including the
+     *           [ListCertificateAuthoritiesResponse.next_page_token][google.cloud.security.privateca.v1.ListCertificateAuthoritiesResponse.next_page_token]
+     *           in a subsequent request. If unspecified, the server will pick an
+     *           appropriate default.
      *     @type string $page_token
      *           Optional. Pagination token, returned earlier via
      *           [ListCertificateAuthoritiesResponse.next_page_token][google.cloud.security.privateca.v1.ListCertificateAuthoritiesResponse.next_page_token].
@@ -87,9 +93,10 @@ class ListCertificateAuthoritiesRequest extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * Required. The resource name of the [CaPool][google.cloud.security.privateca.v1.CaPool] associated with the
-     * [CertificateAuthorities][google.cloud.security.privateca.v1.CertificateAuthority], in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;`.
+     * Required. The resource name of the
+     * [CaPool][google.cloud.security.privateca.v1.CaPool] associated with the
+     * [CertificateAuthorities][google.cloud.security.privateca.v1.CertificateAuthority],
+     * in the format `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -100,9 +107,10 @@ class ListCertificateAuthoritiesRequest extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * Required. The resource name of the [CaPool][google.cloud.security.privateca.v1.CaPool] associated with the
-     * [CertificateAuthorities][google.cloud.security.privateca.v1.CertificateAuthority], in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;`.
+     * Required. The resource name of the
+     * [CaPool][google.cloud.security.privateca.v1.CaPool] associated with the
+     * [CertificateAuthorities][google.cloud.security.privateca.v1.CertificateAuthority],
+     * in the format `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -117,12 +125,14 @@ class ListCertificateAuthoritiesRequest extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * Optional. Limit on the number of [CertificateAuthorities][google.cloud.security.privateca.v1.CertificateAuthority] to
-     * include in the response.
-     * Further [CertificateAuthorities][google.cloud.security.privateca.v1.CertificateAuthority] can subsequently be
-     * obtained by including the
-     * [ListCertificateAuthoritiesResponse.next_page_token][google.cloud.security.privateca.v1.ListCertificateAuthoritiesResponse.next_page_token] in a subsequent
-     * request. If unspecified, the server will pick an appropriate default.
+     * Optional. Limit on the number of
+     * [CertificateAuthorities][google.cloud.security.privateca.v1.CertificateAuthority]
+     * to include in the response. Further
+     * [CertificateAuthorities][google.cloud.security.privateca.v1.CertificateAuthority]
+     * can subsequently be obtained by including the
+     * [ListCertificateAuthoritiesResponse.next_page_token][google.cloud.security.privateca.v1.ListCertificateAuthoritiesResponse.next_page_token]
+     * in a subsequent request. If unspecified, the server will pick an
+     * appropriate default.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -133,12 +143,14 @@ class ListCertificateAuthoritiesRequest extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * Optional. Limit on the number of [CertificateAuthorities][google.cloud.security.privateca.v1.CertificateAuthority] to
-     * include in the response.
-     * Further [CertificateAuthorities][google.cloud.security.privateca.v1.CertificateAuthority] can subsequently be
-     * obtained by including the
-     * [ListCertificateAuthoritiesResponse.next_page_token][google.cloud.security.privateca.v1.ListCertificateAuthoritiesResponse.next_page_token] in a subsequent
-     * request. If unspecified, the server will pick an appropriate default.
+     * Optional. Limit on the number of
+     * [CertificateAuthorities][google.cloud.security.privateca.v1.CertificateAuthority]
+     * to include in the response. Further
+     * [CertificateAuthorities][google.cloud.security.privateca.v1.CertificateAuthority]
+     * can subsequently be obtained by including the
+     * [ListCertificateAuthoritiesResponse.next_page_token][google.cloud.security.privateca.v1.ListCertificateAuthoritiesResponse.next_page_token]
+     * in a subsequent request. If unspecified, the server will pick an
+     * appropriate default.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var

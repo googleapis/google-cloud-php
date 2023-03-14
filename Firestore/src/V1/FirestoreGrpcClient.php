@@ -27,8 +27,8 @@ namespace Google\Cloud\Firestore\V1;
  * document database that simplifies storing, syncing, and querying data for
  * your mobile, web, and IoT apps at global scale. Its client libraries provide
  * live synchronization and offline support, while its security features and
- * integrations with Firebase and Google Cloud Platform (GCP) accelerate
- * building truly serverless apps.
+ * integrations with Firebase and Google Cloud Platform accelerate building
+ * truly serverless apps.
  */
 class FirestoreGrpcClient extends \Grpc\BaseStub {
 
@@ -182,8 +182,9 @@ class FirestoreGrpcClient extends \Grpc\BaseStub {
     /**
      * Runs an aggregation query.
      *
-     * Rather than producing [Document][google.firestore.v1.Document] results like [Firestore.RunQuery][google.firestore.v1.Firestore.RunQuery],
-     * this API allows running an aggregation to produce a series of
+     * Rather than producing [Document][google.firestore.v1.Document] results like
+     * [Firestore.RunQuery][google.firestore.v1.Firestore.RunQuery], this API
+     * allows running an aggregation to produce a series of
      * [AggregationResult][google.firestore.v1.AggregationResult] server-side.
      *
      * High-Level Example:
@@ -223,7 +224,8 @@ class FirestoreGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Streams batches of document updates and deletes, in order.
+     * Streams batches of document updates and deletes, in order. This method is
+     * only available via the gRPC API (not REST).
      * @param array $metadata metadata
      * @param array $options call options
      * @return \Grpc\BidiStreamingCall
@@ -235,7 +237,8 @@ class FirestoreGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Listens to changes.
+     * Listens to changes. This method is only available via the gRPC API (not
+     * REST).
      * @param array $metadata metadata
      * @param array $options call options
      * @return \Grpc\BidiStreamingCall
@@ -267,7 +270,8 @@ class FirestoreGrpcClient extends \Grpc\BaseStub {
      * The BatchWrite method does not apply the write operations atomically
      * and can apply them out of order. Method does not allow more than one write
      * per document. Each write succeeds or fails independently. See the
-     * [BatchWriteResponse][google.firestore.v1.BatchWriteResponse] for the success status of each write.
+     * [BatchWriteResponse][google.firestore.v1.BatchWriteResponse] for the
+     * success status of each write.
      *
      * If you require an atomically applied set of writes, use
      * [Commit][google.firestore.v1.Firestore.Commit] instead.

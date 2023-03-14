@@ -16,7 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class Aggregation extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. Optional name of the property to store the result of the aggregation.
+     * Optional. Optional name of the property to store the result of the
+     * aggregation.
      * If not provided, Datastore will pick a default name following the format
      * `property_<incremental_id++>`. For example:
      * ```
@@ -42,7 +43,8 @@ class Aggregation extends \Google\Protobuf\Internal\Message
      * ```
      * Requires:
      * * Must be unique across all aggregation aliases.
-     * * Conform to [entity property name][google.datastore.v1.Entity.properties] limitations.
+     * * Conform to [entity property
+     * name][google.datastore.v1.Entity.properties] limitations.
      *
      * Generated from protobuf field <code>string alias = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -58,7 +60,8 @@ class Aggregation extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Datastore\V1\AggregationQuery\Aggregation\Count $count
      *           Count aggregator.
      *     @type string $alias
-     *           Optional. Optional name of the property to store the result of the aggregation.
+     *           Optional. Optional name of the property to store the result of the
+     *           aggregation.
      *           If not provided, Datastore will pick a default name following the format
      *           `property_<incremental_id++>`. For example:
      *           ```
@@ -84,7 +87,8 @@ class Aggregation extends \Google\Protobuf\Internal\Message
      *           ```
      *           Requires:
      *           * Must be unique across all aggregation aliases.
-     *           * Conform to [entity property name][google.datastore.v1.Entity.properties] limitations.
+     *           * Conform to [entity property
+     *           name][google.datastore.v1.Entity.properties] limitations.
      * }
      */
     public function __construct($data = NULL) {
@@ -124,7 +128,8 @@ class Aggregation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Optional name of the property to store the result of the aggregation.
+     * Optional. Optional name of the property to store the result of the
+     * aggregation.
      * If not provided, Datastore will pick a default name following the format
      * `property_<incremental_id++>`. For example:
      * ```
@@ -150,7 +155,8 @@ class Aggregation extends \Google\Protobuf\Internal\Message
      * ```
      * Requires:
      * * Must be unique across all aggregation aliases.
-     * * Conform to [entity property name][google.datastore.v1.Entity.properties] limitations.
+     * * Conform to [entity property
+     * name][google.datastore.v1.Entity.properties] limitations.
      *
      * Generated from protobuf field <code>string alias = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -161,7 +167,8 @@ class Aggregation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Optional name of the property to store the result of the aggregation.
+     * Optional. Optional name of the property to store the result of the
+     * aggregation.
      * If not provided, Datastore will pick a default name following the format
      * `property_<incremental_id++>`. For example:
      * ```
@@ -187,7 +194,8 @@ class Aggregation extends \Google\Protobuf\Internal\Message
      * ```
      * Requires:
      * * Must be unique across all aggregation aliases.
-     * * Conform to [entity property name][google.datastore.v1.Entity.properties] limitations.
+     * * Conform to [entity property
+     * name][google.datastore.v1.Entity.properties] limitations.
      *
      * Generated from protobuf field <code>string alias = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

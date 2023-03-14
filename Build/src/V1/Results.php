@@ -56,6 +56,18 @@ class Results extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.TimeSpan artifact_timing = 7;</code>
      */
     private $artifact_timing = null;
+    /**
+     * Python artifacts uploaded to Artifact Registry at the end of the build.
+     *
+     * Generated from protobuf field <code>repeated .google.devtools.cloudbuild.v1.UploadedPythonPackage python_packages = 8;</code>
+     */
+    private $python_packages;
+    /**
+     * Maven artifacts uploaded to Artifact Registry at the end of the build.
+     *
+     * Generated from protobuf field <code>repeated .google.devtools.cloudbuild.v1.UploadedMavenArtifact maven_artifacts = 9;</code>
+     */
+    private $maven_artifacts;
 
     /**
      * Constructor.
@@ -63,16 +75,16 @@ class Results extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Build\V1\BuiltImage[]|\Google\Protobuf\Internal\RepeatedField $images
+     *     @type array<\Google\Cloud\Build\V1\BuiltImage>|\Google\Protobuf\Internal\RepeatedField $images
      *           Container images that were built as a part of the build.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $build_step_images
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $build_step_images
      *           List of build step digests, in the order corresponding to build step
      *           indices.
      *     @type string $artifact_manifest
      *           Path to the artifact manifest. Only populated when artifacts are uploaded.
      *     @type int|string $num_artifacts
      *           Number of artifacts uploaded. Only populated when artifacts are uploaded.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $build_step_outputs
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $build_step_outputs
      *           List of build step outputs, produced by builder images, in the order
      *           corresponding to build step indices.
      *           [Cloud Builders](https://cloud.google.com/cloud-build/docs/cloud-builders)
@@ -80,6 +92,10 @@ class Results extends \Google\Protobuf\Internal\Message
      *           Only the first 4KB of data is stored.
      *     @type \Google\Cloud\Build\V1\TimeSpan $artifact_timing
      *           Time to push all non-container artifacts.
+     *     @type array<\Google\Cloud\Build\V1\UploadedPythonPackage>|\Google\Protobuf\Internal\RepeatedField $python_packages
+     *           Python artifacts uploaded to Artifact Registry at the end of the build.
+     *     @type array<\Google\Cloud\Build\V1\UploadedMavenArtifact>|\Google\Protobuf\Internal\RepeatedField $maven_artifacts
+     *           Maven artifacts uploaded to Artifact Registry at the end of the build.
      * }
      */
     public function __construct($data = NULL) {
@@ -102,7 +118,7 @@ class Results extends \Google\Protobuf\Internal\Message
      * Container images that were built as a part of the build.
      *
      * Generated from protobuf field <code>repeated .google.devtools.cloudbuild.v1.BuiltImage images = 2;</code>
-     * @param \Google\Cloud\Build\V1\BuiltImage[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Build\V1\BuiltImage>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setImages($var)
@@ -130,7 +146,7 @@ class Results extends \Google\Protobuf\Internal\Message
      * indices.
      *
      * Generated from protobuf field <code>repeated string build_step_images = 3;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setBuildStepImages($var)
@@ -216,7 +232,7 @@ class Results extends \Google\Protobuf\Internal\Message
      * Only the first 4KB of data is stored.
      *
      * Generated from protobuf field <code>repeated bytes build_step_outputs = 6;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setBuildStepOutputs($var)
@@ -235,7 +251,7 @@ class Results extends \Google\Protobuf\Internal\Message
      */
     public function getArtifactTiming()
     {
-        return isset($this->artifact_timing) ? $this->artifact_timing : null;
+        return $this->artifact_timing;
     }
 
     public function hasArtifactTiming()
@@ -259,6 +275,58 @@ class Results extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Build\V1\TimeSpan::class);
         $this->artifact_timing = $var;
+
+        return $this;
+    }
+
+    /**
+     * Python artifacts uploaded to Artifact Registry at the end of the build.
+     *
+     * Generated from protobuf field <code>repeated .google.devtools.cloudbuild.v1.UploadedPythonPackage python_packages = 8;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getPythonPackages()
+    {
+        return $this->python_packages;
+    }
+
+    /**
+     * Python artifacts uploaded to Artifact Registry at the end of the build.
+     *
+     * Generated from protobuf field <code>repeated .google.devtools.cloudbuild.v1.UploadedPythonPackage python_packages = 8;</code>
+     * @param array<\Google\Cloud\Build\V1\UploadedPythonPackage>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setPythonPackages($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Build\V1\UploadedPythonPackage::class);
+        $this->python_packages = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Maven artifacts uploaded to Artifact Registry at the end of the build.
+     *
+     * Generated from protobuf field <code>repeated .google.devtools.cloudbuild.v1.UploadedMavenArtifact maven_artifacts = 9;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getMavenArtifacts()
+    {
+        return $this->maven_artifacts;
+    }
+
+    /**
+     * Maven artifacts uploaded to Artifact Registry at the end of the build.
+     *
+     * Generated from protobuf field <code>repeated .google.devtools.cloudbuild.v1.UploadedMavenArtifact maven_artifacts = 9;</code>
+     * @param array<\Google\Cloud\Build\V1\UploadedMavenArtifact>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setMavenArtifacts($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Build\V1\UploadedMavenArtifact::class);
+        $this->maven_artifacts = $arr;
 
         return $this;
     }

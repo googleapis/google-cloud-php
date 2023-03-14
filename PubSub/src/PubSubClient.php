@@ -87,7 +87,7 @@ class PubSubClient
     use IncomingMessageTrait;
     use ResourceNameTrait;
 
-    const VERSION = '1.40.0';
+    const VERSION = '1.41.0';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/pubsub';
 
@@ -642,7 +642,7 @@ class PubSubClient
      *     for definition. The array representation allows for validation of
      *     messages using ad-hoc schema; these do not have to exist in the
      *     current project in order to be used for validation.
-     * @param string $message The message to validate.
+     * @param string $message The base64 encoded message to validate.
      * @param string $encoding Either `JSON` or `BINARY`.
      * @param array $options [optional] Configuration options
      * @return void
@@ -783,10 +783,14 @@ class PubSubClient
      */
     public function __debugInfo()
     {
-        return [
-            'connection' => get_class($this->connection),
-            'projectId' => $this->projectId,
-            'encode' => $this->encode
-        ];
+        $debugInfo = [];
+        if ($this->connection) {
+            $debugInfo['connection'] = get_class($this->connection);
+        }
+
+        $debugInfo['projectId'] = $this->projectId;
+        $debugInfo['encode'] = $this->encode;
+
+        return $debugInfo;
     }
 }

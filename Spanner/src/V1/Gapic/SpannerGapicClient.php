@@ -481,8 +481,8 @@ class SpannerGapicClient
      * $spannerClient = new SpannerClient();
      * try {
      *     $formattedSession = $spannerClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
-     *     $mutation = new \Google\Cloud\Spanner\V1\Mutation();
-     *     $response = $spannerClient->commit($formattedSession, [$mutation]);
+     *     $mutations = [];
+     *     $response = $spannerClient->commit($formattedSession, $mutations);
      * } finally {
      *     $spannerClient->close();
      * }
@@ -507,10 +507,6 @@ class SpannerGapicClient
      *           executed more than once. If this is undesirable, use
      *           [BeginTransaction][google.spanner.v1.Spanner.BeginTransaction] and
      *           [Commit][google.spanner.v1.Spanner.Commit] instead.
-     *     @type Mutation[] $mutations
-     *           The mutations to be executed when this transaction commits. All
-     *           mutations are applied atomically, in the order they appear in
-     *           this list.
      *     @type bool $returnCommitStats
      *           If `true`, then statistics related to the transaction will be included in
      *           the [CommitResponse][google.spanner.v1.CommitResponse.commit_stats]. Default value is
@@ -532,6 +528,7 @@ class SpannerGapicClient
         $request = new CommitRequest();
         $requestParamHeaders = [];
         $request->setSession($session);
+        $request->setMutations($mutations);
         $requestParamHeaders['session'] = $session;
         if (isset($optionalArgs['transactionId'])) {
             $request->setTransactionId($optionalArgs['transactionId']);
@@ -543,7 +540,6 @@ class SpannerGapicClient
             );
         }
 
-        $request->setMutations($mutations);
         if (isset($optionalArgs['returnCommitStats'])) {
             $request->setReturnCommitStats($optionalArgs['returnCommitStats']);
         }
@@ -876,6 +872,12 @@ class SpannerGapicClient
      *           Query optimizer configuration to use for the given query.
      *     @type RequestOptions $requestOptions
      *           Common options for this request.
+     *     @type bool $dataBoostEnabled
+     *           If this is for a partitioned read and this field is set to `true`, the
+     *           request will be executed via Spanner independent compute resources.
+     *
+     *           If the field is set to `true` but the request does not set
+     *           `partition_token`, the API will return an `INVALID_ARGUMENT` error.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -927,6 +929,10 @@ class SpannerGapicClient
 
         if (isset($optionalArgs['requestOptions'])) {
             $request->setRequestOptions($optionalArgs['requestOptions']);
+        }
+
+        if (isset($optionalArgs['dataBoostEnabled'])) {
+            $request->setDataBoostEnabled($optionalArgs['dataBoostEnabled']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
@@ -1037,6 +1043,12 @@ class SpannerGapicClient
      *           Query optimizer configuration to use for the given query.
      *     @type RequestOptions $requestOptions
      *           Common options for this request.
+     *     @type bool $dataBoostEnabled
+     *           If this is for a partitioned read and this field is set to `true`, the
+     *           request will be executed via Spanner independent compute resources.
+     *
+     *           If the field is set to `true` but the request does not set
+     *           `partition_token`, the API will return an `INVALID_ARGUMENT` error.
      *     @type int $timeoutMillis
      *           Timeout to use for this call.
      * }
@@ -1089,6 +1101,10 @@ class SpannerGapicClient
 
         if (isset($optionalArgs['requestOptions'])) {
             $request->setRequestOptions($optionalArgs['requestOptions']);
+        }
+
+        if (isset($optionalArgs['dataBoostEnabled'])) {
+            $request->setDataBoostEnabled($optionalArgs['dataBoostEnabled']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
@@ -1538,6 +1554,12 @@ class SpannerGapicClient
      *           PartitionReadRequest message used to create this partition_token.
      *     @type RequestOptions $requestOptions
      *           Common options for this request.
+     *     @type bool $dataBoostEnabled
+     *           If this is for a partitioned query and this field is set to `true`, the
+     *           request will be executed via Spanner independent compute resources.
+     *
+     *           If the field is set to `true` but the request does not set
+     *           `partition_token`, the API will return an `INVALID_ARGUMENT` error.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1584,6 +1606,10 @@ class SpannerGapicClient
 
         if (isset($optionalArgs['requestOptions'])) {
             $request->setRequestOptions($optionalArgs['requestOptions']);
+        }
+
+        if (isset($optionalArgs['dataBoostEnabled'])) {
+            $request->setDataBoostEnabled($optionalArgs['dataBoostEnabled']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
@@ -1725,6 +1751,12 @@ class SpannerGapicClient
      *           PartitionReadRequest message used to create this partition_token.
      *     @type RequestOptions $requestOptions
      *           Common options for this request.
+     *     @type bool $dataBoostEnabled
+     *           If this is for a partitioned query and this field is set to `true`, the
+     *           request will be executed via Spanner independent compute resources.
+     *
+     *           If the field is set to `true` but the request does not set
+     *           `partition_token`, the API will return an `INVALID_ARGUMENT` error.
      *     @type int $timeoutMillis
      *           Timeout to use for this call.
      * }
@@ -1769,6 +1801,10 @@ class SpannerGapicClient
 
         if (isset($optionalArgs['requestOptions'])) {
             $request->setRequestOptions($optionalArgs['requestOptions']);
+        }
+
+        if (isset($optionalArgs['dataBoostEnabled'])) {
+            $request->setDataBoostEnabled($optionalArgs['dataBoostEnabled']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(

@@ -30,10 +30,12 @@ use Google\Cloud\Security\PrivateCA\V1\CertificateAuthorityServiceClient;
 use Google\Rpc\Status;
 
 /**
- * Delete a [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority].
+ * Delete a
+ * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority].
  *
- * @param string $formattedName The resource name for this [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority] in the
- *                              format `projects/&#42;/locations/&#42;/caPools/&#42;/certificateAuthorities/*`. Please see
+ * @param string $formattedName The resource name for this
+ *                              [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+ *                              in the format `projects/&#42;/locations/&#42;/caPools/&#42;/certificateAuthorities/*`. Please see
  *                              {@see CertificateAuthorityServiceClient::certificateAuthorityName()} for help formatting this field.
  */
 function delete_certificate_authority_sample(string $formattedName): void

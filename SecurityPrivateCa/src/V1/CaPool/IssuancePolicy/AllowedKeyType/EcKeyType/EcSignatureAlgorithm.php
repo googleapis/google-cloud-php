@@ -8,7 +8,9 @@ use UnexpectedValueException;
 
 /**
  * Describes an elliptic curve-based signature algorithm that may be
- * used in a [Certificate][google.cloud.security.privateca.v1.Certificate] issued from a [CaPool][google.cloud.security.privateca.v1.CaPool].
+ * used in a
+ * [Certificate][google.cloud.security.privateca.v1.Certificate] issued
+ * from a [CaPool][google.cloud.security.privateca.v1.CaPool].
  *
  * Protobuf type <code>google.cloud.security.privateca.v1.CaPool.IssuancePolicy.AllowedKeyType.EcKeyType.EcSignatureAlgorithm</code>
  */

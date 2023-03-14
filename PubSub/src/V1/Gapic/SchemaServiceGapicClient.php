@@ -448,11 +448,10 @@ class SchemaServiceGapicClient
      * @param string $name         Required. The name of the schema revision to be deleted, with a revision ID
      *                             explicitly included.
      *
-     *                             Example: projects/123/schemas/my-schema&#64;c7cfa2a8
-     * @param string $revisionId   Required. The revision ID to roll back to.
-     *                             It must be a revision of the same schema.
-     *
-     *                             Example: c7cfa2a8
+     *                             Example: `projects/123/schemas/my-schema&#64;c7cfa2a8`
+     * @param string $revisionId   Optional. This field is deprecated and should not be used for specifying
+     *                             the revision ID. The revision ID should be specified via the `name`
+     *                             parameter.
      * @param array  $optionalArgs {
      *     Optional.
      *

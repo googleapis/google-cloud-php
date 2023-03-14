@@ -20,9 +20,10 @@ class AggregationResult extends \Google\Protobuf\Internal\Message
 {
     /**
      * The result of the aggregation functions, ex: `COUNT(*) AS total_entities`.
-     * The key is the [alias][google.datastore.v1.AggregationQuery.Aggregation.alias]
-     * assigned to the aggregation function on input and the size of this map
-     * equals the number of aggregation functions in the query.
+     * The key is the
+     * [alias][google.datastore.v1.AggregationQuery.Aggregation.alias] assigned to
+     * the aggregation function on input and the size of this map equals the
+     * number of aggregation functions in the query.
      *
      * Generated from protobuf field <code>map<string, .google.datastore.v1.Value> aggregate_properties = 2;</code>
      */
@@ -36,9 +37,10 @@ class AggregationResult extends \Google\Protobuf\Internal\Message
      *
      *     @type array|\Google\Protobuf\Internal\MapField $aggregate_properties
      *           The result of the aggregation functions, ex: `COUNT(*) AS total_entities`.
-     *           The key is the [alias][google.datastore.v1.AggregationQuery.Aggregation.alias]
-     *           assigned to the aggregation function on input and the size of this map
-     *           equals the number of aggregation functions in the query.
+     *           The key is the
+     *           [alias][google.datastore.v1.AggregationQuery.Aggregation.alias] assigned to
+     *           the aggregation function on input and the size of this map equals the
+     *           number of aggregation functions in the query.
      * }
      */
     public function __construct($data = NULL) {
@@ -48,9 +50,10 @@ class AggregationResult extends \Google\Protobuf\Internal\Message
 
     /**
      * The result of the aggregation functions, ex: `COUNT(*) AS total_entities`.
-     * The key is the [alias][google.datastore.v1.AggregationQuery.Aggregation.alias]
-     * assigned to the aggregation function on input and the size of this map
-     * equals the number of aggregation functions in the query.
+     * The key is the
+     * [alias][google.datastore.v1.AggregationQuery.Aggregation.alias] assigned to
+     * the aggregation function on input and the size of this map equals the
+     * number of aggregation functions in the query.
      *
      * Generated from protobuf field <code>map<string, .google.datastore.v1.Value> aggregate_properties = 2;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -62,9 +65,10 @@ class AggregationResult extends \Google\Protobuf\Internal\Message
 
     /**
      * The result of the aggregation functions, ex: `COUNT(*) AS total_entities`.
-     * The key is the [alias][google.datastore.v1.AggregationQuery.Aggregation.alias]
-     * assigned to the aggregation function on input and the size of this map
-     * equals the number of aggregation functions in the query.
+     * The key is the
+     * [alias][google.datastore.v1.AggregationQuery.Aggregation.alias] assigned to
+     * the aggregation function on input and the size of this map equals the
+     * number of aggregation functions in the query.
      *
      * Generated from protobuf field <code>map<string, .google.datastore.v1.Value> aggregate_properties = 2;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var

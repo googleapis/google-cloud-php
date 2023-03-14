@@ -43,7 +43,7 @@ use Google\Cloud\Translate\V3\TranslationServiceClient;
  *
  *                                   Models and glossaries must be within the same region (have the same
  *                                   location-id), otherwise an INVALID_ARGUMENT (400) error is returned.
- * @param string $targetLanguageCode The BCP-47 language code to use for translation of the input
+ * @param string $targetLanguageCode The ISO-639 language code to use for translation of the input
  *                                   document, set to one of the language codes listed in Language Support.
  */
 function translate_document_sample(string $parent, string $targetLanguageCode): void

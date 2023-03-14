@@ -16,6 +16,13 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListBuildTriggersRequest extends \Google\Protobuf\Internal\Message
 {
     /**
+     * The parent of the collection of `Triggers`.
+     * Format: `projects/{project}/locations/{location}`
+     *
+     * Generated from protobuf field <code>string parent = 4 [(.google.api.resource_reference) = {</code>
+     */
+    private $parent = '';
+    /**
      * Required. ID of the project for which to list BuildTriggers.
      *
      * Generated from protobuf field <code>string project_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -40,6 +47,9 @@ class ListBuildTriggersRequest extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type string $parent
+     *           The parent of the collection of `Triggers`.
+     *           Format: `projects/{project}/locations/{location}`
      *     @type string $project_id
      *           Required. ID of the project for which to list BuildTriggers.
      *     @type int $page_size
@@ -51,6 +61,34 @@ class ListBuildTriggersRequest extends \Google\Protobuf\Internal\Message
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Devtools\Cloudbuild\V1\Cloudbuild::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * The parent of the collection of `Triggers`.
+     * Format: `projects/{project}/locations/{location}`
+     *
+     * Generated from protobuf field <code>string parent = 4 [(.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getParent()
+    {
+        return $this->parent;
+    }
+
+    /**
+     * The parent of the collection of `Triggers`.
+     * Format: `projects/{project}/locations/{location}`
+     *
+     * Generated from protobuf field <code>string parent = 4 [(.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setParent($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->parent = $var;
+
+        return $this;
     }
 
     /**

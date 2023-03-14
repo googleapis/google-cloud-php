@@ -29,11 +29,14 @@ use Google\Cloud\Security\PrivateCA\V1\CertificateAuthorityServiceClient;
 use Google\Protobuf\Duration;
 
 /**
- * Create a new [Certificate][google.cloud.security.privateca.v1.Certificate] in a given Project, Location from a particular
+ * Create a new [Certificate][google.cloud.security.privateca.v1.Certificate]
+ * in a given Project, Location from a particular
  * [CaPool][google.cloud.security.privateca.v1.CaPool].
  *
- * @param string $formattedParent The resource name of the [CaPool][google.cloud.security.privateca.v1.CaPool] associated with the [Certificate][google.cloud.security.privateca.v1.Certificate],
- *                                in the format `projects/&#42;/locations/&#42;/caPools/*`. Please see
+ * @param string $formattedParent The resource name of the
+ *                                [CaPool][google.cloud.security.privateca.v1.CaPool] associated with the
+ *                                [Certificate][google.cloud.security.privateca.v1.Certificate], in the
+ *                                format `projects/&#42;/locations/&#42;/caPools/*`. Please see
  *                                {@see CertificateAuthorityServiceClient::caPoolName()} for help formatting this field.
  */
 function create_certificate_sample(string $formattedParent): void

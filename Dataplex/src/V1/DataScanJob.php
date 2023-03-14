@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A DataScanJob represents an instance of a data scan.
+ * A DataScanJob represents an instance of DataScan execution.
  *
  * Generated from protobuf message <code>google.cloud.dataplex.v1.DataScanJob</code>
  */
@@ -17,8 +17,8 @@ class DataScanJob extends \Google\Protobuf\Internal\Message
 {
     /**
      * Output only. The relative resource name of the DataScanJob, of the form:
-     * projects/{project}/locations/{location_id}/dataScans/{datascan_id}/jobs/{job_id}.
-     * where `{project}` refers to a project_id or project_number and
+     * `projects/{project}/locations/{location_id}/dataScans/{datascan_id}/jobs/{job_id}`,
+     * where `project` refers to a *project_id* or *project_number* and
      * `location_id` refers to a GCP region.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -71,8 +71,8 @@ class DataScanJob extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Output only. The relative resource name of the DataScanJob, of the form:
-     *           projects/{project}/locations/{location_id}/dataScans/{datascan_id}/jobs/{job_id}.
-     *           where `{project}` refers to a project_id or project_number and
+     *           `projects/{project}/locations/{location_id}/dataScans/{datascan_id}/jobs/{job_id}`,
+     *           where `project` refers to a *project_id* or *project_number* and
      *           `location_id` refers to a GCP region.
      *     @type string $uid
      *           Output only. System generated globally unique ID for the DataScanJob.
@@ -103,8 +103,8 @@ class DataScanJob extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The relative resource name of the DataScanJob, of the form:
-     * projects/{project}/locations/{location_id}/dataScans/{datascan_id}/jobs/{job_id}.
-     * where `{project}` refers to a project_id or project_number and
+     * `projects/{project}/locations/{location_id}/dataScans/{datascan_id}/jobs/{job_id}`,
+     * where `project` refers to a *project_id* or *project_number* and
      * `location_id` refers to a GCP region.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -117,8 +117,8 @@ class DataScanJob extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The relative resource name of the DataScanJob, of the form:
-     * projects/{project}/locations/{location_id}/dataScans/{datascan_id}/jobs/{job_id}.
-     * where `{project}` refers to a project_id or project_number and
+     * `projects/{project}/locations/{location_id}/dataScans/{datascan_id}/jobs/{job_id}`,
+     * where `project` refers to a *project_id* or *project_number* and
      * `location_id` refers to a GCP region.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>

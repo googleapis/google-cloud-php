@@ -611,7 +611,8 @@ class AnalyticsAdminServiceGrpcClient extends \Grpc\BaseStub {
      * Acknowledges the terms of user data collection for the specified property.
      *
      * This acknowledgement must be completed (either in the Google Analytics UI
-     * or via this API) before MeasurementProtocolSecret resources may be created.
+     * or through this API) before MeasurementProtocolSecret resources may be
+     * created.
      * @param \Google\Analytics\Admin\V1alpha\AcknowledgeUserDataCollectionRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -1372,6 +1373,221 @@ class AnalyticsAdminServiceGrpcClient extends \Grpc\BaseStub {
         return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/RunAccessReport',
         $argument,
         ['\Google\Analytics\Admin\V1alpha\RunAccessReportResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Creates an access binding on an account or property.
+     * @param \Google\Analytics\Admin\V1alpha\CreateAccessBindingRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function CreateAccessBinding(\Google\Analytics\Admin\V1alpha\CreateAccessBindingRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateAccessBinding',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\AccessBinding', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Gets information about an access binding.
+     * @param \Google\Analytics\Admin\V1alpha\GetAccessBindingRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function GetAccessBinding(\Google\Analytics\Admin\V1alpha\GetAccessBindingRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/GetAccessBinding',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\AccessBinding', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Updates an access binding on an account or property.
+     * @param \Google\Analytics\Admin\V1alpha\UpdateAccessBindingRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function UpdateAccessBinding(\Google\Analytics\Admin\V1alpha\UpdateAccessBindingRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateAccessBinding',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\AccessBinding', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Deletes an access binding on an account or property.
+     * @param \Google\Analytics\Admin\V1alpha\DeleteAccessBindingRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function DeleteAccessBinding(\Google\Analytics\Admin\V1alpha\DeleteAccessBindingRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteAccessBinding',
+        $argument,
+        ['\Google\Protobuf\GPBEmpty', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Lists all access bindings on an account or property.
+     * @param \Google\Analytics\Admin\V1alpha\ListAccessBindingsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function ListAccessBindings(\Google\Analytics\Admin\V1alpha\ListAccessBindingsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/ListAccessBindings',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\ListAccessBindingsResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Creates information about multiple access bindings to an account or
+     * property.
+     *
+     * This method is transactional. If any AccessBinding cannot be created, none
+     * of the AccessBindings will be created.
+     * @param \Google\Analytics\Admin\V1alpha\BatchCreateAccessBindingsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function BatchCreateAccessBindings(\Google\Analytics\Admin\V1alpha\BatchCreateAccessBindingsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/BatchCreateAccessBindings',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\BatchCreateAccessBindingsResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Gets information about multiple access bindings to an account or property.
+     * @param \Google\Analytics\Admin\V1alpha\BatchGetAccessBindingsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function BatchGetAccessBindings(\Google\Analytics\Admin\V1alpha\BatchGetAccessBindingsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/BatchGetAccessBindings',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\BatchGetAccessBindingsResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Updates information about multiple access bindings to an account or
+     * property.
+     * @param \Google\Analytics\Admin\V1alpha\BatchUpdateAccessBindingsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function BatchUpdateAccessBindings(\Google\Analytics\Admin\V1alpha\BatchUpdateAccessBindingsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/BatchUpdateAccessBindings',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\BatchUpdateAccessBindingsResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Deletes information about multiple users' links to an account or property.
+     * @param \Google\Analytics\Admin\V1alpha\BatchDeleteAccessBindingsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function BatchDeleteAccessBindings(\Google\Analytics\Admin\V1alpha\BatchDeleteAccessBindingsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/BatchDeleteAccessBindings',
+        $argument,
+        ['\Google\Protobuf\GPBEmpty', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Lookup for a single ExpandedDataSet.
+     * @param \Google\Analytics\Admin\V1alpha\GetExpandedDataSetRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function GetExpandedDataSet(\Google\Analytics\Admin\V1alpha\GetExpandedDataSetRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/GetExpandedDataSet',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\ExpandedDataSet', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Lists ExpandedDataSets on a property.
+     * @param \Google\Analytics\Admin\V1alpha\ListExpandedDataSetsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function ListExpandedDataSets(\Google\Analytics\Admin\V1alpha\ListExpandedDataSetsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/ListExpandedDataSets',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\ListExpandedDataSetsResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Creates a ExpandedDataSet.
+     * @param \Google\Analytics\Admin\V1alpha\CreateExpandedDataSetRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function CreateExpandedDataSet(\Google\Analytics\Admin\V1alpha\CreateExpandedDataSetRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateExpandedDataSet',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\ExpandedDataSet', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Updates a ExpandedDataSet on a property.
+     * @param \Google\Analytics\Admin\V1alpha\UpdateExpandedDataSetRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function UpdateExpandedDataSet(\Google\Analytics\Admin\V1alpha\UpdateExpandedDataSetRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateExpandedDataSet',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\ExpandedDataSet', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Deletes a ExpandedDataSet on a property.
+     * @param \Google\Analytics\Admin\V1alpha\DeleteExpandedDataSetRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function DeleteExpandedDataSet(\Google\Analytics\Admin\V1alpha\DeleteExpandedDataSetRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteExpandedDataSet',
+        $argument,
+        ['\Google\Protobuf\GPBEmpty', 'decode'],
         $metadata, $options);
     }
 

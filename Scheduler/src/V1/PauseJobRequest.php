@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [PauseJob][google.cloud.scheduler.v1.CloudScheduler.PauseJob].
+ * Request message for
+ * [PauseJob][google.cloud.scheduler.v1.CloudScheduler.PauseJob].
  *
  * Generated from protobuf message <code>google.cloud.scheduler.v1.PauseJobRequest</code>
  */

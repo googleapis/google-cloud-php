@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListDataScanJobsResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * DataScanJobs (metadata only) under a given dataScan.
+     * DataScanJobs (`BASIC` view only) under a given dataScan.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataScanJob data_scan_jobs = 1;</code>
      */
@@ -36,7 +36,7 @@ class ListDataScanJobsResponse extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<\Google\Cloud\Dataplex\V1\DataScanJob>|\Google\Protobuf\Internal\RepeatedField $data_scan_jobs
-     *           DataScanJobs (metadata only) under a given dataScan.
+     *           DataScanJobs (`BASIC` view only) under a given dataScan.
      *     @type string $next_page_token
      *           Token to retrieve the next page of results, or empty if there are no more
      *           results in the list.
@@ -48,7 +48,7 @@ class ListDataScanJobsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * DataScanJobs (metadata only) under a given dataScan.
+     * DataScanJobs (`BASIC` view only) under a given dataScan.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataScanJob data_scan_jobs = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -59,7 +59,7 @@ class ListDataScanJobsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * DataScanJobs (metadata only) under a given dataScan.
+     * DataScanJobs (`BASIC` view only) under a given dataScan.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataScanJob data_scan_jobs = 1;</code>
      * @param array<\Google\Cloud\Dataplex\V1\DataScanJob>|\Google\Protobuf\Internal\RepeatedField $var
