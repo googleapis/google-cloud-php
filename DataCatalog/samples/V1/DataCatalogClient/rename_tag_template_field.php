@@ -36,7 +36,8 @@ use Google\Cloud\DataCatalog\V1\TagTemplateField;
  *
  * @param string $formattedName         The name of the tag template field. Please see
  *                                      {@see DataCatalogClient::tagTemplateFieldName()} for help formatting this field.
- * @param string $newTagTemplateFieldId The new ID of this tag template field. For example, `my_new_field`.
+ * @param string $newTagTemplateFieldId The new ID of this tag template field. For example,
+ *                                      `my_new_field`.
  */
 function rename_tag_template_field_sample(
     string $formattedName,

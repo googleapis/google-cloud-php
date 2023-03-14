@@ -56,7 +56,8 @@ use Google\Cloud\DataCatalog\V1\EntryGroup;
  * the `parent` parameter. For more information, see [Data Catalog resource
  * project](https://cloud.google.com/data-catalog/docs/concepts/resource-project).
  *
- * @param string $formattedParent The names of the project and location that the new entry group belongs to.
+ * @param string $formattedParent The names of the project and location that the new entry group
+ *                                belongs to.
  *
  *                                Note: The entry group itself and its child resources might not be
  *                                stored in the location specified in its name. Please see
