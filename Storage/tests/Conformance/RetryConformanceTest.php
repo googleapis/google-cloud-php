@@ -118,7 +118,7 @@ class RetryConformanceTest extends TestCase
         // These scenario IDs will be run.
         // Omit certain IDs for debugging or testing only
         // certain cases.
-        $scenarios = [1,2,3,4,5,6,7,8];
+        $scenarios = [1, 2, 3, 4, 5, 6, 7, 8];
 
         $cases = [];
 

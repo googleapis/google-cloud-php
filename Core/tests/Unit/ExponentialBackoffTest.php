@@ -184,7 +184,7 @@ class ExponentialBackoffTest extends TestCase
         try {
             $backoff->execute(
                 function () {
-                    self::fail('Intentionally failing request');
+                    throw new \Exception('Intentionally failing request');
                 },
                 [$args]
             );
@@ -212,7 +212,7 @@ class ExponentialBackoffTest extends TestCase
         try {
             $backoff->execute(
                 function () {
-                    self::fail('Intentionally failing request');
+                    throw new \Exception('Intentionally failing request');
                 },
                 [$args]
             );
