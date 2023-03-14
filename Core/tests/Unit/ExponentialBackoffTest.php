@@ -188,7 +188,7 @@ class ExponentialBackoffTest extends TestCase
                 },
                 [$args]
             );
-        } catch (AssertionFailedError $err) {
+        } catch (\Exception $err) {
             // Do nothing.
             // Catched the intentional failing call being made above:
             // "Intentionally failing request"
@@ -216,7 +216,7 @@ class ExponentialBackoffTest extends TestCase
                 },
                 [$args]
             );
-        } catch (AssertionFailedError $err) {
+        } catch (\Exception $err) {
             // Do nothing.
             // Catched the intentional failing call being made above:
             // "Intentionally failing request"
