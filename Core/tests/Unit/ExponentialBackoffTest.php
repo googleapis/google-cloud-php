@@ -18,6 +18,7 @@
 namespace Google\Cloud\Core\Tests\Unit;
 
 use Google\Cloud\Core\ExponentialBackoff;
+use PHPUnit\Framework\AssertionFailedError;
 use Prophecy\Argument;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
@@ -163,8 +164,7 @@ class ExponentialBackoffTest extends TestCase
 
     /**
      * Tests whether `onRetryExceptionFunction()` callback is
-     * properly invoked when exception occurs and retry is attempted while
-     * executing the request.
+     * properly invoked when exception occurs in the request being made.
      */
     public function testOnRetryExceptionFunction()
     {
@@ -174,54 +174,52 @@ class ExponentialBackoffTest extends TestCase
             $retryAttempt,
             $arguments
         ) {
-            $message = sprintf('%s, %s', $retryAttempt, $arguments[0]['foo']);
-            throw new \Exception($message);
+            self::assertEquals(0, $retryAttempt);
+            self::assertEquals('bar', $arguments[0]['foo']);
         };
 
-        $result = '';
-        $expected = '0, bar';
-        $backoff = new ExponentialBackoff(null, null, $onRetryExceptionFunction);
+        // Setting $retries to 0 so that retry doesn't happens after first
+        // failure.
+        $backoff = new ExponentialBackoff(0, null, $onRetryExceptionFunction);
         try {
             $backoff->execute(
-                function ($options) use ($args) {
-                    throw new \Exception();
+                function () {
+                    self::fail('Intentionally failing request');
                 },
                 [$args]
             );
-        } catch (\Exception $ex) {
-            $result = $ex->getMessage();
+        } catch (AssertionFailedError $err) {
+            // Do nothing.
+            // Catched the intentional failing call being made above:
+            // "Intentionally failing request"
         }
-
-        $this->assertEquals($expected, $result);
     }
 
     /**
      * Tests whether `testOnExecutionStartFunction()` callback is
-     * properly invoked when execute method is invoked and before network call
-     * is executed.
+     * properly invoked when exception occurs in the request being made.
      */
     public function testOnExecutionStartFunction()
     {
         $args = ['foo' => 'bar'];
         $onExecutionStartFunction = function ($arguments) {
-            $message = sprintf('%s', $arguments[0]['foo']);
-            throw new \Exception($message);
+            self::assertEquals('bar', $arguments[0]['foo']);
         };
 
-        $result = '';
-        $expected = 'bar';
-        $backoff = new ExponentialBackoff(null, null, null, $onExecutionStartFunction);
+        // Setting $retries to 0 so that no retry happens after first failures
+        $backoff = new ExponentialBackoff(0, null, null, $onExecutionStartFunction);
+
         try {
             $backoff->execute(
-                function ($options) use ($args) {
-                    throw new \Exception();
+                function () {
+                    self::fail('Intentionally failing request');
                 },
                 [$args]
             );
-        } catch (\Exception $ex) {
-            $result = $ex->getMessage();
+        } catch (AssertionFailedError $err) {
+            // Do nothing.
+            // Catched the intentional failing call being made above:
+            // "Intentionally failing request"
         }
-
-        $this->assertEquals($expected, $result);
     }
 }

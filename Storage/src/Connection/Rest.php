@@ -743,12 +743,12 @@ class Rest implements ConnectionInterface
      *
      * @param string $headerLine The header line to update.
      * @param array &$arguments The arguments array(passed by reference) used by
-     * execute method of ExponentialBackoff object.
+     *        execute method of ExponentialBackoff object.
      * @param string $value The value to be ammended in the header line.
      * @param bool $getHeaderFromRequest [optional] A flag which determines if
-     *  existing header value is read from $request or from $options. It's useful
-     *  to read from $options incase we update multiple values to a single
-     *  header key.
+     *        existing header value is read from $request or from $options. It's
+     *        useful to read from $options incase we update multiple values to a
+     *        single header key.
      */
     private function updateHeader(
         $headerLine,

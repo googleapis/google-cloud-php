@@ -479,6 +479,8 @@ class RestTest extends TestCase
         $currAttempt,
         $expected
     ) {
+        // Using Reflection instead of Prophecy because we want to test a
+        // private method's logic by verifying the output for a given input.
         $rest = new Rest($restConfig);
         $reflector = new \ReflectionClass('Google\Cloud\Storage\Connection\Rest');
         $method = $reflector->getMethod('isPreConditionSupplied');
@@ -540,6 +542,8 @@ class RestTest extends TestCase
         $currentAttempt = 1;
         $headerLineName = RequestWrapper::HEADER_API_CLIENT_IDENTIFICATION;
 
+        // Using Reflection instead of Prophecy because we want to test a
+        // private method's logic by verifying the output for a given input.
         $rest = new Rest();
         $reflection = new \ReflectionClass(Rest::class);
         $reflectionMethod = $reflection->getMethod('updateRetryheaders');

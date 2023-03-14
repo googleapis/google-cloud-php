@@ -192,6 +192,9 @@ class ResumableUploaderTest extends TestCase
             'http://www.example.com',
             $options
         );
+
+        // Using Reflection instead of Prophecy because we want to test a
+        // private method's logic by verifying the output for a given input.
         $reflection = new \ReflectionObject($uploader);
         $requestOptionsProperty = $reflection->getProperty('requestOptions');
         $requestOptionsProperty->setAccessible(true);
