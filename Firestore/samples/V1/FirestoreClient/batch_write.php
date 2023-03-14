@@ -33,7 +33,8 @@ use Google\Cloud\Firestore\V1\FirestoreClient;
  * The BatchWrite method does not apply the write operations atomically
  * and can apply them out of order. Method does not allow more than one write
  * per document. Each write succeeds or fails independently. See the
- * [BatchWriteResponse][google.firestore.v1.BatchWriteResponse] for the success status of each write.
+ * [BatchWriteResponse][google.firestore.v1.BatchWriteResponse] for the
+ * success status of each write.
  *
  * If you require an atomically applied set of writes, use
  * [Commit][google.firestore.v1.Firestore.Commit] instead.

@@ -17,8 +17,8 @@ class ExecutionSpec extends \Google\Protobuf\Internal\Message
 {
     /**
      * Optional. Spec related to how often and when a scan should be triggered.
-     * If not specified, the default is OnDemand, which means the scan will not
-     * run until the user calls RunDataScan API.
+     * If not specified, the default is `OnDemand`, which means the scan will
+     * not run until the user calls `RunDataScan` API.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.Trigger trigger = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -33,11 +33,12 @@ class ExecutionSpec extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Dataplex\V1\Trigger $trigger
      *           Optional. Spec related to how often and when a scan should be triggered.
-     *           If not specified, the default is OnDemand, which means the scan will not
-     *           run until the user calls RunDataScan API.
+     *           If not specified, the default is `OnDemand`, which means the scan will
+     *           not run until the user calls `RunDataScan` API.
      *     @type string $field
-     *           Immutable. The unnested field (Date or Timestamp) that contains values
-     *           that monotonically increase over time.
+     *           Immutable. The unnested field (of type *Date* or *Timestamp*) that
+     *           contains values which monotonically increase over time.
+     *           If not specified, a data scan will run for all data in the table.
      * }
      */
     public function __construct($data = NULL) {
@@ -47,8 +48,8 @@ class ExecutionSpec extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Spec related to how often and when a scan should be triggered.
-     * If not specified, the default is OnDemand, which means the scan will not
-     * run until the user calls RunDataScan API.
+     * If not specified, the default is `OnDemand`, which means the scan will
+     * not run until the user calls `RunDataScan` API.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.Trigger trigger = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Dataplex\V1\Trigger|null
@@ -70,8 +71,8 @@ class ExecutionSpec extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Spec related to how often and when a scan should be triggered.
-     * If not specified, the default is OnDemand, which means the scan will not
-     * run until the user calls RunDataScan API.
+     * If not specified, the default is `OnDemand`, which means the scan will
+     * not run until the user calls `RunDataScan` API.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.Trigger trigger = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Dataplex\V1\Trigger $var
@@ -86,8 +87,9 @@ class ExecutionSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. The unnested field (Date or Timestamp) that contains values
-     * that monotonically increase over time.
+     * Immutable. The unnested field (of type *Date* or *Timestamp*) that
+     * contains values which monotonically increase over time.
+     * If not specified, a data scan will run for all data in the table.
      *
      * Generated from protobuf field <code>string field = 100 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
@@ -103,8 +105,9 @@ class ExecutionSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. The unnested field (Date or Timestamp) that contains values
-     * that monotonically increase over time.
+     * Immutable. The unnested field (of type *Date* or *Timestamp*) that
+     * contains values which monotonically increase over time.
+     * If not specified, a data scan will run for all data in the table.
      *
      * Generated from protobuf field <code>string field = 100 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var

@@ -42,7 +42,11 @@ use Google\Rpc\Status;
  *                                            Endpoint.
  *
  *                                            The resource name may contain version id or version alias to specify the
- *                                            version, if no version is specified, the default version will be deployed. Please see
+ *                                            version.
+ *                                            Example: `projects/{project}/locations/{location}/models/{model}&#64;2`
+ *                                            or
+ *                                            `projects/{project}/locations/{location}/models/{model}&#64;golden`
+ *                                            if no version is specified, the default version will be deployed. Please see
  *                                            {@see EndpointServiceClient::modelName()} for help formatting this field.
  */
 function deploy_model_sample(string $formattedEndpoint, string $formattedDeployedModelModel): void

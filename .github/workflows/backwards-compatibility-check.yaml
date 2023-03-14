@@ -4,8 +4,6 @@ jobs:
   # More info at https://github.com/Roave/BackwardCompatibilityCheck.
   backwards-compatibility-check:
     runs-on: ubuntu-latest
-    # Disable this check by applying the 'breaking change allowed' label to the PR.
-    if: "!contains(github.event.pull_request.labels.*.name, 'breaking change allowed')"
     steps:
       - uses: actions/checkout@v2
         with:
@@ -18,6 +16,9 @@ jobs:
         run: composer global require "roave/backward-compatibility-check:^8.2"
       - name: "Check for BC breaks"
         if: github.actor != 'release-please[bot]'
+        # Ensure the build still passes by adding the 'breaking change allowed' label to the PR.
+        # NOTE: PR should contain a "BREAKING CHANGE JUSTIFICATION" in a comment or description
+        continue-on-error: ${{ contains(github.event.pull_request.labels.*.name, 'breaking change allowed') }}
         run: |
           ~/.composer/vendor/bin/roave-backward-compatibility-check --from=origin/main --format=github-actions
       - name: Get Latest Release
@@ -28,6 +29,9 @@ jobs:
           repository: ${{ github.repository }}
       - name: "Check for BC breaks (Next Release)"
         if: github.actor == 'release-please[bot]'
+        # Ensure the build still passes by adding the 'breaking change allowed' label to the PR.
+        # NOTE: PR should contain a "BREAKING CHANGE JUSTIFICATION" in a comment or description
+        continue-on-error: ${{ contains(github.event.pull_request.labels.*.name, 'breaking change allowed') }}
         run: |
           ~/.composer/vendor/bin/roave-backward-compatibility-check \
               --from=${{ steps.latest-release.outputs.release }} \

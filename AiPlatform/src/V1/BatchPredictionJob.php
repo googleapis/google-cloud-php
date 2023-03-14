@@ -39,7 +39,11 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
      * and their resources.
      * Exactly one of model and unmanaged_container_model must be set.
      * The model resource name may contain version id or version alias to specify
-     * the version, if no version is specified, the default version will be used.
+     * the version.
+     *  Example: `projects/{project}/locations/{location}/models/{model}&#64;2`
+     *              or
+     *            `projects/{project}/locations/{location}/models/{model}&#64;golden`
+     * if no version is specified, the default version will be deployed.
      *
      * Generated from protobuf field <code>string model = 3 [(.google.api.resource_reference) = {</code>
      */
@@ -259,6 +263,17 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.EncryptionSpec encryption_spec = 24;</code>
      */
     private $encryption_spec = null;
+    /**
+     * For custom-trained Models and AutoML Tabular Models, the container of the
+     * DeployedModel instances will send `stderr` and `stdout` streams to
+     * Stackdriver Logging by default. Please note that the logs incur cost,
+     * which are subject to [Cloud Logging
+     * pricing](https://cloud.google.com/stackdriver/pricing).
+     * User can disable container logging by setting this flag to true.
+     *
+     * Generated from protobuf field <code>bool disable_container_logging = 34;</code>
+     */
+    private $disable_container_logging = false;
 
     /**
      * Constructor.
@@ -277,7 +292,11 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
      *           and their resources.
      *           Exactly one of model and unmanaged_container_model must be set.
      *           The model resource name may contain version id or version alias to specify
-     *           the version, if no version is specified, the default version will be used.
+     *           the version.
+     *            Example: `projects/{project}/locations/{location}/models/{model}&#64;2`
+     *                        or
+     *                      `projects/{project}/locations/{location}/models/{model}&#64;golden`
+     *           if no version is specified, the default version will be deployed.
      *     @type string $model_version_id
      *           Output only. The version ID of the Model that produces the predictions via
      *           this job.
@@ -401,6 +420,13 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
      *           Customer-managed encryption key options for a BatchPredictionJob. If this
      *           is set, then all resources created by the BatchPredictionJob will be
      *           encrypted with the provided encryption key.
+     *     @type bool $disable_container_logging
+     *           For custom-trained Models and AutoML Tabular Models, the container of the
+     *           DeployedModel instances will send `stderr` and `stdout` streams to
+     *           Stackdriver Logging by default. Please note that the logs incur cost,
+     *           which are subject to [Cloud Logging
+     *           pricing](https://cloud.google.com/stackdriver/pricing).
+     *           User can disable container logging by setting this flag to true.
      * }
      */
     public function __construct($data = NULL) {
@@ -467,7 +493,11 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
      * and their resources.
      * Exactly one of model and unmanaged_container_model must be set.
      * The model resource name may contain version id or version alias to specify
-     * the version, if no version is specified, the default version will be used.
+     * the version.
+     *  Example: `projects/{project}/locations/{location}/models/{model}&#64;2`
+     *              or
+     *            `projects/{project}/locations/{location}/models/{model}&#64;golden`
+     * if no version is specified, the default version will be deployed.
      *
      * Generated from protobuf field <code>string model = 3 [(.google.api.resource_reference) = {</code>
      * @return string
@@ -484,7 +514,11 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
      * and their resources.
      * Exactly one of model and unmanaged_container_model must be set.
      * The model resource name may contain version id or version alias to specify
-     * the version, if no version is specified, the default version will be used.
+     * the version.
+     *  Example: `projects/{project}/locations/{location}/models/{model}&#64;2`
+     *              or
+     *            `projects/{project}/locations/{location}/models/{model}&#64;golden`
+     * if no version is specified, the default version will be deployed.
      *
      * Generated from protobuf field <code>string model = 3 [(.google.api.resource_reference) = {</code>
      * @param string $var
@@ -1416,6 +1450,42 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\EncryptionSpec::class);
         $this->encryption_spec = $var;
+
+        return $this;
+    }
+
+    /**
+     * For custom-trained Models and AutoML Tabular Models, the container of the
+     * DeployedModel instances will send `stderr` and `stdout` streams to
+     * Stackdriver Logging by default. Please note that the logs incur cost,
+     * which are subject to [Cloud Logging
+     * pricing](https://cloud.google.com/stackdriver/pricing).
+     * User can disable container logging by setting this flag to true.
+     *
+     * Generated from protobuf field <code>bool disable_container_logging = 34;</code>
+     * @return bool
+     */
+    public function getDisableContainerLogging()
+    {
+        return $this->disable_container_logging;
+    }
+
+    /**
+     * For custom-trained Models and AutoML Tabular Models, the container of the
+     * DeployedModel instances will send `stderr` and `stdout` streams to
+     * Stackdriver Logging by default. Please note that the logs incur cost,
+     * which are subject to [Cloud Logging
+     * pricing](https://cloud.google.com/stackdriver/pricing).
+     * User can disable container logging by setting this flag to true.
+     *
+     * Generated from protobuf field <code>bool disable_container_logging = 34;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setDisableContainerLogging($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->disable_container_logging = $var;
 
         return $this;
     }

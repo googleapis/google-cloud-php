@@ -32,7 +32,7 @@ use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
 /**
- * Update the dataScan resource.
+ * Updates a DataScan resource.
  *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:

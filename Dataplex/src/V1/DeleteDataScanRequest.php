@@ -17,8 +17,8 @@ class DeleteDataScanRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The resource name of the dataScan:
-     * projects/{project}/locations/{location_id}/dataScans/{data_scan_id}
-     * where `{project}` refers to a project_id or project_number and
+     * `projects/{project}/locations/{location_id}/dataScans/{data_scan_id}`
+     * where `project` refers to a *project_id* or *project_number* and
      * `location_id` refers to a GCP region.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -33,8 +33,8 @@ class DeleteDataScanRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. The resource name of the dataScan:
-     *           projects/{project}/locations/{location_id}/dataScans/{data_scan_id}
-     *           where `{project}` refers to a project_id or project_number and
+     *           `projects/{project}/locations/{location_id}/dataScans/{data_scan_id}`
+     *           where `project` refers to a *project_id* or *project_number* and
      *           `location_id` refers to a GCP region.
      * }
      */
@@ -45,8 +45,8 @@ class DeleteDataScanRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the dataScan:
-     * projects/{project}/locations/{location_id}/dataScans/{data_scan_id}
-     * where `{project}` refers to a project_id or project_number and
+     * `projects/{project}/locations/{location_id}/dataScans/{data_scan_id}`
+     * where `project` refers to a *project_id* or *project_number* and
      * `location_id` refers to a GCP region.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -59,8 +59,8 @@ class DeleteDataScanRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the dataScan:
-     * projects/{project}/locations/{location_id}/dataScans/{data_scan_id}
-     * where `{project}` refers to a project_id or project_number and
+     * `projects/{project}/locations/{location_id}/dataScans/{data_scan_id}`
+     * where `project` refers to a *project_id* or *project_number* and
      * `location_id` refers to a GCP region.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>

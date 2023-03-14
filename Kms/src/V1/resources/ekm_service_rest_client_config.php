@@ -18,6 +18,17 @@ return [
                     'ekm_connection_id',
                 ],
             ],
+            'GetEkmConfig' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/ekmConfig}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetEkmConnection' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/ekmConnections/*}',
@@ -38,6 +49,22 @@ return [
                             'getParent',
                         ],
                     ],
+                ],
+            ],
+            'UpdateEkmConfig' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{ekm_config.name=projects/*/locations/*/ekmConfig}',
+                'body' => 'ekm_config',
+                'placeholders' => [
+                    'ekm_config.name' => [
+                        'getters' => [
+                            'getEkmConfig',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
                 ],
             ],
             'UpdateEkmConnection' => [

@@ -9,86 +9,88 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Configuration for a WorkerPool to run the builds.
- * Workers are machines that Cloud Build uses to run your builds. By default,
- * all workers run in a project owned by Cloud Build. To have full control over
- * the workers that execute your builds -- such as enabling them to access
- * private resources on your private network -- you can request Cloud Build to
- * run the workers in your own project by creating a custom workers pool.
+ * Configuration for a `WorkerPool`.
+ * Cloud Build owns and maintains a pool of workers for general use and have no
+ * access to a project's private network. By default, builds submitted to
+ * Cloud Build will use a worker from this pool.
+ * If your build needs access to resources on a private network,
+ * create and use a `WorkerPool` to run your builds. Private `WorkerPool`s give
+ * your builds access to any single VPC network that you
+ * administer, including any on-prem resources connected to that VPC
+ * network. For an overview of private pools, see
+ * [Private pools
+ * overview](https://cloud.google.com/build/docs/private-pools/private-pools-overview).
  *
  * Generated from protobuf message <code>google.devtools.cloudbuild.v1.WorkerPool</code>
  */
 class WorkerPool extends \Google\Protobuf\Internal\Message
 {
     /**
-     * User-defined name of the `WorkerPool`.
+     * Output only. The resource name of the `WorkerPool`, with format
+     * `projects/{project}/locations/{location}/workerPools/{worker_pool}`.
+     * The value of `{worker_pool}` is provided by `worker_pool_id` in
+     * `CreateWorkerPool` request and the value of `{location}` is determined by
+     * the endpoint accessed.
      *
-     * Generated from protobuf field <code>string name = 14;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $name = '';
     /**
-     * The project ID of the GCP project for which the `WorkerPool` is created.
+     * A user-specified, human-readable name for the `WorkerPool`. If provided,
+     * this value must be 1-63 characters.
      *
-     * Generated from protobuf field <code>string project_id = 2;</code>
+     * Generated from protobuf field <code>string display_name = 2;</code>
      */
-    private $project_id = '';
+    private $display_name = '';
     /**
-     * Output only. The service account used to manage the `WorkerPool`. The
-     * service account must have the Compute Instance Admin (Beta) permission at
-     * the project level.
+     * Output only. A unique identifier for the `WorkerPool`.
      *
-     * Generated from protobuf field <code>string service_account_email = 3;</code>
+     * Generated from protobuf field <code>string uid = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $service_account_email = '';
+    private $uid = '';
     /**
-     * Total number of workers to be created across all requested regions.
+     * User specified annotations. See https://google.aip.dev/128#annotations
+     * for more details such as format and size limitations.
      *
-     * Generated from protobuf field <code>int64 worker_count = 4;</code>
+     * Generated from protobuf field <code>map<string, string> annotations = 4;</code>
      */
-    private $worker_count = 0;
-    /**
-     * Configuration to be used for a creating workers in the `WorkerPool`.
-     *
-     * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.WorkerConfig worker_config = 16;</code>
-     */
-    private $worker_config = null;
-    /**
-     * List of regions to create the `WorkerPool`. Regions can't be empty.
-     * If Cloud Build adds a new GCP region in the future, the existing
-     * `WorkerPool` will not be enabled in the new region automatically;
-     * you must add the new region to the `regions` field to enable the
-     * `WorkerPool` in that region.
-     *
-     * Generated from protobuf field <code>repeated .google.devtools.cloudbuild.v1.WorkerPool.Region regions = 9;</code>
-     */
-    private $regions;
+    private $annotations;
     /**
      * Output only. Time at which the request to create the `WorkerPool` was
      * received.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 11;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $create_time = null;
     /**
      * Output only. Time at which the request to update the `WorkerPool` was
      * received.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 17;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $update_time = null;
     /**
      * Output only. Time at which the request to delete the `WorkerPool` was
      * received.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp delete_time = 12;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp delete_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $delete_time = null;
     /**
-     * Output only. WorkerPool Status.
+     * Output only. `WorkerPool` state.
      *
-     * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.WorkerPool.Status status = 13;</code>
+     * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.WorkerPool.State state = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $status = 0;
+    private $state = 0;
+    /**
+     * Output only. Checksum computed by the server. May be sent on update and
+     * delete requests to ensure that the client has an up-to-date value before
+     * proceeding.
+     *
+     * Generated from protobuf field <code>string etag = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $etag = '';
+    protected $config;
 
     /**
      * Constructor.
@@ -97,23 +99,19 @@ class WorkerPool extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           User-defined name of the `WorkerPool`.
-     *     @type string $project_id
-     *           The project ID of the GCP project for which the `WorkerPool` is created.
-     *     @type string $service_account_email
-     *           Output only. The service account used to manage the `WorkerPool`. The
-     *           service account must have the Compute Instance Admin (Beta) permission at
-     *           the project level.
-     *     @type int|string $worker_count
-     *           Total number of workers to be created across all requested regions.
-     *     @type \Google\Cloud\Build\V1\WorkerConfig $worker_config
-     *           Configuration to be used for a creating workers in the `WorkerPool`.
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $regions
-     *           List of regions to create the `WorkerPool`. Regions can't be empty.
-     *           If Cloud Build adds a new GCP region in the future, the existing
-     *           `WorkerPool` will not be enabled in the new region automatically;
-     *           you must add the new region to the `regions` field to enable the
-     *           `WorkerPool` in that region.
+     *           Output only. The resource name of the `WorkerPool`, with format
+     *           `projects/{project}/locations/{location}/workerPools/{worker_pool}`.
+     *           The value of `{worker_pool}` is provided by `worker_pool_id` in
+     *           `CreateWorkerPool` request and the value of `{location}` is determined by
+     *           the endpoint accessed.
+     *     @type string $display_name
+     *           A user-specified, human-readable name for the `WorkerPool`. If provided,
+     *           this value must be 1-63 characters.
+     *     @type string $uid
+     *           Output only. A unique identifier for the `WorkerPool`.
+     *     @type array|\Google\Protobuf\Internal\MapField $annotations
+     *           User specified annotations. See https://google.aip.dev/128#annotations
+     *           for more details such as format and size limitations.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. Time at which the request to create the `WorkerPool` was
      *           received.
@@ -123,8 +121,14 @@ class WorkerPool extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $delete_time
      *           Output only. Time at which the request to delete the `WorkerPool` was
      *           received.
-     *     @type int $status
-     *           Output only. WorkerPool Status.
+     *     @type int $state
+     *           Output only. `WorkerPool` state.
+     *     @type \Google\Cloud\Build\V1\PrivatePoolV1Config $private_pool_v1_config
+     *           Private Pool using a v1 configuration.
+     *     @type string $etag
+     *           Output only. Checksum computed by the server. May be sent on update and
+     *           delete requests to ensure that the client has an up-to-date value before
+     *           proceeding.
      * }
      */
     public function __construct($data = NULL) {
@@ -133,9 +137,13 @@ class WorkerPool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * User-defined name of the `WorkerPool`.
+     * Output only. The resource name of the `WorkerPool`, with format
+     * `projects/{project}/locations/{location}/workerPools/{worker_pool}`.
+     * The value of `{worker_pool}` is provided by `worker_pool_id` in
+     * `CreateWorkerPool` request and the value of `{location}` is determined by
+     * the endpoint accessed.
      *
-     * Generated from protobuf field <code>string name = 14;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getName()
@@ -144,9 +152,13 @@ class WorkerPool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * User-defined name of the `WorkerPool`.
+     * Output only. The resource name of the `WorkerPool`, with format
+     * `projects/{project}/locations/{location}/workerPools/{worker_pool}`.
+     * The value of `{worker_pool}` is provided by `worker_pool_id` in
+     * `CreateWorkerPool` request and the value of `{location}` is determined by
+     * the endpoint accessed.
      *
-     * Generated from protobuf field <code>string name = 14;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -159,153 +171,83 @@ class WorkerPool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The project ID of the GCP project for which the `WorkerPool` is created.
+     * A user-specified, human-readable name for the `WorkerPool`. If provided,
+     * this value must be 1-63 characters.
      *
-     * Generated from protobuf field <code>string project_id = 2;</code>
+     * Generated from protobuf field <code>string display_name = 2;</code>
      * @return string
      */
-    public function getProjectId()
+    public function getDisplayName()
     {
-        return $this->project_id;
+        return $this->display_name;
     }
 
     /**
-     * The project ID of the GCP project for which the `WorkerPool` is created.
+     * A user-specified, human-readable name for the `WorkerPool`. If provided,
+     * this value must be 1-63 characters.
      *
-     * Generated from protobuf field <code>string project_id = 2;</code>
+     * Generated from protobuf field <code>string display_name = 2;</code>
      * @param string $var
      * @return $this
      */
-    public function setProjectId($var)
+    public function setDisplayName($var)
     {
         GPBUtil::checkString($var, True);
-        $this->project_id = $var;
+        $this->display_name = $var;
 
         return $this;
     }
 
     /**
-     * Output only. The service account used to manage the `WorkerPool`. The
-     * service account must have the Compute Instance Admin (Beta) permission at
-     * the project level.
+     * Output only. A unique identifier for the `WorkerPool`.
      *
-     * Generated from protobuf field <code>string service_account_email = 3;</code>
+     * Generated from protobuf field <code>string uid = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
-    public function getServiceAccountEmail()
+    public function getUid()
     {
-        return $this->service_account_email;
+        return $this->uid;
     }
 
     /**
-     * Output only. The service account used to manage the `WorkerPool`. The
-     * service account must have the Compute Instance Admin (Beta) permission at
-     * the project level.
+     * Output only. A unique identifier for the `WorkerPool`.
      *
-     * Generated from protobuf field <code>string service_account_email = 3;</code>
+     * Generated from protobuf field <code>string uid = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
-    public function setServiceAccountEmail($var)
+    public function setUid($var)
     {
         GPBUtil::checkString($var, True);
-        $this->service_account_email = $var;
+        $this->uid = $var;
 
         return $this;
     }
 
     /**
-     * Total number of workers to be created across all requested regions.
+     * User specified annotations. See https://google.aip.dev/128#annotations
+     * for more details such as format and size limitations.
      *
-     * Generated from protobuf field <code>int64 worker_count = 4;</code>
-     * @return int|string
+     * Generated from protobuf field <code>map<string, string> annotations = 4;</code>
+     * @return \Google\Protobuf\Internal\MapField
      */
-    public function getWorkerCount()
+    public function getAnnotations()
     {
-        return $this->worker_count;
+        return $this->annotations;
     }
 
     /**
-     * Total number of workers to be created across all requested regions.
+     * User specified annotations. See https://google.aip.dev/128#annotations
+     * for more details such as format and size limitations.
      *
-     * Generated from protobuf field <code>int64 worker_count = 4;</code>
-     * @param int|string $var
+     * Generated from protobuf field <code>map<string, string> annotations = 4;</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */
-    public function setWorkerCount($var)
+    public function setAnnotations($var)
     {
-        GPBUtil::checkInt64($var);
-        $this->worker_count = $var;
-
-        return $this;
-    }
-
-    /**
-     * Configuration to be used for a creating workers in the `WorkerPool`.
-     *
-     * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.WorkerConfig worker_config = 16;</code>
-     * @return \Google\Cloud\Build\V1\WorkerConfig|null
-     */
-    public function getWorkerConfig()
-    {
-        return isset($this->worker_config) ? $this->worker_config : null;
-    }
-
-    public function hasWorkerConfig()
-    {
-        return isset($this->worker_config);
-    }
-
-    public function clearWorkerConfig()
-    {
-        unset($this->worker_config);
-    }
-
-    /**
-     * Configuration to be used for a creating workers in the `WorkerPool`.
-     *
-     * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.WorkerConfig worker_config = 16;</code>
-     * @param \Google\Cloud\Build\V1\WorkerConfig $var
-     * @return $this
-     */
-    public function setWorkerConfig($var)
-    {
-        GPBUtil::checkMessage($var, \Google\Cloud\Build\V1\WorkerConfig::class);
-        $this->worker_config = $var;
-
-        return $this;
-    }
-
-    /**
-     * List of regions to create the `WorkerPool`. Regions can't be empty.
-     * If Cloud Build adds a new GCP region in the future, the existing
-     * `WorkerPool` will not be enabled in the new region automatically;
-     * you must add the new region to the `regions` field to enable the
-     * `WorkerPool` in that region.
-     *
-     * Generated from protobuf field <code>repeated .google.devtools.cloudbuild.v1.WorkerPool.Region regions = 9;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
-     */
-    public function getRegions()
-    {
-        return $this->regions;
-    }
-
-    /**
-     * List of regions to create the `WorkerPool`. Regions can't be empty.
-     * If Cloud Build adds a new GCP region in the future, the existing
-     * `WorkerPool` will not be enabled in the new region automatically;
-     * you must add the new region to the `regions` field to enable the
-     * `WorkerPool` in that region.
-     *
-     * Generated from protobuf field <code>repeated .google.devtools.cloudbuild.v1.WorkerPool.Region regions = 9;</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
-     * @return $this
-     */
-    public function setRegions($var)
-    {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::ENUM, \Google\Cloud\Build\V1\WorkerPool\Region::class);
-        $this->regions = $arr;
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->annotations = $arr;
 
         return $this;
     }
@@ -314,12 +256,12 @@ class WorkerPool extends \Google\Protobuf\Internal\Message
      * Output only. Time at which the request to create the `WorkerPool` was
      * received.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 11;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -336,7 +278,7 @@ class WorkerPool extends \Google\Protobuf\Internal\Message
      * Output only. Time at which the request to create the `WorkerPool` was
      * received.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 11;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */
@@ -352,12 +294,12 @@ class WorkerPool extends \Google\Protobuf\Internal\Message
      * Output only. Time at which the request to update the `WorkerPool` was
      * received.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 17;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
      */
     public function getUpdateTime()
     {
-        return isset($this->update_time) ? $this->update_time : null;
+        return $this->update_time;
     }
 
     public function hasUpdateTime()
@@ -374,7 +316,7 @@ class WorkerPool extends \Google\Protobuf\Internal\Message
      * Output only. Time at which the request to update the `WorkerPool` was
      * received.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 17;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */
@@ -390,12 +332,12 @@ class WorkerPool extends \Google\Protobuf\Internal\Message
      * Output only. Time at which the request to delete the `WorkerPool` was
      * received.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp delete_time = 12;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp delete_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
      */
     public function getDeleteTime()
     {
-        return isset($this->delete_time) ? $this->delete_time : null;
+        return $this->delete_time;
     }
 
     public function hasDeleteTime()
@@ -412,7 +354,7 @@ class WorkerPool extends \Google\Protobuf\Internal\Message
      * Output only. Time at which the request to delete the `WorkerPool` was
      * received.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp delete_time = 12;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp delete_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */
@@ -425,29 +367,98 @@ class WorkerPool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. WorkerPool Status.
+     * Output only. `WorkerPool` state.
      *
-     * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.WorkerPool.Status status = 13;</code>
+     * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.WorkerPool.State state = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
      */
-    public function getStatus()
+    public function getState()
     {
-        return $this->status;
+        return $this->state;
     }
 
     /**
-     * Output only. WorkerPool Status.
+     * Output only. `WorkerPool` state.
      *
-     * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.WorkerPool.Status status = 13;</code>
+     * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.WorkerPool.State state = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
      * @return $this
      */
-    public function setStatus($var)
+    public function setState($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Build\V1\WorkerPool\Status::class);
-        $this->status = $var;
+        GPBUtil::checkEnum($var, \Google\Cloud\Build\V1\WorkerPool\State::class);
+        $this->state = $var;
 
         return $this;
+    }
+
+    /**
+     * Private Pool using a v1 configuration.
+     *
+     * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.PrivatePoolV1Config private_pool_v1_config = 12;</code>
+     * @return \Google\Cloud\Build\V1\PrivatePoolV1Config|null
+     */
+    public function getPrivatePoolV1Config()
+    {
+        return $this->readOneof(12);
+    }
+
+    public function hasPrivatePoolV1Config()
+    {
+        return $this->hasOneof(12);
+    }
+
+    /**
+     * Private Pool using a v1 configuration.
+     *
+     * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.PrivatePoolV1Config private_pool_v1_config = 12;</code>
+     * @param \Google\Cloud\Build\V1\PrivatePoolV1Config $var
+     * @return $this
+     */
+    public function setPrivatePoolV1Config($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Build\V1\PrivatePoolV1Config::class);
+        $this->writeOneof(12, $var);
+
+        return $this;
+    }
+
+    /**
+     * Output only. Checksum computed by the server. May be sent on update and
+     * delete requests to ensure that the client has an up-to-date value before
+     * proceeding.
+     *
+     * Generated from protobuf field <code>string etag = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getEtag()
+    {
+        return $this->etag;
+    }
+
+    /**
+     * Output only. Checksum computed by the server. May be sent on update and
+     * delete requests to ensure that the client has an up-to-date value before
+     * proceeding.
+     *
+     * Generated from protobuf field <code>string etag = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setEtag($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->etag = $var;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getConfig()
+    {
+        return $this->whichOneof("config");
     }
 
 }

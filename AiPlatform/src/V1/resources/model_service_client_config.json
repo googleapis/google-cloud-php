@@ -16,6 +16,11 @@
                 }
             },
             "methods": {
+                "BatchImportEvaluatedAnnotations": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
                 "BatchImportModelEvaluationSlices": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "no_retry_codes",
