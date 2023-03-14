@@ -91,6 +91,34 @@ class EntryType
      * Generated from protobuf enum <code>SERVICE = 14;</code>
      */
     const SERVICE = 14;
+    /**
+     * Schema within a relational database.
+     *
+     * Generated from protobuf enum <code>DATABASE_SCHEMA = 15;</code>
+     */
+    const DATABASE_SCHEMA = 15;
+    /**
+     * A Dashboard, for example from Looker.
+     *
+     * Generated from protobuf enum <code>DASHBOARD = 16;</code>
+     */
+    const DASHBOARD = 16;
+    /**
+     * A Looker Explore.
+     * For more information, see [Looker Explore API]
+     * (https://developers.looker.com/api/explorer/4.0/methods/LookmlModel/lookml_model_explore).
+     *
+     * Generated from protobuf enum <code>EXPLORE = 17;</code>
+     */
+    const EXPLORE = 17;
+    /**
+     * A Looker Look.
+     * For more information, see [Looker Look API]
+     * (https://developers.looker.com/api/explorer/4.0/methods/Look).
+     *
+     * Generated from protobuf enum <code>LOOK = 18;</code>
+     */
+    const LOOK = 18;
 
     private static $valueToName = [
         self::ENTRY_TYPE_UNSPECIFIED => 'ENTRY_TYPE_UNSPECIFIED',
@@ -105,6 +133,10 @@ class EntryType
         self::LAKE => 'LAKE',
         self::ZONE => 'ZONE',
         self::SERVICE => 'SERVICE',
+        self::DATABASE_SCHEMA => 'DATABASE_SCHEMA',
+        self::DASHBOARD => 'DASHBOARD',
+        self::EXPLORE => 'EXPLORE',
+        self::LOOK => 'LOOK',
     ];
 
     public static function name($value)

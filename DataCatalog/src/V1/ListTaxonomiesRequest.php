@@ -37,6 +37,13 @@ class ListTaxonomiesRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
     private $page_token = '';
+    /**
+     * Supported field for filter is 'service' and value is 'dataplex'.
+     * Eg: service=dataplex.
+     *
+     * Generated from protobuf field <code>string filter = 4;</code>
+     */
+    private $filter = '';
 
     /**
      * Constructor.
@@ -53,6 +60,9 @@ class ListTaxonomiesRequest extends \Google\Protobuf\Internal\Message
      *           The pagination token of the next results page. If not set,
      *           the first page is returned.
      *           The token is returned in the response to a previous list request.
+     *     @type string $filter
+     *           Supported field for filter is 'service' and value is 'dataplex'.
+     *           Eg: service=dataplex.
      * }
      */
     public function __construct($data = NULL) {
@@ -140,6 +150,34 @@ class ListTaxonomiesRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->page_token = $var;
+
+        return $this;
+    }
+
+    /**
+     * Supported field for filter is 'service' and value is 'dataplex'.
+     * Eg: service=dataplex.
+     *
+     * Generated from protobuf field <code>string filter = 4;</code>
+     * @return string
+     */
+    public function getFilter()
+    {
+        return $this->filter;
+    }
+
+    /**
+     * Supported field for filter is 'service' and value is 'dataplex'.
+     * Eg: service=dataplex.
+     *
+     * Generated from protobuf field <code>string filter = 4;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setFilter($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->filter = $var;
 
         return $this;
     }

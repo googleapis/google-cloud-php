@@ -46,9 +46,8 @@ use Google\Cloud\DataCatalog\V1\SearchCatalogResult;
  * For more information, see [Data Catalog search syntax]
  * (https://cloud.google.com/data-catalog/docs/how-to/search-reference).
  *
- * @param string $query Optional. The query string with a minimum of 3 characters and specific syntax.
- *                      For more information, see
- *                      [Data Catalog search
+ * @param string $query Optional. The query string with a minimum of 3 characters and specific
+ *                      syntax. For more information, see [Data Catalog search
  *                      syntax](https://cloud.google.com/data-catalog/docs/how-to/search-reference).
  *
  *                      An empty query string returns all data assets (in the specified scope)
