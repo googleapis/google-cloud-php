@@ -21,6 +21,17 @@ class CancelOperationRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string name = 1;</code>
      */
     private $name = '';
+    /**
+     * @param string $name The name of the operation resource to be cancelled.
+     *
+     * @return \Google\LongRunning\CancelOperationRequest
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
 
     /**
      * Constructor.

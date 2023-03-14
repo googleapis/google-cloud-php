@@ -39,6 +39,19 @@ class ListOperationsRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
     private $page_token = '';
+    /**
+     * @param string $name   The name of the operation's parent resource.
+     * @param string $filter The standard list filter.
+     *
+     * @return \Google\LongRunning\ListOperationsRequest
+     */
+    public static function build(string $name, string $filter): self
+    {
+        return (new self())
+            ->setName($name)
+            ->setFilter($filter);
+    }
+
 
     /**
      * Constructor.
