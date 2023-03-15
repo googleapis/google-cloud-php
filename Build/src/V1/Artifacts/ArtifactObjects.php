@@ -51,7 +51,7 @@ class ArtifactObjects extends \Google\Protobuf\Internal\Message
      *           Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)).
      *           Files in the workspace matching any path pattern will be uploaded to
      *           Cloud Storage with this location as a prefix.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $paths
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $paths
      *           Path globs used to match files in the build's workspace.
      *     @type \Google\Cloud\Build\V1\TimeSpan $timing
      *           Output only. Stores timing information for pushing all artifact objects.
@@ -111,7 +111,7 @@ class ArtifactObjects extends \Google\Protobuf\Internal\Message
      * Path globs used to match files in the build's workspace.
      *
      * Generated from protobuf field <code>repeated string paths = 2;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPaths($var)
@@ -130,7 +130,7 @@ class ArtifactObjects extends \Google\Protobuf\Internal\Message
      */
     public function getTiming()
     {
-        return isset($this->timing) ? $this->timing : null;
+        return $this->timing;
     }
 
     public function hasTiming()
@@ -160,6 +160,4 @@ class ArtifactObjects extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ArtifactObjects::class, \Google\Cloud\Build\V1\Artifacts_ArtifactObjects::class);
 

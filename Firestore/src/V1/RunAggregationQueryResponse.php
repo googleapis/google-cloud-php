@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The response for [Firestore.RunAggregationQuery][google.firestore.v1.Firestore.RunAggregationQuery].
+ * The response for
+ * [Firestore.RunAggregationQuery][google.firestore.v1.Firestore.RunAggregationQuery].
  *
  * Generated from protobuf message <code>google.firestore.v1.RunAggregationQueryResponse</code>
  */

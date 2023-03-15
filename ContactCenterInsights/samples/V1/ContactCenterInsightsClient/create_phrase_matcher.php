@@ -31,10 +31,10 @@ use Google\Cloud\ContactCenterInsights\V1\PhraseMatcher\PhraseMatcherType;
 /**
  * Creates a phrase matcher.
  *
- * @param string $formattedParent   The parent resource of the phrase matcher. Required. The location to create
- *                                  a phrase matcher for.
- *                                  Format: `projects/<Project ID>/locations/<Location ID>` or
- *                                  `projects/<Project Number>/locations/<Location ID>`
+ * @param string $formattedParent   The parent resource of the phrase matcher. Required. The location
+ *                                  to create a phrase matcher for. Format: `projects/<Project
+ *                                  ID>/locations/<Location ID>` or `projects/<Project
+ *                                  Number>/locations/<Location ID>`
  *                                  Please see {@see ContactCenterInsightsClient::locationName()} for help formatting this field.
  * @param int    $phraseMatcherType The type of this phrase matcher.
  */

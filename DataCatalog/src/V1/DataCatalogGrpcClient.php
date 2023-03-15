@@ -579,6 +579,33 @@ class DataCatalogGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
+     * `ReconcileTags` creates or updates a list of tags on the entry.
+     * If the
+     * [ReconcileTagsRequest.force_delete_missing][google.cloud.datacatalog.v1.ReconcileTagsRequest.force_delete_missing]
+     * parameter is set, the operation deletes tags not included in the input tag
+     * list.
+     *
+     * `ReconcileTags` returns a [long-running operation]
+     * [google.longrunning.Operation] resource that can be queried with
+     * [Operations.GetOperation][google.longrunning.Operations.GetOperation]
+     * to return [ReconcileTagsMetadata]
+     * [google.cloud.datacatalog.v1.ReconcileTagsMetadata] and
+     * a [ReconcileTagsResponse]
+     * [google.cloud.datacatalog.v1.ReconcileTagsResponse] message.
+     * @param \Google\Cloud\DataCatalog\V1\ReconcileTagsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function ReconcileTags(\Google\Cloud\DataCatalog\V1\ReconcileTagsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.datacatalog.v1.DataCatalog/ReconcileTags',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
      * Marks an [Entry][google.cloud.datacatalog.v1.Entry] as starred by
      * the current user. Starring information is private to each user.
      * @param \Google\Cloud\DataCatalog\V1\StarEntryRequest $argument input argument
@@ -701,6 +728,38 @@ class DataCatalogGrpcClient extends \Grpc\BaseStub {
         return $this->_simpleRequest('/google.cloud.datacatalog.v1.DataCatalog/TestIamPermissions',
         $argument,
         ['\Google\Cloud\Iam\V1\TestIamPermissionsResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Imports entries from a source, such as data previously dumped into a
+     * Cloud Storage bucket, into Data Catalog. Import of entries
+     * is a sync operation that reconciles the state of the third-party system
+     * with the Data Catalog.
+     *
+     * `ImportEntries` accepts source data snapshots of a third-party system.
+     * Snapshot should be delivered as a .wire or base65-encoded .txt file
+     * containing a sequence of Protocol Buffer messages of
+     * [DumpItem][google.cloud.datacatalog.v1.DumpItem] type.
+     *
+     * `ImportEntries` returns a [long-running operation]
+     * [google.longrunning.Operation] resource that can be queried with
+     * [Operations.GetOperation][google.longrunning.Operations.GetOperation]
+     * to return
+     * [ImportEntriesMetadata][google.cloud.datacatalog.v1.ImportEntriesMetadata]
+     * and an
+     * [ImportEntriesResponse][google.cloud.datacatalog.v1.ImportEntriesResponse]
+     * message.
+     * @param \Google\Cloud\DataCatalog\V1\ImportEntriesRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function ImportEntries(\Google\Cloud\DataCatalog\V1\ImportEntriesRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.datacatalog.v1.DataCatalog/ImportEntries',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
         $metadata, $options);
     }
 

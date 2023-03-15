@@ -137,6 +137,36 @@ class BuildStep extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.Build.Status status = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $status = 0;
+    /**
+     * Allow this build step to fail without failing the entire build.
+     * If false, the entire build will fail if this step fails. Otherwise, the
+     * build will succeed, but this step will still have a failure status.
+     * Error information will be reported in the failure_detail field.
+     *
+     * Generated from protobuf field <code>bool allow_failure = 14;</code>
+     */
+    private $allow_failure = false;
+    /**
+     * Output only. Return code from running the step.
+     *
+     * Generated from protobuf field <code>int32 exit_code = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $exit_code = 0;
+    /**
+     * Allow this build step to fail without failing the entire build if and
+     * only if the exit code is one of the specified codes. If allow_failure
+     * is also specified, this field will take precedence.
+     *
+     * Generated from protobuf field <code>repeated int32 allow_exit_codes = 18;</code>
+     */
+    private $allow_exit_codes;
+    /**
+     * A shell script to be executed in the step.
+     * When script is provided, the user cannot specify the entrypoint or args.
+     *
+     * Generated from protobuf field <code>string script = 19;</code>
+     */
+    private $script = '';
 
     /**
      * Constructor.
@@ -159,11 +189,11 @@ class BuildStep extends \Google\Protobuf\Internal\Message
      *           If you built an image in a previous build step, it will be stored in the
      *           host's Docker daemon's cache and is available to use as the name for a
      *           later build step.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $env
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $env
      *           A list of environment variable definitions to be used when running a step.
      *           The elements are of the form "KEY=VALUE" for the environment variable "KEY"
      *           being given the value "VALUE".
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $args
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $args
      *           A list of arguments that will be presented to the step when it is started.
      *           If the image used to run the step's container has an entrypoint, the `args`
      *           are used as arguments to that entrypoint. If the image does not define
@@ -181,7 +211,7 @@ class BuildStep extends \Google\Protobuf\Internal\Message
      *     @type string $id
      *           Unique identifier for this build step, used in `wait_for` to
      *           reference this build step as a dependency.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $wait_for
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $wait_for
      *           The ID(s) of the step(s) that this build step depends on.
      *           This build step will not start until all the build steps in `wait_for`
      *           have completed successfully. If `wait_for` is empty, this build step will
@@ -190,11 +220,11 @@ class BuildStep extends \Google\Protobuf\Internal\Message
      *     @type string $entrypoint
      *           Entrypoint to be used instead of the build step image's default entrypoint.
      *           If unset, the image's default entrypoint is used.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $secret_env
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $secret_env
      *           A list of environment variables which are encrypted using a Cloud Key
      *           Management Service crypto key. These values must be specified in the
      *           build's `Secret`.
-     *     @type \Google\Cloud\Build\V1\Volume[]|\Google\Protobuf\Internal\RepeatedField $volumes
+     *     @type array<\Google\Cloud\Build\V1\Volume>|\Google\Protobuf\Internal\RepeatedField $volumes
      *           List of volumes to mount into the build step.
      *           Each volume is created as an empty volume prior to execution of the
      *           build step. Upon completion of the build, volumes and their contents are
@@ -214,6 +244,20 @@ class BuildStep extends \Google\Protobuf\Internal\Message
      *           Output only. Status of the build step. At this time, build step status is
      *           only updated on build completion; step status is not updated in real-time
      *           as the build progresses.
+     *     @type bool $allow_failure
+     *           Allow this build step to fail without failing the entire build.
+     *           If false, the entire build will fail if this step fails. Otherwise, the
+     *           build will succeed, but this step will still have a failure status.
+     *           Error information will be reported in the failure_detail field.
+     *     @type int $exit_code
+     *           Output only. Return code from running the step.
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $allow_exit_codes
+     *           Allow this build step to fail without failing the entire build if and
+     *           only if the exit code is one of the specified codes. If allow_failure
+     *           is also specified, this field will take precedence.
+     *     @type string $script
+     *           A shell script to be executed in the step.
+     *           When script is provided, the user cannot specify the entrypoint or args.
      * }
      */
     public function __construct($data = NULL) {
@@ -292,7 +336,7 @@ class BuildStep extends \Google\Protobuf\Internal\Message
      * being given the value "VALUE".
      *
      * Generated from protobuf field <code>repeated string env = 2;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setEnv($var)
@@ -326,7 +370,7 @@ class BuildStep extends \Google\Protobuf\Internal\Message
      * and the remainder will be used as arguments.
      *
      * Generated from protobuf field <code>repeated string args = 3;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setArgs($var)
@@ -428,7 +472,7 @@ class BuildStep extends \Google\Protobuf\Internal\Message
      * completed successfully.
      *
      * Generated from protobuf field <code>repeated string wait_for = 6;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setWaitFor($var)
@@ -486,7 +530,7 @@ class BuildStep extends \Google\Protobuf\Internal\Message
      * build's `Secret`.
      *
      * Generated from protobuf field <code>repeated string secret_env = 8;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSecretEnv($var)
@@ -522,7 +566,7 @@ class BuildStep extends \Google\Protobuf\Internal\Message
      * of a build request with an incorrect configuration.
      *
      * Generated from protobuf field <code>repeated .google.devtools.cloudbuild.v1.Volume volumes = 9;</code>
-     * @param \Google\Cloud\Build\V1\Volume[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Build\V1\Volume>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setVolumes($var)
@@ -541,7 +585,7 @@ class BuildStep extends \Google\Protobuf\Internal\Message
      */
     public function getTiming()
     {
-        return isset($this->timing) ? $this->timing : null;
+        return $this->timing;
     }
 
     public function hasTiming()
@@ -578,7 +622,7 @@ class BuildStep extends \Google\Protobuf\Internal\Message
      */
     public function getPullTiming()
     {
-        return isset($this->pull_timing) ? $this->pull_timing : null;
+        return $this->pull_timing;
     }
 
     public function hasPullTiming()
@@ -617,7 +661,7 @@ class BuildStep extends \Google\Protobuf\Internal\Message
      */
     public function getTimeout()
     {
-        return isset($this->timeout) ? $this->timeout : null;
+        return $this->timeout;
     }
 
     public function hasTimeout()
@@ -673,6 +717,122 @@ class BuildStep extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Build\V1\Build\Status::class);
         $this->status = $var;
+
+        return $this;
+    }
+
+    /**
+     * Allow this build step to fail without failing the entire build.
+     * If false, the entire build will fail if this step fails. Otherwise, the
+     * build will succeed, but this step will still have a failure status.
+     * Error information will be reported in the failure_detail field.
+     *
+     * Generated from protobuf field <code>bool allow_failure = 14;</code>
+     * @return bool
+     */
+    public function getAllowFailure()
+    {
+        return $this->allow_failure;
+    }
+
+    /**
+     * Allow this build step to fail without failing the entire build.
+     * If false, the entire build will fail if this step fails. Otherwise, the
+     * build will succeed, but this step will still have a failure status.
+     * Error information will be reported in the failure_detail field.
+     *
+     * Generated from protobuf field <code>bool allow_failure = 14;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setAllowFailure($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->allow_failure = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Return code from running the step.
+     *
+     * Generated from protobuf field <code>int32 exit_code = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getExitCode()
+    {
+        return $this->exit_code;
+    }
+
+    /**
+     * Output only. Return code from running the step.
+     *
+     * Generated from protobuf field <code>int32 exit_code = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setExitCode($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->exit_code = $var;
+
+        return $this;
+    }
+
+    /**
+     * Allow this build step to fail without failing the entire build if and
+     * only if the exit code is one of the specified codes. If allow_failure
+     * is also specified, this field will take precedence.
+     *
+     * Generated from protobuf field <code>repeated int32 allow_exit_codes = 18;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getAllowExitCodes()
+    {
+        return $this->allow_exit_codes;
+    }
+
+    /**
+     * Allow this build step to fail without failing the entire build if and
+     * only if the exit code is one of the specified codes. If allow_failure
+     * is also specified, this field will take precedence.
+     *
+     * Generated from protobuf field <code>repeated int32 allow_exit_codes = 18;</code>
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setAllowExitCodes($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::INT32);
+        $this->allow_exit_codes = $arr;
+
+        return $this;
+    }
+
+    /**
+     * A shell script to be executed in the step.
+     * When script is provided, the user cannot specify the entrypoint or args.
+     *
+     * Generated from protobuf field <code>string script = 19;</code>
+     * @return string
+     */
+    public function getScript()
+    {
+        return $this->script;
+    }
+
+    /**
+     * A shell script to be executed in the step.
+     * When script is provided, the user cannot specify the entrypoint or args.
+     *
+     * Generated from protobuf field <code>string script = 19;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setScript($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->script = $var;
 
         return $this;
     }

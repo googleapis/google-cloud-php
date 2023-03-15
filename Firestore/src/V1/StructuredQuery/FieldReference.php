@@ -18,7 +18,8 @@ class FieldReference extends \Google\Protobuf\Internal\Message
     /**
      * The relative path of the document being referenced.
      * Requires:
-     * * Conform to [document field name][google.firestore.v1.Document.fields] limitations.
+     * * Conform to [document field name][google.firestore.v1.Document.fields]
+     * limitations.
      *
      * Generated from protobuf field <code>string field_path = 2;</code>
      */
@@ -33,7 +34,8 @@ class FieldReference extends \Google\Protobuf\Internal\Message
      *     @type string $field_path
      *           The relative path of the document being referenced.
      *           Requires:
-     *           * Conform to [document field name][google.firestore.v1.Document.fields] limitations.
+     *           * Conform to [document field name][google.firestore.v1.Document.fields]
+     *           limitations.
      * }
      */
     public function __construct($data = NULL) {
@@ -44,7 +46,8 @@ class FieldReference extends \Google\Protobuf\Internal\Message
     /**
      * The relative path of the document being referenced.
      * Requires:
-     * * Conform to [document field name][google.firestore.v1.Document.fields] limitations.
+     * * Conform to [document field name][google.firestore.v1.Document.fields]
+     * limitations.
      *
      * Generated from protobuf field <code>string field_path = 2;</code>
      * @return string
@@ -57,7 +60,8 @@ class FieldReference extends \Google\Protobuf\Internal\Message
     /**
      * The relative path of the document being referenced.
      * Requires:
-     * * Conform to [document field name][google.firestore.v1.Document.fields] limitations.
+     * * Conform to [document field name][google.firestore.v1.Document.fields]
+     * limitations.
      *
      * Generated from protobuf field <code>string field_path = 2;</code>
      * @param string $var

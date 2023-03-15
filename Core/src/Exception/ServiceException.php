@@ -153,6 +153,26 @@ class ServiceException extends GoogleException
         return $this->errorReason;
     }
 
+    /**
+     * Return the delay in seconds and nanos before retrying the failed request.
+     *
+     * @return array
+     */
+    public function getRetryDelay()
+    {
+        $metadata = array_filter($this->metadata, function ($metadataItem) {
+            return array_key_exists('retryDelay', $metadataItem);
+        });
+
+        if (count($metadata) === 0) {
+            return ['seconds' => 0, 'nanos' => 0];
+        }
+
+        return $metadata[0]['retryDelay'] + [
+            'seconds' => 0,
+            'nanos' => 0
+        ];
+    }
 
     /**
      * Helper to return the error info from an exception

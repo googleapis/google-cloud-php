@@ -28,11 +28,11 @@ use Google\Cloud\Dataplex\V1\DataScanJob;
 use Google\Cloud\Dataplex\V1\DataScanServiceClient;
 
 /**
- * Get DataScanJob resource.
+ * Gets a DataScanJob resource.
  *
  * @param string $formattedName The resource name of the DataScanJob:
- *                              projects/{project}/locations/{location_id}/dataScans/{data_scan_id}/dataScanJobs/{data_scan_job_id}
- *                              where `{project}` refers to a project_id or project_number and
+ *                              `projects/{project}/locations/{location_id}/dataScans/{data_scan_id}/dataScanJobs/{data_scan_job_id}`
+ *                              where `project` refers to a *project_id* or *project_number* and
  *                              `location_id` refers to a GCP region. Please see
  *                              {@see DataScanServiceClient::dataScanJobName()} for help formatting this field.
  */

@@ -17,16 +17,15 @@ class GetDataScanRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The resource name of the dataScan:
-     * projects/{project}/locations/{location_id}/dataScans/{data_scan_id}
-     * where `{project}` refers to a project_id or project_number and
+     * `projects/{project}/locations/{location_id}/dataScans/{data_scan_id}`
+     * where `project` refers to a *project_id* or *project_number* and
      * `location_id` refers to a GCP region.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
     /**
-     * Optional. Used to select the subset of DataScan information to return.
-     * Defaults to `BASIC`.
+     * Optional. Select the DataScan view to return. Defaults to `BASIC`.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.GetDataScanRequest.DataScanView view = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -40,12 +39,11 @@ class GetDataScanRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. The resource name of the dataScan:
-     *           projects/{project}/locations/{location_id}/dataScans/{data_scan_id}
-     *           where `{project}` refers to a project_id or project_number and
+     *           `projects/{project}/locations/{location_id}/dataScans/{data_scan_id}`
+     *           where `project` refers to a *project_id* or *project_number* and
      *           `location_id` refers to a GCP region.
      *     @type int $view
-     *           Optional. Used to select the subset of DataScan information to return.
-     *           Defaults to `BASIC`.
+     *           Optional. Select the DataScan view to return. Defaults to `BASIC`.
      * }
      */
     public function __construct($data = NULL) {
@@ -55,8 +53,8 @@ class GetDataScanRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the dataScan:
-     * projects/{project}/locations/{location_id}/dataScans/{data_scan_id}
-     * where `{project}` refers to a project_id or project_number and
+     * `projects/{project}/locations/{location_id}/dataScans/{data_scan_id}`
+     * where `project` refers to a *project_id* or *project_number* and
      * `location_id` refers to a GCP region.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -69,8 +67,8 @@ class GetDataScanRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the dataScan:
-     * projects/{project}/locations/{location_id}/dataScans/{data_scan_id}
-     * where `{project}` refers to a project_id or project_number and
+     * `projects/{project}/locations/{location_id}/dataScans/{data_scan_id}`
+     * where `project` refers to a *project_id* or *project_number* and
      * `location_id` refers to a GCP region.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -86,8 +84,7 @@ class GetDataScanRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Used to select the subset of DataScan information to return.
-     * Defaults to `BASIC`.
+     * Optional. Select the DataScan view to return. Defaults to `BASIC`.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.GetDataScanRequest.DataScanView view = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -98,8 +95,7 @@ class GetDataScanRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Used to select the subset of DataScan information to return.
-     * Defaults to `BASIC`.
+     * Optional. Select the DataScan view to return. Defaults to `BASIC`.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.GetDataScanRequest.DataScanView view = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
