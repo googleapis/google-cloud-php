@@ -184,11 +184,6 @@ class SecretManagerServiceBaseClient
         ]);
     }
 
-    private static function registerPathTemplates()
-    {
-        self::loadPathTemplates(__DIR__ . '/../../resources/secret_manager_service_descriptor_config.php', self::SERVICE_NAME);
-    }
-
     /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
