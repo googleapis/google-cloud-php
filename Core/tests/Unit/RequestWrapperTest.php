@@ -625,6 +625,42 @@ class RequestWrapperTest extends TestCase
 
         $requestWrapper->send(new Request('GET', 'http://www.example.com'));
     }
+
+    /**
+     * This test asserts that the retry related options and callbacks are
+     * properly mapped and set in the RequestWrapper's `$requestOptions`
+     * property.
+     */
+    public function testRetryOptionsPassingInGetRetryOptions()
+    {
+        // Using Reflection instead of Prophecy because we want to test a
+        // private method's logic by verifying the output for a given input.
+        $requestWrapper = new RequestWrapper();
+        $reflection = new \ReflectionClass($requestWrapper);
+        $reflectionMethod = $reflection->getMethod('getRetryOptions');
+        $reflectionMethod->setAccessible(true);
+
+        $placeholderCallback = function () {
+        };
+        $options = [
+            'restRetryFunction' => $placeholderCallback,
+            'restOnRetryExceptionFunction' => $placeholderCallback,
+            'restOnExecutionStartFunction' => $placeholderCallback,
+        ];
+
+        $result = $reflectionMethod->invoke($requestWrapper, $options);
+
+        // In the `getRetryOptions` method, the keys of $options are mapped after
+        // removing the prefix 'rest'. For example, 'restRetryFunction' becomes
+        // 'retryFunction'. Therefore, we take the substring after 4th character
+        // , convert first upper case character to lower and the use this as the
+        // new key for the respective value
+        foreach ($options as $key => $value) {
+            $key = lcfirst(substr($key, 4));
+            $this->assertArrayHasKey($key, $result);
+            $this->assertEquals($value, $result[$key]);
+        }
+    }
 }
 
 //@codingStandardsIgnoreStart

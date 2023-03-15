@@ -479,6 +479,8 @@ class RestTest extends TestCase
         $currAttempt,
         $expected
     ) {
+        // Using Reflection instead of Prophecy because we want to test a
+        // private method's logic by verifying the output for a given input.
         $rest = new Rest($restConfig);
         $reflector = new \ReflectionClass('Google\Cloud\Storage\Connection\Rest');
         $method = $reflector->getMethod('isPreConditionSupplied');
@@ -526,6 +528,39 @@ class RestTest extends TestCase
             $expected,
             $retryFun(new \Exception('', $errorCode), $currAttempt)
         );
+    }
+
+    /**
+     * This tests whether the $arguments passed to the callbacks for header
+     * updation is properly done when those callbacks are invoked in the
+     * ExponentialBackoff::execute() method.
+     */
+    public function testUpdateRetryHeaders()
+    {
+        $arguments = [new Request('GET', '/somewhere'), ['headers' => []]];
+        $requestHash = 'dummy_hash';
+        $currentAttempt = 1;
+        $headerLineName = RequestWrapper::HEADER_API_CLIENT_IDENTIFICATION;
+
+        // Using Reflection instead of Prophecy because we want to test a
+        // private method's logic by verifying the output for a given input.
+        $rest = new Rest();
+        $reflection = new \ReflectionClass(Rest::class);
+        $reflectionMethod = $reflection->getMethod('updateRetryheaders');
+        $reflectionMethod->setAccessible(true);
+        $reflectionMethod->invokeArgs($rest, [
+            &$arguments,
+            $requestHash,
+            $currentAttempt
+        ]);
+
+        $this->assertArrayHasKey($headerLineName, $arguments[1]['headers']);
+        $expected = sprintf(
+            "gccl-invocation-id/%s gccl-attempt-count/%s",
+            $requestHash,
+            $currentAttempt
+        );
+        $this->assertEquals($expected, $arguments[1]['headers'][$headerLineName]);
     }
 
     public function retryFunctionReturnValues()
@@ -579,12 +614,12 @@ class RestTest extends TestCase
             ['buckets', 'get', [], [], 503, 4, false],
             // User given restRetryFunction in the StorageClient which internally reaches Rest
             ['buckets', 'get', $restRetryFunctionArg, [], 503, $restMaxRetry, true],
-            ['buckets', 'get', $restRetryFunctionArg, [], 503, $restMaxRetry+1, false],
+            ['buckets', 'get', $restRetryFunctionArg, [], 503, $restMaxRetry + 1, false],
             // User given restRetryFunction in the operation
             ['buckets', 'get', [], $opRetryFunctionArg, 503, $opMaxRetry, true],
-            ['buckets', 'get', [], $opRetryFunctionArg, 503, $opMaxRetry+1, false],
+            ['buckets', 'get', [], $opRetryFunctionArg, 503, $opMaxRetry + 1, false],
             // Precedence given to restRetryFunction in the operation than in the StorageClient
-            ['buckets', 'get', $restRetryFunctionArg, $opRetryFunctionArg, 503, $opMaxRetry+1, false],
+            ['buckets', 'get', $restRetryFunctionArg, $opRetryFunctionArg, 503, $opMaxRetry + 1, false],
             ['buckets', 'get', $restRetryFunctionArg, $opRetryFunctionArg, 503, $opMaxRetry, true]
         ];
     }

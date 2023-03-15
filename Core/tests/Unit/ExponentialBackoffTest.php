@@ -18,6 +18,7 @@
 namespace Google\Cloud\Core\Tests\Unit;
 
 use Google\Cloud\Core\ExponentialBackoff;
+use PHPUnit\Framework\AssertionFailedError;
 use Prophecy\Argument;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
@@ -159,5 +160,66 @@ class ExponentialBackoffTest extends TestCase
             [5, 32000000, 33000000],
             [10, 60000000, 60000000]
         ];
+    }
+
+    /**
+     * Tests whether `onRetryExceptionFunction()` callback is
+     * properly invoked when exception occurs in the request being made.
+     */
+    public function testOnRetryExceptionFunction()
+    {
+        $args = ['foo' => 'bar'];
+        $onRetryExceptionFunction = function (
+            $ex,
+            $retryAttempt,
+            $arguments
+        ) {
+            self::assertEquals(0, $retryAttempt);
+            self::assertEquals('bar', $arguments[0]['foo']);
+        };
+
+        // Setting $retries to 0 so that retry doesn't happens after first
+        // failure.
+        $backoff = new ExponentialBackoff(0, null, $onRetryExceptionFunction);
+        try {
+            $backoff->execute(
+                function () {
+                    throw new \Exception('Intentionally failing request');
+                },
+                [$args]
+            );
+        } catch (\Exception $err) {
+            // Do nothing.
+            // Catched the intentional failing call being made above:
+            // "Intentionally failing request"
+        }
+    }
+
+    /**
+     * Tests whether `testOnExecutionStartFunction()` callback is
+     * properly invoked when exception occurs in the request being made.
+     */
+    public function testOnExecutionStartFunction()
+    {
+        $args = ['foo' => 'bar'];
+        $onExecutionStartFunction = function ($arguments) {
+            self::assertEquals('bar', $arguments[0]['foo']);
+        };
+
+        // Setting $retries to 0 so that no retry happens after first failures
+        $backoff = new ExponentialBackoff(0, null, null, $onExecutionStartFunction);
+
+        try {
+            $backoff->execute(
+                function () {
+                    throw new \Exception('Intentionally failing request');
+                },
+                [$args]
+            );
+        } catch (\Exception $err) {
+            // Do nothing.
+            // Catched the intentional failing call being made above:
+            // "Intentionally failing request"
+        }
     }
 }

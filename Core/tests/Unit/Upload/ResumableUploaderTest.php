@@ -173,6 +173,38 @@ class ResumableUploaderTest extends TestCase
         );
     }
 
+    /**
+     * This tests whether retry related options are properly set in the
+     * abstract uploader class. Since we already had these tests for
+     * ResumableUploader class which extends the AbstractUploader class,
+     * thus testing it here would be sufficient.
+     */
+    public function testRetryOptionsPassing()
+    {
+        $options = [
+            'restRetryFunction' => 'arg',
+            'onExecutionStart' => 'arg',
+            'onRetryException' => 'arg'
+        ];
+        $uploader = new ResumableUploader(
+            $this->requestWrapper->reveal(),
+            $this->stream,
+            'http://www.example.com',
+            $options
+        );
+
+        // Using Reflection instead of Prophecy because we want to test a
+        // private method's logic by verifying the output for a given input.
+        $reflection = new \ReflectionObject($uploader);
+        $requestOptionsProperty = $reflection->getProperty('requestOptions');
+        $requestOptionsProperty->setAccessible(true);
+        $requestOptions = $requestOptionsProperty->getValue($uploader);
+        foreach ($options as $key => $value) {
+            $this->assertArrayHasKey($key, $requestOptions);
+            $this->assertEquals($value, $requestOptions[$key]);
+        }
+    }
+
     public function testThrowsExceptionWhenAttemptsAsyncUpload()
     {
         $this->expectException('Google\Cloud\Core\Exception\GoogleException');
