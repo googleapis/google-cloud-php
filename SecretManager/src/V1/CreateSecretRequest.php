@@ -37,6 +37,7 @@ class CreateSecretRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.secretmanager.v1.Secret secret = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $secret = null;
+
     /**
      * @param string                                $parent   Required. The resource name of the project to associate with the
      *                                                        [Secret][google.cloud.secretmanager.v1.Secret], in the format `projects/*`. Please see
@@ -49,6 +50,8 @@ class CreateSecretRequest extends \Google\Protobuf\Internal\Message
      * @param \Google\Cloud\SecretManager\V1\Secret $secret   Required. A [Secret][google.cloud.secretmanager.v1.Secret] with initial field values.
      *
      * @return \Google\Cloud\SecretManager\V1\CreateSecretRequest
+     *
+     * @experimental
      */
     public static function build(string $parent, string $secretId, \Google\Cloud\SecretManager\V1\Secret $secret): self
     {

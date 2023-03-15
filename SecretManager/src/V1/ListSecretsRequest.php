@@ -47,12 +47,15 @@ class ListSecretsRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $filter = '';
+
     /**
      * @param string $parent Required. The resource name of the project associated with the
      *                       [Secrets][google.cloud.secretmanager.v1.Secret], in the format `projects/*`. Please see
      *                       {@see SecretManagerServiceClient::projectName()} for help formatting this field.
      *
      * @return \Google\Cloud\SecretManager\V1\ListSecretsRequest
+     *
+     * @experimental
      */
     public static function build(string $parent): self
     {
