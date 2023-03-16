@@ -31,12 +31,12 @@ use Google\Cloud\Functions\V2\PBFunction;
 /**
  * Returns a list of functions that belong to the requested project.
  *
- * @param string $formattedParent The project and location from which the function should be listed,
- *                                specified in the format `projects/&#42;/locations/*`
- *                                If you want to list functions in all locations, use "-" in place of a
- *                                location. When listing functions in all locations, if one or more
- *                                location(s) are unreachable, the response will contain functions from all
- *                                reachable locations along with the names of any unreachable locations. Please see
+ * @param string $formattedParent The project and location from which the function should be
+ *                                listed, specified in the format `projects/&#42;/locations/*` If you want to
+ *                                list functions in all locations, use "-" in place of a location. When
+ *                                listing functions in all locations, if one or more location(s) are
+ *                                unreachable, the response will contain functions from all reachable
+ *                                locations along with the names of any unreachable locations. Please see
  *                                {@see FunctionServiceClient::locationName()} for help formatting this field.
  */
 function list_functions_sample(string $formattedParent): void

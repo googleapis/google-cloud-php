@@ -30,8 +30,8 @@ use Google\Cloud\Functions\V2\ListRuntimesResponse;
 /**
  * Returns a list of runtimes that are supported for the requested project.
  *
- * @param string $formattedParent The project and location from which the runtimes should be listed,
- *                                specified in the format `projects/&#42;/locations/*`
+ * @param string $formattedParent The project and location from which the runtimes should be
+ *                                listed, specified in the format `projects/&#42;/locations/*`
  *                                Please see {@see FunctionServiceClient::locationName()} for help formatting this field.
  */
 function list_runtimes_sample(string $formattedParent): void

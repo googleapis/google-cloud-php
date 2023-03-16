@@ -133,6 +133,8 @@ class FunctionServiceGapicClient
         'https://www.googleapis.com/auth/cloud-platform',
     ];
 
+    private static $cryptoKeyNameTemplate;
+
     private static $functionNameTemplate;
 
     private static $locationNameTemplate;
@@ -167,6 +169,17 @@ class FunctionServiceGapicClient
         ];
     }
 
+    private static function getCryptoKeyNameTemplate()
+    {
+        if (self::$cryptoKeyNameTemplate == null) {
+            self::$cryptoKeyNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}'
+            );
+        }
+
+        return self::$cryptoKeyNameTemplate;
+    }
+
     private static function getFunctionNameTemplate()
     {
         if (self::$functionNameTemplate == null) {
@@ -193,12 +206,38 @@ class FunctionServiceGapicClient
     {
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
+                'cryptoKey' => self::getCryptoKeyNameTemplate(),
                 'function' => self::getFunctionNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
             ];
         }
 
         return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a crypto_key
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $keyRing
+     * @param string $cryptoKey
+     *
+     * @return string The formatted crypto_key resource.
+     */
+    public static function cryptoKeyName(
+        $project,
+        $location,
+        $keyRing,
+        $cryptoKey
+    ) {
+        return self::getCryptoKeyNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'key_ring' => $keyRing,
+            'crypto_key' => $cryptoKey,
+        ]);
     }
 
     /**
@@ -241,6 +280,7 @@ class FunctionServiceGapicClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - cryptoKey: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}
      * - function: projects/{project}/locations/{location}/functions/{function}
      * - location: projects/{project}/locations/{location}
      *
@@ -421,8 +461,8 @@ class FunctionServiceGapicClient
      * }
      * ```
      *
-     * @param string     $parent       Required. The project and location in which the function should be created, specified
-     *                                 in the format `projects/&#42;/locations/*`
+     * @param string     $parent       Required. The project and location in which the function should be created,
+     *                                 specified in the format `projects/&#42;/locations/*`
      * @param PBFunction $function     Required. Function to be created.
      * @param array      $optionalArgs {
      *     Optional.
@@ -559,8 +599,8 @@ class FunctionServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The name of function for which source code Google Cloud Storage signed
-     *                             URL should be generated.
+     * @param string $name         Required. The name of function for which source code Google Cloud Storage
+     *                             signed URL should be generated.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -630,11 +670,27 @@ class FunctionServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The project and location in which the Google Cloud Storage signed URL
-     *                             should be generated, specified in the format `projects/&#42;/locations/*`.
+     * @param string $parent       Required. The project and location in which the Google Cloud Storage signed
+     *                             URL should be generated, specified in the format `projects/&#42;/locations/*`.
      * @param array  $optionalArgs {
      *     Optional.
      *
+     *     @type string $kmsKeyName
+     *           Resource name of a KMS crypto key (managed by the user) used to
+     *           encrypt/decrypt function source code objects in intermediate Cloud Storage
+     *           buckets. When you generate an upload url and upload your source code, it
+     *           gets copied to an intermediate Cloud Storage bucket. The source code is
+     *           then copied to a versioned directory in the sources bucket in the consumer
+     *           project during the function deployment.
+     *
+     *           It must match the pattern
+     *           `projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}`.
+     *
+     *           The Google Cloud Functions service account
+     *           (service-{project_number}&#64;gcf-admin-robot.iam.gserviceaccount.com) must be
+     *           granted the role 'Cloud KMS CryptoKey Encrypter/Decrypter
+     *           (roles/cloudkms.cryptoKeyEncrypterDecrypter)' on the
+     *           Key/KeyRing/Project/Organization (least access preferred).
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -651,6 +707,10 @@ class FunctionServiceGapicClient
         $requestParamHeaders = [];
         $request->setParent($parent);
         $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['kmsKeyName'])) {
+            $request->setKmsKeyName($optionalArgs['kmsKeyName']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -739,12 +799,12 @@ class FunctionServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The project and location from which the function should be listed,
-     *                             specified in the format `projects/&#42;/locations/*`
-     *                             If you want to list functions in all locations, use "-" in place of a
-     *                             location. When listing functions in all locations, if one or more
-     *                             location(s) are unreachable, the response will contain functions from all
-     *                             reachable locations along with the names of any unreachable locations.
+     * @param string $parent       Required. The project and location from which the function should be
+     *                             listed, specified in the format `projects/&#42;/locations/*` If you want to
+     *                             list functions in all locations, use "-" in place of a location. When
+     *                             listing functions in all locations, if one or more location(s) are
+     *                             unreachable, the response will contain functions from all reachable
+     *                             locations along with the names of any unreachable locations.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -824,8 +884,8 @@ class FunctionServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The project and location from which the runtimes should be listed,
-     *                             specified in the format `projects/&#42;/locations/*`
+     * @param string $parent       Required. The project and location from which the runtimes should be
+     *                             listed, specified in the format `projects/&#42;/locations/*`
      * @param array  $optionalArgs {
      *     Optional.
      *
