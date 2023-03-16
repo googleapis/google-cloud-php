@@ -28,7 +28,7 @@ use Google\Cloud\Compute\V1\InstanceGroupManager;
 use Google\Cloud\Compute\V1\InstanceGroupManagersClient;
 
 /**
- * Returns all of the details about the specified managed instance group. Gets a list of available managed instance groups by making a list() request.
+ * Returns all of the details about the specified managed instance group.
  *
  * @param string $instanceGroupManager The name of the managed instance group.
  * @param string $project              Project ID for this request.

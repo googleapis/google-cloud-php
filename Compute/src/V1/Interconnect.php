@@ -139,7 +139,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
      */
     private $requested_link_count = null;
     /**
-     * [Output Only] Set to true if the resource satisfies the zone separation organization policy constraints and false otherwise. Defaults to false if the field is not present.
+     * [Output Only] Reserved for future use.
      *
      * Generated from protobuf field <code>optional bool satisfies_pzs = 480964267;</code>
      */
@@ -208,7 +208,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
      *     @type int $requested_link_count
      *           Target number of physical links in the link bundle, as requested by the customer.
      *     @type bool $satisfies_pzs
-     *           [Output Only] Set to true if the resource satisfies the zone separation organization policy constraints and false otherwise. Defaults to false if the field is not present.
+     *           [Output Only] Reserved for future use.
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
      *     @type string $state
@@ -918,7 +918,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Set to true if the resource satisfies the zone separation organization policy constraints and false otherwise. Defaults to false if the field is not present.
+     * [Output Only] Reserved for future use.
      *
      * Generated from protobuf field <code>optional bool satisfies_pzs = 480964267;</code>
      * @return bool
@@ -939,7 +939,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Set to true if the resource satisfies the zone separation organization policy constraints and false otherwise. Defaults to false if the field is not present.
+     * [Output Only] Reserved for future use.
      *
      * Generated from protobuf field <code>optional bool satisfies_pzs = 480964267;</code>
      * @param bool $var

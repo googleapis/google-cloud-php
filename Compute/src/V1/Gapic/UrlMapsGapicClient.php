@@ -405,7 +405,7 @@ class UrlMapsGapicClient
     }
 
     /**
-     * Returns the specified UrlMap resource. Gets a list of available URL maps by making a list() request.
+     * Returns the specified UrlMap resource.
      *
      * Sample code:
      * ```

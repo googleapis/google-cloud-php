@@ -28,7 +28,7 @@ use Google\Cloud\Compute\V1\VpnGateway;
 use Google\Cloud\Compute\V1\VpnGatewaysClient;
 
 /**
- * Returns the specified VPN gateway. Gets a list of available VPN gateways by making a list() request.
+ * Returns the specified VPN gateway.
  *
  * @param string $project    Project ID for this request.
  * @param string $region     Name of the region for this request.

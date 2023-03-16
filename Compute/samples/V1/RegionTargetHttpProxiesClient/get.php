@@ -28,7 +28,7 @@ use Google\Cloud\Compute\V1\RegionTargetHttpProxiesClient;
 use Google\Cloud\Compute\V1\TargetHttpProxy;
 
 /**
- * Returns the specified TargetHttpProxy resource in the specified region. Gets a list of available target HTTP proxies by making a list() request.
+ * Returns the specified TargetHttpProxy resource in the specified region.
  *
  * @param string $project         Project ID for this request.
  * @param string $region          Name of the region scoping this request.
