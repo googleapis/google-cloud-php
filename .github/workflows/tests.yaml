@@ -21,6 +21,7 @@ jobs:
             phpunit-filename: phpunit
     name: PHP ${{ matrix.php }} Unit Test (${{ matrix.platform }})
     runs-on: ${{ matrix.platform }}
+    if: ${{ always() }}
     steps:
     - uses: actions/checkout@v3
     - name: Setup PHP
