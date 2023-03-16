@@ -384,6 +384,8 @@ class OperationResponseTest extends TestCase
 class FakeOperationResponse extends OperationResponse
 {
     private $currentTime = 0;
+    private $sleeps;
+
     public function getSleeps()
     {
         return $this->sleeps;

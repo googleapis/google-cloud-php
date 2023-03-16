@@ -37,6 +37,9 @@ use Yoast\PHPUnitPolyfills\TestCases\TestCase;
  */
 class RequestBuilderTest extends TestCase
 {
+    private $builder;
+    private $numericEnumsBuilder;
+
     const SERVICE_NAME = 'test.interface.v1.api';
 
     public function set_up()
