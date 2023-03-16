@@ -74,6 +74,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * This class is currently experimental and may be subject to changes.
  *
+ * @experimental
+ *
  * @internal
  *
  * @method PromiseInterface accessSecretVersionAsync(AccessSecretVersionRequest $request, array $optionalArgs = [])

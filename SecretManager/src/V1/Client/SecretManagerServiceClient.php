@@ -30,6 +30,8 @@ use Google\Cloud\SecretManager\V1\Client\BaseClient\SecretManagerServiceBaseClie
  * {@inheritdoc}
  *
  * This class is currently experimental and may be subject to changes.
+ *
+ * @experimental
  */
 final class SecretManagerServiceClient extends SecretManagerServiceBaseClient
 {
