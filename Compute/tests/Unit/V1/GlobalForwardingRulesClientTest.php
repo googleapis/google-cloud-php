@@ -194,6 +194,7 @@ class GlobalForwardingRulesClientTest extends GeneratedTest
         $allPorts = true;
         $allowGlobalAccess = true;
         $backendService = 'backendService306946058';
+        $baseForwardingRule = 'baseForwardingRule524873104';
         $creationTimestamp = 'creationTimestamp567396278';
         $description = 'description-1724546052';
         $fingerprint = 'fingerprint-1375934236';
@@ -222,6 +223,7 @@ class GlobalForwardingRulesClientTest extends GeneratedTest
         $expectedResponse->setAllPorts($allPorts);
         $expectedResponse->setAllowGlobalAccess($allowGlobalAccess);
         $expectedResponse->setBackendService($backendService);
+        $expectedResponse->setBaseForwardingRule($baseForwardingRule);
         $expectedResponse->setCreationTimestamp($creationTimestamp);
         $expectedResponse->setDescription($description);
         $expectedResponse->setFingerprint($fingerprint);

@@ -32,6 +32,10 @@ class Type
      */
     const COMPUTE_OPTIMIZED_C2D = 383246453;
     /**
+     * Generated from protobuf enum <code>COMPUTE_OPTIMIZED_C3 = 428004784;</code>
+     */
+    const COMPUTE_OPTIMIZED_C3 = 428004784;
+    /**
      * Generated from protobuf enum <code>GENERAL_PURPOSE = 299793543;</code>
      */
     const GENERAL_PURPOSE = 299793543;
@@ -69,6 +73,7 @@ class Type
         self::ACCELERATOR_OPTIMIZED => 'ACCELERATOR_OPTIMIZED',
         self::COMPUTE_OPTIMIZED => 'COMPUTE_OPTIMIZED',
         self::COMPUTE_OPTIMIZED_C2D => 'COMPUTE_OPTIMIZED_C2D',
+        self::COMPUTE_OPTIMIZED_C3 => 'COMPUTE_OPTIMIZED_C3',
         self::GENERAL_PURPOSE => 'GENERAL_PURPOSE',
         self::GENERAL_PURPOSE_E2 => 'GENERAL_PURPOSE_E2',
         self::GENERAL_PURPOSE_N2 => 'GENERAL_PURPOSE_N2',

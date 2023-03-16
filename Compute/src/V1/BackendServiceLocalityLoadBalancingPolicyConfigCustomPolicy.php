@@ -22,7 +22,7 @@ class BackendServiceLocalityLoadBalancingPolicyConfigCustomPolicy extends \Googl
      */
     private $data = null;
     /**
-     * Identifies the custom policy. The value should match the type the custom implementation is registered with on the gRPC clients. It should follow protocol buffer message naming conventions and include the full path (e.g. myorg.CustomLbPolicy). The maximum length is 256 characters. Note that specifying the same custom policy more than once for a backend is not a valid configuration and will be rejected.
+     * Identifies the custom policy. The value should match the name of a custom implementation registered on the gRPC clients. It should follow protocol buffer message naming conventions and include the full path (for example, myorg.CustomLbPolicy). The maximum length is 256 characters. Do not specify the same custom policy more than once for a backend. If you do, the configuration is rejected. For an example of how to use this field, see Use a custom policy.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
@@ -37,7 +37,7 @@ class BackendServiceLocalityLoadBalancingPolicyConfigCustomPolicy extends \Googl
      *     @type string $data
      *           An optional, arbitrary JSON object with configuration data, understood by a locally installed custom policy implementation.
      *     @type string $name
-     *           Identifies the custom policy. The value should match the type the custom implementation is registered with on the gRPC clients. It should follow protocol buffer message naming conventions and include the full path (e.g. myorg.CustomLbPolicy). The maximum length is 256 characters. Note that specifying the same custom policy more than once for a backend is not a valid configuration and will be rejected.
+     *           Identifies the custom policy. The value should match the name of a custom implementation registered on the gRPC clients. It should follow protocol buffer message naming conventions and include the full path (for example, myorg.CustomLbPolicy). The maximum length is 256 characters. Do not specify the same custom policy more than once for a backend. If you do, the configuration is rejected. For an example of how to use this field, see Use a custom policy.
      * }
      */
     public function __construct($data = NULL) {
@@ -82,7 +82,7 @@ class BackendServiceLocalityLoadBalancingPolicyConfigCustomPolicy extends \Googl
     }
 
     /**
-     * Identifies the custom policy. The value should match the type the custom implementation is registered with on the gRPC clients. It should follow protocol buffer message naming conventions and include the full path (e.g. myorg.CustomLbPolicy). The maximum length is 256 characters. Note that specifying the same custom policy more than once for a backend is not a valid configuration and will be rejected.
+     * Identifies the custom policy. The value should match the name of a custom implementation registered on the gRPC clients. It should follow protocol buffer message naming conventions and include the full path (for example, myorg.CustomLbPolicy). The maximum length is 256 characters. Do not specify the same custom policy more than once for a backend. If you do, the configuration is rejected. For an example of how to use this field, see Use a custom policy.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @return string
@@ -103,7 +103,7 @@ class BackendServiceLocalityLoadBalancingPolicyConfigCustomPolicy extends \Googl
     }
 
     /**
-     * Identifies the custom policy. The value should match the type the custom implementation is registered with on the gRPC clients. It should follow protocol buffer message naming conventions and include the full path (e.g. myorg.CustomLbPolicy). The maximum length is 256 characters. Note that specifying the same custom policy more than once for a backend is not a valid configuration and will be rejected.
+     * Identifies the custom policy. The value should match the name of a custom implementation registered on the gRPC clients. It should follow protocol buffer message naming conventions and include the full path (for example, myorg.CustomLbPolicy). The maximum length is 256 characters. Do not specify the same custom policy more than once for a backend. If you do, the configuration is rejected. For an example of how to use this field, see Use a custom policy.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @param string $var

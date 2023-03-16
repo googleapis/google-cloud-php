@@ -47,6 +47,12 @@ class ForwardingRule extends \Google\Protobuf\Internal\Message
      */
     private $backend_service = null;
     /**
+     * [Output Only] The URL for the corresponding base Forwarding Rule. By base Forwarding Rule, we mean the Forwarding Rule that has the same IP address, protocol, and port settings with the current Forwarding Rule, but without sourceIPRanges specified. Always empty if the current Forwarding Rule does not have sourceIPRanges specified.
+     *
+     * Generated from protobuf field <code>optional string base_forwarding_rule = 524873104;</code>
+     */
+    private $base_forwarding_rule = null;
+    /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -195,6 +201,12 @@ class ForwardingRule extends \Google\Protobuf\Internal\Message
      */
     private $service_name = null;
     /**
+     * If not empty, this Forwarding Rule will only forward the traffic when the source IP address matches one of the IP addresses or CIDR ranges set here. Note that a Forwarding Rule can only have up to 64 source IP ranges, and this field can only be used with a regional Forwarding Rule whose scheme is EXTERNAL. Each source_ip_range entry should be either an IP address (for example, 1.2.3.4) or a CIDR range (for example, 1.2.3.0/24).
+     *
+     * Generated from protobuf field <code>repeated string source_ip_ranges = 111563210;</code>
+     */
+    private $source_ip_ranges;
+    /**
      * This field identifies the subnetwork that the load balanced IP should belong to for this Forwarding Rule, used in internal load balancing and network load balancing with IPv6. If the network specified is in auto subnet mode, this field is optional. However, a subnetwork must be specified if the network is in custom subnet mode or when creating external forwarding rule with IPv6.
      *
      * Generated from protobuf field <code>optional string subnetwork = 307827694;</code>
@@ -224,6 +236,8 @@ class ForwardingRule extends \Google\Protobuf\Internal\Message
      *           This field is used along with the backend_service field for internal load balancing or with the target field for internal TargetInstance. If the field is set to TRUE, clients can access ILB from all regions. Otherwise only allows access from clients in the same region as the internal load balancer.
      *     @type string $backend_service
      *           Identifies the backend service to which the forwarding rule sends traffic. Required for Internal TCP/UDP Load Balancing and Network Load Balancing; must be omitted for all other load balancer types.
+     *     @type string $base_forwarding_rule
+     *           [Output Only] The URL for the corresponding base Forwarding Rule. By base Forwarding Rule, we mean the Forwarding Rule that has the same IP address, protocol, and port settings with the current Forwarding Rule, but without sourceIPRanges specified. Always empty if the current Forwarding Rule does not have sourceIPRanges specified.
      *     @type string $creation_timestamp
      *           [Output Only] Creation timestamp in RFC3339 text format.
      *     @type string $description
@@ -276,6 +290,8 @@ class ForwardingRule extends \Google\Protobuf\Internal\Message
      *           An optional prefix to the service name for this Forwarding Rule. If specified, the prefix is the first label of the fully qualified service name. The label must be 1-63 characters long, and comply with RFC1035. Specifically, the label must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash. This field is only used for internal load balancing.
      *     @type string $service_name
      *           [Output Only] The internal fully qualified service name for this Forwarding Rule. This field is only used for internal load balancing.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $source_ip_ranges
+     *           If not empty, this Forwarding Rule will only forward the traffic when the source IP address matches one of the IP addresses or CIDR ranges set here. Note that a Forwarding Rule can only have up to 64 source IP ranges, and this field can only be used with a regional Forwarding Rule whose scheme is EXTERNAL. Each source_ip_range entry should be either an IP address (for example, 1.2.3.4) or a CIDR range (for example, 1.2.3.0/24).
      *     @type string $subnetwork
      *           This field identifies the subnetwork that the load balanced IP should belong to for this Forwarding Rule, used in internal load balancing and network load balancing with IPv6. If the network specified is in auto subnet mode, this field is optional. However, a subnetwork must be specified if the network is in custom subnet mode or when creating external forwarding rule with IPv6.
      *     @type string $target
@@ -465,6 +481,42 @@ class ForwardingRule extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->backend_service = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Output Only] The URL for the corresponding base Forwarding Rule. By base Forwarding Rule, we mean the Forwarding Rule that has the same IP address, protocol, and port settings with the current Forwarding Rule, but without sourceIPRanges specified. Always empty if the current Forwarding Rule does not have sourceIPRanges specified.
+     *
+     * Generated from protobuf field <code>optional string base_forwarding_rule = 524873104;</code>
+     * @return string
+     */
+    public function getBaseForwardingRule()
+    {
+        return isset($this->base_forwarding_rule) ? $this->base_forwarding_rule : '';
+    }
+
+    public function hasBaseForwardingRule()
+    {
+        return isset($this->base_forwarding_rule);
+    }
+
+    public function clearBaseForwardingRule()
+    {
+        unset($this->base_forwarding_rule);
+    }
+
+    /**
+     * [Output Only] The URL for the corresponding base Forwarding Rule. By base Forwarding Rule, we mean the Forwarding Rule that has the same IP address, protocol, and port settings with the current Forwarding Rule, but without sourceIPRanges specified. Always empty if the current Forwarding Rule does not have sourceIPRanges specified.
+     *
+     * Generated from protobuf field <code>optional string base_forwarding_rule = 524873104;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setBaseForwardingRule($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->base_forwarding_rule = $var;
 
         return $this;
     }
@@ -1297,6 +1349,32 @@ class ForwardingRule extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->service_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * If not empty, this Forwarding Rule will only forward the traffic when the source IP address matches one of the IP addresses or CIDR ranges set here. Note that a Forwarding Rule can only have up to 64 source IP ranges, and this field can only be used with a regional Forwarding Rule whose scheme is EXTERNAL. Each source_ip_range entry should be either an IP address (for example, 1.2.3.4) or a CIDR range (for example, 1.2.3.0/24).
+     *
+     * Generated from protobuf field <code>repeated string source_ip_ranges = 111563210;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getSourceIpRanges()
+    {
+        return $this->source_ip_ranges;
+    }
+
+    /**
+     * If not empty, this Forwarding Rule will only forward the traffic when the source IP address matches one of the IP addresses or CIDR ranges set here. Note that a Forwarding Rule can only have up to 64 source IP ranges, and this field can only be used with a regional Forwarding Rule whose scheme is EXTERNAL. Each source_ip_range entry should be either an IP address (for example, 1.2.3.4) or a CIDR range (for example, 1.2.3.0/24).
+     *
+     * Generated from protobuf field <code>repeated string source_ip_ranges = 111563210;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setSourceIpRanges($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->source_ip_ranges = $arr;
 
         return $this;
     }

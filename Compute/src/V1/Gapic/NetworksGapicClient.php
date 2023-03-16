@@ -406,7 +406,7 @@ class NetworksGapicClient
     }
 
     /**
-     * Returns the specified network. Gets a list of available networks by making a list() request.
+     * Returns the specified network.
      *
      * Sample code:
      * ```

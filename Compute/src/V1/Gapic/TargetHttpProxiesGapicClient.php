@@ -401,7 +401,7 @@ class TargetHttpProxiesGapicClient
     }
 
     /**
-     * Returns the specified TargetHttpProxy resource. Gets a list of available target HTTP proxies by making a list() request.
+     * Returns the specified TargetHttpProxy resource.
      *
      * Sample code:
      * ```

@@ -108,7 +108,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
      */
     private $status = null;
     /**
-     * [Output Only] Set to true for locations that support physical zone separation. Defaults to false if the field is not present.
+     * [Output Only] Reserved for future use.
      *
      * Generated from protobuf field <code>optional bool supports_pzs = 83983214;</code>
      */
@@ -153,7 +153,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
      *           [Output Only] The status of this InterconnectLocation, which can take one of the following values: - CLOSED: The InterconnectLocation is closed and is unavailable for provisioning new Interconnects. - AVAILABLE: The InterconnectLocation is available for provisioning new Interconnects.
      *           Check the Status enum for the list of possible values.
      *     @type bool $supports_pzs
-     *           [Output Only] Set to true for locations that support physical zone separation. Defaults to false if the field is not present.
+     *           [Output Only] Reserved for future use.
      * }
      */
     public function __construct($data = NULL) {
@@ -696,7 +696,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Set to true for locations that support physical zone separation. Defaults to false if the field is not present.
+     * [Output Only] Reserved for future use.
      *
      * Generated from protobuf field <code>optional bool supports_pzs = 83983214;</code>
      * @return bool
@@ -717,7 +717,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Set to true for locations that support physical zone separation. Defaults to false if the field is not present.
+     * [Output Only] Reserved for future use.
      *
      * Generated from protobuf field <code>optional bool supports_pzs = 83983214;</code>
      * @param bool $var
