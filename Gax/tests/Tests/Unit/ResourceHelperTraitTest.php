@@ -41,9 +41,9 @@ class ResourceHelperTraitTest extends TestCase
 {
     use ExpectException;
 
-    public function testLoadPathTemplates()
+    public function testRegisterPathTemplates()
     {
-        $got = ResourceHelperTraitStub::testLoadPathTemplates();
+        $got = ResourceHelperTraitStub::testRegisterPathTemplates();
         $this->assertEquals(count($got), 4);
         $this->assertTrue($got['project'] instanceof PathTemplate);
     }
@@ -93,9 +93,9 @@ class ResourceHelperTraitStub
     const CONFIG_PATH = __DIR__ . '/testdata/test_service_descriptor_config.php';
     const SERVICE_NAME = 'test.interface.v1.api';
 
-    private static function registerPathTemplates()
+    private static function getClientDefaults()
     {
-        self::loadPathTemplates(self::CONFIG_PATH, self::SERVICE_NAME);
+        return ['descriptorsConfigPath' => self::CONFIG_PATH];
     }
 
     public static function parseName($formattedName, $template = null)
@@ -103,9 +103,9 @@ class ResourceHelperTraitStub
         return self::parseFormattedName($formattedName, $template);
     }
 
-    public static function testLoadPathTemplates()
+    public static function testRegisterPathTemplates()
     {
-        self::loadPathTemplates(self::CONFIG_PATH, self::SERVICE_NAME);
+        self::registerPathTemplates();
         return self::$templateMap;
     }
 

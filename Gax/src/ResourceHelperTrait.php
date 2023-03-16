@@ -45,11 +45,19 @@ trait ResourceHelperTrait
     /** @var array|null */
     private static $templateMap;
 
-    // Must be implemented by extendees to call loadPathTemplates.
+    /**
+     * placeholder for this function like we have in GapicClientTrait
+     */
+    private static function getClientDefaults()
+    {
+        return [];
+    }
+
     private static function registerPathTemplates()
     {
-        // TODO: Add void return type hint.
-        self::$templateMap = [];
+        $templateConfigPath = self::getClientDefaults()['descriptorsConfigPath'];
+        // self::SERVICE_NAME is a constant set per-client.
+        self::loadPathTemplates($templateConfigPath, self::SERVICE_NAME);
     }
 
     private static function loadPathTemplates(string $configPath, string $serviceName)
