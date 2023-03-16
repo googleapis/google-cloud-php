@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.19.1](https://github.com/googleapis/gax-php/compare/v1.19.0...v1.19.1) (2023-03-16)
+
+
+### Bug Fixes
+
+* Simplify ResourceHelperTrait registration ([#447](https://github.com/googleapis/gax-php/issues/447)) ([4949dc0](https://github.com/googleapis/gax-php/commit/4949dc0c4cd5e58af7933a1d2ecab90832c0b036))
+
 ## [1.19.0](https://github.com/googleapis/gax-php/compare/v1.18.2...v1.19.0) (2023-01-27)
 
 
