@@ -202,7 +202,7 @@ class Database
         SessionPoolInterface $sessionPool = null,
         $returnInt64AsObject = false,
         array $info = [],
-        $databaseRole = ""
+        $databaseRole = ''
     ) {
         $this->connection = $connection;
         $this->instance = $instance;
