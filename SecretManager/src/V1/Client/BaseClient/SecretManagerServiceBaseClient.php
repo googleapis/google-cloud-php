@@ -94,7 +94,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateSecretAsync(UpdateSecretRequest $request, array $optionalArgs = [])
  */
-class SecretManagerServiceBaseClient
+abstract class SecretManagerServiceBaseClient
 {
     use GapicClientTrait;
     use ResourceHelperTrait;
@@ -290,8 +290,8 @@ class SecretManagerServiceBaseClient
      *
      * The async variant is {@see self::accessSecretVersionAsync()} .
      *
-     * @param AccessSecretVersionRequest $request      A request to house fields associated with the call.
-     * @param array                      $optionalArgs {
+     * @param AccessSecretVersionRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
@@ -304,9 +304,9 @@ class SecretManagerServiceBaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function accessSecretVersion(AccessSecretVersionRequest $request, array $optionalArgs = []): AccessSecretVersionResponse
+    public function accessSecretVersion(AccessSecretVersionRequest $request, array $callOptions = []): AccessSecretVersionResponse
     {
-        return $this->startApiCall('AccessSecretVersion', $request, $optionalArgs)->wait();
+        return $this->startApiCall('AccessSecretVersion', $request, $callOptions)->wait();
     }
 
     /**
@@ -315,8 +315,8 @@ class SecretManagerServiceBaseClient
      *
      * The async variant is {@see self::addSecretVersionAsync()} .
      *
-     * @param AddSecretVersionRequest $request      A request to house fields associated with the call.
-     * @param array                   $optionalArgs {
+     * @param AddSecretVersionRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
@@ -329,9 +329,9 @@ class SecretManagerServiceBaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function addSecretVersion(AddSecretVersionRequest $request, array $optionalArgs = []): SecretVersion
+    public function addSecretVersion(AddSecretVersionRequest $request, array $callOptions = []): SecretVersion
     {
-        return $this->startApiCall('AddSecretVersion', $request, $optionalArgs)->wait();
+        return $this->startApiCall('AddSecretVersion', $request, $callOptions)->wait();
     }
 
     /**
@@ -339,8 +339,8 @@ class SecretManagerServiceBaseClient
      *
      * The async variant is {@see self::createSecretAsync()} .
      *
-     * @param CreateSecretRequest $request      A request to house fields associated with the call.
-     * @param array               $optionalArgs {
+     * @param CreateSecretRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
@@ -353,9 +353,9 @@ class SecretManagerServiceBaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createSecret(CreateSecretRequest $request, array $optionalArgs = []): Secret
+    public function createSecret(CreateSecretRequest $request, array $callOptions = []): Secret
     {
-        return $this->startApiCall('CreateSecret', $request, $optionalArgs)->wait();
+        return $this->startApiCall('CreateSecret', $request, $callOptions)->wait();
     }
 
     /**
@@ -363,8 +363,8 @@ class SecretManagerServiceBaseClient
      *
      * The async variant is {@see self::deleteSecretAsync()} .
      *
-     * @param DeleteSecretRequest $request      A request to house fields associated with the call.
-     * @param array               $optionalArgs {
+     * @param DeleteSecretRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
@@ -375,9 +375,9 @@ class SecretManagerServiceBaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteSecret(DeleteSecretRequest $request, array $optionalArgs = []): void
+    public function deleteSecret(DeleteSecretRequest $request, array $callOptions = []): void
     {
-        $this->startApiCall('DeleteSecret', $request, $optionalArgs)->wait();
+        $this->startApiCall('DeleteSecret', $request, $callOptions)->wait();
     }
 
     /**
@@ -389,8 +389,8 @@ class SecretManagerServiceBaseClient
      *
      * The async variant is {@see self::destroySecretVersionAsync()} .
      *
-     * @param DestroySecretVersionRequest $request      A request to house fields associated with the call.
-     * @param array                       $optionalArgs {
+     * @param DestroySecretVersionRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
@@ -403,9 +403,9 @@ class SecretManagerServiceBaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function destroySecretVersion(DestroySecretVersionRequest $request, array $optionalArgs = []): SecretVersion
+    public function destroySecretVersion(DestroySecretVersionRequest $request, array $callOptions = []): SecretVersion
     {
-        return $this->startApiCall('DestroySecretVersion', $request, $optionalArgs)->wait();
+        return $this->startApiCall('DestroySecretVersion', $request, $callOptions)->wait();
     }
 
     /**
@@ -416,8 +416,8 @@ class SecretManagerServiceBaseClient
      *
      * The async variant is {@see self::disableSecretVersionAsync()} .
      *
-     * @param DisableSecretVersionRequest $request      A request to house fields associated with the call.
-     * @param array                       $optionalArgs {
+     * @param DisableSecretVersionRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
@@ -430,9 +430,9 @@ class SecretManagerServiceBaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function disableSecretVersion(DisableSecretVersionRequest $request, array $optionalArgs = []): SecretVersion
+    public function disableSecretVersion(DisableSecretVersionRequest $request, array $callOptions = []): SecretVersion
     {
-        return $this->startApiCall('DisableSecretVersion', $request, $optionalArgs)->wait();
+        return $this->startApiCall('DisableSecretVersion', $request, $callOptions)->wait();
     }
 
     /**
@@ -443,8 +443,8 @@ class SecretManagerServiceBaseClient
      *
      * The async variant is {@see self::enableSecretVersionAsync()} .
      *
-     * @param EnableSecretVersionRequest $request      A request to house fields associated with the call.
-     * @param array                      $optionalArgs {
+     * @param EnableSecretVersionRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
@@ -457,9 +457,9 @@ class SecretManagerServiceBaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function enableSecretVersion(EnableSecretVersionRequest $request, array $optionalArgs = []): SecretVersion
+    public function enableSecretVersion(EnableSecretVersionRequest $request, array $callOptions = []): SecretVersion
     {
-        return $this->startApiCall('EnableSecretVersion', $request, $optionalArgs)->wait();
+        return $this->startApiCall('EnableSecretVersion', $request, $callOptions)->wait();
     }
 
     /**
@@ -468,8 +468,8 @@ class SecretManagerServiceBaseClient
      *
      * The async variant is {@see self::getIamPolicyAsync()} .
      *
-     * @param GetIamPolicyRequest $request      A request to house fields associated with the call.
-     * @param array               $optionalArgs {
+     * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
@@ -482,9 +482,9 @@ class SecretManagerServiceBaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getIamPolicy(GetIamPolicyRequest $request, array $optionalArgs = []): Policy
+    public function getIamPolicy(GetIamPolicyRequest $request, array $callOptions = []): Policy
     {
-        return $this->startApiCall('GetIamPolicy', $request, $optionalArgs)->wait();
+        return $this->startApiCall('GetIamPolicy', $request, $callOptions)->wait();
     }
 
     /**
@@ -492,8 +492,8 @@ class SecretManagerServiceBaseClient
      *
      * The async variant is {@see self::getSecretAsync()} .
      *
-     * @param GetSecretRequest $request      A request to house fields associated with the call.
-     * @param array            $optionalArgs {
+     * @param GetSecretRequest $request     A request to house fields associated with the call.
+     * @param array            $callOptions {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
@@ -506,9 +506,9 @@ class SecretManagerServiceBaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getSecret(GetSecretRequest $request, array $optionalArgs = []): Secret
+    public function getSecret(GetSecretRequest $request, array $callOptions = []): Secret
     {
-        return $this->startApiCall('GetSecret', $request, $optionalArgs)->wait();
+        return $this->startApiCall('GetSecret', $request, $callOptions)->wait();
     }
 
     /**
@@ -519,8 +519,8 @@ class SecretManagerServiceBaseClient
      *
      * The async variant is {@see self::getSecretVersionAsync()} .
      *
-     * @param GetSecretVersionRequest $request      A request to house fields associated with the call.
-     * @param array                   $optionalArgs {
+     * @param GetSecretVersionRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
@@ -533,9 +533,9 @@ class SecretManagerServiceBaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getSecretVersion(GetSecretVersionRequest $request, array $optionalArgs = []): SecretVersion
+    public function getSecretVersion(GetSecretVersionRequest $request, array $callOptions = []): SecretVersion
     {
-        return $this->startApiCall('GetSecretVersion', $request, $optionalArgs)->wait();
+        return $this->startApiCall('GetSecretVersion', $request, $callOptions)->wait();
     }
 
     /**
@@ -544,8 +544,8 @@ class SecretManagerServiceBaseClient
      *
      * The async variant is {@see self::listSecretVersionsAsync()} .
      *
-     * @param ListSecretVersionsRequest $request      A request to house fields associated with the call.
-     * @param array                     $optionalArgs {
+     * @param ListSecretVersionsRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
@@ -558,9 +558,9 @@ class SecretManagerServiceBaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listSecretVersions(ListSecretVersionsRequest $request, array $optionalArgs = []): PagedListResponse
+    public function listSecretVersions(ListSecretVersionsRequest $request, array $callOptions = []): PagedListResponse
     {
-        return $this->startApiCall('ListSecretVersions', $request, $optionalArgs);
+        return $this->startApiCall('ListSecretVersions', $request, $callOptions);
     }
 
     /**
@@ -568,8 +568,8 @@ class SecretManagerServiceBaseClient
      *
      * The async variant is {@see self::listSecretsAsync()} .
      *
-     * @param ListSecretsRequest $request      A request to house fields associated with the call.
-     * @param array              $optionalArgs {
+     * @param ListSecretsRequest $request     A request to house fields associated with the call.
+     * @param array              $callOptions {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
@@ -582,9 +582,9 @@ class SecretManagerServiceBaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listSecrets(ListSecretsRequest $request, array $optionalArgs = []): PagedListResponse
+    public function listSecrets(ListSecretsRequest $request, array $callOptions = []): PagedListResponse
     {
-        return $this->startApiCall('ListSecrets', $request, $optionalArgs);
+        return $this->startApiCall('ListSecrets', $request, $callOptions);
     }
 
     /**
@@ -596,8 +596,8 @@ class SecretManagerServiceBaseClient
      *
      * The async variant is {@see self::setIamPolicyAsync()} .
      *
-     * @param SetIamPolicyRequest $request      A request to house fields associated with the call.
-     * @param array               $optionalArgs {
+     * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
@@ -610,9 +610,9 @@ class SecretManagerServiceBaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function setIamPolicy(SetIamPolicyRequest $request, array $optionalArgs = []): Policy
+    public function setIamPolicy(SetIamPolicyRequest $request, array $callOptions = []): Policy
     {
-        return $this->startApiCall('SetIamPolicy', $request, $optionalArgs)->wait();
+        return $this->startApiCall('SetIamPolicy', $request, $callOptions)->wait();
     }
 
     /**
@@ -626,8 +626,8 @@ class SecretManagerServiceBaseClient
      *
      * The async variant is {@see self::testIamPermissionsAsync()} .
      *
-     * @param TestIamPermissionsRequest $request      A request to house fields associated with the call.
-     * @param array                     $optionalArgs {
+     * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
@@ -640,9 +640,9 @@ class SecretManagerServiceBaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRequest $request, array $optionalArgs = []): TestIamPermissionsResponse
+    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
     {
-        return $this->startApiCall('TestIamPermissions', $request, $optionalArgs)->wait();
+        return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 
     /**
@@ -650,8 +650,8 @@ class SecretManagerServiceBaseClient
      *
      * The async variant is {@see self::updateSecretAsync()} .
      *
-     * @param UpdateSecretRequest $request      A request to house fields associated with the call.
-     * @param array               $optionalArgs {
+     * @param UpdateSecretRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
@@ -664,8 +664,8 @@ class SecretManagerServiceBaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateSecret(UpdateSecretRequest $request, array $optionalArgs = []): Secret
+    public function updateSecret(UpdateSecretRequest $request, array $callOptions = []): Secret
     {
-        return $this->startApiCall('UpdateSecret', $request, $optionalArgs)->wait();
+        return $this->startApiCall('UpdateSecret', $request, $callOptions)->wait();
     }
 }
