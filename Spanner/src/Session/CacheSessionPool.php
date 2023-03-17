@@ -858,13 +858,15 @@ class CacheSessionPool implements SessionPoolInterface
 
     /**
      * Delete the provided sessions.
-     * Sessions might not delete if waitForDeleteSessions is set to false and
-     * gRPC calls go out of scope.
+     * If $waitForPromises is set to false, then the caller doesn't wait for sessions
+     * to get deleted completely. So a side effect may be that sessions might not get
+     * deleted when gRPC calls go out of scope.
      *
      * @param array $sessions
      * @param bool $waitForPromises Whether to explicitly wait on gRPC calls
      *        to delete sessions. **Defaults to ** `false`.
-     * @return bool Returns true if all provided sessions are deleted, false otherwise.
+     * @return bool Returns true if there are no sessions or all provided sessions
+     *        are successfully deleted, false otherwise.
      */
     private function deleteSessions(array $sessions, $waitForPromises = false)
     {
@@ -880,12 +882,14 @@ class CacheSessionPool implements SessionPoolInterface
         if ($waitForPromises) {
             // try clearing sessions otherwise it could lead to leaking of sessions
             try {
-                Utils::all($this->deleteCalls)->wait();
+                $results = Utils::all($this->deleteCalls)->wait();
+                return empty($results) ||
+                    (count(array_unique($results)) === 1 && reset($results) === true);
             } catch (\GuzzleHttp\Promise\RejectionException $ex) {
                 return false;
             }
         }
-        return $waitForPromises;
+        return true;
     }
 
     /**

@@ -24,7 +24,7 @@ use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Session\CacheSessionPool;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
-use GuzzleHttp\Promise\PromiseInterface;
+use GuzzleHttp\Promise\FulfilledPromise;
 use Psr\Cache\CacheItemInterface;
 use Psr\Cache\CacheItemPoolInterface;
 use Prophecy\Argument;
@@ -380,38 +380,65 @@ class CacheSessionPoolTest extends TestCase
         $this->assertEquals($expectedCreationCount, $response);
     }
 
-    public function testClearPool()
+    /**
+     * @dataProvider clearPoolTestDataProvider
+     */
+    public function testClearPool($cacheData, $willDeleteSessions, $expectedValue)
     {
-        $pool = new CacheSessionPoolStub($this->getCacheItemPool());
-        $pool->setDatabase($this->getDatabase());
-        $pool->clear();
+        $pool = new CacheSessionPoolStub($this->getCacheItemPool($cacheData), [], $this->time);
+        $pool->setDatabase($this->getDatabase(false, $willDeleteSessions));
+        $res = $pool->clear();
         $actualItemPool = $pool->cacheItemPool();
         $actualCacheData = $actualItemPool->getItem(
             sprintf(self::CACHE_KEY_TEMPLATE, self::PROJECT_ID, self::INSTANCE_NAME, self::DATABASE_NAME)
         )->get();
-
+        $this->assertEquals($expectedValue, $res);
+        // cached sessions should always be cleared
         $this->assertNull($actualCacheData);
     }
 
-    public function testReleaseSessionAfterClearingPoolSucceeds()
+    public function clearPoolTestDataProvider()
     {
-        $pool = new CacheSessionPoolStub($this->getCacheItemPool());
-        $pool->setDatabase($this->getDatabase());
-        $session = $pool->acquire();
-        $itemPool = $pool->cacheItemPool();
-        $pool->clear();
-        $cacheData = $itemPool->getItem(
-            sprintf(self::CACHE_KEY_TEMPLATE, self::PROJECT_ID, self::INSTANCE_NAME, self::DATABASE_NAME)
-        )->get();
-
-        $this->assertNull($cacheData);
-
-        $pool->release($session);
-        $cacheData = $itemPool->getItem(
-            sprintf(self::CACHE_KEY_TEMPLATE, self::PROJECT_ID, self::INSTANCE_NAME, self::DATABASE_NAME)
-        )->get();
-
-        $this->assertNull($cacheData);
+        $cacheData = [
+            'queue' => [],
+            'inUse' => [
+                'session' => [
+                    'name' => 'session',
+                    'expiration' => $this->time + 3600,
+                    'creation' => $this->time,
+                    'lastActive' => $this->time
+                ]
+            ],
+            'toCreate' => [],
+            'windowStart' => $this->time,
+            'maxInUseSessions' => 1
+        ];
+        return [
+            // Set #0: null sessions in cache
+            [
+              null,
+              true,
+              true
+            ],
+            // Set #1: null sessions in cache
+            [
+              null,
+              false,
+              true
+            ],
+            // Set #2: clear returns false if delete session returns false
+            [
+              $cacheData,
+              false,
+              false
+            ],
+            // Set #3: clear returns true if delete session returns true
+            [
+              $cacheData,
+              true,
+              true
+            ],
+        ];
     }
 
     /**
@@ -802,19 +829,14 @@ class CacheSessionPoolTest extends TestCase
         $database = $this->prophesize(DatabaseStub::class);
         $session = $this->prophesize(SessionStub::class);
         $connection = $this->prophesize(Grpc::class);
-        $promise = $this->prophesize(PromiseInterface::class);
 
         $session->expiration()
             ->willReturn($this->time + 3600);
         $session->exists()
             ->willReturn(false);
-        $promise->wait()
-            ->willReturn(null);
-        $promise->then(Argument::any(), Argument::any())
-            ->willReturn(null);
+        $promise = new FulfilledPromise($willDeleteSessions);
         $connection->deleteSessionAsync(Argument::any())
-            ->willReturn($promise->reveal());
-
+            ->willReturn($promise);
         if ($willDeleteSessions) {
             $session->delete()
                 ->willReturn(null);
