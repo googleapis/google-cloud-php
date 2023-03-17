@@ -78,6 +78,8 @@ class Connection extends \Google\Protobuf\Internal\Message
      *           Cloud Spanner properties.
      *     @type \Google\Cloud\BigQuery\Connection\V1\CloudResourceProperties $cloud_resource
      *           Cloud Resource properties.
+     *     @type \Google\Cloud\BigQuery\Connection\V1\SparkProperties $spark
+     *           Spark properties.
      *     @type int|string $creation_time
      *           Output only. The creation timestamp of the connection.
      *     @type int|string $last_modified_time
@@ -322,6 +324,37 @@ class Connection extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\Connection\V1\CloudResourceProperties::class);
         $this->writeOneof(22, $var);
+
+        return $this;
+    }
+
+    /**
+     * Spark properties.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.connection.v1.SparkProperties spark = 23;</code>
+     * @return \Google\Cloud\BigQuery\Connection\V1\SparkProperties|null
+     */
+    public function getSpark()
+    {
+        return $this->readOneof(23);
+    }
+
+    public function hasSpark()
+    {
+        return $this->hasOneof(23);
+    }
+
+    /**
+     * Spark properties.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.connection.v1.SparkProperties spark = 23;</code>
+     * @param \Google\Cloud\BigQuery\Connection\V1\SparkProperties $var
+     * @return $this
+     */
+    public function setSpark($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\Connection\V1\SparkProperties::class);
+        $this->writeOneof(23, $var);
 
         return $this;
     }

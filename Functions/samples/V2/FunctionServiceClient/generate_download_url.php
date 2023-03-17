@@ -34,8 +34,8 @@ use Google\Cloud\Functions\V2\GenerateDownloadUrlResponse;
  * For more information about the signed URL usage see:
  * https://cloud.google.com/storage/docs/access-control/signed-urls
  *
- * @param string $formattedName The name of function for which source code Google Cloud Storage signed
- *                              URL should be generated. Please see
+ * @param string $formattedName The name of function for which source code Google Cloud Storage
+ *                              signed URL should be generated. Please see
  *                              {@see FunctionServiceClient::functionName()} for help formatting this field.
  */
 function generate_download_url_sample(string $formattedName): void
