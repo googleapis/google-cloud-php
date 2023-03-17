@@ -563,7 +563,7 @@ class Operation
             'database' => $databaseName,
             'session' => [
                 'labels' => $this->pluck('labels', $options, false) ?: [],
-                'creator_role' => $this->pluck('creator_role', $options, false) ?: null
+                'creator_role' => $this->pluck('creator_role', $options, false) ?: ''
             ]
         ] + $options);
 

@@ -692,7 +692,7 @@ class CacheSessionPool implements SessionPoolInterface
                     'database' => $this->database->name(),
                     'sessionTemplate' => [
                         'labels' => isset($this->config['labels']) ? $this->config['labels'] : [],
-                        'creator_role' => isset($this->config['databaseRole']) ? $this->config['databaseRole'] : null
+                        'creator_role' => isset($this->config['databaseRole']) ? $this->config['databaseRole'] : ''
                     ],
                     'sessionCount' => $count - $created
                 ]);
