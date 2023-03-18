@@ -9,19 +9,16 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * ListBackupsRequest lists backups.
+ * ListSnapshotsRequest lists snapshots.
  *
- * Generated from protobuf message <code>google.cloud.filestore.v1.ListBackupsRequest</code>
+ * Generated from protobuf message <code>google.cloud.filestore.v1.ListSnapshotsRequest</code>
  */
-class ListBackupsRequest extends \Google\Protobuf\Internal\Message
+class ListSnapshotsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The project and location for which to retrieve backup
-     * information, in the format
-     * `projects/{project_number}/locations/{location}`. In Filestore, backup
-     * locations map to Google Cloud regions, for example **us-west1**. To
-     * retrieve backup information for all locations, use "-" for the
-     * `{location}` value.
+     * Required. The instance for which to retrieve snapshot information,
+     * in the format
+     * `projects/{project_id}/locations/{location}/instances/{instance_id}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -59,12 +56,9 @@ class ListBackupsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The project and location for which to retrieve backup
-     *           information, in the format
-     *           `projects/{project_number}/locations/{location}`. In Filestore, backup
-     *           locations map to Google Cloud regions, for example **us-west1**. To
-     *           retrieve backup information for all locations, use "-" for the
-     *           `{location}` value.
+     *           Required. The instance for which to retrieve snapshot information,
+     *           in the format
+     *           `projects/{project_id}/locations/{location}/instances/{instance_id}`.
      *     @type int $page_size
      *           The maximum number of items to return.
      *     @type string $page_token
@@ -82,12 +76,9 @@ class ListBackupsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The project and location for which to retrieve backup
-     * information, in the format
-     * `projects/{project_number}/locations/{location}`. In Filestore, backup
-     * locations map to Google Cloud regions, for example **us-west1**. To
-     * retrieve backup information for all locations, use "-" for the
-     * `{location}` value.
+     * Required. The instance for which to retrieve snapshot information,
+     * in the format
+     * `projects/{project_id}/locations/{location}/instances/{instance_id}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -98,12 +89,9 @@ class ListBackupsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The project and location for which to retrieve backup
-     * information, in the format
-     * `projects/{project_number}/locations/{location}`. In Filestore, backup
-     * locations map to Google Cloud regions, for example **us-west1**. To
-     * retrieve backup information for all locations, use "-" for the
-     * `{location}` value.
+     * Required. The instance for which to retrieve snapshot information,
+     * in the format
+     * `projects/{project_id}/locations/{location}/instances/{instance_id}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
