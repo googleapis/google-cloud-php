@@ -30,12 +30,12 @@ class CloudRunMetadataProvider implements MetadataProviderInterface
     private $metadata;
 
     /**
-     * @var Metadata
+     * @var string
      */
     private $serviceId;
 
     /**
-     * @var Metadata
+     * @var string
      */
     private $revisionId;
 
