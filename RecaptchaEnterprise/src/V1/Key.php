@@ -37,9 +37,9 @@ class Key extends \Google\Protobuf\Internal\Message
      */
     private $labels;
     /**
-     * The timestamp corresponding to the creation of this Key.
+     * Output only. The timestamp corresponding to the creation of this Key.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $create_time = null;
     /**
@@ -77,7 +77,7 @@ class Key extends \Google\Protobuf\Internal\Message
      *           See <a href="https://cloud.google.com/recaptcha-enterprise/docs/labels">
      *           Creating and managing labels</a>.
      *     @type \Google\Protobuf\Timestamp $create_time
-     *           The timestamp corresponding to the creation of this Key.
+     *           Output only. The timestamp corresponding to the creation of this Key.
      *     @type \Google\Cloud\RecaptchaEnterprise\V1\TestingOptions $testing_options
      *           Options for user acceptance testing.
      *     @type \Google\Cloud\RecaptchaEnterprise\V1\WafSettings $waf_settings
@@ -265,9 +265,9 @@ class Key extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The timestamp corresponding to the creation of this Key.
+     * Output only. The timestamp corresponding to the creation of this Key.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
      */
     public function getCreateTime()
@@ -286,9 +286,9 @@ class Key extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The timestamp corresponding to the creation of this Key.
+     * Output only. The timestamp corresponding to the creation of this Key.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */
