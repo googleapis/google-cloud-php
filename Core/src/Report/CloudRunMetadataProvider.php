@@ -44,9 +44,9 @@ class CloudRunMetadataProvider implements MetadataProviderInterface
         $this->serviceId = isset($env['K_SERVICE'])
             ? $env['K_SERVICE']
             : 'unknown-service';
-        $revisionId = isset($env['K_REVISION'])
+        $this->revisionId = isset($env['K_REVISION'])
             ? $env['K_REVISION']
-            : 'unknown-version';
+            : 'unknown-revision';
         $this->metadata = new Metadata();
     }
 
