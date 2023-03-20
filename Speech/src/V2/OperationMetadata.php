@@ -725,28 +725,33 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
     /**
      * The UpdateConfigRequest that spawned the Operation.
      *
-     * Generated from protobuf field <code>.google.cloud.speech.v2.UpdateConfigRequest update_config_request = 21;</code>
+     * Generated from protobuf field <code>.google.cloud.speech.v2.UpdateConfigRequest update_config_request = 21 [deprecated = true];</code>
      * @return \Google\Cloud\Speech\V2\UpdateConfigRequest|null
+     * @deprecated
      */
     public function getUpdateConfigRequest()
     {
+        @trigger_error('update_config_request is deprecated.', E_USER_DEPRECATED);
         return $this->readOneof(21);
     }
 
     public function hasUpdateConfigRequest()
     {
+        @trigger_error('update_config_request is deprecated.', E_USER_DEPRECATED);
         return $this->hasOneof(21);
     }
 
     /**
      * The UpdateConfigRequest that spawned the Operation.
      *
-     * Generated from protobuf field <code>.google.cloud.speech.v2.UpdateConfigRequest update_config_request = 21;</code>
+     * Generated from protobuf field <code>.google.cloud.speech.v2.UpdateConfigRequest update_config_request = 21 [deprecated = true];</code>
      * @param \Google\Cloud\Speech\V2\UpdateConfigRequest $var
      * @return $this
+     * @deprecated
      */
     public function setUpdateConfigRequest($var)
     {
+        @trigger_error('update_config_request is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkMessage($var, \Google\Cloud\Speech\V2\UpdateConfigRequest::class);
         $this->writeOneof(21, $var);
 
