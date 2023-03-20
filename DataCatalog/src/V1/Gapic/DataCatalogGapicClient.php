@@ -27,6 +27,8 @@ namespace Google\Cloud\DataCatalog\V1\Gapic;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\LongRunning\OperationsClient;
+use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
@@ -50,6 +52,9 @@ use Google\Cloud\DataCatalog\V1\EntryOverview;
 use Google\Cloud\DataCatalog\V1\GetEntryGroupRequest;
 use Google\Cloud\DataCatalog\V1\GetEntryRequest;
 use Google\Cloud\DataCatalog\V1\GetTagTemplateRequest;
+use Google\Cloud\DataCatalog\V1\ImportEntriesMetadata;
+use Google\Cloud\DataCatalog\V1\ImportEntriesRequest;
+use Google\Cloud\DataCatalog\V1\ImportEntriesResponse;
 use Google\Cloud\DataCatalog\V1\ListEntriesRequest;
 use Google\Cloud\DataCatalog\V1\ListEntriesResponse;
 use Google\Cloud\DataCatalog\V1\ListEntryGroupsRequest;
@@ -59,6 +64,9 @@ use Google\Cloud\DataCatalog\V1\ListTagsResponse;
 use Google\Cloud\DataCatalog\V1\LookupEntryRequest;
 use Google\Cloud\DataCatalog\V1\ModifyEntryContactsRequest;
 use Google\Cloud\DataCatalog\V1\ModifyEntryOverviewRequest;
+use Google\Cloud\DataCatalog\V1\ReconcileTagsMetadata;
+use Google\Cloud\DataCatalog\V1\ReconcileTagsRequest;
+use Google\Cloud\DataCatalog\V1\ReconcileTagsResponse;
 use Google\Cloud\DataCatalog\V1\RenameTagTemplateFieldEnumValueRequest;
 use Google\Cloud\DataCatalog\V1\RenameTagTemplateFieldRequest;
 use Google\Cloud\DataCatalog\V1\SearchCatalogRequest;
@@ -82,6 +90,7 @@ use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\SetIamPolicyRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
+use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 
@@ -145,6 +154,8 @@ class DataCatalogGapicClient
     private static $tagTemplateFieldEnumValueNameTemplate;
 
     private static $pathTemplateMap;
+
+    private $operationsClient;
 
     private static function getClientDefaults()
     {
@@ -436,6 +447,35 @@ class DataCatalogGapicClient
     }
 
     /**
+     * Return an OperationsClient object with the same endpoint as $this.
+     *
+     * @return OperationsClient
+     */
+    public function getOperationsClient()
+    {
+        return $this->operationsClient;
+    }
+
+    /**
+     * Resume an existing long running operation that was previously started by a long
+     * running API method. If $methodName is not provided, or does not match a long
+     * running API method, then the operation can still be resumed, but the
+     * OperationResponse object will not deserialize the final response.
+     *
+     * @param string $operationName The name of the long running operation
+     * @param string $methodName    The name of the method used to start the operation
+     *
+     * @return OperationResponse
+     */
+    public function resumeOperation($operationName, $methodName = null)
+    {
+        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
+        $operation->reload();
+        return $operation;
+    }
+
+    /**
      * Constructor.
      *
      * @param array $options {
@@ -493,6 +533,7 @@ class DataCatalogGapicClient
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
+        $this->operationsClient = $this->createOperationsClient($clientOptions);
     }
 
     /**
@@ -598,7 +639,8 @@ class DataCatalogGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The names of the project and location that the new entry group belongs to.
+     * @param string $parent       Required. The names of the project and location that the new entry group
+     *                             belongs to.
      *
      *                             Note: The entry group itself and its child resources might not be
      *                             stored in the location specified in its name.
@@ -1224,6 +1266,93 @@ class DataCatalogGapicClient
     }
 
     /**
+     * Imports entries from a source, such as data previously dumped into a
+     * Cloud Storage bucket, into Data Catalog. Import of entries
+     * is a sync operation that reconciles the state of the third-party system
+     * with the Data Catalog.
+     *
+     * `ImportEntries` accepts source data snapshots of a third-party system.
+     * Snapshot should be delivered as a .wire or base65-encoded .txt file
+     * containing a sequence of Protocol Buffer messages of
+     * [DumpItem][google.cloud.datacatalog.v1.DumpItem] type.
+     *
+     * `ImportEntries` returns a [long-running operation]
+     * [google.longrunning.Operation] resource that can be queried with
+     * [Operations.GetOperation][google.longrunning.Operations.GetOperation]
+     * to return
+     * [ImportEntriesMetadata][google.cloud.datacatalog.v1.ImportEntriesMetadata]
+     * and an
+     * [ImportEntriesResponse][google.cloud.datacatalog.v1.ImportEntriesResponse]
+     * message.
+     *
+     * Sample code:
+     * ```
+     * $dataCatalogClient = new DataCatalogClient();
+     * try {
+     *     $formattedParent = $dataCatalogClient->entryGroupName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]');
+     *     $operationResponse = $dataCatalogClient->importEntries($formattedParent);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $dataCatalogClient->importEntries($formattedParent);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $dataCatalogClient->resumeOperation($operationName, 'importEntries');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $dataCatalogClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. Target entry group for ingested entries.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $gcsBucketPath
+     *           Path to a Cloud Storage bucket that contains a dump ready for ingestion.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function importEntries($parent, array $optionalArgs = [])
+    {
+        $request = new ImportEntriesRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['gcsBucketPath'])) {
+            $request->setGcsBucketPath($optionalArgs['gcsBucketPath']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('ImportEntries', $optionalArgs, $request, $this->getOperationsClient())->wait();
+    }
+
+    /**
      * Lists entries.
      *
      * Note: Currently, this method can list only custom entries.
@@ -1629,6 +1758,102 @@ class DataCatalogGapicClient
     }
 
     /**
+     * `ReconcileTags` creates or updates a list of tags on the entry.
+     * If the
+     * [ReconcileTagsRequest.force_delete_missing][google.cloud.datacatalog.v1.ReconcileTagsRequest.force_delete_missing]
+     * parameter is set, the operation deletes tags not included in the input tag
+     * list.
+     *
+     * `ReconcileTags` returns a [long-running operation]
+     * [google.longrunning.Operation] resource that can be queried with
+     * [Operations.GetOperation][google.longrunning.Operations.GetOperation]
+     * to return [ReconcileTagsMetadata]
+     * [google.cloud.datacatalog.v1.ReconcileTagsMetadata] and
+     * a [ReconcileTagsResponse]
+     * [google.cloud.datacatalog.v1.ReconcileTagsResponse] message.
+     *
+     * Sample code:
+     * ```
+     * $dataCatalogClient = new DataCatalogClient();
+     * try {
+     *     $formattedParent = $dataCatalogClient->entryName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]', '[ENTRY]');
+     *     $formattedTagTemplate = $dataCatalogClient->tagTemplateName('[PROJECT]', '[LOCATION]', '[TAG_TEMPLATE]');
+     *     $operationResponse = $dataCatalogClient->reconcileTags($formattedParent, $formattedTagTemplate);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $dataCatalogClient->reconcileTags($formattedParent, $formattedTagTemplate);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $dataCatalogClient->resumeOperation($operationName, 'reconcileTags');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $dataCatalogClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. Name of [Entry][google.cloud.datacatalog.v1.Entry] to be tagged.
+     * @param string $tagTemplate  Required. The name of the tag template, which is used for reconciliation.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type bool $forceDeleteMissing
+     *           If set to `true`, deletes entry tags related to a tag template
+     *           not listed in the tags source from an entry. If set to `false`,
+     *           unlisted tags are retained.
+     *     @type Tag[] $tags
+     *           A list of tags to apply to an entry. A tag can specify a
+     *           tag template, which must be the template specified in the
+     *           `ReconcileTagsRequest`.
+     *           The sole entry and each of its columns must be mentioned at most once.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function reconcileTags($parent, $tagTemplate, array $optionalArgs = [])
+    {
+        $request = new ReconcileTagsRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setTagTemplate($tagTemplate);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['forceDeleteMissing'])) {
+            $request->setForceDeleteMissing($optionalArgs['forceDeleteMissing']);
+        }
+
+        if (isset($optionalArgs['tags'])) {
+            $request->setTags($optionalArgs['tags']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('ReconcileTags', $optionalArgs, $request, $this->getOperationsClient())->wait();
+    }
+
+    /**
      * Renames a field in a tag template.
      *
      * You must enable the Data Catalog API in the project identified by the
@@ -1648,7 +1873,8 @@ class DataCatalogGapicClient
      * ```
      *
      * @param string $name                  Required. The name of the tag template field.
-     * @param string $newTagTemplateFieldId Required. The new ID of this tag template field. For example, `my_new_field`.
+     * @param string $newTagTemplateFieldId Required. The new ID of this tag template field. For example,
+     *                                      `my_new_field`.
      * @param array  $optionalArgs          {
      *     Optional.
      *
@@ -1692,7 +1918,8 @@ class DataCatalogGapicClient
      * ```
      *
      * @param string $name                    Required. The name of the enum field value.
-     * @param string $newEnumValueDisplayName Required. The new display name of the enum value. For example, `my_new_enum_value`.
+     * @param string $newEnumValueDisplayName Required. The new display name of the enum value. For example,
+     *                                        `my_new_enum_value`.
      * @param array  $optionalArgs            {
      *     Optional.
      *
@@ -1764,9 +1991,8 @@ class DataCatalogGapicClient
      *                             The `scope` is invalid if `include_org_ids`, `include_project_ids` are
      *                             empty AND `include_gcp_public_datasets` is set to `false`. In this case,
      *                             the request returns an error.
-     * @param string $query        Optional. The query string with a minimum of 3 characters and specific syntax.
-     *                             For more information, see
-     *                             [Data Catalog search
+     * @param string $query        Optional. The query string with a minimum of 3 characters and specific
+     *                             syntax. For more information, see [Data Catalog search
      *                             syntax](https://cloud.google.com/data-catalog/docs/how-to/search-reference).
      *
      *                             An empty query string returns all data assets (in the specified scope)
@@ -2311,8 +2537,8 @@ class DataCatalogGapicClient
      *     Optional.
      *
      *     @type FieldMask $updateMask
-     *           Optional. Names of fields whose values to overwrite on an individual field of a tag
-     *           template. The following fields are modifiable:
+     *           Optional. Names of fields whose values to overwrite on an individual field
+     *           of a tag template. The following fields are modifiable:
      *
      *           * `display_name`
      *           * `type.enum_type`

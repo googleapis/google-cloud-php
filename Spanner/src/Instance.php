@@ -510,7 +510,7 @@ class Instance
             isset($options['sessionPool']) ? $options['sessionPool'] : null,
             $this->returnInt64AsObject,
             isset($options['database']) ? $options['database'] : [],
-            isset($options['databaseRole']) ? $options['databaseRole'] : null
+            isset($options['databaseRole']) ? $options['databaseRole'] : ''
         );
     }
 

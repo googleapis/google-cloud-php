@@ -37,12 +37,19 @@ class Method
      * Generated from protobuf enum <code>SECURE_KEY = 3;</code>
      */
     const SECURE_KEY = 3;
+    /**
+     * User can use any enabled 2nd factor.
+     *
+     * Generated from protobuf enum <code>ENROLLED_SECOND_FACTORS = 4;</code>
+     */
+    const ENROLLED_SECOND_FACTORS = 4;
 
     private static $valueToName = [
         self::METHOD_UNSPECIFIED => 'METHOD_UNSPECIFIED',
         self::LOGIN => 'LOGIN',
         self::PASSWORD => 'PASSWORD',
         self::SECURE_KEY => 'SECURE_KEY',
+        self::ENROLLED_SECOND_FACTORS => 'ENROLLED_SECOND_FACTORS',
     ];
 
     public static function name($value)
