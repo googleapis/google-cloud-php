@@ -424,11 +424,11 @@ class CacheSessionPoolTest extends TestCase
         $cacheData = [
             'queue' => [
                 'session' => [
-                  'name' => 'session',
-                  'expiration' => $this->time + 3600,
-                  'creation' => $this->time,
-                  'lastActive' => $this->time
-              ]
+                    'name' => 'session',
+                    'expiration' => $this->time + 3600,
+                    'creation' => $this->time,
+                    'lastActive' => $this->time
+                ]
             ],
             'inUse' => [
                 'session' => [
@@ -871,10 +871,10 @@ class CacheSessionPoolTest extends TestCase
                     $this->getMockDeleteSessionResponse()
                 ));
         } else {
-              $connection->deleteSessionAsync(Argument::any())
-                  ->willReturn(new RejectedPromise(
-                      $this->getMockDeleteSessionResponse()
-                  ));;
+            $connection->deleteSessionAsync(Argument::any())
+                ->willReturn(new RejectedPromise(
+                    $this->getMockDeleteSessionResponse()
+                ));
         }
         $database->connection()
             ->willReturn($connection->reveal());
