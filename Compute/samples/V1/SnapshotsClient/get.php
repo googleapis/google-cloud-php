@@ -28,7 +28,7 @@ use Google\Cloud\Compute\V1\Snapshot;
 use Google\Cloud\Compute\V1\SnapshotsClient;
 
 /**
- * Returns the specified Snapshot resource. Gets a list of available snapshots by making a list() request.
+ * Returns the specified Snapshot resource.
  *
  * @param string $project  Project ID for this request.
  * @param string $snapshot Name of the Snapshot resource to return.
