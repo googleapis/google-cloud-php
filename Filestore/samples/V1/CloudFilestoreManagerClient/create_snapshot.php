@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2022 Google LLC
+ * Copyright 2023 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,42 +22,41 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START file_v1_generated_CloudFilestoreManager_CreateInstance_sync]
+// [START file_v1_generated_CloudFilestoreManager_CreateSnapshot_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Filestore\V1\CloudFilestoreManagerClient;
-use Google\Cloud\Filestore\V1\Instance;
+use Google\Cloud\Filestore\V1\Snapshot;
 use Google\Rpc\Status;
 
 /**
- * Creates an instance.
- * When creating from a backup, the capacity of the new instance needs to be
- * equal to or larger than the capacity of the backup (and also equal to or
- * larger than the minimum capacity of the tier).
+ * Creates a snapshot.
  *
- * @param string $formattedParent The instance's project and location, in the format
- *                                `projects/{project_id}/locations/{location}`. In Filestore,
- *                                locations map to Google Cloud zones, for example **us-west1-b**. Please see
- *                                {@see CloudFilestoreManagerClient::locationName()} for help formatting this field.
- * @param string $instanceId      The name of the instance to create.
- *                                The name must be unique for the specified project and location.
+ * @param string $formattedParent The Filestore Instance to create the snapshots of, in the format
+ *                                `projects/{project_id}/locations/{location}/instances/{instance_id}`
+ *                                Please see {@see CloudFilestoreManagerClient::instanceName()} for help formatting this field.
+ * @param string $snapshotId      The ID to use for the snapshot.
+ *                                The ID must be unique within the specified instance.
+ *
+ *                                This value must start with a lowercase letter followed by up to 62
+ *                                lowercase letters, numbers, or hyphens, and cannot end with a hyphen.
  */
-function create_instance_sample(string $formattedParent, string $instanceId): void
+function create_snapshot_sample(string $formattedParent, string $snapshotId): void
 {
     // Create a client.
     $cloudFilestoreManagerClient = new CloudFilestoreManagerClient();
 
     // Prepare any non-scalar elements to be passed along with the request.
-    $instance = new Instance();
+    $snapshot = new Snapshot();
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $cloudFilestoreManagerClient->createInstance($formattedParent, $instanceId, $instance);
+        $response = $cloudFilestoreManagerClient->createSnapshot($formattedParent, $snapshotId, $snapshot);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
-            /** @var Instance $result */
+            /** @var Snapshot $result */
             $result = $response->getResult();
             printf('Operation successful with response data: %s' . PHP_EOL, $result->serializeToJsonString());
         } else {
@@ -81,9 +80,13 @@ function create_instance_sample(string $formattedParent, string $instanceId): vo
  */
 function callSample(): void
 {
-    $formattedParent = CloudFilestoreManagerClient::locationName('[PROJECT]', '[LOCATION]');
-    $instanceId = '[INSTANCE_ID]';
+    $formattedParent = CloudFilestoreManagerClient::instanceName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[INSTANCE]'
+    );
+    $snapshotId = '[SNAPSHOT_ID]';
 
-    create_instance_sample($formattedParent, $instanceId);
+    create_snapshot_sample($formattedParent, $snapshotId);
 }
-// [END file_v1_generated_CloudFilestoreManager_CreateInstance_sync]
+// [END file_v1_generated_CloudFilestoreManager_CreateSnapshot_sync]

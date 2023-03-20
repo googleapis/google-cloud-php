@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2022 Google LLC
+ * Copyright 2023 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,38 +22,28 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START file_v1_generated_CloudFilestoreManager_ListInstances_sync]
+// [START file_v1_generated_CloudFilestoreManager_GetSnapshot_sync]
 use Google\ApiCore\ApiException;
-use Google\ApiCore\PagedListResponse;
 use Google\Cloud\Filestore\V1\CloudFilestoreManagerClient;
-use Google\Cloud\Filestore\V1\Instance;
+use Google\Cloud\Filestore\V1\Snapshot;
 
 /**
- * Lists all instances in a project for either a specified location
- * or for all locations.
+ * Gets the details of a specific snapshot.
  *
- * @param string $formattedParent The project and location for which to retrieve instance
- *                                information, in the format `projects/{project_id}/locations/{location}`. In
- *                                Cloud Filestore, locations map to Google Cloud zones, for example
- *                                **us-west1-b**. To retrieve instance information for all locations, use "-"
- *                                for the
- *                                `{location}` value. Please see
- *                                {@see CloudFilestoreManagerClient::locationName()} for help formatting this field.
+ * @param string $formattedName The snapshot resource name, in the format
+ *                              `projects/{project_id}/locations/{location}/instances/{instance_id}/snapshots/{snapshot_id}`
+ *                              Please see {@see CloudFilestoreManagerClient::snapshotName()} for help formatting this field.
  */
-function list_instances_sample(string $formattedParent): void
+function get_snapshot_sample(string $formattedName): void
 {
     // Create a client.
     $cloudFilestoreManagerClient = new CloudFilestoreManagerClient();
 
     // Call the API and handle any network failures.
     try {
-        /** @var PagedListResponse $response */
-        $response = $cloudFilestoreManagerClient->listInstances($formattedParent);
-
-        /** @var Instance $element */
-        foreach ($response as $element) {
-            printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
-        }
+        /** @var Snapshot $response */
+        $response = $cloudFilestoreManagerClient->getSnapshot($formattedName);
+        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
@@ -70,8 +60,13 @@ function list_instances_sample(string $formattedParent): void
  */
 function callSample(): void
 {
-    $formattedParent = CloudFilestoreManagerClient::locationName('[PROJECT]', '[LOCATION]');
+    $formattedName = CloudFilestoreManagerClient::snapshotName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[INSTANCE]',
+        '[SNAPSHOT]'
+    );
 
-    list_instances_sample($formattedParent);
+    get_snapshot_sample($formattedName);
 }
-// [END file_v1_generated_CloudFilestoreManager_ListInstances_sync]
+// [END file_v1_generated_CloudFilestoreManager_GetSnapshot_sync]

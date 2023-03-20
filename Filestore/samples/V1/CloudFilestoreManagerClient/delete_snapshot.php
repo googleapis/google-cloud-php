@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2022 Google LLC
+ * Copyright 2023 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,44 +22,32 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START file_v1_generated_CloudFilestoreManager_CreateInstance_sync]
+// [START file_v1_generated_CloudFilestoreManager_DeleteSnapshot_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Filestore\V1\CloudFilestoreManagerClient;
-use Google\Cloud\Filestore\V1\Instance;
 use Google\Rpc\Status;
 
 /**
- * Creates an instance.
- * When creating from a backup, the capacity of the new instance needs to be
- * equal to or larger than the capacity of the backup (and also equal to or
- * larger than the minimum capacity of the tier).
+ * Deletes a snapshot.
  *
- * @param string $formattedParent The instance's project and location, in the format
- *                                `projects/{project_id}/locations/{location}`. In Filestore,
- *                                locations map to Google Cloud zones, for example **us-west1-b**. Please see
- *                                {@see CloudFilestoreManagerClient::locationName()} for help formatting this field.
- * @param string $instanceId      The name of the instance to create.
- *                                The name must be unique for the specified project and location.
+ * @param string $formattedName The snapshot resource name, in the format
+ *                              `projects/{project_id}/locations/{location}/instances/{instance_id}/snapshots/{snapshot_id}`
+ *                              Please see {@see CloudFilestoreManagerClient::snapshotName()} for help formatting this field.
  */
-function create_instance_sample(string $formattedParent, string $instanceId): void
+function delete_snapshot_sample(string $formattedName): void
 {
     // Create a client.
     $cloudFilestoreManagerClient = new CloudFilestoreManagerClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
-    $instance = new Instance();
-
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $cloudFilestoreManagerClient->createInstance($formattedParent, $instanceId, $instance);
+        $response = $cloudFilestoreManagerClient->deleteSnapshot($formattedName);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
-            /** @var Instance $result */
-            $result = $response->getResult();
-            printf('Operation successful with response data: %s' . PHP_EOL, $result->serializeToJsonString());
+            printf('Operation completed successfully.' . PHP_EOL);
         } else {
             /** @var Status $error */
             $error = $response->getError();
@@ -81,9 +69,13 @@ function create_instance_sample(string $formattedParent, string $instanceId): vo
  */
 function callSample(): void
 {
-    $formattedParent = CloudFilestoreManagerClient::locationName('[PROJECT]', '[LOCATION]');
-    $instanceId = '[INSTANCE_ID]';
+    $formattedName = CloudFilestoreManagerClient::snapshotName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[INSTANCE]',
+        '[SNAPSHOT]'
+    );
 
-    create_instance_sample($formattedParent, $instanceId);
+    delete_snapshot_sample($formattedName);
 }
-// [END file_v1_generated_CloudFilestoreManager_CreateInstance_sync]
+// [END file_v1_generated_CloudFilestoreManager_DeleteSnapshot_sync]
