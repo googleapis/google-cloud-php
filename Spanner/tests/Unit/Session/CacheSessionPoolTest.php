@@ -25,10 +25,12 @@ use Google\Cloud\Spanner\Session\CacheSessionPool;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use GuzzleHttp\Promise\FulfilledPromise;
+use GuzzleHttp\Promise\RejectedPromise;
 use Psr\Cache\CacheItemInterface;
 use Psr\Cache\CacheItemPoolInterface;
 use Prophecy\Argument;
 use Prophecy\Argument\ArgumentsWildcard;
+use ReflectionMethod;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
@@ -397,10 +399,37 @@ class CacheSessionPoolTest extends TestCase
         $this->assertNull($actualCacheData);
     }
 
+    public function testDeleteSessionsForNoWait()
+    {
+        $pool = new CacheSessionPoolStub($this->getCacheItemPool(), [], $this->time);
+        $deleteSessions = new ReflectionMethod($pool, 'deleteSessions');
+        $deleteSessions->setAccessible(true);
+        $res = $deleteSessions->invoke($pool, [], false);
+
+        $this->assertTrue($res);
+    }
+
+    public function testDeleteSessionsForNoSessions()
+    {
+        $pool = new CacheSessionPoolStub($this->getCacheItemPool(), [], $this->time);
+        $deleteSessions = new ReflectionMethod($pool, 'deleteSessions');
+        $deleteSessions->setAccessible(true);
+        $res = $deleteSessions->invoke($pool, [], true);
+
+        $this->assertTrue($res);
+    }
+
     public function clearPoolTestDataProvider()
     {
         $cacheData = [
-            'queue' => [],
+            'queue' => [
+                'session' => [
+                  'name' => 'session',
+                  'expiration' => $this->time + 3600,
+                  'creation' => $this->time,
+                  'lastActive' => $this->time
+              ]
+            ],
             'inUse' => [
                 'session' => [
                     'name' => 'session',
@@ -834,12 +863,18 @@ class CacheSessionPoolTest extends TestCase
             ->willReturn($this->time + 3600);
         $session->exists()
             ->willReturn(false);
-        $promise = new FulfilledPromise($willDeleteSessions);
-        $connection->deleteSessionAsync(Argument::any())
-            ->willReturn($promise);
         if ($willDeleteSessions) {
             $session->delete()
-                ->willReturn(null);
+            ->willReturn(null);
+            $connection->deleteSessionAsync(Argument::any())
+                ->willReturn(new FulfilledPromise(
+                    $this->getMockDeleteSessionResponse()
+                ));
+        } else {
+              $connection->deleteSessionAsync(Argument::any())
+                  ->willReturn(new RejectedPromise(
+                      $this->getMockDeleteSessionResponse()
+                  ));;
         }
         $database->connection()
             ->willReturn($connection->reveal());
@@ -890,6 +925,16 @@ class CacheSessionPoolTest extends TestCase
         }
 
         return $database->reveal();
+    }
+
+    private function getMockDeleteSessionResponse()
+    {
+        return new class{
+            public function serializeToString()
+            {
+                return '';
+            }
+        };
     }
 
     private function getCacheItemPool(array $cacheData = null)

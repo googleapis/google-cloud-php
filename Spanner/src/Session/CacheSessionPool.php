@@ -502,7 +502,8 @@ class CacheSessionPool implements SessionPoolInterface
      * exceed the maximum number of sessions available per node, please be sure
      * to check the return value of this method to be certain all sessions have
      * been deleted.
-     * @return bool Returns true if all provided sessions are deleted, false otherwise.
+     * @return bool Returns false if some sessions in pool failed to delete, true otherwise.
+     *        True maybe returned when delete for some sessions are not successful.
      */
     public function clear()
     {
@@ -857,7 +858,7 @@ class CacheSessionPool implements SessionPoolInterface
     }
 
     /**
-     * Delete the provided sessions.
+     * Attempt to delete the provided sessions.
      * If $waitForPromises is set to false, then the caller doesn't wait for sessions
      * to get deleted completely. So a side effect may be that sessions might not get
      * deleted when gRPC calls go out of scope.
@@ -865,8 +866,8 @@ class CacheSessionPool implements SessionPoolInterface
      * @param array $sessions
      * @param bool $waitForPromises Whether to explicitly wait on gRPC calls
      *        to delete sessions. **Defaults to ** `false`.
-     * @return bool Returns true if there are no sessions or all provided sessions
-     *        are successfully deleted, false otherwise.
+     * @return bool Returns false if some delete operations failed, true otherwise.
+     *        True maybe returned when delete for some sessions are not successful.
      */
     private function deleteSessions(array $sessions, $waitForPromises = false)
     {
@@ -884,7 +885,10 @@ class CacheSessionPool implements SessionPoolInterface
             try {
                 $results = Utils::all($this->deleteCalls)->wait();
                 return empty($results) ||
-                    (count(array_unique($results)) === 1 && reset($results) === true);
+                    (
+                        count(array_unique($results, SORT_REGULAR)) === 1 &&
+                        empty(reset($results)->serializeToString())
+                    );
             } catch (\GuzzleHttp\Promise\RejectionException $ex) {
                 return false;
             }
