@@ -676,7 +676,7 @@ class CacheSessionPool implements SessionPoolInterface
      * Creates sessions up to the count provided.
      *
      * @param int $count
-     * @return [ array[] $sessions, \Exception $ex = null ]
+     * @return array{0: array[], 1: \Exception|null }
      */
     private function createSessions($count)
     {
