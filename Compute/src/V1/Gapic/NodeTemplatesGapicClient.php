@@ -410,7 +410,7 @@ class NodeTemplatesGapicClient
     }
 
     /**
-     * Returns the specified node template. Gets a list of available node templates by making a list() request.
+     * Returns the specified node template.
      *
      * Sample code:
      * ```

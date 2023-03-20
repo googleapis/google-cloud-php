@@ -39,8 +39,8 @@ use Google\Rpc\Status;
  * @param string $formattedName The resource name of the instance, in the format
  *                              `projects/{project_number}/locations/{location_id}/instances/{instance_id}`. Please see
  *                              {@see CloudFilestoreManagerClient::instanceName()} for help formatting this field.
- * @param string $fileShare     Name of the file share in the Cloud Filestore instance that the
- *                              backup is being restored to.
+ * @param string $fileShare     Name of the file share in the Filestore instance that the backup
+ *                              is being restored to.
  */
 function restore_instance_sample(string $formattedName, string $fileShare): void
 {

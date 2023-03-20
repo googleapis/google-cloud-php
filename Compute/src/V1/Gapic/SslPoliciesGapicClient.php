@@ -444,7 +444,7 @@ class SslPoliciesGapicClient
     }
 
     /**
-     * Returns the specified SSL policy resource. Gets a list of available SSL policies by making a list() request.
+     * Returns the specified SSL policy resource.
      *
      * Sample code:
      * ```

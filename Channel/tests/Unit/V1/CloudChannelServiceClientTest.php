@@ -35,11 +35,13 @@ use Google\Cloud\Channel\V1\CloudChannelServiceClient;
 use Google\Cloud\Channel\V1\Customer;
 use Google\Cloud\Channel\V1\CustomerRepricingConfig;
 use Google\Cloud\Channel\V1\Entitlement;
+use Google\Cloud\Channel\V1\EntitlementChange;
 use Google\Cloud\Channel\V1\ImportCustomerRequest\CustomerIdentityOneof;
 use Google\Cloud\Channel\V1\ListChannelPartnerLinksResponse;
 use Google\Cloud\Channel\V1\ListChannelPartnerRepricingConfigsResponse;
 use Google\Cloud\Channel\V1\ListCustomerRepricingConfigsResponse;
 use Google\Cloud\Channel\V1\ListCustomersResponse;
+use Google\Cloud\Channel\V1\ListEntitlementChangesResponse;
 use Google\Cloud\Channel\V1\ListEntitlementsResponse;
 use Google\Cloud\Channel\V1\ListOffersResponse;
 use Google\Cloud\Channel\V1\ListProductsResponse;
@@ -958,6 +960,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $cloudIdentityId = 'cloudIdentityId-466684622';
         $languageCode = 'languageCode-412800396';
         $channelPartnerId = 'channelPartnerId-1897289554';
+        $correlationId = 'correlationId2055329016';
         $expectedResponse = new Customer();
         $expectedResponse->setName($name);
         $expectedResponse->setOrgDisplayName($orgDisplayName);
@@ -966,6 +969,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $expectedResponse->setCloudIdentityId($cloudIdentityId);
         $expectedResponse->setLanguageCode($languageCode);
         $expectedResponse->setChannelPartnerId($channelPartnerId);
+        $expectedResponse->setCorrelationId($correlationId);
         $transport->addResponse($expectedResponse);
         // Mock request
         $parent = 'parent-995424086';
@@ -1554,6 +1558,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $cloudIdentityId = 'cloudIdentityId-466684622';
         $languageCode = 'languageCode-412800396';
         $channelPartnerId = 'channelPartnerId-1897289554';
+        $correlationId = 'correlationId2055329016';
         $expectedResponse = new Customer();
         $expectedResponse->setName($name2);
         $expectedResponse->setOrgDisplayName($orgDisplayName);
@@ -1562,6 +1567,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $expectedResponse->setCloudIdentityId($cloudIdentityId);
         $expectedResponse->setLanguageCode($languageCode);
         $expectedResponse->setChannelPartnerId($channelPartnerId);
+        $expectedResponse->setCorrelationId($correlationId);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->customerName('[ACCOUNT]', '[CUSTOMER]');
@@ -1750,6 +1756,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $cloudIdentityId = 'cloudIdentityId-466684622';
         $languageCode = 'languageCode-412800396';
         $channelPartnerId2 = 'channelPartnerId22065842401';
+        $correlationId = 'correlationId2055329016';
         $expectedResponse = new Customer();
         $expectedResponse->setName($name);
         $expectedResponse->setOrgDisplayName($orgDisplayName);
@@ -1758,6 +1765,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $expectedResponse->setCloudIdentityId($cloudIdentityId);
         $expectedResponse->setLanguageCode($languageCode);
         $expectedResponse->setChannelPartnerId($channelPartnerId2);
+        $expectedResponse->setCorrelationId($correlationId);
         $transport->addResponse($expectedResponse);
         // Mock request
         $customerIdentity = new CustomerIdentityOneof();
@@ -2077,6 +2085,74 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $parent = 'parent-995424086';
         try {
             $gapicClient->listCustomers($parent);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listEntitlementChangesTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $entitlementChangesElement = new EntitlementChange();
+        $entitlementChanges = [
+            $entitlementChangesElement,
+        ];
+        $expectedResponse = new ListEntitlementChangesResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setEntitlementChanges($entitlementChanges);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->entitlementName('[ACCOUNT]', '[CUSTOMER]', '[ENTITLEMENT]');
+        $response = $gapicClient->listEntitlementChanges($formattedParent);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getEntitlementChanges()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.channel.v1.CloudChannelService/ListEntitlementChanges', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listEntitlementChangesExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->entitlementName('[ACCOUNT]', '[CUSTOMER]', '[ENTITLEMENT]');
+        try {
+            $gapicClient->listEntitlementChanges($formattedParent);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2800,6 +2876,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $cloudIdentityId = 'cloudIdentityId-466684622';
         $languageCode = 'languageCode-412800396';
         $channelPartnerId = 'channelPartnerId-1897289554';
+        $correlationId = 'correlationId2055329016';
         $expectedResponse = new Customer();
         $expectedResponse->setName($name);
         $expectedResponse->setOrgDisplayName($orgDisplayName);
@@ -2808,6 +2885,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $expectedResponse->setCloudIdentityId($cloudIdentityId);
         $expectedResponse->setLanguageCode($languageCode);
         $expectedResponse->setChannelPartnerId($channelPartnerId);
+        $expectedResponse->setCorrelationId($correlationId);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -3693,6 +3771,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $cloudIdentityId = 'cloudIdentityId-466684622';
         $languageCode = 'languageCode-412800396';
         $channelPartnerId = 'channelPartnerId-1897289554';
+        $correlationId = 'correlationId2055329016';
         $expectedResponse = new Customer();
         $expectedResponse->setName($name);
         $expectedResponse->setOrgDisplayName($orgDisplayName);
@@ -3701,6 +3780,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $expectedResponse->setCloudIdentityId($cloudIdentityId);
         $expectedResponse->setLanguageCode($languageCode);
         $expectedResponse->setChannelPartnerId($channelPartnerId);
+        $expectedResponse->setCorrelationId($correlationId);
         $transport->addResponse($expectedResponse);
         // Mock request
         $customer = new Customer();

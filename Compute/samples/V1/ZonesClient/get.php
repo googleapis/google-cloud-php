@@ -28,7 +28,7 @@ use Google\Cloud\Compute\V1\Zone;
 use Google\Cloud\Compute\V1\ZonesClient;
 
 /**
- * Returns the specified Zone resource. Gets a list of available zones by making a list() request.
+ * Returns the specified Zone resource.
  *
  * @param string $project Project ID for this request.
  * @param string $zone    Name of the zone resource to return.

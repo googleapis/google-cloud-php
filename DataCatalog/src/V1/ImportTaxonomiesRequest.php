@@ -17,7 +17,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class ImportTaxonomiesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Resource name of project that the imported taxonomies will belong to.
+     * Required. Resource name of project that the imported taxonomies will belong
+     * to.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -31,7 +32,8 @@ class ImportTaxonomiesRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. Resource name of project that the imported taxonomies will belong to.
+     *           Required. Resource name of project that the imported taxonomies will belong
+     *           to.
      *     @type \Google\Cloud\DataCatalog\V1\InlineSource $inline_source
      *           Inline source taxonomy to import.
      *     @type \Google\Cloud\DataCatalog\V1\CrossRegionalSource $cross_regional_source
@@ -44,7 +46,8 @@ class ImportTaxonomiesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Resource name of project that the imported taxonomies will belong to.
+     * Required. Resource name of project that the imported taxonomies will belong
+     * to.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -55,7 +58,8 @@ class ImportTaxonomiesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Resource name of project that the imported taxonomies will belong to.
+     * Required. Resource name of project that the imported taxonomies will belong
+     * to.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

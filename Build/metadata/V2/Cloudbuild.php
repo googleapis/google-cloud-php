@@ -21,7 +21,7 @@ class Cloudbuild
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ô
+î
 .google/devtools/cloudbuild/v2/cloudbuild.protogoogle.devtools.cloudbuild.v2google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.protogoogle/protobuf/timestamp.proto"Ä
 OperationMetadata4
 create_time (2.google.protobuf.TimestampB‡A1
@@ -38,8 +38,8 @@ class Cloudbuild
 requested_cancellation (B‡A
 api_version (	B‡A
 target (	B‡A
-pipeline_run_id (	B‡AB±
-google.devtools.cloudbuild.v2BCloudBuildProtoPZGgoogle.golang.org/genproto/googleapis/devtools/cloudbuild/v2;cloudbuild¢GCB™Google.Cloud.CloudBuild.V2 Google\\Cloud\\Build\\V2ÍGoogle::Cloud::Build::V2ÍAN
+pipeline_run_id (	B‡AB¨
+com.google.cloudbuild.v2BCloudBuildProtoPZGgoogle.golang.org/genproto/googleapis/devtools/cloudbuild/v2;cloudbuild¢GCB™Google.Cloud.CloudBuild.V2 Google\\Cloud\\Build\\V2ÍGoogle::Cloud::Build::V2ÍAN
 compute.googleapis.com/Network,projects/{project}/global/networks/{network}ÍAY
 !iam.googleapis.com/ServiceAccount4projects/{project}/serviceAccounts/{service_account}ÍAJ
 #secretmanager.googleapis.com/Secret#projects/{project}/secrets/{secret}ÍAd

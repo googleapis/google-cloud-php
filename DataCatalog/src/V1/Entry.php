@@ -66,9 +66,7 @@ class Entry extends \Google\Protobuf\Internal\Message
     private $fully_qualified_name = '';
     /**
      * Display name of an entry.
-     * The name must contain only Unicode letters, numbers (0-9), underscores (_),
-     * dashes (-), spaces ( ), and can't start or end with spaces.
-     * The maximum size is 200 bytes when encoded in UTF-8.
+     * The maximum size is 500 bytes when encoded in UTF-8.
      * Default value is an empty string.
      *
      * Generated from protobuf field <code>string display_name = 3;</code>
@@ -130,13 +128,15 @@ class Entry extends \Google\Protobuf\Internal\Message
      */
     private $data_source = null;
     /**
-     * Output only. Additional information related to the entry. Private to the current user.
+     * Output only. Additional information related to the entry. Private to the
+     * current user.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.PersonalDetails personal_details = 26 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $personal_details = null;
     protected $entry_type;
     protected $system;
+    protected $system_spec;
     protected $type_spec;
     protected $spec;
 
@@ -202,6 +202,12 @@ class Entry extends \Google\Protobuf\Internal\Message
      *           * Must begin with a letter or underscore.
      *           * Can only contain letters, numbers, and underscores.
      *           * Must be at least 1 character and at most 64 characters long.
+     *     @type \Google\Cloud\DataCatalog\V1\SqlDatabaseSystemSpec $sql_database_system_spec
+     *           Specification that applies to a relational database system. Only settable
+     *           when `user_specified_system` is equal to `SQL_DATABASE`
+     *     @type \Google\Cloud\DataCatalog\V1\LookerSystemSpec $looker_system_spec
+     *           Specification that applies to Looker sysstem. Only settable when
+     *           `user_specified_system` is equal to `LOOKER`
      *     @type \Google\Cloud\DataCatalog\V1\GcsFilesetSpec $gcs_fileset_spec
      *           Specification that applies to a Cloud Storage fileset. Valid only
      *           for entries with the `FILESET` type.
@@ -215,7 +221,7 @@ class Entry extends \Google\Protobuf\Internal\Message
      *           (https://cloud.google.com/bigquery/docs/partitioned-tables#partitioning_versus_sharding).
      *     @type \Google\Cloud\DataCatalog\V1\DatabaseTableSpec $database_table_spec
      *           Specification that applies to a table resource. Valid only
-     *           for entries with the `TABLE` type.
+     *           for entries with the `TABLE` or `EXPLORE` type.
      *     @type \Google\Cloud\DataCatalog\V1\DataSourceConnectionSpec $data_source_connection_spec
      *           Specification that applies to a data source connection. Valid only
      *           for entries with the `DATA_SOURCE_CONNECTION` type.
@@ -227,9 +233,7 @@ class Entry extends \Google\Protobuf\Internal\Message
      *           for entries with the `FILESET` type.
      *     @type string $display_name
      *           Display name of an entry.
-     *           The name must contain only Unicode letters, numbers (0-9), underscores (_),
-     *           dashes (-), spaces ( ), and can't start or end with spaces.
-     *           The maximum size is 200 bytes when encoded in UTF-8.
+     *           The maximum size is 500 bytes when encoded in UTF-8.
      *           Default value is an empty string.
      *     @type string $description
      *           Entry description that can consist of several sentences or paragraphs
@@ -259,7 +263,8 @@ class Entry extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\DataCatalog\V1\DataSource $data_source
      *           Output only. Physical location of the entry.
      *     @type \Google\Cloud\DataCatalog\V1\PersonalDetails $personal_details
-     *           Output only. Additional information related to the entry. Private to the current user.
+     *           Output only. Additional information related to the entry. Private to the
+     *           current user.
      * }
      */
     public function __construct($data = NULL) {
@@ -554,6 +559,72 @@ class Entry extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Specification that applies to a relational database system. Only settable
+     * when `user_specified_system` is equal to `SQL_DATABASE`
+     *
+     * Generated from protobuf field <code>.google.cloud.datacatalog.v1.SqlDatabaseSystemSpec sql_database_system_spec = 39;</code>
+     * @return \Google\Cloud\DataCatalog\V1\SqlDatabaseSystemSpec|null
+     */
+    public function getSqlDatabaseSystemSpec()
+    {
+        return $this->readOneof(39);
+    }
+
+    public function hasSqlDatabaseSystemSpec()
+    {
+        return $this->hasOneof(39);
+    }
+
+    /**
+     * Specification that applies to a relational database system. Only settable
+     * when `user_specified_system` is equal to `SQL_DATABASE`
+     *
+     * Generated from protobuf field <code>.google.cloud.datacatalog.v1.SqlDatabaseSystemSpec sql_database_system_spec = 39;</code>
+     * @param \Google\Cloud\DataCatalog\V1\SqlDatabaseSystemSpec $var
+     * @return $this
+     */
+    public function setSqlDatabaseSystemSpec($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DataCatalog\V1\SqlDatabaseSystemSpec::class);
+        $this->writeOneof(39, $var);
+
+        return $this;
+    }
+
+    /**
+     * Specification that applies to Looker sysstem. Only settable when
+     * `user_specified_system` is equal to `LOOKER`
+     *
+     * Generated from protobuf field <code>.google.cloud.datacatalog.v1.LookerSystemSpec looker_system_spec = 40;</code>
+     * @return \Google\Cloud\DataCatalog\V1\LookerSystemSpec|null
+     */
+    public function getLookerSystemSpec()
+    {
+        return $this->readOneof(40);
+    }
+
+    public function hasLookerSystemSpec()
+    {
+        return $this->hasOneof(40);
+    }
+
+    /**
+     * Specification that applies to Looker sysstem. Only settable when
+     * `user_specified_system` is equal to `LOOKER`
+     *
+     * Generated from protobuf field <code>.google.cloud.datacatalog.v1.LookerSystemSpec looker_system_spec = 40;</code>
+     * @param \Google\Cloud\DataCatalog\V1\LookerSystemSpec $var
+     * @return $this
+     */
+    public function setLookerSystemSpec($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DataCatalog\V1\LookerSystemSpec::class);
+        $this->writeOneof(40, $var);
+
+        return $this;
+    }
+
+    /**
      * Specification that applies to a Cloud Storage fileset. Valid only
      * for entries with the `FILESET` type.
      *
@@ -658,7 +729,7 @@ class Entry extends \Google\Protobuf\Internal\Message
 
     /**
      * Specification that applies to a table resource. Valid only
-     * for entries with the `TABLE` type.
+     * for entries with the `TABLE` or `EXPLORE` type.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.DatabaseTableSpec database_table_spec = 24;</code>
      * @return \Google\Cloud\DataCatalog\V1\DatabaseTableSpec|null
@@ -675,7 +746,7 @@ class Entry extends \Google\Protobuf\Internal\Message
 
     /**
      * Specification that applies to a table resource. Valid only
-     * for entries with the `TABLE` type.
+     * for entries with the `TABLE` or `EXPLORE` type.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.DatabaseTableSpec database_table_spec = 24;</code>
      * @param \Google\Cloud\DataCatalog\V1\DatabaseTableSpec $var
@@ -790,9 +861,7 @@ class Entry extends \Google\Protobuf\Internal\Message
 
     /**
      * Display name of an entry.
-     * The name must contain only Unicode letters, numbers (0-9), underscores (_),
-     * dashes (-), spaces ( ), and can't start or end with spaces.
-     * The maximum size is 200 bytes when encoded in UTF-8.
+     * The maximum size is 500 bytes when encoded in UTF-8.
      * Default value is an empty string.
      *
      * Generated from protobuf field <code>string display_name = 3;</code>
@@ -805,9 +874,7 @@ class Entry extends \Google\Protobuf\Internal\Message
 
     /**
      * Display name of an entry.
-     * The name must contain only Unicode letters, numbers (0-9), underscores (_),
-     * dashes (-), spaces ( ), and can't start or end with spaces.
-     * The maximum size is 200 bytes when encoded in UTF-8.
+     * The maximum size is 500 bytes when encoded in UTF-8.
      * Default value is an empty string.
      *
      * Generated from protobuf field <code>string display_name = 3;</code>
@@ -1081,7 +1148,8 @@ class Entry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Additional information related to the entry. Private to the current user.
+     * Output only. Additional information related to the entry. Private to the
+     * current user.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.PersonalDetails personal_details = 26 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\DataCatalog\V1\PersonalDetails|null
@@ -1102,7 +1170,8 @@ class Entry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Additional information related to the entry. Private to the current user.
+     * Output only. Additional information related to the entry. Private to the
+     * current user.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.PersonalDetails personal_details = 26 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\DataCatalog\V1\PersonalDetails $var
@@ -1130,6 +1199,14 @@ class Entry extends \Google\Protobuf\Internal\Message
     public function getSystem()
     {
         return $this->whichOneof("system");
+    }
+
+    /**
+     * @return string
+     */
+    public function getSystemSpec()
+    {
+        return $this->whichOneof("system_spec");
     }
 
     /**
