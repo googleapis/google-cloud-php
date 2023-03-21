@@ -33,7 +33,7 @@ class Scope extends \Google\Protobuf\Internal\Message
      */
     private $include_project_ids;
     /**
-     * If `true`, include Google Cloud Platform (GCP) public datasets in
+     * If `true`, include Google Cloud public datasets in
      * search results. By default, they are excluded.
      * See [Google Cloud Public Datasets](https://cloud.google.com/public-datasets) for more
      * information.
@@ -42,8 +42,8 @@ class Scope extends \Google\Protobuf\Internal\Message
      */
     private $include_gcp_public_datasets = false;
     /**
-     * Optional. The list of locations to search within. If empty, all locations are
-     * searched.
+     * Optional. The list of locations to search within. If empty, all locations
+     * are searched.
      * Returns an error if any location in the list isn't one of the [Supported
      * regions](https://cloud.google.com/data-catalog/docs/concepts/regions#supported_regions).
      * If a location is unreachable, its name is returned in the
@@ -62,8 +62,8 @@ class Scope extends \Google\Protobuf\Internal\Message
      */
     private $starred_only = false;
     /**
-     * Optional. This field is deprecated. The search mechanism for public and private tag
-     * templates is the same.
+     * Optional. This field is deprecated. The search mechanism for public and
+     * private tag templates is the same.
      *
      * Generated from protobuf field <code>bool include_public_tag_templates = 19 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @deprecated
@@ -86,13 +86,13 @@ class Scope extends \Google\Protobuf\Internal\Message
      *           For more information on the distinction between project names, IDs, and
      *           numbers, see [Projects](https://cloud.google.com/docs/overview/#projects).
      *     @type bool $include_gcp_public_datasets
-     *           If `true`, include Google Cloud Platform (GCP) public datasets in
+     *           If `true`, include Google Cloud public datasets in
      *           search results. By default, they are excluded.
      *           See [Google Cloud Public Datasets](https://cloud.google.com/public-datasets) for more
      *           information.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $restricted_locations
-     *           Optional. The list of locations to search within. If empty, all locations are
-     *           searched.
+     *           Optional. The list of locations to search within. If empty, all locations
+     *           are searched.
      *           Returns an error if any location in the list isn't one of the [Supported
      *           regions](https://cloud.google.com/data-catalog/docs/concepts/regions#supported_regions).
      *           If a location is unreachable, its name is returned in the
@@ -103,8 +103,8 @@ class Scope extends \Google\Protobuf\Internal\Message
      *           Optional. If `true`, search only among starred entries.
      *           By default, all results are returned, starred or not.
      *     @type bool $include_public_tag_templates
-     *           Optional. This field is deprecated. The search mechanism for public and private tag
-     *           templates is the same.
+     *           Optional. This field is deprecated. The search mechanism for public and
+     *           private tag templates is the same.
      * }
      */
     public function __construct($data = NULL) {
@@ -175,7 +175,7 @@ class Scope extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If `true`, include Google Cloud Platform (GCP) public datasets in
+     * If `true`, include Google Cloud public datasets in
      * search results. By default, they are excluded.
      * See [Google Cloud Public Datasets](https://cloud.google.com/public-datasets) for more
      * information.
@@ -189,7 +189,7 @@ class Scope extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If `true`, include Google Cloud Platform (GCP) public datasets in
+     * If `true`, include Google Cloud public datasets in
      * search results. By default, they are excluded.
      * See [Google Cloud Public Datasets](https://cloud.google.com/public-datasets) for more
      * information.
@@ -207,8 +207,8 @@ class Scope extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The list of locations to search within. If empty, all locations are
-     * searched.
+     * Optional. The list of locations to search within. If empty, all locations
+     * are searched.
      * Returns an error if any location in the list isn't one of the [Supported
      * regions](https://cloud.google.com/data-catalog/docs/concepts/regions#supported_regions).
      * If a location is unreachable, its name is returned in the
@@ -225,8 +225,8 @@ class Scope extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The list of locations to search within. If empty, all locations are
-     * searched.
+     * Optional. The list of locations to search within. If empty, all locations
+     * are searched.
      * Returns an error if any location in the list isn't one of the [Supported
      * regions](https://cloud.google.com/data-catalog/docs/concepts/regions#supported_regions).
      * If a location is unreachable, its name is returned in the
@@ -275,8 +275,8 @@ class Scope extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. This field is deprecated. The search mechanism for public and private tag
-     * templates is the same.
+     * Optional. This field is deprecated. The search mechanism for public and
+     * private tag templates is the same.
      *
      * Generated from protobuf field <code>bool include_public_tag_templates = 19 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
@@ -289,8 +289,8 @@ class Scope extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. This field is deprecated. The search mechanism for public and private tag
-     * templates is the same.
+     * Optional. This field is deprecated. The search mechanism for public and
+     * private tag templates is the same.
      *
      * Generated from protobuf field <code>bool include_public_tag_templates = 19 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var

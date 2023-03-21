@@ -37,7 +37,8 @@ use Google\Cloud\DataCatalog\V1\PolicyTagManagerSerializationClient;
  * For an inlined source, taxonomies and policy tags are created in bulk using
  * nested protocol buffer structures.
  *
- * @param string $formattedParent Resource name of project that the imported taxonomies will belong to. Please see
+ * @param string $formattedParent Resource name of project that the imported taxonomies will belong
+ *                                to. Please see
  *                                {@see PolicyTagManagerSerializationClient::locationName()} for help formatting this field.
  */
 function import_taxonomies_sample(string $formattedParent): void

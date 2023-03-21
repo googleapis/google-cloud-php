@@ -3,6 +3,26 @@
 return [
     'interfaces' => [
         'google.cloud.datacatalog.v1.DataCatalog' => [
+            'ImportEntries' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\DataCatalog\V1\ImportEntriesResponse',
+                    'metadataReturnType' => '\Google\Cloud\DataCatalog\V1\ImportEntriesMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+            ],
+            'ReconcileTags' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\DataCatalog\V1\ReconcileTagsResponse',
+                    'metadataReturnType' => '\Google\Cloud\DataCatalog\V1\ReconcileTagsMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+            ],
             'ListEntries' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',

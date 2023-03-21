@@ -10,22 +10,22 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Provides "hints" to the speech recognizer to favor specific words and phrases
- * in the results. Phrase sets can be specified as an inline resource, or a
- * reference to an existing phrase set resource.
+ * in the results. PhraseSets can be specified as an inline resource, or a
+ * reference to an existing PhraseSet resource.
  *
  * Generated from protobuf message <code>google.cloud.speech.v2.SpeechAdaptation</code>
  */
 class SpeechAdaptation extends \Google\Protobuf\Internal\Message
 {
     /**
-     * A list of inline or referenced phrase sets.
+     * A list of inline or referenced PhraseSets.
      *
      * Generated from protobuf field <code>repeated .google.cloud.speech.v2.SpeechAdaptation.AdaptationPhraseSet phrase_sets = 1;</code>
      */
     private $phrase_sets;
     /**
-     * A list of inline custom classes. Existing custom class resources can be
-     * referenced directly in a phrase set.
+     * A list of inline CustomClasses. Existing CustomClass resources can be
+     * referenced directly in a PhraseSet.
      *
      * Generated from protobuf field <code>repeated .google.cloud.speech.v2.CustomClass custom_classes = 2;</code>
      */
@@ -38,10 +38,10 @@ class SpeechAdaptation extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<\Google\Cloud\Speech\V2\SpeechAdaptation\AdaptationPhraseSet>|\Google\Protobuf\Internal\RepeatedField $phrase_sets
-     *           A list of inline or referenced phrase sets.
+     *           A list of inline or referenced PhraseSets.
      *     @type array<\Google\Cloud\Speech\V2\CustomClass>|\Google\Protobuf\Internal\RepeatedField $custom_classes
-     *           A list of inline custom classes. Existing custom class resources can be
-     *           referenced directly in a phrase set.
+     *           A list of inline CustomClasses. Existing CustomClass resources can be
+     *           referenced directly in a PhraseSet.
      * }
      */
     public function __construct($data = NULL) {
@@ -50,7 +50,7 @@ class SpeechAdaptation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of inline or referenced phrase sets.
+     * A list of inline or referenced PhraseSets.
      *
      * Generated from protobuf field <code>repeated .google.cloud.speech.v2.SpeechAdaptation.AdaptationPhraseSet phrase_sets = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -61,7 +61,7 @@ class SpeechAdaptation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of inline or referenced phrase sets.
+     * A list of inline or referenced PhraseSets.
      *
      * Generated from protobuf field <code>repeated .google.cloud.speech.v2.SpeechAdaptation.AdaptationPhraseSet phrase_sets = 1;</code>
      * @param array<\Google\Cloud\Speech\V2\SpeechAdaptation\AdaptationPhraseSet>|\Google\Protobuf\Internal\RepeatedField $var
@@ -76,8 +76,8 @@ class SpeechAdaptation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of inline custom classes. Existing custom class resources can be
-     * referenced directly in a phrase set.
+     * A list of inline CustomClasses. Existing CustomClass resources can be
+     * referenced directly in a PhraseSet.
      *
      * Generated from protobuf field <code>repeated .google.cloud.speech.v2.CustomClass custom_classes = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -88,8 +88,8 @@ class SpeechAdaptation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of inline custom classes. Existing custom class resources can be
-     * referenced directly in a phrase set.
+     * A list of inline CustomClasses. Existing CustomClass resources can be
+     * referenced directly in a PhraseSet.
      *
      * Generated from protobuf field <code>repeated .google.cloud.speech.v2.CustomClass custom_classes = 2;</code>
      * @param array<\Google\Cloud\Speech\V2\CustomClass>|\Google\Protobuf\Internal\RepeatedField $var

@@ -306,7 +306,8 @@ class PolicyTagManagerSerializationGapicClient
      * }
      * ```
      *
-     * @param string   $parent       Required. Resource name of the project that the exported taxonomies belong to.
+     * @param string   $parent       Required. Resource name of the project that the exported taxonomies belong
+     *                               to.
      * @param string[] $taxonomies   Required. Resource names of the taxonomies to export.
      * @param array    $optionalArgs {
      *     Optional.
@@ -361,7 +362,8 @@ class PolicyTagManagerSerializationGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. Resource name of project that the imported taxonomies will belong to.
+     * @param string $parent       Required. Resource name of project that the imported taxonomies will belong
+     *                             to.
      * @param array  $optionalArgs {
      *     Optional.
      *

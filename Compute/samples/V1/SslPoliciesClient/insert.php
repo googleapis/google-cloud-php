@@ -30,7 +30,7 @@ use Google\Cloud\Compute\V1\SslPolicy;
 use Google\Rpc\Status;
 
 /**
- * Returns the specified SSL policy resource. Gets a list of available SSL policies by making a list() request.
+ * Returns the specified SSL policy resource.
  *
  * @param string $project Project ID for this request.
  */
