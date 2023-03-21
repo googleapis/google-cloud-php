@@ -868,12 +868,12 @@ class CacheSessionPoolTest extends TestCase
             ->willReturn(null);
             $connection->deleteSessionAsync(Argument::any())
                 ->willReturn(new FulfilledPromise(
-                    $this->getMockDeleteSessionResponse()
+                    new DumbObject()
                 ));
         } else {
             $connection->deleteSessionAsync(Argument::any())
                 ->willReturn(new RejectedPromise(
-                    $this->getMockDeleteSessionResponse()
+                    new DumbObject()
                 ));
         }
         $database->connection()
@@ -925,16 +925,6 @@ class CacheSessionPoolTest extends TestCase
         }
 
         return $database->reveal();
-    }
-
-    private function getMockDeleteSessionResponse()
-    {
-        return new class{
-            public function serializeToString()
-            {
-                return '';
-            }
-        };
     }
 
     private function getCacheItemPool(array $cacheData = null)
@@ -1256,6 +1246,11 @@ class DumbObject
     public function __call($name, $args)
     {
         return $this;
+    }
+
+    public function serializeToString()
+    {
+        return '';
     }
 }
 //@codingStandardsIgnoreEnd
