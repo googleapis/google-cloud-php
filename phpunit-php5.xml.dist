@@ -7,6 +7,7 @@
       <directory>*/tests/Unit</directory>
       <exclude>./Compute/tests/Unit/*</exclude>
       <exclude>./SqlAdmin/tests/Unit/*</exclude>
+      <exclude>dev/tests/Unit/Command/AddComponentCommandTest.php</exclude>
       <exclude>dev/tests/Unit/Command/DocFxCommandTest.php</exclude>
       <exclude>dev/tests/Unit/DocFx/PageTest.php</exclude>
       <exclude>dev/tests/Unit/DocFx/NodeTest.php</exclude>

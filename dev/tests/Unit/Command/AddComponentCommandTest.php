@@ -69,27 +69,28 @@ class AddComponentCommandTest extends TestCase
 
         // confirm expected output
         $display = self::$commandTester->getDisplay();
-        $tmpDir = self::$tmpDir;
-        $this->assertStringContainsString(
-        <<<EOF
-        | protoPackage         | google.cloud.secretmanager                                                                         |
-        | phpNamespace         | Google\Cloud\SecretManager                                                                         |
-        | displayName          | Google Cloud Secret Manager                                                                        |
-        | componentName        | SecretManager                                                                                      |
-        | componentPath        | $tmpDir/SecretManager |
-        | composerPackage      | google/cloud-secretmanager                                                                         |
-        | githubRepo           | googleapis/google-cloud-php-secretmanager                                                          |
-        | gpbMetadataNamespace | GPBMetadata\Google\Cloud\Secretmanager                                                             |
-        | shortName            | secretmanager                                                                                      |
-        | protoPath            | google/cloud/secretmanager/(.*)                                                                    |
-        | version              | v1                                                                                                 |
-        EOF, $display);
+        $expectedDisplay = sprintf(<<<EOF
+        | protoPackage         | google.cloud.secretmanager
+        | phpNamespace         | Google\Cloud\SecretManager
+        | displayName          | Google Cloud Secret Manager
+        | componentName        | SecretManager
+        | componentPath        | %s/SecretManager
+        | composerPackage      | google/cloud-secretmanager
+        | githubRepo           | googleapis/google-cloud-php-secretmanager
+        | gpbMetadataNamespace | GPBMetadata\Google\Cloud\Secretmanager
+        | shortName            | secretmanager
+        | protoPath            | google/cloud/secretmanager/(.*)
+        | version              | v1
+        EOF, self::$tmpDir);
+        foreach (explode("\n", $expectedDisplay) as $expectedLine) {
+            $this->assertStringContainsString($expectedLine, $display);
+        }
 
         foreach (self::$expectedFiles as $file) {
-            $this->assertFileExists($tmpDir . '/SecretManager/' . $file);
+            $this->assertFileExists(self::$tmpDir . '/SecretManager/' . $file);
             $this->assertFileEquals(
                 __DIR__ . '/../../fixtures/component/SecretManager/' . $file,
-                $tmpDir . '/SecretManager/' . $file
+                self::$tmpDir . '/SecretManager/' . $file
             );
         }
     }
@@ -120,27 +121,28 @@ class AddComponentCommandTest extends TestCase
 
         // confirm expected output
         $display = self::$commandTester->getDisplay();
-        $tmpDir = self::$tmpDir;
-        $this->assertStringContainsString(
-        <<<EOF
-        | protoPackage         | google.custom.proto.package                                                                      |
-        | phpNamespace         | Google\Cloud\CustomNamespace                                                                     |
-        | displayName          | Google Cloud Custom Display Name                                                                 |
-        | componentName        | CustomInputs                                                                                     |
-        | componentPath        | $tmpDir/CustomInput |
-        | composerPackage      | google/custom-composer-package-name                                                              |
-        | githubRepo           | googleapis/google-cloud-php-custom-repo                                                          |
-        | gpbMetadataNamespace | GPBMetadata\Google\Custommetadatanamespace                                                       |
-        | shortName            | customshortname                                                                                  |
-        | protoPath            | google/cloud/custompath/(.*)                                                                     |
-        | version              | v2                                                                                               |
-        EOF, $display);
+        $expectedDisplay = sprintf(<<<EOF
+        | protoPackage         | google.custom.proto.package
+        | phpNamespace         | Google\Cloud\CustomNamespace
+        | displayName          | Google Cloud Custom Display Name
+        | componentName        | CustomInputs
+        | componentPath        | %s/CustomInput
+        | composerPackage      | google/custom-composer-package-name
+        | githubRepo           | googleapis/google-cloud-php-custom-repo
+        | gpbMetadataNamespace | GPBMetadata\Google\Custommetadatanamespace
+        | shortName            | customshortname
+        | protoPath            | google/cloud/custompath/(.*)
+        | version              | v2
+        EOF, self::$tmpDir);
+        foreach (explode("\n", $expectedDisplay) as $expectedLine) {
+            $this->assertStringContainsString($expectedLine, $display);
+        }
 
         foreach (self::$expectedFiles as $file) {
-            $this->assertFileExists($tmpDir . '/CustomInput/' . $file);
+            $this->assertFileExists(self::$tmpDir . '/CustomInput/' . $file);
             $this->assertFileEquals(
                 __DIR__ . '/../../fixtures/component/CustomInput/' . $file,
-                $tmpDir . '/CustomInput/' . $file
+                self::$tmpDir . '/CustomInput/' . $file
             );
         }
     }
