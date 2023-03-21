@@ -264,6 +264,28 @@ return [
                     ],
                 ],
             ],
+            'Update' => [
+                'method' => 'patch',
+                'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/disks/{disk}',
+                'body' => 'disk_resource',
+                'placeholders' => [
+                    'disk' => [
+                        'getters' => [
+                            'getDisk',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
+                        ],
+                    ],
+                ],
+            ],
         ],
         'google.cloud.compute.v1.ZoneOperations' => [
             'Delete' => [

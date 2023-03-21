@@ -28,7 +28,7 @@ use Google\Cloud\Compute\V1\Instance;
 use Google\Cloud\Compute\V1\InstancesClient;
 
 /**
- * Returns the specified Instance resource. Gets a list of available instances by making a list() request.
+ * Returns the specified Instance resource.
  *
  * @param string $instance Name of the instance resource to return.
  * @param string $project  Project ID for this request.

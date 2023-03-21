@@ -153,6 +153,16 @@ return [
                     'resourcesGetMethod' => 'getCustomers',
                 ],
             ],
+            'ListEntitlementChanges' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getEntitlementChanges',
+                ],
+            ],
             'ListEntitlements' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',

@@ -40,6 +40,7 @@ class ExplicitDecodingConfig extends \Google\Protobuf\Internal\Message
      * * LINEAR16: Headerless 16-bit signed little-endian PCM samples.
      * * MULAW: Headerless 8-bit companded mulaw samples.
      * * ALAW: Headerless 8-bit companded alaw samples.
+     * The maximum allowed value is 8.
      *
      * Generated from protobuf field <code>int32 audio_channel_count = 3;</code>
      */
@@ -68,6 +69,7 @@ class ExplicitDecodingConfig extends \Google\Protobuf\Internal\Message
      *           * LINEAR16: Headerless 16-bit signed little-endian PCM samples.
      *           * MULAW: Headerless 8-bit companded mulaw samples.
      *           * ALAW: Headerless 8-bit companded alaw samples.
+     *           The maximum allowed value is 8.
      * }
      */
     public function __construct($data = NULL) {
@@ -147,6 +149,7 @@ class ExplicitDecodingConfig extends \Google\Protobuf\Internal\Message
      * * LINEAR16: Headerless 16-bit signed little-endian PCM samples.
      * * MULAW: Headerless 8-bit companded mulaw samples.
      * * ALAW: Headerless 8-bit companded alaw samples.
+     * The maximum allowed value is 8.
      *
      * Generated from protobuf field <code>int32 audio_channel_count = 3;</code>
      * @return int
@@ -162,6 +165,7 @@ class ExplicitDecodingConfig extends \Google\Protobuf\Internal\Message
      * * LINEAR16: Headerless 16-bit signed little-endian PCM samples.
      * * MULAW: Headerless 8-bit companded mulaw samples.
      * * ALAW: Headerless 8-bit companded alaw samples.
+     * The maximum allowed value is 8.
      *
      * Generated from protobuf field <code>int32 audio_channel_count = 3;</code>
      * @param int $var

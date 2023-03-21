@@ -19,11 +19,6 @@
 namespace Google\Cloud\Sql\V1beta4;
 
 /**
- * NOTE: No sensitive PII logging is allowed. If you are adding a field/enum
- * value that is sensitive PII, please add corresponding datapol annotation to
- * it. For more information, please see
- * https://g3doc.corp.google.com/storage/speckle/g3doc/purple_team/data_pol_annotations.md?cl=head
- *
  */
 class SqlUsersServiceGrpcClient extends \Grpc\BaseStub {
 

@@ -17,7 +17,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateEntryGroupRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The names of the project and location that the new entry group belongs to.
+     * Required. The names of the project and location that the new entry group
+     * belongs to.
      * Note: The entry group itself and its child resources might not be
      * stored in the location specified in its name.
      *
@@ -47,7 +48,8 @@ class CreateEntryGroupRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The names of the project and location that the new entry group belongs to.
+     *           Required. The names of the project and location that the new entry group
+     *           belongs to.
      *           Note: The entry group itself and its child resources might not be
      *           stored in the location specified in its name.
      *     @type string $entry_group_id
@@ -65,7 +67,8 @@ class CreateEntryGroupRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The names of the project and location that the new entry group belongs to.
+     * Required. The names of the project and location that the new entry group
+     * belongs to.
      * Note: The entry group itself and its child resources might not be
      * stored in the location specified in its name.
      *
@@ -78,7 +81,8 @@ class CreateEntryGroupRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The names of the project and location that the new entry group belongs to.
+     * Required. The names of the project and location that the new entry group
+     * belongs to.
      * Note: The entry group itself and its child resources might not be
      * stored in the location specified in its name.
      *

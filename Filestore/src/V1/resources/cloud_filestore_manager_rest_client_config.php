@@ -33,6 +33,21 @@ return [
                     'instance_id',
                 ],
             ],
+            'CreateSnapshot' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/instances/*}/snapshots',
+                'body' => 'snapshot',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'snapshot_id',
+                ],
+            ],
             'DeleteBackup' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/backups/*}',
@@ -47,6 +62,17 @@ return [
             'DeleteInstance' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/instances/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteSnapshot' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/instances/*/snapshots/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -77,6 +103,17 @@ return [
                     ],
                 ],
             ],
+            'GetSnapshot' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/instances/*/snapshots/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'ListBackups' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/backups',
@@ -91,6 +128,17 @@ return [
             'ListInstances' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/instances',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListSnapshots' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/instances/*}/snapshots',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -138,6 +186,22 @@ return [
                             'getName',
                         ],
                     ],
+                ],
+            ],
+            'UpdateSnapshot' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{snapshot.name=projects/*/locations/*/instances/*/snapshots/*}',
+                'body' => 'snapshot',
+                'placeholders' => [
+                    'snapshot.name' => [
+                        'getters' => [
+                            'getSnapshot',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
                 ],
             ],
         ],

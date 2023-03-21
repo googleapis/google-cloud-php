@@ -23,7 +23,7 @@ class FileShareConfig extends \Google\Protobuf\Internal\Message
     private $name = '';
     /**
      * File share capacity in gigabytes (GB).
-     * Cloud Filestore defines 1 GB as 1024^3 bytes.
+     * Filestore defines 1 GB as 1024^3 bytes.
      *
      * Generated from protobuf field <code>int64 capacity_gb = 2;</code>
      */
@@ -47,7 +47,7 @@ class FileShareConfig extends \Google\Protobuf\Internal\Message
      *           The name of the file share (must be 16 characters or less).
      *     @type int|string $capacity_gb
      *           File share capacity in gigabytes (GB).
-     *           Cloud Filestore defines 1 GB as 1024^3 bytes.
+     *           Filestore defines 1 GB as 1024^3 bytes.
      *     @type string $source_backup
      *           The resource name of the backup, in the format
      *           `projects/{project_number}/locations/{location_id}/backups/{backup_id}`,
@@ -90,7 +90,7 @@ class FileShareConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * File share capacity in gigabytes (GB).
-     * Cloud Filestore defines 1 GB as 1024^3 bytes.
+     * Filestore defines 1 GB as 1024^3 bytes.
      *
      * Generated from protobuf field <code>int64 capacity_gb = 2;</code>
      * @return int|string
@@ -102,7 +102,7 @@ class FileShareConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * File share capacity in gigabytes (GB).
-     * Cloud Filestore defines 1 GB as 1024^3 bytes.
+     * Filestore defines 1 GB as 1024^3 bytes.
      *
      * Generated from protobuf field <code>int64 capacity_gb = 2;</code>
      * @param int|string $var

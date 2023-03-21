@@ -28,7 +28,7 @@ use Google\Cloud\Compute\V1\NodeTemplate;
 use Google\Cloud\Compute\V1\NodeTemplatesClient;
 
 /**
- * Returns the specified node template. Gets a list of available node templates by making a list() request.
+ * Returns the specified node template.
  *
  * @param string $nodeTemplate Name of the node template to return.
  * @param string $project      Project ID for this request.

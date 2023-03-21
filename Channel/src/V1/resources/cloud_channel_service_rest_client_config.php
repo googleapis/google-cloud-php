@@ -311,6 +311,17 @@ return [
                     ],
                 ],
             ],
+            'ListEntitlementChanges' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=accounts/*/customers/*/entitlements/*}:listEntitlementChanges',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListEntitlements' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=accounts/*/customers/*}/entitlements',

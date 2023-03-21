@@ -338,6 +338,11 @@
                             "methods": [
                                 "testIamPermissions"
                             ]
+                        },
+                        "Update": {
+                            "methods": [
+                                "update"
+                            ]
                         }
                     }
                 }
@@ -1073,6 +1078,11 @@
                 "grpc": {
                     "libraryClient": "InstanceTemplatesGapicClient",
                     "rpcs": {
+                        "AggregatedList": {
+                            "methods": [
+                                "aggregatedList"
+                            ]
+                        },
                         "Delete": {
                             "methods": [
                                 "delete"
@@ -1265,6 +1275,11 @@
                         "SetMinCpuPlatform": {
                             "methods": [
                                 "setMinCpuPlatform"
+                            ]
+                        },
+                        "SetName": {
+                            "methods": [
+                                "setName"
                             ]
                         },
                         "SetScheduling": {
@@ -2422,6 +2437,11 @@
                             "methods": [
                                 "testIamPermissions"
                             ]
+                        },
+                        "Update": {
+                            "methods": [
+                                "update"
+                            ]
                         }
                     }
                 }
@@ -2627,6 +2647,35 @@
                         "SetNamedPorts": {
                             "methods": [
                                 "setNamedPorts"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "RegionInstanceTemplates": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "RegionInstanceTemplatesGapicClient",
+                    "rpcs": {
+                        "Delete": {
+                            "methods": [
+                                "delete"
+                            ]
+                        },
+                        "Get": {
+                            "methods": [
+                                "get"
+                            ]
+                        },
+                        "Insert": {
+                            "methods": [
+                                "insert"
+                            ]
+                        },
+                        "List": {
+                            "methods": [
+                                "list"
                             ]
                         }
                     }

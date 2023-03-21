@@ -43,8 +43,8 @@ class Tag extends \Google\Protobuf\Internal\Message
      */
     private $template_display_name = '';
     /**
-     * Required. Maps the ID of a tag field to its value and additional information
-     * about that field.
+     * Required. Maps the ID of a tag field to its value and additional
+     * information about that field.
      * Tag template defines valid field IDs. A tag
      * must have at least 1 field and at most 500 fields.
      *
@@ -76,8 +76,8 @@ class Tag extends \Google\Protobuf\Internal\Message
      *           To attach a tag to a nested column, separate column names with a dot
      *           (`.`). Example: `column.nested_column`.
      *     @type array|\Google\Protobuf\Internal\MapField $fields
-     *           Required. Maps the ID of a tag field to its value and additional information
-     *           about that field.
+     *           Required. Maps the ID of a tag field to its value and additional
+     *           information about that field.
      *           Tag template defines valid field IDs. A tag
      *           must have at least 1 field and at most 500 fields.
      * }
@@ -213,8 +213,8 @@ class Tag extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Maps the ID of a tag field to its value and additional information
-     * about that field.
+     * Required. Maps the ID of a tag field to its value and additional
+     * information about that field.
      * Tag template defines valid field IDs. A tag
      * must have at least 1 field and at most 500 fields.
      *
@@ -227,8 +227,8 @@ class Tag extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Maps the ID of a tag field to its value and additional information
-     * about that field.
+     * Required. Maps the ID of a tag field to its value and additional
+     * information about that field.
      * Tag template defines valid field IDs. A tag
      * must have at least 1 field and at most 500 fields.
      *

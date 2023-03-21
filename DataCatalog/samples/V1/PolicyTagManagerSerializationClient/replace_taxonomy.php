@@ -45,7 +45,8 @@ use Google\Cloud\DataCatalog\V1\Taxonomy;
  *
  * @param string $formattedName                 Resource name of the taxonomy to update. Please see
  *                                              {@see PolicyTagManagerSerializationClient::taxonomyName()} for help formatting this field.
- * @param string $serializedTaxonomyDisplayName Display name of the taxonomy. At most 200 bytes when encoded in UTF-8.
+ * @param string $serializedTaxonomyDisplayName Display name of the taxonomy. At most 200 bytes when encoded in
+ *                                              UTF-8.
  */
 function replace_taxonomy_sample(
     string $formattedName,

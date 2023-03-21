@@ -80,6 +80,11 @@
                                 "getTagTemplate"
                             ]
                         },
+                        "ImportEntries": {
+                            "methods": [
+                                "importEntries"
+                            ]
+                        },
                         "ListEntries": {
                             "methods": [
                                 "listEntries"
@@ -108,6 +113,11 @@
                         "ModifyEntryOverview": {
                             "methods": [
                                 "modifyEntryOverview"
+                            ]
+                        },
+                        "ReconcileTags": {
+                            "methods": [
+                                "reconcileTags"
                             ]
                         },
                         "RenameTagTemplateField": {

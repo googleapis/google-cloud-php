@@ -34,7 +34,8 @@ use Google\Cloud\DataCatalog\V1\TagTemplateField;
  *
  * @param string $formattedName           The name of the enum field value. Please see
  *                                        {@see DataCatalogClient::tagTemplateFieldEnumValueName()} for help formatting this field.
- * @param string $newEnumValueDisplayName The new display name of the enum value. For example, `my_new_enum_value`.
+ * @param string $newEnumValueDisplayName The new display name of the enum value. For example,
+ *                                        `my_new_enum_value`.
  */
 function rename_tag_template_field_enum_value_sample(
     string $formattedName,
