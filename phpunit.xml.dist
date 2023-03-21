@@ -27,7 +27,6 @@
       <exclude>dev/tests/Unit/NewComponentTest.php</exclude>
       <exclude>dev/tests/Unit/SplitInstallTest.php</exclude>
       <exclude>dev/tests/Unit/ComponentTest.php</exclude>
-      <exclude>dev/tests/System/ServiceWhitelist/WhitelistTest.php</exclude>
     </testsuite>
   </testsuites>
   <php>
