@@ -49,11 +49,13 @@ use Google\Cloud\Compute\V1\NodeGroupsAddNodesRequest;
 use Google\Cloud\Compute\V1\NodeGroupsDeleteNodesRequest;
 use Google\Cloud\Compute\V1\NodeGroupsListNodes;
 use Google\Cloud\Compute\V1\NodeGroupsSetNodeTemplateRequest;
+use Google\Cloud\Compute\V1\NodeGroupsSimulateMaintenanceEventRequest;
 use Google\Cloud\Compute\V1\Operation;
 use Google\Cloud\Compute\V1\PatchNodeGroupRequest;
 use Google\Cloud\Compute\V1\Policy;
 use Google\Cloud\Compute\V1\SetIamPolicyNodeGroupRequest;
 use Google\Cloud\Compute\V1\SetNodeTemplateNodeGroupRequest;
+use Google\Cloud\Compute\V1\SimulateMaintenanceEventNodeGroupRequest;
 use Google\Cloud\Compute\V1\TestIamPermissionsNodeGroupRequest;
 use Google\Cloud\Compute\V1\TestPermissionsRequest;
 use Google\Cloud\Compute\V1\TestPermissionsResponse;
@@ -1154,6 +1156,85 @@ class NodeGroupsGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('SetNodeTemplate', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+    }
+
+    /**
+     * Simulates maintenance event on specified nodes from the node group.
+     *
+     * Sample code:
+     * ```
+     * $nodeGroupsClient = new NodeGroupsClient();
+     * try {
+     *     $nodeGroup = 'node_group';
+     *     $nodeGroupsSimulateMaintenanceEventRequestResource = new NodeGroupsSimulateMaintenanceEventRequest();
+     *     $project = 'project';
+     *     $zone = 'zone';
+     *     $operationResponse = $nodeGroupsClient->simulateMaintenanceEvent($nodeGroup, $nodeGroupsSimulateMaintenanceEventRequestResource, $project, $zone);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         // if creating/modifying, retrieve the target resource
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $nodeGroupsClient->simulateMaintenanceEvent($nodeGroup, $nodeGroupsSimulateMaintenanceEventRequestResource, $project, $zone);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $nodeGroupsClient->resumeOperation($operationName, 'simulateMaintenanceEvent');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         // if creating/modifying, retrieve the target resource
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $nodeGroupsClient->close();
+     * }
+     * ```
+     *
+     * @param string                                    $nodeGroup                                         Name of the NodeGroup resource whose nodes will go under maintenance simulation.
+     * @param NodeGroupsSimulateMaintenanceEventRequest $nodeGroupsSimulateMaintenanceEventRequestResource The body resource for this request
+     * @param string                                    $project                                           Project ID for this request.
+     * @param string                                    $zone                                              The name of the zone for this request.
+     * @param array                                     $optionalArgs                                      {
+     *     Optional.
+     *
+     *     @type string $requestId
+     *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function simulateMaintenanceEvent($nodeGroup, $nodeGroupsSimulateMaintenanceEventRequestResource, $project, $zone, array $optionalArgs = [])
+    {
+        $request = new SimulateMaintenanceEventNodeGroupRequest();
+        $requestParamHeaders = [];
+        $request->setNodeGroup($nodeGroup);
+        $request->setNodeGroupsSimulateMaintenanceEventRequestResource($nodeGroupsSimulateMaintenanceEventRequestResource);
+        $request->setProject($project);
+        $request->setZone($zone);
+        $requestParamHeaders['node_group'] = $nodeGroup;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['zone'] = $zone;
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('SimulateMaintenanceEvent', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
     }
 
     /**

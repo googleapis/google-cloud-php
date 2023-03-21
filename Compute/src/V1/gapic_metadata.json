@@ -1954,6 +1954,11 @@
                                 "setNodeTemplate"
                             ]
                         },
+                        "SimulateMaintenanceEvent": {
+                            "methods": [
+                                "simulateMaintenanceEvent"
+                            ]
+                        },
                         "TestIamPermissions": {
                             "methods": [
                                 "testIamPermissions"
