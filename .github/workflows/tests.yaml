@@ -66,9 +66,9 @@ jobs:
     - name: Run Package Test Suites
       run: bash .github/run-package-tests.sh
 
-  test_dev:
-    name: Dev Unit Tests
-    runs-on: ${{ matrix.platform }}
+  test_dev_commands:
+    name: Dev Commands Unit Tests
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
     - name: Setup PHP

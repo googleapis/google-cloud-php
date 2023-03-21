@@ -78,7 +78,10 @@ class Composer
         $composer['autoload']['psr-4'][$this->gpbMetadataNamespace . '\\'] = $this->relativePath . '/metadata';
         ksort($composer['autoload']['psr-4']);
 
-        file_put_contents($rootComposer, json_encode($composer, JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES));
+        file_put_contents(
+            $rootComposer,
+            json_encode($composer, JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES) . PHP_EOL
+        );
     }
 
     public function createComponentComposer(
