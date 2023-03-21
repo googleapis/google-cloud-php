@@ -22,7 +22,7 @@ class GetFromFamilyImageRequest extends \Google\Protobuf\Internal\Message
      */
     private $family = '';
     /**
-     * Project ID for this request.
+     * The image project that the image belongs to. For example, to get a CentOS image, specify centos-cloud as the image project.
      *
      * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -37,7 +37,7 @@ class GetFromFamilyImageRequest extends \Google\Protobuf\Internal\Message
      *     @type string $family
      *           Name of the image family to search for.
      *     @type string $project
-     *           Project ID for this request.
+     *           The image project that the image belongs to. For example, to get a CentOS image, specify centos-cloud as the image project.
      * }
      */
     public function __construct($data = NULL) {
@@ -72,7 +72,7 @@ class GetFromFamilyImageRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Project ID for this request.
+     * The image project that the image belongs to. For example, to get a CentOS image, specify centos-cloud as the image project.
      *
      * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -83,7 +83,7 @@ class GetFromFamilyImageRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Project ID for this request.
+     * The image project that the image belongs to. For example, to get a CentOS image, specify centos-cloud as the image project.
      *
      * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

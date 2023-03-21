@@ -828,7 +828,7 @@ class InstanceGroupManagersGapicClient
     }
 
     /**
-     * Returns all of the details about the specified managed instance group. Gets a list of available managed instance groups by making a list() request.
+     * Returns all of the details about the specified managed instance group.
      *
      * Sample code:
      * ```

@@ -28,7 +28,7 @@ use Google\Cloud\Compute\V1\Router;
 use Google\Cloud\Compute\V1\RoutersClient;
 
 /**
- * Returns the specified Router resource. Gets a list of available routers by making a list() request.
+ * Returns the specified Router resource.
  *
  * @param string $project Project ID for this request.
  * @param string $region  Name of the region for this request.

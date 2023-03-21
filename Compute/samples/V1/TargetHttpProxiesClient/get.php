@@ -28,7 +28,7 @@ use Google\Cloud\Compute\V1\TargetHttpProxiesClient;
 use Google\Cloud\Compute\V1\TargetHttpProxy;
 
 /**
- * Returns the specified TargetHttpProxy resource. Gets a list of available target HTTP proxies by making a list() request.
+ * Returns the specified TargetHttpProxy resource.
  *
  * @param string $project         Project ID for this request.
  * @param string $targetHttpProxy Name of the TargetHttpProxy resource to return.

@@ -28,7 +28,7 @@ use Google\Cloud\Compute\V1\HealthCheck;
 use Google\Cloud\Compute\V1\RegionHealthChecksClient;
 
 /**
- * Returns the specified HealthCheck resource. Gets a list of available health checks by making a list() request.
+ * Returns the specified HealthCheck resource.
  *
  * @param string $healthCheck Name of the HealthCheck resource to return.
  * @param string $project     Project ID for this request.
