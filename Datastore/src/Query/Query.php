@@ -254,19 +254,27 @@ class Query implements QueryInterface
      * @param mixed $value The value to check.
      * @return Query
      */
-    public function filter($property, $operator, $value)
+    public function filter($property, $operator = null, $value = null)
     {
-        if (!isset($this->query['filter']) || !isset($this->query['filter']['compositeFilter'])) {
+        if (
+            !isset($this->query['filter']) ||
+            !isset($this->query['filter']['compositeFilter'])
+        ) {
             $this->initializeFilter();
         }
 
-        $this->query['filter']['compositeFilter']['filters'][] = [
-            'propertyFilter' => [
-                'property' => $this->propertyName($property),
-                'value' => $this->entityMapper->valueObject($value),
-                'op' => $this->mapOperator($operator)
-            ]
-        ];
+        if (is_string($property)) {
+            $this->query['filter']['compositeFilter']['filters'][] = [
+                'propertyFilter' => [
+                    'property' => $this->propertyName($property),
+                    'value' => $this->entityMapper->valueObject($value),
+                    'op' => $this->mapOperator($operator)
+                ]
+            ];
+        } else {
+            $this->query['filter']['compositeFilter']['filters'][] =
+                $this->convertFilterToApiFormat($property);
+        }
 
         return $this;
     }
@@ -538,5 +546,28 @@ class Query implements QueryInterface
         }
 
         return $operator;
+    }
+
+    /**
+     * Converts the filter array data to proper API format recursively.
+     */
+    private function convertFilterToApiFormat($filterArray)
+    {
+        if (array_key_exists('propertyFilter', $filterArray)) {
+            $propertyFilter = $filterArray['propertyFilter'];
+            $filterArray['propertyFilter'] = [
+                'property' => $this->propertyName($propertyFilter['property']),
+                'value' => $this->entityMapper->valueObject($propertyFilter['value']),
+                'op' => $this->mapOperator($propertyFilter['op'])
+            ];
+        } else {
+            $filters = $filterArray['compositeFilter']['filters'];
+            foreach ($filters as &$filter) {
+                $filter = $this->convertFilterToApiFormat($filter);
+            }
+            $filterArray['compositeFilter']['filters'] = $filters;
+        }
+
+        return $filterArray;
     }
 }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2016 Google Inc.
  *
@@ -18,6 +19,7 @@
 namespace Google\Cloud\Datastore\Tests\Unit\Query;
 
 use Google\Cloud\Datastore\EntityMapper;
+use Google\Cloud\Datastore\Filter;
 use Google\Cloud\Datastore\Key;
 use Google\Cloud\Datastore\Query\Query;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
@@ -129,7 +131,7 @@ class QueryTest extends TestCase
                 'name' => 'propname'
             ],
             'value' => [
-                'stringValue' =>'value'
+                'stringValue' => 'value'
             ],
             'op' => Query::OP_DEFAULT
         ]);
@@ -160,6 +162,25 @@ class QueryTest extends TestCase
         $this->expectException('InvalidArgumentException');
 
         $this->query->filter('propname', 'foo', 12);
+    }
+
+    public function testFilterWithFilterArrayArgument()
+    {
+        $filter = Filter::or([
+            Filter::and([
+                Filter::greaterThan('bar', 1),
+                Filter::lessThan('bar', 4)
+            ]),
+            Filter::where('bar', '>', 8)
+        ]);
+        $expected = json_decode(file_get_contents(
+            __DIR__ . '/../data/QueryApiArrayFormat.json'
+        ), true);
+
+        $query = new Query($this->mapper);
+        $query->kind('Foo')->filter($filter);
+        $queryObject = $query->queryObject();
+        $this->assertEquals($expected, $queryObject);
     }
 
     public function testOperatorConstantsDefault()
