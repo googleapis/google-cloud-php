@@ -1,5 +1,8 @@
 name: Backwards Compatibility Check
-on: [pull_request]
+on:
+  pull_request:
+  label:
+    types: [created, deleted]
 jobs:
   # More info at https://github.com/Roave/BackwardCompatibilityCheck.
   backwards-compatibility-check:
@@ -36,6 +39,8 @@ jobs:
           ~/.composer/vendor/bin/roave-backward-compatibility-check \
               --from=${{ steps.latest-release.outputs.release }} \
               --to=origin/main --format=github-actions
+        # Verify that if the "breaking change allowed" label exists, so does a BREAKING_CHANGE_JUSTIFICATION block in
+        # the description of the PR, and comment on the PR and exit 1 if not.
       - name: "Justify accepting a breaking change: Notification comment"
         if: contains(github.event.pull_request.labels.*.name, 'breaking change allowed') && !contains(github.event.pull_request.body, 'BREAKING_CHANGE_JUSTIFICATION')
         uses: thollander/actions-comment-pull-request@v2.3.1
