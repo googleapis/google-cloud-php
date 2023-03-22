@@ -91,6 +91,20 @@ class DatabaseAdminGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
+     * @param \Google\Cloud\Spanner\Admin\Database\V1\UpdateDatabaseRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function UpdateDatabase(\Google\Cloud\Spanner\Admin\Database\V1\UpdateDatabaseRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.spanner.admin.database.v1.DatabaseAdmin/UpdateDatabase',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
      * Updates the schema of a Cloud Spanner database by
      * creating/altering/dropping tables, columns, indexes, etc. The returned
      * [long-running operation][google.longrunning.Operation] will have a name of

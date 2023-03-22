@@ -43,6 +43,16 @@ return [
                     'totalPollTimeoutMillis' => '86400000',
                 ],
             ],
+            'UpdateDatabase' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Spanner\Admin\Database\V1\Database',
+                    'metadataReturnType' => '\Google\Cloud\Spanner\Admin\Database\V1\UpdateDatabaseMetadata',
+                    'initialPollDelayMillis' => '20000',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '45000',
+                    'totalPollTimeoutMillis' => '86400000',
+                ],
+            ],
             'UpdateDatabaseDdl' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Protobuf\GPBEmpty',

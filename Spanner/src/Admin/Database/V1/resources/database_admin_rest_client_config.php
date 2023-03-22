@@ -344,6 +344,22 @@ return [
                     'update_mask',
                 ],
             ],
+            'UpdateDatabase' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{database.name=projects/*/instances/*/databases/*}',
+                'body' => 'database',
+                'placeholders' => [
+                    'database.name' => [
+                        'getters' => [
+                            'getDatabase',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
+                ],
+            ],
             'UpdateDatabaseDdl' => [
                 'method' => 'patch',
                 'uriTemplate' => '/v1/{database=projects/*/instances/*/databases/*}/ddl',

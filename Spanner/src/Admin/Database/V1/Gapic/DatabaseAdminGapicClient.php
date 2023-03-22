@@ -74,6 +74,7 @@ use Google\Cloud\Spanner\Admin\Database\V1\RestoreDatabaseRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\UpdateBackupRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\UpdateDatabaseDdlMetadata;
 use Google\Cloud\Spanner\Admin\Database\V1\UpdateDatabaseDdlRequest;
+use Google\Cloud\Spanner\Admin\Database\V1\UpdateDatabaseRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
@@ -2013,6 +2014,87 @@ class DatabaseAdminGapicClient
             Backup::class,
             $optionalArgs,
             $request
+        )->wait();
+    }
+
+    /**
+     *
+     * Sample code:
+     * ```
+     * $databaseAdminClient = new DatabaseAdminClient();
+     * try {
+     *     $database = new Database();
+     *     $updateMask = new FieldMask();
+     *     $operationResponse = $databaseAdminClient->updateDatabase($database, $updateMask);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $databaseAdminClient->updateDatabase($database, $updateMask);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $databaseAdminClient->resumeOperation($operationName, 'updateDatabase');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $databaseAdminClient->close();
+     * }
+     * ```
+     *
+     * @param Database  $database     Required. The database to update.
+     *                                The `name` field of the database is of the form
+     *                                `projects/<project>/instances/<instance>/databases/<database>`.
+     * @param FieldMask $updateMask   Required. The list of fields to update. Currently, only
+     *                                `enable_drop_protection` field can be updated.
+     * @param array     $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function updateDatabase(
+        $database,
+        $updateMask,
+        array $optionalArgs = []
+    ) {
+        $request = new UpdateDatabaseRequest();
+        $requestParamHeaders = [];
+        $request->setDatabase($database);
+        $request->setUpdateMask($updateMask);
+        $requestParamHeaders['database.name'] = $database->getName();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'UpdateDatabase',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
         )->wait();
     }
 
