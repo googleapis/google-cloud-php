@@ -1,8 +1,7 @@
 name: Backwards Compatibility Check
 on:
   pull_request:
-  label:
-    types: [created, deleted]
+    types: [opened, synchronize, reopened, labeled]
 jobs:
   # More info at https://github.com/Roave/BackwardCompatibilityCheck.
   backwards-compatibility-check:
