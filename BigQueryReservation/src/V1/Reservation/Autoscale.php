@@ -21,13 +21,13 @@ class Autoscale extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 current_slots = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $current_slots = 0;
+    private $current_slots = 0;
     /**
      * Number of slots to be scaled when needed.
      *
      * Generated from protobuf field <code>int64 max_slots = 2;</code>
      */
-    protected $max_slots = 0;
+    private $max_slots = 0;
 
     /**
      * Constructor.
@@ -103,6 +103,4 @@ class Autoscale extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Autoscale::class, \Google\Cloud\BigQuery\Reservation\V1\Reservation_Autoscale::class);
 
