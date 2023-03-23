@@ -147,7 +147,7 @@ abstract class SecretManagerServiceBaseClient
      *
      * @return string The formatted project resource.
      */
-    public static function projectName($project)
+    public static function projectName(string $project): string
     {
         return self::getPathTemplate('project')->render([
             'project' => $project,
@@ -163,7 +163,7 @@ abstract class SecretManagerServiceBaseClient
      *
      * @return string The formatted secret resource.
      */
-    public static function secretName($project, $secret)
+    public static function secretName(string $project, string $secret): string
     {
         return self::getPathTemplate('secret')->render([
             'project' => $project,
@@ -181,7 +181,7 @@ abstract class SecretManagerServiceBaseClient
      *
      * @return string The formatted secret_version resource.
      */
-    public static function secretVersionName($project, $secret, $secretVersion)
+    public static function secretVersionName(string $project, string $secret, string $secretVersion): string
     {
         return self::getPathTemplate('secretVersion')->render([
             'project' => $project,
@@ -211,7 +211,7 @@ abstract class SecretManagerServiceBaseClient
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName($formattedName, $template = null)
+    public static function parseName(string $formattedName, string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
