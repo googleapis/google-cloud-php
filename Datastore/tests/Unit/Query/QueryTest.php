@@ -183,148 +183,17 @@ class QueryTest extends TestCase
         $this->assertEquals($expected, $queryObject);
     }
 
-    public function testOperatorConstantsDefault()
+
+    /**
+     * @dataProvider getOperatorCases
+     */
+    public function testOperators($operator, $resultingOperator)
     {
-        $this->query->filter('propName', Query::OP_DEFAULT, 'val');
+        $this->query->filter('propName', $operator, 'val');
         $res = $this->query->queryObject();
 
         $filters = $res['filter']['compositeFilter']['filters'];
-        $this->assertEquals('EQUAL', $filters[0]['propertyFilter']['op']);
-    }
-
-    public function testOperatorConstantsLessThan()
-    {
-        $this->query->filter('propName', Query::OP_LESS_THAN, 'val');
-        $res = $this->query->queryObject();
-
-        $filters = $res['filter']['compositeFilter']['filters'];
-        $this->assertEquals('LESS_THAN', $filters[0]['propertyFilter']['op']);
-    }
-
-    public function testOperatorConstantsLessThanOrEqual()
-    {
-        $this->query->filter('propName', Query::OP_LESS_THAN_OR_EQUAL, 'val');
-        $res = $this->query->queryObject();
-
-        $filters = $res['filter']['compositeFilter']['filters'];
-        $this->assertEquals('LESS_THAN_OR_EQUAL', $filters[0]['propertyFilter']['op']);
-    }
-
-    public function testOperatorConstantsGreaterThan()
-    {
-        $this->query->filter('propName', Query::OP_GREATER_THAN, 'val');
-        $res = $this->query->queryObject();
-
-        $filters = $res['filter']['compositeFilter']['filters'];
-        $this->assertEquals('GREATER_THAN', $filters[0]['propertyFilter']['op']);
-    }
-
-    public function testOperatorConstantsGreaterThanOrEqual()
-    {
-        $this->query->filter('propName', Query::OP_GREATER_THAN_OR_EQUAL, 'val');
-        $res = $this->query->queryObject();
-
-        $filters = $res['filter']['compositeFilter']['filters'];
-        $this->assertEquals('GREATER_THAN_OR_EQUAL', $filters[0]['propertyFilter']['op']);
-    }
-
-    public function testOperatorConstantsEquals()
-    {
-        $this->query->filter('propName', Query::OP_EQUALS, 'val');
-        $res = $this->query->queryObject();
-
-        $filters = $res['filter']['compositeFilter']['filters'];
-        $this->assertEquals('EQUAL', $filters[0]['propertyFilter']['op']);
-    }
-
-    public function testOperatorConstantsNotEquals()
-    {
-        $this->query->filter('propName', Query::OP_NOT_EQUALS, 'val');
-        $res = $this->query->queryObject();
-
-        $filters = $res['filter']['compositeFilter']['filters'];
-        $this->assertEquals('NOT_EQUAL', $filters[0]['propertyFilter']['op']);
-    }
-
-    public function testOperatorConstantsIn()
-    {
-        $this->query->filter('propName', Query::OP_IN, 'val');
-        $res = $this->query->queryObject();
-
-        $filters = $res['filter']['compositeFilter']['filters'];
-        $this->assertEquals('IN', $filters[0]['propertyFilter']['op']);
-    }
-
-    public function testOperatorConstantsNotIn()
-    {
-        $this->query->filter('propName', Query::OP_NOT_IN, 'val');
-        $res = $this->query->queryObject();
-
-        $filters = $res['filter']['compositeFilter']['filters'];
-        $this->assertEquals('NOT_IN', $filters[0]['propertyFilter']['op']);
-    }
-
-    public function testOperatorConstantsHasAncestor()
-    {
-        $this->query->filter('propName', Query::OP_HAS_ANCESTOR, 'val');
-        $res = $this->query->queryObject();
-
-        $filters = $res['filter']['compositeFilter']['filters'];
-        $this->assertEquals('HAS_ANCESTOR', $filters[0]['propertyFilter']['op']);
-    }
-
-    public function testShortOperatorLessThan()
-    {
-        $this->query->filter('propName', '<', 'val');
-        $res = $this->query->queryObject();
-
-        $filters = $res['filter']['compositeFilter']['filters'];
-        $this->assertEquals('LESS_THAN', $filters[0]['propertyFilter']['op']);
-    }
-
-    public function testShortOperatorLessThanOrEqual()
-    {
-        $this->query->filter('propName', '<=', 'val');
-        $res = $this->query->queryObject();
-
-        $filters = $res['filter']['compositeFilter']['filters'];
-        $this->assertEquals('LESS_THAN_OR_EQUAL', $filters[0]['propertyFilter']['op']);
-    }
-
-    public function testShortOperatorGreaterThan()
-    {
-        $this->query->filter('propName', '>', 'val');
-        $res = $this->query->queryObject();
-
-        $filters = $res['filter']['compositeFilter']['filters'];
-        $this->assertEquals('GREATER_THAN', $filters[0]['propertyFilter']['op']);
-    }
-
-    public function testShortOperatorGreaterThanOrEqual()
-    {
-        $this->query->filter('propName', '>=', 'val');
-        $res = $this->query->queryObject();
-
-        $filters = $res['filter']['compositeFilter']['filters'];
-        $this->assertEquals('GREATER_THAN_OR_EQUAL', $filters[0]['propertyFilter']['op']);
-    }
-
-    public function testShortOperatorEquals()
-    {
-        $this->query->filter('propName', '=', 'val');
-        $res = $this->query->queryObject();
-
-        $filters = $res['filter']['compositeFilter']['filters'];
-        $this->assertEquals('EQUAL', $filters[0]['propertyFilter']['op']);
-    }
-
-    public function testShortOperatorNotEquals()
-    {
-        $this->query->filter('propName', '!=', 'val');
-        $res = $this->query->queryObject();
-
-        $filters = $res['filter']['compositeFilter']['filters'];
-        $this->assertEquals('NOT_EQUAL', $filters[0]['propertyFilter']['op']);
+        $this->assertEquals($resultingOperator, $filters[0]['propertyFilter']['op']);
     }
 
     public function testOrder()
@@ -452,5 +321,29 @@ class QueryTest extends TestCase
         $res = $this->query->queryObject();
 
         $this->assertEquals($res['limit'], 2);
+    }
+
+    private function getOperatorCases()
+    {
+        return [
+            ['=', 'EQUAL'],
+            [Query::OP_EQUALS, 'EQUAL'],
+            [Query::OP_DEFAULT, 'EQUAL'],
+            ['<', 'LESS_THAN'],
+            [Query::OP_LESS_THAN, 'LESS_THAN'],
+            ['<=', 'LESS_THAN_OR_EQUAL'],
+            [Query::OP_LESS_THAN_OR_EQUAL, 'LESS_THAN_OR_EQUAL'],
+            ['>', 'GREATER_THAN'],
+            [Query::OP_GREATER_THAN, 'GREATER_THAN'],
+            ['>=', 'GREATER_THAN_OR_EQUAL'],
+            [Query::OP_GREATER_THAN_OR_EQUAL, 'GREATER_THAN_OR_EQUAL'],
+            ['IN', 'IN'],
+            [Query::OP_IN, 'IN'],
+            ['NOT IN', 'NOT_IN'],
+            [Query::OP_NOT_IN, 'NOT_IN'],
+            ['!=', 'NOT_EQUAL'],
+            [Query::OP_NOT_EQUALS, 'NOT_EQUAL'],
+            [Query::OP_HAS_ANCESTOR, 'HAS_ANCESTOR']
+        ];
     }
 }
