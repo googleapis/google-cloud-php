@@ -60,8 +60,6 @@ use stdClass;
  * @group secretmanager
  *
  * @group gapic
- *
- * @group min-php74
  */
 class SecretManagerServiceClientTest extends GeneratedTest
 {
