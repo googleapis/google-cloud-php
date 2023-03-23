@@ -27,26 +27,6 @@ use PHPUnit\Framework\TestCase;
  */
 class FilterTest extends TestCase
 {
-    private $operatorMap = [
-        'equalTo' => Query::OP_EQUALS,
-        'lessThan' => Query::OP_LESS_THAN,
-        'lessThanOrEqualTo' => Query::OP_LESS_THAN_OR_EQUAL,
-        'greaterThan' => Query::OP_GREATER_THAN,
-        'greaterThanOrEqualTo' => Query::OP_GREATER_THAN_OR_EQUAL,
-        'inArray' => Query::OP_IN,
-        'notEqualTo' => Query::OP_NOT_EQUALS,
-        'notInArray' => Query::OP_NOT_IN,
-    ];
-    /**
-     * @dataProvider getNamedOperatorCases
-     */
-    public function testNamedOperatorMethods($methodName, array $arguments)
-    {
-        $filter = call_user_func_array([Filter::class, $methodName], $arguments);
-
-        $this->checkPropertyFilter($filter, $methodName, $arguments);
-    }
-
     /**
      * @dataProvider getCompositeFilterCases
      */
@@ -61,23 +41,29 @@ class FilterTest extends TestCase
         $this->assertEquals($compositeFilter['op'], strtoupper($methodName));
     }
 
-    public function testWhere()
+    /**
+     * @dataProvider getWhereCases
+     */
+    public function testWhere($value)
     {
-        $filter = Filter::where('foo', 'op', 'bar');
-        $this->checkPropertyFilter($filter, 'where', ['foo', 'bar', 'op']);
+        $filter = Filter::where('foo', 'op', $value);
+        $this->assertArrayHasKey('propertyFilter', $filter);
+        $propertyFilter = $filter['propertyFilter'];
+
+        $this->assertEquals($propertyFilter['property'], 'foo');
+        $this->assertEquals($propertyFilter['op'], 'op');
+        $this->assertEquals($propertyFilter['value'], $value);
     }
 
-    private function getNamedOperatorCases()
+    private function getWhereCases()
     {
         $cases = [
-            ['equalTo', ['foo', 'bar']],
-            ['lessThan', ['foo', 'bar']],
-            ['greaterThan', ['foo', 'bar']],
-            ['lessThanOrEqualTo', ['foo', 'bar']],
-            ['greaterThanOrEqualTo', ['foo', 'bar']],
-            ['inArray', ['foo', ['bar']]],
-            ['notEqualTo', ['foo', 'bar']],
-            ['notInArray', ['foo', ['bar']]],
+            // Since $operator can be (=, <, >, <=, >=, !=), so string should be
+            // accepted.
+            ['value'],
+            // Also, $operator can be ('IN', 'NOT IN'), so array should also be
+            // allowed as value.
+            [['value']]
         ];
         return $cases;
     }
@@ -89,20 +75,5 @@ class FilterTest extends TestCase
             ['or', [['foo' => 'bar1'], ['foo' => 'bar2']]]
         ];
         return $cases;
-    }
-
-    private function checkPropertyFilter($filter, $methodName, $arguments)
-    {
-        $this->assertArrayHasKey('propertyFilter', $filter);
-        $propertyFilter = $filter['propertyFilter'];
-
-        $this->assertEquals($propertyFilter['property'], $arguments[0]);
-        $this->assertEquals($propertyFilter['value'], $arguments[1]);
-
-        if ($methodName != 'where') {
-            $this->assertEquals($propertyFilter['op'], $this->operatorMap[$methodName]);
-        } else {
-            $this->assertEquals($propertyFilter['op'], $arguments[2]);
-        }
     }
 }

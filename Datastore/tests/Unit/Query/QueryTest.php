@@ -168,8 +168,8 @@ class QueryTest extends TestCase
     {
         $filter = Filter::or([
             Filter::and([
-                Filter::greaterThan('bar', 1),
-                Filter::lessThan('bar', 4)
+                Filter::where('bar', '>', 1),
+                Filter::where('bar', '<', 4),
             ]),
             Filter::where('bar', '>', 8)
         ]);

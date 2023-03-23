@@ -116,7 +116,9 @@ class Query implements QueryInterface
         '>'  => self::OP_GREATER_THAN,
         '>=' => self::OP_GREATER_THAN_OR_EQUAL,
         '='  => self::OP_EQUALS,
-        '!='  => self::OP_NOT_EQUALS
+        '!='  => self::OP_NOT_EQUALS,
+        'IN' => self::OP_IN,
+        'NOT IN' => self::OP_NOT_IN
     ];
 
     /**

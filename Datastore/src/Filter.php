@@ -22,41 +22,9 @@ use Google\Cloud\Datastore\Query\Query;
 
 class Filter
 {
-    public static function equalTo($property, $value)
-    {
-        return self::propertyFilter($property, Query::OP_EQUALS, $value);
-    }
-    public static function lessThan($property, $value)
-    {
-        return self::propertyFilter($property, Query::OP_LESS_THAN, $value);
-    }
-    public static function greaterThan($property, $value)
-    {
-        return self::propertyFilter($property, Query::OP_GREATER_THAN, $value);
-    }
-    public static function lessThanOrEqualTo($property, $value)
-    {
-        return self::propertyFilter($property, Query::OP_LESS_THAN_OR_EQUAL, $value);
-    }
-    public static function greaterThanOrEqualTo($property, $value)
-    {
-        return self::propertyFilter($property, Query::OP_GREATER_THAN_OR_EQUAL, $value);
-    }
-    public static function inArray($property, array $values)
-    {
-        return self::propertyFilter($property, Query::OP_IN, $values);
-    }
-    public static function notEqualTo($property, $value)
-    {
-        return self::propertyFilter($property, Query::OP_NOT_EQUALS, $value);
-    }
-    public static function notInArray($property, array $values)
-    {
-        return self::propertyFilter($property, Query::OP_NOT_IN, $values);
-    }
     /**
-     * Would allow users create property filters using shorthand $operator values
-     * like =, <, >, <=, >=, != apart from the below specific property filters
+     * Create property filter using shorthand $operator values:
+     * '=', '<', '>', '<=', '>=', '!=', 'IN' and 'NOT IN'.
      */
     public static function where($property, $operator, $value)
     {
