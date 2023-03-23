@@ -10,7 +10,7 @@ jobs:
     strategy:
       matrix:
         platform: [ubuntu-latest, windows-latest]
-        php: [ "7.1", "7.2", "7.3", "7.4", "8.0", "8.1", "8.2" ]
+        php: [ "7.4", "8.0", "8.1", "8.2" ]
         phpunit-filename: [phpunit]
         include:
           - platform: ubuntu-latest
@@ -20,6 +20,19 @@ jobs:
           - platform: ubuntu-latest
             php: "7.0"
             phpunit-filename: phpunit
+            phpunit-flags: --exclude-group min-php74
+          - platform: ubuntu-latest
+            php: "7.1"
+            phpunit-filename: phpunit
+            phpunit-flags: --exclude-group min-php74
+          - platform: ubuntu-latest
+            php: "7.2"
+            phpunit-filename: phpunit
+            phpunit-flags: --exclude-group min-php74
+          - platform: ubuntu-latest
+            php: "7.3"
+            phpunit-filename: phpunit
+            phpunit-flags: --exclude-group min-php74
     name: PHP ${{ matrix.php }} Unit Test (${{ matrix.platform }})
     runs-on: ${{ matrix.platform }}
     steps:
