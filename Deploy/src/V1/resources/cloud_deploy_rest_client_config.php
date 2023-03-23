@@ -15,9 +15,33 @@ return [
                     ],
                 ],
             ],
+            'AdvanceRollout' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/deliveryPipelines/*/releases/*/rollouts/*}:advance',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'ApproveRollout' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/deliveryPipelines/*/releases/*/rollouts/*}:approve',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'CancelRollout' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/deliveryPipelines/*/releases/*/rollouts/*}:cancel',
                 'body' => '*',
                 'placeholders' => [
                     'name' => [
@@ -175,6 +199,18 @@ return [
                     ],
                 ],
             ],
+            'IgnoreJob' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{rollout=projects/*/locations/*/deliveryPipelines/*/releases/*/rollouts/*}:ignoreJob',
+                'body' => '*',
+                'placeholders' => [
+                    'rollout' => [
+                        'getters' => [
+                            'getRollout',
+                        ],
+                    ],
+                ],
+            ],
             'ListDeliveryPipelines' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/deliveryPipelines',
@@ -238,6 +274,18 @@ return [
                     'rollout' => [
                         'getters' => [
                             'getRollout',
+                        ],
+                    ],
+                ],
+            ],
+            'TerminateJobRun' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/deliveryPipelines/*/releases/*/rollouts/*/jobRuns/*}:terminate',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
                         ],
                     ],
                 ],

@@ -59,6 +59,25 @@ class State
      * Generated from protobuf enum <code>RESTORING = 7;</code>
      */
     const RESTORING = 7;
+    /**
+     * The instance is suspended. You can get further details from
+     * the `suspension_reasons` field of the `Instance` resource.
+     *
+     * Generated from protobuf enum <code>SUSPENDED = 8;</code>
+     */
+    const SUSPENDED = 8;
+    /**
+     * The instance is in the process of becoming suspended.
+     *
+     * Generated from protobuf enum <code>SUSPENDING = 9;</code>
+     */
+    const SUSPENDING = 9;
+    /**
+     * The instance is in the process of becoming active.
+     *
+     * Generated from protobuf enum <code>RESUMING = 10;</code>
+     */
+    const RESUMING = 10;
 
     private static $valueToName = [
         self::STATE_UNSPECIFIED => 'STATE_UNSPECIFIED',
@@ -68,6 +87,9 @@ class State
         self::DELETING => 'DELETING',
         self::ERROR => 'ERROR',
         self::RESTORING => 'RESTORING',
+        self::SUSPENDED => 'SUSPENDED',
+        self::SUSPENDING => 'SUSPENDING',
+        self::RESUMING => 'RESUMING',
     ];
 
     public static function name($value)

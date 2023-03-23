@@ -398,7 +398,7 @@ class SslCertificatesGapicClient
     }
 
     /**
-     * Returns the specified SslCertificate resource. Gets a list of available SSL certificates by making a list() request.
+     * Returns the specified SslCertificate resource.
      *
      * Sample code:
      * ```

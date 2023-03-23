@@ -58,6 +58,7 @@ use Google\Cloud\Compute\V1\Snapshot;
 use Google\Cloud\Compute\V1\TestIamPermissionsRegionDiskRequest;
 use Google\Cloud\Compute\V1\TestPermissionsRequest;
 use Google\Cloud\Compute\V1\TestPermissionsResponse;
+use Google\Cloud\Compute\V1\UpdateRegionDiskRequest;
 
 /**
  * Service Description: The RegionDisks API.
@@ -1103,5 +1104,95 @@ class RegionDisksGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('TestIamPermissions', TestPermissionsResponse::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Update the specified disk with the data included in the request. Update is performed only on selected fields included as part of update-mask. Only the following fields can be modified: user_license.
+     *
+     * Sample code:
+     * ```
+     * $regionDisksClient = new RegionDisksClient();
+     * try {
+     *     $disk = 'disk';
+     *     $diskResource = new Disk();
+     *     $project = 'project';
+     *     $region = 'region';
+     *     $operationResponse = $regionDisksClient->update($disk, $diskResource, $project, $region);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         // if creating/modifying, retrieve the target resource
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $regionDisksClient->update($disk, $diskResource, $project, $region);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $regionDisksClient->resumeOperation($operationName, 'update');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         // if creating/modifying, retrieve the target resource
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $regionDisksClient->close();
+     * }
+     * ```
+     *
+     * @param string $disk         The disk name for this request.
+     * @param Disk   $diskResource The body resource for this request
+     * @param string $project      Project ID for this request.
+     * @param string $region       The name of the region for this request.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $paths
+     *     @type string $requestId
+     *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     *     @type string $updateMask
+     *           update_mask indicates fields to be updated as part of this request.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function update($disk, $diskResource, $project, $region, array $optionalArgs = [])
+    {
+        $request = new UpdateRegionDiskRequest();
+        $requestParamHeaders = [];
+        $request->setDisk($disk);
+        $request->setDiskResource($diskResource);
+        $request->setProject($project);
+        $request->setRegion($region);
+        $requestParamHeaders['disk'] = $disk;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
+        if (isset($optionalArgs['paths'])) {
+            $request->setPaths($optionalArgs['paths']);
+        }
+
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('Update', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
     }
 }

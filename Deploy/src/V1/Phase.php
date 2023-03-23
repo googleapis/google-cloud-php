@@ -28,6 +28,13 @@ class Phase extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.deploy.v1.Phase.State state = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $state = 0;
+    /**
+     * Output only. Additional information on why the Phase was skipped, if
+     * available.
+     *
+     * Generated from protobuf field <code>string skip_message = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $skip_message = '';
     protected $jobs;
 
     /**
@@ -40,8 +47,13 @@ class Phase extends \Google\Protobuf\Internal\Message
      *           Output only. The ID of the Phase.
      *     @type int $state
      *           Output only. Current state of the Phase.
+     *     @type string $skip_message
+     *           Output only. Additional information on why the Phase was skipped, if
+     *           available.
      *     @type \Google\Cloud\Deploy\V1\DeploymentJobs $deployment_jobs
      *           Output only. Deployment job composition.
+     *     @type \Google\Cloud\Deploy\V1\ChildRolloutJobs $child_rollout_jobs
+     *           Output only. ChildRollout job composition.
      * }
      */
     public function __construct($data = NULL) {
@@ -102,6 +114,34 @@ class Phase extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Output only. Additional information on why the Phase was skipped, if
+     * available.
+     *
+     * Generated from protobuf field <code>string skip_message = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getSkipMessage()
+    {
+        return $this->skip_message;
+    }
+
+    /**
+     * Output only. Additional information on why the Phase was skipped, if
+     * available.
+     *
+     * Generated from protobuf field <code>string skip_message = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSkipMessage($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->skip_message = $var;
+
+        return $this;
+    }
+
+    /**
      * Output only. Deployment job composition.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.DeploymentJobs deployment_jobs = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -128,6 +168,37 @@ class Phase extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Deploy\V1\DeploymentJobs::class);
         $this->writeOneof(4, $var);
+
+        return $this;
+    }
+
+    /**
+     * Output only. ChildRollout job composition.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.ChildRolloutJobs child_rollout_jobs = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Deploy\V1\ChildRolloutJobs|null
+     */
+    public function getChildRolloutJobs()
+    {
+        return $this->readOneof(5);
+    }
+
+    public function hasChildRolloutJobs()
+    {
+        return $this->hasOneof(5);
+    }
+
+    /**
+     * Output only. ChildRollout job composition.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.ChildRolloutJobs child_rollout_jobs = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Deploy\V1\ChildRolloutJobs $var
+     * @return $this
+     */
+    public function setChildRolloutJobs($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Deploy\V1\ChildRolloutJobs::class);
+        $this->writeOneof(5, $var);
 
         return $this;
     }

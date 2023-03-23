@@ -320,7 +320,7 @@ class GlobalAddressesGapicClient
     }
 
     /**
-     * Returns the specified address resource. Gets a list of available addresses by making a list() request.
+     * Returns the specified address resource.
      *
      * Sample code:
      * ```

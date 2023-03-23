@@ -68,6 +68,11 @@
                     "retry_codes_name": "no_retry_1_codes",
                     "retry_params_name": "no_retry_1_params"
                 },
+                "CreateSnapshot": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
                 "DeleteBackup": {
                     "timeout_millis": 600000,
                     "retry_codes_name": "no_retry_3_codes",
@@ -77,6 +82,11 @@
                     "timeout_millis": 600000,
                     "retry_codes_name": "no_retry_3_codes",
                     "retry_params_name": "no_retry_3_params"
+                },
+                "DeleteSnapshot": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
                 },
                 "GetBackup": {
                     "timeout_millis": 60000,
@@ -88,6 +98,11 @@
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
                 },
+                "GetSnapshot": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
                 "ListBackups": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "retry_policy_1_codes",
@@ -97,6 +112,11 @@
                     "timeout_millis": 60000,
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
+                },
+                "ListSnapshots": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
                 },
                 "RestoreInstance": {
                     "timeout_millis": 60000000,
@@ -112,6 +132,11 @@
                     "timeout_millis": 14400000,
                     "retry_codes_name": "no_retry_2_codes",
                     "retry_params_name": "no_retry_2_params"
+                },
+                "UpdateSnapshot": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
                 }
             }
         }

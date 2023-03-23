@@ -47,6 +47,13 @@ class AnnotateAssessmentRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bytes hashed_account_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $hashed_account_id = '';
+    /**
+     * Optional. If the assessment is part of a payment transaction, provide
+     * details on payment lifecycle events that occur in the transaction.
+     *
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.TransactionEvent transaction_event = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $transaction_event = null;
 
     /**
      * Constructor.
@@ -70,6 +77,9 @@ class AnnotateAssessmentRequest extends \Google\Protobuf\Internal\Message
      *           CreateAssessment, for example when the account identifier is not yet known
      *           in the initial request. It is recommended that the identifier is hashed
      *           using hmac-sha256 with stable secret.
+     *     @type \Google\Cloud\RecaptchaEnterprise\V1\TransactionEvent $transaction_event
+     *           Optional. If the assessment is part of a payment transaction, provide
+     *           details on payment lifecycle events that occur in the transaction.
      * }
      */
     public function __construct($data = NULL) {
@@ -193,6 +203,44 @@ class AnnotateAssessmentRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, False);
         $this->hashed_account_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If the assessment is part of a payment transaction, provide
+     * details on payment lifecycle events that occur in the transaction.
+     *
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.TransactionEvent transaction_event = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\RecaptchaEnterprise\V1\TransactionEvent|null
+     */
+    public function getTransactionEvent()
+    {
+        return $this->transaction_event;
+    }
+
+    public function hasTransactionEvent()
+    {
+        return isset($this->transaction_event);
+    }
+
+    public function clearTransactionEvent()
+    {
+        unset($this->transaction_event);
+    }
+
+    /**
+     * Optional. If the assessment is part of a payment transaction, provide
+     * details on payment lifecycle events that occur in the transaction.
+     *
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.TransactionEvent transaction_event = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\RecaptchaEnterprise\V1\TransactionEvent $var
+     * @return $this
+     */
+    public function setTransactionEvent($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\RecaptchaEnterprise\V1\TransactionEvent::class);
+        $this->transaction_event = $var;
 
         return $this;
     }
