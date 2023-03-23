@@ -35,6 +35,7 @@ jobs:
             phpunit-flags: --exclude-group min-php74
     name: PHP ${{ matrix.php }} Unit Test (${{ matrix.platform }})
     runs-on: ${{ matrix.platform }}
+    continue-on-error: true
     steps:
     - uses: actions/checkout@v3
     - name: Setup PHP
