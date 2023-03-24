@@ -32,22 +32,22 @@ jobs:
       - name: "Check for BC breaks (Next Release)"
         if: github.actor == 'release-please[bot]'
         # Ensure the build still passes by adding the 'breaking change allowed' label to the PR.
-        # NOTE: PR should contain a "BREAKING CHANGE JUSTIFICATION" in a comment or description
+        # NOTE: PR should contain a BREAKING_CHANGE_REASON in the description
         continue-on-error: ${{ contains(github.event.pull_request.labels.*.name, 'breaking change allowed') }}
         run: |
           ~/.composer/vendor/bin/roave-backward-compatibility-check \
               --from=${{ steps.latest-release.outputs.release }} \
               --to=origin/main --format=github-actions
-        # Verify that if the "breaking change allowed" label exists, so does a BREAKING_CHANGE_JUSTIFICATION block in
+        # Verify that if the "breaking change allowed" label exists, so does a BREAKING_CHANGE_REASON in
         # the description of the PR, and comment on the PR and exit 1 if not.
       - name: "Justify accepting a breaking change: Notification comment"
-        if: contains(github.event.pull_request.labels.*.name, 'breaking change allowed') && !contains(github.event.pull_request.body, 'BREAKING_CHANGE_JUSTIFICATION')
+        if: contains(github.event.pull_request.labels.*.name, 'breaking change allowed') && !${{ github.event.pull_request.body =~ '(?s)BREAKING_CHANGE_JUSTIFICATION=.*(?s)' }}
         uses: thollander/actions-comment-pull-request@v2.3.1
         with:
           message: |
-            To skip the breaking change detector, the PR must contain a "BREAKING_CHANGE_JUSTIFICATION"
-            block in the PR description.
+            To skip the breaking change detector, the PR must contain a `BREAKING_CHANGE_REASON=[REASON]`
+            in the PR description.
           comment_tag: breaking_change_justification
       - name: "Justify accepting a breaking change: Fail the build"
-        if: contains(github.event.pull_request.labels.*.name, 'breaking change allowed') && !contains(github.event.pull_request.body, 'BREAKING_CHANGE_JUSTIFICATION')
+        if: contains(github.event.pull_request.labels.*.name, 'breaking change allowed') && !${{ github.event.pull_request.body =~ '(?s)BREAKING_CHANGE_JUSTIFICATION=.*(?s)' }}
         run: exit 1
