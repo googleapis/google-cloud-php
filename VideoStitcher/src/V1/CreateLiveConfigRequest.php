@@ -9,34 +9,31 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for VideoStitcherService.createSlate.
+ * Request message for VideoStitcherService.createLiveConfig
  *
- * Generated from protobuf message <code>google.cloud.video.stitcher.v1.CreateSlateRequest</code>
+ * Generated from protobuf message <code>google.cloud.video.stitcher.v1.CreateLiveConfigRequest</code>
  */
-class CreateSlateRequest extends \Google\Protobuf\Internal\Message
+class CreateLiveConfigRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The project in which the slate should be created, in the form of
-     * `projects/{project_number}/locations/{location}`.
+     * Required. The project in which the live config should be created, in
+     * the form of `projects/{project_number}/locations/{location}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
-     * Required. The unique identifier for the slate.
-     * This value should conform to RFC-1034, which restricts to
-     * lower-case letters, numbers, and hyphen, with the first character a
-     * letter, the last a letter or a number, and a 63 character maximum.
+     * Required. The unique identifier ID to use for the live config.
      *
-     * Generated from protobuf field <code>string slate_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string live_config_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $slate_id = '';
+    private $live_config_id = '';
     /**
-     * Required. The slate to create.
+     * Required. The live config resource to create.
      *
-     * Generated from protobuf field <code>.google.cloud.video.stitcher.v1.Slate slate = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.video.stitcher.v1.LiveConfig live_config = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $slate = null;
+    private $live_config = null;
     /**
      * A request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -61,15 +58,12 @@ class CreateSlateRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The project in which the slate should be created, in the form of
-     *           `projects/{project_number}/locations/{location}`.
-     *     @type string $slate_id
-     *           Required. The unique identifier for the slate.
-     *           This value should conform to RFC-1034, which restricts to
-     *           lower-case letters, numbers, and hyphen, with the first character a
-     *           letter, the last a letter or a number, and a 63 character maximum.
-     *     @type \Google\Cloud\Video\Stitcher\V1\Slate $slate
-     *           Required. The slate to create.
+     *           Required. The project in which the live config should be created, in
+     *           the form of `projects/{project_number}/locations/{location}`.
+     *     @type string $live_config_id
+     *           Required. The unique identifier ID to use for the live config.
+     *     @type \Google\Cloud\Video\Stitcher\V1\LiveConfig $live_config
+     *           Required. The live config resource to create.
      *     @type string $request_id
      *           A request ID to identify requests. Specify a unique request ID
      *           so that if you must retry your request, the server will know to ignore
@@ -90,8 +84,8 @@ class CreateSlateRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The project in which the slate should be created, in the form of
-     * `projects/{project_number}/locations/{location}`.
+     * Required. The project in which the live config should be created, in
+     * the form of `projects/{project_number}/locations/{location}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -102,8 +96,8 @@ class CreateSlateRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The project in which the slate should be created, in the form of
-     * `projects/{project_number}/locations/{location}`.
+     * Required. The project in which the live config should be created, in
+     * the form of `projects/{project_number}/locations/{location}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -118,69 +112,63 @@ class CreateSlateRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The unique identifier for the slate.
-     * This value should conform to RFC-1034, which restricts to
-     * lower-case letters, numbers, and hyphen, with the first character a
-     * letter, the last a letter or a number, and a 63 character maximum.
+     * Required. The unique identifier ID to use for the live config.
      *
-     * Generated from protobuf field <code>string slate_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string live_config_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
-    public function getSlateId()
+    public function getLiveConfigId()
     {
-        return $this->slate_id;
+        return $this->live_config_id;
     }
 
     /**
-     * Required. The unique identifier for the slate.
-     * This value should conform to RFC-1034, which restricts to
-     * lower-case letters, numbers, and hyphen, with the first character a
-     * letter, the last a letter or a number, and a 63 character maximum.
+     * Required. The unique identifier ID to use for the live config.
      *
-     * Generated from protobuf field <code>string slate_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string live_config_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
-    public function setSlateId($var)
+    public function setLiveConfigId($var)
     {
         GPBUtil::checkString($var, True);
-        $this->slate_id = $var;
+        $this->live_config_id = $var;
 
         return $this;
     }
 
     /**
-     * Required. The slate to create.
+     * Required. The live config resource to create.
      *
-     * Generated from protobuf field <code>.google.cloud.video.stitcher.v1.Slate slate = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Video\Stitcher\V1\Slate|null
+     * Generated from protobuf field <code>.google.cloud.video.stitcher.v1.LiveConfig live_config = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @return \Google\Cloud\Video\Stitcher\V1\LiveConfig|null
      */
-    public function getSlate()
+    public function getLiveConfig()
     {
-        return $this->slate;
+        return $this->live_config;
     }
 
-    public function hasSlate()
+    public function hasLiveConfig()
     {
-        return isset($this->slate);
+        return isset($this->live_config);
     }
 
-    public function clearSlate()
+    public function clearLiveConfig()
     {
-        unset($this->slate);
+        unset($this->live_config);
     }
 
     /**
-     * Required. The slate to create.
+     * Required. The live config resource to create.
      *
-     * Generated from protobuf field <code>.google.cloud.video.stitcher.v1.Slate slate = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param \Google\Cloud\Video\Stitcher\V1\Slate $var
+     * Generated from protobuf field <code>.google.cloud.video.stitcher.v1.LiveConfig live_config = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @param \Google\Cloud\Video\Stitcher\V1\LiveConfig $var
      * @return $this
      */
-    public function setSlate($var)
+    public function setLiveConfig($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Video\Stitcher\V1\Slate::class);
-        $this->slate = $var;
+        GPBUtil::checkMessage($var, \Google\Cloud\Video\Stitcher\V1\LiveConfig::class);
+        $this->live_config = $var;
 
         return $this;
     }

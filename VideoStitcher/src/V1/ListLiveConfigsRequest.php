@@ -9,42 +9,44 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for VideoStitcherService.listSlates.
+ * Request message for VideoStitcherService.listLiveConfig.
  *
- * Generated from protobuf message <code>google.cloud.video.stitcher.v1.ListSlatesRequest</code>
+ * Generated from protobuf message <code>google.cloud.video.stitcher.v1.ListLiveConfigsRequest</code>
  */
-class ListSlatesRequest extends \Google\Protobuf\Internal\Message
+class ListLiveConfigsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The project to list slates, in the form of
-     * `projects/{project_number}/locations/{location}`.
+     * Required. The project that contains the list of live configs, in the
+     * form of `projects/{project_number}/locations/{location}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
-     * Requested page size. Server may return fewer items than requested.
-     * If unspecified, server will pick an appropriate default.
+     * The maximum number of items to return.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      */
     private $page_size = 0;
     /**
-     * A token identifying a page of results the server should return.
+     * The next_page_token value returned from a previous List request, if any.
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
     private $page_token = '';
     /**
-     * Filtering results
+     * Optional. The filter to apply to list results (see
+     * [Filtering](https://google.aip.dev/160)).
      *
-     * Generated from protobuf field <code>string filter = 4;</code>
+     * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $filter = '';
     /**
-     * Hint for how to order the results
+     * Optional. Specifies the ordering of results following
+     * [Cloud API
+     * syntax](https://cloud.google.com/apis/design/design_patterns#sorting_order).
      *
-     * Generated from protobuf field <code>string order_by = 5;</code>
+     * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $order_by = '';
 
@@ -55,17 +57,19 @@ class ListSlatesRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The project to list slates, in the form of
-     *           `projects/{project_number}/locations/{location}`.
+     *           Required. The project that contains the list of live configs, in the
+     *           form of `projects/{project_number}/locations/{location}`.
      *     @type int $page_size
-     *           Requested page size. Server may return fewer items than requested.
-     *           If unspecified, server will pick an appropriate default.
+     *           The maximum number of items to return.
      *     @type string $page_token
-     *           A token identifying a page of results the server should return.
+     *           The next_page_token value returned from a previous List request, if any.
      *     @type string $filter
-     *           Filtering results
+     *           Optional. The filter to apply to list results (see
+     *           [Filtering](https://google.aip.dev/160)).
      *     @type string $order_by
-     *           Hint for how to order the results
+     *           Optional. Specifies the ordering of results following
+     *           [Cloud API
+     *           syntax](https://cloud.google.com/apis/design/design_patterns#sorting_order).
      * }
      */
     public function __construct($data = NULL) {
@@ -74,8 +78,8 @@ class ListSlatesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The project to list slates, in the form of
-     * `projects/{project_number}/locations/{location}`.
+     * Required. The project that contains the list of live configs, in the
+     * form of `projects/{project_number}/locations/{location}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -86,8 +90,8 @@ class ListSlatesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The project to list slates, in the form of
-     * `projects/{project_number}/locations/{location}`.
+     * Required. The project that contains the list of live configs, in the
+     * form of `projects/{project_number}/locations/{location}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -102,8 +106,7 @@ class ListSlatesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Requested page size. Server may return fewer items than requested.
-     * If unspecified, server will pick an appropriate default.
+     * The maximum number of items to return.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      * @return int
@@ -114,8 +117,7 @@ class ListSlatesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Requested page size. Server may return fewer items than requested.
-     * If unspecified, server will pick an appropriate default.
+     * The maximum number of items to return.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      * @param int $var
@@ -130,7 +132,7 @@ class ListSlatesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A token identifying a page of results the server should return.
+     * The next_page_token value returned from a previous List request, if any.
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      * @return string
@@ -141,7 +143,7 @@ class ListSlatesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A token identifying a page of results the server should return.
+     * The next_page_token value returned from a previous List request, if any.
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      * @param string $var
@@ -156,9 +158,10 @@ class ListSlatesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Filtering results
+     * Optional. The filter to apply to list results (see
+     * [Filtering](https://google.aip.dev/160)).
      *
-     * Generated from protobuf field <code>string filter = 4;</code>
+     * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getFilter()
@@ -167,9 +170,10 @@ class ListSlatesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Filtering results
+     * Optional. The filter to apply to list results (see
+     * [Filtering](https://google.aip.dev/160)).
      *
-     * Generated from protobuf field <code>string filter = 4;</code>
+     * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -182,9 +186,11 @@ class ListSlatesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Hint for how to order the results
+     * Optional. Specifies the ordering of results following
+     * [Cloud API
+     * syntax](https://cloud.google.com/apis/design/design_patterns#sorting_order).
      *
-     * Generated from protobuf field <code>string order_by = 5;</code>
+     * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getOrderBy()
@@ -193,9 +199,11 @@ class ListSlatesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Hint for how to order the results
+     * Optional. Specifies the ordering of results following
+     * [Cloud API
+     * syntax](https://cloud.google.com/apis/design/design_patterns#sorting_order).
      *
-     * Generated from protobuf field <code>string order_by = 5;</code>
+     * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

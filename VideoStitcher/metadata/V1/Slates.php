@@ -18,11 +18,15 @@ class Slates
         \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ð
-+google/cloud/video/stitcher/v1/slates.protogoogle.cloud.video.stitcher.v1google/api/resource.proto"ˆ
+õ
++google/cloud/video/stitcher/v1/slates.protogoogle.cloud.video.stitcher.v1google/api/resource.proto"
 Slate
 name (	BàA
-uri (	:_êA\\
+uri (	A
+	gam_slate (2..google.cloud.video.stitcher.v1.Slate.GamSlate@
+GamSlate
+network_code (	BàA
+gam_slate_id (BàA:_êA\\
 "videostitcher.googleapis.com/Slate6projects/{project}/locations/{location}/slates/{slate}Bs
 "com.google.cloud.video.stitcher.v1BSlatesProtoPZ>cloud.google.com/go/video/stitcher/apiv1/stitcherpb;stitcherpbbproto3'
         , true);
