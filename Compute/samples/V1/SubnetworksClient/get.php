@@ -28,7 +28,7 @@ use Google\Cloud\Compute\V1\Subnetwork;
 use Google\Cloud\Compute\V1\SubnetworksClient;
 
 /**
- * Returns the specified subnetwork. Gets a list of available subnetworks list() request.
+ * Returns the specified subnetwork.
  *
  * @param string $project    Project ID for this request.
  * @param string $region     Name of the region scoping this request.

@@ -17,7 +17,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class JobRun extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. Name of the `JobRun`. Format is projects/{project}/locations/{location}/
+     * Optional. Name of the `JobRun`. Format is
+     * projects/{project}/locations/{location}/
      * deliveryPipelines/{deliveryPipeline}/releases/{releases}/rollouts/
      * {rollouts}/jobRuns/{uuid}.
      *
@@ -67,8 +68,8 @@ class JobRun extends \Google\Protobuf\Internal\Message
      */
     private $state = 0;
     /**
-     * Output only. This checksum is computed by the server based on the value of other
-     * fields, and may be sent on update and delete requests to ensure the
+     * Output only. This checksum is computed by the server based on the value of
+     * other fields, and may be sent on update and delete requests to ensure the
      * client has an up-to-date value before proceeding.
      *
      * Generated from protobuf field <code>string etag = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -83,7 +84,8 @@ class JobRun extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Optional. Name of the `JobRun`. Format is projects/{project}/locations/{location}/
+     *           Optional. Name of the `JobRun`. Format is
+     *           projects/{project}/locations/{location}/
      *           deliveryPipelines/{deliveryPipeline}/releases/{releases}/rollouts/
      *           {rollouts}/jobRuns/{uuid}.
      *     @type string $uid
@@ -104,9 +106,13 @@ class JobRun extends \Google\Protobuf\Internal\Message
      *           Output only. Information specific to a deploy `JobRun`.
      *     @type \Google\Cloud\Deploy\V1\VerifyJobRun $verify_job_run
      *           Output only. Information specific to a verify `JobRun`.
+     *     @type \Google\Cloud\Deploy\V1\CreateChildRolloutJobRun $create_child_rollout_job_run
+     *           Output only. Information specific to a createChildRollout `JobRun`.
+     *     @type \Google\Cloud\Deploy\V1\AdvanceChildRolloutJobRun $advance_child_rollout_job_run
+     *           Output only. Information specific to an advanceChildRollout `JobRun`
      *     @type string $etag
-     *           Output only. This checksum is computed by the server based on the value of other
-     *           fields, and may be sent on update and delete requests to ensure the
+     *           Output only. This checksum is computed by the server based on the value of
+     *           other fields, and may be sent on update and delete requests to ensure the
      *           client has an up-to-date value before proceeding.
      * }
      */
@@ -116,7 +122,8 @@ class JobRun extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Name of the `JobRun`. Format is projects/{project}/locations/{location}/
+     * Optional. Name of the `JobRun`. Format is
+     * projects/{project}/locations/{location}/
      * deliveryPipelines/{deliveryPipeline}/releases/{releases}/rollouts/
      * {rollouts}/jobRuns/{uuid}.
      *
@@ -129,7 +136,8 @@ class JobRun extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Name of the `JobRun`. Format is projects/{project}/locations/{location}/
+     * Optional. Name of the `JobRun`. Format is
+     * projects/{project}/locations/{location}/
      * deliveryPipelines/{deliveryPipeline}/releases/{releases}/rollouts/
      * {rollouts}/jobRuns/{uuid}.
      *
@@ -420,8 +428,70 @@ class JobRun extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. This checksum is computed by the server based on the value of other
-     * fields, and may be sent on update and delete requests to ensure the
+     * Output only. Information specific to a createChildRollout `JobRun`.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.CreateChildRolloutJobRun create_child_rollout_job_run = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Deploy\V1\CreateChildRolloutJobRun|null
+     */
+    public function getCreateChildRolloutJobRun()
+    {
+        return $this->readOneof(12);
+    }
+
+    public function hasCreateChildRolloutJobRun()
+    {
+        return $this->hasOneof(12);
+    }
+
+    /**
+     * Output only. Information specific to a createChildRollout `JobRun`.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.CreateChildRolloutJobRun create_child_rollout_job_run = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Deploy\V1\CreateChildRolloutJobRun $var
+     * @return $this
+     */
+    public function setCreateChildRolloutJobRun($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Deploy\V1\CreateChildRolloutJobRun::class);
+        $this->writeOneof(12, $var);
+
+        return $this;
+    }
+
+    /**
+     * Output only. Information specific to an advanceChildRollout `JobRun`
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.AdvanceChildRolloutJobRun advance_child_rollout_job_run = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Deploy\V1\AdvanceChildRolloutJobRun|null
+     */
+    public function getAdvanceChildRolloutJobRun()
+    {
+        return $this->readOneof(13);
+    }
+
+    public function hasAdvanceChildRolloutJobRun()
+    {
+        return $this->hasOneof(13);
+    }
+
+    /**
+     * Output only. Information specific to an advanceChildRollout `JobRun`
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.AdvanceChildRolloutJobRun advance_child_rollout_job_run = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Deploy\V1\AdvanceChildRolloutJobRun $var
+     * @return $this
+     */
+    public function setAdvanceChildRolloutJobRun($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Deploy\V1\AdvanceChildRolloutJobRun::class);
+        $this->writeOneof(13, $var);
+
+        return $this;
+    }
+
+    /**
+     * Output only. This checksum is computed by the server based on the value of
+     * other fields, and may be sent on update and delete requests to ensure the
      * client has an up-to-date value before proceeding.
      *
      * Generated from protobuf field <code>string etag = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -433,8 +503,8 @@ class JobRun extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. This checksum is computed by the server based on the value of other
-     * fields, and may be sent on update and delete requests to ensure the
+     * Output only. This checksum is computed by the server based on the value of
+     * other fields, and may be sent on update and delete requests to ensure the
      * client has an up-to-date value before proceeding.
      *
      * Generated from protobuf field <code>string etag = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>

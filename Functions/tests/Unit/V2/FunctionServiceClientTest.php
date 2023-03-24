@@ -95,9 +95,13 @@ class FunctionServiceClientTest extends GeneratedTest
         $transport->addResponse($incompleteOperation);
         $name = 'name3373707';
         $description = 'description-1724546052';
+        $kmsKeyName = 'kmsKeyName2094986649';
+        $url = 'url116079';
         $expectedResponse = new PBFunction();
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
+        $expectedResponse->setKmsKeyName($kmsKeyName);
+        $expectedResponse->setUrl($url);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -445,9 +449,13 @@ class FunctionServiceClientTest extends GeneratedTest
         // Mock response
         $name2 = 'name2-1052831874';
         $description = 'description-1724546052';
+        $kmsKeyName = 'kmsKeyName2094986649';
+        $url = 'url116079';
         $expectedResponse = new PBFunction();
         $expectedResponse->setName($name2);
         $expectedResponse->setDescription($description);
+        $expectedResponse->setKmsKeyName($kmsKeyName);
+        $expectedResponse->setUrl($url);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->functionName('[PROJECT]', '[LOCATION]', '[FUNCTION]');
@@ -645,9 +653,13 @@ class FunctionServiceClientTest extends GeneratedTest
         $transport->addResponse($incompleteOperation);
         $name = 'name3373707';
         $description = 'description-1724546052';
+        $kmsKeyName = 'kmsKeyName2094986649';
+        $url = 'url116079';
         $expectedResponse = new PBFunction();
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
+        $expectedResponse->setKmsKeyName($kmsKeyName);
+        $expectedResponse->setUrl($url);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();

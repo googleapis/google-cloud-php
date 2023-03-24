@@ -28,7 +28,7 @@ use Google\Cloud\Compute\V1\BackendService;
 use Google\Cloud\Compute\V1\BackendServicesClient;
 
 /**
- * Returns the specified BackendService resource. Gets a list of available backend services.
+ * Returns the specified BackendService resource.
  *
  * @param string $backendService Name of the BackendService resource to return.
  * @param string $project        Project ID for this request.

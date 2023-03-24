@@ -28,7 +28,7 @@ use Google\Cloud\Compute\V1\MachineImage;
 use Google\Cloud\Compute\V1\MachineImagesClient;
 
 /**
- * Returns the specified machine image. Gets a list of available machine images by making a list() request.
+ * Returns the specified machine image.
  *
  * @param string $machineImage The name of the machine image.
  * @param string $project      Project ID for this request.

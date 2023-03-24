@@ -41,7 +41,8 @@ class PhraseSet extends \Google\Protobuf\Internal\Message
      * phrase will be recognized over other similar sounding phrases. The higher
      * the boost, the higher the chance of false positive recognition as well.
      * Valid `boost` values are between 0 (exclusive) and 20. We recommend using a
-     * binary search approach to finding the optimal value for your use case.
+     * binary search approach to finding the optimal value for your use case as
+     * well as adding phrases both with and without boost to your requests.
      *
      * Generated from protobuf field <code>float boost = 4;</code>
      */
@@ -143,7 +144,8 @@ class PhraseSet extends \Google\Protobuf\Internal\Message
      *           phrase will be recognized over other similar sounding phrases. The higher
      *           the boost, the higher the chance of false positive recognition as well.
      *           Valid `boost` values are between 0 (exclusive) and 20. We recommend using a
-     *           binary search approach to finding the optimal value for your use case.
+     *           binary search approach to finding the optimal value for your use case as
+     *           well as adding phrases both with and without boost to your requests.
      *     @type string $display_name
      *           User-settable, human-readable name for the PhraseSet. Must be 63
      *           characters or less.
@@ -270,7 +272,8 @@ class PhraseSet extends \Google\Protobuf\Internal\Message
      * phrase will be recognized over other similar sounding phrases. The higher
      * the boost, the higher the chance of false positive recognition as well.
      * Valid `boost` values are between 0 (exclusive) and 20. We recommend using a
-     * binary search approach to finding the optimal value for your use case.
+     * binary search approach to finding the optimal value for your use case as
+     * well as adding phrases both with and without boost to your requests.
      *
      * Generated from protobuf field <code>float boost = 4;</code>
      * @return float
@@ -285,7 +288,8 @@ class PhraseSet extends \Google\Protobuf\Internal\Message
      * phrase will be recognized over other similar sounding phrases. The higher
      * the boost, the higher the chance of false positive recognition as well.
      * Valid `boost` values are between 0 (exclusive) and 20. We recommend using a
-     * binary search approach to finding the optimal value for your use case.
+     * binary search approach to finding the optimal value for your use case as
+     * well as adding phrases both with and without boost to your requests.
      *
      * Generated from protobuf field <code>float boost = 4;</code>
      * @param float $var

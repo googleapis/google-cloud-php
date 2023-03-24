@@ -25,7 +25,7 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START livestream_v1_generated_LivestreamService_CreateEvent_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\Video\LiveStream\V1\Event;
-use Google\Cloud\Video\LiveStream\V1\Event\AdBreakTask;
+use Google\Cloud\Video\LiveStream\V1\Event\InputSwitchTask;
 use Google\Cloud\Video\LiveStream\V1\LivestreamServiceClient;
 
 /**
@@ -44,9 +44,9 @@ function create_event_sample(string $formattedParent, string $eventId): void
     $livestreamServiceClient = new LivestreamServiceClient();
 
     // Prepare any non-scalar elements to be passed along with the request.
-    $eventAdBreak = new AdBreakTask();
+    $eventInputSwitch = new InputSwitchTask();
     $event = (new Event())
-        ->setAdBreak($eventAdBreak);
+        ->setInputSwitch($eventInputSwitch);
 
     // Call the API and handle any network failures.
     try {

@@ -28,11 +28,6 @@ src = Path(f"../{php.STAGING_DIR}/Asset").resolve()
 dest = Path().resolve()
 
 php.owlbot_main(src=src, dest=dest)
-# V1 is GA, so remove @experimental tags
-s.replace(
-    'src/V1/**/*Client.php',
-    r'^(\s+\*\n)?\s+\*\s@experimental\n',
-    '')
 
 ### [START] protoc backwards compatibility fixes
 

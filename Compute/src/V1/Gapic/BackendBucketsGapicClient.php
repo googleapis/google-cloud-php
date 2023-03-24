@@ -476,7 +476,7 @@ class BackendBucketsGapicClient
     }
 
     /**
-     * Returns the specified BackendBucket resource. Gets a list of available backend buckets by making a list() request.
+     * Returns the specified BackendBucket resource.
      *
      * Sample code:
      * ```
