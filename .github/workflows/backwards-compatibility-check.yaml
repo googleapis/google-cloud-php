@@ -19,7 +19,7 @@ jobs:
       - name: "Check for BC breaks"
         if: github.actor != 'release-please[bot]'
         # Ensure the build still passes by adding the 'breaking change allowed' label to the PR.
-        # NOTE: PR should contain a BREAKING_CHANGE_REASON=[reason] in a comment or description
+        # NOTE: PR should contain a BREAKING_CHANGE_REASON=[reason] in the description.
         continue-on-error: ${{ contains(github.event.pull_request.labels.*.name, 'breaking change allowed') }}
         run: |
           ~/.composer/vendor/bin/roave-backward-compatibility-check --from=origin/main --format=github-actions
@@ -44,7 +44,6 @@ jobs:
         if: |
           contains(github.event.pull_request.labels.*.name, 'breaking change allowed')
           && !contains(github.event.pull_request.body, 'BREAKING_CHANGE_REASON=')
-          && !contains(github.event.comments.*.body, 'BREAKING_CHANGE_REASON=')
         uses: thollander/actions-comment-pull-request@v2.3.1
         with:
           message: |
@@ -55,5 +54,4 @@ jobs:
         if: |
           contains(github.event.pull_request.labels.*.name, 'breaking change allowed')
           && !contains(github.event.pull_request.body, 'BREAKING_CHANGE_REASON=')
-          && !contains(github.event.comments.*.body, 'BREAKING_CHANGE_REASON=')
         run: exit 1
