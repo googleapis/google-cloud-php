@@ -25,6 +25,8 @@ jobs:
           ~/.composer/vendor/bin/roave-backward-compatibility-check --from=origin/main --format=github-actions
       - name: Get Latest Release
         if: github.actor == 'release-please[bot]'
+        # We've already approved and justified the breaking changes. Run the check but continue on error
+        continue-on-error: true
         id: latest-release
         uses: pozetroninc/github-action-get-latest-release@master
         with:
