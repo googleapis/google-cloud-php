@@ -202,7 +202,7 @@ class RequestWrapper
 
         try {
             return $backoff->execute($this->httpHandler, [
-                $this->applyHeaders($request),
+                $this->applyHeaders($request, $options),
                 $this->getRequestOptions($options)
             ]);
         } catch (\Exception $ex) {
@@ -276,14 +276,18 @@ class RequestWrapper
      * Applies headers to the request.
      *
      * @param RequestInterface $request A PSR-7 request.
+     * @param array $options Configuration options.
      * @return RequestInterface
      */
-    private function applyHeaders(RequestInterface $request)
+    private function applyHeaders(RequestInterface $request, $options = [])
     {
         $headers = [
             'User-Agent' => 'gcloud-php/' . $this->componentVersion,
             'x-goog-api-client' => 'gl-php/' . PHP_VERSION . ' gccl/' . $this->componentVersion,
         ];
+        $headers += isset($options['restOptions']['headers'])
+            ? $options['restOptions']['headers']
+            : [];
 
         if ($this->shouldSignRequest) {
             $quotaProject = $this->quotaProject;

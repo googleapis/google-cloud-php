@@ -279,6 +279,28 @@ class RequestWrapperTest extends TestCase
         );
     }
 
+    public function testAddsCustomHeadersToRequest()
+    {
+        $headers = [
+            'header-_key' => 'test header-_val'
+        ];
+        $requestWrapper = new RequestWrapper([
+            'httpHandler' => function ($request, $options = []) use ($headers) {
+                $headerVal = $request->getHeaderLine('header-_key');
+                $this->assertEquals($headers['header-_key'], $headerVal);
+                return new Response(200);
+            },
+            'accessToken' => 'abc'
+        ]);
+
+        $requestWrapper->send(
+            new Request('GET', 'http://www.example.com'),
+            [
+                'restOptions' => ['headers' => $headers]
+            ]
+        );
+    }
+
     public function testRequestUsesApiKeyInsteadOfAuthHeader()
     {
         $version = '1.0.0';
