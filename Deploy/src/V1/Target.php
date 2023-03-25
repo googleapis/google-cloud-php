@@ -43,8 +43,8 @@ class Target extends \Google\Protobuf\Internal\Message
      */
     private $description = '';
     /**
-     * Optional. User annotations. These attributes can only be set and used by the
-     * user, and not by Google Cloud Deploy. See
+     * Optional. User annotations. These attributes can only be set and used by
+     * the user, and not by Google Cloud Deploy. See
      * https://google.aip.dev/128#annotations for more details such as format and
      * size limitations.
      *
@@ -85,8 +85,8 @@ class Target extends \Google\Protobuf\Internal\Message
      */
     private $update_time = null;
     /**
-     * Optional. This checksum is computed by the server based on the value of other
-     * fields, and may be sent on update and delete requests to ensure the
+     * Optional. This checksum is computed by the server based on the value of
+     * other fields, and may be sent on update and delete requests to ensure the
      * client has an up-to-date value before proceeding.
      *
      * Generated from protobuf field <code>string etag = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -122,8 +122,8 @@ class Target extends \Google\Protobuf\Internal\Message
      *     @type string $description
      *           Optional. Description of the `Target`. Max length is 255 characters.
      *     @type array|\Google\Protobuf\Internal\MapField $annotations
-     *           Optional. User annotations. These attributes can only be set and used by the
-     *           user, and not by Google Cloud Deploy. See
+     *           Optional. User annotations. These attributes can only be set and used by
+     *           the user, and not by Google Cloud Deploy. See
      *           https://google.aip.dev/128#annotations for more details such as format and
      *           size limitations.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
@@ -149,9 +149,11 @@ class Target extends \Google\Protobuf\Internal\Message
      *           Information specifying an Anthos Cluster.
      *     @type \Google\Cloud\Deploy\V1\CloudRunLocation $run
      *           Information specifying a Cloud Run deployment target.
+     *     @type \Google\Cloud\Deploy\V1\MultiTarget $multi_target
+     *           Information specifying a multiTarget.
      *     @type string $etag
-     *           Optional. This checksum is computed by the server based on the value of other
-     *           fields, and may be sent on update and delete requests to ensure the
+     *           Optional. This checksum is computed by the server based on the value of
+     *           other fields, and may be sent on update and delete requests to ensure the
      *           client has an up-to-date value before proceeding.
      *     @type array<\Google\Cloud\Deploy\V1\ExecutionConfig>|\Google\Protobuf\Internal\RepeatedField $execution_configs
      *           Configurations for all execution that relates to this `Target`.
@@ -275,8 +277,8 @@ class Target extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. User annotations. These attributes can only be set and used by the
-     * user, and not by Google Cloud Deploy. See
+     * Optional. User annotations. These attributes can only be set and used by
+     * the user, and not by Google Cloud Deploy. See
      * https://google.aip.dev/128#annotations for more details such as format and
      * size limitations.
      *
@@ -289,8 +291,8 @@ class Target extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. User annotations. These attributes can only be set and used by the
-     * user, and not by Google Cloud Deploy. See
+     * Optional. User annotations. These attributes can only be set and used by
+     * the user, and not by Google Cloud Deploy. See
      * https://google.aip.dev/128#annotations for more details such as format and
      * size limitations.
      *
@@ -542,8 +544,39 @@ class Target extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. This checksum is computed by the server based on the value of other
-     * fields, and may be sent on update and delete requests to ensure the
+     * Information specifying a multiTarget.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.MultiTarget multi_target = 19;</code>
+     * @return \Google\Cloud\Deploy\V1\MultiTarget|null
+     */
+    public function getMultiTarget()
+    {
+        return $this->readOneof(19);
+    }
+
+    public function hasMultiTarget()
+    {
+        return $this->hasOneof(19);
+    }
+
+    /**
+     * Information specifying a multiTarget.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.MultiTarget multi_target = 19;</code>
+     * @param \Google\Cloud\Deploy\V1\MultiTarget $var
+     * @return $this
+     */
+    public function setMultiTarget($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Deploy\V1\MultiTarget::class);
+        $this->writeOneof(19, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. This checksum is computed by the server based on the value of
+     * other fields, and may be sent on update and delete requests to ensure the
      * client has an up-to-date value before proceeding.
      *
      * Generated from protobuf field <code>string etag = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -555,8 +588,8 @@ class Target extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. This checksum is computed by the server based on the value of other
-     * fields, and may be sent on update and delete requests to ensure the
+     * Optional. This checksum is computed by the server based on the value of
+     * other fields, and may be sent on update and delete requests to ensure the
      * client has an up-to-date value before proceeding.
      *
      * Generated from protobuf field <code>string etag = 12 [(.google.api.field_behavior) = OPTIONAL];</code>

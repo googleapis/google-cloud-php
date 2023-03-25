@@ -37,12 +37,26 @@ class State
      * Generated from protobuf enum <code>FAILED = 3;</code>
      */
     const FAILED = 3;
+    /**
+     * The `JobRun` is terminating.
+     *
+     * Generated from protobuf enum <code>TERMINATING = 4;</code>
+     */
+    const TERMINATING = 4;
+    /**
+     * The `JobRun` was terminated.
+     *
+     * Generated from protobuf enum <code>TERMINATED = 5;</code>
+     */
+    const TERMINATED = 5;
 
     private static $valueToName = [
         self::STATE_UNSPECIFIED => 'STATE_UNSPECIFIED',
         self::IN_PROGRESS => 'IN_PROGRESS',
         self::SUCCEEDED => 'SUCCEEDED',
         self::FAILED => 'FAILED',
+        self::TERMINATING => 'TERMINATING',
+        self::TERMINATED => 'TERMINATED',
     ];
 
     public static function name($value)

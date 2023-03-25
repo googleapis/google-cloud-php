@@ -1351,6 +1351,12 @@ class ReservationServiceGapicClient
      *     @type string $destinationId
      *           The new reservation ID, e.g.:
      *           `projects/myotherproject/locations/US/reservations/team2-prod`
+     *     @type string $assignmentId
+     *           The optional assignment ID. A new assignment name is generated if this
+     *           field is empty.
+     *
+     *           This field can contain only lowercase alphanumeric characters or dashes.
+     *           Max length is 64 characters.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1369,6 +1375,10 @@ class ReservationServiceGapicClient
         $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['destinationId'])) {
             $request->setDestinationId($optionalArgs['destinationId']);
+        }
+
+        if (isset($optionalArgs['assignmentId'])) {
+            $request->setAssignmentId($optionalArgs['assignmentId']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
@@ -1430,8 +1440,8 @@ class ReservationServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name with location (project name could be the wildcard '-'),
-     *                             e.g.:
+     * @param string $parent       Required. The resource name with location (project name could be the
+     *                             wildcard '-'), e.g.:
      *                             `projects/-/locations/US`.
      * @param array  $optionalArgs {
      *     Optional.
@@ -1543,8 +1553,8 @@ class ReservationServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the admin project(containing project and location),
-     *                             e.g.:
+     * @param string $parent       Required. The resource name of the admin project(containing project and
+     *                             location), e.g.:
      *                             `projects/myproject/locations/US`.
      * @param array  $optionalArgs {
      *     Optional.
