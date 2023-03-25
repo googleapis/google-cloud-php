@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2022 Google LLC
+ * Copyright 2023 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,27 +22,29 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START videostitcher_v1_generated_VideoStitcherService_GetSlate_sync]
+// [START videostitcher_v1_generated_VideoStitcherService_GetLiveConfig_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Video\Stitcher\V1\Slate;
+use Google\Cloud\Video\Stitcher\V1\LiveConfig;
 use Google\Cloud\Video\Stitcher\V1\VideoStitcherServiceClient;
 
 /**
- * Returns the specified slate.
+ * Returns the specified live config managed by the Video
+ * Stitcher service.
  *
- * @param string $formattedName The name of the slate to be retrieved, of the slate, in the form
- *                              of `projects/{project_number}/locations/{location}/slates/{id}`. Please see
- *                              {@see VideoStitcherServiceClient::slateName()} for help formatting this field.
+ * @param string $formattedName The name of the live config to be retrieved, in the form
+ *                              of
+ *                              `projects/{project_number}/locations/{location}/liveConfigs/{id}`. Please see
+ *                              {@see VideoStitcherServiceClient::liveConfigName()} for help formatting this field.
  */
-function get_slate_sample(string $formattedName): void
+function get_live_config_sample(string $formattedName): void
 {
     // Create a client.
     $videoStitcherServiceClient = new VideoStitcherServiceClient();
 
     // Call the API and handle any network failures.
     try {
-        /** @var Slate $response */
-        $response = $videoStitcherServiceClient->getSlate($formattedName);
+        /** @var LiveConfig $response */
+        $response = $videoStitcherServiceClient->getLiveConfig($formattedName);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
@@ -60,8 +62,12 @@ function get_slate_sample(string $formattedName): void
  */
 function callSample(): void
 {
-    $formattedName = VideoStitcherServiceClient::slateName('[PROJECT]', '[LOCATION]', '[SLATE]');
+    $formattedName = VideoStitcherServiceClient::liveConfigName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[LIVE_CONFIG]'
+    );
 
-    get_slate_sample($formattedName);
+    get_live_config_sample($formattedName);
 }
-// [END videostitcher_v1_generated_VideoStitcherService_GetSlate_sync]
+// [END videostitcher_v1_generated_VideoStitcherService_GetLiveConfig_sync]

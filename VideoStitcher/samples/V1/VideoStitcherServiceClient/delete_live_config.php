@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2022 Google LLC
+ * Copyright 2023 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,43 +22,32 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START videostitcher_v1_generated_VideoStitcherService_UpdateCdnKey_sync]
+// [START videostitcher_v1_generated_VideoStitcherService_DeleteLiveConfig_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Video\Stitcher\V1\CdnKey;
 use Google\Cloud\Video\Stitcher\V1\VideoStitcherServiceClient;
-use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
 /**
- * Updates the specified CDN key. Only update fields specified
- * in the call method body.
+ * Deletes the specified live config.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName The name of the live config to be deleted, in the form of
+ *                              `projects/{project_number}/locations/{location}/liveConfigs/{id}`. Please see
+ *                              {@see VideoStitcherServiceClient::liveConfigName()} for help formatting this field.
  */
-function update_cdn_key_sample(): void
+function delete_live_config_sample(string $formattedName): void
 {
     // Create a client.
     $videoStitcherServiceClient = new VideoStitcherServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
-    $cdnKey = new CdnKey();
-    $updateMask = new FieldMask();
-
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $videoStitcherServiceClient->updateCdnKey($cdnKey, $updateMask);
+        $response = $videoStitcherServiceClient->deleteLiveConfig($formattedName);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
-            /** @var CdnKey $result */
-            $result = $response->getResult();
-            printf('Operation successful with response data: %s' . PHP_EOL, $result->serializeToJsonString());
+            printf('Operation completed successfully.' . PHP_EOL);
         } else {
             /** @var Status $error */
             $error = $response->getError();
@@ -68,4 +57,24 @@ function update_cdn_key_sample(): void
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
 }
-// [END videostitcher_v1_generated_VideoStitcherService_UpdateCdnKey_sync]
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = VideoStitcherServiceClient::liveConfigName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[LIVE_CONFIG]'
+    );
+
+    delete_live_config_sample($formattedName);
+}
+// [END videostitcher_v1_generated_VideoStitcherService_DeleteLiveConfig_sync]

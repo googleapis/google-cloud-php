@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2022 Google LLC
+ * Copyright 2023 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,40 +22,53 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START videostitcher_v1_generated_VideoStitcherService_CreateSlate_sync]
+// [START videostitcher_v1_generated_VideoStitcherService_CreateLiveConfig_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Video\Stitcher\V1\Slate;
+use Google\Cloud\Video\Stitcher\V1\AdTracking;
+use Google\Cloud\Video\Stitcher\V1\LiveConfig;
 use Google\Cloud\Video\Stitcher\V1\VideoStitcherServiceClient;
 use Google\Rpc\Status;
 
 /**
- * Creates a slate.
+ * Registers the live config with the provided unique ID in
+ * the specified region.
  *
- * @param string $formattedParent The project in which the slate should be created, in the form of
- *                                `projects/{project_number}/locations/{location}`. Please see
- *                                {@see VideoStitcherServiceClient::locationName()} for help formatting this field.
- * @param string $slateId         The unique identifier for the slate.
- *                                This value should conform to RFC-1034, which restricts to
- *                                lower-case letters, numbers, and hyphen, with the first character a
- *                                letter, the last a letter or a number, and a 63 character maximum.
+ * @param string $formattedParent      The project in which the live config should be created, in
+ *                                     the form of `projects/{project_number}/locations/{location}`. Please see
+ *                                     {@see VideoStitcherServiceClient::locationName()} for help formatting this field.
+ * @param string $liveConfigId         The unique identifier ID to use for the live config.
+ * @param string $liveConfigSourceUri  Source URI for the live stream manifest.
+ * @param int    $liveConfigAdTracking Determines how the ads should be tracked. If
+ *                                     [gam_live_config][google.cloud.video.stitcher.v1.LiveConfig.gam_live_config]
+ *                                     is set, the value must be `CLIENT` because the IMA SDK handles ad tracking.
  */
-function create_slate_sample(string $formattedParent, string $slateId): void
-{
+function create_live_config_sample(
+    string $formattedParent,
+    string $liveConfigId,
+    string $liveConfigSourceUri,
+    int $liveConfigAdTracking
+): void {
     // Create a client.
     $videoStitcherServiceClient = new VideoStitcherServiceClient();
 
     // Prepare any non-scalar elements to be passed along with the request.
-    $slate = new Slate();
+    $liveConfig = (new LiveConfig())
+        ->setSourceUri($liveConfigSourceUri)
+        ->setAdTracking($liveConfigAdTracking);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $videoStitcherServiceClient->createSlate($formattedParent, $slateId, $slate);
+        $response = $videoStitcherServiceClient->createLiveConfig(
+            $formattedParent,
+            $liveConfigId,
+            $liveConfig
+        );
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
-            /** @var Slate $result */
+            /** @var LiveConfig $result */
             $result = $response->getResult();
             printf('Operation successful with response data: %s' . PHP_EOL, $result->serializeToJsonString());
         } else {
@@ -80,8 +93,15 @@ function create_slate_sample(string $formattedParent, string $slateId): void
 function callSample(): void
 {
     $formattedParent = VideoStitcherServiceClient::locationName('[PROJECT]', '[LOCATION]');
-    $slateId = '[SLATE_ID]';
+    $liveConfigId = '[LIVE_CONFIG_ID]';
+    $liveConfigSourceUri = '[SOURCE_URI]';
+    $liveConfigAdTracking = AdTracking::AD_TRACKING_UNSPECIFIED;
 
-    create_slate_sample($formattedParent, $slateId);
+    create_live_config_sample(
+        $formattedParent,
+        $liveConfigId,
+        $liveConfigSourceUri,
+        $liveConfigAdTracking
+    );
 }
-// [END videostitcher_v1_generated_VideoStitcherService_CreateSlate_sync]
+// [END videostitcher_v1_generated_VideoStitcherService_CreateLiveConfig_sync]
