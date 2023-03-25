@@ -8,10 +8,10 @@ use UnexpectedValueException;
 
 /**
  * The Availability type of an instance. Potential values:
- *   <br><b>ZONAL</b>: The instance serves data from only one zone.
- * Outages in that zone affect instance availability.
- *   <br><b>REGIONAL</b>: The instance can serve data from more than one zone
- *   in a region (it is highly available).
+ * - ZONAL: The instance serves data from only one zone. Outages in that
+ * zone affect instance availability.
+ * - REGIONAL: The instance can serve data from more than one zone in a
+ * region (it is highly available).
  *
  * Protobuf type <code>google.cloud.alloydb.v1.Instance.AvailabilityType</code>
  */
