@@ -69,6 +69,7 @@ class Rest implements ConnectionInterface
      */
     public function allocateIds(array $args)
     {
+        $this->setHeader($args);
         return $this->send('projects', 'allocateIds', $args);
     }
 
@@ -77,6 +78,7 @@ class Rest implements ConnectionInterface
      */
     public function beginTransaction(array $args)
     {
+        $this->setHeader($args);
         return $this->send('projects', 'beginTransaction', $args);
     }
 
@@ -85,6 +87,7 @@ class Rest implements ConnectionInterface
      */
     public function commit(array $args)
     {
+        $this->setHeader($args);
         return $this->send('projects', 'commit', $args);
     }
 
@@ -93,6 +96,7 @@ class Rest implements ConnectionInterface
      */
     public function lookup(array $args)
     {
+        $this->setHeader($args);
         return $this->send('projects', 'lookup', $args);
     }
 
@@ -101,6 +105,7 @@ class Rest implements ConnectionInterface
      */
     public function rollback(array $args)
     {
+        $this->setHeader($args);
         return $this->send('projects', 'rollback', $args);
     }
 
@@ -109,6 +114,23 @@ class Rest implements ConnectionInterface
      */
     public function runQuery(array $args)
     {
+        $this->setHeader($args);
         return $this->send('projects', 'runQuery', $args);
+    }
+
+    /**
+     * Apply the x-goog-request-params header to requests for multiple databases.
+     *
+     * @param array $args
+     */
+    private function setHeader(&$args)
+    {
+        if (isset($args['projectId']) && isset($args['databaseId'])) {
+            $args['restOptions']['headers']['x-goog-request-params'] = sprintf(
+                'project_id=%s&database_id=%s',
+                $args['projectId'],
+                $args['databaseId']
+            );
+        }
     }
 }

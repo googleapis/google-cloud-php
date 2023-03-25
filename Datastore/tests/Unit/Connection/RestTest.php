@@ -87,6 +87,44 @@ class RestTest extends TestCase
         $this->assertEquals(json_decode($this->successBody, true), $rest->$method($options));
     }
 
+    public function testSendWithRoutingHeaders()
+    {
+        $optionsWithDatabaseId = ['databaseId' => 'dbId'];
+        $optionsWithProjectId = ['projectId' => 'prodId'];
+
+        $rest = new Rest();
+        $reflector = new \ReflectionObject($rest);
+        $method = $reflector->getMethod('setHeader');
+        $method->setAccessible(true);
+
+        $args = [];
+        $method->invokeArgs($rest, [&$args]);
+        $this->assertArrayNotHasKey('restOptions', $args);
+
+        $args = $optionsWithDatabaseId;
+        $method->invokeArgs($rest, [&$args]);
+        $this->assertArrayNotHasKey('restOptions', $args);
+
+        $args = $optionsWithProjectId;
+        $method->invokeArgs($rest, [&$args]);
+        $this->assertArrayNotHasKey('restOptions', $args);
+
+        $args = $optionsWithProjectId + $optionsWithDatabaseId;
+        $method->invokeArgs($rest, [&$args]);
+        $this->assertEquals(
+            sprintf(
+                'project_id=%s&database_id=%s',
+                $args['projectId'],
+                $args['databaseId']
+            ),
+            $args['restOptions']['headers']['x-goog-request-params']
+        );
+    }
+
+
+
+
+
     public function methodProvider()
     {
         return [
