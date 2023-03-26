@@ -28,7 +28,7 @@ use Google\Cloud\Compute\V1\TargetInstance;
 use Google\Cloud\Compute\V1\TargetInstancesClient;
 
 /**
- * Returns the specified TargetInstance resource. Gets a list of available target instances by making a list() request.
+ * Returns the specified TargetInstance resource.
  *
  * @param string $project        Project ID for this request.
  * @param string $targetInstance Name of the TargetInstance resource to return.

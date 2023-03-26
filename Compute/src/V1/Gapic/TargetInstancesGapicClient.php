@@ -403,7 +403,7 @@ class TargetInstancesGapicClient
     }
 
     /**
-     * Returns the specified TargetInstance resource. Gets a list of available target instances by making a list() request.
+     * Returns the specified TargetInstance resource.
      *
      * Sample code:
      * ```

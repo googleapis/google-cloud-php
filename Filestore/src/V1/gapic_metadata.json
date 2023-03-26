@@ -20,6 +20,11 @@
                                 "createInstance"
                             ]
                         },
+                        "CreateSnapshot": {
+                            "methods": [
+                                "createSnapshot"
+                            ]
+                        },
                         "DeleteBackup": {
                             "methods": [
                                 "deleteBackup"
@@ -28,6 +33,11 @@
                         "DeleteInstance": {
                             "methods": [
                                 "deleteInstance"
+                            ]
+                        },
+                        "DeleteSnapshot": {
+                            "methods": [
+                                "deleteSnapshot"
                             ]
                         },
                         "GetBackup": {
@@ -40,6 +50,11 @@
                                 "getInstance"
                             ]
                         },
+                        "GetSnapshot": {
+                            "methods": [
+                                "getSnapshot"
+                            ]
+                        },
                         "ListBackups": {
                             "methods": [
                                 "listBackups"
@@ -48,6 +63,11 @@
                         "ListInstances": {
                             "methods": [
                                 "listInstances"
+                            ]
+                        },
+                        "ListSnapshots": {
+                            "methods": [
+                                "listSnapshots"
                             ]
                         },
                         "RestoreInstance": {
@@ -63,6 +83,11 @@
                         "UpdateInstance": {
                             "methods": [
                                 "updateInstance"
+                            ]
+                        },
+                        "UpdateSnapshot": {
+                            "methods": [
+                                "updateSnapshot"
                             ]
                         }
                     }

@@ -169,7 +169,7 @@ class RegionDiskTypesGapicClient
     }
 
     /**
-     * Returns the specified regional disk type. Gets a list of available disk types by making a list() request.
+     * Returns the specified regional disk type.
      *
      * Sample code:
      * ```

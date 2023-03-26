@@ -31,8 +31,8 @@ use Google\Cloud\Video\Stitcher\V1\VodAdTagDetail;
 /**
  * Return the list of ad tag details for the specified VOD session.
  *
- * @param string $formattedParent The VOD session which the ad tag details belong to, in the form of
- *                                `projects/{project}/locations/{location}/vodSessions/{vod_session_id}`. Please see
+ * @param string $formattedParent The VOD session which the ad tag details belong to, in the form
+ *                                of `projects/{project}/locations/{location}/vodSessions/{vod_session_id}`. Please see
  *                                {@see VideoStitcherServiceClient::vodSessionName()} for help formatting this field.
  */
 function list_vod_ad_tag_details_sample(string $formattedParent): void

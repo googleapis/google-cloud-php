@@ -31,8 +31,8 @@ use Google\Cloud\Deploy\V1\DeliveryPipeline;
 /**
  * Lists DeliveryPipelines in a given project and location.
  *
- * @param string $formattedParent The parent, which owns this collection of pipelines. Format must be
- *                                projects/{project_id}/locations/{location_name}. Please see
+ * @param string $formattedParent The parent, which owns this collection of pipelines. Format must
+ *                                be projects/{project_id}/locations/{location_name}. Please see
  *                                {@see CloudDeployClient::locationName()} for help formatting this field.
  */
 function list_delivery_pipelines_sample(string $formattedParent): void

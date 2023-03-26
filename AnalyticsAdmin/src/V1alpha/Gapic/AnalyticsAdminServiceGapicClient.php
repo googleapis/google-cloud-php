@@ -60,9 +60,12 @@ use Google\Analytics\Admin\V1alpha\BatchUpdateUserLinksRequest;
 use Google\Analytics\Admin\V1alpha\BatchUpdateUserLinksResponse;
 use Google\Analytics\Admin\V1alpha\BigQueryLink;
 use Google\Analytics\Admin\V1alpha\CancelDisplayVideo360AdvertiserLinkProposalRequest;
+use Google\Analytics\Admin\V1alpha\ConnectedSiteTag;
 use Google\Analytics\Admin\V1alpha\ConversionEvent;
 use Google\Analytics\Admin\V1alpha\CreateAccessBindingRequest;
 use Google\Analytics\Admin\V1alpha\CreateAudienceRequest;
+use Google\Analytics\Admin\V1alpha\CreateConnectedSiteTagRequest;
+use Google\Analytics\Admin\V1alpha\CreateConnectedSiteTagResponse;
 use Google\Analytics\Admin\V1alpha\CreateConversionEventRequest;
 use Google\Analytics\Admin\V1alpha\CreateCustomDimensionRequest;
 use Google\Analytics\Admin\V1alpha\CreateCustomMetricRequest;
@@ -83,6 +86,7 @@ use Google\Analytics\Admin\V1alpha\DataSharingSettings;
 use Google\Analytics\Admin\V1alpha\DataStream;
 use Google\Analytics\Admin\V1alpha\DeleteAccessBindingRequest;
 use Google\Analytics\Admin\V1alpha\DeleteAccountRequest;
+use Google\Analytics\Admin\V1alpha\DeleteConnectedSiteTagRequest;
 use Google\Analytics\Admin\V1alpha\DeleteConversionEventRequest;
 use Google\Analytics\Admin\V1alpha\DeleteDataStreamRequest;
 use Google\Analytics\Admin\V1alpha\DeleteDisplayVideo360AdvertiserLinkProposalRequest;
@@ -96,6 +100,7 @@ use Google\Analytics\Admin\V1alpha\DeleteSearchAds360LinkRequest;
 use Google\Analytics\Admin\V1alpha\DeleteUserLinkRequest;
 use Google\Analytics\Admin\V1alpha\DisplayVideo360AdvertiserLink;
 use Google\Analytics\Admin\V1alpha\DisplayVideo360AdvertiserLinkProposal;
+use Google\Analytics\Admin\V1alpha\EnhancedMeasurementSettings;
 use Google\Analytics\Admin\V1alpha\ExpandedDataSet;
 use Google\Analytics\Admin\V1alpha\FetchAutomatedGa4ConfigurationOptOutRequest;
 use Google\Analytics\Admin\V1alpha\FetchAutomatedGa4ConfigurationOptOutResponse;
@@ -113,6 +118,7 @@ use Google\Analytics\Admin\V1alpha\GetDataSharingSettingsRequest;
 use Google\Analytics\Admin\V1alpha\GetDataStreamRequest;
 use Google\Analytics\Admin\V1alpha\GetDisplayVideo360AdvertiserLinkProposalRequest;
 use Google\Analytics\Admin\V1alpha\GetDisplayVideo360AdvertiserLinkRequest;
+use Google\Analytics\Admin\V1alpha\GetEnhancedMeasurementSettingsRequest;
 use Google\Analytics\Admin\V1alpha\GetExpandedDataSetRequest;
 use Google\Analytics\Admin\V1alpha\GetGlobalSiteTagRequest;
 use Google\Analytics\Admin\V1alpha\GetGoogleSignalsSettingsRequest;
@@ -133,6 +139,8 @@ use Google\Analytics\Admin\V1alpha\ListAudiencesRequest;
 use Google\Analytics\Admin\V1alpha\ListAudiencesResponse;
 use Google\Analytics\Admin\V1alpha\ListBigQueryLinksRequest;
 use Google\Analytics\Admin\V1alpha\ListBigQueryLinksResponse;
+use Google\Analytics\Admin\V1alpha\ListConnectedSiteTagsRequest;
+use Google\Analytics\Admin\V1alpha\ListConnectedSiteTagsResponse;
 use Google\Analytics\Admin\V1alpha\ListConversionEventsRequest;
 use Google\Analytics\Admin\V1alpha\ListConversionEventsResponse;
 use Google\Analytics\Admin\V1alpha\ListCustomDimensionsRequest;
@@ -179,6 +187,7 @@ use Google\Analytics\Admin\V1alpha\UpdateCustomMetricRequest;
 use Google\Analytics\Admin\V1alpha\UpdateDataRetentionSettingsRequest;
 use Google\Analytics\Admin\V1alpha\UpdateDataStreamRequest;
 use Google\Analytics\Admin\V1alpha\UpdateDisplayVideo360AdvertiserLinkRequest;
+use Google\Analytics\Admin\V1alpha\UpdateEnhancedMeasurementSettingsRequest;
 use Google\Analytics\Admin\V1alpha\UpdateExpandedDataSetRequest;
 use Google\Analytics\Admin\V1alpha\UpdateGoogleAdsLinkRequest;
 use Google\Analytics\Admin\V1alpha\UpdateGoogleSignalsSettingsRequest;
@@ -277,6 +286,8 @@ class AnalyticsAdminServiceGapicClient
     private static $displayVideo360AdvertiserLinkNameTemplate;
 
     private static $displayVideo360AdvertiserLinkProposalNameTemplate;
+
+    private static $enhancedMeasurementSettingsNameTemplate;
 
     private static $expandedDataSetNameTemplate;
 
@@ -456,6 +467,15 @@ class AnalyticsAdminServiceGapicClient
         return self::$displayVideo360AdvertiserLinkProposalNameTemplate;
     }
 
+    private static function getEnhancedMeasurementSettingsNameTemplate()
+    {
+        if (self::$enhancedMeasurementSettingsNameTemplate == null) {
+            self::$enhancedMeasurementSettingsNameTemplate = new PathTemplate('properties/{property}/dataStreams/{data_stream}/enhancedMeasurementSettings');
+        }
+
+        return self::$enhancedMeasurementSettingsNameTemplate;
+    }
+
     private static function getExpandedDataSetNameTemplate()
     {
         if (self::$expandedDataSetNameTemplate == null) {
@@ -574,6 +594,7 @@ class AnalyticsAdminServiceGapicClient
                 'dataStream' => self::getDataStreamNameTemplate(),
                 'displayVideo360AdvertiserLink' => self::getDisplayVideo360AdvertiserLinkNameTemplate(),
                 'displayVideo360AdvertiserLinkProposal' => self::getDisplayVideo360AdvertiserLinkProposalNameTemplate(),
+                'enhancedMeasurementSettings' => self::getEnhancedMeasurementSettingsNameTemplate(),
                 'expandedDataSet' => self::getExpandedDataSetNameTemplate(),
                 'firebaseLink' => self::getFirebaseLinkNameTemplate(),
                 'globalSiteTag' => self::getGlobalSiteTagNameTemplate(),
@@ -870,6 +891,25 @@ class AnalyticsAdminServiceGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * enhanced_measurement_settings resource.
+     *
+     * @param string $property
+     * @param string $dataStream
+     *
+     * @return string The formatted enhanced_measurement_settings resource.
+     *
+     * @experimental
+     */
+    public static function enhancedMeasurementSettingsName($property, $dataStream)
+    {
+        return self::getEnhancedMeasurementSettingsNameTemplate()->render([
+            'property' => $property,
+            'data_stream' => $dataStream,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * expanded_data_set resource.
      *
      * @param string $property
@@ -1094,6 +1134,7 @@ class AnalyticsAdminServiceGapicClient
      * - dataStream: properties/{property}/dataStreams/{data_stream}
      * - displayVideo360AdvertiserLink: properties/{property}/displayVideo360AdvertiserLinks/{display_video_360_advertiser_link}
      * - displayVideo360AdvertiserLinkProposal: properties/{property}/displayVideo360AdvertiserLinkProposals/{display_video_360_advertiser_link_proposal}
+     * - enhancedMeasurementSettings: properties/{property}/dataStreams/{data_stream}/enhancedMeasurementSettings
      * - expandedDataSet: properties/{property}/expandedDataSets/{expanded_data_set}
      * - firebaseLink: properties/{property}/firebaseLinks/{firebase_link}
      * - globalSiteTag: properties/{property}/dataStreams/{data_stream}/globalSiteTag
@@ -1629,8 +1670,8 @@ class AnalyticsAdminServiceGapicClient
      * ```
      *
      * @param string                       $parent       Required. The account or property that owns the access bindings. The parent
-     *                                                   field in the DeleteAccessBindingRequest messages must either be empty or
-     *                                                   match this field. Formats:
+     *                                                   of all provided values for the 'names' field in DeleteAccessBindingRequest
+     *                                                   messages must match this field. Formats:
      *                                                   - accounts/{account}
      *                                                   - properties/{property}
      * @param DeleteAccessBindingRequest[] $requests     Required. The requests specifying the access bindings to delete.
@@ -1828,8 +1869,9 @@ class AnalyticsAdminServiceGapicClient
      * ```
      *
      * @param string                       $parent       Required. The account or property that owns the access bindings. The parent
-     *                                                   field in the UpdateAccessBindingRequest messages must either be empty or
-     *                                                   match this field. Formats:
+     *                                                   of all provided AccessBinding in UpdateAccessBindingRequest messages must
+     *                                                   match this field.
+     *                                                   Formats:
      *                                                   - accounts/{account}
      *                                                   - properties/{property}
      * @param UpdateAccessBindingRequest[] $requests     Required. The requests specifying the access bindings to update.
@@ -2043,6 +2085,54 @@ class AnalyticsAdminServiceGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CreateAudience', Audience::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Creates a connected site tag for a Universal Analytics property. You can
+     * create a maximum of 20 connected site tags per property.
+     * Note: This API cannot be used on GA4 properties.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $connectedSiteTag = new ConnectedSiteTag();
+     *     $response = $analyticsAdminServiceClient->createConnectedSiteTag($connectedSiteTag);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param ConnectedSiteTag $connectedSiteTag Required. The tag to add to the Universal Analytics property
+     * @param array            $optionalArgs     {
+     *     Optional.
+     *
+     *     @type string $property
+     *           The Universal Analytics property to create connected site tags for.
+     *           This API does not support GA4 properties.
+     *           Format: properties/{universalAnalyticsPropertyId}
+     *           Example: properties/1234
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Analytics\Admin\V1alpha\CreateConnectedSiteTagResponse
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function createConnectedSiteTag($connectedSiteTag, array $optionalArgs = [])
+    {
+        $request = new CreateConnectedSiteTagRequest();
+        $request->setConnectedSiteTag($connectedSiteTag);
+        if (isset($optionalArgs['property'])) {
+            $request->setProperty($optionalArgs['property']);
+        }
+
+        return $this->startCall('CreateConnectedSiteTag', CreateConnectedSiteTagResponse::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -2721,6 +2811,55 @@ class AnalyticsAdminServiceGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteAccount', GPBEmpty::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Deletes a connected site tag for a Universal Analytics property.
+     * Note: this has no effect on GA4 properties.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $analyticsAdminServiceClient->deleteConnectedSiteTag();
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $property
+     *           The Universal Analytics property to delete connected site tags for.
+     *           This API does not support GA4 properties.
+     *           Format: properties/{universalAnalyticsPropertyId}
+     *           Example: properties/1234
+     *     @type string $tagId
+     *           Tag ID to forward events to. Also known as the Measurement ID, or the
+     *           "G-ID"  (For example: G-12345).
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function deleteConnectedSiteTag(array $optionalArgs = [])
+    {
+        $request = new DeleteConnectedSiteTagRequest();
+        if (isset($optionalArgs['property'])) {
+            $request->setProperty($optionalArgs['property']);
+        }
+
+        if (isset($optionalArgs['tagId'])) {
+            $request->setTagId($optionalArgs['tagId']);
+        }
+
+        return $this->startCall('DeleteConnectedSiteTag', GPBEmpty::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -3776,6 +3915,52 @@ class AnalyticsAdminServiceGapicClient
     }
 
     /**
+     * Returns the enhanced measurement settings for this data stream.
+     * Note that the stream must enable enhanced measurement for these settings to
+     * take effect.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $formattedName = $analyticsAdminServiceClient->enhancedMeasurementSettingsName('[PROPERTY]', '[DATA_STREAM]');
+     *     $response = $analyticsAdminServiceClient->getEnhancedMeasurementSettings($formattedName);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the settings to lookup.
+     *                             Format:
+     *                             properties/{property}/dataStreams/{data_stream}/enhancedMeasurementSettings
+     *                             Example: "properties/1000/dataStreams/2000/enhancedMeasurementSettings"
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Analytics\Admin\V1alpha\EnhancedMeasurementSettings
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function getEnhancedMeasurementSettings($name, array $optionalArgs = [])
+    {
+        $request = new GetEnhancedMeasurementSettingsRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetEnhancedMeasurementSettings', EnhancedMeasurementSettings::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Lookup for a single ExpandedDataSet.
      *
      * Sample code:
@@ -4425,6 +4610,51 @@ class AnalyticsAdminServiceGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->getPagedListResponse('ListBigQueryLinks', $optionalArgs, ListBigQueryLinksResponse::class, $request);
+    }
+
+    /**
+     * Lists the connected site tags for a Universal Analytics property. A maximum
+     * of 20 connected site tags will be returned. Note: this has no effect on GA4
+     * property.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $response = $analyticsAdminServiceClient->listConnectedSiteTags();
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $property
+     *           The Universal Analytics property to fetch connected site tags for.
+     *           This does not work on GA4 properties. A maximum of 20 connected site tags
+     *           will be returned.
+     *           Example Format: `properties/1234`
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Analytics\Admin\V1alpha\ListConnectedSiteTagsResponse
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function listConnectedSiteTags(array $optionalArgs = [])
+    {
+        $request = new ListConnectedSiteTagsRequest();
+        if (isset($optionalArgs['property'])) {
+            $request->setProperty($optionalArgs['property']);
+        }
+
+        return $this->startCall('ListConnectedSiteTags', ListConnectedSiteTagsResponse::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -5389,7 +5619,7 @@ class AnalyticsAdminServiceGapicClient
      *           The account to create.
      *     @type string $redirectUri
      *           Redirect URI where the user will be sent after accepting Terms of Service.
-     *           Must be configured in Developers Console as a Redirect URI.
+     *           Must be configured in Cloud Console as a Redirect URI.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -5445,9 +5675,14 @@ class AnalyticsAdminServiceGapicClient
      *     Optional.
      *
      *     @type string $entity
-     *           The Data Access Report is requested for this property.
-     *           For example if "123" is your GA4 property ID, then entity should be
-     *           "properties/123".
+     *           The Data Access Report supports requesting at the property level or account
+     *           level. If requested at the account level, Data Access Reports include all
+     *           access for all properties under that account.
+     *
+     *           To request at the property level, entity should be for example
+     *           'properties/123' if "123" is your GA4 property ID. To request at the
+     *           account level, entity should be for example 'accounts/1234' if "1234" is
+     *           your GA4 Account ID.
      *     @type AccessDimension[] $dimensions
      *           The dimensions requested and displayed in the response. Requests are
      *           allowed up to 9 dimensions.
@@ -5503,7 +5738,8 @@ class AnalyticsAdminServiceGapicClient
      *           Specifies how rows are ordered in the response.
      *     @type bool $returnEntityQuota
      *           Toggles whether to return the current state of this Analytics Property's
-     *           quota. Quota is returned in [AccessQuota](#AccessQuota).
+     *           quota. Quota is returned in [AccessQuota](#AccessQuota). For account-level
+     *           requests, this field must be false.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -6155,6 +6391,56 @@ class AnalyticsAdminServiceGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('UpdateDisplayVideo360AdvertiserLink', DisplayVideo360AdvertiserLink::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Updates the enhanced measurement settings for this data stream.
+     * Note that the stream must enable enhanced measurement for these settings to
+     * take effect.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $enhancedMeasurementSettings = new EnhancedMeasurementSettings();
+     *     $updateMask = new FieldMask();
+     *     $response = $analyticsAdminServiceClient->updateEnhancedMeasurementSettings($enhancedMeasurementSettings, $updateMask);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param EnhancedMeasurementSettings $enhancedMeasurementSettings Required. The settings to update.
+     *                                                                 The `name` field is used to identify the settings to be updated.
+     * @param FieldMask                   $updateMask                  Required. The list of fields to be updated. Field names must be in snake
+     *                                                                 case (e.g., "field_to_update"). Omitted fields will not be updated. To
+     *                                                                 replace the entire entity, use one path with the string "*" to match all
+     *                                                                 fields.
+     * @param array                       $optionalArgs                {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Analytics\Admin\V1alpha\EnhancedMeasurementSettings
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function updateEnhancedMeasurementSettings($enhancedMeasurementSettings, $updateMask, array $optionalArgs = [])
+    {
+        $request = new UpdateEnhancedMeasurementSettingsRequest();
+        $requestParamHeaders = [];
+        $request->setEnhancedMeasurementSettings($enhancedMeasurementSettings);
+        $request->setUpdateMask($updateMask);
+        $requestParamHeaders['enhanced_measurement_settings.name'] = $enhancedMeasurementSettings->getName();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('UpdateEnhancedMeasurementSettings', EnhancedMeasurementSettings::class, $optionalArgs, $request)->wait();
     }
 
     /**

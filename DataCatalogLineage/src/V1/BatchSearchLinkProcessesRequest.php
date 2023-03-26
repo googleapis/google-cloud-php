@@ -17,7 +17,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class BatchSearchLinkProcessesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The project and location where you want to search.
+     * Required. The project and location you want search in the format `projects/&#42;&#47;locations/&#42;`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -57,7 +57,7 @@ class BatchSearchLinkProcessesRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The project and location where you want to search.
+     *           Required. The project and location you want search in the format `projects/&#42;&#47;locations/&#42;`
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $links
      *           Required. An array of links to check for their associated LineageProcesses.
      *           The maximum number of items in this array is 100.
@@ -81,7 +81,7 @@ class BatchSearchLinkProcessesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The project and location where you want to search.
+     * Required. The project and location you want search in the format `projects/&#42;&#47;locations/&#42;`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -92,7 +92,7 @@ class BatchSearchLinkProcessesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The project and location where you want to search.
+     * Required. The project and location you want search in the format `projects/&#42;&#47;locations/&#42;`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

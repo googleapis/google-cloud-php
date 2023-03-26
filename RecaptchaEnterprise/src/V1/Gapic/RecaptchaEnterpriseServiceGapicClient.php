@@ -55,6 +55,7 @@ use Google\Cloud\RecaptchaEnterprise\V1\RetrieveLegacySecretKeyRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\RetrieveLegacySecretKeyResponse;
 use Google\Cloud\RecaptchaEnterprise\V1\SearchRelatedAccountGroupMembershipsRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\SearchRelatedAccountGroupMembershipsResponse;
+use Google\Cloud\RecaptchaEnterprise\V1\TransactionEvent;
 use Google\Cloud\RecaptchaEnterprise\V1\UpdateKeyRequest;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
@@ -439,6 +440,9 @@ class RecaptchaEnterpriseServiceGapicClient
      *           CreateAssessment, for example when the account identifier is not yet known
      *           in the initial request. It is recommended that the identifier is hashed
      *           using hmac-sha256 with stable secret.
+     *     @type TransactionEvent $transactionEvent
+     *           Optional. If the assessment is part of a payment transaction, provide
+     *           details on payment lifecycle events that occur in the transaction.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -465,6 +469,10 @@ class RecaptchaEnterpriseServiceGapicClient
 
         if (isset($optionalArgs['hashedAccountId'])) {
             $request->setHashedAccountId($optionalArgs['hashedAccountId']);
+        }
+
+        if (isset($optionalArgs['transactionEvent'])) {
+            $request->setTransactionEvent($optionalArgs['transactionEvent']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(

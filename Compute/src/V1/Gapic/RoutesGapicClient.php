@@ -318,7 +318,7 @@ class RoutesGapicClient
     }
 
     /**
-     * Returns the specified Route resource. Gets a list of available routes by making a list() request.
+     * Returns the specified Route resource.
      *
      * Sample code:
      * ```

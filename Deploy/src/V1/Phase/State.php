@@ -49,6 +49,12 @@ class State
      * Generated from protobuf enum <code>ABORTED = 5;</code>
      */
     const ABORTED = 5;
+    /**
+     * The Phase was skipped.
+     *
+     * Generated from protobuf enum <code>SKIPPED = 6;</code>
+     */
+    const SKIPPED = 6;
 
     private static $valueToName = [
         self::STATE_UNSPECIFIED => 'STATE_UNSPECIFIED',
@@ -57,6 +63,7 @@ class State
         self::SUCCEEDED => 'SUCCEEDED',
         self::FAILED => 'FAILED',
         self::ABORTED => 'ABORTED',
+        self::SKIPPED => 'SKIPPED',
     ];
 
     public static function name($value)

@@ -202,7 +202,7 @@ class Database
         SessionPoolInterface $sessionPool = null,
         $returnInt64AsObject = false,
         array $info = [],
-        $databaseRole = null
+        $databaseRole = ''
     ) {
         $this->connection = $connection;
         $this->instance = $instance;
@@ -2090,7 +2090,7 @@ class Database
 
     /**
      * Returns the 'CREATE DATABASE' statement as per the given database dialect
-     * 
+     *
      * @param string $dialect The dialect of the database to be created
      * @return string The specific 'CREATE DATABASE' statement
      */

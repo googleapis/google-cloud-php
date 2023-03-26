@@ -28,7 +28,7 @@ use Google\Cloud\Compute\V1\RegionUrlMapsClient;
 use Google\Cloud\Compute\V1\UrlMap;
 
 /**
- * Returns the specified UrlMap resource. Gets a list of available URL maps by making a list() request.
+ * Returns the specified UrlMap resource.
  *
  * @param string $project Project ID for this request.
  * @param string $region  Name of the region scoping this request.

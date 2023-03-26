@@ -22,7 +22,7 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START datacatalog-lineage_v1_generated_Lineage_ListRuns_sync]
+// [START datalineage_v1_generated_Lineage_ListRuns_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\DataCatalog\Lineage\V1\LineageClient;
@@ -69,4 +69,4 @@ function callSample(): void
 
     list_runs_sample($formattedParent);
 }
-// [END datacatalog-lineage_v1_generated_Lineage_ListRuns_sync]
+// [END datalineage_v1_generated_Lineage_ListRuns_sync]
