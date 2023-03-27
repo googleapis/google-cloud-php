@@ -22,7 +22,7 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START datacatalog-lineage_v1_generated_Lineage_GetLineageEvent_sync]
+// [START datalineage_v1_generated_Lineage_GetLineageEvent_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\DataCatalog\Lineage\V1\LineageClient;
 use Google\Cloud\DataCatalog\Lineage\V1\LineageEvent;
@@ -69,4 +69,4 @@ function callSample(): void
 
     get_lineage_event_sample($formattedName);
 }
-// [END datacatalog-lineage_v1_generated_Lineage_GetLineageEvent_sync]
+// [END datalineage_v1_generated_Lineage_GetLineageEvent_sync]
