@@ -121,10 +121,6 @@ class RestTest extends TestCase
         );
     }
 
-
-
-
-
     public function methodProvider()
     {
         return [
