@@ -28,7 +28,7 @@ use Google\Cloud\Compute\V1\TargetTcpProxiesClient;
 use Google\Cloud\Compute\V1\TargetTcpProxy;
 
 /**
- * Returns the specified TargetTcpProxy resource. Gets a list of available target TCP proxies by making a list() request.
+ * Returns the specified TargetTcpProxy resource.
  *
  * @param string $project        Project ID for this request.
  * @param string $targetTcpProxy Name of the TargetTcpProxy resource to return.

@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A Cloud Filestore backup.
+ * A Filestore backup.
  *
  * Generated from protobuf message <code>google.cloud.filestore.v1.Backup</code>
  */
@@ -61,7 +61,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      */
     private $storage_bytes = 0;
     /**
-     * The resource name of the source Cloud Filestore instance, in the format
+     * The resource name of the source Filestore instance, in the format
      * `projects/{project_number}/locations/{location_id}/instances/{instance_id}`,
      * used to create this backup.
      *
@@ -69,15 +69,15 @@ class Backup extends \Google\Protobuf\Internal\Message
      */
     private $source_instance = '';
     /**
-     * Name of the file share in the source Cloud Filestore instance that the
+     * Name of the file share in the source Filestore instance that the
      * backup is created from.
      *
      * Generated from protobuf field <code>string source_file_share = 9;</code>
      */
     private $source_file_share = '';
     /**
-     * Output only. The service tier of the source Cloud Filestore instance that
-     * this backup is created from.
+     * Output only. The service tier of the source Filestore instance that this
+     * backup is created from.
      *
      * Generated from protobuf field <code>.google.cloud.filestore.v1.Instance.Tier source_instance_tier = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -96,6 +96,12 @@ class Backup extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.BoolValue satisfies_pzs = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $satisfies_pzs = null;
+    /**
+     * Immutable. KMS key name used for data encryption.
+     *
+     * Generated from protobuf field <code>string kms_key = 13 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     */
+    private $kms_key = '';
 
     /**
      * Constructor.
@@ -121,21 +127,23 @@ class Backup extends \Google\Protobuf\Internal\Message
      *           Output only. The size of the storage used by the backup. As backups share
      *           storage, this number is expected to change with backup creation/deletion.
      *     @type string $source_instance
-     *           The resource name of the source Cloud Filestore instance, in the format
+     *           The resource name of the source Filestore instance, in the format
      *           `projects/{project_number}/locations/{location_id}/instances/{instance_id}`,
      *           used to create this backup.
      *     @type string $source_file_share
-     *           Name of the file share in the source Cloud Filestore instance that the
+     *           Name of the file share in the source Filestore instance that the
      *           backup is created from.
      *     @type int $source_instance_tier
-     *           Output only. The service tier of the source Cloud Filestore instance that
-     *           this backup is created from.
+     *           Output only. The service tier of the source Filestore instance that this
+     *           backup is created from.
      *     @type int|string $download_bytes
      *           Output only. Amount of bytes that will be downloaded if the backup is
      *           restored. This may be different than storage bytes, since sequential
      *           backups of the same disk will share storage.
      *     @type \Google\Protobuf\BoolValue $satisfies_pzs
      *           Output only. Reserved for future use.
+     *     @type string $kms_key
+     *           Immutable. KMS key name used for data encryption.
      * }
      */
     public function __construct($data = NULL) {
@@ -342,7 +350,7 @@ class Backup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name of the source Cloud Filestore instance, in the format
+     * The resource name of the source Filestore instance, in the format
      * `projects/{project_number}/locations/{location_id}/instances/{instance_id}`,
      * used to create this backup.
      *
@@ -355,7 +363,7 @@ class Backup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name of the source Cloud Filestore instance, in the format
+     * The resource name of the source Filestore instance, in the format
      * `projects/{project_number}/locations/{location_id}/instances/{instance_id}`,
      * used to create this backup.
      *
@@ -372,7 +380,7 @@ class Backup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the file share in the source Cloud Filestore instance that the
+     * Name of the file share in the source Filestore instance that the
      * backup is created from.
      *
      * Generated from protobuf field <code>string source_file_share = 9;</code>
@@ -384,7 +392,7 @@ class Backup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the file share in the source Cloud Filestore instance that the
+     * Name of the file share in the source Filestore instance that the
      * backup is created from.
      *
      * Generated from protobuf field <code>string source_file_share = 9;</code>
@@ -400,8 +408,8 @@ class Backup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The service tier of the source Cloud Filestore instance that
-     * this backup is created from.
+     * Output only. The service tier of the source Filestore instance that this
+     * backup is created from.
      *
      * Generated from protobuf field <code>.google.cloud.filestore.v1.Instance.Tier source_instance_tier = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
@@ -412,8 +420,8 @@ class Backup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The service tier of the source Cloud Filestore instance that
-     * this backup is created from.
+     * Output only. The service tier of the source Filestore instance that this
+     * backup is created from.
      *
      * Generated from protobuf field <code>.google.cloud.filestore.v1.Instance.Tier source_instance_tier = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
@@ -519,6 +527,32 @@ class Backup extends \Google\Protobuf\Internal\Message
     {
         $this->writeWrapperValue("satisfies_pzs", $var);
         return $this;}
+
+    /**
+     * Immutable. KMS key name used for data encryption.
+     *
+     * Generated from protobuf field <code>string kms_key = 13 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @return string
+     */
+    public function getKmsKey()
+    {
+        return $this->kms_key;
+    }
+
+    /**
+     * Immutable. KMS key name used for data encryption.
+     *
+     * Generated from protobuf field <code>string kms_key = 13 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setKmsKey($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->kms_key = $var;
+
+        return $this;
+    }
 
 }
 

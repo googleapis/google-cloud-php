@@ -168,7 +168,7 @@ class ZonesGapicClient
     }
 
     /**
-     * Returns the specified Zone resource. Gets a list of available zones by making a list() request.
+     * Returns the specified Zone resource.
      *
      * Sample code:
      * ```

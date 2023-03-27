@@ -31,8 +31,9 @@ class MuxStream extends \Google\Protobuf\Internal\Message
      */
     private $container = '';
     /**
-     * List of `ElementaryStream` [key][google.cloud.video.livestream.v1.ElementaryStream.key]s multiplexed in this
-     * stream.
+     * List of `ElementaryStream`
+     * [key][google.cloud.video.livestream.v1.ElementaryStream.key]s multiplexed
+     * in this stream.
      * - For `fmp4` container, must contain either one video or one audio stream.
      * - For `ts` container, must contain exactly one audio stream and up to one
      * video stream.
@@ -46,6 +47,13 @@ class MuxStream extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.video.livestream.v1.SegmentSettings segment_settings = 5;</code>
      */
     private $segment_settings = null;
+    /**
+     * Identifier of the encryption configuration to use. If omitted, output
+     * will be unencrypted.
+     *
+     * Generated from protobuf field <code>string encryption_id = 6;</code>
+     */
+    private $encryption_id = '';
 
     /**
      * Constructor.
@@ -61,13 +69,17 @@ class MuxStream extends \Google\Protobuf\Internal\Message
      *           - `fmp4` - the corresponding file extension is `.m4s`
      *           - `ts` - the corresponding file extension is `.ts`
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $elementary_streams
-     *           List of `ElementaryStream` [key][google.cloud.video.livestream.v1.ElementaryStream.key]s multiplexed in this
-     *           stream.
+     *           List of `ElementaryStream`
+     *           [key][google.cloud.video.livestream.v1.ElementaryStream.key]s multiplexed
+     *           in this stream.
      *           - For `fmp4` container, must contain either one video or one audio stream.
      *           - For `ts` container, must contain exactly one audio stream and up to one
      *           video stream.
      *     @type \Google\Cloud\Video\LiveStream\V1\SegmentSettings $segment_settings
      *           Segment settings for `fmp4` and `ts`.
+     *     @type string $encryption_id
+     *           Identifier of the encryption configuration to use. If omitted, output
+     *           will be unencrypted.
      * }
      */
     public function __construct($data = NULL) {
@@ -134,8 +146,9 @@ class MuxStream extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * List of `ElementaryStream` [key][google.cloud.video.livestream.v1.ElementaryStream.key]s multiplexed in this
-     * stream.
+     * List of `ElementaryStream`
+     * [key][google.cloud.video.livestream.v1.ElementaryStream.key]s multiplexed
+     * in this stream.
      * - For `fmp4` container, must contain either one video or one audio stream.
      * - For `ts` container, must contain exactly one audio stream and up to one
      * video stream.
@@ -149,8 +162,9 @@ class MuxStream extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * List of `ElementaryStream` [key][google.cloud.video.livestream.v1.ElementaryStream.key]s multiplexed in this
-     * stream.
+     * List of `ElementaryStream`
+     * [key][google.cloud.video.livestream.v1.ElementaryStream.key]s multiplexed
+     * in this stream.
      * - For `fmp4` container, must contain either one video or one audio stream.
      * - For `ts` container, must contain exactly one audio stream and up to one
      * video stream.
@@ -199,6 +213,34 @@ class MuxStream extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Video\LiveStream\V1\SegmentSettings::class);
         $this->segment_settings = $var;
+
+        return $this;
+    }
+
+    /**
+     * Identifier of the encryption configuration to use. If omitted, output
+     * will be unencrypted.
+     *
+     * Generated from protobuf field <code>string encryption_id = 6;</code>
+     * @return string
+     */
+    public function getEncryptionId()
+    {
+        return $this->encryption_id;
+    }
+
+    /**
+     * Identifier of the encryption configuration to use. If omitted, output
+     * will be unencrypted.
+     *
+     * Generated from protobuf field <code>string encryption_id = 6;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setEncryptionId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->encryption_id = $var;
 
         return $this;
     }

@@ -32,7 +32,8 @@ use Google\ApiCore\PagedListResponse;
  * Searches through all changes to an account or its children given the
  * specified set of filters.
  *
- * @param string $formattedAccount The account resource for which to return change history resources. Please see
+ * @param string $formattedAccount The account resource for which to return change history
+ *                                 resources. Please see
  *                                 {@see AnalyticsAdminServiceClient::accountName()} for help formatting this field.
  */
 function search_change_history_events_sample(string $formattedAccount): void

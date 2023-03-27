@@ -326,7 +326,7 @@ class RegionHealthChecksGapicClient
     }
 
     /**
-     * Returns the specified HealthCheck resource. Gets a list of available health checks by making a list() request.
+     * Returns the specified HealthCheck resource.
      *
      * Sample code:
      * ```

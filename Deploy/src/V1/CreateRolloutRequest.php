@@ -52,12 +52,19 @@ class CreateRolloutRequest extends \Google\Protobuf\Internal\Message
      */
     private $request_id = '';
     /**
-     * Optional. If set to true, the request is validated and the user is provided with
-     * an expected result, but no actual change is made.
+     * Optional. If set to true, the request is validated and the user is provided
+     * with an expected result, but no actual change is made.
      *
      * Generated from protobuf field <code>bool validate_only = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $validate_only = false;
+    /**
+     * Optional. The starting phase ID for the `Rollout`. If empty the `Rollout`
+     * will start at the first phase.
+     *
+     * Generated from protobuf field <code>string starting_phase_id = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $starting_phase_id = '';
 
     /**
      * Constructor.
@@ -86,8 +93,11 @@ class CreateRolloutRequest extends \Google\Protobuf\Internal\Message
      *           The request ID must be a valid UUID with the exception that zero UUID is
      *           not supported (00000000-0000-0000-0000-000000000000).
      *     @type bool $validate_only
-     *           Optional. If set to true, the request is validated and the user is provided with
-     *           an expected result, but no actual change is made.
+     *           Optional. If set to true, the request is validated and the user is provided
+     *           with an expected result, but no actual change is made.
+     *     @type string $starting_phase_id
+     *           Optional. The starting phase ID for the `Rollout`. If empty the `Rollout`
+     *           will start at the first phase.
      * }
      */
     public function __construct($data = NULL) {
@@ -234,8 +244,8 @@ class CreateRolloutRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If set to true, the request is validated and the user is provided with
-     * an expected result, but no actual change is made.
+     * Optional. If set to true, the request is validated and the user is provided
+     * with an expected result, but no actual change is made.
      *
      * Generated from protobuf field <code>bool validate_only = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
@@ -246,8 +256,8 @@ class CreateRolloutRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If set to true, the request is validated and the user is provided with
-     * an expected result, but no actual change is made.
+     * Optional. If set to true, the request is validated and the user is provided
+     * with an expected result, but no actual change is made.
      *
      * Generated from protobuf field <code>bool validate_only = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
@@ -257,6 +267,34 @@ class CreateRolloutRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->validate_only = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The starting phase ID for the `Rollout`. If empty the `Rollout`
+     * will start at the first phase.
+     *
+     * Generated from protobuf field <code>string starting_phase_id = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getStartingPhaseId()
+    {
+        return $this->starting_phase_id;
+    }
+
+    /**
+     * Optional. The starting phase ID for the `Rollout`. If empty the `Rollout`
+     * will start at the first phase.
+     *
+     * Generated from protobuf field <code>string starting_phase_id = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setStartingPhaseId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->starting_phase_id = $var;
 
         return $this;
     }

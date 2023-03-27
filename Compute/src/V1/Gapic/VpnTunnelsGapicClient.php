@@ -405,7 +405,7 @@ class VpnTunnelsGapicClient
     }
 
     /**
-     * Returns the specified VpnTunnel resource. Gets a list of available VPN tunnels by making a list() request.
+     * Returns the specified VpnTunnel resource.
      *
      * Sample code:
      * ```

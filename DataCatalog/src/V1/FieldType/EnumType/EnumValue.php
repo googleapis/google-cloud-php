@@ -14,7 +14,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class EnumValue extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The display name of the enum value. Must not be an empty string.
+     * Required. The display name of the enum value. Must not be an empty
+     * string.
      * The name must contain only Unicode letters, numbers (0-9), underscores
      * (_), dashes (-), spaces ( ), and can't start or end with spaces. The
      * maximum length is 200 characters.
@@ -30,7 +31,8 @@ class EnumValue extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $display_name
-     *           Required. The display name of the enum value. Must not be an empty string.
+     *           Required. The display name of the enum value. Must not be an empty
+     *           string.
      *           The name must contain only Unicode letters, numbers (0-9), underscores
      *           (_), dashes (-), spaces ( ), and can't start or end with spaces. The
      *           maximum length is 200 characters.
@@ -42,7 +44,8 @@ class EnumValue extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The display name of the enum value. Must not be an empty string.
+     * Required. The display name of the enum value. Must not be an empty
+     * string.
      * The name must contain only Unicode letters, numbers (0-9), underscores
      * (_), dashes (-), spaces ( ), and can't start or end with spaces. The
      * maximum length is 200 characters.
@@ -56,7 +59,8 @@ class EnumValue extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The display name of the enum value. Must not be an empty string.
+     * Required. The display name of the enum value. Must not be an empty
+     * string.
      * The name must contain only Unicode letters, numbers (0-9), underscores
      * (_), dashes (-), spaces ( ), and can't start or end with spaces. The
      * maximum length is 200 characters.

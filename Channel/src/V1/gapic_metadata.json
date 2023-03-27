@@ -154,6 +154,11 @@
                                 "listCustomers"
                             ]
                         },
+                        "ListEntitlementChanges": {
+                            "methods": [
+                                "listEntitlementChanges"
+                            ]
+                        },
                         "ListEntitlements": {
                             "methods": [
                                 "listEntitlements"

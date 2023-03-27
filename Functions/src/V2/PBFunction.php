@@ -24,7 +24,7 @@ class PBFunction extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * Describe whether the function is gen1 or gen2.
+     * Describe whether the function is 1st Gen or 2nd Gen.
      *
      * Generated from protobuf field <code>.google.cloud.functions.v2.Environment environment = 10;</code>
      */
@@ -80,6 +80,21 @@ class PBFunction extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.functions.v2.StateMessage state_messages = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $state_messages;
+    /**
+     * Resource name of a KMS crypto key (managed by the user) used to
+     * encrypt/decrypt function resources.
+     * It must match the pattern
+     * `projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}`.
+     *
+     * Generated from protobuf field <code>string kms_key_name = 25 [(.google.api.resource_reference) = {</code>
+     */
+    private $kms_key_name = '';
+    /**
+     * Output only. The deployed url for the function.
+     *
+     * Generated from protobuf field <code>string url = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $url = '';
 
     /**
      * Constructor.
@@ -91,7 +106,7 @@ class PBFunction extends \Google\Protobuf\Internal\Message
      *           A user-defined name of the function. Function names must be unique
      *           globally and match pattern `projects/&#42;&#47;locations/&#42;&#47;functions/&#42;`
      *     @type int $environment
-     *           Describe whether the function is gen1 or gen2.
+     *           Describe whether the function is 1st Gen or 2nd Gen.
      *     @type string $description
      *           User-provided description of a function.
      *     @type \Google\Cloud\Functions\V2\BuildConfig $build_config
@@ -111,6 +126,13 @@ class PBFunction extends \Google\Protobuf\Internal\Message
      *           Labels associated with this Cloud Function.
      *     @type array<\Google\Cloud\Functions\V2\StateMessage>|\Google\Protobuf\Internal\RepeatedField $state_messages
      *           Output only. State Messages for this Cloud Function.
+     *     @type string $kms_key_name
+     *           Resource name of a KMS crypto key (managed by the user) used to
+     *           encrypt/decrypt function resources.
+     *           It must match the pattern
+     *           `projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}`.
+     *     @type string $url
+     *           Output only. The deployed url for the function.
      * }
      */
     public function __construct($data = NULL) {
@@ -147,7 +169,7 @@ class PBFunction extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Describe whether the function is gen1 or gen2.
+     * Describe whether the function is 1st Gen or 2nd Gen.
      *
      * Generated from protobuf field <code>.google.cloud.functions.v2.Environment environment = 10;</code>
      * @return int
@@ -158,7 +180,7 @@ class PBFunction extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Describe whether the function is gen1 or gen2.
+     * Describe whether the function is 1st Gen or 2nd Gen.
      *
      * Generated from protobuf field <code>.google.cloud.functions.v2.Environment environment = 10;</code>
      * @param int $var
@@ -422,6 +444,64 @@ class PBFunction extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Functions\V2\StateMessage::class);
         $this->state_messages = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Resource name of a KMS crypto key (managed by the user) used to
+     * encrypt/decrypt function resources.
+     * It must match the pattern
+     * `projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}`.
+     *
+     * Generated from protobuf field <code>string kms_key_name = 25 [(.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getKmsKeyName()
+    {
+        return $this->kms_key_name;
+    }
+
+    /**
+     * Resource name of a KMS crypto key (managed by the user) used to
+     * encrypt/decrypt function resources.
+     * It must match the pattern
+     * `projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}`.
+     *
+     * Generated from protobuf field <code>string kms_key_name = 25 [(.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setKmsKeyName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->kms_key_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The deployed url for the function.
+     *
+     * Generated from protobuf field <code>string url = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getUrl()
+    {
+        return $this->url;
+    }
+
+    /**
+     * Output only. The deployed url for the function.
+     *
+     * Generated from protobuf field <code>string url = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setUrl($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->url = $var;
 
         return $this;
     }
