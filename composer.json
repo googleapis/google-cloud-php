@@ -228,7 +228,6 @@
     },
     "autoload": {
         "psr-4": {
-            "GPBMetadata\\Google\\": "CommonProtos/metadata",
             "GPBMetadata\\Google\\Analytics\\Admin\\": "AnalyticsAdmin/metadata",
             "GPBMetadata\\Google\\Analytics\\Data\\": "AnalyticsData/metadata",
             "GPBMetadata\\Google\\Api\\Apikeys\\": "ApiKeys/metadata",
@@ -247,6 +246,7 @@
             "GPBMetadata\\Google\\Cloud\\Apigeeregistry\\": "ApigeeRegistry/metadata",
             "GPBMetadata\\Google\\Cloud\\Asset\\": "Asset/metadata",
             "GPBMetadata\\Google\\Cloud\\Assuredworkloads\\": "AssuredWorkloads/metadata",
+            "GPBMetadata\\Google\\Cloud\\Audit\\": "CommonProtos/metadata/Audit",
             "GPBMetadata\\Google\\Cloud\\Automl\\": "AutoMl/metadata",
             "GPBMetadata\\Google\\Cloud\\Baremetalsolution\\": "BareMetalSolution/metadata",
             "GPBMetadata\\Google\\Cloud\\Batch\\": "Batch/metadata",
@@ -270,6 +270,7 @@
             "GPBMetadata\\Google\\Cloud\\Channel\\": "Channel/metadata",
             "GPBMetadata\\Google\\Cloud\\Clouddms\\": "Dms/metadata",
             "GPBMetadata\\Google\\Cloud\\Compute\\": "Compute/metadata",
+            "GPBMetadata\\Google\\Cloud\\Common\\": "CommonProtos/metadata/Common",
             "GPBMetadata\\Google\\Cloud\\Contactcenterinsights\\": "ContactCenterInsights/metadata",
             "GPBMetadata\\Google\\Cloud\\Datacatalog\\": "DataCatalog/metadata",
             "GPBMetadata\\Google\\Cloud\\Datacatalog\\Lineage\\": "DataCatalogLineage/metadata",
@@ -357,6 +358,7 @@
             "GPBMetadata\\Google\\Dataflow\\": "Dataflow/metadata",
             "GPBMetadata\\Google\\Datastore\\": "Datastore/metadata",
             "GPBMetadata\\Google\\Datastore\\Admin\\": "DatastoreAdmin/metadata",
+            "GPBMetadata\\Google\\Devtools\\": "CommonProtos/metadata/Devtools",
             "GPBMetadata\\Google\\Devtools\\Artifactregistry\\": "ArtifactRegistry/metadata",
             "GPBMetadata\\Google\\Devtools\\Build\\": "Build/metadata",
             "GPBMetadata\\Google\\Devtools\\Cloudbuild\\": "Build/metadata",
@@ -374,6 +376,7 @@
             "GPBMetadata\\Google\\Monitoring\\": "Monitoring/metadata",
             "GPBMetadata\\Google\\Privacy\\Dlp\\": "Dlp/metadata",
             "GPBMetadata\\Google\\Pubsub\\": "PubSub/metadata",
+            "GPBMetadata\\Google\\Rpc\\": "CommonProtos/metadata/Rpc",
             "GPBMetadata\\Google\\Spanner\\": "Spanner/metadata",
             "GPBMetadata\\Google\\Storagetransfer\\": "StorageTransfer/metadata",
             "GPBMetadata\\Grafeas\\": "Grafeas/metadata",
@@ -382,8 +385,8 @@
             "Google\\ApiCore\\LongRunning\\": "LongRunning/src/ApiCore/LongRunning",
             "Google\\Apps\\Script\\Type\\": "GSuiteAddOns/external/protos",
             "Google\\Cloud\\": [
-                "src",
-                "CommonProtos/src"
+                "CommonProtos/src",
+                "src"
             ],
             "Google\\Cloud\\AIPlatform\\": "AiPlatform/src",
             "Google\\Cloud\\AccessApproval\\": "AccessApproval/src",
