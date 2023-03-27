@@ -20,6 +20,7 @@ namespace Google\Cloud\Spanner;
 use Google\ApiCore\ValidationException;
 use Google\Cloud\Core\Exception\AbortedException;
 use Google\Cloud\Core\Exception\NotFoundException;
+use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Core\Iam\Iam;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
@@ -872,8 +873,12 @@ class Database
         };
 
         $delayFn = function (\Exception $e) {
-            if ($e instanceof AbortedException
-                || (Code::INTERNAL && strpos($e->getMessage(), 'RST_STREAM') !== false)) {
+            if ($e instanceof AbortedException ||
+                (
+                    $e instanceof ServiceException &&
+                    $e->getCode() === Code::INTERNAL &&
+                    strpos($e->getMessage(), 'RST_STREAM') !== false
+                )) {
                 return $e->getRetryDelay();
             }
             throw $e;
