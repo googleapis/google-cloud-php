@@ -24,7 +24,7 @@ use RuntimeException;
  */
 class Component
 {
-    private const VERSION_REGEX = '/^V([0-9])?(p[0-9])?(beta|alpha)?[0-9]?$/';
+    const VERSION_REGEX = '/^V([0-9])?(p[0-9])?(beta|alpha)?[0-9]?$/';
     private const ROOT_DIR = __DIR__ . '/../../';
     private string $path;
     private string $releaseLevel;
@@ -272,24 +272,6 @@ class Component
             throw new RuntimeException('composer autoload.psr-4 does not contain a namespace');
         }
         $this->namespaces = $namespaces;
-    }
-
-    private function getPreferredVersion(): string
-    {
-        $preferredVersion = [];
-        foreach ($this->getVersions() as $version) {
-            if (preg_match(self::VERSION_REGEX, $version, $matches)) {
-                $matches += [2 => '', 3 => ''];
-                if (!$preferredVersion
-                    || $preferredVersion[3] != '' && $matches[3] == ''
-                    || $preferredVersion[1] < $matches[1]
-                ) {
-                    $preferredVersion = $matches;
-                }
-            }
-        }
-
-        return $preferredVersion[0] ?? '';
     }
 
     /**

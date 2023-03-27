@@ -83,8 +83,11 @@ class AddComponentCommand extends Command
         $output->writeln(''); // blank line
         $output->writeln(sprintf('Your package (%s) will have the following info:', $proto));
 
+        $f = fn($f, $v) => ["<info>$f</info>", $v];
+        $newArray = (array) $new;
+
         (new Table($output))
-            ->setRows($new->getRows())
+            ->setRows(array_map($f, array_keys($newArray), $newArray))
             ->render();
 
         while (
@@ -101,8 +104,9 @@ class AddComponentCommand extends Command
                     new Question(sprintf('What is the %s? (ENTER for "%s") ', $field, $val), $val)
                 );
             }
+            $newArray = (array) $new;
             (new Table($output))
-                ->setRows($new->getRows())
+                ->setRows(array_map($f, array_keys($newArray), $newArray))
                 ->render();
         }
 

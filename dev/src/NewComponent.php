@@ -24,7 +24,6 @@ use RuntimeException;
  */
 class NewComponent
 {
-    private const VERSION_REGEX = '/^v([0-9])?(p[0-9])?(beta|alpha)?[0-9]?$/';
     public string $protoPackage;
     public string $phpNamespace;
     public string $displayName;
@@ -61,15 +60,6 @@ class NewComponent
             'https://cloud.google.com/php/docs/reference/%s/latest',
             str_replace('google/', '', $this->composerPackage)
         );
-    }
-
-    public function getRows(): array
-    {
-        $rows = [];
-        foreach ($this as $field => $val) {
-            $rows[] = ["<info>$field</info>", $val];
-        }
-        return $rows;
     }
 
     private static function getGithubRepo(string $composerPackage): string
@@ -172,7 +162,7 @@ class NewComponent
         $parts = explode('/', $protoFilename);
         while (count($parts)) {
             $version = array_pop($parts);
-            if (preg_match(self::VERSION_REGEX, $version)) {
+            if (preg_match(Component::VERSION_REGEX . 'i', $version)) {
                 return $version;
             }
         }
