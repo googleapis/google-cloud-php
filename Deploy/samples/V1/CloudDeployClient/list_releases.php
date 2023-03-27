@@ -31,7 +31,8 @@ use Google\Cloud\Deploy\V1\Release;
 /**
  * Lists Releases in a given project and location.
  *
- * @param string $formattedParent The `DeliveryPipeline` which owns this collection of `Release` objects. Please see
+ * @param string $formattedParent The `DeliveryPipeline` which owns this collection of `Release`
+ *                                objects. Please see
  *                                {@see CloudDeployClient::deliveryPipelineName()} for help formatting this field.
  */
 function list_releases_sample(string $formattedParent): void

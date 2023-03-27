@@ -9,8 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A biasing phrase set, which can be either a string referencing the name of
- * an existing phrase set resource, or an inline definition of a phrase set.
+ * A biasing PhraseSet, which can be either a string referencing the name of
+ * an existing PhraseSets resource, or an inline definition of a PhraseSet.
  *
  * Generated from protobuf message <code>google.cloud.speech.v2.SpeechAdaptation.AdaptationPhraseSet</code>
  */
@@ -25,10 +25,10 @@ class AdaptationPhraseSet extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $phrase_set
-     *           The name of an existing phrase set resource. The user must have read
+     *           The name of an existing PhraseSet resource. The user must have read
      *           access to the resource and it must not be deleted.
      *     @type \Google\Cloud\Speech\V2\PhraseSet $inline_phrase_set
-     *           An inline defined phrase set.
+     *           An inline defined PhraseSet.
      * }
      */
     public function __construct($data = NULL) {
@@ -37,7 +37,7 @@ class AdaptationPhraseSet extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of an existing phrase set resource. The user must have read
+     * The name of an existing PhraseSet resource. The user must have read
      * access to the resource and it must not be deleted.
      *
      * Generated from protobuf field <code>string phrase_set = 1 [(.google.api.resource_reference) = {</code>
@@ -54,7 +54,7 @@ class AdaptationPhraseSet extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of an existing phrase set resource. The user must have read
+     * The name of an existing PhraseSet resource. The user must have read
      * access to the resource and it must not be deleted.
      *
      * Generated from protobuf field <code>string phrase_set = 1 [(.google.api.resource_reference) = {</code>
@@ -70,7 +70,7 @@ class AdaptationPhraseSet extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An inline defined phrase set.
+     * An inline defined PhraseSet.
      *
      * Generated from protobuf field <code>.google.cloud.speech.v2.PhraseSet inline_phrase_set = 2;</code>
      * @return \Google\Cloud\Speech\V2\PhraseSet|null
@@ -86,7 +86,7 @@ class AdaptationPhraseSet extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An inline defined phrase set.
+     * An inline defined PhraseSet.
      *
      * Generated from protobuf field <code>.google.cloud.speech.v2.PhraseSet inline_phrase_set = 2;</code>
      * @param \Google\Cloud\Speech\V2\PhraseSet $var

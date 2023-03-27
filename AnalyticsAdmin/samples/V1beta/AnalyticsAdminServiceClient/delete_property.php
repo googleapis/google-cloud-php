@@ -38,7 +38,7 @@ use Google\ApiCore\ApiException;
  * will be permanently purged.
  * https://support.google.com/analytics/answer/6154772
  *
- * Returns an error if the target is not found, or is not an GA4 Property.
+ * Returns an error if the target is not found, or is not a GA4 Property.
  *
  * @param string $formattedName The name of the Property to soft-delete.
  *                              Format: properties/{property_id}

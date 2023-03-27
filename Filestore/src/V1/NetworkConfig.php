@@ -31,26 +31,42 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
      */
     private $modes;
     /**
-     * A /29 CIDR block in one of the
-     * [internal IP address
+     * Optional, reserved_ip_range can have one of the following two types of
+     * values.
+     * * CIDR range value when using DIRECT_PEERING connect mode.
+     * * [Allocated IP address
+     * range](https://cloud.google.com/compute/docs/ip-addresses/reserve-static-internal-ip-address)
+     * when using PRIVATE_SERVICE_ACCESS connect mode.
+     * When the name of an allocated IP address range is specified, it must be one
+     * of the ranges associated with the private service access connection.
+     * When specified as a direct CIDR value, it must be a /29 CIDR block for
+     * Basic tier, a /24 CIDR block for High Scale tier, or a /26 CIDR block for
+     * Enterprise tier in one of the [internal IP address
      * ranges](https://www.arin.net/reference/research/statistics/address_filters/)
      * that identifies the range of IP addresses reserved for this instance. For
-     * example, 10.0.0.0/29 or 192.168.0.0/29. The range you specify can't overlap
-     * with either existing subnets or assigned IP address ranges for other Cloud
-     * Filestore instances in the selected VPC network.
+     * example, 10.0.0.0/29, 192.168.0.0/24 or 192.168.0.0/26, respectively. The
+     * range you specify can't overlap with either existing subnets or assigned IP
+     * address ranges for other Filestore instances in the selected VPC
+     * network.
      *
      * Generated from protobuf field <code>string reserved_ip_range = 4;</code>
      */
     private $reserved_ip_range = '';
     /**
      * Output only. IPv4 addresses in the format
-     * IPv4 addresses in the format `{octet1}.{octet2}.{octet3}.{octet4}` or
-     * IPv6 addresses in the format
+     * `{octet1}.{octet2}.{octet3}.{octet4}` or IPv6 addresses in the format
      * `{block1}:{block2}:{block3}:{block4}:{block5}:{block6}:{block7}:{block8}`.
      *
      * Generated from protobuf field <code>repeated string ip_addresses = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $ip_addresses;
+    /**
+     * The network connect mode of the Filestore instance.
+     * If not provided, the connect mode defaults to DIRECT_PEERING.
+     *
+     * Generated from protobuf field <code>.google.cloud.filestore.v1.NetworkConfig.ConnectMode connect_mode = 6;</code>
+     */
+    private $connect_mode = 0;
 
     /**
      * Constructor.
@@ -66,18 +82,30 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
      *           Internet protocol versions for which the instance has IP addresses
      *           assigned. For this version, only MODE_IPV4 is supported.
      *     @type string $reserved_ip_range
-     *           A /29 CIDR block in one of the
-     *           [internal IP address
+     *           Optional, reserved_ip_range can have one of the following two types of
+     *           values.
+     *           * CIDR range value when using DIRECT_PEERING connect mode.
+     *           * [Allocated IP address
+     *           range](https://cloud.google.com/compute/docs/ip-addresses/reserve-static-internal-ip-address)
+     *           when using PRIVATE_SERVICE_ACCESS connect mode.
+     *           When the name of an allocated IP address range is specified, it must be one
+     *           of the ranges associated with the private service access connection.
+     *           When specified as a direct CIDR value, it must be a /29 CIDR block for
+     *           Basic tier, a /24 CIDR block for High Scale tier, or a /26 CIDR block for
+     *           Enterprise tier in one of the [internal IP address
      *           ranges](https://www.arin.net/reference/research/statistics/address_filters/)
      *           that identifies the range of IP addresses reserved for this instance. For
-     *           example, 10.0.0.0/29 or 192.168.0.0/29. The range you specify can't overlap
-     *           with either existing subnets or assigned IP address ranges for other Cloud
-     *           Filestore instances in the selected VPC network.
+     *           example, 10.0.0.0/29, 192.168.0.0/24 or 192.168.0.0/26, respectively. The
+     *           range you specify can't overlap with either existing subnets or assigned IP
+     *           address ranges for other Filestore instances in the selected VPC
+     *           network.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $ip_addresses
      *           Output only. IPv4 addresses in the format
-     *           IPv4 addresses in the format `{octet1}.{octet2}.{octet3}.{octet4}` or
-     *           IPv6 addresses in the format
+     *           `{octet1}.{octet2}.{octet3}.{octet4}` or IPv6 addresses in the format
      *           `{block1}:{block2}:{block3}:{block4}:{block5}:{block6}:{block7}:{block8}`.
+     *     @type int $connect_mode
+     *           The network connect mode of the Filestore instance.
+     *           If not provided, the connect mode defaults to DIRECT_PEERING.
      * }
      */
     public function __construct($data = NULL) {
@@ -144,13 +172,23 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A /29 CIDR block in one of the
-     * [internal IP address
+     * Optional, reserved_ip_range can have one of the following two types of
+     * values.
+     * * CIDR range value when using DIRECT_PEERING connect mode.
+     * * [Allocated IP address
+     * range](https://cloud.google.com/compute/docs/ip-addresses/reserve-static-internal-ip-address)
+     * when using PRIVATE_SERVICE_ACCESS connect mode.
+     * When the name of an allocated IP address range is specified, it must be one
+     * of the ranges associated with the private service access connection.
+     * When specified as a direct CIDR value, it must be a /29 CIDR block for
+     * Basic tier, a /24 CIDR block for High Scale tier, or a /26 CIDR block for
+     * Enterprise tier in one of the [internal IP address
      * ranges](https://www.arin.net/reference/research/statistics/address_filters/)
      * that identifies the range of IP addresses reserved for this instance. For
-     * example, 10.0.0.0/29 or 192.168.0.0/29. The range you specify can't overlap
-     * with either existing subnets or assigned IP address ranges for other Cloud
-     * Filestore instances in the selected VPC network.
+     * example, 10.0.0.0/29, 192.168.0.0/24 or 192.168.0.0/26, respectively. The
+     * range you specify can't overlap with either existing subnets or assigned IP
+     * address ranges for other Filestore instances in the selected VPC
+     * network.
      *
      * Generated from protobuf field <code>string reserved_ip_range = 4;</code>
      * @return string
@@ -161,13 +199,23 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A /29 CIDR block in one of the
-     * [internal IP address
+     * Optional, reserved_ip_range can have one of the following two types of
+     * values.
+     * * CIDR range value when using DIRECT_PEERING connect mode.
+     * * [Allocated IP address
+     * range](https://cloud.google.com/compute/docs/ip-addresses/reserve-static-internal-ip-address)
+     * when using PRIVATE_SERVICE_ACCESS connect mode.
+     * When the name of an allocated IP address range is specified, it must be one
+     * of the ranges associated with the private service access connection.
+     * When specified as a direct CIDR value, it must be a /29 CIDR block for
+     * Basic tier, a /24 CIDR block for High Scale tier, or a /26 CIDR block for
+     * Enterprise tier in one of the [internal IP address
      * ranges](https://www.arin.net/reference/research/statistics/address_filters/)
      * that identifies the range of IP addresses reserved for this instance. For
-     * example, 10.0.0.0/29 or 192.168.0.0/29. The range you specify can't overlap
-     * with either existing subnets or assigned IP address ranges for other Cloud
-     * Filestore instances in the selected VPC network.
+     * example, 10.0.0.0/29, 192.168.0.0/24 or 192.168.0.0/26, respectively. The
+     * range you specify can't overlap with either existing subnets or assigned IP
+     * address ranges for other Filestore instances in the selected VPC
+     * network.
      *
      * Generated from protobuf field <code>string reserved_ip_range = 4;</code>
      * @param string $var
@@ -183,8 +231,7 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. IPv4 addresses in the format
-     * IPv4 addresses in the format `{octet1}.{octet2}.{octet3}.{octet4}` or
-     * IPv6 addresses in the format
+     * `{octet1}.{octet2}.{octet3}.{octet4}` or IPv6 addresses in the format
      * `{block1}:{block2}:{block3}:{block4}:{block5}:{block6}:{block7}:{block8}`.
      *
      * Generated from protobuf field <code>repeated string ip_addresses = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -197,8 +244,7 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. IPv4 addresses in the format
-     * IPv4 addresses in the format `{octet1}.{octet2}.{octet3}.{octet4}` or
-     * IPv6 addresses in the format
+     * `{octet1}.{octet2}.{octet3}.{octet4}` or IPv6 addresses in the format
      * `{block1}:{block2}:{block3}:{block4}:{block5}:{block6}:{block7}:{block8}`.
      *
      * Generated from protobuf field <code>repeated string ip_addresses = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -209,6 +255,34 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->ip_addresses = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The network connect mode of the Filestore instance.
+     * If not provided, the connect mode defaults to DIRECT_PEERING.
+     *
+     * Generated from protobuf field <code>.google.cloud.filestore.v1.NetworkConfig.ConnectMode connect_mode = 6;</code>
+     * @return int
+     */
+    public function getConnectMode()
+    {
+        return $this->connect_mode;
+    }
+
+    /**
+     * The network connect mode of the Filestore instance.
+     * If not provided, the connect mode defaults to DIRECT_PEERING.
+     *
+     * Generated from protobuf field <code>.google.cloud.filestore.v1.NetworkConfig.ConnectMode connect_mode = 6;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setConnectMode($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Filestore\V1\NetworkConfig\ConnectMode::class);
+        $this->connect_mode = $var;
 
         return $this;
     }

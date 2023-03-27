@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A Cloud Filestore instance.
+ * A Filestore instance.
  *
  * Generated from protobuf message <code>google.cloud.filestore.v1.Instance</code>
  */
@@ -85,6 +85,19 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.BoolValue satisfies_pzs = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $satisfies_pzs = null;
+    /**
+     * KMS key name used for data encryption.
+     *
+     * Generated from protobuf field <code>string kms_key_name = 14;</code>
+     */
+    private $kms_key_name = '';
+    /**
+     * Output only. Field indicates all the reasons the instance is in "SUSPENDED"
+     * state.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.filestore.v1.Instance.SuspensionReason suspension_reasons = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $suspension_reasons;
 
     /**
      * Constructor.
@@ -118,6 +131,11 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           updates from overwriting each other.
      *     @type \Google\Protobuf\BoolValue $satisfies_pzs
      *           Output only. Reserved for future use.
+     *     @type string $kms_key_name
+     *           KMS key name used for data encryption.
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $suspension_reasons
+     *           Output only. Field indicates all the reasons the instance is in "SUSPENDED"
+     *           state.
      * }
      */
     public function __construct($data = NULL) {
@@ -465,6 +483,60 @@ class Instance extends \Google\Protobuf\Internal\Message
     {
         $this->writeWrapperValue("satisfies_pzs", $var);
         return $this;}
+
+    /**
+     * KMS key name used for data encryption.
+     *
+     * Generated from protobuf field <code>string kms_key_name = 14;</code>
+     * @return string
+     */
+    public function getKmsKeyName()
+    {
+        return $this->kms_key_name;
+    }
+
+    /**
+     * KMS key name used for data encryption.
+     *
+     * Generated from protobuf field <code>string kms_key_name = 14;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setKmsKeyName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->kms_key_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Field indicates all the reasons the instance is in "SUSPENDED"
+     * state.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.filestore.v1.Instance.SuspensionReason suspension_reasons = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getSuspensionReasons()
+    {
+        return $this->suspension_reasons;
+    }
+
+    /**
+     * Output only. Field indicates all the reasons the instance is in "SUSPENDED"
+     * state.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.filestore.v1.Instance.SuspensionReason suspension_reasons = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setSuspensionReasons($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::ENUM, \Google\Cloud\Filestore\V1\Instance\SuspensionReason::class);
+        $this->suspension_reasons = $arr;
+
+        return $this;
+    }
 
 }
 

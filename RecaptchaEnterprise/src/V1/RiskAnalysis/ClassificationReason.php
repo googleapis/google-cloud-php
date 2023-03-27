@@ -51,6 +51,18 @@ class ClassificationReason
      * Generated from protobuf enum <code>LOW_CONFIDENCE_SCORE = 5;</code>
      */
     const LOW_CONFIDENCE_SCORE = 5;
+    /**
+     * The request matches behavioral characteristics of a carding attack.
+     *
+     * Generated from protobuf enum <code>SUSPECTED_CARDING = 6;</code>
+     */
+    const SUSPECTED_CARDING = 6;
+    /**
+     * The request matches behavioral characteristics of chargebacks for fraud.
+     *
+     * Generated from protobuf enum <code>SUSPECTED_CHARGEBACK = 7;</code>
+     */
+    const SUSPECTED_CHARGEBACK = 7;
 
     private static $valueToName = [
         self::CLASSIFICATION_REASON_UNSPECIFIED => 'CLASSIFICATION_REASON_UNSPECIFIED',
@@ -59,6 +71,8 @@ class ClassificationReason
         self::TOO_MUCH_TRAFFIC => 'TOO_MUCH_TRAFFIC',
         self::UNEXPECTED_USAGE_PATTERNS => 'UNEXPECTED_USAGE_PATTERNS',
         self::LOW_CONFIDENCE_SCORE => 'LOW_CONFIDENCE_SCORE',
+        self::SUSPECTED_CARDING => 'SUSPECTED_CARDING',
+        self::SUSPECTED_CHARGEBACK => 'SUSPECTED_CHARGEBACK',
     ];
 
     public static function name($value)

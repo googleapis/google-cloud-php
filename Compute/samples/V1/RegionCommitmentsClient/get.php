@@ -28,7 +28,7 @@ use Google\Cloud\Compute\V1\Commitment;
 use Google\Cloud\Compute\V1\RegionCommitmentsClient;
 
 /**
- * Returns the specified commitment resource. Gets a list of available commitments by making a list() request.
+ * Returns the specified commitment resource.
  *
  * @param string $commitment Name of the commitment to return.
  * @param string $project    Project ID for this request.
