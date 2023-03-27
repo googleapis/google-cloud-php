@@ -30,7 +30,8 @@ use Google\Cloud\Video\Stitcher\V1\VodAdTagDetail;
 /**
  * Returns the specified ad tag detail for the specified VOD session.
  *
- * @param string $formattedName The name of the ad tag detail for the specified VOD session, in the form of
+ * @param string $formattedName The name of the ad tag detail for the specified VOD session, in
+ *                              the form of
  *                              `projects/{project}/locations/{location}/vodSessions/{vod_session_id}/vodAdTagDetails/{vod_ad_tag_detail}`. Please see
  *                              {@see VideoStitcherServiceClient::vodAdTagDetailName()} for help formatting this field.
  */

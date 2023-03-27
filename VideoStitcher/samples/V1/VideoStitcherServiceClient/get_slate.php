@@ -30,8 +30,8 @@ use Google\Cloud\Video\Stitcher\V1\VideoStitcherServiceClient;
 /**
  * Returns the specified slate.
  *
- * @param string $formattedName The name of the slate to be retrieved, of the slate, in the form of
- *                              `projects/{project_number}/locations/{location}/slates/{id}`. Please see
+ * @param string $formattedName The name of the slate to be retrieved, of the slate, in the form
+ *                              of `projects/{project_number}/locations/{location}/slates/{id}`. Please see
  *                              {@see VideoStitcherServiceClient::slateName()} for help formatting this field.
  */
 function get_slate_sample(string $formattedName): void
