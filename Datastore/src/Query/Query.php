@@ -258,8 +258,7 @@ class Query implements QueryInterface
      */
     public function filter($property, $operator = null, $value = null)
     {
-        if (
-            !isset($this->query['filter']) ||
+        if (!isset($this->query['filter']) ||
             !isset($this->query['filter']['compositeFilter'])
         ) {
             $this->initializeFilter();

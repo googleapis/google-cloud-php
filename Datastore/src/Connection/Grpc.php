@@ -409,7 +409,7 @@ class Grpc implements ConnectionInterface
         if (isset($filter['compositeFilter'])) {
             if ($filter['compositeFilter']['op'] == 'AND') {
                 $filter['compositeFilter']['op'] = CompositeFilterOperator::PBAND;
-            } else if ($filter['compositeFilter']['op'] == 'OR') {
+            } elseif ($filter['compositeFilter']['op'] == 'OR') {
                 $filter['compositeFilter']['op'] = CompositeFilterOperator::PBOR;
             } else {
                 $filter['compositeFilter']['op'] = CompositeFilterOperator::OPERATOR_UNSPECIFIED;
