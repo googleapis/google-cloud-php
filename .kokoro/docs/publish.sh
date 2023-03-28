@@ -12,15 +12,15 @@ SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 PROJECT_DIR=$(dirname $(dirname $SCRIPT_DIR))
 
 # Run "composer install" if it hasn't been run yet
-if [ ! -d 'vendor/' ]; then
-    composer install -d $PROJECT_DIR
+if [ ! -d 'dev/vendor/' ]; then
+    composer install -d $PROJECT_DIR/dev
 fi
 
 if [ "$STAGING_BUCKET" != "" ]; then
     echo "Using staging bucket ${STAGING_BUCKET}..."
 fi
 
-find $PROJECT_DIR/* -mindepth 1 -maxdepth 1 -name 'composer.json' -not -path '*vendor/*' -exec dirname {} \; | while read DIR
+find $PROJECT_DIR/* -mindepth 1 -maxdepth 1 -name 'composer.json' -not -path '*vendor/*' -regex '[A-Z].*' -exec dirname {} \; | while read DIR
 do
     COMPONENT=$(basename $DIR)
     VERSION=$(cat $DIR/VERSION)
