@@ -22,7 +22,7 @@ class Fleet extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project = 1;</code>
      */
-    protected $project = '';
+    private $project = '';
     /**
      * [Output only] The full resource name of the registered fleet membership of
      * the cluster, in the format
@@ -30,14 +30,14 @@ class Fleet extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string membership = 2;</code>
      */
-    protected $membership = '';
+    private $membership = '';
     /**
      * [Output only] Whether the cluster has been registered through the fleet
      * API.
      *
      * Generated from protobuf field <code>bool pre_registered = 3;</code>
      */
-    protected $pre_registered = false;
+    private $pre_registered = false;
 
     /**
      * Constructor.
