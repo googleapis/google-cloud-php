@@ -71,8 +71,8 @@ class FilterTest extends TestCase
     private function getCompositeFilterCases()
     {
         $cases = [
-            ['and', [['foo' => 'bar1'], ['foo' => 'bar2']]],
-            ['or', [['foo' => 'bar1'], ['foo' => 'bar2']]]
+            ['doAnd', [['foo' => 'bar1'], ['foo' => 'bar2']]],
+            ['doOr', [['foo' => 'bar1'], ['foo' => 'bar2']]]
         ];
         return $cases;
     }
