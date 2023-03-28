@@ -36,6 +36,8 @@ use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use Google\Cloud\Firestore\Filter;
 
 /**
  * @group firestore
@@ -226,57 +228,119 @@ class QueryTest extends TestCase
             $res = $res->where('user.age', '=', 30);
             $res = $res->where('user.coolness', '=', null);
             $res = $res->where('user.numberOfFriends', '=', NAN);
+            $res = $res->where(
+                Filter::doOr([
+                    Filter::condition('user.name', '=', 'John'),
+                    Filter::condition('user.age', '=', 30),
+                    Filter::doAnd([
+                        Filter::condition('user.coolness', '=', null),
+                        Filter::condition('user.numberOfFriends', '=', NAN)
+                        ])
+                    ])
+            );
 
             return $res;
-        }, [
-            'parent' => self::QUERY_PARENT,
-            'structuredQuery' => [
-                'from' => $this->queryFrom(),
-                'where' => [
-                    'compositeFilter' => [
-                        'op' => Operator::PBAND,
-                        'filters' => [
-                            [
-                                'fieldFilter' => [
-                                    'field' => [
-                                        'fieldPath' => 'user.name'
-                                    ],
-                                    'op' => FieldFilterOperator::EQUAL,
-                                    'value' => [
-                                        'stringValue' => 'John'
+        },
+            [
+                'parent' => self::QUERY_PARENT,
+                'structuredQuery' => [
+                    'from' => $this->queryFrom(),
+                    'where' => [
+                        'compositeFilter' => [
+                            'op' => Operator::PBAND,
+                            'filters' => [
+                                [
+                                    'fieldFilter' => [
+                                        'field' => [
+                                            'fieldPath' => 'user.name'
+                                        ],
+                                        'op' => FieldFilterOperator::EQUAL,
+                                        'value' => [
+                                            'stringValue' => 'John'
+                                        ]
                                     ]
-                                ]
-                            ], [
-                                'fieldFilter' => [
-                                    'field' => [
-                                        'fieldPath' => 'user.age'
-                                    ],
-                                    'op' => FieldFilterOperator::EQUAL,
-                                    'value' => [
-                                        'integerValue' => '30'
+                                ], [
+                                    'fieldFilter' => [
+                                        'field' => [
+                                            'fieldPath' => 'user.age'
+                                        ],
+                                        'op' => FieldFilterOperator::EQUAL,
+                                        'value' => [
+                                            'integerValue' => '30'
+                                        ]
                                     ]
-                                ]
-                            ],
-                            [
-                                'unaryFilter' => [
-                                    'field' => [
-                                        'fieldPath' => 'user.coolness'
-                                    ],
-                                    'op' => Query::OP_NULL
-                                ]
-                            ], [
-                                'unaryFilter' => [
-                                    'field' => [
-                                        'fieldPath' => 'user.numberOfFriends'
-                                    ],
-                                    'op' => Query::OP_NAN
+                                ],
+                                [
+                                    'unaryFilter' => [
+                                        'field' => [
+                                            'fieldPath' => 'user.coolness'
+                                        ],
+                                        'op' => Query::OP_NULL
+                                    ]
+                                ], [
+                                    'unaryFilter' => [
+                                        'field' => [
+                                            'fieldPath' => 'user.numberOfFriends'
+                                        ],
+                                        'op' => Query::OP_NAN
+                                    ]
+                                ], [
+                                    'compositeFilter' => [
+                                        'op' => Operator::PBOR,
+                                        'filters' => [
+                                            [
+                                                'fieldFilter' => [
+                                                    'field' => [
+                                                        'fieldPath' => 'user.name'
+                                                    ],
+                                                    'op' => FieldFilterOperator::EQUAL,
+                                                    'value' => [
+                                                        'stringValue' => 'John'
+                                                    ]
+                                                ]
+                                            ],
+                                            [
+                                                'fieldFilter' => [
+                                                    'field' => [
+                                                        'fieldPath' => 'user.age'
+                                                    ],
+                                                    'op' => FieldFilterOperator::EQUAL,
+                                                    'value' => [
+                                                        'integerValue' => '30'
+                                                    ]
+                                                ]
+                                            ],
+                                            [
+                                                'compositeFilter' => [
+                                                    'op' => Operator::PBAND,
+                                                    'filters' => [
+                                                        [
+                                                            'unaryFilter' => [
+                                                                'field' => [
+                                                                    'fieldPath' => 'user.coolness'
+                                                                ],
+                                                                'op' => Query::OP_NULL
+                                                            ]
+                                                        ],
+                                                        [
+                                                            'unaryFilter' => [
+                                                                'field' => [
+                                                                    'fieldPath' => 'user.numberOfFriends'
+                                                                ],
+                                                                'op' => Query::OP_NAN
+                                                            ]
+                                                        ]
+                                                    ]
+                                                ]
+                                            ]
+                                        ]
+                                    ]
                                 ]
                             ]
                         ]
                     ]
                 ]
-            ]
-        ]);
+            ]);
     }
 
     /**
@@ -287,6 +351,16 @@ class QueryTest extends TestCase
         $this->expectException(InvalidArgumentException::class);
 
         $this->query->where('foo', $operator, null);
+    }
+
+    /**
+     * @dataProvider invalidUnaryComparisonOperators
+     */
+    public function testWhereUnaryInvalidComparisonOperatorWithFilter($operator)
+    {
+        $this->expectException('InvalidArgumentException');
+
+        $this->query->where(Filter::condition('foo', $operator, null));
     }
 
     public function invalidUnaryComparisonOperators()
@@ -310,6 +384,7 @@ class QueryTest extends TestCase
     {
         $ret = $this->query->where('foo', $operator, 'bar');
         $this->assertInstanceOf(Query::class, $ret);
+        $ret = $this->query->where(Filter::condition('foo', $operator, 'bar'));
     }
 
     public function whereOperators()
@@ -345,11 +420,28 @@ class QueryTest extends TestCase
         $this->query->where('foo', '=', $sentinel);
     }
 
+    /**
+     * @dataProvider sentinels
+     */
+    public function testWhereInvalidSentinelValueWithFilter($sentinel)
+    {
+        $this->expectException('InvalidArgumentException');
+
+        $this->query->where(Filter::condition('foo', '=', $sentinel));
+    }
+
     public function testWhereInvalidOperator()
     {
         $this->expectException(InvalidArgumentException::class);
 
         $this->query->where('foo', 'hello', 'bar');
+    }
+
+    public function testWhereInvalidOperatorWithFilter()
+    {
+        $this->expectException('InvalidArgumentException');
+
+        $this->query->where(Filter::condition('foo', 'hello', 'bar'));
     }
 
     /**
@@ -359,6 +451,36 @@ class QueryTest extends TestCase
     {
         $this->runAndAssert(function (Query $q) use ($document) {
             $res = $q->where(FieldPath::documentId(), '=', $document);
+
+            return $res;
+        }, [
+            'parent' => self::QUERY_PARENT,
+            'structuredQuery' => [
+                'from' => $this->queryFrom(),
+                'where' => [
+                    'fieldFilter' => [
+                        'field' => [
+                            'fieldPath' => '__name__'
+                        ],
+                        'op' => FieldFilterOperator::EQUAL,
+                        'value' => [
+                            'referenceValue' => is_string($expected)
+                                ? $expected
+                                : $expected->name()
+                        ]
+                    ]
+                ]
+            ]
+        ]);
+    }
+
+    /**
+     * @dataProvider whereDocument
+     */
+    public function testWhereDocumentIdWithFilter($document, $expected)
+    {
+        $this->runAndAssert(function (Query $q) use ($document) {
+            $res = $q->where(Filter::condition(FieldPath::documentId(), '=', $document));
 
             return $res;
         }, [
@@ -418,6 +540,42 @@ class QueryTest extends TestCase
         ]);
     }
 
+    /**
+     * @dataProvider whereDocument
+     */
+    public function testWhereDocumentIdInWithFilter($document, $expected)
+    {
+        $this->runAndAssert(function (Query $q) use ($document) {
+            $res = $q->where(Filter::condition(FieldPath::documentId(), 'in', [$document]));
+
+            return $res;
+        }, [
+            'parent' => self::QUERY_PARENT,
+            'structuredQuery' => [
+                'from' => $this->queryFrom(),
+                'where' => [
+                    'fieldFilter' => [
+                        'field' => [
+                            'fieldPath' => '__name__'
+                        ],
+                        'op' => FieldFilterOperator::IN,
+                        'value' => [
+                            'arrayValue' => [
+                                'values' => [
+                                    [
+                                        'referenceValue' => is_string($expected)
+                                            ? $expected
+                                            : $expected->name()
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ]);
+    }
+
     public function whereDocument()
     {
         $name = FirestoreGapicClient::documentPathName(self::PROJECT, self::DATABASE, self::COLLECTION . '/a/b/c');
@@ -441,6 +599,16 @@ class QueryTest extends TestCase
         $this->expectException(InvalidArgumentException::class);
 
         $this->query->where(FieldPath::documentId(), '=', $document);
+    }
+
+    /**
+     * @dataProvider whereInvalidDocument
+     */
+    public function testWhereInvalidDocumentWithFilter($document)
+    {
+        $this->expectException('InvalidArgumentException');
+
+        $this->query->where(Filter::condition(FieldPath::documentId(), '=', $document));
     }
 
     public function whereInvalidDocument()

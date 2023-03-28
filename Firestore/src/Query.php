@@ -297,40 +297,18 @@ class Query
     }
 
     /**
-     * Add a WHERE clause to the Query.
+     * Create a non composite Filter.
      *
-     * For a list of all available operators, see
-     * {@see Google\Cloud\Firestore\V1\StructuredQuery\FieldFilter\Operator}.
-     * This method also supports a number of comparison operators which you will
-     * be familiar with, such as `=`, `>`, `<`, `<=` and `>=`. For array fields,
-     * the `array-contains`, `IN` and `array-contains-any` operators are also
-     * available.
-     *
-     * Example:
-     * ```
-     * $query = $query->where('firstName', '=', 'John');
-     * ```
-     *
-     * ```
-     * // Filtering against `null` and `NAN` is supported only with the equality operator.
-     * $query = $query->where('coolnessPercentage', '=', NAN);
-     * ```
-     *
-     * ```
-     * // Use `array-contains` to select documents where the array contains given elements.
-     * $query = $query->where('friends', 'array-contains', ['Steve', 'Sarah']);
-     * ```
-     *
-     * @param string|FieldPath $fieldPath The field to filter by.
-     * @param string|int $operator The operator to filter by.
-     * @param mixed $value The value to compare to.
-     * @return Query A new instance of Query with the given changes applied.
+     * @param string|array|FieldPath $fieldPath A field to filter by.
+     * @param string|int $operator An operator to filter by.
+     * @param mixed $value A value to compare to.
+     * @return array A non composite Filter array.
      * @throws \InvalidArgumentException If an invalid operator or value is encountered.
      */
-    public function where($fieldPath, $operator, $value)
+    private function createNonCompositeFilter($fieldPath, $operator, $value)
     {
+        // filter could be like Filter->or([filter1, Filter->and([Filter->property('city', '=', 'Blr')])])
         $basePath = $this->basePath();
-
         if ($value instanceof FieldValueInterface) {
             throw new \InvalidArgumentException(sprintf(
                 'Value cannot be a `%s` value.',
@@ -401,13 +379,122 @@ class Query
                 ]
             ];
         }
+        
+        return $filter;
+    }
+
+    /**
+     * Find and set the the filter type to either Field or Unary.
+     *
+     * @param array $filter A field/unary filter array.
+     * @return array A non composite Filter array.
+     * @throws \InvalidArgumentException If an invalid filter is encountered.
+     */
+    private function findAndSetNonCompositeFilter(&$filter)
+    {
+        $nonCompositeFilter = $this->createNonCompositeFilter(
+            $filter['fieldFilter']['field'],
+            $filter['fieldFilter']['op'],
+            $filter['fieldFilter']['value']
+        );
+
+        if (isset($nonCompositeFilter['unaryFilter'])) {
+            unset($filter['fieldFilter']);
+            $filter['unaryFilter'] = $nonCompositeFilter['unaryFilter'];
+        } else {
+            $filter['fieldFilter'] = $nonCompositeFilter['fieldFilter'];
+        }
+
+        return $filter;
+    }
+
+    /**
+     * Create a composite filter from a filter array.
+     *
+     * @param array $filters A non sanitized composite filter array.
+     * @return array A sanitized composite Filter array.
+     * @throws \InvalidArgumentException If an invalid filter is encountered.
+     */
+    private function createCompositeFilter(&$filters)
+    {
+        foreach ($filters as $key => &$filter) {
+            if ($key === 'fieldFilter') {
+                $this->findAndSetNonCompositeFilter($filters);
+            } elseif (isset($filter['fieldFilter'])) {
+                $this->findAndSetNonCompositeFilter($filter);
+            } elseif ($key === 'compositeFilter' && isset($filter['filters'])) {
+                $this->createCompositeFilter($filter['filters']);
+            } elseif (isset($filter['compositeFilter']) &&
+            isset($filter['compositeFilter']['filters'])) {
+                $this->createCompositeFilter($filter['compositeFilter']['filters']);
+            } else {
+                throw new \InvalidArgumentException(
+                    'The filter is not set correctly.'
+                );
+            }
+        }
+
+        return $filters;
+    }
+
+    /**
+     * Add a WHERE clause to the Query.
+     *
+     * For a list of all available operators, see
+     * {@see Google\Cloud\Firestore\V1\StructuredQuery\FieldFilter\Operator}.
+     * This method also supports a number of comparison operators which you will
+     * be familiar with, such as `=`, `>`, `<`, `<=` and `>=`. For array fields,
+     * the `array-contains`, `IN` and `array-contains-any` operators are also
+     * available.
+     * This method also supports usage of Filters (see {@see Google\Cloud\Firestore\Filter}).
+     * The Filter class helps to create complex queries using AND and OR operators.
+     *
+     * Example:
+     * ```
+     * $query = $query->where('firstName', '=', 'John');
+     * ```
+     *
+     * ```
+     * // Filtering against `null` and `NAN` is supported only with the equality operator.
+     * $query = $query->where('coolnessPercentage', '=', NAN);
+     * ```
+     *
+     * ```
+     * // Use `array-contains` to select documents where the array contains given elements.
+     * $query = $query->where('friends', 'array-contains', ['Steve', 'Sarah']);
+     * ```
+     *
+     * ```
+     * // Filtering with Filter::or condition
+     * $query = $query->where(Filter::or([Filter::condition('firstName', '=', 'John'),
+     *                          Filter::condition('firstName', '=', 'Monica')]));
+     * ```
+     *
+     * @param string|array|FieldPath $fieldPath The field to filter by, or array of Filters.
+     * @param string|int $operator The operator to filter by.
+     * @param mixed $value The value to compare to.
+     * @return Query A new instance of Query with the given changes applied.
+     * @throws \InvalidArgumentException If an invalid operator or value is encountered.
+     */
+    public function where($fieldPath, $operator = null, $value = null)
+    {
+        if (is_array($fieldPath)) {
+            if (!is_null($operator) or !(is_null($operator))) {
+                throw new \InvalidArgumentException(
+                    'Filter with operator and value is not accepted'
+                );
+            }
+            $filters = $this->createCompositeFilter($fieldPath);
+        } else {
+            $filters = $this->createNonCompositeFilter($fieldPath, $operator, $value);
+        }
 
         $query = [
             'where' => [
                 'compositeFilter' => [
                     'op' => Operator::PBAND,
                     'filters' => [
-                        $filter
+                        $filters
                     ]
                 ]
             ]

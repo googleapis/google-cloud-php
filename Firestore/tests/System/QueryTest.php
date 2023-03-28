@@ -19,6 +19,7 @@ namespace Google\Cloud\Firestore\Tests\System;
 
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Firestore\FieldPath;
+use Google\Cloud\Firestore\Filter;
 
 /**
  * @group firestore
@@ -71,6 +72,11 @@ class QueryTest extends FirestoreTestCase
 
         $res = $this->getQueryRow($this->query->where('foo', '=', $randomVal));
         $this->assertEquals($res->name(), $doc->name());
+
+        $res = $this->getQueryRow($this->query->where(
+            Filter::condition('foo', '=', $randomVal)
+        ));
+        $this->assertEquals($res->name(), $doc->name());
     }
 
     public function testWhereNull()
@@ -81,6 +87,11 @@ class QueryTest extends FirestoreTestCase
 
         $res = $this->getQueryRow($this->query->where('foo', '=', null));
         $this->assertEquals($res->name(), $doc->name());
+
+        $res = $this->getQueryRow($this->query->where(
+            Filter::condition('foo', '=', null)
+        ));
+        $this->assertEquals($res->name(), $doc->name());
     }
 
     public function testWhereNan()
@@ -90,6 +101,11 @@ class QueryTest extends FirestoreTestCase
         ]);
 
         $res = $this->getQueryRow($this->query->where('foo', '=', NAN));
+        $this->assertEquals($res->name(), $doc->name());
+
+        $res = $this->getQueryRow($this->query->where(
+            Filter::condition('foo', '=', NAN)
+        ));
         $this->assertEquals($res->name(), $doc->name());
     }
 
@@ -127,6 +143,60 @@ class QueryTest extends FirestoreTestCase
         }, $docs);
         $this->assertContains($doc1->id(), $doc_ids);
         $this->assertContains($doc2->id(), $doc_ids);
+
+        $docs = self::$client->collection($name)
+        ->where(Filter::condition('foos', 'in', [['foo']]))->documents()->rows();
+        $this->assertCount(1, $docs);
+        $this->assertEquals($doc2->name(), $docs[0]->name());
+
+        $docs = self::$client->collection($name)
+        ->where(Filter::condition('foos', 'in', [['bar']]))->documents()->rows();
+        $this->assertEmpty($docs);
+
+        $docs = self::$client->collection($name)
+        ->where(Filter::condition('foos', 'in', [['foo', 'bar']]))->documents()->rows();
+        $this->assertCount(1, $docs);
+        $this->assertEquals($doc1->name(), $docs[0]->name());
+
+        $docs = self::$client->collection($name)
+        ->where(Filter::condition('foos', 'in', [['bar', 'foo']]))->documents()->rows();
+        $this->assertEmpty($docs);
+
+        $docs = self::$client->collection($name)
+            ->where(Filter::condition(FieldPath::documentId(), 'in', [$doc1->id(), $doc2->id()]))
+            ->documents()
+            ->rows();
+        $this->assertCount(2, $docs);
+        $doc_ids = array_map(function ($doc) {
+            return $doc->id();
+        }, $docs);
+        $this->assertContains($doc1->id(), $doc_ids);
+        $this->assertContains($doc2->id(), $doc_ids);
+    }
+
+    public function testWhereWithCompositeFilter()
+    {
+        $name = $this->query->name();
+        $randomVal1 = base64_encode(random_bytes(10));
+        $randomVal2 = base64_encode(random_bytes(10));
+        $this->insertDoc([
+            'foo' => $randomVal1
+        ]);
+        $this->insertDoc([
+            'foo' => $randomVal2
+        ]);
+
+        $docs = self::$client->collection($name)->where('foos', 'in', [['foo']])->documents()->rows();
+
+        $docs = self::$client->collection($name)->where(
+            Filter::doOr(
+                [
+                    Filter::condition('foo', '=', $randomVal1),
+                    Filter::condition('foo', '=', $randomVal2)
+                ]
+            )
+        )->documents()->rows();
+        $this->assertCount(2, $docs);
     }
 
     public function testSnapshotCursors()
