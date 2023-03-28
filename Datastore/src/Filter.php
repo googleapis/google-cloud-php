@@ -21,7 +21,7 @@ namespace Google\Cloud\Datastore;
 use Google\Cloud\Datastore\Query\Query;
 
 /**
- * Represents interface to create composite and property filters for
+ * Represents an interface to create composite and property filters for
  * Google\Cloud\Datastore\Query\Query via static methods.
  *
  * Each method returns an array representation of respective filter which is
@@ -43,7 +43,7 @@ use Google\Cloud\Datastore\Query\Query;
  * }
  * ```
  *
- * Similary composite filters can be created by using other composite/property
+ * Composite filters can be created by using other composite/property
  * filters.
  * ```
  * // Or filter
@@ -53,7 +53,7 @@ use Google\Cloud\Datastore\Query\Query;
  * $filterAnd = Filter::and([$filter1, ...$filters]);
  * ```
  *
- * Property Filters can be created by using the following shorthand operators:
+ * Property Filter can be created by using the following shorthand operators:
  *     `$operator = One of ['=', '<', '<=', '>', '>=', '!=', 'IN', 'NOT IN']`
  * ```
  * $filter = Filter::where($property, $operator, $value);
@@ -78,7 +78,7 @@ class Filter
     /**
      * Creates an AND composite filter in array format.
      *
-     * @param array $filters An array of filters to AND upon.
+     * @param array $filters An array of filters(array representations) to AND upon.
      * @return array
      */
     public static function and(array $filters)
@@ -89,7 +89,7 @@ class Filter
     /**
      * Creates a OR composite filter in array format.
      *
-     * @param array $filters An array of filters to OR upon.
+     * @param array $filters An array of filters(array representations) to OR upon.
      * @return array
      */
     public static function or(array $filters)
