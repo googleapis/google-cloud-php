@@ -2,6 +2,7 @@
     "type": "library",
     "description": "Development commands for the google/cloud library",
     "require": {
+        "php": ">=8.0",
         "vierbergenlars/php-semver": "^3.0",
         "symfony/console": " ^3.0",
         "symfony/yaml": "^6.0",

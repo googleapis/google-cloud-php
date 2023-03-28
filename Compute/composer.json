@@ -4,7 +4,7 @@
     "license": "Apache-2.0",
     "minimum-stability": "stable",
     "require": {
-        "php": ">=7.0",
+        "php": ">=7.4",
         "google/gax": "^1.9"
     },
     "require-dev": {

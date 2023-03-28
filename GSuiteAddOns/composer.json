@@ -20,6 +20,7 @@
         }
     },
     "require": {
+        "php": ">=7.4",
         "google/gax": "^1.17.0"
     },
     "require-dev": {

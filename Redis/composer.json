@@ -18,6 +18,7 @@
         }
     },
     "require": {
+        "php": ">=7.4",
         "ext-grpc": "*",
         "google/gax": "^1.1"
     },
