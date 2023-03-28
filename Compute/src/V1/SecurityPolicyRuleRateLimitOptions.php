@@ -46,7 +46,7 @@ class SecurityPolicyRuleRateLimitOptions extends \Google\Protobuf\Internal\Messa
      */
     private $enforce_on_key_name = null;
     /**
-     * Action to take for requests that are above the configured rate limit threshold, to either deny with a specified HTTP response code, or redirect to a different endpoint. Valid options are "deny(status)", where valid values for status are 403, 404, 429, and 502, and "redirect" where the redirect parameters come from exceedRedirectOptions below.
+     * Action to take for requests that are above the configured rate limit threshold, to either deny with a specified HTTP response code, or redirect to a different endpoint. Valid options are `deny(STATUS)`, where valid values for `STATUS` are 403, 404, 429, and 502, and `redirect`, where the redirect parameters come from `exceedRedirectOptions` below.
      *
      * Generated from protobuf field <code>optional string exceed_action = 167159073;</code>
      */
@@ -82,7 +82,7 @@ class SecurityPolicyRuleRateLimitOptions extends \Google\Protobuf\Internal\Messa
      *     @type string $enforce_on_key_name
      *           Rate limit key name applicable only for the following key types: HTTP_HEADER -- Name of the HTTP header whose value is taken as the key value. HTTP_COOKIE -- Name of the HTTP cookie whose value is taken as the key value.
      *     @type string $exceed_action
-     *           Action to take for requests that are above the configured rate limit threshold, to either deny with a specified HTTP response code, or redirect to a different endpoint. Valid options are "deny(status)", where valid values for status are 403, 404, 429, and 502, and "redirect" where the redirect parameters come from exceedRedirectOptions below.
+     *           Action to take for requests that are above the configured rate limit threshold, to either deny with a specified HTTP response code, or redirect to a different endpoint. Valid options are `deny(STATUS)`, where valid values for `STATUS` are 403, 404, 429, and 502, and `redirect`, where the redirect parameters come from `exceedRedirectOptions` below.
      *     @type \Google\Cloud\Compute\V1\SecurityPolicyRuleRedirectOptions $exceed_redirect_options
      *           Parameters defining the redirect action that is used as the exceed action. Cannot be specified if the exceed action is not redirect.
      *     @type \Google\Cloud\Compute\V1\SecurityPolicyRuleRateLimitOptionsThreshold $rate_limit_threshold
@@ -277,7 +277,7 @@ class SecurityPolicyRuleRateLimitOptions extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * Action to take for requests that are above the configured rate limit threshold, to either deny with a specified HTTP response code, or redirect to a different endpoint. Valid options are "deny(status)", where valid values for status are 403, 404, 429, and 502, and "redirect" where the redirect parameters come from exceedRedirectOptions below.
+     * Action to take for requests that are above the configured rate limit threshold, to either deny with a specified HTTP response code, or redirect to a different endpoint. Valid options are `deny(STATUS)`, where valid values for `STATUS` are 403, 404, 429, and 502, and `redirect`, where the redirect parameters come from `exceedRedirectOptions` below.
      *
      * Generated from protobuf field <code>optional string exceed_action = 167159073;</code>
      * @return string
@@ -298,7 +298,7 @@ class SecurityPolicyRuleRateLimitOptions extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * Action to take for requests that are above the configured rate limit threshold, to either deny with a specified HTTP response code, or redirect to a different endpoint. Valid options are "deny(status)", where valid values for status are 403, 404, 429, and 502, and "redirect" where the redirect parameters come from exceedRedirectOptions below.
+     * Action to take for requests that are above the configured rate limit threshold, to either deny with a specified HTTP response code, or redirect to a different endpoint. Valid options are `deny(STATUS)`, where valid values for `STATUS` are 403, 404, 429, and 502, and `redirect`, where the redirect parameters come from `exceedRedirectOptions` below.
      *
      * Generated from protobuf field <code>optional string exceed_action = 167159073;</code>
      * @param string $var

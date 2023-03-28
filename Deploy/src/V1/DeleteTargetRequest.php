@@ -46,15 +46,15 @@ class DeleteTargetRequest extends \Google\Protobuf\Internal\Message
      */
     private $allow_missing = false;
     /**
-     * Optional. If set, validate the request and preview the review, but do not actually
-     * post it.
+     * Optional. If set, validate the request and preview the review, but do not
+     * actually post it.
      *
      * Generated from protobuf field <code>bool validate_only = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $validate_only = false;
     /**
-     * Optional. This checksum is computed by the server based on the value of other
-     * fields, and may be sent on update and delete requests to ensure the
+     * Optional. This checksum is computed by the server based on the value of
+     * other fields, and may be sent on update and delete requests to ensure the
      * client has an up-to-date value before proceeding.
      *
      * Generated from protobuf field <code>string etag = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -86,11 +86,11 @@ class DeleteTargetRequest extends \Google\Protobuf\Internal\Message
      *           Optional. If set to true, then deleting an already deleted or non-existing
      *           DeliveryPipeline will succeed.
      *     @type bool $validate_only
-     *           Optional. If set, validate the request and preview the review, but do not actually
-     *           post it.
+     *           Optional. If set, validate the request and preview the review, but do not
+     *           actually post it.
      *     @type string $etag
-     *           Optional. This checksum is computed by the server based on the value of other
-     *           fields, and may be sent on update and delete requests to ensure the
+     *           Optional. This checksum is computed by the server based on the value of
+     *           other fields, and may be sent on update and delete requests to ensure the
      *           client has an up-to-date value before proceeding.
      * }
      */
@@ -202,8 +202,8 @@ class DeleteTargetRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If set, validate the request and preview the review, but do not actually
-     * post it.
+     * Optional. If set, validate the request and preview the review, but do not
+     * actually post it.
      *
      * Generated from protobuf field <code>bool validate_only = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
@@ -214,8 +214,8 @@ class DeleteTargetRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If set, validate the request and preview the review, but do not actually
-     * post it.
+     * Optional. If set, validate the request and preview the review, but do not
+     * actually post it.
      *
      * Generated from protobuf field <code>bool validate_only = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
@@ -230,8 +230,8 @@ class DeleteTargetRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. This checksum is computed by the server based on the value of other
-     * fields, and may be sent on update and delete requests to ensure the
+     * Optional. This checksum is computed by the server based on the value of
+     * other fields, and may be sent on update and delete requests to ensure the
      * client has an up-to-date value before proceeding.
      *
      * Generated from protobuf field <code>string etag = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -243,8 +243,8 @@ class DeleteTargetRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. This checksum is computed by the server based on the value of other
-     * fields, and may be sent on update and delete requests to ensure the
+     * Optional. This checksum is computed by the server based on the value of
+     * other fields, and may be sent on update and delete requests to ensure the
      * client has an up-to-date value before proceeding.
      *
      * Generated from protobuf field <code>string etag = 5 [(.google.api.field_behavior) = OPTIONAL];</code>

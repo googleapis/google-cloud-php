@@ -22,7 +22,7 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START datacatalog-lineage_v1_generated_Lineage_UpdateRun_sync]
+// [START datalineage_v1_generated_Lineage_UpdateRun_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\DataCatalog\Lineage\V1\LineageClient;
 use Google\Cloud\DataCatalog\Lineage\V1\Run;
@@ -70,4 +70,4 @@ function callSample(): void
 
     update_run_sample($runState);
 }
-// [END datacatalog-lineage_v1_generated_Lineage_UpdateRun_sync]
+// [END datalineage_v1_generated_Lineage_UpdateRun_sync]

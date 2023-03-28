@@ -29,15 +29,15 @@ class ListMigrationSubtasksRequest extends \Google\Protobuf\Internal\Message
      */
     private $read_mask = null;
     /**
-     * Optional. The maximum number of migration tasks to return. The service may return
-     * fewer than this number.
+     * Optional. The maximum number of migration tasks to return. The service may
+     * return fewer than this number.
      *
      * Generated from protobuf field <code>int32 page_size = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_size = 0;
     /**
-     * Optional. A page token, received from previous `ListMigrationSubtasks` call.
-     * Provide this to retrieve the subsequent page.
+     * Optional. A page token, received from previous `ListMigrationSubtasks`
+     * call. Provide this to retrieve the subsequent page.
      * When paginating, all other parameters provided to `ListMigrationSubtasks`
      * must match the call that provided the page token.
      *
@@ -45,9 +45,9 @@ class ListMigrationSubtasksRequest extends \Google\Protobuf\Internal\Message
      */
     private $page_token = '';
     /**
-     * Optional. The filter to apply. This can be used to get the subtasks of a specific
-     * tasks in a workflow, e.g. `migration_task = "ab012"` where `"ab012"` is the
-     * task ID (not the name in the named map).
+     * Optional. The filter to apply. This can be used to get the subtasks of a
+     * specific tasks in a workflow, e.g. `migration_task = "ab012"` where
+     * `"ab012"` is the task ID (not the name in the named map).
      *
      * Generated from protobuf field <code>string filter = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -65,17 +65,17 @@ class ListMigrationSubtasksRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\FieldMask $read_mask
      *           Optional. The list of fields to be retrieved.
      *     @type int $page_size
-     *           Optional. The maximum number of migration tasks to return. The service may return
-     *           fewer than this number.
+     *           Optional. The maximum number of migration tasks to return. The service may
+     *           return fewer than this number.
      *     @type string $page_token
-     *           Optional. A page token, received from previous `ListMigrationSubtasks` call.
-     *           Provide this to retrieve the subsequent page.
+     *           Optional. A page token, received from previous `ListMigrationSubtasks`
+     *           call. Provide this to retrieve the subsequent page.
      *           When paginating, all other parameters provided to `ListMigrationSubtasks`
      *           must match the call that provided the page token.
      *     @type string $filter
-     *           Optional. The filter to apply. This can be used to get the subtasks of a specific
-     *           tasks in a workflow, e.g. `migration_task = "ab012"` where `"ab012"` is the
-     *           task ID (not the name in the named map).
+     *           Optional. The filter to apply. This can be used to get the subtasks of a
+     *           specific tasks in a workflow, e.g. `migration_task = "ab012"` where
+     *           `"ab012"` is the task ID (not the name in the named map).
      * }
      */
     public function __construct($data = NULL) {
@@ -148,8 +148,8 @@ class ListMigrationSubtasksRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The maximum number of migration tasks to return. The service may return
-     * fewer than this number.
+     * Optional. The maximum number of migration tasks to return. The service may
+     * return fewer than this number.
      *
      * Generated from protobuf field <code>int32 page_size = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -160,8 +160,8 @@ class ListMigrationSubtasksRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The maximum number of migration tasks to return. The service may return
-     * fewer than this number.
+     * Optional. The maximum number of migration tasks to return. The service may
+     * return fewer than this number.
      *
      * Generated from protobuf field <code>int32 page_size = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
@@ -176,8 +176,8 @@ class ListMigrationSubtasksRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A page token, received from previous `ListMigrationSubtasks` call.
-     * Provide this to retrieve the subsequent page.
+     * Optional. A page token, received from previous `ListMigrationSubtasks`
+     * call. Provide this to retrieve the subsequent page.
      * When paginating, all other parameters provided to `ListMigrationSubtasks`
      * must match the call that provided the page token.
      *
@@ -190,8 +190,8 @@ class ListMigrationSubtasksRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A page token, received from previous `ListMigrationSubtasks` call.
-     * Provide this to retrieve the subsequent page.
+     * Optional. A page token, received from previous `ListMigrationSubtasks`
+     * call. Provide this to retrieve the subsequent page.
      * When paginating, all other parameters provided to `ListMigrationSubtasks`
      * must match the call that provided the page token.
      *
@@ -208,9 +208,9 @@ class ListMigrationSubtasksRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The filter to apply. This can be used to get the subtasks of a specific
-     * tasks in a workflow, e.g. `migration_task = "ab012"` where `"ab012"` is the
-     * task ID (not the name in the named map).
+     * Optional. The filter to apply. This can be used to get the subtasks of a
+     * specific tasks in a workflow, e.g. `migration_task = "ab012"` where
+     * `"ab012"` is the task ID (not the name in the named map).
      *
      * Generated from protobuf field <code>string filter = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -221,9 +221,9 @@ class ListMigrationSubtasksRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The filter to apply. This can be used to get the subtasks of a specific
-     * tasks in a workflow, e.g. `migration_task = "ab012"` where `"ab012"` is the
-     * task ID (not the name in the named map).
+     * Optional. The filter to apply. This can be used to get the subtasks of a
+     * specific tasks in a workflow, e.g. `migration_task = "ab012"` where
+     * `"ab012"` is the task ID (not the name in the named map).
      *
      * Generated from protobuf field <code>string filter = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

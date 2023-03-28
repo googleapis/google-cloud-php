@@ -50,8 +50,8 @@ use Google\Cloud\BigQuery\Reservation\V1\ReservationServiceClient;
  * 3. Parent here is `projects/&#42;/locations/*`, instead of
  * `projects/&#42;/locations/*reservations/*`.
  *
- * @param string $formattedParent The resource name with location (project name could be the wildcard '-'),
- *                                e.g.:
+ * @param string $formattedParent The resource name with location (project name could be the
+ *                                wildcard '-'), e.g.:
  *                                `projects/-/locations/US`. Please see
  *                                {@see ReservationServiceClient::locationName()} for help formatting this field.
  */

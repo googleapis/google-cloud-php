@@ -17,7 +17,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class SearchLinksRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The project and location you want search in.
+     * Required. The project and location you want search in the format `projects/&#42;&#47;locations/&#42;`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -50,7 +50,7 @@ class SearchLinksRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The project and location you want search in.
+     *           Required. The project and location you want search in the format `projects/&#42;&#47;locations/&#42;`
      *     @type \Google\Cloud\DataCatalog\Lineage\V1\EntityReference $source
      *           Optional. Send asset information in the **source** field to retrieve all
      *           links that lead from the specified asset to downstream assets.
@@ -76,7 +76,7 @@ class SearchLinksRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The project and location you want search in.
+     * Required. The project and location you want search in the format `projects/&#42;&#47;locations/&#42;`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -87,7 +87,7 @@ class SearchLinksRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The project and location you want search in.
+     * Required. The project and location you want search in the format `projects/&#42;&#47;locations/&#42;`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

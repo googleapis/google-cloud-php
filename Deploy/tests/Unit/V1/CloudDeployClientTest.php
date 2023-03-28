@@ -28,10 +28,13 @@ use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Deploy\V1\AbandonReleaseResponse;
+use Google\Cloud\Deploy\V1\AdvanceRolloutResponse;
 use Google\Cloud\Deploy\V1\ApproveRolloutResponse;
+use Google\Cloud\Deploy\V1\CancelRolloutResponse;
 use Google\Cloud\Deploy\V1\CloudDeployClient;
 use Google\Cloud\Deploy\V1\Config;
 use Google\Cloud\Deploy\V1\DeliveryPipeline;
+use Google\Cloud\Deploy\V1\IgnoreJobResponse;
 use Google\Cloud\Deploy\V1\JobRun;
 use Google\Cloud\Deploy\V1\ListDeliveryPipelinesResponse;
 use Google\Cloud\Deploy\V1\ListJobRunsResponse;
@@ -42,6 +45,7 @@ use Google\Cloud\Deploy\V1\Release;
 use Google\Cloud\Deploy\V1\RetryJobResponse;
 use Google\Cloud\Deploy\V1\Rollout;
 use Google\Cloud\Deploy\V1\Target;
+use Google\Cloud\Deploy\V1\TerminateJobRunResponse;
 use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Cloud\Location\ListLocationsResponse;
@@ -141,6 +145,68 @@ class CloudDeployClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function advanceRolloutTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new AdvanceRolloutResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->rolloutName('[PROJECT]', '[LOCATION]', '[DELIVERY_PIPELINE]', '[RELEASE]', '[ROLLOUT]');
+        $phaseId = 'phaseId-1676299681';
+        $response = $gapicClient->advanceRollout($formattedName, $phaseId);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.deploy.v1.CloudDeploy/AdvanceRollout', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualRequestObject->getPhaseId();
+        $this->assertProtobufEquals($phaseId, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function advanceRolloutExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->rolloutName('[PROJECT]', '[LOCATION]', '[DELIVERY_PIPELINE]', '[RELEASE]', '[ROLLOUT]');
+        $phaseId = 'phaseId-1676299681';
+        try {
+            $gapicClient->advanceRollout($formattedName, $phaseId);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function approveRolloutTest()
     {
         $transport = $this->createTransport();
@@ -191,6 +257,64 @@ class CloudDeployClientTest extends GeneratedTest
         $approved = false;
         try {
             $gapicClient->approveRollout($formattedName, $approved);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function cancelRolloutTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new CancelRolloutResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->rolloutName('[PROJECT]', '[LOCATION]', '[DELIVERY_PIPELINE]', '[RELEASE]', '[ROLLOUT]');
+        $response = $gapicClient->cancelRollout($formattedName);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.deploy.v1.CloudDeploy/CancelRollout', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function cancelRolloutExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->rolloutName('[PROJECT]', '[LOCATION]', '[DELIVERY_PIPELINE]', '[RELEASE]', '[ROLLOUT]');
+        try {
+            $gapicClient->cancelRollout($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -506,6 +630,7 @@ class CloudDeployClientTest extends GeneratedTest
         $failureReason = 'failureReason1743941273';
         $deployingBuild = 'deployingBuild931623626';
         $etag = 'etag3123477';
+        $controllerRollout = 'controllerRollout-146558962';
         $expectedResponse = new Rollout();
         $expectedResponse->setName($name);
         $expectedResponse->setUid($uid);
@@ -514,6 +639,7 @@ class CloudDeployClientTest extends GeneratedTest
         $expectedResponse->setFailureReason($failureReason);
         $expectedResponse->setDeployingBuild($deployingBuild);
         $expectedResponse->setEtag($etag);
+        $expectedResponse->setControllerRollout($controllerRollout);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -1280,6 +1406,7 @@ class CloudDeployClientTest extends GeneratedTest
         $failureReason = 'failureReason1743941273';
         $deployingBuild = 'deployingBuild931623626';
         $etag = 'etag3123477';
+        $controllerRollout = 'controllerRollout-146558962';
         $expectedResponse = new Rollout();
         $expectedResponse->setName($name2);
         $expectedResponse->setUid($uid);
@@ -1288,6 +1415,7 @@ class CloudDeployClientTest extends GeneratedTest
         $expectedResponse->setFailureReason($failureReason);
         $expectedResponse->setDeployingBuild($deployingBuild);
         $expectedResponse->setEtag($etag);
+        $expectedResponse->setControllerRollout($controllerRollout);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->rolloutName('[PROJECT]', '[LOCATION]', '[DELIVERY_PIPELINE]', '[RELEASE]', '[ROLLOUT]');
@@ -1395,6 +1523,72 @@ class CloudDeployClientTest extends GeneratedTest
         $formattedName = $gapicClient->targetName('[PROJECT]', '[LOCATION]', '[TARGET]');
         try {
             $gapicClient->getTarget($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function ignoreJobTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new IgnoreJobResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedRollout = $gapicClient->rolloutName('[PROJECT]', '[LOCATION]', '[DELIVERY_PIPELINE]', '[RELEASE]', '[ROLLOUT]');
+        $phaseId = 'phaseId-1676299681';
+        $jobId = 'jobId-1154752291';
+        $response = $gapicClient->ignoreJob($formattedRollout, $phaseId, $jobId);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.deploy.v1.CloudDeploy/IgnoreJob', $actualFuncCall);
+        $actualValue = $actualRequestObject->getRollout();
+        $this->assertProtobufEquals($formattedRollout, $actualValue);
+        $actualValue = $actualRequestObject->getPhaseId();
+        $this->assertProtobufEquals($phaseId, $actualValue);
+        $actualValue = $actualRequestObject->getJobId();
+        $this->assertProtobufEquals($jobId, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function ignoreJobExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedRollout = $gapicClient->rolloutName('[PROJECT]', '[LOCATION]', '[DELIVERY_PIPELINE]', '[RELEASE]', '[ROLLOUT]');
+        $phaseId = 'phaseId-1676299681';
+        $jobId = 'jobId-1154752291';
+        try {
+            $gapicClient->ignoreJob($formattedRollout, $phaseId, $jobId);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1801,6 +1995,64 @@ class CloudDeployClientTest extends GeneratedTest
         $jobId = 'jobId-1154752291';
         try {
             $gapicClient->retryJob($formattedRollout, $phaseId, $jobId);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function terminateJobRunTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new TerminateJobRunResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->jobRunName('[PROJECT]', '[LOCATION]', '[DELIVERY_PIPELINE]', '[RELEASE]', '[ROLLOUT]', '[JOB_RUN]');
+        $response = $gapicClient->terminateJobRun($formattedName);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.deploy.v1.CloudDeploy/TerminateJobRun', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function terminateJobRunExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->jobRunName('[PROJECT]', '[LOCATION]', '[DELIVERY_PIPELINE]', '[RELEASE]', '[ROLLOUT]', '[JOB_RUN]');
+        try {
+            $gapicClient->terminateJobRun($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

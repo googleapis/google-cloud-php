@@ -20,13 +20,13 @@ class Tier
      */
     const TIER_UNSPECIFIED = 0;
     /**
-     * STANDARD tier.
+     * STANDARD tier. BASIC_HDD is the preferred term for this tier.
      *
      * Generated from protobuf enum <code>STANDARD = 1;</code>
      */
     const STANDARD = 1;
     /**
-     * PREMIUM tier.
+     * PREMIUM tier. BASIC_SSD is the preferred term for this tier.
      *
      * Generated from protobuf enum <code>PREMIUM = 2;</code>
      */
@@ -54,6 +54,13 @@ class Tier
      * Generated from protobuf enum <code>HIGH_SCALE_SSD = 5;</code>
      */
     const HIGH_SCALE_SSD = 5;
+    /**
+     * ENTERPRISE instances offer the features and availability needed for
+     * mission-critical workloads.
+     *
+     * Generated from protobuf enum <code>ENTERPRISE = 6;</code>
+     */
+    const ENTERPRISE = 6;
 
     private static $valueToName = [
         self::TIER_UNSPECIFIED => 'TIER_UNSPECIFIED',
@@ -62,6 +69,7 @@ class Tier
         self::BASIC_HDD => 'BASIC_HDD',
         self::BASIC_SSD => 'BASIC_SSD',
         self::HIGH_SCALE_SSD => 'HIGH_SCALE_SSD',
+        self::ENTERPRISE => 'ENTERPRISE',
     ];
 
     public static function name($value)

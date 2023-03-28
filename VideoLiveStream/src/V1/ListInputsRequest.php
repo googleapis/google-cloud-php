@@ -26,8 +26,8 @@ class ListInputsRequest extends \Google\Protobuf\Internal\Message
      * The maximum number of items to return. If unspecified, server
      * will pick an appropriate default. Server may return fewer items than
      * requested. A caller should only rely on response's
-     * [next_page_token][google.cloud.video.livestream.v1.ListInputsResponse.next_page_token] to
-     * determine if there are more items left to be queried.
+     * [next_page_token][google.cloud.video.livestream.v1.ListInputsResponse.next_page_token]
+     * to determine if there are more items left to be queried.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      */
@@ -65,8 +65,8 @@ class ListInputsRequest extends \Google\Protobuf\Internal\Message
      *           The maximum number of items to return. If unspecified, server
      *           will pick an appropriate default. Server may return fewer items than
      *           requested. A caller should only rely on response's
-     *           [next_page_token][google.cloud.video.livestream.v1.ListInputsResponse.next_page_token] to
-     *           determine if there are more items left to be queried.
+     *           [next_page_token][google.cloud.video.livestream.v1.ListInputsResponse.next_page_token]
+     *           to determine if there are more items left to be queried.
      *     @type string $page_token
      *           The next_page_token value returned from a previous List request, if any.
      *     @type string $filter
@@ -113,8 +113,8 @@ class ListInputsRequest extends \Google\Protobuf\Internal\Message
      * The maximum number of items to return. If unspecified, server
      * will pick an appropriate default. Server may return fewer items than
      * requested. A caller should only rely on response's
-     * [next_page_token][google.cloud.video.livestream.v1.ListInputsResponse.next_page_token] to
-     * determine if there are more items left to be queried.
+     * [next_page_token][google.cloud.video.livestream.v1.ListInputsResponse.next_page_token]
+     * to determine if there are more items left to be queried.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      * @return int
@@ -128,8 +128,8 @@ class ListInputsRequest extends \Google\Protobuf\Internal\Message
      * The maximum number of items to return. If unspecified, server
      * will pick an appropriate default. Server may return fewer items than
      * requested. A caller should only rely on response's
-     * [next_page_token][google.cloud.video.livestream.v1.ListInputsResponse.next_page_token] to
-     * determine if there are more items left to be queried.
+     * [next_page_token][google.cloud.video.livestream.v1.ListInputsResponse.next_page_token]
+     * to determine if there are more items left to be queried.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      * @param int $var

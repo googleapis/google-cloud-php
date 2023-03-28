@@ -9,6 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
+ * Properties of the provided event token.
+ *
  * Generated from protobuf message <code>google.cloud.recaptchaenterprise.v1.TokenProperties</code>
  */
 class TokenProperties extends \Google\Protobuf\Internal\Message

@@ -28,7 +28,7 @@ use Google\Cloud\Compute\V1\Address;
 use Google\Cloud\Compute\V1\GlobalAddressesClient;
 
 /**
- * Returns the specified address resource. Gets a list of available addresses by making a list() request.
+ * Returns the specified address resource.
  *
  * @param string $address Name of the address resource to return.
  * @param string $project Project ID for this request.

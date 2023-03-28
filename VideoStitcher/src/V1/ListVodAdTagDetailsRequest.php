@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListVodAdTagDetailsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The VOD session which the ad tag details belong to, in the form of
-     * `projects/{project}/locations/{location}/vodSessions/{vod_session_id}`.
+     * Required. The VOD session which the ad tag details belong to, in the form
+     * of `projects/{project}/locations/{location}/vodSessions/{vod_session_id}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -42,8 +42,8 @@ class ListVodAdTagDetailsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The VOD session which the ad tag details belong to, in the form of
-     *           `projects/{project}/locations/{location}/vodSessions/{vod_session_id}`.
+     *           Required. The VOD session which the ad tag details belong to, in the form
+     *           of `projects/{project}/locations/{location}/vodSessions/{vod_session_id}`.
      *     @type int $page_size
      *           The maximum number of items to return.
      *     @type string $page_token
@@ -56,8 +56,8 @@ class ListVodAdTagDetailsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The VOD session which the ad tag details belong to, in the form of
-     * `projects/{project}/locations/{location}/vodSessions/{vod_session_id}`.
+     * Required. The VOD session which the ad tag details belong to, in the form
+     * of `projects/{project}/locations/{location}/vodSessions/{vod_session_id}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -68,8 +68,8 @@ class ListVodAdTagDetailsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The VOD session which the ad tag details belong to, in the form of
-     * `projects/{project}/locations/{location}/vodSessions/{vod_session_id}`.
+     * Required. The VOD session which the ad tag details belong to, in the form
+     * of `projects/{project}/locations/{location}/vodSessions/{vod_session_id}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

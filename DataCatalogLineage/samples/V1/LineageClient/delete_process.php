@@ -22,7 +22,7 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START datacatalog-lineage_v1_generated_Lineage_DeleteProcess_sync]
+// [START datalineage_v1_generated_Lineage_DeleteProcess_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\DataCatalog\Lineage\V1\LineageClient;
@@ -72,4 +72,4 @@ function callSample(): void
 
     delete_process_sample($formattedName);
 }
-// [END datacatalog-lineage_v1_generated_Lineage_DeleteProcess_sync]
+// [END datalineage_v1_generated_Lineage_DeleteProcess_sync]

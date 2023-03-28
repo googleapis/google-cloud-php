@@ -327,7 +327,7 @@ class SnapshotsGapicClient
     }
 
     /**
-     * Returns the specified Snapshot resource. Gets a list of available snapshots by making a list() request.
+     * Returns the specified Snapshot resource.
      *
      * Sample code:
      * ```

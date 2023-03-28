@@ -15,7 +15,10 @@
   "autoload": {
     "psr-4": {
       "Google\\Cloud\\": "src",
-      "GPBMetadata\\Google\\": "metadata"
+      "GPBMetadata\\Google\\Cloud\\Audit\\": "metadata/Audit",
+      "GPBMetadata\\Google\\Cloud\\Common\\": "metadata/Common",
+      "GPBMetadata\\Google\\Devtools\\": "metadata/Devtools",
+      "GPBMetadata\\Google\\Rpc\\": "metadata/Rpc"
     }
   },
   "extra": {

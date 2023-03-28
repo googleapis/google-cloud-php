@@ -29,6 +29,12 @@ class Slate extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string uri = 2;</code>
      */
     private $uri = '';
+    /**
+     * gam_slate has all the GAM related attributes of slates.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.stitcher.v1.Slate.GamSlate gam_slate = 3;</code>
+     */
+    private $gam_slate = null;
 
     /**
      * Constructor.
@@ -42,6 +48,8 @@ class Slate extends \Google\Protobuf\Internal\Message
      *     @type string $uri
      *           The URI to fetch the source content for the slate. This URI must return an
      *           MP4 video with at least one audio track.
+     *     @type \Google\Cloud\Video\Stitcher\V1\Slate\GamSlate $gam_slate
+     *           gam_slate has all the GAM related attributes of slates.
      * }
      */
     public function __construct($data = NULL) {
@@ -101,6 +109,42 @@ class Slate extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->uri = $var;
+
+        return $this;
+    }
+
+    /**
+     * gam_slate has all the GAM related attributes of slates.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.stitcher.v1.Slate.GamSlate gam_slate = 3;</code>
+     * @return \Google\Cloud\Video\Stitcher\V1\Slate\GamSlate|null
+     */
+    public function getGamSlate()
+    {
+        return $this->gam_slate;
+    }
+
+    public function hasGamSlate()
+    {
+        return isset($this->gam_slate);
+    }
+
+    public function clearGamSlate()
+    {
+        unset($this->gam_slate);
+    }
+
+    /**
+     * gam_slate has all the GAM related attributes of slates.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.stitcher.v1.Slate.GamSlate gam_slate = 3;</code>
+     * @param \Google\Cloud\Video\Stitcher\V1\Slate\GamSlate $var
+     * @return $this
+     */
+    public function setGamSlate($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Video\Stitcher\V1\Slate\GamSlate::class);
+        $this->gam_slate = $var;
 
         return $this;
     }

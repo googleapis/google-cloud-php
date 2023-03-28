@@ -9,12 +9,15 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
+ * Contains Properties set for the reservation.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.AllocationResourceStatusSpecificSKUAllocation</code>
  */
 class AllocationResourceStatusSpecificSKUAllocation extends \Google\Protobuf\Internal\Message
 {
     /**
+     * ID of the instance template used to populate reservation properties.
+     *
      * Generated from protobuf field <code>optional string source_instance_template_id = 111196154;</code>
      */
     private $source_instance_template_id = null;
@@ -26,6 +29,7 @@ class AllocationResourceStatusSpecificSKUAllocation extends \Google\Protobuf\Int
      *     Optional. Data for populating the Message object.
      *
      *     @type string $source_instance_template_id
+     *           ID of the instance template used to populate reservation properties.
      * }
      */
     public function __construct($data = NULL) {
@@ -34,6 +38,8 @@ class AllocationResourceStatusSpecificSKUAllocation extends \Google\Protobuf\Int
     }
 
     /**
+     * ID of the instance template used to populate reservation properties.
+     *
      * Generated from protobuf field <code>optional string source_instance_template_id = 111196154;</code>
      * @return string
      */
@@ -53,6 +59,8 @@ class AllocationResourceStatusSpecificSKUAllocation extends \Google\Protobuf\Int
     }
 
     /**
+     * ID of the instance template used to populate reservation properties.
+     *
      * Generated from protobuf field <code>optional string source_instance_template_id = 111196154;</code>
      * @param string $var
      * @return $this
