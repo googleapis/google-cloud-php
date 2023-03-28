@@ -238,22 +238,45 @@ class Query implements QueryInterface
      * If the top-level filter is specified as a propertyFilter, it will be replaced.
      * Any composite filters will be preserved and the new filter will be added.
      *
+     * Filters can be added either by supplying three arguments
+     * `(string $property, string $operator, mixed $value)` to add a property
+     * filter to the root `AND` filter or by using a single argument invocation
+     * `(array $filter)` to add an array representation of Composite / Property
+     * Filter to the root `AND` filter. They can also be mixed and used together.
+     *
      * Example:
      * ```
+     * // Using (string $property, string $operator, mixed $value) invocation
+     * // to add property filter.
      * $query->filter('firstName', '=', 'Bob')
      *     ->filter('lastName', '=', 'Testguy');
+     *
+     * // Using (array $filter) invocation to add composite/property filter.
+     * use Google\Cloud\Datastore\Filter;
+     *
+     * $filterA = Filter::or([$subFilter1, ...$subFilters]);
+     * $filterB = Filter::and([$subFilter2, ...$subFilter]);
+     * $filterC = Filter::where($property1, $operator1, $value1);
+     * $query->filter($filterA)
+     *     ->filter($filterB)
+     *     ->filter($filterC)
+     *     ->filter($property2, $operator2, $value2);
      * ```
      *
      * @see https://cloud.google.com/datastore/reference/rest/v1/projects/runQuery#operator_1 Allowed Operators
      *
-     * @param string $property The property to filter.
-     * @param string $operator The operator to use in the filter. A list of
+     * @param string|array $filterOrProperty Either a string property name or
+     *        an array representation of Property/Composite filter returned
+     *        by Filter::and(), Filter::or() and Filter::where().
+     * @param string|null $operator [optional] The operator to use in the filter
+     *        if property name is used in the first argument. A list of
      *        allowed operators may be found
      *        [here](https://cloud.google.com/datastore/reference/rest/v1/projects/runQuery#operator_1).
      *        Short comparison operators are provided for convenience and are
      *        mapped to their datastore-compatible equivalents. Available short
-     *        operators are `=`, `!=`, `<`, `<=`, `>`, and `>=`.
-     * @param mixed $value The value to check.
+     *        operators are `=`, `!=`, `<`, `<=`, `>`, `>=`, `IN` and `NOT IN`.
+     * @param mixed $value [optional] The value to check if property name is
+     *        used in the first argument.
      * @return Query
      */
     public function filter($property, $operator = null, $value = null)
