@@ -17,7 +17,6 @@
 
 namespace Google\Cloud\BigQuery\Tests\System;
 
-
 /**
  * @group bigquery
  * @group bigquery-regionalization

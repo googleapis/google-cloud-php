@@ -17,7 +17,6 @@
 
 namespace Google\Cloud\Storage\Tests\System;
 
-
 /**
  * @group storage
  * @group storage-iam
