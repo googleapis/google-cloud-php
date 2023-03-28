@@ -119,7 +119,8 @@ class Rest implements ConnectionInterface
     }
 
     /**
-     * Apply the x-goog-request-params header to requests for multiple databases.
+     * Apply the `x-goog-request-params` header to the request. This header 
+     * is required for operations involving a non-default databases.
      *
      * @param array $args
      */
