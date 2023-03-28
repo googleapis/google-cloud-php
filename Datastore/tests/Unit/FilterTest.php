@@ -38,7 +38,11 @@ class FilterTest extends TestCase
         $compositeFilter = $filter['compositeFilter'];
 
         $this->assertEquals($compositeFilter['filters'], $filters);
-        $this->assertEquals($compositeFilter['op'], strtoupper($methodName));
+
+        // Taking substring of $methodName from 3rd characted so that
+        // 'doAnd' => 'And' and 'doOr' => 'Or'.
+        $expectedOperator = substr($methodName, 2);
+        $this->assertEquals($compositeFilter['op'], strtoupper($expectedOperator));
     }
 
     /**
